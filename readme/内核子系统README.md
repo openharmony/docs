@@ -91,7 +91,7 @@ OpenHarmony内核是华为推出的面向IoT领域的实时操作系统内核，
 
 ## 使用<a name="section1821123352217"></a>
 
-请参考[《内核使用指南》](zh-cn_bookmap_0000001050030794.md#zh-cn_topic_0000001050032743)。
+请参考[《内核使用指南》](../kernel/Readme-CN.md)。
 
 ## 涉及仓<a name="section2392425183215"></a>
 
