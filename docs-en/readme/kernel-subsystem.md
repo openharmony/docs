@@ -91,7 +91,7 @@ By default, the JFFS2 file system is used during system startup. This file syste
 
 ## Usage<a name="section1821123352217"></a>
 
-For details, see  [en-us\_bookmap\_0000001050030794.md\#en-us\_topic\_0000001050032743](en-us_bookmap_0000001050030794.md#en-us_topic_0000001050032743).
+For details, see  [Kernel Usage Guidelines](../kernel/Readme-EN.md).
 
 ## Repositories Involved<a name="section2392425183215"></a>
 
