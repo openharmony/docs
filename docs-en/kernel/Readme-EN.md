@@ -1,12 +1,12 @@
 # Kernel Usage Guidelines
 
--   [OpenHarmony Basic Kernel Functions](openharmony-basic-kernel-functions.md)
+-   [OpenHarmony Lite Kernel Basic Functions](openharmony-lite-kernel-basic-functions.md)
     -   [Process](process.md)
     -   [Thread](thread.md)
     -   [Memory](memory.md)
     -   [Network](network.md)
 
--   [Kernel File System](kernel-file-system.md)
+-   [OpenHarmony Lite Kernel File System](openharmony-lite-kernel-file-system.md)
     -   [VFS](vfs.md)
     -   [NFS](nfs.md)
     -   [RAMFS](ramfs.md)

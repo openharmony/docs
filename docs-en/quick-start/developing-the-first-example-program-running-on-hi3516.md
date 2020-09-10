@@ -4,7 +4,7 @@ This section describes how to modify, compile, burn, and run the first program, 
 
 ## Acquiring Source Code<a name="section215953714245"></a>
 
-You need to acquire Hi3516 source code \([http://tools.harmonyos.com/mirrors/os/1.0/ipcamera\_hi3516dv300-1.0.tar.gz](http://tools.harmonyos.com/mirrors/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz)  or  [https://mirrors.huaweicloud.com/harmonyos/1.0/ipcamera\_hi3516dv300-1.0.tar.gz](https://mirrors.huaweicloud.com/harmonyos/1.0/ipcamera_hi3516dv300-1.0.tar.gz)\) and download it on a Linux server. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
+You need to acquire  [Hi3516 source code](http://tools.harmonyos.com/mirrors/os/1.0/code-1.0.tar.gz)  and download it on a Linux server. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
 ## Modifying a Program<a name="s8efc1952ebfe4d1ea717182e108c29bb"></a>
 

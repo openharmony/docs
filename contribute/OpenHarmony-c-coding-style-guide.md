@@ -666,34 +666,6 @@ int Foo(const char * restrict p);   // OK.
 ### <a name="r2-12"></a>规则2.12 编译预处理的"#"默认放在行首，嵌套编译预处理语句时，"#"可以进行缩进
 
 编译预处理的"#"统一放在行首；即便编译预处理的代码是嵌入在函数体中的，"#"也应该放在行首。
-```c
-#if defined(__x86_64__) && defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_16) // Good："#"放在行首
-#define ATOMIC_X86_HAS_CMPXCHG16B 1  // Good："#"放在行首
-#else
-#define ATOMIC_X86_HAS_CMPXCHG16B 0
-#endif
-
-int FunctionName(void)
-{
-    if (someThingError) {
-        ...
-#ifdef HAS_SYSLOG        // Good：即便在函数内部，"#"也放在行首
-        WriteToSysLog();
-#else
-        WriteToFileLog();
-#endif
-    }
-}
-```
-
-嵌套的预处理语句"#"可以按照缩进要求进行缩进对齐，区分层次。 
-```c
-#if defined(__x86_64__) && defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_16)
-    #define ATOMIC_X86_HAS_CMPXCHG16B 1  // Good：区分层次，便于阅读
-#else
-    #define ATOMIC_X86_HAS_CMPXCHG16B 0
-#endif
-```
 
 ## <a name="c2-14"></a>空格和空行
 
@@ -850,7 +822,7 @@ int Foo(void)
 ### <a name="r3-1"></a>规则3.1 文件头注释必须包含版权许可
 
 /*
- * Copyright (c) 2020 Huawei Device Co., Ltd.
+ * Copyright (c) 2020 XXX
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -979,19 +951,10 @@ int bar = 200;  /* 放右边的注释 */
 
 这里说的注释掉代码，包括用 /\* \*/ 和 //，还包括 #if 0， #ifdef NEVER_DEFINED 等等。
 
-### <a name="a3-1"></a>建议3.1 正式交付的代码不能包含 TODO/TBD/FIXME 注释
-
-TODO/TBD 注释一般用来描述已知待改进、待补充的修改点  
-FIXME 注释一般用来描述已知缺陷  
-它们都应该有统一风格，方便文本搜索统一处理。如：
-```c
-// TODO(<author-name>): 补充XX处理
-// FIXME: XX缺陷
-```
 
 在版本开发阶段，可以使用此类注释用于突出标注；交付前应该全部处理并删除掉。
 
-### <a name="a3-2"></a>建议3.2 case语句块结束时如果不加break/return，需要有注释说明(fall-through)
+### <a name="a3-1"></a>建议3.1 case语句块结束时如果不加break/return，需要有注释说明(fall-through)
 
 有时候需要对多个case标签做相同的事情，case语句在结束不加break或return，直接执行下一个case标签中的语句，这在C语法中称之为"fall-through"。  
 这种情况下，需要在"fall-through"的地方加上注释，清晰明确的表达出这样做的意图；或者至少显式指明是 "fall-through"。
@@ -1470,7 +1433,7 @@ int OtherFunc(void)
 #define ASSERT(x) do { \
     if (!(x)) { \
         printk(KERN_EMERG "assertion failed %s: %d: %s\n", \
-              __FILE__, __LINE__, #x); \
+            __FILE__, __LINE__, #x); \
         BUG(); \
     } \
 } while (0)

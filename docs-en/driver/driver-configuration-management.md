@@ -271,7 +271,7 @@ The following configuration tree is generated:
 root {
     module = "sample";
     foo {
-        attribute0 = 0x0;
+        attr_0 = 0x0;
     }
     bar {
         attr_1 = 0x1;
@@ -280,7 +280,7 @@ root {
 }
 ```
 
-In the preceding example, the  **bar**  node configuration includes both the  **attribute0**  and  **attribute1**  values. The modification to  **attribute0**  in the  **bar**  node does not affect the  **foo**  node.
+In the preceding example, the  **bar**  node configuration includes both the  **attr\_0**  and  **attr\_1**  values. The modification to  **attr\_0**  in the  **bar**  node does not affect the  **foo**  node.
 
 The path of the  **foo**  node is not required if the  **foo**  node and the  **bar**  node are of the same level. Otherwise, the absolute path must be used. For details, see  [Modifying a Reference](#section179799204716).
 

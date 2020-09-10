@@ -100,28 +100,32 @@ Driver development based on the HDF consists of two parts: driver implementation
                 match_attr = "hdf_manager";
                 template host {       // Host template. If the node (for example, sample_host) that inherits the template uses default values in the template, the values of the node fields can be omitted.
                     hostName = "";
-                    priority = 100;     
-                    template deviceNode {
-                        policy = 0;
-                        priority = 100;
-                        preload = 0;
-                        permission = 0664;
-                        moduleName = "";
-                        serviceName = "";
-                        deviceMatchAttr = "";
+                    priority = 100;
+                    template device {
+                        template deviceNode {
+                            policy = 0;
+                            priority = 100;
+                            preload = 0;
+                            permission = 0664;
+                            moduleName = "";
+                            serviceName = "";
+                            deviceMatchAttr = "";
+                        }
                     }
                 }
                 sample_host :: host{
                     hostName = "host0";    // Host name. The host node is used to store a certain type of drivers.
                     priority = 100;        // Host startup priority (0-200). A larger value indicates a lower priority. The default value 100 is recommended. If the priorities are the same, the host loading sequence is random.
-                    device_sample :: deviceNode {    // Node of the sample driver.
+                    device_sample :: device {        // Device node of sample
+                        device0 :: deviceNode {      // DeviceNode of the sample driver
                         policy = 1;              // Driver service release policy. For details, see section Driver Service Management.
                         priority = 100;          // Driver startup priority (0–200). A larger value indicates a lower priority. The default value 100 is recommended. If the priorities are the same, the device loading sequence is random.
                         preload = 0;             // On-demand driver loading. For details, see "NOTE" at the end of this section.
                         permission = 0664;       // Permission for the driver to create device nodes.
                         moduleName = "sample_driver";   // Driver name. The value of this field must be the same as the value of moduleName in the driver entry structure.
                         serviceName = "sample_service";    // Name of the service released by the driver. The name must be unique.
-                        deviceMatchAttr = "sample_config"; // Keyword matching the private data of the driver. The value must be the same as that of match_attr in the private data configuration table of the driver.
+                            deviceMatchAttr = "sample_config"; // Keyword matching the private data of the driver. The value must be the same as that of match_attr in the private data configuration table of the driver.
+                        }
                     }
                 }
             }

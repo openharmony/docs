@@ -63,7 +63,7 @@ if (handle == NULL) {
 
 After obtaining the device handle of an SDIO controller, exclusively claim the host before performing subsequent operations on the SDIO device.
 
-void SdioClaimHost\(struct DevHandle\*handle\);
+void SdioClaimHost\(struct DevHandle \*handle\);
 
 **Table  2**  Parameter description of SdioClaimHost
 

@@ -134,18 +134,18 @@ When collecting personal data, clearly and explicitly notify users of the data t
 
     Adhering to the preceding principles, we have designed some examples for your reference. The figure below shows an example of a privacy notice or statement.
 
-    **Figure  1**  Example of a dialog box showing a privacy notice or statement<a name="en-us_topic_0000001051770800_fig19449113175619"></a>  
+    **Figure  1**  Example of a dialog box showing a privacy notice or statement<a name="en-us_topic_0000001051770800_fig1546516294210"></a>  
     ![](figures/example-of-a-dialog-box-showing-a-privacy-notice-or-statement.png "example-of-a-dialog-box-showing-a-privacy-notice-or-statement")
 
 -   Personal data shall be collected for specified, explicit, and legitimate purposes and not further processed in a manner that is incompatible with those purposes. If the purposes are changed or an individual withdraws the consent, you shall obtain user consent again before using the data. The figures below show examples of a privacy statement change and content withdrawal, respectively.
 
-    **Figure  2**  Example of a dialog box showing a privacy notice or statement change<a name="en-us_topic_0000001051770800_fig1788416493354"></a>  
-    ![](figures/example-of-a-dialog-box-showing-a-privacy-notice-or-statement-change.png "example-of-a-dialog-box-showing-a-privacy-notice-or-statement-change")
+    **Figure  2**  Example of a dialog box showing a privacy notice or statement<a name="en-us_topic_0000001051770800_fig3591610523"></a>  
+    ![](figures/example-of-a-dialog-box-showing-a-privacy-notice-or-statement-0.png "example-of-a-dialog-box-showing-a-privacy-notice-or-statement-0")
 
-    **Figure  3**  Example of a dialog box showing consent withdrawal<a name="en-us_topic_0000001051770800_fig860521073616"></a>  
-    
+    **Figure  3**  Example of a dialog box showing consent withdrawal<a name="en-us_topic_0000001051770800_fig12802152515583"></a>  
+    ![](figures/example-of-a-dialog-box-showing-consent-withdrawal.png "example-of-a-dialog-box-showing-consent-withdrawal")
 
-    ![](figures/en-us_image_0000001054860198.png)
+    ![](figures/隐私声明详情页面-弹窗02.png)
 
     The download or upgrade of user system software or application software may involve the modification of users' private space. Users shall have the right to know and control such behavior. They shall be informed of such behavior and be given the option to agree or disagree with such behavior.
 

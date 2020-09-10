@@ -33,7 +33,7 @@ The following table describes the API that can be used by smart TVs to remotely 
 </thead>
 <tbody><tr id="row34145016535"><td class="cellrowborder" valign="top" width="57.38999999999999%" headers="mcps1.2.3.1.1 "><p id="p1682733119213"><a name="p1682733119213"></a><a name="p1682733119213"></a>void startAbility(Want want)</p>
 </td>
-<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p13562171015712"><a name="p13562171015712"></a><a name="p13562171015712"></a>Remotely starts an FA based on the specified <strong id="b8984536181113"><a name="b8984536181113"></a><a name="b8984536181113"></a>Want</strong> information. If the name of the <strong id="b599520304618"><a name="b599520304618"></a><a name="b599520304618"></a>want</strong> parameter is different from that used in the integrated development environment (IDE), use the parameter name in the IDE.</p>
+<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p13562171015712"><a name="p13562171015712"></a><a name="p13562171015712"></a>Remotely starts an FA based on the specified <strong id="b8984536181113"><a name="b8984536181113"></a><a name="b8984536181113"></a>Want</strong> information. If the name and type of the <strong id="b599520304618"><a name="b599520304618"></a><a name="b599520304618"></a>want</strong> parameter are different from those used in the integrated development environment (IDE), use the parameter name and type in the IDE.</p>
 </td>
 </tr>
 </tbody>
@@ -87,7 +87,7 @@ To enable the primary device \(smart TV\) to start an FA of the secondary device
     }
     ```
 
-3.  Create a  **Want**  instance. You should first create an  **ElementName**  object with  **deviceID**,  **bundleName**,  **abilityName**  specified and add this object to the  **Want**  instance. Then, set the multi-device startup flag  **Want.FLAG\_ABILITYSLICE\_MULTI\_DEVICE**  to the  **Want**  instance to enable remote FA startup.
+3.  Create a  **Want**  instance. You should first create an  **ElementName**  object with  **deviceId**,  **bundleName**,  **abilityName**  specified and add this object to the  **Want**  instance. Then, set the multi-device startup flag  **Want.FLAG\_ABILITYSLICE\_MULTI\_DEVICE**  to the  **Want**  instance to enable remote FA startup.
 
     ```
     // Import related header files.
@@ -101,7 +101,7 @@ To enable the primary device \(smart TV\) to start an FA of the secondary device
     ElementName name = new ElementName(remote_device_id, "com.huawei.remote_package_name", "remote_class_name"); 
     want.setElement(name); // Add information about the target FA for startup to the Want instance.
     want.setFlags(Want.FLAG_ABILITYSLICE_MULTI_DEVICE); // Set the multi-device startup flag. If this flag is not set, remote FA startup will be unavailable.
-    startAbility(want); // Start the specified FA based on the want parameter. If the name of the want parameter is different from that used in the IDE, use the parameter name in the IDE.
+    startAbility(want); // Start the specified FA based on the want parameter. If the name and type of the want parameter are different from those used in the IDE, use the parameter name and type in the IDE.
     ```
 
 

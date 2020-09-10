@@ -38,7 +38,7 @@
 ## <a name="c2-1"></a>通用命名
 __驼峰风格(CamelCase)__
 大小写字母混用，单词连在一起，不同单词间通过单词首字母大写来分开。
-按连接后的首字母是否大写，又分: 大驼峰(UperCamelCase)和小驼峰(lowerCamelCase)
+按连接后的首字母是否大写，又分: 大驼峰(UpperCamelCase)和小驼峰(lowerCamelCase)
 
 
 | 类型                                       | 命名风格      |
@@ -60,7 +60,7 @@ __驼峰风格(CamelCase)__
 目前业界还有一些其他的后缀的表示方法：
 
 - 头文件：  .hh, .hpp, .hxx
-- cpp文件：.cc, .cxx, .C
+- cpp文件：.cc, .cxx, .c
 
 如果当前项目组使用了某种特定的后缀，那么可以继续使用，但是请保持风格统一。
 但是对于本文档，我们默认使用.h和.cpp作为后缀。
@@ -416,7 +416,7 @@ default:                // Bad: default 未缩进
 
 // 假设下面第一行已经不满足行宽要求
 ```cpp
-if (currentValue > threshold &&  // Good：换行后，逻辑操作符放在行尾
+if ((currentValue > threshold) &&  // Good：换行后，逻辑操作符放在行尾
     someConditionsion) {
     DoSomething();
     ...
@@ -475,11 +475,11 @@ const int rank[] = {
 ### <a name="a3-12-1"></a>建议3.12.1  指针类型"`*`"跟随变量名或者类型，不要两边都留有或者都没有空格
 指针命名: `*`靠左靠右都可以，但是不要两边都有或者都没有空格。
 ```cpp
-int* p = NULL;  // Good
-int *p = NULL;  // Good
+int* p = nullptr;  // Good
+int *p = nullptr;  // Good
 
-int*p = NULL;   // Bad
-int * p = NULL; // Bad
+int*p = nullptr;   // Bad
+int * p = nullptr; // Bad
 ```
 
 例外：当变量被 const 修饰时，"`*`" 无法跟随变量，此时也不要跟随类型。
@@ -506,35 +506,6 @@ int&p = i;      // Bad
 ### <a name="r3-13-1"></a>规则3.13.1 编译预处理的"#"统一放在行首，嵌套编译预处理语句时，"#"可以进行缩进
 编译预处理的"#"统一放在行首，即使编译预处理的代码是嵌入在函数体中的，"#"也应该放在行首。
 
-```cpp
-#if defined(__x86_64__) && defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_16) // Good："#"放在行首
-#define ATOMIC_X86_HAS_CMPXCHG16B 1  // Good："#"放在行首
-#else
-#define ATOMIC_X86_HAS_CMPXCHG16B 0
-#endif 
-
-
-int FunctionName() 
-{
-    if (someThingError) {
-        ...
-#ifdef HAS_SYSLOG        // Good：即便在函数内部，"#"也放在行首
-        WriteToSysLog();
-#else
-        WriteToFileLog();
-#endif
-    }
-}
-```
-内嵌的预处理语句"#"可以按照缩进要求进行缩进对齐，区分层次。
-
-```cpp
-#if defined(__x86_64__) && defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_16)
-    #define ATOMIC_X86_HAS_CMPXCHG16B 1  // Good：区分层次，便于阅读
-#else
-    #define ATOMIC_X86_HAS_CMPXCHG16B 0
-#endif
-```
 
 ## <a name="c3-14"></a> 空格和空行
 ### <a name="r3-14-1"></a>规则3.14.1 水平空格应该突出关键字和重要信息，避免不必要的留白
@@ -794,7 +765,7 @@ MyClass::MyClass(int var)
 ### <a name="r3-1"></a>规则3.1 文件头注释必须包含版权许可
 
 /*
- * Copyright (c) 2020 Huawei Device Co., Ltd.
+ * Copyright (c) 2020 XXX
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -924,17 +895,6 @@ const int ANOTHER_CONST = 200;   /* 上下对齐时，与左侧代码保持间�
 正确的做法是，不需要的代码直接删除掉。若再需要时，考虑移植或重写这段代码。
 
 这里说的注释掉代码，包括用 /* */ 和 //，还包括 #if 0， #ifdef NEVER_DEFINED 等等。
-
-### <a name="a4-4-1"></a>建议4.4.1 正式交付给客户的代码不能包含 TODO/TBD/FIXME 注释
-TODO/TBD 注释一般用来描述已知待改进、待补充的修改点
-FIXME 注释一般用来描述已知缺陷
-它们都应该有统一风格，方便文本搜索统一处理。如：
-
-```cpp
-// TODO(<author-name>): 补充XX处理
-// FIXME: XX缺陷
-```
-
 
 # <a name="c5"></a>5 头文件
 ## <a name="c5-1"></a> 头文件职责
@@ -1145,7 +1105,7 @@ extern "C" {
 
 namespace {
     const int MAX_COUNT = 20;
-    void InternalFun(){};
+    void InternalFun() {};
 }
 
 void Foo::Fun()
@@ -1339,7 +1299,7 @@ message.ProcessOutMsg();   // 后续使用存在隐患
 // 因此，有必要定义默认构造函数，如下：
 class Message {
 public:
-    Message() : msgID_(0), msgLength_(0), msgBuffer_(NULL)
+    Message() : msgID_(0), msgLength_(0), msgBuffer_(nullptr)
     {
     }
 
@@ -1364,7 +1324,7 @@ class Message {
 public:
     Message() : msgLength_(0)  // Good，优先使用初始化列表
     {
-        msgBuffer_ = NULL;  // Bad，不推荐在构造函数中赋值
+        msgBuffer_ = nullptr;  // Bad，不推荐在构造函数中赋值
     }
     
 private:
@@ -1448,7 +1408,7 @@ private:
 ### <a name="r7-1-5"></a>规则7.1.5 移动构造和移动赋值操作符应该是成对出现或者禁止
 在C++11中增加了move操作，如果需要某个类支持移动操作，那么需要实现移动构造和移动赋值操作符。
 
-移动构造函数和移动赋值操作符都是具有移动语义的，应该同时出现或者禁?止。
+移动构造函数和移动赋值操作符都是具有移动语义的，应该同时出现或者禁止。
 ```cpp
 // 同时出现
 class Foo {
@@ -1524,7 +1484,7 @@ public:
 ```cpp
 class Sub : public Base {
 public:
-    Sub() : numbers_(NULL)
+    Sub() : numbers_(nullptr)
     {  
     }
     
@@ -1538,7 +1498,7 @@ public:
     {
         const size_t numberCount = 100;
         numbers_ = new (std::nothrow) int[numberCount];
-        if (numbers_ == NULL) {
+        if (numbers_ == nullptr) {
             return -1;
         }
         
@@ -1738,8 +1698,8 @@ void FooListAddNode(void *node) // Bad: 这里用 void * 类型传递参数
 
 void MakeTheList()
 {
-    FooNode *foo = NULL;
-    BarNode *bar = NULL;
+    FooNode *foo = nullptr;
+    BarNode *bar = nullptr;
     ...
 
     FooListAddNode(bar);        // Wrong: 这里本意是想传递参数 foo，但错传了 bar，却没有报错
@@ -2097,7 +2057,7 @@ const int MAX_ARRAY_SIZE = 100;
 int* numberArray = new int[MAX_ARRAY_SIZE];
 ...
 delete numberArray;
-numberArray = NULL;
+numberArray = nullptr;
 ```
 
 正确写法：
@@ -2106,7 +2066,7 @@ const int MAX_ARRAY_SIZE = 100;
 int* numberArray = new int[MAX_ARRAY_SIZE];
 ...
 delete[] numberArray;
-numberArray = NULL;
+numberArray = nullptr;
 ```
 
 ### <a name="a9-4-1"></a>建议9.4.1 使用 RAII 特性来帮助追踪动态分配
@@ -2206,7 +2166,7 @@ void Fun2()
 auto_ptr<T> p1(new T);
 auto_ptr<T> p2 = p1;
 ```
-当执行完第2行语句后，p1已经不再指向第1行中分配的对象，而是变为NULL。正因为如此，auto_ptr不能被置于各种标准容器中。
+当执行完第2行语句后，p1已经不再指向第1行中分配的对象，而是变为nullptr。正因为如此，auto_ptr不能被置于各种标准容器中。
 转移所有权的行为通常不是期望的结果。对于必须转移所有权的场景，也不应该使用隐式转移的方式。这往往需要程序员对使用auto_ptr的代码保持额外的谨慎，否则出现对空指针的访问。
 使用auto_ptr常见的有两种场景，一是作为智能指针传递到产生auto_ptr的函数外部，二是使用auto_ptr作为RAII管理类，在超出auto_ptr的生命周期时自动释放资源。
 对于第1种场景，可以使用std::shared_ptr来代替。

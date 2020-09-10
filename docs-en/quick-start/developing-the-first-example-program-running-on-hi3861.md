@@ -4,7 +4,7 @@ This example shows how to use attention \(AT\) commands to complete WLAN module 
 
 ## Acquiring Source Code<a name="section1545225464016"></a>
 
-You need to acquire Hi3861 source code \([Site 1](http://tools.harmonyos.com/mirrors/os/1.0/wifiiot-1.0.tar.gz)  or  [Site 2](https://mirrors.huaweicloud.com/harmonyos/1.0/wifiiot-1.0.tar.gz)\) and download it on a Linux server. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
+You need to acquire  [Hi3861 source code](http://tools.harmonyos.com/mirrors/os/1.0/code-1.0.tar.gz)  and download it on a Linux server. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
 ## Compiling Source Code<a name="section1736014117148"></a>
 

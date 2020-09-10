@@ -2,11 +2,11 @@
 
 1.  Is there a global variable that can be accessed by all pages?
 
-    No such global variable is available for all pages.
+    There is no such a global variable.
 
 2.  How do I obtain DOM elements?
 
-    You can obtain DOM elements via the  **ref**  attribute. You can only use methods of the obtained elements and cannot change their attributes. The following figure shows an example.
+    You can obtain DOM elements via the  **ref**  attribute. You can use methods of the obtained elements but cannot change their attributes. The sample code is as follows:
 
     ```
     <!--index.hml-->
@@ -47,7 +47,7 @@
 
     ```
     router.replace({
-         uri:'pages/detail/detail',  // URI of the page to be redirected to.
+         uri:'pages/detail/detail',  // URI of the page to switch to.
         params:{transferData:this.data} // Data to be transferred. You need to define the data amount and name.
     });
     ```
@@ -66,7 +66,7 @@
 
 5.  Does the  **<text\>**  component support multiple lines?
 
-    Yes. You can use the Enter key to start a new line. Alternatively, you can choose not to set the height attribute of the text, and the component automatically starts a new line based on the content.
+    Yes. You can use the Enter key to start a new line. Alternatively, the component automatically starts a new line based on the content, without the need to set the height attribute of the text.
 
 6.  Why is a component not displayed?
 
@@ -91,9 +91,9 @@
 
 8.  Why do not the  **left**  and  **top**  attributes take effect?
 
-    In addition to the root component,  **left**  and  **top**  attributes must work with the  **<stack\>**  component.
+    **left**  and  **top**  attributes must work with the  **<stack\>**  component in addition to the root component.
 
-9.  Why does dynamic binding not take effect?
+9.  Why does not dynamic binding take effect?
 
     The object or its attributes are not defined before dynamic binding.
 
@@ -101,9 +101,9 @@
 
     You can use the  **<div\>**  and  **<stack\>**  \(with  **top**  and  **left**  attributes\) components.
 
-11. How do I set component transparency?
+11. How do I set component opacity?
 
-    For the  **<image\>**  component, set the  **opacity**  attribute to adjust the transparency. For other components, set the alpha value \(in RGBA color channels\) of a component.
+    For the  **<image\>**  component, set the  **opacity**  attribute. For other components, set the alpha value \(in RGBA color channels\).
 
 12. How do I display or hide a component?
 
@@ -115,7 +115,7 @@
 
 14. What are the precautions for event subscription?
 
-    Only one page exists when the application is running. Therefore, the  **router.replace**  function destroys the previous page and then creates a new one. For event subscription pages, the event should be subscribed every time a page is created, and unsubscribed before a page switch.
+    Only one page exists when the application is running. Therefore, the  **router.replace**  function destroys the previous page and then creates a new one. For event subscription pages, the event should be subscribed every time a page is created, and unsubscribed before page switching.
 
 15. What are the precautions for using dynamic binding?
 

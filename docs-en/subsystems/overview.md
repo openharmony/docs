@@ -2,7 +2,7 @@
 
 ## Basic Concepts<a name="section175012297491"></a>
 
-Camera is one of the services provided by the OpenHarmony media subsystem. The camera module provides recording, preview, and photographing features and supports concurrent stream reading by multiple users.
+Camera is one of the services provided by the OpenHarmony multimedia subsystem. The camera module provides recording, preview, and photographing features and supports concurrent stream reading by multiple users.
 
 It is considered good practice that you understand the following concepts before starting development:
 
@@ -21,11 +21,11 @@ It is considered good practice that you understand the following concepts before
 
 ## Working Principles<a name="section193961322175011"></a>
 
--   Media services
+-   Multimedia services
 
-    Media services are started by the  **Init**  process upon system startup, and media hardware resources \(such as memory, display hardware, image sensors, and codecs\) are initialized and allocated. During the initialization, the configuration file is parsed, which determines the upper limit of capabilities and resources of each service. Generally, the upper limit is configured by original equipment manufacturers \(OEMs\) in the configuration file. The following configuration items are available for the camera service during media service initialization:
+    Multimedia services are started by the  **Init**  process upon system startup, and media hardware resources \(such as memory, display hardware, image sensors, and codecs\) are initialized and allocated. During the initialization, the configuration file is parsed, which determines the upper limit of capabilities and resources of each service. Generally, the upper limit is configured by original equipment manufacturers \(OEMs\) in the configuration file. The following configuration items are available for the camera service during multimedia service initialization:
 
-    -   Memory pool: Memory blocks in the memory pool are accessed and released continuously by all media services.
+    -   Memory pool: Memory blocks in the memory pool are accessed and released continuously by all multimedia services.
     -   Image sensor: sensor type, resolution, ISP, and more
     -   Image processor: resolution, bit rate, image inversion, and more
     -   Image encoder: encoding format, bit rate, resolution, and more

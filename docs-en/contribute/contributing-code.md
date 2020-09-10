@@ -17,8 +17,8 @@ For details, see  [Contribution Process](contribution-process.md).
 
 ## Security Issue Disclosure<a name="en-us_topic_0000001051566732_section725624119448"></a>
 
--   Security handling procedure \(To be supplemented\)
+-   Security handling procedure
 
--   Security disclosure information \(To be supplemented\)
+-   Security disclosure information
 
 

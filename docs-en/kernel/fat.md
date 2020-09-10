@@ -12,7 +12,7 @@ The OpenHarmony kernel supports multiple partitions on the hard disk. A FAT file
 
 ## Important Notes<a name="section781233610116"></a>
 
--   A maximum of 256 FATFS files or folders that can be opened simultaneously.
+-   A maximum of 512 FATFS files or folders that can be opened simultaneously.
 
 -   After a file is opened in writable mode, the file cannot be opened again before it is closed. To open a file for multiple times, the read-only attribute can be used only. If a file is opened for a long time and is not closed, data loss will occur. The file can be saved only after being closed.
 

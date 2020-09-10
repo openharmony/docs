@@ -274,7 +274,7 @@ None
             ostringstream ss("Capture_");
             ss << "Capture" << ltm->tm_hour << "-" << ltm->tm_min << "-" << ltm->tm_sec << ".jpg";
     
-            ofstream pic("/tmp/" + ss.str(), ofstream::out | ofstream::trunc);
+            ofstream pic("/sdcard/" + ss.str(), ofstream::out | ofstream::trunc);
             cout << "write " << size << " bytes" << endl;
             pic.write(p, size);
             cout << "Saving picture end" << endl;

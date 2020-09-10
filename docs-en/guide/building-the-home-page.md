@@ -1,6 +1,6 @@
 # Building the Home Page<a name="EN-US_TOPIC_0000001054927705"></a>
 
-The application home page displays air quality information of the current city. There are two screens on the home page. Each screen displays the air quality information of a city, including the AQI and city name. The AQI value can be displayed in the form of a ring progress bar with animation.
+The application home page displays air quality information of the current city. There are two screens on the home page. Each screen displays air quality information of a city, including the AQI and city name. The AQI value can be displayed in the form of a ring progress bar with animation.
 
 1.  The  **<swiper\>**  component is required to implement the switch between the two screens.
 
@@ -20,7 +20,7 @@ The application home page displays air quality information of the current city. 
         }
         ```
 
-        This style class sets the height and width of the component. For device-side development, the component height and width must be explicitly specified. Otherwise, the component may fail to be displayed.
+        This style class sets the height and width of the component. During application development, the component height and width must be explicitly specified. Otherwise, the component may fail to be displayed.
 
 
     -   **index="\{\{swiperPage\}\}" duration="500" onchange="swiperChange"**  sets the component attribute and event.  **duration="500"**  indicates that the duration of the swiping animation is 500 ms.
@@ -28,7 +28,7 @@ The application home page displays air quality information of the current city. 
     -   **onchange="swiperChange"**  binds the change event of the  **<swiper\>**  component to the  **swiperChange**  function. The JavaScript code is as follows:
 
         ```
-        // Import the router module for page switch.
+        // Import the router module for page switching.
         import router from'@system.router'
         export default {
             // Define parameters.
@@ -106,7 +106,7 @@ The application home page displays air quality information of the current city. 
 
     -   **index.css**
 
-    A  **.css**  file contains many classes. Each class defines the position, size, font, color, and background color of a component. Each child component is added to the parent component, which means that the style file of the parent component affects how the child component will be displayed.
+    A  **.css**  file contains many classes. Each class defines the position, size, font, color, and background color of a component. Each child component is added to its parent component, and the style file of the parent component affects how the child component will be displayed.
 
     ```
     .pm25-value{
@@ -162,10 +162,10 @@ The application home page displays air quality information of the current city. 
 
     -   **index.js**
 
-    A  **.js**  file is used to implement interaction logic of your application. In the  **.js**  file of the home page, the following features need to be implemented: Dynamic changes of the text content and progress bar color based on numbers, multiple languages, page switch, and animation playback.
+    A  **.js**  file is used to implement interaction logic of your application. In the  **.js**  file of the home page, the following features need to be implemented: dynamic changes of the text content and progress bar color based on numbers, multiple languages, page switching, and animation playback.
 
     ```
-    // Import the router module for page switch.
+    // Import the router module for page switching.
     import router from'@system.router'
     export default {
         // Define parameters.

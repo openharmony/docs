@@ -41,7 +41,7 @@ You can download the source code or the corresponding solutions from the image l
 <td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p992993202517"><a name="p992993202517"></a><a name="p992993202517"></a><a href="http://tools.harmonyos.com/mirrors/os/1.0/code-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
 </td>
 </tr>
-<tr id="row6929934252"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p0929163132512"><a name="p0929163132512"></a><a name="p0929163132512"></a>Hi3861 solutions</p>
+<tr id="row6929934252"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p0929163132512"><a name="p0929163132512"></a><a name="p0929163132512"></a>Hi3861 solutions (binary)</p>
 </td>
 <td class="cellrowborder" valign="top" width="16.14%" headers="mcps1.2.5.1.2 "><p id="p392913162517"><a name="p392913162517"></a><a name="p392913162517"></a>1.0</p>
 </td>
@@ -50,7 +50,7 @@ You can download the source code or the corresponding solutions from the image l
 <td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p199296318252"><a name="p199296318252"></a><a name="p199296318252"></a><a href="http://tools.harmonyos.com/mirrors/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
 </td>
 </tr>
-<tr id="row1293014352510"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p692917311258"><a name="p692917311258"></a><a name="p692917311258"></a>Hi3518 solutions</p>
+<tr id="row1293014352510"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p692917311258"><a name="p692917311258"></a><a name="p692917311258"></a>Hi3518 solutions (binary)</p>
 </td>
 <td class="cellrowborder" valign="top" width="16.14%" headers="mcps1.2.5.1.2 "><p id="p49291935254"><a name="p49291935254"></a><a name="p49291935254"></a>1.0</p>
 </td>
@@ -59,7 +59,7 @@ You can download the source code or the corresponding solutions from the image l
 <td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p1392983162514"><a name="p1392983162514"></a><a name="p1392983162514"></a><a href="http://tools.harmonyos.com/mirrors/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
 </td>
 </tr>
-<tr id="row199306317255"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1693063122511"><a name="p1693063122511"></a><a name="p1693063122511"></a>Hi3516 solutions</p>
+<tr id="row199306317255"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1693063122511"><a name="p1693063122511"></a><a name="p1693063122511"></a>Hi3516 solutions (binary)</p>
 </td>
 <td class="cellrowborder" valign="top" width="16.14%" headers="mcps1.2.5.1.2 "><p id="p169301335252"><a name="p169301335252"></a><a name="p169301335252"></a>1.0</p>
 </td>
@@ -234,7 +234,7 @@ Add the bundle \(**@ohos/demo**  as an example\) to your project as follows:
 Method 1 \(recommended\): Use the  **repo**  tool to download source code.
 
 ```
-repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
+repo init -u https://gitee.com/openharmony/manifest.git -b master
 repo sync -c
 ```
 

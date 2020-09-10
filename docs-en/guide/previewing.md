@@ -6,7 +6,7 @@ Use the camera module APIs to generate and play video streams.
 
 ## Available APIs<a name="en-us_topic_0000001051930577_section125479541744"></a>
 
-For details, see  [Available APIs](photographing-3.md#en-us_topic_0000001052170554_section56549532016).
+For details, see the available APIs described in development guidelines on photographing.
 
 ## Limitations and Constraints<a name="en-us_topic_0000001051930577_section1165911177314"></a>
 
@@ -14,7 +14,7 @@ None
 
 ## How to Develop<a name="en-us_topic_0000001051930577_section34171333656"></a>
 
-1.  Perform step 1 through step 4 provided in  [Development Guidelines on Photographing](photographing-3.md#EN-US_TOPIC_0000001054915940).
+1.  Perform step 1 through step 4 described in development guidelines on photographing.
 2.  Set the preview area.
 
     ```

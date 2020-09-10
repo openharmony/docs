@@ -68,7 +68,7 @@ Perform the following steps to download the code in the repository to your compu
 2.  Download code repositories. \(There is no  **repo branch**  parameter.\)
 
     ```
-    repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
+    repo init -u https://gitee.com/openharmony/manifest.git -b master
     repo sync -c
     ```
 

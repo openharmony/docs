@@ -6,7 +6,7 @@ Use the camera module APIs to capture video streams.
 
 ## Available APIs<a name="section125479541744"></a>
 
-For details, see  [Available APIs](development-guidelines-on-photographing.md#section56549532016).
+For details, see the available APIs described in development guidelines on photographing.
 
 ## Limitations and Constraints<a name="section1165911177314"></a>
 
@@ -14,7 +14,7 @@ None
 
 ## How to Develop<a name="section1196016315516"></a>
 
-1.  Perform step 1 through step 4 provided in  [Development Guidelines on Photographing](development-guidelines-on-photographing.md).
+1.  Perform step 1 through step 4 described in development guidelines on photographing.
 2.  Obtain the  **FrameConfig**  instance for audio recording.
 
     ```
