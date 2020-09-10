@@ -6,8 +6,8 @@ XTS是OpenHarmony生态认证测试套件的集合，当前包括acts（applicat
 
 test/xts仓当前包括acts与tools软件包：
 
--   acts，存放acts相关测试用例源码与配置文件，其目的是帮助终端设备厂商尽早发现软件与OpenHarmony的不兼容性，确保软件在整个开发过程中满足OpenHarmony的兼容性要求。
--   tools，提供acts编写与编译所依赖的测试用例开发框架。
+-   acts，存放acts相关测试用例源码与配置文件，帮助终端设备厂商尽早发现软件与OpenHarmony的不兼容性，确保软件在整个开发过程中满足OpenHarmony的兼容性要求。
+-   tools，提供acts编写和编译所依赖的开发框架。
 
 ## 目录<a name="section36203291667"></a>
 
