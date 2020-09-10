@@ -2,7 +2,7 @@
 
 ## 简介<a name="section11660541593"></a>
 
-OpenHarmony驱动子系统采用采用C面向对象编程模型构建，通过平台解耦、内核解耦，兼容不同内核，提供了归一化的驱动平台底座，旨在为开发者提供更精准、更高效的开发环境，力求做到一次开发，多系统部署。
+OpenHarmony驱动子系统采用C面向对象编程模型构建，通过平台解耦、内核解耦，兼容不同内核，提供了归一化的驱动平台底座，旨在为开发者提供更精准、更高效的开发环境，力求做到一次开发，多系统部署。
 
 为了缩减驱动开发者的驱动开发周期，降低三方设备驱动集成难度，OpenHarmony驱动子系统支持以下关键特性和能力。
 
@@ -49,10 +49,10 @@ OpenHarmony驱动框架采用主从架构设计模式，围绕着框架、模型
 -   驱动能力库 - 位于frameworks/ability目录
     -   提供基础驱动能力模型，如IO通信能力模型。
 
--   驱动工具 - 位于frameworks\\tools目录
+-   驱动工具 - 位于frameworks/tools目录
     -   提供HDI接口转换、驱动配置编译等工具。
 
--   驱动接口 - 位于lite\\hdi
+-   驱动接口 - 位于lite/hdi
     -   提供规范化的驱动接口。
 
 -   Support - 位于frameworks/support目录，
@@ -109,58 +109,58 @@ OpenHarmony驱动框架采用主从架构设计模式，围绕着框架、模型
 <p id="p183476761517"><a name="p183476761517"></a><a name="p183476761517"></a>5、驱动故障恢复管理功能模块。</p>
 </td>
 </tr>
-<tr id="row116251627171512"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p76251275152"><a name="p76251275152"></a><a name="p76251275152"></a>hdf\frameworks\core\shared</p>
+<tr id="row116251627171512"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p76251275152"><a name="p76251275152"></a><a name="p76251275152"></a>hdf/frameworks/core/shared</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p56256278150"><a name="p56256278150"></a><a name="p56256278150"></a>提供host和manager共享模块代码。</p>
 </td>
 </tr>
-<tr id="row2306123015162"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p10306143019164"><a name="p10306143019164"></a><a name="p10306143019164"></a>hdf\frameworks\model</p>
+<tr id="row2306123015162"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p10306143019164"><a name="p10306143019164"></a><a name="p10306143019164"></a>hdf/frameworks/model</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1030713021612"><a name="p1030713021612"></a><a name="p1030713021612"></a>提供驱动通用框架模型。</p>
 </td>
 </tr>
-<tr id="row2021312310176"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p421315312177"><a name="p421315312177"></a><a name="p421315312177"></a>hdf\frameworks\model\network</p>
+<tr id="row2021312310176"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p421315312177"><a name="p421315312177"></a><a name="p421315312177"></a>hdf/frameworks/model/network</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p421313113179"><a name="p421313113179"></a><a name="p421313113179"></a>提供驱动网络设备模型。</p>
 </td>
 </tr>
-<tr id="row2167642189"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p21683416181"><a name="p21683416181"></a><a name="p21683416181"></a>hdf\frameworks\support\</p>
+<tr id="row2167642189"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p21683416181"><a name="p21683416181"></a><a name="p21683416181"></a>hdf/frameworks/support</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p71681548183"><a name="p71681548183"></a><a name="p71681548183"></a>提供驱动使用的系统接口资源和硬件资源，如GPIO、I2C、SPI等通用平台接口能力。</p>
 <p id="p19848191416195"><a name="p19848191416195"></a><a name="p19848191416195"></a>该接口部分与平台无关可支持跨平台迁移。</p>
 </td>
 </tr>
-<tr id="row15342553171918"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p434255301916"><a name="p434255301916"></a><a name="p434255301916"></a>hdf\frameworks\support\osal</p>
+<tr id="row15342553171918"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p434255301916"><a name="p434255301916"></a><a name="p434255301916"></a>hdf/frameworks/support/osal</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1234211535198"><a name="p1234211535198"></a><a name="p1234211535198"></a>提供通用平台适配接口，如内存、线程、锁等资源。</p>
 </td>
 </tr>
-<tr id="row116634294203"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1866392919204"><a name="p1866392919204"></a><a name="p1866392919204"></a>hdf\frameworks\support\platform</p>
+<tr id="row116634294203"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1866392919204"><a name="p1866392919204"></a><a name="p1866392919204"></a>hdf/frameworks/support/platform</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p5663329202017"><a name="p5663329202017"></a><a name="p5663329202017"></a>提供通用平台硬件资源支撑接口，如GPIO、I2C、SPI等能力。</p>
 </td>
 </tr>
-<tr id="row193157275210"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1331513279211"><a name="p1331513279211"></a><a name="p1331513279211"></a>hdf\frameworks\tools</p>
+<tr id="row193157275210"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1331513279211"><a name="p1331513279211"></a><a name="p1331513279211"></a>hdf/frameworks/tools</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p131542762113"><a name="p131542762113"></a><a name="p131542762113"></a>提供驱动功能能力库，如HCS驱动配置编译工具等。</p>
 </td>
 </tr>
-<tr id="row66349163223"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p2634161611224"><a name="p2634161611224"></a><a name="p2634161611224"></a>hdf\frameworks\utils</p>
+<tr id="row66349163223"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p2634161611224"><a name="p2634161611224"></a><a name="p2634161611224"></a>hdf/frameworks/utils</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p26341516202215"><a name="p26341516202215"></a><a name="p26341516202215"></a>提供基础数据结构和算法等。</p>
 </td>
 </tr>
-<tr id="row1897841071415"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p16793185961315"><a name="p16793185961315"></a><a name="p16793185961315"></a>hdf\lite\adapter</p>
+<tr id="row1897841071415"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p16793185961315"><a name="p16793185961315"></a><a name="p16793185961315"></a>hdf/lite/adapter</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p14793959161317"><a name="p14793959161317"></a><a name="p14793959161317"></a>实现对内核操作接口适配，提供抽象化的接口供开发者使用。</p>
 </td>
 </tr>
-<tr id="row16448173512518"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p644893514514"><a name="p644893514514"></a><a name="p644893514514"></a>hdf\lite\include</p>
+<tr id="row16448173512518"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p644893514514"><a name="p644893514514"></a><a name="p644893514514"></a>hdf/lite/include</p>
 </td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1744933517511"><a name="p1744933517511"></a><a name="p1744933517511"></a>提供OpenHarmony驱动框架面向轻量化设备开放的驱动接口接口。</p>
+<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1744933517511"><a name="p1744933517511"></a><a name="p1744933517511"></a>提供OpenHarmony驱动框架面向轻量化设备开放的驱动接口。</p>
 </td>
 </tr>
-<tr id="row192731625216"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p10281116185217"><a name="p10281116185217"></a><a name="p10281116185217"></a>hdf\lite\hdi</p>
+<tr id="row192731625216"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p10281116185217"><a name="p10281116185217"></a><a name="p10281116185217"></a>hdf/lite/hdi</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p7286165524"><a name="p7286165524"></a><a name="p7286165524"></a>提供OpenHarmony驱动程序接口。</p>
 </td>
@@ -179,7 +179,7 @@ OpenHarmony驱动框架采用主从架构设计模式，围绕着框架、模型
 
 ![](figures/zh-cn_image_0000001052764349.png)
 
-驱动框架完成大部分驱动加载的动作，用户只需注册自己所需的接口和配置，然后驱动框架就会根据解析，完成驱动加载和初始化动作。
+驱动框架完成大部分驱动加载的动作，用户只需注册自己所需的接口和配置，然后驱动框架就会解析配置的内容，完成驱动加载和初始化动作。
 
 开发者基于HDF驱动框架开发的驱动主要包含三大部分：
 
@@ -210,7 +210,7 @@ Bind接口描述：该接口的作用主要是完成驱动设备和设备服务�
 ```
 int32_t SampleDriverBind(struct HdfDeviceObject *deviceObject)
 {
-    //TODO: Bind and device service to device object.
+    //TODO: Bind device service to device object.
     //And you can also initialize device resources here.
     return HDF_SUCCESS;
 }
@@ -223,7 +223,8 @@ Init接口描述：当框架完成设备绑定动作后，就开始调用驱动�
 ```
 int32_t SampleDriverInit(struct HdfDeviceObject *deviceObject)
 {
-    return HDF_SUCCESS;
+    //TODO: Init hardware or other resources here.
+	return HDF_SUCCESS;
 }
 ```
 
@@ -232,7 +233,7 @@ Release接口描述：当用户需要卸载驱动时，驱动框架先通过该�
 ```
 void SampleDriverRelease(struct HdfDeviceObject *deviceObject)
 {
-    //Release all driver resources.
+    // Release all resources.
     return;
 }
 ```
