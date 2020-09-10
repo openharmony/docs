@@ -327,7 +327,7 @@
         2.  参数说明：指定参数可以执行特定特性、模块对应的测试套
 
             ```
-            usage: __main__.py [-h] [-p PRODUCTFORM] [-t [TESTTYPE [TESTTYPE ...]]]
+            usage: run [-h] [-p PRODUCTFORM] [-t [TESTTYPE [TESTTYPE ...]]]
                 [-ss SUBSYSTEM] [-tm TESTMODULE] [-ts TESTSUIT]
                 [-tc TESTCASE] [-tl TESTLEVEL] [-os TARGET_OS_NAME]
                 [-bv BUILD_VARIANT] [-b [BUILD [BUILD ...]]]
@@ -347,16 +347,6 @@
                 -ts TESTSUIT, --testsuit TESTSUIT    Specify test suit
                 -tc TESTCASE, --testcase TESTCASE    Specify test case
                 -tl TESTLEVEL, --testlevel TESTLEVEL    Specify test level
-                -bv BUILD_VARIANT, --build_variant BUILD_VARIANT    Specify build variant(release,debug)
-                -b [BUILD [BUILD ...]], --build [BUILD [BUILD ...]]
-                    Specify build values(version,testcase)
-                -tf TESTFILE, --testfile TESTFILE    Specify test suites list file
-                -res RESOURCE, --resource RESOURCE    Specify test resource
-                -sn DEVICE_SN, --device_sn DEVICE_SN    Specify device serial number
-                -c CONFIG, --config CONFIG    Specify test config file
-                -rp REPORTPATH, --reportpath REPORTPATH    Specify test report path
-                -e EXECTYPE, --exectype EXECTYPE    Specify test execute type
-                -td TEST_DRIVER, --testdriver TEST_DRIVER    Specify test driver id
             ```
 
 
