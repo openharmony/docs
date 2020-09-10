@@ -68,7 +68,7 @@ softbus\_lite源代码目录结构如下图所示：
 // 回调函数声明：
 void onSuccess(int publishId)
 {
-    printf("public success,publishId = %d\r\n", publishId);
+    printf("publish succeeded, publishId = %d\r\n", publishId);
 }
 void onFail(int publishId, PublishFailReason reason)
 {
