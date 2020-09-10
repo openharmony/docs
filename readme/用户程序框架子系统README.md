@@ -2,87 +2,69 @@
 
 ## 简介<a name="section11660541593"></a>
 
-用户程序框架子系统包含两个大的模块：元能力子系统和包管理子系统。
+用户程序框架子系统包含两个大的模块：**Ability子系统**和**包管理子系统**。
 
-**元能力子系统**，是OpenHarmony为开发者提供的一套开发OpenHarmony应用的开发框架。元能力子系统由如下模块组成：
+**1. Ability子系统**，是OpenHarmony为开发者提供的一套开发OpenHarmony应用的框架。Ability子系统各模块如下图1所示：
 
-**图1**  元能力子系统框架图
+**图 1**  Ability子系统框架图<a name="fig18932193213292"></a>  
 
-![](figures/zh-cn_image_0000001052000128.png)
 
-Ability是应用所具备的能力的抽象，一个应用可以包含一个或多个Ability。Ability分为两种类型：FA（Feature Ability）和AA（Atomic Ability）。
+![](figures/zh-cn_image_0000001054941316.png)
 
--   **FA**：由三方基于元能力框架开发的、实现单一功能的有UI界面的程序实体，用于支持与用户交互的能力。一个Page实例可以包含一组相关页面，每个页面用一个AbilitySlice实例表示。Page模板是Feature Ability唯一支持的模板。用户可以基于JavaScript语言开发FA，也可以基于C/C++语言开发FA。
+-   **AbilityKit**是Ability框架提供给开发者的开发包，开发者基于该开发包可以开发出基于Ability组件的应用。基于Ability组件开发的应用有两种类型：基于Javascript语言开发的Ability（**JS Ability**）和基于C/C++语言开发的Ability（**Native Ability**）。**JS应用开发框架**是开发者开发JS Ability所用到框架，是在AbilityKit基础封装的包含js UI组件的一套方便开发者能够迅速开发Ability应用的框架。
+-   **Ability**是系统调度应用的最小单元，是能够完成一个独立功能的组件，一个应用可以包含一个或多个Ability。Ability分为两种类型：Page类型的Ability和Service类型的Ability
+    -   **Page类型的Ability：**带有界面，为用户提供人机交互的能力。
+    -   **Service类型的Ability**：不带界面，为用户提供后台任务机制。
 
-    -   Page模板的Ability的生命周期流转图
+-   **AbilitySlice**是单个页面及其控制逻辑的总和，是Page类型Ability特有的组件，一个Page类型的Ability可以包含多个AbilitySlice，此时，这些页面提供的业务能力应当是高度相关的。Page类型的Ability和AbilitySlice的关系如下图2所示：
 
-    **图2**  Ability生命周期流转图
+    **图 2**  Ability与AbilitySlice的关系图<a name="fig121541746182919"></a>  
+    ![](figures/Ability与AbilitySlice的关系图.gif "Ability与AbilitySlice的关系图")
 
-    ![](figures/zh-cn_image_0000001051366141.png)Page模板的Ability生命周期各状态解析
 
-    -   **UNINITIALIZED**：未初始状态，为临时状态，Ability创建后会直接调用Init初始化，进入INITIAL状态；
+-   **生命周期**是Ability被调度到启动、激活、隐藏和退出等各个状态的的统称。Ability各生命周期流转如下图3所示：
+
+    **图 3**  Ability生命周期流转图<a name="fig4915165922910"></a>  
+    ![](figures/Ability生命周期流转图.png "Ability生命周期流转图")
+
+    Ability生命周期各状态解析：
+
+    -   **UNINITIALIZED**：未初始状态，为临时状态，Ability被创建后会由UNINITIALIZED状态进入INITIAL状态；
 
     -   **INITIAL**：初始化状态，也表示停止状态，表示当前Ability未运行，调用Start后进入INACTIVE，同时回调开发者的OnSatrt生命周期回调；
 
-    -   **INACTIVE**：未激活状态，表示当前窗口已显示但是无焦点状态，由于Window暂未支持焦点的概念，当前状态与ACTIVE一致。调用Active后进入ACTIVE，同时回调开发者的OnActive生命周期回调；调用Background后进入BACKGROUND，同时回调开发者的OnBackground生命周期回调；
+    -   **INACTIVE**：未激活状态，表示当前窗口已显示但是无焦点状态，由于Window暂未支持焦点的概念，当前状态与ACTIVE一致。
 
-    -   **ACTIVE**：前台激活状态，表示当前窗口已显示，并获取焦点。调用Inactive后进入INACTIVE；
+    -   **ACTIVE**：前台激活状态，表示当前窗口已显示，并获取焦点，Ability在退到后台之前先由ACTIVE状态进入INACTIVE状态；
 
-    -   **BACKGROUND**: 后台状态，表示当前Ability退到后台。调用Active后进入ACTIVE，同时回调开发者的OnActive生命周期回调；调用Stop后进入INITIAL，同时回调开发者的OnStop生命周期回调；
-
-    -   **AbilitySlice**
-
-        一个使用Page模板的Ability由AbilitySlice构成，AbilitySlice是单个页面及其控制逻辑的总和。一个Page可以包含多个AbilitySlice，此时，这些页面提供的业务能力应当是高度相关的。Page模板的Ability与AbilitySlice的关系如下图：
-
-        **图3 **Ability与AbilitySlice的关系图
-
-        ![](figures/zh-cn_image_0000001052204863.gif)
+    -   **BACKGROUND**: 后台状态，表示当前Ability退到后台，Ability在被销毁后由BACKGROUND状态进入INITIAL状态，或者重新被激活后由BACKGROUND状态进入ACTIVE状态。
 
 
--   **AA**：由三方基于元能力框架开发的、实现单一功能的无UI界面的支持后台任务的程序实体。AA与FA的区别是，AA无UI界面。仅对系统服务有依赖关系，AA之间不存在依赖关系 。Service模板是AA支持的模板。
--   **注册Ability**
+-   **AbilityLoader**负责注册和加载开发者Ability的模块。开发者开发的Ability先要调用AbilityLoader的注册接口注册到框架中，接着Ability启动时会被实例化。
+-   **AbilityManager**负责AbilityKit和Ability管理服务进行IPC的通信。
+-   **EvenHandler**是AbilityKit提供给开发者的用于在Ability中实现线程间通信的一个模块。
+-   **Ability运行管理服务**是用于协调各Ability运行关系、及生命周期进行调度的系统服务。其中，**服务启动**模块负责Ability管理服务的启动、注册等。**服务接口管理模块**负责Ability管理服务对外能力的管理。**进程管理模块**负责Ability应用所在进程的启动和销毁、及其进程信息维护等功能。**Ability栈管理模块**负责维护各个Ability之间跳转的先后关系。**生命周期调度模块**是Ability管理服务根据系统当前的操作调度Ability进入相应的状态的模块**。连接管理模块**是Ability管理服务对Service类型Ability连接管理的模块。
+-   **AppSpawn**是负责创建Ability应用所在进程的系统服务，该服务有较高的权限，为Ability应用设置相应的权限，并预加载一些通用的模块，加速应用的启动。
 
-    Ability的模板通过在清单文件中注册时指定。如下所示，开发者可以配置Ability元素的type属性，其取值page、service分别代表Page模板、Service模板。
+**2. 包管理子系统**，是HarmonyOS为开发者提供的安装包管理框架。包管理子系统的由如下图4模块组成：
 
-    ```
-    "module": {
-           ......
-            "abilities": [
-                {
-    		"name": "default",
-    		"type": "pages",
-                    "label": "sdfasf"
-                }
-            ], ’
-          ......
-     }
-    ```
+**图 4**  包管理子系统框架图<a name="fig1047932418305"></a>  
+![](figures/包管理子系统框架图.png "包管理子系统框架图")
 
+-   **BundleKit：**是包管理服务对外提供的接口，有安装/卸载接口、包信息查询接口、包状态变化监听接口。
+-   **包扫描器**：用来解析本地预制或者安装的安装包，提取里面的各种信息，供管理子模块进行管理，持久化。
 
--   **AbilityKit**：元能力的开发框架，运行在开发者的应用程序进程中，和AbilityMs通过IPC通信，开发者基于该框架开发自己的Ability。
+-   **包安装子模块**：安装，卸载，升级一个包；**包安装服务**一个单独进程的用于创建删除安装目录，具有较高的权限。
 
--   **AbilityMs**：元能力运行管理服务，元能力生命周期的调度统一由AbilityMs管理。
--   **AppSpawn：**进程孵化器，元能力进程由AppSpawn负责孵化并拉起。
+-   **包管理子模块**：管理安装包相关的信息，存储持久化包信息。
 
-**包管理子系统**，是OpenHarmony为开发者提供的安装包管理框架。包管理子系统的由如下模块组成：
-
-**图4**  包管理子系统框架图
-
-![](figures/zh-cn_image_0000001052201483.png)
-
--   **包扫描器**：用来解析本地预制或者安装的安装包，提取里面的各种信息，供管理子模块进行管理，持久化
-
--   **包安装子模块**：安装，卸载，升级一个包；Installed一个单独进程的用于创建删除安装目录，具有较高的权限。
-
--   **包管理子模块**：管理安装包相关的信息
-
--   **安全子模块**：签名检查、权限授予、权限管理
+-   **包安全管理子模块**：签名检查、权限授予、权限管理。
 
 ## 目录<a name="section1464106163817"></a>
 
-轻量用户程序框架子系统源代码目录结构如下图所示：
+用户程序框架子系统源代码目录结构如下表1所示：
 
-**表 1**  轻量用户程序用户程序框架子系统源代码目录结构
+**表 1**  用户程序框架子系统源代码目录结构
 
 <a name="table2977131081412"></a>
 <table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="36.18%" id="mcps1.2.3.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>名称</p>
@@ -91,59 +73,64 @@ Ability是应用所具备的能力的抽象，一个应用可以包含一个或�
 </th>
 </tr>
 </thead>
-<tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>foundation/aafwk/frameworks/kits/ability_lite</p>
+<tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>foundation/aafwk/frameworks/ability_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>元能力框架核心代码</p>
-</td>
-</tr>
-<tr id="row6978161091412"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p0780163617556"><a name="p0780163617556"></a><a name="p0780163617556"></a>foundation/aafwk/frameworks/kits/content_lite</p>
-</td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p6793059171318"><a name="p6793059171318"></a><a name="p6793059171318"></a>元能力之间通信的实体</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>AbilityKit实现的核心代码</p>
 </td>
 </tr>
-<tr id="row6978201031415"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p991413565611"><a name="p991413565611"></a><a name="p991413565611"></a>foundation/aafwk/frameworks/kits/tools_lite</p>
+<tr id="row6978161091412"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p0780163617556"><a name="p0780163617556"></a><a name="p0780163617556"></a>foundation/aafwk/frameworks/abilitymgr_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p0793185971316"><a name="p0793185971316"></a><a name="p0793185971316"></a>元能力调测工具</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p6793059171318"><a name="p6793059171318"></a><a name="p6793059171318"></a>管理AbilityKit与Ability管理服务通信的客户端代码</p>
 </td>
 </tr>
-<tr id="row1897841071415"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p20749155715720"><a name="p20749155715720"></a><a name="p20749155715720"></a>foundation/aafwk/interfaces/innerkits/abilitykit_lite</p>
+<tr id="row6978201031415"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p991413565611"><a name="p991413565611"></a><a name="p991413565611"></a>foundation/aafwk/frameworks/want_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p14793959161317"><a name="p14793959161317"></a><a name="p14793959161317"></a>元能力框架对外接口</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p0793185971316"><a name="p0793185971316"></a><a name="p0793185971316"></a>Ability之间交互的信息载体的实现代码</p>
+</td>
+</tr>
+<tr id="row1897841071415"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p20749155715720"><a name="p20749155715720"></a><a name="p20749155715720"></a>foundation/aafwk/interfaces/kits/abilitykit_lite</p>
+</td>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p14793959161317"><a name="p14793959161317"></a><a name="p14793959161317"></a>AbilityKit为开发者提供的接口</p>
 </td>
 </tr>
 <tr id="row965423512587"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p12654103516589"><a name="p12654103516589"></a><a name="p12654103516589"></a>foundation/aafwk/interfaces/innerkits/abilitymgr_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12658142611466"><a name="p12658142611466"></a><a name="p12658142611466"></a>元能力运行管理服务对外接口</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12658142611466"><a name="p12658142611466"></a><a name="p12658142611466"></a>Ability管理服务为其它子系统提供的接口</p>
 </td>
 </tr>
-<tr id="row673463115813"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p127343312581"><a name="p127343312581"></a><a name="p127343312581"></a>foundation/aafwk/interfaces/innerkits/intent_lite</p>
+<tr id="row673463115813"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p127343312581"><a name="p127343312581"></a><a name="p127343312581"></a>foundation/aafwk/interfaces/kits/want_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p191041469363"><a name="p191041469363"></a><a name="p191041469363"></a>元能力之间通信的实体对外接口</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p191041469363"><a name="p191041469363"></a><a name="p191041469363"></a>Ability之间交互的信息载体的对外接口</p>
 </td>
 </tr>
 <tr id="row164593855812"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p1864523835812"><a name="p1864523835812"></a><a name="p1864523835812"></a>foundation/aafwk/services/abilitymgr_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p4645133805811"><a name="p4645133805811"></a><a name="p4645133805811"></a>元能力运行管理服务</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p4645133805811"><a name="p4645133805811"></a><a name="p4645133805811"></a>Ability管理服务的实现代码</p>
 </td>
 </tr>
-<tr id="row1869744111581"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p10698114117583"><a name="p10698114117583"></a><a name="p10698114117583"></a>foundation/appexecfwk/interfaces/innerkits/appexecfwk_lite</p>
+<tr id="row1869744111581"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p10698114117583"><a name="p10698114117583"></a><a name="p10698114117583"></a>foundation/appexecfwk/interfaces/kits/bundle_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p1169814112585"><a name="p1169814112585"></a><a name="p1169814112585"></a>用户程序运行的包信息、元能力信息、异步事件处理等基本接口</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p1169814112585"><a name="p1169814112585"></a><a name="p1169814112585"></a>BundleKit为开发者提供的接口</p>
 </td>
 </tr>
 <tr id="row106931420217"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p86931748213"><a name="p86931748213"></a><a name="p86931748213"></a>foundation/appexecfwk/interfaces/innerkits/bundlemgr_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12693148215"><a name="p12693148215"></a><a name="p12693148215"></a>用户程序包管理服务对外接口</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12693148215"><a name="p12693148215"></a><a name="p12693148215"></a>AbilityKit实现的核心代码，及包管理服务为其它子系统提供的接口</p>
 </td>
 </tr>
-<tr id="row58381913213"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p11839171152117"><a name="p11839171152117"></a><a name="p11839171152117"></a>foundation/appexecfwk/kits/appkit_lite</p>
+<tr id="row58381913213"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p11839171152117"><a name="p11839171152117"></a><a name="p11839171152117"></a>foundation/appexecfwk/frameworks/bundle_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p158391810217"><a name="p158391810217"></a><a name="p158391810217"></a>用户程序运行的包信息、元能力信息、异步事件处理机制的实现逻辑</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p158391810217"><a name="p158391810217"></a><a name="p158391810217"></a>管理BundleKit与包管理服务通信的客户端代码</p>
+</td>
+</tr>
+<tr id="row1786831216357"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p1686820126359"><a name="p1686820126359"></a><a name="p1686820126359"></a>foundation/appexecfwk/utils/bundle_lite</p>
+</td>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p88681125351"><a name="p88681125351"></a><a name="p88681125351"></a>包管理服务实现中用到的工具性的代码</p>
 </td>
 </tr>
 <tr id="row841015115218"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p14119113219"><a name="p14119113219"></a><a name="p14119113219"></a>foundation/appexecfwk/services/bundlemgr_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p64110114210"><a name="p64110114210"></a><a name="p64110114210"></a>用户程序包管理服务实现逻辑</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p64110114210"><a name="p64110114210"></a><a name="p64110114210"></a>包管理服务的实现代码</p>
 </td>
 </tr>
 </tbody>
@@ -157,11 +144,11 @@ Ability是应用所具备的能力的抽象，一个应用可以包含一个或�
 -   框架针对不同的芯片平台和底层OS能力，规格有所区别
     -   Cortex-M RAM/ROM：
         -   RAM：建议大于20K
-        -   ROM:  \> 300K （包含ACE，UIKit及引擎等强相关子系统）
+        -   ROM:  \> 300K （包含JS应用开发框架，UIKit及引擎等强相关子系统）
 
     -   Cortex-A RAM/ROM:
         -   RAM：建议大于2M
-        -   ROM：\> 2M （包含ACE，UIKit及引擎等强相关子系统）
+        -   ROM：\> 2M （包含JS应用开发框架，UIKit及引擎等强相关子系统）
 
 
 
@@ -239,13 +226,13 @@ Ability是应用所具备的能力的抽象，一个应用可以包含一个或�
 -   添加完上述的配置后，执行如下命令编译整个系统：
 
 ```
-python build.py ipcamera -p hi3516dv300_liteos_a -b release
+python build.py ipcamera -p hi3516dv300_liteos_a -b debug
 ```
 
 ## 运行用户程序框架子系统的两个服务<a name="section1048719468503"></a>
 
--   用户程序框架有两个系统服务AbilityMs和BundleMs，两系统服务运行于foudation进程中。
--   AbilityMs和BundleMs注册到sa\_manager中，sa\_manager运行于foundation进程中，sa\_manager为AbilityMs和BundleMs创建线程运行环境。具体创建AbilityMs、BundleMs服务的方式以及使用该服务的方式，可参考[系统服务框架子系统](zh-cn_topic_0000001051589563.md)。
+-   用户程序框架有两个系统服务ability管理服务（abilityms）和（bundlems），两系统服务运行于foudation进程中。
+-   abilityms和bundlems注册到sa\_manager中，sa\_manager运行于foundation进程中，sa\_manager为abilityms和bundlems创建线程运行环境。具体创建abilityms、bundlems服务的方式以及使用该服务的方式，可参考[系统服务框架子系统](zh-cn_topic_0000001051589563.md)。
 -   在foundation/distributedschedule/services/safwk\_lite/BUILD.gn中添加对abilityms和bundlems，如下：
 
 ```
@@ -278,20 +265,20 @@ deps = [
         "version": {
             "code": 1,
             "name": "1.0"
-        }
+        },
+       "apiVersion": {
+          "compatible": 3,
+          "target": 3
+       }
     },
     "deviceConfig": {
         "default": {
-            "reqSdk": {
-                "compatible": "zsdk 1.0.0",
-                "target": "zsdk 1.0.1"
-            },
             "keepAlive": false
         },
     },
     "module": {
         "deviceType": [
-            "smartCamera"
+            "smartVision"
         ], 
         "distro": {
             "deliveryWithInstall": true, 
@@ -300,7 +287,7 @@ deps = [
         },
         "abilities": [{
             "name": "MainAbility",
-            "icon": "res/drawable/phone.png",
+            "icon": "assets/entry/resources/base/media/icon.png",
             "label": "test app 1", 
             "launchType": "standard",
             "type": "page",
@@ -308,7 +295,7 @@ deps = [
         },
         {
             "name": "SecondAbility",
-            "icon": "res/drawable/phone.png",
+            "icon": "assets/entry/resources/base/media/icon.png",
             "label": "test app 2", 
             "launchType": "standard",
             "type": "page",
@@ -316,7 +303,7 @@ deps = [
         },
         {
             "name": "ServiceAbility",
-            "icon": "res/drawable/phone.png",
+            "icon": "",
             "label": "test app 2", 
             "launchType": "standard",
             "type": "service",
@@ -328,9 +315,9 @@ deps = [
 ```
 
 -   生成hap包
-    -   按照如下目录结构存放文件，res/drawable下面放置资源文件：
+    -   按照如下目录结构存放文件，assets/entry/resources/base/media下面放置资源文件：
 
-        ![](figures/zh-cn_image_0000001052720858.png)
+        ![](figures/zh-cn_image_0000001055712348.png)
 
     -   将上述文件打包生成zip包，修改后缀为.hap，例如Launcher.hap
 
