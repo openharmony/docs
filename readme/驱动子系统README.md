@@ -249,7 +249,7 @@ OpenHarmony驱动主要部署在内核态，当前主要采用静态链接方式
 
 ## 涉及仓<a name="section134812226297"></a>
 
-drivers\_hdf\_frameworks
+[drivers\_hdf\_frameworks](https://openharmony.gitee.com/openharmony/drivers_hdf_frameworks)
 
-drivers\_hdf\_lite
+[drivers\_hdf\_lite](https://openharmony.gitee.com/openharmony/drivers_hdf_lite)
 
