@@ -18,7 +18,7 @@ OpenHarmony驱动子系统采用C面向对象编程模型构建，通过平台�
 
 -   组件化的驱动模型：
 
-    支持组件化的驱动模型，开发者提供更精细化的驱动管理，开发者可以对驱动进行组件化拆分，使得驱动开发者可以更多关注驱动与硬件交互部分。
+    支持组件化的驱动模型，为开发者提供更精细化的驱动管理，开发者可以对驱动进行组件化拆分，使得驱动开发者可以更多关注驱动与硬件交互部分。
 
     同时系统也预置了部分模板化的驱动模型组件，如网络设备模型等。
 
@@ -52,10 +52,10 @@ OpenHarmony驱动框架采用主从架构设计模式，围绕着框架、模型
 -   驱动工具 - 位于frameworks/tools目录
     -   提供HDI接口转换、驱动配置编译等工具。
 
--   驱动接口 - 位于lite/hdi
+-   驱动接口 - 位于lite/hdi目录
     -   提供规范化的驱动接口。
 
--   Support - 位于frameworks/support目录，
+-   Support - 位于frameworks/support目录
     -   提供规范化的平台驱动接口和系统接口抽象能力。
 
 
@@ -130,11 +130,6 @@ OpenHarmony驱动框架采用主从架构设计模式，围绕着框架、模型
 <p id="p19848191416195"><a name="p19848191416195"></a><a name="p19848191416195"></a>该接口部分与平台无关可支持跨平台迁移。</p>
 </td>
 </tr>
-<tr id="row15342553171918"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p434255301916"><a name="p434255301916"></a><a name="p434255301916"></a>hdf/frameworks/support/osal</p>
-</td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1234211535198"><a name="p1234211535198"></a><a name="p1234211535198"></a>提供通用平台适配接口，如内存、线程、锁等资源。</p>
-</td>
-</tr>
 <tr id="row116634294203"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1866392919204"><a name="p1866392919204"></a><a name="p1866392919204"></a>hdf/frameworks/support/platform</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p5663329202017"><a name="p5663329202017"></a><a name="p5663329202017"></a>提供通用平台硬件资源支撑接口，如GPIO、I2C、SPI等能力。</p>
@@ -183,15 +178,15 @@ OpenHarmony驱动框架采用主从架构设计模式，围绕着框架、模型
 
 开发者基于HDF驱动框架开发的驱动主要包含三大部分：
 
-1、驱动程序部分 - 完成驱动的功能逻辑
+1、驱动程序部分 - 完成驱动的功能逻辑。
 
-2、驱动配置信息 - 指示驱动的加载信息内容
+2、驱动配置信息 - 指示驱动的加载信息内容。
 
 3、驱动资源配置 - 配置驱动的硬件配置信息。
 
 驱动程序主要是完成驱动功能的开发部分：
 
-对于开发者首先看到的是驱动入口部分，驱动入口部分通过DriverEntry对齐进行描述。
+对于开发者首先看到的是驱动入口部分，驱动入口部分通过DriverEntry对其进行描述。
 
 其中主要包含bind, init 和release三个接口。
 
@@ -210,20 +205,18 @@ Bind接口描述：该接口的作用主要是完成驱动设备和设备服务�
 ```
 int32_t SampleDriverBind(struct HdfDeviceObject *deviceObject)
 {
-    //TODO: Bind device service to device object.
-    //And you can also initialize device resources here.
+    // TODO: Bind device service to device object.
+    // And you can also initialize device resources here.
     return HDF_SUCCESS;
 }
 ```
 
-Init接口描述：当框架完成设备绑定动作后，就开始调用驱动初始化接口，当初始化成功后，驱动框架根据配置文件决定是否对外创建设备服务
-
-接口，还是只是对当前服务接口可见。如果Init初始化失败的话，驱动框架就会主动释放创建的设备接口等信息。
+Init接口描述：当框架完成设备绑定动作后，就开始调用驱动初始化接口，当初始化成功后，驱动框架根据配置文件决定是否对外创建设备服务接口，还是只是对当前服务接口可见。如果Init初始化失败的话，驱动框架就会主动释放创建的设备接口等信息。
 
 ```
 int32_t SampleDriverInit(struct HdfDeviceObject *deviceObject)
 {
-    //TODO: Init hardware or other resources here.
+    // TODO: Init hardware or other resources here.
 	return HDF_SUCCESS;
 }
 ```
