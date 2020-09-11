@@ -96,7 +96,7 @@ PublishService("cxx", &info, &cb);
 
 ```
 // 定义业务自身的业务名称，会话名称及相关回调
-const char *g_pkgName = "BUSINESS_NAME";
+const char *g_moduleName = "BUSINESS_NAME";
 const char *g_sessionName = "SESSION_NAME";
 struct ISessionListener * g_sessionCallback= NULL;
 
@@ -141,7 +141,7 @@ int StartSessionServer()
     g_sessionCallback->onBytesReceived = OnBytesReceivedTest;
     g_sessionCallback->onSessionOpened = OnSessionOpenedEventTest;
     g_sessionCallback->onSessionClosed = OnSessionClosedEventTest;
-    int ret = CreateSessionServer(g_pkgName, g_sessionName, g_sessionCallback);
+    int ret = CreateSessionServer(g_moduleName, g_sessionName, g_sessionCallback);
     if (ret < 0) {
         printf("Failed to create session server!\n");
         free(g_sessionCallback);
@@ -153,7 +153,7 @@ int StartSessionServer()
 // 从SoftBus中删除业务会话服务及其回调
 void StopSessionServer()
 {
-    int ret = RemoveSessionServer(g_pkgName, g_sessionName);
+    int ret = RemoveSessionServer(g_moduleName, g_sessionName);
     if (ret < 0) {
         printf("Failed to remove session server!\n");
         return;
