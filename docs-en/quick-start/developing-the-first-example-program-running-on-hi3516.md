@@ -4,7 +4,7 @@ This section describes how to modify, compile, burn, and run the first program, 
 
 ## Acquiring Source Code<a name="section215953714245"></a>
 
-You need to acquire  [Hi3516 source code](http://tools.harmonyos.com/mirrors/os/1.0/code-1.0.tar.gz)  and download it on a Linux server. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
+You need to acquire  [Hi3516 source code](https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz)  and download it on a Linux server. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
 ## Modifying a Program<a name="s8efc1952ebfe4d1ea717182e108c29bb"></a>
 
@@ -114,6 +114,9 @@ This method applies only to development boards that have network ports, for exam
 
 1.  Connect to a serial port.
 
+    >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >If the sconnection fails, rectify the fault by referring to problem 5 in the  [FAQs](faqs-0.md)  section.
+
     **Figure  9**  Serial port connection<a name="fig056645018495"></a>  
     
 
@@ -123,12 +126,12 @@ This method applies only to development boards that have network ports, for exam
     2.  Enter the serial port number "com11" and press  **Enter**  until  **hisillicon**  is displayed.
     3.  Go to step 2 if the board is started for the first time or the startup parameters need to be modified; go to step 3 otherwise.
 
-2.  \(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-Boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
+2.  \(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >The default waiting time in the U-Boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisillicon" is displayed.
+    >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisillicon" is displayed.
 
-    **Table  1**  Startup parameters of the U-Boot
+    **Table  1**  Startup parameters of the U-boot
 
     <a name="table432481061214"></a>
     <table><tbody><tr id="row532461021219"><th class="firstcol" valign="top" width="8.39%" id="mcps1.2.3.1.1"><p id="p1238114718129"><a name="p1238114718129"></a><a name="p1238114718129"></a>Command</p>
@@ -148,7 +151,7 @@ This method applies only to development boards that have network ports, for exam
     <p id="p8402475121"><a name="p8402475121"></a><a name="p8402475121"></a><strong id="b815584925312"><a name="b815584925312"></a><a name="b815584925312"></a>rootaddr=10 M, rootsize=15 M rw</strong> indicates the start address and size of the rootfs.img file to be burnt, respectively. The file size must be the same as that of the compiled file in the IDE.</p>
     <p id="p54034712120"><a name="p54034712120"></a><a name="p54034712120"></a><strong id="b2600155013264"><a name="b2600155013264"></a><a name="b2600155013264"></a>saveenv</strong> means to save the current configuration.</p>
     <p id="p2401247131212"><a name="p2401247131212"></a><a name="p2401247131212"></a><strong id="b1427444612265"><a name="b1427444612265"></a><a name="b1427444612265"></a>reset</strong> means to reset the board.</p>
-    <p id="p1440164791213"><a name="p1440164791213"></a><a name="p1440164791213"></a><strong id="b725515390267"><a name="b725515390267"></a><a name="b725515390267"></a>(Optional) go 0x80000000</strong> indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press <strong id="b1420714384268"><a name="b1420714384268"></a><a name="b1420714384268"></a>Enter</strong> in the countdown phase of the U-Boot startup to interrupt the automatic startup.</p>
+    <p id="p1440164791213"><a name="p1440164791213"></a><a name="p1440164791213"></a><strong id="b725515390267"><a name="b725515390267"></a><a name="b725515390267"></a>(Optional) go 0x80000000</strong> indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press <strong id="b1420714384268"><a name="b1420714384268"></a><a name="b1420714384268"></a>Enter</strong> in the countdown phase of the U-boot startup to interrupt the automatic startup.</p>
     </td>
     </tr>
     </tbody>
@@ -162,7 +165,7 @@ This method applies only to development boards that have network ports, for exam
     ![](figures/qi1.png)
 
 
-## Run a Program<a name="section5276734182615"></a>
+## Running a Program<a name="section5276734182615"></a>
 
 In the root directory, run the  **./bin/camera\_app**  command to operate the demo program. The following figure shows the compilation result.
 

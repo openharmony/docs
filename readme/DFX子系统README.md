@@ -2,13 +2,13 @@
 
 ## 简介<a name="section11660541593"></a>
 
-该仓库用于存放DFX框架的代码。主要包含DFR（可靠性）和DFT（可测试性）特性。
+该仓库用于存放DFX框架的代码。主要包含DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。
 
 由于芯片平台资源有限，且硬件平台多样，因此需要针对不同硬件架构和资源提供组件化且可定制的DFX框架。根据RISC-V、Cortex-M、Cortex-A不同硬件平台，提供两种不同的轻量级DFX框架，以下简称mini、featured。
 
 -   mini框架：针对处理架构为Cortex-M或同等处理能力的硬件平台，系统内存一般低于512KB，无文件系统或者仅提供一个可有限使用的轻量级文件系统，遵循CMSIS接口规范。
 
--   featured框架：处理架构为Cortex-A或同等处理能力的硬件平台，内存资源大于512KB，文件系统完善，可存储大量数据，遵循POSIX接口规范。
+-   featured框架：处理架构为Cortex-A或同等处理能力的硬件平台，内存资源一般大于512KB，文件系统完善，可存储大量数据，遵循POSIX接口规范。
 
 
 ## 目录<a name="section1464106163817"></a>
@@ -64,7 +64,7 @@
 </tr>
 <tr id="row11587111583"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p4491153104614"><a name="p4491153104614"></a><a name="p4491153104614"></a>services/hiview_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p159210361388"><a name="p159210361388"></a><a name="p159210361388"></a>DFX框架服务化注册</p>
+<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p159210361388"><a name="p159210361388"></a><a name="p159210361388"></a>DFX mini框架服务化注册</p>
 </td>
 </tr>
 <tr id="row144311669479"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p443219624716"><a name="p443219624716"></a><a name="p443219624716"></a>frameworks/ddrdump_lite</p>
@@ -94,7 +94,7 @@
 </tr>
 <tr id="row13247163492"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p710851611910"><a name="p710851611910"></a><a name="p710851611910"></a>utils/lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p112471431895"><a name="p112471431895"></a><a name="p112471431895"></a>公共基础操作定义实现。包含了miini框架的config配置</p>
+<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p112471431895"><a name="p112471431895"></a><a name="p112471431895"></a>公共基础操作定义实现。包含了mini框架的config配置</p>
 </td>
 </tr>
 </tbody>
@@ -102,7 +102,7 @@
 
 ## 约束<a name="section1718733212019"></a>
 
-mini框架整体代码使用标准C开发，对外的接口依赖统一通过util封装，如软硬件平台不同需要适配，需要在vendor下实现适配处理。
+mini框架整体代码使用标准C开发。
 
 ## 使用-mini框架<a name="section99168524220"></a>
 
@@ -130,19 +130,17 @@ DFX-mini是一套简单小巧的DFX设计，对外提供log功能：
         在A模块的初始化流程中添加如下代码，注册模块到日志框架中：
 
         ```
-        HiLogRegisterModule(HILOG_MODULE_SAMGR, "A");
+        HiLogRegisterModule(HILOG_MODULE_A, "A");
         ```
 
 
     1.  **第三步调整DFX框架静态配置**
 
-        根据需要调整
+        根据需要调整如下文件的g\_hiviewConfig全局参数配置。默认情况下不用修改，日志默认输出到串口。
 
         ```
         utils/lite/hiview_config.c
         ```
-
-        的g\_hiviewConfig全局参数配置。默认情况下不用修改，日志默认输出到串口。
 
         <a name="table15664428164516"></a>
         <table><thead align="left"><tr id="row07061028154510"><th class="cellrowborder" valign="top" width="25.180000000000003%" id="mcps1.1.3.1.1"><p id="p10706128184514"><a name="p10706128184514"></a><a name="p10706128184514"></a>配置项</p>
@@ -157,7 +155,6 @@ DFX-mini是一套简单小巧的DFX设计，对外提供log功能：
         <p id="p107061428124515"><a name="p107061428124515"></a><a name="p107061428124515"></a>OUTPUT_OPTION_DEBUG 日志不进行跨任务调度直接输出到串口，仅适合临时调测使用。</p>
         <p id="p870682819450"><a name="p870682819450"></a><a name="p870682819450"></a>OUTPUT_OPTION_FLOW  日志流式输出到串口（默认设置）</p>
         <p id="p16707182819454"><a name="p16707182819454"></a><a name="p16707182819454"></a>OUTPUT_OPTION_TEXT_FILE 日志输出为文本文件</p>
-        <p id="p117071528184514"><a name="p117071528184514"></a><a name="p117071528184514"></a>OUTPUT_OPTION_BIN_FILE 日志输出为二进制文件（后续支持）</p>
         </td>
         </tr>
         <tr id="row1270720281453"><td class="cellrowborder" valign="top" width="25.180000000000003%" headers="mcps1.1.3.1.1 "><p id="p137071528164516"><a name="p137071528164516"></a><a name="p137071528164516"></a>level</p>
@@ -180,7 +177,7 @@ DFX-mini是一套简单小巧的DFX设计，对外提供log功能：
         </tr>
         <tr id="row87081282452"><td class="cellrowborder" valign="top" width="25.180000000000003%" headers="mcps1.1.3.1.1 "><p id="p11708128124511"><a name="p11708128124511"></a><a name="p11708128124511"></a>eventSwitch</p>
         </td>
-        <td class="cellrowborder" valign="top" width="74.82%" headers="mcps1.1.3.1.2 "><p id="p17708202834519"><a name="p17708202834519"></a><a name="p17708202834519"></a>事件功能开关。编译前关闭则不再初始化DUMP组件。默认关闭。取值如下：</p>
+        <td class="cellrowborder" valign="top" width="74.82%" headers="mcps1.1.3.1.2 "><p id="p17708202834519"><a name="p17708202834519"></a><a name="p17708202834519"></a>事件功能开关。编译前关闭则不再初始化Event组件。默认关闭。取值如下：</p>
         <p id="p1670852894513"><a name="p1670852894513"></a><a name="p1670852894513"></a>HIVIEW_FEATURE_ON/ HIVIEW_FEATURE_OFF</p>
         </td>
         </tr>
@@ -191,7 +188,7 @@ DFX-mini是一套简单小巧的DFX设计，对外提供log功能：
 
         在需要打印日志的.c文件中 \#include "log.h"，调用如下接口：
 
-        HILOG\_INFO\(HILOG\_MODULE\_SAMGR, “log test: %d”, 88\);
+        HILOG\_INFO\(HILOG\_MODULE\_A,“log test: %d”, 88\);
 
         接口参数说明：
 
@@ -250,18 +247,22 @@ DFX featured框架提供完整的DFX特性，对外提供log接口：
 hilog  可用API
 
 ```
-HILOGD(fmt,...) HILOGI(fmt,...) HILOGW(fmt,...) HILOGE(fmt,...)
+HILOG_DEBUG(type, ...)
+HILOG_INFO(type, ...)
+HILOG_WARN(type, ...)
+HILOG_ERROR(type, ...)
+HILOG_FATAL(type, ...)
 ```
 
 使用介绍
 
-首先需要定义TAG，DOMAIN需要找DFT申请，未经申请的DOMAIN，日志打印不出来。
+1. 首先需要定义TAG。
 
-本地调试，可以临时使用domain数值 0。
+2. 本地调试，可以临时使用domain数值 0。
 
-包含头文件：\#include <hilog/log.h\>
+3. 包含头文件：\#include <hilog/log.h\>
 
-在BUILD.gn中添加依赖库 libhilog。
+4. 在BUILD.gn中添加依赖库 libhilog。
 
 接口规则介绍：
 
@@ -284,7 +285,7 @@ HILOGD(fmt,...) HILOGI(fmt,...) HILOGW(fmt,...) HILOGE(fmt,...)
 </thead>
 <tbody><tr id="row152675592321"><td class="cellrowborder" valign="top" width="25.94%" headers="mcps1.1.3.1.1 "><p id="p12267135915328"><a name="p12267135915328"></a><a name="p12267135915328"></a>domain</p>
 </td>
-<td class="cellrowborder" valign="top" width="74.06%" headers="mcps1.1.3.1.2 "><p id="p1826745953219"><a name="p1826745953219"></a><a name="p1826745953219"></a>领域标识ID，需要找DFT申请，未经申请的domain会出现日志打印不出来的问题</p>
+<td class="cellrowborder" valign="top" width="74.06%" headers="mcps1.1.3.1.2 "><p id="p1826745953219"><a name="p1826745953219"></a><a name="p1826745953219"></a>领域标识ID</p>
 </td>
 </tr>
 <tr id="row20267135963212"><td class="cellrowborder" valign="top" width="25.94%" headers="mcps1.1.3.1.1 "><p id="p152675591328"><a name="p152675591328"></a><a name="p152675591328"></a>tag</p>
@@ -312,14 +313,14 @@ HILOGD(fmt,...) HILOGI(fmt,...) HILOGW(fmt,...) HILOGE(fmt,...)
 
 **日志查看**
 
-1.  debug版本hilog日志会保存到/storage/data/log/hilogs 目录下面。
+1.  debug版本hilog日志会保存到/storage/data/log/目录下面。
 
 2.  可以执行hilogcat实时查看hilog日志。
 
 
 **日志系统架构**
 
-![](figures/zh-cn_image_0000001052080708.png)
+![](figures/zh-cn_image_0000001054762887.png)
 
 1.  hilogtask流水日志的内核任务。
     -   此功能是一个linux内核的任务或者线程，在系统启动时初始化。
@@ -329,7 +330,6 @@ HILOGD(fmt,...) HILOGI(fmt,...) HILOGW(fmt,...) HILOGE(fmt,...)
 2.  hilogcatd用户态日志存储服务。
     -   这是一个用户态的进程，负责定时将内核的ringbuffer读取出来，存储到日志文件中。
     -   日志文件输出支持gzip压缩，使用zlib
-    -   每个类型的ringbuffer分开存储。
     -   存储文件的单个文件大小，文件个数可在编译时配置。
 
 3.  hilogcat日志查看命令行工具。
@@ -338,7 +338,6 @@ HILOGD(fmt,...) HILOGI(fmt,...) HILOGW(fmt,...) HILOGE(fmt,...)
 
 4.  支持日志缓冲区可配置。
     -   编译时可以配置日志缓冲区的大小。
-    -   编译时可以指定日志缓冲区的类型，类型个数就是ringbuffer的个数。
 
 
 ## 涉及仓<a name="section6899131818455"></a>

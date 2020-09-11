@@ -419,6 +419,9 @@ Compile and burn images by referring to  [Compiling Code](developing-the-first-e
 
 1.  Connect to a serial port.
 
+    >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >If the sconnection fails, rectify the fault by referring to problem 5 in the  [FAQs](faqs-0.md)  section.
+
     **Figure  1**  Serial port connection<a name="en-us_topic_0000001052906247_fig056645018495"></a>  
     
 
@@ -428,12 +431,12 @@ Compile and burn images by referring to  [Compiling Code](developing-the-first-e
     2.  Enter the serial port number "com11" and press  **Enter**  until  **hisillicon**  is displayed.
     3.  Go to step 2 if the board is started for the first time or the startup parameters need to be modified; go to step 3 otherwise.
 
-2.  \(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-Boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
+2.  \(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >The default waiting time in the U-Boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisillicon" is displayed.
+    >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisillicon" is displayed.
 
-    **Table  1**  Startup parameters of the U-Boot
+    **Table  1**  Startup parameters of the U-boot
 
     <a name="en-us_topic_0000001052906247_table432481061214"></a>
     <table><tbody><tr id="en-us_topic_0000001052906247_row532461021219"><th class="firstcol" valign="top" width="8.39%" id="mcps1.2.3.1.1"><p id="en-us_topic_0000001052906247_p1238114718129"><a name="en-us_topic_0000001052906247_p1238114718129"></a><a name="en-us_topic_0000001052906247_p1238114718129"></a>Command</p>
@@ -453,7 +456,7 @@ Compile and burn images by referring to  [Compiling Code](developing-the-first-e
     <p id="en-us_topic_0000001052906247_p8402475121"><a name="en-us_topic_0000001052906247_p8402475121"></a><a name="en-us_topic_0000001052906247_p8402475121"></a><strong id="en-us_topic_0000001052906247_b815584925312"><a name="en-us_topic_0000001052906247_b815584925312"></a><a name="en-us_topic_0000001052906247_b815584925312"></a>rootaddr=10 M, rootsize=15 M rw</strong> indicates the start address and size of the rootfs.img file to be burnt, respectively. The file size must be the same as that of the compiled file in the IDE.</p>
     <p id="en-us_topic_0000001052906247_p54034712120"><a name="en-us_topic_0000001052906247_p54034712120"></a><a name="en-us_topic_0000001052906247_p54034712120"></a><strong id="en-us_topic_0000001052906247_b2600155013264"><a name="en-us_topic_0000001052906247_b2600155013264"></a><a name="en-us_topic_0000001052906247_b2600155013264"></a>saveenv</strong> means to save the current configuration.</p>
     <p id="en-us_topic_0000001052906247_p2401247131212"><a name="en-us_topic_0000001052906247_p2401247131212"></a><a name="en-us_topic_0000001052906247_p2401247131212"></a><strong id="en-us_topic_0000001052906247_b1427444612265"><a name="en-us_topic_0000001052906247_b1427444612265"></a><a name="en-us_topic_0000001052906247_b1427444612265"></a>reset</strong> means to reset the board.</p>
-    <p id="en-us_topic_0000001052906247_p1440164791213"><a name="en-us_topic_0000001052906247_p1440164791213"></a><a name="en-us_topic_0000001052906247_p1440164791213"></a><strong id="en-us_topic_0000001052906247_b725515390267"><a name="en-us_topic_0000001052906247_b725515390267"></a><a name="en-us_topic_0000001052906247_b725515390267"></a>(Optional) go 0x80000000</strong> indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press <strong id="en-us_topic_0000001052906247_b1420714384268"><a name="en-us_topic_0000001052906247_b1420714384268"></a><a name="en-us_topic_0000001052906247_b1420714384268"></a>Enter</strong> in the countdown phase of the U-Boot startup to interrupt the automatic startup.</p>
+    <p id="en-us_topic_0000001052906247_p1440164791213"><a name="en-us_topic_0000001052906247_p1440164791213"></a><a name="en-us_topic_0000001052906247_p1440164791213"></a><strong id="en-us_topic_0000001052906247_b725515390267"><a name="en-us_topic_0000001052906247_b725515390267"></a><a name="en-us_topic_0000001052906247_b725515390267"></a>(Optional) go 0x80000000</strong> indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press <strong id="en-us_topic_0000001052906247_b1420714384268"><a name="en-us_topic_0000001052906247_b1420714384268"></a><a name="en-us_topic_0000001052906247_b1420714384268"></a>Enter</strong> in the countdown phase of the U-boot startup to interrupt the automatic startup.</p>
     </td>
     </tr>
     </tbody>

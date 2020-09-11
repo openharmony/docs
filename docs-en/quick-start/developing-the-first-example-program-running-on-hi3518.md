@@ -4,7 +4,7 @@ This section describes how to modify, compile, burn, and run the first program o
 
 ## Acquiring Source Code<a name="section1726092873119"></a>
 
-You need to acquire  [Hi3518 source code](http://tools.harmonyos.com/mirrors/os/1.0/code-1.0.tar.gz)  and download it on a Linux server. For details, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
+You need to acquire  [Hi3518 source code](https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz)  and download it on a Linux server. For details, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
 ## Modifying a Program<a name="s8efc1952ebfe4d1ea717182e108c29bb"></a>
 
@@ -71,14 +71,14 @@ Burn images to the Hi3518EV300 board over the serial port.
 
 ## Running an Image<a name="section62131033183710"></a>
 
-1.  Connect to the serial port. After the images are burnt successfully, start the terminal, click  **Settings**, set  **View Title**  to  **Terminal 11**  and  **Port**  to  **COM7**, and click  **OK**  to open the serial port. You have logged in to the U-Boot if  **hisilicon \#**  is displayed.
+1.  Connect to the serial port. After the images are burnt successfully, start the terminal, click  **Settings**, set  **View Title**  to  **Terminal 11**  and  **Port**  to  **COM7**, and click  **OK**  to open the serial port. You have logged in to the U-boot if  **hisilicon \#**  is displayed.
 
     **Figure  6**  Serial port connection<a name="fig197461744191012"></a>  
     ![](figures/serial-port-connection.png "serial-port-connection")
 
-2.  \(Mandatory for the first burning\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-Boot. This step is a fixed operation and the result can be saved. However, you need to perform the following steps again if U-Boot needs to be reburnt.
+2.  \(Mandatory for the first burning\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-boot. This step is a fixed operation and the result can be saved. However, you need to perform the following steps again if U-boot needs to be reburnt.
 
-    **Table  1**  Parameters of the Hi3518EV300 U-Boot
+    **Table  1**  Parameters of the Hi3518EV300 U-boot
 
     <a name="table1671622991613"></a>
     <table><tbody><tr id="row1371652914168"><th class="firstcol" valign="top" width="8.38%" id="mcps1.2.3.1.1"><p id="p1598685321618"><a name="p1598685321618"></a><a name="p1598685321618"></a>Command</p>
@@ -92,7 +92,7 @@ Burn images to the Hi3518EV300 board over the serial port.
     </th>
     <td class="cellrowborder" valign="top" width="91.62%" headers="mcps1.2.3.2.1 "><p id="p1198615316165"><a name="p1198615316165"></a><a name="p1198615316165"></a><strong id="b11610792311"><a name="b11610792311"></a><a name="b11610792311"></a>setenv bootcmd "sf probe 0;sf read 0x40000000 0x100000 0x600000;go 0x40000000";</strong></p>
     <p id="p2986125310164"><a name="p2986125310164"></a><a name="p2986125310164"></a>Run this command to set the content of <strong id="b1915115872811"><a name="b1915115872811"></a><a name="b1915115872811"></a>bootcmd</strong>. Select the flash whose number is 0, and read content that has a size of 0x600000 and a start address of 0x100000 to memory address 0x40000000.</p>
-    <p id="p5759815112613"><a name="p5759815112613"></a><a name="p5759815112613"></a><strong id="b19527719203716"><a name="b19527719203716"></a><a name="b19527719203716"></a>(Optional) go 0x40000000</strong> indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press <strong id="b118621929144219"><a name="b118621929144219"></a><a name="b118621929144219"></a>Enter</strong> in the countdown phase of the U-Boot startup to interrupt the automatic startup.</p>
+    <p id="p5759815112613"><a name="p5759815112613"></a><a name="p5759815112613"></a><strong id="b19527719203716"><a name="b19527719203716"></a><a name="b19527719203716"></a>(Optional) go 0x40000000</strong> indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press <strong id="b118621929144219"><a name="b118621929144219"></a><a name="b118621929144219"></a>Enter</strong> in the countdown phase of the U-boot startup to interrupt the automatic startup.</p>
     <p id="p340215818235"><a name="p340215818235"></a><a name="p340215818235"></a><strong id="b119855142415"><a name="b119855142415"></a><a name="b119855142415"></a>setenv bootargs "console=ttyAMA0,115200n8 root=flash fstype=jffs2 rw rootaddr=7 M rootsize=8 M";</strong></p>
     <p id="p8987115381613"><a name="p8987115381613"></a><a name="p8987115381613"></a>In this command, <strong id="b177343793718"><a name="b177343793718"></a><a name="b177343793718"></a>bootargs</strong> is set to the serial port output, the baud rate is 115200, the data bit is 8, and the <strong id="b033817523412"><a name="b033817523412"></a><a name="b033817523412"></a>rootfs</strong> is mounted to the flash memory. The file system type is set to <strong id="b16149152018429"><a name="b16149152018429"></a><a name="b16149152018429"></a>jffs2 rw</strong>, which provides the read-write attribute for the JFFS2 file system.</p>
     <p id="p1888191482518"><a name="p1888191482518"></a><a name="p1888191482518"></a><strong id="b14704195842212"><a name="b14704195842212"></a><a name="b14704195842212"></a>rootaddr=7 M rootsize=8 M</strong> indicates the actual start address and length of the <strong id="b1299173342420"><a name="b1299173342420"></a><a name="b1299173342420"></a>rootfs.img</strong> file to be burnt. The size must be the same as that of the compiled files in the HiTool.</p>
@@ -115,5 +115,5 @@ Burn images to the Hi3518EV300 board over the serial port.
 
 ## Follow-up Learning<a name="section9712145420182"></a>
 
-Congratulations! You have finished all steps! You are advised to go on learning how to develop  [Cameras with a Screen](en-us_topic_0000001055366100.md).
+Congratulations! You have finished all steps! You are advised to go on learning how to develop  [Cameras with a Screen](../guide/camera-control.md).
 

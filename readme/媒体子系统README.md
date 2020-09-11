@@ -2,9 +2,7 @@
 
 ## 简介<a name="section38510214395"></a>
 
-该仓主要用于存放媒体子系统的源码信息，旨在为多媒体应用开发者开发者提供统一的开发接口，使得开发者可以专注于应用业务的开发，轻松使用多媒体的资源。
-
-本次开源基于本仓代码信息将相关设备配置文件放入到test\\lite\\devini内，用户使用时将配置文件放入到开发板/data目录，通过该配置文件可以方便去适配sensor及分辨率帧率等能力。
+该仓主要用于存放媒体子系统的源码信息，旨在为多媒体应用开发者开发者提供统一的开发接口，使得开发者可以专注于应用业务的开发，轻松使用多媒体的资源。下图分别展现媒体子系统的框架及业务流程。
 
 多媒体子系统框架
 
@@ -14,7 +12,7 @@
 
 ![](figures/zh-cn_image_0000001052440794.png)
 
-如上图，多媒体包括camera，recorder和player，camera提供yuv/rgb,jpeg以及H264，H265数据到共享内存surface中，recorder模块将surface中h264/h265数据和音频aac数据打包成mp4文件，player模块把mp4文件解复用成音频和视频数据，分别送入对应编码器解码，然后进行播放。
+如上图，多媒体包括camera，recorder和player，camera提供YUV、RGB、JPEG以及H264，H265数据到共享内存surface中，recorder模块将surface中h264/h265数据和音频aac数据打包成mp4文件，player模块把mp4文件解复用成音频和视频数据，分别送入对应编码器解码，然后进行播放。
 
 ## 目录<a name="section1937963913399"></a>
 
@@ -29,27 +27,27 @@
 </thead>
 <tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p13476517134113"><a name="p13476517134113"></a><a name="p13476517134113"></a>foundation\multimedia\frameworks</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>北向接口内部框架实现,包括audio,camera,player.recorder</p>
+<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>内部框架实现,包括audio,camera,player.recorder</p>
 </td>
 </tr>
 <tr id="row6978161091412"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p167373014417"><a name="p167373014417"></a><a name="p167373014417"></a>foundation\multimedia\interfaces\kits</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p6793059171318"><a name="p6793059171318"></a><a name="p6793059171318"></a>北向接口对外头文件</p>
+<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p6793059171318"><a name="p6793059171318"></a><a name="p6793059171318"></a>应用接口对外头文件</p>
 </td>
 </tr>
 <tr id="row6978201031415"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1639221134214"><a name="p1639221134214"></a><a name="p1639221134214"></a>foundation\multimedia\services\media_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p182076317465"><a name="p182076317465"></a><a name="p182076317465"></a>北向接口底层服务实现</p>
+<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p182076317465"><a name="p182076317465"></a><a name="p182076317465"></a>应用接口底层服务实现</p>
 </td>
 </tr>
 <tr id="row1420633124613"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1569213233619"><a name="p1569213233619"></a><a name="p1569213233619"></a>foundation\multimedia\utils\lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p069215273618"><a name="p069215273618"></a><a name="p069215273618"></a>北向接口通用模块实现</p>
+<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p069215273618"><a name="p069215273618"></a><a name="p069215273618"></a>应用接口通用模块实现</p>
 </td>
 </tr>
 <tr id="row1679114715461"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p0295211184214"><a name="p0295211184214"></a><a name="p0295211184214"></a>foundation\multimedia\test\lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p1279144754611"><a name="p1279144754611"></a><a name="p1279144754611"></a>北向接口测试代码。</p>
+<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p1279144754611"><a name="p1279144754611"></a><a name="p1279144754611"></a>应用接口测试代码。</p>
 </td>
 </tr>
 </tbody>
@@ -59,18 +57,20 @@
 
 -   C++11版本或以上
 -   目前支持3516dv300、3518ev300开发板,其中仅3516dv300支持播放功能
+-   当前3516dv300开发板默认支持索尼imx335、3518ev300默认支持晶相jxf23。
 
 ## 安装<a name="section11914418405"></a>
 
 -   请提前加载内核及相关驱动，参考内核及驱动子系统readme。
--   配置合适的配置文件，可以参考test/devini下配置文件，说明参见《配置文件说明文档》，当前仅支持imx335和imx327sensor，如果适配其他sensor可在开源社区中求助。
--   北向接口调用参见test下demo实现。
+-   配置合适的配置文件，可以参考applications/sample/camera/media下配置文件，如果适配其他sensor可在开源社区中求助。用户使用时将配置文件放入到开发板/storage/data目录，开发者通过该配置文件可以去适配sensor及分辨率、帧率等能力。
+-   应用接口调用参见applications/sample/camera/media下demo实现。
 
 ## 使用<a name="section1467220266400"></a>
 
-开发者使用多媒体接口用于录像、预览和播放音视频等资源，使用这些资源前先创建camerakit组件对象，注册各种事件回调，这些事件回调是用户实现用来响应多媒体模块中事件响应的，之后调用创建camera就可以创建一个操作camera资源的对象，使用这个对象可以启动预览、录像或抓拍取流，及设置取流的相关参数。
-
+Native应用接口调用可以参考applications/sample/camera/media下demo实现
+应用开发者使用多媒体接口实现录像、预览和播放音视频，使用可以参考《多媒体开发指南》。
 例：下面是用户重写事件类的实例
+用户先创建camerakit组件对象，注册各种事件回调，这些事件回调是用户实现用来响应多媒体模块中事件响应的，之后调用创建camera就可以创建一个操作camera资源的对象，使用这个对象可以启动预览、录像或抓拍取流，及设置取流的相关参数。
 
 ```
 /*

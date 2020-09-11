@@ -67,7 +67,7 @@ The following table describes the tools required for setting up the general envi
 </td>
 <td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p1219863434519"><a name="p1219863434519"></a><a name="p1219863434519"></a>Executes script cross compilation.</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p165031126103215"><a name="p165031126103215"></a><a name="p165031126103215"></a><a href="http://tools.harmonyos.com/mirrors/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz" target="_blank" rel="noopener noreferrer">http://tools.harmonyos.com/mirrors/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz</a></p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p14145637348"><a name="p14145637348"></a><a name="p14145637348"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz</a></p>
 </td>
 </tr>
 <tr id="row430016273514"><td class="cellrowborder" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p330015271158"><a name="p330015271158"></a><a name="p330015271158"></a>Python3.7+</p>
@@ -102,14 +102,14 @@ The following table describes the tools required for setting up the general envi
 </td>
 <td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p4588135634213"><a name="p4588135634213"></a><a name="p4588135634213"></a>Generates ninja compilation scripts.</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p10572194318318"><a name="p10572194318318"></a><a name="p10572194318318"></a><a href="http://tools.harmonyos.com/mirrors/gn/1523/linux/gn.1523.tar" target="_blank" rel="noopener noreferrer">http://tools.harmonyos.com/mirrors/gn/1523/linux/gn.1523.tar</a></p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p10572194318318"><a name="p10572194318318"></a><a name="p10572194318318"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar</a></p>
 </td>
 </tr>
 <tr id="row16990164213404"><td class="cellrowborder" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p1858825613428"><a name="p1858825613428"></a><a name="p1858825613428"></a>ninja</p>
 </td>
 <td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p15844174611816"><a name="p15844174611816"></a><a name="p15844174611816"></a>Executes ninja compilation scripts.</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p377581023312"><a name="p377581023312"></a><a name="p377581023312"></a><a href="http://tools.harmonyos.com/mirrors/ninja/1.9.0/linux/ninja.1.9.0.tar" target="_blank" rel="noopener noreferrer">http://tools.harmonyos.com/mirrors/ninja/1.9.0/linux/ninja.1.9.0.tar</a></p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p1923373393515"><a name="p1923373393515"></a><a name="p1923373393515"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar</a></p>
 </td>
 </tr>
 </tbody>
@@ -298,7 +298,7 @@ sudo ln -s /bin/bash /bin/sh
 ## Installing gn<a name="section2024354014506"></a>
 
 1.  Start a Linux server.
-2.  Download  [gn](https://chrome-infra-packages.appspot.com/dl/gn/gn/linux-amd64/+/latest).
+2.  Download  [gn](https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar).
 3.  Decompress the  **gn**  installation package to the  **tar -xvf gn.1523.tar -C \~/**  in  **\~/gn**  directory.
 4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/gn:$PATH**  to set an environment variable.
 5.  Run  **source \~/.bashrc**  to validate the environment variable.
@@ -306,7 +306,7 @@ sudo ln -s /bin/bash /bin/sh
 ## Installing ninjah<a name="section182441140185010"></a>
 
 1.  Start a Linux server.
-2.  Download  [ninja](https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip).
+2.  Download  [ninja](https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar).
 3.  Decompress the  **ninja**  installation package to  **tar -xvf ninja.1.9.0.tar -C \~/**  in  **\~/ninja**  directory.
 4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/ninja:$PATH**  to set an environment variable.
 5.  Run  **source \~/.bashrc**  to validate the environment variable.
@@ -317,7 +317,7 @@ sudo ln -s /bin/bash /bin/sh
 >The Hi3861 platform supports only the static link of the libgcc library.  **The dynamic link is not recommended because version 3 of the GNU General Public License \(GPLv3\) will be polluted during commercial distribution.**
 
 1.  Start a Linux server.
-2.  Download  [gcc\_riscv32](http://tools.harmonyos.com/mirrors/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz).
+2.  Download  [gcc\_riscv32](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz).
 3.  Decompress the gcc\_riscv32 installation package to  **tar -xvf gcc\_riscv32-linux-7.3.0.tar.gz -C \~/**  in  **/opt/gcc\_riscv32**.
 4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/gcc\_riscv32/bin:$PATH**  to set an environment variable.
 5.  Run  **source \~/.bashrc**  to validate the environment variable.

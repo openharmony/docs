@@ -106,7 +106,7 @@ Samgr：做为中介者，管理Provider提供的能力，同时帮助Consumer�
 
 服务名和功能名必需使用常量字符串且长度小于16个字节。
 
-M核：系统依赖上bootstrap服务，在系统启动函数中调用HOS\_SystemInit\(\)函数。
+M核：系统依赖上bootstrap服务，在系统启动函数中调用OHOS\_SystemInit\(\)函数。
 
 A核：系统依赖samgr库，在main函数中调用SAMGR\_Bootstrap\(\)函数。
 
@@ -622,7 +622,7 @@ A核：系统依赖samgr库，在main函数中调用SAMGR\_Bootstrap\(\)函数�
 
 ## 涉及仓<a name="section10365113863719"></a>
 
-distributedschedule\_interfaces\_innerkits\_samgr\_lite
+distributedschedule\_interfaces\_kits\_samgr\_lite
 
 distributedschedule\_services\_samgr\_lite
 

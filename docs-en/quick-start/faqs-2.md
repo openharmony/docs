@@ -8,14 +8,16 @@
 
 -   **Possible Causes**
     -   The serial port is connected incorrectly.
-    -   The U-Boot of the board is damaged.
+    -   The U-boot of the board is damaged.
 
 -   **Solutions**
+
+    **Solution 1: Change the serial port number.**
 
     Start  **Device Manager**  to check whether the serial port connected to the board is the same as that connected to the terminal device. If not, perform the following steps to change the serial port number.
 
     **Figure  1**  Procedure for changing the serial port number<a name="fig16441825145717"></a>  
-    ![](figures/procedure-for-changing-the-serial-port-number.png "procedure-for-changing-the-serial-port-number")
+    ![](figures/procedure-for-changing-the-serial-port-number-4.png "procedure-for-changing-the-serial-port-number-4")
 
 
 1.  Disconnect from the current serial port.
@@ -23,32 +25,34 @@
 3.  Change the serial port number in the dialog box and click  **OK**.
 4.  Press  **Enter**  in the dialog box to check whether any command output is displayed after the connection is established.
 
-If the fault persists after you perform the preceding operations, the U-Boot of the board may be damaged. You can burn the U-Boot by performing the following steps:
+**Solution 2: Burn the U-boot.**
 
-1.  Obtain the U-Boot file.
+If the fault persists after you perform the preceding operations, the U-boot of the board may be damaged. You can burn the U-boot by performing the following steps:
+
+1.  Obtain the U-boot file.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >The U-Boot file of the board can be obtained from  **vendor\\hisi\\hi35xx\\hi3518ev300\\uboot\\out\\boot\\u-boot-hi3518ev300.bin**  in the open-source package.
+    >The U-boot file of the board can be obtained from  **vendor\\hisi\\hi35xx\\hi3518ev300\\uboot\\out\\boot\\u-boot-hi3518ev300.bin**  in the open-source package.
 
-2.  Use HiTool to burn the U-Boot.
+2.  Use HiTool to burn the U-boot.
 
-    **Figure  2**  Procedure for burning the U-Boot using HiTool<a name="fig1353321514128"></a>  
+    **Figure  2**  Procedure for burning the U-boot using HiTool<a name="fig1353321514128"></a>  
     ![](figures/procedure-for-burning-the-u-boot-using-hitool.png "procedure-for-burning-the-u-boot-using-hitool")
 
     1.  Select the COM7 serial port.
     2.  Select  **Serial**  for  **Transfer Mode**.
     3.  Select  **Burn Fastboot**.
     4.  Select  **spi nor**  for  **Flash Type**.
-    5.  Click  **Browse**  and select the corresponding U-Boot file.
+    5.  Click  **Browse**  and select the corresponding U-boot file.
     6.  Click  **Burn**  to start burning.
 
-3.  Power off the board and then power it on. Connect the serial port after the burning is complete. Serial ports shown in the following figure are displayed after the U-Boot is burnt.
+3.  Power off the board and then power it on. Connect the serial port after the burning is complete. Serial ports shown in the following figure are displayed after the U-boot is burnt.
 
-    **Figure  3**  Serial port displayed after the U-Boot is burnt<a name="fig155914681910"></a>  
-    ![](figures/serial-port-displayed-after-the-u-boot-is-burnt.png "serial-port-displayed-after-the-u-boot-is-burnt")
+    **Figure  3**  Serial port displayed after the U-boot is burnt<a name="fig155914681910"></a>  
+    ![](figures/serial-port-displayed-after-the-u-boot-is-burnt-5.png "serial-port-displayed-after-the-u-boot-is-burnt-5")
 
 
-**Problem 2: What should I do when an error is reported when the U-Boot is burnt using HiTool?**
+**Problem 2: What should I do when an error is reported when the U-boot is burnt using HiTool?**
 
 -   **Symptom**
 

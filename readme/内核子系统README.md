@@ -4,11 +4,13 @@
 
 OpenHarmony内核是华为推出面向IoT领域的实时操作系统内核，它同时具备RTOS轻快和Linux易用的特点。
 
-这个仓库用于存放OpenHarmony内核的源代码，主要包括如下基本功能组件模块：进程和线程调度、内存管理、IPC机制、timer管理等，版本包编译信息。
+OpenHarmony内核主要包括进程和线程调度、内存管理、IPC机制、timer管理等内核基本功能。
+
+OpenHarmony内核的源代码分为 [`kernel_liteos_a`](https://gitee.com/openharmony/kernel_liteos_a) 和 [`kernel_liteos_m`](https://gitee.com/openharmony/kernel_liteos_m) 这2个代码仓库，其中`kernel_liteos_a`主要针对Cortex-A系列处理器，而`kernel_liteos_m`则主要针对Cortex-M系列处理器，两者目录结构非常相似，所以下面主要针对`kernel_liteos_a`代码仓库进行介绍。
 
 ## 目录<a name="section1121775732114"></a>
 
-**表 1**  OpenHarmony轻内核源代码目录结构
+**表 1**  OpenHarmony内核源代码目录结构
 
 <a name="table2977131081412"></a>
 <table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="30.34%" id="mcps1.2.3.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>名称</p>
@@ -72,14 +74,9 @@ OpenHarmony内核是华为推出面向IoT领域的实时操作系统内核，它
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1374365134011"><a name="p1374365134011"></a><a name="p1374365134011"></a>系统调用。</p>
 </td>
 </tr>
-<tr id="row6470183019419"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p17470143094117"><a name="p17470143094117"></a><a name="p17470143094117"></a>test</p>
-</td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p547013018415"><a name="p547013018415"></a><a name="p547013018415"></a>内核和用户态的测试用例。</p>
-</td>
-</tr>
 <tr id="row343553564120"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p54351735114113"><a name="p54351735114113"></a><a name="p54351735114113"></a>tools</p>
 </td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p17435635114116"><a name="p17435635114116"></a><a name="p17435635114116"></a>编译配置和menuconfig相关的代码。</p>
+<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p17435635114116"><a name="p17435635114116"></a><a name="p17435635114116"></a>构建工具及相关配置和代码。</p>
 </td>
 </tr>
 </tbody>
@@ -87,7 +84,7 @@ OpenHarmony内核是华为推出面向IoT领域的实时操作系统内核，它
 
 ## 约束<a name="section1967115154223"></a>
 
-系统启动默认使用jffs2的文件系统，该文件系统支持可读可写，若要使用其他文件系统，需要适配新增。
+Hi3518EV300默认使用jffs2文件系统，Hi3516DV300默认使用vfat文件系统。若要使用其他文件系统，需要新增适配。
 
 ## 使用<a name="section1821123352217"></a>
 
@@ -95,11 +92,11 @@ OpenHarmony内核是华为推出面向IoT领域的实时操作系统内核，它
 
 ## 涉及仓<a name="section2392425183215"></a>
 
-drivers\_liteos
+[drivers_liteos](https://gitee.com/openharmony/drivers_liteos)
 
-kernel\_liteos\_a
+[kernel_liteos_a](https://gitee.com/openharmony/kernel_liteos_a)
 
-kernel\_liteos\_a\_huawei\_proprietary\_fs\_proc
+[kernel_liteos_a_huawei_proprietary_fs_proc](https://gitee.com/openharmony/kernel_liteos_a_huawei_proprietary_fs_proc)
 
-kernel\_liteos\_m
+[kernel_liteos_m](https://gitee.com/openharmony/kernel_liteos_m)
 

@@ -58,61 +58,61 @@ The following table describes the common tools required for Linux and how to obt
 **Table  2**  Development tools and obtaining methods
 
 <a name="en-us_topic_0000001054501981_table6299192712513"></a>
-<table><thead align="left"><tr id="en-us_topic_0000001054501981_row122993276512"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="en-us_topic_0000001054501981_p1829914271858"><a name="en-us_topic_0000001054501981_p1829914271858"></a><a name="en-us_topic_0000001054501981_p1829914271858"></a>Development Tool</p>
+<table><thead align="left"><tr id="en-us_topic_0000001054501981_row122993276512"><th class="cellrowborder" valign="top" width="13.081308130813083%" id="mcps1.2.4.1.1"><p id="en-us_topic_0000001054501981_p1829914271858"><a name="en-us_topic_0000001054501981_p1829914271858"></a><a name="en-us_topic_0000001054501981_p1829914271858"></a>Development Tool</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="en-us_topic_0000001054501981_p429918274517"><a name="en-us_topic_0000001054501981_p429918274517"></a><a name="en-us_topic_0000001054501981_p429918274517"></a>Description</p>
+<th class="cellrowborder" valign="top" width="19.921992199219922%" id="mcps1.2.4.1.2"><p id="en-us_topic_0000001054501981_p429918274517"><a name="en-us_topic_0000001054501981_p429918274517"></a><a name="en-us_topic_0000001054501981_p429918274517"></a>Description</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="en-us_topic_0000001054501981_p12997271757"><a name="en-us_topic_0000001054501981_p12997271757"></a><a name="en-us_topic_0000001054501981_p12997271757"></a>How to Obtain</p>
+<th class="cellrowborder" valign="top" width="66.996699669967%" id="mcps1.2.4.1.3"><p id="en-us_topic_0000001054501981_p12997271757"><a name="en-us_topic_0000001054501981_p12997271757"></a><a name="en-us_topic_0000001054501981_p12997271757"></a>How to Obtain</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="en-us_topic_0000001054501981_row430016273514"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p330015271158"><a name="en-us_topic_0000001054501981_p330015271158"></a><a name="en-us_topic_0000001054501981_p330015271158"></a>Python3.7+</p>
+<tbody><tr id="en-us_topic_0000001054501981_row430016273514"><td class="cellrowborder" valign="top" width="13.081308130813083%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p330015271158"><a name="en-us_topic_0000001054501981_p330015271158"></a><a name="en-us_topic_0000001054501981_p330015271158"></a>Python3.7+</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p43003270510"><a name="en-us_topic_0000001054501981_p43003270510"></a><a name="en-us_topic_0000001054501981_p43003270510"></a>Runs the compilation scripts.</p>
+<td class="cellrowborder" valign="top" width="19.921992199219922%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p43003270510"><a name="en-us_topic_0000001054501981_p43003270510"></a><a name="en-us_topic_0000001054501981_p43003270510"></a>Runs the compilation scripts.</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p18254155164617"><a name="en-us_topic_0000001054501981_p18254155164617"></a><a name="en-us_topic_0000001054501981_p18254155164617"></a><a href="https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz" target="_blank" rel="noopener noreferrer">https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz</a></p>
-</td>
-</tr>
-<tr id="en-us_topic_0000001054501981_row42668197206"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p426711912014"><a name="en-us_topic_0000001054501981_p426711912014"></a><a name="en-us_topic_0000001054501981_p426711912014"></a>bash</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p14267131962014"><a name="en-us_topic_0000001054501981_p14267131962014"></a><a name="en-us_topic_0000001054501981_p14267131962014"></a>Executes commands.</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p14267101962014"><a name="en-us_topic_0000001054501981_p14267101962014"></a><a name="en-us_topic_0000001054501981_p14267101962014"></a>Internet</p>
+<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p18254155164617"><a name="en-us_topic_0000001054501981_p18254155164617"></a><a name="en-us_topic_0000001054501981_p18254155164617"></a><a href="https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz" target="_blank" rel="noopener noreferrer">https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz</a></p>
 </td>
 </tr>
-<tr id="en-us_topic_0000001054501981_row1711946154018"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p15588165684216"><a name="en-us_topic_0000001054501981_p15588165684216"></a><a name="en-us_topic_0000001054501981_p15588165684216"></a>gn</p>
+<tr id="en-us_topic_0000001054501981_row42668197206"><td class="cellrowborder" valign="top" width="13.081308130813083%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p426711912014"><a name="en-us_topic_0000001054501981_p426711912014"></a><a name="en-us_topic_0000001054501981_p426711912014"></a>bash</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p4588135634213"><a name="en-us_topic_0000001054501981_p4588135634213"></a><a name="en-us_topic_0000001054501981_p4588135634213"></a>Generates ninja compilation scripts.</p>
+<td class="cellrowborder" valign="top" width="19.921992199219922%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p14267131962014"><a name="en-us_topic_0000001054501981_p14267131962014"></a><a name="en-us_topic_0000001054501981_p14267131962014"></a>Executes commands.</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p10572194318318"><a name="en-us_topic_0000001054501981_p10572194318318"></a><a name="en-us_topic_0000001054501981_p10572194318318"></a><a href="http://tools.harmonyos.com/mirrors/gn/1523/linux/gn.1523.tar" target="_blank" rel="noopener noreferrer">http://tools.harmonyos.com/mirrors/gn/1523/linux/gn.1523.tar</a></p>
-</td>
-</tr>
-<tr id="en-us_topic_0000001054501981_row16990164213404"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p1858825613428"><a name="en-us_topic_0000001054501981_p1858825613428"></a><a name="en-us_topic_0000001054501981_p1858825613428"></a>ninja</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p15844174611816"><a name="en-us_topic_0000001054501981_p15844174611816"></a><a name="en-us_topic_0000001054501981_p15844174611816"></a>Executes ninja compilation scripts.</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p377581023312"><a name="en-us_topic_0000001054501981_p377581023312"></a><a name="en-us_topic_0000001054501981_p377581023312"></a><a href="http://tools.harmonyos.com/mirrors/ninja/1.9.0/linux/ninja.1.9.0.tar" target="_blank" rel="noopener noreferrer">http://tools.harmonyos.com/mirrors/ninja/1.9.0/linux/ninja.1.9.0.tar</a></p>
+<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p14267101962014"><a name="en-us_topic_0000001054501981_p14267101962014"></a><a name="en-us_topic_0000001054501981_p14267101962014"></a>Internet</p>
 </td>
 </tr>
-<tr id="en-us_topic_0000001054501981_row192161027104010"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p15217227174016"><a name="en-us_topic_0000001054501981_p15217227174016"></a><a name="en-us_topic_0000001054501981_p15217227174016"></a>LLVM</p>
+<tr id="en-us_topic_0000001054501981_row1711946154018"><td class="cellrowborder" valign="top" width="13.081308130813083%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p15588165684216"><a name="en-us_topic_0000001054501981_p15588165684216"></a><a name="en-us_topic_0000001054501981_p15588165684216"></a>gn</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p122171727184019"><a name="en-us_topic_0000001054501981_p122171727184019"></a><a name="en-us_topic_0000001054501981_p122171727184019"></a>Functions as the compiler toolchain.</p>
+<td class="cellrowborder" valign="top" width="19.921992199219922%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p4588135634213"><a name="en-us_topic_0000001054501981_p4588135634213"></a><a name="en-us_topic_0000001054501981_p4588135634213"></a>Generates ninja compilation scripts.</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p12127241115612"><a name="en-us_topic_0000001054501981_p12127241115612"></a><a name="en-us_topic_0000001054501981_p12127241115612"></a><a href="http://tools.harmonyos.com/mirrors/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar" target="_blank" rel="noopener noreferrer">http://tools.harmonyos.com/mirrors/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar</a></p>
-</td>
-</tr>
-<tr id="en-us_topic_0000001054501981_row18516509507"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p14521650135017"><a name="en-us_topic_0000001054501981_p14521650135017"></a><a name="en-us_topic_0000001054501981_p14521650135017"></a>hc-gen</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p125255010501"><a name="en-us_topic_0000001054501981_p125255010501"></a><a name="en-us_topic_0000001054501981_p125255010501"></a>Configures and compiles files.</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p4381131720413"><a name="en-us_topic_0000001054501981_p4381131720413"></a><a name="en-us_topic_0000001054501981_p4381131720413"></a><a href="http://tools.harmonyos.com/mirrors/hc-gen/0.65/linux/hc-gen-0.65-linux.tar" target="_blank" rel="noopener noreferrer">http://tools.harmonyos.com/mirrors/hc-gen/0.65/linux/hc-gen-0.65-linux.tar</a></p>
+<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p10572194318318"><a name="en-us_topic_0000001054501981_p10572194318318"></a><a name="en-us_topic_0000001054501981_p10572194318318"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar</a></p>
 </td>
 </tr>
-<tr id="en-us_topic_0000001054501981_row105773499422"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p15300102717517"><a name="en-us_topic_0000001054501981_p15300102717517"></a><a name="en-us_topic_0000001054501981_p15300102717517"></a>IPOP, PuTTY, or other HyperTerminal software</p>
+<tr id="en-us_topic_0000001054501981_row16990164213404"><td class="cellrowborder" valign="top" width="13.081308130813083%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p1858825613428"><a name="en-us_topic_0000001054501981_p1858825613428"></a><a name="en-us_topic_0000001054501981_p1858825613428"></a>ninja</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p109418530386"><a name="en-us_topic_0000001054501981_p109418530386"></a><a name="en-us_topic_0000001054501981_p109418530386"></a>Connects to the Linux server (choose one of the terminals).</p>
+<td class="cellrowborder" valign="top" width="19.921992199219922%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p15844174611816"><a name="en-us_topic_0000001054501981_p15844174611816"></a><a name="en-us_topic_0000001054501981_p15844174611816"></a>Executes ninja compilation scripts.</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p7312122523813"><a name="en-us_topic_0000001054501981_p7312122523813"></a><a name="en-us_topic_0000001054501981_p7312122523813"></a>Internet (for example, <a href="https://www.putty.org/" target="_blank" rel="noopener noreferrer">https://www.putty.org/</a>)</p>
+<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p1923373393515"><a name="en-us_topic_0000001054501981_p1923373393515"></a><a name="en-us_topic_0000001054501981_p1923373393515"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar</a></p>
+</td>
+</tr>
+<tr id="en-us_topic_0000001054501981_row192161027104010"><td class="cellrowborder" valign="top" width="13.081308130813083%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p15217227174016"><a name="en-us_topic_0000001054501981_p15217227174016"></a><a name="en-us_topic_0000001054501981_p15217227174016"></a>LLVM</p>
+</td>
+<td class="cellrowborder" valign="top" width="19.921992199219922%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p122171727184019"><a name="en-us_topic_0000001054501981_p122171727184019"></a><a name="en-us_topic_0000001054501981_p122171727184019"></a>Functions as the compiler toolchain.</p>
+</td>
+<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p0191147134415"><a name="en-us_topic_0000001054501981_p0191147134415"></a><a name="en-us_topic_0000001054501981_p0191147134415"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar</a></p>
+</td>
+</tr>
+<tr id="en-us_topic_0000001054501981_row18516509507"><td class="cellrowborder" valign="top" width="13.081308130813083%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p14521650135017"><a name="en-us_topic_0000001054501981_p14521650135017"></a><a name="en-us_topic_0000001054501981_p14521650135017"></a>hc-gen</p>
+</td>
+<td class="cellrowborder" valign="top" width="19.921992199219922%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p125255010501"><a name="en-us_topic_0000001054501981_p125255010501"></a><a name="en-us_topic_0000001054501981_p125255010501"></a>Configures and compiles files.</p>
+</td>
+<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p145061517114519"><a name="en-us_topic_0000001054501981_p145061517114519"></a><a name="en-us_topic_0000001054501981_p145061517114519"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar</a></p>
+</td>
+</tr>
+<tr id="en-us_topic_0000001054501981_row105773499422"><td class="cellrowborder" valign="top" width="13.081308130813083%" headers="mcps1.2.4.1.1 "><p id="en-us_topic_0000001054501981_p15300102717517"><a name="en-us_topic_0000001054501981_p15300102717517"></a><a name="en-us_topic_0000001054501981_p15300102717517"></a>IPOP, PuTTY, or other HyperTerminal software</p>
+</td>
+<td class="cellrowborder" valign="top" width="19.921992199219922%" headers="mcps1.2.4.1.2 "><p id="en-us_topic_0000001054501981_p109418530386"><a name="en-us_topic_0000001054501981_p109418530386"></a><a name="en-us_topic_0000001054501981_p109418530386"></a>Connects to the Linux server (choose one of the terminals).</p>
+</td>
+<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="en-us_topic_0000001054501981_p7312122523813"><a name="en-us_topic_0000001054501981_p7312122523813"></a><a name="en-us_topic_0000001054501981_p7312122523813"></a>Internet (for example, <a href="https://www.putty.org/" target="_blank" rel="noopener noreferrer">https://www.putty.org/</a>)</p>
 </td>
 </tr>
 </tbody>
@@ -140,7 +140,7 @@ The following table describes the common tools required for Linux and how to obt
 </tr>
 <tr id="row12133123315277"><td class="cellrowborder" valign="top" width="16.371637163716375%" headers="mcps1.2.4.1.1 "><p id="p613393317271"><a name="p613393317271"></a><a name="p613393317271"></a>HiTool</p>
 </td>
-<td class="cellrowborder" valign="top" width="50.29502950295029%" headers="mcps1.2.4.1.2 "><p id="p201334121092"><a name="p201334121092"></a><a name="p201334121092"></a>Burns the images and the U-Boot.</p>
+<td class="cellrowborder" valign="top" width="50.29502950295029%" headers="mcps1.2.4.1.2 "><p id="p201334121092"><a name="p201334121092"></a><a name="p201334121092"></a>Burns the images and the U-boot.</p>
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p108615410278"><a name="p108615410278"></a><a name="p108615410278"></a><a href="http://www.hihope.org/download" target="_blank" rel="noopener noreferrer">http://www.hihope.org/download</a></p>
 </td>
@@ -246,7 +246,7 @@ sudo ln -s /bin/bash /bin/sh
 ## Installing gn<a name="section119641436125219"></a>
 
 1.  Start a Linux server.
-2.  Download  [gn](https://chrome-infra-packages.appspot.com/dl/gn/gn/linux-amd64/+/latest).
+2.  Download  [gn](https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar).
 3.  Decompress the  **gn**  installation package to the  **tar -xvf gn.1523.tar -C \~/**  in  **\~/gn**  directory.
 4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/gn:$PATH**  to set an environment variable.
 5.  Run  **source \~/.bashrc**  to validate the environment variable.
@@ -254,7 +254,7 @@ sudo ln -s /bin/bash /bin/sh
 ## Installing ninjah<a name="section96781928145213"></a>
 
 1.  Start a Linux server.
-2.  Download  [ninja](https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip).
+2.  Download  [ninja](https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar).
 3.  Decompress the  **ninja**  installation package to  **tar -xvf ninja.1.9.0.tar -C \~/**  in  **\~/ninja**  directory.
 4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/ninja:$PATH**  to set an environment variable.
 5.  Run  **source \~/.bashrc**  to validate the environment variable.
@@ -262,7 +262,7 @@ sudo ln -s /bin/bash /bin/sh
 ## Installing the LLVM Toolchain<a name="section667822819521"></a>
 
 1.  Start a Linux server.
-2.  Download  [http://tools.harmonyos.com/mirrors/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar](http://tools.harmonyos.com/mirrors/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar).
+2.  Download  [LLVM](http://tools.harmonyos.com/mirrors/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar).
 3.  Decompress the LLVM installation package to the  **\~/llvm**  path by running  **"tar -xvf llvm-linux-9.0.0-34042.tar -C \~/"**.
 4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/llvm/bin:$PATH**  to set an environment variable.
 5.  Run  **source \~/.bashrc**  to validate the environment variable.
@@ -270,8 +270,8 @@ sudo ln -s /bin/bash /bin/sh
 ##  Installing hc-gen<a name="section201517625210"></a>
 
 1.  Start a Linux server.
-2.  Download  [http://tools.harmonyos.com/mirrors/hc-gen/0.65/linux/hc-gen-0.65-linux.tar](http://tools.harmonyos.com/mirrors/hc-gen/0.65/linux/hc-gen-0.65-linux.tar).
-3.  Decompress the hc-gen installation package to the  **\~/hc-gen**  directory on the Linux server.
+2.  Download  [hc-gen](https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar).
+3.  Decompress the hc-gen installation package to  **tar -xvf hc-gen-0.65-linux.tar -C \~/**  in  **\~/hc-gen**  on the Linux.
 4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/hc-gen:$PATH**  to set an environment variable.
 5.  Run  **source \~/.bashrc**  to validate the environment variable.
 

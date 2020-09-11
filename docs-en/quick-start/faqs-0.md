@@ -117,3 +117,57 @@
     ![](figures/en-us_image_0000001054875562.png)
 
 
+**Problem 5:** **What should I do when no command output is displayed?**
+
+-   **Symptom**
+
+    The serial port shows that the connection has been established. After the board is restarted, nothing is displayed when you press  **Enter**.
+
+-   **Possible Causes**
+    -   The serial port is connected incorrectly.
+    -   The U-boot of the board is damaged.
+
+-   **Solutions**
+
+    **Solution 1: Change the serial port number.**
+
+    Start  **Device Manager**  to check whether the serial port connected to the board is the same as that connected to the terminal device. If not, perform the following steps to change the serial port number.
+
+    **Figure  10**  Procedure for changing the serial port number<a name="fig16441825145717"></a>  
+    ![](figures/procedure-for-changing-the-serial-port-number.png "procedure-for-changing-the-serial-port-number")
+
+
+1.  Disconnect from the current serial port.
+2.  Click  **Settings**.
+3.  Change the serial port number in the dialog box and click  **OK**.
+4.  Press  **Enter**  in the dialog box to check whether any command output is displayed after the connection is established.
+
+**Solution 2: Burn the U-boot.**
+
+If the fault persists after you perform the preceding operations, the U-boot of the board may be damaged. You can burn the U-boot by performing the following steps:
+
+1.  Obtain the U-boot file.
+
+    >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >The U-boot file of the board can be obtained from  **vendor\\hisi\\hi35xx\\hi3516dv300\\uboot\\out\\boot\\u-boot-hi3516dv300.bin**  in the open-source package.
+
+2.  Use HiTool to burn the U-boot.
+
+    **Figure  11**  Procedure for burning the U-boot using HiTool<a name="fig1353321514128"></a>  
+    
+
+    ![](figures/未命名图片11111.png)
+
+    1.  Select the COM7 serial port.
+    2.  Select  **Serial**  for  **Transfer Mode**.
+    3.  Select  **Burn Fastboot**.
+    4.  Select  **spi nor**  for  **Flash Type**.
+    5.  Click  **Browse**  and select the corresponding U-boot file.
+    6.  Click  **Burn**  to start burning.
+
+3.  Power off the board and then power it on. Connect the serial port after the burning is complete. Serial ports shown in the following figure are displayed after the U-boot is burnt.
+
+    **Figure  12**  Serial port displayed after the U-boot is burnt<a name="fig155914681910"></a>  
+    ![](figures/serial-port-displayed-after-the-u-boot-is-burnt.png "serial-port-displayed-after-the-u-boot-is-burnt")
+
+
