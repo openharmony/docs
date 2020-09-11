@@ -2,22 +2,22 @@
 
 ## 简介<a name="section11660541593"></a>
 
-编译构建提供了一个在GN与ninja基础上的编译构建框架。支持以下功能：
+编译构建提供了一个在GN和ninja基础上的编译构建框架。支持以下功能：
 
-1.  构建不同芯片平台的产品。如：Hi3518EV300平台的ipcamera产品，Hi3516DV300平台的ipcamera产品，Hi3861平台的wifi模组产品。
+1.  构建不同芯片平台的产品。如：Hi3518EV300平台的ipcamera产品，Hi3516DV300平台的ipcamera产品，Hi3861平台的WLAN模组产品。
 2.  构建HPM包管理配置生成的自定义产品。
 
 ## 目录<a name="section1464106163817"></a>
 
 ```
-build/lite               # 编译构建主目录
-├── config               # 编译相关的配置项
-│   ├── boards           # 开发板相关的变量定义。包括：开发板名、目标架构、目标CPU等
-│   ├── component        # OpenHarmony组件相关的模板定义。包括：静态库、动态库、扩展组件、模拟器库等
-│   ├── kernel           # OpenHarmony内核的编译变量定义与配置参数
-│   └── subsystem        # OpenHarmony子系统列表
-├── ndk                  # NDK相关编译脚本与配置参数
-├── platform             # 平台相关的配置文件
+build/lite                      # 编译构建主目录
+├── config                      # 编译相关的配置项
+│   ├── boards                  # 开发板相关的变量定义。包括：开发板名、目标架构、目标CPU等
+│   ├── component               # OpenHarmony组件相关的模板定义。包括：静态库、动态库、扩展组件、模拟器库等
+│   ├── kernel                  # OpenHarmony内核的编译变量定义与配置参数
+│   └── subsystem               # OpenHarmony子系统列表
+├── ndk                         # NDK相关编译脚本与配置参数
+├── platform                    # 平台相关的配置文件
 │   ├── hi3516dv300_liteos_a    # hi3516dv300, liteos_a平台。包括：平台全量配置表，启动文件。
 │   ├── hi3518ev300_liteos_a    # hi3518ev300, liteos_a平台。包括：平台全量配置表，启动文件。
 │   └── hi3861v100_liteos_riscv # hi3861v100, liteos_riscv平台。包括：平台全量配置表，启动文件。
@@ -80,14 +80,14 @@ python build.py ipcamera_hi3516dv300
     # helloworld动态库编译示例
     # helloworld的Build.gn文件
     lite_library("helloworld_lib") {
-        target_type = "shared_library"  # 编译动态库
-        #target_type = "static_library" # 编译静态库
+        target_type = "shared_library"   # 编译动态库
+        #target_type = "static_library"  # 编译静态库
         sources = [
             "src/helloworld1.c"
         ]
         include_dirs = [
             "include",
-            "../feature2_example/include"    # 如果依赖 feature2_example 可以加入该include
+            "../feature2_example/include" # 如果依赖 feature2_example 可以加入该include
         ]
     }
     ```
@@ -181,18 +181,18 @@ python build.py ipcamera_hi3516dv300
 
   ```
   out/
-  └── wifiiot                                # 产品名
-      ├── args.gn                            # gn编译，用户自定义变量
-      ├── build.log                          # 编译日志
+  └── wifiiot                                   # 产品名
+      ├── args.gn                               # gn编译，用户自定义变量
+      ├── build.log                             # 编译日志
       ├── build.ninja
       ├── build.ninja.d
       ├── gen
-      ├── Hi3861_boot_signed_B.bin           # 带签名的bootloader备份文件 
-      ├── Hi3861_boot_signed.bin             # 带签名的bootloader文件
-      ├── Hi3861_loader_signed.bin           # 烧写工具使用的加载文件
-      ├── Hi3861_wifiiot_app_allinone.bin    # 产线工装烧写文件(已经包含独立烧写程序和loader程序)
-      ├── Hi3861_wifiiot_app.asm             # Kernel asm文件 
-      ├── Hi3861_wifiiot_app_burn.bin        # 烧写文件
+      ├── Hi3861_boot_signed_B.bin              # 带签名的bootloader备份文件 
+      ├── Hi3861_boot_signed.bin                # 带签名的bootloader文件
+      ├── Hi3861_loader_signed.bin              # 烧写工具使用的加载文件
+      ├── Hi3861_wifiiot_app_allinone.bin       # 产线工装烧写文件(已经包含独立烧写程序和loader程序)
+      ├── Hi3861_wifiiot_app.asm                # Kernel asm文件 
+      ├── Hi3861_wifiiot_app_burn.bin           # 烧写文件
       ├── Hi3861_wifiiot_app_flash_boot_ota.bin # Flash Boot升级文件
       ├── Hi3861_wifiiot_app.map                # Kernel map文件
       ├── Hi3861_wifiiot_app_ota.bin            # Kernel 升级文件
