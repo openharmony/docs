@@ -694,7 +694,7 @@ console.log(sum2); // 输出：0.6。所以对于二进制浮点数，(a + b) + 
 ```javascript
 const arr1 = new Array(x1, x2, x3);
 const arr2 = new Array(x1, x2);
-const arr3 = new Array(x3);
+const arr3 = new Array(x1);
 const arr4 = new Array();
 ```
 
@@ -751,7 +751,7 @@ for (let number in numbers) {
 ```javascript
 let numbers = [1, 2, 3, 4];
 let sum = 0;
-for (let number in numbers) {
+for (let number of numbers) {
   sum += number;
 }
 // sum === 10
