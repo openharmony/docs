@@ -37,7 +37,7 @@ With this module, the  [Service](Service.md),  [Feature](Feature.md), or other m
 </tr>
 <tr id="row581420147191845"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p820203572191845"><a name="p820203572191845"></a><a name="p820203572191845"></a><a href="Subscriber.md">Subscriber</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1794404163191845"><a name="p1794404163191845"></a><a name="p1794404163191845"></a>Defines the subscriber for external interfaces to subsribe to events and data of a topic. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1794404163191845"><a name="p1794404163191845"></a><a name="p1794404163191845"></a>Defines the subscriber for external interfaces to subscribe to events and data of a topic. </p>
 </td>
 </tr>
 </tbody>
