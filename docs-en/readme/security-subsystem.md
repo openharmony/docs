@@ -6,8 +6,6 @@ This section provides samples about how to use existing security mechanisms to i
 
 ## Directory Structure<a name="section5614117756"></a>
 
-**Directory 1**
-
 ```
 security
 ├── framework
@@ -31,18 +29,6 @@ security
 │     ├── secure_os    Secure OS
 ```
 
-**Directory 2**
-
-```
-kernel/liteos-a/security/
-├── cap Capability mechanism
-│   ├── BUILD.gn
-│   ├── capability_api.h
-│   ├── capability.c
-│   ├── capability_type.h
-│   └── Makefile
-```
-
 ## Constraints<a name="section14134111467"></a>
 
 C programming language is used. The preceding security features are mainly used on Cortex-A or devices with equivalent processing capabilities. On Cortex-M or devices with equivalent processing capabilities, only HUKS and HiChain are available.
@@ -53,14 +39,9 @@ To generate a x509 image package, perform compilation to generate the required b
 
 ## Application Permission Management<a name="section20822104317111"></a>
 
-Application permissions are used to control access to system resources and features. These include personal privacy-related features or data in some scenarios, for example, hardware features of personal devices such as cameras and microphones, and personal data such as contacts and calendar data. OpenHarmony protects such data and features through application permission management.
+Application permissions are used to control access to system resources and features related to personal privacy, for example, accessing hardware features of personal devices such as cameras and microphones, and reading and writing media files. The OS protects such data and features through application permission management.
 
-To declare the permissions required by an application, edit  **req-permissions**  in the  **HarmonyProfile.json**  file in the installation bundle. The following figure shows an example.
-
-**Figure  1**  Declaring permissions<a name="fig1168867141611"></a>  
-![](figures/declaring-permissions.png "declaring-permissions")
-
-Field descriptions
+The following table describes fields in a permission.
 
 <a name="table1073153511418"></a>
 <table><thead align="left"><tr id="row11107193541417"><th class="cellrowborder" valign="top" width="22.220000000000002%" id="mcps1.1.4.1.1"><p id="p6107535141420"><a name="p6107535141420"></a><a name="p6107535141420"></a>Field</p>
@@ -83,7 +64,6 @@ Field descriptions
 <td class="cellrowborder" valign="top" width="35.099999999999994%" headers="mcps1.1.4.1.2 "><p id="p01082358147"><a name="p01082358147"></a><a name="p01082358147"></a>Multi-language string ID</p>
 </td>
 <td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.1.4.1.3 "><p id="p191081235171414"><a name="p191081235171414"></a><a name="p191081235171414"></a>Purpose of requesting the permission.</p>
-<p id="p3108193571412"><a name="p3108193571412"></a><a name="p3108193571412"></a>The purposes include reviewing requests for publishing applications, pop-up authorization, and permission management by users.</p>
 </td>
 </tr>
 <tr id="row13108123516145"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.1.4.1.1 "><p id="p18109835101415"><a name="p18109835101415"></a><a name="p18109835101415"></a>used-scene{</p>
@@ -95,7 +75,7 @@ Field descriptions
 <p id="p19109133531410"><a name="p19109133531410"></a><a name="p19109133531410"></a><strong id="b12827212500"><a name="b12827212500"></a><a name="b12827212500"></a>when</strong>: <strong id="b4362946506"><a name="b4362946506"></a><a name="b4362946506"></a>inuse</strong> and <strong id="b182868713508"><a name="b182868713508"></a><a name="b182868713508"></a>always</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.1.4.1.3 "><p id="p31091835151413"><a name="p31091835151413"></a><a name="p31091835151413"></a>Scene where the APIs controlled by this permission are called.</p>
-<p id="p910943517141"><a name="p910943517141"></a><a name="p910943517141"></a>This field declares the components that call the APIs controlled by this permission and whether the APIs are called from the foreground or from both the foreground and background.</p>
+<p id="p93361156407"><a name="p93361156407"></a><a name="p93361156407"></a>This field declares what components can call the APIs controlled by this permission in the specified scene (foreground/background).</p>
 </td>
 </tr>
 </tbody>
@@ -104,46 +84,55 @@ Field descriptions
 ## IPC Authentication<a name="section156859591110"></a>
 
 -   If system services registered with Samgr provide APIs for other processes to access the services through IPC, access control policies must be configured; otherwise, access to the system services will be denied.
--   You can configure access control policies in  **base/security/services/iam\_lite/include/policy\_preset.h**. You need to configure the policy for each feature and then add the policies of features to the global policy.
+-   You can configure access control policies in  **base/security/services/iam\_lite/ipc\_auth/include/policy\_preset.h**.
+
+    1. Define the policies for each feature.
+
+    2. Add the feature policies to the global policy.
+
 
 For example, to configure an access policy for the BMS service, whose service registered with Samgr is  **bundlems**  and whose registered feature is  **BmsFeature**, perform the following operations:
 
-1. Define the feature policy. You can configure multiple features and configure multiple access policies for each feature.
+1. Define feature policies. You can configure multiple features and configure multiple access policies for each feature.
 
-**Figure  2**  Example feature policy<a name="fig715515221920"></a>  
-![](figures/example-feature-policy.png "example-feature-policy")
+**Figure  1**  Example feature policy<a name="fig715515221920"></a>  
+
+
+![](figures/bms策略举例.png)
 
 There are three types of access policies:
 
-**Figure  3**  Access policy structure<a name="fig1848524515915"></a>  
-![](figures/access-policy-structure.png "access-policy-structure")
+**Figure  2**  Access policy structure<a name="fig1848524515915"></a>  
+
+
+![](figures/策略类型2.png)
 
 -   **RANGE**: Processes with a UID within a specified range are allowed to access  **BmsFeature**.  **uidMin**  and  **uidMax**  need to be specified.
 -   **FIXED**: Processes with specified UIDs are allowed to access  **BmsFeature**.  **fixedUid**  needs to be specified. A maximum number of eight UIDs can be configured.
 -   **BUNDLENAME**: Only a specified application is allowed to access  **BmsFeature**.  **bundleName**  needs to be specified.
 
-2. Add the defined feature policy to the global policy. You need to configure the number of features.
+2. Add the defined feature policies to the global policy. You need to configure the number of features.
 
-**Figure  4**  Registering a feature policy<a name="fig1181753551014"></a>  
-![](figures/registering-a-feature-policy.png "registering-a-feature-policy")
+**Figure  3**  Registering a feature policy<a name="fig1181753551014"></a>  
+
+
+![](figures/全局策略2.png)
 
 UID allocation rules:
 
-Init/foundation process: 0
+1. Init process: 0
 
 appspawn process: 1
 
 Shell process: 2
 
-kitfw process: 3
+4. Other built-in system services: less than or equal to 99
 
-Other built-in services: 4–99
+5. System applications \(such as settings, home screen, and camera\): 100–999
 
-System applications \(such as settings\): 100–999
+6. Preset applications: 1000–9999
 
-Preset applications \(such as Wallet and Taobao\): 1000–9999
-
-Common third-party applications: 10000 to  **INT\_MAX**
+7. Common third-party applications: 10000 to  **INT\_MAX**
 
 ## HUKS<a name="section9819115764715"></a>
 
@@ -193,7 +182,7 @@ When an IoT controller and an IoT device communicate with each other after estab
 
 ## Application Signature Verification<a name="section15468226154919"></a>
 
-To ensure the integrity of application content, HarmonyOS uses application signatures and profiles to manage application sources. Only pre-installed applications and applications from HUAWEI AppGallery can be installed on devices.
+To ensure the integrity of application content, OpenHarmony uses application signatures and profiles to manage application sources. Only pre-installed applications and applications from HUAWEI AppGallery can be installed on devices.
 
 **Basic Concepts**
 
@@ -232,20 +221,19 @@ Unique identifier of an application, which consists of the application bundle na
 
 -   **Application debugging scenario**
 
-To develop and debug applications for HarmonyOS devices, you need to apply for becoming an authorized application developer on HUAWEI AppGallery. You need to generate a public/private key pair and upload the public key to HUAWEI AppGallery. HUAWEI AppGallery creates a developer certificate based on your identity information and the uploaded public key, and issues the certificate through the developer certificate CA. You also need to upload the application information and debugging device ID for creating an application debugging profile, which contains the HUAWEI AppGallery signature and cannot be tampered with. Upon obtaining the developer certificate and application debugging profile, you can install and debug applications signed with the private key on a specified HarmonyOS device.
+To develop and debug applications for OpenHarmony devices, you need to apply for becoming an authorized application developer on HUAWEI AppGallery. You need to generate a public/private key pair and upload the public key to HUAWEI AppGallery. HUAWEI AppGallery creates a developer certificate based on your identity information and the uploaded public key, and issues the certificate through the developer certificate CA. You also need to upload the application information and debugging device ID for creating an application debugging profile, which contains the HUAWEI AppGallery signature and cannot be tampered with. Upon obtaining the developer certificate and application debugging profile, you can install and debug applications signed with the private key on a specified OpenHarmony device.
 
-The application installation service of HarmonyOS verifies the application signature to ensure application integrity. In addition, the service verifies the developer certificate, application debugging profile, and the mapping between them to ensure the validity of your identity and the application.
+The application installation service of OpenHarmony verifies the application signature to ensure application integrity. In addition, the service verifies the developer certificate, application debugging profile, and the mapping between them to ensure the validity of your identity and the application.
 
 ![](figures/en-us_image_0000001051282241.png)
 
 -   **Application publishing**
 
-    To publish applications in HUAWEI AppGallery, you need to use the application publishing certificate and profile issued by HUAWEI AppGallery to sign the applications. As shown in the following figure, the procedure of applying for the application publishing certificate and profile is similar to that of applying for the developer certificate and application debugging profile \(you can use the same public/private key pair\). Applications signed by the application publishing certificate cannot be directly installed on devices. Instead, the applications must be published in HUAWEI AppGallery for review. After the applications are reviewed and approved, HUAWEI AppGallery uses the publishing certificate to re-sign the applications. The re-signed applications can be downloaded and installed by users.
+To publish applications in HUAWEI AppGallery, you need to use the application publishing certificate and profile issued by HUAWEI AppGallery to sign the applications. As shown in the following figure, the procedure of applying for the application publishing certificate and profile is similar to that of applying for the developer certificate and application debugging profile \(you can use the same public/private key pair\). Applications signed by the application publishing certificate cannot be directly installed on devices. Instead, the applications must be published in HUAWEI AppGallery for review. After the applications are reviewed and approved, HUAWEI AppGallery uses the publishing certificate to re-sign the applications. The re-signed applications can be downloaded and installed by users.
 
-    The application installation service of HarmonyOS verifies the application signature to ensure application integrity. In addition, the service checks whether the signature certificate is from HUAWEI AppGallery to ensure that the application is trusted.
+The application installation service of OpenHarmony verifies the application signature to ensure application integrity. In addition, the service checks whether the signature certificate is from HUAWEI AppGallery to ensure that the application is trusted.
 
-    ![](figures/en-us_image_0000001051562162.png)
-
+![](figures/en-us_image_0000001051562162.png)
 
 ## Repositories Involved<a name="section1665013282177"></a>
 
