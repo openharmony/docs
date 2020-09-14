@@ -6,40 +6,40 @@ The Utils library stores basic components of OpenHarmony. These basic components
 
 The Utils library provides the following capabilities on different platforms:
 
--   LiteOS-M platform: KV stores, file operations, timers, and IoT peripheral control
--   LiteOS-A platform: KV stores, timers, and ACE JavaScript APIs
+-   LiteOS Cortex-M \(Hi3861 platform\): KV stores, file operations, timers, and IoT peripheral control
+-   LiteOS Cortex-A \(Hi3516 and Hi3518 platforms\): KV stores, timers, and ACE JavaScript APIs
 
 ## Directory Structure<a name="section1464106163817"></a>
 
 ```
-utils/native/lite/          # Root directory of the Utils library
-├── file            # Implementation of the file interface
-├── hals            # HAL directory
-│   └── file       # Header files of the hardware abstraction layer for file operations
-├── include         # Files of external interfaces provided by the Utils library
+utils/native/lite/                 # Root directory of the Utils library
+├── file                        # Implementation of the file interface
+├── hals                        # HAL directory
+│   └── file                   # Header files of the hardware abstraction layer for file operations
+├── include                     # Files of external interfaces provided by the Utils library
 ├── js                          # ACE JavaScript API directory                 
 │   └── builtin					
 │       ├── common
 │       ├── deviceinfokit       # Device information kit
 │       ├── filekit             # File kit
 │       └── kvstorekit          # KV store kit
-├── kal             # KAL directory
-│   └── timer      # KAL implementation of the timer
- ├── kv_store	       # KV store implementation
-│   ├── innerkits   # Internal KV store interfaces
-│   └── src	        # KV store source file
-└── timer_task       # Timer implementation
+├── kal                          # KAL directory
+│   └── timer                   # KAL implementation of the timer
+├── kv_store	                    # KV store implementation
+│   ├── innerkits               # Internal KV store interfaces
+│   └── src	                    # KV store source file
+└── timer_task                   # Timer implementation
 
-base/iot_hardware          # IoT peripheral control
+base/iot_hardware                   # IoT peripheral control
 ├── frameworks          
-│   └── wifiiot_lite   # Implementation of the IoT peripheral control module
+│   └── wifiiot_lite            # Implementation of the IoT peripheral control module
 ├── hals
-│   └── wifiiot_lite   # HAL interfaces
+│   └── wifiiot_lite            # HAL interfaces
 └── interfaces
-    └── kits            # Interfaces of the IoT peripheral control module
+    └── kits                     # Interfaces of the IoT peripheral control module
 
 vendor/hisi/hi3861/hi3861_adapter/hals/iot_hardware  # HAL for IoT peripheral control
-└── wifiiot_lite       # Implementation of the interfaces at the HAL
+└── wifiiot_lite                 # Implementation of the interfaces at the HAL
 ```
 
 ## Constraints<a name="section1718733212019"></a>
@@ -61,7 +61,7 @@ The Utils library is developed using the C language.
 </thead>
 <tbody><tr id="row10455841151112"><td class="cellrowborder" valign="top" width="12.659999999999998%" headers="mcps1.2.5.1.1 "><p id="p1945511415113"><a name="p1945511415113"></a><a name="p1945511415113"></a>KV store</p>
 </td>
-<td class="cellrowborder" valign="top" width="14.78%" headers="mcps1.2.5.1.2 "><p id="p668274310317"><a name="p668274310317"></a><a name="p668274310317"></a>LiteOS-M and LiteOS-A platforms</p>
+<td class="cellrowborder" valign="top" width="14.78%" headers="mcps1.2.5.1.2 "><p id="p668274310317"><a name="p668274310317"></a><a name="p668274310317"></a>LiteOS Cortex-M and LiteOS Cortex-A</p>
 </td>
 <td class="cellrowborder" valign="top" width="32.22%" headers="mcps1.2.5.1.3 "><p id="p193638017460"><a name="p193638017460"></a><a name="p193638017460"></a>Provides KV storage for applications.</p>
 </td>
@@ -70,7 +70,7 @@ The Utils library is developed using the C language.
 </tr>
 <tr id="row540314384111"><td class="cellrowborder" valign="top" width="12.659999999999998%" headers="mcps1.2.5.1.1 "><p id="p134041038141112"><a name="p134041038141112"></a><a name="p134041038141112"></a>File operation</p>
 </td>
-<td class="cellrowborder" valign="top" width="14.78%" headers="mcps1.2.5.1.2 "><p id="p19404193811110"><a name="p19404193811110"></a><a name="p19404193811110"></a>LiteOS-M platform</p>
+<td class="cellrowborder" valign="top" width="14.78%" headers="mcps1.2.5.1.2 "><p id="p1766172113197"><a name="p1766172113197"></a><a name="p1766172113197"></a>LiteOS Cortex-M</p>
 </td>
 <td class="cellrowborder" valign="top" width="32.22%" headers="mcps1.2.5.1.3 "><p id="p113646084618"><a name="p113646084618"></a><a name="p113646084618"></a>Provides unified file operation interfaces that can be used on different underlying chip components.</p>
 </td>
@@ -79,7 +79,7 @@ The Utils library is developed using the C language.
 </tr>
 <tr id="row175322121218"><td class="cellrowborder" valign="top" width="12.659999999999998%" headers="mcps1.2.5.1.1 "><p id="p1053219131219"><a name="p1053219131219"></a><a name="p1053219131219"></a>Timer</p>
 </td>
-<td class="cellrowborder" valign="top" width="14.78%" headers="mcps1.2.5.1.2 "><p id="p1912957139"><a name="p1912957139"></a><a name="p1912957139"></a>LiteOS-M and LiteOS-A platforms</p>
+<td class="cellrowborder" valign="top" width="14.78%" headers="mcps1.2.5.1.2 "><p id="p5406226171912"><a name="p5406226171912"></a><a name="p5406226171912"></a>LiteOS Cortex-M and LiteOS Cortex-A</p>
 </td>
 <td class="cellrowborder" valign="top" width="32.22%" headers="mcps1.2.5.1.3 "><p id="p15364170194610"><a name="p15364170194610"></a><a name="p15364170194610"></a>Provides unified timer operation interfaces that can be used on different underlying chip components.</p>
 </td>
@@ -88,7 +88,7 @@ The Utils library is developed using the C language.
 </tr>
 <tr id="row1821629675"><td class="cellrowborder" valign="top" width="12.659999999999998%" headers="mcps1.2.5.1.1 "><p id="p198212291879"><a name="p198212291879"></a><a name="p198212291879"></a>IoT peripheral control</p>
 </td>
-<td class="cellrowborder" valign="top" width="14.78%" headers="mcps1.2.5.1.2 "><p id="p13827290715"><a name="p13827290715"></a><a name="p13827290715"></a>LiteOS-M platform</p>
+<td class="cellrowborder" valign="top" width="14.78%" headers="mcps1.2.5.1.2 "><p id="p4214123191912"><a name="p4214123191912"></a><a name="p4214123191912"></a>LiteOS Cortex-M</p>
 </td>
 <td class="cellrowborder" valign="top" width="32.22%" headers="mcps1.2.5.1.3 "><p id="p4822295710"><a name="p4822295710"></a><a name="p4822295710"></a>Provides the capability of performing operations for peripherals.</p>
 </td>
@@ -101,12 +101,12 @@ The Utils library is developed using the C language.
 
 -   **KV store**
 
-    Obtaining an interface
-
     ```
+    Obtaining an interface
     char key1[] = "rw.sys.version";
     char value1[32] = {0};
     int ret = UtilsGetValue(key1, value1, 32);
+    
     Setting the interface
     char key14[] = "key_14";
     ret = UtilsSetValue(key14, defValue);
@@ -121,10 +121,12 @@ The Utils library is developed using the C language.
     printf("file handle = %d\n", fd);
     int ret = UtilsFileWrite(fd, def, strlen(def));
     printf("write ret = %d\n", ret);
+    
     // stat
     int fileLen = 0;
     ret = UtilsFileStat(fileName, &fileLen);
     printf("file size = %d\n", fileLen);
+    
     // seek
     int fd1 = UtilsFileOpen(fileName, O_RDWR_FS, 0);
     ret = UtilsFileSeek(fd1, 5, SEEK_SET_FS);
@@ -133,6 +135,7 @@ The Utils library is developed using the C language.
     int readLen = UtilsFileRead(fd1, buf, 32);
     ret = UtilsFileClose(fd1);
     printf("read len = %d : buf = %s\n", readLen, buf);
+    
     // delete
     ret = UtilsFileDelete(fileName);
     printf("delete ret = %d\n", ret);
