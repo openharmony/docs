@@ -8,7 +8,7 @@ As chip resources are limited and hardware platforms are diversified, component-
 
 -   mini: This framework is intended for hardware platforms with Cortex-M or equivalent processing capabilities. The system memory is generally less than 512 KB. There is only one lightweight file system that can be used in limited scenarios, or no file system at all. The mini framework complies with the Cortex Microcontroller Software Interface Standard \(CMSIS\).
 
--   featured: This framework is intended for hardware platforms with Cortex-A or equivalent processing capabilities. The system memory is greater than 512 KB. There is a comprehensive file system for storing a large amount of data. The featured framework complies with the Portable Operating System Interface \(POSIX\) specifications.
+-   featured: This framework is intended for hardware platforms with Cortex-A or equivalent processing capabilities. The system memory is generally greater than 512 KB. There is a comprehensive file system for storing a large amount of data. The featured framework complies with the Portable Operating System Interface \(POSIX\) specifications.
 
 
 ## Directory Structure<a name="section1464106163817"></a>
@@ -130,7 +130,7 @@ The mini framework is a simple and compact DFX design that provides the logging 
         Add the following code to the initialization process of Module A to register it with the logging framework:
 
         ```
-        HiLogRegisterModule(HILOG_MODULE_SAMGR, "A");
+        HiLogRegisterModule(HILOG_MODULE_A, "A");
         ```
 
 
@@ -155,7 +155,6 @@ The mini framework is a simple and compact DFX design that provides the logging 
         <p id="p107061428124515"><a name="p107061428124515"></a><a name="p107061428124515"></a><strong id="b6352161513619"><a name="b6352161513619"></a><a name="b6352161513619"></a>OUTPUT_OPTION_DEBUG</strong>: Logs are directly output to the serial port without cross-task scheduling. This value is used only for temporary debugging.</p>
         <p id="p870682819450"><a name="p870682819450"></a><a name="p870682819450"></a><strong id="b15600163173718"><a name="b15600163173718"></a><a name="b15600163173718"></a>OUTPUT_OPTION_FLOW</strong> (default value): Logs are output as data flow to the serial port.</p>
         <p id="p16707182819454"><a name="p16707182819454"></a><a name="p16707182819454"></a><strong id="b18859428385"><a name="b18859428385"></a><a name="b18859428385"></a>OUTPUT_OPTION_TEXT_FILE</strong>: Logs are output as text files.</p>
-        <p id="p117071528184514"><a name="p117071528184514"></a><a name="p117071528184514"></a><strong id="b20341927163912"><a name="b20341927163912"></a><a name="b20341927163912"></a>OUTPUT_OPTION_BIN_FILE</strong> (to be supported): Logs are output as binary files.</p>
         </td>
         </tr>
         <tr id="row1270720281453"><td class="cellrowborder" valign="top" width="25.180000000000003%" headers="mcps1.1.3.1.1 "><p id="p137071528164516"><a name="p137071528164516"></a><a name="p137071528164516"></a>level</p>
@@ -189,7 +188,7 @@ The mini framework is a simple and compact DFX design that provides the logging 
 
         Include  **\#include "log.h"**  in the  **.c**  file where logs need to be printed, call the following function:
 
-        HILOG\_INFO\(HILOG\_MODULE\_SAMGR, "log test: %d", 88\);
+        HILOG\_INFO\(HILOG\_MODULE\_A, "log test: %d", 88\);
 
         Parameter description:
 
@@ -248,7 +247,11 @@ The featured framework provides comprehensive DFX features and logging APIs.
 Available hilog APIs:
 
 ```
-HILOGD(fmt,...) HILOGI(fmt,...) HILOGW(fmt,...) HILOGE(fmt,...)
+HILOG_DEBUG(type, ...)
+HILOG_INFO(type, ...)
+HILOG_WARN(type, ...)
+HILOG_ERROR(type, ...)
+HILOG_FATAL(type, ...)
 ```
 
 Usage guidelines:
@@ -310,7 +313,7 @@ Parameter description:
 
 **Viewing logs**
 
-1.  Go to the  **/storage/data/log/hilogs**  directory to view hilog logs for debugging purpose.
+1.  Go to the  **/storage/data/log/**  directory to view hilog logs for debugging purpose.
 
 2.  Run the  **hilogcat**  command to view hilog logs in real time.
 
