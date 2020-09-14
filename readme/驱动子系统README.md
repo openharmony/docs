@@ -217,7 +217,7 @@ Init接口描述：当框架完成设备绑定动作后，就开始调用驱动�
 int32_t SampleDriverInit(struct HdfDeviceObject *deviceObject)
 {
     // TODO: Init hardware or other resources here.
-	return HDF_SUCCESS;
+    return HDF_SUCCESS;
 }
 ```
 

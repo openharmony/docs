@@ -75,22 +75,22 @@ The OpenHarmony driver framework adopts the primary/secondary mode and is develo
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p154741318610"><a name="p154741318610"></a><a name="p154741318610"></a>Indicates the OpenHarmony driver framework.</p>
 </td>
 </tr>
-<tr id="row17977171010144"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>hdf\frameworks</p>
+<tr id="row17977171010144"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>hdf/frameworks</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>Provides the source code to develop the driver frameworks, driver models, and capability model libraries.</p>
 </td>
 </tr>
-<tr id="row258624313915"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p858718432912"><a name="p858718432912"></a><a name="p858718432912"></a>hdf\frameworks\ability</p>
+<tr id="row258624313915"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p858718432912"><a name="p858718432912"></a><a name="p858718432912"></a>hdf/frameworks/ability</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1866016071012"><a name="p1866016071012"></a><a name="p1866016071012"></a>Provides functional capabilities for the driver development, such as the message model libraries.</p>
 </td>
 </tr>
-<tr id="row6978161091412"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p37931659101311"><a name="p37931659101311"></a><a name="p37931659101311"></a>hdf\frameworks\core</p>
+<tr id="row6978161091412"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p37931659101311"><a name="p37931659101311"></a><a name="p37931659101311"></a>hdf/frameworks/core</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p6793059171318"><a name="p6793059171318"></a><a name="p6793059171318"></a>Provides the core code to implement the OpenHarmony driver framework.</p>
 </td>
 </tr>
-<tr id="row6978201031415"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p117935599130"><a name="p117935599130"></a><a name="p117935599130"></a>hdf\frameworks\core\host</p>
+<tr id="row6978201031415"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p117935599130"><a name="p117935599130"></a><a name="p117935599130"></a>hdf/frameworks/core/host</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p53051522133"><a name="p53051522133"></a><a name="p53051522133"></a>Provides functions of the driver host environment framework, including:</p>
 <p id="p168291956191214"><a name="p168291956191214"></a><a name="p168291956191214"></a>1. Loading and starting a driver, and dispatching device nodes.</p>
@@ -99,7 +99,7 @@ The OpenHarmony driver framework adopts the primary/secondary mode and is develo
 <p id="p113814121414"><a name="p113814121414"></a><a name="p113814121414"></a>4. Managing the common driver resource configurations.</p>
 </td>
 </tr>
-<tr id="row138241821218"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1138321861211"><a name="p1138321861211"></a><a name="p1138321861211"></a>hdf\frameworks\core\manager</p>
+<tr id="row138241821218"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1138321861211"><a name="p1138321861211"></a><a name="p1138321861211"></a>hdf/frameworks/core/manager</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p103831518181211"><a name="p103831518181211"></a><a name="p103831518181211"></a>Provides the management modules of the driver framework, including:</p>
 <p id="p1125114971315"><a name="p1125114971315"></a><a name="p1125114971315"></a>1. Driver API management module.</p>
@@ -109,58 +109,53 @@ The OpenHarmony driver framework adopts the primary/secondary mode and is develo
 <p id="p183476761517"><a name="p183476761517"></a><a name="p183476761517"></a>5. Fault management module.</p>
 </td>
 </tr>
-<tr id="row116251627171512"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p76251275152"><a name="p76251275152"></a><a name="p76251275152"></a>hdf\frameworks\core\shared</p>
+<tr id="row116251627171512"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p76251275152"><a name="p76251275152"></a><a name="p76251275152"></a>hdf/frameworks/core/shared</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p56256278150"><a name="p56256278150"></a><a name="p56256278150"></a>Provides shared code for the host and manager.</p>
 </td>
 </tr>
-<tr id="row2306123015162"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p10306143019164"><a name="p10306143019164"></a><a name="p10306143019164"></a>hdf\frameworks\model</p>
+<tr id="row2306123015162"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p10306143019164"><a name="p10306143019164"></a><a name="p10306143019164"></a>hdf/frameworks/model</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1030713021612"><a name="p1030713021612"></a><a name="p1030713021612"></a>Provides a universal framework model for drivers.</p>
 </td>
 </tr>
-<tr id="row2021312310176"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p421315312177"><a name="p421315312177"></a><a name="p421315312177"></a>hdf\frameworks\model\network</p>
+<tr id="row2021312310176"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p421315312177"><a name="p421315312177"></a><a name="p421315312177"></a>hdf/frameworks/model/network</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p421313113179"><a name="p421313113179"></a><a name="p421313113179"></a>Provides network device models for drivers.</p>
 </td>
 </tr>
-<tr id="row2167642189"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p21683416181"><a name="p21683416181"></a><a name="p21683416181"></a>hdf\frameworks\support\</p>
+<tr id="row2167642189"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p21683416181"><a name="p21683416181"></a><a name="p21683416181"></a>hdf/frameworks/support</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p71681548183"><a name="p71681548183"></a><a name="p71681548183"></a>Provides drivers with system APIs and hardware, such as GPIO, I2C, and SPI capabilities.</p>
 <p id="p19848191416195"><a name="p19848191416195"></a><a name="p19848191416195"></a>Some interfaces can be migrated across platforms.</p>
 </td>
 </tr>
-<tr id="row15342553171918"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p434255301916"><a name="p434255301916"></a><a name="p434255301916"></a>hdf\frameworks\support\osal</p>
-</td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1234211535198"><a name="p1234211535198"></a><a name="p1234211535198"></a>Provides platforms with common adaptation interfaces, such as memory, thread, and mutex.</p>
-</td>
-</tr>
-<tr id="row116634294203"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1866392919204"><a name="p1866392919204"></a><a name="p1866392919204"></a>hdf\frameworks\support\platform</p>
+<tr id="row116634294203"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1866392919204"><a name="p1866392919204"></a><a name="p1866392919204"></a>hdf/frameworks/support/platform</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p5663329202017"><a name="p5663329202017"></a><a name="p5663329202017"></a>Provides APIs that support the common hardware of platforms, such as GPIO, I2C, and SPI capabilities.</p>
 </td>
 </tr>
-<tr id="row193157275210"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1331513279211"><a name="p1331513279211"></a><a name="p1331513279211"></a>hdf\frameworks\tools</p>
+<tr id="row193157275210"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p1331513279211"><a name="p1331513279211"></a><a name="p1331513279211"></a>hdf/frameworks/tools</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p131542762113"><a name="p131542762113"></a><a name="p131542762113"></a>Provides the driver capability libraries, such as the tool that configures and compiles the HCS (HDF Configuration Source).</p>
 </td>
 </tr>
-<tr id="row66349163223"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p2634161611224"><a name="p2634161611224"></a><a name="p2634161611224"></a>hdf\frameworks\utils</p>
+<tr id="row66349163223"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p2634161611224"><a name="p2634161611224"></a><a name="p2634161611224"></a>hdf/frameworks/utils</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p26341516202215"><a name="p26341516202215"></a><a name="p26341516202215"></a>Provides basic data structures and algorithms.</p>
 </td>
 </tr>
-<tr id="row1897841071415"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p16793185961315"><a name="p16793185961315"></a><a name="p16793185961315"></a>hdf\lite\adapter</p>
+<tr id="row1897841071415"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p16793185961315"><a name="p16793185961315"></a><a name="p16793185961315"></a>hdf/lite/adapter</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p14793959161317"><a name="p14793959161317"></a><a name="p14793959161317"></a>Adapts to kernel operation APIs and provides abstract APIs.</p>
 </td>
 </tr>
-<tr id="row16448173512518"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p644893514514"><a name="p644893514514"></a><a name="p644893514514"></a>hdf\lite\include</p>
+<tr id="row16448173512518"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p644893514514"><a name="p644893514514"></a><a name="p644893514514"></a>hdf/lite/include</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1744933517511"><a name="p1744933517511"></a><a name="p1744933517511"></a>Provides driver APIs for lightweight devices.</p>
 </td>
 </tr>
-<tr id="row192731625216"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p10281116185217"><a name="p10281116185217"></a><a name="p10281116185217"></a>hdf\lite\hdi</p>
+<tr id="row192731625216"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p10281116185217"><a name="p10281116185217"></a><a name="p10281116185217"></a>hdf/lite/hdi</p>
 </td>
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p7286165524"><a name="p7286165524"></a><a name="p7286165524"></a>Provides APIs of the OpenHarmony driver.</p>
 </td>
@@ -179,7 +174,7 @@ None
 
 ![](figures/en-us_image_0000001052764349.png)
 
-Driver loading is mostly done by the driver framework, and you only need to register and configure required APIs. The driver framework will load and initialize the driver based on the parsing result.
+Driver loading is mostly done by the driver framework, and you only need to register and configure required APIs. The driver framework will load and initialize the driver based on the parsing content.
 
 Driver development based on the HDF consists of the following three parts:
 
@@ -191,7 +186,7 @@ Driver development based on the HDF consists of the following three parts:
 
 The driver mainly aims to develop the functions.
 
-The first part that catches your eyes is the driver entry, which is described through  **DriverEntry**  alignment.
+The first part that catches your eyes is the driver entry, which is described through  **DriverEntry**.
 
 Three APIs are available, namely  **bind**,  **init**, and  **release**.
 
@@ -216,9 +211,7 @@ int32_t SampleDriverBind(struct HdfDeviceObject *deviceObject)
 }
 ```
 
-**Init**: When devices are successfully bound, the framework calls  **Init**  to initialize the driver. After initialization is complete, the driver framework will determine whether to create external service APIs based on the configuration file.
-
-If the driver fails to be initialized, the driver framework will automatically release the created device API.
+Description of Init: When devices are successfully bound, the framework calls Init to initialize the driver. After initialization is complete, the driver framework will determine whether to create external service interfaces based on the configuration file. If the driver fails to be initialized, the driver framework will automatically release the created device interface.
 
 ```
 int32_t SampleDriverInit(struct HdfDeviceObject *deviceObject)
@@ -249,7 +242,7 @@ The OpenHarmony driver is mainly deployed in the kernel space using the static l
 
 ## Repositories Involved<a name="section134812226297"></a>
 
-drivers\_hdf\_frameworks
+[drivers\_hdf\_frameworks](https://openharmony.gitee.com/openharmony/drivers_hdf_frameworks)
 
-drivers\_hdf\_lite
+[drivers\_hdf\_lite](https://openharmony.gitee.com/openharmony/drivers_hdf_lite)
 
