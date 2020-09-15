@@ -13,7 +13,7 @@
 
 -   **AbilityKit**是Ability框架提供给开发者的开发包，开发者基于该开发包可以开发出基于Ability组件的应用。基于Ability组件开发的应用有两种类型：基于Javascript语言开发的Ability（**JS Ability**）和基于C/C++语言开发的Ability（**Native Ability**）。**JS应用开发框架**是开发者开发JS Ability所用到框架，是在AbilityKit基础封装的包含js UI组件的一套方便开发者能够迅速开发Ability应用的框架。
 -   **Ability**是系统调度应用的最小单元，是能够完成一个独立功能的组件，一个应用可以包含一个或多个Ability。Ability分为两种类型：Page类型的Ability和Service类型的Ability
-    -   **Page类型的Ability**：带有界面，为用户提供人机交互的能力。
+    -   **Page类型的Ability：**带有界面，为用户提供人机交互的能力。
     -   **Service类型的Ability**：不带界面，为用户提供后台任务机制。
 
 -   **AbilitySlice**是单个页面及其控制逻辑的总和，是Page类型Ability特有的组件，一个Page类型的Ability可以包含多个AbilitySlice，此时，这些页面提供的业务能力应当是高度相关的。Page类型的Ability和AbilitySlice的关系如下图2所示：
@@ -31,7 +31,7 @@
 
     -   **UNINITIALIZED**：未初始状态，为临时状态，Ability被创建后会由UNINITIALIZED状态进入INITIAL状态；
 
-    -   **INITIAL**：初始化状态，也表示停止状态，表示当前Ability未运行，调用Start后进入INACTIVE，同时回调开发者的OnSatrt生命周期回调；
+    -   **INITIAL**：初始化状态，也表示停止状态，表示当前Ability未运行，调用Start后进入INACTIVE，同时回调开发者的OnStart生命周期回调；
 
     -   **INACTIVE**：未激活状态，表示当前窗口已显示但是无焦点状态，由于Window暂未支持焦点的概念，当前状态与ACTIVE一致。
 
@@ -42,16 +42,16 @@
 
 -   **AbilityLoader**负责注册和加载开发者Ability的模块。开发者开发的Ability先要调用AbilityLoader的注册接口注册到框架中，接着Ability启动时会被实例化。
 -   **AbilityManager**负责AbilityKit和Ability管理服务进行IPC的通信。
--   **EvenHandler**是AbilityKit提供给开发者的用于在Ability中实现线程间通信的一个模块。
+-   **EventHandler**是AbilityKit提供给开发者的用于在Ability中实现线程间通信的一个模块。
 -   **Ability运行管理服务**是用于协调各Ability运行关系、及生命周期进行调度的系统服务。其中，**服务启动**模块负责Ability管理服务的启动、注册等。**服务接口管理模块**负责Ability管理服务对外能力的管理。**进程管理模块**负责Ability应用所在进程的启动和销毁、及其进程信息维护等功能。**Ability栈管理模块**负责维护各个Ability之间跳转的先后关系。**生命周期调度模块**是Ability管理服务根据系统当前的操作调度Ability进入相应的状态的模块**。连接管理模块**是Ability管理服务对Service类型Ability连接管理的模块。
 -   **AppSpawn**是负责创建Ability应用所在进程的系统服务，该服务有较高的权限，为Ability应用设置相应的权限，并预加载一些通用的模块，加速应用的启动。
 
-**2. 包管理子系统**，是HarmonyOS为开发者提供的安装包管理框架。包管理子系统的由如下图4模块组成：
+**2. 包管理子系统**，是OpenHarmony为开发者提供的安装包管理框架。包管理子系统的由如下图4模块组成：
 
 **图 4**  包管理子系统框架图<a name="fig1047932418305"></a>  
 ![](figures/包管理子系统框架图.png "包管理子系统框架图")
 
--   **BundleKit**：是包管理服务对外提供的接口，有安装/卸载接口、包信息查询接口、包状态变化监听接口。
+-   **BundleKit：**是包管理服务对外提供的接口，有安装/卸载接口、包信息查询接口、包状态变化监听接口。
 -   **包扫描器**：用来解析本地预制或者安装的安装包，提取里面的各种信息，供管理子模块进行管理，持久化。
 
 -   **包安装子模块**：安装，卸载，升级一个包；**包安装服务**一个单独进程的用于创建删除安装目录，具有较高的权限。
@@ -115,7 +115,7 @@
 </tr>
 <tr id="row106931420217"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p86931748213"><a name="p86931748213"></a><a name="p86931748213"></a>foundation/appexecfwk/interfaces/innerkits/bundlemgr_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12693148215"><a name="p12693148215"></a><a name="p12693148215"></a>AbilityKit实现的核心代码，及包管理服务为其它子系统提供的接口</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12693148215"><a name="p12693148215"></a><a name="p12693148215"></a>BundleKit实现的核心代码，及包管理服务为其它子系统提供的接口</p>
 </td>
 </tr>
 <tr id="row58381913213"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p11839171152117"><a name="p11839171152117"></a><a name="p11839171152117"></a>foundation/appexecfwk/frameworks/bundle_lite</p>
@@ -226,12 +226,12 @@
 -   添加完上述的配置后，执行如下命令编译整个系统：
 
 ```
-python build.py ipcamera -p hi3516dv300_liteos_a -b debug
+python build.py ipcamera_hi3516dv300 -b debug
 ```
 
 ## 运行用户程序框架子系统的两个服务<a name="section1048719468503"></a>
 
--   用户程序框架有两个系统服务ability管理服务（abilityms）和（bundlems），两系统服务运行于foudation进程中。
+-   用户程序框架有两个系统服务ability管理服务（abilityms）和（bundlems），两系统服务运行于foundation进程中。
 -   abilityms和bundlems注册到sa\_manager中，sa\_manager运行于foundation进程中，sa\_manager为abilityms和bundlems创建线程运行环境。具体创建abilityms、bundlems服务的方式以及使用该服务的方式，可参考[系统服务框架子系统](zh-cn_topic_0000001051589563.md)。
 -   在foundation/distributedschedule/services/safwk\_lite/BUILD.gn中添加对abilityms和bundlems，如下：
 
@@ -248,78 +248,93 @@ deps = [
 
 ## 运行基于AbilityKit开发的Ability<a name="section16249444135119"></a>
 
--   基于AbilityKit开发的Ability的Demo代码位于foundation/aafwk/frameworks/kits/ability\_lite/test路径下，如有需要修改其中的功能，可在unittest的文件中修改代码或增加代码文件，并在BUILD.gn中做相应的修改。
--   编译该Demo，在shell中执行如下命令，编译成功后，在out/ipcamera\_hi3516dv300\_liteos\_a下面生成libLauncher.so文件：
+-   基于AbilityKit开发的Ability的Demo代码位于foundation/aafwk/frameworks/ability\_lite/example路径下，如有需要修改其中的功能，可在entry/src/main/cpp的文件中修改代码或增加代码文件，并在BUILD.gn中做相应的修改。
+-   在build/lite/config/subsystem/aafwk/BUILD.gn中添加对ability Demo编译配置：
 
     ```
-    python build.py ipcamera -p hi3516dv300_liteos_a -T //foundation/aafwk/frameworks/kits/ability_lite/test:Launcher
-    ```
-
--   编写config.json，内容如下：
-
-```
-{
-    "app": {
-        "bundleName": "com.huawei.launcher",
-        "vendor": "huawei",
-        "version": {
-            "code": 1,
-            "name": "1.0"
-        },
-       "apiVersion": {
-          "compatible": 3,
-          "target": 3
-       }
-    },
-    "deviceConfig": {
-        "default": {
-            "keepAlive": false
-        },
-    },
-    "module": {
-        "deviceType": [
-            "smartVision"
-        ], 
-        "distro": {
-            "deliveryWithInstall": true, 
-            "moduleName": "Launcher", 
-            "moduleType": "entry"
-        },
-        "abilities": [{
-            "name": "MainAbility",
-            "icon": "assets/entry/resources/base/media/icon.png",
-            "label": "test app 1", 
-            "launchType": "standard",
-            "type": "page",
-            "visible": true
-        },
-        {
-            "name": "SecondAbility",
-            "icon": "assets/entry/resources/base/media/icon.png",
-            "label": "test app 2", 
-            "launchType": "standard",
-            "type": "page",
-            "visible": true
-        },
-        {
-            "name": "ServiceAbility",
-            "icon": "",
-            "label": "test app 2", 
-            "launchType": "standard",
-            "type": "service",
-            "visible": true
-        }
+    import("//build/lite/config/subsystem/lite_subsystem.gni")
+    
+    lite_subsystem("aafwk") {
+        subsystem_components = [
+            "......",
+            "//foundation/aafwk/frameworks/ability_lite/example:hiability",
+            "......",
         ]
     }
-}
-```
+    ```
+
+-   编译该Demo，在shell中执行如下命令，编译成功后，在out/ipcamera\_hi3516dv300\_liteos\_a/dev\_tools/example下面生成libhiability.so文件：
+
+    ```
+    python build.py ipcamera_hi3516dv300 -b debug
+    ```
+
+-   编写config.json，参见foundation/aafwk/frameworks/ability\_lite/example路径下的config.josn，内容如下：
+
+    ```
+    {
+        "app": {
+            "bundleName": "com.huawei.hiability",
+            "vendor": "huawei",
+            "version": {
+                "code": 1,
+                "name": "1.0"
+            },
+           "apiVersion": {
+              "compatible": 3,
+              "target": 3
+           }
+        },
+        "deviceConfig": {
+            "default": {
+                "keepAlive": false
+            },
+        },
+        "module": {
+            "deviceType": [
+                "smartVision"
+            ], 
+            "distro": {
+                "deliveryWithInstall": true, 
+                "moduleName": "hiability", 
+                "moduleType": "entry"
+            },
+            "abilities": [{
+                "name": "MainAbility",
+                "icon": "assets/entry/resources/base/media/icon.png",
+                "label": "test app 1", 
+                "launchType": "standard",
+                "type": "page",
+                "visible": true
+            },
+            {
+                "name": "SecondAbility",
+                "icon": "",
+                "label": "test app 2", 
+                "launchType": "standard",
+                "type": "page",
+                "visible": true
+            },
+            {
+                "name": "ServiceAbility",
+                "icon": "",
+                "label": "test app 2", 
+                "launchType": "standard",
+                "type": "service",
+                "visible": true
+            }
+            ]
+        }
+    }
+    ```
+
 
 -   生成hap包
     -   按照如下目录结构存放文件，assets/entry/resources/base/media下面放置资源文件：
 
-        ![](figures/zh-cn_image_0000001055712348.png)
+        ![](figures/zh-cn_image_0000001055267336.png)
 
-    -   将上述文件打包生成zip包，修改后缀为.hap，例如Launcher.hap
+    -   将上述文件打包生成zip包，修改后缀为.hap，例如hiability.hap
 
 -   安装hap包
 
@@ -327,13 +342,13 @@ deps = [
     -   执行安装命令，安装hap包：
 
     ```
-    ./bin/bm install -p /nfs/hap/Launcher.hap
+    ./bin/bm install -p /nfs/hap/hiability.hap
     ```
 
 -   安装完成后，通过如下命令，运行Demo
 
 ```
-./bin/aa start -p com.huawei.launcher -n MainAbility
+./bin/aa start -p com.huawei.hiability -n MainAbility
 ```
 
 ## 涉及仓<a name="section93061357133720"></a>

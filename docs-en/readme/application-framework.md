@@ -7,9 +7,9 @@ The application framework of OpenHarmony consists of two modules:  **ability man
 **1. Ability management framework**: This framework is provided by OpenHarmony for you to develop OpenHarmony applications. The following figure shows the modules in the ability management framework.
 
 **Figure  1**  Architecture of the Ability management framework<a name="fig18932193213292"></a>  
-![](figures/architecture-of-the-ability-management-framework.png "architecture-of-the-ability-management-framework")
+![](figures/en-us_image_0000001054941316.png)
 
--   **AbilityKit**  is a development kit provided by the ability management framework. You can use this kit to develop applications based on the  **Ability**  component. There are two types of applications developed based on the  **Ability**  component:  **JS Ability**  developed using the JavaScript language and  **Native Ability**  developed using the C/C++ language. The  **ACE**  framework encapsulates JavaScript UI components on the basis of the AbilityKit and is used to help you quickly develop JS Ability-based applications.
+-   **AbilityKit**  is a development kit provided by the ability management framework. You can use this kit to develop applications based on the  **Ability**  component. There are two types of applications developed based on the  **Ability**  component:  **JS Ability**  developed using the JavaScript language and  **Native Ability**  developed using the C/C++ language. The  **JS application development framework**  encapsulates JavaScript UI components on the basis of the AbilityKit and is used to help you quickly develop JS Ability-based applications.
 -   **Ability**  is the minimum unit for the system to schedule applications. It is a component that can implement an independent functionality. An application can contain one or more  **Ability**  instances. There are two types of templates that you can use to create an  **Ability**  instance: Page and Service.
     -   An  **Ability using the Page template**  \(Page ability for short\) provides a UI for interacting with users.
     -   An  **Ability using the Service template**  does not have a UI and is used for running background tasks.
@@ -80,7 +80,7 @@ The following table describes the source code directory structure of the applica
 </thead>
 <tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>foundation/aafwk/frameworks/ability_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>Core code of the ability management framework</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>Core code for AbilityKit</p>
 </td>
 </tr>
 <tr id="row6978161091412"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p0780163617556"><a name="p0780163617556"></a><a name="p0780163617556"></a>foundation/aafwk/frameworks/abilitymgr_lite</p>
@@ -95,12 +95,12 @@ The following table describes the source code directory structure of the applica
 </tr>
 <tr id="row1897841071415"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p20749155715720"><a name="p20749155715720"></a><a name="p20749155715720"></a>foundation/aafwk/interfaces/kits/abilitykit_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p14793959161317"><a name="p14793959161317"></a><a name="p14793959161317"></a>External APIs of the ability management framework</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p14793959161317"><a name="p14793959161317"></a><a name="p14793959161317"></a>APIs provided by AbilityKit for developers</p>
 </td>
 </tr>
 <tr id="row965423512587"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p12654103516589"><a name="p12654103516589"></a><a name="p12654103516589"></a>foundation/aafwk/interfaces/innerkits/abilitymgr_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12658142611466"><a name="p12658142611466"></a><a name="p12658142611466"></a>APIs provided by the Ability Manager Service to other subsystems</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12658142611466"><a name="p12658142611466"></a><a name="p12658142611466"></a>APIs provided by the Ability Manager Service for other subsystems</p>
 </td>
 </tr>
 <tr id="row673463115813"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p127343312581"><a name="p127343312581"></a><a name="p127343312581"></a>foundation/aafwk/interfaces/kits/want_lite</p>
@@ -115,12 +115,12 @@ The following table describes the source code directory structure of the applica
 </tr>
 <tr id="row1869744111581"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p10698114117583"><a name="p10698114117583"></a><a name="p10698114117583"></a>foundation/appexecfwk/interfaces/kits/bundle_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p1169814112585"><a name="p1169814112585"></a><a name="p1169814112585"></a>External bundle management APIs provided by the bundle management framework</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p1169814112585"><a name="p1169814112585"></a><a name="p1169814112585"></a>APIs provided by BundleKit for developers</p>
 </td>
 </tr>
 <tr id="row106931420217"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p86931748213"><a name="p86931748213"></a><a name="p86931748213"></a>foundation/appexecfwk/interfaces/innerkits/bundlemgr_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12693148215"><a name="p12693148215"></a><a name="p12693148215"></a>APIs provided by the Bundle Manager Service to other subsystems</p>
+<td class="cellrowborder" valign="top" width="63.82%" headers="mcps1.2.3.1.2 "><p id="p12693148215"><a name="p12693148215"></a><a name="p12693148215"></a>Core code for AbilityKit and APIs provided by the Bundle Manager Service for other subsystems</p>
 </td>
 </tr>
 <tr id="row58381913213"><td class="cellrowborder" valign="top" width="36.18%" headers="mcps1.2.3.1.1 "><p id="p11839171152117"><a name="p11839171152117"></a><a name="p11839171152117"></a>foundation/appexecfwk/frameworks/bundle_lite</p>
@@ -147,13 +147,13 @@ The following table describes the source code directory structure of the applica
     -   C++11 or later
 
 -   The specifications of the application framework vary depending on the System-on-a-Chip \(SoC\) and underlying OS capabilities.
-    -   Cortex-M RAM and ROM:
+    -   Cortex-M RAM and ROM
         -   RAM: greater than 20 KB \(recommended\)
-        -   ROM: greater than 300 KB \(for the ACE framework and related subsystems, such as UIKit and engine\)
+        -   ROM: greater than 300 KB \(for the JS application development framework and related subsystems, such as UIKit and engine\)
 
     -   Cortex-A RAM and ROM
         -   RAM: greater than 2 MB \(recommended\)
-        -   ROM: greater than 2 MB \(for the ACE framework and related subsystems, such as UIKit and engine\)
+        -   ROM: greater than 2 MB \(for the JS application development framework and related subsystems, such as UIKit and engine\)
 
 
 
@@ -231,7 +231,7 @@ The following table describes the source code directory structure of the applica
 -   After the preceding configurations are complete, run the following command to compile the entire system:
 
 ```
-python build.py ipcamera -p hi3516dv300_liteos_a -b debug
+python build.py ipcamera_hi3516dv300 -b debug
 ```
 
 ## Running the Two Services in the Application Framework<a name="section1048719468503"></a>
@@ -253,78 +253,93 @@ deps = [
 
 ## Running an Ability Developed Based on AbilityKit<a name="section16249444135119"></a>
 
--   The demo code of the ability developed based on AbilityKit is stored in the  **foundation/aafwk/frameworks/kits/ability\_lite/test**  directory. If you need to modify the functionality, modify the code in the  **unittest**  file or add a code file, and update the configuration in  **BUILD.gn**  accordingly.
--   Run the following command in the shell to compile the demo. After the compilation is successful, the  **libLauncher.so**  file is generated in  **out/ipcamera\_hi3516dv300\_liteos\_a**.
+-   The demo code of the ability developed based on AbilityKit is stored in the  **foundation/aafwk/frameworks/ability\_lite/example**  directory. If you need to modify the functionality, modify the code in the  **entry/src/main/cpp**  files or add a new code file, and update the configuration in  **BUILD.gn**  accordingly.
+-   Add the configuration for the ability demo for compilation in the  **build/lite/config/subsystem/aafwk/BUILD.gn**  file.
 
     ```
-    python build.py ipcamera -p hi3516dv300_liteos_a -T //foundation/aafwk/frameworks/kits/ability_lite/test:Launcher
-    ```
-
--   Modify the  **config.json**  file. The example content is as follows:
-
-```
-{
-    "app": {
-        "bundleName": "com.huawei.launcher",
-        "vendor": "huawei",
-        "version": {
-            "code": 1,
-            "name": "1.0"
-        },
-       "apiVersion": {
-          "compatible": 3,
-          "target": 3
-       }
-    },
-    "deviceConfig": {
-        "default": {
-            "keepAlive": false
-        },
-    },
-    "module": {
-        "deviceType": [
-            "smartVision"
-        ], 
-        "distro": {
-            "deliveryWithInstall": true, 
-            "moduleName": "Launcher", 
-            "moduleType": "entry"
-        },
-        "abilities": [{
-            "name": "MainAbility",
-            "icon": "assets/entry/resources/base/media/icon.png",
-            "label": "test app 1", 
-            "launchType": "standard",
-            "type": "page",
-            "visible": true
-        },
-        {
-            "name": "SecondAbility",
-            "icon": "assets/entry/resources/base/media/icon.png",
-            "label": "test app 2", 
-            "launchType": "standard",
-            "type": "page",
-            "visible": true
-        },
-        {
-            "name": "ServiceAbility",
-            "icon": "",
-            "label": "test app 2", 
-            "launchType": "standard",
-            "type": "service",
-            "visible": true
-        }
+    import("//build/lite/config/subsystem/lite_subsystem.gni")
+    
+    lite_subsystem("aafwk") {
+        subsystem_components = [
+            "......",
+            "//foundation/aafwk/frameworks/ability_lite/example:hiability",
+            "......",
         ]
     }
-}
-```
+    ```
+
+-   Run the following command in the shell to compile the demo. After the compilation is successful, the  **libhiability.so**  file is generated in  **out/ipcamera\_hi3516dv300\_liteos\_a/dev\_tools/example**.
+
+    ```
+    python build.py ipcamera_hi3516dv300 -b debug
+    ```
+
+-   Compile the  **config.json**  file. For details, see the  **config.json**  file in the  **foundation/aafwk/frameworks/ability\_lite/example**  directory. The file content is as follows:
+
+    ```
+    {
+        "app": {
+            "bundleName": "com.huawei.hiability",
+            "vendor": "huawei",
+            "version": {
+                "code": 1,
+                "name": "1.0"
+            },
+           "apiVersion": {
+              "compatible": 3,
+              "target": 3
+           }
+        },
+        "deviceConfig": {
+            "default": {
+                "keepAlive": false
+            },
+        },
+        "module": {
+            "deviceType": [
+                "smartVision"
+            ], 
+            "distro": {
+                "deliveryWithInstall": true, 
+                "moduleName": "hiability", 
+                "moduleType": "entry"
+            },
+            "abilities": [{
+                "name": "MainAbility",
+                "icon": "assets/entry/resources/base/media/icon.png",
+                "label": "test app 1", 
+                "launchType": "standard",
+                "type": "page",
+                "visible": true
+            },
+            {
+                "name": "SecondAbility",
+                "icon": "",
+                "label": "test app 2", 
+                "launchType": "standard",
+                "type": "page",
+                "visible": true
+            },
+            {
+                "name": "ServiceAbility",
+                "icon": "",
+                "label": "test app 2", 
+                "launchType": "standard",
+                "type": "service",
+                "visible": true
+            }
+            ]
+        }
+    }
+    ```
+
 
 -   Generate a HAP.
     -   Add resource files to the  **assets/entry/resources/base/media**  directory based on the following directory structure.
 
-        ![](figures/en-us_image_0000001055712348.png)
+        ![](figures/en-us_image_0000001055267336.png)
 
-    -   Compress the preceding files into a ZIP package and change the file name extension to  **.hap**, for example,  **Launcher.hap**.
+    -   Compress the preceding files into a ZIP package and change the file name extension to  **.hap**, for example,  **hiability.hap**.
 
 -   Install the HAP.
 
@@ -332,13 +347,13 @@ deps = [
     -   Run the following command to install the HAP:
 
     ```
-    ./bin/bm install -p /nfs/hap/Launcher.hap
+    ./bin/bm install -p /nfs/hap/hiability.hap
     ```
 
 -   After the installation is complete, run the following command to run the demo:
 
 ```
-./bin/aa start -p com.huawei.launcher -n MainAbility
+./bin/aa start -p com.huawei.hiability -n MainAbility
 ```
 
 ## Repositories Involved<a name="section93061357133720"></a>
