@@ -1,20 +1,18 @@
-# Media Subsystem<a name="EN-US_TOPIC_0000001051344264"></a>
+# Multimedia Subsystem<a name="EN-US_TOPIC_0000001051344264"></a>
 
 ## Overview<a name="section38510214395"></a>
 
-This repository stores source code information of the multimedia subsystem. It provides unified interfaces for you to develop media applications. With this repository, you can easily obtain media resources and focus on service development.
+This repository stores source code information of the multimedia subsystem. It provides unified interfaces for you to develop media applications. With this repository, you can easily obtain media resources and focus on service development. The following two figures show the framework and service flow of the multimedia subsystem, respectively.
 
-Based on code information about this repository, the device configuration file is stored in  **test\\lite\\devini**. When using the configuration file, you can place it in the  **/data**  directory of the development board in use. You use the configuration file for the adaption to the sensor, resolution, frame rate, and more.
+**Figure  1**  Subsystem architecture<a name="fig4627132133617"></a>  
+![](figures/en-us_image_0000001055193837.png "subsystem-architecture")
 
-Subsystem architecture
+As shown in Figure 1, the multimedia framework supports the camera, recording, and playback functions. These functions support the development of HarmonyOS JavaScript applications and various kit modules that use media capabilities. The multimedia framework consists of the framework and core service layers. The framework layer provides native APIs and corresponding service implementation for applications. It implements audio/video input and output, audio/video encoding and decoding, as well as video file packing and demultiplexing for camera, recording, and playback services. The core service layer leverages the capabilities provided by the hardware platform to use the underlying hardware and related drivers. In addition, the core server implements file management, storage management, and log management.
 
-![](figures/en-us_image_0000001055193837.png)
+**Figure  2**  Multimedia service flow<a name="fig931392183713"></a>  
+![](figures/en-us_image_0000001055193731.png "multimedia-service-flow")
 
-Service process
-
-![](figures/en-us_image_0000001055193731.png)
-
-As shown in these figures, the multimedia subsystem consists of camera, recorder, and player modules. The camera module provides YUV or RGB, JPEG, and H.264 or H.265 data, which is stored in the surface \(shared memory\); the recorder module packs H.264 or H.265 and AAC data in the surface into MP4 files; the player module demultiplexes the MP4 files into audio and video data, sends the data to corresponding decoders, and then plays the audio and video.
+As shown in Figure 2, the multimedia subsystem consists of camera, recorder, and player modules. The camera module provides YUV or RGB, JPEG, and H.264 or H.265 data, which is stored in the surface \(shared memory\); the recorder module packs H.264 or H.265 and AAC data in the surface into MP4 files; the player module demultiplexes the MP4 files into audio and video data, sends the data to corresponding decoders, and then plays the audio and video.
 
 ## Directory Structure<a name="section1937963913399"></a>
 
@@ -27,29 +25,29 @@ As shown in these figures, the multimedia subsystem consists of camera, recorder
 </th>
 </tr>
 </thead>
-<tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p13476517134113"><a name="p13476517134113"></a><a name="p13476517134113"></a>foundation\multimedia\frameworks</p>
+<tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p13476517134113"><a name="p13476517134113"></a><a name="p13476517134113"></a>foundation/multimedia/frameworks</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>Internal framework implementation, including <strong id="b1696433143010"><a name="b1696433143010"></a><a name="b1696433143010"></a>Audio</strong>, <strong id="b19075193012"><a name="b19075193012"></a><a name="b19075193012"></a>Camera</strong>, and <strong id="b19889207193019"><a name="b19889207193019"></a><a name="b19889207193019"></a>Player.Recorder</strong></p>
+<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>Internal framework implementation, including <strong id="b1696433143010"><a name="b1696433143010"></a><a name="b1696433143010"></a>Audio</strong>, <strong id="b19075193012"><a name="b19075193012"></a><a name="b19075193012"></a>Camera</strong>, <strong id="b19889207193019"><a name="b19889207193019"></a><a name="b19889207193019"></a>Player</strong>, and <strong id="b166613312593"><a name="b166613312593"></a><a name="b166613312593"></a>Recorder</strong>.</p>
 </td>
 </tr>
-<tr id="row6978161091412"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p167373014417"><a name="p167373014417"></a><a name="p167373014417"></a>foundation\multimedia\interfaces\kits</p>
+<tr id="row6978161091412"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p167373014417"><a name="p167373014417"></a><a name="p167373014417"></a>foundation/multimedia/interfaces/kits</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p6793059171318"><a name="p6793059171318"></a><a name="p6793059171318"></a>External header files</p>
 </td>
 </tr>
-<tr id="row6978201031415"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1639221134214"><a name="p1639221134214"></a><a name="p1639221134214"></a>foundation\multimedia\services\media_lite</p>
+<tr id="row6978201031415"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1639221134214"><a name="p1639221134214"></a><a name="p1639221134214"></a>foundation/multimedia/services/media_lite</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p182076317465"><a name="p182076317465"></a><a name="p182076317465"></a>Underlying service implementation</p>
 </td>
 </tr>
-<tr id="row1420633124613"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1569213233619"><a name="p1569213233619"></a><a name="p1569213233619"></a>foundation\multimedia\utils\lite</p>
+<tr id="row1420633124613"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1569213233619"><a name="p1569213233619"></a><a name="p1569213233619"></a>foundation/multimedia/utils/lite</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p069215273618"><a name="p069215273618"></a><a name="p069215273618"></a>Common module implementation</p>
 </td>
 </tr>
-<tr id="row1679114715461"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p0295211184214"><a name="p0295211184214"></a><a name="p0295211184214"></a>foundation\multimedia\test\lite</p>
+<tr id="row1679114715461"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p0295211184214"><a name="p0295211184214"></a><a name="p0295211184214"></a>foundation/multimedia/hals</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p1279144754611"><a name="p1279144754611"></a><a name="p1279144754611"></a>API testing code</p>
+<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p1279144754611"><a name="p1279144754611"></a><a name="p1279144754611"></a>Header files of multimedia adaptation APIs related to the hardware platform</p>
 </td>
 </tr>
 </tbody>
@@ -58,19 +56,23 @@ As shown in these figures, the multimedia subsystem consists of camera, recorder
 ## Constraints<a name="section722512541395"></a>
 
 -   C++11 or later
--   Currently, Hi3516DV300 and Hi3518EV300 are supported, and only Hi3516DV300 supports the playback function.
+-   Hi3516DV300 and Hi3518EV300 are supported, and only Hi3516DV300 supports the playback function.
+-   By default, Hi3516DV300 supports Sony IMX335, and Hi3518EV300 supports crystalline phase JXF23.
 
 ## Installation<a name="section11914418405"></a>
 
 -   Load the kernel and related drivers before installing the repository. For details, see readme files of kernel and driver subsystems.
--   Modify required configuration files, such as those in  **test/devini**. For details, see the  _Configuration File Description_. Currently, only IMX335 and IMX327 sensors are supported. For other sensors, seek help from the open source community.
--   For details about how to invoke native APIs, see the demonstration in the  **test**  directory.
+-   Configure a proper configuration file. For details, see the configuration file in  **applications/sample/camera/media**  directory. If you want to adapt to other sensors, seek help from the open source community. Ensure that the configuration file is stored in the  **/storage/data**  directory of the development board in use. You can use this configuration file to adapt to the sensor, resolution, and frame rate.
 
-## Use Case<a name="section1467220266400"></a>
+## Usage<a name="section1467220266400"></a>
 
-You can use media APIs to record, preview, and play audios and videos. Before using these resources, create a  **CameraKit**  object and register various callbacks to respond to many events in the media module. You create a  **Camera**  object to operate camera resources, for example, to start preview, recording, and stream capturing, and set related parameters.
+For details about how to call native APIs, see the demo in the  **applications/sample/camera/media**  directory.
+
+For details about how to call multimedia APIs to implement the video recording, preview, and playback, see  _Multimedia Development Guide_.
 
 The following example overrides the event class:
+
+Create a  **CameraKit**  object and register various callbacks to respond to many events in the media module. Then, create a  **Camera**  object to operate camera resources, for example, to start preview, recording, and stream capturing, and set related parameters.
 
 ```
 /*
@@ -429,6 +431,7 @@ EXIT:
     cout << "Camera sample end." << endl;
     return 0;
 }
+
 ```
 
 ## Repositories Involved<a name="section7666411192217"></a>
@@ -454,4 +457,3 @@ multimedia\_interfaces\_kits\_player\_lite
 multimedia\_services\_media\_lite
 
 multimedia\_utils\_lite
-

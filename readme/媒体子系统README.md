@@ -2,19 +2,19 @@
 
 ## 简介<a name="section38510214395"></a>
 
-该仓主要用于存放媒体子系统的源码信息，旨在为多媒体应用开发者提供统一的开发接口，使得开发者可以专注于应用业务的开发，轻松使用多媒体的资源。下图分别展现媒体子系统的框架及业务流程。
+该仓主要用于存放媒体子系统的源码信息，旨在为多媒体应用开发者开发者提供统一的开发接口，使得开发者可以专注于应用业务的开发，轻松使用多媒体的资源。下图分别展现媒体子系统的框架及业务流程。
 
-多媒体子系统框架
+**图 1**  框架图<a name="fig4627132133617"></a>  
+![](figures/zh-cn_image_0000001051720802.png "框架图")
 
-![](figures/zh-cn_image_0000001051720802.png)
+如图1，多媒体框架支持相机、录像和播放业务功能，这些功能支持鸿蒙JS应用开发及各种使用媒体能力的KIT模块开发，系统框架包括framework层，framework对外提供应用调用的native接口及其对应的业务实现，针对相机、录像及播放业务，framework实现了音视频输入输出，音视频编解码，视频文件的打包及解复用等功能。core service层，core service利用平台提供的能力去实现对底层硬件及相关驱动使用，另外core server实现文件管理，存储管理及日志管理。
 
-多媒体子系统系统业务流程图
+**图 2**  多媒体业务流程图<a name="fig931392183713"></a>  
+![](figures/zh-cn_image_0000001052440794.png "多媒体业务流程图")
 
-![](figures/zh-cn_image_0000001052440794.png)
+如图2，多媒体包括camera，recorder和player，camera提供YUV、RGB、JPEG以及H264，H265数据到共享内存surface中，recorder模块将surface中h264/h265数据和音频aac数据打包成mp4文件，player模块把mp4文件解复用成音频和视频数据，分别送入对应编码器解码，然后进行播放。
 
-如上图，多媒体包括camera，recorder和player，camera提供YUV、RGB、JPEG以及H264，H265数据到共享内存surface中，recorder模块将surface中h264/h265数据和音频aac数据打包成mp4文件，player模块把mp4文件解复用成音频和视频数据，分别送入对应编码器解码，然后进行播放。
-
-## 目录<a name="section1937963913399"></a>
+## 目录结构<a name="section1937963913399"></a>
 
 **表 1**  轻量级多媒体子系统源代码目录结构
 
@@ -25,29 +25,29 @@
 </th>
 </tr>
 </thead>
-<tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p13476517134113"><a name="p13476517134113"></a><a name="p13476517134113"></a>foundation\multimedia\frameworks</p>
+<tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p13476517134113"><a name="p13476517134113"></a><a name="p13476517134113"></a>foundation/multimedia/frameworks</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>内部框架实现,包括audio,camera,player.recorder</p>
 </td>
 </tr>
-<tr id="row6978161091412"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p167373014417"><a name="p167373014417"></a><a name="p167373014417"></a>foundation\multimedia\interfaces\kits</p>
+<tr id="row6978161091412"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p167373014417"><a name="p167373014417"></a><a name="p167373014417"></a>foundation/multimedia/interfaces/kits</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p6793059171318"><a name="p6793059171318"></a><a name="p6793059171318"></a>应用接口对外头文件</p>
 </td>
 </tr>
-<tr id="row6978201031415"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1639221134214"><a name="p1639221134214"></a><a name="p1639221134214"></a>foundation\multimedia\services\media_lite</p>
+<tr id="row6978201031415"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1639221134214"><a name="p1639221134214"></a><a name="p1639221134214"></a>foundation/multimedia/services/media_lite</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p182076317465"><a name="p182076317465"></a><a name="p182076317465"></a>应用接口底层服务实现</p>
 </td>
 </tr>
-<tr id="row1420633124613"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1569213233619"><a name="p1569213233619"></a><a name="p1569213233619"></a>foundation\multimedia\utils\lite</p>
+<tr id="row1420633124613"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p1569213233619"><a name="p1569213233619"></a><a name="p1569213233619"></a>foundation/multimedia/utils/lite</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p069215273618"><a name="p069215273618"></a><a name="p069215273618"></a>应用接口通用模块实现</p>
 </td>
 </tr>
-<tr id="row1679114715461"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p0295211184214"><a name="p0295211184214"></a><a name="p0295211184214"></a>foundation\multimedia\test\lite</p>
+<tr id="row1679114715461"><td class="cellrowborder" valign="top" width="40.71%" headers="mcps1.2.3.1.1 "><p id="p0295211184214"><a name="p0295211184214"></a><a name="p0295211184214"></a>foundation/multimedia/hals</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p1279144754611"><a name="p1279144754611"></a><a name="p1279144754611"></a>应用接口测试代码。</p>
+<td class="cellrowborder" valign="top" width="59.29%" headers="mcps1.2.3.1.2 "><p id="p1279144754611"><a name="p1279144754611"></a><a name="p1279144754611"></a>硬件平台相关媒体适配接口头文件</p>
 </td>
 </tr>
 </tbody>
@@ -63,13 +63,15 @@
 
 -   请提前加载内核及相关驱动，参考内核及驱动子系统readme。
 -   配置合适的配置文件，可以参考applications/sample/camera/media下配置文件，如果适配其他sensor可在开源社区中求助。用户使用时将配置文件放入到开发板/storage/data目录，开发者通过该配置文件可以去适配sensor及分辨率、帧率等能力。
--   应用接口调用参见applications/sample/camera/media下demo实现。
 
 ## 使用<a name="section1467220266400"></a>
 
 Native应用接口调用可以参考applications/sample/camera/media下demo实现
+
 应用开发者使用多媒体接口实现录像、预览和播放音视频，使用可以参考《多媒体开发指南》。
+
 例：下面是用户重写事件类的实例
+
 用户先创建camerakit组件对象，注册各种事件回调，这些事件回调是用户实现用来响应多媒体模块中事件响应的，之后调用创建camera就可以创建一个操作camera资源的对象，使用这个对象可以启动预览、录像或抓拍取流，及设置取流的相关参数。
 
 ```
@@ -455,4 +457,6 @@ multimedia\_interfaces\_kits\_player\_lite
 multimedia\_services\_media\_lite
 
 multimedia\_utils\_lite
+
+
 
