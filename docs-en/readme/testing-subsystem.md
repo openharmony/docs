@@ -2,11 +2,11 @@
 
 ## Overview<a name="section7375710115617"></a>
 
-The test-driven development mode is used during the development process. You can develop new cases or modify existing cases to test new or enhanced system features. The self-test helps you develop high-quality code in the development phase.
+The test-driven development mode is used during the development process. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase.
 
 ## Directory Structure<a name="section102031353175317"></a>
 
-**Table  1**  Directory structure of the source code for self-test tools
+**Table  1**  Directory structure of the source code for test tools
 
 <a name="table2977131081412"></a>
 <table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="33.879999999999995%" id="mcps1.2.3.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>Name</p>
@@ -17,7 +17,7 @@ The test-driven development mode is used during the development process. You can
 </thead>
 <tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="33.879999999999995%" headers="mcps1.2.3.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>developertest</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.12%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>Development self-test framework</p>
+<td class="cellrowborder" valign="top" width="66.12%" headers="mcps1.2.3.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>Development test framework</p>
 </td>
 </tr>
 <tr id="row259142201312"><td class="cellrowborder" valign="top" width="33.879999999999995%" headers="mcps1.2.3.1.1 "><p id="p640585013134"><a name="p640585013134"></a><a name="p640585013134"></a>developertest/src</p>
@@ -107,12 +107,12 @@ The test-driven development mode is used during the development process. You can
 </tr>
 <tr id="row153133019174"><td class="cellrowborder" valign="top" width="33.879999999999995%" headers="mcps1.2.3.1.1 "><p id="p163153019174"><a name="p163153019174"></a><a name="p163153019174"></a>developertest/start.bat</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.12%" headers="mcps1.2.3.1.2 "><p id="p194133051713"><a name="p194133051713"></a><a name="p194133051713"></a>Developer self-test entry (Windows)</p>
+<td class="cellrowborder" valign="top" width="66.12%" headers="mcps1.2.3.1.2 "><p id="p194133051713"><a name="p194133051713"></a><a name="p194133051713"></a>Developer test entry (Windows)</p>
 </td>
 </tr>
 <tr id="row6640152712173"><td class="cellrowborder" valign="top" width="33.879999999999995%" headers="mcps1.2.3.1.1 "><p id="p2641202751712"><a name="p2641202751712"></a><a name="p2641202751712"></a>developertest/start.sh</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.12%" headers="mcps1.2.3.1.2 "><p id="p86419276175"><a name="p86419276175"></a><a name="p86419276175"></a>Developer self-test entry (Linux)</p>
+<td class="cellrowborder" valign="top" width="66.12%" headers="mcps1.2.3.1.2 "><p id="p86419276175"><a name="p86419276175"></a><a name="p86419276175"></a>Developer test entry (Linux)</p>
 </td>
 </tr>
 </tbody>
@@ -136,7 +136,7 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
 
 ## Compiling Test Cases<a name="section125411936102918"></a>
 
--   Self-test case specifications
+-   Test case specifications
     -   Naming rules
 
         The source file name of the test case must be consistent with the test suite content. The relationship between the test suite and the test case is 1:N and the test suite and the test source file is 1:1. Each source file is globally unique and named in the format of \[Feature\]\_\[Function\]\_\[Subfunction 1\]\_\[Subfunction 1.1\]. Subfunctions can be further divided.
@@ -145,18 +145,18 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
 
     -   Test case coding specifications
 
-        The self-test cases must comply with the feature code coding specifications. In addition, necessary case description information must be added. For details, see  [\#li2069415903917](#li2069415903917).
+        The test cases must comply with the feature code coding specifications. In addition, necessary case description information must be added. For details, see  [\#li2069415903917](#li2069415903917).
 
     -   Test case compilation and configuration specifications
 
         The test cases are compiled in GN mode. The configuration must comply with the compilation guide of the open source project. For details, see  [en-us\_topic\_0000001051580775.md](en-us_topic_0000001051580775.md).
 
 
--   <a name="li2069415903917"></a>Self-test case template
+-   <a name="li2069415903917"></a>Test case template
 
     For details, see the test case  **demo**  developertest/example/cxx\_demo/test/unittest/common/calc\_subtraction\_test.cpp.
 
-    >![](public_sys-resources/icon-note.gif) **NOTE:** 
+    >![](public_sys-resources/icon-note.gif) **NOTE:**
     >Feature: Description of the tested feature
     >Function: Function of the tested feature
     >SubFunction: Subfunction of the tested feature
@@ -165,7 +165,7 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
     >CaseDescription: Test case description
     >step: Procedure for executing the test case when the complex logic is tested
 
--   Directory plan for self-test cases
+-   Directory plan for test cases
 
     ```
     subsystem (subsystem, system component)
@@ -188,21 +188,21 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
                  ├── common
                  ├── liteos
                  ├── linux
-    
+
     ```
 
-    >![](public_sys-resources/icon-note.gif) **NOTE:** 
+    >![](public_sys-resources/icon-note.gif) **NOTE:**
     >The LiteOS and Linux are used as examples only for different device models. For the same feature on different development boards, if the test cases are the same, they are stored in the  **common**  directory. For the same feature, if the test cases are used to distinguish different device models and may include kernel differences and chip platform differences, the test cases are distinguished by directory.
 
--   Procedure for compiling self-test cases
-    1.  Add the comment information of the case header file.
+-   Procedure for compiling test cases
+    1.  Add comments to the test case header file.
     2.  Reference the  **gtest**  header file and  **ext**  namespace.
     3.  Add the header file to test.
     4.  Define test suites \(test classes\).
     5.  Implement specific test cases of the test suite, including test case comments and logic implementation.
     6.  Compile the test case compilation configuration.
 
-        >![](public_sys-resources/icon-note.gif) **NOTE:** 
+        >![](public_sys-resources/icon-note.gif) **NOTE:**
         >\* Example: developertest/example/cxx\_demo/test/unittest/common/calc\_subtraction\_test.cpp
         >Notes:
         >-   **SetUp**  and  **TearDown**  are the processing logic before and after each test case in the test suite is executed.
@@ -213,26 +213,26 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
 
 -   Compile a test case compilation file.
     -   Define test case compilation and building objectives.
-        1.  Add comments to the case compilation header file.
+        1.  Add comments to the test case compilation header file.
         2.  Import the test case compilation template file.
         3.  Specify the output path of the test case file.
         4.  Configure the directory contained in the test case compilation dependency.
-        5.  Specify the name of the case execution file generated by the case compilation target.
+        5.  Specify the file name generated by the test case compilation target.
         6.  Compile a specific test case compilation script and add the source files, configurations, and dependencies involved in the compilation.
-        7.  Group the target case files by condition. The group name is fixed to  **unittest/moduletest**.
+        7.  Group the target test case files by condition. The group name is fixed to  **unittest/moduletest**.
 
     -   If there are multiple test suites, define the common compilation configuration.
     -   Add test cases to the build system.
 
-        >![](public_sys-resources/icon-note.gif) **NOTE:** 
+        >![](public_sys-resources/icon-note.gif) **NOTE:**
         >\* Example: developertest/example/cxx\_demo/test/unittest/common/BUILD.gn
 
 
 -   Test case level definition
-    -   Basic \(Level 1\): < 1s
-    -   Major \(Level 2\): < 10s
-    -   Minor \(Level 3\): < 5 min
-    -   Uncommon \(Level 4\): \> 5 min
+    -   Basic \(Level 1\)
+    -   Major \(Level 2\)
+    -   Minor \(Level 3\)
+    -   Uncommon \(Level 4\)
 
 
 ## Using Test Framework<a name="section75882026185016"></a>
@@ -292,7 +292,7 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
         ```
 
 
--   Check the environment before executing the self-test cases.
+-   Check the environment before executing the test cases.
     -   The system image and file system have been burnt to a development board and are running properly on the development board. In system mode, for example, the device prompt  **OHOS\#**  is displayed during shell login.
     -   The development host is properly connected to the serial port of the development board, and the development host is properly connected to the serial port of the development board.
     -   The IP addresses of the development host and development board are in the same network segment and can ping each other.
@@ -318,25 +318,29 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
         Configure device models based on the actual development board, for example,  **developertest/src/core/resource/config/framework\_config.xml**.
 
     -   Run the test command.
-        1.  The following example shows how to run the test command.  **-t ut**  is mandatory, and  **-ss**  and  **-tm**  are optional.
+        1.  To query the subsystems, modules, product forms, and test types supported by test cases, run the  **show**  command.
+
+            ```
+            usage:
+                show productlist      Querying Supported Product Forms
+                show typelist         Querying the Supported Test Type
+                show subsystemlist    Querying Supported Subsystems
+                show modulelist       Querying Supported Modules
+            ```
+
+        2.  The following example shows how to run the test command.  **-t**  is mandatory, and  **-ss**  and  **-tm**  are optional.
 
             ```
             run -t ut -ss test -tm example
             ```
 
-        2.  Specify the parameters that can be used to execute the test suite corresponding to a specific feature or module.
+        3.  Specify the parameters that can be used to execute the test suite corresponding to a specific feature or module.
 
             ```
-            usage: __main__.py [-h] [-p PRODUCTFORM] [-t [TESTTYPE [TESTTYPE ...]]]
+            usage: run [-h] [-p PRODUCTFORM] [-t [TESTTYPE [TESTTYPE ...]]]
                 [-ss SUBSYSTEM] [-tm TESTMODULE] [-ts TESTSUIT]
-                [-tc TESTCASE] [-tl TESTLEVEL] [-os TARGET_OS_NAME]
-                [-bv BUILD_VARIANT] [-b [BUILD [BUILD ...]]]
-                [-cov COVERAGE] [-tf TESTFILE] [-res RESOURCE]
-                [-sn DEVICE_SN] [-c CONFIG] [-rp REPORTPATH] [-e EXECTYPE]
-                [-td TEST_DRIVER]
-                action Specify test para.positional arguments:
-                    action                Specify action
-            
+                [-tc TESTCASE] [-tl TESTLEVEL]
+
             optional arguments:
                 -h, --help            show this help message and exit
                 -p PRODUCTFORM, --productform PRODUCTFORM    Specified product form
@@ -347,16 +351,6 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
                 -ts TESTSUIT, --testsuit TESTSUIT    Specify test suit
                 -tc TESTCASE, --testcase TESTCASE    Specify test case
                 -tl TESTLEVEL, --testlevel TESTLEVEL    Specify test level
-                -bv BUILD_VARIANT, --build_variant BUILD_VARIANT    Specify build variant(release,debug)
-                -b [BUILD [BUILD ...]], --build [BUILD [BUILD ...]]
-                    Specify build values(version,testcase)
-                -tf TESTFILE, --testfile TESTFILE    Specify test suites list file
-                -res RESOURCE, --resource RESOURCE    Specify test resource
-                -sn DEVICE_SN, --device_sn DEVICE_SN    Specify device serial number
-                -c CONFIG, --config CONFIG    Specify test config file
-                -rp REPORTPATH, --reportpath REPORTPATH    Specify test report path
-                -e EXECTYPE, --exectype EXECTYPE    Specify test execute type
-                -td TEST_DRIVER, --testdriver TEST_DRIVER    Specify test driver id
             ```
 
 
@@ -371,7 +365,7 @@ Install the serial port plugins  **pyserial**  and  **readline**  on the local P
 
 
 -   Exit the self-test platform.
-    -   Run the following command to exit the self-test platform:
+    -   Run the following command to exit the test platform:
 
         ```
         quit
