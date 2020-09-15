@@ -7,7 +7,7 @@ X test suite is a set of OpenHarmony certification test suites, including the cu
 The  **test/xts**  repository contains the  **acts**  directory and  **tools**  software package.
 
 -   The  **acts**  directory stores the source code and configuration files of ACTS test cases. The ACTS helps device vendors detect the software incompatibility as early as possible and ensures that the software is compatible to OpenHarmony during the entire development process.
--   The  **tools**  software package provides the test case development framework where ACTS code is compiled.
+-   The  **tools**  software package stores the test case development framework related to  **acts**.
 
 ## Directory Structure<a name="section36203291667"></a>
 
@@ -17,9 +17,7 @@ The directory structure of the  **test/xts**  repository is as follows:
 
 │   ├── BUILD.gn \#Compilation configuration of test cases
 
-│   └── testing\_subsystem\_A\_lite \#Test case source code of A
-
-│   └── testing\_subsystem\_B\_lite \#Test case source code of B
+│   └── subsystem\_lite   \# Test case source code
 
 └── tools
 
@@ -49,13 +47,13 @@ The HCTest framework supports the C language and allows you to execute your test
 
 │   ├── BUILD.gn
 
-│   └── Testing\_subsystem\_lite
+│   └──subsystem\_lite
 
-│   │   └── Testing\_module\_hal
+│   │   └── module\_hal
 
 │   │   │   └── BUILD.gn
 
-│   │   │   └── src \#Test case source code
+│   │   │   └── src
 
 2. Write the test case stored in the  **src**  directory.
 
@@ -171,16 +169,16 @@ hctest_suite("ActsDemoTest") {
 
 4. Add compilation options to the  **BUILD.gn**  file in the  **acts**  directory.
 
-To add test code to the compilation file, you need to add the test module to the  **test/xts/acts/BUILD.gn**  script in the  **acts**  directory.
+You need to add the test module to the  **test/xts/acts/BUILD.gn**  script in the  **acts**  directory.
 
 ```
-lite_component("acts") {  
+lite_component("acts") {
     ...
     if(board_name == "liteos_riscv") {
-        features += [    
+        features += [
             ...
-            "//xts/acts/testing_subsystem_lite/testing_module_hal:ActsDemoTest"
-        ]    
+            "//xts/acts/subsystem_lite/module_hal:ActsDemoTest"
+        ]
     }
 }
 ```
@@ -203,13 +201,13 @@ The HCPP Test framework is enhanced and adapted based on the open-source googlet
 
 │   ├── BUILD.gn
 
-│   └── Testing\_subsystem\_lite
+│   └──subsystem\_lite
 
-│   │   └── Testing\_module\_posix
+│   │   └── module\_posix
 
 │   │   │   └── BUILD.gn
 
-│   │   │   └── src \(Test case source code\)
+│   │   │   └── src
 
 2. Write the test case stored in the  **src**  directory.
 
@@ -339,15 +337,15 @@ hcpptest_suite("ActsDemoTest") {
 
 4. Add compilation options to the  **BUILD.gn**  file in the  **acts**  directory.
 
-To add the test code to the version compilation, you need to add the test module to the  **test/xts/acts/BUILD.gn**  script in the  **acts**  directory.
+You need to add the test module to the  **test/xts/acts/BUILD.gn**  script in the  **acts**  directory.
 
 ```
- lite_component("acts") {  
+ lite_component("acts") {
 ...
 else if(board_name == "liteos_a") {
         features += [
             ...
-            "//xts/acts/testing_subsystem_lite/testing_module_posix:ActsDemoTest"
+            "//xts/acts/subsystem_lite/module_posix:ActsDemoTest"
         ]
     }
 }
