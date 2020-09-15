@@ -4,11 +4,13 @@
 
 The OpenHarmony kernel is a real-time OS kernel developed by Huawei for IoT devices. It is as lightweight as RTOS and as easy-to-use as Linux.
 
-The kernel repository is used to store the source code of the OpenHarmony kernel components, including process and thread scheduling, memory management, IPC mechanism, and timer management, as well as the version package compilation information.
+The OpenHarmony kernel includes basic kernel functions such as process and thread scheduling, memory management, IPC mechanism, and timer management.
+
+The source code of the OpenHarmony kernel consists of two repositories: the [`kernel_liteos_a`](https://gitee.com/openharmony/kernel_liteos_a) repository for Cortex-A processors and the [`kernel_liteos_m`](https://gitee.com/openharmony/kernel_liteos_m) repository for Cortex-M processors. The directory structures of the two repositories are similar. The following describes the directory structure of kernel_liteos_a.
 
 ## Directory Structure<a name="section1121775732114"></a>
 
-**Table  1**  Directory structure of the OpenHarmony lightweight kernel source code
+**Table  1**  Directory structure of the OpenHarmony kernel source code
 
 <a name="table2977131081412"></a>
 <table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="30.34%" id="mcps1.2.3.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>Directory</p>
@@ -72,14 +74,9 @@ The kernel repository is used to store the source code of the OpenHarmony kernel
 <td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p1374365134011"><a name="p1374365134011"></a><a name="p1374365134011"></a>System calls</p>
 </td>
 </tr>
-<tr id="row6470183019419"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p17470143094117"><a name="p17470143094117"></a><a name="p17470143094117"></a>test</p>
-</td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p547013018415"><a name="p547013018415"></a><a name="p547013018415"></a>Kernel and user-space test cases</p>
-</td>
-</tr>
 <tr id="row343553564120"><td class="cellrowborder" valign="top" width="30.34%" headers="mcps1.2.3.1.1 "><p id="p54351735114113"><a name="p54351735114113"></a><a name="p54351735114113"></a>tools</p>
 </td>
-<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p17435635114116"><a name="p17435635114116"></a><a name="p17435635114116"></a>Code related to compilation configuration and <strong id="b1181842313414"><a name="b1181842313414"></a><a name="b1181842313414"></a>menuconfig</strong></p>
+<td class="cellrowborder" valign="top" width="69.66%" headers="mcps1.2.3.1.2 "><p id="p17435635114116"><a name="p17435635114116"></a><a name="p17435635114116"></a>Building tool as well as related configuration and code</p>
 </td>
 </tr>
 </tbody>
@@ -87,7 +84,7 @@ The kernel repository is used to store the source code of the OpenHarmony kernel
 
 ## Constraints<a name="section1967115154223"></a>
 
-By default, the JFFS2 file system is used during system startup. This file system is read-write. If other file systems need to be used, the configurations of the file systems must be added accordingly.
+Hi3518EV300 uses the JFFS2 file system by default, and Hi3516DV300 uses the VFAT file system by default. If other file systems need to be used, the configurations of the file systems must be added accordingly.
 
 ## Usage<a name="section1821123352217"></a>
 
@@ -95,11 +92,11 @@ For details, see  [Kernel Usage Guidelines](../kernel/Readme-EN.md).
 
 ## Repositories Involved<a name="section2392425183215"></a>
 
-drivers\_liteos
+[drivers_liteos](https://gitee.com/openharmony/drivers_liteos)
 
-kernel\_liteos\_a
+[kernel_liteos_a](https://gitee.com/openharmony/kernel_liteos_a)
 
-kernel\_liteos\_a\_huawei\_proprietary\_fs\_proc
+[kernel_liteos_a_huawei_proprietary_fs_proc](https://gitee.com/openharmony/kernel_liteos_a_huawei_proprietary_fs_proc)
 
-kernel\_liteos\_m
+[kernel_liteos_m](https://gitee.com/openharmony/kernel_liteos_m)
 
