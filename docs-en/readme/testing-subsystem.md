@@ -130,7 +130,7 @@ Test tool environment dependency
 
 Depend on the Python environment.
 
-Install the serial port plugins  **pyserial**  and  **readline**  on the local Python, and run the  **pip intall pyserial**  and  **sudo apt-get install libreadline-dev**  commands on the shell. The following figure is displayed when the installation is complete.
+Install the serial port plugins  **pyserial**  and  **readline**  on the local Python, and run the  **pip install pyserial**  and  **sudo apt-get install libreadline-dev**  commands on the shell. The following figure is displayed when the installation is complete.
 
 ![](figures/en-us_image_0000001052278423.png)
 
