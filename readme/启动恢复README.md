@@ -112,7 +112,7 @@ base
       │   ├── include     应用孵化模块头文件目录
       │   ├── LICENSE     开源LICENSE文件
       │   ├── moduletest  应用孵化模块自测试代码目录
-      │   └── src         应用孵化木块源文件目录
+      │   └── src         应用孵化模块源文件目录
       ├── bootstrap_lite   启动服务模块
       │   ├── BUILD.gn    启动服务模块编译配置
       │   ├── LICENSE     开源LICENSE文件
