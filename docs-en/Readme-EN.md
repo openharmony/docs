@@ -2,6 +2,8 @@
 
 This project provides documents including the quick start, development guide, and API reference, Welcome to participate in the open source project and improve these documents for developers.
 
+[中文版本](/Readme-CN.md)
+
 ## Directory Structure<a name="section135134412620"></a>
 
 -   quick-start: [Getting Started](quick-start/Readme-EN.md)
