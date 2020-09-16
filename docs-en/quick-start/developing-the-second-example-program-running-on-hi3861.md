@@ -49,7 +49,7 @@ The source code needs to be modified when fixing bugs or compiling a new service
             "hello_world.c"
         ]
         include_dirs = [
-            "//utils/native/liteos/include"
+            "//utils/native/lite/include"
         ]
     }
     ```

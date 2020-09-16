@@ -283,7 +283,7 @@ lite_component("link") {
         ]
     
         include_dirs = [
-            "//utils/native/liteos/include",
+            "//utils/native/lite/include",
             "//vendor/hisi/wifi-iot/hi3861/3rd_sdk/demolink"
         ]
     }
