@@ -131,7 +131,7 @@ int OnSessionOpenedEventTest(int sessionId)
 // 向SoftBus注册业务会话服务及其回调
 int StartSessionServer()
 {
-    if (g_sessionCallback != NULL) {
+    if (g_sessionCallback == NULL) {
         g_sessionCallback = (struct ISessionListener*)malloc(sizeof(struct ISessionListener));
     }
     if (g_sessionCallback == NULL) {
