@@ -131,7 +131,7 @@ int OnSessionOpenedEventTest(int sessionId)
 // Register the service session service and its callbacks with the soft bus.
 int StartSessionServer()
 {
-    if (g_sessionCallback != NULL) {
+    if (g_sessionCallback == NULL) {
         g_sessionCallback = (struct ISessionListener*)malloc(sizeof(struct ISessionListener));
     }
     if (g_sessionCallback == NULL) {
