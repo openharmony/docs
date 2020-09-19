@@ -90,7 +90,7 @@ Hi3518EV300默认使用jffs2文件系统，Hi3516DV300默认使用vfat文件系�
 
 请参考[《内核使用指南》](../kernel/Readme-CN.md)。
 
-## 涉及仓<a name="section2392425183215"></a>
+## 涉及仓库<a name="section2392425183215"></a>
 
 [drivers_liteos](https://gitee.com/openharmony/drivers_liteos)
 
