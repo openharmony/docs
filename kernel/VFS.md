@@ -84,7 +84,7 @@ inode的关键在于u和i\_private字段，一个是函数方法结构体的指�
 
 **VFS支持的操作**
 
-open, close, read, write, seek, ioctl, fcntl, mmap, sync, dup, dup2, truncate, opendir, closedir, readdir, readdir, rewinddir, mount, umount, statfs, unlink, remove, mkdir, rmdir, rename, stat, utime, seek64, fallocate, fallocate64, truncate64, chmod, chown。
+open, close, read, write, seek, ioctl, fcntl, mmap, sync, dup, dup2, truncate, opendir, closedir, readdir, rewinddir, mount, umount, statfs, unlink, remove, mkdir, rmdir, rename, stat, utime, seek64, fallocate, fallocate64, truncate64, chmod, chown。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >-   当前只提供修改jffs2文件以及vfs设备节点属性的接口，各个系统对只读等属性有各自的处理方式。
