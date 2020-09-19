@@ -46,7 +46,7 @@
 </thead>
 <tbody><tr id="row17977171010144"><td class="cellrowborder" valign="top" width="19.439999999999998%" headers="mcps1.2.4.1.1 "><p id="p2793159171311"><a name="p2793159171311"></a><a name="p2793159171311"></a>base/startup/services/appspawn_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.64%" headers="mcps1.2.4.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>应用孵化模块，appspawn进程，负责通过轻量级IPC机制接收AMS消息，然后根据消息解析结果启动应用进程并赋予其对应权限。</p>
+<td class="cellrowborder" valign="top" width="66.64%" headers="mcps1.2.4.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>应用孵化模块，appspawn进程，负责通过IPC机制接收Ability Manager Service的消息，然后根据消息解析结果启动应用进程并赋予其对应权限。</p>
 </td>
 <td class="cellrowborder" valign="top" width="13.919999999999998%" headers="mcps1.2.4.1.3 "><p id="p63463619360"><a name="p63463619360"></a><a name="p63463619360"></a>Hi3516DV300</p>
 <p id="p141611802359"><a name="p141611802359"></a><a name="p141611802359"></a>Hi3518EV300</p>
