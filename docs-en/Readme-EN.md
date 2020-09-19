@@ -7,7 +7,7 @@ This project provides documentation including the quick start, development guide
 ## Directory Structure<a name="section135134412620"></a>
 
 -   quick-start: [Getting Started](quick-start/Readme-EN.md)
--   getting the source: [Source Code Acquisition/Tool Acquisition](get-code/Readme-EN.md)
+-   get-code: [Source Code Acquisition/Tool Acquisition](get-code/Readme-EN.md)
 -   driver: [Device Development Guidelines](driver/Readme-EN.md) 
 -   kernel: [Kernel Usage Guidelines](kernel/Readme-EN.md)
 -   subsystems: [Subsystem Development Guidelines](subsystems/Readme-EN.md)
