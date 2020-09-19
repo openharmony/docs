@@ -96,7 +96,7 @@ The sample code for data transmission is as follows:
 
 ```
 // Define the service name, session name, and related callback.
-const char *g_pkgName = "BUSINESS_NAME";
+const char *g_moduleName  = "BUSINESS_NAME";
 const char *g_sessionName = "SESSION_NAME";
 struct ISessionListener * g_sessionCallback= NULL;
 
@@ -141,7 +141,7 @@ int StartSessionServer()
     g_sessionCallback->onBytesReceived = OnBytesReceivedTest;
     g_sessionCallback->onSessionOpened = OnSessionOpenedEventTest;
     g_sessionCallback->onSessionClosed = OnSessionClosedEventTest;
-    int ret = CreateSessionServer(g_pkgName, g_sessionName, g_sessionCallback);
+    int ret = CreateSessionServer(g_moduleName , g_sessionName, g_sessionCallback);
     if (ret < 0) {
         printf("Failed to create session server!\n");
         free(g_sessionCallback);
@@ -153,7 +153,7 @@ int StartSessionServer()
 // Delete the service session service and its callbacks from the soft bus.
 void StopSessionServer()
 {
-    int ret = RemoveSessionServer(g_pkgName, g_sessionName);
+    int ret = RemoveSessionServer(g_moduleName , g_sessionName);
     if (ret < 0) {
         printf("Failed to remove session server!\n");
         return;
