@@ -14,7 +14,7 @@
 
 softbus\_lite源代码目录结构如下图所示：
 
-**表1 **softbus\_lite源代码目录结构
+**表1**softbus\_lite源代码目录结构
 
 <a name="table1843451445317"></a>
 <table><thead align="left"><tr id="row16552191445314"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p75521114125314"><a name="p75521114125314"></a><a name="p75521114125314"></a>名称</p>
