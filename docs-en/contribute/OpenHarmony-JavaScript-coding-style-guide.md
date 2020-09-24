@@ -4,7 +4,7 @@
 Rules are not perfect. Prohibiting features that are useful in specific situations can have an impact on code implementation, but we set the rules for the benefit of most programmers. If we identify a rule cannot be followed in the operations, we should work together to improve the rule. You are supposed to have the basic JavaScript language capabilities to refer to this guide, instead of learning the JavaScript language from it.
 
 ## General Principles
-The code is required to be **readable, maintainable, secure, reliable, testable, efficient, and portable ** on the premise that the functions are correct.
+The code is required to be **readable, maintainable, secure, reliable, testable, efficient, and portable** on the premise that the functions are correct.
 
 ## Convention
 
@@ -186,7 +186,7 @@ for(let idx = 0; idx < 5; ++idx)
   console.log(idx);
 ```
 
-**Example:*
+**Example:**
 
 ```javascript
 if (condition) {
@@ -337,7 +337,7 @@ console.log(message);
 
 #### Rule 3.1 When declaring a variable, use the keyword `var`, `let`, or `const` to prevent the variable from being exposed to the global scope.
 
-** Note:** If the keyword `var`, `let`, or `const` is not used to declare a variable, the variable will be exposed to the global scope, which may overwrite the variable with the same name in the global scope. As a result, the GC cannot effectively reclaim the memory. In addition, when a variable contains sensitive information, exposuring to the global scope may result in information leakage. ** Use `const` instead of `var` for all references; Use `let` instead of `var` if you need a variable reference.** Because the scope of `const` and `let` is smaller, writing code is easier to control. Const ensures that the reference cannot be re-assigned. The pointer referenced by const is immutable, and an error will be reported during re-assignment, avoiding overwriting.
+**Note:** If the keyword `var`, `let`, or `const` is not used to declare a variable, the variable will be exposed to the global scope, which may overwrite the variable with the same name in the global scope. As a result, the GC cannot effectively reclaim the memory. In addition, when a variable contains sensitive information, exposuring to the global scope may result in information leakage. ** Use `const` instead of `var` for all references; Use `let` instead of `var` if you need a variable reference.** Because the scope of `const` and `let` is smaller, writing code is easier to control. Const ensures that the reference cannot be re-assigned. The pointer referenced by const is immutable, and an error will be reported during re-assignment, avoiding overwriting.
 
 **Counterexample:**
 
@@ -374,7 +374,7 @@ console.log(url); //Report: Uncaught ReferenceError: url is not defined
 
 #### Rule 3.2 Function expressions must be used to declare functions in function blocks.
 
-** Note:** Although many JS engines support in-block declaration functions, they do not belong to the ECMAScript specification. The poor implementation of browsers is incompatible with each other, and some are contrary to the future ECMAScript draft. In addition, ECMAScript5 does not support block scopes. All control flows are not independent scopes. Variables or functions declared in the control flows are in the scope of their parent functions or scripts. As a result, the declaration of functions or variables in blocks may be overwritten. If you do need to define a function in a block, you should initialize it using a function expression.
+**Note:** Although many JS engines support in-block declaration functions, they do not belong to the ECMAScript specification. The poor implementation of browsers is incompatible with each other, and some are contrary to the future ECMAScript draft. In addition, ECMAScript5 does not support block scopes. All control flows are not independent scopes. Variables or functions declared in the control flows are in the scope of their parent functions or scripts. As a result, the declaration of functions or variables in blocks may be overwritten. If you do need to define a function in a block, you should initialize it using a function expression.
 
 **Counterexample:**
 
@@ -417,7 +417,7 @@ bar("hotel"); // Correct output"hotel foo 1"
 
 #### Rule 3.3 Encapsulation of Basic Types is prohibited
 
-** Note:** JavaScript has five basic data types: Undefined, Null, Boolean, Number, and String. The value of the base data type is unchangeable. The basic data type object used in JavaScript is only a value. It does not contain the methods and attributes of the object encapsulated by the object. When the attributes and methods are not required, the encapsulation type of the object does not need to be used.
+**Note:** JavaScript has five basic data types: Undefined, Null, Boolean, Number, and String. The value of the base data type is unchangeable. The basic data type object used in JavaScript is only a value. It does not contain the methods and attributes of the object encapsulated by the object. When the attributes and methods are not required, the encapsulation type of the object does not need to be used.
 
 **Counterexample:**
 
@@ -533,7 +533,7 @@ var barIsEnumerable = {}.propertyIsEnumerable.call(foo, "bar");
 
 #### Rule 3.9 Use the `Object.getPrototypeOf` function instead of `_proto_`
 
-**Note:** ES5 introduces the `Object.getPrototypeOf' function as the standard API for obtaining object prototypes, but a large number of JavaScript engines have long used a special `proto' attribute to achieve the same purpose. However, `proto' is essentially an internal attribute rather than a formal external API. Currently, this attribute must be deployed in browsers, but not in other running environments. Therefore, this attribute is not fully compatible. For example, objects with null prototypes are handled differently in different environments.
+**Note:** ES5 introduces the `Object.getPrototypeOf` function as the standard API for obtaining object prototypes, but a large number of JavaScript engines have long used a special `proto' attribute to achieve the same purpose. However, `proto` is essentially an internal attribute rather than a formal external API. Currently, this attribute must be deployed in browsers, but not in other running environments. Therefore, this attribute is not fully compatible. For example, objects with null prototypes are handled differently in different environments.
 
 ```javascript
 var empty = Object.create(null);
@@ -614,9 +614,9 @@ function setClickListener(element, a, b) {
 }
 
 function createHandler(a, b) {
-  // 通过添加另外一个函数来避免闭包本身，进而组织内存泄露
+  // By adding another function to avoid the closure itself, you can organize memory leaks.
   return function() {
-    // 在这里用到a和b
+    // Use a and b here
   }
 }
 ```
@@ -689,6 +689,7 @@ The effective solutions are as follows:
 #### Suggestion 3.15 Do not use the array constructor with variable arguments.
 
 **Note:** The method of constructor `new Array` is not recommended to construct a new array. If the constructor has only one parameter, exceptions may occur. In addition, the global definition of the array may be modified. Therefore, it is recommended to use the array literal notation, that is, `[]` notation, to create an array.
+
 **Counterexample:**
 
 ```javascript
