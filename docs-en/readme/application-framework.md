@@ -161,58 +161,93 @@ The following table describes the source code directory structure of the applica
 
 -   Add the configuration for application framework compilation. The following section uses  **hi3516dv300\_liteos\_a**  as an example:
 
-    -   Add the configuration of  **appexecfwk**  and  **aafwk**  under the  **subsystem\_list**  field in the  **build/lite/platform/hi3516dv300\_liteos\_a/platform.json**  file. The sample code is as follows:
+    -   Add the configuration of  **appexecfwk**  and  **aafwk**  under the  **subsystems**  field in the  **build/lite/platform/hi3516dv300\_liteos\_a/platform.json**  file. The sample code is as follows:
 
     ```
     {
-         "name":"aafwk",
-         "project":"hmf/aafwk/services/abilitymgr_lite",
-         "path":"build/lite/config/subsystem/aafwk",
-         "dir":"foundation/aafwk/services/abilitymgr_lite",
-         "desc":"Ability Services Manager",
-         "requirement":"yes",
-         "default":"yes",
-         "selected":"yes"
+      "subsystem": "aafwk",
+      "components": [
+        {
+          "component": "ability",
+          "optional": "true",
+          "dirs": [
+            "foundation/aafwk"
+          ],
+          "targets": [
+            "//foundation/aafwk/frameworks/ability_lite:aafwk_abilitykit_lite",
+            "//foundation/aafwk/frameworks/ability_lite:aafwk_abilityMain_lite",
+            "//foundation/aafwk/frameworks/abilitymgr_lite:aafwk_abilityManager_lite",
+            "//foundation/aafwk/services/abilitymgr_lite:aafwk_services_lite"
+          ],
+          "features": [
+            {"enable_ohos_appexecfwk_feature_ability": "true"}
+          ],
+          "deps": {
+            "components": [
+              "hilog_a",
+              "bundle_mgr",
+              "system_ability_manager",
+              "distributed_schedule",
+              "graphic",
+              "utils",
+              "ipc"
+            ],
+            "third_party": [
+              "cjson",
+              "bounds_checking_function"
+            ]
+          }
+        }
+      ]
     },
+
     {
-         "name":"appexecfwk",
-         "project": "hmf/appexecfwk/services/bundlemgr_lite",
-         "path": "build/lite/config/subsystem/appexecfwk",
-         "dir": "foundation/appexecfwk/services/bundlemgr_lite",
-         "desc":"Bundle Services Manager",
-         "requirement":"yes",
-         "default":"yes",
-         "selected":"yes"
+      "subsystem": "appexecfwk",
+      "components": [
+        {
+          "component": "bundle_mgr",
+          "optional": "true",
+          "dirs": [
+            "foundation/appexecfwk"
+          ],
+          "targets": [
+            "//foundation/appexecfwk/services/bundlemgr_lite:appexecfwk_services_lite",
+            "//foundation/appexecfwk/frameworks/bundle_lite:appexecfwk_kits_lite"
+          ],
+          "features": [],
+          "deps": {
+            "components": [
+              "iam",
+              "app_verify",
+              "hilog_a",
+              "system_ability_manager",
+              "global_resource_manager",
+              "graphic",
+              "utils"
+            ],
+            "third_party": [
+              "cjson",
+              "zlib"
+            ]
+          }
+        }
+      ]
     },
-    ```
-
-    -   Add the configuration of  **appexecfwk**  and  **aafwk**  under the  **template\_subsystem\_list**  field in the  **build/lite/platform/hi3516dv300\_liteos\_a/template/ipcamera.json**  file. The sample code is as follows:
-
-    ```
-    "template_subsystem_list" : [
-         ......
-         "distributedschedule",
-         "aafwk",
-         "appexecfwk",
-         "communication",
-         ......
-    ],
     ```
 
     -   Add the configuration of particular application framework components for compilation in  **build/lite/config/subsystem/aafwk/BUILD.gn**  and  **/build/lite/config/subsystem/appexecfwk/BUILD.gn**. The sample code is as follows:
 
     ```
     import("//build/lite/config/subsystem/lite_subsystem.gni")
-    
+
     lite_subsystem("aafwk") {
         subsystem_components = [
-            "//foundation/aafwk/frameworks/kits/ability_lite:aafwk_abilitykit_lite",
-            "//foundation/aafwk/frameworks/kits/ability_lite:aafwk_abilityMain_lite",
+            "//foundation/aafwk/frameworks/ability_lite:aafwk_abilitykit_lite",
+            "//foundation/aafwk/frameworks/abilitymgr_lite:aafwk_abilityManager_lite",
             "//foundation/aafwk/services/abilitymgr_lite:aafwk_services_lite",
-            "//foundation/aafwk/frameworks/kits/tools_lite:tools_lite",
-            "//foundation/aafwk/frameworks/kits/ability_lite/test:aafwk_testapp_lite",
         ]
     }
+
     ```
 
     ```
@@ -230,9 +265,9 @@ The following table describes the source code directory structure of the applica
 
 -   After the preceding configurations are complete, run the following command to compile the entire system:
 
-```
-python build.py ipcamera_hi3516dv300 -b debug
-```
+    ```
+    python build.py ipcamera_hi3516dv300 -b debug
+    ```
 
 ## Running the Two Services in the Application Framework<a name="section1048719468503"></a>
 
@@ -240,16 +275,20 @@ python build.py ipcamera_hi3516dv300 -b debug
 -   **Ability Manager Service**  and  **Bundle Manager Service**  are registered with  **sa\_manager**.  **sa\_manager**  runs in the foundation process and sets up a thread runtime environment for the two services. For details about how to create and use  **Ability Manager Service**  and  **Bundle Manager Service**, see  [Service Framework](en-us_topic_0000001051589563.md).
 -   Add the configuration of  **abilityms**  and  **bundlems**  for compilation in  **foundation/distributedschedule/services/safwk\_lite/BUILD.gn**. The sample code is as follows:
 
-```
-deps = [
-    "//foundation/distributedschedule/services/samgr_lite/samgr_server:server",
-    "//base/dfx/lite/liteos-a/source/log:hilog_a_shared",
-    "//foundation/aafwk/services/abilitymgr_lite:abilityms",
-    "//foundation/appexecfwk/services/bundlemgr_lite:bundlems",
-    "//base/security/services/iam_lite:pms_target",
-    "//foundation/distributedschedule/services/dtbschedmgr_lite:dtbschedmgr",
-]
-```
+    ```
+
+    deps = [
+        "...",
+    ]
+    if (ohos_kernel_type == "liteos_a") {
+        deps += [
+            "...",
+            "//foundation/aafwk/services/abilitymgr_lite:abilityms",
+            "//foundation/appexecfwk/services/bundlemgr_lite:bundlems",
+            "...",
+        ]
+    }
+    ```
 
 ## Running an Ability Developed Based on AbilityKit<a name="section16249444135119"></a>
 
@@ -352,9 +391,9 @@ deps = [
 
 -   After the installation is complete, run the following command to run the demo:
 
-```
-./bin/aa start -p com.huawei.hiability -n MainAbility
-```
+    ```
+    ./bin/aa start -p com.huawei.hiability -n MainAbility
+    ```
 
 ## Repositories Involved<a name="section93061357133720"></a>
 

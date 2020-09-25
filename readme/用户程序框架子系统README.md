@@ -156,58 +156,95 @@
 
 -   添加对用户程序框架子系统的编译，以hi3516dv300\_liteos\_a为例
 
-    -   在build/lite/platform/hi3516dv300\_liteos\_a/platform.json中的subsystem\_list字段下面添加appexecfwk和aafwk，代码如下：
+    -   在build/lite/platform/hi3516dv300\_liteos\_a/platform.json中的subsystems字段下面添加appexecfwk和aafwk，代码已添加如下：
 
     ```
     {
-         "name":"aafwk",
-         "project":"hmf/aafwk/services/abilitymgr_lite",
-         "path":"build/lite/config/subsystem/aafwk",
-         "dir":"foundation/aafwk/services/abilitymgr_lite",
-         "desc":"Ability Services Manager",
-         "requirement":"yes",
-         "default":"yes",
-         "selected":"yes"
+      "subsystem": "aafwk",
+      "components": [
+        {
+          "component": "ability",
+          "optional": "true",
+          "dirs": [
+            "foundation/aafwk"
+          ],
+          "targets": [
+            "//foundation/aafwk/frameworks/ability_lite:aafwk_abilitykit_lite",
+            "//foundation/aafwk/frameworks/ability_lite:aafwk_abilityMain_lite",
+            "//foundation/aafwk/frameworks/abilitymgr_lite:aafwk_abilityManager_lite",
+            "//foundation/aafwk/services/abilitymgr_lite:aafwk_services_lite"
+          ],
+          "features": [
+            {"enable_ohos_appexecfwk_feature_ability": "true"}
+          ],
+          "deps": {
+            "components": [
+              "hilog_a",
+              "bundle_mgr",
+              "system_ability_manager",
+              "distributed_schedule",
+              "graphic",
+              "utils",
+              "ipc"
+            ],
+            "third_party": [
+              "cjson",
+              "bounds_checking_function"
+            ]
+          }
+        }
+      ]
     },
+
     {
-         "name":"appexecfwk",
-         "project": "hmf/appexecfwk/services/bundlemgr_lite",
-         "path": "build/lite/config/subsystem/appexecfwk",
-         "dir": "foundation/appexecfwk/services/bundlemgr_lite",
-         "desc":"Bundle Services Manager",
-         "requirement":"yes",
-         "default":"yes",
-         "selected":"yes"
+      "subsystem": "appexecfwk",
+      "components": [
+        {
+          "component": "bundle_mgr",
+          "optional": "true",
+          "dirs": [
+            "foundation/appexecfwk"
+          ],
+          "targets": [
+            "//foundation/appexecfwk/services/bundlemgr_lite:appexecfwk_services_lite",
+            "//foundation/appexecfwk/frameworks/bundle_lite:appexecfwk_kits_lite"
+          ],
+          "features": [],
+          "deps": {
+            "components": [
+              "iam",
+              "app_verify",
+              "hilog_a",
+              "system_ability_manager",
+              "global_resource_manager",
+              "graphic",
+              "utils"
+            ],
+            "third_party": [
+              "cjson",
+              "zlib"
+            ]
+          }
+        }
+      ]
     },
-    ```
-
-    -   在build/lite/platform/hi3516dv300\_liteos\_a/template/ipcamera.json的“template\_subsystem\_list”字段下面添加"appexecfwk"和"aafwk"，代码如下：
 
     ```
-    "template_subsystem_list" : [
-         ......
-         "distributedschedule",
-         "aafwk",
-         "appexecfwk",
-         "communication",
-         ......
-    ],
-    ```
 
-    -   在build/lite/config/subsystem/aafwk/BUILD.gn和/build/lite/config/subsystem/appexecfwk/BUILD.gn中添加对用户程序框架中具体组件的编译，如下：
+    -   在build/lite/config/subsystem/aafwk/BUILD.gn和/build/lite/config/subsystem/appexecfwk/BUILD.gn中添加对用户程序框架中具体组件的编译，代码已添加如下：
 
     ```
+
     import("//build/lite/config/subsystem/lite_subsystem.gni")
-    
+
     lite_subsystem("aafwk") {
         subsystem_components = [
-            "//foundation/aafwk/frameworks/kits/ability_lite:aafwk_abilitykit_lite",
-            "//foundation/aafwk/frameworks/kits/ability_lite:aafwk_abilityMain_lite",
+            "//foundation/aafwk/frameworks/ability_lite:aafwk_abilitykit_lite",
+            "//foundation/aafwk/frameworks/abilitymgr_lite:aafwk_abilityManager_lite",
             "//foundation/aafwk/services/abilitymgr_lite:aafwk_services_lite",
-            "//foundation/aafwk/frameworks/kits/tools_lite:tools_lite",
-            "//foundation/aafwk/frameworks/kits/ability_lite/test:aafwk_testapp_lite",
         ]
     }
+
     ```
 
     ```
@@ -225,26 +262,31 @@
 
 -   添加完上述的配置后，执行如下命令编译整个系统：
 
-```
-python build.py ipcamera_hi3516dv300 -b debug
-```
+    ```
+    python build.py ipcamera_hi3516dv300 -b debug
+    ```
 
 ## 运行用户程序框架子系统的两个服务<a name="section1048719468503"></a>
 
 -   用户程序框架有两个系统服务ability管理服务（abilityms）和（bundlems），两系统服务运行于foundation进程中。
 -   abilityms和bundlems注册到sa\_manager中，sa\_manager运行于foundation进程中，sa\_manager为abilityms和bundlems创建线程运行环境。具体创建abilityms、bundlems服务的方式以及使用该服务的方式，可参考[系统服务框架子系统](zh-cn_topic_0000001051589563.md)。
--   在foundation/distributedschedule/services/safwk\_lite/BUILD.gn中添加对abilityms和bundlems，如下：
+-   在foundation/distributedschedule/services/safwk\_lite/BUILD.gn中添加对abilityms和bundlems，实际代码已添加如下：
 
-```
-deps = [
-    "//foundation/distributedschedule/services/samgr_lite/samgr_server:server",
-    "//base/dfx/lite/liteos-a/source/log:hilog_a_shared",
-    "//foundation/aafwk/services/abilitymgr_lite:abilityms",
-    "//foundation/appexecfwk/services/bundlemgr_lite:bundlems",
-    "//base/security/services/iam_lite:pms_target",
-    "//foundation/distributedschedule/services/dtbschedmgr_lite:dtbschedmgr",
-]
-```
+    ```
+
+    deps = [
+        "...",
+    ]
+    if (ohos_kernel_type == "liteos_a") {
+        deps += [
+            "...",
+            "//foundation/aafwk/services/abilitymgr_lite:abilityms",
+            "//foundation/appexecfwk/services/bundlemgr_lite:bundlems",
+            "...",
+        ]
+    }
+
+    ```
 
 ## 运行基于AbilityKit开发的Ability<a name="section16249444135119"></a>
 
@@ -347,9 +389,9 @@ deps = [
 
 -   安装完成后，通过如下命令，运行Demo
 
-```
-./bin/aa start -p com.huawei.hiability -n MainAbility
-```
+    ```
+    ./bin/aa start -p com.huawei.hiability -n MainAbility
+    ```
 
 ## 涉及仓<a name="section93061357133720"></a>
 
