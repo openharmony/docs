@@ -78,31 +78,45 @@ Burn images to the Hi3518EV300 board over the serial port.
 
 2.  \(Mandatory for the first burning\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-boot. This step is a fixed operation and the result can be saved. However, you need to perform the following steps again if U-boot needs to be reburnt.
 
-    **Table  1**  Parameters of the Hi3518EV300 U-boot
+    **Table  1**  Parameters of the U-boot
 
-    <a name="table1671622991613"></a>
-    <table><tbody><tr id="row1371652914168"><th class="firstcol" valign="top" width="8.38%" id="mcps1.2.3.1.1"><p id="p1598685321618"><a name="p1598685321618"></a><a name="p1598685321618"></a>Command</p>
+    <a name="table1336762011222"></a>
+    <table><thead align="left"><tr id="row193681920182219"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p3368202016229"><a name="p3368202016229"></a><a name="p3368202016229"></a>Command</p>
     </th>
-    <td class="cellrowborder" valign="top" width="91.62%" headers="mcps1.2.3.1.1 "><p id="p1598616535166"><a name="p1598616535166"></a><a name="p1598616535166"></a>setenv bootcmd "sf probe 0;sf read 0x40000000 0x100000 0x600000;go 0x40000000";</p>
-    <p id="p183481352181718"><a name="p183481352181718"></a><a name="p183481352181718"></a>setenv bootargs "console=ttyAMA0,115200n8 root=flash fstype=jffs2 rw rootaddr=7 M rootsize=8 M"; saveenv;</p>
-    <p id="p1784612265186"><a name="p1784612265186"></a><a name="p1784612265186"></a>reset</p>
+    <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p936812052217"><a name="p936812052217"></a><a name="p936812052217"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row10368142032210"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1636882092214"><a name="p1636882092214"></a><a name="p1636882092214"></a>setenv bootcmd "sf probe 0;sf read 0x40000000 0x100000 0x600000;go 0x40000000";</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p17368202082213"><a name="p17368202082213"></a><a name="p17368202082213"></a>Run this command to set the content of <strong id="b799474113329"><a name="b799474113329"></a><a name="b799474113329"></a>bootcmd</strong>. Select the flash whose number is 0, and read content that has a size of 0x600000 and a start address of 0x100000 to memory address 0x40000000.</p>
     </td>
     </tr>
-    <tr id="row9716152914161"><th class="firstcol" valign="top" width="8.38%" id="mcps1.2.3.2.1"><p id="p998695361611"><a name="p998695361611"></a><a name="p998695361611"></a>Description</p>
-    </th>
-    <td class="cellrowborder" valign="top" width="91.62%" headers="mcps1.2.3.2.1 "><p id="p1198615316165"><a name="p1198615316165"></a><a name="p1198615316165"></a><strong id="b11610792311"><a name="b11610792311"></a><a name="b11610792311"></a>setenv bootcmd "sf probe 0;sf read 0x40000000 0x100000 0x600000;go 0x40000000";</strong></p>
-    <p id="p2986125310164"><a name="p2986125310164"></a><a name="p2986125310164"></a>Run this command to set the content of <strong id="b1915115872811"><a name="b1915115872811"></a><a name="b1915115872811"></a>bootcmd</strong>. Select the flash whose number is 0, and read content that has a size of 0x600000 and a start address of 0x100000 to memory address 0x40000000.</p>
-    <p id="p5759815112613"><a name="p5759815112613"></a><a name="p5759815112613"></a><strong id="b19527719203716"><a name="b19527719203716"></a><a name="b19527719203716"></a>(Optional) go 0x40000000</strong> indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press <strong id="b118621929144219"><a name="b118621929144219"></a><a name="b118621929144219"></a>Enter</strong> in the countdown phase of the U-boot startup to interrupt the automatic startup.</p>
-    <p id="p340215818235"><a name="p340215818235"></a><a name="p340215818235"></a><strong id="b119855142415"><a name="b119855142415"></a><a name="b119855142415"></a>setenv bootargs "console=ttyAMA0,115200n8 root=flash fstype=jffs2 rw rootaddr=7 M rootsize=8 M";</strong></p>
-    <p id="p8987115381613"><a name="p8987115381613"></a><a name="p8987115381613"></a>In this command, <strong id="b177343793718"><a name="b177343793718"></a><a name="b177343793718"></a>bootargs</strong> is set to the serial port output, the baud rate is 115200, the data bit is 8, and the <strong id="b033817523412"><a name="b033817523412"></a><a name="b033817523412"></a>rootfs</strong> is mounted to the flash memory. The file system type is set to <strong id="b16149152018429"><a name="b16149152018429"></a><a name="b16149152018429"></a>jffs2 rw</strong>, which provides the read-write attribute for the JFFS2 file system.</p>
-    <p id="p1888191482518"><a name="p1888191482518"></a><a name="p1888191482518"></a><strong id="b14704195842212"><a name="b14704195842212"></a><a name="b14704195842212"></a>rootaddr=7 M rootsize=8 M</strong> indicates the actual start address and length of the <strong id="b1299173342420"><a name="b1299173342420"></a><a name="b1299173342420"></a>rootfs.img</strong> file to be burnt. The size must be the same as that of the compiled files in the HiTool.</p>
-    <p id="p1198755319162"><a name="p1198755319162"></a><a name="p1198755319162"></a><strong id="b75716918518"><a name="b75716918518"></a><a name="b75716918518"></a>saveenv</strong> indicates that the current configuration is saved.</p>
-    <p id="p0987125371614"><a name="p0987125371614"></a><a name="p0987125371614"></a><strong id="b267841314518"><a name="b267841314518"></a><a name="b267841314518"></a>reset</strong> indicates that the board is reset.</p>
-    <p id="p094912253363"><a name="p094912253363"></a><a name="p094912253363"></a><strong id="b319886366"><a name="b319886366"></a><a name="b319886366"></a>pri</strong> indicates the display parameters to be viewed.</p>
+    <tr id="row136814209227"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p234414019231"><a name="p234414019231"></a><a name="p234414019231"></a>setenv bootargs "console=ttyAMA0,115200n8 root=flash fstype=jffs2 rw rootaddr=7 M rootsize=8 M";</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p10368102010223"><a name="p10368102010223"></a><a name="p10368102010223"></a>In this command, <strong id="b1475793912349"><a name="b1475793912349"></a><a name="b1475793912349"></a>bootargs</strong> is set to the serial port output, the baud rate is <strong id="b1310782917185"><a name="b1310782917185"></a><a name="b1310782917185"></a>115200</strong>, the data bit is <strong id="b149010367189"><a name="b149010367189"></a><a name="b149010367189"></a>8</strong>, and the <strong id="b19757173918344"><a name="b19757173918344"></a><a name="b19757173918344"></a>rootfs</strong> is mounted to the flash memory. The file system type is set to <strong id="b875763919342"><a name="b875763919342"></a><a name="b875763919342"></a>jffs2 rw</strong>, which provides the read-write attribute for the JFFS2 file system. <strong id="b1645229193620"><a name="b1645229193620"></a><a name="b1645229193620"></a>rootaddr=7 M rootsize=8 M</strong> indicates the actual start address and length of the <strong id="b136501629153613"><a name="b136501629153613"></a><a name="b136501629153613"></a>rootfs.img</strong> file to be burnt, respectively. The size must be the same as that of the compiled files in the HiTool.</p>
+    </td>
+    </tr>
+    <tr id="row2368120112219"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p20368142072217"><a name="p20368142072217"></a><a name="p20368142072217"></a>saveenv</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p19368102020220"><a name="p19368102020220"></a><a name="p19368102020220"></a><strong id="b12547103053713"><a name="b12547103053713"></a><a name="b12547103053713"></a>saveenv</strong> means to save the current configuration.</p>
+    </td>
+    </tr>
+    <tr id="row63689205220"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p3368162015223"><a name="p3368162015223"></a><a name="p3368162015223"></a>reset</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p23681820182217"><a name="p23681820182217"></a><a name="p23681820182217"></a><strong id="b29195356377"><a name="b29195356377"></a><a name="b29195356377"></a>reset</strong> means to reset the board.</p>
+    </td>
+    </tr>
+    <tr id="row346253519253"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p16462113512251"><a name="p16462113512251"></a><a name="p16462113512251"></a>pri</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p3462335152514"><a name="p3462335152514"></a><a name="p3462335152514"></a><strong id="b18592103953712"><a name="b18592103953712"></a><a name="b18592103953712"></a>pri</strong> means to view the displayed parameters.</p>
     </td>
     </tr>
     </tbody>
     </table>
+
+    >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >**go 0x40000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-boot startup to interrupt the automatic startup.
 
     **Figure  7**  Startup parameter settings<a name="fig11101652163517"></a>  
     ![](figures/startup-parameter-settings.png "startup-parameter-settings")

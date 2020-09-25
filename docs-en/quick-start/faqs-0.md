@@ -1,19 +1,19 @@
 # FAQs<a name="EN-US_TOPIC_0000001053466255"></a>
 
-**Problem 1: What should I do when the images failed to be burnt over the selected serial port?**
+1.  What should I do when the images failed to be burnt over the selected serial port?
+    -   **Symptom**
 
--   **Symptom**
+        **Error: Opening COMxx: Access denied**  is displayed after clicking  **Burn**  and selecting a serial port.
 
-    **Error: Opening COMxx: Access denied**  is displayed after clicking  **Burn**  and selecting a serial port.
+        **Figure  1**  Failed to open the serial port<a name="fig066333283916"></a>  
+        ![](figures/failed-to-open-the-serial-port.png "failed-to-open-the-serial-port")
 
-    **Figure  1**  Failed to open the serial port<a name="fig066333283916"></a>  
-    ![](figures/failed-to-open-the-serial-port.png "failed-to-open-the-serial-port")
+    -   **Possible Causes**
 
--   **Possible Causes**
+        The serial port has been used.
 
-    The serial port has been used.
+    -   **Solutions**
 
--   **Solutions**
 
 1.  Search for the terminal using serial-xx from the drop-down list in the  **TERMINAL**  panel.
 
@@ -31,7 +31,7 @@
     ![](figures/restarting-burning.png "restarting-burning")
 
 
-**Problem 2: What should I do when Windows-based PC failed to be connected to the board?**
+2. What should I do when Windows-based PC failed to be connected to the board?
 
 -   **Symptom**
 
@@ -70,7 +70,7 @@
     ![](figures/allowing-the-visual-studio-code-application-to-access-the-network.png "allowing-the-visual-studio-code-application-to-access-the-network")
 
 
-**Problem 3: What should I do when the image failed to be burnt?**
+3. What should I do when the image failed to be burnt?
 
 -   **Symptom**
 
@@ -85,7 +85,7 @@
     Restart the IDE.
 
 
-**Question 4:** **What should I do when the message indicating Python cannot be found is displayed during compilation and building?**
+4. What should I do when the message indicating Python cannot be found is displayed during compilation and building?
 
 -   **Symptom**
 
@@ -103,7 +103,7 @@
 
 -   **Solutions**
 
-    Run the following command:
+    Run the following commands:
 
     ```
     # cd /usr/bin/
@@ -117,19 +117,19 @@
     ![](figures/en-us_image_0000001054875562.png)
 
 
-**Problem 5:** **What should I do when no command output is displayed?**
+5. What should I do when no command output is displayed?
 
 -   **Symptom**
 
     The serial port shows that the connection has been established. After the board is restarted, nothing is displayed when you press  **Enter**.
 
--   **Possible Causes**
-    -   The serial port is connected incorrectly.
-    -   The U-boot of the board is damaged.
+-   **Possible Cause 1**
+
+    The serial port is connected incorrectly.
 
 -   **Solutions**
 
-    **Solution 1: Change the serial port number.**
+    Change the serial port number.
 
     Start  **Device Manager**  to check whether the serial port connected to the board is the same as that connected to the terminal device. If not, perform the following steps to change the serial port number.
 
@@ -142,9 +142,16 @@
 3.  Change the serial port number in the dialog box and click  **OK**.
 4.  Press  **Enter**  in the dialog box to check whether any command output is displayed after the connection is established.
 
-**Solution 2: Burn the U-boot.**
+-   **Possible Cause 2**
 
-If the fault persists after you perform the preceding operations, the U-boot of the board may be damaged. You can burn the U-boot by performing the following steps:
+    The U-boot of the board is damaged.
+
+-   **Solutions**
+
+    Burn the U-boot.
+
+    If the fault persists after you perform the preceding operations, the U-boot of the board may be damaged. You can burn the U-boot by performing the following steps:
+
 
 1.  Obtain the U-boot file.
 

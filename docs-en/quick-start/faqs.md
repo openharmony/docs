@@ -1,217 +1,224 @@
 # FAQs<a name="EN-US_TOPIC_0000001053143860"></a>
 
-**Question 1:**  What should I do when the message  **configure: error: no acceptable C compiler found in $PATH**  is displayed during Python 3 installation?
+1.  What should I do when the message  **configure: error: no acceptable C compiler found in $PATH**  is displayed during Python 3 installation?
+    -   **Symptom**
 
--   **Symptom**
+        ![](figures/en-us_image_0000001053782588.png)
 
-    ![](figures/en-us_image_0000001053782588.png)
+    -   **Possible Causes**
 
--   **Possible Causes**
+        **gcc**  is not installed.
 
-    **gcc**  is not installed.
+    -   **Solutions**
 
--   **Solutions**
+        1. Run the  **apt-get install gcc**  command to install  **gcc**  online.
 
-    1. Run the  **apt-get install gcc**  command to install  **gcc**  online.
+        2. After the installation, reinstall Python 3.
 
-    2. After the installation, reinstall Python 3.
 
+2.  What should I do when the message  **-bash: make: command not found**  is displayed during Python 3 installation?
+    -   **Symptom**
 
-**Question 2:**  What should I do when the message  **-bash: make: command not found**  is displayed during Python 3 installation?
+        ![](figures/en-us_image_0000001053302604.png)
 
--   **Symptom**
+    -   **Possible Causes**
 
-    ![](figures/en-us_image_0000001053302604.png)
+        **make**  is not installed.
 
--   **Possible Causes**
+    -   **Solutions**
 
-    **make**  is not installed.
+        1. Run the  **apt-get install make**  command to install  **make**  online.
 
--   **Solutions**
+        2. After the installation, reinstall Python 3.
 
-    1. Run the  **apt-get install make**  command to install  **make**  online.
 
-    2. After the installation, reinstall Python 3.
+3.  What should I do when the message  **zlib not available**  is displayed during Python 3 installation?
+    -   **Symptom**
 
+        ![](figures/en-us_image_0000001053183929.png)
 
-**Question 3:**  What should I do when the message  **zlib not available**  is displayed during Python 3 installation?
+    -   **Possible Causes**
 
--   **Symptom**
+        **zlib**  is not installed.
 
-    ![](figures/en-us_image_0000001053183929.png)
+    -   **Solutions**
 
--   **Possible Causes**
+        Solution 1: Run the  **apt-get install zlib**  command to install  **zlib**  online.
 
-    **zlib**  is not installed.
+        Solution 2: If the software source does not contain  **zlib**, download the source code from  [http://www.zlib.net/](http://www.zlib.net/).
 
--   **Solutions**
+        ![](figures/10.png)
 
-    Method 1: Run the  **apt-get install zlib**  command to install  **zlib**  online.
+        Then run the following commands to install  **zlib**  offline:
 
-    Method 2: If the software source does not contain  **zlib**, download the source code from http://www.zlib.net/ and install it offline.
+        ```
+        # tar xvf zlib-1.2.11.tar.gz
+        # cd zlib-1.2.11
+        # ./configure
+        # make && make install
+        ```
 
-    ![](figures/en-us_image_0000001053782588.png)
+        After the installation, reinstall Python 3.
 
-    Installation commands:
 
-    tar xvf zlib-1.2.11.tar.gz
+4.  What should I do when the message  **No module named '\_ctypes'**  is displayed during Python 3 installation?
+    -   **Symptom**
 
-    cd zlib-1.2.11
+        ![](figures/en-us_image_0000001052623895.png)
 
-    ./configure
 
-    make && make install
+    -   **Possible Causes**
 
-    3. After the installation, reinstall Python 3.
+        **libffi**  and  **libffi-devel**  are not installed.
 
 
-**Question 4:**  What should I do when the message  **No module named '\_ctypes'**  is displayed during Python 3 installation?
+    -   **Solutions**
 
--   **Symptom**
+        1. Run the  **apt-get install libffi\* -y**  command to install  **libffi**  and  **libffi-devel**  online.
 
-    ![](figures/en-us_image_0000001052623895.png)
+        2. After the installation, reinstall Python 3.
 
 
--   **Possible Causes**
+5.  What should I do when the message  **No module named 'Crypto'**  is displayed during compilation and building?
+    -   **Symptom**
 
-    **libffi**  and  **libffi-devel**  are not installed.
+        ![](figures/en-us_image_0000001052983874.png)
 
 
--   **Solutions**
+    -   **Possible Causes**
 
-    1. Run the  **apt-get install libffi\* -y**  command to install  **libffi**  and  **libffi-devel**  online.
+        **Crypto**  is not installed.
 
-    2. After the installation, reinstall Python 3.
 
+    -   **Solutions**
 
-**Question 5:**  What should I do when the message  **No module named 'Crypto'**  is displayed during compilation and building?
+        Solution 1: Run the  **pip3 install Crypto**  command to install  **Crypto**  online.
 
--   **Symptom**
+        Solution 2: Install  **Crypto**  offline.
 
-    ![](figures/en-us_image_0000001052983874.png)
+        -   Download the source code from  [https://pypi.org/project/pycrypto/\#files](https://pypi.org/project/pycrypto/#files).
 
+        ![](figures/en-us_image_0000001053462612.png)
 
--   **Possible Causes**
+        -   Save the source code package to the Linux server, decompress the package, and run the  **python3 setup.py install**  command to install  **Crypto**.
+        -   Rebuild an environment.
 
-    **Crypto**  is not installed.
 
+6.  What should I do when the message  **No module named 'ecdsa'**  is displayed during compilation and building?
+    -   **Symptom**
 
--   **Solutions**
+        ![](figures/en-us_image_0000001053782588.png)
 
-    Method 1: Run the  **pip3 install Crypto**  command to install  **Crypto**  online.
 
-    Method 2: Install  **Crypto**  offline.
+    -   **Possible Causes**
 
-    -   Download the source code from  [https://pypi.org/project/pycrypto/\#files](https://pypi.org/project/pycrypto/#files).
+        **ecdsa**  is not installed.
 
-    ![](figures/en-us_image_0000001053462612.png)
 
-    -   Save the source code package to the Linux server, decompress the package, and run the  **python3 setup.py install**  command to install  **Crypto**.
-    -   Rebuild an environment.
+    -   **Solutions**
 
+        Solution 1: Run the  **pip3 install ecdsa**  command to install  **ecdsa**  online.
 
-**Problem 6:**  What should I do when the message  **No module named 'ecdsa'**  is displayed during compilation and building?
+        Solution 2: Install  **ecdsa**  offline.
 
--   **Symptom**
+        -   Download the installation package from  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files).
 
-    ![](figures/en-us_image_0000001053782588.png)
+        ![](figures/en-us_image_0000001053022609.png)
 
+        -   Save the installation package to the Linux server and run the  **pip3 install ecdsa-0.15-py2.py3-none-any.whl**  command to install  **ecdsa**.
+        -   Rebuild an environment.
 
--   **Possible Causes**
 
-    **ecdsa**  is not installed.
+7.  What should I do when the message  **Could not find a version that satisfies the requirement six\>=1.9.0**  is displayed during compilation and building?
+    -   **Symptom**
 
+        ![](figures/en-us_image_0000001052862621.png)
 
--   **Solutions**
 
-    Method 1: Run the  **pip3 install ecdsa**  command to install  **ecdsa**  online.
+    -   **Possible Causes**
 
-    Method 2: Install  **ecdsa**  offline.
+        **six**  is not installed.
 
-    -   Download the installation package from  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files).
 
-    ![](figures/en-us_image_0000001053022609.png)
+    -   **Solutions**
 
-    -   Save the installation package to the Linux server and run the  **pip3 install ecdsa-0.15-py2.py3-none-any.whl**  command to install  **ecdsa**.
-    -   Rebuild an environment.
+        Solution 1: Run the  **pip3 install six**  command to install  **six**  online.
 
+        Solution 2: Install  **six**  offline.
 
-**Question 7:**  What should I do when the message  **Could not find a version that satisfies the requirement six\>=1.9.0**  is displayed during compilation and building?
+        -   Download the installation package from  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files).
 
--   **Symptom**
+        ![](figures/en-us_image_0000001052742629.png)
 
-    ![](figures/en-us_image_0000001052862621.png)
+        -   Save the source code to the Linux server and run the  **pip3 install six-1.14.0-py2.py3-none-any.whl**  command to install  **six**.
+        -   Rebuild an environment.
 
 
--   **Possible Causes**
+8.  What should I do when the message  **cannot find -lgcc**  is displayed during compilation and building?
+    -   **Symptom**
 
-    **six**  is not installed.
+        ![](figures/en-us_image_0000001053142611.png)
 
 
--   **Solutions**
+    -   **Possible Causes**
 
-    Method 1: Run the  **pip3 install six**  command to install  **six**  online.
+        The PATH is incorrectly written by  **gcc\_riscv32**, as shown in the following figure. There is an extra slash \(/\).
 
-    Method 2: Install  **six**  offline.
+        ![](figures/en-us_image_0000001055682654.png)
 
-    -   Download the installation package from  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files).
 
-    ![](figures/en-us_image_0000001052742629.png)
+    -   **Solutions**
 
-    -   Save the source code to the Linux server and run the  **pip3 install six-1.14.0-py2.py3-none-any.whl**  command to install  **six**.
-    -   Rebuild an environment.
+        Modify the PATH by deleting the slash \(/\).
 
+        ![](figures/en-us_image_0000001054804171.png)
 
-**Question 8:**  What should I do when the message  **cannot find -lgcc**  is displayed during compilation and building?
 
--   **Symptom**
+9.  What should I do when the message indicating Python cannot be found is displayed during compilation and building?
+    -   **Symptom**
 
-    ![](figures/en-us_image_0000001053142611.png)
+        ![](figures/en-us_image_0000001055172843.png)
 
 
--   **Possible Causes**
+    -   **Possible Cause 1:**  Python is not installed.
+    -   **Solutions**
 
-    The PATH is incorrectly written by  **gcc\_riscv32**, as shown in the following figure. There is an extra slash \(/\).
+        Install Python by referring to  [Installing a Python Environment](setting-up-a-development-environment.md#section126831816258).
 
-    ![](figures/en-us_image_0000001055682654.png)
+    -   **Possible Cause 2:**  The soft link that points to the Python does not exist in the  **usr/bin**  directory.
 
+        ![](figures/en-us_image_0000001055372855.png)
 
--   **Solutions**
+    -   **Solutions**
 
-    Modify the PATH by deleting the slash \(/\).
+        Run the following commands:
 
-    ![](figures/en-us_image_0000001054804171.png)
+        ```
+        # cd /usr/bin/
+        # which python3
+        # ln -s /usr/local/bin/python3 python
+        # python --version
+        ```
 
+        Example:
 
-**Question 9:**  What should I do when the message indicating Python cannot be found is displayed during compilation and building?
+        ![](figures/en-us_image_0000001055012855.png)
 
--   **Symptom**
 
-    ![](figures/en-us_image_0000001055073889.png)
+10. What should I do when an error with  **lsb\_release**  occurs during  **kconfiglib**  installation?
+    -   **Symptom**
 
+        The following error information is displayed during  **kconfiglib**  installation:
 
--   **Possible Cause 1:**  Python is not installed.
--   **Solutions**
+        "subprocess.CalledProcessError: Command '\('lsb\_release', '-a'\)' returned non-zero exit status 1."
 
-    Install Python by referring to  [Installing a Python Environment](setting-up-a-development-environment.md#section126831816258).
+    -   **Possible Causes**
 
--   **Possible Cause 2:**  The soft link that points to the Python does not exist in the  **usr/bin**  directory.
+        The Python version matched with the  **lsb\_release**  module is different from the current Python version.
 
-    ![](figures/en-us_image_0000001054713955.png)
+    -   **Solutions**
 
--   **Solutions**
+        Run the  **find / -name lsb\_release**  command, for example,  **sudo rm -rf /usr/bin/lsb\_release**  to locate and delete  **lsb\_release**.
 
-    Run the following command:
-
-    ```
-    # cd /usr/bin/
-    # which python3
-    # ln -s /usr/local/bin/python3 python
-    # python --version
-    ```
-
-    Example:
-
-    ![](figures/en-us_image_0000001055674130.png)
 
 

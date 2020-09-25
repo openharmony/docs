@@ -4,19 +4,19 @@ This document describes how to quickly start with the Hi3861 WLAN module, includ
 
 ## Hi3861<a name="section187215231809"></a>
 
-The Hi3861 WLAN module is a development board with 2 x 5 cm form factor. It contains a 2.4 GHz WLAN SoC chip that highly integrates the IEEE 802.11b/g/n baseband and radio frequency \(RF\) circuit. This module provides open and easy-to-use development and debugging environments for running OpenHarmony.
+The Hi3861 WLAN module is a development board with 2 x 5 cm form factor. It contains a 2.4 GHz WLAN SoC that highly integrates the IEEE 802.11b/g/n baseband and radio frequency \(RF\) circuit. This module provides open and easy-to-use development and debugging environments for running OpenHarmony.
 
 **Figure  1**  Appearance of Hi3861 WLAN module<a name="fig74884420237"></a>  
 ![](figures/appearance-of-hi3861-wlan-module.png "appearance-of-hi3861-wlan-module")
 
 The Hi3861 WLAN module can also be connected to the Hi3861 mother board to expand its peripheral capabilities. The following figure shows the Hi3861 mother board.
 
-**Figure  2**  Appearance of the Hi3861 mother board<a name="fig16947112194216"></a>  
+**Figure  2**  Appearance of the Hi3861 mother board<a name="fig111746288192"></a>  
 ![](figures/appearance-of-the-hi3861-mother-board.png "appearance-of-the-hi3861-mother-board")
 
 -   The RF circuit includes modules such as the power amplifier \(PA\), low noise amplifier \(LNA\), RF Balun, antenna switch, and power management. It supports a standard bandwidth of 20 MHz and a narrow bandwidth of 5 MHz or 10 MHz, and provides a maximum rate of 72.2 Mbit/s at the physical layer.
--   The Hi3861 WLAN baseband supports the orthogonal frequency division multiplexing \(OFDM\) technology and is backward compatible with the direct sequence spread spectrum \(DSSS\) and complementary code keying \(CCK\) technologies. In addition, the Hi3861 WLAN baseband supports various data rates complying with the IEEE 802.11 b/g/n protocol.
--   The Hi3861 chip integrates the high-performance 32-bit microprocessor, hardware security engine, and various peripheral interfaces. The peripheral interfaces include the Synchronous Peripheral Interface \(SPI\), Universal Asynchronous Receiver & Transmitter \(UART\), the Inter Integrated Circuit \(I2C\), Pulse Width Modulation \(PWM\), General Purpose Input/Output \(GPIO\) interface, and Analog to Digital Converter \(ADC\). The Hi3861 chip also supports the high-speed Secure Digital Input/Output \(SDIO\) 2.0 interface, with a maximum clock frequency of 50 MHz. This chip has a built-in static random access memory \(SRAM\) and flash memory, which can run programs independently or run from a flash drive.
+-   The Hi3861 WLAN baseband supports the orthogonal frequency division multiplexing \(OFDM\) technology and is backward compatible with the direct sequence spread spectrum \(DSSS\) and complementary code keying \(CCK\) technologies. In addition, the Hi3861 WLAN baseband supports various data rates specified in the IEEE 802.11 b/g/n protocol.
+-   The Hi3861 chip integrates the high-performance 32-bit microprocessor, hardware security engine, and various peripheral interfaces. The peripheral interfaces include the Synchronous Peripheral Interface \(SPI\), Universal Asynchronous Receiver & Transmitter \(UART\), the Inter Integrated Circuit \(I2C\), Pulse Width Modulation \(PWM\), General Purpose Input/Output \(GPIO\) interface, and Analog to Digital Converter \(ADC\). The Hi3861 chip also supports the high-speed Secure Digital Input/Output \(SDIO\) 2.0 interface, with a maximum clock frequency of 50 MHz. This chip has a built-in static random access memory \(SRAM\) and flash memory, so that programs can run independently or run from a flash drive.
 -   The Hi3861 chip applies to Internet of Things \(IoT\) devices such as smart home appliances.
 
     **Figure  3**  Hi3861 functions<a name="f0d52fa2f3b094c688c805a373a6ec970"></a>  
@@ -34,44 +34,44 @@ As the Hi3861 only offers 2 MB Flash and 352 KB RAM, use them efficiently when c
 **Table  1**  Hi3861 WLAN module specifications
 
 <a name="t672b053e2ac94cbdb5244857fed4764e"></a>
-<table><thead align="left"><tr id="r54b3810e43d24e1887c1d6a41394996b"><th class="cellrowborder" valign="top" width="18.02%" id="mcps1.2.3.1.1"><p id="a2b235e9ed55f4338886788f140e648a0"><a name="a2b235e9ed55f4338886788f140e648a0"></a><a name="a2b235e9ed55f4338886788f140e648a0"></a>Type</p>
+<table><thead align="left"><tr id="r54b3810e43d24e1887c1d6a41394996b"><th class="cellrowborder" valign="top" width="18.060000000000002%" id="mcps1.2.3.1.1"><p id="a2b235e9ed55f4338886788f140e648a0"><a name="a2b235e9ed55f4338886788f140e648a0"></a><a name="a2b235e9ed55f4338886788f140e648a0"></a>Type</p>
 </th>
-<th class="cellrowborder" valign="top" width="81.98%" id="mcps1.2.3.1.2"><p id="a95c4ba2e404f4a45b65984746aaa56ab"><a name="a95c4ba2e404f4a45b65984746aaa56ab"></a><a name="a95c4ba2e404f4a45b65984746aaa56ab"></a>Description</p>
+<th class="cellrowborder" valign="top" width="81.94%" id="mcps1.2.3.1.2"><p id="a95c4ba2e404f4a45b65984746aaa56ab"><a name="a95c4ba2e404f4a45b65984746aaa56ab"></a><a name="a95c4ba2e404f4a45b65984746aaa56ab"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="r71f534ea66af4191b020408df5978f41"><td class="cellrowborder" valign="top" width="18.02%" headers="mcps1.2.3.1.1 "><p id="a0531f1bb62d5443880576cc5de23f2e6"><a name="a0531f1bb62d5443880576cc5de23f2e6"></a><a name="a0531f1bb62d5443880576cc5de23f2e6"></a>General specifications</p>
+<tbody><tr id="r71f534ea66af4191b020408df5978f41"><td class="cellrowborder" valign="top" width="18.060000000000002%" headers="mcps1.2.3.1.1 "><p id="a0531f1bb62d5443880576cc5de23f2e6"><a name="a0531f1bb62d5443880576cc5de23f2e6"></a><a name="a0531f1bb62d5443880576cc5de23f2e6"></a>General specifications</p>
 </td>
-<td class="cellrowborder" valign="top" width="81.98%" headers="mcps1.2.3.1.2 "><a name="u2a0d06f28d454d30818ced9a0432211b"></a><a name="u2a0d06f28d454d30818ced9a0432211b"></a><ul id="u2a0d06f28d454d30818ced9a0432211b"><li>Operates over 1×1 2.4 GHz frequency band (ch1-ch14).</li><li>The physical layer (PHY) complies with the IEEE 802.11b/g/n protocol.</li><li>The media access control (MAC) layer complies with the IEEE802.11 d/e/h/i/k/v/w protocol.</li></ul>
-<a name="ul1452913133017"></a><a name="ul1452913133017"></a><ul id="ul1452913133017"><li>Includes the built-in public address (PA) and local area network (LAN); integrates transmit-receive (Tx/Rx) switch and Balun. </li><li>Supports the station (STA) and access point (AP) modes. When the Hi3861 WLAN module functions as an AP, a maximum of six STAs are supported.</li><li>Supports WPA and WPA2 from WFA (personal), and WPS 2.0.</li><li>Supports three kinds of packet traffic arbiter (PTA) (2-, 3-, or 4-wire PTA), each of which coexists with the BT or BLE chip.</li><li>The input voltage ranges from 2.3 V to 3.6 V.</li></ul>
-<a name="ul15885141153113"></a><a name="ul15885141153113"></a><ul id="ul15885141153113"><li>The input/output (I/O) power voltage can be 1.8 V or 3.3 V.</li></ul>
-<a name="ul128863113316"></a><a name="ul128863113316"></a><ul id="ul128863113316"><li>Supports self-calibration for RF hardware.</li><li>Performs with low power consumption:<a name="ul1588651114317"></a><a name="ul1588651114317"></a><ul id="ul1588651114317"><li>Ultra deep sleep mode: 5 μA @ 3.3 V</li><li>DTIM1: 1.5 mA @ 3.3 V</li><li>DTIM3: 0.8 mA @ 3.3 V</li></ul>
+<td class="cellrowborder" valign="top" width="81.94%" headers="mcps1.2.3.1.2 "><a name="u2a0d06f28d454d30818ced9a0432211b"></a><a name="u2a0d06f28d454d30818ced9a0432211b"></a><ul id="u2a0d06f28d454d30818ced9a0432211b"><li>Operates over 1×1 2.4 GHz frequency band (ch1-ch14).</li><li>The physical layer (PHY) complies with the IEEE 802.11b/g/n protocol.</li><li>The media access control (MAC) layer complies with the IEEE802.11 d/e/h/i/k/v/w protocol.</li></ul>
+<a name="u8f31d142d92147789195a18b50836d2c"></a><a name="u8f31d142d92147789195a18b50836d2c"></a><ul id="u8f31d142d92147789195a18b50836d2c"><li>Includes the built-in public address (PA) and local area network (LAN); integrates transmit-receive (Tx/Rx) switch and Balun. </li><li>Supports the station (STA) and access point (AP) modes. When the Hi3861 WLAN module functions as an AP, a maximum of six STAs are supported.</li><li>Supports WFA WPA, WFA WPA2 personal, and WPS2.0.</li><li>Supports three kinds of packet traffic arbiter (PTA) (2- , 3- , or 4-wire PTA), each of which coexists with the BT or BLE chip.</li><li>The input voltage ranges from 2.3 V to 3.6 V.</li></ul>
+<a name="ul114549122110"></a><a name="ul114549122110"></a><ul id="ul114549122110"><li>The input/output (I/O) power voltage can be 1.8 V or 3.3 V.</li></ul>
+<a name="ue044275c53b84dd29dda674e16e72823"></a><a name="ue044275c53b84dd29dda674e16e72823"></a><ul id="ue044275c53b84dd29dda674e16e72823"><li>Supports self-calibration for RF hardware.</li><li>Performs with low power consumption:<a name="ul0879143622219"></a><a name="ul0879143622219"></a><ul id="ul0879143622219"><li>Ultra deep sleep mode: 5 μA @ 3.3 V</li><li>DTIM1: 1.5 mA @ 3.3 V</li><li>DTIM3: 0.8 mA @ 3.3 V</li></ul>
 </li></ul>
 </td>
 </tr>
-<tr id="rd9b56e759af34950b6887ca1bf5bb7cf"><td class="cellrowborder" valign="top" width="18.02%" headers="mcps1.2.3.1.1 "><p id="a0aed3860a78a4b50bedf60699afd3996"><a name="a0aed3860a78a4b50bedf60699afd3996"></a><a name="a0aed3860a78a4b50bedf60699afd3996"></a>PHY features</p>
+<tr id="rd9b56e759af34950b6887ca1bf5bb7cf"><td class="cellrowborder" valign="top" width="18.060000000000002%" headers="mcps1.2.3.1.1 "><p id="a0aed3860a78a4b50bedf60699afd3996"><a name="a0aed3860a78a4b50bedf60699afd3996"></a><a name="a0aed3860a78a4b50bedf60699afd3996"></a>PHY features</p>
 </td>
-<td class="cellrowborder" valign="top" width="81.98%" headers="mcps1.2.3.1.2 "><a name="u6568aa052152432aa1f44372445ca634"></a><a name="u6568aa052152432aa1f44372445ca634"></a><ul id="u6568aa052152432aa1f44372445ca634"><li>Supports all data rates of the single antenna required by the IEEE802.11b/g/n protocol.</li><li>Supports a maximum rate of 72.2 Mbit/s@HT20 MCS7.</li><li>Supports the standard bandwidth (20 MHz) and narrow bandwidth (5 MHz or 10 MHz).</li><li>Supports space-time block coding (STBC).</li><li>Supports short guard interval (Short-GI).</li></ul>
-</td>
-</tr>
-<tr id="r3563f9df9759486794952d46c5d2d03f"><td class="cellrowborder" valign="top" width="18.02%" headers="mcps1.2.3.1.1 "><p id="afd48a2d879dc4aada8b60bebb96523c7"><a name="afd48a2d879dc4aada8b60bebb96523c7"></a><a name="afd48a2d879dc4aada8b60bebb96523c7"></a>MAC features</p>
-</td>
-<td class="cellrowborder" valign="top" width="81.98%" headers="mcps1.2.3.1.2 "><a name="uca57d799e7814925a5bf1b891335bd79"></a><a name="uca57d799e7814925a5bf1b891335bd79"></a><ul id="uca57d799e7814925a5bf1b891335bd79"><li>Supports aggregate MAC service data unit (A-MPDU) and aggregate MAC protocol data unit (A-MSDU). </li><li>Supports block acknowledgment (Blk-ACK).</li><li>Supports quality of service (QoS), meeting customer's service requirements.</li></ul>
+<td class="cellrowborder" valign="top" width="81.94%" headers="mcps1.2.3.1.2 "><a name="u6568aa052152432aa1f44372445ca634"></a><a name="u6568aa052152432aa1f44372445ca634"></a><ul id="u6568aa052152432aa1f44372445ca634"><li>Supports all data rates of the single antenna required by the IEEE802.11b/g/n protocol.</li><li>Supports a maximum rate of 72.2 Mbps@HT20 MCS7</li><li>Supports the standard bandwidth (20 MHz) and narrow bandwidth (5 MHz or 10 MHz).</li><li>Supports space-time block coding (STBC).</li><li>Supports short guard interval (Short-GI).</li></ul>
 </td>
 </tr>
-<tr id="r3e1c86e5f6cd4df0a1b30a08fb8481a2"><td class="cellrowborder" valign="top" width="18.02%" headers="mcps1.2.3.1.1 "><p id="a57086ea97a1b46cdb21953bf0fc22d94"><a name="a57086ea97a1b46cdb21953bf0fc22d94"></a><a name="a57086ea97a1b46cdb21953bf0fc22d94"></a>CPU subsystem</p>
+<tr id="r3563f9df9759486794952d46c5d2d03f"><td class="cellrowborder" valign="top" width="18.060000000000002%" headers="mcps1.2.3.1.1 "><p id="afd48a2d879dc4aada8b60bebb96523c7"><a name="afd48a2d879dc4aada8b60bebb96523c7"></a><a name="afd48a2d879dc4aada8b60bebb96523c7"></a>MAC features</p>
 </td>
-<td class="cellrowborder" valign="top" width="81.98%" headers="mcps1.2.3.1.2 "><a name="u612cc2cd0cfe40229263c4f506c0c69c"></a><a name="u612cc2cd0cfe40229263c4f506c0c69c"></a><ul id="u612cc2cd0cfe40229263c4f506c0c69c"><li>Integrates a high-performance 32-bit microprocessor with a maximum operating frequency of 160 MHz.</li><li>Includes built-in 352 KB SRAM and 288 KB ROM.</li><li>Includes a built-in 2 MB flash memory.</li></ul>
-</td>
-</tr>
-<tr id="rae93c5236b084cd2a2c0d5c29027b40e"><td class="cellrowborder" valign="top" width="18.02%" headers="mcps1.2.3.1.1 "><p id="a9b14a9e95b3849278c332259d8add1b2"><a name="a9b14a9e95b3849278c332259d8add1b2"></a><a name="a9b14a9e95b3849278c332259d8add1b2"></a>Peripheral interfaces</p>
-</td>
-<td class="cellrowborder" valign="top" width="81.98%" headers="mcps1.2.3.1.2 "><a name="u7c73ebffd89e4092bd65f0d878d59b22"></a><a name="u7c73ebffd89e4092bd65f0d878d59b22"></a><ul id="u7c73ebffd89e4092bd65f0d878d59b22"><li>Include one SDIO interface, two SPI interfaces, two I2C interfaces, three UART interfaces, 15 GPIO interfaces, seven ADC inputs, six PWM interfaces, and one I2S interface (Note: These interfaces are all multiplexed.)</li><li>The frequency of the external primary crystal oscillator is 40 MHz or 24 MHz.</li></ul>
+<td class="cellrowborder" valign="top" width="81.94%" headers="mcps1.2.3.1.2 "><a name="uca57d799e7814925a5bf1b891335bd79"></a><a name="uca57d799e7814925a5bf1b891335bd79"></a><ul id="uca57d799e7814925a5bf1b891335bd79"><li>Supports aggregate MAC service data unit (A-MPDU) and aggregate MAC protocol data unit (A-MSDU). </li><li>Supports block acknowledgment (Blk-ACK).</li><li>Supports quality of service (QoS), meeting customer's service requirements.</li></ul>
 </td>
 </tr>
-<tr id="r18810701aafe42ad8d9a7d882730c210"><td class="cellrowborder" valign="top" width="18.02%" headers="mcps1.2.3.1.1 "><p id="ae8f47db913724e458c265e858409950b"><a name="ae8f47db913724e458c265e858409950b"></a><a name="ae8f47db913724e458c265e858409950b"></a>Other information</p>
+<tr id="r3e1c86e5f6cd4df0a1b30a08fb8481a2"><td class="cellrowborder" valign="top" width="18.060000000000002%" headers="mcps1.2.3.1.1 "><p id="a57086ea97a1b46cdb21953bf0fc22d94"><a name="a57086ea97a1b46cdb21953bf0fc22d94"></a><a name="a57086ea97a1b46cdb21953bf0fc22d94"></a>CPU subsystem</p>
 </td>
-<td class="cellrowborder" valign="top" width="81.98%" headers="mcps1.2.3.1.2 "><a name="u25f28919a3b044c5af50f9f5f5616083"></a><a name="u25f28919a3b044c5af50f9f5f5616083"></a><ul id="u25f28919a3b044c5af50f9f5f5616083"><li>Package: QFN-32, 5 mm x 5 mm</li><li>Operating temperature: –40&deg;C to +85&deg;C</li></ul>
+<td class="cellrowborder" valign="top" width="81.94%" headers="mcps1.2.3.1.2 "><a name="u612cc2cd0cfe40229263c4f506c0c69c"></a><a name="u612cc2cd0cfe40229263c4f506c0c69c"></a><ul id="u612cc2cd0cfe40229263c4f506c0c69c"><li>Integrates a high-performance 32-bit microprocessor with a maximum operating frequency of 160 MHz.</li><li>Includes built-in 352 KB SRAM and 288 KB ROM.</li><li>Includes a built-in 2 MB flash memory.</li></ul>
+</td>
+</tr>
+<tr id="rae93c5236b084cd2a2c0d5c29027b40e"><td class="cellrowborder" valign="top" width="18.060000000000002%" headers="mcps1.2.3.1.1 "><p id="a9b14a9e95b3849278c332259d8add1b2"><a name="a9b14a9e95b3849278c332259d8add1b2"></a><a name="a9b14a9e95b3849278c332259d8add1b2"></a>Peripheral interfaces</p>
+</td>
+<td class="cellrowborder" valign="top" width="81.94%" headers="mcps1.2.3.1.2 "><a name="u7c73ebffd89e4092bd65f0d878d59b22"></a><a name="u7c73ebffd89e4092bd65f0d878d59b22"></a><ul id="u7c73ebffd89e4092bd65f0d878d59b22"><li>Include one SDIO interface, two SPI interfaces, two I2C interfaces, three UART interfaces, 15 GPIO interfaces, seven ADC inputs, six PWM interfaces, and one I2S interface (Note: These interfaces are all multiplexed.)</li><li>The frequency of the external primary crystal oscillator is 40 MHz or 24 MHz.</li></ul>
+</td>
+</tr>
+<tr id="r18810701aafe42ad8d9a7d882730c210"><td class="cellrowborder" valign="top" width="18.060000000000002%" headers="mcps1.2.3.1.1 "><p id="ae8f47db913724e458c265e858409950b"><a name="ae8f47db913724e458c265e858409950b"></a><a name="ae8f47db913724e458c265e858409950b"></a>Other information</p>
+</td>
+<td class="cellrowborder" valign="top" width="81.94%" headers="mcps1.2.3.1.2 "><a name="u25f28919a3b044c5af50f9f5f5616083"></a><a name="u25f28919a3b044c5af50f9f5f5616083"></a><ul id="u25f28919a3b044c5af50f9f5f5616083"><li>Package: QFN-32, 5 mm x 5 mm</li><li>Operating temperature: –40&deg;C to +85&deg;C</li></ul>
 </td>
 </tr>
 </tbody>

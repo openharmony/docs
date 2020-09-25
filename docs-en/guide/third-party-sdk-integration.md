@@ -284,7 +284,7 @@ The following uses  **demolink**  as an example to describe how to compile code 
     
         include_dirs = [
             "//utils/native/lite/include",
-            "//vendor/hisi/wifi-iot/hi3861/3rd_sdk/demolink"
+            "//domains/iot/link/libbuild"
         ]
     }
     ```

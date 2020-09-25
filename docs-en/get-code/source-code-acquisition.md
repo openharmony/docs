@@ -47,7 +47,7 @@ You can download the source code or the corresponding solutions from the image l
 </td>
 <td class="cellrowborder" valign="top" width="24.759999999999998%" headers="mcps1.2.5.1.3 "><p id="p592912312511"><a name="p592912312511"></a><a name="p592912312511"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p199296318252"><a name="p199296318252"></a><a name="p199296318252"></a><a href="http://tools.harmonyos.com/mirrors/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
+<td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p199296318252"><a name="p199296318252"></a><a name="p199296318252"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
 </td>
 </tr>
 <tr id="row1293014352510"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p692917311258"><a name="p692917311258"></a><a name="p692917311258"></a>Hi3518 solutions (binary)</p>
@@ -234,7 +234,7 @@ Add the bundle \(**@ohos/demo**  as an example\) to your project as follows:
 Method 1 \(recommended\): Use the  **repo**  tool to download source code.
 
 ```
-repo init -u https://gitee.com/openharmony/manifest.git -b master
+repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 ```
 

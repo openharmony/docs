@@ -1,6 +1,6 @@
 # Development Specifications<a name="EN-US_TOPIC_0000001053017947"></a>
 
--   **[Overview](overview-0.md)**  
+-   **[Overview](overview.md)**  
 
 -   **[Bundle Composition](bundle-composition.md)**  
 

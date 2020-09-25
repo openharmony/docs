@@ -54,15 +54,15 @@ login = https://hpm.harmonyos.com/hpm/auth/pk                      # Configure t
 loginUser = {your-account}                                         # Configure the account for HPM login, mandatory for publishing bundles.
 shellPath = C:\WINDOWS\System32\cmd.exe                            # Configure the shell for running HPM commands.
 globalRepo = C:\Users\yourname\.global                             # Configure the path for storing bundles that are installed globally.
-http_proxy = http://your-proxy-server:port                          # Configure the HTTP proxy.
-https_proxy = http://your-proxy-server:port                         # Configure the HTTPS proxy.
+http_proxy = http://your-proxy-server:port                         # Configure the HTTP proxy.
+https_proxy = http://your-proxy-server:port                        # Configure the HTTPS proxy.
 ```
 
 For details about  **hpm-cli**  commands, see  [HPM Commands](bundle-management.md#table10510164515371).
 
 ## Downloading OpenHarmony Code<a name="section102338221707"></a>
 
-For details, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
+For details, see .
 
 ## Installing Dependent Bundles<a name="section19233183315020"></a>
 

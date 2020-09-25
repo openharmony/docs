@@ -4,7 +4,7 @@ This example shows how to use attention \(AT\) commands to complete WLAN module 
 
 ## Acquiring Source Code<a name="section1545225464016"></a>
 
-You need to acquire  [Hi3861 source code](https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz)  and download it on a Linux server. For more obtaining methods, see  [Source Code Acquisition](en-us_topic_0000001050769927.md).
+You need to acquire  [Hi3861 source code](https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz)  and download it on a Linux server. For more methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
 ## Compiling Source Code<a name="section1736014117148"></a>
 
@@ -66,7 +66,7 @@ You can use the DevEco tool to perform the image burning of the Hi3861 WLAN modu
 
     1.  Set a proper baud rate. A higher baud rate indicates a faster burning speed. Here  **921600**  is recommended.
     2.  Select a data bit. The default value of  **Data bit**  for the WLAN module is  **8**.
-    3.  Select the version package path by running the  **./out/wifiiot/Hi3861\_wifiiot\_app\_allinone.bin**  command.
+    3.  Select the version package path  **./out/wifiiot/Hi3861\_wifiiot\_app\_allinone.bin**  and  **Hiburn**  mode.
     4.  Click  **Save**  to save configurations.
 
     **Figure  8**  Baud rate and data bit configurations<a name="fig4315145184815"></a>  
@@ -75,7 +75,7 @@ You can use the DevEco tool to perform the image burning of the Hi3861 WLAN modu
     **Figure  9**  Path of the burning package<a name="fig105491550185115"></a>  
     
 
-    ![](figures/en-us_image_0000001054087868.png)
+    ![](figures/en-us_image_0000001055427138.png)
 
 4.  On the DevEco, click  **Burn** ![](figures/en-us_image_0000001054443694.png)  and select the serial port  **COM11**.
 
@@ -95,26 +95,36 @@ You can use the DevEco tool to perform the image burning of the Hi3861 WLAN modu
     ![](figures/en-us_image_0000001054802306.png)
 
 
-## Connecting WLAN Module to Internet<a name="section168257461059"></a>
+## Connecting WLAN Module to the Internet<a name="section168257461059"></a>
 
-After completing version building and burning, do as follows to execute AT commands on DevEco to connect the WLAN module to internet.
+After completing version building and burning, do as follows to connect the WLAN module to the Internet using AT commands.
 
-1.  Keep Windows workstation connected to the WLAN module and click  **Serial port**  at the bottom of DevEco to view the configuration page.
+>![](public_sys-resources/icon-note.gif) **NOTE:** 
+>-   The DevEco serial port connection function is to be launched soon, so stay tuned.
+>-   In this example, the serial port tool IPOP is used for demonstration. You can obtain this tool from the Internet.
 
-    **Figure  13**  Opening the DevEco serial port<a name="fig749694135716"></a>  
-    ![](figures/opening-the-deveco-serial-port.png "opening-the-deveco-serial-port")
+1.  Use a USB cable to connect the Windows workstation to the Hi3861 development board. Ensure that the serial port to be connected is  **COM11**, as shown in the following figure.
 
-2.  Select the serial port and set parameters. Enter the actual serial port number. Here the serial port number is  **COM11**; the default values of Baud rate, Data bit, and Stop bit are used;  **1**  is used as the end-line character since a valid input AT command must end with  **\\r\\n**.
+    **Figure  13**  COM port of the device manager<a name="fig1896113112349"></a>  
+    
 
-    **Figure  14**  Configuring the serial port<a name="fig179371422175815"></a>  
-    ![](figures/configuring-the-serial-port.png "configuring-the-serial-port")
+    ![](figures/en-us_image_0000001055268090.png)
+
+2.  On the Windows workstation, use IPOP to connect to the serial port \(COM11\) of the WLAN module, set the baud rate to  **115200**, select  **Newline**, and ensure that the entered string ends with  **\\r\\n**  to avoid AT command input failures.
+
+    **Figure  14**  IPOP connection configuration<a name="fig143024270340"></a>  
+    
+
+    ![](figures/en-us_image_0000001055427946.png)
 
 3.  Reset the WLAN module. The message  **ready to OS start**  is displayed on the terminal page, indicating that the WLAN module is started successfully.
 
-    **Figure  15**  Resetting the WLAN module<a name="fig227819127594"></a>  
-    ![](figures/resetting-the-wlan-module.png "resetting-the-wlan-module")
+    **Figure  15**  Successful resetting of the WLAN module <a name="fig496084516332"></a>  
+    
 
-4.  Run the following AT commands on the DevEco serial port in sequence to start the STA, connect to the specified AP, and enable the Dynamic Host Configuration Protocol \(DHCP\).
+    ![](figures/en-us_image_0000001055148043.png)
+
+4.  Run the following AT commands in sequence via the IPOP serial terminal to start the STA mode, connect to the specified AP, and enable Dynamic Host Configuration Protocol \(DHCP\).
 
     ```
     AT+STARTSTA                             - Start the STA mode.
@@ -122,12 +132,19 @@ After completing version building and burning, do as follows to execute AT comma
     AT+SCANRESULT                           - Display the scanning result.
     AT+CONN="SSID",,2,"PASSWORD"            - Connect to the specified AP. (SSID and PASSWORD represent the name and password of the hotspot to be connected, respectively.)
     AT+STASTAT                              - View the connection result.
-    AT+DHCP=wlan0,1                         - Request the IP address of wlan0 from the AP via DHCP.
+    AT+DHCP=wlan0,1                         - Request the IP address of wlan0 from the AP using DHCP.
     ```
 
-5.  An IP address is assigned and the interface is properly connected to the gateway.
+5.  Check whether the WLAN module is properly connected to the gateway, as shown in the following figure.
 
-    **Figure  16**  Successful networking of the WLAN module<a name="fig834919451597"></a>  
-    ![](figures/successful-networking-of-the-wlan-module.png "successful-networking-of-the-wlan-module")
+    ```
+    AT+IFCFG                                - View the IP address assigned to an interface of the module.
+    AT+PING=X.X.X.X                         - Check the connectivity between the module and the gateway. Replace X.X.X.X with the actual gateway address.
+    ```
+
+    **Figure  16**  Successful networking of the WLAN module<a name="fig1166371318339"></a>  
+    
+
+    ![](figures/en-us_image_0000001055428072.png)
 
 

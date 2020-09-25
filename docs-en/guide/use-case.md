@@ -1,6 +1,6 @@
 # Use Case<a name="EN-US_TOPIC_0000001055686082"></a>
 
--   For details about the development board, compilation, burning, and image running process, see  [Getting Started with Hi3518](en-us_topic_0000001054261054.md). The compilation results include that of the  **camera\_sample**  program.
+-   For details about the development board, compilation, burning, and image running process, see  [Getting Started with Hi3518](../quick-start/introduction-to-the-hi3518-development-board.md). The compilation results include that of the  **camera\_sample**  program.
 -   The sample code for camera development is stored in  **applications/sample/camera/media/camera\_sample.cpp**.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 

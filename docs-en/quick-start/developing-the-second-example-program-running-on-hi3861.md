@@ -29,7 +29,7 @@ The source code needs to be modified when fixing bugs or compiling a new service
     Create the service entry function  **HelloWorld**  in  **hello\_world.c**  and implement service logic. Use the SYS\_RUN\(\) of the OpenHarmony  **bootstrap**  module to start services. \(**SYS\_RUN**  is defined in the  **ohos\_init.h**  file.\)
 
     ```
-	#include <stdio.h> 
+    #include <stdio.h>
     #include "ohos_init.h"
     #include "ohos_types.h"
     
@@ -145,5 +145,5 @@ wifi init success!
 
 ## Follow-up Learning<a name="section9712145420182"></a>
 
-Congratulations! You have finished all steps! You are advised to go on learning how to develop  [WLAN-connected products](en-us_topic_0000001054530966.md).
+Congratulations! You have finished all steps! You are advised to go on learning how to develop WLAN-connected products.
 

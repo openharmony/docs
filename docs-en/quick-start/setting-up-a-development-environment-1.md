@@ -125,24 +125,25 @@ The following table describes the common tools required for Linux and how to obt
 <a name="table1313323311274"></a>
 <table><thead align="left"><tr id="row3133133312711"><th class="cellrowborder" valign="top" width="16.371637163716375%" id="mcps1.2.4.1.1"><p id="p16132203372716"><a name="p16132203372716"></a><a name="p16132203372716"></a>Development Tool</p>
 </th>
-<th class="cellrowborder" valign="top" width="50.29502950295029%" id="mcps1.2.4.1.2"><p id="p1413219339278"><a name="p1413219339278"></a><a name="p1413219339278"></a>Description</p>
+<th class="cellrowborder" valign="top" width="37.04370437043704%" id="mcps1.2.4.1.2"><p id="p1413219339278"><a name="p1413219339278"></a><a name="p1413219339278"></a>Description</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p17133183312711"><a name="p17133183312711"></a><a name="p17133183312711"></a>How to Obtain</p>
+<th class="cellrowborder" valign="top" width="46.58465846584659%" id="mcps1.2.4.1.3"><p id="p17133183312711"><a name="p17133183312711"></a><a name="p17133183312711"></a>How to Obtain</p>
 </th>
 </tr>
 </thead>
 <tbody><tr id="row13697410143219"><td class="cellrowborder" valign="top" width="16.371637163716375%" headers="mcps1.2.4.1.1 "><p id="p163612016916"><a name="p163612016916"></a><a name="p163612016916"></a>Visual Studio Code</p>
 </td>
-<td class="cellrowborder" valign="top" width="50.29502950295029%" headers="mcps1.2.4.1.2 "><p id="p1563690791"><a name="p1563690791"></a><a name="p1563690791"></a>Edits code.</p>
+<td class="cellrowborder" valign="top" width="37.04370437043704%" headers="mcps1.2.4.1.2 "><p id="p1563690791"><a name="p1563690791"></a><a name="p1563690791"></a>Edits code.</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p146361701097"><a name="p146361701097"></a><a name="p146361701097"></a><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com/</a></p>
+<td class="cellrowborder" valign="top" width="46.58465846584659%" headers="mcps1.2.4.1.3 "><p id="p146361701097"><a name="p146361701097"></a><a name="p146361701097"></a><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com/</a></p>
 </td>
 </tr>
 <tr id="row12133123315277"><td class="cellrowborder" valign="top" width="16.371637163716375%" headers="mcps1.2.4.1.1 "><p id="p613393317271"><a name="p613393317271"></a><a name="p613393317271"></a>HiTool</p>
 </td>
-<td class="cellrowborder" valign="top" width="50.29502950295029%" headers="mcps1.2.4.1.2 "><p id="p201334121092"><a name="p201334121092"></a><a name="p201334121092"></a>Burns the images and the U-boot.</p>
+<td class="cellrowborder" valign="top" width="37.04370437043704%" headers="mcps1.2.4.1.2 "><p id="p201334121092"><a name="p201334121092"></a><a name="p201334121092"></a>Burns the images and the U-boot.</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p108615410278"><a name="p108615410278"></a><a name="p108615410278"></a><a href="http://www.hihope.org/download" target="_blank" rel="noopener noreferrer">http://www.hihope.org/download</a></p>
+<td class="cellrowborder" valign="top" width="46.58465846584659%" headers="mcps1.2.4.1.3 "><p id="p2014134844017"><a name="p2014134844017"></a><a name="p2014134844017"></a><a href="http://www.hihope.org/download/AllDocuments" target="_blank" rel="noopener noreferrer">http://www.hihope.org/download/AllDocuments</a></p>
+<p id="p141194824119"><a name="p141194824119"></a><a name="p141194824119"></a>Tool package: Hi3516-Hitool.zip</p>
 </td>
 </tr>
 </tbody>
@@ -179,7 +180,7 @@ Run the following command to check whether bash is used as the shell:
 ls -l /bin/sh
 ```
 
-If  **/bin/sh -\> bash**  is not displayed, do as follows to change the shell to bash.
+If  **/bin/sh -\> bash**  is not displayed, do as follows to change shell to bash.
 
 **Method 1:**  Run the following command on the device and then click  **No**.
 
@@ -190,51 +191,117 @@ sudo dpkg-reconfigure dash
 **Method 2:**  Run the  **rm -rf /bin/sh**  command to delete sh and then run the sudo  **ln -s /bin/bash /bin/sh**  command to create a new soft link.
 
 ```
-rm -rf /bin/sh
+sudo rm -rf /bin/sh
 sudo ln -s /bin/bash /bin/sh
 ```
 
 ## Installing a Python Environment<a name="section918195118487"></a>
 
 1.  Start a Linux server.
-2.  Run the  **python3 --version**  command to check the Python version. If the Python version is not 3.7 or later, do as follows to install an appropriate Python version, for example, Python 3.8:
-    -   If the Ubuntu version is 18, run the  **sudo apt-get install python3.8**  command.
-    -   If the Ubuntu version is 16, download the installation package and install Python.
+2.  Run the following command to check the Python version \(Python 3.7 or later is required\):
 
-        1. Run the following command to install Python environment dependencies \(gcc, g++, make, zlib, libffi\):
+    ```
+    python3 --version
+    ```
 
-        "sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib\* && sudo apt-get install libffi-dev "
+    Do as follows to install Python, for example, Python 3.8.
 
-        2. Obtain  [Python 3.8.5 installation package](https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz), save it to the Linux server, and run the following command to install it:
+    1.  Run the following command to check the Ubuntu version:
 
-        "tar -xvzf Python-3.8.5.tgz && cd Python-3.8.5 && sudo ./configure && make && sudo make install"
+    ```
+    cat /etc/issue
+    ```
 
-        3. After Python-3.8.5 is installed, run  **which python3.8**  to display a path and link it to  **/usr/bin/python**. For example:
+    1.  Install Python based on the Ubuntu version.
+        -   If the Ubuntu version is 18 or later, run the following command:
 
-        "cd /usr/bin && rm python && ln -s /usr/local/bin/python3.8 python && python --version"
+            ```
+            sudo apt-get install python3.8
+            ```
+
+        -   If the Ubuntu version is 16, download the installation package and install Python.
+
+            1.  Run the following command to install Python environment dependencies \(gcc, g++, make, zlib, libffi\):
+
+            ```
+            sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib* && sudo apt-get install libffi-dev
+            ```
+
+            1.  Obtain the  [Python3.8.5 installation package](https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz), save it to the Linux server, and run the following command:
+
+            ```
+            tar -xvzf Python-3.8.5.tgz && cd Python-3.8.5 && sudo ./configure && sudo make && sudo make install
+            ```
 
 
-    -   Run the  **sudo apt-get install python3-setuptools python3-pip -y**  command to install the Python package management tool. \(The root/sudo permission is required.\) Run the  **sudo pip3 install --upgrade pip**  command to upgrade  **pip3**.
 
-        Alternatively, install the Python package management tool as instructed by the official website. Specifically, run the  **curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py**  command to download the script  **get-pip.py**  and run the  **python get-pip.py**  command to install this script.
+3.  After Python is installed, run the following command to link the Python path to  **/usr/bin/python**:
+
+    ```
+    which python3.8
+    cd /usr/bin && sudo rm python && sudo ln -s /usr/local/bin/python3.8 python && python --version
+    ```
+
+4.  Install and upgrade the Python package management tool \(pip3\) using either of the following methods:
+    -   **Command line:**
+
+        ```
+        sudo apt-get install python3-setuptools python3-pip -y
+        sudo pip3 install --upgrade pip
+        ```
+
+    -   **Installation package:**
+
+        ```
+        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        python get-pip.py
+        ```
 
 
-3.  Run the  **pip3 install setuptools**  command to install setuptools module of Python.
-4.  Run the  **sudo pip3 install kconfiglib**  command to install  **GUI menuconfig**. The Kconfiglib 13.2.0 or later is recommended. \(The root/sudo permission is required.\)
+5.  Run the following command to install setuptools:
 
-    Alternatively, you can do as follows to install Kconfiglib 13.2.0 or later:
+    ```
+    pip3 install setuptools
+    ```
 
-    1.  Download the .whl file, for example,  **kconfiglib-13.2.0-py2.py3-none-any.whl**, from  [https://pypi.org/project/kconfiglib\#files](https://pypi.org/project/kconfiglib#files).
+6.  Install the GUI menuconfig tool \(Kconfiglib\). You are advised to install Kconfiglib 13.2.0 or later.
+    -   **Command line:**
 
-    1.  Run the  **sudo pip3 install kconfiglib-xxx.whl**  command to install the .whl file, for example,  **sudo pip3 install kconfiglib-13.2.0-py2.py3-none-any.whl**\). \(The root/sudo permission is required.\)
-    2.  If you encounter the error  **subprocess.CalledProcessError: Command '\('lsb\_release', '-a'\)' returned non-zero exit status 1.**, run the  **find / -name lsb\_release**  command, for example,  **rm -rf /usr/bin/lsb\_release**  to locate and delete it  **sb\_release**.
+        ```
+        sudo pip3 install kconfiglib
+        ```
+
+
+    -   **Installation package:**
+        1.  Download the .whl file \(for example,  **kconfiglib-13.2.0-py2.py3-none-any.whl**\).
+
+            Download path:  [https://pypi.org/project/kconfiglib\#files](https://pypi.org/project/kconfiglib#files)
+
+
+        1.  Run the following command to install the .whl file:
+
+            ```
+            sudo pip3 install kconfiglib-13.2.0-py2.py3-none-any.whl
+            ```
+
+
 
 
 ## Installing a File Packing Tool<a name="section145881557185214"></a>
 
 1.  Start a Linux server.
-2.  Run  **mkfs.vfat**. If the command is not found, run  **sudo apt-get install dosfstools**.
-3.  Run  **mcopy**. If the command is not found, run  **sudo apt-get install mtools**.
+2.  Run the following command to install  **dosfstools**.
+
+    ```
+    sudo apt-get install dosfstools
+    ```
+
+3.  Run the following command to install  **mtools**.
+
+    ```
+    sudo apt-get install mtools
+    ```
+
 
 ## Installing Compilation Tools<a name="section7227629152013"></a>
 
@@ -247,31 +314,115 @@ sudo ln -s /bin/bash /bin/sh
 
 1.  Start a Linux server.
 2.  Download  [gn](https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar).
-3.  Decompress the  **gn**  installation package to the  **tar -xvf gn.1523.tar -C \~/**  in  **\~/gn**  directory.
-4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/gn:$PATH**  to set an environment variable.
-5.  Run  **source \~/.bashrc**  to validate the environment variable.
+3.  Run the following command to decompress the gn installation package to  **\~/gn**.
+
+    ```
+    tar -xvf gn.1523.tar -C ~/
+    ```
+
+4.  Set an environment variable by performing the following steps. Open the  **\~/.bashrc**  file in Vim first.
+
+    ```
+    vim ~/.bashrc
+    ```
+
+    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
+
+    ```
+    export PATH=~/gn:$PATH
+    ```
+
+5.  Run the following command to validate the environment variable.
+
+    ```
+    source ~/.bashrc
+    ```
+
 
 ## Installing ninjah<a name="section96781928145213"></a>
 
 1.  Start a Linux server.
 2.  Download  [ninja](https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar).
-3.  Decompress the  **ninja**  installation package to  **tar -xvf ninja.1.9.0.tar -C \~/**  in  **\~/ninja**  directory.
-4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/ninja:$PATH**  to set an environment variable.
-5.  Run  **source \~/.bashrc**  to validate the environment variable.
+3.  Run the following command to decompress the ninja installation package to  **\~/ninja**.
+
+    ```
+    tar -xvf ninja.1.9.0.tar -C ~/
+    ```
+
+4.  Set an environment variable by performing the following steps. Open the  **\~/.bashrc**  file in Vim first.
+
+    ```
+    vim ~/.bashrc
+    ```
+
+    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
+
+    ```
+    export PATH=~/ninja:$PATH
+    ```
+
+5.  Run the following command to validate the environment variable.
+
+    ```
+    source ~/.bashrc
+    ```
+
 
 ## Installing the LLVM Toolchain<a name="section667822819521"></a>
 
 1.  Start a Linux server.
 2.  Download  [LLVM](http://tools.harmonyos.com/mirrors/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar).
-3.  Decompress the LLVM installation package to the  **\~/llvm**  path by running  **"tar -xvf llvm-linux-9.0.0-34042.tar -C \~/"**.
-4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/llvm/bin:$PATH**  to set an environment variable.
-5.  Run  **source \~/.bashrc**  to validate the environment variable.
+3.  Run the following command to decompress the LLVM installation package to  **\~/llvm**.
+
+    ```
+    tar -xvf llvm-linux-9.0.0-34042.tar -C ~/
+    ```
+
+4.  Set an environment variable by performing the following steps. Open the  **\~/.bashrc**  file in Vim first.
+
+    ```
+    vim ~/.bashrc
+    ```
+
+    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
+
+    ```
+    export PATH=~/llvm/bin:$PATH
+    ```
+
+5.  Run the following command to validate the environment variable.
+
+    ```
+    source ~/.bashrc
+    ```
+
 
 ##  Installing hc-gen<a name="section201517625210"></a>
 
 1.  Start a Linux server.
 2.  Download  [hc-gen](https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar).
-3.  Decompress the hc-gen installation package to  **tar -xvf hc-gen-0.65-linux.tar -C \~/**  in  **\~/hc-gen**  on the Linux.
-4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/hc-gen:$PATH**  to set an environment variable.
-5.  Run  **source \~/.bashrc**  to validate the environment variable.
+3.  Run the following command to decompress the hc-gen installation package to  **\~/hc-gen**  on the Linux server.
+
+    ```
+    tar -xvf hc-gen-0.65-linux.tar -C ~/
+    ```
+
+4.  Set an environment variable by performing the following steps. Open the  **\~/.bashrc**  file in Vim first.
+
+    ```
+    vim ~/.bashrc
+    ```
+
+    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
+
+    ```
+    export PATH=~/hc-gen:$PATH
+    ```
+
+5.  Run the following command to validate the environment variable.
+
+    ```
+    source ~/.bashrc
+    ```
+
 

@@ -9,7 +9,7 @@
 -   Hi3861 WLAN module
 -   USB Type-C cable used to connect to Windows workstation and Hi3861 WLAN module
 
-[Figure 1](#fa54d47112b684c65b3dbf1779413545a)  shows the hardware connections.
+[Figure 1](#fig1651211924914)  shows the hardware connections.
 
 **Figure  1**  Hardware connections<a name="fig1651211924914"></a>  
 ![](figures/hardware-connections.png "hardware-connections")
@@ -192,7 +192,7 @@ Run the following command to check whether bash is used as the shell:
 ls -l /bin/sh
 ```
 
-If  **/bin/sh -\> bash**  is not displayed, do as follows to change the shell to bash.
+If  **/bin/sh -\> bash**  is not displayed, do as follows to change shell to bash.
 
 **Method 1:**  Run the following command on the device and then click  **No**.
 
@@ -203,86 +203,185 @@ sudo dpkg-reconfigure dash
 **Method 2:**  Run the  **rm -rf /bin/sh**  command to delete sh and then run the sudo  **ln -s /bin/bash /bin/sh**  command to create a new soft link.
 
 ```
-rm -rf /bin/sh
+sudo rm -rf /bin/sh
 sudo ln -s /bin/bash /bin/sh
 ```
 
 ## Installing a Python Environment<a name="section126831816258"></a>
 
 1.  Start a Linux server.
-2.  Run the  **python3 --version**  command to check the Python version. If the Python version is not 3.7 or later, do as follows to install an appropriate Python version, for example, Python 3.8:
-    -   If the Ubuntu version is 18, run the  **sudo apt-get install python3.8**  command.
-    -   If the Ubuntu version is 16, download the installation package and install Python.
+2.  Run the following command to check the Python version \(Python 3.7 or later is required\):
 
-        1. Run the following command to install Python environment dependencies \(gcc, g++, make, zlib, libffi\):
+    ```
+    python3 --version
+    ```
 
-        "sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib\* && sudo apt-get install libffi-dev "
+    Do as follows to install Python, for example, Python 3.8.
 
-        2. Obtain  [Python 3.8.5 installation package](https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz), save it to the Linux server, and run the following command to install it:
+    1.  Run the following command to check the Ubuntu version:
 
-        "tar -xvzf Python-3.8.5.tgz && cd Python-3.8.5 && sudo ./configure && make && sudo make install"
+    ```
+    cat /etc/issue
+    ```
 
-        3. After Python-3.8.5 is installed, run  **which python3.8**  to display a path and link it to  **/usr/bin/python**. For example:
+    1.  Install Python based on the Ubuntu version.
+        -   If the Ubuntu version is 18 or later, run the following command:
 
-        "cd /usr/bin && rm python && ln -s /usr/local/bin/python3.8 python && python --version"
+            ```
+            sudo apt-get install python3.8
+            ```
+
+        -   If the Ubuntu version is 16, download the installation package and install Python.
+
+            1.  Run the following command to install Python environment dependencies \(gcc, g++, make, zlib, libffi\):
+
+            ```
+            sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib* && sudo apt-get install libffi-dev
+            ```
+
+            1.  Obtain the  [Python3.8.5 installation package](https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz), save it to the Linux server, and run the following command:
+
+            ```
+            tar -xvzf Python-3.8.5.tgz && cd Python-3.8.5 && sudo ./configure && sudo make && sudo make install
+            ```
 
 
-    -   Run the  **sudo apt-get install python3-setuptools python3-pip -y**  command to install the Python package management tool. \(The root/sudo permission is required.\) Run the  **sudo pip3 install --upgrade pip**  command to upgrade  **pip3**.
 
-        Alternatively, install the Python package management tool as instructed by the official website. Specifically, run the  **curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py**  command to download the script  **get-pip.py**  and run the  **python get-pip.py**  command to install this script.
+3.  After Python is installed, run the following command to link the Python path to  **/usr/bin/python**:
+
+    ```
+    which python3.8
+    cd /usr/bin && sudo rm python && sudo ln -s /usr/local/bin/python3.8 python && python --version
+    ```
+
+4.  Install and upgrade the Python package management tool \(pip3\) using either of the following methods:
+    -   **Command line:**
+
+        ```
+        sudo apt-get install python3-setuptools python3-pip -y
+        sudo pip3 install --upgrade pip
+        ```
+
+    -   **Installation package:**
+
+        ```
+        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        python get-pip.py
+        ```
 
 
-3.  Run the  **pip3 install setuptools**  command to install setuptools module of Python.
-4.  Run the  **sudo pip3 install kconfiglib**  command to install  **GUI menuconfig**. The Kconfiglib 13.2.0 or later is recommended. \(The root/sudo permission is required.\)
+5.  Run the following command to install setuptools:
 
-    Alternatively, you can do as follows to install Kconfiglib 13.2.0 or later:
+    ```
+    pip3 install setuptools
+    ```
 
-    1.  Download the .whl file, for example,  **kconfiglib-13.2.0-py2.py3-none-any.whl**, from  [https://pypi.org/project/kconfiglib\#files](https://pypi.org/project/kconfiglib#files).
+6.  Install the GUI menuconfig tool \(Kconfiglib\). You are advised to install Kconfiglib 13.2.0 or later.
+    -   **Command line:**
 
-    1.  Run the  **sudo pip3 install kconfiglib-xxx.whl**  command to install the .whl file, for example,  **sudo pip3 install kconfiglib-13.2.0-py2.py3-none-any.whl**\). \(The root/sudo permission is required.\)
-    2.  If you encounter the error  **subprocess.CalledProcessError: Command '\('lsb\_release', '-a'\)' returned non-zero exit status 1.**, run the  **find / -name lsb\_release**  command, for example,  **rm -rf /usr/bin/lsb\_release**  to locate and delete it  **sb\_release**.
+        ```
+        sudo pip3 install kconfiglib
+        ```
 
-5.  Run the  **sudo pip3 install pycryptodome**  command to install pycryptodome or do as follows:
 
-    >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >-   Install the Python component packages on which the file signature depends, including pycryptodome, six, and ecdsa.
-    >-   As the installation of ecdsa depends on that of six, install six first.
+    -   **Installation package:**
+        1.  Download the .whl file \(for example,  **kconfiglib-13.2.0-py2.py3-none-any.whl**\).
 
-    1.  Download the .whl file, for example,  **pycryptodome-3.7.3-cp37-cp37m-manylinux1\_x86\_64.whl**  from  [https://pypi.org/project/pycryptodome/\#files](https://pypi.org/project/pycryptodome/#files).
+            Download path:  [https://pypi.org/project/kconfiglib\#files](https://pypi.org/project/kconfiglib#files)
 
-    1.  Run the  **sudo pip3 install pycryptodome-xxx.whl**  command to install the .whl file, for example,  **sudo pip3 install pycryptodome-3.7.3-cp37-cp37m-manylinux1\_x86\_64.whl**.
 
-    After the installation is complete, the message  **Successfully installed pycryptodome-3.7.3**  is displayed.
+        1.  Run the following command to install the .whl file:
 
-6.  Run the  **sudo pip3 install six --upgrade --ignore-installed six**  command to install  **six**  or do as follows:
+            ```
+            sudo pip3 install kconfiglib-13.2.0-py2.py3-none-any.whl
+            ```
 
-    1.  Download the .whl file, for example,  **six-1.12.0-py2.py3-none-any.whl**  from  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files).
 
-    1.  Run the  **sudo pip3 install six-xxx.whl**  command to install the .whl file, for example,  **sudo pip3 install six-1.12.0-py2.py3-none-any.whl**. \(The root/sudo permission is required.\)
 
-    After the installation is complete, the message  **Successfully installed six-1.12.0**  is displayed.
+7.  Install  **pycryptodome**  using either of the following methods:
 
-7.  Run the  **sudo pip3 install ecdsa**  command to install  **ecdsa**  or do as follows:
+    Install the Python component packages on which the file signature depends, including pycryptodome, six, and ecdsa. As the installation of  **ecdsa**  depends on that of  **six**, install  **six**  first.
 
-    1.  Download the .whl file, for example,  **ecdsa-0.14.1-py2.py3-none-any.whl**  from  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files).
+    -   **Command line:**
 
-    1.  Run the  **sudo pip3 install ecdsa-xxx.whl**  command to install the .whl file, for example,  **sudo pip3 install ecdsa-0.14.1-py2.py3-none-any.whl**. \(The root/sudo permission is required.\)
+        ```
+        sudo pip3 install pycryptodome
+        ```
 
-    After the installation is complete, the message  **Successfully installed ecdsa-0.14.1**  is displayed.
+    -   **Installation package:**
+        1.  Download the .whl file, for example,  **pycryptodome-3.7.3-cp37-cp37m-manylinux1\_x86\_64.whl**  from  [https://pypi.org/project/pycryptodome/\#files](https://pypi.org/project/pycryptodome/#files).
+
+        1.  Run the following command to install the .whl file:
+
+            ```
+            sudo pip3 install pycryptodome-3.7.3-cp37-cp37m-manylinux1_x86_64.whl
+            ```
+
+
+
+8.  Install  **six**  using either of the following methods:
+    -   **Command line:**
+
+        ```
+        sudo pip3 install six --upgrade --ignore-installed six
+        ```
+
+
+    -   **Installation package:**
+        1.  Download the .whl file, for example,  **six-1.12.0-py2.py3-none-any.whl**  from  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files).
+
+        1.  Run the following command to install the .whl file:
+
+            ```
+            sudo pip3 install six-1.12.0-py2.py3-none-any.whl
+            ```
+
+
+
+9.  Install  **ecdsa**  using either of the following methods:
+    -   **Command line:**
+
+        ```
+        sudo pip3 install ecdsa
+        ```
+
+    -   **Installation package:**
+        1.  Download the .whl file, for example,  **ecdsa-0.14.1-py2.py3-none-any.whl**  from  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files).
+
+        1.  Run the following command to install the .whl file:
+
+            ```
+            sudo pip3 install ecdsa-0.14.1-py2.py3-none-any.whl
+            ```
+
+
 
 
 ## Installing Scons<a name="section2462246562"></a>
 
 1.  Start a Linux server.
-2.  Run the  **sudo apt-get install scons -y**  command to install the SCons package. \(The root/sudo permission is required.\)
+2.  Run the following command to install the SCons installation package:
 
-    Run the  **sudo apt-get install scons -y**  command. If the installation package cannot be found in the software source, do as follows:
+    ```
+    sudo apt-get install scons -y
+    ```
+
+    If the installation package cannot be found in the software source, do as follows:
 
     1.  Download the source code package from  [https://scons.org/pages/download.html](https://scons.org/pages/download.html). The recommended SCons version is 3.0.4 or later.
     2.  Decompress the source code package to any directory.
-    3.  Enter the source code directory and run the  **sudo python3 setup.py install**  command to install the source code package. \(The root/sudo permission is required.\)
+    3.  Go to the source code directory and run the following command to install the source code package:
 
-3.  Run the  **scons -v**  command to check whether the installation is successful.
+        ```
+        sudo python3 setup.py install
+        ```
+
+
+3.  Run the following command to check whether the installation is successful.
+
+    ```
+    scons -v
+    ```
 
     **Figure  5**  Successful installation<a name="fig235815252492"></a>  
     ![](figures/successful-installation.png "successful-installation")
@@ -299,17 +398,59 @@ sudo ln -s /bin/bash /bin/sh
 
 1.  Start a Linux server.
 2.  Download  [gn](https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar).
-3.  Decompress the  **gn**  installation package to the  **tar -xvf gn.1523.tar -C \~/**  in  **\~/gn**  directory.
-4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/gn:$PATH**  to set an environment variable.
-5.  Run  **source \~/.bashrc**  to validate the environment variable.
+3.  Run the following command to decompress the gn installation package to  **\~/gn**.
+
+    ```
+    tar -xvf gn.1523.tar -C ~/
+    ```
+
+4.  Set an environment variable by performing the following steps. Open the  **\~/.bashrc**  file in Vim first.
+
+    ```
+    vim ~/.bashrc
+    ```
+
+    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
+
+    ```
+    export PATH=~/gn:$PATH
+    ```
+
+5.  Run the following command to validate the environment variable.
+
+    ```
+    source ~/.bashrc
+    ```
+
 
 ## Installing ninjah<a name="section182441140185010"></a>
 
 1.  Start a Linux server.
 2.  Download  [ninja](https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar).
-3.  Decompress the  **ninja**  installation package to  **tar -xvf ninja.1.9.0.tar -C \~/**  in  **\~/ninja**  directory.
-4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/ninja:$PATH**  to set an environment variable.
-5.  Run  **source \~/.bashrc**  to validate the environment variable.
+3.  Run the following command to decompress the ninja installation package to  **\~/ninja**.
+
+    ```
+    tar -xvf ninja.1.9.0.tar -C ~/
+    ```
+
+4.  Set an environment variable by performing the following steps. Open the  **\~/.bashrc**  file in Vim first.
+
+    ```
+    vim ~/.bashrc
+    ```
+
+    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
+
+    ```
+    export PATH=~/ninja:$PATH
+    ```
+
+5.  Run the following command to validate the environment variable.
+
+    ```
+    source ~/.bashrc
+    ```
+
 
 ## Installing gcc\_riscv32 \(Compilation Toolchain for WLAN Module\)<a name="section2014123416523"></a>
 
@@ -318,8 +459,34 @@ sudo ln -s /bin/bash /bin/sh
 
 1.  Start a Linux server.
 2.  Download  [gcc\_riscv32](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz).
-3.  Decompress the gcc\_riscv32 installation package to  **tar -xvf gcc\_riscv32-linux-7.3.0.tar.gz -C \~/**  in  **/opt/gcc\_riscv32**.
-4.  Open the  **\~/.bashrc**  file in Vim and add a line of  **export PATH=\~/gcc\_riscv32/bin:$PATH**  to set an environment variable.
-5.  Run  **source \~/.bashrc**  to validate the environment variable.
-6.  Enter  **$ riscv32-unknown-elf-gcc -v**  in the shell command line to check whether the compiler is successfully installed. If the compiler version number is correctly displayed, the installation is successful.
+3.  Run the following command to decompress the gcc\_riscv32 installation package to  **\~/gcc\_riscv32**.
+
+    ```
+    tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C ~/
+    ```
+
+4.  Set an environment variable by performing the following steps. Open the  **\~/.bashrc**  file in Vim first.
+
+    ```
+    vim ~/.bashrc
+    ```
+
+    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
+
+    ```
+    export PATH=~/gcc_riscv32/bin:$PATH
+    ```
+
+5.  Run the following command to validate the environment variable.
+
+    ```
+    source ~/.bashrc
+    ```
+
+6.  Enter the following command to check whether the compiler is successfully installed. If the compiler version number is correctly displayed, the installation is successful.
+
+    ```
+    riscv32-unknown-elf-gcc -v
+    ```
+
 

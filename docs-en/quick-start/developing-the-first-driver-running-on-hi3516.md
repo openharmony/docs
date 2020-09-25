@@ -64,17 +64,26 @@ The following operations take a HDF-based UART driver as an example to show how 
 
     ```
     // Bind the UART driver interface to the HDF.
-    static int32_t HdfUartSampleBind(struct HdfDeviceObject *device)
+    static int32_t SampleUartDriverBind(struct HdfDeviceObject *device)
     {
+        struct UartHost *uartHost = NULL;
+    
         if (device == NULL) {
             return HDF_ERR_INVALID_OBJECT;
         }
         HDF_LOGI("Enter %s:", __func__);
-        return (UartHostCreate(device) == NULL) ? HDF_FAILURE : HDF_SUCCESS;
+    
+        uartHost = UartHostCreate(device);
+        if (uartHost == NULL) {
+            HDF_LOGE("%s: UartHostCreate failed", __func__);
+            return HDF_FAILURE;
+        }
+        uartHost->service.Dispatch = SampleDispatch;
+        return HDF_SUCCESS;
     }
      
     // Obtain configuration information from the HCS of the UART driver.
-    static uint32_t UartDeviceGetResource(
+    static uint32_t GetUartDeviceResource(
         struct UartDevice *device, const struct DeviceResourceNode *resourceNode)
     {
         struct UartResource *resource = &device->resource;
@@ -84,7 +93,7 @@ The following operations take a HDF-based UART driver as an example to show how 
             HDF_LOGE("DeviceResourceIface is invalid");
             return HDF_FAILURE;
         }
-     
+    
         if (dri->GetUint32(resourceNode, "num", &resource->num, 0) != HDF_SUCCESS) {
             HDF_LOGE("uart config read num fail");
             return HDF_FAILURE;
@@ -93,7 +102,7 @@ The following operations take a HDF-based UART driver as an example to show how 
             HDF_LOGE("uart config read base fail");
             return HDF_FAILURE;
         }
-        resource->physBase = (unsigned long) OsalIoRemap(resource->base, 0x48);
+        resource->physBase = (unsigned long)OsalIoRemap(resource->base, 0x48);
         if (resource->physBase == 0) {
             HDF_LOGE("uart config fail to remap physBase");
             return HDF_FAILURE;
@@ -126,7 +135,7 @@ The following operations take a HDF-based UART driver as an example to show how 
     }
      
     // Attach the configuration and interface of the UART driver to the HDF.
-    static int32_t SampleAttach(struct UartHost *host, struct HdfDeviceObject *device)
+    static int32_t AttachUartDevice(struct UartHost *host, struct HdfDeviceObject *device)
     {
         int32_t ret;
         struct UartDevice *uartDevice = NULL;
@@ -134,28 +143,28 @@ The following operations take a HDF-based UART driver as an example to show how 
             HDF_LOGE("%s: property is NULL", __func__);
             return HDF_FAILURE;
         }
-        uartDevice = (struct UartDevice *) OsalMemCalloc(sizeof(struct UartDevice));
+        uartDevice = (struct UartDevice *)OsalMemCalloc(sizeof(struct UartDevice));
         if (uartDevice == NULL) {
             HDF_LOGE("%s: OsalMemCalloc uartDevice error", __func__);
             return HDF_ERR_MALLOC_FAIL;
         }
-        ret = UartDeviceGetResource(uartDevice, device->property);
+        ret = GetUartDeviceResource(uartDevice, device->property);
         if (ret != HDF_SUCCESS) {
-            (void) OsalMemFree(uartDevice);
+            (void)OsalMemFree(uartDevice);
             return HDF_FAILURE;
         }
         host->num = uartDevice->resource.num;
         host->priv = uartDevice;
-        UartSampleAddDev(host); // Add a user-space UART node. For details, see the source code uart_dev_sample.
-        return UartDeviceInit(uartDevice); // Initialize UART PL011. For details, see the source code uart_pl011_sample.
+        AddUartDevice(host);
+        return InitUartDevice(uartDevice);
     }
      
     // Initialize the UART driver.
-    static int32_t HdfUartSampleInit(struct HdfDeviceObject *device)
+    static int32_t SampleUartDriverInit(struct HdfDeviceObject *device)
     {
         int32_t ret;
         struct UartHost *host = NULL;
-     
+    
         if (device == NULL) {
             HDF_LOGE("%s: device is NULL", __func__);
             return HDF_ERR_INVALID_OBJECT;
@@ -166,71 +175,71 @@ The following operations take a HDF-based UART driver as an example to show how 
             HDF_LOGE("%s: host is NULL", __func__);
             return HDF_FAILURE;
         }
-        ret = SampleAttach(host, device);
+        ret = AttachUartDevice(host, device);
         if (ret != HDF_SUCCESS) {
             HDF_LOGE("%s: attach error", __func__);
             return HDF_FAILURE;
         }
-        host->method = &g_uartSampleHostMethod;
+        host->method = &g_sampleUartHostMethod;
         return ret;
     }
      
-    static void UartDeviceDeinit(struct UartDevice *device)
+    static void DeinitUartDevice(struct UartDevice *device)
     {
-        struct UartRegisterMap *regMap = (struct UartRegisterMap *) device->resource.physBase;
+        struct UartRegisterMap *regMap = (struct UartRegisterMap *)device->resource.physBase;
         /* Wait for the UART to enter the idle state. */
         while (UartPl011IsBusy(regMap));
         UartPl011ResetRegisters(regMap);
         uart_clk_cfg(0, false);
-        OsalIoUnmap((void *) device->resource.physBase);
+        OsalIoUnmap((void *)device->resource.physBase);
         device->state = UART_DEVICE_UNINITIALIZED;
     }
      
     // Detach and release the UART driver.
-    static void SampleDetach(struct UartHost *host)
+    static void DetachUartDevice(struct UartHost *host)
     {
         struct UartDevice *uartDevice = NULL;
-     
+    
         if (host->priv == NULL) {
             HDF_LOGE("%s: invalid parameter", __func__);
             return;
         }
         uartDevice = host->priv;
-        UartDeviceDeinit(uartDevice);
-        (void) OsalMemFree(uartDevice);
+        DeinitUartDevice(uartDevice);
+        (void)OsalMemFree(uartDevice);
         host->priv = NULL;
     }
      
     // Release the UART driver.
-    static void HdfUartSampleRelease(struct HdfDeviceObject *device)
+    static void SampleUartDriverRelease(struct HdfDeviceObject *device)
     {
         struct UartHost *host = NULL;
         HDF_LOGI("Enter %s:", __func__);
-     
+    
         if (device == NULL) {
-            HDF_LOGE("%s: device is null", __func__);
+            HDF_LOGE("%s: device is NULL", __func__);
             return;
         }
         host = UartHostFromDevice(device);
         if (host == NULL) {
-            HDF_LOGE("%s: host is null", __func__);
+            HDF_LOGE("%s: host is NULL", __func__);
             return;
         }
         if (host->priv != NULL) {
-            SampleDetach(host);
+            DetachUartDevice(host);
         }
         UartHostDestroy(host);
     }
      
-    struct HdfDriverEntry g_hdfUartSample = {
+    struct HdfDriverEntry g_sampleUartDriverEntry = {
         .moduleVersion = 1,
         .moduleName = "UART_SAMPLE",
-        .Bind = HdfUartSampleBind,
-        .Init = HdfUartSampleInit,
-        .Release = HdfUartSampleRelease,
+        .Bind = SampleUartDriverBind,
+        .Init = SampleUartDriverInit,
+        .Release = SampleUartDriverRelease,
     };
      
-    HDF_INIT(g_hdfUartSample);
+    HDF_INIT(g_sampleUartDriverEntry);
     ```
 
 3.  Register a UART driver interface.
@@ -238,7 +247,7 @@ The following operations take a HDF-based UART driver as an example to show how 
     Implement the UART driver interface using the template  **UartHostMethod**  provided by the HDF.
 
     ```
-    static int32_t SampleInit(struct UartHost *host)
+    static int32_t SampleUartHostInit(struct UartHost *host)
     {
         HDF_LOGI("%s: Enter", __func__);
         if (host == NULL) {
@@ -248,7 +257,7 @@ The following operations take a HDF-based UART driver as an example to show how 
         return HDF_SUCCESS;
     }
     
-    static int32_t SampleDeinit(struct UartHost *host)
+    static int32_t SampleUartHostDeinit(struct UartHost *host)
     {
         HDF_LOGI("%s: Enter", __func__);
         if (host == NULL) {
@@ -259,48 +268,47 @@ The following operations take a HDF-based UART driver as an example to show how 
     }
     
     // Write data into the UART device.
-    static int32_t SampleWrite(struct UartHost *host, uint8_t *data, uint32_t size)
+    static int32_t SampleUartHostWrite(struct UartHost *host, uint8_t *data, uint32_t size)
     {
         HDF_LOGI("%s: Enter", __func__);
         uint32_t idx;
         struct UartRegisterMap *regMap = NULL;
         struct UartDevice *device = NULL;
-     
+    
         if (host == NULL || data == NULL || size == 0) {
             HDF_LOGE("%s: invalid parameter", __func__);
             return HDF_ERR_INVALID_PARAM;
         }
-        device = (struct UartDevice *) host->priv;
+        device = (struct UartDevice *)host->priv;
         if (device == NULL) {
             HDF_LOGE("%s: device is NULL", __func__);
             return HDF_ERR_INVALID_PARAM;
         }
-        regMap = (struct UartRegisterMap *) device->resource.physBase;
+        regMap = (struct UartRegisterMap *)device->resource.physBase;
         for (idx = 0; idx < size; idx++) {
-            while (UartPl011IsBusy(regMap));
             UartPl011Write(regMap, data[idx]);
         }
         return HDF_SUCCESS;
     }
      
     // Set the baud rate of the UART device.
-    static int32_t SampleSetBaud(struct UartHost *host, uint32_t baudRate)
+    static int32_t SampleUartHostSetBaud(struct UartHost *host, uint32_t baudRate)
     {
         HDF_LOGI("%s: Enter", __func__);
         struct UartDevice *device = NULL;
         struct UartRegisterMap *regMap = NULL;
         UartPl011Error err;
-     
+    
         if (host == NULL) {
             HDF_LOGE("%s: invalid parameter", __func__);
             return HDF_ERR_INVALID_PARAM;
         }
-        device = (struct UartDevice *) host->priv;
+        device = (struct UartDevice *)host->priv;
         if (device == NULL) {
             HDF_LOGE("%s: device is NULL", __func__);
             return HDF_ERR_INVALID_PARAM;
         }
-        regMap = (struct UartRegisterMap *) device->resource.physBase;
+        regMap = (struct UartRegisterMap *)device->resource.physBase;
         if (device->state != UART_DEVICE_INITIALIZED) {
             return UART_PL011_ERR_NOT_INIT;
         }
@@ -315,16 +323,16 @@ The following operations take a HDF-based UART driver as an example to show how 
     }
      
     // Obtain the baud rate of the UART device.
-    static int32_t SampleGetBaud(struct UartHost *host, uint32_t *baudRate)
+    static int32_t SampleUartHostGetBaud(struct UartHost *host, uint32_t *baudRate)
     {
         HDF_LOGI("%s: Enter", __func__);
         struct UartDevice *device = NULL;
-     
+    
         if (host == NULL) {
             HDF_LOGE("%s: invalid parameter", __func__);
             return HDF_ERR_INVALID_PARAM;
         }
-        device = (struct UartDevice *) host->priv;
+        device = (struct UartDevice *)host->priv;
         if (device == NULL) {
             HDF_LOGE("%s: device is NULL", __func__);
             return HDF_ERR_INVALID_PARAM;
@@ -334,13 +342,13 @@ The following operations take a HDF-based UART driver as an example to show how 
     }
      
     // Bind the UART device using HdfUartSampleInit.
-    struct UartHostMethod g_uartSampleHostMethod = {
-        .Init = SampleInit,
-        .Deinit = SampleDeinit,
+    struct UartHostMethod g_sampleUartHostMethod = {
+        .Init = SampleUartHostInit,
+        .Deinit = SampleUartHostDeinit,
         .Read = NULL,
-        .Write = SampleWrite,
-        .SetBaud = SampleSetBaud,
-        .GetBaud = SampleGetBaud,
+        .Write = SampleUartHostWrite,
+        .SetBaud = SampleUartHostSetBaud,
+        .GetBaud = SampleUartHostGetBaud,
         .SetAttribute = NULL,
         .GetAttribute = NULL,
         .SetTransMode = NULL,
@@ -436,31 +444,41 @@ Compile and burn images by referring to  [Compiling Code](developing-the-first-e
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
     >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisillicon" is displayed.
 
-    **Table  1**  Startup parameters of the U-boot
+    **Table  1**  Parameters of the U-boot
 
-    <a name="en-us_topic_0000001052906247_table432481061214"></a>
-    <table><tbody><tr id="en-us_topic_0000001052906247_row532461021219"><th class="firstcol" valign="top" width="8.39%" id="mcps1.2.3.1.1"><p id="en-us_topic_0000001052906247_p1238114718129"><a name="en-us_topic_0000001052906247_p1238114718129"></a><a name="en-us_topic_0000001052906247_p1238114718129"></a>Command</p>
+    <a name="en-us_topic_0000001052906247_table1323441103813"></a>
+    <table><thead align="left"><tr id="en-us_topic_0000001052906247_row1423410183818"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="en-us_topic_0000001052906247_p623461163818"><a name="en-us_topic_0000001052906247_p623461163818"></a><a name="en-us_topic_0000001052906247_p623461163818"></a>Command</p>
     </th>
-    <td class="cellrowborder" valign="top" width="91.61%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001052906247_p93816470127"><a name="en-us_topic_0000001052906247_p93816470127"></a><a name="en-us_topic_0000001052906247_p93816470127"></a><strong id="en-us_topic_0000001052906247_b143728351609"><a name="en-us_topic_0000001052906247_b143728351609"></a><a name="en-us_topic_0000001052906247_b143728351609"></a>setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800; go 0x80000000";</strong></p>
-    <p id="en-us_topic_0000001052906247_p83904761218"><a name="en-us_topic_0000001052906247_p83904761218"></a><a name="en-us_topic_0000001052906247_p83904761218"></a><strong id="en-us_topic_0000001052906247_b14389193520014"><a name="en-us_topic_0000001052906247_b14389193520014"></a><a name="en-us_topic_0000001052906247_b14389193520014"></a>setenv bootargs "console=ttyAMA0,115200n8 root=emmc fstype=vfat rootaddr=10M rootsize=15M rw";</strong></p>
-    <p id="en-us_topic_0000001052906247_p7399470123"><a name="en-us_topic_0000001052906247_p7399470123"></a><a name="en-us_topic_0000001052906247_p7399470123"></a><strong id="en-us_topic_0000001052906247_b1041015359012"><a name="en-us_topic_0000001052906247_b1041015359012"></a><a name="en-us_topic_0000001052906247_b1041015359012"></a>saveenv</strong></p>
-    <p id="en-us_topic_0000001052906247_p14391747131219"><a name="en-us_topic_0000001052906247_p14391747131219"></a><a name="en-us_topic_0000001052906247_p14391747131219"></a><strong id="en-us_topic_0000001052906247_b84127351701"><a name="en-us_topic_0000001052906247_b84127351701"></a><a name="en-us_topic_0000001052906247_b84127351701"></a>reset</strong></p>
+    <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="en-us_topic_0000001052906247_p42341014388"><a name="en-us_topic_0000001052906247_p42341014388"></a><a name="en-us_topic_0000001052906247_p42341014388"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="en-us_topic_0000001052906247_row1623471113817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001052906247_p102341719385"><a name="en-us_topic_0000001052906247_p102341719385"></a><a name="en-us_topic_0000001052906247_p102341719385"></a>setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800; go 0x80000000";</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001052906247_p92347120389"><a name="en-us_topic_0000001052906247_p92347120389"></a><a name="en-us_topic_0000001052906247_p92347120389"></a>Run this command to read content that has a size of 0x4800 (9 MB) and a start address of 0x800 (1 MB) to the memory address 0x80000000.</p>
     </td>
     </tr>
-    <tr id="en-us_topic_0000001052906247_row6324410171216"><th class="firstcol" valign="top" width="8.39%" id="mcps1.2.3.2.1"><p id="en-us_topic_0000001052906247_p203915473129"><a name="en-us_topic_0000001052906247_p203915473129"></a><a name="en-us_topic_0000001052906247_p203915473129"></a>Description</p>
-    </th>
-    <td class="cellrowborder" valign="top" width="91.61%" headers="mcps1.2.3.2.1 "><p id="en-us_topic_0000001052906247_p439134715129"><a name="en-us_topic_0000001052906247_p439134715129"></a><a name="en-us_topic_0000001052906247_p439134715129"></a><strong id="en-us_topic_0000001052906247_b14391847171211"><a name="en-us_topic_0000001052906247_b14391847171211"></a><a name="en-us_topic_0000001052906247_b14391847171211"></a>setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800;go 0x80000000";</strong></p>
-    <p id="en-us_topic_0000001052906247_p1439184741218"><a name="en-us_topic_0000001052906247_p1439184741218"></a><a name="en-us_topic_0000001052906247_p1439184741218"></a>Run this command to set the flash number to 0, and read content that has a size of 0x4800 (9 MB) and a start address of 0x800 (1 MB) to the memory address 0x80000000.</p>
-    <p id="en-us_topic_0000001052906247_p7391347101215"><a name="en-us_topic_0000001052906247_p7391347101215"></a><a name="en-us_topic_0000001052906247_p7391347101215"></a><strong id="en-us_topic_0000001052906247_b0397473129"><a name="en-us_topic_0000001052906247_b0397473129"></a><a name="en-us_topic_0000001052906247_b0397473129"></a>setenv bootargs "console=ttyAMA0,115200n8 root=emmc fstype=vfat rootaddr=10M rootsize=15M rw";</strong></p>
-    <p id="en-us_topic_0000001052906247_p939547151215"><a name="en-us_topic_0000001052906247_p939547151215"></a><a name="en-us_topic_0000001052906247_p939547151215"></a>Run this command to set the output mode to serial port output, baud rate to <strong id="en-us_topic_0000001052906247_b117741732177"><a name="en-us_topic_0000001052906247_b117741732177"></a><a name="en-us_topic_0000001052906247_b117741732177"></a>115200</strong>, data bit to <strong id="en-us_topic_0000001052906247_b946218717177"><a name="en-us_topic_0000001052906247_b946218717177"></a><a name="en-us_topic_0000001052906247_b946218717177"></a>8</strong>, <strong id="en-us_topic_0000001052906247_b1731025331313"><a name="en-us_topic_0000001052906247_b1731025331313"></a><a name="en-us_topic_0000001052906247_b1731025331313"></a>rootfs</strong> to be mounted to the <strong id="en-us_topic_0000001052906247_b9425113171715"><a name="en-us_topic_0000001052906247_b9425113171715"></a><a name="en-us_topic_0000001052906247_b9425113171715"></a>emmc</strong> component, and file system type to <strong id="en-us_topic_0000001052906247_b1526310519141"><a name="en-us_topic_0000001052906247_b1526310519141"></a><a name="en-us_topic_0000001052906247_b1526310519141"></a>vfat</strong>.</p>
-    <p id="en-us_topic_0000001052906247_p8402475121"><a name="en-us_topic_0000001052906247_p8402475121"></a><a name="en-us_topic_0000001052906247_p8402475121"></a><strong id="en-us_topic_0000001052906247_b815584925312"><a name="en-us_topic_0000001052906247_b815584925312"></a><a name="en-us_topic_0000001052906247_b815584925312"></a>rootaddr=10M, rootsize=15M rw</strong> indicates the start address and size of the rootfs.img file to be burnt, respectively. The file size must be the same as that of the compiled file in the IDE.</p>
-    <p id="en-us_topic_0000001052906247_p54034712120"><a name="en-us_topic_0000001052906247_p54034712120"></a><a name="en-us_topic_0000001052906247_p54034712120"></a><strong id="en-us_topic_0000001052906247_b2600155013264"><a name="en-us_topic_0000001052906247_b2600155013264"></a><a name="en-us_topic_0000001052906247_b2600155013264"></a>saveenv</strong> means to save the current configuration.</p>
-    <p id="en-us_topic_0000001052906247_p2401247131212"><a name="en-us_topic_0000001052906247_p2401247131212"></a><a name="en-us_topic_0000001052906247_p2401247131212"></a><strong id="en-us_topic_0000001052906247_b1427444612265"><a name="en-us_topic_0000001052906247_b1427444612265"></a><a name="en-us_topic_0000001052906247_b1427444612265"></a>reset</strong> means to reset the board.</p>
-    <p id="en-us_topic_0000001052906247_p1440164791213"><a name="en-us_topic_0000001052906247_p1440164791213"></a><a name="en-us_topic_0000001052906247_p1440164791213"></a><strong id="en-us_topic_0000001052906247_b725515390267"><a name="en-us_topic_0000001052906247_b725515390267"></a><a name="en-us_topic_0000001052906247_b725515390267"></a>(Optional) go 0x80000000</strong> indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press <strong id="en-us_topic_0000001052906247_b1420714384268"><a name="en-us_topic_0000001052906247_b1420714384268"></a><a name="en-us_topic_0000001052906247_b1420714384268"></a>Enter</strong> in the countdown phase of the U-boot startup to interrupt the automatic startup.</p>
+    <tr id="en-us_topic_0000001052906247_row12234912381"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001052906247_p172306219392"><a name="en-us_topic_0000001052906247_p172306219392"></a><a name="en-us_topic_0000001052906247_p172306219392"></a>setenv bootargs "console=ttyAMA0,115200n8 root=emmc fstype=vfat rootaddr=10 M rootsize=15 M rw";</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001052906247_p13489329396"><a name="en-us_topic_0000001052906247_p13489329396"></a><a name="en-us_topic_0000001052906247_p13489329396"></a>Run this command to set the output mode to serial port output, baud rate to <strong id="en-us_topic_0000001052906247_b1378372812210"><a name="en-us_topic_0000001052906247_b1378372812210"></a><a name="en-us_topic_0000001052906247_b1378372812210"></a>115200</strong>, data bit to <strong id="en-us_topic_0000001052906247_b27871628822"><a name="en-us_topic_0000001052906247_b27871628822"></a><a name="en-us_topic_0000001052906247_b27871628822"></a>8</strong>, <strong id="en-us_topic_0000001052906247_b678811281528"><a name="en-us_topic_0000001052906247_b678811281528"></a><a name="en-us_topic_0000001052906247_b678811281528"></a>rootfs</strong> to be mounted to the <strong id="en-us_topic_0000001052906247_b978813281220"><a name="en-us_topic_0000001052906247_b978813281220"></a><a name="en-us_topic_0000001052906247_b978813281220"></a>emmc</strong> component, and file system type to <strong id="en-us_topic_0000001052906247_b12788132814217"><a name="en-us_topic_0000001052906247_b12788132814217"></a><a name="en-us_topic_0000001052906247_b12788132814217"></a>vfat</strong>.</p>
+    <p id="en-us_topic_0000001052906247_p12481832163913"><a name="en-us_topic_0000001052906247_p12481832163913"></a><a name="en-us_topic_0000001052906247_p12481832163913"></a><strong id="en-us_topic_0000001052906247_b965011165313"><a name="en-us_topic_0000001052906247_b965011165313"></a><a name="en-us_topic_0000001052906247_b965011165313"></a>rootaddr=10 M, rootsize=15 M rw</strong> indicates the start address and size of the rootfs.img file to be burnt, respectively. The file size must be the same as that of the compiled file in the IDE.</p>
+    </td>
+    </tr>
+    <tr id="en-us_topic_0000001052906247_row18234161153820"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001052906247_p823417118386"><a name="en-us_topic_0000001052906247_p823417118386"></a><a name="en-us_topic_0000001052906247_p823417118386"></a>saveenv</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001052906247_p32341616389"><a name="en-us_topic_0000001052906247_p32341616389"></a><a name="en-us_topic_0000001052906247_p32341616389"></a><strong id="en-us_topic_0000001052906247_b16238195319315"><a name="en-us_topic_0000001052906247_b16238195319315"></a><a name="en-us_topic_0000001052906247_b16238195319315"></a>saveenv</strong> means to save the current configuration.</p>
+    </td>
+    </tr>
+    <tr id="en-us_topic_0000001052906247_row192345113811"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001052906247_p7235111183819"><a name="en-us_topic_0000001052906247_p7235111183819"></a><a name="en-us_topic_0000001052906247_p7235111183819"></a>reset</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001052906247_p123781411114016"><a name="en-us_topic_0000001052906247_p123781411114016"></a><a name="en-us_topic_0000001052906247_p123781411114016"></a><strong id="en-us_topic_0000001052906247_b32719232420"><a name="en-us_topic_0000001052906247_b32719232420"></a><a name="en-us_topic_0000001052906247_b32719232420"></a>reset</strong> means to reset the board.</p>
     </td>
     </tr>
     </tbody>
     </table>
+
+    >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >**go 0x80000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-boot startup to interrupt the automatic startup.
 
 3.  Run the  **reset**  command and press  **Enter**  to restart the board. After the board is restarted,  **OHOS**  is displayed when you press  **Enter**.
 
