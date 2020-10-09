@@ -40,3 +40,4 @@ Date\*:
 
 \* require field. Please make sure the E-Mail is related with your gitee account.
 
+### Update the required fields and send the updated file to contact@openharmony.io to complete the CLA registration
