@@ -130,7 +130,7 @@
 
 依赖python环境：
 
-需要本地的python安装串口插件pyserial以及readline，在shell界面执行安装命令分别为pip intall pyserial和sudo apt-get install libreadline-dev，安装成功如下图
+需要本地的python安装串口插件pyserial以及readline，在shell界面执行安装命令分别为pip install pyserial和sudo apt-get install libreadline-dev，安装成功如下图
 
 ![](figures/zh-cn_image_0000001052278423.png)
 
