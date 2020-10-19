@@ -44,7 +44,7 @@ The source code of the framework is stored in  **/foundation/ace**. The followin
         -   RAM: memory pool shared with the native UI \(recommended\). The size must be greater than 80 KB.
         -   ROM: greater than 300 KB \(for the JS application framework and related subsystems, such as native UI and JavaScript engine\)
 
-    -   Cortex-A RAM/ROM
+    -   Cortex-A RAM and ROM
         -   JavaScript engine memory pool: greater than 128 KB \(recommended\)
         -   RAM: greater than 512 KB \(recommended\)
         -   ROM: greater than 2 MB \(for the JS application framework and related subsystems, such as native UI and JavaScript engine\)
@@ -77,9 +77,11 @@ The framework uses feature macros to customize function code to be compiled on d
         └── acelite_config.h*
 ```
 
+Note: Currently only the target compilation for LiteOS Cortex-A is open-source, which is built using Ninja \(BUILD.g\). Other targets such as simulat \(CMake+MingW\), Linux\(Ninja\), and LiteOS Cortex-M \(IAR\) are not completely open and will be gradually released after the adaptation is complete. The following examples describe the role of the **targets** directory in building different targets.
+
 When compiling for different platform targets, use the  **acelite\_config.h**  file in the corresponding platform directory. You can configure the header file searching path for compilation to locate the file to use. The following takes  **ninja**  and  **cmake**  build tools as examples:
 
--   ninja:
+-   **ninja**:
 
     ```
       if (ohos_kernel_type == "liteos_a" || ohos_kernel_type== "liteos_m" ||
@@ -91,7 +93,7 @@ When compiling for different platform targets, use the  **acelite\_config.h**  f
     ```
 
 
--   cmake:
+-   **cmake**:
 
     ```
     ......
@@ -119,7 +121,7 @@ When compiling for different platform targets, use the  **acelite\_config.h**  f
 
 The  **acelite\_config.h**  file is used to enable or disable the feature macros of different platforms. It can also be used to define constants for shielding platform differences. For example, platform file systems are different, and the names of some fixed directories might be different. These constants can be defined as follows:
 
--   liteos-a/acelite\_config.h
+-   **liteos-a/acelite\_config.h**
 
     ```
     #define JS_FRAMEWORK_PATH "//system/ace/bin/"
@@ -175,9 +177,9 @@ The following NPM commands are supported:
 
     ```
     build/
-    ├── framework-dev.js // Framework code used by the development environment (uncompressed and obfuscated)
+    ├── framework-dev.js // Framework code used in the development environment (uncompressed and obfuscated)
     ├── framework-dev.min.js // Framework code used in the development environment (compressed and obfuscated)
-    ├── framework-dev.js // Framework code used by the production environment (uncompressed and obfuscated)
+    ├── framework-dev.js // Framework code used in the production environment (uncompressed and obfuscated)
     ├── framework-dev.min.js // Framework code used in the production environment (compressed and obfuscated)
     ```
 

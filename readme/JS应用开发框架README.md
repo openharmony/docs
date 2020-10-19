@@ -77,6 +77,8 @@ JS应用框架通过一些特性宏来定制不同平台上参与编译的功能
         └── acelite_config.h*
 ```
 
+注：目前开源部分比较完整的是LiteOS A核的真机目标编译，使用ninja\(BUILD.gn\)构建，其他如 simulator \(CMake+MingW)，Linux(ninja)，LiteOS M核\(IAR\)目标，还未完全开源，在适配完成后会逐渐放出。以下仅通过示例说明targets目录在构建不同目标时的作用。
+
 在编译不同的平台目标时，需要使用对应平台目录下的acelite\_config.h头文件，这可以通过配置编译时的搜索路径来进行，以下以ninja和cmake构建工具为例进行示例：
 
 -   ninja：
