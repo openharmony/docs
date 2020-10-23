@@ -2,7 +2,7 @@
 
 For details about the development board, compilation, burning, and image running process, see  [Getting Started with Hi3516](../quick-start/introduction-to-the-hi3516-development-board.md). After image running is executed and the system is started normally, perform the following steps to install or uninstall the third-party application:
 
-1.  Store the unsigned application installation package and installation tool compiled by the IDE in an SD card. \(IP camera applications currently do not support signature.\) The installation tool is in  **idev\_tools**  in the directory where the image file is generated.
+1.  Store the unsigned application installation package and installation tool compiled by the IDE in an SD card. \(IP camera applications currently do not support signature.\) The installation tool is in  **dev\_tools**  in the directory where the image file is generated.
 2.  Run the  **./sdcard/dev\_tools/bin/bm set -s disable**  command to disable signature verification.
 3.  Run the  **./sdcard/dev\_tools/bin/bm install -p /sdcard/airquality.hap**  command to install the application.
 
