@@ -235,6 +235,48 @@ The application installation service of OpenHarmony verifies the application sig
 
 ![](figures/en-us_image_0000001051562162.png)
 
+-   **OpenHarmony Application Self-Signing**
+
+After an OpenHarmony application is compiled, it needs to be signed. The signature will be verified during the application installation.
+
+Self-signing requires the application HAP, profile (*.p7b), self-signed certificate (*.cer), and public-private key pair (*.jks).
+
+1.  The self-signed certificate and public-private key pair are stored in the tools repository.
+
+2.  The application profile is stored in the code directory.
+
+3.  The application HAP is generated during application compilation.
+
+4.  The signing command is integrated into the compilation process. The following is an example:
+
+java -jar hapsigntoolv2.jar sign -mode localjks -privatekey "OpenHarmony Software Signature" -inputFile camera.hap -outputFile signed_camera.hap -signAlg SHA256withECDSA -keystore OpenHarmony.jks -keystorepasswd 123456 -keyaliaspasswd 123456 -profile camera_release.p7b -certpath OpenHarmony.cer -profileSigned 1
+
+Key fields:
+
+-jar: signing tool, which is hapsigntoolv2.jar stored in the tools directory
+
+-mode: local signature flag, which is fixed at localjks
+
+-privatekey: alias of the public-private key pair, which is OpenHarmony Software Signature
+
+-inputFile: application to be signed
+
+-outputFile: signed application
+
+-signAlg: signing algorithm, which is fixed at SHA256withECDSA
+
+-keystore: public-private key pair used for signing the application
+
+-keystorepasswd: password of the public-private key pair, which is 123456
+
+-keyaliaspasswd: password of the public-private key pair alias, which is 123456
+
+-profile: application profile, which is stored in the code directory
+
+-certpath: self-signed certificate
+
+-profileSigned: whether the signing block contains the profile, which is fixed at 1
+
 ## Repositories Involved<a name="section1665013282177"></a>
 
 security\_services\_app\_verify
