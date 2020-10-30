@@ -1,8 +1,9 @@
-# Openharmony docerimage
+# OpenHarmony dockerimage
 
 ### Docker镜像
 
-Openharmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud.com/swr/?region=cn-south-1#/app/warehouse/warehouseMangeDetail/goldensir/openharmony-docker/openharmony-docker?type=ownImage)上。
+OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud.com/swr/?region=cn-south-1#/app/warehouse/warehouseMangeDetail/goldensir/openharmony-docker/openharmony-docker?type=ownImage)上.
+
 目前容器化构建选项支持情况如下：
 
 | 硬件平台   | Docker镜像仓库                | 标签                       | 说明                                       |
