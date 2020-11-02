@@ -291,18 +291,30 @@
 ## 运行基于AbilityKit开发的Ability<a name="section16249444135119"></a>
 
 -   基于AbilityKit开发的Ability的Demo代码位于foundation/aafwk/frameworks/ability\_lite/example路径下，如有需要修改其中的功能，可在entry/src/main/cpp的文件中修改代码或增加代码文件，并在BUILD.gn中做相应的修改。
--   在build/lite/config/subsystem/aafwk/BUILD.gn中添加对ability Demo编译配置：
+-   在build/lite/product/ipcamera_hi3516dv300.json中添加对ability Demo编译配置：
 
     ```
-    import("//build/lite/config/subsystem/lite_subsystem.gni")
+    {
     
-    lite_subsystem("aafwk") {
-        subsystem_components = [
-            "......",
-            "//foundation/aafwk/frameworks/ability_lite/example:hiability",
-            "......",
-        ]
-    }
+      "ohos_version": "OpenHarmony 1.0",
+    
+      "board": "hi3516dv300",
+    
+      "kernel": "liteos_a",
+    
+      "compiler": "clang",
+    
+      "subsystem": [
+    
+        {
+    
+          "name": "aafwk",
+    
+          "component": [
+                "......",
+                { "name": "ability_sample", "dir": "//foundation/aafwk/frameworks/ability_lite/example:hiability", "features": []}
+            ]
+    "......"
     ```
 
 -   编译该Demo，在shell中执行如下命令，编译成功后，在out/ipcamera\_hi3516dv300\_liteos\_a/dev\_tools/example下面生成libhiability.so文件：
