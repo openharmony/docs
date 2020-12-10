@@ -1,5 +1,21 @@
 # Setting Up a Development Environment<a name="EN-US_TOPIC_0000001054781998"></a>
 
+-   [Environment Requirements](#section466851916410)
+-   [Hardware](#section07318322310)
+-   [Software](#section182305581332)
+-   [Build Tools for Linux](#section20374218687)
+-   [Development Tools for Windows](#section11161833102716)
+-   [Installing Basic Compilation Environment](#section497484245614)
+-   [Connecting to a Linux Server](#section15541530155711)
+-   [Changing Linux Shell to Bash](#section182814544221)
+-   [Installing a Python Environment](#section126831816258)
+-   [Installing Scons](#section2462246562)
+-   [Installing Compilation Tools](#section7227629152013)
+-   [Installing gn](#section2024354014506)
+-   [Installing ninjah](#section182441140185010)
+-   [Installing gcc\_riscv32 \(Compilation Toolchain for WLAN Module\)](#section2014123416523)
+-   [Installing the IDE Development Tool](#section1995840162515)
+
 ## Environment Requirements<a name="section466851916410"></a>
 
 ## Hardware<a name="section07318322310"></a>
@@ -141,10 +157,10 @@ The following table describes the tools required for setting up the general envi
 <div class="note" id="note7133193392718"><a name="note7133193392718"></a><a name="note7133193392718"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1133183310277"><a name="p1133183310277"></a><a name="p1133183310277"></a>HUAWEI DevEco Device Tool is a one-stop integrated development environment (IDE) provided for developers of <span id="text4133533192719"><a name="text4133533192719"></a><a name="text4133533192719"></a>OpenHarmony</span>-based smart devices. It supports C and C++ languages and is installed in Visual Studio Code as a plug-in.</p>
 </div></div>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1240954393114"><a name="p1240954393114"></a><a name="p1240954393114"></a><a href="https://device.harmonyos.com/cn/ide" target="_blank" rel="noopener noreferrer">https://device.harmonyos.com/cn/ide</a></p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1240954393114"><a name="p1240954393114"></a><a name="p1240954393114"></a><a href="https://device.harmonyos.com/en/ide" target="_blank" rel="noopener noreferrer">https://device.harmonyos.com/en/ide</a></p>
 </td>
 </tr>
-<tr id="row18342145821513"><td class="cellrowborder" valign="top" width="16.371637163716375%" headers="mcps1.2.4.1.1 "><p id="p123421958131517"><a name="p123421958131517"></a><a name="p123421958131517"></a>IPOP, PuTTY, or other HyperTerminal</p>
+<tr id="row18342145821513"><td class="cellrowborder" valign="top" width="16.371637163716375%" headers="mcps1.2.4.1.1 "><p id="p123421958131517"><a name="p123421958131517"></a><a name="p123421958131517"></a>PuTTY, or other HyperTerminal</p>
 </td>
 <td class="cellrowborder" valign="top" width="50.29502950295029%" headers="mcps1.2.4.1.2 "><p id="p18342658131511"><a name="p18342658131511"></a><a name="p18342658131511"></a>Remotely connects to a Linux compile server or a serial port.</p>
 </td>
@@ -155,7 +171,7 @@ The following table describes the tools required for setting up the general envi
 </td>
 <td class="cellrowborder" valign="top" width="50.29502950295029%" headers="mcps1.2.4.1.2 "><p id="p94491342131413"><a name="p94491342131413"></a><a name="p94491342131413"></a>Identifies serial port device to transmit data.</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p6449184214148"><a name="p6449184214148"></a><a name="p6449184214148"></a><a href="http://www.wch.cn/search?q=ch340g&amp;t=downloads" target="_blank" rel="noopener noreferrer">http://www.wch.cn/search?q=ch340g&amp;t=downloads</a></p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p6449184214148"><a name="p6449184214148"></a><a name="p6449184214148"></a><a href="http://www.wch-ic.com/downloads/CH341SER_EXE.html" target="_blank" rel="noopener noreferrer">http://www.wch-ic.com/downloads/CH341SER_EXE.html</a></p>
 </td>
 </tr>
 </tbody>
@@ -247,11 +263,24 @@ sudo ln -s /bin/bash /bin/sh
 
 
 
-3.  After Python is installed, run the following command to link the Python path to  **/usr/bin/python**:
+3.  After Python is installed, link the Python path to  **/usr/bin/python**:
+
+    Run the following command to check whether Python is soft linked to Python3:
+
+    ```
+    python --version
+    ```
+
+    If the command output is not  **python 3.8.5**, run the following command to check the directory where Python3.8 is stored:
 
     ```
     which python3.8
-    cd /usr/bin && sudo rm python && sudo ln -s /usr/local/bin/python3.8 python && python --version
+    ```
+
+    Replace  **python3.8-path**  in the following command with the output path of the  **which python3.8**  command.
+
+    ```
+    cd /usr/bin && sudo rm python && sudo ln -s python3.8-path python && python --version
     ```
 
 4.  Install and upgrade the Python package management tool \(pip3\) using either of the following methods:
@@ -369,7 +398,12 @@ sudo ln -s /bin/bash /bin/sh
     If the installation package cannot be found in the software source, do as follows:
 
     1.  Download the source code package from  [https://scons.org/pages/download.html](https://scons.org/pages/download.html). The recommended SCons version is 3.0.4 or later.
-    2.  Decompress the source code package to any directory.
+    2.  Decompress the source code package to any directory, for example, scons-3.1.2.
+
+        ```
+        tar -xvf scons-3.1.2.tar.gz
+        ```
+
     3.  Go to the source code directory and run the following command to install the source code package:
 
         ```
@@ -489,4 +523,8 @@ sudo ln -s /bin/bash /bin/sh
     riscv32-unknown-elf-gcc -v
     ```
 
+
+## Installing the IDE Development Tool<a name="section1995840162515"></a>
+
+The OpenHarmony IDE Development Tool \(HUAWEI DevEco Device Tool\) integrates the capabilities of terminal tools. For details about how to install the tool, see  [Preparations ](https://device.harmonyos.com/en/docs/ide/user-guides/tool_install-0000001050164976)and  [Importing and Configuring a Project](https://device.harmonyos.com/en/docs/ide/user-guides/import_project-0000001050164980).
 
