@@ -2,10 +2,10 @@
 
 -   **[Introduction to the Hi3518 Development Board](introduction-to-the-hi3518-development-board.md)**  
 
--   **[Setting Up a Development Environment](setting-up-a-development-environment-1.md)**  
+-   **[Setting Up a Development Environment](setting-up-a-development-environment-2.md)**  
 
--   **[Developing the First Example Program running on Hi3518](developing-the-first-example-program-running-on-hi3518.md)**  
+-   **[Developing the First Example Program Running on Hi3518](developing-the-first-example-program-running-on-hi3518.md)**  
 
--   **[FAQs](faqs-2.md)**  
+-   **[FAQs](faqs-3.md)**  
 
 

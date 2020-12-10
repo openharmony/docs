@@ -1,10 +1,17 @@
 # Developing the Second Example Program Running on Hi3861<a name="EN-US_TOPIC_0000001053183925"></a>
 
-This example shows how to compile a simple service and print  **Hello World**.
+-   [Modifying Source Code](#section9360141181414)
+-   [Debugging and Verification](#section1621064881419)
+-   [printf](#section1246911301217)
+-   [Locating Exceptions Using the asm File](#section197271353219)
+-   [Viewing Execution Result](#section18115713118)
+-   [Follow-up Learning](#section9712145420182)
+
+This example shows how to compile a simple service and print  **Hello World**  to help you preliminarily understand how to run OpenHarmony on Hi3861.
 
 ## Modifying Source Code<a name="section9360141181414"></a>
 
-The source code needs to be modified when fixing bugs or compiling a new service. The following describes how to modify the source code when compiling a new service.
+The source code needs to be modified when fixing bugs or compiling a new service. The following describes how to modify the source code when compiling a new service, for example,  **my\_first\_app**.
 
 1.  Determine the directory structure.
 
@@ -26,7 +33,7 @@ The source code needs to be modified when fixing bugs or compiling a new service
 
 2.  Compile the service code.
 
-    Create the service entry function  **HelloWorld**  in  **hello\_world.c**  and implement service logic. Use the SYS\_RUN\(\) of the OpenHarmony  **bootstrap**  module to start services. \(**SYS\_RUN**  is defined in the  **ohos\_init.h**  file.\)
+    Create the  **hello\_world.c**  file in  **./applications/sample/wifi-iot/app/my\_first\_app**. Then, create the service entry function  **HelloWorld**  in  **hello\_world.c**  and implement service logic. Use the SYS\_RUN\(\) of the OpenHarmony  **bootstrap**  module to start services. \(**SYS\_RUN**  is defined in the  **ohos\_init.h**  file.\)
 
     ```
     #include <stdio.h>
@@ -42,7 +49,7 @@ The source code needs to be modified when fixing bugs or compiling a new service
 
 3.  Compile the  **BUILD.gn**  file for building services into a static library.
 
-    The  **BUILD.gn**  file consists of three parts, including target, source file, and header file path. You need to fill in all of these parts. Take  **my\_first\_app**  as an example, you need to create  **./applications/sample/wifi-iot/app/my\_first\_app/BUILD.gn**  and complete the following configurations:
+    Create the  **BUILD.gn**  file in  **./applications/sample/wifi-iot/app/my\_first\_app**  and fill in three parts \(target, source file, and header file path\) of the  **BUILD.gn**  file.
 
     ```
     static_library("myapp") {
@@ -134,7 +141,7 @@ To parse the call stack information, the  **Hi3861\_wifiiot\_app.asm**  file is 
 
 ## Viewing Execution Result<a name="section18115713118"></a>
 
-After the sample code is compiled, burnt, run, and debugged, the following information is displayed:
+After the sample code is compiled, burnt, run, and debugged, the following information is displayed on the serial port interface:
 
 ```
 ready to OS start

@@ -1,11 +1,16 @@
 # Introduction to the Hi3516 Development Board<a name="EN-US_TOPIC_0000001053666242"></a>
 
+-   [Hi3516](#section047719215429)
+-   [Development Board Specifications](#section15192203316533)
+
 ## Hi3516<a name="section047719215429"></a>
 
 Hi3516DV300 is a next-generation system on chip \(SoC\) designed for the industry-dedicated smart HD IP camera. It introduces a next-generation image signal processor \(ISP\), the latest H.265 video compression encoder, and a high-performance NNIE engine, leading the industry in terms of low bit rate, high image quality, intelligent processing and analysis, and low power consumption.
 
-**Figure  1**  Front view of the Hi3516 board<a name="fig11402183715219"></a>  
-![](figures/front-view-of-the-hi3516-board.png "front-view-of-the-hi3516-board")
+**Figure  1**  Front view of the Hi3516DV300 board<a name="fig11402183715219"></a>  
+
+
+![](figures/3516正面.png)
 
 ## Development Board Specifications<a name="section15192203316533"></a>
 

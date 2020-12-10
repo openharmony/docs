@@ -1,5 +1,10 @@
 # Introduction to the Hi3861 Development Board<a name="EN-US_TOPIC_0000001053142605"></a>
 
+-   [Hi3861](#section187215231809)
+-   [Resources and Constraints](#section82610215014)
+-   [Development Board Specifications](#section169054431017)
+-   [Key Features](#section1317173016507)
+
 This document describes how to quickly start with the Hi3861 WLAN module, including the development environment setup, version compiling and building, device burning, source code modification, debugging and verification. Following this guide, you can start developing services with the basic understanding of the Hi3861 WLAN module.
 
 ## Hi3861<a name="section187215231809"></a>
@@ -7,12 +12,16 @@ This document describes how to quickly start with the Hi3861 WLAN module, includ
 The Hi3861 WLAN module is a development board with 2 x 5 cm form factor. It contains a 2.4 GHz WLAN SoC that highly integrates the IEEE 802.11b/g/n baseband and radio frequency \(RF\) circuit. This module provides open and easy-to-use development and debugging environments for running OpenHarmony.
 
 **Figure  1**  Appearance of Hi3861 WLAN module<a name="fig74884420237"></a>  
-![](figures/appearance-of-hi3861-wlan-module.png "appearance-of-hi3861-wlan-module")
+
+
+![](figures/3861正面.png)
 
 The Hi3861 WLAN module can also be connected to the Hi3861 mother board to expand its peripheral capabilities. The following figure shows the Hi3861 mother board.
 
 **Figure  2**  Appearance of the Hi3861 mother board<a name="fig111746288192"></a>  
-![](figures/appearance-of-the-hi3861-mother-board.png "appearance-of-the-hi3861-mother-board")
+
+
+![](figures/3861背面.png)
 
 -   The RF circuit includes modules such as the power amplifier \(PA\), low noise amplifier \(LNA\), RF Balun, antenna switch, and power management. It supports a standard bandwidth of 20 MHz and a narrow bandwidth of 5 MHz or 10 MHz, and provides a maximum rate of 72.2 Mbit/s at the physical layer.
 -   The Hi3861 WLAN baseband supports the orthogonal frequency division multiplexing \(OFDM\) technology and is backward compatible with the direct sequence spread spectrum \(DSSS\) and complementary code keying \(CCK\) technologies. In addition, the Hi3861 WLAN baseband supports various data rates specified in the IEEE 802.11 b/g/n protocol.

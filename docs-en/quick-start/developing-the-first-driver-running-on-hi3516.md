@@ -1,5 +1,11 @@
 # Developing the First Driver Running on Hi3516<a name="EN-US_TOPIC_0000001054448621"></a>
 
+-   [Acquiring Source Code](#section0598122434810)
+-   [Introduction to Driver](#s8efc1952ebfe4d1ea717182e108c29bb)
+-   [Compiling and Burning](#section660016185110)
+-   [Running an Image](#section197971119142915)
+-   [Follow-up Learning](#section9712145420182)
+
 This section describes how to develop a driver on the board, including introduction, compilation, burning, and running of the driver.
 
 ## Acquiring Source Code<a name="section0598122434810"></a>
@@ -56,7 +62,7 @@ The following operations take a HDF-based UART driver as an example to show how 
     ```
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >The configuration files are in the same path as the source code of the UART driver. You need to manually add the files to the path of the Hi3516DV300 board.
+    >The configuration files are in the same path as the source code of the UART driver. You need to manually add the files to the path of the Hi3516DV300 development board.
 
 2.  Register a UART driver entry.
 
@@ -291,7 +297,7 @@ The following operations take a HDF-based UART driver as an example to show how 
         return HDF_SUCCESS;
     }
      
-    // Set the baud rate of the UART device.
+    // Set the baud rate for the UART device.
     static int32_t SampleUartHostSetBaud(struct UartHost *host, uint32_t baudRate)
     {
         HDF_LOGI("%s: Enter", __func__);
@@ -421,14 +427,14 @@ The following operations take a HDF-based UART driver as an example to show how 
 
 ## Compiling and Burning<a name="section660016185110"></a>
 
-Compile and burn images by referring to  [Compiling Code](developing-the-first-example-program-running-on-hi3516.md#section1077671315253)  and  [Burning Images](developing-the-first-example-program-running-on-hi3516.md#section18061240152520).
+Compile and burn images by referring to  [Compiling Code](developing-the-first-example-program-running-on-hi3516.md#section1077671315253)  and  [Burning](developing-the-first-example-program-running-on-hi3516.md#section08153912587).
 
 ## Running an Image<a name="section197971119142915"></a>
 
 1.  Connect to a serial port.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >If the sconnection fails, rectify the fault by referring to problem 5 in the  [FAQs](faqs-0.md)  section.
+    >If the connection fails, rectify the fault by referring to  [What should I do when no command output is displayed?](faqs-1.md#section14871149155911).
 
     **Figure  1**  Serial port connection<a name="en-us_topic_0000001052906247_fig056645018495"></a>  
     
@@ -436,8 +442,8 @@ Compile and burn images by referring to  [Compiling Code](developing-the-first-e
     ![](figures/chuankou1.png)
 
     1.  Click  **Serial port**  to enable it.
-    2.  Enter the serial port number "com11" and press  **Enter**  until  **hisillicon**  is displayed.
-    3.  Go to step 2 if the board is started for the first time or the startup parameters need to be modified; go to step 3 otherwise.
+    2.  Enter the serial port number queried in the "Burning" section \(COM11 is used in this example\) and press  **Enter**  until  **hisillicon**  is displayed.
+    3.  Go to step  [2](developing-the-first-example-program-running-on-hi3516.md#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](developing-the-first-example-program-running-on-hi3516.md#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
 
 2.  \(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
 
@@ -455,13 +461,13 @@ Compile and burn images by referring to  [Compiling Code](developing-the-first-e
     </thead>
     <tbody><tr id="en-us_topic_0000001052906247_row1623471113817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001052906247_p102341719385"><a name="en-us_topic_0000001052906247_p102341719385"></a><a name="en-us_topic_0000001052906247_p102341719385"></a>setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800; go 0x80000000";</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001052906247_p92347120389"><a name="en-us_topic_0000001052906247_p92347120389"></a><a name="en-us_topic_0000001052906247_p92347120389"></a>Run this command to read content that has a size of 0x4800 (9 MB) and a start address of 0x800 (1 MB) to the memory address 0x80000000.</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001052906247_p92347120389"><a name="en-us_topic_0000001052906247_p92347120389"></a><a name="en-us_topic_0000001052906247_p92347120389"></a>Run this command to read content that has a size of 0x4800 (9 MB) and a start address of 0x800 (1 MB) to the memory address 0x80000000. The file size must be the same as that of the <strong id="en-us_topic_0000001052906247_b9140538191313"><a name="en-us_topic_0000001052906247_b9140538191313"></a><a name="en-us_topic_0000001052906247_b9140538191313"></a>OHOS_Image.bin</strong> file in the IDE.</p>
     </td>
     </tr>
     <tr id="en-us_topic_0000001052906247_row12234912381"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001052906247_p172306219392"><a name="en-us_topic_0000001052906247_p172306219392"></a><a name="en-us_topic_0000001052906247_p172306219392"></a>setenv bootargs "console=ttyAMA0,115200n8 root=emmc fstype=vfat rootaddr=10 M rootsize=15 M rw";</p>
     </td>
     <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001052906247_p13489329396"><a name="en-us_topic_0000001052906247_p13489329396"></a><a name="en-us_topic_0000001052906247_p13489329396"></a>Run this command to set the output mode to serial port output, baud rate to <strong id="en-us_topic_0000001052906247_b1378372812210"><a name="en-us_topic_0000001052906247_b1378372812210"></a><a name="en-us_topic_0000001052906247_b1378372812210"></a>115200</strong>, data bit to <strong id="en-us_topic_0000001052906247_b27871628822"><a name="en-us_topic_0000001052906247_b27871628822"></a><a name="en-us_topic_0000001052906247_b27871628822"></a>8</strong>, <strong id="en-us_topic_0000001052906247_b678811281528"><a name="en-us_topic_0000001052906247_b678811281528"></a><a name="en-us_topic_0000001052906247_b678811281528"></a>rootfs</strong> to be mounted to the <strong id="en-us_topic_0000001052906247_b978813281220"><a name="en-us_topic_0000001052906247_b978813281220"></a><a name="en-us_topic_0000001052906247_b978813281220"></a>emmc</strong> component, and file system type to <strong id="en-us_topic_0000001052906247_b12788132814217"><a name="en-us_topic_0000001052906247_b12788132814217"></a><a name="en-us_topic_0000001052906247_b12788132814217"></a>vfat</strong>.</p>
-    <p id="en-us_topic_0000001052906247_p12481832163913"><a name="en-us_topic_0000001052906247_p12481832163913"></a><a name="en-us_topic_0000001052906247_p12481832163913"></a><strong id="en-us_topic_0000001052906247_b965011165313"><a name="en-us_topic_0000001052906247_b965011165313"></a><a name="en-us_topic_0000001052906247_b965011165313"></a>rootaddr=10 M, rootsize=15 M rw</strong> indicates the start address and size of the rootfs.img file to be burnt, respectively. The file size must be the same as that of the compiled file in the IDE.</p>
+    <p id="en-us_topic_0000001052906247_p12481832163913"><a name="en-us_topic_0000001052906247_p12481832163913"></a><a name="en-us_topic_0000001052906247_p12481832163913"></a><strong id="en-us_topic_0000001052906247_b965011165313"><a name="en-us_topic_0000001052906247_b965011165313"></a><a name="en-us_topic_0000001052906247_b965011165313"></a>rootaddr=10 M, rootsize=15 M rw</strong> indicates the start address and size of the rootfs.img file to be burnt, respectively. The file size must be the same as that of the <strong id="en-us_topic_0000001052906247_b69061726113015"><a name="en-us_topic_0000001052906247_b69061726113015"></a><a name="en-us_topic_0000001052906247_b69061726113015"></a>rootfs.img</strong> file in the IDE.</p>
     </td>
     </tr>
     <tr id="en-us_topic_0000001052906247_row18234161153820"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001052906247_p823417118386"><a name="en-us_topic_0000001052906247_p823417118386"></a><a name="en-us_topic_0000001052906247_p823417118386"></a>saveenv</p>
