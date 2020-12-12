@@ -1,6 +1,10 @@
 # input\_reporter.h<a name="EN-US_TOPIC_0000001054718097"></a>
 
-## **Overview**<a name="section714647303093525"></a>
+-   [Overview](#section573065776165627)
+-   [Summary](#section1297434022165627)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section573065776165627"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares the driver interfaces for reporting data of input devices.
 
 1.0
 
-## **Summary**<a name="section576065700093525"></a>
+## **Summary**<a name="section1297434022165627"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table233367622093525"></a>
-<table><thead align="left"><tr id="row1174793349093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1116376274093525"><a name="p1116376274093525"></a><a name="p1116376274093525"></a>Data Structure Name</p>
+<a name="table667846880165627"></a>
+<table><thead align="left"><tr id="row270952819165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2126854095165627"><a name="p2126854095165627"></a><a name="p2126854095165627"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1043979365093525"><a name="p1043979365093525"></a><a name="p1043979365093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1923973437165627"><a name="p1923973437165627"></a><a name="p1923973437165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row74208306093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1164949377093525"><a name="p1164949377093525"></a><a name="p1164949377093525"></a><a href="inputreporter.md">InputReporter</a></p>
+<tbody><tr id="row1928693053165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1153003181165627"><a name="p1153003181165627"></a><a name="p1153003181165627"></a><a href="inputreporter.md">InputReporter</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1468121731093525"><a name="p1468121731093525"></a><a name="p1468121731093525"></a>Provides interfaces for reporting event data of input devices. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p339798945165627"><a name="p339798945165627"></a><a name="p339798945165627"></a>Provides interfaces for reporting event data of input devices. </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,10 @@
 # ISessionListener<a name="ZH-CN_TOPIC_0000001054598163"></a>
 
-## **Overview**<a name="section1684544519093531"></a>
+-   [Overview](#section709738140165632)
+-   [Summary](#section1732391709165632)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section709738140165632"></a>
 
 **Related Modules:**
 
@@ -20,33 +24,33 @@ When a session is opened or closed, or there is data to process, the related cal
 
 1.0
 
-## **Summary**<a name="section1159791738093531"></a>
+## **Summary**<a name="section1732391709165632"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1626347623093531"></a>
-<table><thead align="left"><tr id="row580634333093531"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p828802155093531"><a name="p828802155093531"></a><a name="p828802155093531"></a>Variable Name</p>
+<a name="table1059784604165632"></a>
+<table><thead align="left"><tr id="row1468650552165632"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p227338373165632"><a name="p227338373165632"></a><a name="p227338373165632"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p321331105093531"><a name="p321331105093531"></a><a name="p321331105093531"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p427132729165632"><a name="p427132729165632"></a><a name="p427132729165632"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1717021391093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1732784737093531"><a name="p1732784737093531"></a><a name="p1732784737093531"></a><a href="Softbus.md#ga2b042b85e03d66f1988c348414b2db6e">onSessionOpened</a> )(int sessionId)</p>
+<tbody><tr id="row1675545913165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p425587134165632"><a name="p425587134165632"></a><a name="p425587134165632"></a><a href="Softbus.md#ga2b042b85e03d66f1988c348414b2db6e">onSessionOpened</a> )(int sessionId)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p929368451093531"><a name="p929368451093531"></a><a name="p929368451093531"></a>int(*&nbsp;</p>
-<p id="p1708269778093531"><a name="p1708269778093531"></a><a name="p1708269778093531"></a>Called when a session is opened. </p>
-</td>
-</tr>
-<tr id="row566645183093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p872048186093531"><a name="p872048186093531"></a><a name="p872048186093531"></a><a href="Softbus.md#ga2088a4e0e196030d8e428a828298eba0">onSessionClosed</a> )(int sessionId)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1626325700093531"><a name="p1626325700093531"></a><a name="p1626325700093531"></a>void(*&nbsp;</p>
-<p id="p869580546093531"><a name="p869580546093531"></a><a name="p869580546093531"></a>Called when a session is closed. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1910829570165632"><a name="p1910829570165632"></a><a name="p1910829570165632"></a>int(* </p>
+<p id="p1806508095165632"><a name="p1806508095165632"></a><a name="p1806508095165632"></a>Called when a session is opened. </p>
 </td>
 </tr>
-<tr id="row464002999093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2038293822093531"><a name="p2038293822093531"></a><a name="p2038293822093531"></a><a href="Softbus.md#ga95243f25fa04ef29f7f8f0b3a440dbd3">onBytesReceived</a> )(int sessionId, const void *data, unsigned int dataLen)</p>
+<tr id="row655528052165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2005114214165632"><a name="p2005114214165632"></a><a name="p2005114214165632"></a><a href="Softbus.md#ga2088a4e0e196030d8e428a828298eba0">onSessionClosed</a> )(int sessionId)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1878327538093531"><a name="p1878327538093531"></a><a name="p1878327538093531"></a>void(*&nbsp;</p>
-<p id="p2114840071093531"><a name="p2114840071093531"></a><a name="p2114840071093531"></a>Called when data is received. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2045230822165632"><a name="p2045230822165632"></a><a name="p2045230822165632"></a>void(* </p>
+<p id="p296477732165632"><a name="p296477732165632"></a><a name="p296477732165632"></a>Called when a session is closed. </p>
+</td>
+</tr>
+<tr id="row1401111168165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2023042477165632"><a name="p2023042477165632"></a><a name="p2023042477165632"></a><a href="Softbus.md#ga95243f25fa04ef29f7f8f0b3a440dbd3">onBytesReceived</a> )(int sessionId, const void *data, unsigned int dataLen)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2070086445165632"><a name="p2070086445165632"></a><a name="p2070086445165632"></a>void(* </p>
+<p id="p1191274566165632"><a name="p1191274566165632"></a><a name="p1191274566165632"></a>Called when data is received. </p>
 </td>
 </tr>
 </tbody>

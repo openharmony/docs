@@ -1,6 +1,14 @@
 # Rectangle<a name="EN-US_TOPIC_0000001054479599"></a>
 
-## **Overview**<a name="section232284617093536"></a>
+-   [Overview](#section1596020458165635)
+-   [Summary](#section303449160165635)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section2146409393165635)
+-   [Field](#section745642698165635)
+-   [color](#aa0fe72e6dc477bccd7bceaf269621208)
+-   [rect](#a41e7dfaa14a596675f96dd125d67627f)
+
+## **Overview**<a name="section1596020458165635"></a>
 
 **Related Modules:**
 
@@ -10,33 +18,33 @@
 
 Describes a rectangle to help draw rectangles in hardware acceleration. 
 
-## **Summary**<a name="section2009408129093536"></a>
+## **Summary**<a name="section303449160165635"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1454677706093536"></a>
-<table><thead align="left"><tr id="row503190864093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p33704876093536"><a name="p33704876093536"></a><a name="p33704876093536"></a>Variable Name</p>
+<a name="table1272487557165635"></a>
+<table><thead align="left"><tr id="row1668570443165635"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1406935094165635"><a name="p1406935094165635"></a><a name="p1406935094165635"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1301748102093536"><a name="p1301748102093536"></a><a name="p1301748102093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p825124247165635"><a name="p825124247165635"></a><a name="p825124247165635"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2122018476093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p364250105093536"><a name="p364250105093536"></a><a name="p364250105093536"></a><a href="rectangle.md#a41e7dfaa14a596675f96dd125d67627f">rect</a></p>
+<tbody><tr id="row1042398120165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1994052400165635"><a name="p1994052400165635"></a><a name="p1994052400165635"></a><a href="rectangle.md#a41e7dfaa14a596675f96dd125d67627f">rect</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1548976535093536"><a name="p1548976535093536"></a><a name="p1548976535093536"></a><a href="irect.md">IRect</a> </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1819105071165635"><a name="p1819105071165635"></a><a name="p1819105071165635"></a><a href="irect.md">IRect</a> </p>
 </td>
 </tr>
-<tr id="row1734186250093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1179241473093536"><a name="p1179241473093536"></a><a name="p1179241473093536"></a><a href="rectangle.md#aa0fe72e6dc477bccd7bceaf269621208">color</a></p>
+<tr id="row525324642165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p855232345165635"><a name="p855232345165635"></a><a name="p855232345165635"></a><a href="rectangle.md#aa0fe72e6dc477bccd7bceaf269621208">color</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p444838080093536"><a name="p444838080093536"></a><a name="p444838080093536"></a>uint32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p921438838165635"><a name="p921438838165635"></a><a name="p921438838165635"></a>uint32_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1626863613093536"></a>
+## **Details**<a name="section2146409393165635"></a>
 
-## **Field Documentation**<a name="section1931059823093536"></a>
+## **Field **<a name="section745642698165635"></a>
 
 ## color<a name="aa0fe72e6dc477bccd7bceaf269621208"></a>
 

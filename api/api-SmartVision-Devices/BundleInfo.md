@@ -1,6 +1,32 @@
 # BundleInfo<a name="ZH-CN_TOPIC_0000001055678086"></a>
 
-## **Overview**<a name="section575980651093529"></a>
+-   [Overview](#section1282840164165630)
+-   [Summary](#section607899683165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section402726232165630)
+-   [Field](#section472693729165630)
+-   [abilityInfos](#a3ada4a71ec78f2f2d6c78b8db9406d40)
+-   [appId](#ad0eff56be21d5023221ce20da5ab9efb)
+-   [bigIconPath](#a8e34521fed8544d56fe744e895504940)
+-   [bundleName](#aec3498345b5e999424348aff0a723db7)
+-   [codePath](#a48870c542ef26637af24b6e424af9e66)
+-   [compatibleApi](#af672c11317ab2608732ebfadf0bfdc94)
+-   [dataPath](#ac4fcbb75da508f66f815c275d3e53888)
+-   [gid](#a9d43b35b1e8310173e75a3fd3e9e2e5d)
+-   [isKeepAlive](#a6f953f1be6da55f3b0afb292ae36d30f)
+-   [isNativeApp](#a4c9154f98628fff6b2016d9fe3e6bc23)
+-   [isSystemApp](#ae4572da0f7c456734c7fcc6158e5a5f1)
+-   [label](#a008c2aab5a80d72a283ebb033f3a00e9)
+-   [moduleInfos](#a7f558b993f8ffd70264b490ea079e178)
+-   [numOfAbility](#a0691b2c2822bc661f6618b7d376010b9)
+-   [numOfModule](#ae6d0d5a10be24006397e1436a757f899)
+-   [targetApi](#a7cbe4debddb5d278af13ca09e55409c9)
+-   [uid](#a4c469e7cb5dbea185de3a70f18adeeb4)
+-   [vendor](#aa82cb2180789691e20e75d0371dec7cd)
+-   [versionCode](#a10ebbd5523a9f9f7b38b04ac365fa9ee)
+-   [versionName](#a5381cbf05a30ee5cb5bc1a7daa18084e)
+
+## **Overview**<a name="section1282840164165630"></a>
 
 **Related Modules:**
 
@@ -10,128 +36,123 @@
 
 Defines the bundle information. 
 
-## **Summary**<a name="section1116726467093529"></a>
+## **Summary**<a name="section607899683165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1993934851093529"></a>
-<table><thead align="left"><tr id="row67061902093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1041023431093529"><a name="p1041023431093529"></a><a name="p1041023431093529"></a>Variable Name</p>
+<a name="table272858043165630"></a>
+<table><thead align="left"><tr id="row2099368327165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1247396803165630"><a name="p1247396803165630"></a><a name="p1247396803165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1860694337093529"><a name="p1860694337093529"></a><a name="p1860694337093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1323998256165630"><a name="p1323998256165630"></a><a name="p1323998256165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1531676915093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1411975632093529"><a name="p1411975632093529"></a><a name="p1411975632093529"></a><a href="BundleInfo.md#a6f953f1be6da55f3b0afb292ae36d30f">isKeepAlive</a></p>
+<tbody><tr id="row1273439460165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1402140638165630"><a name="p1402140638165630"></a><a name="p1402140638165630"></a><a href="BundleInfo.md#a6f953f1be6da55f3b0afb292ae36d30f">isKeepAlive</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p94843643093529"><a name="p94843643093529"></a><a name="p94843643093529"></a>bool&nbsp;</p>
-</td>
-</tr>
-<tr id="row1522062773093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p426452945093529"><a name="p426452945093529"></a><a name="p426452945093529"></a><a href="BundleInfo.md#a4c9154f98628fff6b2016d9fe3e6bc23">isNativeApp</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1195664289093529"><a name="p1195664289093529"></a><a name="p1195664289093529"></a>bool&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1879987730165630"><a name="p1879987730165630"></a><a name="p1879987730165630"></a>bool </p>
 </td>
 </tr>
-<tr id="row274555872093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2138302924093529"><a name="p2138302924093529"></a><a name="p2138302924093529"></a><a href="BundleInfo.md#a4c469e7cb5dbea185de3a70f18adeeb4">uid</a></p>
+<tr id="row349775401165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p291381662165630"><a name="p291381662165630"></a><a name="p291381662165630"></a><a href="BundleInfo.md#a4c9154f98628fff6b2016d9fe3e6bc23">isNativeApp</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p339592897093529"><a name="p339592897093529"></a><a name="p339592897093529"></a>int32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row643336629093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p736001760093529"><a name="p736001760093529"></a><a name="p736001760093529"></a><a href="BundleInfo.md#a9d43b35b1e8310173e75a3fd3e9e2e5d">gid</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p656654587093529"><a name="p656654587093529"></a><a name="p656654587093529"></a>int32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1747646960165630"><a name="p1747646960165630"></a><a name="p1747646960165630"></a>bool </p>
 </td>
 </tr>
-<tr id="row2090473003093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p779796824093529"><a name="p779796824093529"></a><a name="p779796824093529"></a><a href="BundleInfo.md#ae4572da0f7c456734c7fcc6158e5a5f1">isSystemApp</a></p>
+<tr id="row419992360165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1843152999165630"><a name="p1843152999165630"></a><a name="p1843152999165630"></a><a href="BundleInfo.md#a4c469e7cb5dbea185de3a70f18adeeb4">uid</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1346628644093529"><a name="p1346628644093529"></a><a name="p1346628644093529"></a>bool&nbsp;</p>
-</td>
-</tr>
-<tr id="row1196736719093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2084900964093529"><a name="p2084900964093529"></a><a name="p2084900964093529"></a><a href="BundleInfo.md#af672c11317ab2608732ebfadf0bfdc94">compatibleApi</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1372855942093529"><a name="p1372855942093529"></a><a name="p1372855942093529"></a>int32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2044438522165630"><a name="p2044438522165630"></a><a name="p2044438522165630"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row802839044093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1824321464093529"><a name="p1824321464093529"></a><a name="p1824321464093529"></a><a href="BundleInfo.md#a7cbe4debddb5d278af13ca09e55409c9">targetApi</a></p>
+<tr id="row1181788489165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1323738012165630"><a name="p1323738012165630"></a><a name="p1323738012165630"></a><a href="BundleInfo.md#a9d43b35b1e8310173e75a3fd3e9e2e5d">gid</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1123156927093529"><a name="p1123156927093529"></a><a name="p1123156927093529"></a>int32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row75953261093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1479374184093529"><a name="p1479374184093529"></a><a name="p1479374184093529"></a><a href="BundleInfo.md#a10ebbd5523a9f9f7b38b04ac365fa9ee">versionCode</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1397097803093529"><a name="p1397097803093529"></a><a name="p1397097803093529"></a>int32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p929827365165630"><a name="p929827365165630"></a><a name="p929827365165630"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row1438863466093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1267869477093529"><a name="p1267869477093529"></a><a name="p1267869477093529"></a><a href="BundleInfo.md#a5381cbf05a30ee5cb5bc1a7daa18084e">versionName</a></p>
+<tr id="row974250661165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1281639780165630"><a name="p1281639780165630"></a><a name="p1281639780165630"></a><a href="BundleInfo.md#ae4572da0f7c456734c7fcc6158e5a5f1">isSystemApp</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p679052357093529"><a name="p679052357093529"></a><a name="p679052357093529"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row490546844093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1254650108093529"><a name="p1254650108093529"></a><a name="p1254650108093529"></a><a href="BundleInfo.md#aec3498345b5e999424348aff0a723db7">bundleName</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p258107047093529"><a name="p258107047093529"></a><a name="p258107047093529"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p222934246165630"><a name="p222934246165630"></a><a name="p222934246165630"></a>bool </p>
 </td>
 </tr>
-<tr id="row362757267093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p714841293093529"><a name="p714841293093529"></a><a name="p714841293093529"></a><a href="BundleInfo.md#a008c2aab5a80d72a283ebb033f3a00e9">label</a></p>
+<tr id="row915380620165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1366968653165630"><a name="p1366968653165630"></a><a name="p1366968653165630"></a><a href="BundleInfo.md#af672c11317ab2608732ebfadf0bfdc94">compatibleApi</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p432132989093529"><a name="p432132989093529"></a><a name="p432132989093529"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row1263323940093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1632331081093529"><a name="p1632331081093529"></a><a name="p1632331081093529"></a><a href="BundleInfo.md#a8e34521fed8544d56fe744e895504940">bigIconPath</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1345140715093529"><a name="p1345140715093529"></a><a name="p1345140715093529"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1605873034165630"><a name="p1605873034165630"></a><a name="p1605873034165630"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row982007517093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1522198229093529"><a name="p1522198229093529"></a><a name="p1522198229093529"></a><a href="BundleInfo.md#a48870c542ef26637af24b6e424af9e66">codePath</a></p>
+<tr id="row1481384525165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1127428963165630"><a name="p1127428963165630"></a><a name="p1127428963165630"></a><a href="BundleInfo.md#a7cbe4debddb5d278af13ca09e55409c9">targetApi</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p458975710093529"><a name="p458975710093529"></a><a name="p458975710093529"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row1305403016093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1313768930093529"><a name="p1313768930093529"></a><a name="p1313768930093529"></a><a href="BundleInfo.md#ac4fcbb75da508f66f815c275d3e53888">dataPath</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p932330865093529"><a name="p932330865093529"></a><a name="p932330865093529"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p624230133165630"><a name="p624230133165630"></a><a name="p624230133165630"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row31829550093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1693832860093529"><a name="p1693832860093529"></a><a name="p1693832860093529"></a><a href="BundleInfo.md#aa82cb2180789691e20e75d0371dec7cd">vendor</a></p>
+<tr id="row608526678165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1788638201165630"><a name="p1788638201165630"></a><a name="p1788638201165630"></a><a href="BundleInfo.md#a10ebbd5523a9f9f7b38b04ac365fa9ee">versionCode</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p329305616093529"><a name="p329305616093529"></a><a name="p329305616093529"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row2101751716093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1815659560093529"><a name="p1815659560093529"></a><a name="p1815659560093529"></a><a href="BundleInfo.md#a7f558b993f8ffd70264b490ea079e178">moduleInfos</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2061713256093529"><a name="p2061713256093529"></a><a name="p2061713256093529"></a><a href="ModuleInfo.md">ModuleInfo</a> *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1789473478165630"><a name="p1789473478165630"></a><a name="p1789473478165630"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row972283450093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1110373880093529"><a name="p1110373880093529"></a><a name="p1110373880093529"></a><a href="BundleInfo.md#ae6d0d5a10be24006397e1436a757f899">numOfModule</a></p>
+<tr id="row1635625193165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1032456230165630"><a name="p1032456230165630"></a><a name="p1032456230165630"></a><a href="BundleInfo.md#a5381cbf05a30ee5cb5bc1a7daa18084e">versionName</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p272058098093529"><a name="p272058098093529"></a><a name="p272058098093529"></a>int32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row522310012093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p260487576093529"><a name="p260487576093529"></a><a name="p260487576093529"></a><a href="BundleInfo.md#a0eb19a04c7e83b61b95b502283b42e15">sharedLibPath</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1372283339093529"><a name="p1372283339093529"></a><a name="p1372283339093529"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1892125567165630"><a name="p1892125567165630"></a><a name="p1892125567165630"></a>char * </p>
 </td>
 </tr>
-<tr id="row484142422093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p660926944093529"><a name="p660926944093529"></a><a name="p660926944093529"></a><a href="BundleInfo.md#ad0eff56be21d5023221ce20da5ab9efb">appId</a></p>
+<tr id="row1252361730165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p282904453165630"><a name="p282904453165630"></a><a name="p282904453165630"></a><a href="BundleInfo.md#aec3498345b5e999424348aff0a723db7">bundleName</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p558585045093529"><a name="p558585045093529"></a><a name="p558585045093529"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row1438557391093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p234654886093529"><a name="p234654886093529"></a><a name="p234654886093529"></a><a href="BundleInfo.md#a3ada4a71ec78f2f2d6c78b8db9406d40">abilityInfos</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1828623604093529"><a name="p1828623604093529"></a><a name="p1828623604093529"></a><a href="AbilityInfo.md">AbilityInfo</a> *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p620069246165630"><a name="p620069246165630"></a><a name="p620069246165630"></a>char * </p>
 </td>
 </tr>
-<tr id="row1714855189093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1466861641093529"><a name="p1466861641093529"></a><a name="p1466861641093529"></a><a href="BundleInfo.md#a0691b2c2822bc661f6618b7d376010b9">numOfAbility</a></p>
+<tr id="row1525540244165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p479487558165630"><a name="p479487558165630"></a><a name="p479487558165630"></a><a href="BundleInfo.md#a008c2aab5a80d72a283ebb033f3a00e9">label</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p93829950093529"><a name="p93829950093529"></a><a name="p93829950093529"></a>int32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p408677231165630"><a name="p408677231165630"></a><a name="p408677231165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row160015809165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2043128300165630"><a name="p2043128300165630"></a><a name="p2043128300165630"></a><a href="BundleInfo.md#a8e34521fed8544d56fe744e895504940">bigIconPath</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2065635902165630"><a name="p2065635902165630"></a><a name="p2065635902165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row666330452165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p32224663165630"><a name="p32224663165630"></a><a name="p32224663165630"></a><a href="BundleInfo.md#a48870c542ef26637af24b6e424af9e66">codePath</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p804938941165630"><a name="p804938941165630"></a><a name="p804938941165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row963659888165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1070206769165630"><a name="p1070206769165630"></a><a name="p1070206769165630"></a><a href="BundleInfo.md#ac4fcbb75da508f66f815c275d3e53888">dataPath</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p182035550165630"><a name="p182035550165630"></a><a name="p182035550165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row1990712221165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2016757430165630"><a name="p2016757430165630"></a><a name="p2016757430165630"></a><a href="BundleInfo.md#aa82cb2180789691e20e75d0371dec7cd">vendor</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p152863722165630"><a name="p152863722165630"></a><a name="p152863722165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row1532741832165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p514147158165630"><a name="p514147158165630"></a><a name="p514147158165630"></a><a href="BundleInfo.md#a7f558b993f8ffd70264b490ea079e178">moduleInfos</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p151276686165630"><a name="p151276686165630"></a><a name="p151276686165630"></a><a href="ModuleInfo.md">ModuleInfo</a> * </p>
+</td>
+</tr>
+<tr id="row652070661165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p512411942165630"><a name="p512411942165630"></a><a name="p512411942165630"></a><a href="BundleInfo.md#ae6d0d5a10be24006397e1436a757f899">numOfModule</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p708171279165630"><a name="p708171279165630"></a><a name="p708171279165630"></a>int32_t </p>
+</td>
+</tr>
+<tr id="row147487996165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p434382759165630"><a name="p434382759165630"></a><a name="p434382759165630"></a><a href="BundleInfo.md#ad0eff56be21d5023221ce20da5ab9efb">appId</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p436493053165630"><a name="p436493053165630"></a><a name="p436493053165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row1960541311165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1109092668165630"><a name="p1109092668165630"></a><a name="p1109092668165630"></a><a href="BundleInfo.md#a3ada4a71ec78f2f2d6c78b8db9406d40">abilityInfos</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1523000115165630"><a name="p1523000115165630"></a><a name="p1523000115165630"></a><a href="AbilityInfo.md">AbilityInfo</a> * </p>
+</td>
+</tr>
+<tr id="row253829953165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1336693577165630"><a name="p1336693577165630"></a><a name="p1336693577165630"></a><a href="BundleInfo.md#a0691b2c2822bc661f6618b7d376010b9">numOfAbility</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1980778113165630"><a name="p1980778113165630"></a><a name="p1980778113165630"></a>int32_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section811709423093529"></a>
+## **Details**<a name="section402726232165630"></a>
 
-## **Field Documentation**<a name="section1660633955093529"></a>
+## **Field **<a name="section472693729165630"></a>
 
 ## abilityInfos<a name="a3ada4a71ec78f2f2d6c78b8db9406d40"></a>
 
@@ -191,7 +212,7 @@ int32_t BundleInfo::compatibleApi
 
  **Description:**
 
-Pointer to the minimum API version required for running the application 
+Minimum API version required 
 
 ## dataPath<a name="ac4fcbb75da508f66f815c275d3e53888"></a>
 
@@ -283,16 +304,6 @@ int32_t BundleInfo::numOfModule
 
 Number of  [ModuleInfo](ModuleInfo.md)  objects included in the application 
 
-## sharedLibPath<a name="a0eb19a04c7e83b61b95b502283b42e15"></a>
-
-```
-char* BundleInfo::sharedLibPath
-```
-
- **Description:**
-
-Pointer to the shared library path 
-
 ## targetApi<a name="a7cbe4debddb5d278af13ca09e55409c9"></a>
 
 ```
@@ -301,7 +312,7 @@ int32_t BundleInfo::targetApi
 
  **Description:**
 
-Pointer to the target API version for running the application 
+Target API version 
 
 ## uid<a name="a4c469e7cb5dbea185de3a70f18adeeb4"></a>
 

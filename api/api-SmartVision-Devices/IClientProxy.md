@@ -1,6 +1,14 @@
 # IClientProxy<a name="ZH-CN_TOPIC_0000001054918157"></a>
 
-## **Overview**<a name="section2093507899093531"></a>
+-   [Overview](#section1650213286165631)
+-   [Summary](#section984856840165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1736297768165631)
+-   [Field](#section1786390938165631)
+-   [INHERIT\_IUNKNOWN](#ac0ffdbb3582a99ba237a70d26320075b)
+-   [Invoke](#a18d8a9e57b05be9fd3e5772e445f474d)
+
+## **Overview**<a name="section1650213286165631"></a>
 
 **Related Modules:**
 
@@ -12,6 +20,8 @@ Defines the client proxy object.
 
 This object is used for the IPC with the server. If you want to use the same invocation mode as that on the server, create an object inherited from
 
+[IClientProxy](IClientProxy.md) 
+
  and implement serialization.
 
 **Since:**
@@ -22,34 +32,33 @@ This object is used for the IPC with the server. If you want to use the same inv
 
 1.0
 
-## **Summary**<a name="section1154640433093531"></a>
+## **Summary**<a name="section984856840165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1090334434093531"></a>
-<table><thead align="left"><tr id="row1639217921093531"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1508665079093531"><a name="p1508665079093531"></a><a name="p1508665079093531"></a>Variable Name</p>
+<a name="table809692225165631"></a>
+<table><thead align="left"><tr id="row99312297165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p194875103165631"><a name="p194875103165631"></a><a name="p194875103165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1888042182093531"><a name="p1888042182093531"></a><a name="p1888042182093531"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2121963391165631"><a name="p2121963391165631"></a><a name="p2121963391165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2016938570093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1244823187093531"><a name="p1244823187093531"></a><a name="p1244823187093531"></a><a href="IClientProxy.md#ac0ffdbb3582a99ba237a70d26320075b">INHERIT_IUNKNOWN</a></p>
+<tbody><tr id="row1091272318165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1117247223165631"><a name="p1117247223165631"></a><a name="p1117247223165631"></a><a href="IClientProxy.md#ac0ffdbb3582a99ba237a70d26320075b">INHERIT_IUNKNOWN</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1096617307093531"><a name="p1096617307093531"></a><a name="p1096617307093531"></a>&nbsp;</p>
-</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">&nbsp;&nbsp;</td>
 </tr>
-<tr id="row1756667270093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1209062151093531"><a name="p1209062151093531"></a><a name="p1209062151093531"></a><a href="IClientProxy.md#a18d8a9e57b05be9fd3e5772e445f474d">Invoke</a> )(<a href="IClientProxy.md">IClientProxy</a> *proxy, int funcId, IpcIo *request, IOwner owner, <a href="Registry.md#ga362a17c1bda1aace88d42dcbc88bdfac">INotify</a> notify)</p>
+<tr id="row2063358132165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1690664274165631"><a name="p1690664274165631"></a><a name="p1690664274165631"></a><a href="IClientProxy.md#a18d8a9e57b05be9fd3e5772e445f474d">Invoke</a> )(<a href="IClientProxy.md">IClientProxy</a> *proxy, int funcId, IpcIo *request, IOwner owner, <a href="Registry.md#ga362a17c1bda1aace88d42dcbc88bdfac">INotify</a> notify)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1546499307093531"><a name="p1546499307093531"></a><a name="p1546499307093531"></a>int(*&nbsp;</p>
-<p id="p812857562093531"><a name="p812857562093531"></a><a name="p812857562093531"></a>Sends an IPC message from the client to the <strong id="b1489191094093531"><a name="b1489191094093531"></a><a name="b1489191094093531"></a><a href="IServerProxy.md">IServerProxy</a></strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p249805385165631"><a name="p249805385165631"></a><a name="p249805385165631"></a>int(* </p>
+<p id="p1022821655165631"><a name="p1022821655165631"></a><a name="p1022821655165631"></a>Sends an IPC message from the client to the <strong id="b1871402066165631"><a name="b1871402066165631"></a><a name="b1871402066165631"></a><a href="IServerProxy.md">IServerProxy</a></strong>. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1159919578093531"></a>
+## **Details**<a name="section1736297768165631"></a>
 
-## **Field Documentation**<a name="section1841888850093531"></a>
+## **Field **<a name="section1786390938165631"></a>
 
 ## INHERIT\_IUNKNOWN<a name="ac0ffdbb3582a99ba237a70d26320075b"></a>
 
@@ -75,26 +84,26 @@ This function is used for IPC. The passed  **proxy**  is used to obtain the serv
 
 **Parameters:**
 
-<a name="table871302558093531"></a>
-<table><thead align="left"><tr id="row805987054093531"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p80575934093531"><a name="p80575934093531"></a><a name="p80575934093531"></a>Name</p>
+<a name="table712976976165631"></a>
+<table><thead align="left"><tr id="row1816280158165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p858917523165631"><a name="p858917523165631"></a><a name="p858917523165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p149863623093531"><a name="p149863623093531"></a><a name="p149863623093531"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2038840638165631"><a name="p2038840638165631"></a><a name="p2038840638165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1946282698093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">proxy</td>
+<tbody><tr id="row1286737312165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">proxy</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer of the client proxy object. </td>
 </tr>
-<tr id="row1171509472093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">funcId</td>
+<tr id="row812705893165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">funcId</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the ID of the function implemented on the server. </td>
 </tr>
-<tr id="row79378237093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">request</td>
+<tr id="row130176343165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">request</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the serialized request message. </td>
 </tr>
-<tr id="row1069120584093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">owner</td>
+<tr id="row1331218135165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">owner</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the receiver (generics type) of the response message. </td>
 </tr>
-<tr id="row795229031093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">notify</td>
+<tr id="row1718149606165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">notify</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the callback function that notifies the client of the response message. </td>
 </tr>
 </tbody>
@@ -103,6 +112,4 @@ This function is used for IPC. The passed  **proxy**  is used to obtain the serv
 **Returns:**
 
 Returns  **EC\_SUCCESS**  if the IPC message is sent successfully; returns other error codes if the message fails to be sent. 
-
-
 

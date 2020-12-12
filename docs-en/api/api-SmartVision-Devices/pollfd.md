@@ -1,10 +1,19 @@
 # pollfd<a name="EN-US_TOPIC_0000001055678140"></a>
 
-## **Overview**<a name="section1068338001093538"></a>
+-   [Overview](#section810147763165637)
+-   [Summary](#section1549798616165637)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section916150739165637)
+-   [Field](#section1379130010165637)
+-   [events](#ac9b2f2c5b1f9a7487eb57e67cd4960ef)
+-   [fd](#a57e1c316fb063e468d680b6246147861)
+-   [revents](#aafb457d11cac415faf0e1e2b825118c2)
+
+## **Overview**<a name="section810147763165637"></a>
 
 **Related Modules:**
 
-[IO](en-us_topic_0000001054799545.md)
+[IO](io.md)
 
 **Description:**
 
@@ -12,38 +21,38 @@ Defines I/O multiplexing.
 
 This structure is used to describe the content during I/O multiplexing, including the file descriptor, event mask, and returned event mask. 
 
-## **Summary**<a name="section370009542093538"></a>
+## **Summary**<a name="section1549798616165637"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1071595730093538"></a>
-<table><thead align="left"><tr id="row1215897561093538"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p873790722093538"><a name="p873790722093538"></a><a name="p873790722093538"></a>Variable Name</p>
+<a name="table1710611845165637"></a>
+<table><thead align="left"><tr id="row1971714895165637"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p799168723165637"><a name="p799168723165637"></a><a name="p799168723165637"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p314903502093538"><a name="p314903502093538"></a><a name="p314903502093538"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p533480775165637"><a name="p533480775165637"></a><a name="p533480775165637"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1003810035093538"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1347236539093538"><a name="p1347236539093538"></a><a name="p1347236539093538"></a><a href="pollfd.md#a57e1c316fb063e468d680b6246147861">fd</a></p>
+<tbody><tr id="row1457132788165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p650906202165637"><a name="p650906202165637"></a><a name="p650906202165637"></a><a href="pollfd.md#a57e1c316fb063e468d680b6246147861">fd</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1487561159093538"><a name="p1487561159093538"></a><a name="p1487561159093538"></a>int </p>
-</td>
-</tr>
-<tr id="row982464530093538"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p179164005093538"><a name="p179164005093538"></a><a name="p179164005093538"></a><a href="pollfd.md#ac9b2f2c5b1f9a7487eb57e67cd4960ef">events</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p743569576093538"><a name="p743569576093538"></a><a name="p743569576093538"></a>short </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1011018426165637"><a name="p1011018426165637"></a><a name="p1011018426165637"></a>int </p>
 </td>
 </tr>
-<tr id="row140477975093538"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2061225483093538"><a name="p2061225483093538"></a><a name="p2061225483093538"></a><a href="pollfd.md#aafb457d11cac415faf0e1e2b825118c2">revents</a></p>
+<tr id="row1685122616165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1626484303165637"><a name="p1626484303165637"></a><a name="p1626484303165637"></a><a href="pollfd.md#ac9b2f2c5b1f9a7487eb57e67cd4960ef">events</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1932232730093538"><a name="p1932232730093538"></a><a name="p1932232730093538"></a>short </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p953745235165637"><a name="p953745235165637"></a><a name="p953745235165637"></a>short </p>
+</td>
+</tr>
+<tr id="row1243711499165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p903266189165637"><a name="p903266189165637"></a><a name="p903266189165637"></a><a href="pollfd.md#aafb457d11cac415faf0e1e2b825118c2">revents</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1297564684165637"><a name="p1297564684165637"></a><a name="p1297564684165637"></a>short </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1569340034093538"></a>
+## **Details**<a name="section916150739165637"></a>
 
-## **Field Documentation**<a name="section2043469424093538"></a>
+## **Field **<a name="section1379130010165637"></a>
 
 ## events<a name="ac9b2f2c5b1f9a7487eb57e67cd4960ef"></a>
 

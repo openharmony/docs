@@ -1,6 +1,10 @@
 # version.h<a name="EN-US_TOPIC_0000001055108029"></a>
 
-## **Overview**<a name="section1301549192084834"></a>
+-   [Overview](#section1969469645165630)
+-   [Summary](#section458921388165630)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1969469645165630"></a>
 
 **Related Modules:**
 
@@ -18,27 +22,27 @@ Declares the version number control for the graphics module. This file defines f
 
 1.0
 
-## **Summary**<a name="section1246812394084834"></a>
+## **Summary**<a name="section458921388165630"></a>
 
 ## Functions<a name="func-members"></a>
 
-<a name="table618862851084834"></a>
-<table><thead align="left"><tr id="row1423087917084834"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1443336393084834"><a name="p1443336393084834"></a><a name="p1443336393084834"></a>Function Name</p>
+<a name="table915594800165630"></a>
+<table><thead align="left"><tr id="row108824925165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p948998375165630"><a name="p948998375165630"></a><a name="p948998375165630"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p47434193084834"><a name="p47434193084834"></a><a name="p47434193084834"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p362685268165630"><a name="p362685268165630"></a><a name="p362685268165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2001580048084834"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1197212634084834"><a name="p1197212634084834"></a><a name="p1197212634084834"></a><a href="graphic.md#ga45704f59419f34aa75868387bf74b160">OHOS::GetVersion</a> ()</p>
+<tbody><tr id="row1777260251165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p139187190165630"><a name="p139187190165630"></a><a name="p139187190165630"></a><a href="graphic.md#ga45704f59419f34aa75868387bf74b160">OHOS::GetVersion</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1533351568084834"><a name="p1533351568084834"></a><a name="p1533351568084834"></a>std::string </p>
-<p id="p1824433468084834"><a name="p1824433468084834"></a><a name="p1824433468084834"></a>Obtains the version number of the graphics module. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1263643142165630"><a name="p1263643142165630"></a><a name="p1263643142165630"></a>std::string </p>
+<p id="p364420617165630"><a name="p364420617165630"></a><a name="p364420617165630"></a>Obtains the version number of the graphics module. </p>
 </td>
 </tr>
-<tr id="row1666573601084834"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p650991137084834"><a name="p650991137084834"></a><a name="p650991137084834"></a><a href="graphic.md#ga29d7531162c23d230c617280c5c4acf2">OHOS::GetLibDsc</a> ()</p>
+<tr id="row1971650179165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1050084940165630"><a name="p1050084940165630"></a><a name="p1050084940165630"></a><a href="graphic.md#ga29d7531162c23d230c617280c5c4acf2">OHOS::GetLibDsc</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p296079764084834"><a name="p296079764084834"></a><a name="p296079764084834"></a>std::string </p>
-<p id="p1480548760084834"><a name="p1480548760084834"></a><a name="p1480548760084834"></a>Obtains the library description of the graphics module. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1938069802165630"><a name="p1938069802165630"></a><a name="p1938069802165630"></a>std::string </p>
+<p id="p496482566165630"><a name="p496482566165630"></a><a name="p496482566165630"></a>Obtains the library description of the graphics module. </p>
 </td>
 </tr>
 </tbody>

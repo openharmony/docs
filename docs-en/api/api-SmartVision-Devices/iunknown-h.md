@@ -1,6 +1,13 @@
 # iunknown.h<a name="EN-US_TOPIC_0000001055039488"></a>
 
-## **Overview**<a name="section641705678084830"></a>
+-   [Overview](#section602857521165627)
+-   [Summary](#section2069362633165627)
+-   [Data Structures](#nested-classes)
+-   [Macros](#define-members)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section602857521165627"></a>
 
 **Related Modules:**
 
@@ -18,25 +25,25 @@ Provides the base class and default implementation for external functions of sys
 
 1.0
 
-## **Summary**<a name="section1156113287084830"></a>
+## **Summary**<a name="section2069362633165627"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table895637064084830"></a>
-<table><thead align="left"><tr id="row654176831084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2041187822084830"><a name="p2041187822084830"></a><a name="p2041187822084830"></a>Data Structure Name</p>
+<a name="table2136293975165627"></a>
+<table><thead align="left"><tr id="row281875032165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p806978118165627"><a name="p806978118165627"></a><a name="p806978118165627"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p882078530084830"><a name="p882078530084830"></a><a name="p882078530084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1537313015165627"><a name="p1537313015165627"></a><a name="p1537313015165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2138181317084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p857911686084830"><a name="p857911686084830"></a><a name="p857911686084830"></a><a href="iunknown.md">IUnknown</a></p>
+<tbody><tr id="row1666977372165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p578737560165627"><a name="p578737560165627"></a><a name="p578737560165627"></a><a href="iunknown.md">IUnknown</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p522917277084830"><a name="p522917277084830"></a><a name="p522917277084830"></a>Defines the <strong id="b692343110084830"><a name="b692343110084830"></a><a name="b692343110084830"></a><a href="iunknown.md">IUnknown</a></strong> class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p323324088165627"><a name="p323324088165627"></a><a name="p323324088165627"></a>Defines the <strong id="b2124318901165627"><a name="b2124318901165627"></a><a name="b2124318901165627"></a><a href="iunknown.md">IUnknown</a></strong> class. </p>
 </td>
 </tr>
-<tr id="row54735334084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1201500953084830"><a name="p1201500953084830"></a><a name="p1201500953084830"></a><a href="iunknownentry.md">IUnknownEntry</a></p>
+<tr id="row695670045165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1827250262165627"><a name="p1827250262165627"></a><a name="p1827250262165627"></a><a href="iunknownentry.md">IUnknownEntry</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1096899150084830"><a name="p1096899150084830"></a><a name="p1096899150084830"></a>Defines the <strong id="b1838099609084830"><a name="b1838099609084830"></a><a name="b1838099609084830"></a><a href="iunknown.md">IUnknown</a></strong> implementation class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p391997141165627"><a name="p391997141165627"></a><a name="p391997141165627"></a>Defines the <strong id="b2006769989165627"><a name="b2006769989165627"></a><a name="b2006769989165627"></a><a href="iunknown.md">IUnknown</a></strong> implementation class. </p>
 </td>
 </tr>
 </tbody>
@@ -44,46 +51,46 @@ Provides the base class and default implementation for external functions of sys
 
 ## Macros<a name="define-members"></a>
 
-<a name="table936314430084830"></a>
-<table><thead align="left"><tr id="row236380279084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p450226381084830"><a name="p450226381084830"></a><a name="p450226381084830"></a>Macro Name and Value</p>
+<a name="table1492722763165627"></a>
+<table><thead align="left"><tr id="row1126837621165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1721872396165627"><a name="p1721872396165627"></a><a name="p1721872396165627"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1260912754084830"><a name="p1260912754084830"></a><a name="p1260912754084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p32501598165627"><a name="p32501598165627"></a><a name="p32501598165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row625496426084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p540704124084830"><a name="p540704124084830"></a><a name="p540704124084830"></a><a href="samgr.md#ga13dae059206df8d2d9b9b42e694b3f9c">DEFAULT_VERSION</a>   0x20</p>
+<tbody><tr id="row1711815717165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1525780448165627"><a name="p1525780448165627"></a><a name="p1525780448165627"></a><a href="samgr.md#ga13dae059206df8d2d9b9b42e694b3f9c">DEFAULT_VERSION</a>   0x20</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1040984436084830"><a name="p1040984436084830"></a><a name="p1040984436084830"></a>Defines the default <a href="iunknown.md">IUnknown</a> version. You can customize the version. </p>
-</td>
-</tr>
-<tr id="row1652351074084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p192090493084830"><a name="p192090493084830"></a><a name="p192090493084830"></a><a href="samgr.md#gab74532a22d6993d0ffc014d36253397f">INHERIT_IUNKNOWN</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p876554168084830"><a name="p876554168084830"></a><a name="p876554168084830"></a>Defines the macro for inheriting the <strong id="b1703088648084830"><a name="b1703088648084830"></a><a name="b1703088648084830"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1078419349165627"><a name="p1078419349165627"></a><a name="p1078419349165627"></a>Defines the default <a href="iunknown.md">IUnknown</a> version. You can customize the version. </p>
 </td>
 </tr>
-<tr id="row1758856601084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1524783554084830"><a name="p1524783554084830"></a><a name="p1524783554084830"></a><a href="samgr.md#gad6324fd90dd636180efa2a59b377e65c">INHERIT_IUNKNOWNENTRY</a>(T)</p>
+<tr id="row1150494099165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p695647018165627"><a name="p695647018165627"></a><a name="p695647018165627"></a><a href="samgr.md#gab74532a22d6993d0ffc014d36253397f">INHERIT_IUNKNOWN</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p673334611084830"><a name="p673334611084830"></a><a name="p673334611084830"></a>Defines the macro for inheriting the classes that implement the <strong id="b1078044138084830"><a name="b1078044138084830"></a><a name="b1078044138084830"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
-</td>
-</tr>
-<tr id="row520286303084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p868637436084830"><a name="p868637436084830"></a><a name="p868637436084830"></a><a href="samgr.md#gac8d8c9671531f9340427153d50ca4a2b">DEFAULT_IUNKNOWN_IMPL</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1063932903084830"><a name="p1063932903084830"></a><a name="p1063932903084830"></a>Defines the default marco for initializing the <strong id="b1929798914084830"><a name="b1929798914084830"></a><a name="b1929798914084830"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p112605901165627"><a name="p112605901165627"></a><a name="p112605901165627"></a>Defines the macro for inheriting the <strong id="b1260235022165627"><a name="b1260235022165627"></a><a name="b1260235022165627"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
 </td>
 </tr>
-<tr id="row1488006371084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1911472658084830"><a name="p1911472658084830"></a><a name="p1911472658084830"></a><a href="samgr.md#ga52ec6b5b03d56b0dfe7277785246bda1">IUNKNOWN_ENTRY_BEGIN</a>(version)</p>
+<tr id="row102487702165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p137160402165627"><a name="p137160402165627"></a><a name="p137160402165627"></a><a href="samgr.md#gad6324fd90dd636180efa2a59b377e65c">INHERIT_IUNKNOWNENTRY</a>(T)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p580879832084830"><a name="p580879832084830"></a><a name="p580879832084830"></a>Defines the macro for initializing the classes that implement the <strong id="b1068240111084830"><a name="b1068240111084830"></a><a name="b1068240111084830"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
-</td>
-</tr>
-<tr id="row1027866468084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p478948441084830"><a name="p478948441084830"></a><a name="p478948441084830"></a><a href="samgr.md#ga4ef734474ece49aa938d8ebd5b54bdb3">IUNKNOWN_ENTRY_END</a>   }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1649825345084830"><a name="p1649825345084830"></a><a name="p1649825345084830"></a><a href="iunknown.md">IUnknown</a> Defines the end macro for initializing the <strong id="b1374032865084830"><a name="b1374032865084830"></a><a name="b1374032865084830"></a><a href="iunknown.md">IUnknown</a></strong> implementation object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p442992638165627"><a name="p442992638165627"></a><a name="p442992638165627"></a>Defines the macro for inheriting the classes that implement the <strong id="b860186146165627"><a name="b860186146165627"></a><a name="b860186146165627"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
 </td>
 </tr>
-<tr id="row66854266084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1051370527084830"><a name="p1051370527084830"></a><a name="p1051370527084830"></a><a href="samgr.md#ga9403f55c3f75fd03854dcd37c231e05b">GET_IUNKNOWN</a>(T)   (<a href="iunknown.md">IUnknown</a> *)(&amp;((T).iUnknown))</p>
+<tr id="row1306436991165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p452695988165627"><a name="p452695988165627"></a><a name="p452695988165627"></a><a href="samgr.md#gac8d8c9671531f9340427153d50ca4a2b">DEFAULT_IUNKNOWN_IMPL</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1012727949084830"><a name="p1012727949084830"></a><a name="p1012727949084830"></a>Obtains the pointer of the <strong id="b63038940084830"><a name="b63038940084830"></a><a name="b63038940084830"></a><a href="iunknown.md">IUnknown</a></strong> interface object from the subclass object T (generic macro) of the <strong id="b990204633084830"><a name="b990204633084830"></a><a name="b990204633084830"></a><a href="iunknown.md">IUnknown</a></strong> implementation class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p842147112165627"><a name="p842147112165627"></a><a name="p842147112165627"></a>Defines the default marco for initializing the <strong id="b1739664968165627"><a name="b1739664968165627"></a><a name="b1739664968165627"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
+</td>
+</tr>
+<tr id="row1772017385165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p162869237165627"><a name="p162869237165627"></a><a name="p162869237165627"></a><a href="samgr.md#ga52ec6b5b03d56b0dfe7277785246bda1">IUNKNOWN_ENTRY_BEGIN</a>(version)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1677069384165627"><a name="p1677069384165627"></a><a name="p1677069384165627"></a>Defines the macro for initializing the classes that implement the <strong id="b1383552506165627"><a name="b1383552506165627"></a><a name="b1383552506165627"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
+</td>
+</tr>
+<tr id="row1361634284165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1014213856165627"><a name="p1014213856165627"></a><a name="p1014213856165627"></a><a href="samgr.md#ga4ef734474ece49aa938d8ebd5b54bdb3">IUNKNOWN_ENTRY_END</a>   }</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1962181326165627"><a name="p1962181326165627"></a><a name="p1962181326165627"></a><a href="iunknown.md">IUnknown</a> Defines the end macro for initializing the <strong id="b634423474165627"><a name="b634423474165627"></a><a name="b634423474165627"></a><a href="iunknown.md">IUnknown</a></strong> implementation object. </p>
+</td>
+</tr>
+<tr id="row472681087165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1072189767165627"><a name="p1072189767165627"></a><a name="p1072189767165627"></a><a href="samgr.md#ga9403f55c3f75fd03854dcd37c231e05b">GET_IUNKNOWN</a>(T)   (<a href="iunknown.md">IUnknown</a> *)(&amp;((T).iUnknown))</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1480681773165627"><a name="p1480681773165627"></a><a name="p1480681773165627"></a>Obtains the pointer of the <strong id="b1882315682165627"><a name="b1882315682165627"></a><a name="b1882315682165627"></a><a href="iunknown.md">IUnknown</a></strong> interface object from the subclass object T (generic macro) of the <strong id="b799852004165627"><a name="b799852004165627"></a><a name="b799852004165627"></a><a href="iunknown.md">IUnknown</a></strong> implementation class. </p>
 </td>
 </tr>
 </tbody>
@@ -91,17 +98,17 @@ Provides the base class and default implementation for external functions of sys
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table1132779026084830"></a>
-<table><thead align="left"><tr id="row1103156157084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p979781369084830"><a name="p979781369084830"></a><a name="p979781369084830"></a>Typedef Name</p>
+<a name="table689493581165627"></a>
+<table><thead align="left"><tr id="row761709895165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p560893532165627"><a name="p560893532165627"></a><a name="p560893532165627"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1883219171084830"><a name="p1883219171084830"></a><a name="p1883219171084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p38941517165627"><a name="p38941517165627"></a><a name="p38941517165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1819341537084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p719609970084830"><a name="p719609970084830"></a><a name="p719609970084830"></a><a href="samgr.md#gacaa7db32a018a33a2bbf919cde8d8f9c">IUnknownEntry</a></p>
+<tbody><tr id="row1911701413165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1874216196165627"><a name="p1874216196165627"></a><a name="p1874216196165627"></a><a href="samgr.md#gacaa7db32a018a33a2bbf919cde8d8f9c">IUnknownEntry</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p491855118084830"><a name="p491855118084830"></a><a name="p491855118084830"></a>typedef struct <a href="iunknownentry.md">IUnknownEntry</a> </p>
-<p id="p368677031084830"><a name="p368677031084830"></a><a name="p368677031084830"></a>Defines the <strong id="b1618452053084830"><a name="b1618452053084830"></a><a name="b1618452053084830"></a><a href="iunknown.md">IUnknown</a></strong> implementation class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p686858065165627"><a name="p686858065165627"></a><a name="p686858065165627"></a>typedef struct <a href="iunknownentry.md">IUnknownEntry</a> </p>
+<p id="p1331908043165627"><a name="p1331908043165627"></a><a name="p1331908043165627"></a>Defines the <strong id="b1754739707165627"><a name="b1754739707165627"></a><a name="b1754739707165627"></a><a href="iunknown.md">IUnknown</a></strong> implementation class. </p>
 </td>
 </tr>
 </tbody>
@@ -109,29 +116,29 @@ Provides the base class and default implementation for external functions of sys
 
 ## Functions<a name="func-members"></a>
 
-<a name="table393400514084830"></a>
-<table><thead align="left"><tr id="row975647794084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p331101035084830"><a name="p331101035084830"></a><a name="p331101035084830"></a>Function Name</p>
+<a name="table944492669165627"></a>
+<table><thead align="left"><tr id="row982979863165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p647393227165627"><a name="p647393227165627"></a><a name="p647393227165627"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1069235739084830"><a name="p1069235739084830"></a><a name="p1069235739084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1748802142165627"><a name="p1748802142165627"></a><a name="p1748802142165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1729385454084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1069954623084830"><a name="p1069954623084830"></a><a name="p1069954623084830"></a><a href="samgr.md#ga9abef49ec89bf913c3bed03faf478c1e">IUNKNOWN_AddRef</a> (<a href="iunknown.md">IUnknown</a> *iUnknown)</p>
+<tbody><tr id="row331379279165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1758561074165627"><a name="p1758561074165627"></a><a name="p1758561074165627"></a><a href="samgr.md#ga9abef49ec89bf913c3bed03faf478c1e">IUNKNOWN_AddRef</a> (<a href="iunknown.md">IUnknown</a> *iUnknown)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p615411485084830"><a name="p615411485084830"></a><a name="p615411485084830"></a>int </p>
-<p id="p1069883525084830"><a name="p1069883525084830"></a><a name="p1069883525084830"></a>Increments the reference count in this <strong id="b270675002084830"><a name="b270675002084830"></a><a name="b270675002084830"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
-</td>
-</tr>
-<tr id="row581855083084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p183784042084830"><a name="p183784042084830"></a><a name="p183784042084830"></a><a href="samgr.md#gac857d12648500c7dab1cb43e85ae2ed4">IUNKNOWN_QueryInterface</a> (<a href="iunknown.md">IUnknown</a> *iUnknown, int ver, void **target)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p289516873084830"><a name="p289516873084830"></a><a name="p289516873084830"></a>int </p>
-<p id="p870707760084830"><a name="p870707760084830"></a><a name="p870707760084830"></a>Queries the <strong id="b1434275730084830"><a name="b1434275730084830"></a><a name="b1434275730084830"></a><a href="iunknown.md">IUnknown</a></strong> interfaces of a specified version (downcasting). </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p441976655165627"><a name="p441976655165627"></a><a name="p441976655165627"></a>int </p>
+<p id="p2139592313165627"><a name="p2139592313165627"></a><a name="p2139592313165627"></a>Increments the reference count in this <strong id="b220853590165627"><a name="b220853590165627"></a><a name="b220853590165627"></a><a href="iunknown.md">IUnknown</a></strong> interface. </p>
 </td>
 </tr>
-<tr id="row570504233084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2115708139084830"><a name="p2115708139084830"></a><a name="p2115708139084830"></a><a href="samgr.md#gabd462f8a5e6460a68760cd0719982296">IUNKNOWN_Release</a> (<a href="iunknown.md">IUnknown</a> *iUnknown)</p>
+<tr id="row576216127165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1518202970165627"><a name="p1518202970165627"></a><a name="p1518202970165627"></a><a href="samgr.md#gac857d12648500c7dab1cb43e85ae2ed4">IUNKNOWN_QueryInterface</a> (<a href="iunknown.md">IUnknown</a> *iUnknown, int ver, void **target)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1987659964084830"><a name="p1987659964084830"></a><a name="p1987659964084830"></a>int </p>
-<p id="p926740162084830"><a name="p926740162084830"></a><a name="p926740162084830"></a>Releases a reference to an <strong id="b796419661084830"><a name="b796419661084830"></a><a name="b796419661084830"></a><a href="iunknown.md">IUnknown</a></strong> interface that is no longer used. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p718960503165627"><a name="p718960503165627"></a><a name="p718960503165627"></a>int </p>
+<p id="p641336029165627"><a name="p641336029165627"></a><a name="p641336029165627"></a>Queries the <strong id="b1190167657165627"><a name="b1190167657165627"></a><a name="b1190167657165627"></a><a href="iunknown.md">IUnknown</a></strong> interfaces of a specified version (downcasting). </p>
+</td>
+</tr>
+<tr id="row1224370725165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1756609354165627"><a name="p1756609354165627"></a><a name="p1756609354165627"></a><a href="samgr.md#gabd462f8a5e6460a68760cd0719982296">IUNKNOWN_Release</a> (<a href="iunknown.md">IUnknown</a> *iUnknown)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2037943935165627"><a name="p2037943935165627"></a><a name="p2037943935165627"></a>int </p>
+<p id="p2051212538165627"><a name="p2051212538165627"></a><a name="p2051212538165627"></a>Releases a reference to an <strong id="b198106022165627"><a name="b198106022165627"></a><a name="b198106022165627"></a><a href="iunknown.md">IUnknown</a></strong> interface that is no longer used. </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,10 @@
 # frame\_config.h<a name="ZH-CN_TOPIC_0000001054718093"></a>
 
-## **Overview**<a name="section872115125093525"></a>
+-   [Overview](#section1476684945165627)
+-   [Summary](#section744209537165627)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section1476684945165627"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares APIs of the  **FrameConfig**  class.
 
 1.0
 
-## **Summary**<a name="section789170046093525"></a>
+## **Summary**<a name="section744209537165627"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1223230492093525"></a>
-<table><thead align="left"><tr id="row367365736093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1387119519093525"><a name="p1387119519093525"></a><a name="p1387119519093525"></a>Data Structure Name</p>
+<a name="table2089310707165627"></a>
+<table><thead align="left"><tr id="row356314484165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p583598280165627"><a name="p583598280165627"></a><a name="p583598280165627"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1058053040093525"><a name="p1058053040093525"></a><a name="p1058053040093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1774710870165627"><a name="p1774710870165627"></a><a name="p1774710870165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1076563388093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p278708265093525"><a name="p278708265093525"></a><a name="p278708265093525"></a><a href="OHOS-Media-FrameConfig.md">OHOS::Media::FrameConfig</a></p>
+<tbody><tr id="row1493474110165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p535962446165627"><a name="p535962446165627"></a><a name="p535962446165627"></a><a href="OHOS-Media-FrameConfig.md">OHOS::Media::FrameConfig</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1481230970093525"><a name="p1481230970093525"></a><a name="p1481230970093525"></a>Provides functions to configure frames. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p635199370165627"><a name="p635199370165627"></a><a name="p635199370165627"></a>Provides functions to configure frames. </p>
 </td>
 </tr>
 </tbody>

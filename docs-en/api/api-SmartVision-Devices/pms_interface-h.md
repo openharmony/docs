@@ -1,6 +1,10 @@
 # pms\_interface.h<a name="EN-US_TOPIC_0000001054718103"></a>
 
-## **Overview**<a name="section1774234485093527"></a>
+-   [Overview](#section762553512165628)
+-   [Summary](#section775866580165628)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section762553512165628"></a>
 
 **Related Modules:**
 
@@ -20,51 +24,51 @@ The interfaces can be used to authenticate native APIs, query, grant, and revoke
 
 1.0
 
-## **Summary**<a name="section1957012543093527"></a>
+## **Summary**<a name="section775866580165628"></a>
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1076346304093527"></a>
-<table><thead align="left"><tr id="row134118961093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p507899657093527"><a name="p507899657093527"></a><a name="p507899657093527"></a>Function Name</p>
+<a name="table1702523553165628"></a>
+<table><thead align="left"><tr id="row1758203890165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p460765552165628"><a name="p460765552165628"></a><a name="p460765552165628"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p24886805093527"><a name="p24886805093527"></a><a name="p24886805093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p371572445165628"><a name="p371572445165628"></a><a name="p371572445165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row460410146093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1325178043093527"><a name="p1325178043093527"></a><a name="p1325178043093527"></a><a href="pms.md#ga302af5b52a877e47436fa85b9866f26b">CheckPermission</a> (int taskID, const char *permissionName)</p>
+<tbody><tr id="row1771578655165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1535994625165628"><a name="p1535994625165628"></a><a name="p1535994625165628"></a><a href="pms.md#gaaaf2b952db3d8336c9b2309eaf67d1f7">CheckPermission</a> (int uid, const char *permissionName)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2087114830093527"><a name="p2087114830093527"></a><a name="p2087114830093527"></a>int </p>
-<p id="p1628533499093527"><a name="p1628533499093527"></a><a name="p1628533499093527"></a>Checks whether the caller (generally a third-party application) has a specified permission of a system service API. </p>
-</td>
-</tr>
-<tr id="row1654263366093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p431802064093527"><a name="p431802064093527"></a><a name="p431802064093527"></a><a href="pms.md#gab279d23a1850f03e73de08b25e734679">QueryPermission</a> (const char *identifier, <a href="permissionsaved.md">PermissionSaved</a> **permissions, int *permNum)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p492483446093527"><a name="p492483446093527"></a><a name="p492483446093527"></a>int </p>
-<p id="p303933224093527"><a name="p303933224093527"></a><a name="p303933224093527"></a>Queries all permissions requested by the application and checks whether these permissions are granted. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p289114178165628"><a name="p289114178165628"></a><a name="p289114178165628"></a>int </p>
+<p id="p376875452165628"><a name="p376875452165628"></a><a name="p376875452165628"></a>Checks whether the caller (generally a third-party application) has a specified permission of a system service API. </p>
 </td>
 </tr>
-<tr id="row469711285093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p145497226093527"><a name="p145497226093527"></a><a name="p145497226093527"></a><a href="pms.md#gad6c5889b56e196477152bbf4ce9f462c">GrantPermission</a> (const char *identifier, const char *permName)</p>
+<tr id="row499232440165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p862523943165628"><a name="p862523943165628"></a><a name="p862523943165628"></a><a href="pms.md#ga099c9ba42ace42091cbd15d9d7f202fb">CheckSelfPermission</a> (const char *permissionName)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1552506873093527"><a name="p1552506873093527"></a><a name="p1552506873093527"></a>int </p>
-<p id="p184249090093527"><a name="p184249090093527"></a><a name="p184249090093527"></a>Grants a specified permission to the application. </p>
-</td>
-</tr>
-<tr id="row922448599093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p989276168093527"><a name="p989276168093527"></a><a name="p989276168093527"></a><a href="pms.md#ga75cad2f174190a59d40e963481ddcbd7">RevokePermission</a> (const char *identifier, const char *permName)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1086355913093527"><a name="p1086355913093527"></a><a name="p1086355913093527"></a>int </p>
-<p id="p1275966913093527"><a name="p1275966913093527"></a><a name="p1275966913093527"></a>Revokes a specified permission from the application. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p528866566165628"><a name="p528866566165628"></a><a name="p528866566165628"></a>int </p>
+<p id="p1744220688165628"><a name="p1744220688165628"></a><a name="p1744220688165628"></a>Checks whether the caller (generally a third-party application) has a specified permission of a system service API. </p>
 </td>
 </tr>
-<tr id="row1659828800093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1923736765093527"><a name="p1923736765093527"></a><a name="p1923736765093527"></a><a href="pms.md#ga796cd1425210a0cc4f6e416b1c649a1d">GrantRuntimePermission</a> (int taskID, const char *permissionName)</p>
+<tr id="row1542684568165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1584226469165628"><a name="p1584226469165628"></a><a name="p1584226469165628"></a><a href="pms.md#gab279d23a1850f03e73de08b25e734679">QueryPermission</a> (const char *identifier, <a href="permissionsaved.md">PermissionSaved</a> **permissions, int *permNum)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1872629296093527"><a name="p1872629296093527"></a><a name="p1872629296093527"></a>int </p>
-<p id="p1879628209093527"><a name="p1879628209093527"></a><a name="p1879628209093527"></a>Grants a specified runtime permission to an application. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p445644980165628"><a name="p445644980165628"></a><a name="p445644980165628"></a>int </p>
+<p id="p919237237165628"><a name="p919237237165628"></a><a name="p919237237165628"></a>Queries all permissions requested by the application and checks whether these permissions are granted. </p>
 </td>
 </tr>
-<tr id="row472390128093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1362770478093527"><a name="p1362770478093527"></a><a name="p1362770478093527"></a><a href="pms.md#ga65583c7e348108aedf5ed3c7a096e5d3">RequestPermission</a> (int taskID, const char *permissionName)</p>
+<tr id="row719153614165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p727370150165628"><a name="p727370150165628"></a><a name="p727370150165628"></a><a href="pms.md#gad6c5889b56e196477152bbf4ce9f462c">GrantPermission</a> (const char *identifier, const char *permName)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1776540323093527"><a name="p1776540323093527"></a><a name="p1776540323093527"></a>int </p>
-<p id="p1374784225093527"><a name="p1374784225093527"></a><a name="p1374784225093527"></a>Requests a specified permission. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p549926411165628"><a name="p549926411165628"></a><a name="p549926411165628"></a>int </p>
+<p id="p2018129657165628"><a name="p2018129657165628"></a><a name="p2018129657165628"></a>Grants a specified permission to the application. </p>
+</td>
+</tr>
+<tr id="row804300675165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1533246777165628"><a name="p1533246777165628"></a><a name="p1533246777165628"></a><a href="pms.md#ga75cad2f174190a59d40e963481ddcbd7">RevokePermission</a> (const char *identifier, const char *permName)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1526428052165628"><a name="p1526428052165628"></a><a name="p1526428052165628"></a>int </p>
+<p id="p2066963904165628"><a name="p2066963904165628"></a><a name="p2066963904165628"></a>Revokes a specified permission from the application. </p>
+</td>
+</tr>
+<tr id="row846867985165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1987119187165628"><a name="p1987119187165628"></a><a name="p1987119187165628"></a><a href="pms.md#ga5e1343c802844acc6b2d95181ca36b66">GrantRuntimePermission</a> (int uid, const char *permissionName)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p945091048165628"><a name="p945091048165628"></a><a name="p945091048165628"></a>int </p>
+<p id="p2051478572165628"><a name="p2051478572165628"></a><a name="p2051478572165628"></a>Grants a specified runtime permission to an application. </p>
 </td>
 </tr>
 </tbody>

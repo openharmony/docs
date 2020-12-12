@@ -1,13 +1,16 @@
 # Use Case<a name="EN-US_TOPIC_0000001055686082"></a>
 
--   For details about the development board, compilation, burning, and image running process, see  [Getting Started with Hi3518](../quick-start/introduction-to-the-hi3518-development-board.md). The compilation results include that of the  **camera\_sample**  program.
+-   For details bout the development board, compilation, burning, and image running process, see  [Getting Started with Hi3518](../quick-start/introduction-to-the-hi3518-development-board.md). A compilation result file of sample code is stored in  **out/ipcamera\_hi3518ev300/dev\_tools/bin/camera\_sample**. You can copy the file to a TF card, or modify the compilation script of  **camera\_sample**  to copy the result to  **rootfs.img**.
+
+    **How to Modify**: In  **applications/sample/camera/media/BUILD.gn**, replace  **output\_dir = "$root\_out\_dir/dev\_tools"**  with  **output\_dir = "$root\_out\_dir/"**, recompile the source code repository, and burn the code into the development board. Then you can find the  **camera\_sample**  file in the  **bin**  directory of the board.
+
 -   The sample code for camera development is stored in  **applications/sample/camera/media/camera\_sample.cpp**.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
     >You should insert a TF card \(maximum capacity: 128 GB\) for photographing and video recording functions. After the system is started, the TF card is automatically mounted to the  **/sdcard**  directory. If the TF card is inserted after the system is started, you have to manually mount the TF card. To view the photos and videos in the TF card, copy the content to a computer. The preview function does not require a TF card.
 
 
-1.  Start the  **camera\_sample**  program.
+1.  Run the  **cd**  command to go to the end path of the executable program and start  **camera\_sample**  by running the command in the following figure.
 
     **Figure  1**  Starting camera\_sample<a name="en-us_topic_0000001055301733_fig380985885020"></a>  
     ![](figures/starting-camera_sample.png "starting-camera_sample")
@@ -19,7 +22,7 @@
     **Figure  2**  Serial port logs displayed after the photographing command is executed<a name="en-us_topic_0000001055301733_fig17819185018384"></a>  
     ![](figures/serial-port-logs-displayed-after-the-photographing-command-is-executed.png "serial-port-logs-displayed-after-the-photographing-command-is-executed")
 
-    To view the saved file, exit the program and enter the file system. To start the program again, return to  [Step 1](use-case-5.md#li15116103915513).
+    To view the saved file, exit the program and enter the file system. To start the program again, return to the previous step.
 
     **Figure  3**  Saved files<a name="en-us_topic_0000001055301733_fig166391743154619"></a>  
     ![](figures/saved-files.png "saved-files")

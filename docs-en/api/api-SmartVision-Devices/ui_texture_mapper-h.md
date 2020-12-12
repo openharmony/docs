@@ -1,6 +1,10 @@
 # ui\_texture\_mapper.h<a name="EN-US_TOPIC_0000001055198116"></a>
 
-## **Overview**<a name="section416332857093528"></a>
+-   [Overview](#section310667671165630)
+-   [Summary](#section1242938407165630)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section310667671165630"></a>
 
 **Related Modules:**
 
@@ -18,25 +22,25 @@ Defines the attributes and functions of a texture mapper.
 
 1.0
 
-## **Summary**<a name="section340015899093528"></a>
+## **Summary**<a name="section1242938407165630"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1994468212093528"></a>
-<table><thead align="left"><tr id="row1619184312093528"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p982365137093528"><a name="p982365137093528"></a><a name="p982365137093528"></a>Data Structure Name</p>
+<a name="table747507895165630"></a>
+<table><thead align="left"><tr id="row100009086165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2038007495165630"><a name="p2038007495165630"></a><a name="p2038007495165630"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1006521450093528"><a name="p1006521450093528"></a><a name="p1006521450093528"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p677499480165630"><a name="p677499480165630"></a><a name="p677499480165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row348932088093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1652744640093528"><a name="p1652744640093528"></a><a name="p1652744640093528"></a><a href="ohos-uitexturemapper.md">OHOS::UITextureMapper</a></p>
+<tbody><tr id="row701765942165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1265604805165630"><a name="p1265604805165630"></a><a name="p1265604805165630"></a><a href="ohos-uitexturemapper.md">OHOS::UITextureMapper</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1027928687093528"><a name="p1027928687093528"></a><a name="p1027928687093528"></a>Rotates and scales images. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p441470129165630"><a name="p441470129165630"></a><a name="p441470129165630"></a>Rotates and scales images. </p>
 </td>
 </tr>
-<tr id="row1612349111093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1585210944093528"><a name="p1585210944093528"></a><a name="p1585210944093528"></a><a href="ohos-uitexturemapper-animatorstoplistener.md">OHOS::UITextureMapper::AnimatorStopListener</a></p>
+<tr id="row921187712165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1909963458165630"><a name="p1909963458165630"></a><a name="p1909963458165630"></a><a href="ohos-uitexturemapper-animatorstoplistener.md">OHOS::UITextureMapper::AnimatorStopListener</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1197173726093528"><a name="p1197173726093528"></a><a name="p1197173726093528"></a>Represents a listener that contains a callback to be invoked when this animator stops. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1852811141165630"><a name="p1852811141165630"></a><a name="p1852811141165630"></a>Represents a listener that contains a callback to be invoked when this animator stops. </p>
 </td>
 </tr>
 </tbody>

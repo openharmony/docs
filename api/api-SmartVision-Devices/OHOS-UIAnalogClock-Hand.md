@@ -1,6 +1,11 @@
 # OHOS::UIAnalogClock::Hand<a name="ZH-CN_TOPIC_0000001054918175"></a>
 
-## **Overview**<a name="section84972521093533"></a>
+-   [Overview](#section1493720273165633)
+-   [Summary](#section505005179165633)
+-   [Public Member Functions](#pub-methods)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1493720273165633"></a>
 
 **Related Modules:**
 
@@ -18,39 +23,39 @@ Defines the basic attributes of the analog clock hands. This is an inner class o
 
 1.0
 
-## **Summary**<a name="section2095217974093533"></a>
+## **Summary**<a name="section505005179165633"></a>
 
 ## Public Member Functions<a name="pub-methods"></a>
 
-<a name="table1940799366093533"></a>
-<table><thead align="left"><tr id="row2016812343093533"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1408086593093533"><a name="p1408086593093533"></a><a name="p1408086593093533"></a>Public Member Function Name</p>
+<a name="table1963605365165633"></a>
+<table><thead align="left"><tr id="row1254231566165633"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p838730732165633"><a name="p838730732165633"></a><a name="p838730732165633"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1300763478093533"><a name="p1300763478093533"></a><a name="p1300763478093533"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p517198002165633"><a name="p517198002165633"></a><a name="p517198002165633"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row7507023093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p820097594093533"><a name="p820097594093533"></a><a name="p820097594093533"></a><a href="Graphic.md#gac075169429f99f60ed660a44db7f4031">Hand</a> ()</p>
+<tbody><tr id="row1135998516165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p115008850165633"><a name="p115008850165633"></a><a name="p115008850165633"></a><a href="Graphic.md#gac075169429f99f60ed660a44db7f4031">Hand</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1598170865093533"><a name="p1598170865093533"></a><a name="p1598170865093533"></a>&nbsp;</p>
-<p id="p523535200093533"><a name="p523535200093533"></a><a name="p523535200093533"></a>A default constructor used to create a <strong id="b1253864254093533"><a name="b1253864254093533"></a><a name="b1253864254093533"></a><a href="OHOS-UIAnalogClock-Hand.md">Hand</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row638258948093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p946579394093533"><a name="p946579394093533"></a><a name="p946579394093533"></a><a href="Graphic.md#ga1e433482830dd12b9b40430dab92505f">~Hand</a> ()</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p957276305093533"><a name="p957276305093533"></a><a name="p957276305093533"></a>virtual&nbsp;</p>
-<p id="p1839773043093533"><a name="p1839773043093533"></a><a name="p1839773043093533"></a>A destructor used to delete the <strong id="b1872151553093533"><a name="b1872151553093533"></a><a name="b1872151553093533"></a><a href="OHOS-UIAnalogClock-Hand.md">Hand</a></strong> instance. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2132862740165633"><a name="p2132862740165633"></a><a name="p2132862740165633"></a> </p>
+<p id="p1971676658165633"><a name="p1971676658165633"></a><a name="p1971676658165633"></a>A default constructor used to create a <strong id="b631290215165633"><a name="b631290215165633"></a><a name="b631290215165633"></a><a href="OHOS-UIAnalogClock-Hand.md">Hand</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1637393063093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p269788545093533"><a name="p269788545093533"></a><a name="p269788545093533"></a><a href="Graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
+<tr id="row1449455664165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p711347332165633"><a name="p711347332165633"></a><a name="p711347332165633"></a><a href="Graphic.md#ga1e433482830dd12b9b40430dab92505f">~Hand</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1910606838093533"><a name="p1910606838093533"></a><a name="p1910606838093533"></a>void *&nbsp;</p>
-<p id="p1816513678093533"><a name="p1816513678093533"></a><a name="p1816513678093533"></a>Overrides the <strong id="b1506482776093533"><a name="b1506482776093533"></a><a name="b1506482776093533"></a>new</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1873060325165633"><a name="p1873060325165633"></a><a name="p1873060325165633"></a>virtual </p>
+<p id="p1632440313165633"><a name="p1632440313165633"></a><a name="p1632440313165633"></a>A destructor used to delete the <strong id="b636387548165633"><a name="b636387548165633"></a><a name="b636387548165633"></a><a href="OHOS-UIAnalogClock-Hand.md">Hand</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row142134493093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2049729074093533"><a name="p2049729074093533"></a><a name="p2049729074093533"></a><a href="Graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+<tr id="row1332425017165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p430613896165633"><a name="p430613896165633"></a><a name="p430613896165633"></a><a href="Graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p776968825093533"><a name="p776968825093533"></a><a name="p776968825093533"></a>void&nbsp;</p>
-<p id="p2080261165093533"><a name="p2080261165093533"></a><a name="p2080261165093533"></a>Overrides the <strong id="b727013161093533"><a name="b727013161093533"></a><a name="b727013161093533"></a>delete</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1637369453165633"><a name="p1637369453165633"></a><a name="p1637369453165633"></a>void * </p>
+<p id="p15478559165633"><a name="p15478559165633"></a><a name="p15478559165633"></a>Overrides the <strong id="b1920539959165633"><a name="b1920539959165633"></a><a name="b1920539959165633"></a>new</strong> function. </p>
+</td>
+</tr>
+<tr id="row1576482994165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1624551967165633"><a name="p1624551967165633"></a><a name="p1624551967165633"></a><a href="Graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1336014366165633"><a name="p1336014366165633"></a><a name="p1336014366165633"></a>void </p>
+<p id="p1951350351165633"><a name="p1951350351165633"></a><a name="p1951350351165633"></a>Overrides the <strong id="b1602187912165633"><a name="b1602187912165633"></a><a name="b1602187912165633"></a>delete</strong> function. </p>
 </td>
 </tr>
 </tbody>
@@ -58,89 +63,89 @@ Defines the basic attributes of the analog clock hands. This is an inner class o
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1657516199093533"></a>
-<table><thead align="left"><tr id="row1954459622093533"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1557543217093533"><a name="p1557543217093533"></a><a name="p1557543217093533"></a>Variable Name</p>
+<a name="table571831336165633"></a>
+<table><thead align="left"><tr id="row840299950165633"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1277613613165633"><a name="p1277613613165633"></a><a name="p1277613613165633"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2126767406093533"><a name="p2126767406093533"></a><a name="p2126767406093533"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1193888637165633"><a name="p1193888637165633"></a><a name="p1193888637165633"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row370251635093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1855029883093533"><a name="p1855029883093533"></a><a name="p1855029883093533"></a><a href="Graphic.md#ga809741355c5cc352c0755915002b987f">center_</a></p>
+<tbody><tr id="row156314075165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p446979987165633"><a name="p446979987165633"></a><a name="p446979987165633"></a><a href="Graphic.md#ga809741355c5cc352c0755915002b987f">center_</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1075623374093533"><a name="p1075623374093533"></a><a name="p1075623374093533"></a> <a href="OHOS-Point.md">Point</a>&nbsp;</p>
-<p id="p106737323093533"><a name="p106737323093533"></a><a name="p106737323093533"></a>Represents the rotation center of a clock hand. </p>
-</td>
-</tr>
-<tr id="row1106397095093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p651106564093533"><a name="p651106564093533"></a><a name="p651106564093533"></a><a href="Graphic.md#gac140795ee9a077a7ccc4f9f466e7d3a0">initAngle_</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1312173306093533"><a name="p1312173306093533"></a><a name="p1312173306093533"></a> uint16_t&nbsp;</p>
-<p id="p2024934510093533"><a name="p2024934510093533"></a><a name="p2024934510093533"></a>Represents the initial clockwise rotation angle of a clock hand. The default value is <strong id="b1864205794093533"><a name="b1864205794093533"></a><a name="b1864205794093533"></a>0</strong>, indicating that the hand direction is vertically upward. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1536015957165633"><a name="p1536015957165633"></a><a name="p1536015957165633"></a> <a href="OHOS-Point.md">Point</a> </p>
+<p id="p1783841035165633"><a name="p1783841035165633"></a><a name="p1783841035165633"></a>Represents the rotation center of a clock hand. </p>
 </td>
 </tr>
-<tr id="row775114161093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1594676495093533"><a name="p1594676495093533"></a><a name="p1594676495093533"></a><a href="Graphic.md#ga55c99b69410211c1afa8a2038e248d46">preAngle_</a></p>
+<tr id="row105538405165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p597989597165633"><a name="p597989597165633"></a><a name="p597989597165633"></a><a href="Graphic.md#gac140795ee9a077a7ccc4f9f466e7d3a0">initAngle_</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1057897101093533"><a name="p1057897101093533"></a><a name="p1057897101093533"></a> uint16_t&nbsp;</p>
-<p id="p1599576408093533"><a name="p1599576408093533"></a><a name="p1599576408093533"></a>Represents the latest rotation angle of this clock hand. </p>
-</td>
-</tr>
-<tr id="row248534339093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1593304389093533"><a name="p1593304389093533"></a><a name="p1593304389093533"></a><a href="Graphic.md#ga33b72e532b7391016669673b75c776e0">nextAngle_</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p569994513093533"><a name="p569994513093533"></a><a name="p569994513093533"></a> uint16_t&nbsp;</p>
-<p id="p481475914093533"><a name="p481475914093533"></a><a name="p481475914093533"></a>Represents the next rotation angle of this clock hand. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p235493558165633"><a name="p235493558165633"></a><a name="p235493558165633"></a> uint16_t </p>
+<p id="p2069385556165633"><a name="p2069385556165633"></a><a name="p2069385556165633"></a>Represents the initial clockwise rotation angle of a clock hand. The default value is <strong id="b1418638892165633"><a name="b1418638892165633"></a><a name="b1418638892165633"></a>0</strong>, indicating that the hand direction is vertically upward. </p>
 </td>
 </tr>
-<tr id="row491507874093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p50523285093533"><a name="p50523285093533"></a><a name="p50523285093533"></a><a href="Graphic.md#gab84788e217377616073a56752a6b4d42">position_</a></p>
+<tr id="row1197168157165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p867884796165633"><a name="p867884796165633"></a><a name="p867884796165633"></a><a href="Graphic.md#ga55c99b69410211c1afa8a2038e248d46">preAngle_</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p921340814093533"><a name="p921340814093533"></a><a name="p921340814093533"></a> <a href="OHOS-Point.md">Point</a>&nbsp;</p>
-<p id="p819621652093533"><a name="p819621652093533"></a><a name="p819621652093533"></a>Represents the position of a hand on this analog clock. </p>
-</td>
-</tr>
-<tr id="row1860500649093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2118347247093533"><a name="p2118347247093533"></a><a name="p2118347247093533"></a><a href="Graphic.md#gae08106f4adf8b064a5163f52f46f42ab">imageInfo_</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1032004577093533"><a name="p1032004577093533"></a><a name="p1032004577093533"></a> <a href="OHOS-ImageInfo.md">ImageInfo</a>&nbsp;</p>
-<p id="p30471665093533"><a name="p30471665093533"></a><a name="p30471665093533"></a>Represents the image information of this clock hand. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p895583321165633"><a name="p895583321165633"></a><a name="p895583321165633"></a> uint16_t </p>
+<p id="p445879591165633"><a name="p445879591165633"></a><a name="p445879591165633"></a>Represents the latest rotation angle of this clock hand. </p>
 </td>
 </tr>
-<tr id="row1397067513093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1337327138093533"><a name="p1337327138093533"></a><a name="p1337327138093533"></a><a href="Graphic.md#ga884ffa215aff8d5094430581985432a7">trans_</a></p>
+<tr id="row1012093242165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p609869142165633"><a name="p609869142165633"></a><a name="p609869142165633"></a><a href="Graphic.md#ga33b72e532b7391016669673b75c776e0">nextAngle_</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1314038510093533"><a name="p1314038510093533"></a><a name="p1314038510093533"></a> <a href="OHOS-TransformMap.md">TransformMap</a>&nbsp;</p>
-<p id="p1245986910093533"><a name="p1245986910093533"></a><a name="p1245986910093533"></a>Represents the information about the rotation and translation of this clock hand. </p>
-</td>
-</tr>
-<tr id="row1864106030093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1506023900093533"><a name="p1506023900093533"></a><a name="p1506023900093533"></a><a href="Graphic.md#gab0dc9c3ed8b2cd59a8d8b0db23920b6a">target_</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1647437209093533"><a name="p1647437209093533"></a><a name="p1647437209093533"></a> <a href="OHOS-Rect.md">Rect</a>&nbsp;</p>
-<p id="p951345568093533"><a name="p951345568093533"></a><a name="p951345568093533"></a>Represents the new rectangle area after the rotation and translation. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p804740221165633"><a name="p804740221165633"></a><a name="p804740221165633"></a> uint16_t </p>
+<p id="p1811502748165633"><a name="p1811502748165633"></a><a name="p1811502748165633"></a>Represents the next rotation angle of this clock hand. </p>
 </td>
 </tr>
-<tr id="row231986625093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p179059136093533"><a name="p179059136093533"></a><a name="p179059136093533"></a><a href="Graphic.md#ga869869c28bbfb68610e35b13d5e42704">color_</a></p>
+<tr id="row1328552717165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p509735402165633"><a name="p509735402165633"></a><a name="p509735402165633"></a><a href="Graphic.md#gab84788e217377616073a56752a6b4d42">position_</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2083212637093533"><a name="p2083212637093533"></a><a name="p2083212637093533"></a> <a href="OHOS-Color32.md">ColorType</a>&nbsp;</p>
-<p id="p107107288093533"><a name="p107107288093533"></a><a name="p107107288093533"></a>Represents the color of this clock hand. </p>
-</td>
-</tr>
-<tr id="row971114845093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p482079774093533"><a name="p482079774093533"></a><a name="p482079774093533"></a><a href="Graphic.md#gaea93bf4419cbd77518adb9b5818459c1">width_</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1323531110093533"><a name="p1323531110093533"></a><a name="p1323531110093533"></a> uint16_t&nbsp;</p>
-<p id="p1841072414093533"><a name="p1841072414093533"></a><a name="p1841072414093533"></a>Represents the width of this clock hand. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1080607171165633"><a name="p1080607171165633"></a><a name="p1080607171165633"></a> <a href="OHOS-Point.md">Point</a> </p>
+<p id="p1200067387165633"><a name="p1200067387165633"></a><a name="p1200067387165633"></a>Represents the position of a hand on this analog clock. </p>
 </td>
 </tr>
-<tr id="row1846724765093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1806751595093533"><a name="p1806751595093533"></a><a name="p1806751595093533"></a><a href="Graphic.md#gaab68804b560953e15fd645d8cc3e3cb1">height_</a></p>
+<tr id="row1439627385165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2024489364165633"><a name="p2024489364165633"></a><a name="p2024489364165633"></a><a href="Graphic.md#gae08106f4adf8b064a5163f52f46f42ab">imageInfo_</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p810574023093533"><a name="p810574023093533"></a><a name="p810574023093533"></a> uint16_t&nbsp;</p>
-<p id="p1005399828093533"><a name="p1005399828093533"></a><a name="p1005399828093533"></a>Represents the height of this clock hand. </p>
-</td>
-</tr>
-<tr id="row1646801293093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1711212218093533"><a name="p1711212218093533"></a><a name="p1711212218093533"></a><a href="Graphic.md#ga61f8aca511f419a431751251b95da518">opacity_</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p350892992093533"><a name="p350892992093533"></a><a name="p350892992093533"></a> OpacityType&nbsp;</p>
-<p id="p146962793093533"><a name="p146962793093533"></a><a name="p146962793093533"></a>Represents the opacity of this clock hand. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1429124461165633"><a name="p1429124461165633"></a><a name="p1429124461165633"></a> <a href="OHOS-ImageInfo.md">ImageInfo</a> </p>
+<p id="p1079170470165633"><a name="p1079170470165633"></a><a name="p1079170470165633"></a>Represents the image information of this clock hand. </p>
 </td>
 </tr>
-<tr id="row769301986093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1931978797093533"><a name="p1931978797093533"></a><a name="p1931978797093533"></a><a href="Graphic.md#ga110679ca3eaad8f786a8c4afc07d36c0">drawtype_</a></p>
+<tr id="row250981359165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p665751843165633"><a name="p665751843165633"></a><a name="p665751843165633"></a><a href="Graphic.md#ga884ffa215aff8d5094430581985432a7">trans_</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p909907773093533"><a name="p909907773093533"></a><a name="p909907773093533"></a> <a href="Graphic.md#ga0a595eeb50ce4e7dfff9ede16098d2db">DrawType</a>&nbsp;</p>
-<p id="p807348279093533"><a name="p807348279093533"></a><a name="p807348279093533"></a>Represents the drawing type of this clock hand. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1049722093165633"><a name="p1049722093165633"></a><a name="p1049722093165633"></a> <a href="OHOS-TransformMap.md">TransformMap</a> </p>
+<p id="p269196468165633"><a name="p269196468165633"></a><a name="p269196468165633"></a>Represents the information about the rotation and translation of this clock hand. </p>
+</td>
+</tr>
+<tr id="row459285429165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1903032645165633"><a name="p1903032645165633"></a><a name="p1903032645165633"></a><a href="Graphic.md#gab0dc9c3ed8b2cd59a8d8b0db23920b6a">target_</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p659483669165633"><a name="p659483669165633"></a><a name="p659483669165633"></a> <a href="OHOS-Rect.md">Rect</a> </p>
+<p id="p1079452318165633"><a name="p1079452318165633"></a><a name="p1079452318165633"></a>Represents the new rectangle area after the rotation and translation. </p>
+</td>
+</tr>
+<tr id="row986594450165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1295032445165633"><a name="p1295032445165633"></a><a name="p1295032445165633"></a><a href="Graphic.md#ga869869c28bbfb68610e35b13d5e42704">color_</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p689971257165633"><a name="p689971257165633"></a><a name="p689971257165633"></a> <a href="OHOS-Color32.md">ColorType</a> </p>
+<p id="p1804151879165633"><a name="p1804151879165633"></a><a name="p1804151879165633"></a>Represents the color of this clock hand. </p>
+</td>
+</tr>
+<tr id="row405261323165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p69824409165633"><a name="p69824409165633"></a><a name="p69824409165633"></a><a href="Graphic.md#gaea93bf4419cbd77518adb9b5818459c1">width_</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p687050806165633"><a name="p687050806165633"></a><a name="p687050806165633"></a> uint16_t </p>
+<p id="p12928941165633"><a name="p12928941165633"></a><a name="p12928941165633"></a>Represents the width of this clock hand. </p>
+</td>
+</tr>
+<tr id="row405915790165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p206302330165633"><a name="p206302330165633"></a><a name="p206302330165633"></a><a href="Graphic.md#gaab68804b560953e15fd645d8cc3e3cb1">height_</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p910400781165633"><a name="p910400781165633"></a><a name="p910400781165633"></a> uint16_t </p>
+<p id="p1054683727165633"><a name="p1054683727165633"></a><a name="p1054683727165633"></a>Represents the height of this clock hand. </p>
+</td>
+</tr>
+<tr id="row904563208165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1396975105165633"><a name="p1396975105165633"></a><a name="p1396975105165633"></a><a href="Graphic.md#ga61f8aca511f419a431751251b95da518">opacity_</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1689186204165633"><a name="p1689186204165633"></a><a name="p1689186204165633"></a> OpacityType </p>
+<p id="p1591412264165633"><a name="p1591412264165633"></a><a name="p1591412264165633"></a>Represents the opacity of this clock hand. </p>
+</td>
+</tr>
+<tr id="row517653794165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p763565147165633"><a name="p763565147165633"></a><a name="p763565147165633"></a><a href="Graphic.md#ga110679ca3eaad8f786a8c4afc07d36c0">drawtype_</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1408888303165633"><a name="p1408888303165633"></a><a name="p1408888303165633"></a> <a href="Graphic.md#ga0a595eeb50ce4e7dfff9ede16098d2db">DrawType</a> </p>
+<p id="p2055130212165633"><a name="p2055130212165633"></a><a name="p2055130212165633"></a>Represents the drawing type of this clock hand. </p>
 </td>
 </tr>
 </tbody>

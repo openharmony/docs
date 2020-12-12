@@ -1,10 +1,35 @@
 # OHOS Init<a name="EN-US_TOPIC_0000001054598113"></a>
 
-## **Overview**<a name="section1615191618093523"></a>
+-   [Overview](#section109641664165625)
+-   [Summary](#section769899064165625)
+-   [Files](#files)
+-   [Macros](#define-members)
+-   [Details](#section1795684416165625)
+-   [Macro Definition](#section1830576969165625)
+-   [APP\_FEATURE\_INIT](#ga6ae79099e42a2ee7680cc9d5ae4817d6)
+-   [APP\_FEATURE\_INIT\_PRI](#ga16168eb42790a913932f1ebd92a76fc1)
+-   [APP\_SERVICE\_INIT](#gacd89f8f7d2c1e7490ae285f99f3a9d42)
+-   [APP\_SERVICE\_INIT\_PRI](#gac678e25b6b7d9949220139741ffa4233)
+-   [CORE\_INIT](#ga97a9cae685c8fe08b3ed438c4de4419d)
+-   [CORE\_INIT\_PRI](#ga028481fe849c821d876df662158d5122)
+-   [SYS\_FEATURE\_INIT](#ga0ade3a78723c48748ae5fbbb261538a2)
+-   [SYS\_FEATURE\_INIT\_PRI](#ga561c8a47e7b929c7300a0c2acb458459)
+-   [SYS\_RUN](#gaa6d9a034e9ee034240a023e8cb9c2c78)
+-   [SYS\_RUN\_PRI](#ga2371a43afede3e4840893448c9f97843)
+-   [SYS\_SERVICE\_INIT](#gaeecafaa1e903880d1d8570dc6b09aec7)
+-   [SYS\_SERVICE\_INIT\_PRI](#ga8200637c1413a8ddfb2997668d325ba7)
+-   [SYSEX\_FEATURE\_INIT](#ga7e321122cb4bfc41bfd266c39108e7c0)
+-   [SYSEX\_FEATURE\_INIT\_PRI](#gabb08dfd40bae014ab94f4a3a0ff2180b)
+-   [SYSEX\_SERVICE\_INIT](#ga0e8322b3ab1975d234bd7275b79ed7eb)
+-   [SYSEX\_SERVICE\_INIT\_PRI](#gae0c14aff58448d4a428ad55cfee7c89b)
 
-Provides the entries for initializing and starting services and features.
+## **Overview**<a name="section109641664165625"></a>
 
-This module provides the entries for initializing services and features during service development. Services and features are initialized in the following sequence: core phase, core system service, core system feature, system startup, system service, system feature, application-layer service, and application-layer feature.
+**Description:**
+
+Provides the entries for initializing and starting services and features. 
+
+This module provides the entries for initializing services and features during service development. Services and features are initialized in the following sequence: core phase, core system service, core system feature, system startup, system service, system feature, application-layer service, and application-layer feature. 
 
 **Since:**
 
@@ -14,20 +39,20 @@ This module provides the entries for initializing services and features during s
 
 1.0
 
-## **Summary**<a name="section828669244093523"></a>
+## **Summary**<a name="section769899064165625"></a>
 
 ## Files<a name="files"></a>
 
-<a name="table1715457416093523"></a>
-<table><thead align="left"><tr id="row86023170093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p752888153093523"><a name="p752888153093523"></a><a name="p752888153093523"></a>File Name</p>
+<a name="table68102638165625"></a>
+<table><thead align="left"><tr id="row551989073165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1032049313165625"><a name="p1032049313165625"></a><a name="p1032049313165625"></a>File Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p293902167093523"><a name="p293902167093523"></a><a name="p293902167093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p496121825165625"><a name="p496121825165625"></a><a name="p496121825165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row928201639093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p546307975093523"><a name="p546307975093523"></a><a name="p546307975093523"></a><a href="ohos_init-h.md">ohos_init.h</a></p>
+<tbody><tr id="row1719301561165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1807525987165625"><a name="p1807525987165625"></a><a name="p1807525987165625"></a><a href="ohos_init-h.md">ohos_init.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p96610083093523"><a name="p96610083093523"></a><a name="p96610083093523"></a>Provides the entries for initializing and starting services and features.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p885101315165625"><a name="p885101315165625"></a><a name="p885101315165625"></a>Provides the entries for initializing and starting services and features. </p>
 </td>
 </tr>
 </tbody>
@@ -35,99 +60,99 @@ This module provides the entries for initializing services and features during s
 
 ## Macros<a name="define-members"></a>
 
-<a name="table1533040353093523"></a>
-<table><thead align="left"><tr id="row1724028123093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1713947486093523"><a name="p1713947486093523"></a><a name="p1713947486093523"></a>Macro Name and Value</p>
+<a name="table844808036165625"></a>
+<table><thead align="left"><tr id="row963344429165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p754914556165625"><a name="p754914556165625"></a><a name="p754914556165625"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p171166147093523"><a name="p171166147093523"></a><a name="p171166147093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p270622536165625"><a name="p270622536165625"></a><a name="p270622536165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1777005326093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1497967328093523"><a name="p1497967328093523"></a><a name="p1497967328093523"></a><a href="ohos-init.md#ga97a9cae685c8fe08b3ed438c4de4419d">CORE_INIT</a>(func)   LAYER_INITCALL_DEF(func, core, "core")</p>
+<tbody><tr id="row1662319815165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1381584221165625"><a name="p1381584221165625"></a><a name="p1381584221165625"></a><a href="ohos-init.md#ga97a9cae685c8fe08b3ed438c4de4419d">CORE_INIT</a>(func)   LAYER_INITCALL_DEF(func, core, "core")</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p967903341093523"><a name="p967903341093523"></a><a name="p967903341093523"></a>Identifies the entry for initializing and starting a core phase by the priority 2.</p>
-</td>
-</tr>
-<tr id="row1951185531093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2015619469093523"><a name="p2015619469093523"></a><a name="p2015619469093523"></a><a href="ohos-init.md#ga028481fe849c821d876df662158d5122">CORE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, core, "core", priority)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p973669687093523"><a name="p973669687093523"></a><a name="p973669687093523"></a>Identifies the entry for initializing and starting a core phase by the specified priority.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2721876165625"><a name="p2721876165625"></a><a name="p2721876165625"></a>Identifies the entry for initializing and starting a core phase by the priority 2. </p>
 </td>
 </tr>
-<tr id="row255480547093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p422114389093523"><a name="p422114389093523"></a><a name="p422114389093523"></a><a href="ohos-init.md#gaeecafaa1e903880d1d8570dc6b09aec7">SYS_SERVICE_INIT</a>(func)   LAYER_INITCALL_DEF(func, sys_service, "sys.service")</p>
+<tr id="row1182110502165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1073135620165625"><a name="p1073135620165625"></a><a name="p1073135620165625"></a><a href="ohos-init.md#ga028481fe849c821d876df662158d5122">CORE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, core, "core", priority)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p200665586093523"><a name="p200665586093523"></a><a name="p200665586093523"></a>Identifies the entry for initializing and starting a core system service by the priority 2.</p>
-</td>
-</tr>
-<tr id="row168294316093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p775271865093523"><a name="p775271865093523"></a><a name="p775271865093523"></a><a href="ohos-init.md#ga8200637c1413a8ddfb2997668d325ba7">SYS_SERVICE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, sys_service, "sys.service", priority)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p70358375093523"><a name="p70358375093523"></a><a name="p70358375093523"></a>Identifies the entry for initializing and starting a core system service by the specified priority.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1516775129165625"><a name="p1516775129165625"></a><a name="p1516775129165625"></a>Identifies the entry for initializing and starting a core phase by the specified priority. </p>
 </td>
 </tr>
-<tr id="row1596986318093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p675024695093523"><a name="p675024695093523"></a><a name="p675024695093523"></a><a href="ohos-init.md#ga0ade3a78723c48748ae5fbbb261538a2">SYS_FEATURE_INIT</a>(func)   LAYER_INITCALL_DEF(func, sys_feature, "sys.feature")</p>
+<tr id="row347611841165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p943469280165625"><a name="p943469280165625"></a><a name="p943469280165625"></a><a href="ohos-init.md#gaeecafaa1e903880d1d8570dc6b09aec7">SYS_SERVICE_INIT</a>(func)   LAYER_INITCALL_DEF(func, sys_service, "sys.service")</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p81125398093523"><a name="p81125398093523"></a><a name="p81125398093523"></a>Identifies the entry for initializing and starting a core system feature by the priority 2.</p>
-</td>
-</tr>
-<tr id="row274299909093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1755282983093523"><a name="p1755282983093523"></a><a name="p1755282983093523"></a><a href="ohos-init.md#ga561c8a47e7b929c7300a0c2acb458459">SYS_FEATURE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, sys_feature, "sys.feature", priority)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1661838838093523"><a name="p1661838838093523"></a><a name="p1661838838093523"></a>Identifies the entry for initializing and starting a core system feature by the specified priority.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p42160993165625"><a name="p42160993165625"></a><a name="p42160993165625"></a>Identifies the entry for initializing and starting a core system service by the priority 2. </p>
 </td>
 </tr>
-<tr id="row9404465093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p603805639093523"><a name="p603805639093523"></a><a name="p603805639093523"></a><a href="ohos-init.md#gaa6d9a034e9ee034240a023e8cb9c2c78">SYS_RUN</a>(func)   LAYER_INITCALL_DEF(func, run, "run")</p>
+<tr id="row1973714655165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1322788327165625"><a name="p1322788327165625"></a><a name="p1322788327165625"></a><a href="ohos-init.md#ga8200637c1413a8ddfb2997668d325ba7">SYS_SERVICE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, sys_service, "sys.service", priority)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2135033391093523"><a name="p2135033391093523"></a><a name="p2135033391093523"></a>Identifies the entry for initializing and starting a system running phase by the priority 2.</p>
-</td>
-</tr>
-<tr id="row105052340093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p384049268093523"><a name="p384049268093523"></a><a name="p384049268093523"></a><a href="ohos-init.md#ga2371a43afede3e4840893448c9f97843">SYS_RUN_PRI</a>(func, priority)   LAYER_INITCALL(func, run, "run", priority)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1519132482093523"><a name="p1519132482093523"></a><a name="p1519132482093523"></a>Identifies the entry for initializing and starting a system running phase by the specified priority.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1559307224165625"><a name="p1559307224165625"></a><a name="p1559307224165625"></a>Identifies the entry for initializing and starting a core system service by the specified priority. </p>
 </td>
 </tr>
-<tr id="row1722633890093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p947799775093523"><a name="p947799775093523"></a><a name="p947799775093523"></a><a href="ohos-init.md#ga0e8322b3ab1975d234bd7275b79ed7eb">SYSEX_SERVICE_INIT</a>(func)   LAYER_INITCALL_DEF(func, app_service, "app.service")</p>
+<tr id="row580262002165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1629194605165625"><a name="p1629194605165625"></a><a name="p1629194605165625"></a><a href="ohos-init.md#ga0ade3a78723c48748ae5fbbb261538a2">SYS_FEATURE_INIT</a>(func)   LAYER_INITCALL_DEF(func, sys_feature, "sys.feature")</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1827702130093523"><a name="p1827702130093523"></a><a name="p1827702130093523"></a>Identifies the entry for initializing and starting a system service by the priority 2.</p>
-</td>
-</tr>
-<tr id="row94712223093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p960863157093523"><a name="p960863157093523"></a><a name="p960863157093523"></a><a href="ohos-init.md#gae0c14aff58448d4a428ad55cfee7c89b">SYSEX_SERVICE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, app_service, "app.service", priority)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p725956314093523"><a name="p725956314093523"></a><a name="p725956314093523"></a>Identifies the entry for initializing and starting a system service by the specified priority.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1284805776165625"><a name="p1284805776165625"></a><a name="p1284805776165625"></a>Identifies the entry for initializing and starting a core system feature by the priority 2. </p>
 </td>
 </tr>
-<tr id="row429113150093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p926940551093523"><a name="p926940551093523"></a><a name="p926940551093523"></a><a href="ohos-init.md#ga7e321122cb4bfc41bfd266c39108e7c0">SYSEX_FEATURE_INIT</a>(func)   LAYER_INITCALL_DEF(func, app_feature, "app.feature")</p>
+<tr id="row1238795168165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p869362569165625"><a name="p869362569165625"></a><a name="p869362569165625"></a><a href="ohos-init.md#ga561c8a47e7b929c7300a0c2acb458459">SYS_FEATURE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, sys_feature, "sys.feature", priority)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1490662042093523"><a name="p1490662042093523"></a><a name="p1490662042093523"></a>Identifies the entry for initializing and starting a system feature by the priority 2.</p>
-</td>
-</tr>
-<tr id="row2015024535093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1648625980093523"><a name="p1648625980093523"></a><a name="p1648625980093523"></a><a href="ohos-init.md#gabb08dfd40bae014ab94f4a3a0ff2180b">SYSEX_FEATURE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, app_feature, "app.feature", priority)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1069456657093523"><a name="p1069456657093523"></a><a name="p1069456657093523"></a>Identifies the entry for initializing and starting a system feature by the specified priority.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1134569837165625"><a name="p1134569837165625"></a><a name="p1134569837165625"></a>Identifies the entry for initializing and starting a core system feature by the specified priority. </p>
 </td>
 </tr>
-<tr id="row1929895396093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p420087746093523"><a name="p420087746093523"></a><a name="p420087746093523"></a><a href="ohos-init.md#gacd89f8f7d2c1e7490ae285f99f3a9d42">APP_SERVICE_INIT</a>(func)   LAYER_INITCALL_DEF(func, app_service, "app.service")</p>
+<tr id="row183589750165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1620235675165625"><a name="p1620235675165625"></a><a name="p1620235675165625"></a><a href="ohos-init.md#gaa6d9a034e9ee034240a023e8cb9c2c78">SYS_RUN</a>(func)   LAYER_INITCALL_DEF(func, run, "run")</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p897135755093523"><a name="p897135755093523"></a><a name="p897135755093523"></a>Identifies the entry for initializing and starting an application-layer service by the priority 2.</p>
-</td>
-</tr>
-<tr id="row86214033093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p315068246093523"><a name="p315068246093523"></a><a name="p315068246093523"></a><a href="ohos-init.md#gac678e25b6b7d9949220139741ffa4233">APP_SERVICE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, app_service, "app.service", priority)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1353431649093523"><a name="p1353431649093523"></a><a name="p1353431649093523"></a>Identifies the entry for initializing and starting an application-layer service by the specified priority.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1932476261165625"><a name="p1932476261165625"></a><a name="p1932476261165625"></a>Identifies the entry for initializing and starting a system running phase by the priority 2. </p>
 </td>
 </tr>
-<tr id="row512673364093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p521841518093523"><a name="p521841518093523"></a><a name="p521841518093523"></a><a href="ohos-init.md#ga6ae79099e42a2ee7680cc9d5ae4817d6">APP_FEATURE_INIT</a>(func)   LAYER_INITCALL_DEF(func, app_feature, "app.feature")</p>
+<tr id="row1719168936165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1134832446165625"><a name="p1134832446165625"></a><a name="p1134832446165625"></a><a href="ohos-init.md#ga2371a43afede3e4840893448c9f97843">SYS_RUN_PRI</a>(func, priority)   LAYER_INITCALL(func, run, "run", priority)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p815750158093523"><a name="p815750158093523"></a><a name="p815750158093523"></a>Identifies the entry for initializing and starting an application-layer feature by the priority 2.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1140083152165625"><a name="p1140083152165625"></a><a name="p1140083152165625"></a>Identifies the entry for initializing and starting a system running phase by the specified priority. </p>
 </td>
 </tr>
-<tr id="row297658267093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p932053270093523"><a name="p932053270093523"></a><a name="p932053270093523"></a><a href="ohos-init.md#ga16168eb42790a913932f1ebd92a76fc1">APP_FEATURE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, app_feature, "app.feature", priority)</p>
+<tr id="row631033020165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p129008545165625"><a name="p129008545165625"></a><a name="p129008545165625"></a><a href="ohos-init.md#ga0e8322b3ab1975d234bd7275b79ed7eb">SYSEX_SERVICE_INIT</a>(func)   LAYER_INITCALL_DEF(func, app_service, "app.service")</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1819925757093523"><a name="p1819925757093523"></a><a name="p1819925757093523"></a>Identifies the entry for initializing and starting an application-layer feature by the specified priority.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p263141842165625"><a name="p263141842165625"></a><a name="p263141842165625"></a>Identifies the entry for initializing and starting a system service by the priority 2. </p>
+</td>
+</tr>
+<tr id="row1013657097165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p213443354165625"><a name="p213443354165625"></a><a name="p213443354165625"></a><a href="ohos-init.md#gae0c14aff58448d4a428ad55cfee7c89b">SYSEX_SERVICE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, app_service, "app.service", priority)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1420788337165625"><a name="p1420788337165625"></a><a name="p1420788337165625"></a>Identifies the entry for initializing and starting a system service by the specified priority. </p>
+</td>
+</tr>
+<tr id="row1067128398165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1714642659165625"><a name="p1714642659165625"></a><a name="p1714642659165625"></a><a href="ohos-init.md#ga7e321122cb4bfc41bfd266c39108e7c0">SYSEX_FEATURE_INIT</a>(func)   LAYER_INITCALL_DEF(func, app_feature, "app.feature")</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p629382795165625"><a name="p629382795165625"></a><a name="p629382795165625"></a>Identifies the entry for initializing and starting a system feature by the priority 2. </p>
+</td>
+</tr>
+<tr id="row902106022165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1973162043165625"><a name="p1973162043165625"></a><a name="p1973162043165625"></a><a href="ohos-init.md#gabb08dfd40bae014ab94f4a3a0ff2180b">SYSEX_FEATURE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, app_feature, "app.feature", priority)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p345036971165625"><a name="p345036971165625"></a><a name="p345036971165625"></a>Identifies the entry for initializing and starting a system feature by the specified priority. </p>
+</td>
+</tr>
+<tr id="row792799894165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1987573276165625"><a name="p1987573276165625"></a><a name="p1987573276165625"></a><a href="ohos-init.md#gacd89f8f7d2c1e7490ae285f99f3a9d42">APP_SERVICE_INIT</a>(func)   LAYER_INITCALL_DEF(func, app_service, "app.service")</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1005501432165625"><a name="p1005501432165625"></a><a name="p1005501432165625"></a>Identifies the entry for initializing and starting an application-layer service by the priority 2. </p>
+</td>
+</tr>
+<tr id="row492862519165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p930588504165625"><a name="p930588504165625"></a><a name="p930588504165625"></a><a href="ohos-init.md#gac678e25b6b7d9949220139741ffa4233">APP_SERVICE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, app_service, "app.service", priority)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1477880014165625"><a name="p1477880014165625"></a><a name="p1477880014165625"></a>Identifies the entry for initializing and starting an application-layer service by the specified priority. </p>
+</td>
+</tr>
+<tr id="row1873240796165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1126933564165625"><a name="p1126933564165625"></a><a name="p1126933564165625"></a><a href="ohos-init.md#ga6ae79099e42a2ee7680cc9d5ae4817d6">APP_FEATURE_INIT</a>(func)   LAYER_INITCALL_DEF(func, app_feature, "app.feature")</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1219120530165625"><a name="p1219120530165625"></a><a name="p1219120530165625"></a>Identifies the entry for initializing and starting an application-layer feature by the priority 2. </p>
+</td>
+</tr>
+<tr id="row1716280158165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1425691037165625"><a name="p1425691037165625"></a><a name="p1425691037165625"></a><a href="ohos-init.md#ga16168eb42790a913932f1ebd92a76fc1">APP_FEATURE_INIT_PRI</a>(func, priority)   LAYER_INITCALL(func, app_feature, "app.feature", priority)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p92447699165625"><a name="p92447699165625"></a><a name="p92447699165625"></a>Identifies the entry for initializing and starting an application-layer feature by the specified priority. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1274632302093523"></a>
+## **Details**<a name="section1795684416165625"></a>
 
-## **Macro Definition Documentation**<a name="section2039569822093523"></a>
+## **Macro Definition **<a name="section1830576969165625"></a>
 
 ## APP\_FEATURE\_INIT<a name="ga6ae79099e42a2ee7680cc9d5ae4817d6"></a>
 
@@ -135,25 +160,23 @@ This module provides the entries for initializing services and features during s
 #define APP_FEATURE_INIT( func)   LAYER_INITCALL_DEF(func, app_feature, "app.feature")
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting an application-layer feature by the priority 2.
+Identifies the entry for initializing and starting an application-layer feature by the priority 2. 
 
-This macro is used to identify the entry called at the priority 2 of the application-layer feature phase of the startup process.
+This macro is used to identify the entry called at the priority 2 of the application-layer feature phase of the startup process. 
 
 **Parameters:**
 
-<a name="table868770017093523"></a>
-<table><thead align="left"><tr id="row615086960093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1167611061093523"><a name="p1167611061093523"></a><a name="p1167611061093523"></a>Name</p>
+<a name="table773232577165625"></a>
+<table><thead align="left"><tr id="row1136062675165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1765734176165625"><a name="p1765734176165625"></a><a name="p1765734176165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1239238512093523"><a name="p1239238512093523"></a><a name="p1239238512093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1491578324165625"><a name="p1491578324165625"></a><a name="p1491578324165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1293393387093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1859298814093523p0"><a name="entry1859298814093523p0"></a><a name="entry1859298814093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry478764054093523p0"><a name="entry478764054093523p0"></a><a name="entry478764054093523p0"></a>Indicates the entry function for initializing and starting an application-layer feature. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row281673849165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting an application-layer feature. The type is void (*)(void). </td>
 </tr>
 </tbody>
 </table>
@@ -164,30 +187,26 @@ This macro is used to identify the entry called at the priority 2 of the applica
 #define APP_FEATURE_INIT_PRI( func,  priority )   LAYER_INITCALL(func, app_feature, "app.feature", priority)
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting an application-layer feature by the specified priority.
+Identifies the entry for initializing and starting an application-layer feature by the specified priority. 
 
-This macro is used to identify the entry called at the specified priority of the application-layer feature phase of the startup process.
+This macro is used to identify the entry called at the specified priority of the application-layer feature phase of the startup process. 
 
 **Parameters:**
 
-<a name="table547509837093523"></a>
-<table><thead align="left"><tr id="row930532097093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p214149723093523"><a name="p214149723093523"></a><a name="p214149723093523"></a>Name</p>
+<a name="table1242931431165625"></a>
+<table><thead align="left"><tr id="row1044682837165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1674625315165625"><a name="p1674625315165625"></a><a name="p1674625315165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1830975928093523"><a name="p1830975928093523"></a><a name="p1830975928093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p875706886165625"><a name="p875706886165625"></a><a name="p875706886165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row39705249093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry2085395691093523p0"><a name="entry2085395691093523p0"></a><a name="entry2085395691093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1189745328093523p0"><a name="entry1189745328093523p0"></a><a name="entry1189745328093523p0"></a>Indicates the entry function for initializing and starting an application-layer feature. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row784486620165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting an application-layer feature. The type is void (*)(void). </td>
 </tr>
-<tr id="row851257968093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1607782328093523p0"><a name="entry1607782328093523p0"></a><a name="entry1607782328093523p0"></a>priority</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry300654329093523p0"><a name="entry300654329093523p0"></a><a name="entry300654329093523p0"></a>Indicates the calling priority when starting the application-layer feature. The value range is [0, 5), and the calling sequence is 0, 1, 2, 3, and 4.</p>
-</td>
+<tr id="row1018642209165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">priority</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the calling priority when starting the application-layer feature. The value range is [0, 5), and the calling sequence is 0, 1, 2, 3, and 4. </td>
 </tr>
 </tbody>
 </table>
@@ -198,25 +217,23 @@ This macro is used to identify the entry called at the specified priority of the
 #define APP_SERVICE_INIT( func)   LAYER_INITCALL_DEF(func, app_service, "app.service")
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting an application-layer service by the priority 2.
+Identifies the entry for initializing and starting an application-layer service by the priority 2. 
 
-This macro is used to identify the entry called at the priority 2 of the application-layer service phase of the startup process.
+This macro is used to identify the entry called at the priority 2 of the application-layer service phase of the startup process. 
 
 **Parameters:**
 
-<a name="table1514555484093523"></a>
-<table><thead align="left"><tr id="row790418964093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p525753748093523"><a name="p525753748093523"></a><a name="p525753748093523"></a>Name</p>
+<a name="table626023728165625"></a>
+<table><thead align="left"><tr id="row2006465383165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p158154067165625"><a name="p158154067165625"></a><a name="p158154067165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p79506021093523"><a name="p79506021093523"></a><a name="p79506021093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p946272506165625"><a name="p946272506165625"></a><a name="p946272506165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1313813722093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry600625524093523p0"><a name="entry600625524093523p0"></a><a name="entry600625524093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1252917716093523p0"><a name="entry1252917716093523p0"></a><a name="entry1252917716093523p0"></a>Indicates the entry function for initializing and starting an application-layer service. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row1153508322165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting an application-layer service. The type is void (*)(void). </td>
 </tr>
 </tbody>
 </table>
@@ -227,30 +244,26 @@ This macro is used to identify the entry called at the priority 2 of the applica
 #define APP_SERVICE_INIT_PRI( func,  priority )   LAYER_INITCALL(func, app_service, "app.service", priority)
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting an application-layer service by the specified priority.
+Identifies the entry for initializing and starting an application-layer service by the specified priority. 
 
-This macro is used to identify the entry called at the specified priority of the application-layer service phase of the startup process.
+This macro is used to identify the entry called at the specified priority of the application-layer service phase of the startup process. 
 
 **Parameters:**
 
-<a name="table780306060093523"></a>
-<table><thead align="left"><tr id="row1892096765093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p12931696093523"><a name="p12931696093523"></a><a name="p12931696093523"></a>Name</p>
+<a name="table2021263907165625"></a>
+<table><thead align="left"><tr id="row743344948165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p387690191165625"><a name="p387690191165625"></a><a name="p387690191165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p916456971093523"><a name="p916456971093523"></a><a name="p916456971093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1374235569165625"><a name="p1374235569165625"></a><a name="p1374235569165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row319520909093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry632118457093523p0"><a name="entry632118457093523p0"></a><a name="entry632118457093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry2106185128093523p0"><a name="entry2106185128093523p0"></a><a name="entry2106185128093523p0"></a>Indicates the entry function for initializing and starting an application-layer service. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row982252775165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting an application-layer service. The type is void (*)(void). </td>
 </tr>
-<tr id="row2110715672093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1991752079093523p0"><a name="entry1991752079093523p0"></a><a name="entry1991752079093523p0"></a>priority</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1056534897093523p0"><a name="entry1056534897093523p0"></a><a name="entry1056534897093523p0"></a>Indicates the calling priority when starting the application-layer service phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4.</p>
-</td>
+<tr id="row565267557165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">priority</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the calling priority when starting the application-layer service phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4. </td>
 </tr>
 </tbody>
 </table>
@@ -261,25 +274,23 @@ This macro is used to identify the entry called at the specified priority of the
 #define CORE_INIT( func)   LAYER_INITCALL_DEF(func, core, "core")
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a core phase by the priority 2.
+Identifies the entry for initializing and starting a core phase by the priority 2. 
 
-This macro is used when Samgr is initialized and started. This macro is used to identify the entry called at the priority 2 of the core phase of the startup process.
+This macro is used when Samgr is initialized and started. This macro is used to identify the entry called at the priority 2 of the core phase of the startup process. 
 
 **Parameters:**
 
-<a name="table1134967752093523"></a>
-<table><thead align="left"><tr id="row262193099093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p670585961093523"><a name="p670585961093523"></a><a name="p670585961093523"></a>Name</p>
+<a name="table832376611165625"></a>
+<table><thead align="left"><tr id="row1536212302165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1417812611165625"><a name="p1417812611165625"></a><a name="p1417812611165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2142198735093523"><a name="p2142198735093523"></a><a name="p2142198735093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1989529422165625"><a name="p1989529422165625"></a><a name="p1989529422165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row891728510093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry810739254093523p0"><a name="entry810739254093523p0"></a><a name="entry810739254093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1016002077093523p0"><a name="entry1016002077093523p0"></a><a name="entry1016002077093523p0"></a>Indicates the entry function for initializing and starting a core phase. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row1233696898165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a core phase. The type is void (*)(void). </td>
 </tr>
 </tbody>
 </table>
@@ -290,30 +301,26 @@ This macro is used when Samgr is initialized and started. This macro is used to 
 #define CORE_INIT_PRI( func,  priority )   LAYER_INITCALL(func, core, "core", priority)
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a core phase by the specified priority.
+Identifies the entry for initializing and starting a core phase by the specified priority. 
 
-This macro is used when Samgr is initialized and started. This macro is used to identify the entry called at the specified priority of the core phase of the startup process.
+This macro is used when Samgr is initialized and started. This macro is used to identify the entry called at the specified priority of the core phase of the startup process. 
 
 **Parameters:**
 
-<a name="table56746516093523"></a>
-<table><thead align="left"><tr id="row1881862794093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p619775315093523"><a name="p619775315093523"></a><a name="p619775315093523"></a>Name</p>
+<a name="table453606124165625"></a>
+<table><thead align="left"><tr id="row665247197165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2133615232165625"><a name="p2133615232165625"></a><a name="p2133615232165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2114300801093523"><a name="p2114300801093523"></a><a name="p2114300801093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1626249666165625"><a name="p1626249666165625"></a><a name="p1626249666165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1028740922093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1851501234093523p0"><a name="entry1851501234093523p0"></a><a name="entry1851501234093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry246171493093523p0"><a name="entry246171493093523p0"></a><a name="entry246171493093523p0"></a>Indicates the entry function for initializing and starting a core phase. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row645178154165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a core phase. The type is void (*)(void). </td>
 </tr>
-<tr id="row172886715093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1661244325093523p0"><a name="entry1661244325093523p0"></a><a name="entry1661244325093523p0"></a>priority</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry795122812093523p0"><a name="entry795122812093523p0"></a><a name="entry795122812093523p0"></a>Indicates the calling priority when starting the core phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4.</p>
-</td>
+<tr id="row1771051552165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">priority</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the calling priority when starting the core phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4. </td>
 </tr>
 </tbody>
 </table>
@@ -324,25 +331,23 @@ This macro is used when Samgr is initialized and started. This macro is used to 
 #define SYS_FEATURE_INIT( func)   LAYER_INITCALL_DEF(func, sys_feature, "sys.feature")
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a core system feature by the priority 2.
+Identifies the entry for initializing and starting a core system feature by the priority 2. 
 
-This macro is used to identify the entry called at the priority 2 in the core system feature phase of the startup process.
+This macro is used to identify the entry called at the priority 2 in the core system feature phase of the startup process. 
 
 **Parameters:**
 
-<a name="table438126407093523"></a>
-<table><thead align="left"><tr id="row1364825200093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1938724790093523"><a name="p1938724790093523"></a><a name="p1938724790093523"></a>Name</p>
+<a name="table1478140980165625"></a>
+<table><thead align="left"><tr id="row828916762165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1021207221165625"><a name="p1021207221165625"></a><a name="p1021207221165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p289308730093523"><a name="p289308730093523"></a><a name="p289308730093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1690664080165625"><a name="p1690664080165625"></a><a name="p1690664080165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row875972074093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1374436358093523p0"><a name="entry1374436358093523p0"></a><a name="entry1374436358093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry977145750093523p0"><a name="entry977145750093523p0"></a><a name="entry977145750093523p0"></a>Indicates the entry function for initializing and starting a core system service. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row104787392165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a core system service. The type is void (*)(void). </td>
 </tr>
 </tbody>
 </table>
@@ -353,30 +358,26 @@ This macro is used to identify the entry called at the priority 2 in the core sy
 #define SYS_FEATURE_INIT_PRI( func,  priority )   LAYER_INITCALL(func, sys_feature, "sys.feature", priority)
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a core system feature by the specified priority.
+Identifies the entry for initializing and starting a core system feature by the specified priority. 
 
-This macro is used to identify the entry called at the specified priority in the core system feature phase of the startup process.
+This macro is used to identify the entry called at the specified priority in the core system feature phase of the startup process. 
 
 **Parameters:**
 
-<a name="table661384878093523"></a>
-<table><thead align="left"><tr id="row259877324093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p871235296093523"><a name="p871235296093523"></a><a name="p871235296093523"></a>Name</p>
+<a name="table1330485379165625"></a>
+<table><thead align="left"><tr id="row21837847165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1508690428165625"><a name="p1508690428165625"></a><a name="p1508690428165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p943613044093523"><a name="p943613044093523"></a><a name="p943613044093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1700448761165625"><a name="p1700448761165625"></a><a name="p1700448761165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row961109280093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1923060665093523p0"><a name="entry1923060665093523p0"></a><a name="entry1923060665093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1698791388093523p0"><a name="entry1698791388093523p0"></a><a name="entry1698791388093523p0"></a>Indicates the entry function for initializing and starting a core system feature. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row441090689165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a core system feature. The type is void (*)(void). </td>
 </tr>
-<tr id="row413058345093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry803127459093523p0"><a name="entry803127459093523p0"></a><a name="entry803127459093523p0"></a>priority</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1131366901093523p0"><a name="entry1131366901093523p0"></a><a name="entry1131366901093523p0"></a>Indicates the calling priority when starting the core system feature phase. The value range is [0, 5), and the calling sequence is 0, 1, 2, 3, and 4.</p>
-</td>
+<tr id="row2082458690165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">priority</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the calling priority when starting the core system feature phase. The value range is [0, 5), and the calling sequence is 0, 1, 2, 3, and 4. </td>
 </tr>
 </tbody>
 </table>
@@ -387,25 +388,23 @@ This macro is used to identify the entry called at the specified priority in the
 #define SYS_RUN( func)   LAYER_INITCALL_DEF(func, run, "run")
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a system running phase by the priority 2.
+Identifies the entry for initializing and starting a system running phase by the priority 2. 
 
-This macro is used to identify the entry called at the priority 2 in the system startup phase of the startup process.
+This macro is used to identify the entry called at the priority 2 in the system startup phase of the startup process. 
 
 **Parameters:**
 
-<a name="table1974945387093523"></a>
-<table><thead align="left"><tr id="row1677916450093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1306613414093523"><a name="p1306613414093523"></a><a name="p1306613414093523"></a>Name</p>
+<a name="table168794009165625"></a>
+<table><thead align="left"><tr id="row764189478165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1026879182165625"><a name="p1026879182165625"></a><a name="p1026879182165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1130181539093523"><a name="p1130181539093523"></a><a name="p1130181539093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2024444812165625"><a name="p2024444812165625"></a><a name="p2024444812165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row919772572093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry481845454093523p0"><a name="entry481845454093523p0"></a><a name="entry481845454093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1905989512093523p0"><a name="entry1905989512093523p0"></a><a name="entry1905989512093523p0"></a>Indicates the entry function for initializing and starting a system running phase. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row1282138329165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a system running phase. The type is void (*)(void). </td>
 </tr>
 </tbody>
 </table>
@@ -416,30 +415,26 @@ This macro is used to identify the entry called at the priority 2 in the system 
 #define SYS_RUN_PRI( func,  priority )   LAYER_INITCALL(func, run, "run", priority)
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a system running phase by the specified priority.
+Identifies the entry for initializing and starting a system running phase by the specified priority. 
 
-This macro is used to identify the entry called at the specified priority in the system startup phase of the startup process.
+This macro is used to identify the entry called at the specified priority in the system startup phase of the startup process. 
 
 **Parameters:**
 
-<a name="table1140799325093523"></a>
-<table><thead align="left"><tr id="row1171823793093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p285609488093523"><a name="p285609488093523"></a><a name="p285609488093523"></a>Name</p>
+<a name="table441030821165625"></a>
+<table><thead align="left"><tr id="row1233221984165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1448530696165625"><a name="p1448530696165625"></a><a name="p1448530696165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p3032240093523"><a name="p3032240093523"></a><a name="p3032240093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2018635545165625"><a name="p2018635545165625"></a><a name="p2018635545165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1100358574093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry862975208093523p0"><a name="entry862975208093523p0"></a><a name="entry862975208093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1974430439093523p0"><a name="entry1974430439093523p0"></a><a name="entry1974430439093523p0"></a>Indicates the entry function for initializing and starting a system running phase. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row456061399165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a system running phase. The type is void (*)(void). </td>
 </tr>
-<tr id="row1238417497093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1321139959093523p0"><a name="entry1321139959093523p0"></a><a name="entry1321139959093523p0"></a>priority</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1624875255093523p0"><a name="entry1624875255093523p0"></a><a name="entry1624875255093523p0"></a>Indicates the calling priority when starting the system startup phase. The value range is [0, 5), and the calling sequence is 0, 1, 2, 3, and 4.</p>
-</td>
+<tr id="row1964723004165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">priority</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the calling priority when starting the system startup phase. The value range is [0, 5), and the calling sequence is 0, 1, 2, 3, and 4. </td>
 </tr>
 </tbody>
 </table>
@@ -450,25 +445,23 @@ This macro is used to identify the entry called at the specified priority in the
 #define SYS_SERVICE_INIT( func)   LAYER_INITCALL_DEF(func, sys_service, "sys.service")
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a core system service by the priority 2.
+Identifies the entry for initializing and starting a core system service by the priority 2. 
 
-This macro is used to identify the entry called at the priority 2 in the core system service phase of the startup process.
+This macro is used to identify the entry called at the priority 2 in the core system service phase of the startup process. 
 
 **Parameters:**
 
-<a name="table959679446093523"></a>
-<table><thead align="left"><tr id="row1647757142093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p560973040093523"><a name="p560973040093523"></a><a name="p560973040093523"></a>Name</p>
+<a name="table1840946931165625"></a>
+<table><thead align="left"><tr id="row2104579398165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p101858368165625"><a name="p101858368165625"></a><a name="p101858368165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p900420361093523"><a name="p900420361093523"></a><a name="p900420361093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1362653010165625"><a name="p1362653010165625"></a><a name="p1362653010165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2104360098093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry313645853093523p0"><a name="entry313645853093523p0"></a><a name="entry313645853093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1420922315093523p0"><a name="entry1420922315093523p0"></a><a name="entry1420922315093523p0"></a>Indicates the entry function for initializing and starting a core system service. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row1420398048165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a core system service. The type is void (*)(void). </td>
 </tr>
 </tbody>
 </table>
@@ -479,30 +472,26 @@ This macro is used to identify the entry called at the priority 2 in the core sy
 #define SYS_SERVICE_INIT_PRI( func,  priority )   LAYER_INITCALL(func, sys_service, "sys.service", priority)
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a core system service by the specified priority.
+Identifies the entry for initializing and starting a core system service by the specified priority. 
 
-This macro is used to identify the entry called at the specified priority in the core system service phase of the startup process.
+This macro is used to identify the entry called at the specified priority in the core system service phase of the startup process. 
 
 **Parameters:**
 
-<a name="table1722270371093523"></a>
-<table><thead align="left"><tr id="row1956557936093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1438344572093523"><a name="p1438344572093523"></a><a name="p1438344572093523"></a>Name</p>
+<a name="table804858476165625"></a>
+<table><thead align="left"><tr id="row570460431165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p820173254165625"><a name="p820173254165625"></a><a name="p820173254165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1066465100093523"><a name="p1066465100093523"></a><a name="p1066465100093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p667462544165625"><a name="p667462544165625"></a><a name="p667462544165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1356599194093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1758378074093523p0"><a name="entry1758378074093523p0"></a><a name="entry1758378074093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry876395549093523p0"><a name="entry876395549093523p0"></a><a name="entry876395549093523p0"></a>Indicates the entry function for initializing and starting a core system service. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row1376741419165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a core system service. The type is void (*)(void). </td>
 </tr>
-<tr id="row423473512093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1429990546093523p0"><a name="entry1429990546093523p0"></a><a name="entry1429990546093523p0"></a>priority</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1716961560093523p0"><a name="entry1716961560093523p0"></a><a name="entry1716961560093523p0"></a>Indicates the calling priority when starting the core system service in the startup phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4.</p>
-</td>
+<tr id="row814924915165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">priority</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the calling priority when starting the core system service in the startup phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4. </td>
 </tr>
 </tbody>
 </table>
@@ -513,25 +502,23 @@ This macro is used to identify the entry called at the specified priority in the
 #define SYSEX_FEATURE_INIT( func)   LAYER_INITCALL_DEF(func, app_feature, "app.feature")
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a system feature by the priority 2.
+Identifies the entry for initializing and starting a system feature by the priority 2. 
 
-This macro is used to identify the entry called at the priority 2 of the system feature phase of the startup process.
+This macro is used to identify the entry called at the priority 2 of the system feature phase of the startup process. 
 
 **Parameters:**
 
-<a name="table840211327093523"></a>
-<table><thead align="left"><tr id="row1436436273093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1303207793093523"><a name="p1303207793093523"></a><a name="p1303207793093523"></a>Name</p>
+<a name="table1414008254165625"></a>
+<table><thead align="left"><tr id="row167433932165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p583180723165625"><a name="p583180723165625"></a><a name="p583180723165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p380223331093523"><a name="p380223331093523"></a><a name="p380223331093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1576237708165625"><a name="p1576237708165625"></a><a name="p1576237708165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row357102457093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1312883732093523p0"><a name="entry1312883732093523p0"></a><a name="entry1312883732093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1181709854093523p0"><a name="entry1181709854093523p0"></a><a name="entry1181709854093523p0"></a>Indicates the entry function for initializing and starting a system feature. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row711830695165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a system feature. The type is void (*)(void). </td>
 </tr>
 </tbody>
 </table>
@@ -542,30 +529,26 @@ This macro is used to identify the entry called at the priority 2 of the system 
 #define SYSEX_FEATURE_INIT_PRI( func,  priority )   LAYER_INITCALL(func, app_feature, "app.feature", priority)
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a system feature by the specified priority.
+Identifies the entry for initializing and starting a system feature by the specified priority. 
 
-This macro is used to identify the entry called at the specified priority of the system feature phase of the startup process.
+This macro is used to identify the entry called at the specified priority of the system feature phase of the startup process. 
 
 **Parameters:**
 
-<a name="table201819569093523"></a>
-<table><thead align="left"><tr id="row1499395329093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1182672899093523"><a name="p1182672899093523"></a><a name="p1182672899093523"></a>Name</p>
+<a name="table263236966165625"></a>
+<table><thead align="left"><tr id="row1635503233165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p330802179165625"><a name="p330802179165625"></a><a name="p330802179165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p144122749093523"><a name="p144122749093523"></a><a name="p144122749093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1401900169165625"><a name="p1401900169165625"></a><a name="p1401900169165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1363441588093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1618553386093523p0"><a name="entry1618553386093523p0"></a><a name="entry1618553386093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry907065381093523p0"><a name="entry907065381093523p0"></a><a name="entry907065381093523p0"></a>Indicates the entry function for initializing and starting a system feature. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row1152522068165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a system feature. The type is void (*)(void). </td>
 </tr>
-<tr id="row1838864983093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry462587887093523p0"><a name="entry462587887093523p0"></a><a name="entry462587887093523p0"></a>priority</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry821526274093523p0"><a name="entry821526274093523p0"></a><a name="entry821526274093523p0"></a>Indicates the calling priority when starting the system feature phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4.</p>
-</td>
+<tr id="row1110764553165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">priority</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the calling priority when starting the system feature phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4. </td>
 </tr>
 </tbody>
 </table>
@@ -576,25 +559,23 @@ This macro is used to identify the entry called at the specified priority of the
 #define SYSEX_SERVICE_INIT( func)   LAYER_INITCALL_DEF(func, app_service, "app.service")
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a system service by the priority 2.
+Identifies the entry for initializing and starting a system service by the priority 2. 
 
-This macro is used to identify the entry called at the priority 2 in the system service phase of the startup process.
+This macro is used to identify the entry called at the priority 2 in the system service phase of the startup process. 
 
 **Parameters:**
 
-<a name="table1072151574093523"></a>
-<table><thead align="left"><tr id="row699825704093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1165529626093523"><a name="p1165529626093523"></a><a name="p1165529626093523"></a>Name</p>
+<a name="table1928416183165625"></a>
+<table><thead align="left"><tr id="row516964476165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1108012000165625"><a name="p1108012000165625"></a><a name="p1108012000165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p483914617093523"><a name="p483914617093523"></a><a name="p483914617093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1413962454165625"><a name="p1413962454165625"></a><a name="p1413962454165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1817393890093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1329348650093523p0"><a name="entry1329348650093523p0"></a><a name="entry1329348650093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry6664896093523p0"><a name="entry6664896093523p0"></a><a name="entry6664896093523p0"></a>Indicates the entry function for initializing and starting a system service. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row643392608165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a system service. The type is void (*)(void). </td>
 </tr>
 </tbody>
 </table>
@@ -605,30 +586,26 @@ This macro is used to identify the entry called at the priority 2 in the system 
 #define SYSEX_SERVICE_INIT_PRI( func,  priority )   LAYER_INITCALL(func, app_service, "app.service", priority)
 ```
 
-**Description:**
+ **Description:**
 
-Identifies the entry for initializing and starting a system service by the specified priority.
+Identifies the entry for initializing and starting a system service by the specified priority. 
 
-This macro is used to identify the entry called at the specified priority of the system service phase of the startup process.
+This macro is used to identify the entry called at the specified priority of the system service phase of the startup process. 
 
 **Parameters:**
 
-<a name="table224494575093523"></a>
-<table><thead align="left"><tr id="row343331039093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p713504134093523"><a name="p713504134093523"></a><a name="p713504134093523"></a>Name</p>
+<a name="table1680837148165625"></a>
+<table><thead align="left"><tr id="row1381299546165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p148712322165625"><a name="p148712322165625"></a><a name="p148712322165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1800982632093523"><a name="p1800982632093523"></a><a name="p1800982632093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1468887846165625"><a name="p1468887846165625"></a><a name="p1468887846165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1275694982093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1635765759093523p0"><a name="entry1635765759093523p0"></a><a name="entry1635765759093523p0"></a>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry225991997093523p0"><a name="entry225991997093523p0"></a><a name="entry225991997093523p0"></a>Indicates the entry function for initializing and starting a system service. The type is void (*)(void).</p>
-</td>
+<tbody><tr id="row493340163165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">func</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the entry function for initializing and starting a system service. The type is void (*)(void). </td>
 </tr>
-<tr id="row302166720093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1861742437093523p0"><a name="entry1861742437093523p0"></a><a name="entry1861742437093523p0"></a>priority</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1089479779093523p0"><a name="entry1089479779093523p0"></a><a name="entry1089479779093523p0"></a>Indicates the calling priority when starting the system service phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4.</p>
-</td>
+<tr id="row1372269933165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">priority</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the calling priority when starting the system service phase. The value range is [0,5), and the calling sequence is 0, 1, 2, 3, and 4. </td>
 </tr>
 </tbody>
 </table>

@@ -1,5 +1,10 @@
 # Photographing<a name="EN-US_TOPIC_0000001054915940"></a>
 
+-   [When to Use](#en-us_topic_0000001052170554_section1963312376119)
+-   [Available APIs](#en-us_topic_0000001052170554_section56549532016)
+-   [Limitations and Constraints](#en-us_topic_0000001052170554_section1165911177314)
+-   [How to Develop](#en-us_topic_0000001052170554_section138543918214)
+
 ## When to Use<a name="en-us_topic_0000001052170554_section1963312376119"></a>
 
 Use the camera module APIs to capture frames \(photographing\).

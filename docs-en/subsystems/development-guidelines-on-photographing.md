@@ -1,5 +1,10 @@
 # Development Guidelines on Photographing<a name="EN-US_TOPIC_0000001052170554"></a>
 
+-   [When to Use](#section1963312376119)
+-   [Available APIs](#section56549532016)
+-   [Limitations and Constraints](#section1165911177314)
+-   [How to Develop](#section138543918214)
+
 ## When to Use<a name="section1963312376119"></a>
 
 Use the camera module APIs to capture frames \(photographing\).

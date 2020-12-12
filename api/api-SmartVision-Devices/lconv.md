@@ -1,6 +1,36 @@
 # lconv<a name="ZH-CN_TOPIC_0000001055358154"></a>
 
-## **Overview**<a name="section23423808084843"></a>
+-   [Overview](#section1714470981165637)
+-   [Summary](#section1987561679165637)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1738794711165637)
+-   [Field](#section931934608165637)
+-   [currency\_symbol](#af3657bb8bf2a83a868cdeb0b108ab921)
+-   [decimal\_point](#a445e27fc7f797c8cca97b381f062fb60)
+-   [frac\_digits](#aa16e32ff4dcc95445742b5b165ffb071)
+-   [grouping](#a46e468755a823be50de20f36be5ff2be)
+-   [int\_curr\_symbol](#abaeeafb02b68ba58c549458b196b9325)
+-   [int\_frac\_digits](#a6b652f28cafc3092258b47c8099fe905)
+-   [int\_n\_cs\_precedes](#a36121c68c5571e40145365dd1edecbb7)
+-   [int\_n\_sep\_by\_space](#ad9cfa63e25f4a2aa02f6c7ca540177a2)
+-   [int\_n\_sign\_posn](#a642a9096f724fad40fe9f1711e92b323)
+-   [int\_p\_cs\_precedes](#a1a78cbc82f07601c2acb643f8dffdf64)
+-   [int\_p\_sep\_by\_space](#ae77e798ef92e86d58100b16fb8163443)
+-   [int\_p\_sign\_posn](#a266ed42f4bb087d1efac551940c42f6f)
+-   [mon\_decimal\_point](#a1aa08afe707c1d5d40b4d01369176480)
+-   [mon\_grouping](#a12ecf5d2f7ceb0cfe0f66fd3200eef54)
+-   [mon\_thousands\_sep](#a4f04f4fd9ea670d21fc76fb5c77c032d)
+-   [n\_cs\_precedes](#ad118b68a229527f7e96538ac875169ad)
+-   [n\_sep\_by\_space](#ab7ac20ce034900155183b32fc3c6d9a3)
+-   [n\_sign\_posn](#ae0bbe6f545952daef5a8cbdd054a184e)
+-   [negative\_sign](#a40dbb1b1d7fdf4926145138f5d8f6f5f)
+-   [p\_cs\_precedes](#af0651922c77fc926609bdd8746784e63)
+-   [p\_sep\_by\_space](#a3ae3cb36f4426158e4ab2ea6dc4278ad)
+-   [p\_sign\_posn](#a1fdead36abe5c2ca673142ea401478e8)
+-   [positive\_sign](#a74bf5f6f32624be629f7de0dabd58a96)
+-   [thousands\_sep](#aede8dfaac91d7b4e6b7fb0d96184d74d)
+
+## **Overview**<a name="section1714470981165637"></a>
 
 **Related Modules:**
 
@@ -10,143 +40,143 @@
 
 Indicates format information about a number. 
 
-## **Summary**<a name="section711075225084843"></a>
+## **Summary**<a name="section1987561679165637"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table194147749084843"></a>
-<table><thead align="left"><tr id="row1475528062084843"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1840828436084843"><a name="p1840828436084843"></a><a name="p1840828436084843"></a>Variable Name</p>
+<a name="table1045136913165637"></a>
+<table><thead align="left"><tr id="row972946656165637"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1983431199165637"><a name="p1983431199165637"></a><a name="p1983431199165637"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p73811121084843"><a name="p73811121084843"></a><a name="p73811121084843"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1961990732165637"><a name="p1961990732165637"></a><a name="p1961990732165637"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row697391335084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p410288841084843"><a name="p410288841084843"></a><a name="p410288841084843"></a><a href="lconv.md#a445e27fc7f797c8cca97b381f062fb60">decimal_point</a></p>
+<tbody><tr id="row1964261283165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p93919687165637"><a name="p93919687165637"></a><a name="p93919687165637"></a><a href="lconv.md#a445e27fc7f797c8cca97b381f062fb60">decimal_point</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p425091977084843"><a name="p425091977084843"></a><a name="p425091977084843"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row321042107084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1515240919084843"><a name="p1515240919084843"></a><a name="p1515240919084843"></a><a href="lconv.md#aede8dfaac91d7b4e6b7fb0d96184d74d">thousands_sep</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1143417160084843"><a name="p1143417160084843"></a><a name="p1143417160084843"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1455419965165637"><a name="p1455419965165637"></a><a name="p1455419965165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row1293602511084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p535594865084843"><a name="p535594865084843"></a><a name="p535594865084843"></a><a href="lconv.md#a46e468755a823be50de20f36be5ff2be">grouping</a></p>
+<tr id="row1819347134165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1918459196165637"><a name="p1918459196165637"></a><a name="p1918459196165637"></a><a href="lconv.md#aede8dfaac91d7b4e6b7fb0d96184d74d">thousands_sep</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1153111642084843"><a name="p1153111642084843"></a><a name="p1153111642084843"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row1629020336084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2085986088084843"><a name="p2085986088084843"></a><a name="p2085986088084843"></a><a href="lconv.md#abaeeafb02b68ba58c549458b196b9325">int_curr_symbol</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p328047169084843"><a name="p328047169084843"></a><a name="p328047169084843"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p165413857165637"><a name="p165413857165637"></a><a name="p165413857165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row1856122984084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1563540052084843"><a name="p1563540052084843"></a><a name="p1563540052084843"></a><a href="lconv.md#af3657bb8bf2a83a868cdeb0b108ab921">currency_symbol</a></p>
+<tr id="row1811009885165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p333235461165637"><a name="p333235461165637"></a><a name="p333235461165637"></a><a href="lconv.md#a46e468755a823be50de20f36be5ff2be">grouping</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p142367368084843"><a name="p142367368084843"></a><a name="p142367368084843"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row86586516084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1254579004084843"><a name="p1254579004084843"></a><a name="p1254579004084843"></a><a href="lconv.md#a1aa08afe707c1d5d40b4d01369176480">mon_decimal_point</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p684424108084843"><a name="p684424108084843"></a><a name="p684424108084843"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p717129156165637"><a name="p717129156165637"></a><a name="p717129156165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row1822258054084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1770148204084843"><a name="p1770148204084843"></a><a name="p1770148204084843"></a><a href="lconv.md#a4f04f4fd9ea670d21fc76fb5c77c032d">mon_thousands_sep</a></p>
+<tr id="row1028921954165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1077442019165637"><a name="p1077442019165637"></a><a name="p1077442019165637"></a><a href="lconv.md#abaeeafb02b68ba58c549458b196b9325">int_curr_symbol</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1276615276084843"><a name="p1276615276084843"></a><a name="p1276615276084843"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row2040705033084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p332366405084843"><a name="p332366405084843"></a><a name="p332366405084843"></a><a href="lconv.md#a12ecf5d2f7ceb0cfe0f66fd3200eef54">mon_grouping</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1817693490084843"><a name="p1817693490084843"></a><a name="p1817693490084843"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1565959115165637"><a name="p1565959115165637"></a><a name="p1565959115165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row1980052657084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p184012942084843"><a name="p184012942084843"></a><a name="p184012942084843"></a><a href="lconv.md#a74bf5f6f32624be629f7de0dabd58a96">positive_sign</a></p>
+<tr id="row335671533165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p809182825165637"><a name="p809182825165637"></a><a name="p809182825165637"></a><a href="lconv.md#af3657bb8bf2a83a868cdeb0b108ab921">currency_symbol</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1967309293084843"><a name="p1967309293084843"></a><a name="p1967309293084843"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row1382093518084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1492396892084843"><a name="p1492396892084843"></a><a name="p1492396892084843"></a><a href="lconv.md#a40dbb1b1d7fdf4926145138f5d8f6f5f">negative_sign</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1063342861084843"><a name="p1063342861084843"></a><a name="p1063342861084843"></a>char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1408457044165637"><a name="p1408457044165637"></a><a name="p1408457044165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row161919066084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1272542728084843"><a name="p1272542728084843"></a><a name="p1272542728084843"></a><a href="lconv.md#a6b652f28cafc3092258b47c8099fe905">int_frac_digits</a></p>
+<tr id="row550225527165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1111683332165637"><a name="p1111683332165637"></a><a name="p1111683332165637"></a><a href="lconv.md#a1aa08afe707c1d5d40b4d01369176480">mon_decimal_point</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1347993521084843"><a name="p1347993521084843"></a><a name="p1347993521084843"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row773852423084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1680524109084843"><a name="p1680524109084843"></a><a name="p1680524109084843"></a><a href="lconv.md#aa16e32ff4dcc95445742b5b165ffb071">frac_digits</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p66044426084843"><a name="p66044426084843"></a><a name="p66044426084843"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p285165035165637"><a name="p285165035165637"></a><a name="p285165035165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row516020685084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p940276666084843"><a name="p940276666084843"></a><a name="p940276666084843"></a><a href="lconv.md#af0651922c77fc926609bdd8746784e63">p_cs_precedes</a></p>
+<tr id="row1520590031165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1997245215165637"><a name="p1997245215165637"></a><a name="p1997245215165637"></a><a href="lconv.md#a4f04f4fd9ea670d21fc76fb5c77c032d">mon_thousands_sep</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1688794473084843"><a name="p1688794473084843"></a><a name="p1688794473084843"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row162742246084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1092719887084843"><a name="p1092719887084843"></a><a name="p1092719887084843"></a><a href="lconv.md#a3ae3cb36f4426158e4ab2ea6dc4278ad">p_sep_by_space</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1928927493084843"><a name="p1928927493084843"></a><a name="p1928927493084843"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p496474290165637"><a name="p496474290165637"></a><a name="p496474290165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row832185084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1857961840084843"><a name="p1857961840084843"></a><a name="p1857961840084843"></a><a href="lconv.md#ad118b68a229527f7e96538ac875169ad">n_cs_precedes</a></p>
+<tr id="row912139767165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1559875330165637"><a name="p1559875330165637"></a><a name="p1559875330165637"></a><a href="lconv.md#a12ecf5d2f7ceb0cfe0f66fd3200eef54">mon_grouping</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p760214333084843"><a name="p760214333084843"></a><a name="p760214333084843"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row788907980084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1735654923084843"><a name="p1735654923084843"></a><a name="p1735654923084843"></a><a href="lconv.md#ab7ac20ce034900155183b32fc3c6d9a3">n_sep_by_space</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1134586030084843"><a name="p1134586030084843"></a><a name="p1134586030084843"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1031629197165637"><a name="p1031629197165637"></a><a name="p1031629197165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row370828551084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p936773246084843"><a name="p936773246084843"></a><a name="p936773246084843"></a><a href="lconv.md#a1fdead36abe5c2ca673142ea401478e8">p_sign_posn</a></p>
+<tr id="row1301930662165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1172011145165637"><a name="p1172011145165637"></a><a name="p1172011145165637"></a><a href="lconv.md#a74bf5f6f32624be629f7de0dabd58a96">positive_sign</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1421658082084843"><a name="p1421658082084843"></a><a name="p1421658082084843"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row707856434084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1024143473084843"><a name="p1024143473084843"></a><a name="p1024143473084843"></a><a href="lconv.md#ae0bbe6f545952daef5a8cbdd054a184e">n_sign_posn</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1463676144084843"><a name="p1463676144084843"></a><a name="p1463676144084843"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1541498976165637"><a name="p1541498976165637"></a><a name="p1541498976165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row1649561214084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1729015380084843"><a name="p1729015380084843"></a><a name="p1729015380084843"></a><a href="lconv.md#a1a78cbc82f07601c2acb643f8dffdf64">int_p_cs_precedes</a></p>
+<tr id="row727334318165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1014236127165637"><a name="p1014236127165637"></a><a name="p1014236127165637"></a><a href="lconv.md#a40dbb1b1d7fdf4926145138f5d8f6f5f">negative_sign</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p700174854084843"><a name="p700174854084843"></a><a name="p700174854084843"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row1436045539084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p876540153084843"><a name="p876540153084843"></a><a name="p876540153084843"></a><a href="lconv.md#ae77e798ef92e86d58100b16fb8163443">int_p_sep_by_space</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p301213353084843"><a name="p301213353084843"></a><a name="p301213353084843"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1660339824165637"><a name="p1660339824165637"></a><a name="p1660339824165637"></a>char * </p>
 </td>
 </tr>
-<tr id="row1141091968084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1395820515084843"><a name="p1395820515084843"></a><a name="p1395820515084843"></a><a href="lconv.md#a36121c68c5571e40145365dd1edecbb7">int_n_cs_precedes</a></p>
+<tr id="row2007450407165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1594782586165637"><a name="p1594782586165637"></a><a name="p1594782586165637"></a><a href="lconv.md#a6b652f28cafc3092258b47c8099fe905">int_frac_digits</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1828926883084843"><a name="p1828926883084843"></a><a name="p1828926883084843"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row1120048789084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1361204856084843"><a name="p1361204856084843"></a><a name="p1361204856084843"></a><a href="lconv.md#ad9cfa63e25f4a2aa02f6c7ca540177a2">int_n_sep_by_space</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1706301667084843"><a name="p1706301667084843"></a><a name="p1706301667084843"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p162426478165637"><a name="p162426478165637"></a><a name="p162426478165637"></a>char </p>
 </td>
 </tr>
-<tr id="row823572909084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1645110217084843"><a name="p1645110217084843"></a><a name="p1645110217084843"></a><a href="lconv.md#a266ed42f4bb087d1efac551940c42f6f">int_p_sign_posn</a></p>
+<tr id="row1513654430165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1064819570165637"><a name="p1064819570165637"></a><a name="p1064819570165637"></a><a href="lconv.md#aa16e32ff4dcc95445742b5b165ffb071">frac_digits</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p268414016084843"><a name="p268414016084843"></a><a name="p268414016084843"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p338111907165637"><a name="p338111907165637"></a><a name="p338111907165637"></a>char </p>
 </td>
 </tr>
-<tr id="row1945302906084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1797978817084843"><a name="p1797978817084843"></a><a name="p1797978817084843"></a><a href="lconv.md#a642a9096f724fad40fe9f1711e92b323">int_n_sign_posn</a></p>
+<tr id="row446886619165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1959616151165637"><a name="p1959616151165637"></a><a name="p1959616151165637"></a><a href="lconv.md#af0651922c77fc926609bdd8746784e63">p_cs_precedes</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1895312957084843"><a name="p1895312957084843"></a><a name="p1895312957084843"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1403697180165637"><a name="p1403697180165637"></a><a name="p1403697180165637"></a>char </p>
+</td>
+</tr>
+<tr id="row384430012165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p920136929165637"><a name="p920136929165637"></a><a name="p920136929165637"></a><a href="lconv.md#a3ae3cb36f4426158e4ab2ea6dc4278ad">p_sep_by_space</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1765995602165637"><a name="p1765995602165637"></a><a name="p1765995602165637"></a>char </p>
+</td>
+</tr>
+<tr id="row1546655449165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1863003969165637"><a name="p1863003969165637"></a><a name="p1863003969165637"></a><a href="lconv.md#ad118b68a229527f7e96538ac875169ad">n_cs_precedes</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1912502236165637"><a name="p1912502236165637"></a><a name="p1912502236165637"></a>char </p>
+</td>
+</tr>
+<tr id="row2135763471165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1945263751165637"><a name="p1945263751165637"></a><a name="p1945263751165637"></a><a href="lconv.md#ab7ac20ce034900155183b32fc3c6d9a3">n_sep_by_space</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1688627054165637"><a name="p1688627054165637"></a><a name="p1688627054165637"></a>char </p>
+</td>
+</tr>
+<tr id="row679343910165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1925364729165637"><a name="p1925364729165637"></a><a name="p1925364729165637"></a><a href="lconv.md#a1fdead36abe5c2ca673142ea401478e8">p_sign_posn</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p324130272165637"><a name="p324130272165637"></a><a name="p324130272165637"></a>char </p>
+</td>
+</tr>
+<tr id="row1279619293165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2014025583165637"><a name="p2014025583165637"></a><a name="p2014025583165637"></a><a href="lconv.md#ae0bbe6f545952daef5a8cbdd054a184e">n_sign_posn</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p985579744165637"><a name="p985579744165637"></a><a name="p985579744165637"></a>char </p>
+</td>
+</tr>
+<tr id="row2136790443165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2041372234165637"><a name="p2041372234165637"></a><a name="p2041372234165637"></a><a href="lconv.md#a1a78cbc82f07601c2acb643f8dffdf64">int_p_cs_precedes</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p761340529165637"><a name="p761340529165637"></a><a name="p761340529165637"></a>char </p>
+</td>
+</tr>
+<tr id="row2002867097165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1720022649165637"><a name="p1720022649165637"></a><a name="p1720022649165637"></a><a href="lconv.md#ae77e798ef92e86d58100b16fb8163443">int_p_sep_by_space</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1545555213165637"><a name="p1545555213165637"></a><a name="p1545555213165637"></a>char </p>
+</td>
+</tr>
+<tr id="row576880402165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p870287174165637"><a name="p870287174165637"></a><a name="p870287174165637"></a><a href="lconv.md#a36121c68c5571e40145365dd1edecbb7">int_n_cs_precedes</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2024410111165637"><a name="p2024410111165637"></a><a name="p2024410111165637"></a>char </p>
+</td>
+</tr>
+<tr id="row304158684165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p263604024165637"><a name="p263604024165637"></a><a name="p263604024165637"></a><a href="lconv.md#ad9cfa63e25f4a2aa02f6c7ca540177a2">int_n_sep_by_space</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1254591254165637"><a name="p1254591254165637"></a><a name="p1254591254165637"></a>char </p>
+</td>
+</tr>
+<tr id="row2074226547165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1452227284165637"><a name="p1452227284165637"></a><a name="p1452227284165637"></a><a href="lconv.md#a266ed42f4bb087d1efac551940c42f6f">int_p_sign_posn</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1454184682165637"><a name="p1454184682165637"></a><a name="p1454184682165637"></a>char </p>
+</td>
+</tr>
+<tr id="row664719761165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1049769195165637"><a name="p1049769195165637"></a><a name="p1049769195165637"></a><a href="lconv.md#a642a9096f724fad40fe9f1711e92b323">int_n_sign_posn</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p739709028165637"><a name="p739709028165637"></a><a name="p739709028165637"></a>char </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section2142752623084843"></a>
+## **Details**<a name="section1738794711165637"></a>
 
-## **Field Documentation**<a name="section925018372084843"></a>
+## **Field **<a name="section931934608165637"></a>
 
 ## currency\_symbol<a name="af3657bb8bf2a83a868cdeb0b108ab921"></a>
 

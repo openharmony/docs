@@ -1,6 +1,8 @@
 # OHOS::UIArcLabel::ArcTextInfo<a name="EN-US_TOPIC_0000001055678114"></a>
 
-## **Overview**<a name="section2102644477093533"></a>
+-   [Overview](#section384414866165633)
+
+## **Overview**<a name="section384414866165633"></a>
 
 **Related Modules:**
 

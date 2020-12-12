@@ -1,6 +1,10 @@
 # wifi\_module\_config.h<a name="ZH-CN_TOPIC_0000001055358096"></a>
 
-## **Overview**<a name="section2081211601093528"></a>
+-   [Overview](#section423750701165630)
+-   [Summary](#section513822425165630)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section423750701165630"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares the WLAN module configuration.
 
 1.0
 
-## **Summary**<a name="section1358660837093528"></a>
+## **Summary**<a name="section513822425165630"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1904174626093528"></a>
-<table><thead align="left"><tr id="row1565682113093528"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p286771579093528"><a name="p286771579093528"></a><a name="p286771579093528"></a>Data Structure Name</p>
+<a name="table1164785052165630"></a>
+<table><thead align="left"><tr id="row263521194165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1131442646165630"><a name="p1131442646165630"></a><a name="p1131442646165630"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p476124700093528"><a name="p476124700093528"></a><a name="p476124700093528"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p532152738165630"><a name="p532152738165630"></a><a name="p532152738165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1856524325093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1536763941093528"><a name="p1536763941093528"></a><a name="p1536763941093528"></a><a href="WifiModuleConfig.md">WifiModuleConfig</a></p>
+<tbody><tr id="row122653383165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p908588278165630"><a name="p908588278165630"></a><a name="p908588278165630"></a><a href="WifiModuleConfig.md">WifiModuleConfig</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1661177225093528"><a name="p1661177225093528"></a><a name="p1661177225093528"></a>Defines the WLAN module configuration. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1948694259165630"><a name="p1948694259165630"></a><a name="p1948694259165630"></a>Defines the WLAN module configuration. </p>
 </td>
 </tr>
 </tbody>

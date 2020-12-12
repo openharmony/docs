@@ -1,8 +1,27 @@
 # Development Guidelines on Common Components<a name="EN-US_TOPIC_0000001052170409"></a>
 
+-   [UIButton](#section145353310214)
+-   [When to Use](#section1169616141577)
+-   [Available APIs](#section341211538315)
+-   [How to Develop](#section22501726193214)
+-   [UIImageView](#section19523161611259)
+-   [When to Use](#section1274484210400)
+-   [Available APIs](#section74981992411)
+-   [How to Develop \(Adaptive Mode\)](#section144341333134114)
+-   [How to Develop \(Tile Mode\)](#section97178160421)
+-   [UILabel](#section16588132012911)
+-   [When to Use](#section6870195634218)
+-   [Available APIs](#section2012714510433)
+-   [How to Develop \(Default Mode\)](#section83221538114410)
+-   [How to Develop \(Background Color and Opacity\)](#section933360204510)
+-   [How to Develop \(Letter Spacing\)](#section19447826124518)
+-   [How to Develop \(Size-Adaptive Mode\)](#section101711842154617)
+-   [How to Develop \(Ellipsis Mode\)](#section1249519410471)
+-   [How to Develop \(Scrolling Mode\)](#section15643122618478)
+
 Common components inherit from the base class  **UIView**. Child components cannot be added to common components, such as buttons, images, and labels.
 
-**Figure  1**  Tree structure of common components<a name="fig212202732818"></a>  
+**Figure  1**  Tree structure of common components<a name="fig3386518305"></a>  
 ![](figures/tree-structure-of-common-components.png "tree-structure-of-common-components")
 
 **UIView**  is a base class of the following components:  **UIAbstractProgress**,  **UIArcLabel**,  **UIButton**,  **UICanvas**,  **UILabel**, and  **UIImageView**.  **UIBoxProgress**  and  **UICircleProgress**  inherit from  **UIAbstractProgress**.  **UILabelButton**  and  **UIRepeatButton**  inherit from  **UIButton**.  **UIImageAnimatorView**  and  **UITextureMapper**  inherit from  **UIImageView**.
@@ -234,122 +253,122 @@ Common components inherit from the base class  **UIView**. Child components cann
 
 **Table  3** Available functions  in UILabel
 
-<a name="table10748131564314"></a>
-<table><thead align="left"><tr id="row874571512438"><th class="cellrowborder" valign="top" width="46.37%" id="mcps1.2.3.1.1"><p id="p137446152439"><a name="p137446152439"></a><a name="p137446152439"></a>Function</p>
+<a name="table9571115310551"></a>
+<table><thead align="left"><tr id="row13571155335511"><th class="cellrowborder" valign="top" width="46.37%" id="mcps1.2.3.1.1"><p id="p057195365510"><a name="p057195365510"></a><a name="p057195365510"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="53.63%" id="mcps1.2.3.1.2"><p id="p2744161518431"><a name="p2744161518431"></a><a name="p2744161518431"></a>Description</p>
+<th class="cellrowborder" valign="top" width="53.63%" id="mcps1.2.3.1.2"><p id="p15717538555"><a name="p15717538555"></a><a name="p15717538555"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row674561515438"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p8745415164311"><a name="p8745415164311"></a><a name="p8745415164311"></a>void SetText(const char* text);</p>
+<tbody><tr id="row18571195317556"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p3571185305517"><a name="p3571185305517"></a><a name="p3571185305517"></a>void SetText(const char* text);</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1474516159433"><a name="p1474516159433"></a><a name="p1474516159433"></a>Sets text for the label.</p>
-</td>
-</tr>
-<tr id="row77451315154311"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p18745111513437"><a name="p18745111513437"></a><a name="p18745111513437"></a>const char* GetText() const;</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p117451015194320"><a name="p117451015194320"></a><a name="p117451015194320"></a>Obtains text of the label.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p757119532556"><a name="p757119532556"></a><a name="p757119532556"></a>Sets text for the label.</p>
 </td>
 </tr>
-<tr id="row6745121516437"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p167451615104316"><a name="p167451615104316"></a><a name="p167451615104316"></a>void SetLineBreakMode(const uint8_t lineBreakMode);</p>
+<tr id="row7572175325513"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p1857216534552"><a name="p1857216534552"></a><a name="p1857216534552"></a>const char* GetText() const;</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p674511564316"><a name="p674511564316"></a><a name="p674511564316"></a>Sets the label mode, such as truncation and automatic extension.</p>
-</td>
-</tr>
-<tr id="row2745115104318"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p274518155436"><a name="p274518155436"></a><a name="p274518155436"></a>uint8_t GetLineBreakMode() const</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p3745161584312"><a name="p3745161584312"></a><a name="p3745161584312"></a>Obtains the label mode.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p85721653105514"><a name="p85721653105514"></a><a name="p85721653105514"></a>Obtains text of the label.</p>
 </td>
 </tr>
-<tr id="row17745515114319"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p1745101544317"><a name="p1745101544317"></a><a name="p1745101544317"></a>void SetTextColor(ColorType color)</p>
+<tr id="row105721153175516"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p3572195312555"><a name="p3572195312555"></a><a name="p3572195312555"></a>void SetLineBreakMode(const uint8_t lineBreakMode);</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1174541518431"><a name="p1174541518431"></a><a name="p1174541518431"></a>Set the text color.</p>
-</td>
-</tr>
-<tr id="row1074541511437"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p4745121514434"><a name="p4745121514434"></a><a name="p4745121514434"></a>ColorType GetTextColor() const</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1674510152436"><a name="p1674510152436"></a><a name="p1674510152436"></a>Obtains the text color.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1757215316557"><a name="p1757215316557"></a><a name="p1757215316557"></a>Sets the label mode, such as truncation and automatic extension.</p>
 </td>
 </tr>
-<tr id="row874651510439"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p1674561513439"><a name="p1674561513439"></a><a name="p1674561513439"></a>void SetAlign(UITextLanguageAlignment horizontalAlign,</p>
-<p id="p1374661594317"><a name="p1374661594317"></a><a name="p1374661594317"></a>UITextLanguageAlignment verticalAlign = TEXT_ALIGNMENT_TOP);</p>
+<tr id="row957211531555"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p195721953105517"><a name="p195721953105517"></a><a name="p195721953105517"></a>uint8_t GetLineBreakMode() const</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p874621517438"><a name="p874621517438"></a><a name="p874621517438"></a>Sets the text alignment mode.</p>
-</td>
-</tr>
-<tr id="row15746151514437"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p174615155439"><a name="p174615155439"></a><a name="p174615155439"></a>UITextLanguageAlignment GetHorAlign() const</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1774614151434"><a name="p1774614151434"></a><a name="p1774614151434"></a>Obtains the horizontal alignment mode of text.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p4572853175514"><a name="p4572853175514"></a><a name="p4572853175514"></a>Obtains the label mode.</p>
 </td>
 </tr>
-<tr id="row197467150431"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p127469152437"><a name="p127469152437"></a><a name="p127469152437"></a>UITextLanguageAlignment GetVerAlign() const</p>
+<tr id="row257225313559"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p35721253155516"><a name="p35721253155516"></a><a name="p35721253155516"></a>void SetTextColor(ColorType color)</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1974651554314"><a name="p1974651554314"></a><a name="p1974651554314"></a>Obtains the vertical alignment mode of text.</p>
-</td>
-</tr>
-<tr id="row1474613152438"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p147468156433"><a name="p147468156433"></a><a name="p147468156433"></a>void SetDirect(UITextLanguageDirect direct)</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p474611554312"><a name="p474611554312"></a><a name="p474611554312"></a>Sets the text display direction.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p145724539550"><a name="p145724539550"></a><a name="p145724539550"></a>Set the text color.</p>
 </td>
 </tr>
-<tr id="row1374661524316"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p6746131514310"><a name="p6746131514310"></a><a name="p6746131514310"></a>UITextLanguageDirect GetDirect() const</p>
+<tr id="row105721253175517"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p125722538551"><a name="p125722538551"></a><a name="p125722538551"></a>ColorType GetTextColor() const</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1274681514319"><a name="p1274681514319"></a><a name="p1274681514319"></a>Obtains the text display direction.</p>
-</td>
-</tr>
-<tr id="row3746115164316"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p17746415134312"><a name="p17746415134312"></a><a name="p17746415134312"></a>void SetFontId(uint8_t fontId);</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p174615150437"><a name="p174615150437"></a><a name="p174615150437"></a>Sets the dynamic font ID.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p9572753205515"><a name="p9572753205515"></a><a name="p9572753205515"></a>Obtains the text color.</p>
 </td>
 </tr>
-<tr id="row57471415134313"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p13746131511435"><a name="p13746131511435"></a><a name="p13746131511435"></a>uint8_t GetFontId() const</p>
+<tr id="row757265320558"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p10572185345516"><a name="p10572185345516"></a><a name="p10572185345516"></a>void SetAlign(UITextLanguageAlignment horizontalAlign,</p>
+<p id="p135721653115514"><a name="p135721653115514"></a><a name="p135721653115514"></a>UITextLanguageAlignment verticalAlign = TEXT_ALIGNMENT_TOP);</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p17746515204313"><a name="p17746515204313"></a><a name="p17746515204313"></a>Obtains the dynamic font ID.</p>
-</td>
-</tr>
-<tr id="row13747115124310"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p147471815124314"><a name="p147471815124314"></a><a name="p147471815124314"></a>void SetFont(const char *name, uint8_t size);</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p674714158439"><a name="p674714158439"></a><a name="p674714158439"></a>Sets the font name and size.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p18572105335516"><a name="p18572105335516"></a><a name="p18572105335516"></a>Sets the text alignment mode.</p>
 </td>
 </tr>
-<tr id="row177471015184318"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p16747715104310"><a name="p16747715104310"></a><a name="p16747715104310"></a>void SetAnimatorSpeed(uint16_t animSpeed);</p>
+<tr id="row6572553105518"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p175721253165515"><a name="p175721253165515"></a><a name="p175721253165515"></a>UITextLanguageAlignment GetHorAlign() const</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p2747615204319"><a name="p2747615204319"></a><a name="p2747615204319"></a>Sets the font rotation speed.</p>
-</td>
-</tr>
-<tr id="row474701534317"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p374719152439"><a name="p374719152439"></a><a name="p374719152439"></a>uint16_t GetTextWidth();</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p13747111574315"><a name="p13747111574315"></a><a name="p13747111574315"></a>Obtains the font width.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p857395313555"><a name="p857395313555"></a><a name="p857395313555"></a>Obtains the horizontal alignment mode of text.</p>
 </td>
 </tr>
-<tr id="row117471015164313"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p774771511438"><a name="p774771511438"></a><a name="p774771511438"></a>uint16_t GetTextHeight();</p>
+<tr id="row1657320534557"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p75731853115511"><a name="p75731853115511"></a><a name="p75731853115511"></a>UITextLanguageAlignment GetVerAlign() const</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p6747121518432"><a name="p6747121518432"></a><a name="p6747121518432"></a>Obtains the font height.</p>
-</td>
-</tr>
-<tr id="row7747201504317"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p474731584311"><a name="p474731584311"></a><a name="p474731584311"></a>void SetRollStartPos(int16_t pos)</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1674713155432"><a name="p1674713155432"></a><a name="p1674713155432"></a>Sets the rotation position.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p5573953195514"><a name="p5573953195514"></a><a name="p5573953195514"></a>Obtains the vertical alignment mode of text.</p>
 </td>
 </tr>
-<tr id="row16747215174313"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p9747815134313"><a name="p9747815134313"></a><a name="p9747815134313"></a>int16_t GetRollStartPos() const</p>
+<tr id="row7573125318554"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p1957355345516"><a name="p1957355345516"></a><a name="p1957355345516"></a>void SetDirect(UITextLanguageDirect direct)</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p7747191574315"><a name="p7747191574315"></a><a name="p7747191574315"></a>Obtains the rotation position.</p>
-</td>
-</tr>
-<tr id="row117489151434"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p11747915164316"><a name="p11747915164316"></a><a name="p11747915164316"></a>void SetTextRotation(LabelRotateDegree angle)</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p127486152434"><a name="p127486152434"></a><a name="p127486152434"></a>Sets the enumerated value of the text rotation angle.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p95731753135519"><a name="p95731753135519"></a><a name="p95731753135519"></a>Sets the text display direction.</p>
 </td>
 </tr>
-<tr id="row1474831544318"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p117481215194318"><a name="p117481215194318"></a><a name="p117481215194318"></a>LabelRotateDegree GetTextRotation() const</p>
+<tr id="row145736533559"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p12573145311555"><a name="p12573145311555"></a><a name="p12573145311555"></a>UITextLanguageDirect GetDirect() const</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p18748151544319"><a name="p18748151544319"></a><a name="p18748151544319"></a>Obtains the enumerated value of the text rotation angle.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p157375316552"><a name="p157375316552"></a><a name="p157375316552"></a>Obtains the text display direction.</p>
 </td>
 </tr>
-<tr id="row4748615154315"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p20748141515431"><a name="p20748141515431"></a><a name="p20748141515431"></a>uint16_t GetTextRotateDegree() const</p>
+<tr id="row1857375315553"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p4573185385519"><a name="p4573185385519"></a><a name="p4573185385519"></a>void SetFontId(uint8_t fontId);</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p37481315144310"><a name="p37481315144310"></a><a name="p37481315144310"></a>Obtains the number of text rotation degrees.</p>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p657345318554"><a name="p657345318554"></a><a name="p657345318554"></a>Sets the dynamic font ID.</p>
+</td>
+</tr>
+<tr id="row7573175310550"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p7573155310558"><a name="p7573155310558"></a><a name="p7573155310558"></a>uint8_t GetFontId() const</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p157312534551"><a name="p157312534551"></a><a name="p157312534551"></a>Obtains the dynamic font ID.</p>
+</td>
+</tr>
+<tr id="row7573105345519"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p1573185314559"><a name="p1573185314559"></a><a name="p1573185314559"></a>void SetFont(const char *name, uint8_t size);</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p45736536559"><a name="p45736536559"></a><a name="p45736536559"></a>Sets the font name and size.</p>
+</td>
+</tr>
+<tr id="row257355317551"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p205731953125520"><a name="p205731953125520"></a><a name="p205731953125520"></a>void SetAnimatorSpeed(uint16_t animSpeed);</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p15573155318551"><a name="p15573155318551"></a><a name="p15573155318551"></a>Sets the font rotation speed.</p>
+</td>
+</tr>
+<tr id="row1557413530552"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p657435365518"><a name="p657435365518"></a><a name="p657435365518"></a>uint16_t GetTextWidth();</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p75740538554"><a name="p75740538554"></a><a name="p75740538554"></a>Obtains the font width.</p>
+</td>
+</tr>
+<tr id="row10574155314557"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p2057425385510"><a name="p2057425385510"></a><a name="p2057425385510"></a>uint16_t GetTextHeight();</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p12574135365514"><a name="p12574135365514"></a><a name="p12574135365514"></a>Obtains the font height.</p>
+</td>
+</tr>
+<tr id="row1257413534553"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p05741553125511"><a name="p05741553125511"></a><a name="p05741553125511"></a>void SetRollStartPos(int16_t pos)</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p757411538558"><a name="p757411538558"></a><a name="p757411538558"></a>Sets the rotation position.</p>
+</td>
+</tr>
+<tr id="row195749536552"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p65741253115518"><a name="p65741253115518"></a><a name="p65741253115518"></a>int16_t GetRollStartPos() const</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p3574185319552"><a name="p3574185319552"></a><a name="p3574185319552"></a>Obtains the rotation position.</p>
+</td>
+</tr>
+<tr id="row35741453155518"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p757415535558"><a name="p757415535558"></a><a name="p757415535558"></a>void SetTextRotation(LabelRotateDegree angle)</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p157416532558"><a name="p157416532558"></a><a name="p157416532558"></a>Sets the enumerated value of the text rotation angle.</p>
+</td>
+</tr>
+<tr id="row175741753165513"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p157425385516"><a name="p157425385516"></a><a name="p157425385516"></a>LabelRotateDegree GetTextRotation() const</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p1357425365518"><a name="p1357425365518"></a><a name="p1357425365518"></a>Obtains the enumerated value of the text rotation angle.</p>
+</td>
+</tr>
+<tr id="row5574185335513"><td class="cellrowborder" valign="top" width="46.37%" headers="mcps1.2.3.1.1 "><p id="p1157455325519"><a name="p1157455325519"></a><a name="p1157455325519"></a>uint16_t GetTextRotateDegree() const</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.63%" headers="mcps1.2.3.1.2 "><p id="p16574115318551"><a name="p16574115318551"></a><a name="p16574115318551"></a>Obtains the number of text rotation degrees.</p>
 </td>
 </tr>
 </tbody>

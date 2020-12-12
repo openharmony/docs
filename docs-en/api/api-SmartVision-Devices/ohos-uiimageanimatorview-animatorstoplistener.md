@@ -1,6 +1,10 @@
 # OHOS::UIImageAnimatorView::AnimatorStopListener<a name="EN-US_TOPIC_0000001054598185"></a>
 
-## **Overview**<a name="section370396883093534"></a>
+-   [Overview](#section447808700165634)
+-   [Summary](#section438808062165634)
+-   [Public Member Functions](#pub-methods)
+
+## **Overview**<a name="section447808700165634"></a>
 
 **Related Modules:**
 
@@ -8,7 +12,7 @@
 
 **Description:**
 
-Represents a listener that contains a callback to be invoked when this animator stops. 
+Represents a listener that contains a callback to be invoked when this animator stops.
 
 **Since:**
 
@@ -18,39 +22,39 @@ Represents a listener that contains a callback to be invoked when this animator 
 
 1.0
 
-## **Summary**<a name="section2050332553093534"></a>
+## **Summary**<a name="section438808062165634"></a>
 
 ## Public Member Functions<a name="pub-methods"></a>
 
-<a name="table1022388170093534"></a>
-<table><thead align="left"><tr id="row177739826093534"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p133829341093534"><a name="p133829341093534"></a><a name="p133829341093534"></a>Public Member Function Name</p>
+<a name="table824192827165634"></a>
+<table><thead align="left"><tr id="row1609110668165634"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1632422015165634"><a name="p1632422015165634"></a><a name="p1632422015165634"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1688840334093534"><a name="p1688840334093534"></a><a name="p1688840334093534"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1326876528165634"><a name="p1326876528165634"></a><a name="p1326876528165634"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1735088480093534"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1812904160093534"><a name="p1812904160093534"></a><a name="p1812904160093534"></a><a href="graphic.md#gaafa8a44fe38db14ab7e8f72e4d3c8581">~AnimatorStopListener</a> ()</p>
+<tbody><tr id="row249685014165634"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1218091167165634"><a name="p1218091167165634"></a><a name="p1218091167165634"></a><a href="graphic.md#gaafa8a44fe38db14ab7e8f72e4d3c8581">~AnimatorStopListener</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2054280954093534"><a name="p2054280954093534"></a><a name="p2054280954093534"></a>virtual </p>
-<p id="p789311632093534"><a name="p789311632093534"></a><a name="p789311632093534"></a>A destructor used to delete an <strong id="b674249376093534"><a name="b674249376093534"></a><a name="b674249376093534"></a><a href="ohos-uiimageanimatorview-animatorstoplistener.md">AnimatorStopListener</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row69791918093534"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p187817379093534"><a name="p187817379093534"></a><a name="p187817379093534"></a><a href="graphic.md#gac5f2c1471f83ebf2a47d86b8f58da094">OnAnimatorStop</a> (<a href="ohos-uiview.md">UIView</a> &amp;view)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p287472338093534"><a name="p287472338093534"></a><a name="p287472338093534"></a>virtual void </p>
-<p id="p2056546680093534"><a name="p2056546680093534"></a><a name="p2056546680093534"></a>Called when this animator stops. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2133251075165634"><a name="p2133251075165634"></a><a name="p2133251075165634"></a>virtual</p>
+<p id="p1000761557165634"><a name="p1000761557165634"></a><a name="p1000761557165634"></a>A destructor used to delete an <strong id="b1070874008165634"><a name="b1070874008165634"></a><a name="b1070874008165634"></a><a href="ohos-uiimageanimatorview-animatorstoplistener.md">AnimatorStopListener</a></strong> instance.</p>
 </td>
 </tr>
-<tr id="row476346789093534"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2094075601093534"><a name="p2094075601093534"></a><a name="p2094075601093534"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
+<tr id="row1916205537165634"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p996070112165634"><a name="p996070112165634"></a><a name="p996070112165634"></a><a href="graphic.md#gac5f2c1471f83ebf2a47d86b8f58da094">OnAnimatorStop</a> (<a href="ohos-uiview.md">UIView</a> &amp;view)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p806718112093534"><a name="p806718112093534"></a><a name="p806718112093534"></a>void * </p>
-<p id="p1258149041093534"><a name="p1258149041093534"></a><a name="p1258149041093534"></a>Overrides the <strong id="b1561722727093534"><a name="b1561722727093534"></a><a name="b1561722727093534"></a>new</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p798409416165634"><a name="p798409416165634"></a><a name="p798409416165634"></a>virtual void</p>
+<p id="p1660252677165634"><a name="p1660252677165634"></a><a name="p1660252677165634"></a>Called when this animator stops.</p>
 </td>
 </tr>
-<tr id="row913592469093534"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1295988471093534"><a name="p1295988471093534"></a><a name="p1295988471093534"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+<tr id="row998435679165634"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1912450999165634"><a name="p1912450999165634"></a><a name="p1912450999165634"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1277324955093534"><a name="p1277324955093534"></a><a name="p1277324955093534"></a>void </p>
-<p id="p1252174318093534"><a name="p1252174318093534"></a><a name="p1252174318093534"></a>Overrides the <strong id="b410502950093534"><a name="b410502950093534"></a><a name="b410502950093534"></a>delete</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p140387985165634"><a name="p140387985165634"></a><a name="p140387985165634"></a>void *</p>
+<p id="p1863079799165634"><a name="p1863079799165634"></a><a name="p1863079799165634"></a>Overrides the <strong id="b53868965165634"><a name="b53868965165634"></a><a name="b53868965165634"></a>new</strong> function.</p>
+</td>
+</tr>
+<tr id="row503046675165634"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1020359812165634"><a name="p1020359812165634"></a><a name="p1020359812165634"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p339000091165634"><a name="p339000091165634"></a><a name="p339000091165634"></a>void</p>
+<p id="p1758243349165634"><a name="p1758243349165634"></a><a name="p1758243349165634"></a>Overrides the <strong id="b1292770872165634"><a name="b1292770872165634"></a><a name="b1292770872165634"></a>delete</strong> function.</p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,11 @@
 # timeb.h<a name="ZH-CN_TOPIC_0000001054829491"></a>
 
-## **Overview**<a name="section1436674803084833"></a>
+-   [Overview](#section1388557060165629)
+-   [Summary](#section2022395688165629)
+-   [Data Structures](#nested-classes)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1388557060165629"></a>
 
 **Related Modules:**
 
@@ -20,20 +25,20 @@ You can obtain the current time.
 
 1.0
 
-## **Summary**<a name="section915006460084833"></a>
+## **Summary**<a name="section2022395688165629"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table274012849084833"></a>
-<table><thead align="left"><tr id="row1867292291084833"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p907359455084833"><a name="p907359455084833"></a><a name="p907359455084833"></a>Data Structure Name</p>
+<a name="table218931231165629"></a>
+<table><thead align="left"><tr id="row671368782165629"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p692780624165629"><a name="p692780624165629"></a><a name="p692780624165629"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1749361282084833"><a name="p1749361282084833"></a><a name="p1749361282084833"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p662347942165629"><a name="p662347942165629"></a><a name="p662347942165629"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1710221186084833"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p422574353084833"><a name="p422574353084833"></a><a name="p422574353084833"></a><a href="timeb.md">timeb</a></p>
+<tbody><tr id="row858291565165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2075195703165629"><a name="p2075195703165629"></a><a name="p2075195703165629"></a><a href="timeb.md">timeb</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1863869493084833"><a name="p1863869493084833"></a><a name="p1863869493084833"></a>Describes the time, accurate to millisecond. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2087144921165629"><a name="p2087144921165629"></a><a name="p2087144921165629"></a>Describes the time, accurate to millisecond. </p>
 </td>
 </tr>
 </tbody>
@@ -41,17 +46,17 @@ You can obtain the current time.
 
 ## Functions<a name="func-members"></a>
 
-<a name="table639444375084833"></a>
-<table><thead align="left"><tr id="row1547004232084833"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p470424422084833"><a name="p470424422084833"></a><a name="p470424422084833"></a>Function Name</p>
+<a name="table1429795537165629"></a>
+<table><thead align="left"><tr id="row609316042165629"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1422022605165629"><a name="p1422022605165629"></a><a name="p1422022605165629"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1417317152084833"><a name="p1417317152084833"></a><a name="p1417317152084833"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p462441369165629"><a name="p462441369165629"></a><a name="p462441369165629"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row771398074084833"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p247624332084833"><a name="p247624332084833"></a><a name="p247624332084833"></a><a href="TIME.md#gad225ab16a149ff9aab8fb5c36f29ca0c">ftime</a> (struct <a href="timeb.md">timeb</a> *tp)</p>
+<tbody><tr id="row843980786165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p652538392165629"><a name="p652538392165629"></a><a name="p652538392165629"></a><a href="TIME.md#gad225ab16a149ff9aab8fb5c36f29ca0c">ftime</a> (struct <a href="timeb.md">timeb</a> *tp)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p744401575084833"><a name="p744401575084833"></a><a name="p744401575084833"></a>int&nbsp;</p>
-<p id="p1231009047084833"><a name="p1231009047084833"></a><a name="p1231009047084833"></a>Obtains the current time, accurate to milliseconds. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1195197909165629"><a name="p1195197909165629"></a><a name="p1195197909165629"></a>int </p>
+<p id="p874682148165629"><a name="p874682148165629"></a><a name="p874682148165629"></a>Obtains the current time, accurate to milliseconds. </p>
 </td>
 </tr>
 </tbody>

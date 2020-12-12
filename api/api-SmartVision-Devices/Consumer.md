@@ -1,6 +1,15 @@
 # Consumer<a name="ZH-CN_TOPIC_0000001055078133"></a>
 
-## **Overview**<a name="section546609585093529"></a>
+-   [Overview](#section232136428165631)
+-   [Summary](#section430934111165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section304163631165631)
+-   [Field](#section1026643206165631)
+-   [Equal](#a38ab45549e981dc8c8c0a90883a6bac8)
+-   [identity](#ac6e98b3361e6be922804e8c459fe303b)
+-   [Notify](#a57b8ea7ff05c30832af06804a0526765)
+
+## **Overview**<a name="section232136428165631"></a>
 
 **Related Modules:**
 
@@ -10,40 +19,40 @@
 
 Defines the topic consumer used to receive events and push data. You need to implement this struct for your application. 
 
-## **Summary**<a name="section181714182093529"></a>
+## **Summary**<a name="section430934111165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table513070777093529"></a>
-<table><thead align="left"><tr id="row1285104842093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p555966821093529"><a name="p555966821093529"></a><a name="p555966821093529"></a>Variable Name</p>
+<a name="table771842471165631"></a>
+<table><thead align="left"><tr id="row811376784165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1313789521165631"><a name="p1313789521165631"></a><a name="p1313789521165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p36634247093529"><a name="p36634247093529"></a><a name="p36634247093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1623831590165631"><a name="p1623831590165631"></a><a name="p1623831590165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1809371865093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1114172460093529"><a name="p1114172460093529"></a><a name="p1114172460093529"></a><a href="Consumer.md#ac6e98b3361e6be922804e8c459fe303b">identity</a></p>
+<tbody><tr id="row1725223854165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2080209934165631"><a name="p2080209934165631"></a><a name="p2080209934165631"></a><a href="Consumer.md#ac6e98b3361e6be922804e8c459fe303b">identity</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1747706975093529"><a name="p1747706975093529"></a><a name="p1747706975093529"></a>const <a href="Identity.md">Identity</a> *&nbsp;</p>
-</td>
-</tr>
-<tr id="row1298748789093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p6498987093529"><a name="p6498987093529"></a><a name="p6498987093529"></a><a href="Consumer.md#a57b8ea7ff05c30832af06804a0526765">Notify</a> )(<a href="Consumer.md">Consumer</a> *consumer, const <a href="Broadcast.md#gaf03f5bc94cad32ab628a6cdee09b0542">Topic</a> *topic, const <a href="Request.md">Request</a> *origin)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2004502863093529"><a name="p2004502863093529"></a><a name="p2004502863093529"></a>void(*&nbsp;</p>
-<p id="p1020109672093529"><a name="p1020109672093529"></a><a name="p1020109672093529"></a>Defines how the consumer will process the events or data of a released topic. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p775692238165631"><a name="p775692238165631"></a><a name="p775692238165631"></a>const <a href="Identity.md">Identity</a> * </p>
 </td>
 </tr>
-<tr id="row1359859583093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p268105192093529"><a name="p268105192093529"></a><a name="p268105192093529"></a><a href="Consumer.md#a38ab45549e981dc8c8c0a90883a6bac8">Equal</a> )(const <a href="Consumer.md">Consumer</a> *current, const <a href="Consumer.md">Consumer</a> *other)</p>
+<tr id="row1161342717165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p245049565165631"><a name="p245049565165631"></a><a name="p245049565165631"></a><a href="Consumer.md#a57b8ea7ff05c30832af06804a0526765">Notify</a> )(<a href="Consumer.md">Consumer</a> *consumer, const <a href="Broadcast.md#gaf03f5bc94cad32ab628a6cdee09b0542">Topic</a> *topic, const <a href="Request.md">Request</a> *origin)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p156571843093529"><a name="p156571843093529"></a><a name="p156571843093529"></a>BOOL(*&nbsp;</p>
-<p id="p1472546537093529"><a name="p1472546537093529"></a><a name="p1472546537093529"></a>Checks whether two consumers are equal. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1497081705165631"><a name="p1497081705165631"></a><a name="p1497081705165631"></a>void(* </p>
+<p id="p1011069323165631"><a name="p1011069323165631"></a><a name="p1011069323165631"></a>Defines how the consumer will process the events or data of a released topic. </p>
+</td>
+</tr>
+<tr id="row690162539165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p257928500165631"><a name="p257928500165631"></a><a name="p257928500165631"></a><a href="Consumer.md#a38ab45549e981dc8c8c0a90883a6bac8">Equal</a> )(const <a href="Consumer.md">Consumer</a> *current, const <a href="Consumer.md">Consumer</a> *other)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1812876356165631"><a name="p1812876356165631"></a><a name="p1812876356165631"></a>BOOL(* </p>
+<p id="p1638459615165631"><a name="p1638459615165631"></a><a name="p1638459615165631"></a>Checks whether two consumers are equal. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section858939676093529"></a>
+## **Details**<a name="section304163631165631"></a>
 
-## **Field Documentation**<a name="section1869506993093529"></a>
+## **Field **<a name="section1026643206165631"></a>
 
 ## Equal<a name="a38ab45549e981dc8c8c0a90883a6bac8"></a>
 
@@ -59,17 +68,17 @@ You need to implement this function to prevent repeated topic subscription.
 
 **Parameters:**
 
-<a name="table2059435556093529"></a>
-<table><thead align="left"><tr id="row106012644093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1699721759093529"><a name="p1699721759093529"></a><a name="p1699721759093529"></a>Name</p>
+<a name="table413133702165631"></a>
+<table><thead align="left"><tr id="row935843313165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1420411528165631"><a name="p1420411528165631"></a><a name="p1420411528165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1797424450093529"><a name="p1797424450093529"></a><a name="p1797424450093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2099372885165631"><a name="p2099372885165631"></a><a name="p2099372885165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1500729193093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">current</td>
+<tbody><tr id="row1731164163165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">current</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the current consumer. </td>
 </tr>
-<tr id="row1855267687093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">other</td>
+<tr id="row53667923165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">other</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the target consumer to compare. </td>
 </tr>
 </tbody>
@@ -78,8 +87,6 @@ You need to implement this function to prevent repeated topic subscription.
 **Returns:**
 
 Returns  **TRUE**  if the two consumers are equal; returns  **FALSE**  otherwise. 
-
-
 
 ## identity<a name="ac6e98b3361e6be922804e8c459fe303b"></a>
 
@@ -105,20 +112,20 @@ You can implement this function for consumers to process topics associated with 
 
 **Parameters:**
 
-<a name="table1146310509093529"></a>
-<table><thead align="left"><tr id="row94293384093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1967543641093529"><a name="p1967543641093529"></a><a name="p1967543641093529"></a>Name</p>
+<a name="table1180735570165631"></a>
+<table><thead align="left"><tr id="row1920208490165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p574769601165631"><a name="p574769601165631"></a><a name="p574769601165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p154436163093529"><a name="p154436163093529"></a><a name="p154436163093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1066652007165631"><a name="p1066652007165631"></a><a name="p1066652007165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row910283182093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">consumer</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates <strong id="b774168409093529"><a name="b774168409093529"></a><a name="b774168409093529"></a>this</strong> pointer of the consumer. </td>
+<tbody><tr id="row2006218039165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">consumer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates <strong id="b2137454649165631"><a name="b2137454649165631"></a><a name="b2137454649165631"></a>this</strong> pointer of the consumer. </td>
 </tr>
-<tr id="row392843084093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">topic</td>
+<tr id="row190964430165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">topic</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the topic to be processed. </td>
 </tr>
-<tr id="row974577217093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">origin</td>
+<tr id="row309971703165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">origin</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the data to be processed. </td>
 </tr>
 </tbody>

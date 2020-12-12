@@ -1,6 +1,14 @@
 # DataTrackSourceInfo<a name="ZH-CN_TOPIC_0000001054879528"></a>
 
-## **Overview**<a name="section137244492093530"></a>
+-   [Overview](#section1633216618165631)
+-   [Summary](#section1000460764165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1189249564165631)
+-   [Field](#section2141516366165631)
+-   [bitRate](#ab0ea21bc9777d1d6d10b804c1d5335bf)
+-   [frameRate](#a6875f7fb2784b0afecd4e2f867fd2c72)
+
+## **Overview**<a name="section1633216618165631"></a>
 
 **Related Modules:**
 
@@ -18,33 +26,33 @@ Defines information about the muxer data source.
 
 1.0
 
-## **Summary**<a name="section752732731093530"></a>
+## **Summary**<a name="section1000460764165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table689003186093530"></a>
-<table><thead align="left"><tr id="row1939635744093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1233997109093530"><a name="p1233997109093530"></a><a name="p1233997109093530"></a>Variable Name</p>
+<a name="table1955212657165631"></a>
+<table><thead align="left"><tr id="row1039834631165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1475168473165631"><a name="p1475168473165631"></a><a name="p1475168473165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2112675774093530"><a name="p2112675774093530"></a><a name="p2112675774093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1971495548165631"><a name="p1971495548165631"></a><a name="p1971495548165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row646602609093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1034227227093530"><a name="p1034227227093530"></a><a name="p1034227227093530"></a><a href="DataTrackSourceInfo.md#a6875f7fb2784b0afecd4e2f867fd2c72">frameRate</a></p>
+<tbody><tr id="row1013583473165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p811554539165631"><a name="p811554539165631"></a><a name="p811554539165631"></a><a href="DataTrackSourceInfo.md#a6875f7fb2784b0afecd4e2f867fd2c72">frameRate</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2121503095093530"><a name="p2121503095093530"></a><a name="p2121503095093530"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1976605542165631"><a name="p1976605542165631"></a><a name="p1976605542165631"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row666580757093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p840649231093530"><a name="p840649231093530"></a><a name="p840649231093530"></a><a href="DataTrackSourceInfo.md#ab0ea21bc9777d1d6d10b804c1d5335bf">bitRate</a></p>
+<tr id="row902539017165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1757159722165631"><a name="p1757159722165631"></a><a name="p1757159722165631"></a><a href="DataTrackSourceInfo.md#ab0ea21bc9777d1d6d10b804c1d5335bf">bitRate</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p654501697093530"><a name="p654501697093530"></a><a name="p654501697093530"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1989422814165631"><a name="p1989422814165631"></a><a name="p1989422814165631"></a>uint32_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section904158338093530"></a>
+## **Details**<a name="section1189249564165631"></a>
 
-## **Field Documentation**<a name="section543983059093530"></a>
+## **Field **<a name="section2141516366165631"></a>
 
 ## bitRate<a name="ab0ea21bc9777d1d6d10b804c1d5335bf"></a>
 

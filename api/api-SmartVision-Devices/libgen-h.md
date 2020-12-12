@@ -1,6 +1,10 @@
 # libgen.h<a name="ZH-CN_TOPIC_0000001055108023"></a>
 
-## **Overview**<a name="section1118298603084830"></a>
+-   [Overview](#section587095845165628)
+-   [Summary](#section1457685268165628)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section587095845165628"></a>
 
 **Related Modules:**
 
@@ -18,27 +22,27 @@ Provides functions related to file management, for example, obtaining directory 
 
 1.0
 
-## **Summary**<a name="section1250114901084830"></a>
+## **Summary**<a name="section1457685268165628"></a>
 
 ## Functions<a name="func-members"></a>
 
-<a name="table2090801828084830"></a>
-<table><thead align="left"><tr id="row1126718090084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2039035782084830"><a name="p2039035782084830"></a><a name="p2039035782084830"></a>Function Name</p>
+<a name="table816356760165628"></a>
+<table><thead align="left"><tr id="row234544697165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p905015971165628"><a name="p905015971165628"></a><a name="p905015971165628"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p392545949084830"><a name="p392545949084830"></a><a name="p392545949084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p535105236165628"><a name="p535105236165628"></a><a name="p535105236165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1239283482084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1346547202084830"><a name="p1346547202084830"></a><a name="p1346547202084830"></a><a href="FS.md#gab1b6028f4625caec30c1020e737216e2">dirname</a> (char *path)</p>
+<tbody><tr id="row2058532351165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p342861211165628"><a name="p342861211165628"></a><a name="p342861211165628"></a><a href="FS.md#gab1b6028f4625caec30c1020e737216e2">dirname</a> (char *path)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p818737292084830"><a name="p818737292084830"></a><a name="p818737292084830"></a>char *&nbsp;</p>
-<p id="p1101763677084830"><a name="p1101763677084830"></a><a name="p1101763677084830"></a>Obtains a directory name in a specified path. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1827319203165628"><a name="p1827319203165628"></a><a name="p1827319203165628"></a>char * </p>
+<p id="p485231766165628"><a name="p485231766165628"></a><a name="p485231766165628"></a>Obtains a directory name in a specified path. </p>
 </td>
 </tr>
-<tr id="row1008734393084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1213944225084830"><a name="p1213944225084830"></a><a name="p1213944225084830"></a><a href="FS.md#gaa14fc3333d84f41eacc023626687aebd">basename</a> (char *path)</p>
+<tr id="row1965835001165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1172135414165628"><a name="p1172135414165628"></a><a name="p1172135414165628"></a><a href="FS.md#gaa14fc3333d84f41eacc023626687aebd">basename</a> (char *path)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2123103737084830"><a name="p2123103737084830"></a><a name="p2123103737084830"></a>char *&nbsp;</p>
-<p id="p1149517370084830"><a name="p1149517370084830"></a><a name="p1149517370084830"></a>Obtains a file name (excluding the directory) in a specified path. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p305278884165628"><a name="p305278884165628"></a><a name="p305278884165628"></a>char * </p>
+<p id="p62962595165628"><a name="p62962595165628"></a><a name="p62962595165628"></a>Obtains a file name (excluding the directory) in a specified path. </p>
 </td>
 </tr>
 </tbody>

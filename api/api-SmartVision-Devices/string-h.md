@@ -1,6 +1,11 @@
 # string.h<a name="ZH-CN_TOPIC_0000001054748013"></a>
 
-## **Overview**<a name="section954002691084832"></a>
+-   [Overview](#section1515866369165629)
+-   [Summary](#section432837237165629)
+-   [Macros](#define-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1515866369165629"></a>
 
 **Related Modules:**
 
@@ -20,20 +25,20 @@ You can use the functions provided in this file to perform the mathematical oper
 
 1.0
 
-## **Summary**<a name="section1744115961084832"></a>
+## **Summary**<a name="section432837237165629"></a>
 
 ## Macros<a name="define-members"></a>
 
-<a name="table435406862084832"></a>
-<table><thead align="left"><tr id="row2064291249084832"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p43772431084832"><a name="p43772431084832"></a><a name="p43772431084832"></a>Macro Name and Value</p>
+<a name="table2130635429165629"></a>
+<table><thead align="left"><tr id="row1911745680165629"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1905860701165629"><a name="p1905860701165629"></a><a name="p1905860701165629"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p817427477084832"><a name="p817427477084832"></a><a name="p817427477084832"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1089655047165629"><a name="p1089655047165629"></a><a name="p1089655047165629"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row125001866084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1760992242084832"><a name="p1760992242084832"></a><a name="p1760992242084832"></a><a href="UTILS.md#ga6dfceaa174558eaee80a23cb09139dfd">strdupa</a>(x)&nbsp;&nbsp;&nbsp;<a href="UTILS.md#ga7a82515b5d377be04817715c5465b647">strcpy</a>(alloca(<a href="UTILS.md#gaa383452fe445bfae989358c9d7d96f4f">strlen</a>(x)+1),x)</p>
+<tbody><tr id="row424002273165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p991438012165629"><a name="p991438012165629"></a><a name="p991438012165629"></a><a href="UTILS.md#ga6dfceaa174558eaee80a23cb09139dfd">strdupa</a>(x)   <a href="UTILS.md#ga7a82515b5d377be04817715c5465b647">strcpy</a>(alloca(<a href="UTILS.md#gaa383452fe445bfae989358c9d7d96f4f">strlen</a>(x)+1),x)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p13297625084832"><a name="p13297625084832"></a><a name="p13297625084832"></a>Copies a string to a new position. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1649415956165629"><a name="p1649415956165629"></a><a name="p1649415956165629"></a>Copies a string to a new position. </p>
 </td>
 </tr>
 </tbody>
@@ -41,257 +46,257 @@ You can use the functions provided in this file to perform the mathematical oper
 
 ## Functions<a name="func-members"></a>
 
-<a name="table900534181084832"></a>
-<table><thead align="left"><tr id="row266851306084832"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p431922747084832"><a name="p431922747084832"></a><a name="p431922747084832"></a>Function Name</p>
+<a name="table1148291325165629"></a>
+<table><thead align="left"><tr id="row1670661524165629"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1727377724165629"><a name="p1727377724165629"></a><a name="p1727377724165629"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1405887708084832"><a name="p1405887708084832"></a><a name="p1405887708084832"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1691631844165629"><a name="p1691631844165629"></a><a name="p1691631844165629"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1086094900084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1039884616084832"><a name="p1039884616084832"></a><a name="p1039884616084832"></a><a href="UTILS.md#ga0ee37e291991bef6e3f4b49a970171e7">memcpy</a> (void *__restrict dest, const void *__restrict src, size_t n)</p>
+<tbody><tr id="row608295796165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1451975384165629"><a name="p1451975384165629"></a><a name="p1451975384165629"></a><a href="UTILS.md#ga0ee37e291991bef6e3f4b49a970171e7">memcpy</a> (void *__restrict dest, const void *__restrict src, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p577959938084832"><a name="p577959938084832"></a><a name="p577959938084832"></a>void *&nbsp;</p>
-<p id="p1532084046084832"><a name="p1532084046084832"></a><a name="p1532084046084832"></a>Copies a string (overlapping not allowed). </p>
-</td>
-</tr>
-<tr id="row243566314084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1408087178084832"><a name="p1408087178084832"></a><a name="p1408087178084832"></a><a href="UTILS.md#ga802c986820d3866639922b6bc9484f90">memmove</a> (void *dest, const void *src, size_t n)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p308399523084832"><a name="p308399523084832"></a><a name="p308399523084832"></a>void *&nbsp;</p>
-<p id="p636583504084832"><a name="p636583504084832"></a><a name="p636583504084832"></a>Copies a string (overlapping allowed). </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p823720258165629"><a name="p823720258165629"></a><a name="p823720258165629"></a>void * </p>
+<p id="p1150067117165629"><a name="p1150067117165629"></a><a name="p1150067117165629"></a>Copies a string (overlapping not allowed). </p>
 </td>
 </tr>
-<tr id="row522184168084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1277697427084832"><a name="p1277697427084832"></a><a name="p1277697427084832"></a><a href="UTILS.md#gace6ee45c30e71865e6eb635200379db9">memset</a> (void *s, int c, size_t n)</p>
+<tr id="row1389431082165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p224794956165629"><a name="p224794956165629"></a><a name="p224794956165629"></a><a href="UTILS.md#ga802c986820d3866639922b6bc9484f90">memmove</a> (void *dest, const void *src, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1888566513084832"><a name="p1888566513084832"></a><a name="p1888566513084832"></a>void *&nbsp;</p>
-<p id="p1726815995084832"><a name="p1726815995084832"></a><a name="p1726815995084832"></a>Copies a character to the specified memory area. </p>
-</td>
-</tr>
-<tr id="row1153121489084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p836985448084832"><a name="p836985448084832"></a><a name="p836985448084832"></a><a href="UTILS.md#ga9e6df54ee04e18a3772335580e2ed872">memcmp</a> (const void *s1, const void *s2, size_t n)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p305043998084832"><a name="p305043998084832"></a><a name="p305043998084832"></a>int&nbsp;</p>
-<p id="p1455292695084832"><a name="p1455292695084832"></a><a name="p1455292695084832"></a>Compares two memory areas. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p164073539165629"><a name="p164073539165629"></a><a name="p164073539165629"></a>void * </p>
+<p id="p2049735558165629"><a name="p2049735558165629"></a><a name="p2049735558165629"></a>Copies a string (overlapping allowed). </p>
 </td>
 </tr>
-<tr id="row512024983084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1534030547084832"><a name="p1534030547084832"></a><a name="p1534030547084832"></a><a href="UTILS.md#ga16d6b0bd660cc3f9910924c6b6f4af8e">memchr</a> (const void *s, int c, size_t n)</p>
+<tr id="row867883235165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p862023291165629"><a name="p862023291165629"></a><a name="p862023291165629"></a><a href="UTILS.md#gace6ee45c30e71865e6eb635200379db9">memset</a> (void *s, int c, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1702400018084832"><a name="p1702400018084832"></a><a name="p1702400018084832"></a>void *&nbsp;</p>
-<p id="p533284414084832"><a name="p533284414084832"></a><a name="p533284414084832"></a>Searches for a character in the specified memory area. </p>
-</td>
-</tr>
-<tr id="row570301865084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p457806803084832"><a name="p457806803084832"></a><a name="p457806803084832"></a><a href="UTILS.md#ga7a82515b5d377be04817715c5465b647">strcpy</a> (char *dest, const char *src)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p244491856084832"><a name="p244491856084832"></a><a name="p244491856084832"></a>char *&nbsp;</p>
-<p id="p595675820084832"><a name="p595675820084832"></a><a name="p595675820084832"></a>Copies a string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p631471247165629"><a name="p631471247165629"></a><a name="p631471247165629"></a>void * </p>
+<p id="p1443856108165629"><a name="p1443856108165629"></a><a name="p1443856108165629"></a>Copies a character to the specified memory area. </p>
 </td>
 </tr>
-<tr id="row1125504946084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1109093573084832"><a name="p1109093573084832"></a><a name="p1109093573084832"></a><a href="UTILS.md#ga47d54f24198df56da51078a6c540b9ed">strncpy</a> (char *dest, const char *src, size_t n)</p>
+<tr id="row667111730165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1175369463165629"><a name="p1175369463165629"></a><a name="p1175369463165629"></a><a href="UTILS.md#ga9e6df54ee04e18a3772335580e2ed872">memcmp</a> (const void *s1, const void *s2, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1630777822084832"><a name="p1630777822084832"></a><a name="p1630777822084832"></a>char *&nbsp;</p>
-<p id="p963385878084832"><a name="p963385878084832"></a><a name="p963385878084832"></a>Copies <strong id="b1169383028084832"><a name="b1169383028084832"></a><a name="b1169383028084832"></a>n</strong> characters of a string. </p>
-</td>
-</tr>
-<tr id="row1951248245084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1834336426084832"><a name="p1834336426084832"></a><a name="p1834336426084832"></a><a href="UTILS.md#gadb8723e585ed29f2370cddf90f6891bc">strcat</a> (char *dest, const char *src)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1923330630084832"><a name="p1923330630084832"></a><a name="p1923330630084832"></a>char *&nbsp;</p>
-<p id="p1500466902084832"><a name="p1500466902084832"></a><a name="p1500466902084832"></a>Appends a string to another one. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p808866615165629"><a name="p808866615165629"></a><a name="p808866615165629"></a>int </p>
+<p id="p156637444165629"><a name="p156637444165629"></a><a name="p156637444165629"></a>Compares two memory areas. </p>
 </td>
 </tr>
-<tr id="row1772822592084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p15374762084832"><a name="p15374762084832"></a><a name="p15374762084832"></a><a href="UTILS.md#ga0aee928c2844a269966e4832fd2255c5">strncat</a> (char *dest, const char *src, size_t n)</p>
+<tr id="row1431706364165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p31614191165629"><a name="p31614191165629"></a><a name="p31614191165629"></a><a href="UTILS.md#ga16d6b0bd660cc3f9910924c6b6f4af8e">memchr</a> (const void *s, int c, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1027059737084832"><a name="p1027059737084832"></a><a name="p1027059737084832"></a>char *&nbsp;</p>
-<p id="p553248873084832"><a name="p553248873084832"></a><a name="p553248873084832"></a>Appends the first <strong id="b1503670549084832"><a name="b1503670549084832"></a><a name="b1503670549084832"></a>n</strong> bytes of a string to another one. </p>
-</td>
-</tr>
-<tr id="row1999205716084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1844155800084832"><a name="p1844155800084832"></a><a name="p1844155800084832"></a><a href="UTILS.md#ga11bd144d7d44914099a3aeddf1c8567d">strcmp</a> (const char *s1, const char *s2)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1984087152084832"><a name="p1984087152084832"></a><a name="p1984087152084832"></a>int&nbsp;</p>
-<p id="p1518550880084832"><a name="p1518550880084832"></a><a name="p1518550880084832"></a>Compares two strings by characters. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1970786376165629"><a name="p1970786376165629"></a><a name="p1970786376165629"></a>void * </p>
+<p id="p1281894184165629"><a name="p1281894184165629"></a><a name="p1281894184165629"></a>Searches for a character in the specified memory area. </p>
 </td>
 </tr>
-<tr id="row590566638084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p285685836084832"><a name="p285685836084832"></a><a name="p285685836084832"></a><a href="UTILS.md#ga07f4a84c11c106e95c32b6ab509346ef">strncmp</a> (const char *s1, const char *s2, size_t n)</p>
+<tr id="row1282898588165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2126765781165629"><a name="p2126765781165629"></a><a name="p2126765781165629"></a><a href="UTILS.md#ga7a82515b5d377be04817715c5465b647">strcpy</a> (char *dest, const char *src)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1644625507084832"><a name="p1644625507084832"></a><a name="p1644625507084832"></a>int&nbsp;</p>
-<p id="p1833624408084832"><a name="p1833624408084832"></a><a name="p1833624408084832"></a>Compares the first n characters of two strings. </p>
-</td>
-</tr>
-<tr id="row609867976084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p667545939084832"><a name="p667545939084832"></a><a name="p667545939084832"></a><a href="UTILS.md#gaa4718e50ed45c2275c5d85a121d68097">strcoll</a> (const char *s1, const char *s2)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p551529414084832"><a name="p551529414084832"></a><a name="p551529414084832"></a>int&nbsp;</p>
-<p id="p1459873722084832"><a name="p1459873722084832"></a><a name="p1459873722084832"></a>Compares two strings by character for the program's current locale. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1598453944165629"><a name="p1598453944165629"></a><a name="p1598453944165629"></a>char * </p>
+<p id="p1941598728165629"><a name="p1941598728165629"></a><a name="p1941598728165629"></a>Copies a string. </p>
 </td>
 </tr>
-<tr id="row891680121084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p804331564084832"><a name="p804331564084832"></a><a name="p804331564084832"></a><a href="UTILS.md#ga2294f2f1c4eaef870ef3d5d90e5cb36f">strcoll_l</a> (const char *s1, const char *s2, locale_t locale)</p>
+<tr id="row1514232309165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p831484457165629"><a name="p831484457165629"></a><a name="p831484457165629"></a><a href="UTILS.md#ga47d54f24198df56da51078a6c540b9ed">strncpy</a> (char *dest, const char *src, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p368057523084832"><a name="p368057523084832"></a><a name="p368057523084832"></a>int&nbsp;</p>
-<p id="p1398029512084832"><a name="p1398029512084832"></a><a name="p1398029512084832"></a>Compares two strings by character for the specified locale. </p>
-</td>
-</tr>
-<tr id="row1404882066084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1112001428084832"><a name="p1112001428084832"></a><a name="p1112001428084832"></a><a href="UTILS.md#gadd1f1078b3303920c19fd68fcba3f908">strxfrm</a> (char *dest, const char *src, size_t n)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1632716666084832"><a name="p1632716666084832"></a><a name="p1632716666084832"></a>size_t&nbsp;</p>
-<p id="p1506144084084832"><a name="p1506144084084832"></a><a name="p1506144084084832"></a>Converts the first n characters of the source string pointed to by <strong id="b1390515925084832"><a name="b1390515925084832"></a><a name="b1390515925084832"></a>src</strong> based on the program's current locale specified by <a href="IO.md#gaab9cf7b1a206fb75e5884934c8d676db">LC_COLLATE</a>, and places them in the destination string pointed to by <strong id="b1642470686084832"><a name="b1642470686084832"></a><a name="b1642470686084832"></a>dest</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p206714730165629"><a name="p206714730165629"></a><a name="p206714730165629"></a>char * </p>
+<p id="p1130488936165629"><a name="p1130488936165629"></a><a name="p1130488936165629"></a>Copies <strong id="b28680031165629"><a name="b28680031165629"></a><a name="b28680031165629"></a>n</strong> characters of a string. </p>
 </td>
 </tr>
-<tr id="row461937204084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p154451360084832"><a name="p154451360084832"></a><a name="p154451360084832"></a><a href="UTILS.md#ga12871ed234858ef0e363d2b8aa572fc1">strchr</a> (const char *s, int c)</p>
+<tr id="row725903923165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1024719329165629"><a name="p1024719329165629"></a><a name="p1024719329165629"></a><a href="UTILS.md#gadb8723e585ed29f2370cddf90f6891bc">strcat</a> (char *dest, const char *src)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p186716304084832"><a name="p186716304084832"></a><a name="p186716304084832"></a>char *&nbsp;</p>
-<p id="p1615134773084832"><a name="p1615134773084832"></a><a name="p1615134773084832"></a>Locates the first occurrence of a character in a string. </p>
-</td>
-</tr>
-<tr id="row168386494084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1365721096084832"><a name="p1365721096084832"></a><a name="p1365721096084832"></a><a href="UTILS.md#ga0c05a458deff028ef4d4e64059098db4">strrchr</a> (const char *s, int c)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1596528211084832"><a name="p1596528211084832"></a><a name="p1596528211084832"></a>char *&nbsp;</p>
-<p id="p201685714084832"><a name="p201685714084832"></a><a name="p201685714084832"></a>Locates the last occurrence of a character in a string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p781895274165629"><a name="p781895274165629"></a><a name="p781895274165629"></a>char * </p>
+<p id="p1349106268165629"><a name="p1349106268165629"></a><a name="p1349106268165629"></a>Appends a string to another one. </p>
 </td>
 </tr>
-<tr id="row834051215084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p831042989084832"><a name="p831042989084832"></a><a name="p831042989084832"></a><a href="UTILS.md#gaeb6c449e5d77477c057abf00eaaf88fe">strcspn</a> (const char *s, const char *reject)</p>
+<tr id="row1869664481165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p536255671165629"><a name="p536255671165629"></a><a name="p536255671165629"></a><a href="UTILS.md#ga0aee928c2844a269966e4832fd2255c5">strncat</a> (char *dest, const char *src, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1700679071084832"><a name="p1700679071084832"></a><a name="p1700679071084832"></a>size_t&nbsp;</p>
-<p id="p1911616614084832"><a name="p1911616614084832"></a><a name="p1911616614084832"></a>Obtains the length of the initial segment of a string that contains characters not in reject. </p>
-</td>
-</tr>
-<tr id="row347204505084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1472457996084832"><a name="p1472457996084832"></a><a name="p1472457996084832"></a><a href="UTILS.md#ga900a0edfa51f601d479244f7451cedd1">strspn</a> (const char *s, const char *<a href="NET.md#ga0807af5ac9dfc2a63624e8c3e0ae95ef">accept</a>)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1252356728084832"><a name="p1252356728084832"></a><a name="p1252356728084832"></a>size_t&nbsp;</p>
-<p id="p1330081892084832"><a name="p1330081892084832"></a><a name="p1330081892084832"></a>Obtains the length of the initial segment of a string that contains characters in accept. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1077454572165629"><a name="p1077454572165629"></a><a name="p1077454572165629"></a>char * </p>
+<p id="p835414181165629"><a name="p835414181165629"></a><a name="p835414181165629"></a>Appends the first <strong id="b860605098165629"><a name="b860605098165629"></a><a name="b860605098165629"></a>n</strong> bytes of a string to another one. </p>
 </td>
 </tr>
-<tr id="row1041385977084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p65642890084832"><a name="p65642890084832"></a><a name="p65642890084832"></a><a href="UTILS.md#ga119f23a5dcb4eb5f1c1eed3cbf5cb0ed">strpbrk</a> (const char *s, const char *<a href="NET.md#ga0807af5ac9dfc2a63624e8c3e0ae95ef">accept</a>)</p>
+<tr id="row1039007198165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1506311146165629"><a name="p1506311146165629"></a><a name="p1506311146165629"></a><a href="UTILS.md#ga11bd144d7d44914099a3aeddf1c8567d">strcmp</a> (const char *s1, const char *s2)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p447746467084832"><a name="p447746467084832"></a><a name="p447746467084832"></a>char *&nbsp;</p>
-<p id="p916419770084832"><a name="p916419770084832"></a><a name="p916419770084832"></a>Searches for any of a set of characters in a string. </p>
-</td>
-</tr>
-<tr id="row351337084084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1402087061084832"><a name="p1402087061084832"></a><a name="p1402087061084832"></a><a href="UTILS.md#ga4a710d86541afc6b7dafddcdb4b1c94f">strstr</a> (const char *haystack, const char *needle)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p196114591084832"><a name="p196114591084832"></a><a name="p196114591084832"></a>char *&nbsp;</p>
-<p id="p1576848235084832"><a name="p1576848235084832"></a><a name="p1576848235084832"></a>Searches for a needle string in its haystack string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p721030458165629"><a name="p721030458165629"></a><a name="p721030458165629"></a>int </p>
+<p id="p1903495799165629"><a name="p1903495799165629"></a><a name="p1903495799165629"></a>Compares two strings by characters. </p>
 </td>
 </tr>
-<tr id="row2015876062084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p754060067084832"><a name="p754060067084832"></a><a name="p754060067084832"></a><a href="UTILS.md#ga8cb460f64c449f2a9b9b7a40569ce0fe">strtok</a> (char *str, const char *delim)</p>
+<tr id="row608589141165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p3851464165629"><a name="p3851464165629"></a><a name="p3851464165629"></a><a href="UTILS.md#ga07f4a84c11c106e95c32b6ab509346ef">strncmp</a> (const char *s1, const char *s2, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1802213801084832"><a name="p1802213801084832"></a><a name="p1802213801084832"></a>char *&nbsp;</p>
-<p id="p91658649084832"><a name="p91658649084832"></a><a name="p91658649084832"></a>Separates a string into a series of tokens separated by a delimiter. </p>
-</td>
-</tr>
-<tr id="row355706792084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p28346888084832"><a name="p28346888084832"></a><a name="p28346888084832"></a><a href="UTILS.md#gaa383452fe445bfae989358c9d7d96f4f">strlen</a> (const char *s)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1902750753084832"><a name="p1902750753084832"></a><a name="p1902750753084832"></a>size_t&nbsp;</p>
-<p id="p1819518384084832"><a name="p1819518384084832"></a><a name="p1819518384084832"></a>Calculates the length of a string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p830429796165629"><a name="p830429796165629"></a><a name="p830429796165629"></a>int </p>
+<p id="p961737338165629"><a name="p961737338165629"></a><a name="p961737338165629"></a>Compares the first n characters of two strings. </p>
 </td>
 </tr>
-<tr id="row2083785207084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p762527325084832"><a name="p762527325084832"></a><a name="p762527325084832"></a><a href="UTILS.md#gadd46ab98f32b76457852dbb872842bf2">strerror</a> (int errnum)</p>
+<tr id="row441861653165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p665985952165629"><a name="p665985952165629"></a><a name="p665985952165629"></a><a href="UTILS.md#gaa4718e50ed45c2275c5d85a121d68097">strcoll</a> (const char *s1, const char *s2)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1038625991084832"><a name="p1038625991084832"></a><a name="p1038625991084832"></a>char *&nbsp;</p>
-<p id="p70609482084832"><a name="p70609482084832"></a><a name="p70609482084832"></a>Obtains an error description string of the specified error code. </p>
-</td>
-</tr>
-<tr id="row1045416975084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1224725377084832"><a name="p1224725377084832"></a><a name="p1224725377084832"></a><a href="UTILS.md#gab11d86a2a3af0a355cad2337c6f4e9f7">strtok_r</a> (char *str, const char *delim, char **saveptr)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1509853830084832"><a name="p1509853830084832"></a><a name="p1509853830084832"></a>char *&nbsp;</p>
-<p id="p1651518381084832"><a name="p1651518381084832"></a><a name="p1651518381084832"></a>Separates a string into a series of tokens separated by a delimiter, with the <strong id="b1204168448084832"><a name="b1204168448084832"></a><a name="b1204168448084832"></a>saveptr</strong> parameter specified. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p13169237165629"><a name="p13169237165629"></a><a name="p13169237165629"></a>int </p>
+<p id="p1136480246165629"><a name="p1136480246165629"></a><a name="p1136480246165629"></a>Compares two strings by character for the program's current locale. </p>
 </td>
 </tr>
-<tr id="row131159730084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p128445819084832"><a name="p128445819084832"></a><a name="p128445819084832"></a><a href="UTILS.md#ga8f7507e357cbd24048ae77e27e5d41d7">strerror_l</a> (int errnum, locale_t locale)</p>
+<tr id="row1651286324165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p140837152165629"><a name="p140837152165629"></a><a name="p140837152165629"></a><a href="UTILS.md#ga2294f2f1c4eaef870ef3d5d90e5cb36f">strcoll_l</a> (const char *s1, const char *s2, locale_t locale)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p907250144084832"><a name="p907250144084832"></a><a name="p907250144084832"></a>char *&nbsp;</p>
-<p id="p1972356492084832"><a name="p1972356492084832"></a><a name="p1972356492084832"></a>Obtains an error description string of the specified error code for the specified locale. </p>
-</td>
-</tr>
-<tr id="row472422121084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1264813788084832"><a name="p1264813788084832"></a><a name="p1264813788084832"></a><a href="UTILS.md#ga7253ba059153058c57952194237c6b55">strerror_r</a> (int errnum, char *buf, size_t buflen)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p217207591084832"><a name="p217207591084832"></a><a name="p217207591084832"></a>char *&nbsp;</p>
-<p id="p394977477084832"><a name="p394977477084832"></a><a name="p394977477084832"></a>Obtains an error description string of the specified error code. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1972834017165629"><a name="p1972834017165629"></a><a name="p1972834017165629"></a>int </p>
+<p id="p1346131061165629"><a name="p1346131061165629"></a><a name="p1346131061165629"></a>Compares two strings by character for the specified locale. </p>
 </td>
 </tr>
-<tr id="row641871139084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p808875132084832"><a name="p808875132084832"></a><a name="p808875132084832"></a><a href="UTILS.md#ga890dbcd7c456828c1b6ff714e405fcc1">stpcpy</a> (char *dest, const char *src)</p>
+<tr id="row1298922405165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p110865905165629"><a name="p110865905165629"></a><a name="p110865905165629"></a><a href="UTILS.md#gadd1f1078b3303920c19fd68fcba3f908">strxfrm</a> (char *dest, const char *src, size_t n)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p238002723084832"><a name="p238002723084832"></a><a name="p238002723084832"></a>char *&nbsp;</p>
-<p id="p1776264703084832"><a name="p1776264703084832"></a><a name="p1776264703084832"></a>Copies a string. </p>
-</td>
-</tr>
-<tr id="row859540045084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p209340994084832"><a name="p209340994084832"></a><a name="p209340994084832"></a><a href="UTILS.md#ga217a70a69e2fc7727278516b7ad2fc26">stpncpy</a> (char *dest, const char *src, size_t n)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p140674643084832"><a name="p140674643084832"></a><a name="p140674643084832"></a>char *&nbsp;</p>
-<p id="p1364628092084832"><a name="p1364628092084832"></a><a name="p1364628092084832"></a>Copies n characters of a string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1964322353165629"><a name="p1964322353165629"></a><a name="p1964322353165629"></a>size_t </p>
+<p id="p1762982290165629"><a name="p1762982290165629"></a><a name="p1762982290165629"></a>Converts the first n characters of the source string pointed to by <strong id="b896378269165629"><a name="b896378269165629"></a><a name="b896378269165629"></a>src</strong> based on the program's current locale specified by <a href="IO.md#gaab9cf7b1a206fb75e5884934c8d676db">LC_COLLATE</a>, and places them in the destination string pointed to by <strong id="b1826989181165629"><a name="b1826989181165629"></a><a name="b1826989181165629"></a>dest</strong>. </p>
 </td>
 </tr>
-<tr id="row145462078084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p399223964084832"><a name="p399223964084832"></a><a name="p399223964084832"></a><a href="UTILS.md#gafc92d2231e45d19988c7894aa2a07f0c">strnlen</a> (const char *s, size_t maxlen)</p>
+<tr id="row405914885165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p146759709165629"><a name="p146759709165629"></a><a name="p146759709165629"></a><a href="UTILS.md#ga12871ed234858ef0e363d2b8aa572fc1">strchr</a> (const char *s, int c)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2081427846084832"><a name="p2081427846084832"></a><a name="p2081427846084832"></a>size_t&nbsp;</p>
-<p id="p796945884084832"><a name="p796945884084832"></a><a name="p796945884084832"></a>Calculates the length of a string. </p>
-</td>
-</tr>
-<tr id="row1990137645084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p562298579084832"><a name="p562298579084832"></a><a name="p562298579084832"></a><a href="UTILS.md#gab1cc1a3ff560049e22576031c7c2345b">strdup</a> (const char *s)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p536579325084832"><a name="p536579325084832"></a><a name="p536579325084832"></a>char *&nbsp;</p>
-<p id="p368028601084832"><a name="p368028601084832"></a><a name="p368028601084832"></a>Copies a string to a new position. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p374112837165629"><a name="p374112837165629"></a><a name="p374112837165629"></a>char * </p>
+<p id="p426247797165629"><a name="p426247797165629"></a><a name="p426247797165629"></a>Locates the first occurrence of a character in a string. </p>
 </td>
 </tr>
-<tr id="row240737603084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p861615938084832"><a name="p861615938084832"></a><a name="p861615938084832"></a><a href="UTILS.md#ga8b860ba32fef12da8acd4507c059e509">strndup</a> (const char *s, size_t n)</p>
+<tr id="row1498291227165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p599821161165629"><a name="p599821161165629"></a><a name="p599821161165629"></a><a href="UTILS.md#ga0c05a458deff028ef4d4e64059098db4">strrchr</a> (const char *s, int c)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1274878393084832"><a name="p1274878393084832"></a><a name="p1274878393084832"></a>char *&nbsp;</p>
-<p id="p1230007521084832"><a name="p1230007521084832"></a><a name="p1230007521084832"></a>Copies n characters of a string to a new position. </p>
-</td>
-</tr>
-<tr id="row1563632745084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1668233252084832"><a name="p1668233252084832"></a><a name="p1668233252084832"></a><a href="UTILS.md#ga8f7c22bf1131bd6ffe6635e386fb4ebd">strsignal</a> (int sig)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1840104384084832"><a name="p1840104384084832"></a><a name="p1840104384084832"></a>char *&nbsp;</p>
-<p id="p871877367084832"><a name="p871877367084832"></a><a name="p871877367084832"></a>Returns a string describing the signal number. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1928362085165629"><a name="p1928362085165629"></a><a name="p1928362085165629"></a>char * </p>
+<p id="p952817962165629"><a name="p952817962165629"></a><a name="p952817962165629"></a>Locates the last occurrence of a character in a string. </p>
 </td>
 </tr>
-<tr id="row612030256084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p517078556084832"><a name="p517078556084832"></a><a name="p517078556084832"></a><a href="UTILS.md#ga2ffbfe50042aaf5b987782dcd16ea1f0">memccpy</a> (void *__restrict dest, const void *__restrict src, int c, size_t n)</p>
+<tr id="row1578126144165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1413096546165629"><a name="p1413096546165629"></a><a name="p1413096546165629"></a><a href="UTILS.md#gaeb6c449e5d77477c057abf00eaaf88fe">strcspn</a> (const char *s, const char *reject)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p804908639084832"><a name="p804908639084832"></a><a name="p804908639084832"></a>void *&nbsp;</p>
-<p id="p294630903084832"><a name="p294630903084832"></a><a name="p294630903084832"></a>Copies a memory area to another one. </p>
-</td>
-</tr>
-<tr id="row1934651684084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1727803469084832"><a name="p1727803469084832"></a><a name="p1727803469084832"></a><a href="UTILS.md#ga93c766c6e86f4f79e7507c21f1794e15">strsep</a> (char **stringp, const char *delim)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p598798726084832"><a name="p598798726084832"></a><a name="p598798726084832"></a>char *&nbsp;</p>
-<p id="p1137229838084832"><a name="p1137229838084832"></a><a name="p1137229838084832"></a>Separates a string into a series of tokens separated by a delimiter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p134428203165629"><a name="p134428203165629"></a><a name="p134428203165629"></a>size_t </p>
+<p id="p1746555286165629"><a name="p1746555286165629"></a><a name="p1746555286165629"></a>Obtains the length of the initial segment of a string that contains characters not in reject. </p>
 </td>
 </tr>
-<tr id="row21355044084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1042466404084832"><a name="p1042466404084832"></a><a name="p1042466404084832"></a><a href="UTILS.md#ga0266462615f2f112003cdb591710d299">strlcat</a> (char *d, const char *s, size_t n)</p>
+<tr id="row766812288165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1809366335165629"><a name="p1809366335165629"></a><a name="p1809366335165629"></a><a href="UTILS.md#ga900a0edfa51f601d479244f7451cedd1">strspn</a> (const char *s, const char *<a href="NET.md#ga0807af5ac9dfc2a63624e8c3e0ae95ef">accept</a>)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p720848803084832"><a name="p720848803084832"></a><a name="p720848803084832"></a>size_t&nbsp;</p>
-<p id="p1227912849084832"><a name="p1227912849084832"></a><a name="p1227912849084832"></a>Appends the first <strong id="b807654321084832"><a name="b807654321084832"></a><a name="b807654321084832"></a>n</strong> bytes of a string to another one. </p>
-</td>
-</tr>
-<tr id="row1365408070084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1666718893084832"><a name="p1666718893084832"></a><a name="p1666718893084832"></a><a href="UTILS.md#ga50bd3317d65f3da7d180b8981e58c5a4">strlcpy</a> (char *d, const char *s, size_t n)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p818603115084832"><a name="p818603115084832"></a><a name="p818603115084832"></a>size_t&nbsp;</p>
-<p id="p904325244084832"><a name="p904325244084832"></a><a name="p904325244084832"></a>Copies a string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p550678582165629"><a name="p550678582165629"></a><a name="p550678582165629"></a>size_t </p>
+<p id="p831609930165629"><a name="p831609930165629"></a><a name="p831609930165629"></a>Obtains the length of the initial segment of a string that contains characters in accept. </p>
 </td>
 </tr>
-<tr id="row1806409977084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1227890662084832"><a name="p1227890662084832"></a><a name="p1227890662084832"></a><a href="UTILS.md#ga1563a7059aabf95c0b588278e8bed575">strverscmp</a> (const char *s1, const char *s2)</p>
+<tr id="row218960827165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p185231107165629"><a name="p185231107165629"></a><a name="p185231107165629"></a><a href="UTILS.md#ga119f23a5dcb4eb5f1c1eed3cbf5cb0ed">strpbrk</a> (const char *s, const char *<a href="NET.md#ga0807af5ac9dfc2a63624e8c3e0ae95ef">accept</a>)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p340244770084832"><a name="p340244770084832"></a><a name="p340244770084832"></a>int&nbsp;</p>
-<p id="p364833704084832"><a name="p364833704084832"></a><a name="p364833704084832"></a>Compares strings of two versions (string 1 and string 2) and returns the comparison result. </p>
-</td>
-</tr>
-<tr id="row1417080912084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p506927266084832"><a name="p506927266084832"></a><a name="p506927266084832"></a><a href="UTILS.md#gae9229017a4501f8d6a637b4498cfed2e">strcasestr</a> (const char *haystack, const char *needle)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p962030099084832"><a name="p962030099084832"></a><a name="p962030099084832"></a>char *&nbsp;</p>
-<p id="p2061322858084832"><a name="p2061322858084832"></a><a name="p2061322858084832"></a>Searches for a needle string in its haystack string and returns a pointer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p824170041165629"><a name="p824170041165629"></a><a name="p824170041165629"></a>char * </p>
+<p id="p1878860627165629"><a name="p1878860627165629"></a><a name="p1878860627165629"></a>Searches for any of a set of characters in a string. </p>
 </td>
 </tr>
-<tr id="row987061132084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p326380775084832"><a name="p326380775084832"></a><a name="p326380775084832"></a><a href="UTILS.md#ga5f6423417e952f934be0a582d87b663a">memmem</a> (const void *haystack, size_t haystacklen, const void *needle, size_t needlelen)</p>
+<tr id="row1481070346165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p752311574165629"><a name="p752311574165629"></a><a name="p752311574165629"></a><a href="UTILS.md#ga4a710d86541afc6b7dafddcdb4b1c94f">strstr</a> (const char *haystack, const char *needle)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1700789581084832"><a name="p1700789581084832"></a><a name="p1700789581084832"></a>void *&nbsp;</p>
-<p id="p1832552154084832"><a name="p1832552154084832"></a><a name="p1832552154084832"></a>Searches for a needle string in its haystack string. </p>
-</td>
-</tr>
-<tr id="row596205462084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1284502306084832"><a name="p1284502306084832"></a><a name="p1284502306084832"></a><a href="UTILS.md#ga45623070e5e0b7008d44600a283ea2ee">memrchr</a> (const void *s, int c, size_t n)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2145869494084832"><a name="p2145869494084832"></a><a name="p2145869494084832"></a>void *&nbsp;</p>
-<p id="p1287001420084832"><a name="p1287001420084832"></a><a name="p1287001420084832"></a>Searches for a character in the specified memory area. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p295805873165629"><a name="p295805873165629"></a><a name="p295805873165629"></a>char * </p>
+<p id="p1093515804165629"><a name="p1093515804165629"></a><a name="p1093515804165629"></a>Searches for a needle string in its haystack string. </p>
 </td>
 </tr>
-<tr id="row1756419144084832"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1567753492084832"><a name="p1567753492084832"></a><a name="p1567753492084832"></a><a href="UTILS.md#ga7ac7c0f43132e3acf013e0c71a58cdc9">mempcpy</a> (void *dest, const void *src, size_t n)</p>
+<tr id="row724338332165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p500719961165629"><a name="p500719961165629"></a><a name="p500719961165629"></a><a href="UTILS.md#ga8cb460f64c449f2a9b9b7a40569ce0fe">strtok</a> (char *str, const char *delim)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2003457438084832"><a name="p2003457438084832"></a><a name="p2003457438084832"></a>void *&nbsp;</p>
-<p id="p1192048765084832"><a name="p1192048765084832"></a><a name="p1192048765084832"></a>Copies a string (overlapping not allowed). </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p167032337165629"><a name="p167032337165629"></a><a name="p167032337165629"></a>char * </p>
+<p id="p1258602301165629"><a name="p1258602301165629"></a><a name="p1258602301165629"></a>Separates a string into a series of tokens separated by a delimiter. </p>
+</td>
+</tr>
+<tr id="row1097995307165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p249979141165629"><a name="p249979141165629"></a><a name="p249979141165629"></a><a href="UTILS.md#gaa383452fe445bfae989358c9d7d96f4f">strlen</a> (const char *s)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1601779339165629"><a name="p1601779339165629"></a><a name="p1601779339165629"></a>size_t </p>
+<p id="p291208740165629"><a name="p291208740165629"></a><a name="p291208740165629"></a>Calculates the length of a string. </p>
+</td>
+</tr>
+<tr id="row1631570623165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1761938813165629"><a name="p1761938813165629"></a><a name="p1761938813165629"></a><a href="UTILS.md#gadd46ab98f32b76457852dbb872842bf2">strerror</a> (int errnum)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p383024766165629"><a name="p383024766165629"></a><a name="p383024766165629"></a>char * </p>
+<p id="p187906639165629"><a name="p187906639165629"></a><a name="p187906639165629"></a>Obtains an error description string of the specified error code. </p>
+</td>
+</tr>
+<tr id="row1385924670165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1425463073165629"><a name="p1425463073165629"></a><a name="p1425463073165629"></a><a href="UTILS.md#gab11d86a2a3af0a355cad2337c6f4e9f7">strtok_r</a> (char *str, const char *delim, char **saveptr)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1108149143165629"><a name="p1108149143165629"></a><a name="p1108149143165629"></a>char * </p>
+<p id="p1351816504165629"><a name="p1351816504165629"></a><a name="p1351816504165629"></a>Separates a string into a series of tokens separated by a delimiter, with the <strong id="b1952397647165629"><a name="b1952397647165629"></a><a name="b1952397647165629"></a>saveptr</strong> parameter specified. </p>
+</td>
+</tr>
+<tr id="row1601505951165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1515249588165629"><a name="p1515249588165629"></a><a name="p1515249588165629"></a><a href="UTILS.md#ga8f7507e357cbd24048ae77e27e5d41d7">strerror_l</a> (int errnum, locale_t locale)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p7404054165629"><a name="p7404054165629"></a><a name="p7404054165629"></a>char * </p>
+<p id="p1866846095165629"><a name="p1866846095165629"></a><a name="p1866846095165629"></a>Obtains an error description string of the specified error code for the specified locale. </p>
+</td>
+</tr>
+<tr id="row240813387165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1704482224165629"><a name="p1704482224165629"></a><a name="p1704482224165629"></a><a href="UTILS.md#ga7253ba059153058c57952194237c6b55">strerror_r</a> (int errnum, char *buf, size_t buflen)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1751786492165629"><a name="p1751786492165629"></a><a name="p1751786492165629"></a>char * </p>
+<p id="p490935466165629"><a name="p490935466165629"></a><a name="p490935466165629"></a>Obtains an error description string of the specified error code. </p>
+</td>
+</tr>
+<tr id="row1579681040165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1602785083165629"><a name="p1602785083165629"></a><a name="p1602785083165629"></a><a href="UTILS.md#ga890dbcd7c456828c1b6ff714e405fcc1">stpcpy</a> (char *dest, const char *src)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p66712544165629"><a name="p66712544165629"></a><a name="p66712544165629"></a>char * </p>
+<p id="p1636531390165629"><a name="p1636531390165629"></a><a name="p1636531390165629"></a>Copies a string. </p>
+</td>
+</tr>
+<tr id="row1929440737165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1474730502165629"><a name="p1474730502165629"></a><a name="p1474730502165629"></a><a href="UTILS.md#ga217a70a69e2fc7727278516b7ad2fc26">stpncpy</a> (char *dest, const char *src, size_t n)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p771284723165629"><a name="p771284723165629"></a><a name="p771284723165629"></a>char * </p>
+<p id="p1425357324165629"><a name="p1425357324165629"></a><a name="p1425357324165629"></a>Copies n characters of a string. </p>
+</td>
+</tr>
+<tr id="row1585773497165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p783206602165629"><a name="p783206602165629"></a><a name="p783206602165629"></a><a href="UTILS.md#gafc92d2231e45d19988c7894aa2a07f0c">strnlen</a> (const char *s, size_t maxlen)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p449334737165629"><a name="p449334737165629"></a><a name="p449334737165629"></a>size_t </p>
+<p id="p91048036165629"><a name="p91048036165629"></a><a name="p91048036165629"></a>Calculates the length of a string. </p>
+</td>
+</tr>
+<tr id="row540157329165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1218877206165629"><a name="p1218877206165629"></a><a name="p1218877206165629"></a><a href="UTILS.md#gab1cc1a3ff560049e22576031c7c2345b">strdup</a> (const char *s)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p831689512165629"><a name="p831689512165629"></a><a name="p831689512165629"></a>char * </p>
+<p id="p634977027165629"><a name="p634977027165629"></a><a name="p634977027165629"></a>Copies a string to a new position. </p>
+</td>
+</tr>
+<tr id="row35284040165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1781241088165629"><a name="p1781241088165629"></a><a name="p1781241088165629"></a><a href="UTILS.md#ga8b860ba32fef12da8acd4507c059e509">strndup</a> (const char *s, size_t n)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1527705658165629"><a name="p1527705658165629"></a><a name="p1527705658165629"></a>char * </p>
+<p id="p849475932165629"><a name="p849475932165629"></a><a name="p849475932165629"></a>Copies n characters of a string to a new position. </p>
+</td>
+</tr>
+<tr id="row1737200029165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1688542037165629"><a name="p1688542037165629"></a><a name="p1688542037165629"></a><a href="UTILS.md#ga8f7c22bf1131bd6ffe6635e386fb4ebd">strsignal</a> (int sig)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1883008072165629"><a name="p1883008072165629"></a><a name="p1883008072165629"></a>char * </p>
+<p id="p831102132165629"><a name="p831102132165629"></a><a name="p831102132165629"></a>Returns a string describing the signal number. </p>
+</td>
+</tr>
+<tr id="row1119279199165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1833152260165629"><a name="p1833152260165629"></a><a name="p1833152260165629"></a><a href="UTILS.md#ga2ffbfe50042aaf5b987782dcd16ea1f0">memccpy</a> (void *__restrict dest, const void *__restrict src, int c, size_t n)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p570178111165629"><a name="p570178111165629"></a><a name="p570178111165629"></a>void * </p>
+<p id="p1761743722165629"><a name="p1761743722165629"></a><a name="p1761743722165629"></a>Copies a memory area to another one. </p>
+</td>
+</tr>
+<tr id="row2035278003165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p12251948165629"><a name="p12251948165629"></a><a name="p12251948165629"></a><a href="UTILS.md#ga93c766c6e86f4f79e7507c21f1794e15">strsep</a> (char **stringp, const char *delim)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1796235193165629"><a name="p1796235193165629"></a><a name="p1796235193165629"></a>char * </p>
+<p id="p1520862055165629"><a name="p1520862055165629"></a><a name="p1520862055165629"></a>Separates a string into a series of tokens separated by a delimiter. </p>
+</td>
+</tr>
+<tr id="row748529632165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p427395246165629"><a name="p427395246165629"></a><a name="p427395246165629"></a><a href="UTILS.md#ga0266462615f2f112003cdb591710d299">strlcat</a> (char *d, const char *s, size_t n)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p934521779165629"><a name="p934521779165629"></a><a name="p934521779165629"></a>size_t </p>
+<p id="p2081656258165629"><a name="p2081656258165629"></a><a name="p2081656258165629"></a>Appends the first <strong id="b1294060319165629"><a name="b1294060319165629"></a><a name="b1294060319165629"></a>n</strong> bytes of a string to another one. </p>
+</td>
+</tr>
+<tr id="row827122653165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p702213469165629"><a name="p702213469165629"></a><a name="p702213469165629"></a><a href="UTILS.md#ga50bd3317d65f3da7d180b8981e58c5a4">strlcpy</a> (char *d, const char *s, size_t n)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p722236950165629"><a name="p722236950165629"></a><a name="p722236950165629"></a>size_t </p>
+<p id="p401179866165629"><a name="p401179866165629"></a><a name="p401179866165629"></a>Copies a string. </p>
+</td>
+</tr>
+<tr id="row625544553165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1766931200165629"><a name="p1766931200165629"></a><a name="p1766931200165629"></a><a href="UTILS.md#ga1563a7059aabf95c0b588278e8bed575">strverscmp</a> (const char *s1, const char *s2)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1082061506165629"><a name="p1082061506165629"></a><a name="p1082061506165629"></a>int </p>
+<p id="p943863353165629"><a name="p943863353165629"></a><a name="p943863353165629"></a>Compares strings of two versions (string 1 and string 2) and returns the comparison result. </p>
+</td>
+</tr>
+<tr id="row1911050051165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1296378266165629"><a name="p1296378266165629"></a><a name="p1296378266165629"></a><a href="UTILS.md#gae9229017a4501f8d6a637b4498cfed2e">strcasestr</a> (const char *haystack, const char *needle)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1381933591165629"><a name="p1381933591165629"></a><a name="p1381933591165629"></a>char * </p>
+<p id="p1873645358165629"><a name="p1873645358165629"></a><a name="p1873645358165629"></a>Searches for a needle string in its haystack string and returns a pointer. </p>
+</td>
+</tr>
+<tr id="row1786626789165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1534252469165629"><a name="p1534252469165629"></a><a name="p1534252469165629"></a><a href="UTILS.md#ga5f6423417e952f934be0a582d87b663a">memmem</a> (const void *haystack, size_t haystacklen, const void *needle, size_t needlelen)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p367143794165629"><a name="p367143794165629"></a><a name="p367143794165629"></a>void * </p>
+<p id="p768441550165629"><a name="p768441550165629"></a><a name="p768441550165629"></a>Searches for a needle string in its haystack string. </p>
+</td>
+</tr>
+<tr id="row553397453165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2099824071165629"><a name="p2099824071165629"></a><a name="p2099824071165629"></a><a href="UTILS.md#ga45623070e5e0b7008d44600a283ea2ee">memrchr</a> (const void *s, int c, size_t n)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1860554938165629"><a name="p1860554938165629"></a><a name="p1860554938165629"></a>void * </p>
+<p id="p701632683165629"><a name="p701632683165629"></a><a name="p701632683165629"></a>Searches for a character in the specified memory area. </p>
+</td>
+</tr>
+<tr id="row897136481165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1278015831165629"><a name="p1278015831165629"></a><a name="p1278015831165629"></a><a href="UTILS.md#ga7ac7c0f43132e3acf013e0c71a58cdc9">mempcpy</a> (void *dest, const void *src, size_t n)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p942824529165629"><a name="p942824529165629"></a><a name="p942824529165629"></a>void * </p>
+<p id="p1525640848165629"><a name="p1525640848165629"></a><a name="p1525640848165629"></a>Copies a string (overlapping not allowed). </p>
 </td>
 </tr>
 </tbody>

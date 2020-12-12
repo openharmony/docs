@@ -1,6 +1,14 @@
 # HdfDeviceObject<a name="ZH-CN_TOPIC_0000001054479563"></a>
 
-## **Overview**<a name="section1444276924093530"></a>
+-   [Overview](#section1715265701165631)
+-   [Summary](#section1845297948165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section469785400165631)
+-   [Field](#section1570096397165631)
+-   [property](#aff597a0d23dbf2c6581a4ea6f261e953)
+-   [service](#a4a56df841dab2ca990594daea3ad0107)
+
+## **Overview**<a name="section1715265701165631"></a>
 
 **Related Modules:**
 
@@ -16,33 +24,33 @@ This structure is a device object defined by the HDF and is used to store privat
 
 1.0
 
-## **Summary**<a name="section1754487750093530"></a>
+## **Summary**<a name="section1845297948165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table175649058093530"></a>
-<table><thead align="left"><tr id="row1875104412093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1551462123093530"><a name="p1551462123093530"></a><a name="p1551462123093530"></a>Variable Name</p>
+<a name="table266155287165631"></a>
+<table><thead align="left"><tr id="row428362002165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1699208320165631"><a name="p1699208320165631"></a><a name="p1699208320165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1473070531093530"><a name="p1473070531093530"></a><a name="p1473070531093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1874056226165631"><a name="p1874056226165631"></a><a name="p1874056226165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row38863795093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1544003134093530"><a name="p1544003134093530"></a><a name="p1544003134093530"></a><a href="HdfDeviceObject.md#a4a56df841dab2ca990594daea3ad0107">service</a></p>
+<tbody><tr id="row931371151165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p804669755165631"><a name="p804669755165631"></a><a name="p804669755165631"></a><a href="HdfDeviceObject.md#a4a56df841dab2ca990594daea3ad0107">service</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1273525541093530"><a name="p1273525541093530"></a><a name="p1273525541093530"></a>struct <a href="IDeviceIoService.md">IDeviceIoService</a> *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p983686722165631"><a name="p983686722165631"></a><a name="p983686722165631"></a>struct <a href="IDeviceIoService.md">IDeviceIoService</a> * </p>
 </td>
 </tr>
-<tr id="row30442975093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1236820803093530"><a name="p1236820803093530"></a><a name="p1236820803093530"></a><a href="HdfDeviceObject.md#aff597a0d23dbf2c6581a4ea6f261e953">property</a></p>
+<tr id="row1017520414165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1552965820165631"><a name="p1552965820165631"></a><a name="p1552965820165631"></a><a href="HdfDeviceObject.md#aff597a0d23dbf2c6581a4ea6f261e953">property</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p411993944093530"><a name="p411993944093530"></a><a name="p411993944093530"></a>const struct <a href="DeviceResourceNode.md">DeviceResourceNode</a> *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p734460687165631"><a name="p734460687165631"></a><a name="p734460687165631"></a>const struct <a href="DeviceResourceNode.md">DeviceResourceNode</a> * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1910064437093530"></a>
+## **Details**<a name="section469785400165631"></a>
 
-## **Field Documentation**<a name="section555642502093530"></a>
+## **Field **<a name="section1570096397165631"></a>
 
 ## property<a name="aff597a0d23dbf2c6581a4ea6f261e953"></a>
 

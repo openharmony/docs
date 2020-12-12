@@ -1,5 +1,8 @@
 # Bundle Version<a name="EN-US_TOPIC_0000001051612092"></a>
 
+-   [Version Number Naming Specifications](#section16893854141310)
+-   [Version Publishing](#section43401320171420)
+
 ## Version Number Naming Specifications<a name="section16893854141310"></a>
 
 Each version name allows only lowercase letters, which can be separated by hyphens \(-\) or underscores \(\_\). For example,  **bundle**  and  **my\_bundle**  are allowed.

@@ -1,5 +1,10 @@
 # Privacy Protection<a name="EN-US_TOPIC_0000001054809692"></a>
 
+-   [Overview](#en-us_topic_0000001051770800_section13200134331414)
+-   [Data Classification](#en-us_topic_0000001051770800_section2371104991511)
+-   [General Privacy Design Rules](#en-us_topic_0000001051770800_section10354102411162)
+-   [Privacy Protection Requirements for Special Categories](#en-us_topic_0000001051770800_section118861450201618)
+
 ## Overview<a name="en-us_topic_0000001051770800_section13200134331414"></a>
 
 Personal data plays an increasingly important role in social economy and daily life along the development of the Internet and informatization. Meanwhile, information leakage risks are increasing. Consumer product developers shall take more effective measures to protect consumer' personal data and improve their trust in products. To protect consumers' privacy and improve their experience on privacy, you should set high-level privacy protection policies for your product.

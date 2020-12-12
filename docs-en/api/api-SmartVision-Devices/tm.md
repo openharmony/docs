@@ -1,6 +1,22 @@
 # tm<a name="EN-US_TOPIC_0000001055358158"></a>
 
-## **Overview**<a name="section2138624269084843"></a>
+-   [Overview](#section213291014165637)
+-   [Summary](#section2100853605165637)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1912810085165637)
+-   [Field](#section627624112165637)
+-   [\_\_tm\_gmtoff](#ab077b3fcacf0aa575918483856c9cc7c)
+-   [\_\_tm\_zone](#ada643d899220f1284814158a9efaf0f0)
+-   [tm\_hour](#a3e7ca4e37f1abcaf56b8a916c38eb9fe)
+-   [tm\_isdst](#a5645ca0580c8ab2c24f6c2965d9c9f9c)
+-   [tm\_mday](#ab8d8904bad43b0c8b96e61941c5b5310)
+-   [tm\_min](#af414eb7c86cc3099595211eee4d4211b)
+-   [tm\_mon](#a112ac36fa2f593777138a417cf031e17)
+-   [tm\_sec](#a4d098a9a5c03a00b2ee61e10851de81e)
+-   [tm\_wday](#afe81a8c46f1c693c43f259b288859f4f)
+-   [tm\_year](#a33adf78fd6476b2120ce3b9c4a852053)
+
+## **Overview**<a name="section213291014165637"></a>
 
 **Related Modules:**
 
@@ -10,73 +26,73 @@
 
 Describes date and time information. 
 
-## **Summary**<a name="section1915964305084843"></a>
+## **Summary**<a name="section2100853605165637"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1361022178084843"></a>
-<table><thead align="left"><tr id="row38325888084843"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1148809473084843"><a name="p1148809473084843"></a><a name="p1148809473084843"></a>Variable Name</p>
+<a name="table1052911242165637"></a>
+<table><thead align="left"><tr id="row2092348828165637"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p688383844165637"><a name="p688383844165637"></a><a name="p688383844165637"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1207532853084843"><a name="p1207532853084843"></a><a name="p1207532853084843"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1222123289165637"><a name="p1222123289165637"></a><a name="p1222123289165637"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1274468718084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p813107906084843"><a name="p813107906084843"></a><a name="p813107906084843"></a><a href="tm.md#a4d098a9a5c03a00b2ee61e10851de81e">tm_sec</a></p>
+<tbody><tr id="row231482111165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1278393952165637"><a name="p1278393952165637"></a><a name="p1278393952165637"></a><a href="tm.md#a4d098a9a5c03a00b2ee61e10851de81e">tm_sec</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1170138611084843"><a name="p1170138611084843"></a><a name="p1170138611084843"></a>int </p>
-</td>
-</tr>
-<tr id="row1007029505084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2105363298084843"><a name="p2105363298084843"></a><a name="p2105363298084843"></a><a href="tm.md#af414eb7c86cc3099595211eee4d4211b">tm_min</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p910616960084843"><a name="p910616960084843"></a><a name="p910616960084843"></a>int </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1502865552165637"><a name="p1502865552165637"></a><a name="p1502865552165637"></a>int </p>
 </td>
 </tr>
-<tr id="row695471644084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p898737655084843"><a name="p898737655084843"></a><a name="p898737655084843"></a><a href="tm.md#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm_hour</a></p>
+<tr id="row230061828165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p399121745165637"><a name="p399121745165637"></a><a name="p399121745165637"></a><a href="tm.md#af414eb7c86cc3099595211eee4d4211b">tm_min</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p531765287084843"><a name="p531765287084843"></a><a name="p531765287084843"></a>int </p>
-</td>
-</tr>
-<tr id="row2043065628084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1953881118084843"><a name="p1953881118084843"></a><a name="p1953881118084843"></a><a href="tm.md#ab8d8904bad43b0c8b96e61941c5b5310">tm_mday</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p444394293084843"><a name="p444394293084843"></a><a name="p444394293084843"></a>int </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p445927044165637"><a name="p445927044165637"></a><a name="p445927044165637"></a>int </p>
 </td>
 </tr>
-<tr id="row1206058761084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1610855419084843"><a name="p1610855419084843"></a><a name="p1610855419084843"></a><a href="tm.md#a112ac36fa2f593777138a417cf031e17">tm_mon</a></p>
+<tr id="row649943631165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1557346461165637"><a name="p1557346461165637"></a><a name="p1557346461165637"></a><a href="tm.md#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm_hour</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1755166084843"><a name="p1755166084843"></a><a name="p1755166084843"></a>int </p>
-</td>
-</tr>
-<tr id="row97934438084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2005199058084843"><a name="p2005199058084843"></a><a name="p2005199058084843"></a><a href="tm.md#a33adf78fd6476b2120ce3b9c4a852053">tm_year</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1785271455084843"><a name="p1785271455084843"></a><a name="p1785271455084843"></a>int </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p862583660165637"><a name="p862583660165637"></a><a name="p862583660165637"></a>int </p>
 </td>
 </tr>
-<tr id="row1332665792084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p173418842084843"><a name="p173418842084843"></a><a name="p173418842084843"></a><a href="tm.md#afe81a8c46f1c693c43f259b288859f4f">tm_wday</a></p>
+<tr id="row1710551281165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p909730434165637"><a name="p909730434165637"></a><a name="p909730434165637"></a><a href="tm.md#ab8d8904bad43b0c8b96e61941c5b5310">tm_mday</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1385395449084843"><a name="p1385395449084843"></a><a name="p1385395449084843"></a>int </p>
-</td>
-</tr>
-<tr id="row553747855084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p635846649084843"><a name="p635846649084843"></a><a name="p635846649084843"></a><a href="tm.md#a5645ca0580c8ab2c24f6c2965d9c9f9c">tm_isdst</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1855547903084843"><a name="p1855547903084843"></a><a name="p1855547903084843"></a>int </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1297981051165637"><a name="p1297981051165637"></a><a name="p1297981051165637"></a>int </p>
 </td>
 </tr>
-<tr id="row1171762175084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1051440867084843"><a name="p1051440867084843"></a><a name="p1051440867084843"></a><a href="tm.md#ab077b3fcacf0aa575918483856c9cc7c">__tm_gmtoff</a></p>
+<tr id="row125341739165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2014893510165637"><a name="p2014893510165637"></a><a name="p2014893510165637"></a><a href="tm.md#a112ac36fa2f593777138a417cf031e17">tm_mon</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1067694553084843"><a name="p1067694553084843"></a><a name="p1067694553084843"></a>long </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1687688377165637"><a name="p1687688377165637"></a><a name="p1687688377165637"></a>int </p>
 </td>
 </tr>
-<tr id="row1099460784084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1604837219084843"><a name="p1604837219084843"></a><a name="p1604837219084843"></a><a href="tm.md#ada643d899220f1284814158a9efaf0f0">__tm_zone</a></p>
+<tr id="row1992725178165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p175182350165637"><a name="p175182350165637"></a><a name="p175182350165637"></a><a href="tm.md#a33adf78fd6476b2120ce3b9c4a852053">tm_year</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p683515849084843"><a name="p683515849084843"></a><a name="p683515849084843"></a>const char * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1170264427165637"><a name="p1170264427165637"></a><a name="p1170264427165637"></a>int </p>
+</td>
+</tr>
+<tr id="row259585164165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p291048426165637"><a name="p291048426165637"></a><a name="p291048426165637"></a><a href="tm.md#afe81a8c46f1c693c43f259b288859f4f">tm_wday</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p257709963165637"><a name="p257709963165637"></a><a name="p257709963165637"></a>int </p>
+</td>
+</tr>
+<tr id="row1705036226165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1189608357165637"><a name="p1189608357165637"></a><a name="p1189608357165637"></a><a href="tm.md#a5645ca0580c8ab2c24f6c2965d9c9f9c">tm_isdst</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1383255074165637"><a name="p1383255074165637"></a><a name="p1383255074165637"></a>int </p>
+</td>
+</tr>
+<tr id="row1493074539165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1044077013165637"><a name="p1044077013165637"></a><a name="p1044077013165637"></a><a href="tm.md#ab077b3fcacf0aa575918483856c9cc7c">__tm_gmtoff</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1498349964165637"><a name="p1498349964165637"></a><a name="p1498349964165637"></a>long </p>
+</td>
+</tr>
+<tr id="row2082073370165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p284689614165637"><a name="p284689614165637"></a><a name="p284689614165637"></a><a href="tm.md#ada643d899220f1284814158a9efaf0f0">__tm_zone</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1381101024165637"><a name="p1381101024165637"></a><a name="p1381101024165637"></a>const char * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1440043204084843"></a>
+## **Details**<a name="section1912810085165637"></a>
 
-## **Field Documentation**<a name="section579690675084843"></a>
+## **Field **<a name="section627624112165637"></a>
 
 ## \_\_tm\_gmtoff<a name="ab077b3fcacf0aa575918483856c9cc7c"></a>
 

@@ -1,6 +1,16 @@
 # InputInfo<a name="EN-US_TOPIC_0000001054879536"></a>
 
-## **Overview**<a name="section511833735093531"></a>
+-   [Overview](#section705319385165632)
+-   [Summary](#section2056514315165632)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1477004799165632)
+-   [Field](#section1236352740165632)
+-   [bufferCnt](#adf0831b639d3e7e3b99c5cb2de16fad5)
+-   [buffers](#ad759a3e9cef5806ffbf9dbff601d3897)
+-   [flag](#a80d14d367be6484c1487d4fd2cef7e5f)
+-   [pts](#acc69e5b615cd5fbe52626fb52cb1b90e)
+
+## **Overview**<a name="section705319385165632"></a>
 
 **Related Modules:**
 
@@ -10,43 +20,43 @@
 
 Describes input information. 
 
-## **Summary**<a name="section1541725750093531"></a>
+## **Summary**<a name="section2056514315165632"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1012028454093531"></a>
-<table><thead align="left"><tr id="row69252047093531"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1824613706093531"><a name="p1824613706093531"></a><a name="p1824613706093531"></a>Variable Name</p>
+<a name="table1321510282165632"></a>
+<table><thead align="left"><tr id="row796898384165632"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p677440466165632"><a name="p677440466165632"></a><a name="p677440466165632"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1295114853093531"><a name="p1295114853093531"></a><a name="p1295114853093531"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1406371959165632"><a name="p1406371959165632"></a><a name="p1406371959165632"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1343883992093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1370046274093531"><a name="p1370046274093531"></a><a name="p1370046274093531"></a><a href="inputinfo.md#adf0831b639d3e7e3b99c5cb2de16fad5">bufferCnt</a></p>
+<tbody><tr id="row1373452754165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1947703357165632"><a name="p1947703357165632"></a><a name="p1947703357165632"></a><a href="inputinfo.md#adf0831b639d3e7e3b99c5cb2de16fad5">bufferCnt</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p519379954093531"><a name="p519379954093531"></a><a name="p519379954093531"></a>uint32_t </p>
-</td>
-</tr>
-<tr id="row2058237168093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p960702536093531"><a name="p960702536093531"></a><a name="p960702536093531"></a><a href="inputinfo.md#ad759a3e9cef5806ffbf9dbff601d3897">buffers</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p333331975093531"><a name="p333331975093531"></a><a name="p333331975093531"></a><a href="codecbufferinfo.md">CodecBufferInfo</a> * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1191470003165632"><a name="p1191470003165632"></a><a name="p1191470003165632"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row638800538093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p302066625093531"><a name="p302066625093531"></a><a name="p302066625093531"></a><a href="inputinfo.md#acc69e5b615cd5fbe52626fb52cb1b90e">pts</a></p>
+<tr id="row581230747165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p532287326165632"><a name="p532287326165632"></a><a name="p532287326165632"></a><a href="inputinfo.md#ad759a3e9cef5806ffbf9dbff601d3897">buffers</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1331730356093531"><a name="p1331730356093531"></a><a name="p1331730356093531"></a>int64_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1272361651165632"><a name="p1272361651165632"></a><a name="p1272361651165632"></a><a href="codecbufferinfo.md">CodecBufferInfo</a> * </p>
 </td>
 </tr>
-<tr id="row725257484093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p326480471093531"><a name="p326480471093531"></a><a name="p326480471093531"></a><a href="inputinfo.md#a80d14d367be6484c1487d4fd2cef7e5f">flag</a></p>
+<tr id="row1411019629165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p961365682165632"><a name="p961365682165632"></a><a name="p961365682165632"></a><a href="inputinfo.md#acc69e5b615cd5fbe52626fb52cb1b90e">pts</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1087919664093531"><a name="p1087919664093531"></a><a name="p1087919664093531"></a>int32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p765413706165632"><a name="p765413706165632"></a><a name="p765413706165632"></a>int64_t </p>
+</td>
+</tr>
+<tr id="row508696583165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p284857521165632"><a name="p284857521165632"></a><a name="p284857521165632"></a><a href="inputinfo.md#a80d14d367be6484c1487d4fd2cef7e5f">flag</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p865326922165632"><a name="p865326922165632"></a><a name="p865326922165632"></a>int32_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1381757839093531"></a>
+## **Details**<a name="section1477004799165632"></a>
 
-## **Field Documentation**<a name="section290707522093531"></a>
+## **Field **<a name="section1236352740165632"></a>
 
 ## bufferCnt<a name="adf0831b639d3e7e3b99c5cb2de16fad5"></a>
 

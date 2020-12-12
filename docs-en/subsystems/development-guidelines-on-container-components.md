@@ -1,11 +1,18 @@
 # Development Guidelines on Container Components<a name="EN-US_TOPIC_0000001052810390"></a>
 
+-   [UIViewGroup](#section145471898812)
+-   [When to Use](#section0916112362216)
+-   [Available APIs](#section12641756192212)
+-   [How to Develop](#section5412161692311)
+-   [UIScrollView](#section174961523161315)
+-   [When to Use](#section8937101902413)
+-   [Available APIs](#section14789133142420)
+-   [How to Develop](#section1769754422417)
+
 Container components are capable of containing UI components and inherit from  **UIViewGroup**. Components that are commonly used and need to contain child components are placed in the container class inheritance structure. For example, you need to call the  **Add**  function to add information such as time statistics and icons to  **UIAnalogClock**.
 
-**Figure  1**  Structure of a common container component<a name="fig148011033490"></a>  
-
-
-![](figures/en-us_image_0000001052491833.png)
+**Figure  1**  Structure of common container components<a name="fig1931013319293"></a>  
+![](figures/structure-of-common-container-components.png "structure-of-common-container-components")
 
 The  **RootView**,  **UIAbstractScroll**, and  **UIPicker**  components inherit from  **UIViewGroup**, and the  **UIList**,  **UIScrollView**, and  **UISwipeView**  components inherit from  **UIAbstractScroll**.
 
@@ -13,14 +20,12 @@ The  **RootView**,  **UIAbstractScroll**, and  **UIPicker**  components inherit 
 
 ## When to Use<a name="section0916112362216"></a>
 
-**UIViewGroup**  is a base class for container components. For example, you can call the functions in this class to add, remove, and insert container components. Also, you can call the  **Add**  function to add child components for a container component. You need to set the position information for child components in a common container component. The position information is the coordinates relative to those of their parent component. The following figure shows the component tree structure.
+**UIViewGroup**  is a base class for container components. For example, you can call the functions in this class to add, remove, and insert container components. Also, you can call the  **Add**  function to add child components for a container component. You need to set the position information for child components in a common container component. The position information is the coordinates relative to those of their parent component. The following figure shows the tree structure of components.
 
-**Figure  2**  Component tree structure<a name="fig149561323162218"></a>  
+**Figure  2**  Component tree structure<a name="fig279970183012"></a>  
+![](figures/component-tree-structure.png "component-tree-structure")
 
-
-![](figures/en-us_image_0000001054296737.png)
-
-As shown in the figure, the container component  **ViewGroup1**  and the component  **View1**  are added to  **rootView**, the component  **View2**  and the container component  **ViewGroup2**  are added to  **ViewGroup1**, and then the component  **View3**  \(as a sibling of  **View1**\) is also added to  **ViewGroup1**.
+As shown in the figure, the container component  **ViewGroup1**  and the component  **View1**  are added to  **RootView**, the component  **View2**  and the container component  **ViewGroup2**  are added to  **ViewGroup1**, and then the component  **View3**  \(as a sibling of  **View1**\) is also added to  **ViewGroup1**.
 
 -   Rendering: During rendering of a container component, you need to call the  **OnDraw**  function on all its child components to update them.
 -   Coordinates: As the position information of child components is the coordinates relative to those of their parent components, the system calculates and displays the absolute coordinates of child components during rendering.
@@ -234,6 +239,6 @@ scroll->Add(button1);
 scroll->Add(button2);
 ```
 
-**Figure  4**  Scrolling effect in both horizontal and vertical directions<a name="fig20957125155214"></a>  
+**Figure  4**  Scrolling effect in both horizontal and vertical directions<a name="fig99017432114"></a>  
 ![](figures/scrolling-effect-in-both-horizontal-and-vertical-directions.gif "scrolling-effect-in-both-horizontal-and-vertical-directions")
 

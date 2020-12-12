@@ -1,6 +1,18 @@
 # SpiMsg<a name="EN-US_TOPIC_0000001054479601"></a>
 
-## **Overview**<a name="section2079544464093536"></a>
+-   [Overview](#section1972004157165636)
+-   [Summary](#section1293398165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section770647843165636)
+-   [Field](#section1902860348165636)
+-   [csChange](#a1a38a03e30428aca7054cc8555b749a9)
+-   [delayUs](#a443b7f63c6b33719759eacf600da3aab)
+-   [len](#acb96c50b34d79d00277cbea9881b701a)
+-   [rbuf](#a575755ef9506c10199c47f636f1de1de)
+-   [speed](#adff9e15325aab2afb066a1f3489b55d5)
+-   [wbuf](#ae2aed8b3bd1d75a50f82c880a45cf521)
+
+## **Overview**<a name="section1972004157165636"></a>
 
 **Related Modules:**
 
@@ -10,57 +22,60 @@
 
 Defines the custom SPI transfer message. 
 
+Attention
+:   The specific SPI controller determines whether  **speed**,  **delayUs**, and  **csChange**  are supported.
+
 **Since:**
 
 1.0
 
-## **Summary**<a name="section1213620650093536"></a>
+## **Summary**<a name="section1293398165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1609528174093536"></a>
-<table><thead align="left"><tr id="row357767770093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1093377675093536"><a name="p1093377675093536"></a><a name="p1093377675093536"></a>Variable Name</p>
+<a name="table2003777103165636"></a>
+<table><thead align="left"><tr id="row1556677169165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p44418077165636"><a name="p44418077165636"></a><a name="p44418077165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1493338772093536"><a name="p1493338772093536"></a><a name="p1493338772093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1534487636165636"><a name="p1534487636165636"></a><a name="p1534487636165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row737067882093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p640836062093536"><a name="p640836062093536"></a><a name="p640836062093536"></a><a href="spimsg.md#ae2aed8b3bd1d75a50f82c880a45cf521">wbuf</a></p>
+<tbody><tr id="row30257823165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1620528773165636"><a name="p1620528773165636"></a><a name="p1620528773165636"></a><a href="spimsg.md#ae2aed8b3bd1d75a50f82c880a45cf521">wbuf</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1656640498093536"><a name="p1656640498093536"></a><a name="p1656640498093536"></a>uint8_t * </p>
-</td>
-</tr>
-<tr id="row2088683402093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p70418755093536"><a name="p70418755093536"></a><a name="p70418755093536"></a><a href="spimsg.md#a575755ef9506c10199c47f636f1de1de">rbuf</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p242213128093536"><a name="p242213128093536"></a><a name="p242213128093536"></a>uint8_t * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p30636575165636"><a name="p30636575165636"></a><a name="p30636575165636"></a>uint8_t * </p>
 </td>
 </tr>
-<tr id="row1113072598093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p397782377093536"><a name="p397782377093536"></a><a name="p397782377093536"></a><a href="spimsg.md#acb96c50b34d79d00277cbea9881b701a">len</a></p>
+<tr id="row1172929204165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1395837004165636"><a name="p1395837004165636"></a><a name="p1395837004165636"></a><a href="spimsg.md#a575755ef9506c10199c47f636f1de1de">rbuf</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1281651279093536"><a name="p1281651279093536"></a><a name="p1281651279093536"></a>uint32_t </p>
-</td>
-</tr>
-<tr id="row1630423946093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2063294090093536"><a name="p2063294090093536"></a><a name="p2063294090093536"></a><a href="spimsg.md#adff9e15325aab2afb066a1f3489b55d5">speed</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p55600477093536"><a name="p55600477093536"></a><a name="p55600477093536"></a>uint32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p394634459165636"><a name="p394634459165636"></a><a name="p394634459165636"></a>uint8_t * </p>
 </td>
 </tr>
-<tr id="row467009160093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1133361194093536"><a name="p1133361194093536"></a><a name="p1133361194093536"></a><a href="spimsg.md#a443b7f63c6b33719759eacf600da3aab">delayUs</a></p>
+<tr id="row240310619165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1704567169165636"><a name="p1704567169165636"></a><a name="p1704567169165636"></a><a href="spimsg.md#acb96c50b34d79d00277cbea9881b701a">len</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1732082272093536"><a name="p1732082272093536"></a><a name="p1732082272093536"></a>uint16_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p120572530165636"><a name="p120572530165636"></a><a name="p120572530165636"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row2135809515093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1157342109093536"><a name="p1157342109093536"></a><a name="p1157342109093536"></a><a href="spimsg.md#a1a38a03e30428aca7054cc8555b749a9">csChange</a></p>
+<tr id="row454214147165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1512099638165636"><a name="p1512099638165636"></a><a name="p1512099638165636"></a><a href="spimsg.md#adff9e15325aab2afb066a1f3489b55d5">speed</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1303965571093536"><a name="p1303965571093536"></a><a name="p1303965571093536"></a>uint8_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1379239657165636"><a name="p1379239657165636"></a><a name="p1379239657165636"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row553694686165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1414316792165636"><a name="p1414316792165636"></a><a name="p1414316792165636"></a><a href="spimsg.md#a443b7f63c6b33719759eacf600da3aab">delayUs</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1388517823165636"><a name="p1388517823165636"></a><a name="p1388517823165636"></a>uint16_t </p>
+</td>
+</tr>
+<tr id="row562590973165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1505106416165636"><a name="p1505106416165636"></a><a name="p1505106416165636"></a><a href="spimsg.md#a1a38a03e30428aca7054cc8555b749a9">csChange</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p580641256165636"><a name="p580641256165636"></a><a name="p580641256165636"></a>uint8_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1174205876093536"></a>
+## **Details**<a name="section770647843165636"></a>
 
-## **Field Documentation**<a name="section1091996063093536"></a>
+## **Field **<a name="section1902860348165636"></a>
 
 ## csChange<a name="a1a38a03e30428aca7054cc8555b749a9"></a>
 

@@ -1,6 +1,21 @@
 # GfxOpt<a name="EN-US_TOPIC_0000001055678092"></a>
 
-## **Overview**<a name="section1895441788093530"></a>
+-   [Overview](#section1817863845165631)
+-   [Summary](#section994812616165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1254484134165631)
+-   [Field](#section1185676163165631)
+-   [blendType](#ae1496544d54cd7a1f065bf8b061c6930)
+-   [colorKeyFrom](#a6258754e9250402e52478d29eb2cf070)
+-   [enableRop](#aa370e2a38a91f0762ddb48bdacf996c4)
+-   [enableScale](#adc64f89952efe8c45ef77f3512190e2d)
+-   [enAlpha](#a29ec54f7ca3a87aed83c4621979c6c0a)
+-   [globalAlpha](#a812b71a7c6e8190e17307c726c31fc23)
+-   [mirrorType](#a16e6d186004487eda4d78c5f8295cd64)
+-   [ropType](#a171646d484843b2cc5c92cec8742766f)
+-   [rotateType](#a3cf19bc3feeb0d286f526133cc0e027e)
+
+## **Overview**<a name="section1817863845165631"></a>
 
 **Related Modules:**
 
@@ -10,68 +25,68 @@
 
 Defines hardware acceleration options. 
 
-## **Summary**<a name="section1010225247093530"></a>
+## **Summary**<a name="section994812616165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table2038601345093530"></a>
-<table><thead align="left"><tr id="row1765065844093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1171800896093530"><a name="p1171800896093530"></a><a name="p1171800896093530"></a>Variable Name</p>
+<a name="table1950903241165631"></a>
+<table><thead align="left"><tr id="row535165104165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p883304784165631"><a name="p883304784165631"></a><a name="p883304784165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1531428770093530"><a name="p1531428770093530"></a><a name="p1531428770093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2093055221165631"><a name="p2093055221165631"></a><a name="p2093055221165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1351137108093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2075492150093530"><a name="p2075492150093530"></a><a name="p2075492150093530"></a><a href="gfxopt.md#a29ec54f7ca3a87aed83c4621979c6c0a">enAlpha</a></p>
+<tbody><tr id="row1274890685165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p67649396165631"><a name="p67649396165631"></a><a name="p67649396165631"></a><a href="gfxopt.md#a29ec54f7ca3a87aed83c4621979c6c0a">enAlpha</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p228099379093530"><a name="p228099379093530"></a><a name="p228099379093530"></a>bool </p>
-</td>
-</tr>
-<tr id="row568477887093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p352901380093530"><a name="p352901380093530"></a><a name="p352901380093530"></a><a href="gfxopt.md#a812b71a7c6e8190e17307c726c31fc23">globalAlpha</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2064519418093530"><a name="p2064519418093530"></a><a name="p2064519418093530"></a>uint32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1140727493165631"><a name="p1140727493165631"></a><a name="p1140727493165631"></a>bool </p>
 </td>
 </tr>
-<tr id="row1752552511093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p583791674093530"><a name="p583791674093530"></a><a name="p583791674093530"></a><a href="gfxopt.md#ae1496544d54cd7a1f065bf8b061c6930">blendType</a></p>
+<tr id="row1781541885165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p479266816165631"><a name="p479266816165631"></a><a name="p479266816165631"></a><a href="gfxopt.md#a812b71a7c6e8190e17307c726c31fc23">globalAlpha</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1236775845093530"><a name="p1236775845093530"></a><a name="p1236775845093530"></a><a href="display.md#gaab1839ed4aab1030dfda801a51e68817">BlendType</a> </p>
-</td>
-</tr>
-<tr id="row1605770264093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1890989235093530"><a name="p1890989235093530"></a><a name="p1890989235093530"></a><a href="gfxopt.md#a6258754e9250402e52478d29eb2cf070">colorKeyFrom</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1151729876093530"><a name="p1151729876093530"></a><a name="p1151729876093530"></a><a href="display.md#ga4fe6fb05c7ba0048b1739d88f4d4878e">ColorKey</a> </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1559719428165631"><a name="p1559719428165631"></a><a name="p1559719428165631"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row865056171093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1465771259093530"><a name="p1465771259093530"></a><a name="p1465771259093530"></a><a href="gfxopt.md#aa370e2a38a91f0762ddb48bdacf996c4">enableRop</a></p>
+<tr id="row310470698165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p687773223165631"><a name="p687773223165631"></a><a name="p687773223165631"></a><a href="gfxopt.md#ae1496544d54cd7a1f065bf8b061c6930">blendType</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p526980568093530"><a name="p526980568093530"></a><a name="p526980568093530"></a>bool </p>
-</td>
-</tr>
-<tr id="row924505173093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p501439112093530"><a name="p501439112093530"></a><a name="p501439112093530"></a><a href="gfxopt.md#a171646d484843b2cc5c92cec8742766f">ropType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1076000090093530"><a name="p1076000090093530"></a><a name="p1076000090093530"></a><a href="display.md#ga24265f7618fbdba53d3da4806d3097c4">RopType</a> </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p987828768165631"><a name="p987828768165631"></a><a name="p987828768165631"></a><a href="display.md#gaab1839ed4aab1030dfda801a51e68817">BlendType</a> </p>
 </td>
 </tr>
-<tr id="row1763587480093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p689226934093530"><a name="p689226934093530"></a><a name="p689226934093530"></a><a href="gfxopt.md#adc64f89952efe8c45ef77f3512190e2d">enableScale</a></p>
+<tr id="row802600923165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2104406438165631"><a name="p2104406438165631"></a><a name="p2104406438165631"></a><a href="gfxopt.md#a6258754e9250402e52478d29eb2cf070">colorKeyFrom</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p766625606093530"><a name="p766625606093530"></a><a name="p766625606093530"></a>bool </p>
-</td>
-</tr>
-<tr id="row1741807788093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p438173882093530"><a name="p438173882093530"></a><a name="p438173882093530"></a><a href="gfxopt.md#a3cf19bc3feeb0d286f526133cc0e027e">rotateType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1718758576093530"><a name="p1718758576093530"></a><a name="p1718758576093530"></a><a href="display.md#gaa65f3b21a9a92ff022e435a7304126d2">TransformType</a> </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p737856097165631"><a name="p737856097165631"></a><a name="p737856097165631"></a><a href="display.md#ga4fe6fb05c7ba0048b1739d88f4d4878e">ColorKey</a> </p>
 </td>
 </tr>
-<tr id="row139040557093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p367316091093530"><a name="p367316091093530"></a><a name="p367316091093530"></a><a href="gfxopt.md#a16e6d186004487eda4d78c5f8295cd64">mirrorType</a></p>
+<tr id="row1920173399165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1637951690165631"><a name="p1637951690165631"></a><a name="p1637951690165631"></a><a href="gfxopt.md#aa370e2a38a91f0762ddb48bdacf996c4">enableRop</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1261755625093530"><a name="p1261755625093530"></a><a name="p1261755625093530"></a><a href="display.md#ga08d32376574b541d162d8534adb78fd0">MirrorType</a> </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p285643922165631"><a name="p285643922165631"></a><a name="p285643922165631"></a>bool </p>
+</td>
+</tr>
+<tr id="row1142334350165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1351198246165631"><a name="p1351198246165631"></a><a name="p1351198246165631"></a><a href="gfxopt.md#a171646d484843b2cc5c92cec8742766f">ropType</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1119834802165631"><a name="p1119834802165631"></a><a name="p1119834802165631"></a><a href="display.md#ga24265f7618fbdba53d3da4806d3097c4">RopType</a> </p>
+</td>
+</tr>
+<tr id="row1496406255165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p536425117165631"><a name="p536425117165631"></a><a name="p536425117165631"></a><a href="gfxopt.md#adc64f89952efe8c45ef77f3512190e2d">enableScale</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1858058910165631"><a name="p1858058910165631"></a><a name="p1858058910165631"></a>bool </p>
+</td>
+</tr>
+<tr id="row330475311165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p402691577165631"><a name="p402691577165631"></a><a name="p402691577165631"></a><a href="gfxopt.md#a3cf19bc3feeb0d286f526133cc0e027e">rotateType</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p759800257165631"><a name="p759800257165631"></a><a name="p759800257165631"></a><a href="display.md#gaa65f3b21a9a92ff022e435a7304126d2">TransformType</a> </p>
+</td>
+</tr>
+<tr id="row1113776817165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1035729281165631"><a name="p1035729281165631"></a><a name="p1035729281165631"></a><a href="gfxopt.md#a16e6d186004487eda4d78c5f8295cd64">mirrorType</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1102106726165631"><a name="p1102106726165631"></a><a name="p1102106726165631"></a><a href="display.md#ga08d32376574b541d162d8534adb78fd0">MirrorType</a> </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section955905023093530"></a>
+## **Details**<a name="section1254484134165631"></a>
 
-## **Field Documentation**<a name="section1239568709093530"></a>
+## **Field **<a name="section1185676163165631"></a>
 
 ## blendType<a name="ae1496544d54cd7a1f065bf8b061c6930"></a>
 

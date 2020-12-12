@@ -1,6 +1,10 @@
 # theme.h<a name="EN-US_TOPIC_0000001055678074"></a>
 
-## **Overview**<a name="section1799570392093527"></a>
+-   [Overview](#section1156845434165629)
+-   [Summary](#section1803222741165629)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section1156845434165629"></a>
 
 **Related Modules:**
 
@@ -18,25 +22,25 @@ Declares the base class used to define the functions related to the styles of di
 
 1.0
 
-## **Summary**<a name="section722184650093527"></a>
+## **Summary**<a name="section1803222741165629"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table951013518093527"></a>
-<table><thead align="left"><tr id="row767572653093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1311875199093527"><a name="p1311875199093527"></a><a name="p1311875199093527"></a>Data Structure Name</p>
+<a name="table851389931165629"></a>
+<table><thead align="left"><tr id="row392372679165629"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1522560666165629"><a name="p1522560666165629"></a><a name="p1522560666165629"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2004793724093527"><a name="p2004793724093527"></a><a name="p2004793724093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p823589807165629"><a name="p823589807165629"></a><a name="p823589807165629"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1387773875093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p438852633093527"><a name="p438852633093527"></a><a name="p438852633093527"></a><a href="ohos-buttonstyle.md">OHOS::ButtonStyle</a></p>
+<tbody><tr id="row2112220689165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1289310178165629"><a name="p1289310178165629"></a><a name="p1289310178165629"></a><a href="ohos-buttonstyle.md">OHOS::ButtonStyle</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1798569659093527"><a name="p1798569659093527"></a><a name="p1798569659093527"></a>Stores styles of a button in its different states. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1035138074165629"><a name="p1035138074165629"></a><a name="p1035138074165629"></a>Stores styles of a button in its different states. </p>
 </td>
 </tr>
-<tr id="row800093747093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1974281757093527"><a name="p1974281757093527"></a><a name="p1974281757093527"></a><a href="ohos-theme.md">OHOS::Theme</a></p>
+<tr id="row1347728263165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1367569971165629"><a name="p1367569971165629"></a><a name="p1367569971165629"></a><a href="ohos-theme.md">OHOS::Theme</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1245150066093527"><a name="p1245150066093527"></a><a name="p1245150066093527"></a>Defines the theme class used to define the functions related to the styles of different components. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1968721112165629"><a name="p1968721112165629"></a><a name="p1968721112165629"></a>Defines the theme class used to define the functions related to the styles of different components. </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,10 @@
 # OHOS::Media::Format<a name="ZH-CN_TOPIC_0000001055039530"></a>
 
-## **Overview**<a name="section2022192628084837"></a>
+-   [Overview](#section141884443165633)
+-   [Summary](#section2084623564165633)
+-   [Public Member Functions](#pub-methods)
+
+## **Overview**<a name="section141884443165633"></a>
 
 **Related Modules:**
 
@@ -18,93 +22,93 @@ Saves and sets media metadata, such as the media playback duration.
 
 1.0
 
-## **Summary**<a name="section3439966084837"></a>
+## **Summary**<a name="section2084623564165633"></a>
 
 ## Public Member Functions<a name="pub-methods"></a>
 
-<a name="table1841983333084837"></a>
-<table><thead align="left"><tr id="row1722218816084837"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1358150087084837"><a name="p1358150087084837"></a><a name="p1358150087084837"></a>Public Member Function Name</p>
+<a name="table1662692173165633"></a>
+<table><thead align="left"><tr id="row1089080074165633"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p677295950165633"><a name="p677295950165633"></a><a name="p677295950165633"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p639817500084837"><a name="p639817500084837"></a><a name="p639817500084837"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p443704105165633"><a name="p443704105165633"></a><a name="p443704105165633"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1445684363084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p517439156084837"><a name="p517439156084837"></a><a name="p517439156084837"></a><a href="MultiMedia_MediaCommon.md#ga42435567c8fd61fd2da4834465aca98e">Format</a> ()</p>
+<tbody><tr id="row1080586781165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1422083326165633"><a name="p1422083326165633"></a><a name="p1422083326165633"></a><a href="MultiMedia_MediaCommon.md#ga42435567c8fd61fd2da4834465aca98e">Format</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1693037617084837"><a name="p1693037617084837"></a><a name="p1693037617084837"></a>&nbsp;</p>
-<p id="p520657212084837"><a name="p520657212084837"></a><a name="p520657212084837"></a>Default constructor of the <a href="OHOS-Media-Format.md">Format</a> instance. </p>
-</td>
-</tr>
-<tr id="row1397659611084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1369935612084837"><a name="p1369935612084837"></a><a name="p1369935612084837"></a><a href="MultiMedia_MediaCommon.md#ga66771efe315d001e79a14d316c58718e">PutIntValue</a> (const std::string &amp;key, int32_t value)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1178411532084837"><a name="p1178411532084837"></a><a name="p1178411532084837"></a>bool&nbsp;</p>
-<p id="p1013928760084837"><a name="p1013928760084837"></a><a name="p1013928760084837"></a>Sets metadata of the integer type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p225274296165633"><a name="p225274296165633"></a><a name="p225274296165633"></a> </p>
+<p id="p113082950165633"><a name="p113082950165633"></a><a name="p113082950165633"></a>Default constructor of the <a href="OHOS-Media-Format.md">Format</a> instance. </p>
 </td>
 </tr>
-<tr id="row1608102972084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p342352463084837"><a name="p342352463084837"></a><a name="p342352463084837"></a><a href="MultiMedia_MediaCommon.md#ga5b4477636095d80ec4e65c1be617c61c">PutLongValue</a> (const std::string &amp;key, int64_t value)</p>
+<tr id="row497857014165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p466973719165633"><a name="p466973719165633"></a><a name="p466973719165633"></a><a href="MultiMedia_MediaCommon.md#ga66771efe315d001e79a14d316c58718e">PutIntValue</a> (const std::string &amp;key, int32_t value)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1467032964084837"><a name="p1467032964084837"></a><a name="p1467032964084837"></a>bool&nbsp;</p>
-<p id="p315848353084837"><a name="p315848353084837"></a><a name="p315848353084837"></a>Sets metadata of the long integer type. </p>
-</td>
-</tr>
-<tr id="row703855077084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1278968960084837"><a name="p1278968960084837"></a><a name="p1278968960084837"></a><a href="MultiMedia_MediaCommon.md#gabec9417120824f5bb9eb676be380016f">PutFloatValue</a> (const std::string &amp;key, float value)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p534948698084837"><a name="p534948698084837"></a><a name="p534948698084837"></a>bool&nbsp;</p>
-<p id="p349666164084837"><a name="p349666164084837"></a><a name="p349666164084837"></a>Sets metadata of the single-precision floating-point type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p984540698165633"><a name="p984540698165633"></a><a name="p984540698165633"></a>bool </p>
+<p id="p1046937788165633"><a name="p1046937788165633"></a><a name="p1046937788165633"></a>Sets metadata of the integer type. </p>
 </td>
 </tr>
-<tr id="row1982469102084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1340863439084837"><a name="p1340863439084837"></a><a name="p1340863439084837"></a><a href="MultiMedia_MediaCommon.md#ga9a98a92eb4436301853a049b5f3313c6">PutDoubleValue</a> (const std::string &amp;key, double value)</p>
+<tr id="row680115810165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1320541763165633"><a name="p1320541763165633"></a><a name="p1320541763165633"></a><a href="MultiMedia_MediaCommon.md#ga5b4477636095d80ec4e65c1be617c61c">PutLongValue</a> (const std::string &amp;key, int64_t value)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2019423956084837"><a name="p2019423956084837"></a><a name="p2019423956084837"></a>bool&nbsp;</p>
-<p id="p495478757084837"><a name="p495478757084837"></a><a name="p495478757084837"></a>Sets metadata of the double-precision floating-point type. </p>
-</td>
-</tr>
-<tr id="row2039432484084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p987870365084837"><a name="p987870365084837"></a><a name="p987870365084837"></a><a href="MultiMedia_MediaCommon.md#gabdc104597559320256930f420eaab82f">PutStringValue</a> (const std::string &amp;key, const std::string &amp;value)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p136938344084837"><a name="p136938344084837"></a><a name="p136938344084837"></a>bool&nbsp;</p>
-<p id="p322011156084837"><a name="p322011156084837"></a><a name="p322011156084837"></a>Sets metadata of the string type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p919161587165633"><a name="p919161587165633"></a><a name="p919161587165633"></a>bool </p>
+<p id="p2080002434165633"><a name="p2080002434165633"></a><a name="p2080002434165633"></a>Sets metadata of the long integer type. </p>
 </td>
 </tr>
-<tr id="row1153185146084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1379951995084837"><a name="p1379951995084837"></a><a name="p1379951995084837"></a><a href="MultiMedia_MediaCommon.md#ga798ef733a253558757f49714090b3969">GetIntValue</a> (const std::string &amp;key, int32_t &amp;value) const</p>
+<tr id="row440171162165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p756210436165633"><a name="p756210436165633"></a><a name="p756210436165633"></a><a href="MultiMedia_MediaCommon.md#gabec9417120824f5bb9eb676be380016f">PutFloatValue</a> (const std::string &amp;key, float value)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p103915937084837"><a name="p103915937084837"></a><a name="p103915937084837"></a>bool&nbsp;</p>
-<p id="p2000866882084837"><a name="p2000866882084837"></a><a name="p2000866882084837"></a>Obtains the metadata value of the integer type. </p>
-</td>
-</tr>
-<tr id="row1267326502084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1599259509084837"><a name="p1599259509084837"></a><a name="p1599259509084837"></a><a href="MultiMedia_MediaCommon.md#ga7f1c503f40b78083cb9b9ae9ce93d3b4">GetLongValue</a> (const std::string &amp;key, int64_t &amp;value) const</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p267956233084837"><a name="p267956233084837"></a><a name="p267956233084837"></a>bool&nbsp;</p>
-<p id="p1779884757084837"><a name="p1779884757084837"></a><a name="p1779884757084837"></a>Obtains the metadata value of the long integer type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p608260116165633"><a name="p608260116165633"></a><a name="p608260116165633"></a>bool </p>
+<p id="p724860036165633"><a name="p724860036165633"></a><a name="p724860036165633"></a>Sets metadata of the single-precision floating-point type. </p>
 </td>
 </tr>
-<tr id="row1066193495084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p518475896084837"><a name="p518475896084837"></a><a name="p518475896084837"></a><a href="MultiMedia_MediaCommon.md#gac4e963a9fe320c0143ed33df5f737cb3">GetFloatValue</a> (const std::string &amp;key, float &amp;value) const</p>
+<tr id="row1269475390165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p421568162165633"><a name="p421568162165633"></a><a name="p421568162165633"></a><a href="MultiMedia_MediaCommon.md#ga9a98a92eb4436301853a049b5f3313c6">PutDoubleValue</a> (const std::string &amp;key, double value)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1477179059084837"><a name="p1477179059084837"></a><a name="p1477179059084837"></a>bool&nbsp;</p>
-<p id="p711110914084837"><a name="p711110914084837"></a><a name="p711110914084837"></a>Obtains the metadata value of the single-precision floating-point type. </p>
-</td>
-</tr>
-<tr id="row1748893564084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1341416423084837"><a name="p1341416423084837"></a><a name="p1341416423084837"></a><a href="MultiMedia_MediaCommon.md#gafe949ed0c2d9dcb5c5e57c7fde226f3e">GetDoubleValue</a> (const std::string &amp;key, double &amp;value) const</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2098475590084837"><a name="p2098475590084837"></a><a name="p2098475590084837"></a>bool&nbsp;</p>
-<p id="p324795423084837"><a name="p324795423084837"></a><a name="p324795423084837"></a>Obtains the metadata value of the double-precision floating-point type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1723055316165633"><a name="p1723055316165633"></a><a name="p1723055316165633"></a>bool </p>
+<p id="p1938503216165633"><a name="p1938503216165633"></a><a name="p1938503216165633"></a>Sets metadata of the double-precision floating-point type. </p>
 </td>
 </tr>
-<tr id="row1981320827084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1447353169084837"><a name="p1447353169084837"></a><a name="p1447353169084837"></a><a href="MultiMedia_MediaCommon.md#ga089a3e44e128fb662b72c56b53c7068b">GetStringValue</a> (const std::string &amp;key, std::string &amp;value) const</p>
+<tr id="row1524143118165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1922498140165633"><a name="p1922498140165633"></a><a name="p1922498140165633"></a><a href="MultiMedia_MediaCommon.md#gabdc104597559320256930f420eaab82f">PutStringValue</a> (const std::string &amp;key, const std::string &amp;value)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p602754331084837"><a name="p602754331084837"></a><a name="p602754331084837"></a>bool&nbsp;</p>
-<p id="p332363695084837"><a name="p332363695084837"></a><a name="p332363695084837"></a>Obtains the metadata value of the string type. </p>
-</td>
-</tr>
-<tr id="row532689222084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p422969976084837"><a name="p422969976084837"></a><a name="p422969976084837"></a><a href="MultiMedia_MediaCommon.md#ga4adff4846515cef00987a360a4d117af">GetFormatMap</a> () const</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p215962740084837"><a name="p215962740084837"></a><a name="p215962740084837"></a>const std::map&lt; std::string, <a href="OHOS-Media-FormatData.md">FormatData</a> * &gt; &amp;&nbsp;</p>
-<p id="p1777232990084837"><a name="p1777232990084837"></a><a name="p1777232990084837"></a>Obtains the metadata map. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1702345725165633"><a name="p1702345725165633"></a><a name="p1702345725165633"></a>bool </p>
+<p id="p857298867165633"><a name="p857298867165633"></a><a name="p857298867165633"></a>Sets metadata of the string type. </p>
 </td>
 </tr>
-<tr id="row1454651933084837"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p95170271084837"><a name="p95170271084837"></a><a name="p95170271084837"></a><a href="MultiMedia_MediaCommon.md#ga528134c9f87bf755077b3ef51d64e198">CopyFrom</a> (const <a href="OHOS-Media-Format.md">Format</a> &amp;format)</p>
+<tr id="row663535345165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1056520090165633"><a name="p1056520090165633"></a><a name="p1056520090165633"></a><a href="MultiMedia_MediaCommon.md#ga798ef733a253558757f49714090b3969">GetIntValue</a> (const std::string &amp;key, int32_t &amp;value) const</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2137280475084837"><a name="p2137280475084837"></a><a name="p2137280475084837"></a>bool&nbsp;</p>
-<p id="p1874013097084837"><a name="p1874013097084837"></a><a name="p1874013097084837"></a>Sets all metadata to a specified format. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1407703346165633"><a name="p1407703346165633"></a><a name="p1407703346165633"></a>bool </p>
+<p id="p1010350758165633"><a name="p1010350758165633"></a><a name="p1010350758165633"></a>Obtains the metadata value of the integer type. </p>
+</td>
+</tr>
+<tr id="row776925703165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1596139557165633"><a name="p1596139557165633"></a><a name="p1596139557165633"></a><a href="MultiMedia_MediaCommon.md#ga7f1c503f40b78083cb9b9ae9ce93d3b4">GetLongValue</a> (const std::string &amp;key, int64_t &amp;value) const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p167688426165633"><a name="p167688426165633"></a><a name="p167688426165633"></a>bool </p>
+<p id="p1132651985165633"><a name="p1132651985165633"></a><a name="p1132651985165633"></a>Obtains the metadata value of the long integer type. </p>
+</td>
+</tr>
+<tr id="row414240581165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1980260749165633"><a name="p1980260749165633"></a><a name="p1980260749165633"></a><a href="MultiMedia_MediaCommon.md#gac4e963a9fe320c0143ed33df5f737cb3">GetFloatValue</a> (const std::string &amp;key, float &amp;value) const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p947709922165633"><a name="p947709922165633"></a><a name="p947709922165633"></a>bool </p>
+<p id="p1001905584165633"><a name="p1001905584165633"></a><a name="p1001905584165633"></a>Obtains the metadata value of the single-precision floating-point type. </p>
+</td>
+</tr>
+<tr id="row402689736165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1487261451165633"><a name="p1487261451165633"></a><a name="p1487261451165633"></a><a href="MultiMedia_MediaCommon.md#gafe949ed0c2d9dcb5c5e57c7fde226f3e">GetDoubleValue</a> (const std::string &amp;key, double &amp;value) const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p291443948165633"><a name="p291443948165633"></a><a name="p291443948165633"></a>bool </p>
+<p id="p213687919165633"><a name="p213687919165633"></a><a name="p213687919165633"></a>Obtains the metadata value of the double-precision floating-point type. </p>
+</td>
+</tr>
+<tr id="row77921189165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p385751815165633"><a name="p385751815165633"></a><a name="p385751815165633"></a><a href="MultiMedia_MediaCommon.md#ga089a3e44e128fb662b72c56b53c7068b">GetStringValue</a> (const std::string &amp;key, std::string &amp;value) const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p317433623165633"><a name="p317433623165633"></a><a name="p317433623165633"></a>bool </p>
+<p id="p164114404165633"><a name="p164114404165633"></a><a name="p164114404165633"></a>Obtains the metadata value of the string type. </p>
+</td>
+</tr>
+<tr id="row1858796154165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1384618244165633"><a name="p1384618244165633"></a><a name="p1384618244165633"></a><a href="MultiMedia_MediaCommon.md#ga4adff4846515cef00987a360a4d117af">GetFormatMap</a> () const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p365369562165633"><a name="p365369562165633"></a><a name="p365369562165633"></a>const std::map&lt; std::string, <a href="OHOS-Media-FormatData.md">FormatData</a> * &gt; &amp; </p>
+<p id="p251180521165633"><a name="p251180521165633"></a><a name="p251180521165633"></a>Obtains the metadata map. </p>
+</td>
+</tr>
+<tr id="row1283764964165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p236856624165633"><a name="p236856624165633"></a><a name="p236856624165633"></a><a href="MultiMedia_MediaCommon.md#ga528134c9f87bf755077b3ef51d64e198">CopyFrom</a> (const <a href="OHOS-Media-Format.md">Format</a> &amp;format)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2047448899165633"><a name="p2047448899165633"></a><a name="p2047448899165633"></a>bool </p>
+<p id="p1465268650165633"><a name="p1465268650165633"></a><a name="p1465268650165633"></a>Sets all metadata to a specified format. </p>
 </td>
 </tr>
 </tbody>

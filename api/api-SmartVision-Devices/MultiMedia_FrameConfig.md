@@ -1,6 +1,25 @@
 # MultiMedia\_FrameConfig<a name="ZH-CN_TOPIC_0000001055358062"></a>
 
-## **Overview**<a name="section1362159018084827"></a>
+-   [Overview](#section1826838220165625)
+-   [Summary](#section2063584699165625)
+-   [Files](#files)
+-   [Data Structures](#nested-classes)
+-   [Functions](#func-members)
+-   [Details](#section562581684165625)
+-   [Function](#section1303191587165625)
+-   [AddSurface\(\)](#ga16760311713db03bf06ea0a6d6622013)
+-   [FrameConfig\(\) \[1/2\]](#ga043537d52f5db46d981f9e89848b0fba)
+-   [FrameConfig\(\) \[2/2\]](#gac8f74ff3689605a59a17997bdeaec1fc)
+-   [GetFrameConfigType\(\)](#ga382977445a583ed0424c5ccf581e824c)
+-   [GetParameter\(\)](#ga05147491c6e25df54d75d5ed0c201d65)
+-   [GetSurfaces\(\)](#ga955d04df96c009e4699ea6ed46d9e758)
+-   [RemoveSurface\(\)](#ga9ac4bc5e52840ee579482a3836774762)
+-   [SetParameter\(\)](#ga6b4ee39d1c1bf219e4a84df470f6007a)
+-   [\~FrameConfig\(\)](#gaa2e58c2ce602d9263b76596374823616)
+
+## **Overview**<a name="section1826838220165625"></a>
+
+**Description:**
 
 Defines the  **FrameConfig**  class for operations related to frame configurations. 
 
@@ -12,20 +31,20 @@ Defines the  **FrameConfig**  class for operations related to frame configuratio
 
 1.0
 
-## **Summary**<a name="section463042663084827"></a>
+## **Summary**<a name="section2063584699165625"></a>
 
 ## Files<a name="files"></a>
 
-<a name="table1578082878084827"></a>
-<table><thead align="left"><tr id="row1256321650084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p261211100084827"><a name="p261211100084827"></a><a name="p261211100084827"></a>File Name</p>
+<a name="table1001483506165625"></a>
+<table><thead align="left"><tr id="row1127866165165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1110105892165625"><a name="p1110105892165625"></a><a name="p1110105892165625"></a>File Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1051627648084827"><a name="p1051627648084827"></a><a name="p1051627648084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1491707007165625"><a name="p1491707007165625"></a><a name="p1491707007165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1107941871084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p917175410084827"><a name="p917175410084827"></a><a name="p917175410084827"></a><a href="frame_config-h.md">frame_config.h</a></p>
+<tbody><tr id="row738934853165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p31403055165625"><a name="p31403055165625"></a><a name="p31403055165625"></a><a href="frame_config-h.md">frame_config.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p841017035084827"><a name="p841017035084827"></a><a name="p841017035084827"></a>Declares APIs of the <strong id="b1830008999084827"><a name="b1830008999084827"></a><a name="b1830008999084827"></a>FrameConfig</strong> class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1443041818165625"><a name="p1443041818165625"></a><a name="p1443041818165625"></a>Declares APIs of the <strong id="b1539263610165625"><a name="b1539263610165625"></a><a name="b1539263610165625"></a>FrameConfig</strong> class. </p>
 </td>
 </tr>
 </tbody>
@@ -33,16 +52,16 @@ Defines the  **FrameConfig**  class for operations related to frame configuratio
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1794564051084827"></a>
-<table><thead align="left"><tr id="row115751169084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p105678732084827"><a name="p105678732084827"></a><a name="p105678732084827"></a>Data Structure Name</p>
+<a name="table1971802229165625"></a>
+<table><thead align="left"><tr id="row574830850165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1841486247165625"><a name="p1841486247165625"></a><a name="p1841486247165625"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p872487067084827"><a name="p872487067084827"></a><a name="p872487067084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1377247249165625"><a name="p1377247249165625"></a><a name="p1377247249165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row699147479084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1598519146084827"><a name="p1598519146084827"></a><a name="p1598519146084827"></a><a href="OHOS-Media-FrameConfig.md">OHOS::Media::FrameConfig</a></p>
+<tbody><tr id="row386821398165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1267097769165625"><a name="p1267097769165625"></a><a name="p1267097769165625"></a><a href="OHOS-Media-FrameConfig.md">OHOS::Media::FrameConfig</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p307951291084827"><a name="p307951291084827"></a><a name="p307951291084827"></a>Provides functions to configure frames. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1297408991165625"><a name="p1297408991165625"></a><a name="p1297408991165625"></a>Provides functions to configure frames. </p>
 </td>
 </tr>
 </tbody>
@@ -50,66 +69,78 @@ Defines the  **FrameConfig**  class for operations related to frame configuratio
 
 ## Functions<a name="func-members"></a>
 
-<a name="table480166683084827"></a>
-<table><thead align="left"><tr id="row36481544084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p817049028084827"><a name="p817049028084827"></a><a name="p817049028084827"></a>Function Name</p>
+<a name="table2098592745165625"></a>
+<table><thead align="left"><tr id="row296268224165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p906717823165625"><a name="p906717823165625"></a><a name="p906717823165625"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1210818457084827"><a name="p1210818457084827"></a><a name="p1210818457084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1325645866165625"><a name="p1325645866165625"></a><a name="p1325645866165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1512456803084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1435714446084827"><a name="p1435714446084827"></a><a name="p1435714446084827"></a><a href="MultiMedia_FrameConfig.md#ga043537d52f5db46d981f9e89848b0fba">OHOS::Media::FrameConfig::FrameConfig</a> ()=delete</p>
+<tbody><tr id="row1658047745165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p566083981165625"><a name="p566083981165625"></a><a name="p566083981165625"></a><a href="MultiMedia_FrameConfig.md#ga043537d52f5db46d981f9e89848b0fba">OHOS::Media::FrameConfig::FrameConfig</a> ()=delete</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1395968171084827"><a name="p1395968171084827"></a><a name="p1395968171084827"></a>&nbsp;</p>
-<p id="p1647144110084827"><a name="p1647144110084827"></a><a name="p1647144110084827"></a>A constructor used to create a <strong id="b706833779084827"><a name="b706833779084827"></a><a name="b706833779084827"></a><a href="OHOS-Media-FrameConfig.md">FrameConfig</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row2016400007084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2070624075084827"><a name="p2070624075084827"></a><a name="p2070624075084827"></a><a href="MultiMedia_FrameConfig.md#gac8f74ff3689605a59a17997bdeaec1fc">OHOS::Media::FrameConfig::FrameConfig</a> (int32_t type)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p343078561084827"><a name="p343078561084827"></a><a name="p343078561084827"></a>&nbsp;</p>
-<p id="p951775092084827"><a name="p951775092084827"></a><a name="p951775092084827"></a>A constructor used to create a <strong id="b1654613947084827"><a name="b1654613947084827"></a><a name="b1654613947084827"></a><a href="OHOS-Media-FrameConfig.md">FrameConfig</a></strong> instance based on the configuration mode. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p398558154165625"><a name="p398558154165625"></a><a name="p398558154165625"></a> </p>
+<p id="p1355783015165625"><a name="p1355783015165625"></a><a name="p1355783015165625"></a>A constructor used to create a <strong id="b1610271946165625"><a name="b1610271946165625"></a><a name="b1610271946165625"></a><a href="OHOS-Media-FrameConfig.md">FrameConfig</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1092831449084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1516965326084827"><a name="p1516965326084827"></a><a name="p1516965326084827"></a><a href="MultiMedia_FrameConfig.md#gaa2e58c2ce602d9263b76596374823616">OHOS::Media::FrameConfig::~FrameConfig</a> ()</p>
+<tr id="row1496878191165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p806949071165625"><a name="p806949071165625"></a><a name="p806949071165625"></a><a href="MultiMedia_FrameConfig.md#gac8f74ff3689605a59a17997bdeaec1fc">OHOS::Media::FrameConfig::FrameConfig</a> (int32_t type)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p620988040084827"><a name="p620988040084827"></a><a name="p620988040084827"></a>&nbsp;</p>
-<p id="p504424433084827"><a name="p504424433084827"></a><a name="p504424433084827"></a>A destructor used to delete the <strong id="b864109600084827"><a name="b864109600084827"></a><a name="b864109600084827"></a><a href="OHOS-Media-FrameConfig.md">FrameConfig</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row529407042084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p887076545084827"><a name="p887076545084827"></a><a name="p887076545084827"></a><a href="MultiMedia_FrameConfig.md#ga382977445a583ed0424c5ccf581e824c">OHOS::Media::FrameConfig::GetFrameConfigType</a> ()</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p178874807084827"><a name="p178874807084827"></a><a name="p178874807084827"></a>int32_t&nbsp;</p>
-<p id="p310243274084827"><a name="p310243274084827"></a><a name="p310243274084827"></a>Obtains the frame configuration type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1941745805165625"><a name="p1941745805165625"></a><a name="p1941745805165625"></a> </p>
+<p id="p1523632036165625"><a name="p1523632036165625"></a><a name="p1523632036165625"></a>A constructor used to create a <strong id="b1229169710165625"><a name="b1229169710165625"></a><a name="b1229169710165625"></a><a href="OHOS-Media-FrameConfig.md">FrameConfig</a></strong> instance based on the configuration mode. </p>
 </td>
 </tr>
-<tr id="row1763058522084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p505266576084827"><a name="p505266576084827"></a><a name="p505266576084827"></a><a href="MultiMedia_FrameConfig.md#ga955d04df96c009e4699ea6ed46d9e758">OHOS::Media::FrameConfig::GetSurfaces</a> ()</p>
+<tr id="row706550708165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2117950222165625"><a name="p2117950222165625"></a><a name="p2117950222165625"></a><a href="MultiMedia_FrameConfig.md#gaa2e58c2ce602d9263b76596374823616">OHOS::Media::FrameConfig::~FrameConfig</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1768747573084827"><a name="p1768747573084827"></a><a name="p1768747573084827"></a>std::list&lt; <a href="OHOS-Surface.md">Surface</a> * &gt;&nbsp;</p>
-<p id="p1577213459084827"><a name="p1577213459084827"></a><a name="p1577213459084827"></a>Obtains a list of shared memories (surface objects). </p>
-</td>
-</tr>
-<tr id="row1215634775084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p867660811084827"><a name="p867660811084827"></a><a name="p867660811084827"></a><a href="MultiMedia_FrameConfig.md#ga16760311713db03bf06ea0a6d6622013">OHOS::Media::FrameConfig::AddSurface</a> (<a href="OHOS-Surface.md">Surface</a> &amp;surface)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p794661103084827"><a name="p794661103084827"></a><a name="p794661103084827"></a>void&nbsp;</p>
-<p id="p1286690421084827"><a name="p1286690421084827"></a><a name="p1286690421084827"></a>Adds a surface (an object of shared memory). </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1817647380165625"><a name="p1817647380165625"></a><a name="p1817647380165625"></a> </p>
+<p id="p412211749165625"><a name="p412211749165625"></a><a name="p412211749165625"></a>A destructor used to delete the <strong id="b579138232165625"><a name="b579138232165625"></a><a name="b579138232165625"></a><a href="OHOS-Media-FrameConfig.md">FrameConfig</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1066329980084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p367405186084827"><a name="p367405186084827"></a><a name="p367405186084827"></a><a href="MultiMedia_FrameConfig.md#ga9ac4bc5e52840ee579482a3836774762">OHOS::Media::FrameConfig::RemoveSurface</a> (<a href="OHOS-Surface.md">Surface</a> &amp;surface)</p>
+<tr id="row932379979165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p341662348165625"><a name="p341662348165625"></a><a name="p341662348165625"></a><a href="MultiMedia_FrameConfig.md#ga382977445a583ed0424c5ccf581e824c">OHOS::Media::FrameConfig::GetFrameConfigType</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1815462413084827"><a name="p1815462413084827"></a><a name="p1815462413084827"></a>void&nbsp;</p>
-<p id="p1326135182084827"><a name="p1326135182084827"></a><a name="p1326135182084827"></a>Removes a surface (an object of shared memory). You can call this function to release the surface when your application does not need to obtain data. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1177385601165625"><a name="p1177385601165625"></a><a name="p1177385601165625"></a>int32_t </p>
+<p id="p1468355315165625"><a name="p1468355315165625"></a><a name="p1468355315165625"></a>Obtains the frame configuration type. </p>
+</td>
+</tr>
+<tr id="row6591970165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1767721014165625"><a name="p1767721014165625"></a><a name="p1767721014165625"></a><a href="MultiMedia_FrameConfig.md#ga955d04df96c009e4699ea6ed46d9e758">OHOS::Media::FrameConfig::GetSurfaces</a> ()</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1336074055165625"><a name="p1336074055165625"></a><a name="p1336074055165625"></a>std::list&lt; <a href="OHOS-Surface.md">Surface</a> * &gt; </p>
+<p id="p234473821165625"><a name="p234473821165625"></a><a name="p234473821165625"></a>Obtains a list of shared memories (surface objects). </p>
+</td>
+</tr>
+<tr id="row675166114165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p621865556165625"><a name="p621865556165625"></a><a name="p621865556165625"></a><a href="MultiMedia_FrameConfig.md#ga16760311713db03bf06ea0a6d6622013">OHOS::Media::FrameConfig::AddSurface</a> (<a href="OHOS-Surface.md">Surface</a> &amp;surface)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1467379152165625"><a name="p1467379152165625"></a><a name="p1467379152165625"></a>void </p>
+<p id="p1574130228165625"><a name="p1574130228165625"></a><a name="p1574130228165625"></a>Adds a surface (an object of shared memory). </p>
+</td>
+</tr>
+<tr id="row2146065240165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p947872276165625"><a name="p947872276165625"></a><a name="p947872276165625"></a><a href="MultiMedia_FrameConfig.md#ga9ac4bc5e52840ee579482a3836774762">OHOS::Media::FrameConfig::RemoveSurface</a> (<a href="OHOS-Surface.md">Surface</a> &amp;surface)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1071281368165625"><a name="p1071281368165625"></a><a name="p1071281368165625"></a>void </p>
+<p id="p807302450165625"><a name="p807302450165625"></a><a name="p807302450165625"></a>Removes a surface (an object of shared memory). You can call this function to release the surface when your application does not need to obtain data. </p>
+</td>
+</tr>
+<tr id="row2042438453165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1704136924165625"><a name="p1704136924165625"></a><a name="p1704136924165625"></a><a href="MultiMedia_FrameConfig.md#ga6b4ee39d1c1bf219e4a84df470f6007a">OHOS::Media::FrameConfig::SetParameter</a> (uint32_t key, const T value)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p778638255165625"><a name="p778638255165625"></a><a name="p778638255165625"></a>template&lt;typename T &gt; void </p>
+<p id="p1345107024165625"><a name="p1345107024165625"></a><a name="p1345107024165625"></a>Sets the common parameter. </p>
+</td>
+</tr>
+<tr id="row584550147165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1485223143165625"><a name="p1485223143165625"></a><a name="p1485223143165625"></a><a href="MultiMedia_FrameConfig.md#ga05147491c6e25df54d75d5ed0c201d65">OHOS::Media::FrameConfig::GetParameter</a> (uint32_t key, T &amp;value)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p569170455165625"><a name="p569170455165625"></a><a name="p569170455165625"></a>template&lt;typename T &gt; void </p>
+<p id="p475377562165625"><a name="p475377562165625"></a><a name="p475377562165625"></a>Obtains the value of a common parameter based on its key. For details, see <strong id="b32488407165625"><a name="b32488407165625"></a><a name="b32488407165625"></a>CAMERA_FUC_KEY</strong>. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section791622550084827"></a>
+## **Details**<a name="section562581684165625"></a>
 
-## **Function Documentation**<a name="section1624467749084827"></a>
+## **Function **<a name="section1303191587165625"></a>
 
 ## AddSurface\(\)<a name="ga16760311713db03bf06ea0a6d6622013"></a>
 
 ```
-void OHOS::Media::FrameConfig::AddSurface ([Surface](OHOS-Surface.md) & surface)
+void OHOS::Media::FrameConfig::AddSurface ([Surface](OHOS-Surface.md) & surface)
 ```
 
  **Description:**
@@ -118,14 +149,14 @@ Adds a surface \(an object of shared memory\).
 
 **Parameters:**
 
-<a name="table1571704204084827"></a>
-<table><thead align="left"><tr id="row1774856022084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p557078919084827"><a name="p557078919084827"></a><a name="p557078919084827"></a>Name</p>
+<a name="table1865409677165625"></a>
+<table><thead align="left"><tr id="row517987071165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p633770495165625"><a name="p633770495165625"></a><a name="p633770495165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1614381876084827"><a name="p1614381876084827"></a><a name="p1614381876084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p120934734165625"><a name="p120934734165625"></a><a name="p120934734165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row416662852084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">surface</td>
+<tbody><tr id="row934912128165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">surface</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the surface to add. </td>
 </tr>
 </tbody>
@@ -144,7 +175,7 @@ A constructor used to create a  **[FrameConfig](OHOS-Media-FrameConfig.md)**  in
 ## FrameConfig\(\) \[2/2\]<a name="gac8f74ff3689605a59a17997bdeaec1fc"></a>
 
 ```
-OHOS::Media::FrameConfig::FrameConfig (int32_t type)
+OHOS::Media::FrameConfig::FrameConfig (int32_t type)
 ```
 
  **Description:**
@@ -153,15 +184,15 @@ A constructor used to create a  **[FrameConfig](OHOS-Media-FrameConfig.md)**  in
 
 **Parameters:**
 
-<a name="table1395044974084827"></a>
-<table><thead align="left"><tr id="row1211574434084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1774895882084827"><a name="p1774895882084827"></a><a name="p1774895882084827"></a>Name</p>
+<a name="table949883997165625"></a>
+<table><thead align="left"><tr id="row1010687324165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p369330865165625"><a name="p369330865165625"></a><a name="p369330865165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1632748138084827"><a name="p1632748138084827"></a><a name="p1632748138084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1686060775165625"><a name="p1686060775165625"></a><a name="p1686060775165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row897251710084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">type</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the frame configuration mode, which can be <strong id="b1069656028084827"><a name="b1069656028084827"></a><a name="b1069656028084827"></a>FRAME_CONFIG_PREVIEW</strong>, &lt;b&gt;FRAME_CONFIG_RECORD, or <strong id="b1254317685084827"><a name="b1254317685084827"></a><a name="b1254317685084827"></a>FRAME_CONFIG_CAPTURE</strong>. </td>
+<tbody><tr id="row330332720165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">type</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the frame configuration mode, which can be <strong id="b1685955216165625"><a name="b1685955216165625"></a><a name="b1685955216165625"></a>FRAME_CONFIG_PREVIEW</strong>, &lt;b&gt;FRAME_CONFIG_RECORD, or <strong id="b471292757165625"><a name="b471292757165625"></a><a name="b471292757165625"></a>FRAME_CONFIG_CAPTURE</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -180,7 +211,30 @@ Obtains the frame configuration type.
 
 Returns the frame configuration type if obtained; returns  **-1**  otherwise. 
 
+## GetParameter\(\)<a name="ga05147491c6e25df54d75d5ed0c201d65"></a>
 
+```
+void OHOS::Media::FrameConfig::GetParameter (uint32_t key, T & value )
+```
+
+ **Description:**
+
+Obtains the value of a common parameter based on its key. For details, see  **CAMERA\_FUC\_KEY**. 
+
+**Parameters:**
+
+<a name="table651029366165625"></a>
+<table><thead align="left"><tr id="row880814238165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1065065460165625"><a name="p1065065460165625"></a><a name="p1065065460165625"></a>Name</p>
+</th>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p242219357165625"><a name="p242219357165625"></a><a name="p242219357165625"></a>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row1350161147165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">key</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the common parameter key. </td>
+</tr>
+</tbody>
+</table>
 
 ## GetSurfaces\(\)<a name="ga955d04df96c009e4699ea6ed46d9e758"></a>
 
@@ -196,12 +250,10 @@ Obtains a list of shared memories \(surface objects\).
 
 Returns the list of shared memories if obtained; returns  **NULL**  otherwise. 
 
-
-
 ## RemoveSurface\(\)<a name="ga9ac4bc5e52840ee579482a3836774762"></a>
 
 ```
-void OHOS::Media::FrameConfig::RemoveSurface ([Surface](OHOS-Surface.md) & surface)
+void OHOS::Media::FrameConfig::RemoveSurface ([Surface](OHOS-Surface.md) & surface)
 ```
 
  **Description:**
@@ -210,15 +262,43 @@ Removes a surface \(an object of shared memory\). You can call this function to 
 
 **Parameters:**
 
-<a name="table1955885242084827"></a>
-<table><thead align="left"><tr id="row1444559542084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1822518132084827"><a name="p1822518132084827"></a><a name="p1822518132084827"></a>Name</p>
+<a name="table907351372165625"></a>
+<table><thead align="left"><tr id="row467090732165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p537701159165625"><a name="p537701159165625"></a><a name="p537701159165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1110828343084827"><a name="p1110828343084827"></a><a name="p1110828343084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p696906112165625"><a name="p696906112165625"></a><a name="p696906112165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1620704715084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">surface</td>
+<tbody><tr id="row770629631165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">surface</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the surface to remove. </td>
+</tr>
+</tbody>
+</table>
+
+## SetParameter\(\)<a name="ga6b4ee39d1c1bf219e4a84df470f6007a"></a>
+
+```
+void OHOS::Media::FrameConfig::SetParameter (uint32_t key, const T value )
+```
+
+ **Description:**
+
+Sets the common parameter. 
+
+**Parameters:**
+
+<a name="table2020429200165625"></a>
+<table><thead align="left"><tr id="row962113405165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p995064599165625"><a name="p995064599165625"></a><a name="p995064599165625"></a>Name</p>
+</th>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p77302065165625"><a name="p77302065165625"></a><a name="p77302065165625"></a>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row1125715368165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">key</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the common parameter key to set. </td>
+</tr>
+<tr id="row1850454250165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">value</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the common parameter value to set. </td>
 </tr>
 </tbody>
 </table>

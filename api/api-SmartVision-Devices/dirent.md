@@ -1,6 +1,17 @@
 # dirent<a name="ZH-CN_TOPIC_0000001055198174"></a>
 
-## **Overview**<a name="section1573299253084842"></a>
+-   [Overview](#section1397390635165636)
+-   [Summary](#section1943097188165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1485027188165636)
+-   [Field](#section740521908165636)
+-   [d\_ino](#aaea0878aa0629630d94e180f5dbc22c5)
+-   [d\_name](#ae52d525c8057131d7f1155fe7039910d)
+-   [d\_off](#af812e4ed54eeb48e843efa6fb9a5465f)
+-   [d\_reclen](#a90dc47836e8ef510437317876368859e)
+-   [d\_type](#adca3b20d5a245f0d8b9f2aa84844b1ff)
+
+## **Overview**<a name="section1397390635165636"></a>
 
 **Related Modules:**
 
@@ -10,48 +21,48 @@
 
 Defines the content of the directory. 
 
-## **Summary**<a name="section2114563876084842"></a>
+## **Summary**<a name="section1943097188165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table293740774084842"></a>
-<table><thead align="left"><tr id="row589022430084842"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1722567970084842"><a name="p1722567970084842"></a><a name="p1722567970084842"></a>Variable Name</p>
+<a name="table368140534165636"></a>
+<table><thead align="left"><tr id="row1768732888165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1095951529165636"><a name="p1095951529165636"></a><a name="p1095951529165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1589253956084842"><a name="p1589253956084842"></a><a name="p1589253956084842"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p124209812165636"><a name="p124209812165636"></a><a name="p124209812165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row664778421084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p793487391084842"><a name="p793487391084842"></a><a name="p793487391084842"></a><a href="dirent.md#aaea0878aa0629630d94e180f5dbc22c5">d_ino</a></p>
+<tbody><tr id="row1799671262165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p862103301165636"><a name="p862103301165636"></a><a name="p862103301165636"></a><a href="dirent.md#aaea0878aa0629630d94e180f5dbc22c5">d_ino</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p186970390084842"><a name="p186970390084842"></a><a name="p186970390084842"></a>ino_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1353510526084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1749996258084842"><a name="p1749996258084842"></a><a name="p1749996258084842"></a><a href="dirent.md#af812e4ed54eeb48e843efa6fb9a5465f">d_off</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p267291785084842"><a name="p267291785084842"></a><a name="p267291785084842"></a>off_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p918589604165636"><a name="p918589604165636"></a><a name="p918589604165636"></a>ino_t </p>
 </td>
 </tr>
-<tr id="row2129608265084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1481018326084842"><a name="p1481018326084842"></a><a name="p1481018326084842"></a><a href="dirent.md#a90dc47836e8ef510437317876368859e">d_reclen</a></p>
+<tr id="row1127669149165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p62307553165636"><a name="p62307553165636"></a><a name="p62307553165636"></a><a href="dirent.md#af812e4ed54eeb48e843efa6fb9a5465f">d_off</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p471115584084842"><a name="p471115584084842"></a><a name="p471115584084842"></a>unsigned short&nbsp;</p>
-</td>
-</tr>
-<tr id="row1214863963084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p88074759084842"><a name="p88074759084842"></a><a name="p88074759084842"></a><a href="dirent.md#adca3b20d5a245f0d8b9f2aa84844b1ff">d_type</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1970868130084842"><a name="p1970868130084842"></a><a name="p1970868130084842"></a>unsigned char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p876167205165636"><a name="p876167205165636"></a><a name="p876167205165636"></a>off_t </p>
 </td>
 </tr>
-<tr id="row1043847798084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1762942817084842"><a name="p1762942817084842"></a><a name="p1762942817084842"></a><a href="dirent.md#ae52d525c8057131d7f1155fe7039910d">d_name</a> [256]</p>
+<tr id="row1043141771165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p929779952165636"><a name="p929779952165636"></a><a name="p929779952165636"></a><a href="dirent.md#a90dc47836e8ef510437317876368859e">d_reclen</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p674230706084842"><a name="p674230706084842"></a><a name="p674230706084842"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1013082231165636"><a name="p1013082231165636"></a><a name="p1013082231165636"></a>unsigned short </p>
+</td>
+</tr>
+<tr id="row337487376165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1892206625165636"><a name="p1892206625165636"></a><a name="p1892206625165636"></a><a href="dirent.md#adca3b20d5a245f0d8b9f2aa84844b1ff">d_type</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p139421312165636"><a name="p139421312165636"></a><a name="p139421312165636"></a>unsigned char </p>
+</td>
+</tr>
+<tr id="row1370652209165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p498078041165636"><a name="p498078041165636"></a><a name="p498078041165636"></a><a href="dirent.md#ae52d525c8057131d7f1155fe7039910d">d_name</a> [256]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p422487305165636"><a name="p422487305165636"></a><a name="p422487305165636"></a>char </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section480199535084842"></a>
+## **Details**<a name="section1485027188165636"></a>
 
-## **Field Documentation**<a name="section1962921150084842"></a>
+## **Field **<a name="section740521908165636"></a>
 
 ## d\_ino<a name="aaea0878aa0629630d94e180f5dbc22c5"></a>
 

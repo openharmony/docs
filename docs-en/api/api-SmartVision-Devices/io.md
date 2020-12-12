@@ -1,6 +1,110 @@
 # IO<a name="EN-US_TOPIC_0000001054909424"></a>
 
-## **Overview**<a name="section32747528084824"></a>
+-   [Overview](#section1444219423165622)
+-   [Summary](#section101471515165622)
+-   [Files](#files)
+-   [Data Structures](#nested-classes)
+-   [Macros](#define-members)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+-   [Details](#section611262313165622)
+-   [Macro Definition](#section1524028957165622)
+-   [FD\_CLR](#ga60efc4a969e971f91b7a73bcace62e58)
+-   [FD\_ISSET](#ga99a3a0e4d7d1d3eb7be68f37554c0a30)
+-   [FD\_SET](#gaa7701be461ce602ff7043cbd898a0c53)
+-   [FD\_ZERO](#ga92ab86a10f942411365b9078833559f0)
+-   [Function](#section398272795165622)
+-   [asprintf\(\)](#ga1af9acc6b6efdca3576cb8223d95f401)
+-   [clearerr\(\)](#ga81202d6a15259fbceb71a961a878b01a)
+-   [dprintf\(\)](#ga5fe0fc8fe920b640d488856c5ca43cb5)
+-   [err\(\)](#gaa6b66a9a8eb4be40e4424a4dc92ae056)
+-   [errx\(\)](#gaeaca83913c785b95d6c50f35207ff739)
+-   [fclose\(\)](#gac41a0ad4b31be2ad59d8222a0de30bda)
+-   [feof\(\)](#gafb95de1535a5a185954819539f3c6ca5)
+-   [ferror\(\)](#ga4a98383bb54291c2abede7aa28acf597)
+-   [ferror\_unlocked\(\)](#ga089fd72e6218cf6805c8fc21123d3d5f)
+-   [fflush\(\)](#gae4459e830d3e2abcf428337a661d9456)
+-   [fgetc\(\)](#gab11a990e4f8863a1e7736e3c1d430092)
+-   [fgetc\_unlocked\(\)](#ga9b8e6d63482eb1fe38f3eb9d7fc9bd8e)
+-   [fgetln\(\)](#ga8e6fe2fcd5eaa8e2d146a50eeaae5b40)
+-   [fgetpos\(\)](#gaf2e2b1a01359f5f7068b61d1dffcdcdd)
+-   [fgets\(\)](#ga2b3df0e66b41edab3c039191fe6cc4f9)
+-   [fileno\(\)](#ga03681b8592bba6fe02941b9abc182808)
+-   [fmemopen\(\)](#ga6b2efc6515c53ab5f0c9800c35f65789)
+-   [fopen\(\)](#ga58386e895d3c07b008c8865b2a9716fb)
+-   [fprintf\(\)](#gad9291335f34e874c8431285d705bc3aa)
+-   [fputc\(\)](#gabe6299d5823dd023e610aaa619735a3f)
+-   [fputc\_unlocked\(\)](#gab8680ff3f49f3fe7ce0fb78b4cb8394c)
+-   [fputs\(\)](#ga68236e664c1f0da049b25fba1c1695f6)
+-   [fread\(\)](#ga091b3f41bdd6984d63ea48d87a62bfd2)
+-   [freopen\(\)](#gaab336dbfc008a0873046ecd7db043df0)
+-   [fscanf\(\)](#gae902a7b8796799a6e076f07e9d7de045)
+-   [fseek\(\)](#gaece5d6e00c239ffd0847d8d2ef65bd57)
+-   [fseeko\(\)](#ga6926f47b76b028f112045fbe7ced4115)
+-   [fsetpos\(\)](#gae47e3f92dd8fc42ce0b6384c03ce6a9b)
+-   [ftell\(\)](#gaae4231ac8066eb54ea1d9d12d551605c)
+-   [ftello\(\)](#ga5f52ea043b9a2aa4d8cc92d674a2117b)
+-   [ftrylockfile\(\)](#gab486b89691678e4873ec8b1b15c2678a)
+-   [funlockfile\(\)](#ga4f016c54ff86ca62454417bb7b32ab11)
+-   [fwrite\(\)](#gaf86a4505e5de39a100f7ea828377b585)
+-   [getc\(\)](#gad5a0ea2c21a23a380b7c30fe35fa9456)
+-   [getc\_unlocked\(\)](#ga169f9b7e933ba56156885e30f7263b28)
+-   [getchar\(\)](#ga3e29caa20f7cffe18f410f01278905a8)
+-   [getchar\_unlocked\(\)](#gafef7e39f2376c63728163cd5ccfbe99e)
+-   [getdelim\(\)](#gab87a24b4c09e8fc3712a6d6090bfd371)
+-   [getline\(\)](#gaaf07c1bbc2aa081a54bdd66f0e152312)
+-   [gets\(\)](#gaab85b30d68ce9d9e0475e0f51bf610b1)
+-   [getw\(\)](#ga6d475ead5d1f35e3f14423a99ef3a992)
+-   [iconv\(\)](#gab7c1300a663def659ce6d4a01076c39d)
+-   [iconv\_close\(\)](#ga062da5f802d9e274a8702f11921e691b)
+-   [iconv\_open\(\)](#ga934548ab8aaae237ac5cce0ed0b3edec)
+-   [open\_memstream\(\)](#gac7250554d80d31f4d8ad316c4c3c3c85)
+-   [perror\(\)](#ga80b37b56a5a42139dccaef56da4bf82a)
+-   [poll\(\)](#gab7fc0f6be5f13c81de180c1288ba3b6f)
+-   [preadv\(\)](#ga94adc8dd94a6bdaaa9cf4d9f388418b3)
+-   [printf\(\)](#ga98631211a4a8aee62f572375d5b637be)
+-   [putc\(\)](#ga38f980218f04ebdddcdcd1b77e1cf6b1)
+-   [putc\_unlocked\(\)](#ga340b21ecb337abb08905095e673672f6)
+-   [putchar\(\)](#gaf4de2514b7778805db3815e8dd6cf09a)
+-   [putchar\_unlocked\(\)](#ga07ff061a8fed45cdedbecdd899b5fdb1)
+-   [puts\(\)](#gad41876f99f190c7488e64ef39c50a23f)
+-   [putw\(\)](#gae3a2f96dac9fa87b964b69ff6d5cce46)
+-   [pwritev\(\)](#ga3de6f9331d6bb930e748bb61860edbd6)
+-   [readv\(\)](#gaa1952d693ed3c43292566e643ceb9858)
+-   [remove\(\)](#ga02b13b56a188401119ea4da43c184913)
+-   [rename\(\)](#ga4d4709508ed7604103d77c3fdc5ea4a2)
+-   [rewind\(\)](#gaa0cd401f198d33d9d01a9e8aa4026819)
+-   [scanf\(\)](#ga5c48433db9c04031772d5b36e6c4411d)
+-   [select\(\)](#gaf916439863bed6ba92594e390c227c7e)
+-   [setbuf\(\)](#ga36d24924e1acc69f9c3ce49a832615fe)
+-   [setbuffer\(\)](#ga53a57437279b4ed57b7f116dfc9cbbcc)
+-   [setlinebuf\(\)](#ga2e13e101d5a57cfccf1bab51f8768a5d)
+-   [setvbuf\(\)](#gaf691eb990d669a9edec8a9ec721ce3bc)
+-   [snprintf\(\)](#gad76145a6edfc98981ded8815a760e0cd)
+-   [sprintf\(\)](#ga3082155ec11e7229f7a20439b31a169e)
+-   [sscanf\(\)](#gaec1e54556dca3bd701d44395d34818dd)
+-   [tempnam\(\)](#ga44dcf948b2c1dc3356d2937635a27839)
+-   [ungetc\(\)](#ga54efa95b6d5b41adec98e5b8a1a9f27b)
+-   [vasprintf\(\)](#ga5ec7fd90ebe6015636bce974c192c86a)
+-   [vdprintf\(\)](#ga0d0a950c2b4e6fba795cb7d8f2e8b8b8)
+-   [verr\(\)](#gaf5491fca8b356da75d96fc469bf32ea6)
+-   [verrx\(\)](#ga4b5f9ccd84c00dc473329e4bf64125e1)
+-   [vfprintf\(\)](#gad80f05917df38df3a5e1817498d67c26)
+-   [vfscanf\(\)](#gabdd32e401e37c9d954f3f0a6907500d9)
+-   [vprintf\(\)](#gaa715ef816dc040c8b367fde4ba84d6f3)
+-   [vscanf\(\)](#ga40250d63904acd3e898061c9eab6ead3)
+-   [vsnprintf\(\)](#ga2cadafbeb2d6e0d5781f6e5106d41fc2)
+-   [vsprintf\(\)](#gaab3db67c98c32122fcb3d076d4207bbc)
+-   [vsscanf\(\)](#gab1c4552aba80fe03c9b45fe27f4331ad)
+-   [vwarn\(\)](#ga9ca1ffba0c6f5df7b172d25917611b4a)
+-   [vwarnx\(\)](#ga22924aaaaa6b6e8bba4c76d0a0fe86cd)
+-   [warn\(\)](#gaf80d19f1297a11626fab61a248959c71)
+-   [warnx\(\)](#ga58f3d9691c146f86e562022d39567b7f)
+-   [writev\(\)](#gad57f362a0aef72b52ea59288f74dd1ea)
+
+## **Overview**<a name="section1444219423165622"></a>
+
+**Description:**
 
 Provides data structures and functions for performing input/output \(I/O\) operations, such as printf and scanf. 
 
@@ -12,65 +116,60 @@ Provides data structures and functions for performing input/output \(I/O\) opera
 
 1.0
 
-## **Summary**<a name="section1369670415084824"></a>
+## **Summary**<a name="section101471515165622"></a>
 
 ## Files<a name="files"></a>
 
-<a name="table1444992503084824"></a>
-<table><thead align="left"><tr id="row2005903257084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2055479227084824"><a name="p2055479227084824"></a><a name="p2055479227084824"></a>File Name</p>
+<a name="table341641629165622"></a>
+<table><thead align="left"><tr id="row33194687165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p995650331165622"><a name="p995650331165622"></a><a name="p995650331165622"></a>File Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1050396552084824"><a name="p1050396552084824"></a><a name="p1050396552084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1200525988165622"><a name="p1200525988165622"></a><a name="p1200525988165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row549306871084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1737814673084824"><a name="p1737814673084824"></a><a name="p1737814673084824"></a><a href="aio-h.md">aio.h</a></p>
+<tbody><tr id="row1056692776165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p65277287165622"><a name="p65277287165622"></a><a name="p65277287165622"></a><a href="err-h.md">err.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p905749188084824"><a name="p905749188084824"></a><a name="p905749188084824"></a>Declares functions related to asynchronous I/O (AIO) operations. </p>
-</td>
-</tr>
-<tr id="row492312495084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1585050500084824"><a name="p1585050500084824"></a><a name="p1585050500084824"></a><a href="err-h.md">err.h</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p621738135084824"><a name="p621738135084824"></a><a name="p621738135084824"></a>Provides common functions for error messages. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1215241758165622"><a name="p1215241758165622"></a><a name="p1215241758165622"></a>Provides common functions for error messages. </p>
 </td>
 </tr>
-<tr id="row1015161886084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p205535853084824"><a name="p205535853084824"></a><a name="p205535853084824"></a><a href="iconv-h.md">iconv.h</a></p>
+<tr id="row2097680242165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1004237680165622"><a name="p1004237680165622"></a><a name="p1004237680165622"></a><a href="iconv-h.md">iconv.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p512613911084824"><a name="p512613911084824"></a><a name="p512613911084824"></a>Declares functions related to the I/O character set conversion. </p>
-</td>
-</tr>
-<tr id="row1221025841084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p867753513084824"><a name="p867753513084824"></a><a name="p867753513084824"></a><a href="locale-h.md">locale.h</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p711504688084824"><a name="p711504688084824"></a><a name="p711504688084824"></a>Provides functions to set and obtain the locale language environment. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p745907502165622"><a name="p745907502165622"></a><a name="p745907502165622"></a>Declares functions related to the I/O character set conversion. </p>
 </td>
 </tr>
-<tr id="row1882199929084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1665002178084824"><a name="p1665002178084824"></a><a name="p1665002178084824"></a><a href="nl_types-h.md">nl_types.h</a></p>
+<tr id="row1724682600165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p64556810165622"><a name="p64556810165622"></a><a name="p64556810165622"></a><a href="locale-h.md">locale.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p366654567084824"><a name="p366654567084824"></a><a name="p366654567084824"></a>Defines I/O multiplexing functions related to message catalog operations. </p>
-</td>
-</tr>
-<tr id="row1070747779084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p261477369084824"><a name="p261477369084824"></a><a name="p261477369084824"></a><a href="poll-h.md">poll.h</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1955483924084824"><a name="p1955483924084824"></a><a name="p1955483924084824"></a>Declares I/O multiplexing functions. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p98970605165622"><a name="p98970605165622"></a><a name="p98970605165622"></a>Provides functions to set and obtain the locale language environment. </p>
 </td>
 </tr>
-<tr id="row27324335084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2024290867084824"><a name="p2024290867084824"></a><a name="p2024290867084824"></a><a href="stdio-h.md">stdio.h</a></p>
+<tr id="row735193385165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p924364130165622"><a name="p924364130165622"></a><a name="p924364130165622"></a><a href="nl_types-h.md">nl_types.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p177264066084824"><a name="p177264066084824"></a><a name="p177264066084824"></a>Declares common functions used for performing input and output (I/O) operations. </p>
-</td>
-</tr>
-<tr id="row1456167763084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1776019273084824"><a name="p1776019273084824"></a><a name="p1776019273084824"></a><a href="select-h.md">select.h</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1593954754084824"><a name="p1593954754084824"></a><a name="p1593954754084824"></a>Provides functions and structures related to I/O multiplexing. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p778335409165622"><a name="p778335409165622"></a><a name="p778335409165622"></a>Defines I/O multiplexing functions related to message catalog operations. </p>
 </td>
 </tr>
-<tr id="row1025688103084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p828879851084824"><a name="p828879851084824"></a><a name="p828879851084824"></a><a href="uio-h.md">uio.h</a></p>
+<tr id="row468531141165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1740263416165622"><a name="p1740263416165622"></a><a name="p1740263416165622"></a><a href="poll-h.md">poll.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p886208814084824"><a name="p886208814084824"></a><a name="p886208814084824"></a>Provides functions and structures related to input/output (I/O) to a file or buffer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1819474611165622"><a name="p1819474611165622"></a><a name="p1819474611165622"></a>Declares I/O multiplexing functions. </p>
 </td>
 </tr>
-<tr id="row1498748411084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1974301731084824"><a name="p1974301731084824"></a><a name="p1974301731084824"></a><a href="wordexp-h.md">wordexp.h</a></p>
+<tr id="row348074177165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p603110013165622"><a name="p603110013165622"></a><a name="p603110013165622"></a><a href="stdio-h.md">stdio.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1653852793084824"><a name="p1653852793084824"></a><a name="p1653852793084824"></a>Declares functions related to word expansion. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1368676316165622"><a name="p1368676316165622"></a><a name="p1368676316165622"></a>Declares common functions used for performing input and output (I/O) operations. </p>
+</td>
+</tr>
+<tr id="row480445320165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p298279559165622"><a name="p298279559165622"></a><a name="p298279559165622"></a><a href="select-h.md">select.h</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1718068994165622"><a name="p1718068994165622"></a><a name="p1718068994165622"></a>Provides functions and structures related to I/O multiplexing. </p>
+</td>
+</tr>
+<tr id="row1027350557165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1528904704165622"><a name="p1528904704165622"></a><a name="p1528904704165622"></a><a href="uio-h.md">uio.h</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p229958191165622"><a name="p229958191165622"></a><a name="p229958191165622"></a>Provides functions and structures related to input/output (I/O) to a file or buffer. </p>
+</td>
+</tr>
+<tr id="row1443148912165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p468495202165622"><a name="p468495202165622"></a><a name="p468495202165622"></a><a href="wordexp-h.md">wordexp.h</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1310837270165622"><a name="p1310837270165622"></a><a name="p1310837270165622"></a>Declares functions related to word expansion. </p>
 </td>
 </tr>
 </tbody>
@@ -78,31 +177,31 @@ Provides data structures and functions for performing input/output \(I/O\) opera
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table877250596084824"></a>
-<table><thead align="left"><tr id="row1999324186084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1576707676084824"><a name="p1576707676084824"></a><a name="p1576707676084824"></a>Data Structure Name</p>
+<a name="table1248332772165622"></a>
+<table><thead align="left"><tr id="row1062929090165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p884941144165622"><a name="p884941144165622"></a><a name="p884941144165622"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1702343387084824"><a name="p1702343387084824"></a><a name="p1702343387084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p988643444165622"><a name="p988643444165622"></a><a name="p988643444165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1962014097084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2024282368084824"><a name="p2024282368084824"></a><a name="p2024282368084824"></a><a href="lconv.md">lconv</a></p>
+<tbody><tr id="row1115194928165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1292933232165622"><a name="p1292933232165622"></a><a name="p1292933232165622"></a><a href="lconv.md">lconv</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1318706521084824"><a name="p1318706521084824"></a><a name="p1318706521084824"></a>Indicates format information about a number. </p>
-</td>
-</tr>
-<tr id="row76585976084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2131594539084824"><a name="p2131594539084824"></a><a name="p2131594539084824"></a><a href="pollfd.md">pollfd</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1239404531084824"><a name="p1239404531084824"></a><a name="p1239404531084824"></a>Defines I/O multiplexing. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1859832370165622"><a name="p1859832370165622"></a><a name="p1859832370165622"></a>Indicates format information about a number. </p>
 </td>
 </tr>
-<tr id="row824139510084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p529767820084824"><a name="p529767820084824"></a><a name="p529767820084824"></a><a href="fd_set.md">fd_set</a></p>
+<tr id="row304575656165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p232708382165622"><a name="p232708382165622"></a><a name="p232708382165622"></a><a href="pollfd.md">pollfd</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1017353548084824"><a name="p1017353548084824"></a><a name="p1017353548084824"></a>Defines a file descriptor set. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1287752176165622"><a name="p1287752176165622"></a><a name="p1287752176165622"></a>Defines I/O multiplexing. </p>
 </td>
 </tr>
-<tr id="row1864121693084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p145465457084824"><a name="p145465457084824"></a><a name="p145465457084824"></a><a href="wordexp_t.md">wordexp_t</a></p>
+<tr id="row946455205165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p718815873165622"><a name="p718815873165622"></a><a name="p718815873165622"></a><a href="fd_set.md">fd_set</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p912811481084824"><a name="p912811481084824"></a><a name="p912811481084824"></a>Describes information about word expansion. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p592654600165622"><a name="p592654600165622"></a><a name="p592654600165622"></a>Defines a file descriptor set. </p>
+</td>
+</tr>
+<tr id="row27844662165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1304264810165622"><a name="p1304264810165622"></a><a name="p1304264810165622"></a><a href="wordexp_t.md">wordexp_t</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p382025287165622"><a name="p382025287165622"></a><a name="p382025287165622"></a>Describes information about word expansion. </p>
 </td>
 </tr>
 </tbody>
@@ -110,111 +209,101 @@ Provides data structures and functions for performing input/output \(I/O\) opera
 
 ## Macros<a name="define-members"></a>
 
-<a name="table2111739805084824"></a>
-<table><thead align="left"><tr id="row1772031994084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p605863373084824"><a name="p605863373084824"></a><a name="p605863373084824"></a>Macro Name and Value</p>
+<a name="table208938215165622"></a>
+<table><thead align="left"><tr id="row494206977165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2085235350165622"><a name="p2085235350165622"></a><a name="p2085235350165622"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2085685088084824"><a name="p2085685088084824"></a><a name="p2085685088084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p633651588165622"><a name="p633651588165622"></a><a name="p633651588165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row637343870084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2110966215084824"><a name="p2110966215084824"></a><a name="p2110966215084824"></a><em id="ga6643367cfb016dbacaef01c4ef3706b0"><a name="ga6643367cfb016dbacaef01c4ef3706b0"></a><a name="ga6643367cfb016dbacaef01c4ef3706b0"></a></em>LIO_WAIT    0</p>
+<tbody><tr id="row1041450328165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p261378997165622"><a name="p261378997165622"></a><a name="p261378997165622"></a><em id="ga07c66689961056725d7f50231d740ba9"><a name="ga07c66689961056725d7f50231d740ba9"></a><a name="ga07c66689961056725d7f50231d740ba9"></a></em>LC_CTYPE    0</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1420979265084824"><a name="p1420979265084824"></a><a name="p1420979265084824"></a>Waiting to be notified of the completion of all asynchronous I/O operations. </p>
-</td>
-</tr>
-<tr id="row119437125084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1475333885084824"><a name="p1475333885084824"></a><a name="p1475333885084824"></a><em id="gaed8f2a06da21fad02bfc0e5749a8ecca"><a name="gaed8f2a06da21fad02bfc0e5749a8ecca"></a><a name="gaed8f2a06da21fad02bfc0e5749a8ecca"></a></em>LIO_NOWAIT    1</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1338998602084824"><a name="p1338998602084824"></a><a name="p1338998602084824"></a>Not waiting to be notified of the completion of all asynchronous I/O operations. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1678374229165622"><a name="p1678374229165622"></a><a name="p1678374229165622"></a>Language symbol type, which affects character classification and case conversion. </p>
 </td>
 </tr>
-<tr id="row1022746238084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p410058728084824"><a name="p410058728084824"></a><a name="p410058728084824"></a><em id="ga07c66689961056725d7f50231d740ba9"><a name="ga07c66689961056725d7f50231d740ba9"></a><a name="ga07c66689961056725d7f50231d740ba9"></a></em>LC_CTYPE    0</p>
+<tr id="row766019775165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p668815432165622"><a name="p668815432165622"></a><a name="p668815432165622"></a><em id="ga158abb82c565096465ade138c98970d0"><a name="ga158abb82c565096465ade138c98970d0"></a><a name="ga158abb82c565096465ade138c98970d0"></a></em>LC_NUMERIC    1</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p177524401084824"><a name="p177524401084824"></a><a name="p177524401084824"></a>Language symbol type, which affects character classification and case conversion. </p>
-</td>
-</tr>
-<tr id="row970315348084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p659316083084824"><a name="p659316083084824"></a><a name="p659316083084824"></a><em id="ga158abb82c565096465ade138c98970d0"><a name="ga158abb82c565096465ade138c98970d0"></a><a name="ga158abb82c565096465ade138c98970d0"></a></em>LC_NUMERIC    1</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p57977965084824"><a name="p57977965084824"></a><a name="p57977965084824"></a>Number type, which affects the number format. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1796404169165622"><a name="p1796404169165622"></a><a name="p1796404169165622"></a>Number type, which affects the number format. </p>
 </td>
 </tr>
-<tr id="row340731194084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1109934094084824"><a name="p1109934094084824"></a><a name="p1109934094084824"></a><em id="gaa652c62b53b6bf728d592bfbdc7d5852"><a name="gaa652c62b53b6bf728d592bfbdc7d5852"></a><a name="gaa652c62b53b6bf728d592bfbdc7d5852"></a></em>LC_TIME    2</p>
+<tr id="row651891737165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2043303270165622"><a name="p2043303270165622"></a><a name="p2043303270165622"></a><em id="gaa652c62b53b6bf728d592bfbdc7d5852"><a name="gaa652c62b53b6bf728d592bfbdc7d5852"></a><a name="gaa652c62b53b6bf728d592bfbdc7d5852"></a></em>LC_TIME    2</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1945147229084824"><a name="p1945147229084824"></a><a name="p1945147229084824"></a>Time type, which affects date and time formats. </p>
-</td>
-</tr>
-<tr id="row1122163898084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p37252653084824"><a name="p37252653084824"></a><a name="p37252653084824"></a><em id="gaab9cf7b1a206fb75e5884934c8d676db"><a name="gaab9cf7b1a206fb75e5884934c8d676db"></a><a name="gaab9cf7b1a206fb75e5884934c8d676db"></a></em>LC_COLLATE    3</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1457870185084824"><a name="p1457870185084824"></a><a name="p1457870185084824"></a>Character sorting type, which affects string comparison and sorting habits. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p560363349165622"><a name="p560363349165622"></a><a name="p560363349165622"></a>Time type, which affects date and time formats. </p>
 </td>
 </tr>
-<tr id="row440122681084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p434022760084824"><a name="p434022760084824"></a><a name="p434022760084824"></a><em id="ga6d033a83772ef6e6c10dbf13a6a58fb7"><a name="ga6d033a83772ef6e6c10dbf13a6a58fb7"></a><a name="ga6d033a83772ef6e6c10dbf13a6a58fb7"></a></em>LC_MONETARY    4</p>
+<tr id="row1923883344165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p163019161165622"><a name="p163019161165622"></a><a name="p163019161165622"></a><em id="gaab9cf7b1a206fb75e5884934c8d676db"><a name="gaab9cf7b1a206fb75e5884934c8d676db"></a><a name="gaab9cf7b1a206fb75e5884934c8d676db"></a></em>LC_COLLATE    3</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1369507550084824"><a name="p1369507550084824"></a><a name="p1369507550084824"></a>Monetary type, which affects monetary information. </p>
-</td>
-</tr>
-<tr id="row991727670084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p471532654084824"><a name="p471532654084824"></a><a name="p471532654084824"></a><em id="ga7195d6f0a8d1b9d164a3988a1b8249e8"><a name="ga7195d6f0a8d1b9d164a3988a1b8249e8"></a><a name="ga7195d6f0a8d1b9d164a3988a1b8249e8"></a></em>LC_MESSAGES    5</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1348537910084824"><a name="p1348537910084824"></a><a name="p1348537910084824"></a>Message type, which affects prompt information, error information, status information, titles, labels, buttons, and menus. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p778286343165622"><a name="p778286343165622"></a><a name="p778286343165622"></a>Character sorting type, which affects string comparison and sorting habits. </p>
 </td>
 </tr>
-<tr id="row438603775084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1015684668084824"><a name="p1015684668084824"></a><a name="p1015684668084824"></a><em id="ga9cc5213b5dca4f8e48e64586ee444c33"><a name="ga9cc5213b5dca4f8e48e64586ee444c33"></a><a name="ga9cc5213b5dca4f8e48e64586ee444c33"></a></em>LC_ALL    6</p>
+<tr id="row353208926165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1777706674165622"><a name="p1777706674165622"></a><a name="p1777706674165622"></a><em id="ga6d033a83772ef6e6c10dbf13a6a58fb7"><a name="ga6d033a83772ef6e6c10dbf13a6a58fb7"></a><a name="ga6d033a83772ef6e6c10dbf13a6a58fb7"></a></em>LC_MONETARY    4</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1380021845084824"><a name="p1380021845084824"></a><a name="p1380021845084824"></a>All types, which affect all content of locale settings. If <strong id="b1160154096084824"><a name="b1160154096084824"></a><a name="b1160154096084824"></a>LC_ALL</strong> is set, the locale information of all types is set to be consistent with <strong id="b1624179877084824"><a name="b1624179877084824"></a><a name="b1624179877084824"></a>LC_ALL</strong>. </p>
-</td>
-</tr>
-<tr id="row423974529084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p721962003084824"><a name="p721962003084824"></a><a name="p721962003084824"></a><em id="ga52ac479a805051f59643588b096024ff"><a name="ga52ac479a805051f59643588b096024ff"></a><a name="ga52ac479a805051f59643588b096024ff"></a></em>POLLIN    0x001</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1471505466084824"><a name="p1471505466084824"></a><a name="p1471505466084824"></a>POLLIN event. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p808749184165622"><a name="p808749184165622"></a><a name="p808749184165622"></a>Monetary type, which affects monetary information. </p>
 </td>
 </tr>
-<tr id="row1897896596084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p396372772084824"><a name="p396372772084824"></a><a name="p396372772084824"></a><em id="gab6f53b89c7a4cc5e8349f7c778d85168"><a name="gab6f53b89c7a4cc5e8349f7c778d85168"></a><a name="gab6f53b89c7a4cc5e8349f7c778d85168"></a></em>POLLPRI    0x002</p>
+<tr id="row2026627067165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p468512249165622"><a name="p468512249165622"></a><a name="p468512249165622"></a><em id="ga7195d6f0a8d1b9d164a3988a1b8249e8"><a name="ga7195d6f0a8d1b9d164a3988a1b8249e8"></a><a name="ga7195d6f0a8d1b9d164a3988a1b8249e8"></a></em>LC_MESSAGES    5</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1164174772084824"><a name="p1164174772084824"></a><a name="p1164174772084824"></a>POLLPRI event. </p>
-</td>
-</tr>
-<tr id="row2145869185084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p371457581084824"><a name="p371457581084824"></a><a name="p371457581084824"></a><em id="ga91b3c67129ac7675062f316b840a0d58"><a name="ga91b3c67129ac7675062f316b840a0d58"></a><a name="ga91b3c67129ac7675062f316b840a0d58"></a></em>POLLOUT    0x004</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p628199694084824"><a name="p628199694084824"></a><a name="p628199694084824"></a>POLLOUT event. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1550838327165622"><a name="p1550838327165622"></a><a name="p1550838327165622"></a>Message type, which affects prompt information, error information, status information, titles, labels, buttons, and menus. </p>
 </td>
 </tr>
-<tr id="row308580121084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1105584988084824"><a name="p1105584988084824"></a><a name="p1105584988084824"></a><em id="gab1c532446408c98559d4aaaeeeb99820"><a name="gab1c532446408c98559d4aaaeeeb99820"></a><a name="gab1c532446408c98559d4aaaeeeb99820"></a></em>POLLERR    0x008</p>
+<tr id="row1805424686165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1794422652165622"><a name="p1794422652165622"></a><a name="p1794422652165622"></a><em id="ga9cc5213b5dca4f8e48e64586ee444c33"><a name="ga9cc5213b5dca4f8e48e64586ee444c33"></a><a name="ga9cc5213b5dca4f8e48e64586ee444c33"></a></em>LC_ALL    6</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1847850780084824"><a name="p1847850780084824"></a><a name="p1847850780084824"></a>POLLERR event. </p>
-</td>
-</tr>
-<tr id="row172366502084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1800687556084824"><a name="p1800687556084824"></a><a name="p1800687556084824"></a><em id="ga262754fe6bdf27c2cd3da43284ec8536"><a name="ga262754fe6bdf27c2cd3da43284ec8536"></a><a name="ga262754fe6bdf27c2cd3da43284ec8536"></a></em>POLLHUP    0x010</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p899363386084824"><a name="p899363386084824"></a><a name="p899363386084824"></a>POLLHUP event. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p681717748165622"><a name="p681717748165622"></a><a name="p681717748165622"></a>All types, which affect all content of locale settings. If <strong id="b841694757165622"><a name="b841694757165622"></a><a name="b841694757165622"></a>LC_ALL</strong> is set, the locale information of all types is set to be consistent with <strong id="b1113367205165622"><a name="b1113367205165622"></a><a name="b1113367205165622"></a>LC_ALL</strong>. </p>
 </td>
 </tr>
-<tr id="row1109631892084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p289565754084824"><a name="p289565754084824"></a><a name="p289565754084824"></a><em id="gae8bffe35c61e12fb7b408b89721896df"><a name="gae8bffe35c61e12fb7b408b89721896df"></a><a name="gae8bffe35c61e12fb7b408b89721896df"></a></em>POLLNVAL    0x020</p>
+<tr id="row843413930165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1462926123165622"><a name="p1462926123165622"></a><a name="p1462926123165622"></a><em id="ga52ac479a805051f59643588b096024ff"><a name="ga52ac479a805051f59643588b096024ff"></a><a name="ga52ac479a805051f59643588b096024ff"></a></em>POLLIN    0x001</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1337662134084824"><a name="p1337662134084824"></a><a name="p1337662134084824"></a>POLLNVAL event. </p>
-</td>
-</tr>
-<tr id="row288003230084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p523545001084824"><a name="p523545001084824"></a><a name="p523545001084824"></a><em id="ga86c5dbf5a99358e288f573d6a1e0873f"><a name="ga86c5dbf5a99358e288f573d6a1e0873f"></a><a name="ga86c5dbf5a99358e288f573d6a1e0873f"></a></em>FD_SETSIZE    1024</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1608086077084824"><a name="p1608086077084824"></a><a name="p1608086077084824"></a>Defines the size of <strong id="b1167889871084824"><a name="b1167889871084824"></a><a name="b1167889871084824"></a><a href="fd_set.md">fd_set</a></strong>, that is, the maximum number of monitored files. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1133934662165622"><a name="p1133934662165622"></a><a name="p1133934662165622"></a>POLLIN event. </p>
 </td>
 </tr>
-<tr id="row212102281084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2129181361084824"><a name="p2129181361084824"></a><a name="p2129181361084824"></a><a href="io.md#ga92ab86a10f942411365b9078833559f0">FD_ZERO</a>(s)   do { int __i; unsigned long *__b=(s)-&gt;fds_bits; for(__i=sizeof (<a href="fd_set.md">fd_set</a>)/sizeof (long); __i; __i--) *__b++=0; } while(0)</p>
+<tr id="row1472835394165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1838902979165622"><a name="p1838902979165622"></a><a name="p1838902979165622"></a><em id="gab6f53b89c7a4cc5e8349f7c778d85168"><a name="gab6f53b89c7a4cc5e8349f7c778d85168"></a><a name="gab6f53b89c7a4cc5e8349f7c778d85168"></a></em>POLLPRI    0x002</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p480514889084824"><a name="p480514889084824"></a><a name="p480514889084824"></a>Clears all elements in the file descriptor set. </p>
-</td>
-</tr>
-<tr id="row1813330077084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p378358035084824"><a name="p378358035084824"></a><a name="p378358035084824"></a><a href="io.md#gaa7701be461ce602ff7043cbd898a0c53">FD_SET</a>(d, s)   ((s)-&gt;fds_bits[(d)/(8*sizeof(long))] |= (1UL&lt;&lt;((d)%(8*sizeof(long)))))</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2047521936084824"><a name="p2047521936084824"></a><a name="p2047521936084824"></a>Adds a file descriptor to a set. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p375531697165622"><a name="p375531697165622"></a><a name="p375531697165622"></a>POLLPRI event. </p>
 </td>
 </tr>
-<tr id="row2043603408084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1305727462084824"><a name="p1305727462084824"></a><a name="p1305727462084824"></a><a href="io.md#ga60efc4a969e971f91b7a73bcace62e58">FD_CLR</a>(d, s)   ((s)-&gt;fds_bits[(d)/(8*sizeof(long))] &amp;= ~(1UL&lt;&lt;((d)%(8*sizeof(long)))))</p>
+<tr id="row1143086151165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p787392599165622"><a name="p787392599165622"></a><a name="p787392599165622"></a><em id="ga91b3c67129ac7675062f316b840a0d58"><a name="ga91b3c67129ac7675062f316b840a0d58"></a><a name="ga91b3c67129ac7675062f316b840a0d58"></a></em>POLLOUT    0x004</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p352232290084824"><a name="p352232290084824"></a><a name="p352232290084824"></a>Removes a file descriptor from a set. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p334844955165622"><a name="p334844955165622"></a><a name="p334844955165622"></a>POLLOUT event. </p>
 </td>
 </tr>
-<tr id="row1015394528084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1508153562084824"><a name="p1508153562084824"></a><a name="p1508153562084824"></a><a href="io.md#ga99a3a0e4d7d1d3eb7be68f37554c0a30">FD_ISSET</a>(d, s)   !!((s)-&gt;fds_bits[(d)/(8*sizeof(long))] &amp; (1UL&lt;&lt;((d)%(8*sizeof(long)))))</p>
+<tr id="row1626708103165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p114213815165622"><a name="p114213815165622"></a><a name="p114213815165622"></a><em id="gab1c532446408c98559d4aaaeeeb99820"><a name="gab1c532446408c98559d4aaaeeeb99820"></a><a name="gab1c532446408c98559d4aaaeeeb99820"></a></em>POLLERR    0x008</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1133212083084824"><a name="p1133212083084824"></a><a name="p1133212083084824"></a>Checks whether a file descriptor is in a set. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p512333802165622"><a name="p512333802165622"></a><a name="p512333802165622"></a>POLLERR event. </p>
+</td>
+</tr>
+<tr id="row1053844379165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1396048399165622"><a name="p1396048399165622"></a><a name="p1396048399165622"></a><em id="ga262754fe6bdf27c2cd3da43284ec8536"><a name="ga262754fe6bdf27c2cd3da43284ec8536"></a><a name="ga262754fe6bdf27c2cd3da43284ec8536"></a></em>POLLHUP    0x010</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1464804440165622"><a name="p1464804440165622"></a><a name="p1464804440165622"></a>POLLHUP event. </p>
+</td>
+</tr>
+<tr id="row1638835023165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p678807346165622"><a name="p678807346165622"></a><a name="p678807346165622"></a><em id="gae8bffe35c61e12fb7b408b89721896df"><a name="gae8bffe35c61e12fb7b408b89721896df"></a><a name="gae8bffe35c61e12fb7b408b89721896df"></a></em>POLLNVAL    0x020</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2098779092165622"><a name="p2098779092165622"></a><a name="p2098779092165622"></a>POLLNVAL event. </p>
+</td>
+</tr>
+<tr id="row1778948589165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1018430014165622"><a name="p1018430014165622"></a><a name="p1018430014165622"></a><em id="ga86c5dbf5a99358e288f573d6a1e0873f"><a name="ga86c5dbf5a99358e288f573d6a1e0873f"></a><a name="ga86c5dbf5a99358e288f573d6a1e0873f"></a></em>FD_SETSIZE    1024</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1106823270165622"><a name="p1106823270165622"></a><a name="p1106823270165622"></a>Defines the size of <strong id="b654130764165622"><a name="b654130764165622"></a><a name="b654130764165622"></a><a href="fd_set.md">fd_set</a></strong>, that is, the maximum number of monitored files. </p>
+</td>
+</tr>
+<tr id="row1986799156165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p333350675165622"><a name="p333350675165622"></a><a name="p333350675165622"></a><a href="io.md#ga92ab86a10f942411365b9078833559f0">FD_ZERO</a>(s)   do { int __i; unsigned long *__b=(s)-&gt;fds_bits; for(__i=sizeof (<a href="fd_set.md">fd_set</a>)/sizeof (long); __i; __i--) *__b++=0; } while(0)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p343459551165622"><a name="p343459551165622"></a><a name="p343459551165622"></a>Clears all elements in the file descriptor set. </p>
+</td>
+</tr>
+<tr id="row2068171937165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1381418182165622"><a name="p1381418182165622"></a><a name="p1381418182165622"></a><a href="io.md#gaa7701be461ce602ff7043cbd898a0c53">FD_SET</a>(d, s)   ((s)-&gt;fds_bits[(d)/(8*sizeof(long))] |= (1UL&lt;&lt;((d)%(8*sizeof(long)))))</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1504107665165622"><a name="p1504107665165622"></a><a name="p1504107665165622"></a>Adds a file descriptor to a set. </p>
+</td>
+</tr>
+<tr id="row1074188176165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p946741493165622"><a name="p946741493165622"></a><a name="p946741493165622"></a><a href="io.md#ga60efc4a969e971f91b7a73bcace62e58">FD_CLR</a>(d, s)   ((s)-&gt;fds_bits[(d)/(8*sizeof(long))] &amp;= ~(1UL&lt;&lt;((d)%(8*sizeof(long)))))</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1592765880165622"><a name="p1592765880165622"></a><a name="p1592765880165622"></a>Removes a file descriptor from a set. </p>
+</td>
+</tr>
+<tr id="row521720239165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p116453014165622"><a name="p116453014165622"></a><a name="p116453014165622"></a><a href="io.md#ga99a3a0e4d7d1d3eb7be68f37554c0a30">FD_ISSET</a>(d, s)   !!((s)-&gt;fds_bits[(d)/(8*sizeof(long))] &amp; (1UL&lt;&lt;((d)%(8*sizeof(long)))))</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p353871268165622"><a name="p353871268165622"></a><a name="p353871268165622"></a>Checks whether a file descriptor is in a set. </p>
 </td>
 </tr>
 </tbody>
@@ -222,41 +311,41 @@ Provides data structures and functions for performing input/output \(I/O\) opera
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table1332745807084824"></a>
-<table><thead align="left"><tr id="row793962010084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p11334924084824"><a name="p11334924084824"></a><a name="p11334924084824"></a>Typedef Name</p>
+<a name="table1960192163165622"></a>
+<table><thead align="left"><tr id="row1440236975165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p955965232165622"><a name="p955965232165622"></a><a name="p955965232165622"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1819458470084824"><a name="p1819458470084824"></a><a name="p1819458470084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1131979617165622"><a name="p1131979617165622"></a><a name="p1131979617165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1636663835084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p443890178084824"><a name="p443890178084824"></a><a name="p443890178084824"></a><em id="ga72517f6ffadddaafa9d51dee9b535c9f"><a name="ga72517f6ffadddaafa9d51dee9b535c9f"></a><a name="ga72517f6ffadddaafa9d51dee9b535c9f"></a></em>iconv_t </p>
+<tbody><tr id="row741668867165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p679309707165622"><a name="p679309707165622"></a><a name="p679309707165622"></a>iconv_t </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1030878529084824"><a name="p1030878529084824"></a><a name="p1030878529084824"></a><strong id="b556821486"><a name="b556821486"></a><a name="b556821486"></a></strong> typedef void * </p>
-<p id="p51976302084824"><a name="p51976302084824"></a><a name="p51976302084824"></a>Type of the character set conversion descriptor. </p>
-</td>
-</tr>
-<tr id="row696320222084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1740192128084824"><a name="p1740192128084824"></a><a name="p1740192128084824"></a><em id="ga3f305b6699c89f91aecfc0b5f8604a5f"><a name="ga3f305b6699c89f91aecfc0b5f8604a5f"></a><a name="ga3f305b6699c89f91aecfc0b5f8604a5f"></a></em>nl_catd </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p809595909084824"><a name="p809595909084824"></a><a name="p809595909084824"></a><strong id="b112347597"><a name="b112347597"></a><a name="b112347597"></a></strong> typedef void * </p>
-<p id="p1838528833084824"><a name="p1838528833084824"></a><a name="p1838528833084824"></a>Type of message catalog descriptor. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p487103822165622"><a name="p487103822165622"></a><a name="p487103822165622"></a><strong id="ga72517f6ffadddaafa9d51dee9b535c9f"><a name="ga72517f6ffadddaafa9d51dee9b535c9f"></a><a name="ga72517f6ffadddaafa9d51dee9b535c9f"></a></strong> typedef void * </p>
+<p id="p757366955165622"><a name="p757366955165622"></a><a name="p757366955165622"></a>Type of the character set conversion descriptor. </p>
 </td>
 </tr>
-<tr id="row529565323084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p546462329084824"><a name="p546462329084824"></a><a name="p546462329084824"></a><em id="ga0af7a8bdafcd5532e620a11f0d373d52"><a name="ga0af7a8bdafcd5532e620a11f0d373d52"></a><a name="ga0af7a8bdafcd5532e620a11f0d373d52"></a></em>nfds_t </p>
+<tr id="row2023432796165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p446967971165622"><a name="p446967971165622"></a><a name="p446967971165622"></a>nl_catd </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p716606889084824"><a name="p716606889084824"></a><a name="p716606889084824"></a><strong id="b412263468"><a name="b412263468"></a><a name="b412263468"></a></strong> typedef unsigned long </p>
-<p id="p2024288668084824"><a name="p2024288668084824"></a><a name="p2024288668084824"></a>Number of poll types. </p>
-</td>
-</tr>
-<tr id="row1682718917084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p995506855084824"><a name="p995506855084824"></a><a name="p995506855084824"></a><em id="ga912af5ab9f8a52ddd387b7defc0b49f1"><a name="ga912af5ab9f8a52ddd387b7defc0b49f1"></a><a name="ga912af5ab9f8a52ddd387b7defc0b49f1"></a></em>FILE </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1687949399084824"><a name="p1687949399084824"></a><a name="p1687949399084824"></a><strong id="b504638019"><a name="b504638019"></a><a name="b504638019"></a></strong> typedef struct _IO_FILE </p>
-<p id="p1092680722084824"><a name="p1092680722084824"></a><a name="p1092680722084824"></a>Struct of file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1189793384165622"><a name="p1189793384165622"></a><a name="p1189793384165622"></a><strong id="ga3f305b6699c89f91aecfc0b5f8604a5f"><a name="ga3f305b6699c89f91aecfc0b5f8604a5f"></a><a name="ga3f305b6699c89f91aecfc0b5f8604a5f"></a></strong> typedef void * </p>
+<p id="p519398654165622"><a name="p519398654165622"></a><a name="p519398654165622"></a>Type of message catalog descriptor. </p>
 </td>
 </tr>
-<tr id="row1258405524084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p973131826084824"><a name="p973131826084824"></a><a name="p973131826084824"></a><em id="gaf78c256e09db7de8ea18def79fc5e6b2"><a name="gaf78c256e09db7de8ea18def79fc5e6b2"></a><a name="gaf78c256e09db7de8ea18def79fc5e6b2"></a></em>fd_mask </p>
+<tr id="row1972291336165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1381490543165622"><a name="p1381490543165622"></a><a name="p1381490543165622"></a>nfds_t </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p417488075084824"><a name="p417488075084824"></a><a name="p417488075084824"></a><strong id="b1450897648"><a name="b1450897648"></a><a name="b1450897648"></a></strong> typedef unsigned long </p>
-<p id="p423039292084824"><a name="p423039292084824"></a><a name="p423039292084824"></a>Defines <strong id="b1304812245084824"><a name="b1304812245084824"></a><a name="b1304812245084824"></a><a href="fd_set.md">fd_set</a></strong> as the alias of the element type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1602870324165622"><a name="p1602870324165622"></a><a name="p1602870324165622"></a><strong id="ga0af7a8bdafcd5532e620a11f0d373d52"><a name="ga0af7a8bdafcd5532e620a11f0d373d52"></a><a name="ga0af7a8bdafcd5532e620a11f0d373d52"></a></strong> typedef unsigned long </p>
+<p id="p426070900165622"><a name="p426070900165622"></a><a name="p426070900165622"></a>Number of poll types. </p>
+</td>
+</tr>
+<tr id="row1976064170165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p690455929165622"><a name="p690455929165622"></a><a name="p690455929165622"></a>FILE </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p976408428165622"><a name="p976408428165622"></a><a name="p976408428165622"></a><strong id="ga912af5ab9f8a52ddd387b7defc0b49f1"><a name="ga912af5ab9f8a52ddd387b7defc0b49f1"></a><a name="ga912af5ab9f8a52ddd387b7defc0b49f1"></a></strong> typedef struct _IO_FILE </p>
+<p id="p1217931696165622"><a name="p1217931696165622"></a><a name="p1217931696165622"></a>Struct of file stream. </p>
+</td>
+</tr>
+<tr id="row393035912165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1776198583165622"><a name="p1776198583165622"></a><a name="p1776198583165622"></a>fd_mask </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1760001053165622"><a name="p1760001053165622"></a><a name="p1760001053165622"></a><strong id="gaf78c256e09db7de8ea18def79fc5e6b2"><a name="gaf78c256e09db7de8ea18def79fc5e6b2"></a><a name="gaf78c256e09db7de8ea18def79fc5e6b2"></a></strong> typedef unsigned long </p>
+<p id="p719173928165622"><a name="p719173928165622"></a><a name="p719173928165622"></a>Defines <strong id="b1213043879165622"><a name="b1213043879165622"></a><a name="b1213043879165622"></a><a href="fd_set.md">fd_set</a></strong> as the alias of the element type. </p>
 </td>
 </tr>
 </tbody>
@@ -264,583 +353,541 @@ Provides data structures and functions for performing input/output \(I/O\) opera
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1985949743084824"></a>
-<table><thead align="left"><tr id="row1450879648084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p275967719084824"><a name="p275967719084824"></a><a name="p275967719084824"></a>Function Name</p>
+<a name="table86748964165622"></a>
+<table><thead align="left"><tr id="row400144543165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p558116800165622"><a name="p558116800165622"></a><a name="p558116800165622"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p306060427084824"><a name="p306060427084824"></a><a name="p306060427084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1955839349165622"><a name="p1955839349165622"></a><a name="p1955839349165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1915764891084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1663579339084824"><a name="p1663579339084824"></a><a name="p1663579339084824"></a><a href="io.md#gae15ea0aaa18c5f007c3933085749ecaf">lio_listio</a> (int mode, struct aiocb *restrict const *restrict cbs, int cnt, struct <a href="sigevent.md">sigevent</a> *restrict sev)</p>
+<tbody><tr id="row347678146165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1141418622165622"><a name="p1141418622165622"></a><a name="p1141418622165622"></a><a href="io.md#gaf80d19f1297a11626fab61a248959c71">warn</a> (const char *fmt,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1424253853084824"><a name="p1424253853084824"></a><a name="p1424253853084824"></a>int </p>
-<p id="p70561235084824"><a name="p70561235084824"></a><a name="p70561235084824"></a>Initiates AIO requests. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p715568550165622"><a name="p715568550165622"></a><a name="p715568550165622"></a>void </p>
+<p id="p621948612165622"><a name="p621948612165622"></a><a name="p621948612165622"></a>Displays a formatted error message on the standard error (stderr) output. </p>
 </td>
 </tr>
-<tr id="row1907061084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1296874977084824"><a name="p1296874977084824"></a><a name="p1296874977084824"></a><a href="io.md#gaf80d19f1297a11626fab61a248959c71">warn</a> (const char *fmt,...)</p>
+<tr id="row1530842540165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1500177302165622"><a name="p1500177302165622"></a><a name="p1500177302165622"></a><a href="io.md#ga9ca1ffba0c6f5df7b172d25917611b4a">vwarn</a> (const char *fmt, va_list args)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1703092742084824"><a name="p1703092742084824"></a><a name="p1703092742084824"></a>void </p>
-<p id="p2133299280084824"><a name="p2133299280084824"></a><a name="p2133299280084824"></a>Displays a formatted error message on the standard error (stderr) output. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1779457346165622"><a name="p1779457346165622"></a><a name="p1779457346165622"></a>void </p>
+<p id="p1967168282165622"><a name="p1967168282165622"></a><a name="p1967168282165622"></a>Displays a formatted error message on the stderr output. </p>
 </td>
 </tr>
-<tr id="row741724860084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1222079696084824"><a name="p1222079696084824"></a><a name="p1222079696084824"></a><a href="io.md#ga9ca1ffba0c6f5df7b172d25917611b4a">vwarn</a> (const char *fmt, va_list args)</p>
+<tr id="row686284762165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1806195447165622"><a name="p1806195447165622"></a><a name="p1806195447165622"></a><a href="io.md#ga58f3d9691c146f86e562022d39567b7f">warnx</a> (const char *fmt,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1628536931084824"><a name="p1628536931084824"></a><a name="p1628536931084824"></a>void </p>
-<p id="p2051361235084824"><a name="p2051361235084824"></a><a name="p2051361235084824"></a>Displays a formatted error message on the stderr output. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p691714859165622"><a name="p691714859165622"></a><a name="p691714859165622"></a>void </p>
+<p id="p1020868302165622"><a name="p1020868302165622"></a><a name="p1020868302165622"></a>Displays a formatted error message on the stderr output. </p>
 </td>
 </tr>
-<tr id="row574958686084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p53181378084824"><a name="p53181378084824"></a><a name="p53181378084824"></a><a href="io.md#ga58f3d9691c146f86e562022d39567b7f">warnx</a> (const char *fmt,...)</p>
+<tr id="row646085084165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1650651953165622"><a name="p1650651953165622"></a><a name="p1650651953165622"></a><a href="io.md#ga22924aaaaa6b6e8bba4c76d0a0fe86cd">vwarnx</a> (const char *fmt, va_list args)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p164469354084824"><a name="p164469354084824"></a><a name="p164469354084824"></a>void </p>
-<p id="p77253608084824"><a name="p77253608084824"></a><a name="p77253608084824"></a>Displays a formatted error message on the stderr output. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1887011861165622"><a name="p1887011861165622"></a><a name="p1887011861165622"></a>void </p>
+<p id="p2070580041165622"><a name="p2070580041165622"></a><a name="p2070580041165622"></a>Displays a formatted error message on the stderr output. </p>
 </td>
 </tr>
-<tr id="row568184204084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1890109263084824"><a name="p1890109263084824"></a><a name="p1890109263084824"></a><a href="io.md#ga22924aaaaa6b6e8bba4c76d0a0fe86cd">vwarnx</a> (const char *fmt, va_list args)</p>
+<tr id="row73681823165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1317250535165622"><a name="p1317250535165622"></a><a name="p1317250535165622"></a><a href="io.md#gaa6b66a9a8eb4be40e4424a4dc92ae056">err</a> (int eval, const char *fmt, va_list args)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p519330287084824"><a name="p519330287084824"></a><a name="p519330287084824"></a>void </p>
-<p id="p280425870084824"><a name="p280425870084824"></a><a name="p280425870084824"></a>Displays a formatted error message on the stderr output. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p32286247165622"><a name="p32286247165622"></a><a name="p32286247165622"></a>void </p>
+<p id="p1832071450165622"><a name="p1832071450165622"></a><a name="p1832071450165622"></a>Displays error information. </p>
 </td>
 </tr>
-<tr id="row936188716084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p334983381084824"><a name="p334983381084824"></a><a name="p334983381084824"></a><a href="io.md#gaa6b66a9a8eb4be40e4424a4dc92ae056">err</a> (int eval, const char *fmt, va_list args)</p>
+<tr id="row361085526165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2047248669165622"><a name="p2047248669165622"></a><a name="p2047248669165622"></a><a href="io.md#gaeaca83913c785b95d6c50f35207ff739">errx</a> (int eval, const char *fmt,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p126716938084824"><a name="p126716938084824"></a><a name="p126716938084824"></a>void </p>
-<p id="p2047353950084824"><a name="p2047353950084824"></a><a name="p2047353950084824"></a>Displays error information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p597136731165622"><a name="p597136731165622"></a><a name="p597136731165622"></a>void </p>
+<p id="p541619714165622"><a name="p541619714165622"></a><a name="p541619714165622"></a>Displays error information. </p>
 </td>
 </tr>
-<tr id="row1458076262084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1147704230084824"><a name="p1147704230084824"></a><a name="p1147704230084824"></a><a href="io.md#gaeaca83913c785b95d6c50f35207ff739">errx</a> (int eval, const char *fmt,...)</p>
+<tr id="row1221353312165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1081365734165622"><a name="p1081365734165622"></a><a name="p1081365734165622"></a><a href="io.md#gaf5491fca8b356da75d96fc469bf32ea6">verr</a> (int eval, const char *fmt, va_list args)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1825440026084824"><a name="p1825440026084824"></a><a name="p1825440026084824"></a>void </p>
-<p id="p4895544084824"><a name="p4895544084824"></a><a name="p4895544084824"></a>Displays error information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p378798178165622"><a name="p378798178165622"></a><a name="p378798178165622"></a>void </p>
+<p id="p1713052751165622"><a name="p1713052751165622"></a><a name="p1713052751165622"></a>Displays error information. </p>
 </td>
 </tr>
-<tr id="row2054968998084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2073025954084824"><a name="p2073025954084824"></a><a name="p2073025954084824"></a><a href="io.md#gaf5491fca8b356da75d96fc469bf32ea6">verr</a> (int eval, const char *fmt, va_list args)</p>
+<tr id="row1808816341165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1993143958165622"><a name="p1993143958165622"></a><a name="p1993143958165622"></a><a href="io.md#ga4b5f9ccd84c00dc473329e4bf64125e1">verrx</a> (int eval, const char *fmt, va_list args)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2027419901084824"><a name="p2027419901084824"></a><a name="p2027419901084824"></a>void </p>
-<p id="p1925437434084824"><a name="p1925437434084824"></a><a name="p1925437434084824"></a>Displays error information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p442629052165622"><a name="p442629052165622"></a><a name="p442629052165622"></a>void </p>
+<p id="p1706989192165622"><a name="p1706989192165622"></a><a name="p1706989192165622"></a>Displays a formatted error message. </p>
 </td>
 </tr>
-<tr id="row1035970648084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1708287540084824"><a name="p1708287540084824"></a><a name="p1708287540084824"></a><a href="io.md#ga4b5f9ccd84c00dc473329e4bf64125e1">verrx</a> (int eval, const char *fmt, va_list args)</p>
+<tr id="row353987064165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p471082217165622"><a name="p471082217165622"></a><a name="p471082217165622"></a><a href="io.md#ga934548ab8aaae237ac5cce0ed0b3edec">iconv_open</a> (const char *to, const char *from)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2043437472084824"><a name="p2043437472084824"></a><a name="p2043437472084824"></a>void </p>
-<p id="p85579407084824"><a name="p85579407084824"></a><a name="p85579407084824"></a>Displays a formatted error message. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p372494136165622"><a name="p372494136165622"></a><a name="p372494136165622"></a><a href="io.md#ga72517f6ffadddaafa9d51dee9b535c9f">iconv_t</a> </p>
+<p id="p1432061884165622"><a name="p1432061884165622"></a><a name="p1432061884165622"></a>Obtain a character set conversion descriptor. </p>
 </td>
 </tr>
-<tr id="row477177245084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1807212497084824"><a name="p1807212497084824"></a><a name="p1807212497084824"></a><a href="io.md#ga934548ab8aaae237ac5cce0ed0b3edec">iconv_open</a> (const char *to, const char *from)</p>
+<tr id="row1286685992165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1444745018165622"><a name="p1444745018165622"></a><a name="p1444745018165622"></a><a href="io.md#gab7c1300a663def659ce6d4a01076c39d">iconv</a> (<a href="io.md#ga72517f6ffadddaafa9d51dee9b535c9f">iconv_t</a> cd, char **restrict in, size_t *restrict inb, char **restrict out, size_t *restrict outb)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1912744111084824"><a name="p1912744111084824"></a><a name="p1912744111084824"></a><a href="io.md#ga72517f6ffadddaafa9d51dee9b535c9f">iconv_t</a> </p>
-<p id="p1356258745084824"><a name="p1356258745084824"></a><a name="p1356258745084824"></a>Obtain a character set conversion descriptor. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1509246521165622"><a name="p1509246521165622"></a><a name="p1509246521165622"></a>size_t </p>
+<p id="p1901145538165622"><a name="p1901145538165622"></a><a name="p1901145538165622"></a>Converts a character set. </p>
 </td>
 </tr>
-<tr id="row1496450107084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p442048917084824"><a name="p442048917084824"></a><a name="p442048917084824"></a><a href="io.md#gab7c1300a663def659ce6d4a01076c39d">iconv</a> (<a href="io.md#ga72517f6ffadddaafa9d51dee9b535c9f">iconv_t</a> cd, char **restrict in, size_t *restrict inb, char **restrict out, size_t *restrict outb)</p>
+<tr id="row987212789165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p744956136165622"><a name="p744956136165622"></a><a name="p744956136165622"></a><a href="io.md#ga062da5f802d9e274a8702f11921e691b">iconv_close</a> (<a href="io.md#ga72517f6ffadddaafa9d51dee9b535c9f">iconv_t</a> cd)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1889769489084824"><a name="p1889769489084824"></a><a name="p1889769489084824"></a>size_t </p>
-<p id="p1796129432084824"><a name="p1796129432084824"></a><a name="p1796129432084824"></a>Converts a character set. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1676994884165622"><a name="p1676994884165622"></a><a name="p1676994884165622"></a>int </p>
+<p id="p23907243165622"><a name="p23907243165622"></a><a name="p23907243165622"></a>Closes a character set conversion descriptor. </p>
 </td>
 </tr>
-<tr id="row2144567468084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1049708146084824"><a name="p1049708146084824"></a><a name="p1049708146084824"></a><a href="io.md#ga062da5f802d9e274a8702f11921e691b">iconv_close</a> (<a href="io.md#ga72517f6ffadddaafa9d51dee9b535c9f">iconv_t</a> cd)</p>
+<tr id="row893259067165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p839695585165622"><a name="p839695585165622"></a><a name="p839695585165622"></a><a href="io.md#gab7fc0f6be5f13c81de180c1288ba3b6f">poll</a> (struct <a href="pollfd.md">pollfd</a> fds[], <a href="io.md#ga0af7a8bdafcd5532e620a11f0d373d52">nfds_t</a> nfds, int timeout)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1103950301084824"><a name="p1103950301084824"></a><a name="p1103950301084824"></a>int </p>
-<p id="p1881511508084824"><a name="p1881511508084824"></a><a name="p1881511508084824"></a>Closes a character set conversion descriptor. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p400576461165622"><a name="p400576461165622"></a><a name="p400576461165622"></a>int </p>
+<p id="p1879130715165622"><a name="p1879130715165622"></a><a name="p1879130715165622"></a>Defines the I/O multiplexing system. </p>
 </td>
 </tr>
-<tr id="row585364403084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p513792058084824"><a name="p513792058084824"></a><a name="p513792058084824"></a><a href="io.md#gafe784c4f5d12b74272740c5211c960c5">setlocale</a> (int category, const char *locale)</p>
+<tr id="row66923503165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p461367407165622"><a name="p461367407165622"></a><a name="p461367407165622"></a><a href="io.md#ga58386e895d3c07b008c8865b2a9716fb">fopen</a> (const char *__restrict path, const char *__restrict mode)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p210485197084824"><a name="p210485197084824"></a><a name="p210485197084824"></a>char * </p>
-<p id="p13592356084824"><a name="p13592356084824"></a><a name="p13592356084824"></a>Sets the current locale information based on input parameters. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p922161867165622"><a name="p922161867165622"></a><a name="p922161867165622"></a><a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> * </p>
+<p id="p1739859318165622"><a name="p1739859318165622"></a><a name="p1739859318165622"></a>Opens the file stored in the specified path based on the given mode. </p>
 </td>
 </tr>
-<tr id="row2097910131084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1880666779084824"><a name="p1880666779084824"></a><a name="p1880666779084824"></a><a href="io.md#ga69b40f71a20a7c8bd67b9eeeae7f40c9">localeconv</a> (void)</p>
+<tr id="row657292879165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1350583485165622"><a name="p1350583485165622"></a><a name="p1350583485165622"></a><a href="io.md#gaab336dbfc008a0873046ecd7db043df0">freopen</a> (const char *__restrict path, const char *__restrict mode, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *__restrict stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p413531698084824"><a name="p413531698084824"></a><a name="p413531698084824"></a>struct <a href="lconv.md">lconv</a> * </p>
-<p id="p621450640084824"><a name="p621450640084824"></a><a name="p621450640084824"></a>Obtains the locale information about a region and stores them in <a href="lconv.md">lconv</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2010957257165622"><a name="p2010957257165622"></a><a name="p2010957257165622"></a><a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> * </p>
+<p id="p1157279707165622"><a name="p1157279707165622"></a><a name="p1157279707165622"></a>Opens the file stored in the specified path, and associates the stream by the given stream. </p>
 </td>
 </tr>
-<tr id="row2012679152084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1367917667084824"><a name="p1367917667084824"></a><a name="p1367917667084824"></a><a href="io.md#gac898c5cfd3f2352d639b8356ff6aa343">catopen</a> (const char *name, int oflag)</p>
+<tr id="row1757867825165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1644199265165622"><a name="p1644199265165622"></a><a name="p1644199265165622"></a><a href="io.md#gac41a0ad4b31be2ad59d8222a0de30bda">fclose</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fd)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p348370947084824"><a name="p348370947084824"></a><a name="p348370947084824"></a><a href="io.md#ga3f305b6699c89f91aecfc0b5f8604a5f">nl_catd</a> </p>
-<p id="p262542831084824"><a name="p262542831084824"></a><a name="p262542831084824"></a>Opens a message catalog and returns its descriptor. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1577416800165622"><a name="p1577416800165622"></a><a name="p1577416800165622"></a>int </p>
+<p id="p174005916165622"><a name="p174005916165622"></a><a name="p174005916165622"></a>Closes a file based on the specified file descriptor. </p>
 </td>
 </tr>
-<tr id="row605415895084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2019092445084824"><a name="p2019092445084824"></a><a name="p2019092445084824"></a><a href="io.md#gaa615f433a6a187d0ee5ed647efc0e091">catgets</a> (<a href="io.md#ga3f305b6699c89f91aecfc0b5f8604a5f">nl_catd</a> catd, int set_id, int msg_id, const char *s)</p>
+<tr id="row57492954165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1223999827165622"><a name="p1223999827165622"></a><a name="p1223999827165622"></a><a href="io.md#ga02b13b56a188401119ea4da43c184913">remove</a> (const char *pathname)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1477855234084824"><a name="p1477855234084824"></a><a name="p1477855234084824"></a>char * </p>
-<p id="p497475893084824"><a name="p497475893084824"></a><a name="p497475893084824"></a>Obtains information from a message catalog. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1225827390165622"><a name="p1225827390165622"></a><a name="p1225827390165622"></a>int </p>
+<p id="p531415721165622"><a name="p531415721165622"></a><a name="p531415721165622"></a>Deletes a specified file or directory from the file system. </p>
 </td>
 </tr>
-<tr id="row621458321084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1773662441084824"><a name="p1773662441084824"></a><a name="p1773662441084824"></a><a href="io.md#ga87f06c3df6f24c6b46a9c7fe13e2cb9c">catclose</a> (<a href="io.md#ga3f305b6699c89f91aecfc0b5f8604a5f">nl_catd</a> catd)</p>
+<tr id="row16747773165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1716809981165622"><a name="p1716809981165622"></a><a name="p1716809981165622"></a><a href="io.md#ga4d4709508ed7604103d77c3fdc5ea4a2">rename</a> (const char *oldpath, const char *newpath)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1097288111084824"><a name="p1097288111084824"></a><a name="p1097288111084824"></a>int </p>
-<p id="p1174453851084824"><a name="p1174453851084824"></a><a name="p1174453851084824"></a>Closes a catalog descriptor. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1773759400165622"><a name="p1773759400165622"></a><a name="p1773759400165622"></a>int </p>
+<p id="p352356957165622"><a name="p352356957165622"></a><a name="p352356957165622"></a>Renames a specified file. </p>
 </td>
 </tr>
-<tr id="row239963149084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p684825970084824"><a name="p684825970084824"></a><a name="p684825970084824"></a><a href="io.md#gab7fc0f6be5f13c81de180c1288ba3b6f">poll</a> (struct <a href="pollfd.md">pollfd</a> fds[], <a href="io.md#ga0af7a8bdafcd5532e620a11f0d373d52">nfds_t</a> nfds, int timeout)</p>
+<tr id="row925984392165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1298666094165622"><a name="p1298666094165622"></a><a name="p1298666094165622"></a><a href="io.md#gafb95de1535a5a185954819539f3c6ca5">feof</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p425422899084824"><a name="p425422899084824"></a><a name="p425422899084824"></a>int </p>
-<p id="p716683026084824"><a name="p716683026084824"></a><a name="p716683026084824"></a>Defines the I/O multiplexing system. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p489304202165622"><a name="p489304202165622"></a><a name="p489304202165622"></a>int </p>
+<p id="p339083037165622"><a name="p339083037165622"></a><a name="p339083037165622"></a>Tests the end-of-file indicator for a specified stream. </p>
 </td>
 </tr>
-<tr id="row1179218017084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1516842061084824"><a name="p1516842061084824"></a><a name="p1516842061084824"></a><a href="io.md#ga58386e895d3c07b008c8865b2a9716fb">fopen</a> (const char *__restrict path, const char *__restrict mode)</p>
+<tr id="row858257043165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2133551924165622"><a name="p2133551924165622"></a><a name="p2133551924165622"></a><a href="io.md#ga4a98383bb54291c2abede7aa28acf597">ferror</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1715717141084824"><a name="p1715717141084824"></a><a name="p1715717141084824"></a><a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> * </p>
-<p id="p371719649084824"><a name="p371719649084824"></a><a name="p371719649084824"></a>Opens the file stored in the specified path based on the given mode. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1255852371165622"><a name="p1255852371165622"></a><a name="p1255852371165622"></a>int </p>
+<p id="p429619235165622"><a name="p429619235165622"></a><a name="p429619235165622"></a>Tests for the error identifier of a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1827291265084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1279569252084824"><a name="p1279569252084824"></a><a name="p1279569252084824"></a><a href="io.md#gac41a0ad4b31be2ad59d8222a0de30bda">fclose</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fd)</p>
+<tr id="row483668080165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1447560270165622"><a name="p1447560270165622"></a><a name="p1447560270165622"></a><a href="io.md#gae4459e830d3e2abcf428337a661d9456">fflush</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p659053757084824"><a name="p659053757084824"></a><a name="p659053757084824"></a>int </p>
-<p id="p684392219084824"><a name="p684392219084824"></a><a name="p684392219084824"></a>Closes a file based on the specified file descriptor. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p864433761165622"><a name="p864433761165622"></a><a name="p864433761165622"></a>int </p>
+<p id="p898138099165622"><a name="p898138099165622"></a><a name="p898138099165622"></a>Flushes the output buffer of a specified stream. </p>
 </td>
 </tr>
-<tr id="row470628426084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2142316051084824"><a name="p2142316051084824"></a><a name="p2142316051084824"></a><a href="io.md#ga02b13b56a188401119ea4da43c184913">remove</a> (const char *pathname)</p>
+<tr id="row1651914507165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1920483629165622"><a name="p1920483629165622"></a><a name="p1920483629165622"></a><a href="io.md#ga81202d6a15259fbceb71a961a878b01a">clearerr</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1570113228084824"><a name="p1570113228084824"></a><a name="p1570113228084824"></a>int </p>
-<p id="p448481199084824"><a name="p448481199084824"></a><a name="p448481199084824"></a>Deletes a specified file or directory from the file system. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p918191728165622"><a name="p918191728165622"></a><a name="p918191728165622"></a>void </p>
+<p id="p2079804649165622"><a name="p2079804649165622"></a><a name="p2079804649165622"></a>Resets the error indicators. </p>
 </td>
 </tr>
-<tr id="row1327572975084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1973112175084824"><a name="p1973112175084824"></a><a name="p1973112175084824"></a><a href="io.md#ga4d4709508ed7604103d77c3fdc5ea4a2">rename</a> (const char *oldpath, const char *newpath)</p>
+<tr id="row1803103727165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1500507638165622"><a name="p1500507638165622"></a><a name="p1500507638165622"></a><a href="io.md#gaece5d6e00c239ffd0847d8d2ef65bd57">fseek</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp, long offset, int whence)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1717604838084824"><a name="p1717604838084824"></a><a name="p1717604838084824"></a>int </p>
-<p id="p337469946084824"><a name="p337469946084824"></a><a name="p337469946084824"></a>Renames a specified file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p15587769165622"><a name="p15587769165622"></a><a name="p15587769165622"></a>int </p>
+<p id="p848160780165622"><a name="p848160780165622"></a><a name="p848160780165622"></a>Changes the position of a specified stream to a new position. </p>
 </td>
 </tr>
-<tr id="row887902184084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p10708002084824"><a name="p10708002084824"></a><a name="p10708002084824"></a><a href="io.md#gafb95de1535a5a185954819539f3c6ca5">feof</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
+<tr id="row2121159040165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p20872216165622"><a name="p20872216165622"></a><a name="p20872216165622"></a><a href="io.md#gaae4231ac8066eb54ea1d9d12d551605c">ftell</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p887102854084824"><a name="p887102854084824"></a><a name="p887102854084824"></a>int </p>
-<p id="p1412099467084824"><a name="p1412099467084824"></a><a name="p1412099467084824"></a>Tests the end-of-file indicator for a specified stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p701311481165622"><a name="p701311481165622"></a><a name="p701311481165622"></a>long </p>
+<p id="p1596340579165622"><a name="p1596340579165622"></a><a name="p1596340579165622"></a>Obtains the current value of the file position indicator for a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1416676680084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p185677424084824"><a name="p185677424084824"></a><a name="p185677424084824"></a><a href="io.md#ga4a98383bb54291c2abede7aa28acf597">ferror</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row974404045165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1897071375165622"><a name="p1897071375165622"></a><a name="p1897071375165622"></a><a href="io.md#gaa0cd401f198d33d9d01a9e8aa4026819">rewind</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1146328744084824"><a name="p1146328744084824"></a><a name="p1146328744084824"></a>int </p>
-<p id="p1005821997084824"><a name="p1005821997084824"></a><a name="p1005821997084824"></a>Tests for the error identifier of a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1073546442165622"><a name="p1073546442165622"></a><a name="p1073546442165622"></a>void </p>
+<p id="p312117625165622"><a name="p312117625165622"></a><a name="p312117625165622"></a>Sets the position indicator of a specified stream to the beginning of the file. </p>
 </td>
 </tr>
-<tr id="row1155714177084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p754259785084824"><a name="p754259785084824"></a><a name="p754259785084824"></a><a href="io.md#gae4459e830d3e2abcf428337a661d9456">fflush</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
+<tr id="row1461763614165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1147818710165622"><a name="p1147818710165622"></a><a name="p1147818710165622"></a><a href="io.md#gaf2e2b1a01359f5f7068b61d1dffcdcdd">fgetpos</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, fpos_t *pos)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p780345308084824"><a name="p780345308084824"></a><a name="p780345308084824"></a>int </p>
-<p id="p2130936566084824"><a name="p2130936566084824"></a><a name="p2130936566084824"></a>Flushes the output buffer of a specified stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p219327369165622"><a name="p219327369165622"></a><a name="p219327369165622"></a>int </p>
+<p id="p1362074420165622"><a name="p1362074420165622"></a><a name="p1362074420165622"></a>Obtains the current file position of a specified stream and writes it to the <strong id="b2072702348165622"><a name="b2072702348165622"></a><a name="b2072702348165622"></a>pos</strong> parameter. </p>
 </td>
 </tr>
-<tr id="row624243618084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1740168660084824"><a name="p1740168660084824"></a><a name="p1740168660084824"></a><a href="io.md#ga81202d6a15259fbceb71a961a878b01a">clearerr</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
+<tr id="row1607337970165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1655108014165622"><a name="p1655108014165622"></a><a name="p1655108014165622"></a><a href="io.md#gae47e3f92dd8fc42ce0b6384c03ce6a9b">fsetpos</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp, const fpos_t *pos)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1737616752084824"><a name="p1737616752084824"></a><a name="p1737616752084824"></a>void </p>
-<p id="p1922387857084824"><a name="p1922387857084824"></a><a name="p1922387857084824"></a>Resets the error indicators. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1446705335165622"><a name="p1446705335165622"></a><a name="p1446705335165622"></a>int </p>
+<p id="p1598815225165622"><a name="p1598815225165622"></a><a name="p1598815225165622"></a>Sets the file position indicator for a specified file stream. </p>
 </td>
 </tr>
-<tr id="row933614387084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p985816903084824"><a name="p985816903084824"></a><a name="p985816903084824"></a><a href="io.md#gaece5d6e00c239ffd0847d8d2ef65bd57">fseek</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp, long offset, int whence)</p>
+<tr id="row913999804165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p757592138165622"><a name="p757592138165622"></a><a name="p757592138165622"></a><a href="io.md#ga091b3f41bdd6984d63ea48d87a62bfd2">fread</a> (void *__restrict ptr, size_t size, size_t nmemb, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *__restrict stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p255071366084824"><a name="p255071366084824"></a><a name="p255071366084824"></a>int </p>
-<p id="p348719568084824"><a name="p348719568084824"></a><a name="p348719568084824"></a>Changes the position of a specified stream to a new position. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p491287964165622"><a name="p491287964165622"></a><a name="p491287964165622"></a>size_t </p>
+<p id="p450325501165622"><a name="p450325501165622"></a><a name="p450325501165622"></a>Reads data from a specified stream. </p>
 </td>
 </tr>
-<tr id="row1470190332084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2082255753084824"><a name="p2082255753084824"></a><a name="p2082255753084824"></a><a href="io.md#gaae4231ac8066eb54ea1d9d12d551605c">ftell</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
+<tr id="row1993255068165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1663554442165622"><a name="p1663554442165622"></a><a name="p1663554442165622"></a><a href="io.md#gaf86a4505e5de39a100f7ea828377b585">fwrite</a> (const void *__restrict ptr, size_t size, size_t nmemb, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *__restrict stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2033829946084824"><a name="p2033829946084824"></a><a name="p2033829946084824"></a>long </p>
-<p id="p1721419823084824"><a name="p1721419823084824"></a><a name="p1721419823084824"></a>Obtains the current value of the file position indicator for a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p642147225165622"><a name="p642147225165622"></a><a name="p642147225165622"></a>size_t </p>
+<p id="p405191015165622"><a name="p405191015165622"></a><a name="p405191015165622"></a>Writes data to a specified stream. </p>
 </td>
 </tr>
-<tr id="row128771199084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1829528291084824"><a name="p1829528291084824"></a><a name="p1829528291084824"></a><a href="io.md#gaa0cd401f198d33d9d01a9e8aa4026819">rewind</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row646576825165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p663903032165622"><a name="p663903032165622"></a><a name="p663903032165622"></a><a href="io.md#gad5a0ea2c21a23a380b7c30fe35fa9456">getc</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1936603246084824"><a name="p1936603246084824"></a><a name="p1936603246084824"></a>void </p>
-<p id="p744054960084824"><a name="p744054960084824"></a><a name="p744054960084824"></a>Sets the position indicator of a specified stream to the beginning of the file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1657228395165622"><a name="p1657228395165622"></a><a name="p1657228395165622"></a>int </p>
+<p id="p1843700999165622"><a name="p1843700999165622"></a><a name="p1843700999165622"></a>Reads a character from a specified file stream. </p>
 </td>
 </tr>
-<tr id="row425087878084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1635926327084824"><a name="p1635926327084824"></a><a name="p1635926327084824"></a><a href="io.md#gaf2e2b1a01359f5f7068b61d1dffcdcdd">fgetpos</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, fpos_t *pos)</p>
+<tr id="row655142981165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p436009095165622"><a name="p436009095165622"></a><a name="p436009095165622"></a><a href="io.md#ga3e29caa20f7cffe18f410f01278905a8">getchar</a> (void)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p808710137084824"><a name="p808710137084824"></a><a name="p808710137084824"></a>int </p>
-<p id="p1906553184084824"><a name="p1906553184084824"></a><a name="p1906553184084824"></a>Obtains the current file position of a specified stream and writes it to the <strong id="b636878242084824"><a name="b636878242084824"></a><a name="b636878242084824"></a>pos</strong> parameter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1185250504165622"><a name="p1185250504165622"></a><a name="p1185250504165622"></a>int </p>
+<p id="p2094937730165622"><a name="p2094937730165622"></a><a name="p2094937730165622"></a>Obtains the next character from the standard input (stdin). </p>
 </td>
 </tr>
-<tr id="row1388383037084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2120022434084824"><a name="p2120022434084824"></a><a name="p2120022434084824"></a><a href="io.md#gae47e3f92dd8fc42ce0b6384c03ce6a9b">fsetpos</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp, const fpos_t *pos)</p>
+<tr id="row1218425884165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1296239891165622"><a name="p1296239891165622"></a><a name="p1296239891165622"></a><a href="io.md#ga54efa95b6d5b41adec98e5b8a1a9f27b">ungetc</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p121021241084824"><a name="p121021241084824"></a><a name="p121021241084824"></a>int </p>
-<p id="p1647864584084824"><a name="p1647864584084824"></a><a name="p1647864584084824"></a>Sets the file position indicator for a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p580330700165622"><a name="p580330700165622"></a><a name="p580330700165622"></a>int </p>
+<p id="p1493114373165622"><a name="p1493114373165622"></a><a name="p1493114373165622"></a>Pushes a character back into a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1228803426084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p261500302084824"><a name="p261500302084824"></a><a name="p261500302084824"></a><a href="io.md#ga091b3f41bdd6984d63ea48d87a62bfd2">fread</a> (void *__restrict ptr, size_t size, size_t nmemb, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *__restrict stream)</p>
+<tr id="row1162119751165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p722425056165622"><a name="p722425056165622"></a><a name="p722425056165622"></a><a href="io.md#gabe6299d5823dd023e610aaa619735a3f">fputc</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1018097527084824"><a name="p1018097527084824"></a><a name="p1018097527084824"></a>size_t </p>
-<p id="p1868561900084824"><a name="p1868561900084824"></a><a name="p1868561900084824"></a>Reads data from a specified stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2085118987165622"><a name="p2085118987165622"></a><a name="p2085118987165622"></a>int </p>
+<p id="p128127952165622"><a name="p128127952165622"></a><a name="p128127952165622"></a>Writes a character into the position pointed to by a specified stream. </p>
 </td>
 </tr>
-<tr id="row316599864084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p904156651084824"><a name="p904156651084824"></a><a name="p904156651084824"></a><a href="io.md#gaf86a4505e5de39a100f7ea828377b585">fwrite</a> (const void *__restrict ptr, size_t size, size_t nmemb, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *__restrict stream)</p>
+<tr id="row1693369725165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p689192598165622"><a name="p689192598165622"></a><a name="p689192598165622"></a><a href="io.md#ga38f980218f04ebdddcdcd1b77e1cf6b1">putc</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1601970704084824"><a name="p1601970704084824"></a><a name="p1601970704084824"></a>size_t </p>
-<p id="p169861035084824"><a name="p169861035084824"></a><a name="p169861035084824"></a>Writes data to a specified stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1076604956165622"><a name="p1076604956165622"></a><a name="p1076604956165622"></a>int </p>
+<p id="p127982083165622"><a name="p127982083165622"></a><a name="p127982083165622"></a>Writes a character to a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1509145432084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1793006797084824"><a name="p1793006797084824"></a><a name="p1793006797084824"></a><a href="io.md#gad5a0ea2c21a23a380b7c30fe35fa9456">getc</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row368032689165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1352209322165622"><a name="p1352209322165622"></a><a name="p1352209322165622"></a><a href="io.md#gaf4de2514b7778805db3815e8dd6cf09a">putchar</a> (int c)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1671168614084824"><a name="p1671168614084824"></a><a name="p1671168614084824"></a>int </p>
-<p id="p105262108084824"><a name="p105262108084824"></a><a name="p105262108084824"></a>Reads a character from a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p225343984165622"><a name="p225343984165622"></a><a name="p225343984165622"></a>int </p>
+<p id="p685374854165622"><a name="p685374854165622"></a><a name="p685374854165622"></a>Writes a character into the standard output (stdout). </p>
 </td>
 </tr>
-<tr id="row1656814383084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1421126934084824"><a name="p1421126934084824"></a><a name="p1421126934084824"></a><a href="io.md#ga3e29caa20f7cffe18f410f01278905a8">getchar</a> (void)</p>
+<tr id="row1249508596165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1878208440165622"><a name="p1878208440165622"></a><a name="p1878208440165622"></a><a href="io.md#ga2b3df0e66b41edab3c039191fe6cc4f9">fgets</a> (char *s, int size, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p308584423084824"><a name="p308584423084824"></a><a name="p308584423084824"></a>int </p>
-<p id="p1446558163084824"><a name="p1446558163084824"></a><a name="p1446558163084824"></a>Obtains the next character from the standard input (stdin). </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1965362212165622"><a name="p1965362212165622"></a><a name="p1965362212165622"></a>char * </p>
+<p id="p1092703140165622"><a name="p1092703140165622"></a><a name="p1092703140165622"></a>Reads a line of characters from a specified file stream and stores it into the string pointed to by <strong id="b1734936029165622"><a name="b1734936029165622"></a><a name="b1734936029165622"></a>s</strong>. </p>
 </td>
 </tr>
-<tr id="row576331887084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p198937461084824"><a name="p198937461084824"></a><a name="p198937461084824"></a><a href="io.md#ga54efa95b6d5b41adec98e5b8a1a9f27b">ungetc</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1998673307165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p24364176165622"><a name="p24364176165622"></a><a name="p24364176165622"></a><a href="io.md#gaab85b30d68ce9d9e0475e0f51bf610b1">gets</a> (char *s)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p538867687084824"><a name="p538867687084824"></a><a name="p538867687084824"></a>int </p>
-<p id="p1279473295084824"><a name="p1279473295084824"></a><a name="p1279473295084824"></a>Pushes a character back into a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2005591250165622"><a name="p2005591250165622"></a><a name="p2005591250165622"></a>char * </p>
+<p id="p1181322466165622"><a name="p1181322466165622"></a><a name="p1181322466165622"></a>Reads a line of characters from the stdin and stores it in the buffer. </p>
 </td>
 </tr>
-<tr id="row1307350566084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p423528137084824"><a name="p423528137084824"></a><a name="p423528137084824"></a><a href="io.md#gabe6299d5823dd023e610aaa619735a3f">fputc</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1514060705165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p391128758165622"><a name="p391128758165622"></a><a name="p391128758165622"></a><a href="io.md#ga68236e664c1f0da049b25fba1c1695f6">fputs</a> (const char *s, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1354186667084824"><a name="p1354186667084824"></a><a name="p1354186667084824"></a>int </p>
-<p id="p1728161881084824"><a name="p1728161881084824"></a><a name="p1728161881084824"></a>Writes a character into the position pointed to by a specified stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1005908566165622"><a name="p1005908566165622"></a><a name="p1005908566165622"></a>int </p>
+<p id="p2034645119165622"><a name="p2034645119165622"></a><a name="p2034645119165622"></a>Writes a character string (excluding the terminating null character) to a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1727159193084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1017235107084824"><a name="p1017235107084824"></a><a name="p1017235107084824"></a><a href="io.md#ga38f980218f04ebdddcdcd1b77e1cf6b1">putc</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1357678689165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2007080246165622"><a name="p2007080246165622"></a><a name="p2007080246165622"></a><a href="io.md#gad41876f99f190c7488e64ef39c50a23f">puts</a> (const char *s)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1314245062084824"><a name="p1314245062084824"></a><a name="p1314245062084824"></a>int </p>
-<p id="p561705048084824"><a name="p561705048084824"></a><a name="p561705048084824"></a>Writes a character to a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p526166003165622"><a name="p526166003165622"></a><a name="p526166003165622"></a>int </p>
+<p id="p834852147165622"><a name="p834852147165622"></a><a name="p834852147165622"></a>Writes a character string and appends a new-line character to the stdout. </p>
 </td>
 </tr>
-<tr id="row1526891958084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1703019937084824"><a name="p1703019937084824"></a><a name="p1703019937084824"></a><a href="io.md#gaf4de2514b7778805db3815e8dd6cf09a">putchar</a> (int c)</p>
+<tr id="row1862343735165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p941944491165622"><a name="p941944491165622"></a><a name="p941944491165622"></a><a href="io.md#ga98631211a4a8aee62f572375d5b637be">printf</a> (const char *format,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p712498240084824"><a name="p712498240084824"></a><a name="p712498240084824"></a>int </p>
-<p id="p2022626810084824"><a name="p2022626810084824"></a><a name="p2022626810084824"></a>Writes a character into the standard output (stdout). </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1787743341165622"><a name="p1787743341165622"></a><a name="p1787743341165622"></a>int </p>
+<p id="p1923561890165622"><a name="p1923561890165622"></a><a name="p1923561890165622"></a>Formats arguments based on <strong id="b1744267115165622"><a name="b1744267115165622"></a><a name="b1744267115165622"></a>format</strong> and prints formatted data to the stdout. </p>
 </td>
 </tr>
-<tr id="row555571063084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1489591233084824"><a name="p1489591233084824"></a><a name="p1489591233084824"></a><a href="io.md#ga2b3df0e66b41edab3c039191fe6cc4f9">fgets</a> (char *s, int size, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row972822779165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p577726217165622"><a name="p577726217165622"></a><a name="p577726217165622"></a><a href="io.md#gad9291335f34e874c8431285d705bc3aa">fprintf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, const char *format,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p674355250084824"><a name="p674355250084824"></a><a name="p674355250084824"></a>char * </p>
-<p id="p652625481084824"><a name="p652625481084824"></a><a name="p652625481084824"></a>Reads a line of characters from a specified file stream and stores it into the string pointed to by <strong id="b333234321084824"><a name="b333234321084824"></a><a name="b333234321084824"></a>s</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1107665611165622"><a name="p1107665611165622"></a><a name="p1107665611165622"></a>int </p>
+<p id="p1137083507165622"><a name="p1137083507165622"></a><a name="p1137083507165622"></a>Formats arguments based on <strong id="b1615561695165622"><a name="b1615561695165622"></a><a name="b1615561695165622"></a>format</strong> and prints formatted data to a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1361102194084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1979219028084824"><a name="p1979219028084824"></a><a name="p1979219028084824"></a><a href="io.md#gaab85b30d68ce9d9e0475e0f51bf610b1">gets</a> (char *s)</p>
+<tr id="row461267789165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1161934415165622"><a name="p1161934415165622"></a><a name="p1161934415165622"></a><a href="io.md#ga3082155ec11e7229f7a20439b31a169e">sprintf</a> (char *str, const char *format,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1549697259084824"><a name="p1549697259084824"></a><a name="p1549697259084824"></a>char * </p>
-<p id="p1744899861084824"><a name="p1744899861084824"></a><a name="p1744899861084824"></a>Reads a line of characters from the stdin and stores it in the buffer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p250944952165622"><a name="p250944952165622"></a><a name="p250944952165622"></a>int </p>
+<p id="p1730284657165622"><a name="p1730284657165622"></a><a name="p1730284657165622"></a>Prints formatted data from a variable argument list to a specified string. </p>
 </td>
 </tr>
-<tr id="row1415158426084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1742216652084824"><a name="p1742216652084824"></a><a name="p1742216652084824"></a><a href="io.md#ga68236e664c1f0da049b25fba1c1695f6">fputs</a> (const char *s, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1179625658165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1829753147165622"><a name="p1829753147165622"></a><a name="p1829753147165622"></a><a href="io.md#gad76145a6edfc98981ded8815a760e0cd">snprintf</a> (char *str, size_t size, const char *format,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1984984946084824"><a name="p1984984946084824"></a><a name="p1984984946084824"></a>int </p>
-<p id="p851606686084824"><a name="p851606686084824"></a><a name="p851606686084824"></a>Writes a character string (excluding the terminating null character) to a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p544930936165622"><a name="p544930936165622"></a><a name="p544930936165622"></a>int </p>
+<p id="p1219369038165622"><a name="p1219369038165622"></a><a name="p1219369038165622"></a>Prints formatted data of a maximum of <strong id="b78378469165622"><a name="b78378469165622"></a><a name="b78378469165622"></a>size</strong> bytes from a variable argument list to a specified string. </p>
 </td>
 </tr>
-<tr id="row1276569976084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p98974485084824"><a name="p98974485084824"></a><a name="p98974485084824"></a><a href="io.md#gad41876f99f190c7488e64ef39c50a23f">puts</a> (const char *s)</p>
+<tr id="row1683396208165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2066056200165622"><a name="p2066056200165622"></a><a name="p2066056200165622"></a><a href="io.md#gaa715ef816dc040c8b367fde4ba84d6f3">vprintf</a> (const char *format, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1388070379084824"><a name="p1388070379084824"></a><a name="p1388070379084824"></a>int </p>
-<p id="p1382004465084824"><a name="p1382004465084824"></a><a name="p1382004465084824"></a>Writes a character string and appends a new-line character to the stdout. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2031173408165622"><a name="p2031173408165622"></a><a name="p2031173408165622"></a>int </p>
+<p id="p516363961165622"><a name="p516363961165622"></a><a name="p516363961165622"></a>Prints formatted data from a variable argument list to the stdout. </p>
 </td>
 </tr>
-<tr id="row91549512084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p969972412084824"><a name="p969972412084824"></a><a name="p969972412084824"></a><a href="io.md#ga98631211a4a8aee62f572375d5b637be">printf</a> (const char *format,...)</p>
+<tr id="row462762935165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p40565789165622"><a name="p40565789165622"></a><a name="p40565789165622"></a><a href="io.md#gad80f05917df38df3a5e1817498d67c26">vfprintf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, const char *format, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p986336953084824"><a name="p986336953084824"></a><a name="p986336953084824"></a>int </p>
-<p id="p1735376725084824"><a name="p1735376725084824"></a><a name="p1735376725084824"></a>Formats arguments based on <strong id="b1441709408084824"><a name="b1441709408084824"></a><a name="b1441709408084824"></a>format</strong> and prints formatted data to the stdout. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2023785477165622"><a name="p2023785477165622"></a><a name="p2023785477165622"></a>int </p>
+<p id="p1609402132165622"><a name="p1609402132165622"></a><a name="p1609402132165622"></a>Prints formatted data from a variable argument list to a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1049541539084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2103881318084824"><a name="p2103881318084824"></a><a name="p2103881318084824"></a><a href="io.md#gad9291335f34e874c8431285d705bc3aa">fprintf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, const char *format,...)</p>
+<tr id="row264966081165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p773736055165622"><a name="p773736055165622"></a><a name="p773736055165622"></a><a href="io.md#gaab3db67c98c32122fcb3d076d4207bbc">vsprintf</a> (char *str, const char *format, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p355990172084824"><a name="p355990172084824"></a><a name="p355990172084824"></a>int </p>
-<p id="p1040355241084824"><a name="p1040355241084824"></a><a name="p1040355241084824"></a>Formats arguments based on <strong id="b1806371598084824"><a name="b1806371598084824"></a><a name="b1806371598084824"></a>format</strong> and prints formatted data to a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p230547520165622"><a name="p230547520165622"></a><a name="p230547520165622"></a>int </p>
+<p id="p686846418165622"><a name="p686846418165622"></a><a name="p686846418165622"></a>Prints formatted data from a variable argument list to a specified string. </p>
 </td>
 </tr>
-<tr id="row2112538585084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1069359320084824"><a name="p1069359320084824"></a><a name="p1069359320084824"></a><a href="io.md#ga3082155ec11e7229f7a20439b31a169e">sprintf</a> (char *str, const char *format,...)</p>
+<tr id="row1163705933165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p863294647165622"><a name="p863294647165622"></a><a name="p863294647165622"></a><a href="io.md#ga2cadafbeb2d6e0d5781f6e5106d41fc2">vsnprintf</a> (char *str, size_t size, const char *format, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p871409788084824"><a name="p871409788084824"></a><a name="p871409788084824"></a>int </p>
-<p id="p471663953084824"><a name="p471663953084824"></a><a name="p471663953084824"></a>Prints formatted data from a variable argument list to a specified string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p205517215165622"><a name="p205517215165622"></a><a name="p205517215165622"></a>int </p>
+<p id="p590499284165622"><a name="p590499284165622"></a><a name="p590499284165622"></a>Prints formatted data of a maximum of <strong id="b750344237165622"><a name="b750344237165622"></a><a name="b750344237165622"></a>size</strong> bytes from a variable argument list to a specified string. </p>
 </td>
 </tr>
-<tr id="row2001781021084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1724965359084824"><a name="p1724965359084824"></a><a name="p1724965359084824"></a><a href="io.md#gad76145a6edfc98981ded8815a760e0cd">snprintf</a> (char *str, size_t size, const char *format,...)</p>
+<tr id="row853329705165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1460035149165622"><a name="p1460035149165622"></a><a name="p1460035149165622"></a><a href="io.md#ga5c48433db9c04031772d5b36e6c4411d">scanf</a> (const char *format,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1958060306084824"><a name="p1958060306084824"></a><a name="p1958060306084824"></a>int </p>
-<p id="p2019270173084824"><a name="p2019270173084824"></a><a name="p2019270173084824"></a>Prints formatted data of a maximum of <strong id="b1722004882084824"><a name="b1722004882084824"></a><a name="b1722004882084824"></a>size</strong> bytes from a variable argument list to a specified string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p964734666165622"><a name="p964734666165622"></a><a name="p964734666165622"></a>int </p>
+<p id="p920561634165622"><a name="p920561634165622"></a><a name="p920561634165622"></a>Reads formatted data from the stdin and stores the data to the additional arguments based on <strong id="b1905004425165622"><a name="b1905004425165622"></a><a name="b1905004425165622"></a>format</strong>. </p>
 </td>
 </tr>
-<tr id="row425313860084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2008916680084824"><a name="p2008916680084824"></a><a name="p2008916680084824"></a><a href="io.md#gaa715ef816dc040c8b367fde4ba84d6f3">vprintf</a> (const char *format, va_list ap)</p>
+<tr id="row1899199497165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2122476826165622"><a name="p2122476826165622"></a><a name="p2122476826165622"></a><a href="io.md#gae902a7b8796799a6e076f07e9d7de045">fscanf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, const char *format,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p44659190084824"><a name="p44659190084824"></a><a name="p44659190084824"></a>int </p>
-<p id="p2022008731084824"><a name="p2022008731084824"></a><a name="p2022008731084824"></a>Prints formatted data from a variable argument list to the stdout. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p842881652165622"><a name="p842881652165622"></a><a name="p842881652165622"></a>int </p>
+<p id="p685959329165622"><a name="p685959329165622"></a><a name="p685959329165622"></a>Reads formatted data from a specified file stream and stores it based on <strong id="b427340262165622"><a name="b427340262165622"></a><a name="b427340262165622"></a>format</strong> into the locations pointed to by the variable arguments. </p>
 </td>
 </tr>
-<tr id="row306485017084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p127486552084824"><a name="p127486552084824"></a><a name="p127486552084824"></a><a href="io.md#gad80f05917df38df3a5e1817498d67c26">vfprintf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, const char *format, va_list ap)</p>
+<tr id="row1070111478165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1363976687165622"><a name="p1363976687165622"></a><a name="p1363976687165622"></a><a href="io.md#gaec1e54556dca3bd701d44395d34818dd">sscanf</a> (const char *str, const char *format,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p781341678084824"><a name="p781341678084824"></a><a name="p781341678084824"></a>int </p>
-<p id="p1717745273084824"><a name="p1717745273084824"></a><a name="p1717745273084824"></a>Prints formatted data from a variable argument list to a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1956201041165622"><a name="p1956201041165622"></a><a name="p1956201041165622"></a>int </p>
+<p id="p687510073165622"><a name="p687510073165622"></a><a name="p687510073165622"></a>Reads data from a character string pointed to by <strong id="b1104357606165622"><a name="b1104357606165622"></a><a name="b1104357606165622"></a>str</strong> and stores it based on <strong id="b208477127165622"><a name="b208477127165622"></a><a name="b208477127165622"></a>format</strong> into the locations pointed to by the variable arguments. </p>
 </td>
 </tr>
-<tr id="row709536802084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p447542995084824"><a name="p447542995084824"></a><a name="p447542995084824"></a><a href="io.md#gaab3db67c98c32122fcb3d076d4207bbc">vsprintf</a> (char *str, const char *format, va_list ap)</p>
+<tr id="row289696659165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p761255279165622"><a name="p761255279165622"></a><a name="p761255279165622"></a><a href="io.md#ga40250d63904acd3e898061c9eab6ead3">vscanf</a> (const char *format, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2043475923084824"><a name="p2043475923084824"></a><a name="p2043475923084824"></a>int </p>
-<p id="p1962184453084824"><a name="p1962184453084824"></a><a name="p1962184453084824"></a>Prints formatted data from a variable argument list to a specified string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p941224540165622"><a name="p941224540165622"></a><a name="p941224540165622"></a>int </p>
+<p id="p1290847143165622"><a name="p1290847143165622"></a><a name="p1290847143165622"></a>Reads data from the stdin and stores it based on <strong id="b774436065165622"><a name="b774436065165622"></a><a name="b774436065165622"></a>format</strong> into the locations pointed to by the elements in the variable argument list identified by <strong id="b970977885165622"><a name="b970977885165622"></a><a name="b970977885165622"></a>ap</strong>. </p>
 </td>
 </tr>
-<tr id="row1252189247084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2134491661084824"><a name="p2134491661084824"></a><a name="p2134491661084824"></a><a href="io.md#ga2cadafbeb2d6e0d5781f6e5106d41fc2">vsnprintf</a> (char *str, size_t size, const char *format, va_list ap)</p>
+<tr id="row584556272165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2018149699165622"><a name="p2018149699165622"></a><a name="p2018149699165622"></a><a href="io.md#gabdd32e401e37c9d954f3f0a6907500d9">vfscanf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, const char *format, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p155087003084824"><a name="p155087003084824"></a><a name="p155087003084824"></a>int </p>
-<p id="p907715273084824"><a name="p907715273084824"></a><a name="p907715273084824"></a>Prints formatted data of a maximum of <strong id="b384750033084824"><a name="b384750033084824"></a><a name="b384750033084824"></a>size</strong> bytes from a variable argument list to a specified string. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1635872129165622"><a name="p1635872129165622"></a><a name="p1635872129165622"></a>int </p>
+<p id="p2030237752165622"><a name="p2030237752165622"></a><a name="p2030237752165622"></a>Reads data from a specified file stream and stores it based on <strong id="b847192785165622"><a name="b847192785165622"></a><a name="b847192785165622"></a>format</strong> into the locations pointed to by the elements in the variable argument list identified by <strong id="b1081596454165622"><a name="b1081596454165622"></a><a name="b1081596454165622"></a>ap</strong>. </p>
 </td>
 </tr>
-<tr id="row232423438084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p189006990084824"><a name="p189006990084824"></a><a name="p189006990084824"></a><a href="io.md#ga5c48433db9c04031772d5b36e6c4411d">scanf</a> (const char *format,...)</p>
+<tr id="row168954546165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1463160687165622"><a name="p1463160687165622"></a><a name="p1463160687165622"></a><a href="io.md#gab1c4552aba80fe03c9b45fe27f4331ad">vsscanf</a> (const char *str, const char *format, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p772570550084824"><a name="p772570550084824"></a><a name="p772570550084824"></a>int </p>
-<p id="p142277029084824"><a name="p142277029084824"></a><a name="p142277029084824"></a>Reads formatted data from the stdin and stores the data to the additional arguments based on <strong id="b1170323621084824"><a name="b1170323621084824"></a><a name="b1170323621084824"></a>format</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2000455860165622"><a name="p2000455860165622"></a><a name="p2000455860165622"></a>int </p>
+<p id="p2133103720165622"><a name="p2133103720165622"></a><a name="p2133103720165622"></a>Reads data from a specified string and stores it based on <strong id="b1908271525165622"><a name="b1908271525165622"></a><a name="b1908271525165622"></a>format</strong> into the locations pointed to by the elements in the variable argument list identified by <strong id="b1075151827165622"><a name="b1075151827165622"></a><a name="b1075151827165622"></a>ap</strong>. </p>
 </td>
 </tr>
-<tr id="row382381702084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1533823470084824"><a name="p1533823470084824"></a><a name="p1533823470084824"></a><a href="io.md#gae902a7b8796799a6e076f07e9d7de045">fscanf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, const char *format,...)</p>
+<tr id="row1732738779165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p143511336165622"><a name="p143511336165622"></a><a name="p143511336165622"></a><a href="io.md#ga80b37b56a5a42139dccaef56da4bf82a">perror</a> (const char *msg)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p343869290084824"><a name="p343869290084824"></a><a name="p343869290084824"></a>int </p>
-<p id="p891168265084824"><a name="p891168265084824"></a><a name="p891168265084824"></a>Reads formatted data from a specified file stream and stores it based on <strong id="b1374334325084824"><a name="b1374334325084824"></a><a name="b1374334325084824"></a>format</strong> into the locations pointed to by the variable arguments. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1776369940165622"><a name="p1776369940165622"></a><a name="p1776369940165622"></a>void </p>
+<p id="p421938574165622"><a name="p421938574165622"></a><a name="p421938574165622"></a>Prints the last error occurred during a call to a system or library function to the standard error output stream (stderr). </p>
 </td>
 </tr>
-<tr id="row1775651534084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p623979149084824"><a name="p623979149084824"></a><a name="p623979149084824"></a><a href="io.md#gaec1e54556dca3bd701d44395d34818dd">sscanf</a> (const char *str, const char *format,...)</p>
+<tr id="row773696928165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p61218080165622"><a name="p61218080165622"></a><a name="p61218080165622"></a><a href="io.md#gaf691eb990d669a9edec8a9ec721ce3bc">setvbuf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, char *buf, int mode, size_t size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1320077080084824"><a name="p1320077080084824"></a><a name="p1320077080084824"></a>int </p>
-<p id="p1489489642084824"><a name="p1489489642084824"></a><a name="p1489489642084824"></a>Reads data from a character string pointed to by <strong id="b605623663084824"><a name="b605623663084824"></a><a name="b605623663084824"></a>str</strong> and stores it based on <strong id="b705317642084824"><a name="b705317642084824"></a><a name="b705317642084824"></a>format</strong> into the locations pointed to by the variable arguments. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p506151965165622"><a name="p506151965165622"></a><a name="p506151965165622"></a>int </p>
+<p id="p2007132614165622"><a name="p2007132614165622"></a><a name="p2007132614165622"></a>Sets the mode and size of the buffer for a specified stream. </p>
 </td>
 </tr>
-<tr id="row290071057084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p190604181084824"><a name="p190604181084824"></a><a name="p190604181084824"></a><a href="io.md#ga40250d63904acd3e898061c9eab6ead3">vscanf</a> (const char *format, va_list ap)</p>
+<tr id="row805924718165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1384886271165622"><a name="p1384886271165622"></a><a name="p1384886271165622"></a><a href="io.md#ga36d24924e1acc69f9c3ce49a832615fe">setbuf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, char *buf)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1615186564084824"><a name="p1615186564084824"></a><a name="p1615186564084824"></a>int </p>
-<p id="p303716752084824"><a name="p303716752084824"></a><a name="p303716752084824"></a>Reads data from the stdin and stores it based on <strong id="b1496715371084824"><a name="b1496715371084824"></a><a name="b1496715371084824"></a>format</strong> into the locations pointed to by the elements in the variable argument list identified by <strong id="b1719685929084824"><a name="b1719685929084824"></a><a name="b1719685929084824"></a>ap</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p682887850165622"><a name="p682887850165622"></a><a name="p682887850165622"></a>void </p>
+<p id="p918163156165622"><a name="p918163156165622"></a><a name="p918163156165622"></a>Sets a buffer to be used by a specified stream. </p>
 </td>
 </tr>
-<tr id="row2134775663084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1910710650084824"><a name="p1910710650084824"></a><a name="p1910710650084824"></a><a href="io.md#gabdd32e401e37c9d954f3f0a6907500d9">vfscanf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, const char *format, va_list ap)</p>
+<tr id="row1146136753165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p795726090165622"><a name="p795726090165622"></a><a name="p795726090165622"></a><a href="io.md#ga6b2efc6515c53ab5f0c9800c35f65789">fmemopen</a> (void *buf, size_t size, const char *mode)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p472918343084824"><a name="p472918343084824"></a><a name="p472918343084824"></a>int </p>
-<p id="p43805900084824"><a name="p43805900084824"></a><a name="p43805900084824"></a>Reads data from a specified file stream and stores it based on <strong id="b406931645084824"><a name="b406931645084824"></a><a name="b406931645084824"></a>format</strong> into the locations pointed to by the elements in the variable argument list identified by <strong id="b1108526364084824"><a name="b1108526364084824"></a><a name="b1108526364084824"></a>ap</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1141008623165622"><a name="p1141008623165622"></a><a name="p1141008623165622"></a><a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> * </p>
+<p id="p172655607165622"><a name="p172655607165622"></a><a name="p172655607165622"></a>Opens a memory stream that allows the access mode specified by <strong id="b1902576062165622"><a name="b1902576062165622"></a><a name="b1902576062165622"></a>mode</strong>. </p>
 </td>
 </tr>
-<tr id="row1845535788084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1238572730084824"><a name="p1238572730084824"></a><a name="p1238572730084824"></a><a href="io.md#gab1c4552aba80fe03c9b45fe27f4331ad">vsscanf</a> (const char *str, const char *format, va_list ap)</p>
+<tr id="row646564550165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1321021830165622"><a name="p1321021830165622"></a><a name="p1321021830165622"></a><a href="io.md#gac7250554d80d31f4d8ad316c4c3c3c85">open_memstream</a> (char **ptr, size_t *size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2019075068084824"><a name="p2019075068084824"></a><a name="p2019075068084824"></a>int </p>
-<p id="p230583600084824"><a name="p230583600084824"></a><a name="p230583600084824"></a>Reads data from a specified string and stores it based on <strong id="b1130806056084824"><a name="b1130806056084824"></a><a name="b1130806056084824"></a>format</strong> into the locations pointed to by the elements in the variable argument list identified by <strong id="b1838635899084824"><a name="b1838635899084824"></a><a name="b1838635899084824"></a>ap</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p912256047165622"><a name="p912256047165622"></a><a name="p912256047165622"></a><a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> * </p>
+<p id="p374190119165622"><a name="p374190119165622"></a><a name="p374190119165622"></a>Opens a stream for writing to a specified buffer. </p>
 </td>
 </tr>
-<tr id="row748557526084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p270585093084824"><a name="p270585093084824"></a><a name="p270585093084824"></a><a href="io.md#ga80b37b56a5a42139dccaef56da4bf82a">perror</a> (const char *msg)</p>
+<tr id="row1755837723165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p472832097165622"><a name="p472832097165622"></a><a name="p472832097165622"></a><a href="io.md#ga03681b8592bba6fe02941b9abc182808">fileno</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2021879369084824"><a name="p2021879369084824"></a><a name="p2021879369084824"></a>void </p>
-<p id="p57825951084824"><a name="p57825951084824"></a><a name="p57825951084824"></a>Prints the last error occurred during a call to a system or library function to the standard error output stream (stderr). </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1230365815165622"><a name="p1230365815165622"></a><a name="p1230365815165622"></a>int </p>
+<p id="p2097547868165622"><a name="p2097547868165622"></a><a name="p2097547868165622"></a>Obtains the file descriptor of a specified file stream. </p>
 </td>
 </tr>
-<tr id="row552960618084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1293259000084824"><a name="p1293259000084824"></a><a name="p1293259000084824"></a><a href="io.md#gaf691eb990d669a9edec8a9ec721ce3bc">setvbuf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, char *buf, int mode, size_t size)</p>
+<tr id="row871012806165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p29388963165622"><a name="p29388963165622"></a><a name="p29388963165622"></a><a href="io.md#ga6926f47b76b028f112045fbe7ced4115">fseeko</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp, off_t offset, int whence)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p866570128084824"><a name="p866570128084824"></a><a name="p866570128084824"></a>int </p>
-<p id="p1138876489084824"><a name="p1138876489084824"></a><a name="p1138876489084824"></a>Sets the mode and size of the buffer for a specified stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p649550796165622"><a name="p649550796165622"></a><a name="p649550796165622"></a>int </p>
+<p id="p80519776165622"><a name="p80519776165622"></a><a name="p80519776165622"></a>Sets the position of the next input or output operation on a specified file stream. </p>
 </td>
 </tr>
-<tr id="row193310807084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p655049768084824"><a name="p655049768084824"></a><a name="p655049768084824"></a><a href="io.md#ga36d24924e1acc69f9c3ce49a832615fe">setbuf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, char *buf)</p>
+<tr id="row1402298926165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p709070380165622"><a name="p709070380165622"></a><a name="p709070380165622"></a><a href="io.md#ga5f52ea043b9a2aa4d8cc92d674a2117b">ftello</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p39486001084824"><a name="p39486001084824"></a><a name="p39486001084824"></a>void </p>
-<p id="p1387660638084824"><a name="p1387660638084824"></a><a name="p1387660638084824"></a>Sets a buffer to be used by a specified stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p36606655165622"><a name="p36606655165622"></a><a name="p36606655165622"></a>off_t </p>
+<p id="p743543756165622"><a name="p743543756165622"></a><a name="p743543756165622"></a>Obtains the current value of the file position indicator for a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1602533319084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1982229635084824"><a name="p1982229635084824"></a><a name="p1982229635084824"></a><a href="io.md#ga6b2efc6515c53ab5f0c9800c35f65789">fmemopen</a> (void *buf, size_t size, const char *mode)</p>
+<tr id="row750366794165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1552030663165622"><a name="p1552030663165622"></a><a name="p1552030663165622"></a><a href="io.md#ga5fe0fc8fe920b640d488856c5ca43cb5">dprintf</a> (int fd, const char *format,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1428734217084824"><a name="p1428734217084824"></a><a name="p1428734217084824"></a><a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> * </p>
-<p id="p1266017127084824"><a name="p1266017127084824"></a><a name="p1266017127084824"></a>Opens a memory stream that allows the access mode specified by <strong id="b678488244084824"><a name="b678488244084824"></a><a name="b678488244084824"></a>mode</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1922917730165622"><a name="p1922917730165622"></a><a name="p1922917730165622"></a>int </p>
+<p id="p978971677165622"><a name="p978971677165622"></a><a name="p978971677165622"></a>Prints formatted data to a specified file. </p>
 </td>
 </tr>
-<tr id="row957942549084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1281439371084824"><a name="p1281439371084824"></a><a name="p1281439371084824"></a><a href="io.md#gac7250554d80d31f4d8ad316c4c3c3c85">open_memstream</a> (char **ptr, size_t *size)</p>
+<tr id="row2086877951165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1324789074165622"><a name="p1324789074165622"></a><a name="p1324789074165622"></a><a href="io.md#ga0d0a950c2b4e6fba795cb7d8f2e8b8b8">vdprintf</a> (int fd, const char *format, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p94953286084824"><a name="p94953286084824"></a><a name="p94953286084824"></a><a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> * </p>
-<p id="p1808186830084824"><a name="p1808186830084824"></a><a name="p1808186830084824"></a>Opens a stream for writing to a specified buffer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1618926560165622"><a name="p1618926560165622"></a><a name="p1618926560165622"></a>int </p>
+<p id="p1813369604165622"><a name="p1813369604165622"></a><a name="p1813369604165622"></a>Prints formatted data from a variable argument list to a specified file. </p>
 </td>
 </tr>
-<tr id="row518150761084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1358478455084824"><a name="p1358478455084824"></a><a name="p1358478455084824"></a><a href="io.md#ga30839d83d780a6a3d13bf40c2d666827">pclose</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *f)</p>
+<tr id="row55641343165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1205096161165622"><a name="p1205096161165622"></a><a name="p1205096161165622"></a><a href="io.md#gab486b89691678e4873ec8b1b15c2678a">ftrylockfile</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *filehandle)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1364783401084824"><a name="p1364783401084824"></a><a name="p1364783401084824"></a>int </p>
-<p id="p1472588160084824"><a name="p1472588160084824"></a><a name="p1472588160084824"></a>Closes a specified pipe. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1714059313165622"><a name="p1714059313165622"></a><a name="p1714059313165622"></a>int </p>
+<p id="p449043598165622"><a name="p449043598165622"></a><a name="p449043598165622"></a>Locks a specified file. </p>
 </td>
 </tr>
-<tr id="row1461918641084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1329662909084824"><a name="p1329662909084824"></a><a name="p1329662909084824"></a><a href="io.md#ga03681b8592bba6fe02941b9abc182808">fileno</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
+<tr id="row699667479165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1824105146165622"><a name="p1824105146165622"></a><a name="p1824105146165622"></a><a href="io.md#ga4f016c54ff86ca62454417bb7b32ab11">funlockfile</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *filehandle)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1304837324084824"><a name="p1304837324084824"></a><a name="p1304837324084824"></a>int </p>
-<p id="p2098007889084824"><a name="p2098007889084824"></a><a name="p2098007889084824"></a>Obtains the file descriptor of a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p441592701165622"><a name="p441592701165622"></a><a name="p441592701165622"></a>void </p>
+<p id="p179320763165622"><a name="p179320763165622"></a><a name="p179320763165622"></a>Unlocks a specified file. </p>
 </td>
 </tr>
-<tr id="row1998845989084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p115746810084824"><a name="p115746810084824"></a><a name="p115746810084824"></a><a href="io.md#ga6926f47b76b028f112045fbe7ced4115">fseeko</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp, off_t offset, int whence)</p>
+<tr id="row123559637165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p576777002165622"><a name="p576777002165622"></a><a name="p576777002165622"></a><a href="io.md#ga169f9b7e933ba56156885e30f7263b28">getc_unlocked</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1688092594084824"><a name="p1688092594084824"></a><a name="p1688092594084824"></a>int </p>
-<p id="p1844616740084824"><a name="p1844616740084824"></a><a name="p1844616740084824"></a>Sets the position of the next input or output operation on a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p501910518165622"><a name="p501910518165622"></a><a name="p501910518165622"></a>int </p>
+<p id="p391352700165622"><a name="p391352700165622"></a><a name="p391352700165622"></a>Obtains a character from a specified file stream without locking the file stream or checking whether it is locked. </p>
 </td>
 </tr>
-<tr id="row1279104146084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1413286557084824"><a name="p1413286557084824"></a><a name="p1413286557084824"></a><a href="io.md#ga5f52ea043b9a2aa4d8cc92d674a2117b">ftello</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *fp)</p>
+<tr id="row1486398147165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p543020140165622"><a name="p543020140165622"></a><a name="p543020140165622"></a><a href="io.md#gafef7e39f2376c63728163cd5ccfbe99e">getchar_unlocked</a> (void)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p668067171084824"><a name="p668067171084824"></a><a name="p668067171084824"></a>off_t </p>
-<p id="p195000082084824"><a name="p195000082084824"></a><a name="p195000082084824"></a>Obtains the current value of the file position indicator for a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1279081758165622"><a name="p1279081758165622"></a><a name="p1279081758165622"></a>int </p>
+<p id="p637309118165622"><a name="p637309118165622"></a><a name="p637309118165622"></a>Obtains the next character from stdin. </p>
 </td>
 </tr>
-<tr id="row1340267015084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1756618638084824"><a name="p1756618638084824"></a><a name="p1756618638084824"></a><a href="io.md#ga5fe0fc8fe920b640d488856c5ca43cb5">dprintf</a> (int fd, const char *format,...)</p>
+<tr id="row1986418765165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1691421021165622"><a name="p1691421021165622"></a><a name="p1691421021165622"></a><a href="io.md#ga340b21ecb337abb08905095e673672f6">putc_unlocked</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1563172189084824"><a name="p1563172189084824"></a><a name="p1563172189084824"></a>int </p>
-<p id="p404243766084824"><a name="p404243766084824"></a><a name="p404243766084824"></a>Prints formatted data to a specified file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1469864530165622"><a name="p1469864530165622"></a><a name="p1469864530165622"></a>int </p>
+<p id="p1412778381165622"><a name="p1412778381165622"></a><a name="p1412778381165622"></a>Writes a character to a specified file stream with the thread remains unlocked. </p>
 </td>
 </tr>
-<tr id="row502530866084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1797242751084824"><a name="p1797242751084824"></a><a name="p1797242751084824"></a><a href="io.md#ga0d0a950c2b4e6fba795cb7d8f2e8b8b8">vdprintf</a> (int fd, const char *format, va_list ap)</p>
+<tr id="row447902953165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1708409244165622"><a name="p1708409244165622"></a><a name="p1708409244165622"></a><a href="io.md#ga07ff061a8fed45cdedbecdd899b5fdb1">putchar_unlocked</a> (int c)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1381939119084824"><a name="p1381939119084824"></a><a name="p1381939119084824"></a>int </p>
-<p id="p397779317084824"><a name="p397779317084824"></a><a name="p397779317084824"></a>Prints formatted data from a variable argument list to a specified file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1096872829165622"><a name="p1096872829165622"></a><a name="p1096872829165622"></a>int </p>
+<p id="p1353165767165622"><a name="p1353165767165622"></a><a name="p1353165767165622"></a>Writes a character to the stdout with the thread remains unlocked. </p>
 </td>
 </tr>
-<tr id="row291362272084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2013792077084824"><a name="p2013792077084824"></a><a name="p2013792077084824"></a><a href="io.md#gab486b89691678e4873ec8b1b15c2678a">ftrylockfile</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *filehandle)</p>
+<tr id="row1513585987165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1872618424165622"><a name="p1872618424165622"></a><a name="p1872618424165622"></a><a href="io.md#gab87a24b4c09e8fc3712a6d6090bfd371">getdelim</a> (char **lineptr, size_t *n, int delim, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p487505303084824"><a name="p487505303084824"></a><a name="p487505303084824"></a>int </p>
-<p id="p102453613084824"><a name="p102453613084824"></a><a name="p102453613084824"></a>Locks a specified file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p156469229165622"><a name="p156469229165622"></a><a name="p156469229165622"></a>ssize_t </p>
+<p id="p456084001165622"><a name="p456084001165622"></a><a name="p456084001165622"></a>Reads an entire line from a specified file stream. </p>
 </td>
 </tr>
-<tr id="row2008853958084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1649902511084824"><a name="p1649902511084824"></a><a name="p1649902511084824"></a><a href="io.md#ga4f016c54ff86ca62454417bb7b32ab11">funlockfile</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *filehandle)</p>
+<tr id="row1362222341165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p770610871165622"><a name="p770610871165622"></a><a name="p770610871165622"></a><a href="io.md#gaaf07c1bbc2aa081a54bdd66f0e152312">getline</a> (char **lineptr, size_t *n, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p259677000084824"><a name="p259677000084824"></a><a name="p259677000084824"></a>void </p>
-<p id="p726225091084824"><a name="p726225091084824"></a><a name="p726225091084824"></a>Unlocks a specified file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1213198790165622"><a name="p1213198790165622"></a><a name="p1213198790165622"></a>ssize_t </p>
+<p id="p673246091165622"><a name="p673246091165622"></a><a name="p673246091165622"></a>Reads an entire line from a specified file stream. </p>
 </td>
 </tr>
-<tr id="row183550400084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p407405858084824"><a name="p407405858084824"></a><a name="p407405858084824"></a><a href="io.md#ga169f9b7e933ba56156885e30f7263b28">getc_unlocked</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1835724364165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p260368565165622"><a name="p260368565165622"></a><a name="p260368565165622"></a><a href="io.md#ga44dcf948b2c1dc3356d2937635a27839">tempnam</a> (const char *dir, const char *prefix)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p328142053084824"><a name="p328142053084824"></a><a name="p328142053084824"></a>int </p>
-<p id="p47839128084824"><a name="p47839128084824"></a><a name="p47839128084824"></a>Obtains a character from a specified file stream without locking the file stream or checking whether it is locked. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1677942730165622"><a name="p1677942730165622"></a><a name="p1677942730165622"></a>char * </p>
+<p id="p1800537785165622"><a name="p1800537785165622"></a><a name="p1800537785165622"></a>Creates a temporary file with a unique file name. </p>
 </td>
 </tr>
-<tr id="row853202918084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1674211020084824"><a name="p1674211020084824"></a><a name="p1674211020084824"></a><a href="io.md#gafef7e39f2376c63728163cd5ccfbe99e">getchar_unlocked</a> (void)</p>
+<tr id="row227334325165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p17274934165622"><a name="p17274934165622"></a><a name="p17274934165622"></a><a href="io.md#ga53a57437279b4ed57b7f116dfc9cbbcc">setbuffer</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *f, char *buf, size_t size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2108117183084824"><a name="p2108117183084824"></a><a name="p2108117183084824"></a>int </p>
-<p id="p1164589195084824"><a name="p1164589195084824"></a><a name="p1164589195084824"></a>Obtains the next character from stdin. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1719950998165622"><a name="p1719950998165622"></a><a name="p1719950998165622"></a>void </p>
+<p id="p1290370356165622"><a name="p1290370356165622"></a><a name="p1290370356165622"></a>Sets the buffer for a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1670867781084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p626246818084824"><a name="p626246818084824"></a><a name="p626246818084824"></a><a href="io.md#ga340b21ecb337abb08905095e673672f6">putc_unlocked</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row872984224165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p210474510165622"><a name="p210474510165622"></a><a name="p210474510165622"></a><a href="io.md#ga2e13e101d5a57cfccf1bab51f8768a5d">setlinebuf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *f)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p774856201084824"><a name="p774856201084824"></a><a name="p774856201084824"></a>int </p>
-<p id="p812132431084824"><a name="p812132431084824"></a><a name="p812132431084824"></a>Writes a character to a specified file stream with the thread remains unlocked. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1276623490165622"><a name="p1276623490165622"></a><a name="p1276623490165622"></a>void </p>
+<p id="p485953514165622"><a name="p485953514165622"></a><a name="p485953514165622"></a>Sets the linear buffer for a specified file stream. </p>
 </td>
 </tr>
-<tr id="row994243724084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2072307216084824"><a name="p2072307216084824"></a><a name="p2072307216084824"></a><a href="io.md#ga07ff061a8fed45cdedbecdd899b5fdb1">putchar_unlocked</a> (int c)</p>
+<tr id="row201267733165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p887078212165622"><a name="p887078212165622"></a><a name="p887078212165622"></a><a href="io.md#gab11a990e4f8863a1e7736e3c1d430092">fgetc</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1155596544084824"><a name="p1155596544084824"></a><a name="p1155596544084824"></a>int </p>
-<p id="p712938161084824"><a name="p712938161084824"></a><a name="p712938161084824"></a>Writes a character to the stdout with the thread remains unlocked. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p792139842165622"><a name="p792139842165622"></a><a name="p792139842165622"></a>int </p>
+<p id="p1193136659165622"><a name="p1193136659165622"></a><a name="p1193136659165622"></a>Reads a character from the file pointed to by <strong id="b1754776476165622"><a name="b1754776476165622"></a><a name="b1754776476165622"></a>stream</strong>. </p>
 </td>
 </tr>
-<tr id="row1915894683084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p92755362084824"><a name="p92755362084824"></a><a name="p92755362084824"></a><a href="io.md#gab87a24b4c09e8fc3712a6d6090bfd371">getdelim</a> (char **lineptr, size_t *n, int delim, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row7978197165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p369888571165622"><a name="p369888571165622"></a><a name="p369888571165622"></a><a href="io.md#ga9b8e6d63482eb1fe38f3eb9d7fc9bd8e">fgetc_unlocked</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p135510151084824"><a name="p135510151084824"></a><a name="p135510151084824"></a>ssize_t </p>
-<p id="p1096971660084824"><a name="p1096971660084824"></a><a name="p1096971660084824"></a>Reads an entire line from a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p652991312165622"><a name="p652991312165622"></a><a name="p652991312165622"></a>int </p>
+<p id="p1646907105165622"><a name="p1646907105165622"></a><a name="p1646907105165622"></a>Reads a character from the file pointed to by <strong id="b1519396940165622"><a name="b1519396940165622"></a><a name="b1519396940165622"></a>stream</strong> with the thread remains unlocked. </p>
 </td>
 </tr>
-<tr id="row1283830441084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p179367471084824"><a name="p179367471084824"></a><a name="p179367471084824"></a><a href="io.md#gaaf07c1bbc2aa081a54bdd66f0e152312">getline</a> (char **lineptr, size_t *n, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row500464597165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p643078783165622"><a name="p643078783165622"></a><a name="p643078783165622"></a><a href="io.md#gab8680ff3f49f3fe7ce0fb78b4cb8394c">fputc_unlocked</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p942910705084824"><a name="p942910705084824"></a><a name="p942910705084824"></a>ssize_t </p>
-<p id="p464478687084824"><a name="p464478687084824"></a><a name="p464478687084824"></a>Reads an entire line from a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1588214851165622"><a name="p1588214851165622"></a><a name="p1588214851165622"></a>int </p>
+<p id="p541796268165622"><a name="p541796268165622"></a><a name="p541796268165622"></a>Writes a character to the file stream pointed to by <strong id="b924892555165622"><a name="b924892555165622"></a><a name="b924892555165622"></a>stream</strong> at the current position. </p>
 </td>
 </tr>
-<tr id="row1712057004084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1735008467084824"><a name="p1735008467084824"></a><a name="p1735008467084824"></a><a href="io.md#ga44dcf948b2c1dc3356d2937635a27839">tempnam</a> (const char *dir, const char *prefix)</p>
+<tr id="row2089390628165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1282625975165622"><a name="p1282625975165622"></a><a name="p1282625975165622"></a><a href="io.md#ga089fd72e6218cf6805c8fc21123d3d5f">ferror_unlocked</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1801557734084824"><a name="p1801557734084824"></a><a name="p1801557734084824"></a>char * </p>
-<p id="p192425840084824"><a name="p192425840084824"></a><a name="p192425840084824"></a>Creates a temporary file with a unique file name. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p941153088165622"><a name="p941153088165622"></a><a name="p941153088165622"></a>int </p>
+<p id="p1632158172165622"><a name="p1632158172165622"></a><a name="p1632158172165622"></a>Tests for the error identifier of a specified file stream. </p>
 </td>
 </tr>
-<tr id="row546441385084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p789951265084824"><a name="p789951265084824"></a><a name="p789951265084824"></a><a href="io.md#ga53a57437279b4ed57b7f116dfc9cbbcc">setbuffer</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *f, char *buf, size_t size)</p>
+<tr id="row454417496165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1415869241165622"><a name="p1415869241165622"></a><a name="p1415869241165622"></a><a href="io.md#ga6d475ead5d1f35e3f14423a99ef3a992">getw</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p996150557084824"><a name="p996150557084824"></a><a name="p996150557084824"></a>void </p>
-<p id="p829647068084824"><a name="p829647068084824"></a><a name="p829647068084824"></a>Sets the buffer for a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1629599211165622"><a name="p1629599211165622"></a><a name="p1629599211165622"></a>int </p>
+<p id="p1072581494165622"><a name="p1072581494165622"></a><a name="p1072581494165622"></a>Reads a word (an int value) from a specified file stream. </p>
 </td>
 </tr>
-<tr id="row1742675564084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p799734311084824"><a name="p799734311084824"></a><a name="p799734311084824"></a><a href="io.md#ga2e13e101d5a57cfccf1bab51f8768a5d">setlinebuf</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *f)</p>
+<tr id="row1064125249165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p453739209165622"><a name="p453739209165622"></a><a name="p453739209165622"></a><a href="io.md#gae3a2f96dac9fa87b964b69ff6d5cce46">putw</a> (int w, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1008103635084824"><a name="p1008103635084824"></a><a name="p1008103635084824"></a>void </p>
-<p id="p407884633084824"><a name="p407884633084824"></a><a name="p407884633084824"></a>Sets the linear buffer for a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1046534983165622"><a name="p1046534983165622"></a><a name="p1046534983165622"></a>int </p>
+<p id="p1870694697165622"><a name="p1870694697165622"></a><a name="p1870694697165622"></a>Writes a word (an int value) to a specified file stream. </p>
 </td>
 </tr>
-<tr id="row171069180084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p89609306084824"><a name="p89609306084824"></a><a name="p89609306084824"></a><a href="io.md#gab11a990e4f8863a1e7736e3c1d430092">fgetc</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1864302394165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1642253028165622"><a name="p1642253028165622"></a><a name="p1642253028165622"></a><a href="io.md#ga8e6fe2fcd5eaa8e2d146a50eeaae5b40">fgetln</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, size_t *len)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p312848790084824"><a name="p312848790084824"></a><a name="p312848790084824"></a>int </p>
-<p id="p2048865045084824"><a name="p2048865045084824"></a><a name="p2048865045084824"></a>Reads a character from the file pointed to by <strong id="b368807432084824"><a name="b368807432084824"></a><a name="b368807432084824"></a>stream</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p861321141165622"><a name="p861321141165622"></a><a name="p861321141165622"></a>char * </p>
+<p id="p1764690919165622"><a name="p1764690919165622"></a><a name="p1764690919165622"></a>Reads a line of data from the current position of a specified file stream. </p>
 </td>
 </tr>
-<tr id="row34652954084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p231530566084824"><a name="p231530566084824"></a><a name="p231530566084824"></a><a href="io.md#ga9b8e6d63482eb1fe38f3eb9d7fc9bd8e">fgetc_unlocked</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1163795119165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1511154907165622"><a name="p1511154907165622"></a><a name="p1511154907165622"></a><a href="io.md#ga1af9acc6b6efdca3576cb8223d95f401">asprintf</a> (char **strp, const char *fmt,...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2008508549084824"><a name="p2008508549084824"></a><a name="p2008508549084824"></a>int </p>
-<p id="p392065677084824"><a name="p392065677084824"></a><a name="p392065677084824"></a>Reads a character from the file pointed to by <strong id="b1840540813084824"><a name="b1840540813084824"></a><a name="b1840540813084824"></a>stream</strong> with the thread remains unlocked. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1525395012165622"><a name="p1525395012165622"></a><a name="p1525395012165622"></a>int </p>
+<p id="p436143877165622"><a name="p436143877165622"></a><a name="p436143877165622"></a>Prints formatted data to a specified character string. </p>
 </td>
 </tr>
-<tr id="row413427854084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2114747621084824"><a name="p2114747621084824"></a><a name="p2114747621084824"></a><a href="io.md#gab8680ff3f49f3fe7ce0fb78b4cb8394c">fputc_unlocked</a> (int c, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1208954484165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p412918268165622"><a name="p412918268165622"></a><a name="p412918268165622"></a><a href="io.md#ga5ec7fd90ebe6015636bce974c192c86a">vasprintf</a> (char **strp, const char *fmt, va_list ap)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p764260357084824"><a name="p764260357084824"></a><a name="p764260357084824"></a>int </p>
-<p id="p1754031055084824"><a name="p1754031055084824"></a><a name="p1754031055084824"></a>Writes a character to the file stream pointed to by <strong id="b727013219084824"><a name="b727013219084824"></a><a name="b727013219084824"></a>stream</strong> at the current position. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p739975189165622"><a name="p739975189165622"></a><a name="p739975189165622"></a>int </p>
+<p id="p827739933165622"><a name="p827739933165622"></a><a name="p827739933165622"></a>Prints formatted data from a variable argument list to a specified character string. </p>
 </td>
 </tr>
-<tr id="row1097236764084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p289046606084824"><a name="p289046606084824"></a><a name="p289046606084824"></a><a href="io.md#ga089fd72e6218cf6805c8fc21123d3d5f">ferror_unlocked</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row432816692165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1257865944165622"><a name="p1257865944165622"></a><a name="p1257865944165622"></a><a href="io.md#gaf916439863bed6ba92594e390c227c7e">select</a> (int nfds, <a href="fd_set.md">fd_set</a> *__restrict readfds, <a href="fd_set.md">fd_set</a> *__restrict writefds, <a href="fd_set.md">fd_set</a> *__restrict exceptfds, struct <a href="timeval.md">timeval</a> *__restrict timeout)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p955938818084824"><a name="p955938818084824"></a><a name="p955938818084824"></a>int </p>
-<p id="p946321755084824"><a name="p946321755084824"></a><a name="p946321755084824"></a>Tests for the error identifier of a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p398296810165622"><a name="p398296810165622"></a><a name="p398296810165622"></a>int </p>
+<p id="p1268476126165622"><a name="p1268476126165622"></a><a name="p1268476126165622"></a>Monitors the I/O events of multiple file descriptors. </p>
 </td>
 </tr>
-<tr id="row1935233698084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1491088238084824"><a name="p1491088238084824"></a><a name="p1491088238084824"></a><a href="io.md#ga6d475ead5d1f35e3f14423a99ef3a992">getw</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1848884928165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1451078837165622"><a name="p1451078837165622"></a><a name="p1451078837165622"></a><a href="io.md#gaa1952d693ed3c43292566e643ceb9858">readv</a> (int fd, const struct iovec *iov, int iovcnt)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p655572846084824"><a name="p655572846084824"></a><a name="p655572846084824"></a>int </p>
-<p id="p1798685542084824"><a name="p1798685542084824"></a><a name="p1798685542084824"></a>Reads a word (an int value) from a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1957930599165622"><a name="p1957930599165622"></a><a name="p1957930599165622"></a>ssize_t </p>
+<p id="p1894741973165622"><a name="p1894741973165622"></a><a name="p1894741973165622"></a>Reads the data of <strong id="b1363655194165622"><a name="b1363655194165622"></a><a name="b1363655194165622"></a>fd</strong> to <strong id="b1400566801165622"><a name="b1400566801165622"></a><a name="b1400566801165622"></a>iov</strong>. </p>
 </td>
 </tr>
-<tr id="row740116402084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p937456337084824"><a name="p937456337084824"></a><a name="p937456337084824"></a><a href="io.md#gae3a2f96dac9fa87b964b69ff6d5cce46">putw</a> (int w, <a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream)</p>
+<tr id="row1625400903165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1393654492165622"><a name="p1393654492165622"></a><a name="p1393654492165622"></a><a href="io.md#gad57f362a0aef72b52ea59288f74dd1ea">writev</a> (int fd, const struct iovec *iov, int iovcnt)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1983790814084824"><a name="p1983790814084824"></a><a name="p1983790814084824"></a>int </p>
-<p id="p1227473032084824"><a name="p1227473032084824"></a><a name="p1227473032084824"></a>Writes a word (an int value) to a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p683029686165622"><a name="p683029686165622"></a><a name="p683029686165622"></a>ssize_t </p>
+<p id="p657373023165622"><a name="p657373023165622"></a><a name="p657373023165622"></a>Writes a given length of data into a file. </p>
 </td>
 </tr>
-<tr id="row1111791819084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p552445922084824"><a name="p552445922084824"></a><a name="p552445922084824"></a><a href="io.md#ga8e6fe2fcd5eaa8e2d146a50eeaae5b40">fgetln</a> (<a href="io.md#ga912af5ab9f8a52ddd387b7defc0b49f1">FILE</a> *stream, size_t *len)</p>
+<tr id="row553648922165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1817093754165622"><a name="p1817093754165622"></a><a name="p1817093754165622"></a><a href="io.md#ga94adc8dd94a6bdaaa9cf4d9f388418b3">preadv</a> (int fd, const struct iovec *iov, int iovcnt, off_t offset)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2136341623084824"><a name="p2136341623084824"></a><a name="p2136341623084824"></a>char * </p>
-<p id="p1729377334084824"><a name="p1729377334084824"></a><a name="p1729377334084824"></a>Reads a line of data from the current position of a specified file stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1256851884165622"><a name="p1256851884165622"></a><a name="p1256851884165622"></a>ssize_t </p>
+<p id="p812499770165622"><a name="p812499770165622"></a><a name="p812499770165622"></a>Reads the data in a file whose <strong id="b161542613165622"><a name="b161542613165622"></a><a name="b161542613165622"></a>fd</strong> offset is <strong id="b662639234165622"><a name="b662639234165622"></a><a name="b662639234165622"></a>offset</strong> to the multi-group buffer space pointed to by <strong id="b616734603165622"><a name="b616734603165622"></a><a name="b616734603165622"></a>iov</strong>. </p>
 </td>
 </tr>
-<tr id="row73307326084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p558495151084824"><a name="p558495151084824"></a><a name="p558495151084824"></a><a href="io.md#ga1af9acc6b6efdca3576cb8223d95f401">asprintf</a> (char **strp, const char *fmt,...)</p>
+<tr id="row1205328273165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1072934565165622"><a name="p1072934565165622"></a><a name="p1072934565165622"></a><a href="io.md#ga3de6f9331d6bb930e748bb61860edbd6">pwritev</a> (int fd, const struct iovec *iov, int iovcnt, off_t offset)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p459718479084824"><a name="p459718479084824"></a><a name="p459718479084824"></a>int </p>
-<p id="p1293286081084824"><a name="p1293286081084824"></a><a name="p1293286081084824"></a>Prints formatted data to a specified character string. </p>
-</td>
-</tr>
-<tr id="row639617571084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1441599435084824"><a name="p1441599435084824"></a><a name="p1441599435084824"></a><a href="io.md#ga5ec7fd90ebe6015636bce974c192c86a">vasprintf</a> (char **strp, const char *fmt, va_list ap)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1026879718084824"><a name="p1026879718084824"></a><a name="p1026879718084824"></a>int </p>
-<p id="p1046553987084824"><a name="p1046553987084824"></a><a name="p1046553987084824"></a>Prints formatted data from a variable argument list to a specified character string. </p>
-</td>
-</tr>
-<tr id="row1060656045084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p481926878084824"><a name="p481926878084824"></a><a name="p481926878084824"></a><a href="io.md#gaf916439863bed6ba92594e390c227c7e">select</a> (int nfds, <a href="fd_set.md">fd_set</a> *__restrict readfds, <a href="fd_set.md">fd_set</a> *__restrict writefds, <a href="fd_set.md">fd_set</a> *__restrict exceptfds, struct <a href="timeval.md">timeval</a> *__restrict timeout)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1473682853084824"><a name="p1473682853084824"></a><a name="p1473682853084824"></a>int </p>
-<p id="p1657052033084824"><a name="p1657052033084824"></a><a name="p1657052033084824"></a>Monitors the I/O events of multiple file descriptors. </p>
-</td>
-</tr>
-<tr id="row1678916935084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p696545345084824"><a name="p696545345084824"></a><a name="p696545345084824"></a><a href="io.md#gaa1952d693ed3c43292566e643ceb9858">readv</a> (int fd, const struct iovec *iov, int iovcnt)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1210756100084824"><a name="p1210756100084824"></a><a name="p1210756100084824"></a>ssize_t </p>
-<p id="p1312363572084824"><a name="p1312363572084824"></a><a name="p1312363572084824"></a>Reads the data of <strong id="b1386488365084824"><a name="b1386488365084824"></a><a name="b1386488365084824"></a>fd</strong> to <strong id="b672415787084824"><a name="b672415787084824"></a><a name="b672415787084824"></a>iov</strong>. </p>
-</td>
-</tr>
-<tr id="row748802417084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1760561045084824"><a name="p1760561045084824"></a><a name="p1760561045084824"></a><a href="io.md#gad57f362a0aef72b52ea59288f74dd1ea">writev</a> (int fd, const struct iovec *iov, int iovcnt)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p489591519084824"><a name="p489591519084824"></a><a name="p489591519084824"></a>ssize_t </p>
-<p id="p1240122150084824"><a name="p1240122150084824"></a><a name="p1240122150084824"></a>Writes a given length of data into a file. </p>
-</td>
-</tr>
-<tr id="row101271188084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p537766548084824"><a name="p537766548084824"></a><a name="p537766548084824"></a><a href="io.md#ga94adc8dd94a6bdaaa9cf4d9f388418b3">preadv</a> (int fd, const struct iovec *iov, int iovcnt, off_t offset)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p811589113084824"><a name="p811589113084824"></a><a name="p811589113084824"></a>ssize_t </p>
-<p id="p1948887010084824"><a name="p1948887010084824"></a><a name="p1948887010084824"></a>Reads the data in a file whose <strong id="b1541727012084824"><a name="b1541727012084824"></a><a name="b1541727012084824"></a>fd</strong> offset is <strong id="b485407921084824"><a name="b485407921084824"></a><a name="b485407921084824"></a>offset</strong> to the multi-group buffer space pointed to by <strong id="b619505679084824"><a name="b619505679084824"></a><a name="b619505679084824"></a>iov</strong>. </p>
-</td>
-</tr>
-<tr id="row414142809084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1626183879084824"><a name="p1626183879084824"></a><a name="p1626183879084824"></a><a href="io.md#ga3de6f9331d6bb930e748bb61860edbd6">pwritev</a> (int fd, const struct iovec *iov, int iovcnt, off_t offset)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1001184926084824"><a name="p1001184926084824"></a><a name="p1001184926084824"></a>ssize_t </p>
-<p id="p287414236084824"><a name="p287414236084824"></a><a name="p287414236084824"></a>Writes the data of a multi-group buffer space pointed to by <strong id="b784529610084824"><a name="b784529610084824"></a><a name="b784529610084824"></a>iov</strong> to the offset of <strong id="b1655876194084824"><a name="b1655876194084824"></a><a name="b1655876194084824"></a>fd</strong>. </p>
-</td>
-</tr>
-<tr id="row1366457835084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p85647165084824"><a name="p85647165084824"></a><a name="p85647165084824"></a><a href="io.md#ga1b296371dffe80c14d0c9ebd27165140">wordfree</a> (<a href="wordexp_t.md">wordexp_t</a> *we)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1353560725084824"><a name="p1353560725084824"></a><a name="p1353560725084824"></a>void </p>
-<p id="p1911853188084824"><a name="p1911853188084824"></a><a name="p1911853188084824"></a>Frees a word expansion buffer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p490628286165622"><a name="p490628286165622"></a><a name="p490628286165622"></a>ssize_t </p>
+<p id="p396245922165622"><a name="p396245922165622"></a><a name="p396245922165622"></a>Writes the data of a multi-group buffer space pointed to by <strong id="b1451559259165622"><a name="b1451559259165622"></a><a name="b1451559259165622"></a>iov</strong> to the offset of <strong id="b390060740165622"><a name="b390060740165622"></a><a name="b390060740165622"></a>fd</strong>. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1747387645084824"></a>
+## **Details**<a name="section611262313165622"></a>
 
-## **Macro Definition Documentation**<a name="section664740196084824"></a>
+## **Macro Definition **<a name="section1524028957165622"></a>
 
 ## FD\_CLR<a name="ga60efc4a969e971f91b7a73bcace62e58"></a>
 
@@ -854,18 +901,18 @@ Removes a file descriptor from a set.
 
 **Parameters:**
 
-<a name="table1774380745084824"></a>
-<table><thead align="left"><tr id="row2119855132084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1560111977084824"><a name="p1560111977084824"></a><a name="p1560111977084824"></a>Name</p>
+<a name="table418315569165622"></a>
+<table><thead align="left"><tr id="row2033409956165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p867289062165622"><a name="p867289062165622"></a><a name="p867289062165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1448608754084824"><a name="p1448608754084824"></a><a name="p1448608754084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1903454016165622"><a name="p1903454016165622"></a><a name="p1903454016165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1901911447084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">d</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor of the <strong id="b1552065383084824"><a name="b1552065383084824"></a><a name="b1552065383084824"></a>int</strong> type. </td>
+<tbody><tr id="row1110507596165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">d</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor of the <strong id="b1597299250165622"><a name="b1597299250165622"></a><a name="b1597299250165622"></a>int</strong> type. </td>
 </tr>
-<tr id="row1859976655084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the <strong id="b1352164763084824"><a name="b1352164763084824"></a><a name="b1352164763084824"></a><a href="fd_set.md">fd_set</a></strong> type. </td>
+<tr id="row1473309054165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the <strong id="b1211635980165622"><a name="b1211635980165622"></a><a name="b1211635980165622"></a><a href="fd_set.md">fd_set</a></strong> type. </td>
 </tr>
 </tbody>
 </table>
@@ -882,18 +929,18 @@ Checks whether a file descriptor is in a set.
 
 **Parameters:**
 
-<a name="table1001847787084824"></a>
-<table><thead align="left"><tr id="row38102030084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2023858628084824"><a name="p2023858628084824"></a><a name="p2023858628084824"></a>Name</p>
+<a name="table1838559826165622"></a>
+<table><thead align="left"><tr id="row1288417399165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1509065803165622"><a name="p1509065803165622"></a><a name="p1509065803165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p706882551084824"><a name="p706882551084824"></a><a name="p706882551084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1913955297165622"><a name="p1913955297165622"></a><a name="p1913955297165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row354916221084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">d</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor of the <strong id="b1623732827084824"><a name="b1623732827084824"></a><a name="b1623732827084824"></a>int</strong> type. </td>
+<tbody><tr id="row1685868760165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">d</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor of the <strong id="b982547661165622"><a name="b982547661165622"></a><a name="b982547661165622"></a>int</strong> type. </td>
 </tr>
-<tr id="row1581218066084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the <strong id="b1723666579084824"><a name="b1723666579084824"></a><a name="b1723666579084824"></a><a href="fd_set.md">fd_set</a></strong> type. </td>
+<tr id="row151905528165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the <strong id="b445946429165622"><a name="b445946429165622"></a><a name="b445946429165622"></a><a href="fd_set.md">fd_set</a></strong> type. </td>
 </tr>
 </tbody>
 </table>
@@ -901,8 +948,6 @@ Checks whether a file descriptor is in a set.
 **Returns:**
 
 Returns  **0**  if the file descriptor is not in the set; returns  **1**  if the file descriptor is in the set. 
-
-
 
 ## FD\_SET<a name="gaa7701be461ce602ff7043cbd898a0c53"></a>
 
@@ -916,18 +961,18 @@ Adds a file descriptor to a set.
 
 **Parameters:**
 
-<a name="table169321881084824"></a>
-<table><thead align="left"><tr id="row350036225084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1447233914084824"><a name="p1447233914084824"></a><a name="p1447233914084824"></a>Name</p>
+<a name="table1195321265165622"></a>
+<table><thead align="left"><tr id="row297137872165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1783971257165622"><a name="p1783971257165622"></a><a name="p1783971257165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p948980455084824"><a name="p948980455084824"></a><a name="p948980455084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p412095300165622"><a name="p412095300165622"></a><a name="p412095300165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1288083593084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">d</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor of the <strong id="b403122896084824"><a name="b403122896084824"></a><a name="b403122896084824"></a>int</strong> type. </td>
+<tbody><tr id="row242182830165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">d</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor of the <strong id="b788266681165622"><a name="b788266681165622"></a><a name="b788266681165622"></a>int</strong> type. </td>
 </tr>
-<tr id="row1796208633084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the <strong id="b655629489084824"><a name="b655629489084824"></a><a name="b655629489084824"></a><a href="fd_set.md">fd_set</a></strong> type. </td>
+<tr id="row1341816906165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the <strong id="b198544681165622"><a name="b198544681165622"></a><a name="b198544681165622"></a><a href="fd_set.md">fd_set</a></strong> type. </td>
 </tr>
 </tbody>
 </table>
@@ -944,20 +989,20 @@ Clears all elements in the file descriptor set.
 
 **Parameters:**
 
-<a name="table1223134092084824"></a>
-<table><thead align="left"><tr id="row922597840084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p428317915084824"><a name="p428317915084824"></a><a name="p428317915084824"></a>Name</p>
+<a name="table2087708048165622"></a>
+<table><thead align="left"><tr id="row2026232588165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1155948346165622"><a name="p1155948346165622"></a><a name="p1155948346165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1829434796084824"><a name="p1829434796084824"></a><a name="p1829434796084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p931008035165622"><a name="p931008035165622"></a><a name="p931008035165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1401841112084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the <strong id="b526120461084824"><a name="b526120461084824"></a><a name="b526120461084824"></a><a href="fd_set.md">fd_set</a></strong> type. </td>
+<tbody><tr id="row1249461140165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the <strong id="b1412453526165622"><a name="b1412453526165622"></a><a name="b1412453526165622"></a><a href="fd_set.md">fd_set</a></strong> type. </td>
 </tr>
 </tbody>
 </table>
 
-## **Function Documentation**<a name="section1860532002084824"></a>
+## **Function **<a name="section398272795165622"></a>
 
 ## asprintf\(\)<a name="ga1af9acc6b6efdca3576cb8223d95f401"></a>
 
@@ -973,20 +1018,20 @@ If the length of the string is uncertain, this function applies for sufficient m
 
 **Parameters:**
 
-<a name="table104236772084824"></a>
-<table><thead align="left"><tr id="row1378288563084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p799477396084824"><a name="p799477396084824"></a><a name="p799477396084824"></a>Name</p>
+<a name="table35463031165622"></a>
+<table><thead align="left"><tr id="row565197858165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p20780842165622"><a name="p20780842165622"></a><a name="p20780842165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p54096475084824"><a name="p54096475084824"></a><a name="p54096475084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2100423629165622"><a name="p2100423629165622"></a><a name="p2100423629165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2071593427084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">strp</td>
+<tbody><tr id="row1072615933165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">strp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the start address of the target string. </td>
 </tr>
-<tr id="row1608997656084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tr id="row2006018213165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row1009980843084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row89376481165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of arguments corresponding to the format specifiers. </td>
 </tr>
 </tbody>
@@ -999,166 +1044,6 @@ If  **strp**  is no longer used, the applied space must be released.
 **Returns:**
 
 Returns the number of output characters if the operation is successful; returns  **-1**  otherwise. 
-
-
-
-## catclose\(\)<a name="ga87f06c3df6f24c6b46a9c7fe13e2cb9c"></a>
-
-```
-int catclose ([nl_catd](io.md#ga3f305b6699c89f91aecfc0b5f8604a5f) catd)
-```
-
- **Description:**
-
-Closes a catalog descriptor. 
-
-**Parameters:**
-
-<a name="table270843608084824"></a>
-<table><thead align="left"><tr id="row759226890084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1117757478084824"><a name="p1117757478084824"></a><a name="p1117757478084824"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1811332877084824"><a name="p1811332877084824"></a><a name="p1811332877084824"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row694687955084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">catd</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the catalog descriptor to close. </td>
-</tr>
-</tbody>
-</table>
-
-**Returns:**
-
-0 
-
-
-
-## catgets\(\)<a name="gaa615f433a6a187d0ee5ed647efc0e091"></a>
-
-```
-char* catgets ([nl_catd](io.md#ga3f305b6699c89f91aecfc0b5f8604a5f) catd, int set_id, int msg_id, const char * s )
-```
-
- **Description:**
-
-Obtains information from a message catalog. 
-
-**Parameters:**
-
-<a name="table436968435084824"></a>
-<table><thead align="left"><tr id="row1977515204084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1637700704084824"><a name="p1637700704084824"></a><a name="p1637700704084824"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1823149461084824"><a name="p1823149461084824"></a><a name="p1823149461084824"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row314892302084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">catd</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor of the message catalog. </td>
-</tr>
-<tr id="row758610499084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">set_id</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the setting ID of the message catalog. </td>
-</tr>
-<tr id="row909739937084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">msg_id</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the ID of the message catalog. </td>
-</tr>
-<tr id="row1282490241084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to a string to be returned if the operation fails. </td>
-</tr>
-</tbody>
-</table>
-
-**Returns:**
-
-Returns the information obtained from the message catalog if the operation is successful; returns  **s**  otherwise. 
-
-
-
-## catopen\(\)<a name="gac898c5cfd3f2352d639b8356ff6aa343"></a>
-
-```
-[nl_catd](io.md#ga3f305b6699c89f91aecfc0b5f8604a5f) catopen (const char * name, int oflag )
-```
-
- **Description:**
-
-Opens a message catalog and returns its descriptor. 
-
-**Parameters:**
-
-<a name="table435662192084824"></a>
-<table><thead align="left"><tr id="row336096031084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2024207924084824"><a name="p2024207924084824"></a><a name="p2024207924084824"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p39977048084824"><a name="p39977048084824"></a><a name="p39977048084824"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row606935120084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">name</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the path name of the message catalog to open. </td>
-</tr>
-<tr id="row153144482084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">oflag</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the source of the language to use. </td>
-</tr>
-</tbody>
-</table>
-
-**Returns:**
-
-Returns the catalog descriptor if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
-
-<a name="table1160949680084824"></a>
-<table><thead align="left"><tr id="row1210187251084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1695512423084824"><a name="p1695512423084824"></a><a name="p1695512423084824"></a>errno </p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1094896638084824"><a name="p1094896638084824"></a><a name="p1094896638084824"></a>Description  </p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1433308203084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p471156529084824"><a name="p471156529084824"></a><a name="p471156529084824"></a>EIO </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p292594822084824"><a name="p292594822084824"></a><a name="p292594822084824"></a>A hardware error occurs at the low-level disk I/O layer. </p>
-</td>
-</tr>
-<tr id="row1341193937084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1687918881084824"><a name="p1687918881084824"></a><a name="p1687918881084824"></a>EINVAL </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1940401280084824"><a name="p1940401280084824"></a><a name="p1940401280084824"></a>The path name format is invalid. </p>
-</td>
-</tr>
-<tr id="row722267668084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1113439108084824"><a name="p1113439108084824"></a><a name="p1113439108084824"></a>ENOTDIR </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p941204998084824"><a name="p941204998084824"></a><a name="p941204998084824"></a>A part of the path prefix is the name of an existing file and is not a catalog. </p>
-</td>
-</tr>
-<tr id="row1086052501084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p790266009084824"><a name="p790266009084824"></a><a name="p790266009084824"></a>EBUSY </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1882281423084824"><a name="p1882281423084824"></a><a name="p1882281423084824"></a>The operation is rejected as it does not conform to the file sharing policy. </p>
-</td>
-</tr>
-<tr id="row1996395056084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1740425029084824"><a name="p1740425029084824"></a><a name="p1740425029084824"></a>ENODEV </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p410597522084824"><a name="p410597522084824"></a><a name="p410597522084824"></a>The corresponding device does not exist. </p>
-</td>
-</tr>
-<tr id="row135773181084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p557047760084824"><a name="p557047760084824"></a><a name="p557047760084824"></a>ENFILE </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1908209543084824"><a name="p1908209543084824"></a><a name="p1908209543084824"></a>The number of opened files in the system has reached the maximum. </p>
-</td>
-</tr>
-<tr id="row989635275084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p32182452084824"><a name="p32182452084824"></a><a name="p32182452084824"></a>ELOOP </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p446193588084824"><a name="p446193588084824"></a><a name="p446193588084824"></a>Too many symbolic links are encountered. </p>
-</td>
-</tr>
-<tr id="row2004604559084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1819103054084824"><a name="p1819103054084824"></a><a name="p1819103054084824"></a>EFAULT </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1223848723084824"><a name="p1223848723084824"></a><a name="p1223848723084824"></a>The memory address is invalid. </p>
-</td>
-</tr>
-<tr id="row1317831850084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p267681494084824"><a name="p267681494084824"></a><a name="p267681494084824"></a>ENOENT </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p180418747084824"><a name="p180418747084824"></a><a name="p180418747084824"></a>Any input parameter is incorrect. </p>
-</td>
-</tr>
-</tbody>
-</table>
 
 ## clearerr\(\)<a name="ga81202d6a15259fbceb71a961a878b01a"></a>
 
@@ -1174,14 +1059,14 @@ This function is used to set both the file error indicator and end-of-file indic
 
 **Parameters:**
 
-<a name="table1619428516084824"></a>
-<table><thead align="left"><tr id="row624572673084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p445822025084824"><a name="p445822025084824"></a><a name="p445822025084824"></a>Name</p>
+<a name="table65548256165622"></a>
+<table><thead align="left"><tr id="row1169902903165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1495017975165622"><a name="p1495017975165622"></a><a name="p1495017975165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2601303084824"><a name="p2601303084824"></a><a name="p2601303084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1477653346165622"><a name="p1477653346165622"></a><a name="p1477653346165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1304043005084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row380777115165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream to set. </td>
 </tr>
 </tbody>
@@ -1199,17 +1084,17 @@ Prints formatted data to a specified file.
 
 **Parameters:**
 
-<a name="table618215065084824"></a>
-<table><thead align="left"><tr id="row1275717730084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2047599611084824"><a name="p2047599611084824"></a><a name="p2047599611084824"></a>Name</p>
+<a name="table97904745165622"></a>
+<table><thead align="left"><tr id="row628459852165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1637955203165622"><a name="p1637955203165622"></a><a name="p1637955203165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1422845721084824"><a name="p1422845721084824"></a><a name="p1422845721084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p256698232165622"><a name="p256698232165622"></a><a name="p256698232165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1070643027084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
+<tbody><tr id="row1489481049165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor that identifies a file. </td>
 </tr>
-<tr id="row687874211084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row304830780165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
 </tbody>
@@ -1218,8 +1103,6 @@ Prints formatted data to a specified file.
 **Returns:**
 
 Returns the total number of written characters if the operation is successful; returns a negative value otherwise. 
-
-
 
 ## err\(\)<a name="gaa6b66a9a8eb4be40e4424a4dc92ae056"></a>
 
@@ -1235,20 +1118,20 @@ If the  **fmt**  parameter is not  **NULL**, stderr displays the error code desc
 
 **Parameters:**
 
-<a name="table1657328018084824"></a>
-<table><thead align="left"><tr id="row2056399975084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1709134594084824"><a name="p1709134594084824"></a><a name="p1709134594084824"></a>Name</p>
+<a name="table1164154599165622"></a>
+<table><thead align="left"><tr id="row1531040619165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p465812315165622"><a name="p465812315165622"></a><a name="p465812315165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p671118620084824"><a name="p671118620084824"></a><a name="p671118620084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p952160114165622"><a name="p952160114165622"></a><a name="p952160114165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row195516416084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eval</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">This function does not return, but exits with the value of <strong id="b806080601084824"><a name="b806080601084824"></a><a name="b806080601084824"></a>eval</strong>. </td>
+<tbody><tr id="row297749452165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eval</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">This function does not return, but exits with the value of <strong id="b1814982404165622"><a name="b1814982404165622"></a><a name="b1814982404165622"></a>eval</strong>. </td>
 </tr>
-<tr id="row876224418084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tr id="row469201769165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to format. </td>
 </tr>
-<tr id="row2010430171084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
+<tr id="row141123530165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameters initialized by using <a href="utils.md#gaa0628ab596c3d7e78f5e08c2d98e24da">va_start</a>. </td>
 </tr>
 </tbody>
@@ -1268,17 +1151,17 @@ This function outputs the executable file name  **argv\[0\]**  and the accepted 
 
 **Parameters:**
 
-<a name="table118752151084824"></a>
-<table><thead align="left"><tr id="row1260211463084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p310584746084824"><a name="p310584746084824"></a><a name="p310584746084824"></a>Name</p>
+<a name="table277448985165622"></a>
+<table><thead align="left"><tr id="row1034053164165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p603498678165622"><a name="p603498678165622"></a><a name="p603498678165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p235575019084824"><a name="p235575019084824"></a><a name="p235575019084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1626481683165622"><a name="p1626481683165622"></a><a name="p1626481683165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row82105434084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eval</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">This function does not return, but exits with the value of <strong id="b231384203084824"><a name="b231384203084824"></a><a name="b231384203084824"></a>eval</strong>. </td>
+<tbody><tr id="row1149910756165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eval</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">This function does not return, but exits with the value of <strong id="b256622953165622"><a name="b256622953165622"></a><a name="b256622953165622"></a>eval</strong>. </td>
 </tr>
-<tr id="row148961628084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tr id="row513103907165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to format. </td>
 </tr>
 </tbody>
@@ -1296,14 +1179,14 @@ Closes a file based on the specified file descriptor.
 
 **Parameters:**
 
-<a name="table2044009387084824"></a>
-<table><thead align="left"><tr id="row2041290484084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p255981873084824"><a name="p255981873084824"></a><a name="p255981873084824"></a>Name</p>
+<a name="table250986084165622"></a>
+<table><thead align="left"><tr id="row817728440165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p359818506165622"><a name="p359818506165622"></a><a name="p359818506165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2111257415084824"><a name="p2111257415084824"></a><a name="p2111257415084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p891162325165622"><a name="p891162325165622"></a><a name="p891162325165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row322399658084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
+<tbody><tr id="row170973613165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file descriptor of the file to close. </td>
 </tr>
 </tbody>
@@ -1313,16 +1196,16 @@ Closes a file based on the specified file descriptor.
 
 Returns  **0**  if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table1642275998084824"></a>
-<table><thead align="left"><tr id="row456403585084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1147744410084824"><a name="p1147744410084824"></a><a name="p1147744410084824"></a>errno </p>
+<a name="table1287132878165622"></a>
+<table><thead align="left"><tr id="row1180063302165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1690783979165622"><a name="p1690783979165622"></a><a name="p1690783979165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1356410319084824"><a name="p1356410319084824"></a><a name="p1356410319084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p131280795165622"><a name="p131280795165622"></a><a name="p131280795165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row890377344084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p952423371084824"><a name="p952423371084824"></a><a name="p952423371084824"></a>EINVAL </p>
+<tbody><tr id="row690759536165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p90073647165622"><a name="p90073647165622"></a><a name="p90073647165622"></a>EINVAL </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1457703517084824"><a name="p1457703517084824"></a><a name="p1457703517084824"></a><strong id="b1218843073084824"><a name="b1218843073084824"></a><a name="b1218843073084824"></a>fd</strong> is <strong id="b819016666084824"><a name="b819016666084824"></a><a name="b819016666084824"></a>NULL</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p501935989165622"><a name="p501935989165622"></a><a name="p501935989165622"></a><strong id="b1804853749165622"><a name="b1804853749165622"></a><a name="b1804853749165622"></a>fd</strong> is <strong id="b346931531165622"><a name="b346931531165622"></a><a name="b346931531165622"></a>NULL</strong>. </p>
 </td>
 </tr>
 </tbody>
@@ -1340,14 +1223,14 @@ Tests the end-of-file indicator for a specified stream.
 
 **Parameters:**
 
-<a name="table526358899084824"></a>
-<table><thead align="left"><tr id="row1382716013084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p761699757084824"><a name="p761699757084824"></a><a name="p761699757084824"></a>Name</p>
+<a name="table1989504826165622"></a>
+<table><thead align="left"><tr id="row424339643165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2031465345165622"><a name="p2031465345165622"></a><a name="p2031465345165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p704311357084824"><a name="p704311357084824"></a><a name="p704311357084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p727048598165622"><a name="p727048598165622"></a><a name="p727048598165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1311767401084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row954769860165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream to test. </td>
 </tr>
 </tbody>
@@ -1356,8 +1239,6 @@ Tests the end-of-file indicator for a specified stream.
 **Returns:**
 
 Returns a non-zero value if the end-of-file indicator is set; returns  **0**  otherwise. 
-
-
 
 ## ferror\(\)<a name="ga4a98383bb54291c2abede7aa28acf597"></a>
 
@@ -1371,14 +1252,14 @@ Tests for the error identifier of a specified file stream.
 
 **Parameters:**
 
-<a name="table778812214084824"></a>
-<table><thead align="left"><tr id="row285951051084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1980289489084824"><a name="p1980289489084824"></a><a name="p1980289489084824"></a>Name</p>
+<a name="table1036987328165622"></a>
+<table><thead align="left"><tr id="row364054704165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p267762322165622"><a name="p267762322165622"></a><a name="p267762322165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1121493554084824"><a name="p1121493554084824"></a><a name="p1121493554084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1426048762165622"><a name="p1426048762165622"></a><a name="p1426048762165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row683039691084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row542923148165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -1387,8 +1268,6 @@ Tests for the error identifier of a specified file stream.
 **Returns:**
 
 Returns a non-zero value to indicate an error for the stream if the operation is successful; returns  **0**  otherwise. 
-
-
 
 ## ferror\_unlocked\(\)<a name="ga089fd72e6218cf6805c8fc21123d3d5f"></a>
 
@@ -1402,14 +1281,14 @@ Tests for the error identifier of a specified file stream.
 
 **Parameters:**
 
-<a name="table1003680303084824"></a>
-<table><thead align="left"><tr id="row1536520694084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p550217371084824"><a name="p550217371084824"></a><a name="p550217371084824"></a>Name</p>
+<a name="table1417437729165622"></a>
+<table><thead align="left"><tr id="row561111607165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p780152370165622"><a name="p780152370165622"></a><a name="p780152370165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1338848966084824"><a name="p1338848966084824"></a><a name="p1338848966084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p794773045165622"><a name="p794773045165622"></a><a name="p794773045165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row342884363084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row1602137042165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -1418,8 +1297,6 @@ Tests for the error identifier of a specified file stream.
 **Returns:**
 
 Returns a non-zero value to indicate an error for the stream if the operation is successful; returns  **0**  otherwise. 
-
-
 
 ## fflush\(\)<a name="gae4459e830d3e2abcf428337a661d9456"></a>
 
@@ -1433,14 +1310,14 @@ Flushes the output buffer of a specified stream.
 
 **Parameters:**
 
-<a name="table1668026715084824"></a>
-<table><thead align="left"><tr id="row90946209084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1874926552084824"><a name="p1874926552084824"></a><a name="p1874926552084824"></a>Name</p>
+<a name="table1272572290165622"></a>
+<table><thead align="left"><tr id="row2097104711165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2009638988165622"><a name="p2009638988165622"></a><a name="p2009638988165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1449037332084824"><a name="p1449037332084824"></a><a name="p1449037332084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2041697224165622"><a name="p2041697224165622"></a><a name="p2041697224165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1496983170084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row1343225180165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream to flush. </td>
 </tr>
 </tbody>
@@ -1450,16 +1327,16 @@ Flushes the output buffer of a specified stream.
 
 Returns  **0**  if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table377204475084824"></a>
-<table><thead align="left"><tr id="row1658994276084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p522351306084824"><a name="p522351306084824"></a><a name="p522351306084824"></a>errno </p>
+<a name="table1902485312165622"></a>
+<table><thead align="left"><tr id="row341873750165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1241823577165622"><a name="p1241823577165622"></a><a name="p1241823577165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1067911947084824"><a name="p1067911947084824"></a><a name="p1067911947084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p185990800165622"><a name="p185990800165622"></a><a name="p185990800165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1349781967084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p411879517084824"><a name="p411879517084824"></a><a name="p411879517084824"></a>EBADF </p>
+<tbody><tr id="row1676626539165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p31384391165622"><a name="p31384391165622"></a><a name="p31384391165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1665377895084824"><a name="p1665377895084824"></a><a name="p1665377895084824"></a><strong id="b494093426084824"><a name="b494093426084824"></a><a name="b494093426084824"></a>fp</strong> points to an invalid stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1767835058165622"><a name="p1767835058165622"></a><a name="p1767835058165622"></a><strong id="b535631621165622"><a name="b535631621165622"></a><a name="b535631621165622"></a>fp</strong> points to an invalid stream. </p>
 </td>
 </tr>
 </tbody>
@@ -1479,14 +1356,14 @@ This function reads the next character from the current position of the file str
 
 **Parameters:**
 
-<a name="table760566926084824"></a>
-<table><thead align="left"><tr id="row147465280084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1555051185084824"><a name="p1555051185084824"></a><a name="p1555051185084824"></a>Name</p>
+<a name="table1632049293165622"></a>
+<table><thead align="left"><tr id="row1106204908165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p699159276165622"><a name="p699159276165622"></a><a name="p699159276165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p901360833084824"><a name="p901360833084824"></a><a name="p901360833084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1684473481165622"><a name="p1684473481165622"></a><a name="p1684473481165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1060256206084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row215140000165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -1495,8 +1372,6 @@ This function reads the next character from the current position of the file str
 **Returns:**
 
 Returns the character read as an int value if the operation is successful; returns  **EOF**  if the end-of-file is reached or a reading error occurs. 
-
-
 
 ## fgetc\_unlocked\(\)<a name="ga9b8e6d63482eb1fe38f3eb9d7fc9bd8e"></a>
 
@@ -1512,14 +1387,14 @@ This function reads the next character from the current position of the file str
 
 **Parameters:**
 
-<a name="table1207237026084824"></a>
-<table><thead align="left"><tr id="row667249207084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p454543596084824"><a name="p454543596084824"></a><a name="p454543596084824"></a>Name</p>
+<a name="table807502260165622"></a>
+<table><thead align="left"><tr id="row220544605165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p610666668165622"><a name="p610666668165622"></a><a name="p610666668165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1798611655084824"><a name="p1798611655084824"></a><a name="p1798611655084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p641375743165622"><a name="p641375743165622"></a><a name="p641375743165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row13113888084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row247663698165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -1533,8 +1408,6 @@ This function cannot be used in a multi-thread process because it does not use l
 
 Returns the character read as an int value if the operation is successful; returns  **EOF**  if the end-of-file is reached or a reading error occurs. 
 
-
-
 ## fgetln\(\)<a name="ga8e6fe2fcd5eaa8e2d146a50eeaae5b40"></a>
 
 ```
@@ -1547,17 +1420,17 @@ Reads a line of data from the current position of a specified file stream.
 
 **Parameters:**
 
-<a name="table1772999065084824"></a>
-<table><thead align="left"><tr id="row481037013084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p337442233084824"><a name="p337442233084824"></a><a name="p337442233084824"></a>Name</p>
+<a name="table1087298664165622"></a>
+<table><thead align="left"><tr id="row421844743165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1460074472165622"><a name="p1460074472165622"></a><a name="p1460074472165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1242657925084824"><a name="p1242657925084824"></a><a name="p1242657925084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p764595389165622"><a name="p764595389165622"></a><a name="p764595389165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2001116664084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row1765795354165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
-<tr id="row826776249084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">len</td>
+<tr id="row1377759122165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">len</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the length of the string that is read. </td>
 </tr>
 </tbody>
@@ -1566,8 +1439,6 @@ Reads a line of data from the current position of a specified file stream.
 **Returns:**
 
 Returns the string read. 
-
-
 
 ## fgetpos\(\)<a name="gaf2e2b1a01359f5f7068b61d1dffcdcdd"></a>
 
@@ -1581,18 +1452,18 @@ Obtains the current file position of a specified stream and writes it to the  **
 
 **Parameters:**
 
-<a name="table33937501084824"></a>
-<table><thead align="left"><tr id="row1857947584084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p130850821084824"><a name="p130850821084824"></a><a name="p130850821084824"></a>Name</p>
+<a name="table1672191685165622"></a>
+<table><thead align="left"><tr id="row2042305103165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p491797383165622"><a name="p491797383165622"></a><a name="p491797383165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p607091791084824"><a name="p607091791084824"></a><a name="p607091791084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1152298158165622"><a name="p1152298158165622"></a><a name="p1152298158165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row743362753084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row966723599165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
-<tr id="row185391886084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">pos</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1452351084084824"><a name="b1452351084084824"></a><a name="b1452351084084824"></a>fpos_t</strong> object. </td>
+<tr id="row1006085024165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">pos</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b2047941384165622"><a name="b2047941384165622"></a><a name="b2047941384165622"></a>fpos_t</strong> object. </td>
 </tr>
 </tbody>
 </table>
@@ -1600,8 +1471,6 @@ Obtains the current file position of a specified stream and writes it to the  **
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns a non-zero value otherwise. 
-
-
 
 ## fgets\(\)<a name="ga2b3df0e66b41edab3c039191fe6cc4f9"></a>
 
@@ -1615,20 +1484,20 @@ Reads a line of characters from a specified file stream and stores it into the s
 
 **Parameters:**
 
-<a name="table1252895262084824"></a>
-<table><thead align="left"><tr id="row384933580084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1395510908084824"><a name="p1395510908084824"></a><a name="p1395510908084824"></a>Name</p>
+<a name="table2142722614165622"></a>
+<table><thead align="left"><tr id="row113176733165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p924399899165622"><a name="p924399899165622"></a><a name="p924399899165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1217646036084824"><a name="p1217646036084824"></a><a name="p1217646036084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1925357095165622"><a name="p1925357095165622"></a><a name="p1925357095165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row15760923084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
+<tbody><tr id="row616741179165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the character array for storing the obtained string. </td>
 </tr>
-<tr id="row1140509723084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the maximum number of characters to read (including the terminating null character). The value of this parameter is usually the length of the array pointed to by <strong id="b1128200873084824"><a name="b1128200873084824"></a><a name="b1128200873084824"></a>s</strong>. </td>
+<tr id="row1124430694165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the maximum number of characters to read (including the terminating null character). The value of this parameter is usually the length of the array pointed to by <strong id="b1285519358165622"><a name="b1285519358165622"></a><a name="b1285519358165622"></a>s</strong>. </td>
 </tr>
-<tr id="row1922631386084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row1394114220165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -1637,8 +1506,6 @@ Reads a line of characters from a specified file stream and stores it into the s
 **Returns:**
 
 Returns the pointer to the read string if the operation is successful; returns a null pointer if the end-of-file is reached, no characters have been read, or if an error occurs. 
-
-
 
 ## fileno\(\)<a name="ga03681b8592bba6fe02941b9abc182808"></a>
 
@@ -1652,14 +1519,14 @@ Obtains the file descriptor of a specified file stream.
 
 **Parameters:**
 
-<a name="table18510950084824"></a>
-<table><thead align="left"><tr id="row894423448084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1215503229084824"><a name="p1215503229084824"></a><a name="p1215503229084824"></a>Name</p>
+<a name="table1758429997165622"></a>
+<table><thead align="left"><tr id="row1862596939165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p634778208165622"><a name="p634778208165622"></a><a name="p634778208165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1932061694084824"><a name="p1932061694084824"></a><a name="p1932061694084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2040954345165622"><a name="p2040954345165622"></a><a name="p2040954345165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row783172370084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row143108879165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream for which the file descriptor is obtained. </td>
 </tr>
 </tbody>
@@ -1669,16 +1536,16 @@ Obtains the file descriptor of a specified file stream.
 
 Returns the file descriptor if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table otherwise. 
 
-<a name="table1533030949084824"></a>
-<table><thead align="left"><tr id="row1754478235084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p153587371084824"><a name="p153587371084824"></a><a name="p153587371084824"></a>errno </p>
+<a name="table425349400165622"></a>
+<table><thead align="left"><tr id="row1583092802165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1367888996165622"><a name="p1367888996165622"></a><a name="p1367888996165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p87335849084824"><a name="p87335849084824"></a><a name="p87335849084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1514822979165622"><a name="p1514822979165622"></a><a name="p1514822979165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1998049355084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2128566749084824"><a name="p2128566749084824"></a><a name="p2128566749084824"></a>EBADF </p>
+<tbody><tr id="row1889896479165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p569249743165622"><a name="p569249743165622"></a><a name="p569249743165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p693883594084824"><a name="p693883594084824"></a><a name="p693883594084824"></a><strong id="b768505741084824"><a name="b768505741084824"></a><a name="b768505741084824"></a>fp</strong> points to an invalid stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1079281945165622"><a name="p1079281945165622"></a><a name="p1079281945165622"></a><strong id="b286615211165622"><a name="b286615211165622"></a><a name="b286615211165622"></a>fp</strong> points to an invalid stream. </p>
 </td>
 </tr>
 </tbody>
@@ -1698,20 +1565,20 @@ This function is used for applications that do not support memory operations but
 
 **Parameters:**
 
-<a name="table491253281084824"></a>
-<table><thead align="left"><tr id="row1875372150084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1741683172084824"><a name="p1741683172084824"></a><a name="p1741683172084824"></a>Name</p>
+<a name="table1949319514165622"></a>
+<table><thead align="left"><tr id="row999775935165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p136120477165622"><a name="p136120477165622"></a><a name="p136120477165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p593117798084824"><a name="p593117798084824"></a><a name="p593117798084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2098224003165622"><a name="p2098224003165622"></a><a name="p2098224003165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1294920473084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buf</td>
+<tbody><tr id="row44495614165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buf</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer. </td>
 </tr>
-<tr id="row418552503084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row943087729165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of the buffer. </td>
 </tr>
-<tr id="row1416470699084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
+<tr id="row2091112822165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file operation mode. </td>
 </tr>
 </tbody>
@@ -1720,8 +1587,6 @@ This function is used for applications that do not support memory operations but
 **Returns:**
 
 Returns the opened memory stream as a file stream. 
-
-
 
 ## fopen\(\)<a name="ga58386e895d3c07b008c8865b2a9716fb"></a>
 
@@ -1735,117 +1600,117 @@ Opens the file stored in the specified path based on the given mode.
 
 **Parameters:**
 
-<a name="table1576386759084824"></a>
-<table><thead align="left"><tr id="row899252657084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1710509169084824"><a name="p1710509169084824"></a><a name="p1710509169084824"></a>Name</p>
+<a name="table1610671366165622"></a>
+<table><thead align="left"><tr id="row1566134699165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p941043104165622"><a name="p941043104165622"></a><a name="p941043104165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1528021906084824"><a name="p1528021906084824"></a><a name="p1528021906084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1492678753165622"><a name="p1492678753165622"></a><a name="p1492678753165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row161624638084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">path</td>
+<tbody><tr id="row1345638894165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">path</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the path of the file to open. </td>
 </tr>
-<tr id="row81342633084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
+<tr id="row1531168105165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file access mode. The following table describes the available values. </td>
 </tr>
 </tbody>
 </table>
 
-<a name="table1362772358084824"></a>
-<table><thead align="left"><tr id="row1697037908084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p996296564084824"><a name="p996296564084824"></a><a name="p996296564084824"></a>mode </p>
+<a name="table1803626789165622"></a>
+<table><thead align="left"><tr id="row344198502165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1877022924165622"><a name="p1877022924165622"></a><a name="p1877022924165622"></a>mode </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p34935951084824"><a name="p34935951084824"></a><a name="p34935951084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1282227742165622"><a name="p1282227742165622"></a><a name="p1282227742165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1567729057084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1910210565084824"><a name="p1910210565084824"></a><a name="p1910210565084824"></a>"r" </p>
+<tbody><tr id="row1098590698165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p611304186165622"><a name="p611304186165622"></a><a name="p611304186165622"></a>"r" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1301464803084824"><a name="p1301464803084824"></a><a name="p1301464803084824"></a>Open a file in read-only mode. The file must exist. </p>
-</td>
-</tr>
-<tr id="row598795442084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p202421949084824"><a name="p202421949084824"></a><a name="p202421949084824"></a>"w" </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1276372765084824"><a name="p1276372765084824"></a><a name="p1276372765084824"></a>Open a file in write-only mode. The file is created if it does not exist. If the file already exists, its existing contents will be cleared. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1807142034165622"><a name="p1807142034165622"></a><a name="p1807142034165622"></a>Open a file in read-only mode. The file must exist. </p>
 </td>
 </tr>
-<tr id="row1062670292084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1025170715084824"><a name="p1025170715084824"></a><a name="p1025170715084824"></a>"a" </p>
+<tr id="row155453094165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p380470109165622"><a name="p380470109165622"></a><a name="p380470109165622"></a>"w" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2116040118084824"><a name="p2116040118084824"></a><a name="p2116040118084824"></a>Open a write-only file in append mode. The file is created if it does not exist. If the file already exists, new contents will be written at the end of the file. </p>
-</td>
-</tr>
-<tr id="row206214857084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p430254392084824"><a name="p430254392084824"></a><a name="p430254392084824"></a>"r+" </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1164861626084824"><a name="p1164861626084824"></a><a name="p1164861626084824"></a>Open a file in read and write mode. The file must exist. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1886649791165622"><a name="p1886649791165622"></a><a name="p1886649791165622"></a>Open a file in write-only mode. The file is created if it does not exist. If the file already exists, its existing contents will be cleared. </p>
 </td>
 </tr>
-<tr id="row1360317568084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p979402663084824"><a name="p979402663084824"></a><a name="p979402663084824"></a>"w+" </p>
+<tr id="row542345057165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p247626943165622"><a name="p247626943165622"></a><a name="p247626943165622"></a>"a" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1244183059084824"><a name="p1244183059084824"></a><a name="p1244183059084824"></a>Open a file for both reading and writing. The file is created if it does not exist. If the file already exists, its contents are cleared. </p>
-</td>
-</tr>
-<tr id="row2014744526084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p914916243084824"><a name="p914916243084824"></a><a name="p914916243084824"></a>"a+" </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p699743907084824"><a name="p699743907084824"></a><a name="p699743907084824"></a>Open a file in append mode for both reading and writing. The file is created if it does not exist. If the file already exists, new contents will be written at the end of the file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p935055699165622"><a name="p935055699165622"></a><a name="p935055699165622"></a>Open a write-only file in append mode. The file is created if it does not exist. If the file already exists, new contents will be written at the end of the file. </p>
 </td>
 </tr>
-<tr id="row898493103084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p859840906084824"><a name="p859840906084824"></a><a name="p859840906084824"></a>"rb" </p>
+<tr id="row110218536165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1490841623165622"><a name="p1490841623165622"></a><a name="p1490841623165622"></a>"r+" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p508427160084824"><a name="p508427160084824"></a><a name="p508427160084824"></a>Open a binary file in read-only mode. </p>
-</td>
-</tr>
-<tr id="row1977249951084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p364712672084824"><a name="p364712672084824"></a><a name="p364712672084824"></a>"wb" </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p144430732084824"><a name="p144430732084824"></a><a name="p144430732084824"></a>Open or create a binary file in write-only mode. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1615635967165622"><a name="p1615635967165622"></a><a name="p1615635967165622"></a>Open a file in read and write mode. The file must exist. </p>
 </td>
 </tr>
-<tr id="row1580032119084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1136292892084824"><a name="p1136292892084824"></a><a name="p1136292892084824"></a>"ab" </p>
+<tr id="row1624818921165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1440887025165622"><a name="p1440887025165622"></a><a name="p1440887025165622"></a>"w+" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1857096716084824"><a name="p1857096716084824"></a><a name="p1857096716084824"></a>Open a binary file in append mode and write data at the end of the file. </p>
-</td>
-</tr>
-<tr id="row1366277968084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1914263117084824"><a name="p1914263117084824"></a><a name="p1914263117084824"></a>"rb+" </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p524514106084824"><a name="p524514106084824"></a><a name="p524514106084824"></a>Open a binary file in read and write mode. The file must exist. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p19775728165622"><a name="p19775728165622"></a><a name="p19775728165622"></a>Open a file for both reading and writing. The file is created if it does not exist. If the file already exists, its contents are cleared. </p>
 </td>
 </tr>
-<tr id="row655931286084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1121295920084824"><a name="p1121295920084824"></a><a name="p1121295920084824"></a>"wb+" </p>
+<tr id="row42064553165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1202818611165622"><a name="p1202818611165622"></a><a name="p1202818611165622"></a>"a+" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p430401080084824"><a name="p430401080084824"></a><a name="p430401080084824"></a>Open or create a binary file in read and write mode. </p>
-</td>
-</tr>
-<tr id="row1442238175084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p45545616084824"><a name="p45545616084824"></a><a name="p45545616084824"></a>"ab+" </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1242060556084824"><a name="p1242060556084824"></a><a name="p1242060556084824"></a>Open a binary file in append mode for wring data at the end of the file. The file is also readable. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1641753856165622"><a name="p1641753856165622"></a><a name="p1641753856165622"></a>Open a file in append mode for both reading and writing. The file is created if it does not exist. If the file already exists, new contents will be written at the end of the file. </p>
 </td>
 </tr>
-<tr id="row487522956084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p155337122084824"><a name="p155337122084824"></a><a name="p155337122084824"></a>"rt" </p>
+<tr id="row1748754523165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1478100091165622"><a name="p1478100091165622"></a><a name="p1478100091165622"></a>"rb" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1053497922084824"><a name="p1053497922084824"></a><a name="p1053497922084824"></a>Open a text file in read-only mode. </p>
-</td>
-</tr>
-<tr id="row1130812998084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1431017298084824"><a name="p1431017298084824"></a><a name="p1431017298084824"></a>"wt" </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1787016154084824"><a name="p1787016154084824"></a><a name="p1787016154084824"></a>Open or create a text file in write-only mode. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p773779985165622"><a name="p773779985165622"></a><a name="p773779985165622"></a>Open a binary file in read-only mode. </p>
 </td>
 </tr>
-<tr id="row2032523962084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1750186315084824"><a name="p1750186315084824"></a><a name="p1750186315084824"></a>"at" </p>
+<tr id="row687677993165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p953107552165622"><a name="p953107552165622"></a><a name="p953107552165622"></a>"wb" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1202204307084824"><a name="p1202204307084824"></a><a name="p1202204307084824"></a>Open a text file in append mode and write data at the end of the file. </p>
-</td>
-</tr>
-<tr id="row1513229681084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1288151948084824"><a name="p1288151948084824"></a><a name="p1288151948084824"></a>"rt+" </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p843774248084824"><a name="p843774248084824"></a><a name="p843774248084824"></a>Open a text file in read and write mode. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p64835220165622"><a name="p64835220165622"></a><a name="p64835220165622"></a>Open or create a binary file in write-only mode. </p>
 </td>
 </tr>
-<tr id="row575781168084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1929051269084824"><a name="p1929051269084824"></a><a name="p1929051269084824"></a>"wt+" </p>
+<tr id="row1232804646165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p90664472165622"><a name="p90664472165622"></a><a name="p90664472165622"></a>"ab" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1754980247084824"><a name="p1754980247084824"></a><a name="p1754980247084824"></a>Open or create a text file in read and write mode. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p521837064165622"><a name="p521837064165622"></a><a name="p521837064165622"></a>Open a binary file in append mode and write data at the end of the file. </p>
 </td>
 </tr>
-<tr id="row1110061494084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1642202473084824"><a name="p1642202473084824"></a><a name="p1642202473084824"></a>"at+" </p>
+<tr id="row442166183165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1738477569165622"><a name="p1738477569165622"></a><a name="p1738477569165622"></a>"rb+" </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p951764064084824"><a name="p951764064084824"></a><a name="p951764064084824"></a>Open a text file in append mode for writing data at the end of the file. The file is also readable. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1312033151165622"><a name="p1312033151165622"></a><a name="p1312033151165622"></a>Open a binary file in read and write mode. The file must exist. </p>
+</td>
+</tr>
+<tr id="row971074988165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p612947102165622"><a name="p612947102165622"></a><a name="p612947102165622"></a>"wb+" </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1733132614165622"><a name="p1733132614165622"></a><a name="p1733132614165622"></a>Open or create a binary file in read and write mode. </p>
+</td>
+</tr>
+<tr id="row1389432451165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1223648384165622"><a name="p1223648384165622"></a><a name="p1223648384165622"></a>"ab+" </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1410249342165622"><a name="p1410249342165622"></a><a name="p1410249342165622"></a>Open a binary file in append mode for wring data at the end of the file. The file is also readable. </p>
+</td>
+</tr>
+<tr id="row1497942019165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1642052763165622"><a name="p1642052763165622"></a><a name="p1642052763165622"></a>"rt" </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1916073805165622"><a name="p1916073805165622"></a><a name="p1916073805165622"></a>Open a text file in read-only mode. </p>
+</td>
+</tr>
+<tr id="row1775859523165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p445570856165622"><a name="p445570856165622"></a><a name="p445570856165622"></a>"wt" </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p714394808165622"><a name="p714394808165622"></a><a name="p714394808165622"></a>Open or create a text file in write-only mode. </p>
+</td>
+</tr>
+<tr id="row1686123169165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1611736331165622"><a name="p1611736331165622"></a><a name="p1611736331165622"></a>"at" </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p815060575165622"><a name="p815060575165622"></a><a name="p815060575165622"></a>Open a text file in append mode and write data at the end of the file. </p>
+</td>
+</tr>
+<tr id="row1564972419165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p725851214165622"><a name="p725851214165622"></a><a name="p725851214165622"></a>"rt+" </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p379563620165622"><a name="p379563620165622"></a><a name="p379563620165622"></a>Open a text file in read and write mode. </p>
+</td>
+</tr>
+<tr id="row777979101165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2018556142165622"><a name="p2018556142165622"></a><a name="p2018556142165622"></a>"wt+" </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1839848602165622"><a name="p1839848602165622"></a><a name="p1839848602165622"></a>Open or create a text file in read and write mode. </p>
+</td>
+</tr>
+<tr id="row2112643350165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p429388452165622"><a name="p429388452165622"></a><a name="p429388452165622"></a>"at+" </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2088707312165622"><a name="p2088707312165622"></a><a name="p2088707312165622"></a>Open a text file in append mode for writing data at the end of the file. The file is also readable. </p>
 </td>
 </tr>
 </tbody>
@@ -1859,21 +1724,21 @@ This function can NOT be used in the PROC file system to create a file.
 
 Returns the pointer to the file if the operation is successful; returns  **NULL**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table1490884769084824"></a>
-<table><thead align="left"><tr id="row2112812737084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1752666470084824"><a name="p1752666470084824"></a><a name="p1752666470084824"></a>errno </p>
+<a name="table1575876202165622"></a>
+<table><thead align="left"><tr id="row1928726522165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1789869837165622"><a name="p1789869837165622"></a><a name="p1789869837165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p461798962084824"><a name="p461798962084824"></a><a name="p461798962084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2028053582165622"><a name="p2028053582165622"></a><a name="p2028053582165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1346710944084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1175360506084824"><a name="p1175360506084824"></a><a name="p1175360506084824"></a>EINVAL </p>
+<tbody><tr id="row1897935337165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1118649894165622"><a name="p1118649894165622"></a><a name="p1118649894165622"></a>EINVAL </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p923154057084824"><a name="p923154057084824"></a><a name="p923154057084824"></a>Invalid mode. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p4008190165622"><a name="p4008190165622"></a><a name="p4008190165622"></a>Invalid mode. </p>
 </td>
 </tr>
-<tr id="row2014396619084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1920876678084824"><a name="p1920876678084824"></a><a name="p1920876678084824"></a>EMFILE </p>
+<tr id="row1932852526165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1283041067165622"><a name="p1283041067165622"></a><a name="p1283041067165622"></a>EMFILE </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p176099678084824"><a name="p176099678084824"></a><a name="p176099678084824"></a>The number of opened files exceeds the maximum number. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p361167876165622"><a name="p361167876165622"></a><a name="p361167876165622"></a>The number of opened files exceeds the maximum number. </p>
 </td>
 </tr>
 </tbody>
@@ -1891,20 +1756,20 @@ Formats arguments based on  **format**  and prints formatted data to a specified
 
 **Parameters:**
 
-<a name="table1676535658084824"></a>
-<table><thead align="left"><tr id="row929791226084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p357445191084824"><a name="p357445191084824"></a><a name="p357445191084824"></a>Name</p>
+<a name="table1120948117165622"></a>
+<table><thead align="left"><tr id="row396703107165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1609850750165622"><a name="p1609850750165622"></a><a name="p1609850750165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p847880966084824"><a name="p847880966084824"></a><a name="p847880966084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1933941399165622"><a name="p1933941399165622"></a><a name="p1933941399165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row996687712084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row167323762165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
-<tr id="row1304744146084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row1401784934165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row1159671864084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row2080515609165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of arguments corresponding to the format specifiers. </td>
 </tr>
 </tbody>
@@ -1913,8 +1778,6 @@ Formats arguments based on  **format**  and prints formatted data to a specified
 **Returns:**
 
 Returns the total number of characters \(excluding the terminating null character  **'\\0'**\) if the operation is successful; returns a negative value otherwise. 
-
-
 
 ## fputc\(\)<a name="gabe6299d5823dd023e610aaa619735a3f"></a>
 
@@ -1928,17 +1791,17 @@ Writes a character into the position pointed to by a specified stream.
 
 **Parameters:**
 
-<a name="table1005529503084824"></a>
-<table><thead align="left"><tr id="row1247792386084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p341782325084824"><a name="p341782325084824"></a><a name="p341782325084824"></a>Name</p>
+<a name="table1367774003165622"></a>
+<table><thead align="left"><tr id="row1563701668165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p334237146165622"><a name="p334237146165622"></a><a name="p334237146165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1623679028084824"><a name="p1623679028084824"></a><a name="p1623679028084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p594380265165622"><a name="p594380265165622"></a><a name="p594380265165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row651593741084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
+<tbody><tr id="row27652445165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the int promotion of the character to write. </td>
 </tr>
-<tr id="row2089070348084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row610319416165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -1947,8 +1810,6 @@ Writes a character into the position pointed to by a specified stream.
 **Returns:**
 
 Returns the ASCII code of the character written if the operation is successful; returns  **EOF**  otherwise. 
-
-
 
 ## fputc\_unlocked\(\)<a name="gab8680ff3f49f3fe7ce0fb78b4cb8394c"></a>
 
@@ -1962,17 +1823,17 @@ Writes a character to the file stream pointed to by  **stream**  at the current 
 
 **Parameters:**
 
-<a name="table1375109376084824"></a>
-<table><thead align="left"><tr id="row2056970453084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1011733562084824"><a name="p1011733562084824"></a><a name="p1011733562084824"></a>Name</p>
+<a name="table1397003827165622"></a>
+<table><thead align="left"><tr id="row1281768791165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1449239491165622"><a name="p1449239491165622"></a><a name="p1449239491165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p760392350084824"><a name="p760392350084824"></a><a name="p760392350084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p693539222165622"><a name="p693539222165622"></a><a name="p693539222165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1555017082084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
+<tbody><tr id="row119654949165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the int promotion of the character to write. </td>
 </tr>
-<tr id="row913732114084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row1845533000165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file stream. </td>
 </tr>
 </tbody>
@@ -1986,8 +1847,6 @@ This function cannot be used in a multi-thread process because it does not use l
 
 Returns the ASCII code of the character written if the operation is successful; returns  **EOF**  otherwise. 
 
-
-
 ## fputs\(\)<a name="ga68236e664c1f0da049b25fba1c1695f6"></a>
 
 ```
@@ -2000,17 +1859,17 @@ Writes a character string \(excluding the terminating null character\) to a spec
 
 **Parameters:**
 
-<a name="table1222539475084824"></a>
-<table><thead align="left"><tr id="row678254584084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p84393059084824"><a name="p84393059084824"></a><a name="p84393059084824"></a>Name</p>
+<a name="table983767272165622"></a>
+<table><thead align="left"><tr id="row2130605711165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p883887456165622"><a name="p883887456165622"></a><a name="p883887456165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1282926732084824"><a name="p1282926732084824"></a><a name="p1282926732084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1838710999165622"><a name="p1838710999165622"></a><a name="p1838710999165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row884246359084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
+<tbody><tr id="row377756536165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the character string to write. </td>
 </tr>
-<tr id="row1669672277084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row1491216820165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -2019,8 +1878,6 @@ Writes a character string \(excluding the terminating null character\) to a spec
 **Returns:**
 
 Returns a non-negative value if the operation is successful; returns  **EOF**  otherwise. 
-
-
 
 ## fread\(\)<a name="ga091b3f41bdd6984d63ea48d87a62bfd2"></a>
 
@@ -2034,23 +1891,23 @@ Reads data from a specified stream.
 
 **Parameters:**
 
-<a name="table1905010941084824"></a>
-<table><thead align="left"><tr id="row1455541974084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1943743970084824"><a name="p1943743970084824"></a><a name="p1943743970084824"></a>Name</p>
+<a name="table324337147165622"></a>
+<table><thead align="left"><tr id="row476861012165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1437623209165622"><a name="p1437623209165622"></a><a name="p1437623209165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1330770073084824"><a name="p1330770073084824"></a><a name="p1330770073084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p44077046165622"><a name="p44077046165622"></a><a name="p44077046165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1136401230084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ptr</td>
+<tbody><tr id="row709810308165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ptr</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the array for storing the read data. </td>
 </tr>
-<tr id="row1265051435084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row1047759155165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of each element to read, in bytes. </td>
 </tr>
-<tr id="row463458546084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">nmemb</td>
+<tr id="row466129475165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">nmemb</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of elements to read. </td>
 </tr>
-<tr id="row986952288084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row1420487338165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream to read. </td>
 </tr>
 </tbody>
@@ -2060,21 +1917,85 @@ Reads data from a specified stream.
 
 Returns  **0**  if  **size**  or  **nmemb**  is  **0**; returns the number of elements successfully read otherwise. This function sets  **errno**  to a value in the following table if a reading error occurs or the end-of-file is reached \(**fread**  does not distinguish the two error reporting situations, and you can call  **feof**  and  **ferror**  to determine the specific situation\). 
 
-<a name="table1635104771084824"></a>
-<table><thead align="left"><tr id="row962729998084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p644890894084824"><a name="p644890894084824"></a><a name="p644890894084824"></a>errno </p>
+<a name="table1238884815165622"></a>
+<table><thead align="left"><tr id="row1780787145165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p291379299165622"><a name="p291379299165622"></a><a name="p291379299165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p594664057084824"><a name="p594664057084824"></a><a name="p594664057084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p12617731165622"><a name="p12617731165622"></a><a name="p12617731165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1895369116084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p906588073084824"><a name="p906588073084824"></a><a name="p906588073084824"></a>EBADF </p>
+<tbody><tr id="row23814507165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p83473349165622"><a name="p83473349165622"></a><a name="p83473349165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1017617975084824"><a name="p1017617975084824"></a><a name="p1017617975084824"></a><strong id="b1101974061084824"><a name="b1101974061084824"></a><a name="b1101974061084824"></a>stream</strong> points to an invalid stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p642310138165622"><a name="p642310138165622"></a><a name="p642310138165622"></a><strong id="b1868965741165622"><a name="b1868965741165622"></a><a name="b1868965741165622"></a>stream</strong> points to an invalid stream. </p>
 </td>
 </tr>
-<tr id="row321445178084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p375154787084824"><a name="p375154787084824"></a><a name="p375154787084824"></a>EEOF </p>
+<tr id="row130796976165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p133368864165622"><a name="p133368864165622"></a><a name="p133368864165622"></a>EEOF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p92062500084824"><a name="p92062500084824"></a><a name="p92062500084824"></a>The end-of-file is reached. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1165344799165622"><a name="p1165344799165622"></a><a name="p1165344799165622"></a>The end-of-file is reached. </p>
+</td>
+</tr>
+</tbody>
+</table>
+
+## freopen\(\)<a name="gaab336dbfc008a0873046ecd7db043df0"></a>
+
+```
+[FILE](io.md#ga912af5ab9f8a52ddd387b7defc0b49f1)* freopen (const char *__restrict path, const char *__restrict mode, [FILE](io.md#ga912af5ab9f8a52ddd387b7defc0b49f1) *__restrict stream )
+```
+
+ **Description:**
+
+Opens the file stored in the specified path, and associates the stream by the given stream. 
+
+**Parameters:**
+
+<a name="table1875861606165622"></a>
+<table><thead align="left"><tr id="row1875105425165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1475583148165622"><a name="p1475583148165622"></a><a name="p1475583148165622"></a>Name</p>
+</th>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p560970280165622"><a name="p560970280165622"></a><a name="p560970280165622"></a>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row717473557165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">path</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the path of the file to open. </td>
+</tr>
+<tr id="row775170527165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file access mode. The usage is same as which in fopen function. </td>
+</tr>
+<tr id="row448246100165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the stream to associates. </td>
+</tr>
+</tbody>
+</table>
+
+**Attention:**
+
+This function can NOT be used in the PROC file system to create a file. 
+
+**Returns:**
+
+Returns the pointer to the file if the operation is successful; returns  **NULL**  and sets  **errno**  to a value in the following table if the operation fails. 
+
+<a name="table510526792165622"></a>
+<table><thead align="left"><tr id="row929419589165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p770994717165622"><a name="p770994717165622"></a><a name="p770994717165622"></a>errno </p>
+</th>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1886931849165622"><a name="p1886931849165622"></a><a name="p1886931849165622"></a>Description  </p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row1461949195165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p244636513165622"><a name="p244636513165622"></a><a name="p244636513165622"></a>EINVAL </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1317845990165622"><a name="p1317845990165622"></a><a name="p1317845990165622"></a>Invalid mode. </p>
+</td>
+</tr>
+<tr id="row1003593641165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p98589419165622"><a name="p98589419165622"></a><a name="p98589419165622"></a>EMFILE </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1729307571165622"><a name="p1729307571165622"></a><a name="p1729307571165622"></a>The number of opened files exceeds the maximum number. </p>
+</td>
+</tr>
+<tr id="row1556167563165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1984012112165622"><a name="p1984012112165622"></a><a name="p1984012112165622"></a>EBADF </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1525512494165622"><a name="p1525512494165622"></a><a name="p1525512494165622"></a>The file descriptor of the stream is not valid. </p>
 </td>
 </tr>
 </tbody>
@@ -2094,20 +2015,20 @@ The operation ends when a space or line feed character is encountered.
 
 **Parameters:**
 
-<a name="table352147379084824"></a>
-<table><thead align="left"><tr id="row546859711084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p295115222084824"><a name="p295115222084824"></a><a name="p295115222084824"></a>Name</p>
+<a name="table1997665355165622"></a>
+<table><thead align="left"><tr id="row707937601165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2103441341165622"><a name="p2103441341165622"></a><a name="p2103441341165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1237633159084824"><a name="p1237633159084824"></a><a name="p1237633159084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p368099263165622"><a name="p368099263165622"></a><a name="p368099263165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1904440377084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row770577466165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
-<tr id="row354329269084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row2009916783165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row727054181084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row1795976046165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of arguments corresponding to the format specifiers. </td>
 </tr>
 </tbody>
@@ -2116,8 +2037,6 @@ The operation ends when a space or line feed character is encountered.
 **Returns:**
 
 Returns the number of variables that are successfully read. If the matching fails quickly, the return value may be less than the number of members in the argument list or even zero. If no complete conversion format is available or the input format fails to be matched,  **EOF**  is returned. The return value is also  **EOF**  if a reading error occurs. 
-
-
 
 ## fseek\(\)<a name="gaece5d6e00c239ffd0847d8d2ef65bd57"></a>
 
@@ -2131,45 +2050,45 @@ Changes the position of a specified stream to a new position.
 
 **Parameters:**
 
-<a name="table1144228230084824"></a>
-<table><thead align="left"><tr id="row1320455424084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2056642322084824"><a name="p2056642322084824"></a><a name="p2056642322084824"></a>Name</p>
+<a name="table2139793186165622"></a>
+<table><thead align="left"><tr id="row1185039184165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1061901756165622"><a name="p1061901756165622"></a><a name="p1061901756165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1678570878084824"><a name="p1678570878084824"></a><a name="p1678570878084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1097301694165622"><a name="p1097301694165622"></a><a name="p1097301694165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1745414136084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row321775760165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream for which the position is to set. </td>
 </tr>
-<tr id="row2107480219084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">offset</td>
+<tr id="row883242880165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">offset</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the offset that determines the position. </td>
 </tr>
-<tr id="row1976299235084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">whence</td>
+<tr id="row1469581996165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">whence</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the start position of the offset. The following table describes the available values. </td>
 </tr>
 </tbody>
 </table>
 
-<a name="table461901605084824"></a>
-<table><thead align="left"><tr id="row257377075084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2009543626084824"><a name="p2009543626084824"></a><a name="p2009543626084824"></a>value </p>
+<a name="table1077987528165622"></a>
+<table><thead align="left"><tr id="row573171904165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p273712250165622"><a name="p273712250165622"></a><a name="p273712250165622"></a>value </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p403149874084824"><a name="p403149874084824"></a><a name="p403149874084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p488510675165622"><a name="p488510675165622"></a><a name="p488510675165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1068705398084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1209927998084824"><a name="p1209927998084824"></a><a name="p1209927998084824"></a>SEEK_SET </p>
+<tbody><tr id="row1888867490165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1568392905165622"><a name="p1568392905165622"></a><a name="p1568392905165622"></a>SEEK_SET </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1953728347084824"><a name="p1953728347084824"></a><a name="p1953728347084824"></a>Beginning of the file </p>
-</td>
-</tr>
-<tr id="row2039537057084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p847220295084824"><a name="p847220295084824"></a><a name="p847220295084824"></a>SEEK_CUR </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1310472546084824"><a name="p1310472546084824"></a><a name="p1310472546084824"></a>Current position </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1549272700165622"><a name="p1549272700165622"></a><a name="p1549272700165622"></a>Beginning of the file </p>
 </td>
 </tr>
-<tr id="row802931605084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1167284439084824"><a name="p1167284439084824"></a><a name="p1167284439084824"></a>SEEK_END </p>
+<tr id="row495625044165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1788727182165622"><a name="p1788727182165622"></a><a name="p1788727182165622"></a>SEEK_CUR </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2136926724084824"><a name="p2136926724084824"></a><a name="p2136926724084824"></a>End of the file </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1877437730165622"><a name="p1877437730165622"></a><a name="p1877437730165622"></a>Current position </p>
+</td>
+</tr>
+<tr id="row1473296971165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p857025757165622"><a name="p857025757165622"></a><a name="p857025757165622"></a>SEEK_END </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p42445957165622"><a name="p42445957165622"></a><a name="p42445957165622"></a>End of the file </p>
 </td>
 </tr>
 </tbody>
@@ -2179,26 +2098,26 @@ Changes the position of a specified stream to a new position.
 
 Returns  **0**  if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table363842080084824"></a>
-<table><thead align="left"><tr id="row595652483084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1405051112084824"><a name="p1405051112084824"></a><a name="p1405051112084824"></a>errno </p>
+<a name="table82240506165622"></a>
+<table><thead align="left"><tr id="row946003154165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p340513080165622"><a name="p340513080165622"></a><a name="p340513080165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p151677400084824"><a name="p151677400084824"></a><a name="p151677400084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p583861995165622"><a name="p583861995165622"></a><a name="p583861995165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1169776398084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1766480501084824"><a name="p1766480501084824"></a><a name="p1766480501084824"></a>EBADF </p>
+<tbody><tr id="row277576611165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p481564370165622"><a name="p481564370165622"></a><a name="p481564370165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1989820768084824"><a name="p1989820768084824"></a><a name="p1989820768084824"></a><strong id="b1295524916084824"><a name="b1295524916084824"></a><a name="b1295524916084824"></a>fp</strong> points to an invalid stream. </p>
-</td>
-</tr>
-<tr id="row362145748084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p426410633084824"><a name="p426410633084824"></a><a name="p426410633084824"></a>EINVAL </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p154788739084824"><a name="p154788739084824"></a><a name="p154788739084824"></a>The value of <strong id="b1304821324084824"><a name="b1304821324084824"></a><a name="b1304821324084824"></a>whence</strong> is not <strong id="b564891487084824"><a name="b564891487084824"></a><a name="b564891487084824"></a>SEEK_SET</strong>, <strong id="b466038311084824"><a name="b466038311084824"></a><a name="b466038311084824"></a>SEEK_END</strong>, or <strong id="b1107483169084824"><a name="b1107483169084824"></a><a name="b1107483169084824"></a>SEEK_CUR</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p662613324165622"><a name="p662613324165622"></a><a name="p662613324165622"></a><strong id="b457190903165622"><a name="b457190903165622"></a><a name="b457190903165622"></a>fp</strong> points to an invalid stream. </p>
 </td>
 </tr>
-<tr id="row505232827084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p432881786084824"><a name="p432881786084824"></a><a name="p432881786084824"></a>ESPIPE </p>
+<tr id="row1803532599165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p215805643165622"><a name="p215805643165622"></a><a name="p215805643165622"></a>EINVAL </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1224630490084824"><a name="p1224630490084824"></a><a name="p1224630490084824"></a>Invalid seek. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1225905576165622"><a name="p1225905576165622"></a><a name="p1225905576165622"></a>The value of <strong id="b82847734165622"><a name="b82847734165622"></a><a name="b82847734165622"></a>whence</strong> is not <strong id="b1378618669165622"><a name="b1378618669165622"></a><a name="b1378618669165622"></a>SEEK_SET</strong>, <strong id="b1232808258165622"><a name="b1232808258165622"></a><a name="b1232808258165622"></a>SEEK_END</strong>, or <strong id="b527846619165622"><a name="b527846619165622"></a><a name="b527846619165622"></a>SEEK_CUR</strong>. </p>
+</td>
+</tr>
+<tr id="row916873773165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p784542124165622"><a name="p784542124165622"></a><a name="p784542124165622"></a>ESPIPE </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1961638017165622"><a name="p1961638017165622"></a><a name="p1961638017165622"></a>Invalid seek. </p>
 </td>
 </tr>
 </tbody>
@@ -2216,45 +2135,45 @@ Sets the position of the next input or output operation on a specified file stre
 
 **Parameters:**
 
-<a name="table1021531806084824"></a>
-<table><thead align="left"><tr id="row1075342603084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1171165321084824"><a name="p1171165321084824"></a><a name="p1171165321084824"></a>Name</p>
+<a name="table1644123693165622"></a>
+<table><thead align="left"><tr id="row618703827165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p352350633165622"><a name="p352350633165622"></a><a name="p352350633165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2146749948084824"><a name="p2146749948084824"></a><a name="p2146749948084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p54367691165622"><a name="p54367691165622"></a><a name="p54367691165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1459716722084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row1222682131165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream for which the position is to set. </td>
 </tr>
-<tr id="row1597494346084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">offset</td>
+<tr id="row625596676165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">offset</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the offset that determines the next operation. </td>
 </tr>
-<tr id="row1920121511084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">whence</td>
+<tr id="row80957137165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">whence</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the start position of the offset. The following table describes the available values. </td>
 </tr>
 </tbody>
 </table>
 
-<a name="table1725899372084824"></a>
-<table><thead align="left"><tr id="row1857924598084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2104635173084824"><a name="p2104635173084824"></a><a name="p2104635173084824"></a>value </p>
+<a name="table2015637694165622"></a>
+<table><thead align="left"><tr id="row2011079529165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p329759525165622"><a name="p329759525165622"></a><a name="p329759525165622"></a>value </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p926548554084824"><a name="p926548554084824"></a><a name="p926548554084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1672645911165622"><a name="p1672645911165622"></a><a name="p1672645911165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1447406032084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p35694286084824"><a name="p35694286084824"></a><a name="p35694286084824"></a>SEEK_SET </p>
+<tbody><tr id="row1991218825165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1608005453165622"><a name="p1608005453165622"></a><a name="p1608005453165622"></a>SEEK_SET </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p348807792084824"><a name="p348807792084824"></a><a name="p348807792084824"></a>Beginning of the file </p>
-</td>
-</tr>
-<tr id="row1637296128084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p785384602084824"><a name="p785384602084824"></a><a name="p785384602084824"></a>SEEK_CUR </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p537584699084824"><a name="p537584699084824"></a><a name="p537584699084824"></a>Current position </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1939216243165622"><a name="p1939216243165622"></a><a name="p1939216243165622"></a>Beginning of the file </p>
 </td>
 </tr>
-<tr id="row2043220634084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1589492207084824"><a name="p1589492207084824"></a><a name="p1589492207084824"></a>SEEK_END </p>
+<tr id="row1638296628165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p709886507165622"><a name="p709886507165622"></a><a name="p709886507165622"></a>SEEK_CUR </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1125198982084824"><a name="p1125198982084824"></a><a name="p1125198982084824"></a>End of the file </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1484688553165622"><a name="p1484688553165622"></a><a name="p1484688553165622"></a>Current position </p>
+</td>
+</tr>
+<tr id="row1469594570165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p604304200165622"><a name="p604304200165622"></a><a name="p604304200165622"></a>SEEK_END </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2100457686165622"><a name="p2100457686165622"></a><a name="p2100457686165622"></a>End of the file </p>
 </td>
 </tr>
 </tbody>
@@ -2264,26 +2183,26 @@ Sets the position of the next input or output operation on a specified file stre
 
 Returns  **0**  if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table1996427184084824"></a>
-<table><thead align="left"><tr id="row1410880878084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1863120677084824"><a name="p1863120677084824"></a><a name="p1863120677084824"></a>errno </p>
+<a name="table983378080165622"></a>
+<table><thead align="left"><tr id="row705300714165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1954753927165622"><a name="p1954753927165622"></a><a name="p1954753927165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1493989890084824"><a name="p1493989890084824"></a><a name="p1493989890084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p265406190165622"><a name="p265406190165622"></a><a name="p265406190165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1795488630084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p139753032084824"><a name="p139753032084824"></a><a name="p139753032084824"></a>EBADF </p>
+<tbody><tr id="row541009159165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1520195576165622"><a name="p1520195576165622"></a><a name="p1520195576165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p916982324084824"><a name="p916982324084824"></a><a name="p916982324084824"></a><strong id="b493210783084824"><a name="b493210783084824"></a><a name="b493210783084824"></a>fp</strong> points to an invalid stream. </p>
-</td>
-</tr>
-<tr id="row993128608084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p241983663084824"><a name="p241983663084824"></a><a name="p241983663084824"></a>EINVAL </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p347636126084824"><a name="p347636126084824"></a><a name="p347636126084824"></a>The value of <strong id="b948944561084824"><a name="b948944561084824"></a><a name="b948944561084824"></a>whence</strong> is not <strong id="b21880890084824"><a name="b21880890084824"></a><a name="b21880890084824"></a>SEEK_SET</strong>, <strong id="b838865876084824"><a name="b838865876084824"></a><a name="b838865876084824"></a>SEEK_END</strong>, or <strong id="b2009435712084824"><a name="b2009435712084824"></a><a name="b2009435712084824"></a>SEEK_CUR</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p540264614165622"><a name="p540264614165622"></a><a name="p540264614165622"></a><strong id="b413694159165622"><a name="b413694159165622"></a><a name="b413694159165622"></a>fp</strong> points to an invalid stream. </p>
 </td>
 </tr>
-<tr id="row751770326084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2133621487084824"><a name="p2133621487084824"></a><a name="p2133621487084824"></a>ESPIPE </p>
+<tr id="row256698910165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p453864324165622"><a name="p453864324165622"></a><a name="p453864324165622"></a>EINVAL </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p218842335084824"><a name="p218842335084824"></a><a name="p218842335084824"></a>Invalid seek. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2041844480165622"><a name="p2041844480165622"></a><a name="p2041844480165622"></a>The value of <strong id="b1077887257165622"><a name="b1077887257165622"></a><a name="b1077887257165622"></a>whence</strong> is not <strong id="b963032396165622"><a name="b963032396165622"></a><a name="b963032396165622"></a>SEEK_SET</strong>, <strong id="b1935112121165622"><a name="b1935112121165622"></a><a name="b1935112121165622"></a>SEEK_END</strong>, or <strong id="b1546873665165622"><a name="b1546873665165622"></a><a name="b1546873665165622"></a>SEEK_CUR</strong>. </p>
+</td>
+</tr>
+<tr id="row2002352570165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p768960913165622"><a name="p768960913165622"></a><a name="p768960913165622"></a>ESPIPE </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1256961240165622"><a name="p1256961240165622"></a><a name="p1256961240165622"></a>Invalid seek. </p>
 </td>
 </tr>
 </tbody>
@@ -2301,17 +2220,17 @@ Sets the file position indicator for a specified file stream.
 
 **Parameters:**
 
-<a name="table1211231126084824"></a>
-<table><thead align="left"><tr id="row244824827084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p500145371084824"><a name="p500145371084824"></a><a name="p500145371084824"></a>Name</p>
+<a name="table1158293789165622"></a>
+<table><thead align="left"><tr id="row254707053165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1577632732165622"><a name="p1577632732165622"></a><a name="p1577632732165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p791150582084824"><a name="p791150582084824"></a><a name="p791150582084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1795515791165622"><a name="p1795515791165622"></a><a name="p1795515791165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1690067190084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row2144878330165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream for which the position is to set. </td>
 </tr>
-<tr id="row1811669159084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">pos</td>
+<tr id="row1433275989165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">pos</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the position to set. </td>
 </tr>
 </tbody>
@@ -2321,21 +2240,21 @@ Sets the file position indicator for a specified file stream.
 
 Returns  **0**  if the operation is successful; returns a non-zero value and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table1841463791084824"></a>
-<table><thead align="left"><tr id="row1720519671084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p63822774084824"><a name="p63822774084824"></a><a name="p63822774084824"></a>errno </p>
+<a name="table667978092165622"></a>
+<table><thead align="left"><tr id="row117756856165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p269180228165622"><a name="p269180228165622"></a><a name="p269180228165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1046034074084824"><a name="p1046034074084824"></a><a name="p1046034074084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p222449816165622"><a name="p222449816165622"></a><a name="p222449816165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1047411244084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p955610389084824"><a name="p955610389084824"></a><a name="p955610389084824"></a>EBADF </p>
+<tbody><tr id="row574253326165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p879474801165622"><a name="p879474801165622"></a><a name="p879474801165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1321830094084824"><a name="p1321830094084824"></a><a name="p1321830094084824"></a><strong id="b1569132511084824"><a name="b1569132511084824"></a><a name="b1569132511084824"></a>fp</strong> points to an invalid stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1800645434165622"><a name="p1800645434165622"></a><a name="p1800645434165622"></a><strong id="b34745873165622"><a name="b34745873165622"></a><a name="b34745873165622"></a>fp</strong> points to an invalid stream. </p>
 </td>
 </tr>
-<tr id="row394322462084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1788454122084824"><a name="p1788454122084824"></a><a name="p1788454122084824"></a>ESPIPE </p>
+<tr id="row509718918165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p955073459165622"><a name="p955073459165622"></a><a name="p955073459165622"></a>ESPIPE </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p355278229084824"><a name="p355278229084824"></a><a name="p355278229084824"></a>Invalid seek. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p592387468165622"><a name="p592387468165622"></a><a name="p592387468165622"></a>Invalid seek. </p>
 </td>
 </tr>
 </tbody>
@@ -2353,14 +2272,14 @@ Obtains the current value of the file position indicator for a specified file st
 
 **Parameters:**
 
-<a name="table243539161084824"></a>
-<table><thead align="left"><tr id="row1307022887084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p645226562084824"><a name="p645226562084824"></a><a name="p645226562084824"></a>Name</p>
+<a name="table2070107549165622"></a>
+<table><thead align="left"><tr id="row1437132227165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2027966977165622"><a name="p2027966977165622"></a><a name="p2027966977165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1407871558084824"><a name="p1407871558084824"></a><a name="p1407871558084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p133616407165622"><a name="p133616407165622"></a><a name="p133616407165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row276994318084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row1287118609165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream for which the position is to obtain. </td>
 </tr>
 </tbody>
@@ -2370,16 +2289,16 @@ Obtains the current value of the file position indicator for a specified file st
 
 Returns the current offset if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table570081159084824"></a>
-<table><thead align="left"><tr id="row649188007084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p10163732084824"><a name="p10163732084824"></a><a name="p10163732084824"></a>errno </p>
+<a name="table375689589165622"></a>
+<table><thead align="left"><tr id="row1595453173165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p338911171165622"><a name="p338911171165622"></a><a name="p338911171165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p41600827084824"><a name="p41600827084824"></a><a name="p41600827084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p943112507165622"><a name="p943112507165622"></a><a name="p943112507165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row336335513084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1347707155084824"><a name="p1347707155084824"></a><a name="p1347707155084824"></a>EBADF </p>
+<tbody><tr id="row128093773165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p362786180165622"><a name="p362786180165622"></a><a name="p362786180165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p360279603084824"><a name="p360279603084824"></a><a name="p360279603084824"></a><strong id="b1725356406084824"><a name="b1725356406084824"></a><a name="b1725356406084824"></a>fp</strong> points to an invalid stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1022292937165622"><a name="p1022292937165622"></a><a name="p1022292937165622"></a><strong id="b1425377885165622"><a name="b1425377885165622"></a><a name="b1425377885165622"></a>fp</strong> points to an invalid stream. </p>
 </td>
 </tr>
 </tbody>
@@ -2397,14 +2316,14 @@ Obtains the current value of the file position indicator for a specified file st
 
 **Parameters:**
 
-<a name="table1933181945084824"></a>
-<table><thead align="left"><tr id="row409037396084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p952341646084824"><a name="p952341646084824"></a><a name="p952341646084824"></a>Name</p>
+<a name="table271760502165622"></a>
+<table><thead align="left"><tr id="row1655323437165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p335571909165622"><a name="p335571909165622"></a><a name="p335571909165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2039613476084824"><a name="p2039613476084824"></a><a name="p2039613476084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1948626862165622"><a name="p1948626862165622"></a><a name="p1948626862165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1241116716084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
+<tbody><tr id="row1372274225165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream for which the position is to obtain. </td>
 </tr>
 </tbody>
@@ -2414,16 +2333,16 @@ Obtains the current value of the file position indicator for a specified file st
 
 Returns the current offset if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table1375335792084824"></a>
-<table><thead align="left"><tr id="row1515502276084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p249560418084824"><a name="p249560418084824"></a><a name="p249560418084824"></a>errno </p>
+<a name="table368185301165622"></a>
+<table><thead align="left"><tr id="row138303220165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1023659916165622"><a name="p1023659916165622"></a><a name="p1023659916165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p333616294084824"><a name="p333616294084824"></a><a name="p333616294084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p872768414165622"><a name="p872768414165622"></a><a name="p872768414165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1967289512084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p713502192084824"><a name="p713502192084824"></a><a name="p713502192084824"></a>EBADF </p>
+<tbody><tr id="row1995268045165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p859929408165622"><a name="p859929408165622"></a><a name="p859929408165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p451134362084824"><a name="p451134362084824"></a><a name="p451134362084824"></a><strong id="b152606107084824"><a name="b152606107084824"></a><a name="b152606107084824"></a>fp</strong> points to an invalid stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p643199459165622"><a name="p643199459165622"></a><a name="p643199459165622"></a><strong id="b519410962165622"><a name="b519410962165622"></a><a name="b519410962165622"></a>fp</strong> points to an invalid stream. </p>
 </td>
 </tr>
 </tbody>
@@ -2443,14 +2362,14 @@ This function facilitates I/O operations in multiple threads. If the file has be
 
 **Parameters:**
 
-<a name="table2102702878084824"></a>
-<table><thead align="left"><tr id="row467165761084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p537678775084824"><a name="p537678775084824"></a><a name="p537678775084824"></a>Name</p>
+<a name="table744731074165622"></a>
+<table><thead align="left"><tr id="row708554009165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p102164520165622"><a name="p102164520165622"></a><a name="p102164520165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2073656560084824"><a name="p2073656560084824"></a><a name="p2073656560084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1633148600165622"><a name="p1633148600165622"></a><a name="p1633148600165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1955536400084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">filehandle</td>
+<tbody><tr id="row115621300165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">filehandle</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object. </td>
 </tr>
 </tbody>
@@ -2459,8 +2378,6 @@ This function facilitates I/O operations in multiple threads. If the file has be
 **Returns:**
 
 Returns  **0**  if the locking is successful; returns a non-zero value otherwise. 
-
-
 
 ## funlockfile\(\)<a name="ga4f016c54ff86ca62454417bb7b32ab11"></a>
 
@@ -2476,14 +2393,14 @@ This function is used to reduce the lock count.
 
 **Parameters:**
 
-<a name="table2015957129084824"></a>
-<table><thead align="left"><tr id="row1094388831084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1162597710084824"><a name="p1162597710084824"></a><a name="p1162597710084824"></a>Name</p>
+<a name="table1010140664165622"></a>
+<table><thead align="left"><tr id="row673548146165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1079214723165622"><a name="p1079214723165622"></a><a name="p1079214723165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1908532304084824"><a name="p1908532304084824"></a><a name="p1908532304084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p169742449165622"><a name="p169742449165622"></a><a name="p169742449165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1992555770084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">filehandle</td>
+<tbody><tr id="row37824980165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">filehandle</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file whose lock count is to be reduced. </td>
 </tr>
 </tbody>
@@ -2501,23 +2418,23 @@ Writes data to a specified stream.
 
 **Parameters:**
 
-<a name="table730286807084824"></a>
-<table><thead align="left"><tr id="row1824395964084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p518718022084824"><a name="p518718022084824"></a><a name="p518718022084824"></a>Name</p>
+<a name="table269391338165622"></a>
+<table><thead align="left"><tr id="row1561375854165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1905874069165622"><a name="p1905874069165622"></a><a name="p1905874069165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1139264469084824"><a name="p1139264469084824"></a><a name="p1139264469084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1961353749165622"><a name="p1961353749165622"></a><a name="p1961353749165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row668954785084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ptr</td>
+<tbody><tr id="row1279315876165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ptr</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the data to write. </td>
 </tr>
-<tr id="row1156293275084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row47986092165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of each element to write, in bytes. </td>
 </tr>
-<tr id="row593497556084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">nmemb</td>
+<tr id="row2142862627165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">nmemb</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of elements to write. </td>
 </tr>
-<tr id="row899986029084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row1472700560165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream to which data is to write. </td>
 </tr>
 </tbody>
@@ -2527,16 +2444,16 @@ Writes data to a specified stream.
 
 Returns  **0**  if  **size**  or  **nmemb**  is  **0**; returns the number of elements successfully written otherwise. If this number is not  **nmemb**, this function sets  **errno**  to a value in the following table if the number is not  **nmemb**. 
 
-<a name="table633877124084824"></a>
-<table><thead align="left"><tr id="row327632478084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1355502515084824"><a name="p1355502515084824"></a><a name="p1355502515084824"></a>errno </p>
+<a name="table916055627165622"></a>
+<table><thead align="left"><tr id="row1725956630165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1980305686165622"><a name="p1980305686165622"></a><a name="p1980305686165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1733311174084824"><a name="p1733311174084824"></a><a name="p1733311174084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1603904574165622"><a name="p1603904574165622"></a><a name="p1603904574165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row613135657084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1245050998084824"><a name="p1245050998084824"></a><a name="p1245050998084824"></a>EBADF </p>
+<tbody><tr id="row895970885165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1925517903165622"><a name="p1925517903165622"></a><a name="p1925517903165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p826294384084824"><a name="p826294384084824"></a><a name="p826294384084824"></a><strong id="b1423177830084824"><a name="b1423177830084824"></a><a name="b1423177830084824"></a>stream</strong> points to an invalid stream. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p6832439165622"><a name="p6832439165622"></a><a name="p6832439165622"></a><strong id="b1516600351165622"><a name="b1516600351165622"></a><a name="b1516600351165622"></a>stream</strong> points to an invalid stream. </p>
 </td>
 </tr>
 </tbody>
@@ -2554,14 +2471,14 @@ Reads a character from a specified file stream.
 
 **Parameters:**
 
-<a name="table408869158084824"></a>
-<table><thead align="left"><tr id="row1911999694084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1291054198084824"><a name="p1291054198084824"></a><a name="p1291054198084824"></a>Name</p>
+<a name="table1539510790165622"></a>
+<table><thead align="left"><tr id="row75736170165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p532613521165622"><a name="p532613521165622"></a><a name="p532613521165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p81652850084824"><a name="p81652850084824"></a><a name="p81652850084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2044852343165622"><a name="p2044852343165622"></a><a name="p2044852343165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row688620259084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row1302161859165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -2575,8 +2492,6 @@ The difference between this function and  **fgetc**  is that this function can b
 
 Returns the character read as an int value if the operation is successful; returns  **EOF**  if the end-of-file is reached or a reading error occurs. 
 
-
-
 ## getc\_unlocked\(\)<a name="ga169f9b7e933ba56156885e30f7263b28"></a>
 
 ```
@@ -2589,14 +2504,14 @@ Obtains a character from a specified file stream without locking the file stream
 
 **Parameters:**
 
-<a name="table363639248084824"></a>
-<table><thead align="left"><tr id="row998031419084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1739748879084824"><a name="p1739748879084824"></a><a name="p1739748879084824"></a>Name</p>
+<a name="table412100298165622"></a>
+<table><thead align="left"><tr id="row1379244873165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1673013881165622"><a name="p1673013881165622"></a><a name="p1673013881165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1647233749084824"><a name="p1647233749084824"></a><a name="p1647233749084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p946224196165622"><a name="p946224196165622"></a><a name="p946224196165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1212375396084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row1832077259165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -2609,8 +2524,6 @@ Use this function with caution in multi-thread scenarios.
 **Returns:**
 
 Returns the obtained character. 
-
-
 
 ## getchar\(\)<a name="ga3e29caa20f7cffe18f410f01278905a8"></a>
 
@@ -2627,8 +2540,6 @@ This function waits for user input and does not return until any input is availa
 **Returns:**
 
 Returns the character read as an int value if the operation is successful; returns  **EOF**  if the end-of-file is reached or a reading error occurs. 
-
-
 
 ## getchar\_unlocked\(\)<a name="gafef7e39f2376c63728163cd5ccfbe99e"></a>
 
@@ -2650,8 +2561,6 @@ Use this function with caution in multi-thread scenarios.
 
 Returns the character forcibly converted to an int value if the operation is successful; returns  **EOF**  if the end-of-file is reached or a reading error occurs. 
 
-
-
 ## getdelim\(\)<a name="gab87a24b4c09e8fc3712a6d6090bfd371"></a>
 
 ```
@@ -2664,23 +2573,23 @@ Reads an entire line from a specified file stream.
 
 **Parameters:**
 
-<a name="table1376945098084824"></a>
-<table><thead align="left"><tr id="row1284623447084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p25351975084824"><a name="p25351975084824"></a><a name="p25351975084824"></a>Name</p>
+<a name="table1094246380165622"></a>
+<table><thead align="left"><tr id="row1967277591165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p105072357165622"><a name="p105072357165622"></a><a name="p105072357165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p877744076084824"><a name="p877744076084824"></a><a name="p877744076084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1658535170165622"><a name="p1658535170165622"></a><a name="p1658535170165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1832442405084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">lineptr</td>
+<tbody><tr id="row892642458165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">lineptr</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the buffer for storing the characters in the line. </td>
 </tr>
-<tr id="row569883764084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">n</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the size of the buffer. If the system needs to dynamically allocate memory, set this parameter to <strong id="b1971581629084824"><a name="b1971581629084824"></a><a name="b1971581629084824"></a>0</strong>. </td>
+<tr id="row2014460809165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">n</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the size of the buffer. If the system needs to dynamically allocate memory, set this parameter to <strong id="b1156440016165622"><a name="b1156440016165622"></a><a name="b1156440016165622"></a>0</strong>. </td>
 </tr>
-<tr id="row325514936084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">delim</td>
+<tr id="row803837781165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">delim</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the line delimiter. </td>
 </tr>
-<tr id="row1189519957084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row500420572165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -2693,8 +2602,6 @@ If the system dynamically allocates memory, the memory needs to be released afte
 **Returns:**
 
 Returns the number of bytes read if the operation is successful; returns  **-1**  otherwise. 
-
-
 
 ## getline\(\)<a name="gaaf07c1bbc2aa081a54bdd66f0e152312"></a>
 
@@ -2708,20 +2615,20 @@ Reads an entire line from a specified file stream.
 
 **Parameters:**
 
-<a name="table197444183084824"></a>
-<table><thead align="left"><tr id="row601144980084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p798395648084824"><a name="p798395648084824"></a><a name="p798395648084824"></a>Name</p>
+<a name="table1754550205165622"></a>
+<table><thead align="left"><tr id="row1764387596165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1299762613165622"><a name="p1299762613165622"></a><a name="p1299762613165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1403482801084824"><a name="p1403482801084824"></a><a name="p1403482801084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p778731433165622"><a name="p778731433165622"></a><a name="p778731433165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2145399536084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">lineptr</td>
+<tbody><tr id="row1556720481165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">lineptr</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the buffer for storing the characters in the line. </td>
 </tr>
-<tr id="row1191983060084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">n</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the size of the buffer. If the system needs to dynamically allocate memory, set this parameter to <strong id="b2083293039084824"><a name="b2083293039084824"></a><a name="b2083293039084824"></a>0</strong>. </td>
+<tr id="row366507919165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">n</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the size of the buffer. If the system needs to dynamically allocate memory, set this parameter to <strong id="b827334524165622"><a name="b827334524165622"></a><a name="b827334524165622"></a>0</strong>. </td>
 </tr>
-<tr id="row604833631084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row2060255290165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -2735,8 +2642,6 @@ If the system dynamically allocates memory, the memory needs to be released afte
 
 Returns the number of bytes read if the operation is successful; returns  **-1**  otherwise. 
 
-
-
 ## gets\(\)<a name="gaab85b30d68ce9d9e0475e0f51bf610b1"></a>
 
 ```
@@ -2749,14 +2654,14 @@ Reads a line of characters from the stdin and stores it in the buffer.
 
 **Parameters:**
 
-<a name="table1805712489084824"></a>
-<table><thead align="left"><tr id="row936134999084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1521318582084824"><a name="p1521318582084824"></a><a name="p1521318582084824"></a>Name</p>
+<a name="table2143770594165622"></a>
+<table><thead align="left"><tr id="row1083539997165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2079945900165622"><a name="p2079945900165622"></a><a name="p2079945900165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1047602051084824"><a name="p1047602051084824"></a><a name="p1047602051084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p658520029165622"><a name="p658520029165622"></a><a name="p658520029165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1095629579084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
+<tbody><tr id="row887745361165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the memory buffer for storing the obtained string. </td>
 </tr>
 </tbody>
@@ -2770,8 +2675,6 @@ The  **[gets\(\)](io.md#gaab85b30d68ce9d9e0475e0f51bf610b1)**  function cannot p
 
 Returns the value of  **s**  if the operation is successful; returns  **NULL**  otherwise. 
 
-
-
 ## getw\(\)<a name="ga6d475ead5d1f35e3f14423a99ef3a992"></a>
 
 ```
@@ -2784,14 +2687,14 @@ Reads a word \(an int value\) from a specified file stream.
 
 **Parameters:**
 
-<a name="table205249756084824"></a>
-<table><thead align="left"><tr id="row89896252084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1956058177084824"><a name="p1956058177084824"></a><a name="p1956058177084824"></a>Name</p>
+<a name="table119754633165622"></a>
+<table><thead align="left"><tr id="row1657879237165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1493363661165622"><a name="p1493363661165622"></a><a name="p1493363661165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1271123222084824"><a name="p1271123222084824"></a><a name="p1271123222084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1096029882165622"><a name="p1096029882165622"></a><a name="p1096029882165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row171550975084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row76660998165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -2805,8 +2708,6 @@ This function is provided for compatibility with System V Release 4 \(SVR4\). Yo
 
 Returns the integer read if the operation is successful; returns  **EOP**  otherwise. 
 
-
-
 ## iconv\(\)<a name="gab7c1300a663def659ce6d4a01076c39d"></a>
 
 ```
@@ -2819,26 +2720,26 @@ Converts a character set.
 
 **Parameters:**
 
-<a name="table1008839594084824"></a>
-<table><thead align="left"><tr id="row402186762084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1785571366084824"><a name="p1785571366084824"></a><a name="p1785571366084824"></a>Name</p>
+<a name="table474048996165622"></a>
+<table><thead align="left"><tr id="row450787615165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p270411440165622"><a name="p270411440165622"></a><a name="p270411440165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1455634770084824"><a name="p1455634770084824"></a><a name="p1455634770084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p894929618165622"><a name="p894929618165622"></a><a name="p894929618165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1136096435084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cd</td>
+<tbody><tr id="row1099070301165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the conversion descriptor obtained via <a href="io.md#ga934548ab8aaae237ac5cce0ed0b3edec">iconv_open</a>. </td>
 </tr>
-<tr id="row571059866084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">in</td>
+<tr id="row1955617224165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">in</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the buffer for storing the input character. </td>
 </tr>
-<tr id="row2128151530084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">inb</td>
+<tr id="row506359785165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">inb</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the length of the character input buffer. </td>
 </tr>
-<tr id="row1746317385084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">out</td>
+<tr id="row1757629357165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">out</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the buffer for storing the output character. </td>
 </tr>
-<tr id="row1510752850084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">outb</td>
+<tr id="row1120287567165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">outb</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to length of the character output buffer. </td>
 </tr>
 </tbody>
@@ -2848,26 +2749,26 @@ Converts a character set.
 
 Returns the number of irreversibly converted characters if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table2048483029084824"></a>
-<table><thead align="left"><tr id="row9992104084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p67605487084824"><a name="p67605487084824"></a><a name="p67605487084824"></a>errno </p>
+<a name="table563903864165622"></a>
+<table><thead align="left"><tr id="row111911618165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1857725072165622"><a name="p1857725072165622"></a><a name="p1857725072165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1071020455084824"><a name="p1071020455084824"></a><a name="p1071020455084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p180414071165622"><a name="p180414071165622"></a><a name="p180414071165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1958296856084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1334161392084824"><a name="p1334161392084824"></a><a name="p1334161392084824"></a>EILSEQ </p>
+<tbody><tr id="row1512061748165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1296932284165622"><a name="p1296932284165622"></a><a name="p1296932284165622"></a>EILSEQ </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2006337978084824"><a name="p2006337978084824"></a><a name="p2006337978084824"></a>An invalid multi-byte sequence is encountered in the input. </p>
-</td>
-</tr>
-<tr id="row1976518634084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p142738260084824"><a name="p142738260084824"></a><a name="p142738260084824"></a>E2BIG </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1240725063084824"><a name="p1240725063084824"></a><a name="p1240725063084824"></a>The output buffer space is insufficient. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p719359922165622"><a name="p719359922165622"></a><a name="p719359922165622"></a>An invalid multi-byte sequence is encountered in the input. </p>
 </td>
 </tr>
-<tr id="row1908267683084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2008881299084824"><a name="p2008881299084824"></a><a name="p2008881299084824"></a>EINVAL </p>
+<tr id="row1978734473165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1845454620165622"><a name="p1845454620165622"></a><a name="p1845454620165622"></a>E2BIG </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1377047557084824"><a name="p1377047557084824"></a><a name="p1377047557084824"></a>An incomplete multi-byte sequence is encountered in the input. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p898670390165622"><a name="p898670390165622"></a><a name="p898670390165622"></a>The output buffer space is insufficient. </p>
+</td>
+</tr>
+<tr id="row2069005121165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1873693207165622"><a name="p1873693207165622"></a><a name="p1873693207165622"></a>EINVAL </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1133211301165622"><a name="p1133211301165622"></a><a name="p1133211301165622"></a>An incomplete multi-byte sequence is encountered in the input. </p>
 </td>
 </tr>
 </tbody>
@@ -2885,14 +2786,14 @@ Closes a character set conversion descriptor.
 
 **Parameters:**
 
-<a name="table1701721541084824"></a>
-<table><thead align="left"><tr id="row2062823284084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p297124119084824"><a name="p297124119084824"></a><a name="p297124119084824"></a>Name</p>
+<a name="table1536257029165622"></a>
+<table><thead align="left"><tr id="row1027767705165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1055504547165622"><a name="p1055504547165622"></a><a name="p1055504547165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p639312981084824"><a name="p639312981084824"></a><a name="p639312981084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2134465808165622"><a name="p2134465808165622"></a><a name="p2134465808165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1658957022084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cd</td>
+<tbody><tr id="row583155601165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the conversion descriptor to close. </td>
 </tr>
 </tbody>
@@ -2901,8 +2802,6 @@ Closes a character set conversion descriptor.
 **Returns:**
 
 Returns  **0**. 
-
-
 
 ## iconv\_open\(\)<a name="ga934548ab8aaae237ac5cce0ed0b3edec"></a>
 
@@ -2916,17 +2815,17 @@ Obtain a character set conversion descriptor.
 
 **Parameters:**
 
-<a name="table1956950161084824"></a>
-<table><thead align="left"><tr id="row73969919084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p80790165084824"><a name="p80790165084824"></a><a name="p80790165084824"></a>Name</p>
+<a name="table117074274165622"></a>
+<table><thead align="left"><tr id="row555488059165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p499414937165622"><a name="p499414937165622"></a><a name="p499414937165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p93582199084824"><a name="p93582199084824"></a><a name="p93582199084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p42976630165622"><a name="p42976630165622"></a><a name="p42976630165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row856716473084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">to</td>
+<tbody><tr id="row1596533124165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">to</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the source character set for conversion. </td>
 </tr>
-<tr id="row875814902084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">from</td>
+<tr id="row1356232903165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">from</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the target character set for conversion. </td>
 </tr>
 </tbody>
@@ -2935,77 +2834,6 @@ Obtain a character set conversion descriptor.
 **Returns:**
 
 Returns the character set conversion descriptor if the operation is successful; returns  **-1**  otherwise. 
-
-
-
-## lio\_listio\(\)<a name="gae15ea0aaa18c5f007c3933085749ecaf"></a>
-
-```
-int lio_listio (int mode, struct aiocb *restrict const *restrict cbs, int cnt, struct [sigevent](sigevent.md) *restrict sev )
-```
-
- **Description:**
-
-Initiates AIO requests. 
-
-**Parameters:**
-
-<a name="table601034553084824"></a>
-<table><thead align="left"><tr id="row1348868553084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p899905478084824"><a name="p899905478084824"></a><a name="p899905478084824"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1282577279084824"><a name="p1282577279084824"></a><a name="p1282577279084824"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1172219036084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the mode of notification upon the completion of AIO operations. </td>
-</tr>
-<tr id="row1730229713084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cbs</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to an array of pointers to the <strong id="b21776584084824"><a name="b21776584084824"></a><a name="b21776584084824"></a>aiocb</strong> structure. </td>
-</tr>
-<tr id="row1947915183084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cnt</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the array size. </td>
-</tr>
-<tr id="row1307656571084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">sev</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the asynchronous notification mode. The value <strong id="b421870478084824"><a name="b421870478084824"></a><a name="b421870478084824"></a>NULL</strong> indicates that a notification is not required. </td>
-</tr>
-</tbody>
-</table>
-
-**Returns:**
-
-Returns  **0**  if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
-
-<a name="table831936321084824"></a>
-<table><thead align="left"><tr id="row1307076938084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p727895801084824"><a name="p727895801084824"></a><a name="p727895801084824"></a>errno </p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p786549433084824"><a name="p786549433084824"></a><a name="p786549433084824"></a>Description  </p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row2041845940084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p80743307084824"><a name="p80743307084824"></a><a name="p80743307084824"></a>EAGAIN </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p745736232084824"><a name="p745736232084824"></a><a name="p745736232084824"></a>Insufficient resources </p>
-</td>
-</tr>
-</tbody>
-</table>
-
-## localeconv\(\)<a name="ga69b40f71a20a7c8bd67b9eeeae7f40c9"></a>
-
-```
-struct [lconv](lconv.md)* localeconv (void )
-```
-
- **Description:**
-
-Obtains the locale information about a region and stores them in  [lconv](lconv.md). 
-
-**Returns:**
-
-Returns a pointer to  **lconv**  that stores region information. 
-
-
 
 ## open\_memstream\(\)<a name="gac7250554d80d31f4d8ad316c4c3c3c85"></a>
 
@@ -3021,17 +2849,17 @@ The buffer is dynamically allocated and grown. After the stream is closed, call 
 
 **Parameters:**
 
-<a name="table1062773333084824"></a>
-<table><thead align="left"><tr id="row753188463084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1880888708084824"><a name="p1880888708084824"></a><a name="p1880888708084824"></a>Name</p>
+<a name="table1712570666165622"></a>
+<table><thead align="left"><tr id="row1791570233165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1054700915165622"><a name="p1054700915165622"></a><a name="p1054700915165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1915520789084824"><a name="p1915520789084824"></a><a name="p1915520789084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1823568686165622"><a name="p1823568686165622"></a><a name="p1823568686165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row497342200084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ptr</td>
+<tbody><tr id="row126528287165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ptr</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer address. </td>
 </tr>
-<tr id="row885955896084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row302787431165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer size. </td>
 </tr>
 </tbody>
@@ -3040,57 +2868,6 @@ The buffer is dynamically allocated and grown. After the stream is closed, call 
 **Returns:**
 
 Returns the pointer to the stream if the operation is successful; returns  **NULL**  and sets  **errno**  to indicate an error otherwise. 
-
-
-
-## pclose\(\)<a name="ga30839d83d780a6a3d13bf40c2d666827"></a>
-
-```
-int pclose ([FILE](io.md#ga912af5ab9f8a52ddd387b7defc0b49f1) * f)
-```
-
- **Description:**
-
-Closes a specified pipe. 
-
-**Parameters:**
-
-<a name="table3732236084824"></a>
-<table><thead align="left"><tr id="row1973961517084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p518515434084824"><a name="p518515434084824"></a><a name="p518515434084824"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p521510770084824"><a name="p521510770084824"></a><a name="p521510770084824"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1039000952084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">f</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a pipe to close. </td>
-</tr>
-</tbody>
-</table>
-
-**Returns:**
-
-Returns the thread termination status code if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table otherwise. 
-
-<a name="table1361022526084824"></a>
-<table><thead align="left"><tr id="row1523490038084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1848739616084824"><a name="p1848739616084824"></a><a name="p1848739616084824"></a>errno </p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1402938303084824"><a name="p1402938303084824"></a><a name="p1402938303084824"></a>Description  </p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row660770865084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p286286981084824"><a name="p286286981084824"></a><a name="p286286981084824"></a>ECHILD </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1465335737084824"><a name="p1465335737084824"></a><a name="p1465335737084824"></a>The child process does not exist, or the specified process group does not exist. </p>
-</td>
-</tr>
-<tr id="row569146530084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p532146403084824"><a name="p532146403084824"></a><a name="p532146403084824"></a>ESRCH </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2129463989084824"><a name="p2129463989084824"></a><a name="p2129463989084824"></a>The child process ends abnormally. </p>
-</td>
-</tr>
-</tbody>
-</table>
 
 ## perror\(\)<a name="ga80b37b56a5a42139dccaef56da4bf82a"></a>
 
@@ -3104,14 +2881,14 @@ Prints the last error occurred during a call to a system or library function to 
 
 **Parameters:**
 
-<a name="table1737899153084824"></a>
-<table><thead align="left"><tr id="row575709417084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1104047880084824"><a name="p1104047880084824"></a><a name="p1104047880084824"></a>Name</p>
+<a name="table1463532218165622"></a>
+<table><thead align="left"><tr id="row640971953165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1016049811165622"><a name="p1016049811165622"></a><a name="p1016049811165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p966947998084824"><a name="p966947998084824"></a><a name="p966947998084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1803712478165622"><a name="p1803712478165622"></a><a name="p1803712478165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row688093571084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">msg</td>
+<tbody><tr id="row205064767165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">msg</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the prompt message printed to stderr before the error message itself. </td>
 </tr>
 </tbody>
@@ -3119,9 +2896,7 @@ Prints the last error occurred during a call to a system or library function to 
 
 **Attention:**
 
-To make the output message more useful,  **msg**  should convey obvious information describing what happened. When a system call fails, it usually returns  **-1**  and sets  **errno**  to a value that describes what went wrong. The error codes can be found in  **[errno.h](errno-h.md)**. 
-
-
+To make the output message more useful,  **msg**  should convey obvious information describing what happened. When a system call fails, it usually returns  **-1**  and sets  **errno**  to a value that describes what went wrong. The error codes can be found in  **errno.h**. 
 
 ## poll\(\)<a name="gab7fc0f6be5f13c81de180c1288ba3b6f"></a>
 
@@ -3137,20 +2912,20 @@ This function is used to mount the pointer to the  **pollfd**  file to the waiti
 
 **Parameters:**
 
-<a name="table16882620084824"></a>
-<table><thead align="left"><tr id="row63813434084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p219665653084824"><a name="p219665653084824"></a><a name="p219665653084824"></a>Name</p>
+<a name="table561199508165622"></a>
+<table><thead align="left"><tr id="row1034004365165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p325484592165622"><a name="p325484592165622"></a><a name="p325484592165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1262807646084824"><a name="p1262807646084824"></a><a name="p1262807646084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p69123425165622"><a name="p69123425165622"></a><a name="p69123425165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1179636033084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fds[]</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <strong id="b288575385084824"><a name="b288575385084824"></a><a name="b288575385084824"></a>pollfd</strong> array used to store the socket descriptor to be checked. </td>
+<tbody><tr id="row2037956935165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fds[]</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <strong id="b1982331661165622"><a name="b1982331661165622"></a><a name="b1982331661165622"></a>pollfd</strong> array used to store the socket descriptor to be checked. </td>
 </tr>
-<tr id="row1542223887084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">nfds</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <strong id="b1498480330084824"><a name="b1498480330084824"></a><a name="b1498480330084824"></a>nfds_t</strong> parameter used to mark the total number of structure elements in <strong id="b1780472991084824"><a name="b1780472991084824"></a><a name="b1780472991084824"></a>fds</strong>. </td>
+<tr id="row1918824869165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">nfds</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <strong id="b779124622165622"><a name="b779124622165622"></a><a name="b779124622165622"></a>nfds_t</strong> parameter used to mark the total number of structure elements in <strong id="b2136535200165622"><a name="b2136535200165622"></a><a name="b2136535200165622"></a>fds</strong>. </td>
 </tr>
-<tr id="row579402309084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">timeout</td>
+<tr id="row1289554959165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">timeout</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the blocking time, in milliseconds. </td>
 </tr>
 </tbody>
@@ -3159,8 +2934,6 @@ This function is used to mount the pointer to the  **pollfd**  file to the waiti
 **Returns:**
 
 Returns a value greater than 0 if the total number of socket descriptors in  **fds**  is ready for read or write, or on which errors occur; returns  **0**  otherwise, in which case  **poll**  timed out. Returns  **-1**  and sets  **errno**  to a value if this function fails to be called. 
-
-
 
 ## preadv\(\)<a name="ga94adc8dd94a6bdaaa9cf4d9f388418b3"></a>
 
@@ -3174,23 +2947,23 @@ Reads the data in a file whose  **fd**  offset is  **offset**  to the multi-grou
 
 **Parameters:**
 
-<a name="table107868047084824"></a>
-<table><thead align="left"><tr id="row420564474084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1813208596084824"><a name="p1813208596084824"></a><a name="p1813208596084824"></a>Name</p>
+<a name="table1664430512165622"></a>
+<table><thead align="left"><tr id="row214923726165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p313704209165622"><a name="p313704209165622"></a><a name="p313704209165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p680730417084824"><a name="p680730417084824"></a><a name="p680730417084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1240034475165622"><a name="p1240034475165622"></a><a name="p1240034475165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row581675168084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
+<tbody><tr id="row162811409165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor. </td>
 </tr>
-<tr id="row20259077084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iov</td>
+<tr id="row417192251165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iov</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the multi-group buffer. </td>
 </tr>
-<tr id="row1672414819084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iovcnt</td>
+<tr id="row1889281843165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iovcnt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of buffers. For details, see <a href="utils.md#ga25080e819a36fcf9aede01a6e7298ea4">IOV_MAX</a>. </td>
 </tr>
-<tr id="row1671317546084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">offset</td>
+<tr id="row314364825165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">offset</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the offset of the file descriptor to read. </td>
 </tr>
 </tbody>
@@ -3199,8 +2972,6 @@ Reads the data in a file whose  **fd**  offset is  **offset**  to the multi-grou
 **Returns:**
 
 Returns the number of bytes read if the operation is successful; returns  **-1**  and sets  **errno**  to a value if the operation fails. If  **errno**  is set to  **EINVAL**, the sum of the  **iov\_len**  values overflows an  **ssize\_t**  value, or the vector count  **iovcnt**  is less than 0 or greater than the permitted maximum. 
-
-
 
 ## printf\(\)<a name="ga98631211a4a8aee62f572375d5b637be"></a>
 
@@ -3214,17 +2985,17 @@ Formats arguments based on  **format**  and prints formatted data to the stdout.
 
 **Parameters:**
 
-<a name="table1241070654084824"></a>
-<table><thead align="left"><tr id="row1547411181084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p525038101084824"><a name="p525038101084824"></a><a name="p525038101084824"></a>Name</p>
+<a name="table1309096337165622"></a>
+<table><thead align="left"><tr id="row2141047193165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1482917954165622"><a name="p1482917954165622"></a><a name="p1482917954165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1515179634084824"><a name="p1515179634084824"></a><a name="p1515179634084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p587945534165622"><a name="p587945534165622"></a><a name="p587945534165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2141426395084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tbody><tr id="row1885898942165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row1864612537084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row1366536605165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of arguments corresponding to the format specifiers. </td>
 </tr>
 </tbody>
@@ -3238,8 +3009,6 @@ Formats arguments based on  **format**  and prints formatted data to the stdout.
 
 Returns the total number of characters \(excluding the terminating null character  **'\\0'**\) if the operation is successful; returns a negative value otherwise. 
 
-
-
 ## putc\(\)<a name="ga38f980218f04ebdddcdcd1b77e1cf6b1"></a>
 
 ```
@@ -3252,17 +3021,17 @@ Writes a character to a specified file stream.
 
 **Parameters:**
 
-<a name="table1723178719084824"></a>
-<table><thead align="left"><tr id="row488602135084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1492218152084824"><a name="p1492218152084824"></a><a name="p1492218152084824"></a>Name</p>
+<a name="table1993955349165622"></a>
+<table><thead align="left"><tr id="row293414609165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1931017529165622"><a name="p1931017529165622"></a><a name="p1931017529165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1030765721084824"><a name="p1030765721084824"></a><a name="p1030765721084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p326572268165622"><a name="p326572268165622"></a><a name="p326572268165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1078696380084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
+<tbody><tr id="row1082356463165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the int promotion of the character to write. </td>
 </tr>
-<tr id="row996542598084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row1426117550165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file stream. </td>
 </tr>
 </tbody>
@@ -3273,8 +3042,6 @@ Writes a character to a specified file stream.
 **Returns:**
 
 Returns the ASCII code of the character written if the operation is successful; returns  **EOF**  otherwise. 
-
-
 
 ## putc\_unlocked\(\)<a name="ga340b21ecb337abb08905095e673672f6"></a>
 
@@ -3288,17 +3055,17 @@ Writes a character to a specified file stream with the thread remains unlocked.
 
 **Parameters:**
 
-<a name="table1134967750084824"></a>
-<table><thead align="left"><tr id="row2082728438084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p546303919084824"><a name="p546303919084824"></a><a name="p546303919084824"></a>Name</p>
+<a name="table2146575308165622"></a>
+<table><thead align="left"><tr id="row915188635165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p365233292165622"><a name="p365233292165622"></a><a name="p365233292165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1264638752084824"><a name="p1264638752084824"></a><a name="p1264638752084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1129772187165622"><a name="p1129772187165622"></a><a name="p1129772187165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row241277099084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
+<tbody><tr id="row811921134165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the int promotion of the character to write. </td>
 </tr>
-<tr id="row1746807246084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row1700900560165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -3311,8 +3078,6 @@ This function cannot be used in a multi-thread process because it does not use l
 **Returns:**
 
 Returns the ASCII code of the character written if the operation is successful; returns  **EOF**  otherwise. 
-
-
 
 ## putchar\(\)<a name="gaf4de2514b7778805db3815e8dd6cf09a"></a>
 
@@ -3326,14 +3091,14 @@ Writes a character into the standard output \(stdout\).
 
 **Parameters:**
 
-<a name="table2053960213084824"></a>
-<table><thead align="left"><tr id="row559076139084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1310070484084824"><a name="p1310070484084824"></a><a name="p1310070484084824"></a>Name</p>
+<a name="table1719077432165622"></a>
+<table><thead align="left"><tr id="row1677124362165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p573918256165622"><a name="p573918256165622"></a><a name="p573918256165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1109639886084824"><a name="p1109639886084824"></a><a name="p1109639886084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p320196077165622"><a name="p320196077165622"></a><a name="p320196077165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1773269036084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
+<tbody><tr id="row499431827165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the int promotion of the character to write. </td>
 </tr>
 </tbody>
@@ -3342,8 +3107,6 @@ Writes a character into the standard output \(stdout\).
 **Returns:**
 
 Returns the ASCII code of the character written if the operation is successful; returns  **EOF**  otherwise. 
-
-
 
 ## putchar\_unlocked\(\)<a name="ga07ff061a8fed45cdedbecdd899b5fdb1"></a>
 
@@ -3357,14 +3120,14 @@ Writes a character to the stdout with the thread remains unlocked.
 
 **Parameters:**
 
-<a name="table1401280242084824"></a>
-<table><thead align="left"><tr id="row1632628579084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1094368499084824"><a name="p1094368499084824"></a><a name="p1094368499084824"></a>Name</p>
+<a name="table509215183165622"></a>
+<table><thead align="left"><tr id="row203354680165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p173105150165622"><a name="p173105150165622"></a><a name="p173105150165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1833136550084824"><a name="p1833136550084824"></a><a name="p1833136550084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p59531445165622"><a name="p59531445165622"></a><a name="p59531445165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row831080844084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
+<tbody><tr id="row1563751923165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the int promotion of the character to write. </td>
 </tr>
 </tbody>
@@ -3378,8 +3141,6 @@ This function cannot be used in a multi-thread process because it does not use l
 
 Returns the ASCII code of the character written if the operation is successful; returns  **EOF**  otherwise. 
 
-
-
 ## puts\(\)<a name="gad41876f99f190c7488e64ef39c50a23f"></a>
 
 ```
@@ -3392,14 +3153,14 @@ Writes a character string and appends a new-line character to the stdout.
 
 **Parameters:**
 
-<a name="table756763452084824"></a>
-<table><thead align="left"><tr id="row1913525978084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1515637593084824"><a name="p1515637593084824"></a><a name="p1515637593084824"></a>Name</p>
+<a name="table1230853475165622"></a>
+<table><thead align="left"><tr id="row1209706857165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1181665843165622"><a name="p1181665843165622"></a><a name="p1181665843165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1998665361084824"><a name="p1998665361084824"></a><a name="p1998665361084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p521093657165622"><a name="p521093657165622"></a><a name="p521093657165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1248025816084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
+<tbody><tr id="row1461268292165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">s</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the start address of the output buffer. </td>
 </tr>
 </tbody>
@@ -3408,8 +3169,6 @@ Writes a character string and appends a new-line character to the stdout.
 **Returns:**
 
 Returns a non-negative value if the operation is successful; returns  **EOF**  otherwise. 
-
-
 
 ## putw\(\)<a name="gae3a2f96dac9fa87b964b69ff6d5cce46"></a>
 
@@ -3423,17 +3182,17 @@ Writes a word \(an int value\) to a specified file stream.
 
 **Parameters:**
 
-<a name="table2053591807084824"></a>
-<table><thead align="left"><tr id="row447145868084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1398966727084824"><a name="p1398966727084824"></a><a name="p1398966727084824"></a>Name</p>
+<a name="table604670154165622"></a>
+<table><thead align="left"><tr id="row1059064423165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1527725382165622"><a name="p1527725382165622"></a><a name="p1527725382165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p628262685084824"><a name="p628262685084824"></a><a name="p628262685084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1172572772165622"><a name="p1172572772165622"></a><a name="p1172572772165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2012097917084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">w</td>
+<tbody><tr id="row977566456165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">w</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the word to write. </td>
 </tr>
-<tr id="row1662832172084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row1868487262165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -3447,8 +3206,6 @@ This function is provided for compatibility with SVR4. You are advised to use  [
 
 Returns  **0**  if the operation is successful; returns  **EOP**  otherwise. 
 
-
-
 ## pwritev\(\)<a name="ga3de6f9331d6bb930e748bb61860edbd6"></a>
 
 ```
@@ -3461,23 +3218,23 @@ Writes the data of a multi-group buffer space pointed to by  **iov**  to the off
 
 **Parameters:**
 
-<a name="table701074955084824"></a>
-<table><thead align="left"><tr id="row2000906858084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p421804543084824"><a name="p421804543084824"></a><a name="p421804543084824"></a>Name</p>
+<a name="table210719467165622"></a>
+<table><thead align="left"><tr id="row2058626991165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1174891063165622"><a name="p1174891063165622"></a><a name="p1174891063165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1727023109084824"><a name="p1727023109084824"></a><a name="p1727023109084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1829674980165622"><a name="p1829674980165622"></a><a name="p1829674980165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1393577816084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
+<tbody><tr id="row1575781390165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor. </td>
 </tr>
-<tr id="row283135753084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iov</td>
+<tr id="row1126463833165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iov</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the multi-group buffer. </td>
 </tr>
-<tr id="row85810145084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iovcnt</td>
+<tr id="row810240891165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iovcnt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of buffers. For details, see <a href="utils.md#ga25080e819a36fcf9aede01a6e7298ea4">IOV_MAX</a>. </td>
 </tr>
-<tr id="row1288002885084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">offset</td>
+<tr id="row141932737165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">offset</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the offset of the file descriptor to write. </td>
 </tr>
 </tbody>
@@ -3486,8 +3243,6 @@ Writes the data of a multi-group buffer space pointed to by  **iov**  to the off
 **Returns:**
 
 Returns the number of bytes written if the operation is successful; returns  **-1**  and sets  **errno**  to a value if the operation fails. If  **errno**  is set to  **EINVAL**, the sum of the  **iov\_len**  values overflows an  **ssize\_t**  value, or the vector count  **iovcnt**  is less than 0 or greater than the permitted maximum. 
-
-
 
 ## readv\(\)<a name="gaa1952d693ed3c43292566e643ceb9858"></a>
 
@@ -3501,20 +3256,20 @@ Reads the data of  **fd**  to  **iov**.
 
 **Parameters:**
 
-<a name="table411956521084824"></a>
-<table><thead align="left"><tr id="row2026937776084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p759912475084824"><a name="p759912475084824"></a><a name="p759912475084824"></a>Name</p>
+<a name="table1105456980165622"></a>
+<table><thead align="left"><tr id="row817647373165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p152346431165622"><a name="p152346431165622"></a><a name="p152346431165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p341107978084824"><a name="p341107978084824"></a><a name="p341107978084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p726911193165622"><a name="p726911193165622"></a><a name="p726911193165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row371509541084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
+<tbody><tr id="row1664173495165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor. </td>
 </tr>
-<tr id="row1928752583084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iov</td>
+<tr id="row100025976165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iov</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the multi-group buffer. </td>
 </tr>
-<tr id="row1413639642084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iovcnt</td>
+<tr id="row253629753165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iovcnt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of buffers. For details, see <a href="utils.md#ga25080e819a36fcf9aede01a6e7298ea4">IOV_MAX</a>. </td>
 </tr>
 </tbody>
@@ -3523,8 +3278,6 @@ Reads the data of  **fd**  to  **iov**.
 **Returns:**
 
 Returns the number of bytes read if the operation is successful; returns  **-1**  and sets  **errno**  to a value if the operation fails. If  **errno**  is set to  **EINVAL**, the sum of the  **iov\_len**  values overflows an  **ssize\_t**  value, or the vector count  **iovcnt**  is less than 0 or greater than the permitted maximum. 
-
-
 
 ## remove\(\)<a name="ga02b13b56a188401119ea4da43c184913"></a>
 
@@ -3538,14 +3291,14 @@ Deletes a specified file or directory from the file system.
 
 **Parameters:**
 
-<a name="table1788890373084824"></a>
-<table><thead align="left"><tr id="row1127201576084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1121807250084824"><a name="p1121807250084824"></a><a name="p1121807250084824"></a>Name</p>
+<a name="table1328039045165622"></a>
+<table><thead align="left"><tr id="row109751815165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1971010153165622"><a name="p1971010153165622"></a><a name="p1971010153165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1450039190084824"><a name="p1450039190084824"></a><a name="p1450039190084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1268866091165622"><a name="p1268866091165622"></a><a name="p1268866091165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row28477652084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">pathname</td>
+<tbody><tr id="row2146939144165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">pathname</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file or directory to delete. </td>
 </tr>
 </tbody>
@@ -3559,56 +3312,51 @@ This function can NOT be used in the PROC file system.
 
 Returns  **0**  if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table1396000526084824"></a>
-<table><thead align="left"><tr id="row243119795084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1561574612084824"><a name="p1561574612084824"></a><a name="p1561574612084824"></a>errno </p>
+<a name="table1781759456165622"></a>
+<table><thead align="left"><tr id="row1846092982165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p648821923165622"><a name="p648821923165622"></a><a name="p648821923165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p45465522084824"><a name="p45465522084824"></a><a name="p45465522084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p275273487165622"><a name="p275273487165622"></a><a name="p275273487165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2120291770084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p301424833084824"><a name="p301424833084824"></a><a name="p301424833084824"></a>EINVAL </p>
+<tbody><tr id="row759887725165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p428650632165622"><a name="p428650632165622"></a><a name="p428650632165622"></a>EINVAL </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1837133583084824"><a name="p1837133583084824"></a><a name="p1837133583084824"></a><strong id="b1197206294084824"><a name="b1197206294084824"></a><a name="b1197206294084824"></a>pathname</strong> is a null pointer or an empty string. </p>
-</td>
-</tr>
-<tr id="row266555579084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1215402176084824"><a name="p1215402176084824"></a><a name="p1215402176084824"></a>ENAMETOOLONG </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1178615494084824"><a name="p1178615494084824"></a><a name="p1178615494084824"></a>The length of <strong id="b593405683084824"><a name="b593405683084824"></a><a name="b593405683084824"></a>pathname</strong> is greater than <a href="utils.md#gac64541bdd81c961304b9babef1402640">NAME_MAX</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1969802848165622"><a name="p1969802848165622"></a><a name="p1969802848165622"></a><strong id="b161233077165622"><a name="b161233077165622"></a><a name="b161233077165622"></a>pathname</strong> is a null pointer or an empty string. </p>
 </td>
 </tr>
-<tr id="row1260740799084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1734340151084824"><a name="p1734340151084824"></a><a name="p1734340151084824"></a>ENOMEM </p>
+<tr id="row467216847165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p63009746165622"><a name="p63009746165622"></a><a name="p63009746165622"></a>ENAMETOOLONG </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1263575569084824"><a name="p1263575569084824"></a><a name="p1263575569084824"></a>Insufficient memory. </p>
-</td>
-</tr>
-<tr id="row461620349084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2015618511084824"><a name="p2015618511084824"></a><a name="p2015618511084824"></a>ENOENT </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1109618199084824"><a name="p1109618199084824"></a><a name="p1109618199084824"></a>The file or directory pointed to by <strong id="b2090263549084824"><a name="b2090263549084824"></a><a name="b2090263549084824"></a>pathname</strong> does not exist. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1113136104165622"><a name="p1113136104165622"></a><a name="p1113136104165622"></a>The length of <strong id="b139904239165622"><a name="b139904239165622"></a><a name="b139904239165622"></a>pathname</strong> is greater than <a href="utils.md#gac64541bdd81c961304b9babef1402640">NAME_MAX</a>. </p>
 </td>
 </tr>
-<tr id="row1059262828084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p675603217084824"><a name="p675603217084824"></a><a name="p675603217084824"></a>ENOSYS </p>
+<tr id="row1360191887165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p292844790165622"><a name="p292844790165622"></a><a name="p292844790165622"></a>ENOMEM </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p644970750084824"><a name="p644970750084824"></a><a name="p644970750084824"></a>The file system does not support this operation. </p>
-</td>
-</tr>
-<tr id="row1890009397084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1574875215084824"><a name="p1574875215084824"></a><a name="p1574875215084824"></a>EPERM </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1885428380084824"><a name="p1885428380084824"></a><a name="p1885428380084824"></a>The path is a mount point or is neither a directory nor a file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1846259127165622"><a name="p1846259127165622"></a><a name="p1846259127165622"></a>Insufficient memory. </p>
 </td>
 </tr>
-<tr id="row1413575632084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1250871199084824"><a name="p1250871199084824"></a><a name="p1250871199084824"></a>ENOTEMPTY </p>
+<tr id="row1525095088165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1834219371165622"><a name="p1834219371165622"></a><a name="p1834219371165622"></a>ENOENT </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1567061509084824"><a name="p1567061509084824"></a><a name="p1567061509084824"></a>When <strong id="b885798718084824"><a name="b885798718084824"></a><a name="b885798718084824"></a>pathname</strong> points to a directory, the directory is not empty. </p>
-</td>
-</tr>
-<tr id="row1998370916084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1255945309084824"><a name="p1255945309084824"></a><a name="p1255945309084824"></a>ENXIO </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p411229637084824"><a name="p411229637084824"></a><a name="p411229637084824"></a>No such device or address. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1825480748165622"><a name="p1825480748165622"></a><a name="p1825480748165622"></a>The file or directory pointed to by <strong id="b730048148165622"><a name="b730048148165622"></a><a name="b730048148165622"></a>pathname</strong> does not exist. </p>
 </td>
 </tr>
-<tr id="row1744917623084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1165452204084824"><a name="p1165452204084824"></a><a name="p1165452204084824"></a>EACCES </p>
+<tr id="row1504582729165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p621761682165622"><a name="p621761682165622"></a><a name="p621761682165622"></a>EPERM </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1264867620084824"><a name="p1264867620084824"></a><a name="p1264867620084824"></a>The search permission on the path prefix component is denied, or the write permission of the directory in the path is denied. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2100894807165622"><a name="p2100894807165622"></a><a name="p2100894807165622"></a>The path is a mount point or is neither a directory nor a file. </p>
+</td>
+</tr>
+<tr id="row1444244254165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p373408324165622"><a name="p373408324165622"></a><a name="p373408324165622"></a>ENOTEMPTY </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2083464510165622"><a name="p2083464510165622"></a><a name="p2083464510165622"></a>When <strong id="b976851043165622"><a name="b976851043165622"></a><a name="b976851043165622"></a>pathname</strong> points to a directory, the directory is not empty. </p>
+</td>
+</tr>
+<tr id="row1522242135165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p327128985165622"><a name="p327128985165622"></a><a name="p327128985165622"></a>ENXIO </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p544845809165622"><a name="p544845809165622"></a><a name="p544845809165622"></a>No such device or address. </p>
+</td>
+</tr>
+<tr id="row130581612165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1556287437165622"><a name="p1556287437165622"></a><a name="p1556287437165622"></a>EACCES </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p167291153165622"><a name="p167291153165622"></a><a name="p167291153165622"></a>The search permission on the path prefix component is denied, or the write permission of the directory in the path is denied. </p>
 </td>
 </tr>
 </tbody>
@@ -3626,17 +3374,17 @@ Renames a specified file.
 
 **Parameters:**
 
-<a name="table1128634724084824"></a>
-<table><thead align="left"><tr id="row2061238023084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p880490505084824"><a name="p880490505084824"></a><a name="p880490505084824"></a>Name</p>
+<a name="table1786708227165622"></a>
+<table><thead align="left"><tr id="row1575542672165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1793425432165622"><a name="p1793425432165622"></a><a name="p1793425432165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p567497702084824"><a name="p567497702084824"></a><a name="p567497702084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p369201659165622"><a name="p369201659165622"></a><a name="p369201659165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1583867987084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">oldpath</td>
+<tbody><tr id="row838663777165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">oldpath</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the old path name of the file to rename. </td>
 </tr>
-<tr id="row242804472084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">newpath</td>
+<tr id="row452504079165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">newpath</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the new path name of the file. </td>
 </tr>
 </tbody>
@@ -3650,46 +3398,41 @@ This function can NOT be used in the PROC file system.
 
 Returns  **0**  if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table540375395084824"></a>
-<table><thead align="left"><tr id="row1741366116084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1646564610084824"><a name="p1646564610084824"></a><a name="p1646564610084824"></a>errno </p>
+<a name="table216404946165622"></a>
+<table><thead align="left"><tr id="row530462589165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2052565331165622"><a name="p2052565331165622"></a><a name="p2052565331165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p629009664084824"><a name="p629009664084824"></a><a name="p629009664084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1476069697165622"><a name="p1476069697165622"></a><a name="p1476069697165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row729578823084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1028229753084824"><a name="p1028229753084824"></a><a name="p1028229753084824"></a>EINVAL </p>
+<tbody><tr id="row559388285165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p925870025165622"><a name="p925870025165622"></a><a name="p925870025165622"></a>EINVAL </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1344919380084824"><a name="p1344919380084824"></a><a name="p1344919380084824"></a>Invalid input parameter. </p>
-</td>
-</tr>
-<tr id="row947203954084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p22164948084824"><a name="p22164948084824"></a><a name="p22164948084824"></a>ENOENT </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1153423233084824"><a name="p1153423233084824"></a><a name="p1153423233084824"></a>The file or directory does not exist. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p664868664165622"><a name="p664868664165622"></a><a name="p664868664165622"></a>Invalid input parameter. </p>
 </td>
 </tr>
-<tr id="row349698445084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p44242817084824"><a name="p44242817084824"></a><a name="p44242817084824"></a>EXDEV </p>
+<tr id="row121531241165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p325617076165622"><a name="p325617076165622"></a><a name="p325617076165622"></a>ENOENT </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p237578118084824"><a name="p237578118084824"></a><a name="p237578118084824"></a><strong id="b346826461084824"><a name="b346826461084824"></a><a name="b346826461084824"></a>oldpath</strong> and <strong id="b2096820660084824"><a name="b2096820660084824"></a><a name="b2096820660084824"></a>newpath</strong> are not on the same file system. </p>
-</td>
-</tr>
-<tr id="row1846652349084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1638772849084824"><a name="p1638772849084824"></a><a name="p1638772849084824"></a>ENOSYS </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p52639423084824"><a name="p52639423084824"></a><a name="p52639423084824"></a>The function is unavailable. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p455150427165622"><a name="p455150427165622"></a><a name="p455150427165622"></a>The file or directory does not exist. </p>
 </td>
 </tr>
-<tr id="row664979046084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p260992650084824"><a name="p260992650084824"></a><a name="p260992650084824"></a>EBUSY </p>
+<tr id="row1553499641165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p565153114165622"><a name="p565153114165622"></a><a name="p565153114165622"></a>EXDEV </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1007286218084824"><a name="p1007286218084824"></a><a name="p1007286218084824"></a>The device or resource is in use by the system or another process. </p>
-</td>
-</tr>
-<tr id="row666362149084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p23875071084824"><a name="p23875071084824"></a><a name="p23875071084824"></a>EEXIST </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p274563125084824"><a name="p274563125084824"></a><a name="p274563125084824"></a>The file path pointed to by <strong id="b651835859084824"><a name="b651835859084824"></a><a name="b651835859084824"></a>newpath</strong> already exists. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1710335617165622"><a name="p1710335617165622"></a><a name="p1710335617165622"></a><strong id="b954802744165622"><a name="b954802744165622"></a><a name="b954802744165622"></a>oldpath</strong> and <strong id="b934216296165622"><a name="b934216296165622"></a><a name="b934216296165622"></a>newpath</strong> are not on the same file system. </p>
 </td>
 </tr>
-<tr id="row1041471018084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p781868808084824"><a name="p781868808084824"></a><a name="p781868808084824"></a>ENXIO </p>
+<tr id="row1454335041165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1870586356165622"><a name="p1870586356165622"></a><a name="p1870586356165622"></a>EBUSY </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1548453641084824"><a name="p1548453641084824"></a><a name="p1548453641084824"></a>The device or address does not exist. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p6727828165622"><a name="p6727828165622"></a><a name="p6727828165622"></a>The device or resource is in use by the system or another process. </p>
+</td>
+</tr>
+<tr id="row1535126018165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p122369737165622"><a name="p122369737165622"></a><a name="p122369737165622"></a>EEXIST </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1807064928165622"><a name="p1807064928165622"></a><a name="p1807064928165622"></a>The file path pointed to by <strong id="b1524584862165622"><a name="b1524584862165622"></a><a name="b1524584862165622"></a>newpath</strong> already exists. </p>
+</td>
+</tr>
+<tr id="row2050275708165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2111129653165622"><a name="p2111129653165622"></a><a name="p2111129653165622"></a>ENXIO </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1826047658165622"><a name="p1826047658165622"></a><a name="p1826047658165622"></a>The device or address does not exist. </p>
 </td>
 </tr>
 </tbody>
@@ -3707,14 +3450,14 @@ Sets the position indicator of a specified stream to the beginning of the file.
 
 **Parameters:**
 
-<a name="table2093562302084824"></a>
-<table><thead align="left"><tr id="row684343379084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2016694592084824"><a name="p2016694592084824"></a><a name="p2016694592084824"></a>Name</p>
+<a name="table2124548636165622"></a>
+<table><thead align="left"><tr id="row1624522072165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p619215157165622"><a name="p619215157165622"></a><a name="p619215157165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p302038201084824"><a name="p302038201084824"></a><a name="p302038201084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p5853841165622"><a name="p5853841165622"></a><a name="p5853841165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row578472736084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row1480472508165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -3732,17 +3475,17 @@ Reads formatted data from the stdin and stores the data to the additional argume
 
 **Parameters:**
 
-<a name="table797123431084824"></a>
-<table><thead align="left"><tr id="row118992574084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1931842457084824"><a name="p1931842457084824"></a><a name="p1931842457084824"></a>Name</p>
+<a name="table468664020165622"></a>
+<table><thead align="left"><tr id="row1454375292165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p76134225165622"><a name="p76134225165622"></a><a name="p76134225165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p515538944084824"><a name="p515538944084824"></a><a name="p515538944084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1781212537165622"><a name="p1781212537165622"></a><a name="p1781212537165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row979741484084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tbody><tr id="row530069243165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row1996502007084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row1071611318165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of arguments corresponding to the format specifiers. </td>
 </tr>
 </tbody>
@@ -3756,8 +3499,6 @@ The type of each argument must match a format specifier in  **format**.
 
 Returns the number of variables that are successfully read. If the matching fails quickly, the return value may be less than the number of members in the argument list or even zero. If no complete conversion format is available or the input format fails to be matched,  **EOF**  is returned. The return value is also  **EOF**  if a reading error occurs. If the number of arguments exceeds the number of the format specifiers, the excess arguments are ignored. 
 
-
-
 ## select\(\)<a name="gaf916439863bed6ba92594e390c227c7e"></a>
 
 ```
@@ -3770,27 +3511,27 @@ Monitors the I/O events of multiple file descriptors.
 
 **Parameters:**
 
-<a name="table796541626084824"></a>
-<table><thead align="left"><tr id="row841710812084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p907769992084824"><a name="p907769992084824"></a><a name="p907769992084824"></a>Name</p>
+<a name="table1520645875165622"></a>
+<table><thead align="left"><tr id="row974316657165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p652194125165622"><a name="p652194125165622"></a><a name="p652194125165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1337666762084824"><a name="p1337666762084824"></a><a name="p1337666762084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1600747580165622"><a name="p1600747580165622"></a><a name="p1600747580165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1771558348084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">nfds</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the maximum value of the file descriptor of the <strong id="b358424484084824"><a name="b358424484084824"></a><a name="b358424484084824"></a>int</strong> type. </td>
+<tbody><tr id="row1260770660165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">nfds</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the maximum value of the file descriptor of the <strong id="b1713563308165622"><a name="b1713563308165622"></a><a name="b1713563308165622"></a>int</strong> type. </td>
 </tr>
-<tr id="row1265724240084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">readfds</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the readable event to observe, which is the <strong id="b1375385101084824"><a name="b1375385101084824"></a><a name="b1375385101084824"></a><a href="fd_set.md">fd_set</a> *</strong> type. </td>
+<tr id="row1165249614165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">readfds</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the readable event to observe, which is the <strong id="b1308006491165622"><a name="b1308006491165622"></a><a name="b1308006491165622"></a><a href="fd_set.md">fd_set</a> *</strong> type. </td>
 </tr>
-<tr id="row1835839938084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">writefds</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the writable event to observe, which is the <strong id="b201564225084824"><a name="b201564225084824"></a><a name="b201564225084824"></a><a href="fd_set.md">fd_set</a> *</strong> type. </td>
+<tr id="row542241140165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">writefds</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of the writable event to observe, which is the <strong id="b1448525107165622"><a name="b1448525107165622"></a><a name="b1448525107165622"></a><a href="fd_set.md">fd_set</a> *</strong> type. </td>
 </tr>
-<tr id="row1947690517084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">exceptfds</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of exception event to observe, which is the <strong id="b1861855745084824"><a name="b1861855745084824"></a><a name="b1861855745084824"></a><a href="fd_set.md">fd_set</a> *</strong> type. </td>
+<tr id="row809878003165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">exceptfds</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the descriptor set of exception event to observe, which is the <strong id="b209475685165622"><a name="b209475685165622"></a><a name="b209475685165622"></a><a href="fd_set.md">fd_set</a> *</strong> type. </td>
 </tr>
-<tr id="row770093187084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">timeout</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the timeout interval, which is the <strong id="b192221941084824"><a name="b192221941084824"></a><a name="b192221941084824"></a>struct timeval *</strong> type. </td>
+<tr id="row741597986165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">timeout</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the timeout interval, which is the <strong id="b1649706304165622"><a name="b1649706304165622"></a><a name="b1649706304165622"></a>struct timeval *</strong> type. </td>
 </tr>
 </tbody>
 </table>
@@ -3799,26 +3540,26 @@ Monitors the I/O events of multiple file descriptors.
 
 Returns the total number of file descriptors of the observed events \(that is, the sum of all file descriptors in  **readfds**,  **writefds**, and  **exceptfds**\) if the operation is successful; returns  **-1**  and sets  **errno**  to a value in the following table if the operation fails. 
 
-<a name="table1878537314084824"></a>
-<table><thead align="left"><tr id="row279294777084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1417348247084824"><a name="p1417348247084824"></a><a name="p1417348247084824"></a>errno </p>
+<a name="table637660648165622"></a>
+<table><thead align="left"><tr id="row1871830096165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1845369778165622"><a name="p1845369778165622"></a><a name="p1845369778165622"></a>errno </p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2142497738084824"><a name="p2142497738084824"></a><a name="p2142497738084824"></a>Description  </p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p148967054165622"><a name="p148967054165622"></a><a name="p148967054165622"></a>Description  </p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1146735061084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1467999245084824"><a name="p1467999245084824"></a><a name="p1467999245084824"></a>EBADF </p>
+<tbody><tr id="row1694545886165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p220152168165622"><a name="p220152168165622"></a><a name="p220152168165622"></a>EBADF </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1360789746084824"><a name="p1360789746084824"></a><a name="p1360789746084824"></a>An invalid file descriptor is given in one of the sets. </p>
-</td>
-</tr>
-<tr id="row1091688805084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p701694158084824"><a name="p701694158084824"></a><a name="p701694158084824"></a>EINVAL </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p355005240084824"><a name="p355005240084824"></a><a name="p355005240084824"></a><strong id="b608977955084824"><a name="b608977955084824"></a><a name="b608977955084824"></a>nfds</strong> is less than 0. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p677269365165622"><a name="p677269365165622"></a><a name="p677269365165622"></a>An invalid file descriptor is given in one of the sets. </p>
 </td>
 </tr>
-<tr id="row277792578084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1284913365084824"><a name="p1284913365084824"></a><a name="p1284913365084824"></a>ENOMEM </p>
+<tr id="row684622714165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p314603127165622"><a name="p314603127165622"></a><a name="p314603127165622"></a>EINVAL </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2064918089084824"><a name="p2064918089084824"></a><a name="p2064918089084824"></a>Failed to apply for memory. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1323054776165622"><a name="p1323054776165622"></a><a name="p1323054776165622"></a><strong id="b1597932250165622"><a name="b1597932250165622"></a><a name="b1597932250165622"></a>nfds</strong> is less than 0. </p>
+</td>
+</tr>
+<tr id="row1618474355165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1559283734165622"><a name="p1559283734165622"></a><a name="p1559283734165622"></a>ENOMEM </p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p672939336165622"><a name="p672939336165622"></a><a name="p672939336165622"></a>Failed to apply for memory. </p>
 </td>
 </tr>
 </tbody>
@@ -3836,17 +3577,17 @@ Sets a buffer to be used by a specified stream.
 
 **Parameters:**
 
-<a name="table765330734084824"></a>
-<table><thead align="left"><tr id="row925052389084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p981560362084824"><a name="p981560362084824"></a><a name="p981560362084824"></a>Name</p>
+<a name="table1897902479165622"></a>
+<table><thead align="left"><tr id="row463990086165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p761595138165622"><a name="p761595138165622"></a><a name="p761595138165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1169673475084824"><a name="p1169673475084824"></a><a name="p1169673475084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p197496833165622"><a name="p197496833165622"></a><a name="p197496833165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1213944960084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row1659167654165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
-<tr id="row379111159084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buf</td>
+<tr id="row579740171165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buf</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the start address of the buffer. </td>
 </tr>
 </tbody>
@@ -3855,8 +3596,6 @@ Sets a buffer to be used by a specified stream.
 **Attention:**
 
 When the input parameter  **buf**  is not null, the buffer mode is  **\_IOFBF**. The default buffer size is determined by the value of  **BUFSIZ**  defined in this file. When  **buf**  is null, the buffer mode is  **\_IONBF**  \(unbuffered\). 
-
-
 
 ## setbuffer\(\)<a name="ga53a57437279b4ed57b7f116dfc9cbbcc"></a>
 
@@ -3870,24 +3609,28 @@ Sets the buffer for a specified file stream.
 
 **Parameters:**
 
-<a name="table1874190054084824"></a>
-<table><thead align="left"><tr id="row251997472084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1601281794084824"><a name="p1601281794084824"></a><a name="p1601281794084824"></a>Name</p>
+<a name="table1634954510165622"></a>
+<table><thead align="left"><tr id="row1966971030165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p810865296165622"><a name="p810865296165622"></a><a name="p810865296165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1088742759084824"><a name="p1088742759084824"></a><a name="p1088742759084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p73787236165622"><a name="p73787236165622"></a><a name="p73787236165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1736784267084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">f</td>
+<tbody><tr id="row231091843165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">f</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream to set. </td>
 </tr>
-<tr id="row141920627084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buf</td>
+<tr id="row516089934165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buf</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer to set. </td>
 </tr>
-<tr id="row1129104481084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row2027779760165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the buffer size. </td>
 </tr>
 </tbody>
 </table>
+
+**Returns:**
+
+Returns  **0**  if the operation is successful; returns  **-1**  otherwise. 
 
 ## setlinebuf\(\)<a name="ga2e13e101d5a57cfccf1bab51f8768a5d"></a>
 
@@ -3901,79 +3644,22 @@ Sets the linear buffer for a specified file stream.
 
 **Parameters:**
 
-<a name="table1638550654084824"></a>
-<table><thead align="left"><tr id="row714968266084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1088289333084824"><a name="p1088289333084824"></a><a name="p1088289333084824"></a>Name</p>
+<a name="table605120078165622"></a>
+<table><thead align="left"><tr id="row1388211906165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p462191754165622"><a name="p462191754165622"></a><a name="p462191754165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p770659779084824"><a name="p770659779084824"></a><a name="p770659779084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1429678415165622"><a name="p1429678415165622"></a><a name="p1429678415165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row769816649084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">f</td>
+<tbody><tr id="row1098883387165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">f</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream to set. </td>
-</tr>
-</tbody>
-</table>
-
-## setlocale\(\)<a name="gafe784c4f5d12b74272740c5211c960c5"></a>
-
-```
-char* setlocale (int category, const char * locale )
-```
-
- **Description:**
-
-Sets the current locale information based on input parameters. 
-
-If  **locale**  is  **NULL**, it can be used to obtain the current region settings. 
-
-**Parameters:**
-
-<a name="table1186984245084824"></a>
-<table><thead align="left"><tr id="row1217263687084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2029296627084824"><a name="p2029296627084824"></a><a name="p2029296627084824"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p319107956084824"><a name="p319107956084824"></a><a name="p319107956084824"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row748940485084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">category</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the type of locale information used to set the impact scope of region settings. The value can be <a href="io.md#ga07c66689961056725d7f50231d740ba9">LC_CTYPE</a>, <a href="io.md#ga158abb82c565096465ade138c98970d0">LC_NUMERIC</a>, <a href="io.md#gaa652c62b53b6bf728d592bfbdc7d5852">LC_TIME</a>, <a href="io.md#gaab9cf7b1a206fb75e5884934c8d676db">LC_COLLATE</a>, <a href="io.md#ga6d033a83772ef6e6c10dbf13a6a58fb7">LC_MONETARY</a>, <a href="io.md#ga7195d6f0a8d1b9d164a3988a1b8249e8">LC_MESSAGES</a>, or <a href="io.md#ga9cc5213b5dca4f8e48e64586ee444c33">LC_ALL</a>. The region settings include the date format, numeric format, currency format, character processing, and character comparison. The current region settings can affect only one aspect of the content or all the content. </td>
-</tr>
-<tr id="row1263091447084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">locale</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the string containing region names. These names are system-specific, but at least the following three language environments must exist: </td>
-</tr>
-</tbody>
-</table>
-
-<a name="table823066188084824"></a>
-<table><thead align="left"><tr id="row664477564084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p470333329084824"><a name="p470333329084824"></a><a name="p470333329084824"></a>Language Name </p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2063077379084824"><a name="p2063077379084824"></a><a name="p2063077379084824"></a>Description  </p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row543512329084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p354027180084824"><a name="p354027180084824"></a><a name="p354027180084824"></a><strong id="b2029578258084824"><a name="b2029578258084824"></a><a name="b2029578258084824"></a>C</strong> </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p736024094084824"><a name="p736024094084824"></a><a name="p736024094084824"></a>Indicates the C language execution environment. </p>
-</td>
-</tr>
-<tr id="row1796372933084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1778628858084824"><a name="p1778628858084824"></a><a name="p1778628858084824"></a><strong id="b1529616904084824"><a name="b1529616904084824"></a><a name="b1529616904084824"></a>""</strong> </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1607293900084824"><a name="p1607293900084824"></a><a name="p1607293900084824"></a>Uses the default region settings of the current system. </p>
-</td>
-</tr>
-<tr id="row1633330661084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1733132514084824"><a name="p1733132514084824"></a><a name="p1733132514084824"></a><strong id="b1891839544084824"><a name="b1891839544084824"></a><a name="b1891839544084824"></a>NULL</strong> </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p703482926084824"><a name="p703482926084824"></a><a name="p703482926084824"></a>No name needs to be specified. </p>
-</td>
 </tr>
 </tbody>
 </table>
 
 **Returns:**
 
-Returns a pointer to the string representation of the language environment set for the type if the operation is successful; returns a null pointer and the locale is not changed if the operation fails. 
-
-
+Returns  **0**  if the operation is successful; returns  **-1**  otherwise. 
 
 ## setvbuf\(\)<a name="gaf691eb990d669a9edec8a9ec721ce3bc"></a>
 
@@ -3987,24 +3673,24 @@ Sets the mode and size of the buffer for a specified stream.
 
 **Parameters:**
 
-<a name="table643127338084824"></a>
-<table><thead align="left"><tr id="row648630217084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1300650903084824"><a name="p1300650903084824"></a><a name="p1300650903084824"></a>Name</p>
+<a name="table29948546165622"></a>
+<table><thead align="left"><tr id="row580861310165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1097947923165622"><a name="p1097947923165622"></a><a name="p1097947923165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2000208418084824"><a name="p2000208418084824"></a><a name="p2000208418084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p234508757165622"><a name="p234508757165622"></a><a name="p234508757165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row975761756084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row1611389530165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
-<tr id="row2009400368084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buf</td>
+<tr id="row1171063464165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buf</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the start address of the buffer. </td>
 </tr>
-<tr id="row173645327084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the buffer mode to set. There are three modes: <strong id="b629265195084824"><a name="b629265195084824"></a><a name="b629265195084824"></a>_IONBF</strong> (unbuffered), <strong id="b1092353825084824"><a name="b1092353825084824"></a><a name="b1092353825084824"></a> _IOLBF</strong> (line buffered), and <strong id="b496817753084824"><a name="b496817753084824"></a><a name="b496817753084824"></a>_IOFBF</strong> (fully buffered). </td>
+<tr id="row523989176165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the buffer mode to set. There are three modes: <strong id="b391240232165622"><a name="b391240232165622"></a><a name="b391240232165622"></a>_IONBF</strong> (unbuffered), <strong id="b1902013114165622"><a name="b1902013114165622"></a><a name="b1902013114165622"></a> _IOLBF</strong> (line buffered), and <strong id="b903675007165622"><a name="b903675007165622"></a><a name="b903675007165622"></a>_IOFBF</strong> (fully buffered). </td>
 </tr>
-<tr id="row30385182084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the buffer block size when the buffer mode is <strong id="b653905379084824"><a name="b653905379084824"></a><a name="b653905379084824"></a>_IOFBF</strong>. </td>
+<tr id="row946705412165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the buffer block size when the buffer mode is <strong id="b739794344165622"><a name="b739794344165622"></a><a name="b739794344165622"></a>_IOFBF</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4012,8 +3698,6 @@ Sets the mode and size of the buffer for a specified stream.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns a non-zero value otherwise. 
-
-
 
 ## snprintf\(\)<a name="gad76145a6edfc98981ded8815a760e0cd"></a>
 
@@ -4027,23 +3711,23 @@ Prints formatted data of a maximum of  **size**  bytes from a variable argument 
 
 **Parameters:**
 
-<a name="table889686527084824"></a>
-<table><thead align="left"><tr id="row1229938562084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1515549435084824"><a name="p1515549435084824"></a><a name="p1515549435084824"></a>Name</p>
+<a name="table1950853985165622"></a>
+<table><thead align="left"><tr id="row1042992714165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1735314470165622"><a name="p1735314470165622"></a><a name="p1735314470165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p235130313084824"><a name="p235130313084824"></a><a name="p235130313084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p925063609165622"><a name="p925063609165622"></a><a name="p925063609165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1263777658084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
+<tbody><tr id="row1210427513165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to which the data is to be written. </td>
 </tr>
-<tr id="row1543165836084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row771633766165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the maximum length of the destination string. </td>
 </tr>
-<tr id="row233691032084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row2122785998165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row1369031754084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row2144449342165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of arguments corresponding to the format specifiers. </td>
 </tr>
 </tbody>
@@ -4057,8 +3741,6 @@ This function can write a maximum of size-1 valid characters to the destination 
 
 Returns the number of formatted characters written \(excluding the terminating null character  **'\\0'**\) if the operation is successful; returns a negative value otherwise. If the return value is a non-negative value smaller than the value of  **size**, the string has been completely written.
 
-
-
 ## sprintf\(\)<a name="ga3082155ec11e7229f7a20439b31a169e"></a>
 
 ```
@@ -4071,20 +3753,20 @@ Prints formatted data from a variable argument list to a specified string.
 
 **Parameters:**
 
-<a name="table24183504084824"></a>
-<table><thead align="left"><tr id="row451431906084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1680202057084824"><a name="p1680202057084824"></a><a name="p1680202057084824"></a>Name</p>
+<a name="table1654160234165622"></a>
+<table><thead align="left"><tr id="row18140726165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1853193827165622"><a name="p1853193827165622"></a><a name="p1853193827165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2130874884084824"><a name="p2130874884084824"></a><a name="p2130874884084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1827655539165622"><a name="p1827655539165622"></a><a name="p1827655539165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row321531698084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
+<tbody><tr id="row519919856165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to which the data is to be written. </td>
 </tr>
-<tr id="row629739617084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row888487955165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row2096803487084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row1645841333165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of arguments corresponding to the format specifiers. </td>
 </tr>
 </tbody>
@@ -4093,8 +3775,6 @@ Prints formatted data from a variable argument list to a specified string.
 **Returns:**
 
 Returns the total number of characters \(excluding the terminating null character  **'\\0'**\) if the operation is successful; returns a negative value otherwise. 
-
-
 
 ## sscanf\(\)<a name="gaec1e54556dca3bd701d44395d34818dd"></a>
 
@@ -4108,20 +3788,20 @@ Reads data from a character string pointed to by  **str**  and stores it based o
 
 **Parameters:**
 
-<a name="table1559609089084824"></a>
-<table><thead align="left"><tr id="row1153533880084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1464947653084824"><a name="p1464947653084824"></a><a name="p1464947653084824"></a>Name</p>
+<a name="table1714711663165622"></a>
+<table><thead align="left"><tr id="row756911053165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2063499781165622"><a name="p2063499781165622"></a><a name="p2063499781165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p836805430084824"><a name="p836805430084824"></a><a name="p836805430084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p21435980165622"><a name="p21435980165622"></a><a name="p21435980165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row23457185084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
+<tbody><tr id="row1531294229165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the character string to read. </td>
 </tr>
-<tr id="row487751513084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row910600171165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row583920874084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row1019620486165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of arguments corresponding to the format specifiers. </td>
 </tr>
 </tbody>
@@ -4135,8 +3815,6 @@ An asterisk \(\*\) right after the percent symbol \(such as  **%\*d**  and  **%\
 
 Returns the number of fields successfully assigned to the argument list if the operation is successful; returns  **0**  if no fields are assigned; returns  **EOF**  if a reading error occurs or the end-of-file is reached during data reading. If an encoding error occurs when characters are parsed, this function sets  **errno**  to  [EILSEQ](utils.md#gac6c071293826a4e66a717bb38db7794d). 
 
-
-
 ## tempnam\(\)<a name="ga44dcf948b2c1dc3356d2937635a27839"></a>
 
 ```
@@ -4149,17 +3827,17 @@ Creates a temporary file with a unique file name.
 
 **Parameters:**
 
-<a name="table1690468791084824"></a>
-<table><thead align="left"><tr id="row2063214668084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p590791559084824"><a name="p590791559084824"></a><a name="p590791559084824"></a>Name</p>
+<a name="table590596857165622"></a>
+<table><thead align="left"><tr id="row1812073993165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2092582515165622"><a name="p2092582515165622"></a><a name="p2092582515165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p790780897084824"><a name="p790780897084824"></a><a name="p790780897084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p454056526165622"><a name="p454056526165622"></a><a name="p454056526165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row236060750084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">dir</td>
+<tbody><tr id="row947589357165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">dir</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to directory for creating the temporary file. </td>
 </tr>
-<tr id="row392522974084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">prefix</td>
+<tr id="row906193399165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">prefix</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the prefix of the file name. </td>
 </tr>
 </tbody>
@@ -4177,8 +3855,6 @@ Returns the pointer to the unique name of the created temporary file if the oper
 
 [mkstemp\(\)](utils.md#ga6abe6c5eb77aeaf05ad81a7425547d9e)  | tmpfile\(\) 
 
-
-
 ## ungetc\(\)<a name="ga54efa95b6d5b41adec98e5b8a1a9f27b"></a>
 
 ```
@@ -4193,17 +3869,17 @@ This function is usually used together with  **getc**.
 
 **Parameters:**
 
-<a name="table998691973084824"></a>
-<table><thead align="left"><tr id="row278166110084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p987842785084824"><a name="p987842785084824"></a><a name="p987842785084824"></a>Name</p>
+<a name="table1895011836165622"></a>
+<table><thead align="left"><tr id="row1001210291165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p356419031165622"><a name="p356419031165622"></a><a name="p356419031165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1338820435084824"><a name="p1338820435084824"></a><a name="p1338820435084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1740001437165622"><a name="p1740001437165622"></a><a name="p1740001437165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1656527355084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
+<tbody><tr id="row1559063654165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">c</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the int promotion of the character to be pushed back. </td>
 </tr>
-<tr id="row453619659084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tr id="row2063968061165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
 </tbody>
@@ -4216,8 +3892,6 @@ The pushed characters are returned in reverse order if multiple characters are p
 **Returns:**
 
 Returns the character specified in  **c**  if the operation is successful; returns  **EOF**  otherwise. 
-
-
 
 ## vasprintf\(\)<a name="ga5ec7fd90ebe6015636bce974c192c86a"></a>
 
@@ -4233,21 +3907,21 @@ If the length of the string is uncertain, this function applies for sufficient m
 
 **Parameters:**
 
-<a name="table607293813084824"></a>
-<table><thead align="left"><tr id="row1438011657084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p506006406084824"><a name="p506006406084824"></a><a name="p506006406084824"></a>Name</p>
+<a name="table1831603622165622"></a>
+<table><thead align="left"><tr id="row1665766561165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1415724651165622"><a name="p1415724651165622"></a><a name="p1415724651165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p432241264084824"><a name="p432241264084824"></a><a name="p432241264084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1775223128165622"><a name="p1775223128165622"></a><a name="p1775223128165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1642252816084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">strp</td>
+<tbody><tr id="row403003848165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">strp</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the start address of the target string. </td>
 </tr>
-<tr id="row1749394988084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tr id="row1221100244165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row606028687084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b302078643084824"><a name="b302078643084824"></a><a name="b302078643084824"></a>va_start</strong>. </td>
+<tr id="row1631588642165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b512863088165622"><a name="b512863088165622"></a><a name="b512863088165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4259,8 +3933,6 @@ If  **strp**  is no longer used, the applied space must be released.
 **Returns:**
 
 Returns the number of output characters if the operation is successful; returns  **-1**  otherwise. 
-
-
 
 ## vdprintf\(\)<a name="ga0d0a950c2b4e6fba795cb7d8f2e8b8b8"></a>
 
@@ -4274,21 +3946,21 @@ Prints formatted data from a variable argument list to a specified file.
 
 **Parameters:**
 
-<a name="table1109369388084824"></a>
-<table><thead align="left"><tr id="row550842915084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1667607111084824"><a name="p1667607111084824"></a><a name="p1667607111084824"></a>Name</p>
+<a name="table368790397165622"></a>
+<table><thead align="left"><tr id="row1925715353165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2125305837165622"><a name="p2125305837165622"></a><a name="p2125305837165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1183251135084824"><a name="p1183251135084824"></a><a name="p1183251135084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1718136954165622"><a name="p1718136954165622"></a><a name="p1718136954165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1782012457084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
+<tbody><tr id="row1943756260165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor that identifies a file. </td>
 </tr>
-<tr id="row1544640601084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row1099457603165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row188492304084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b2004459037084824"><a name="b2004459037084824"></a><a name="b2004459037084824"></a>va_start</strong>. </td>
+<tr id="row397039449165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b1205278184165622"><a name="b1205278184165622"></a><a name="b1205278184165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4296,8 +3968,6 @@ Prints formatted data from a variable argument list to a specified file.
 **Returns:**
 
 Returns the total number of written characters if the operation is successful; returns a negative value otherwise. 
-
-
 
 ## verr\(\)<a name="gaf5491fca8b356da75d96fc469bf32ea6"></a>
 
@@ -4313,20 +3983,20 @@ This function outputs the executable file name  **argv\[0\]**  and the accepted 
 
 **Parameters:**
 
-<a name="table277794419084824"></a>
-<table><thead align="left"><tr id="row179752216084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p357287798084824"><a name="p357287798084824"></a><a name="p357287798084824"></a>Name</p>
+<a name="table1723823952165622"></a>
+<table><thead align="left"><tr id="row327976325165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2060101873165622"><a name="p2060101873165622"></a><a name="p2060101873165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p583304514084824"><a name="p583304514084824"></a><a name="p583304514084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p950708545165622"><a name="p950708545165622"></a><a name="p950708545165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1134886548084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eval</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">This function does not return, but exits with the value of <strong id="b703619944084824"><a name="b703619944084824"></a><a name="b703619944084824"></a>eval</strong>. </td>
+<tbody><tr id="row1489415722165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eval</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">This function does not return, but exits with the value of <strong id="b1911640826165622"><a name="b1911640826165622"></a><a name="b1911640826165622"></a>eval</strong>. </td>
 </tr>
-<tr id="row231357156084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tr id="row1794011250165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to format. </td>
 </tr>
-<tr id="row2087846856084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
+<tr id="row230214951165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameters initialized by using <a href="utils.md#gaa0628ab596c3d7e78f5e08c2d98e24da">va_start</a>. </td>
 </tr>
 </tbody>
@@ -4344,20 +4014,20 @@ Displays a formatted error message.
 
 **Parameters:**
 
-<a name="table1959581353084824"></a>
-<table><thead align="left"><tr id="row1459186692084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1635708593084824"><a name="p1635708593084824"></a><a name="p1635708593084824"></a>Name</p>
+<a name="table1492285781165622"></a>
+<table><thead align="left"><tr id="row1782441147165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p904457989165622"><a name="p904457989165622"></a><a name="p904457989165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p371340250084824"><a name="p371340250084824"></a><a name="p371340250084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p669800560165622"><a name="p669800560165622"></a><a name="p669800560165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row990224109084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eval</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">This function does not return, but exits with the value of <strong id="b1413563426084824"><a name="b1413563426084824"></a><a name="b1413563426084824"></a>eval</strong>. </td>
+<tbody><tr id="row962791164165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eval</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">This function does not return, but exits with the value of <strong id="b730242800165622"><a name="b730242800165622"></a><a name="b730242800165622"></a>eval</strong>. </td>
 </tr>
-<tr id="row1164357029084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tr id="row1019461389165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to format. </td>
 </tr>
-<tr id="row1490040721084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
+<tr id="row384052786165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameters initialized by using <a href="utils.md#gaa0628ab596c3d7e78f5e08c2d98e24da">va_start</a>. </td>
 </tr>
 </tbody>
@@ -4375,21 +4045,21 @@ Prints formatted data from a variable argument list to a specified file stream.
 
 **Parameters:**
 
-<a name="table1688618026084824"></a>
-<table><thead align="left"><tr id="row1602147432084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1069715220084824"><a name="p1069715220084824"></a><a name="p1069715220084824"></a>Name</p>
+<a name="table1635425637165622"></a>
+<table><thead align="left"><tr id="row782952496165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1849410389165622"><a name="p1849410389165622"></a><a name="p1849410389165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1431606282084824"><a name="p1431606282084824"></a><a name="p1431606282084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1732556869165622"><a name="p1732556869165622"></a><a name="p1732556869165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1974375046084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row974125805165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
-<tr id="row1345047255084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row718823817165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row740192875084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b1732855405084824"><a name="b1732855405084824"></a><a name="b1732855405084824"></a>va_start</strong>. </td>
+<tr id="row2032049977165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b1087328844165622"><a name="b1087328844165622"></a><a name="b1087328844165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4401,8 +4071,6 @@ This function is generally used together with  **va\_start**  and  **va\_end**.
 **Returns:**
 
 Returns the total number of characters \(excluding the terminating null character  **'\\0'**\) if the operation is successful; returns a negative value otherwise. 
-
-
 
 ## vfscanf\(\)<a name="gabdd32e401e37c9d954f3f0a6907500d9"></a>
 
@@ -4416,21 +4084,21 @@ Reads data from a specified file stream and stores it based on  **format**  into
 
 **Parameters:**
 
-<a name="table379247048084824"></a>
-<table><thead align="left"><tr id="row631024607084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1400566294084824"><a name="p1400566294084824"></a><a name="p1400566294084824"></a>Name</p>
+<a name="table1323487626165622"></a>
+<table><thead align="left"><tr id="row1678073456165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1061006182165622"><a name="p1061006182165622"></a><a name="p1061006182165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p530961682084824"><a name="p530961682084824"></a><a name="p530961682084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p361804331165622"><a name="p361804331165622"></a><a name="p361804331165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1333200817084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
+<tbody><tr id="row1220108732165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">stream</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the file object that identifies a stream. </td>
 </tr>
-<tr id="row2043340356084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row1487444107165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row473806298084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b2111416897084824"><a name="b2111416897084824"></a><a name="b2111416897084824"></a>va_start</strong>. </td>
+<tr id="row143526144165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b77988664165622"><a name="b77988664165622"></a><a name="b77988664165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4442,8 +4110,6 @@ This function is generally used together with  **va\_start**  and  **va\_end**.
 **Returns:**
 
 Returns the number of fields successfully assigned to the argument list if the operation is successful; returns  **0**  if no fields are assigned; returns  **EOF**  if a reading error occurs or the end-of-file is reached during data reading. If an encoding error occurs when characters are parsed, this function sets  **errno**  to  [EILSEQ](utils.md#gac6c071293826a4e66a717bb38db7794d). 
-
-
 
 ## vprintf\(\)<a name="gaa715ef816dc040c8b367fde4ba84d6f3"></a>
 
@@ -4457,18 +4123,18 @@ Prints formatted data from a variable argument list to the stdout.
 
 **Parameters:**
 
-<a name="table616085808084824"></a>
-<table><thead align="left"><tr id="row1807482643084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1984475843084824"><a name="p1984475843084824"></a><a name="p1984475843084824"></a>Name</p>
+<a name="table2097891630165622"></a>
+<table><thead align="left"><tr id="row2133166863165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1423889956165622"><a name="p1423889956165622"></a><a name="p1423889956165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1132314883084824"><a name="p1132314883084824"></a><a name="p1132314883084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2082832136165622"><a name="p2082832136165622"></a><a name="p2082832136165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2113690751084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tbody><tr id="row2033224230165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row554990730084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b458887501084824"><a name="b458887501084824"></a><a name="b458887501084824"></a>va_start</strong>. </td>
+<tr id="row482986657165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b786984824165622"><a name="b786984824165622"></a><a name="b786984824165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4480,8 +4146,6 @@ This function is generally used together with  **va\_start**  and  **va\_end**.
 **Returns:**
 
 Returns the total number of characters \(excluding the terminating null character  **'\\0'**\) if the operation is successful; returns a negative value otherwise. 
-
-
 
 ## vscanf\(\)<a name="ga40250d63904acd3e898061c9eab6ead3"></a>
 
@@ -4495,18 +4159,18 @@ Reads data from the stdin and stores it based on  **format**  into the locations
 
 **Parameters:**
 
-<a name="table726368643084824"></a>
-<table><thead align="left"><tr id="row716530766084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1129248415084824"><a name="p1129248415084824"></a><a name="p1129248415084824"></a>Name</p>
+<a name="table1140150591165622"></a>
+<table><thead align="left"><tr id="row119094442165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p943038137165622"><a name="p943038137165622"></a><a name="p943038137165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1736752293084824"><a name="p1736752293084824"></a><a name="p1736752293084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p342088435165622"><a name="p342088435165622"></a><a name="p342088435165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1719588358084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tbody><tr id="row1521253638165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row1474802002084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b1186793317084824"><a name="b1186793317084824"></a><a name="b1186793317084824"></a>va_start</strong>. </td>
+<tr id="row1309591872165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b438847965165622"><a name="b438847965165622"></a><a name="b438847965165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4518,8 +4182,6 @@ This function is generally used together with  **va\_start**  and  **va\_end**.
 **Returns:**
 
 Returns the number of fields successfully assigned to the argument list if the operation is successful; returns  **0**  if no fields are assigned; returns  **EOF**  if a reading error occurs or the end-of-file is reached during data reading. If an encoding error occurs when characters are parsed, this function sets  **errno**  to  [EILSEQ](utils.md#gac6c071293826a4e66a717bb38db7794d). 
-
-
 
 ## vsnprintf\(\)<a name="ga2cadafbeb2d6e0d5781f6e5106d41fc2"></a>
 
@@ -4533,24 +4195,24 @@ Prints formatted data of a maximum of  **size**  bytes from a variable argument 
 
 **Parameters:**
 
-<a name="table799684618084824"></a>
-<table><thead align="left"><tr id="row2014338208084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1033362730084824"><a name="p1033362730084824"></a><a name="p1033362730084824"></a>Name</p>
+<a name="table845418093165622"></a>
+<table><thead align="left"><tr id="row490910926165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1850732326165622"><a name="p1850732326165622"></a><a name="p1850732326165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2078343437084824"><a name="p2078343437084824"></a><a name="p2078343437084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p137314055165622"><a name="p137314055165622"></a><a name="p137314055165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2137969478084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
+<tbody><tr id="row1886446050165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the destination character string. </td>
 </tr>
-<tr id="row1478148576084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row1064970782165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the maximum length of the destination string. </td>
 </tr>
-<tr id="row76950501084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row1689326891165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row1259815396084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b311080643084824"><a name="b311080643084824"></a><a name="b311080643084824"></a>va_start</strong>. </td>
+<tr id="row1933601291165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b373103196165622"><a name="b373103196165622"></a><a name="b373103196165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4562,8 +4224,6 @@ This function can write a maximum of size-1 characters to the destination string
 **Returns:**
 
 Returns the number of formatted characters written \(excluding the terminating null character  **'\\0'**\) if the operation is successful; returns a negative value otherwise. If the return value is a non-negative value smaller than the value of  **size**, the string has been completely written.
-
-
 
 ## vsprintf\(\)<a name="gaab3db67c98c32122fcb3d076d4207bbc"></a>
 
@@ -4577,21 +4237,21 @@ Prints formatted data from a variable argument list to a specified string.
 
 **Parameters:**
 
-<a name="table530680646084824"></a>
-<table><thead align="left"><tr id="row1458100344084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p210151366084824"><a name="p210151366084824"></a><a name="p210151366084824"></a>Name</p>
+<a name="table2024797762165622"></a>
+<table><thead align="left"><tr id="row1418366120165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1363495196165622"><a name="p1363495196165622"></a><a name="p1363495196165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1062663134084824"><a name="p1062663134084824"></a><a name="p1062663134084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p732743501165622"><a name="p732743501165622"></a><a name="p732743501165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1327838596084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
+<tbody><tr id="row701246569165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the destination character string. </td>
 </tr>
-<tr id="row432553948084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row1118877262165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row14470647084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b932987663084824"><a name="b932987663084824"></a><a name="b932987663084824"></a>va_start</strong>. </td>
+<tr id="row1876479492165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b2028610931165622"><a name="b2028610931165622"></a><a name="b2028610931165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4599,8 +4259,6 @@ Prints formatted data from a variable argument list to a specified string.
 **Returns:**
 
 Returns the total number of characters written \(excluding the terminating null character  **'\\0'**\) if the operation is successful; returns a negative value otherwise. 
-
-
 
 ## vsscanf\(\)<a name="gab1c4552aba80fe03c9b45fe27f4331ad"></a>
 
@@ -4614,21 +4272,21 @@ Reads data from a specified string and stores it based on  **format**  into the 
 
 **Parameters:**
 
-<a name="table1126409088084824"></a>
-<table><thead align="left"><tr id="row496794604084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1713763709084824"><a name="p1713763709084824"></a><a name="p1713763709084824"></a>Name</p>
+<a name="table231379981165622"></a>
+<table><thead align="left"><tr id="row75272922165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1743185192165622"><a name="p1743185192165622"></a><a name="p1743185192165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p988874887084824"><a name="p988874887084824"></a><a name="p988874887084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p610908603165622"><a name="p610908603165622"></a><a name="p610908603165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1734613927084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
+<tbody><tr id="row1101028384165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">str</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the character string to read. </td>
 </tr>
-<tr id="row1086933683084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tr id="row396530163165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the format string. </td>
 </tr>
-<tr id="row1354565118084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b2102355142084824"><a name="b2102355142084824"></a><a name="b2102355142084824"></a>va_start</strong>. </td>
+<tr id="row485691075165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ap</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates a value identifying a variable argument list initialized by using <strong id="b1958719591165622"><a name="b1958719591165622"></a><a name="b1958719591165622"></a>va_start</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -4640,8 +4298,6 @@ This function is generally used together with  **va\_start**  and  **va\_end**.
 **Returns:**
 
 Returns the number of fields successfully assigned to the argument list if the operation is successful; returns  **0**  if no fields are assigned; returns  **EOF**  if a reading error occurs or the end-of-file is reached during data reading. If an encoding error occurs when characters are parsed, this function sets  **errno**  to  [EILSEQ](utils.md#gac6c071293826a4e66a717bb38db7794d). 
-
-
 
 ## vwarn\(\)<a name="ga9ca1ffba0c6f5df7b172d25917611b4a"></a>
 
@@ -4657,17 +4313,17 @@ If the  **fmt**  parameter is not  **NULL**, stderr displays the error code desc
 
 **Parameters:**
 
-<a name="table1994702449084824"></a>
-<table><thead align="left"><tr id="row1504113977084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p369320350084824"><a name="p369320350084824"></a><a name="p369320350084824"></a>Name</p>
+<a name="table1619913890165622"></a>
+<table><thead align="left"><tr id="row1630438768165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2014546131165622"><a name="p2014546131165622"></a><a name="p2014546131165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1896117161084824"><a name="p1896117161084824"></a><a name="p1896117161084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p473200852165622"><a name="p473200852165622"></a><a name="p473200852165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row465695802084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tbody><tr id="row1840848618165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to format. </td>
 </tr>
-<tr id="row189666967084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
+<tr id="row1919129862165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameters initialized by using <a href="utils.md#gaa0628ab596c3d7e78f5e08c2d98e24da">va_start</a>. </td>
 </tr>
 </tbody>
@@ -4687,17 +4343,17 @@ If the  **fmt**  parameter is not  **NULL**, stderr displays the error code desc
 
 **Parameters:**
 
-<a name="table1180382374084824"></a>
-<table><thead align="left"><tr id="row409040990084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p735321499084824"><a name="p735321499084824"></a><a name="p735321499084824"></a>Name</p>
+<a name="table112340430165622"></a>
+<table><thead align="left"><tr id="row1297489619165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p473294411165622"><a name="p473294411165622"></a><a name="p473294411165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p695405690084824"><a name="p695405690084824"></a><a name="p695405690084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p867549381165622"><a name="p867549381165622"></a><a name="p867549381165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row811168708084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tbody><tr id="row339006944165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to format. </td>
 </tr>
-<tr id="row1072921405084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
+<tr id="row1062293961165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">args</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameters initialized by using <a href="utils.md#gaa0628ab596c3d7e78f5e08c2d98e24da">va_start</a>. </td>
 </tr>
 </tbody>
@@ -4717,17 +4373,17 @@ If the  **fmt**  parameter is not  **NULL**, stderr displays the error code desc
 
 **Parameters:**
 
-<a name="table548082059084824"></a>
-<table><thead align="left"><tr id="row1200513512084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1070908807084824"><a name="p1070908807084824"></a><a name="p1070908807084824"></a>Name</p>
+<a name="table1257016534165622"></a>
+<table><thead align="left"><tr id="row1801551538165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1588637268165622"><a name="p1588637268165622"></a><a name="p1588637268165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p137336201084824"><a name="p137336201084824"></a><a name="p137336201084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p869152678165622"><a name="p869152678165622"></a><a name="p869152678165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row148543467084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tbody><tr id="row726145241165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to format. </td>
 </tr>
-<tr id="row1542990366084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row919070525165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameters corresponding to the format declaration. </td>
 </tr>
 </tbody>
@@ -4747,43 +4403,18 @@ If the  **fmt**  parameter is not  **NULL**, stderr displays the error code desc
 
 **Parameters:**
 
-<a name="table830248555084824"></a>
-<table><thead align="left"><tr id="row414627215084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p801471892084824"><a name="p801471892084824"></a><a name="p801471892084824"></a>Name</p>
+<a name="table1378697747165622"></a>
+<table><thead align="left"><tr id="row253094706165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p263962812165622"><a name="p263962812165622"></a><a name="p263962812165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1888376368084824"><a name="p1888376368084824"></a><a name="p1888376368084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1674827990165622"><a name="p1674827990165622"></a><a name="p1674827990165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1729048785084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
+<tbody><tr id="row1937286949165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fmt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the string to format. </td>
 </tr>
-<tr id="row944223427084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
+<tr id="row1056187145165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">...</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameters corresponding to the format declaration. </td>
-</tr>
-</tbody>
-</table>
-
-## wordfree\(\)<a name="ga1b296371dffe80c14d0c9ebd27165140"></a>
-
-```
-void wordfree ([wordexp_t](wordexp_t.md) * we)
-```
-
- **Description:**
-
-Frees a word expansion buffer. 
-
-**Parameters:**
-
-<a name="table753630191084824"></a>
-<table><thead align="left"><tr id="row1672216035084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1230986898084824"><a name="p1230986898084824"></a><a name="p1230986898084824"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p230614428084824"><a name="p230614428084824"></a><a name="p230614428084824"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1194213738084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">we</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the word expansion buffer to free. </td>
 </tr>
 </tbody>
 </table>
@@ -4802,20 +4433,20 @@ This function is used to write the  **iovcnt**  length of  **iov**  to  **fd**.
 
 **Parameters:**
 
-<a name="table904494806084824"></a>
-<table><thead align="left"><tr id="row1643658199084824"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p133359513084824"><a name="p133359513084824"></a><a name="p133359513084824"></a>Name</p>
+<a name="table1999483525165622"></a>
+<table><thead align="left"><tr id="row12182165622"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1424410861165622"><a name="p1424410861165622"></a><a name="p1424410861165622"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p201553841084824"><a name="p201553841084824"></a><a name="p201553841084824"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p786591860165622"><a name="p786591860165622"></a><a name="p786591860165622"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row152366516084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
+<tbody><tr id="row584022969165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">fd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the file descriptor. </td>
 </tr>
-<tr id="row218632314084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iov</td>
+<tr id="row640389614165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iov</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the multi-group buffer. </td>
 </tr>
-<tr id="row1035162795084824"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iovcnt</td>
+<tr id="row308794707165622"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iovcnt</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of buffers. For details, see <a href="utils.md#ga25080e819a36fcf9aede01a6e7298ea4">IOV_MAX</a>. </td>
 </tr>
 </tbody>
@@ -4824,6 +4455,4 @@ This function is used to write the  **iovcnt**  length of  **iov**  to  **fd**.
 **Returns:**
 
 Returns the number of bytes written if the operation is successful; returns  **-1**  and sets  **errno**  to a value if the operation fails. If  **errno**  is set to  **EINVAL**, the sum of the  **iov\_len**  values overflows an  **ssize\_t**  value, or the vector count  **iovcnt**  is less than 0 or greater than the permitted maximum. 
-
-
 

@@ -1,6 +1,10 @@
 # Beacon<a name="EN-US_TOPIC_0000001054799593"></a>
 
-## **Overview**<a name="section1622495959093529"></a>
+-   [Overview](#section1399948673165630)
+-   [Summary](#section1126989561165630)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1399948673165630"></a>
 
 **Related Modules:**
 
@@ -14,35 +18,35 @@ Defines the update of the  **Sta**  flag.
 
 1.0
 
-## **Summary**<a name="section2063874817093529"></a>
+## **Summary**<a name="section1126989561165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table363314528093529"></a>
-<table><thead align="left"><tr id="row580808363093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1715831061093529"><a name="p1715831061093529"></a><a name="p1715831061093529"></a>Variable Name</p>
+<a name="table2143677510165630"></a>
+<table><thead align="left"><tr id="row1157018444165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p548312670165630"><a name="p548312670165630"></a><a name="p548312670165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1664942529093529"><a name="p1664942529093529"></a><a name="p1664942529093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1386707447165630"><a name="p1386707447165630"></a><a name="p1386707447165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row773528516093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1596948312093529"><a name="p1596948312093529"></a><a name="p1596948312093529"></a><a href="wlan.md#ga9ff8a9a52a3e4f341e7ff49dd7bf76b8">timestamp</a></p>
+<tbody><tr id="row452806488165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p220270852165630"><a name="p220270852165630"></a><a name="p220270852165630"></a><a href="wlan.md#ga9ff8a9a52a3e4f341e7ff49dd7bf76b8">timestamp</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p586052600093529"><a name="p586052600093529"></a><a name="p586052600093529"></a>uint64_t </p>
-</td>
-</tr>
-<tr id="row1267726516093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1677757839093529"><a name="p1677757839093529"></a><a name="p1677757839093529"></a><a href="wlan.md#ga34eacc801b02cefbfe742a6451b95770">beaconInt</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p722591206093529"><a name="p722591206093529"></a><a name="p722591206093529"></a>uint16_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1559035749165630"><a name="p1559035749165630"></a><a name="p1559035749165630"></a>uint64_t </p>
 </td>
 </tr>
-<tr id="row1878305076093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1811736927093529"><a name="p1811736927093529"></a><a name="p1811736927093529"></a><a href="wlan.md#gaabddc721f70c869a51d5893ea58012cc">capabInfo</a></p>
+<tr id="row371895734165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2013227407165630"><a name="p2013227407165630"></a><a name="p2013227407165630"></a><a href="wlan.md#ga34eacc801b02cefbfe742a6451b95770">beaconInt</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1206901135093529"><a name="p1206901135093529"></a><a name="p1206901135093529"></a>uint16_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p704571154165630"><a name="p704571154165630"></a><a name="p704571154165630"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row817808284093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1772919479093529"><a name="p1772919479093529"></a><a name="p1772919479093529"></a><a href="wlan.md#ga0de9d9ef52da27a0a11753d152c2fb64">variable</a> [0]</p>
+<tr id="row1224327460165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p956750968165630"><a name="p956750968165630"></a><a name="p956750968165630"></a><a href="wlan.md#gaabddc721f70c869a51d5893ea58012cc">capabInfo</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1507219134093529"><a name="p1507219134093529"></a><a name="p1507219134093529"></a>uint8_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p274824478165630"><a name="p274824478165630"></a><a name="p274824478165630"></a>uint16_t </p>
+</td>
+</tr>
+<tr id="row648204548165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2118399405165630"><a name="p2118399405165630"></a><a name="p2118399405165630"></a><a href="wlan.md#ga0de9d9ef52da27a0a11753d152c2fb64">variable</a> [0]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p469829766165630"><a name="p469829766165630"></a><a name="p469829766165630"></a>uint8_t </p>
 </td>
 </tr>
 </tbody>

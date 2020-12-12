@@ -1,6 +1,20 @@
 # AudioAdapter<a name="EN-US_TOPIC_0000001054879522"></a>
 
-## **Overview**<a name="section1018976419093529"></a>
+-   [Overview](#section611392098165630)
+-   [Summary](#section1187227500165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section2025801532165630)
+-   [Field](#section1769083627165630)
+-   [CreateCapture](#a8a46358cdad8e0a9d15ac079713535f2)
+-   [CreateRender](#a284ea2ad18ebac562ca7283652e61b50)
+-   [DestroyCapture](#a1175a27c5273dab1acf8f8f3c4967637)
+-   [DestroyRender](#a070a8d60f88134c58c4439d4419af913)
+-   [GetPassthroughMode](#ad4c41f3193c5ec3da254f33e24241ea6)
+-   [GetPortCapability](#a525ec7f3f3bb9975790e27f75145d0f6)
+-   [InitAllPorts](#a3c46c9291d4c08d489454ffd78d4a1ee)
+-   [SetPassthroughMode](#ac4e77085cdcc853de832a2b16b8dc69a)
+
+## **Overview**<a name="section611392098165630"></a>
 
 **Related Modules:**
 
@@ -10,6 +24,11 @@
 
 Provides audio adapter capabilities, including initializing ports, creating rendering and capturing tasks, and obtaining the port capability set. 
 
+See also
+:   [AudioRender](audiorender.md) 
+
+:    [AudioCapture](audiocapture.md) 
+
 **Since:**
 
 1.0
@@ -18,71 +37,71 @@ Provides audio adapter capabilities, including initializing ports, creating rend
 
 1.0
 
-## **Summary**<a name="section1265400870093529"></a>
+## **Summary**<a name="section1187227500165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1418668503093529"></a>
-<table><thead align="left"><tr id="row1588744881093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2091697081093529"><a name="p2091697081093529"></a><a name="p2091697081093529"></a>Variable Name</p>
+<a name="table556752954165630"></a>
+<table><thead align="left"><tr id="row1806372885165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p714653026165630"><a name="p714653026165630"></a><a name="p714653026165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p120274640093529"><a name="p120274640093529"></a><a name="p120274640093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1158360625165630"><a name="p1158360625165630"></a><a name="p1158360625165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row248311549093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1232248440093529"><a name="p1232248440093529"></a><a name="p1232248440093529"></a><a href="audioadapter.md#a3c46c9291d4c08d489454ffd78d4a1ee">InitAllPorts</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter)</p>
+<tbody><tr id="row1564252577165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1411027941165630"><a name="p1411027941165630"></a><a name="p1411027941165630"></a><a href="audioadapter.md#a3c46c9291d4c08d489454ffd78d4a1ee">InitAllPorts</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p598107548093529"><a name="p598107548093529"></a><a name="p598107548093529"></a>int32_t(* </p>
-<p id="p1979261033093529"><a name="p1979261033093529"></a><a name="p1979261033093529"></a>Initializes all ports of an audio adapter. </p>
-</td>
-</tr>
-<tr id="row1578919531093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2095483610093529"><a name="p2095483610093529"></a><a name="p2095483610093529"></a><a href="audioadapter.md#a284ea2ad18ebac562ca7283652e61b50">CreateRender</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audiodevicedescriptor.md">AudioDeviceDescriptor</a> *desc, const struct <a href="audiosampleattributes.md">AudioSampleAttributes</a> *attrs, struct <a href="audiorender.md">AudioRender</a> **render)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1321298553093529"><a name="p1321298553093529"></a><a name="p1321298553093529"></a>int32_t(* </p>
-<p id="p2051413093529"><a name="p2051413093529"></a><a name="p2051413093529"></a>Creates an <strong id="b1241774420093529"><a name="b1241774420093529"></a><a name="b1241774420093529"></a><a href="audiorender.md">AudioRender</a></strong> object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p970988503165630"><a name="p970988503165630"></a><a name="p970988503165630"></a>int32_t(* </p>
+<p id="p1822593338165630"><a name="p1822593338165630"></a><a name="p1822593338165630"></a>Initializes all ports of an audio adapter. </p>
 </td>
 </tr>
-<tr id="row1930427928093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1979069192093529"><a name="p1979069192093529"></a><a name="p1979069192093529"></a><a href="audioadapter.md#a070a8d60f88134c58c4439d4419af913">DestroyRender</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, struct <a href="audiorender.md">AudioRender</a> *render)</p>
+<tr id="row1034734293165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p893120226165630"><a name="p893120226165630"></a><a name="p893120226165630"></a><a href="audioadapter.md#a284ea2ad18ebac562ca7283652e61b50">CreateRender</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audiodevicedescriptor.md">AudioDeviceDescriptor</a> *desc, const struct <a href="audiosampleattributes.md">AudioSampleAttributes</a> *attrs, struct <a href="audiorender.md">AudioRender</a> **render)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p433030640093529"><a name="p433030640093529"></a><a name="p433030640093529"></a>int32_t(* </p>
-<p id="p1511403336093529"><a name="p1511403336093529"></a><a name="p1511403336093529"></a>Destroys an <strong id="b1769596322093529"><a name="b1769596322093529"></a><a name="b1769596322093529"></a><a href="audiorender.md">AudioRender</a></strong> object. </p>
-</td>
-</tr>
-<tr id="row394017211093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1141353875093529"><a name="p1141353875093529"></a><a name="p1141353875093529"></a><a href="audioadapter.md#a8a46358cdad8e0a9d15ac079713535f2">CreateCapture</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audiodevicedescriptor.md">AudioDeviceDescriptor</a> *desc, const struct <a href="audiosampleattributes.md">AudioSampleAttributes</a> *attrs, struct <a href="audiocapture.md">AudioCapture</a> **capture)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p702542483093529"><a name="p702542483093529"></a><a name="p702542483093529"></a>int32_t(* </p>
-<p id="p283582026093529"><a name="p283582026093529"></a><a name="p283582026093529"></a>Creates an <strong id="b2097703679093529"><a name="b2097703679093529"></a><a name="b2097703679093529"></a><a href="audiocapture.md">AudioCapture</a></strong> object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1972825867165630"><a name="p1972825867165630"></a><a name="p1972825867165630"></a>int32_t(* </p>
+<p id="p206374907165630"><a name="p206374907165630"></a><a name="p206374907165630"></a>Creates an <strong id="b187922990165630"><a name="b187922990165630"></a><a name="b187922990165630"></a><a href="audiorender.md">AudioRender</a></strong> object. </p>
 </td>
 </tr>
-<tr id="row1131785240093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p17211529093529"><a name="p17211529093529"></a><a name="p17211529093529"></a><a href="audioadapter.md#a1175a27c5273dab1acf8f8f3c4967637">DestroyCapture</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, struct <a href="audiocapture.md">AudioCapture</a> *capture)</p>
+<tr id="row1130444165165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p315107269165630"><a name="p315107269165630"></a><a name="p315107269165630"></a><a href="audioadapter.md#a070a8d60f88134c58c4439d4419af913">DestroyRender</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, struct <a href="audiorender.md">AudioRender</a> *render)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2030831733093529"><a name="p2030831733093529"></a><a name="p2030831733093529"></a>int32_t(* </p>
-<p id="p2047373094093529"><a name="p2047373094093529"></a><a name="p2047373094093529"></a>Destroys an <strong id="b1605525228093529"><a name="b1605525228093529"></a><a name="b1605525228093529"></a><a href="audiocapture.md">AudioCapture</a></strong> object. </p>
-</td>
-</tr>
-<tr id="row1923185202093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p168289033093529"><a name="p168289033093529"></a><a name="p168289033093529"></a><a href="audioadapter.md#a525ec7f3f3bb9975790e27f75145d0f6">GetPortCapability</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audioport.md">AudioPort</a> *port, struct <a href="audioportcapability.md">AudioPortCapability</a> *capability)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2025521960093529"><a name="p2025521960093529"></a><a name="p2025521960093529"></a>int32_t(* </p>
-<p id="p2137140893093529"><a name="p2137140893093529"></a><a name="p2137140893093529"></a>Obtains the capability set of the port driver for the audio adapter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1198421315165630"><a name="p1198421315165630"></a><a name="p1198421315165630"></a>int32_t(* </p>
+<p id="p438530132165630"><a name="p438530132165630"></a><a name="p438530132165630"></a>Destroys an <strong id="b1204596536165630"><a name="b1204596536165630"></a><a name="b1204596536165630"></a><a href="audiorender.md">AudioRender</a></strong> object. </p>
 </td>
 </tr>
-<tr id="row5611995093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1207872433093529"><a name="p1207872433093529"></a><a name="p1207872433093529"></a><a href="audioadapter.md#ac4e77085cdcc853de832a2b16b8dc69a">SetPassthroughMode</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audioport.md">AudioPort</a> *port, enum <a href="audio.md#ga186d2d4f9a2ecacb80cd2cce2bd26f0e">AudioPortPassthroughMode</a> mode)</p>
+<tr id="row761766302165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p794060171165630"><a name="p794060171165630"></a><a name="p794060171165630"></a><a href="audioadapter.md#a8a46358cdad8e0a9d15ac079713535f2">CreateCapture</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audiodevicedescriptor.md">AudioDeviceDescriptor</a> *desc, const struct <a href="audiosampleattributes.md">AudioSampleAttributes</a> *attrs, struct <a href="audiocapture.md">AudioCapture</a> **capture)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1701476356093529"><a name="p1701476356093529"></a><a name="p1701476356093529"></a>int32_t(* </p>
-<p id="p1891670679093529"><a name="p1891670679093529"></a><a name="p1891670679093529"></a>Sets the passthrough data transmission mode of the audio port driver. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1554046369165630"><a name="p1554046369165630"></a><a name="p1554046369165630"></a>int32_t(* </p>
+<p id="p662329403165630"><a name="p662329403165630"></a><a name="p662329403165630"></a>Creates an <strong id="b834259803165630"><a name="b834259803165630"></a><a name="b834259803165630"></a><a href="audiocapture.md">AudioCapture</a></strong> object. </p>
 </td>
 </tr>
-<tr id="row708431657093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1105861462093529"><a name="p1105861462093529"></a><a name="p1105861462093529"></a><a href="audioadapter.md#ad4c41f3193c5ec3da254f33e24241ea6">GetPassthroughMode</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audioport.md">AudioPort</a> *port, enum <a href="audio.md#ga186d2d4f9a2ecacb80cd2cce2bd26f0e">AudioPortPassthroughMode</a> *mode)</p>
+<tr id="row427122420165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p501794459165630"><a name="p501794459165630"></a><a name="p501794459165630"></a><a href="audioadapter.md#a1175a27c5273dab1acf8f8f3c4967637">DestroyCapture</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, struct <a href="audiocapture.md">AudioCapture</a> *capture)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p984756588093529"><a name="p984756588093529"></a><a name="p984756588093529"></a>int32_t(* </p>
-<p id="p635110041093529"><a name="p635110041093529"></a><a name="p635110041093529"></a>Obtains the passthrough data transmission mode of the audio port driver. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1953375209165630"><a name="p1953375209165630"></a><a name="p1953375209165630"></a>int32_t(* </p>
+<p id="p106139258165630"><a name="p106139258165630"></a><a name="p106139258165630"></a>Destroys an <strong id="b1795089805165630"><a name="b1795089805165630"></a><a name="b1795089805165630"></a><a href="audiocapture.md">AudioCapture</a></strong> object. </p>
+</td>
+</tr>
+<tr id="row151959319165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1077596707165630"><a name="p1077596707165630"></a><a name="p1077596707165630"></a><a href="audioadapter.md#a525ec7f3f3bb9975790e27f75145d0f6">GetPortCapability</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audioport.md">AudioPort</a> *port, struct <a href="audioportcapability.md">AudioPortCapability</a> *capability)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p205650217165630"><a name="p205650217165630"></a><a name="p205650217165630"></a>int32_t(* </p>
+<p id="p857152900165630"><a name="p857152900165630"></a><a name="p857152900165630"></a>Obtains the capability set of the port driver for the audio adapter. </p>
+</td>
+</tr>
+<tr id="row75731391165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p778904594165630"><a name="p778904594165630"></a><a name="p778904594165630"></a><a href="audioadapter.md#ac4e77085cdcc853de832a2b16b8dc69a">SetPassthroughMode</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audioport.md">AudioPort</a> *port, enum <a href="audio.md#ga186d2d4f9a2ecacb80cd2cce2bd26f0e">AudioPortPassthroughMode</a> mode)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p692789056165630"><a name="p692789056165630"></a><a name="p692789056165630"></a>int32_t(* </p>
+<p id="p1233543103165630"><a name="p1233543103165630"></a><a name="p1233543103165630"></a>Sets the passthrough data transmission mode of the audio port driver. </p>
+</td>
+</tr>
+<tr id="row1268557467165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1295208374165630"><a name="p1295208374165630"></a><a name="p1295208374165630"></a><a href="audioadapter.md#ad4c41f3193c5ec3da254f33e24241ea6">GetPassthroughMode</a> )(struct <a href="audioadapter.md">AudioAdapter</a> *adapter, const struct <a href="audioport.md">AudioPort</a> *port, enum <a href="audio.md#ga186d2d4f9a2ecacb80cd2cce2bd26f0e">AudioPortPassthroughMode</a> *mode)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p277206106165630"><a name="p277206106165630"></a><a name="p277206106165630"></a>int32_t(* </p>
+<p id="p465501831165630"><a name="p465501831165630"></a><a name="p465501831165630"></a>Obtains the passthrough data transmission mode of the audio port driver. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section629025505093529"></a>
+## **Details**<a name="section2025801532165630"></a>
 
-## **Field Documentation**<a name="section1487695221093529"></a>
+## **Field **<a name="section1769083627165630"></a>
 
 ## CreateCapture<a name="a8a46358cdad8e0a9d15ac079713535f2"></a>
 
@@ -96,24 +115,24 @@ Creates an  **[AudioCapture](audiocapture.md)**  object.
 
 **Parameters:**
 
-<a name="table1123555756093529"></a>
-<table><thead align="left"><tr id="row741826260093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p53065450093529"><a name="p53065450093529"></a><a name="p53065450093529"></a>Name</p>
+<a name="table2137339143165630"></a>
+<table><thead align="left"><tr id="row1094804196165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p997271897165630"><a name="p997271897165630"></a><a name="p997271897165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1121781333093529"><a name="p1121781333093529"></a><a name="p1121781333093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p353799266165630"><a name="p353799266165630"></a><a name="p353799266165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row595104207093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tbody><tr id="row232059790165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter to operate. </td>
 </tr>
-<tr id="row1820488407093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">desc</td>
+<tr id="row50564993165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">desc</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the descriptor of the audio adapter to start. </td>
 </tr>
-<tr id="row152565446093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">attrs</td>
+<tr id="row2041063878165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">attrs</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio sampling attributes to open. </td>
 </tr>
-<tr id="row1563208241093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capture</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the <strong id="b141499044093529"><a name="b141499044093529"></a><a name="b141499044093529"></a><a href="audiocapture.md">AudioCapture</a></strong> object. </td>
+<tr id="row1840611241165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capture</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the <strong id="b1649305452165630"><a name="b1649305452165630"></a><a name="b1649305452165630"></a><a href="audiocapture.md">AudioCapture</a></strong> object. </td>
 </tr>
 </tbody>
 </table>
@@ -125,6 +144,8 @@ Returns  **0**  if the  **[AudioCapture](audiocapture.md)**  object is created s
 **See also:**
 
 [GetPortCapability](audioadapter.md#a525ec7f3f3bb9975790e27f75145d0f6) 
+
+ [DestroyCapture](audioadapter.md#a1175a27c5273dab1acf8f8f3c4967637) 
 
 ## CreateRender<a name="a284ea2ad18ebac562ca7283652e61b50"></a>
 
@@ -138,24 +159,24 @@ Creates an  **[AudioRender](audiorender.md)**  object.
 
 **Parameters:**
 
-<a name="table452064968093529"></a>
-<table><thead align="left"><tr id="row1990641944093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1884553925093529"><a name="p1884553925093529"></a><a name="p1884553925093529"></a>Name</p>
+<a name="table792995601165630"></a>
+<table><thead align="left"><tr id="row10015730165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1343629120165630"><a name="p1343629120165630"></a><a name="p1343629120165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1170544726093529"><a name="p1170544726093529"></a><a name="p1170544726093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2022291874165630"><a name="p2022291874165630"></a><a name="p2022291874165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row577617420093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tbody><tr id="row1439256863165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter to operate. </td>
 </tr>
-<tr id="row1647166663093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">desc</td>
+<tr id="row1095562649165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">desc</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the descriptor of the audio adapter to start. </td>
 </tr>
-<tr id="row813188173093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">attrs</td>
+<tr id="row1675934944165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">attrs</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio sampling attributes to open. </td>
 </tr>
-<tr id="row1846563500093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the <strong id="b1347951882093529"><a name="b1347951882093529"></a><a name="b1347951882093529"></a><a href="audiorender.md">AudioRender</a></strong> object. </td>
+<tr id="row1708549715165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the <strong id="b1089286258165630"><a name="b1089286258165630"></a><a name="b1089286258165630"></a><a href="audiorender.md">AudioRender</a></strong> object. </td>
 </tr>
 </tbody>
 </table>
@@ -167,6 +188,8 @@ Returns  **0**  if the  **[AudioRender](audiorender.md)**  object is created suc
 **See also:**
 
 [GetPortCapability](audioadapter.md#a525ec7f3f3bb9975790e27f75145d0f6) 
+
+ [DestroyRender](audioadapter.md#a070a8d60f88134c58c4439d4419af913) 
 
 ## DestroyCapture<a name="a1175a27c5273dab1acf8f8f3c4967637"></a>
 
@@ -180,18 +203,18 @@ Destroys an  **[AudioCapture](audiocapture.md)**  object.
 
 **Parameters:**
 
-<a name="table1415829245093529"></a>
-<table><thead align="left"><tr id="row147817294093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1914011374093529"><a name="p1914011374093529"></a><a name="p1914011374093529"></a>Name</p>
+<a name="table282746375165630"></a>
+<table><thead align="left"><tr id="row1315025724165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p240982892165630"><a name="p240982892165630"></a><a name="p240982892165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p603528269093529"><a name="p603528269093529"></a><a name="p603528269093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p382784377165630"><a name="p382784377165630"></a><a name="p382784377165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row134151341093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tbody><tr id="row1861983121165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter to operate. </td>
 </tr>
-<tr id="row1538219665093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capture</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b861511608093529"><a name="b861511608093529"></a><a name="b861511608093529"></a><a href="audiocapture.md">AudioCapture</a></strong> object to operate. </td>
+<tr id="row1074432090165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capture</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b926614670165630"><a name="b926614670165630"></a><a name="b926614670165630"></a><a href="audiocapture.md">AudioCapture</a></strong> object to operate. </td>
 </tr>
 </tbody>
 </table>
@@ -220,18 +243,18 @@ Destroys an  **[AudioRender](audiorender.md)**  object.
 
 **Parameters:**
 
-<a name="table1979905813093529"></a>
-<table><thead align="left"><tr id="row363358699093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p343241280093529"><a name="p343241280093529"></a><a name="p343241280093529"></a>Name</p>
+<a name="table1112008383165630"></a>
+<table><thead align="left"><tr id="row1239048110165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p91465375165630"><a name="p91465375165630"></a><a name="p91465375165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p677888803093529"><a name="p677888803093529"></a><a name="p677888803093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2060452849165630"><a name="p2060452849165630"></a><a name="p2060452849165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1339057211093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tbody><tr id="row420520185165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter to operate. </td>
 </tr>
-<tr id="row551651422093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1252699254093529"><a name="b1252699254093529"></a><a name="b1252699254093529"></a><a href="audiorender.md">AudioRender</a></strong> object to operate. </td>
+<tr id="row2103121582165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1994643129165630"><a name="b1994643129165630"></a><a name="b1994643129165630"></a><a href="audiorender.md">AudioRender</a></strong> object to operate. </td>
 </tr>
 </tbody>
 </table>
@@ -260,20 +283,20 @@ Obtains the passthrough data transmission mode of the audio port driver.
 
 **Parameters:**
 
-<a name="table1874711416093529"></a>
-<table><thead align="left"><tr id="row1839187508093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1167318499093529"><a name="p1167318499093529"></a><a name="p1167318499093529"></a>Name</p>
+<a name="table761188707165630"></a>
+<table><thead align="left"><tr id="row1892027097165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p886449390165630"><a name="p886449390165630"></a><a name="p886449390165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p511000365093529"><a name="p511000365093529"></a><a name="p511000365093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p725930104165630"><a name="p725930104165630"></a><a name="p725930104165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row955125389093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tbody><tr id="row1822294760165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter to operate. </td>
 </tr>
-<tr id="row806029126093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">port</td>
+<tr id="row95807415165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">port</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the port. </td>
 </tr>
-<tr id="row1123463413093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
+<tr id="row1258673458165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the passthrough transmission mode to obtain. </td>
 </tr>
 </tbody>
@@ -299,20 +322,20 @@ Obtains the capability set of the port driver for the audio adapter.
 
 **Parameters:**
 
-<a name="table549604390093529"></a>
-<table><thead align="left"><tr id="row1848349352093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1063966956093529"><a name="p1063966956093529"></a><a name="p1063966956093529"></a>Name</p>
+<a name="table1561939129165630"></a>
+<table><thead align="left"><tr id="row818419923165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1897463462165630"><a name="p1897463462165630"></a><a name="p1897463462165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p290167071093529"><a name="p290167071093529"></a><a name="p290167071093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p392404163165630"><a name="p392404163165630"></a><a name="p392404163165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row690529570093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tbody><tr id="row631601139165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter to operate. </td>
 </tr>
-<tr id="row600527139093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">port</td>
+<tr id="row1030648389165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">port</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the port. </td>
 </tr>
-<tr id="row1577303219093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capability</td>
+<tr id="row1155206115165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capability</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the capability set to obtain. </td>
 </tr>
 </tbody>
@@ -321,8 +344,6 @@ Obtains the capability set of the port driver for the audio adapter.
 **Returns:**
 
 Returns  **0**  if the capability set is successfully obtained; returns a negative value otherwise. 
-
-
 
 ## InitAllPorts<a name="a3c46c9291d4c08d489454ffd78d4a1ee"></a>
 
@@ -338,14 +359,14 @@ Call this function before calling other driver functions to check whether the in
 
 **Parameters:**
 
-<a name="table143952381093529"></a>
-<table><thead align="left"><tr id="row303632622093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p720824060093529"><a name="p720824060093529"></a><a name="p720824060093529"></a>Name</p>
+<a name="table1975409468165630"></a>
+<table><thead align="left"><tr id="row25267728165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1925334488165630"><a name="p1925334488165630"></a><a name="p1925334488165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p182933896093529"><a name="p182933896093529"></a><a name="p182933896093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p67213894165630"><a name="p67213894165630"></a><a name="p67213894165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1792937114093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tbody><tr id="row244188438165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter to operate. </td>
 </tr>
 </tbody>
@@ -354,8 +375,6 @@ Call this function before calling other driver functions to check whether the in
 **Returns:**
 
 Returns  **0**  if the initialization is successful; returns a negative value otherwise. 
-
-
 
 ## SetPassthroughMode<a name="ac4e77085cdcc853de832a2b16b8dc69a"></a>
 
@@ -369,20 +388,20 @@ Sets the passthrough data transmission mode of the audio port driver.
 
 **Parameters:**
 
-<a name="table1133342490093529"></a>
-<table><thead align="left"><tr id="row1057469914093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1166340731093529"><a name="p1166340731093529"></a><a name="p1166340731093529"></a>Name</p>
+<a name="table624086282165630"></a>
+<table><thead align="left"><tr id="row238948818165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p825021985165630"><a name="p825021985165630"></a><a name="p825021985165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1137241494093529"><a name="p1137241494093529"></a><a name="p1137241494093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1977467480165630"><a name="p1977467480165630"></a><a name="p1977467480165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2107807824093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tbody><tr id="row758512341165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter to operate. </td>
 </tr>
-<tr id="row1337795731093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">port</td>
+<tr id="row1997245497165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">port</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the port. </td>
 </tr>
-<tr id="row2069723204093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
+<tr id="row833941611165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the passthrough transmission mode to set. </td>
 </tr>
 </tbody>

@@ -1,6 +1,10 @@
 # audio\_attribute.h<a name="EN-US_TOPIC_0000001054918115"></a>
 
-## **Overview**<a name="section1762340453093524"></a>
+-   [Overview](#section806213924165626)
+-   [Summary](#section1570327939165626)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section806213924165626"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares APIs for audio attributes.
 
 1.0
 
-## **Summary**<a name="section830776633093524"></a>
+## **Summary**<a name="section1570327939165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1584105640093524"></a>
-<table><thead align="left"><tr id="row1606678502093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p594020895093524"><a name="p594020895093524"></a><a name="p594020895093524"></a>Data Structure Name</p>
+<a name="table130450447165626"></a>
+<table><thead align="left"><tr id="row536680496165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p867638374165626"><a name="p867638374165626"></a><a name="p867638374165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p461165613093524"><a name="p461165613093524"></a><a name="p461165613093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1742738478165626"><a name="p1742738478165626"></a><a name="p1742738478165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1567812685093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1616428466093524"><a name="p1616428466093524"></a><a name="p1616428466093524"></a><a href="audioattribute.md">AudioAttribute</a></p>
+<tbody><tr id="row1189797021165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p920677899165626"><a name="p920677899165626"></a><a name="p920677899165626"></a><a href="audioattribute.md">AudioAttribute</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1306451052093524"><a name="p1306451052093524"></a><a name="p1306451052093524"></a>Provides attribute-related APIs for audio rendering or capturing, including functions to obtain frame information and set audio sampling attributes. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p672674237165626"><a name="p672674237165626"></a><a name="p672674237165626"></a>Provides attribute-related APIs for audio rendering or capturing, including functions to obtain frame information and set audio sampling attributes. </p>
 </td>
 </tr>
 </tbody>

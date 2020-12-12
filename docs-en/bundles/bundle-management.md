@@ -1,5 +1,8 @@
 # Bundle Management<a name="EN-US_TOPIC_0000001052170830"></a>
 
+-   [Dependency](#section12657593129)
+-   [HPM Command Reference](#section1258849181312)
+
 ## Dependency<a name="section12657593129"></a>
 
 A basic  **bundle.json**  file needs to be enriched by bundle dependencies to implement more complex features. Bundle names and version numbers should be defined in the  **dependencies**  field of  **bundle.json**.

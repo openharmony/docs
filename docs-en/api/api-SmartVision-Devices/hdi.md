@@ -2,12 +2,12 @@
 
 -   **[Audio](audio.md)**  
 
--   **[Input](input.md)**  
+-   **[Codec](codec.md)**  
 
 -   **[Display](display.md)**  
 
 -   **[Format](format.md)**  
 
--   **[Codec](codec.md)**  
+-   **[Input](input.md)**  
 
 

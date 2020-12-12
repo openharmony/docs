@@ -2,10 +2,10 @@
 
 -   **[Broadcast](broadcast.md)**  
 
+-   **[OHOS Init](ohos-init.md)**  
+
 -   **[Registry](registry.md)**  
 
 -   **[Samgr](samgr.md)**  
-
--   **[OHOS Init](ohos-init.md)**  
 
 

@@ -1,6 +1,15 @@
 # ElementName<a name="EN-US_TOPIC_0000001054718123"></a>
 
-## **Overview**<a name="section1233144623093530"></a>
+-   [Overview](#section1787351165631)
+-   [Summary](#section1715050882165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section431137398165631)
+-   [Field](#section375384055165631)
+-   [abilityName](#a22d29ceba2daf19f799164aa4a92e849)
+-   [bundleName](#a5438d65fdb356f6ff52bffc452025f93)
+-   [deviceId](#a41e1f2d783d827efe86272c607a8524f)
+
+## **Overview**<a name="section1787351165631"></a>
 
 **Related Modules:**
 
@@ -10,38 +19,38 @@
 
 Defines the ability information. 
 
-## **Summary**<a name="section787778765093530"></a>
+## **Summary**<a name="section1715050882165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table458142408093530"></a>
-<table><thead align="left"><tr id="row129450459093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p703804415093530"><a name="p703804415093530"></a><a name="p703804415093530"></a>Variable Name</p>
+<a name="table1704379597165631"></a>
+<table><thead align="left"><tr id="row1539358004165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1422779000165631"><a name="p1422779000165631"></a><a name="p1422779000165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1830066967093530"><a name="p1830066967093530"></a><a name="p1830066967093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1558041136165631"><a name="p1558041136165631"></a><a name="p1558041136165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1092235022093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p348628130093530"><a name="p348628130093530"></a><a name="p348628130093530"></a><a href="elementname.md#a41e1f2d783d827efe86272c607a8524f">deviceId</a></p>
+<tbody><tr id="row4276797165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p336523356165631"><a name="p336523356165631"></a><a name="p336523356165631"></a><a href="elementname.md#a41e1f2d783d827efe86272c607a8524f">deviceId</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p233988101093530"><a name="p233988101093530"></a><a name="p233988101093530"></a>char * </p>
-</td>
-</tr>
-<tr id="row212463057093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2131096994093530"><a name="p2131096994093530"></a><a name="p2131096994093530"></a><a href="elementname.md#a5438d65fdb356f6ff52bffc452025f93">bundleName</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p201705195093530"><a name="p201705195093530"></a><a name="p201705195093530"></a>char * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1801860565165631"><a name="p1801860565165631"></a><a name="p1801860565165631"></a>char * </p>
 </td>
 </tr>
-<tr id="row1783022694093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2023365153093530"><a name="p2023365153093530"></a><a name="p2023365153093530"></a><a href="elementname.md#a22d29ceba2daf19f799164aa4a92e849">abilityName</a></p>
+<tr id="row914355628165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p694521269165631"><a name="p694521269165631"></a><a name="p694521269165631"></a><a href="elementname.md#a5438d65fdb356f6ff52bffc452025f93">bundleName</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1322691670093530"><a name="p1322691670093530"></a><a name="p1322691670093530"></a>char * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1238283841165631"><a name="p1238283841165631"></a><a name="p1238283841165631"></a>char * </p>
+</td>
+</tr>
+<tr id="row1513559392165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p922146332165631"><a name="p922146332165631"></a><a name="p922146332165631"></a><a href="elementname.md#a22d29ceba2daf19f799164aa4a92e849">abilityName</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p256288401165631"><a name="p256288401165631"></a><a name="p256288401165631"></a>char * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1581698080093530"></a>
+## **Details**<a name="section431137398165631"></a>
 
-## **Field Documentation**<a name="section694008060093530"></a>
+## **Field **<a name="section375384055165631"></a>
 
 ## abilityName<a name="a22d29ceba2daf19f799164aa4a92e849"></a>
 

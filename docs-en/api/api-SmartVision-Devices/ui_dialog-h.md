@@ -1,6 +1,10 @@
 # ui\_dialog.h<a name="EN-US_TOPIC_0000001054879516"></a>
 
-## **Overview**<a name="section857210151093528"></a>
+-   [Overview](#section1119844236165629)
+-   [Summary](#section1051597737165629)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section1119844236165629"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares the UIDialog class that defines the dialog box component.
 
 1.0
 
-## **Summary**<a name="section1971675452093528"></a>
+## **Summary**<a name="section1051597737165629"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table135295206093528"></a>
-<table><thead align="left"><tr id="row109181371093528"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2141021650093528"><a name="p2141021650093528"></a><a name="p2141021650093528"></a>Data Structure Name</p>
+<a name="table392012232165629"></a>
+<table><thead align="left"><tr id="row1369888529165629"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p217149378165629"><a name="p217149378165629"></a><a name="p217149378165629"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1871344082093528"><a name="p1871344082093528"></a><a name="p1871344082093528"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1654122252165629"><a name="p1654122252165629"></a><a name="p1654122252165629"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1507868326093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2008496908093528"><a name="p2008496908093528"></a><a name="p2008496908093528"></a><a href="ohos-uidialog.md">OHOS::UIDialog</a></p>
+<tbody><tr id="row1217098348165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p144966313165629"><a name="p144966313165629"></a><a name="p144966313165629"></a><a href="ohos-uidialog.md">OHOS::UIDialog</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1364303099093528"><a name="p1364303099093528"></a><a name="p1364303099093528"></a>Represents a dialog box. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1858982504165629"><a name="p1858982504165629"></a><a name="p1858982504165629"></a>Represents a dialog box. </p>
 </td>
 </tr>
 </tbody>

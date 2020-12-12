@@ -1,6 +1,15 @@
 # wordexp\_t<a name="EN-US_TOPIC_0000001054598211"></a>
 
-## **Overview**<a name="section552510509084843"></a>
+-   [Overview](#section934952805165637)
+-   [Summary](#section74314588165637)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1549392748165637)
+-   [Field](#section1382145372165637)
+-   [we\_offs](#a956cc2725b2ed52f61efd3fc8dfca853)
+-   [we\_wordc](#aeca511502c524dbf33993c02cf7127c7)
+-   [we\_wordv](#a00d1aa490abf8b5d0f6a1e04a323329b)
+
+## **Overview**<a name="section934952805165637"></a>
 
 **Related Modules:**
 
@@ -10,38 +19,38 @@
 
 Describes information about word expansion. 
 
-## **Summary**<a name="section1291725668084843"></a>
+## **Summary**<a name="section74314588165637"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table449572061084843"></a>
-<table><thead align="left"><tr id="row1577540401084843"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p869955480084843"><a name="p869955480084843"></a><a name="p869955480084843"></a>Variable Name</p>
+<a name="table1426258748165637"></a>
+<table><thead align="left"><tr id="row1933604180165637"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p586351869165637"><a name="p586351869165637"></a><a name="p586351869165637"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p741234666084843"><a name="p741234666084843"></a><a name="p741234666084843"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p449987078165637"><a name="p449987078165637"></a><a name="p449987078165637"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2014877982084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p787330537084843"><a name="p787330537084843"></a><a name="p787330537084843"></a><a href="wordexp_t.md#aeca511502c524dbf33993c02cf7127c7">we_wordc</a></p>
+<tbody><tr id="row17432424165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1249261897165637"><a name="p1249261897165637"></a><a name="p1249261897165637"></a><a href="wordexp_t.md#aeca511502c524dbf33993c02cf7127c7">we_wordc</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1346326072084843"><a name="p1346326072084843"></a><a name="p1346326072084843"></a>size_t </p>
-</td>
-</tr>
-<tr id="row158358983084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1205112473084843"><a name="p1205112473084843"></a><a name="p1205112473084843"></a><a href="wordexp_t.md#a00d1aa490abf8b5d0f6a1e04a323329b">we_wordv</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p67259654084843"><a name="p67259654084843"></a><a name="p67259654084843"></a>char ** </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p632329336165637"><a name="p632329336165637"></a><a name="p632329336165637"></a>size_t </p>
 </td>
 </tr>
-<tr id="row544074418084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1552131989084843"><a name="p1552131989084843"></a><a name="p1552131989084843"></a><a href="wordexp_t.md#a956cc2725b2ed52f61efd3fc8dfca853">we_offs</a></p>
+<tr id="row164450851165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1291339955165637"><a name="p1291339955165637"></a><a name="p1291339955165637"></a><a href="wordexp_t.md#a00d1aa490abf8b5d0f6a1e04a323329b">we_wordv</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p241339546084843"><a name="p241339546084843"></a><a name="p241339546084843"></a>size_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1652215092165637"><a name="p1652215092165637"></a><a name="p1652215092165637"></a>char ** </p>
+</td>
+</tr>
+<tr id="row2036313565165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1820241319165637"><a name="p1820241319165637"></a><a name="p1820241319165637"></a><a href="wordexp_t.md#a956cc2725b2ed52f61efd3fc8dfca853">we_offs</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1939842775165637"><a name="p1939842775165637"></a><a name="p1939842775165637"></a>size_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section2067873355084843"></a>
+## **Details**<a name="section1549392748165637"></a>
 
-## **Field Documentation**<a name="section1092167936084843"></a>
+## **Field **<a name="section1382145372165637"></a>
 
 ## we\_offs<a name="a956cc2725b2ed52f61efd3fc8dfca853"></a>
 

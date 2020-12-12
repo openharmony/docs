@@ -1,6 +1,10 @@
 # Ieee80211StaHtCap<a name="ZH-CN_TOPIC_0000001055078145"></a>
 
-## **Overview**<a name="section852966669093531"></a>
+-   [Overview](#section1831242773165632)
+-   [Summary](#section17998359165632)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1831242773165632"></a>
 
 **Related Modules:**
 
@@ -14,45 +18,45 @@ Describes the IEEE 802.11 high-throughput \(HT\) capability.
 
 1.0
 
-## **Summary**<a name="section321448142093531"></a>
+## **Summary**<a name="section17998359165632"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1192185841093531"></a>
-<table><thead align="left"><tr id="row2014500756093531"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1447529026093531"><a name="p1447529026093531"></a><a name="p1447529026093531"></a>Variable Name</p>
+<a name="table1874862471165632"></a>
+<table><thead align="left"><tr id="row633492206165632"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p156063625165632"><a name="p156063625165632"></a><a name="p156063625165632"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1576559606093531"><a name="p1576559606093531"></a><a name="p1576559606093531"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2132249760165632"><a name="p2132249760165632"></a><a name="p2132249760165632"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1599295013093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1226390833093531"><a name="p1226390833093531"></a><a name="p1226390833093531"></a><a href="WLAN.md#ga56216c033dd738a3100c8e0d9c1dd1a8">cap</a></p>
+<tbody><tr id="row955008923165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1275168728165632"><a name="p1275168728165632"></a><a name="p1275168728165632"></a><a href="WLAN.md#ga56216c033dd738a3100c8e0d9c1dd1a8">cap</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1063225431093531"><a name="p1063225431093531"></a><a name="p1063225431093531"></a>uint16_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1083023037093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1122811697093531"><a name="p1122811697093531"></a><a name="p1122811697093531"></a><a href="WLAN.md#gaf5a9bd33d4d6eaf38052d3c52c261db6">htSupported</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1418133649093531"><a name="p1418133649093531"></a><a name="p1418133649093531"></a>uint8_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1397504310165632"><a name="p1397504310165632"></a><a name="p1397504310165632"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row1482947405093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1845796288093531"><a name="p1845796288093531"></a><a name="p1845796288093531"></a><a href="WLAN.md#ga891bf97aba3202dd8c4f1cbdc288c61f">ampduFactor</a></p>
+<tr id="row1542028299165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1618671588165632"><a name="p1618671588165632"></a><a name="p1618671588165632"></a><a href="WLAN.md#gaf5a9bd33d4d6eaf38052d3c52c261db6">htSupported</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p942051228093531"><a name="p942051228093531"></a><a name="p942051228093531"></a>uint8_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row248772436093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1198655222093531"><a name="p1198655222093531"></a><a name="p1198655222093531"></a><a href="WLAN.md#ga90e3ceab29efbe5b144191176f7f8e44">ampduDensity</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2023930362093531"><a name="p2023930362093531"></a><a name="p2023930362093531"></a>uint8_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1210485574165632"><a name="p1210485574165632"></a><a name="p1210485574165632"></a>uint8_t </p>
 </td>
 </tr>
-<tr id="row674105020093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1758032624093531"><a name="p1758032624093531"></a><a name="p1758032624093531"></a><a href="WLAN.md#gaf00464a59d6bda90ad57cd6201736245">aucRsv</a> [IEEE80211_STAHTCAP_RESV]</p>
+<tr id="row291363220165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p912657263165632"><a name="p912657263165632"></a><a name="p912657263165632"></a><a href="WLAN.md#ga891bf97aba3202dd8c4f1cbdc288c61f">ampduFactor</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1786623968093531"><a name="p1786623968093531"></a><a name="p1786623968093531"></a>uint8_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1065907525165632"><a name="p1065907525165632"></a><a name="p1065907525165632"></a>uint8_t </p>
 </td>
 </tr>
-<tr id="row707640973093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p227164623093531"><a name="p227164623093531"></a><a name="p227164623093531"></a><a href="WLAN.md#gab100d81d329ddf8584ade014d20acc2d">mcs</a></p>
+<tr id="row932382719165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1799190738165632"><a name="p1799190738165632"></a><a name="p1799190738165632"></a><a href="WLAN.md#ga90e3ceab29efbe5b144191176f7f8e44">ampduDensity</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1131251021093531"><a name="p1131251021093531"></a><a name="p1131251021093531"></a>struct <a href="Ieee80211McsInfo.md">Ieee80211McsInfo</a>&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p311565082165632"><a name="p311565082165632"></a><a name="p311565082165632"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row663668429165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2133202015165632"><a name="p2133202015165632"></a><a name="p2133202015165632"></a><a href="WLAN.md#gaf00464a59d6bda90ad57cd6201736245">aucRsv</a> [IEEE80211_STAHTCAP_RESV]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1156937137165632"><a name="p1156937137165632"></a><a name="p1156937137165632"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row2014464006165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p545828334165632"><a name="p545828334165632"></a><a name="p545828334165632"></a><a href="WLAN.md#gab100d81d329ddf8584ade014d20acc2d">mcs</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p54445719165632"><a name="p54445719165632"></a><a name="p54445719165632"></a>struct <a href="Ieee80211McsInfo.md">Ieee80211McsInfo</a> </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,16 @@
 # Service<a name="ZH-CN_TOPIC_0000001055198168"></a>
 
-## **Overview**<a name="section79551014093536"></a>
+-   [Overview](#section1287791382165636)
+-   [Summary](#section65587967165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1393409351165636)
+-   [Field](#section702608981165636)
+-   [GetName](#a7d6fe59023a0e6ad2ad7c625c0d117d6)
+-   [GetTaskConfig](#abc4b1868a77fafe434fe63c8a4685aeb)
+-   [Initialize](#a80b0715ef9129631d5f622cb199ff8ae)
+-   [MessageHandle](#aa2b7015639906efbadd36aa87eea269b)
+
+## **Overview**<a name="section1287791382165636"></a>
 
 **Related Modules:**
 
@@ -12,47 +22,47 @@ Indicates the basic type of a service.
 
 You need to implement the function pointers of  **[Service](Service.md)**. 
 
-## **Summary**<a name="section2132820964093536"></a>
+## **Summary**<a name="section65587967165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table436981971093536"></a>
-<table><thead align="left"><tr id="row523255791093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1152172618093536"><a name="p1152172618093536"></a><a name="p1152172618093536"></a>Variable Name</p>
+<a name="table1002203845165636"></a>
+<table><thead align="left"><tr id="row152441476165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p447133499165636"><a name="p447133499165636"></a><a name="p447133499165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1800789237093536"><a name="p1800789237093536"></a><a name="p1800789237093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p308455829165636"><a name="p308455829165636"></a><a name="p308455829165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1531211061093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p404149656093536"><a name="p404149656093536"></a><a name="p404149656093536"></a><a href="Service.md#a7d6fe59023a0e6ad2ad7c625c0d117d6">GetName</a> )(<a href="Service.md">Service</a> *service)</p>
+<tbody><tr id="row1507937953165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1978490094165636"><a name="p1978490094165636"></a><a name="p1978490094165636"></a><a href="Service.md#a7d6fe59023a0e6ad2ad7c625c0d117d6">GetName</a> )(<a href="Service.md">Service</a> *service)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1773426721093536"><a name="p1773426721093536"></a><a name="p1773426721093536"></a>const char *(*&nbsp;</p>
-<p id="p1032738568093536"><a name="p1032738568093536"></a><a name="p1032738568093536"></a>Obtains the name of a service. </p>
-</td>
-</tr>
-<tr id="row104407929093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p498743818093536"><a name="p498743818093536"></a><a name="p498743818093536"></a><a href="Service.md#a80b0715ef9129631d5f622cb199ff8ae">Initialize</a> )(<a href="Service.md">Service</a> *service, <a href="Identity.md">Identity</a> identity)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p302026545093536"><a name="p302026545093536"></a><a name="p302026545093536"></a>BOOL(*&nbsp;</p>
-<p id="p2059916953093536"><a name="p2059916953093536"></a><a name="p2059916953093536"></a>Initializes the service. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1325825453165636"><a name="p1325825453165636"></a><a name="p1325825453165636"></a>const char *(* </p>
+<p id="p358378595165636"><a name="p358378595165636"></a><a name="p358378595165636"></a>Obtains the name of a service. </p>
 </td>
 </tr>
-<tr id="row761920194093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1752466601093536"><a name="p1752466601093536"></a><a name="p1752466601093536"></a><a href="Service.md#aa2b7015639906efbadd36aa87eea269b">MessageHandle</a> )(<a href="Service.md">Service</a> *service, <a href="Request.md">Request</a> *request)</p>
+<tr id="row208757320165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p158098769165636"><a name="p158098769165636"></a><a name="p158098769165636"></a><a href="Service.md#a80b0715ef9129631d5f622cb199ff8ae">Initialize</a> )(<a href="Service.md">Service</a> *service, <a href="Identity.md">Identity</a> identity)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1038483563093536"><a name="p1038483563093536"></a><a name="p1038483563093536"></a>BOOL(*&nbsp;</p>
-<p id="p1254048349093536"><a name="p1254048349093536"></a><a name="p1254048349093536"></a>Processes service messages. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1009798661165636"><a name="p1009798661165636"></a><a name="p1009798661165636"></a>BOOL(* </p>
+<p id="p222317071165636"><a name="p222317071165636"></a><a name="p222317071165636"></a>Initializes the service. </p>
 </td>
 </tr>
-<tr id="row1445873306093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p145862224093536"><a name="p145862224093536"></a><a name="p145862224093536"></a><a href="Service.md#abc4b1868a77fafe434fe63c8a4685aeb">GetTaskConfig</a> )(<a href="Service.md">Service</a> *service)</p>
+<tr id="row418777547165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p874635050165636"><a name="p874635050165636"></a><a name="p874635050165636"></a><a href="Service.md#aa2b7015639906efbadd36aa87eea269b">MessageHandle</a> )(<a href="Service.md">Service</a> *service, <a href="Request.md">Request</a> *request)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2047430508093536"><a name="p2047430508093536"></a><a name="p2047430508093536"></a><a href="TaskConfig.md">TaskConfig</a>(*&nbsp;</p>
-<p id="p821279904093536"><a name="p821279904093536"></a><a name="p821279904093536"></a>Obtains task configurations of a service. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1252361172165636"><a name="p1252361172165636"></a><a name="p1252361172165636"></a>BOOL(* </p>
+<p id="p1299694704165636"><a name="p1299694704165636"></a><a name="p1299694704165636"></a>Processes service messages. </p>
+</td>
+</tr>
+<tr id="row936952119165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p472628051165636"><a name="p472628051165636"></a><a name="p472628051165636"></a><a href="Service.md#abc4b1868a77fafe434fe63c8a4685aeb">GetTaskConfig</a> )(<a href="Service.md">Service</a> *service)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1851890378165636"><a name="p1851890378165636"></a><a name="p1851890378165636"></a><a href="TaskConfig.md">TaskConfig</a>(* </p>
+<p id="p790600708165636"><a name="p790600708165636"></a><a name="p790600708165636"></a>Obtains task configurations of a service. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section970822250093536"></a>
+## **Details**<a name="section1393409351165636"></a>
 
-## **Field Documentation**<a name="section792546837093536"></a>
+## **Field **<a name="section702608981165636"></a>
 
 ## GetName<a name="a7d6fe59023a0e6ad2ad7c625c0d117d6"></a>
 
@@ -68,14 +78,14 @@ This function is called by Samgr during service registration and startup. You ne
 
 **Parameters:**
 
-<a name="table1947554745093536"></a>
-<table><thead align="left"><tr id="row1324681248093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1587705902093536"><a name="p1587705902093536"></a><a name="p1587705902093536"></a>Name</p>
+<a name="table1601667528165636"></a>
+<table><thead align="left"><tr id="row1977265753165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2071038078165636"><a name="p2071038078165636"></a><a name="p2071038078165636"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p228571465093536"><a name="p228571465093536"></a><a name="p228571465093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p698606071165636"><a name="p698606071165636"></a><a name="p698606071165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row860361115093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tbody><tr id="row949100093165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the service. </td>
 </tr>
 </tbody>
@@ -84,8 +94,6 @@ This function is called by Samgr during service registration and startup. You ne
 **Returns:**
 
 Returns a constant string no more than 16 bytes if the service name is obtained successfully; returns  **NULL**  if the service name fails to be obtained. 
-
-
 
 ## GetTaskConfig<a name="abc4b1868a77fafe434fe63c8a4685aeb"></a>
 
@@ -101,14 +109,14 @@ This function is used to return task configurations. You need to implement this 
 
 **Parameters:**
 
-<a name="table1857807112093536"></a>
-<table><thead align="left"><tr id="row1899857823093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2124294009093536"><a name="p2124294009093536"></a><a name="p2124294009093536"></a>Name</p>
+<a name="table1044203256165636"></a>
+<table><thead align="left"><tr id="row397171697165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p389223829165636"><a name="p389223829165636"></a><a name="p389223829165636"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p769560455093536"><a name="p769560455093536"></a><a name="p769560455093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1962347101165636"><a name="p1962347101165636"></a><a name="p1962347101165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1552270508093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tbody><tr id="row992269154165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the service. </td>
 </tr>
 </tbody>
@@ -117,8 +125,6 @@ This function is used to return task configurations. You need to implement this 
 **Returns:**
 
 Returns  [TaskConfig](TaskConfig.md).
-
-
 
 ## Initialize<a name="a80b0715ef9129631d5f622cb199ff8ae"></a>
 
@@ -134,17 +140,17 @@ After Samgr assigns tasks to a service, the service calls the function in its ow
 
 **Parameters:**
 
-<a name="table2136037797093536"></a>
-<table><thead align="left"><tr id="row1256055440093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1692049749093536"><a name="p1692049749093536"></a><a name="p1692049749093536"></a>Name</p>
+<a name="table459681254165636"></a>
+<table><thead align="left"><tr id="row664932932165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1653547033165636"><a name="p1653547033165636"></a><a name="p1653547033165636"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1897454389093536"><a name="p1897454389093536"></a><a name="p1897454389093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p407646744165636"><a name="p407646744165636"></a><a name="p407646744165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1901857093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tbody><tr id="row216466689165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the service. </td>
 </tr>
-<tr id="row886751655093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">identity</td>
+<tr id="row2026462224165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">identity</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the ID allocated by the system to the service. For details, see <a href="Identity.md">Identity</a>. </td>
 </tr>
 </tbody>
@@ -153,8 +159,6 @@ After Samgr assigns tasks to a service, the service calls the function in its ow
 **Returns:**
 
 Returns  **TRUE**  if the initialization is successful; returns  **FALSE**  otherwise. 
-
-
 
 ## MessageHandle<a name="aa2b7015639906efbadd36aa87eea269b"></a>
 
@@ -170,17 +174,17 @@ This function is used to process requests sent by the caller through  [IUnknown]
 
 **Parameters:**
 
-<a name="table580300253093536"></a>
-<table><thead align="left"><tr id="row2130554311093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2052279832093536"><a name="p2052279832093536"></a><a name="p2052279832093536"></a>Name</p>
+<a name="table283201392165636"></a>
+<table><thead align="left"><tr id="row775314962165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1113450990165636"><a name="p1113450990165636"></a><a name="p1113450990165636"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1614905002093536"><a name="p1614905002093536"></a><a name="p1614905002093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p696730011165636"><a name="p696730011165636"></a><a name="p696730011165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row334696117093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tbody><tr id="row1213050152165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the service. </td>
 </tr>
-<tr id="row1458828076093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">request</td>
+<tr id="row21235977165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">request</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the request data. </td>
 </tr>
 </tbody>
@@ -189,6 +193,4 @@ This function is used to process requests sent by the caller through  [IUnknown]
 **Returns:**
 
 Returns  **TRUE**  if the message processing is successful; returns  **FALSE**  if the processing fails. 
-
-
 

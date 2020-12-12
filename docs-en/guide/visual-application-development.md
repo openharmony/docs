@@ -8,11 +8,9 @@
 
 -   **[Building the Home Page](building-the-home-page.md)**  
 
--   **[Building the Detail Page](building-the-detail-page.md)**  
+-   **[Building the Details Page](building-the-details-page.md)**  
 
--   **[Building the History Page](building-the-history-page.md)**  
-
--   **[Running and Debugging](running-and-debugging.md)**  
+-   **[Debugging and Packaging](debugging-and-packaging.md)**  
 
 -   **[Running on the Device](running-on-the-device.md)**  
 

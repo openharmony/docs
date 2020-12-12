@@ -1,6 +1,13 @@
 # hdf\_workqueue.h<a name="ZH-CN_TOPIC_0000001054718095"></a>
 
-## **Overview**<a name="section1234926961084830"></a>
+-   [Overview](#section319337871165627)
+-   [Summary](#section852527649165627)
+-   [Data Structures](#nested-classes)
+-   [Typedefs](#typedef-members)
+-   [Enumerations](#enum-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section319337871165627"></a>
 
 **Related Modules:**
 
@@ -20,25 +27,25 @@ This file provides interfaces such as initializing a work queue, a work item, an
 
 1.0
 
-## **Summary**<a name="section1843817954084830"></a>
+## **Summary**<a name="section852527649165627"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1611516449084830"></a>
-<table><thead align="left"><tr id="row1360238883084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1968042402084830"><a name="p1968042402084830"></a><a name="p1968042402084830"></a>Data Structure Name</p>
+<a name="table1053100136165627"></a>
+<table><thead align="left"><tr id="row392760712165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1041625315165627"><a name="p1041625315165627"></a><a name="p1041625315165627"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p943818314084830"><a name="p943818314084830"></a><a name="p943818314084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1298909567165627"><a name="p1298909567165627"></a><a name="p1298909567165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1434911255084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p514069162084830"><a name="p514069162084830"></a><a name="p514069162084830"></a><a href="HdfWork.md">HdfWork</a></p>
+<tbody><tr id="row1366707981165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1533186190165627"><a name="p1533186190165627"></a><a name="p1533186190165627"></a><a href="HdfWork.md">HdfWork</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p907779839084830"><a name="p907779839084830"></a><a name="p907779839084830"></a>Describes a work item and a delayed work item. This structure defines the work and delayed work items, and then calls the initialization function <a href="DriverUtils.md#gad171adc8eda320fd01049a2b87ea62fb">HdfWorkInit</a> or <a href="DriverUtils.md#ga55bf669dc6740c65e4d45a4f641db2f1">HdfDelayedWorkInit</a> to perform initialization. The <strong id="b614088124084830"><a name="b614088124084830"></a><a name="b614088124084830"></a><a href="DriverUtils.md#ga82cc68d656aa17317634b07d49dae160">HdfAddWork()</a></strong> function is to add a work item to a work queue immediately, and the <strong id="b1217678816084830"><a name="b1217678816084830"></a><a name="b1217678816084830"></a><a href="DriverUtils.md#gaef781ccc1579db3070745088da47b2c5">HdfAddDelayedWork()</a></strong> function is to add a work item to a work queue after the configured delayed time. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1039148095165627"><a name="p1039148095165627"></a><a name="p1039148095165627"></a>Describes a work item and a delayed work item. This structure defines the work and delayed work items, and then calls the initialization function <a href="DriverUtils.md#gad171adc8eda320fd01049a2b87ea62fb">HdfWorkInit</a> or <a href="DriverUtils.md#ga55bf669dc6740c65e4d45a4f641db2f1">HdfDelayedWorkInit</a> to perform initialization. The <strong id="b355999635165627"><a name="b355999635165627"></a><a name="b355999635165627"></a><a href="DriverUtils.md#ga82cc68d656aa17317634b07d49dae160">HdfAddWork()</a></strong> function is to add a work item to a work queue immediately, and the <strong id="b670217097165627"><a name="b670217097165627"></a><a name="b670217097165627"></a><a href="DriverUtils.md#gaef781ccc1579db3070745088da47b2c5">HdfAddDelayedWork()</a></strong> function is to add a work item to a work queue after the configured delayed time. </p>
 </td>
 </tr>
-<tr id="row1802013458084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p998152855084830"><a name="p998152855084830"></a><a name="p998152855084830"></a><a href="HdfWorkQueue.md">HdfWorkQueue</a></p>
+<tr id="row1926735708165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p558114226165627"><a name="p558114226165627"></a><a name="p558114226165627"></a><a href="HdfWorkQueue.md">HdfWorkQueue</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1365611694084830"><a name="p1365611694084830"></a><a name="p1365611694084830"></a>Describes a work queue. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1331469988165627"><a name="p1331469988165627"></a><a name="p1331469988165627"></a>Describes a work queue. </p>
 </td>
 </tr>
 </tbody>
@@ -46,17 +53,17 @@ This file provides interfaces such as initializing a work queue, a work item, an
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table1345698165084830"></a>
-<table><thead align="left"><tr id="row1597367619084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1031734572084830"><a name="p1031734572084830"></a><a name="p1031734572084830"></a>Typedef Name</p>
+<a name="table774588886165627"></a>
+<table><thead align="left"><tr id="row739123651165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2002989260165627"><a name="p2002989260165627"></a><a name="p2002989260165627"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1460598530084830"><a name="p1460598530084830"></a><a name="p1460598530084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1964342655165627"><a name="p1964342655165627"></a><a name="p1964342655165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row490139171084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1102368224084830"><a name="p1102368224084830"></a><a name="p1102368224084830"></a><a href="DriverUtils.md#ga30665d61b03fae4a2ebc778c3d775ce5">HdfWorkFunc</a>) (void *)</p>
+<tbody><tr id="row789747280165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p477304033165627"><a name="p477304033165627"></a><a name="p477304033165627"></a><a href="DriverUtils.md#ga30665d61b03fae4a2ebc778c3d775ce5">HdfWorkFunc</a>) (void *)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p269047179084830"><a name="p269047179084830"></a><a name="p269047179084830"></a>typedef void(*&nbsp;</p>
-<p id="p1999600304084830"><a name="p1999600304084830"></a><a name="p1999600304084830"></a>Describes a work execution function type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2041856878165627"><a name="p2041856878165627"></a><a name="p2041856878165627"></a>typedef void(* </p>
+<p id="p757402046165627"><a name="p757402046165627"></a><a name="p757402046165627"></a>Describes a work execution function type. </p>
 </td>
 </tr>
 </tbody>
@@ -64,16 +71,16 @@ This file provides interfaces such as initializing a work queue, a work item, an
 
 ## Enumerations<a name="enum-members"></a>
 
-<a name="table1556875748084830"></a>
-<table><thead align="left"><tr id="row2124463498084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1496982916084830"><a name="p1496982916084830"></a><a name="p1496982916084830"></a>Enumeration Name</p>
+<a name="table1895255102165627"></a>
+<table><thead align="left"><tr id="row1524663758165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p120751686165627"><a name="p120751686165627"></a><a name="p120751686165627"></a>Enumeration Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1776550794084830"><a name="p1776550794084830"></a><a name="p1776550794084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p192696116165627"><a name="p192696116165627"></a><a name="p192696116165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row669166566084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1601257371084830"><a name="p1601257371084830"></a><a name="p1601257371084830"></a>{ <a href="DriverUtils.md#ggaabfcbcb5ac86a1edac4035264bc7d2b8a75df1ca644f77f78bf3539e356f2e446">HDF_WORK_BUSY_PENDING</a> = 1 &lt;&lt; 0, <a href="DriverUtils.md#ggaabfcbcb5ac86a1edac4035264bc7d2b8a56532f81e262cca4680e754627d6dc44">HDF_WORK_BUSY_RUNNING</a> = 1 &lt;&lt; 1 }</p>
+<tbody><tr id="row1199975627165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1235702054165627"><a name="p1235702054165627"></a><a name="p1235702054165627"></a>{ <a href="DriverUtils.md#ggac205be2172292384dd687b5471a87edda75df1ca644f77f78bf3539e356f2e446">HDF_WORK_BUSY_PENDING</a> = 1 &lt;&lt; 0, <a href="DriverUtils.md#ggac205be2172292384dd687b5471a87edda56532f81e262cca4680e754627d6dc44">HDF_WORK_BUSY_RUNNING</a> = 1 &lt;&lt; 1 }</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1971952756084830"><a name="p1971952756084830"></a><a name="p1971952756084830"></a>Enumerates statuses of a work item or a delayed work item. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p880109468165627"><a name="p880109468165627"></a><a name="p880109468165627"></a>Enumerates statuses of a work item or a delayed work item. </p>
 </td>
 </tr>
 </tbody>
@@ -81,77 +88,77 @@ This file provides interfaces such as initializing a work queue, a work item, an
 
 ## Functions<a name="func-members"></a>
 
-<a name="table441679450084830"></a>
-<table><thead align="left"><tr id="row339047166084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p232532670084830"><a name="p232532670084830"></a><a name="p232532670084830"></a>Function Name</p>
+<a name="table1845386087165627"></a>
+<table><thead align="left"><tr id="row1498115431165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1457747543165627"><a name="p1457747543165627"></a><a name="p1457747543165627"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p841794344084830"><a name="p841794344084830"></a><a name="p841794344084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1891382540165627"><a name="p1891382540165627"></a><a name="p1891382540165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row147242575084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1313646015084830"><a name="p1313646015084830"></a><a name="p1313646015084830"></a><a href="DriverUtils.md#gad7afae1dc691818c513094c873decabd">HdfWorkQueueInit</a> (<a href="HdfWorkQueue.md">HdfWorkQueue</a> *queue, char *name)</p>
+<tbody><tr id="row742055647165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p92519808165627"><a name="p92519808165627"></a><a name="p92519808165627"></a><a href="DriverUtils.md#gad7afae1dc691818c513094c873decabd">HdfWorkQueueInit</a> (<a href="HdfWorkQueue.md">HdfWorkQueue</a> *queue, char *name)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1706687062084830"><a name="p1706687062084830"></a><a name="p1706687062084830"></a>int32_t&nbsp;</p>
-<p id="p284401409084830"><a name="p284401409084830"></a><a name="p284401409084830"></a>Initializes a work queue. </p>
-</td>
-</tr>
-<tr id="row556623978084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p599591141084830"><a name="p599591141084830"></a><a name="p599591141084830"></a><a href="DriverUtils.md#gad171adc8eda320fd01049a2b87ea62fb">HdfWorkInit</a> (<a href="HdfWork.md">HdfWork</a> *work, <a href="DriverUtils.md#ga30665d61b03fae4a2ebc778c3d775ce5">HdfWorkFunc</a> func, void *arg)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1755883664084830"><a name="p1755883664084830"></a><a name="p1755883664084830"></a>int32_t&nbsp;</p>
-<p id="p416488721084830"><a name="p416488721084830"></a><a name="p416488721084830"></a>Initializes a work item. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1496407109165627"><a name="p1496407109165627"></a><a name="p1496407109165627"></a>int32_t </p>
+<p id="p1584035279165627"><a name="p1584035279165627"></a><a name="p1584035279165627"></a>Initializes a work queue. </p>
 </td>
 </tr>
-<tr id="row1787455279084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2064729633084830"><a name="p2064729633084830"></a><a name="p2064729633084830"></a><a href="DriverUtils.md#ga55bf669dc6740c65e4d45a4f641db2f1">HdfDelayedWorkInit</a> (<a href="HdfWork.md">HdfWork</a> *work, <a href="DriverUtils.md#ga30665d61b03fae4a2ebc778c3d775ce5">HdfWorkFunc</a> func, void *arg)</p>
+<tr id="row1170072931165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1896535382165627"><a name="p1896535382165627"></a><a name="p1896535382165627"></a><a href="DriverUtils.md#gad171adc8eda320fd01049a2b87ea62fb">HdfWorkInit</a> (<a href="HdfWork.md">HdfWork</a> *work, <a href="DriverUtils.md#ga30665d61b03fae4a2ebc778c3d775ce5">HdfWorkFunc</a> func, void *arg)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1344171128084830"><a name="p1344171128084830"></a><a name="p1344171128084830"></a>int32_t&nbsp;</p>
-<p id="p1602471906084830"><a name="p1602471906084830"></a><a name="p1602471906084830"></a>Initializes a delayed work item. </p>
-</td>
-</tr>
-<tr id="row477224259084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1121109798084830"><a name="p1121109798084830"></a><a name="p1121109798084830"></a><a href="DriverUtils.md#gae6166caaf1b114e17834c50414b2d52e">HdfWorkDestroy</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1238969536084830"><a name="p1238969536084830"></a><a name="p1238969536084830"></a>void&nbsp;</p>
-<p id="p1967184621084830"><a name="p1967184621084830"></a><a name="p1967184621084830"></a>Destroys a work item. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1789422982165627"><a name="p1789422982165627"></a><a name="p1789422982165627"></a>int32_t </p>
+<p id="p723949926165627"><a name="p723949926165627"></a><a name="p723949926165627"></a>Initializes a work item. </p>
 </td>
 </tr>
-<tr id="row1014511519084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p463421174084830"><a name="p463421174084830"></a><a name="p463421174084830"></a><a href="DriverUtils.md#ga04ec328639aefd71683175e4c214fb80">HdfWorkQueueDestroy</a> (<a href="HdfWorkQueue.md">HdfWorkQueue</a> *queue)</p>
+<tr id="row686918709165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1766515097165627"><a name="p1766515097165627"></a><a name="p1766515097165627"></a><a href="DriverUtils.md#ga55bf669dc6740c65e4d45a4f641db2f1">HdfDelayedWorkInit</a> (<a href="HdfWork.md">HdfWork</a> *work, <a href="DriverUtils.md#ga30665d61b03fae4a2ebc778c3d775ce5">HdfWorkFunc</a> func, void *arg)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p891089876084830"><a name="p891089876084830"></a><a name="p891089876084830"></a>void&nbsp;</p>
-<p id="p258088213084830"><a name="p258088213084830"></a><a name="p258088213084830"></a>Destroys a work queue. </p>
-</td>
-</tr>
-<tr id="row1811834620084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1034360051084830"><a name="p1034360051084830"></a><a name="p1034360051084830"></a><a href="DriverUtils.md#gaaaced5c0365d1a1232167b738f08b5ce">HdfDelayedWorkDestroy</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1681311062084830"><a name="p1681311062084830"></a><a name="p1681311062084830"></a>void&nbsp;</p>
-<p id="p1748378682084830"><a name="p1748378682084830"></a><a name="p1748378682084830"></a>Destroys a delayed work item. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1978504884165627"><a name="p1978504884165627"></a><a name="p1978504884165627"></a>int32_t </p>
+<p id="p724761722165627"><a name="p724761722165627"></a><a name="p724761722165627"></a>Initializes a delayed work item. </p>
 </td>
 </tr>
-<tr id="row347413514084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1595651010084830"><a name="p1595651010084830"></a><a name="p1595651010084830"></a><a href="DriverUtils.md#ga82cc68d656aa17317634b07d49dae160">HdfAddWork</a> (<a href="HdfWorkQueue.md">HdfWorkQueue</a> *queue, <a href="HdfWork.md">HdfWork</a> *work)</p>
+<tr id="row1319719266165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1508152333165627"><a name="p1508152333165627"></a><a name="p1508152333165627"></a><a href="DriverUtils.md#gae6166caaf1b114e17834c50414b2d52e">HdfWorkDestroy</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p875301184084830"><a name="p875301184084830"></a><a name="p875301184084830"></a>bool&nbsp;</p>
-<p id="p1896119807084830"><a name="p1896119807084830"></a><a name="p1896119807084830"></a>Adds a work item to a work queue. </p>
-</td>
-</tr>
-<tr id="row946016147084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p359686978084830"><a name="p359686978084830"></a><a name="p359686978084830"></a><a href="DriverUtils.md#gaef781ccc1579db3070745088da47b2c5">HdfAddDelayedWork</a> (<a href="HdfWorkQueue.md">HdfWorkQueue</a> *queue, <a href="HdfWork.md">HdfWork</a> *work, unsigned long ms)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p258667420084830"><a name="p258667420084830"></a><a name="p258667420084830"></a>bool&nbsp;</p>
-<p id="p1833995004084830"><a name="p1833995004084830"></a><a name="p1833995004084830"></a>Adds a delayed work item to a work queue. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p524894340165627"><a name="p524894340165627"></a><a name="p524894340165627"></a>void </p>
+<p id="p461131704165627"><a name="p461131704165627"></a><a name="p461131704165627"></a>Destroys a work item. </p>
 </td>
 </tr>
-<tr id="row1727584565084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p623052194084830"><a name="p623052194084830"></a><a name="p623052194084830"></a><a href="DriverUtils.md#ga37595ed36b8ce7be84c914aebfd99d00">HdfWorkBusy</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
+<tr id="row553666656165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p574685452165627"><a name="p574685452165627"></a><a name="p574685452165627"></a><a href="DriverUtils.md#ga04ec328639aefd71683175e4c214fb80">HdfWorkQueueDestroy</a> (<a href="HdfWorkQueue.md">HdfWorkQueue</a> *queue)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p521268089084830"><a name="p521268089084830"></a><a name="p521268089084830"></a>unsigned int&nbsp;</p>
-<p id="p1799315868084830"><a name="p1799315868084830"></a><a name="p1799315868084830"></a>Obtains the status of a work item or delayed work item. </p>
-</td>
-</tr>
-<tr id="row1501275061084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1665384149084830"><a name="p1665384149084830"></a><a name="p1665384149084830"></a><a href="DriverUtils.md#gaab300487bdb9f3496bb823c657275dd3">HdfCancelWorkSync</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p420342372084830"><a name="p420342372084830"></a><a name="p420342372084830"></a>bool&nbsp;</p>
-<p id="p358413145084830"><a name="p358413145084830"></a><a name="p358413145084830"></a>Cancels a work item. This function waits until the work item is complete. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p453249248165627"><a name="p453249248165627"></a><a name="p453249248165627"></a>void </p>
+<p id="p2078891653165627"><a name="p2078891653165627"></a><a name="p2078891653165627"></a>Destroys a work queue. </p>
 </td>
 </tr>
-<tr id="row768685854084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1527212482084830"><a name="p1527212482084830"></a><a name="p1527212482084830"></a><a href="DriverUtils.md#gad53e46938809200db3caafdc85decc5a">HdfCancelDelayedWorkSync</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
+<tr id="row1359039255165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1081594415165627"><a name="p1081594415165627"></a><a name="p1081594415165627"></a><a href="DriverUtils.md#gaaaced5c0365d1a1232167b738f08b5ce">HdfDelayedWorkDestroy</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1546014179084830"><a name="p1546014179084830"></a><a name="p1546014179084830"></a>bool&nbsp;</p>
-<p id="p69545758084830"><a name="p69545758084830"></a><a name="p69545758084830"></a>Cancels a delayed work item. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p431961539165627"><a name="p431961539165627"></a><a name="p431961539165627"></a>void </p>
+<p id="p2070712743165627"><a name="p2070712743165627"></a><a name="p2070712743165627"></a>Destroys a delayed work item. </p>
+</td>
+</tr>
+<tr id="row1218078147165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p117062715165627"><a name="p117062715165627"></a><a name="p117062715165627"></a><a href="DriverUtils.md#ga82cc68d656aa17317634b07d49dae160">HdfAddWork</a> (<a href="HdfWorkQueue.md">HdfWorkQueue</a> *queue, <a href="HdfWork.md">HdfWork</a> *work)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1321714118165627"><a name="p1321714118165627"></a><a name="p1321714118165627"></a>bool </p>
+<p id="p832268590165627"><a name="p832268590165627"></a><a name="p832268590165627"></a>Adds a work item to a work queue. </p>
+</td>
+</tr>
+<tr id="row1295975641165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1165978577165627"><a name="p1165978577165627"></a><a name="p1165978577165627"></a><a href="DriverUtils.md#gaef781ccc1579db3070745088da47b2c5">HdfAddDelayedWork</a> (<a href="HdfWorkQueue.md">HdfWorkQueue</a> *queue, <a href="HdfWork.md">HdfWork</a> *work, unsigned long ms)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p550583424165627"><a name="p550583424165627"></a><a name="p550583424165627"></a>bool </p>
+<p id="p637835806165627"><a name="p637835806165627"></a><a name="p637835806165627"></a>Adds a delayed work item to a work queue. </p>
+</td>
+</tr>
+<tr id="row709662300165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1340594829165627"><a name="p1340594829165627"></a><a name="p1340594829165627"></a><a href="DriverUtils.md#ga37595ed36b8ce7be84c914aebfd99d00">HdfWorkBusy</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p515817583165627"><a name="p515817583165627"></a><a name="p515817583165627"></a>unsigned int </p>
+<p id="p1109743894165627"><a name="p1109743894165627"></a><a name="p1109743894165627"></a>Obtains the status of a work item or delayed work item. </p>
+</td>
+</tr>
+<tr id="row729973105165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2003304338165627"><a name="p2003304338165627"></a><a name="p2003304338165627"></a><a href="DriverUtils.md#gaab300487bdb9f3496bb823c657275dd3">HdfCancelWorkSync</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p726185122165627"><a name="p726185122165627"></a><a name="p726185122165627"></a>bool </p>
+<p id="p668377380165627"><a name="p668377380165627"></a><a name="p668377380165627"></a>Cancels a work item. This function waits until the work item is complete. </p>
+</td>
+</tr>
+<tr id="row1656761337165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1801400206165627"><a name="p1801400206165627"></a><a name="p1801400206165627"></a><a href="DriverUtils.md#gad53e46938809200db3caafdc85decc5a">HdfCancelDelayedWorkSync</a> (<a href="HdfWork.md">HdfWork</a> *work)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2123274541165627"><a name="p2123274541165627"></a><a name="p2123274541165627"></a>bool </p>
+<p id="p1054333556165627"><a name="p1054333556165627"></a><a name="p1054333556165627"></a>Cancels a delayed work item. </p>
 </td>
 </tr>
 </tbody>

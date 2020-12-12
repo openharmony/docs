@@ -1,5 +1,9 @@
 # Bundle Composition<a name="EN-US_TOPIC_0000001051930853"></a>
 
+-   [Code files](#section101483489110)
+-   [README File](#section10519101221211)
+-   [Metadata Description File](#section45511827111211)
+
 A bundle contains the following contents:
 
 -   **src**  directory for storing code files or code library

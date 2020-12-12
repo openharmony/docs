@@ -1,5 +1,9 @@
 # Development Guidelines on Animators<a name="EN-US_TOPIC_0000001051451654"></a>
 
+-   [When to Use](#section726685714018)
+-   [Available APIs](#section85794718418)
+-   [How to Develop](#section14101161317435)
+
 ## When to Use<a name="section726685714018"></a>
 
 A UI animator is implemented by calling the callback function you set for each tick using the task processing mechanism. The following classes are provided for you to implement an animator:

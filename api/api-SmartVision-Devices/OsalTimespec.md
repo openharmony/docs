@@ -1,6 +1,14 @@
 # OsalTimespec<a name="ZH-CN_TOPIC_0000001055198146"></a>
 
-## **Overview**<a name="section1274159093093532"></a>
+-   [Overview](#section1083324194165633)
+-   [Summary](#section753470759165633)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section420225540165633)
+-   [Field](#section1503176048165633)
+-   [sec](#ac4a32c1da3586df9dc42f1aefac3fe0a)
+-   [usec](#a767732d9496cf481818f157398c8755c)
+
+## **Overview**<a name="section1083324194165633"></a>
 
 **Related Modules:**
 
@@ -10,33 +18,33 @@
 
 Defines time. 
 
-## **Summary**<a name="section447274816093532"></a>
+## **Summary**<a name="section753470759165633"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table685420232093532"></a>
-<table><thead align="left"><tr id="row267475159093532"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p32739396093532"><a name="p32739396093532"></a><a name="p32739396093532"></a>Variable Name</p>
+<a name="table2046699622165633"></a>
+<table><thead align="left"><tr id="row859450636165633"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1587219633165633"><a name="p1587219633165633"></a><a name="p1587219633165633"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p661910969093532"><a name="p661910969093532"></a><a name="p661910969093532"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p879141297165633"><a name="p879141297165633"></a><a name="p879141297165633"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row702328264093532"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1390668747093532"><a name="p1390668747093532"></a><a name="p1390668747093532"></a><a href="OsalTimespec.md#ac4a32c1da3586df9dc42f1aefac3fe0a">sec</a></p>
+<tbody><tr id="row1347251752165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p353748744165633"><a name="p353748744165633"></a><a name="p353748744165633"></a><a href="OsalTimespec.md#ac4a32c1da3586df9dc42f1aefac3fe0a">sec</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p397385584093532"><a name="p397385584093532"></a><a name="p397385584093532"></a>uint64_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p75742260165633"><a name="p75742260165633"></a><a name="p75742260165633"></a>uint64_t </p>
 </td>
 </tr>
-<tr id="row700692975093532"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1691871492093532"><a name="p1691871492093532"></a><a name="p1691871492093532"></a><a href="OsalTimespec.md#a767732d9496cf481818f157398c8755c">usec</a></p>
+<tr id="row133924104165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p151564097165633"><a name="p151564097165633"></a><a name="p151564097165633"></a><a href="OsalTimespec.md#a767732d9496cf481818f157398c8755c">usec</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p520185346093532"><a name="p520185346093532"></a><a name="p520185346093532"></a>uint64_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p45259660165633"><a name="p45259660165633"></a><a name="p45259660165633"></a>uint64_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1830318934093532"></a>
+## **Details**<a name="section420225540165633"></a>
 
-## **Field Documentation**<a name="section502346508093532"></a>
+## **Field **<a name="section1503176048165633"></a>
 
 ## sec<a name="ac4a32c1da3586df9dc42f1aefac3fe0a"></a>
 

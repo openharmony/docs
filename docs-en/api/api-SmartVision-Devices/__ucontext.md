@@ -1,62 +1,74 @@
 # \_\_ucontext<a name="EN-US_TOPIC_0000001055039560"></a>
 
-## **Overview**<a name="section1498156335093537"></a>
+-   [Overview](#section1736534574165636)
+-   [Summary](#section1372466770165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section56269389165636)
+-   [Field](#section241535797165636)
+-   [uc\_flags](#a37d6c2fd659ca179dac3b3e201caf721)
+-   [uc\_link](#ac959c5e5cf5dc08fe790c048f7c7f802)
+-   [uc\_mcontext](#a7b1df7352cb1f09948bcfa9af895eac1)
+-   [uc\_regspace](#a93ddd393e196ec5f6c436e3179c5d19c)
+-   [uc\_sigmask](#a2edf70532d013389f4362252f749f14c)
+-   [uc\_stack](#ad53e410e77eb4014fffad71484aee872)
+
+## **Overview**<a name="section1736534574165636"></a>
 
 **Related Modules:**
 
-[IPC](en-us_topic_0000001054718071.md)
+[IPC](ipc.md)
 
 **Description:**
 
 Describes the user execution context. 
 
-## **Summary**<a name="section644896465093537"></a>
+## **Summary**<a name="section1372466770165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1781620728093537"></a>
-<table><thead align="left"><tr id="row1311912665093537"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1091073248093537"><a name="p1091073248093537"></a><a name="p1091073248093537"></a>Variable Name</p>
+<a name="table232045278165636"></a>
+<table><thead align="left"><tr id="row21826321165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1997409400165636"><a name="p1997409400165636"></a><a name="p1997409400165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1459174334093537"><a name="p1459174334093537"></a><a name="p1459174334093537"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1705651048165636"><a name="p1705651048165636"></a><a name="p1705651048165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1365442229093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1026147200093537"><a name="p1026147200093537"></a><a name="p1026147200093537"></a><a href="__ucontext.md#a37d6c2fd659ca179dac3b3e201caf721">uc_flags</a></p>
+<tbody><tr id="row1875554545165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1025151437165636"><a name="p1025151437165636"></a><a name="p1025151437165636"></a><a href="__ucontext.md#a37d6c2fd659ca179dac3b3e201caf721">uc_flags</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2123182388093537"><a name="p2123182388093537"></a><a name="p2123182388093537"></a>unsigned long </p>
-</td>
-</tr>
-<tr id="row911669614093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1919659478093537"><a name="p1919659478093537"></a><a name="p1919659478093537"></a><a href="__ucontext.md#ac959c5e5cf5dc08fe790c048f7c7f802">uc_link</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1854207267093537"><a name="p1854207267093537"></a><a name="p1854207267093537"></a>struct <a href="__ucontext.md">__ucontext</a> * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p707183978165636"><a name="p707183978165636"></a><a name="p707183978165636"></a>unsigned long </p>
 </td>
 </tr>
-<tr id="row561404688093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p598157113093537"><a name="p598157113093537"></a><a name="p598157113093537"></a><a href="__ucontext.md#ad53e410e77eb4014fffad71484aee872">uc_stack</a></p>
+<tr id="row723901237165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p703627967165636"><a name="p703627967165636"></a><a name="p703627967165636"></a><a href="__ucontext.md#ac959c5e5cf5dc08fe790c048f7c7f802">uc_link</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2124677967093537"><a name="p2124677967093537"></a><a name="p2124677967093537"></a><a href="en-us_topic_0000001054718071.md#ga395f9ff4025fe05bb535322593abde72">stack_t</a> </p>
-</td>
-</tr>
-<tr id="row1057695361093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1347816882093537"><a name="p1347816882093537"></a><a name="p1347816882093537"></a><a href="__ucontext.md#a7b1df7352cb1f09948bcfa9af895eac1">uc_mcontext</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1146211582093537"><a name="p1146211582093537"></a><a name="p1146211582093537"></a>mcontext_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1967362939165636"><a name="p1967362939165636"></a><a name="p1967362939165636"></a>struct <a href="__ucontext.md">__ucontext</a> * </p>
 </td>
 </tr>
-<tr id="row1791359216093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1471605501093537"><a name="p1471605501093537"></a><a name="p1471605501093537"></a><a href="__ucontext.md#a2edf70532d013389f4362252f749f14c">uc_sigmask</a></p>
+<tr id="row396220309165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p628043763165636"><a name="p628043763165636"></a><a name="p628043763165636"></a><a href="__ucontext.md#ad53e410e77eb4014fffad71484aee872">uc_stack</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1131667511093537"><a name="p1131667511093537"></a><a name="p1131667511093537"></a>sigset_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1783772085165636"><a name="p1783772085165636"></a><a name="p1783772085165636"></a>stack_t </p>
 </td>
 </tr>
-<tr id="row1026704580093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1390411973093537"><a name="p1390411973093537"></a><a name="p1390411973093537"></a><a href="__ucontext.md#a93ddd393e196ec5f6c436e3179c5d19c">uc_regspace</a> [64]</p>
+<tr id="row1363185738165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1748586909165636"><a name="p1748586909165636"></a><a name="p1748586909165636"></a><a href="__ucontext.md#a7b1df7352cb1f09948bcfa9af895eac1">uc_mcontext</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1823109353093537"><a name="p1823109353093537"></a><a name="p1823109353093537"></a>unsigned long long </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1943818969165636"><a name="p1943818969165636"></a><a name="p1943818969165636"></a>mcontext_t </p>
+</td>
+</tr>
+<tr id="row516814973165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p74494066165636"><a name="p74494066165636"></a><a name="p74494066165636"></a><a href="__ucontext.md#a2edf70532d013389f4362252f749f14c">uc_sigmask</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p949416012165636"><a name="p949416012165636"></a><a name="p949416012165636"></a>sigset_t </p>
+</td>
+</tr>
+<tr id="row831876732165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p651401277165636"><a name="p651401277165636"></a><a name="p651401277165636"></a><a href="__ucontext.md#a93ddd393e196ec5f6c436e3179c5d19c">uc_regspace</a> [64]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p268948616165636"><a name="p268948616165636"></a><a name="p268948616165636"></a>unsigned long long </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1115212877093537"></a>
+## **Details**<a name="section56269389165636"></a>
 
-## **Field Documentation**<a name="section30097202093537"></a>
+## **Field **<a name="section241535797165636"></a>
 
 ## uc\_flags<a name="a37d6c2fd659ca179dac3b3e201caf721"></a>
 
@@ -111,7 +123,7 @@ User signal mask
 ## uc\_stack<a name="ad53e410e77eb4014fffad71484aee872"></a>
 
 ```
-[stack_t](en-us_topic_0000001054718071.md#ga395f9ff4025fe05bb535322593abde72) __ucontext::uc_stack
+stack_t __ucontext::uc_stack
 ```
 
  **Description:**

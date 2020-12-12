@@ -1,6 +1,19 @@
 # AudioRender<a name="ZH-CN_TOPIC_0000001054918145"></a>
 
-## **Overview**<a name="section2000426298093529"></a>
+-   [Overview](#section1801946826165630)
+-   [Summary](#section1078987041165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section422181551165630)
+-   [Field](#section202261737165630)
+-   [GetChannelMode](#aad3d5e4104167620eacb2ba23edce50e)
+-   [GetLatency](#a56dff6bbe1c5ac8361b2e3238ab09563)
+-   [GetRenderPosition](#a24072bec0e2cd75727b57ec3e14f7ccb)
+-   [GetRenderSpeed](#af0a19dacb293d3fbe600902b93af1ee9)
+-   [RenderFrame](#a463cab04d0805a5c7b3ba5884c468246)
+-   [SetChannelMode](#ae5aad5b26ccdd65ba501620851c5ecec)
+-   [SetRenderSpeed](#a5589427ae5a4ba6a8d2a19dd8eddbcd8)
+
+## **Overview**<a name="section1801946826165630"></a>
 
 **Related Modules:**
 
@@ -10,6 +23,15 @@
 
 Provides capabilities for audio rendering, including controlling the rendering, setting audio attributes, scenes, and volume, obtaining hardware latency, and rendering audio frames. 
 
+See also
+:   [AudioControl](AudioControl.md) 
+
+:    [AudioAttribute](AudioAttribute.md) 
+
+:    [AudioScene](AudioScene.md) 
+
+:    [AudioVolume](AudioVolume.md) 
+
 **Since:**
 
 1.0
@@ -18,89 +40,89 @@ Provides capabilities for audio rendering, including controlling the rendering, 
 
 1.0
 
-## **Summary**<a name="section1695985147093529"></a>
+## **Summary**<a name="section1078987041165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1459979959093529"></a>
-<table><thead align="left"><tr id="row627848022093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2138670895093529"><a name="p2138670895093529"></a><a name="p2138670895093529"></a>Variable Name</p>
+<a name="table583249273165630"></a>
+<table><thead align="left"><tr id="row519575427165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p741752475165630"><a name="p741752475165630"></a><a name="p741752475165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p321138032093529"><a name="p321138032093529"></a><a name="p321138032093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1556224858165630"><a name="p1556224858165630"></a><a name="p1556224858165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2007957727093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1503626553093529"><a name="p1503626553093529"></a><a name="p1503626553093529"></a><em id="a954721a6d70c6cc96d8a772740b5749b"><a name="a954721a6d70c6cc96d8a772740b5749b"></a><a name="a954721a6d70c6cc96d8a772740b5749b"></a></em>control </p>
+<tbody><tr id="row1307610117165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p691315309165630"><a name="p691315309165630"></a><a name="p691315309165630"></a>control </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2090945373093529"><a name="p2090945373093529"></a><a name="p2090945373093529"></a><strong id="a954721a6d70c6cc96d8a772740b5749b_1"><a name="a954721a6d70c6cc96d8a772740b5749b_1"></a><a name="a954721a6d70c6cc96d8a772740b5749b_1"></a></strong> struct <a href="AudioControl.md">AudioControl</a>&nbsp;</p>
-<p id="p153211130093529"><a name="p153211130093529"></a><a name="p153211130093529"></a>Defines the audio control. For details, see <a href="AudioControl.md">AudioControl</a>. </p>
-</td>
-</tr>
-<tr id="row1841984408093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1433989772093529"><a name="p1433989772093529"></a><a name="p1433989772093529"></a><em id="a6933f5dbf34758cea050e2e5d25e69e6"><a name="a6933f5dbf34758cea050e2e5d25e69e6"></a><a name="a6933f5dbf34758cea050e2e5d25e69e6"></a></em>attr </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p963155598093529"><a name="p963155598093529"></a><a name="p963155598093529"></a><strong id="a6933f5dbf34758cea050e2e5d25e69e6_1"><a name="a6933f5dbf34758cea050e2e5d25e69e6_1"></a><a name="a6933f5dbf34758cea050e2e5d25e69e6_1"></a></strong> struct <a href="AudioAttribute.md">AudioAttribute</a>&nbsp;</p>
-<p id="p1042286076093529"><a name="p1042286076093529"></a><a name="p1042286076093529"></a>Defines the audio attribute. For details, see <a href="AudioAttribute.md">AudioAttribute</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1026032502165630"><a name="p1026032502165630"></a><a name="p1026032502165630"></a><strong id="a954721a6d70c6cc96d8a772740b5749b"><a name="a954721a6d70c6cc96d8a772740b5749b"></a><a name="a954721a6d70c6cc96d8a772740b5749b"></a></strong> struct <a href="AudioControl.md">AudioControl</a> </p>
+<p id="p977638680165630"><a name="p977638680165630"></a><a name="p977638680165630"></a>Defines the audio control. For details, see <a href="AudioControl.md">AudioControl</a>. </p>
 </td>
 </tr>
-<tr id="row1745890986093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1859519262093529"><a name="p1859519262093529"></a><a name="p1859519262093529"></a><em id="adcbcb3e0a5c11e507bbf2f9a8809b099"><a name="adcbcb3e0a5c11e507bbf2f9a8809b099"></a><a name="adcbcb3e0a5c11e507bbf2f9a8809b099"></a></em>scene </p>
+<tr id="row35245260165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p219663709165630"><a name="p219663709165630"></a><a name="p219663709165630"></a>attr </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2105830543093529"><a name="p2105830543093529"></a><a name="p2105830543093529"></a><strong id="adcbcb3e0a5c11e507bbf2f9a8809b099_1"><a name="adcbcb3e0a5c11e507bbf2f9a8809b099_1"></a><a name="adcbcb3e0a5c11e507bbf2f9a8809b099_1"></a></strong> struct <a href="AudioScene.md">AudioScene</a>&nbsp;</p>
-<p id="p1863771863093529"><a name="p1863771863093529"></a><a name="p1863771863093529"></a>Defines the audio scene. For details, see <a href="AudioScene.md">AudioScene</a>. </p>
-</td>
-</tr>
-<tr id="row451243574093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p561827211093529"><a name="p561827211093529"></a><a name="p561827211093529"></a><em id="aff73e1461efbc8b133418f0571f4b3a8"><a name="aff73e1461efbc8b133418f0571f4b3a8"></a><a name="aff73e1461efbc8b133418f0571f4b3a8"></a></em>volume </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2089467282093529"><a name="p2089467282093529"></a><a name="p2089467282093529"></a><strong id="aff73e1461efbc8b133418f0571f4b3a8_1"><a name="aff73e1461efbc8b133418f0571f4b3a8_1"></a><a name="aff73e1461efbc8b133418f0571f4b3a8_1"></a></strong> struct <a href="AudioVolume.md">AudioVolume</a>&nbsp;</p>
-<p id="p916508016093529"><a name="p916508016093529"></a><a name="p916508016093529"></a>Defines audio volume. For details, see <a href="AudioVolume.md">AudioVolume</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p432438150165630"><a name="p432438150165630"></a><a name="p432438150165630"></a><strong id="a6933f5dbf34758cea050e2e5d25e69e6"><a name="a6933f5dbf34758cea050e2e5d25e69e6"></a><a name="a6933f5dbf34758cea050e2e5d25e69e6"></a></strong> struct <a href="AudioAttribute.md">AudioAttribute</a> </p>
+<p id="p371225361165630"><a name="p371225361165630"></a><a name="p371225361165630"></a>Defines the audio attribute. For details, see <a href="AudioAttribute.md">AudioAttribute</a>. </p>
 </td>
 </tr>
-<tr id="row2074215241093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1797017029093529"><a name="p1797017029093529"></a><a name="p1797017029093529"></a><a href="AudioRender.md#a56dff6bbe1c5ac8361b2e3238ab09563">GetLatency</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, uint32_t *ms)</p>
+<tr id="row929120582165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p989566871165630"><a name="p989566871165630"></a><a name="p989566871165630"></a>scene </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1313839283093529"><a name="p1313839283093529"></a><a name="p1313839283093529"></a>int32_t(*&nbsp;</p>
-<p id="p390046843093529"><a name="p390046843093529"></a><a name="p390046843093529"></a>Obtains the estimated latency of the audio device driver. </p>
-</td>
-</tr>
-<tr id="row276977799093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p398448113093529"><a name="p398448113093529"></a><a name="p398448113093529"></a><a href="AudioRender.md#a463cab04d0805a5c7b3ba5884c468246">RenderFrame</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, const void *frame, uint64_t requestBytes, uint64_t *replyBytes)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p939637104093529"><a name="p939637104093529"></a><a name="p939637104093529"></a>int32_t(*&nbsp;</p>
-<p id="p1456099619093529"><a name="p1456099619093529"></a><a name="p1456099619093529"></a>Writes a frame of output data (downlink data) into the audio driver for rendering. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p981896208165630"><a name="p981896208165630"></a><a name="p981896208165630"></a><strong id="adcbcb3e0a5c11e507bbf2f9a8809b099"><a name="adcbcb3e0a5c11e507bbf2f9a8809b099"></a><a name="adcbcb3e0a5c11e507bbf2f9a8809b099"></a></strong> struct <a href="AudioScene.md">AudioScene</a> </p>
+<p id="p1094879870165630"><a name="p1094879870165630"></a><a name="p1094879870165630"></a>Defines the audio scene. For details, see <a href="AudioScene.md">AudioScene</a>. </p>
 </td>
 </tr>
-<tr id="row584537330093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p822109862093529"><a name="p822109862093529"></a><a name="p822109862093529"></a><a href="AudioRender.md#a24072bec0e2cd75727b57ec3e14f7ccb">GetRenderPosition</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, uint64_t *frames, struct <a href="AudioTimeStamp.md">AudioTimeStamp</a> *<a href="zh-cn_topic_0000001054879478.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
+<tr id="row1296021210165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p618579473165630"><a name="p618579473165630"></a><a name="p618579473165630"></a>volume </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p447022631093529"><a name="p447022631093529"></a><a name="p447022631093529"></a>int32_t(*&nbsp;</p>
-<p id="p1964350547093529"><a name="p1964350547093529"></a><a name="p1964350547093529"></a>Obtains the last number of output audio frames. </p>
-</td>
-</tr>
-<tr id="row227992507093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p740040602093529"><a name="p740040602093529"></a><a name="p740040602093529"></a><a href="AudioRender.md#a5589427ae5a4ba6a8d2a19dd8eddbcd8">SetRenderSpeed</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, float speed)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p521982719093529"><a name="p521982719093529"></a><a name="p521982719093529"></a>int32_t(*&nbsp;</p>
-<p id="p1282932925093529"><a name="p1282932925093529"></a><a name="p1282932925093529"></a>Sets the audio rendering speed. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p112458968165630"><a name="p112458968165630"></a><a name="p112458968165630"></a><strong id="aff73e1461efbc8b133418f0571f4b3a8"><a name="aff73e1461efbc8b133418f0571f4b3a8"></a><a name="aff73e1461efbc8b133418f0571f4b3a8"></a></strong> struct <a href="AudioVolume.md">AudioVolume</a> </p>
+<p id="p1329846508165630"><a name="p1329846508165630"></a><a name="p1329846508165630"></a>Defines audio volume. For details, see <a href="AudioVolume.md">AudioVolume</a>. </p>
 </td>
 </tr>
-<tr id="row1060396809093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1194427754093529"><a name="p1194427754093529"></a><a name="p1194427754093529"></a><a href="AudioRender.md#af0a19dacb293d3fbe600902b93af1ee9">GetRenderSpeed</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, float *speed)</p>
+<tr id="row1449575909165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1475439913165630"><a name="p1475439913165630"></a><a name="p1475439913165630"></a><a href="AudioRender.md#a56dff6bbe1c5ac8361b2e3238ab09563">GetLatency</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, uint32_t *ms)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2102555257093529"><a name="p2102555257093529"></a><a name="p2102555257093529"></a>int32_t(*&nbsp;</p>
-<p id="p1352540305093529"><a name="p1352540305093529"></a><a name="p1352540305093529"></a>Obtains the current audio rendering speed. </p>
-</td>
-</tr>
-<tr id="row173790015093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2103236435093529"><a name="p2103236435093529"></a><a name="p2103236435093529"></a><a href="AudioRender.md#ae5aad5b26ccdd65ba501620851c5ecec">SetChannelMode</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, enum <a href="Audio.md#ga78aab1fafb9657451804e42b42897123">AudioChannelMode</a> mode)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p753755891093529"><a name="p753755891093529"></a><a name="p753755891093529"></a>int32_t(*&nbsp;</p>
-<p id="p565312761093529"><a name="p565312761093529"></a><a name="p565312761093529"></a>Sets the channel mode for audio rendering. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1908922108165630"><a name="p1908922108165630"></a><a name="p1908922108165630"></a>int32_t(* </p>
+<p id="p777905213165630"><a name="p777905213165630"></a><a name="p777905213165630"></a>Obtains the estimated latency of the audio device driver. </p>
 </td>
 </tr>
-<tr id="row1500017285093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p840139834093529"><a name="p840139834093529"></a><a name="p840139834093529"></a><a href="AudioRender.md#aad3d5e4104167620eacb2ba23edce50e">GetChannelMode</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, enum <a href="Audio.md#ga78aab1fafb9657451804e42b42897123">AudioChannelMode</a> *mode)</p>
+<tr id="row819947078165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1732051824165630"><a name="p1732051824165630"></a><a name="p1732051824165630"></a><a href="AudioRender.md#a463cab04d0805a5c7b3ba5884c468246">RenderFrame</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, const void *frame, uint64_t requestBytes, uint64_t *replyBytes)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p459292041093529"><a name="p459292041093529"></a><a name="p459292041093529"></a>int32_t(*&nbsp;</p>
-<p id="p1248647415093529"><a name="p1248647415093529"></a><a name="p1248647415093529"></a>Obtains the current channel mode for audio rendering. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1155815150165630"><a name="p1155815150165630"></a><a name="p1155815150165630"></a>int32_t(* </p>
+<p id="p1506662447165630"><a name="p1506662447165630"></a><a name="p1506662447165630"></a>Writes a frame of output data (downlink data) into the audio driver for rendering. </p>
+</td>
+</tr>
+<tr id="row150403123165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p71885676165630"><a name="p71885676165630"></a><a name="p71885676165630"></a><a href="AudioRender.md#a24072bec0e2cd75727b57ec3e14f7ccb">GetRenderPosition</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, uint64_t *frames, struct <a href="AudioTimeStamp.md">AudioTimeStamp</a> *<a href="TIME.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p773332520165630"><a name="p773332520165630"></a><a name="p773332520165630"></a>int32_t(* </p>
+<p id="p1549475463165630"><a name="p1549475463165630"></a><a name="p1549475463165630"></a>Obtains the last number of output audio frames. </p>
+</td>
+</tr>
+<tr id="row246722412165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2121927758165630"><a name="p2121927758165630"></a><a name="p2121927758165630"></a><a href="AudioRender.md#a5589427ae5a4ba6a8d2a19dd8eddbcd8">SetRenderSpeed</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, float speed)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1670179115165630"><a name="p1670179115165630"></a><a name="p1670179115165630"></a>int32_t(* </p>
+<p id="p1519896748165630"><a name="p1519896748165630"></a><a name="p1519896748165630"></a>Sets the audio rendering speed. </p>
+</td>
+</tr>
+<tr id="row1343887247165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p583964710165630"><a name="p583964710165630"></a><a name="p583964710165630"></a><a href="AudioRender.md#af0a19dacb293d3fbe600902b93af1ee9">GetRenderSpeed</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, float *speed)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1462191970165630"><a name="p1462191970165630"></a><a name="p1462191970165630"></a>int32_t(* </p>
+<p id="p709635514165630"><a name="p709635514165630"></a><a name="p709635514165630"></a>Obtains the current audio rendering speed. </p>
+</td>
+</tr>
+<tr id="row1818061242165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1652994819165630"><a name="p1652994819165630"></a><a name="p1652994819165630"></a><a href="AudioRender.md#ae5aad5b26ccdd65ba501620851c5ecec">SetChannelMode</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, enum <a href="Audio.md#ga78aab1fafb9657451804e42b42897123">AudioChannelMode</a> mode)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p36972693165630"><a name="p36972693165630"></a><a name="p36972693165630"></a>int32_t(* </p>
+<p id="p1914326080165630"><a name="p1914326080165630"></a><a name="p1914326080165630"></a>Sets the channel mode for audio rendering. </p>
+</td>
+</tr>
+<tr id="row819243467165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1962012832165630"><a name="p1962012832165630"></a><a name="p1962012832165630"></a><a href="AudioRender.md#aad3d5e4104167620eacb2ba23edce50e">GetChannelMode</a> )(struct <a href="AudioRender.md">AudioRender</a> *render, enum <a href="Audio.md#ga78aab1fafb9657451804e42b42897123">AudioChannelMode</a> *mode)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p487668782165630"><a name="p487668782165630"></a><a name="p487668782165630"></a>int32_t(* </p>
+<p id="p696758517165630"><a name="p696758517165630"></a><a name="p696758517165630"></a>Obtains the current channel mode for audio rendering. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section2093810079093529"></a>
+## **Details**<a name="section422181551165630"></a>
 
-## **Field Documentation**<a name="section485337278093529"></a>
+## **Field **<a name="section202261737165630"></a>
 
 ## GetChannelMode<a name="aad3d5e4104167620eacb2ba23edce50e"></a>
 
@@ -114,17 +136,17 @@ Obtains the current channel mode for audio rendering.
 
 **Parameters:**
 
-<a name="table152255529093529"></a>
-<table><thead align="left"><tr id="row454010964093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1901105570093529"><a name="p1901105570093529"></a><a name="p1901105570093529"></a>Name</p>
+<a name="table1479422161165630"></a>
+<table><thead align="left"><tr id="row1312186405165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1254037518165630"><a name="p1254037518165630"></a><a name="p1254037518165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2011764168093529"><a name="p2011764168093529"></a><a name="p2011764168093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p446688904165630"><a name="p446688904165630"></a><a name="p446688904165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1051070001093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b2025394423093529"><a name="b2025394423093529"></a><a name="b2025394423093529"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
+<tbody><tr id="row105438113165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1214978077165630"><a name="b1214978077165630"></a><a name="b1214978077165630"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
 </tr>
-<tr id="row2111023463093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
+<tr id="row518909084165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the channel mode to obtain. </td>
 </tr>
 </tbody>
@@ -150,17 +172,17 @@ Obtains the estimated latency of the audio device driver.
 
 **Parameters:**
 
-<a name="table1322704572093529"></a>
-<table><thead align="left"><tr id="row714317588093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1771266111093529"><a name="p1771266111093529"></a><a name="p1771266111093529"></a>Name</p>
+<a name="table1342001061165630"></a>
+<table><thead align="left"><tr id="row954109909165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p27270789165630"><a name="p27270789165630"></a><a name="p27270789165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1207712711093529"><a name="p1207712711093529"></a><a name="p1207712711093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1898208079165630"><a name="p1898208079165630"></a><a name="p1898208079165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1772715070093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1081126803093529"><a name="b1081126803093529"></a><a name="b1081126803093529"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
+<tbody><tr id="row1491734707165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1864643284165630"><a name="b1864643284165630"></a><a name="b1864643284165630"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
 </tr>
-<tr id="row612026893093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ms</td>
+<tr id="row1863804409165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">ms</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the latency (in milliseconds) to be obtained. </td>
 </tr>
 </tbody>
@@ -170,12 +192,10 @@ Obtains the estimated latency of the audio device driver.
 
 Returns  **0**  if the latency is obtained; returns a negative value otherwise. 
 
-
-
 ## GetRenderPosition<a name="a24072bec0e2cd75727b57ec3e14f7ccb"></a>
 
 ```
-int32_t(* AudioRender::GetRenderPosition) (struct [AudioRender](AudioRender.md) *render, uint64_t *frames, struct [AudioTimeStamp](AudioTimeStamp.md) *[time](zh-cn_topic_0000001054879478.md#gae7841e681c8c9d59818568d39553642c))
+int32_t(* AudioRender::GetRenderPosition) (struct [AudioRender](AudioRender.md) *render, uint64_t *frames, struct [AudioTimeStamp](AudioTimeStamp.md) *[time](TIME.md#gae7841e681c8c9d59818568d39553642c))
 ```
 
  **Description:**
@@ -184,20 +204,20 @@ Obtains the last number of output audio frames.
 
 **Parameters:**
 
-<a name="table1610198850093529"></a>
-<table><thead align="left"><tr id="row158685199093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1469853976093529"><a name="p1469853976093529"></a><a name="p1469853976093529"></a>Name</p>
+<a name="table1573388770165630"></a>
+<table><thead align="left"><tr id="row42655883165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1356418689165630"><a name="p1356418689165630"></a><a name="p1356418689165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p691855517093529"><a name="p691855517093529"></a><a name="p691855517093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p483112585165630"><a name="p483112585165630"></a><a name="p483112585165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row140163604093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1566484032093529"><a name="b1566484032093529"></a><a name="b1566484032093529"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
+<tbody><tr id="row182597291165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b391852111165630"><a name="b391852111165630"></a><a name="b391852111165630"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
 </tr>
-<tr id="row1094248506093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">frames</td>
+<tr id="row503805481165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">frames</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the last number of output audio frames. </td>
 </tr>
-<tr id="row908324837093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
+<tr id="row498352287165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the timestamp associated with the frame. </td>
 </tr>
 </tbody>
@@ -223,17 +243,17 @@ Obtains the current audio rendering speed.
 
 **Parameters:**
 
-<a name="table1026647496093529"></a>
-<table><thead align="left"><tr id="row1716199609093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1867866308093529"><a name="p1867866308093529"></a><a name="p1867866308093529"></a>Name</p>
+<a name="table966855124165630"></a>
+<table><thead align="left"><tr id="row716164234165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p225099539165630"><a name="p225099539165630"></a><a name="p225099539165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1526727964093529"><a name="p1526727964093529"></a><a name="p1526727964093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p701103142165630"><a name="p701103142165630"></a><a name="p701103142165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row762573241093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b829284074093529"><a name="b829284074093529"></a><a name="b829284074093529"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
+<tbody><tr id="row1596583673165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1937386645165630"><a name="b1937386645165630"></a><a name="b1937386645165630"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
 </tr>
-<tr id="row320766646093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">speed</td>
+<tr id="row386085092165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">speed</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the current rendering speed to obtain. </td>
 </tr>
 </tbody>
@@ -259,23 +279,23 @@ Writes a frame of output data \(downlink data\) into the audio driver for render
 
 **Parameters:**
 
-<a name="table2017355772093529"></a>
-<table><thead align="left"><tr id="row1535336451093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1695575131093529"><a name="p1695575131093529"></a><a name="p1695575131093529"></a>Name</p>
+<a name="table286345594165630"></a>
+<table><thead align="left"><tr id="row1618546530165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1804989016165630"><a name="p1804989016165630"></a><a name="p1804989016165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1144008438093529"><a name="p1144008438093529"></a><a name="p1144008438093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p947742161165630"><a name="p947742161165630"></a><a name="p947742161165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2106997272093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1275277871093529"><a name="b1275277871093529"></a><a name="b1275277871093529"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
+<tbody><tr id="row70649572165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b908909822165630"><a name="b908909822165630"></a><a name="b908909822165630"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
 </tr>
-<tr id="row867632539093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">frame</td>
+<tr id="row2026795317165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">frame</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the frame to write. </td>
 </tr>
-<tr id="row1887586639093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">requestBytes</td>
+<tr id="row2062217154165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">requestBytes</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of the frame, in bytes. </td>
 </tr>
-<tr id="row1789967755093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">replyBytes</td>
+<tr id="row632745315165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">replyBytes</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the actual length (in bytes) of the audio data to write. </td>
 </tr>
 </tbody>
@@ -284,8 +304,6 @@ Writes a frame of output data \(downlink data\) into the audio driver for render
 **Returns:**
 
 Returns  **0**  if the data is written successfully; returns a negative value otherwise. 
-
-
 
 ## SetChannelMode<a name="ae5aad5b26ccdd65ba501620851c5ecec"></a>
 
@@ -299,17 +317,17 @@ Sets the channel mode for audio rendering.
 
 **Parameters:**
 
-<a name="table146828453093529"></a>
-<table><thead align="left"><tr id="row463189493093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1457072568093529"><a name="p1457072568093529"></a><a name="p1457072568093529"></a>Name</p>
+<a name="table593986487165630"></a>
+<table><thead align="left"><tr id="row1228242967165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p175261138165630"><a name="p175261138165630"></a><a name="p175261138165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2073183254093529"><a name="p2073183254093529"></a><a name="p2073183254093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p106686877165630"><a name="p106686877165630"></a><a name="p106686877165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row863003140093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1597534075093529"><a name="b1597534075093529"></a><a name="b1597534075093529"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
+<tbody><tr id="row2071963340165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b857507293165630"><a name="b857507293165630"></a><a name="b857507293165630"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
 </tr>
-<tr id="row1898880801093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
+<tr id="row329016187165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">mode</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the channel mode to set. </td>
 </tr>
 </tbody>
@@ -335,17 +353,17 @@ Sets the audio rendering speed.
 
 **Parameters:**
 
-<a name="table1408214066093529"></a>
-<table><thead align="left"><tr id="row1603531149093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p305349587093529"><a name="p305349587093529"></a><a name="p305349587093529"></a>Name</p>
+<a name="table821829818165630"></a>
+<table><thead align="left"><tr id="row1106136665165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p883940006165630"><a name="p883940006165630"></a><a name="p883940006165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1109444655093529"><a name="p1109444655093529"></a><a name="p1109444655093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1157378439165630"><a name="p1157378439165630"></a><a name="p1157378439165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1984273724093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b998391012093529"><a name="b998391012093529"></a><a name="b998391012093529"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
+<tbody><tr id="row1163267075165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">render</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b372136512165630"><a name="b372136512165630"></a><a name="b372136512165630"></a><a href="AudioRender.md">AudioRender</a></strong> object to operate. </td>
 </tr>
-<tr id="row102845991093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">speed</td>
+<tr id="row1727326374165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">speed</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the rendering speed to set. </td>
 </tr>
 </tbody>

@@ -1,6 +1,17 @@
 # AudioAttribute<a name="ZH-CN_TOPIC_0000001055198120"></a>
 
-## **Overview**<a name="section936998558093529"></a>
+-   [Overview](#section1896801825165630)
+-   [Summary](#section1215842888165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section424170924165630)
+-   [Field](#section109559353165630)
+-   [GetCurrentChannelId](#ad070369ffa9d88df541aaf0ffbbcfbfd)
+-   [GetFrameCount](#ab31fee582dc33b9320e0a0e5d16ae0e6)
+-   [GetFrameSize](#a74a23f0544ac688223e61fa71a307851)
+-   [GetSampleAttributes](#a2f92d8704ef677a07d664c33342e4318)
+-   [SetSampleAttributes](#a502fe4e4b97cd253244debcc67d45c4d)
+
+## **Overview**<a name="section1896801825165630"></a>
 
 **Related Modules:**
 
@@ -18,53 +29,53 @@ Provides attribute-related APIs for audio rendering or capturing, including func
 
 1.0
 
-## **Summary**<a name="section2045661001093529"></a>
+## **Summary**<a name="section1215842888165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table2033600214093529"></a>
-<table><thead align="left"><tr id="row883343569093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p707424976093529"><a name="p707424976093529"></a><a name="p707424976093529"></a>Variable Name</p>
+<a name="table813127139165630"></a>
+<table><thead align="left"><tr id="row531457665165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1676146793165630"><a name="p1676146793165630"></a><a name="p1676146793165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1755597900093529"><a name="p1755597900093529"></a><a name="p1755597900093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p217598559165630"><a name="p217598559165630"></a><a name="p217598559165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row73012321093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1465201397093529"><a name="p1465201397093529"></a><a name="p1465201397093529"></a><a href="AudioAttribute.md#a74a23f0544ac688223e61fa71a307851">GetFrameSize</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, uint64_t *size)</p>
+<tbody><tr id="row1268453528165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1406238391165630"><a name="p1406238391165630"></a><a name="p1406238391165630"></a><a href="AudioAttribute.md#a74a23f0544ac688223e61fa71a307851">GetFrameSize</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, uint64_t *size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p49165509093529"><a name="p49165509093529"></a><a name="p49165509093529"></a>int32_t(*&nbsp;</p>
-<p id="p146074423093529"><a name="p146074423093529"></a><a name="p146074423093529"></a>Obtains the audio frame size, that is, the length (in bytes) of a frame. </p>
-</td>
-</tr>
-<tr id="row885372838093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p143100437093529"><a name="p143100437093529"></a><a name="p143100437093529"></a><a href="AudioAttribute.md#ab31fee582dc33b9320e0a0e5d16ae0e6">GetFrameCount</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, uint64_t *count)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p648035981093529"><a name="p648035981093529"></a><a name="p648035981093529"></a>int32_t(*&nbsp;</p>
-<p id="p891047322093529"><a name="p891047322093529"></a><a name="p891047322093529"></a>Obtains the number of audio frames in the audio buffer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2055117886165630"><a name="p2055117886165630"></a><a name="p2055117886165630"></a>int32_t(* </p>
+<p id="p1213452819165630"><a name="p1213452819165630"></a><a name="p1213452819165630"></a>Obtains the audio frame size, that is, the length (in bytes) of a frame. </p>
 </td>
 </tr>
-<tr id="row1039736740093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p584587342093529"><a name="p584587342093529"></a><a name="p584587342093529"></a><a href="AudioAttribute.md#a502fe4e4b97cd253244debcc67d45c4d">SetSampleAttributes</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, const struct <a href="AudioSampleAttributes.md">AudioSampleAttributes</a> *attrs)</p>
+<tr id="row669401780165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1077974387165630"><a name="p1077974387165630"></a><a name="p1077974387165630"></a><a href="AudioAttribute.md#ab31fee582dc33b9320e0a0e5d16ae0e6">GetFrameCount</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, uint64_t *count)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1557400752093529"><a name="p1557400752093529"></a><a name="p1557400752093529"></a>int32_t(*&nbsp;</p>
-<p id="p1014270069093529"><a name="p1014270069093529"></a><a name="p1014270069093529"></a>Sets audio sampling attributes. </p>
-</td>
-</tr>
-<tr id="row1388192876093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1741835708093529"><a name="p1741835708093529"></a><a name="p1741835708093529"></a><a href="AudioAttribute.md#a2f92d8704ef677a07d664c33342e4318">GetSampleAttributes</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, struct <a href="AudioSampleAttributes.md">AudioSampleAttributes</a> *attrs)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p454003813093529"><a name="p454003813093529"></a><a name="p454003813093529"></a>int32_t(*&nbsp;</p>
-<p id="p795681825093529"><a name="p795681825093529"></a><a name="p795681825093529"></a>Obtains audio sampling attributes. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p630583296165630"><a name="p630583296165630"></a><a name="p630583296165630"></a>int32_t(* </p>
+<p id="p1136116338165630"><a name="p1136116338165630"></a><a name="p1136116338165630"></a>Obtains the number of audio frames in the audio buffer. </p>
 </td>
 </tr>
-<tr id="row1156501298093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1763769235093529"><a name="p1763769235093529"></a><a name="p1763769235093529"></a><a href="AudioAttribute.md#ad070369ffa9d88df541aaf0ffbbcfbfd">GetCurrentChannelId</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, uint32_t *channelId)</p>
+<tr id="row757050202165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1072587895165630"><a name="p1072587895165630"></a><a name="p1072587895165630"></a><a href="AudioAttribute.md#a502fe4e4b97cd253244debcc67d45c4d">SetSampleAttributes</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, const struct <a href="AudioSampleAttributes.md">AudioSampleAttributes</a> *attrs)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p593741241093529"><a name="p593741241093529"></a><a name="p593741241093529"></a>int32_t(*&nbsp;</p>
-<p id="p30361972093529"><a name="p30361972093529"></a><a name="p30361972093529"></a>Obtains the data channel ID of the audio. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1023345903165630"><a name="p1023345903165630"></a><a name="p1023345903165630"></a>int32_t(* </p>
+<p id="p1106266299165630"><a name="p1106266299165630"></a><a name="p1106266299165630"></a>Sets audio sampling attributes. </p>
+</td>
+</tr>
+<tr id="row413853696165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p957093953165630"><a name="p957093953165630"></a><a name="p957093953165630"></a><a href="AudioAttribute.md#a2f92d8704ef677a07d664c33342e4318">GetSampleAttributes</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, struct <a href="AudioSampleAttributes.md">AudioSampleAttributes</a> *attrs)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1666197557165630"><a name="p1666197557165630"></a><a name="p1666197557165630"></a>int32_t(* </p>
+<p id="p719364657165630"><a name="p719364657165630"></a><a name="p719364657165630"></a>Obtains audio sampling attributes. </p>
+</td>
+</tr>
+<tr id="row198024644165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p282854730165630"><a name="p282854730165630"></a><a name="p282854730165630"></a><a href="AudioAttribute.md#ad070369ffa9d88df541aaf0ffbbcfbfd">GetCurrentChannelId</a> )(<a href="Audio.md#ga18675ddb073465fdeac33a897f675d79">AudioHandle</a> handle, uint32_t *channelId)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p833944951165630"><a name="p833944951165630"></a><a name="p833944951165630"></a>int32_t(* </p>
+<p id="p298153789165630"><a name="p298153789165630"></a><a name="p298153789165630"></a>Obtains the data channel ID of the audio. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1926643650093529"></a>
+## **Details**<a name="section424170924165630"></a>
 
-## **Field Documentation**<a name="section2033546313093529"></a>
+## **Field **<a name="section109559353165630"></a>
 
 ## GetCurrentChannelId<a name="ad070369ffa9d88df541aaf0ffbbcfbfd"></a>
 
@@ -78,17 +89,17 @@ Obtains the data channel ID of the audio.
 
 **Parameters:**
 
-<a name="table1676997330093529"></a>
-<table><thead align="left"><tr id="row1483049894093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p460347542093529"><a name="p460347542093529"></a><a name="p460347542093529"></a>Name</p>
+<a name="table1370364551165630"></a>
+<table><thead align="left"><tr id="row124187666165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p246538358165630"><a name="p246538358165630"></a><a name="p246538358165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1368527856093529"><a name="p1368527856093529"></a><a name="p1368527856093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1658920087165630"><a name="p1658920087165630"></a><a name="p1658920087165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1486548316093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<tbody><tr id="row1724796309165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the audio handle. </td>
 </tr>
-<tr id="row1181347016093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">channelId</td>
+<tr id="row368755810165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">channelId</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the data channel ID. </td>
 </tr>
 </tbody>
@@ -97,8 +108,6 @@ Obtains the data channel ID of the audio.
 **Returns:**
 
 Returns  **0**  if the data channel ID is obtained; returns a negative value otherwise. 
-
-
 
 ## GetFrameCount<a name="ab31fee582dc33b9320e0a0e5d16ae0e6"></a>
 
@@ -112,17 +121,17 @@ Obtains the number of audio frames in the audio buffer.
 
 **Parameters:**
 
-<a name="table2002532161093529"></a>
-<table><thead align="left"><tr id="row1230897658093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1130963557093529"><a name="p1130963557093529"></a><a name="p1130963557093529"></a>Name</p>
+<a name="table1046932222165630"></a>
+<table><thead align="left"><tr id="row1253819951165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p340281978165630"><a name="p340281978165630"></a><a name="p340281978165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2029274030093529"><a name="p2029274030093529"></a><a name="p2029274030093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p840237136165630"><a name="p840237136165630"></a><a name="p840237136165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row268093107093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<tbody><tr id="row22509538165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the audio handle. </td>
 </tr>
-<tr id="row1411687481093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">count</td>
+<tr id="row1652524793165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">count</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the number of audio frames in the audio buffer. </td>
 </tr>
 </tbody>
@@ -131,8 +140,6 @@ Obtains the number of audio frames in the audio buffer.
 **Returns:**
 
 Returns  **0**  if the number of audio frames is obtained; returns a negative value otherwise. 
-
-
 
 ## GetFrameSize<a name="a74a23f0544ac688223e61fa71a307851"></a>
 
@@ -146,17 +153,17 @@ Obtains the audio frame size, that is, the length \(in bytes\) of a frame.
 
 **Parameters:**
 
-<a name="table1627942691093529"></a>
-<table><thead align="left"><tr id="row1326402869093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p71958469093529"><a name="p71958469093529"></a><a name="p71958469093529"></a>Name</p>
+<a name="table1091781357165630"></a>
+<table><thead align="left"><tr id="row1503692246165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p346085992165630"><a name="p346085992165630"></a><a name="p346085992165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p174397629093529"><a name="p174397629093529"></a><a name="p174397629093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2112379702165630"><a name="p2112379702165630"></a><a name="p2112379702165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1751880161093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<tbody><tr id="row794146689165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the audio handle. </td>
 </tr>
-<tr id="row453850506093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row1353012076165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio frame size (in bytes). </td>
 </tr>
 </tbody>
@@ -165,8 +172,6 @@ Obtains the audio frame size, that is, the length \(in bytes\) of a frame.
 **Returns:**
 
 Returns  **0**  if the audio frame size is obtained; returns a negative value otherwise. 
-
-
 
 ## GetSampleAttributes<a name="a2f92d8704ef677a07d664c33342e4318"></a>
 
@@ -180,17 +185,17 @@ Obtains audio sampling attributes.
 
 **Parameters:**
 
-<a name="table2116476084093529"></a>
-<table><thead align="left"><tr id="row597786836093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1362800200093529"><a name="p1362800200093529"></a><a name="p1362800200093529"></a>Name</p>
+<a name="table281052098165630"></a>
+<table><thead align="left"><tr id="row1183120563165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1857612040165630"><a name="p1857612040165630"></a><a name="p1857612040165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p891542615093529"><a name="p891542615093529"></a><a name="p891542615093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1134854099165630"><a name="p1134854099165630"></a><a name="p1134854099165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1516734735093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<tbody><tr id="row191244578165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the audio handle. </td>
 </tr>
-<tr id="row43380260093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">attrs</td>
+<tr id="row769815820165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">attrs</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio sampling attributes, such as the sampling rate, sampling precision, and channel. </td>
 </tr>
 </tbody>
@@ -216,17 +221,17 @@ Sets audio sampling attributes.
 
 **Parameters:**
 
-<a name="table1735675839093529"></a>
-<table><thead align="left"><tr id="row987449368093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1300741637093529"><a name="p1300741637093529"></a><a name="p1300741637093529"></a>Name</p>
+<a name="table298221175165630"></a>
+<table><thead align="left"><tr id="row515102222165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p647673690165630"><a name="p647673690165630"></a><a name="p647673690165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p894873182093529"><a name="p894873182093529"></a><a name="p894873182093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1693156902165630"><a name="p1693156902165630"></a><a name="p1693156902165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2110365661093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<tbody><tr id="row168596454165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the audio handle. </td>
 </tr>
-<tr id="row1784143841093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">attrs</td>
+<tr id="row2016887318165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">attrs</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio sampling attributes to set, such as the sampling rate, sampling precision, and channel. </td>
 </tr>
 </tbody>

@@ -1,6 +1,16 @@
 # sigaction<a name="EN-US_TOPIC_0000001055078187"></a>
 
-## **Overview**<a name="section1167484883084843"></a>
+-   [Overview](#section846255415165637)
+-   [Summary](#section1341923691165637)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1183745973165637)
+-   [Field](#section1610859264165637)
+-   [sa\_flags](#aea0dabe7a03641c8b426521f4406b425)
+-   [sa\_handler](#aff7f084aa4099423967033151cec9474)
+-   [sa\_mask](#a684e70081d03d46ce70af097ea5cfd49)
+-   [sa\_sigaction](#a0bb0cfd311dfcc20aac020e7d3792b1a)
+
+## **Overview**<a name="section846255415165637"></a>
 
 **Related Modules:**
 
@@ -8,111 +18,47 @@
 
 **Description:**
 
-Defines the signal processing actions and related attributes. You can use the structures to change the processing actions or attributes. 
+Describes the signal processing actions and related attributes. 
 
-Describes the signal processing actions and related attributes.
-
-## **Summary**<a name="section651215172084843"></a>
+## **Summary**<a name="section1341923691165637"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table259042534084843"></a>
-<table><thead align="left"><tr id="row347109807084843"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p116634605084843"><a name="p116634605084843"></a><a name="p116634605084843"></a>Variable Name</p>
+<a name="table1589457905165637"></a>
+<table><thead align="left"><tr id="row1809288714165637"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p197603141165637"><a name="p197603141165637"></a><a name="p197603141165637"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p222761120084843"><a name="p222761120084843"></a><a name="p222761120084843"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1011029941165637"><a name="p1011029941165637"></a><a name="p1011029941165637"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1391125968084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1096471117084843"><a name="p1096471117084843"></a><a name="p1096471117084843"></a>union {</p>
+<tbody><tr id="row1525597911165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p364924523165637"><a name="p364924523165637"></a><a name="p364924523165637"></a><a href="sigaction.md#a684e70081d03d46ce70af097ea5cfd49">sa_mask</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1364754494165637"><a name="p1364754494165637"></a><a name="p1364754494165637"></a>sigset_t </p>
 </td>
 </tr>
-<tr id="row1075158538084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1747732889084843"><a name="p1747732889084843"></a><a name="p1747732889084843"></a>   __sighandler_t   <a href="sigaction.md#a82821d96f92be37069f72bc9aa99d5e5">_sa_handler</a></p>
+<tr id="row1478532409165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1784380752165637"><a name="p1784380752165637"></a><a name="p1784380752165637"></a><a href="sigaction.md#aea0dabe7a03641c8b426521f4406b425">sa_flags</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2116595989165637"><a name="p2116595989165637"></a><a name="p2116595989165637"></a>int </p>
 </td>
 </tr>
-<tr id="row564243227084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p608396694084843"><a name="p608396694084843"></a><a name="p608396694084843"></a>   void(*   <a href="sigaction.md#aaf872b0c22de6e4d3af0ee7718e5b1b9">_sa_sigaction</a> )(int, struct siginfo *, void *)</p>
+<tr id="row242765109165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1038181352165637"><a name="p1038181352165637"></a><a name="p1038181352165637"></a><a href="sigaction.md#aff7f084aa4099423967033151cec9474">sa_handler</a> )(int)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p16687296165637"><a name="p16687296165637"></a><a name="p16687296165637"></a>void(* </p>
 </td>
 </tr>
-<tr id="row1876106102084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p667510473084843"><a name="p667510473084843"></a><a name="p667510473084843"></a><a href="sigaction.md#a5a99c96ae6bdfe0c91dcb4948d7aa4c2">_u</a></p>
+<tr id="row225547243165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1962148647165637"><a name="p1962148647165637"></a><a name="p1962148647165637"></a><a href="sigaction.md#a0bb0cfd311dfcc20aac020e7d3792b1a">sa_sigaction</a> )(int, siginfo_t *, void *)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p22683151084843"><a name="p22683151084843"></a><a name="p22683151084843"></a>} </p>
-</td>
-</tr>
-<tr id="row185636332084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2039729377084843"><a name="p2039729377084843"></a><a name="p2039729377084843"></a><a href="sigaction.md#a684e70081d03d46ce70af097ea5cfd49">sa_mask</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1236484672084843"><a name="p1236484672084843"></a><a name="p1236484672084843"></a>sigset_t </p>
-</td>
-</tr>
-<tr id="row1150799274084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p987056464084843"><a name="p987056464084843"></a><a name="p987056464084843"></a><a href="sigaction.md#a03da8b0024c0ae728f55d465b0c9d4d7">sa_flags</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p997048077084843"><a name="p997048077084843"></a><a name="p997048077084843"></a>unsigned long </p>
-</td>
-</tr>
-<tr id="row1118338760084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p684856001084843"><a name="p684856001084843"></a><a name="p684856001084843"></a><a href="sigaction.md#aea0dabe7a03641c8b426521f4406b425">sa_flags</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1731594773084843"><a name="p1731594773084843"></a><a name="p1731594773084843"></a>int </p>
-</td>
-</tr>
-<tr id="row499003106084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1194442546084843"><a name="p1194442546084843"></a><a name="p1194442546084843"></a><a href="sigaction.md#aff7f084aa4099423967033151cec9474">sa_handler</a> )(int)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1885527128084843"><a name="p1885527128084843"></a><a name="p1885527128084843"></a>void(* </p>
-</td>
-</tr>
-<tr id="row524726264084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1609997111084843"><a name="p1609997111084843"></a><a name="p1609997111084843"></a><a href="sigaction.md#a0bb0cfd311dfcc20aac020e7d3792b1a">sa_sigaction</a> )(int, siginfo_t *, void *)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p699733358084843"><a name="p699733358084843"></a><a name="p699733358084843"></a>void(* </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1089689876165637"><a name="p1089689876165637"></a><a name="p1089689876165637"></a>void(* </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1281949201084843"></a>
+## **Details**<a name="section1183745973165637"></a>
 
-## **Field Documentation**<a name="section936354577084843"></a>
+## **Field **<a name="section1610859264165637"></a>
 
-## \_sa\_handler<a name="a82821d96f92be37069f72bc9aa99d5e5"></a>
-
-```
-__sighandler_t sigaction::_sa_handler
-```
-
- **Description:**
-
-Callback for the processing action 
-
-## \_sa\_sigaction<a name="aaf872b0c22de6e4d3af0ee7718e5b1b9"></a>
-
-```
-void(* sigaction::_sa_sigaction) (int, struct siginfo *, void *)
-```
-
- **Description:**
-
-Callback with signal information for processing actions 
-
-## \_u<a name="a5a99c96ae6bdfe0c91dcb4948d7aa4c2"></a>
-
-```
-union { ... } sigaction::_u
-```
-
- **Description:**
-
-Defines the callbacks for signal processing. You can use either of them based on the specific scenario. 
-
-## sa\_flags \[1/2\]<a name="a03da8b0024c0ae728f55d465b0c9d4d7"></a>
-
-```
-unsigned long sigaction::sa_flags
-```
-
- **Description:**
-
-Signal flag. Only  **SA\_SIGINFO**  is supported. 
-
-## sa\_flags \[2/2\]<a name="aea0dabe7a03641c8b426521f4406b425"></a>
+## sa\_flags<a name="aea0dabe7a03641c8b426521f4406b425"></a>
 
 ```
 int sigaction::sa_flags

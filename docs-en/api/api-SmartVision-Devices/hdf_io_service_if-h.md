@@ -1,6 +1,12 @@
 # hdf\_io\_service\_if.h<a name="EN-US_TOPIC_0000001055518058"></a>
 
-## **Overview**<a name="section2087263703093525"></a>
+-   [Overview](#section45843369165627)
+-   [Summary](#section1743319531165627)
+-   [Data Structures](#nested-classes)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section45843369165627"></a>
 
 **Related Modules:**
 
@@ -14,30 +20,30 @@ Declares the structures defining driver service objects and event listeners, as 
 
 1.0
 
-## **Summary**<a name="section1544679303093525"></a>
+## **Summary**<a name="section1743319531165627"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1803405693093525"></a>
-<table><thead align="left"><tr id="row619663730093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p508279954093525"><a name="p508279954093525"></a><a name="p508279954093525"></a>Data Structure Name</p>
+<a name="table1580004011165627"></a>
+<table><thead align="left"><tr id="row1777373577165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1682212153165627"><a name="p1682212153165627"></a><a name="p1682212153165627"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1511266878093525"><a name="p1511266878093525"></a><a name="p1511266878093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1004792500165627"><a name="p1004792500165627"></a><a name="p1004792500165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row309574442093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p897574905093525"><a name="p897574905093525"></a><a name="p897574905093525"></a><a href="hdfdeveventlistener.md">HdfDevEventlistener</a></p>
+<tbody><tr id="row466386293165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p846236552165627"><a name="p846236552165627"></a><a name="p846236552165627"></a><a href="hdfdeveventlistener.md">HdfDevEventlistener</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p167464633093525"><a name="p167464633093525"></a><a name="p167464633093525"></a>Defines a driver event listener object. </p>
-</td>
-</tr>
-<tr id="row741690646093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p899400775093525"><a name="p899400775093525"></a><a name="p899400775093525"></a><a href="hdfiodispatcher.md">HdfIoDispatcher</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2075442381093525"><a name="p2075442381093525"></a><a name="p2075442381093525"></a>Defines a driver service call dispatcher. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p383025515165627"><a name="p383025515165627"></a><a name="p383025515165627"></a>Defines a driver event listener object. </p>
 </td>
 </tr>
-<tr id="row544569376093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1508109323093525"><a name="p1508109323093525"></a><a name="p1508109323093525"></a><a href="hdfioservice.md">HdfIoService</a></p>
+<tr id="row294300030165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1886097510165627"><a name="p1886097510165627"></a><a name="p1886097510165627"></a><a href="hdfiodispatcher.md">HdfIoDispatcher</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2038653863093525"><a name="p2038653863093525"></a><a name="p2038653863093525"></a>Defines a driver service object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1009488061165627"><a name="p1009488061165627"></a><a name="p1009488061165627"></a>Defines a driver service call dispatcher. </p>
+</td>
+</tr>
+<tr id="row1411723482165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1522089433165627"><a name="p1522089433165627"></a><a name="p1522089433165627"></a><a href="hdfioservice.md">HdfIoService</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1541230719165627"><a name="p1541230719165627"></a><a name="p1541230719165627"></a>Defines a driver service object. </p>
 </td>
 </tr>
 </tbody>
@@ -45,17 +51,17 @@ Declares the structures defining driver service objects and event listeners, as 
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table1088357162093525"></a>
-<table><thead align="left"><tr id="row1191733093093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1659059184093525"><a name="p1659059184093525"></a><a name="p1659059184093525"></a>Typedef Name</p>
+<a name="table260779499165627"></a>
+<table><thead align="left"><tr id="row1226278364165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p244157430165627"><a name="p244157430165627"></a><a name="p244157430165627"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1386681085093525"><a name="p1386681085093525"></a><a name="p1386681085093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1131105365165627"><a name="p1131105365165627"></a><a name="p1131105365165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row382897056093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1362779265093525"><a name="p1362779265093525"></a><a name="p1362779265093525"></a><a href="core.md#gae314b850ba4b0927007038cf8cc32580">OnEventReceived</a>) (void *priv, uint32_t id, struct <a href="hdfsbuf.md">HdfSBuf</a> *data)</p>
+<tbody><tr id="row906101625165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1406819354165627"><a name="p1406819354165627"></a><a name="p1406819354165627"></a><a href="core.md#gae314b850ba4b0927007038cf8cc32580">OnEventReceived</a>) (void *priv, uint32_t id, struct <a href="hdfsbuf.md">HdfSBuf</a> *data)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1526111774093525"><a name="p1526111774093525"></a><a name="p1526111774093525"></a>typedef int(* </p>
-<p id="p578126877093525"><a name="p578126877093525"></a><a name="p578126877093525"></a>Called when a driver event occurs. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p403491551165627"><a name="p403491551165627"></a><a name="p403491551165627"></a>typedef int(* </p>
+<p id="p1744543506165627"><a name="p1744543506165627"></a><a name="p1744543506165627"></a>Called when a driver event occurs. </p>
 </td>
 </tr>
 </tbody>
@@ -63,35 +69,35 @@ Declares the structures defining driver service objects and event listeners, as 
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1898022409093525"></a>
-<table><thead align="left"><tr id="row698066779093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1721626945093525"><a name="p1721626945093525"></a><a name="p1721626945093525"></a>Function Name</p>
+<a name="table1635237119165627"></a>
+<table><thead align="left"><tr id="row1138783083165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1591774968165627"><a name="p1591774968165627"></a><a name="p1591774968165627"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p623829764093525"><a name="p623829764093525"></a><a name="p623829764093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1030766697165627"><a name="p1030766697165627"></a><a name="p1030766697165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1994641261093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p148048190093525"><a name="p148048190093525"></a><a name="p148048190093525"></a><a href="core.md#gac250f27d434eafce709a7e03411ef4d1">HdfIoServiceBind</a> (const char *serviceName, mode_t permission)</p>
+<tbody><tr id="row2113549959165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1240662648165627"><a name="p1240662648165627"></a><a name="p1240662648165627"></a><a href="core.md#ga31198b68423805193274d3973c178ab5">HdfIoServiceBind</a> (const char *serviceName)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p104237592093525"><a name="p104237592093525"></a><a name="p104237592093525"></a>struct <a href="hdfioservice.md">HdfIoService</a> * </p>
-<p id="p771593888093525"><a name="p771593888093525"></a><a name="p771593888093525"></a>Obtains a driver service object. </p>
-</td>
-</tr>
-<tr id="row743734134093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p918367668093525"><a name="p918367668093525"></a><a name="p918367668093525"></a><a href="core.md#gada2867af690aac9e6c3b2c8812b3037c">HdfIoServiceRecycle</a> (struct <a href="hdfioservice.md">HdfIoService</a> *service)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p281509426093525"><a name="p281509426093525"></a><a name="p281509426093525"></a>void </p>
-<p id="p165116629093525"><a name="p165116629093525"></a><a name="p165116629093525"></a>Destroys a specified driver service object to release resources if it is no longer required. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1646422870165627"><a name="p1646422870165627"></a><a name="p1646422870165627"></a>struct <a href="hdfioservice.md">HdfIoService</a> * </p>
+<p id="p1200616951165627"><a name="p1200616951165627"></a><a name="p1200616951165627"></a>Obtains a driver service object. </p>
 </td>
 </tr>
-<tr id="row851598842093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1453956779093525"><a name="p1453956779093525"></a><a name="p1453956779093525"></a><a href="core.md#gaa7855b3930b5378954927548e5623663">HdfDeviceRegisterEventListener</a> (struct <a href="hdfioservice.md">HdfIoService</a> *target, struct <a href="hdfdeveventlistener.md">HdfDevEventlistener</a> *listener)</p>
+<tr id="row921269320165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1708137702165627"><a name="p1708137702165627"></a><a name="p1708137702165627"></a><a href="core.md#gada2867af690aac9e6c3b2c8812b3037c">HdfIoServiceRecycle</a> (struct <a href="hdfioservice.md">HdfIoService</a> *service)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p860066972093525"><a name="p860066972093525"></a><a name="p860066972093525"></a>int </p>
-<p id="p1445536873093525"><a name="p1445536873093525"></a><a name="p1445536873093525"></a>Registers a custom <a href="hdfdeveventlistener.md">HdfDevEventlistener</a> for listening for events reported by a specified driver service object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p273754538165627"><a name="p273754538165627"></a><a name="p273754538165627"></a>void </p>
+<p id="p1409893224165627"><a name="p1409893224165627"></a><a name="p1409893224165627"></a>Destroys a specified driver service object to release resources if it is no longer required. </p>
 </td>
 </tr>
-<tr id="row1016349764093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p799581470093525"><a name="p799581470093525"></a><a name="p799581470093525"></a><a href="core.md#gab95668359f0b6a47f48c47541caed7fd">HdfDeviceUnregisterEventListener</a> (struct <a href="hdfioservice.md">HdfIoService</a> *target, struct <a href="hdfdeveventlistener.md">HdfDevEventlistener</a> *listener)</p>
+<tr id="row803043719165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1501071808165627"><a name="p1501071808165627"></a><a name="p1501071808165627"></a><a href="core.md#gaa7855b3930b5378954927548e5623663">HdfDeviceRegisterEventListener</a> (struct <a href="hdfioservice.md">HdfIoService</a> *target, struct <a href="hdfdeveventlistener.md">HdfDevEventlistener</a> *listener)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1591502664093525"><a name="p1591502664093525"></a><a name="p1591502664093525"></a>int </p>
-<p id="p1606733924093525"><a name="p1606733924093525"></a><a name="p1606733924093525"></a>Unregisters a previously registered <a href="hdfdeveventlistener.md">HdfDevEventlistener</a> to release resources if it is no longer required. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1881333920165627"><a name="p1881333920165627"></a><a name="p1881333920165627"></a>int </p>
+<p id="p1339322795165627"><a name="p1339322795165627"></a><a name="p1339322795165627"></a>Registers a custom <a href="hdfdeveventlistener.md">HdfDevEventlistener</a> for listening for events reported by a specified driver service object. </p>
+</td>
+</tr>
+<tr id="row539671251165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p547211992165627"><a name="p547211992165627"></a><a name="p547211992165627"></a><a href="core.md#gab95668359f0b6a47f48c47541caed7fd">HdfDeviceUnregisterEventListener</a> (struct <a href="hdfioservice.md">HdfIoService</a> *target, struct <a href="hdfdeveventlistener.md">HdfDevEventlistener</a> *listener)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1000127133165627"><a name="p1000127133165627"></a><a name="p1000127133165627"></a>int </p>
+<p id="p453607185165627"><a name="p453607185165627"></a><a name="p453607185165627"></a>Unregisters a previously registered <a href="hdfdeveventlistener.md">HdfDevEventlistener</a> to release resources if it is no longer required. </p>
 </td>
 </tr>
 </tbody>

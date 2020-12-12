@@ -1,6 +1,10 @@
 # ui\_scroll\_view.h<a name="EN-US_TOPIC_0000001054799585"></a>
 
-## **Overview**<a name="section1309848697093528"></a>
+-   [Overview](#section1657036117165630)
+-   [Summary](#section545553578165630)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section1657036117165630"></a>
 
 **Related Modules:**
 
@@ -18,25 +22,25 @@ Declares a view group that allows its child views to be displayed as scroll even
 
 1.0
 
-## **Summary**<a name="section1990230059093528"></a>
+## **Summary**<a name="section545553578165630"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1502990295093528"></a>
-<table><thead align="left"><tr id="row2074824008093528"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p975822259093528"><a name="p975822259093528"></a><a name="p975822259093528"></a>Data Structure Name</p>
+<a name="table108826935165630"></a>
+<table><thead align="left"><tr id="row171801847165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1608667010165630"><a name="p1608667010165630"></a><a name="p1608667010165630"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1821943971093528"><a name="p1821943971093528"></a><a name="p1821943971093528"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p858431479165630"><a name="p858431479165630"></a><a name="p858431479165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1070918781093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1333202578093528"><a name="p1333202578093528"></a><a name="p1333202578093528"></a><a href="ohos-uiscrollview.md">OHOS::UIScrollView</a></p>
+<tbody><tr id="row1201464838165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p346096463165630"><a name="p346096463165630"></a><a name="p346096463165630"></a><a href="ohos-uiscrollview.md">OHOS::UIScrollView</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1466062360093528"><a name="p1466062360093528"></a><a name="p1466062360093528"></a>Supports horizontal or vertical scroll of child views. This class is inherited from <a href="ohos-uiabstractscroll.md">UIAbstractScroll</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1504834720165630"><a name="p1504834720165630"></a><a name="p1504834720165630"></a>Supports horizontal or vertical scroll of child views. This class is inherited from <a href="ohos-uiabstractscroll.md">UIAbstractScroll</a>. </p>
 </td>
 </tr>
-<tr id="row1521427919093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p213661946093528"><a name="p213661946093528"></a><a name="p213661946093528"></a><a href="ohos-uiscrollview-onscrolllistener.md">OHOS::UIScrollView::OnScrollListener</a></p>
+<tr id="row1142981326165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p722200638165630"><a name="p722200638165630"></a><a name="p722200638165630"></a><a href="ohos-uiscrollview-onscrolllistener.md">OHOS::UIScrollView::OnScrollListener</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1294153182093528"><a name="p1294153182093528"></a><a name="p1294153182093528"></a>Represents a listener that contains a callback to be invoked upon scroll state changes. The state can either be <strong id="b2014045121093528"><a name="b2014045121093528"></a><a name="b2014045121093528"></a>SCROLL_STATE_STOP</strong> or <strong id="b719476334093528"><a name="b719476334093528"></a><a name="b719476334093528"></a>SCROLL_STATE_MOVE</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p516716386165630"><a name="p516716386165630"></a><a name="p516716386165630"></a>Represents a listener that contains a callback to be invoked upon scroll state changes. The state can either be <strong id="b1755149926165630"><a name="b1755149926165630"></a><a name="b1755149926165630"></a>SCROLL_STATE_STOP</strong> or <strong id="b1229958565165630"><a name="b1229958565165630"></a><a name="b1229958565165630"></a>SCROLL_STATE_MOVE</strong>. </p>
 </td>
 </tr>
 </tbody>

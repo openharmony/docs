@@ -1,6 +1,10 @@
 # CommonDeviceInfo<a name="ZH-CN_TOPIC_0000001054479557"></a>
 
-## **Overview**<a name="section1941601579084835"></a>
+-   [Overview](#section1323230286165631)
+-   [Summary](#section398798430165631)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1323230286165631"></a>
 
 **Related Modules:**
 
@@ -10,25 +14,25 @@
 
 Defines the type and content of a device to set. 
 
-## **Summary**<a name="section2001941926084835"></a>
+## **Summary**<a name="section398798430165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1782669460084835"></a>
-<table><thead align="left"><tr id="row1455838351084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1183681432084835"><a name="p1183681432084835"></a><a name="p1183681432084835"></a>Variable Name</p>
+<a name="table323258708165631"></a>
+<table><thead align="left"><tr id="row2084436790165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p888802812165631"><a name="p888802812165631"></a><a name="p888802812165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1992367213084835"><a name="p1992367213084835"></a><a name="p1992367213084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1710688659165631"><a name="p1710688659165631"></a><a name="p1710688659165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row181467050084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2096983974084835"><a name="p2096983974084835"></a><a name="p2096983974084835"></a><a href="Softbus.md#gaf3ee5a07a887ab31517318e0d4ea8cc4">key</a></p>
+<tbody><tr id="row796518806165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1086466713165631"><a name="p1086466713165631"></a><a name="p1086466713165631"></a><a href="Softbus.md#gaf3ee5a07a887ab31517318e0d4ea8cc4">key</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p563609241084835"><a name="p563609241084835"></a><a name="p563609241084835"></a><a href="Softbus.md#ga25be99ffbe88e41f7ce51d2678010254">CommonDeviceKey</a>&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1567799841165631"><a name="p1567799841165631"></a><a name="p1567799841165631"></a><a href="Softbus.md#ga25be99ffbe88e41f7ce51d2678010254">CommonDeviceKey</a> </p>
 </td>
 </tr>
-<tr id="row57765250084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1010610376084835"><a name="p1010610376084835"></a><a name="p1010610376084835"></a><a href="Softbus.md#ga84452c64348251edfe90fc61a5c561ac">value</a></p>
+<tr id="row2087214218165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1239405167165631"><a name="p1239405167165631"></a><a name="p1239405167165631"></a><a href="Softbus.md#ga84452c64348251edfe90fc61a5c561ac">value</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p765020749084835"><a name="p765020749084835"></a><a name="p765020749084835"></a>const char *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1050985951165631"><a name="p1050985951165631"></a><a name="p1050985951165631"></a>const char * </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,13 @@
 # HdfWork<a name="ZH-CN_TOPIC_0000001055518088"></a>
 
-## **Overview**<a name="section745676953093530"></a>
+-   [Overview](#section351142809165631)
+-   [Summary](#section2043918552165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1104441243165631)
+-   [Field](#section659285226165631)
+-   [realWork](#a8830d89e775646b48db0beae2af4b561)
+
+## **Overview**<a name="section351142809165631"></a>
 
 **Related Modules:**
 
@@ -10,28 +17,28 @@
 
 Describes a work item and a delayed work item. This structure defines the work and delayed work items, and then calls the initialization function  [HdfWorkInit](DriverUtils.md#gad171adc8eda320fd01049a2b87ea62fb)  or  [HdfDelayedWorkInit](DriverUtils.md#ga55bf669dc6740c65e4d45a4f641db2f1)  to perform initialization. The  **[HdfAddWork\(\)](DriverUtils.md#ga82cc68d656aa17317634b07d49dae160)**  function is to add a work item to a work queue immediately, and the  **[HdfAddDelayedWork\(\)](DriverUtils.md#gaef781ccc1579db3070745088da47b2c5)**  function is to add a work item to a work queue after the configured delayed time. 
 
-## **Summary**<a name="section1135713559093530"></a>
+## **Summary**<a name="section2043918552165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1692733874093530"></a>
-<table><thead align="left"><tr id="row540227682093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p601732280093530"><a name="p601732280093530"></a><a name="p601732280093530"></a>Variable Name</p>
+<a name="table1167245409165631"></a>
+<table><thead align="left"><tr id="row606093194165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1748378137165631"><a name="p1748378137165631"></a><a name="p1748378137165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2113177913093530"><a name="p2113177913093530"></a><a name="p2113177913093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p289556143165631"><a name="p289556143165631"></a><a name="p289556143165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1156814672093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p983577245093530"><a name="p983577245093530"></a><a name="p983577245093530"></a><a href="HdfWork.md#a8830d89e775646b48db0beae2af4b561">realWork</a></p>
+<tbody><tr id="row545366609165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p120536562165631"><a name="p120536562165631"></a><a name="p120536562165631"></a><a href="HdfWork.md#a8830d89e775646b48db0beae2af4b561">realWork</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p834767806093530"><a name="p834767806093530"></a><a name="p834767806093530"></a>void *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p423599509165631"><a name="p423599509165631"></a><a name="p423599509165631"></a>void * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1661245844093530"></a>
+## **Details**<a name="section1104441243165631"></a>
 
-## **Field Documentation**<a name="section1350972881093530"></a>
+## **Field **<a name="section659285226165631"></a>
 
 ## realWork<a name="a8830d89e775646b48db0beae2af4b561"></a>
 

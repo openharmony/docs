@@ -1,6 +1,12 @@
 # netdb.h<a name="ZH-CN_TOPIC_0000001054909432"></a>
 
-## **Overview**<a name="section2057642353084831"></a>
+-   [Overview](#section522354055165628)
+-   [Summary](#section396219514165628)
+-   [Data Structures](#nested-classes)
+-   [Macros](#define-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section522354055165628"></a>
 
 **Related Modules:**
 
@@ -18,20 +24,25 @@ Provides functions and data structures related to network operations. For exampl
 
 1.0
 
-## **Summary**<a name="section1762166014084831"></a>
+## **Summary**<a name="section396219514165628"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1357069486084831"></a>
-<table><thead align="left"><tr id="row2001038320084831"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p404760213084831"><a name="p404760213084831"></a><a name="p404760213084831"></a>Data Structure Name</p>
+<a name="table1965837525165628"></a>
+<table><thead align="left"><tr id="row1193161300165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1284072601165628"><a name="p1284072601165628"></a><a name="p1284072601165628"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p174711582084831"><a name="p174711582084831"></a><a name="p174711582084831"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p951530028165628"><a name="p951530028165628"></a><a name="p951530028165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2025394960084831"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p228288459084831"><a name="p228288459084831"></a><a name="p228288459084831"></a><a href="hostent.md">hostent</a></p>
+<tbody><tr id="row1508698289165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p237010360165628"><a name="p237010360165628"></a><a name="p237010360165628"></a><a href="hostent.md">hostent</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p644586884084831"><a name="p644586884084831"></a><a name="p644586884084831"></a>Describes the host name and address information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2028035767165628"><a name="p2028035767165628"></a><a name="p2028035767165628"></a>Describes the host name and address information. </p>
+</td>
+</tr>
+<tr id="row2021117948165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1984725920165628"><a name="p1984725920165628"></a><a name="p1984725920165628"></a><a href="protoent.md">protoent</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1226195740165628"><a name="p1226195740165628"></a><a name="p1226195740165628"></a>Describes the protocol database information. </p>
 </td>
 </tr>
 </tbody>
@@ -39,16 +50,16 @@ Provides functions and data structures related to network operations. For exampl
 
 ## Macros<a name="define-members"></a>
 
-<a name="table139015476084831"></a>
-<table><thead align="left"><tr id="row912427721084831"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1003447012084831"><a name="p1003447012084831"></a><a name="p1003447012084831"></a>Macro Name and Value</p>
+<a name="table1301973803165628"></a>
+<table><thead align="left"><tr id="row1249551633165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p803883459165628"><a name="p803883459165628"></a><a name="p803883459165628"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p57829657084831"><a name="p57829657084831"></a><a name="p57829657084831"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p590868828165628"><a name="p590868828165628"></a><a name="p590868828165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1444474816084831"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1381165511084831"><a name="p1381165511084831"></a><a name="p1381165511084831"></a><a href="NET.md#ga4d04a8261523c8f3473946257c12ce5b">h_addr</a>&nbsp;&nbsp;&nbsp;h_addr_list[0]</p>
+<tbody><tr id="row705880490165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p410449291165628"><a name="p410449291165628"></a><a name="p410449291165628"></a><a href="NET.md#ga4d04a8261523c8f3473946257c12ce5b">h_addr</a>   h_addr_list[0]</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p287782825084831"><a name="p287782825084831"></a><a name="p287782825084831"></a>Defines the first address in <strong id="b1399310672084831"><a name="b1399310672084831"></a><a name="b1399310672084831"></a>h_addr_list</strong> for backward compatibility. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1436680089165628"><a name="p1436680089165628"></a><a name="p1436680089165628"></a>Defines the first address in <strong id="b697573283165628"><a name="b697573283165628"></a><a name="b697573283165628"></a>h_addr_list</strong> for compatibility. </p>
 </td>
 </tr>
 </tbody>
@@ -56,47 +67,47 @@ Provides functions and data structures related to network operations. For exampl
 
 ## Functions<a name="func-members"></a>
 
-<a name="table945108315084831"></a>
-<table><thead align="left"><tr id="row64423421084831"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2043201426084831"><a name="p2043201426084831"></a><a name="p2043201426084831"></a>Function Name</p>
+<a name="table688482281165628"></a>
+<table><thead align="left"><tr id="row304893744165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p128665300165628"><a name="p128665300165628"></a><a name="p128665300165628"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1177444437084831"><a name="p1177444437084831"></a><a name="p1177444437084831"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1547071336165628"><a name="p1547071336165628"></a><a name="p1547071336165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1513610058084831"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p944137538084831"><a name="p944137538084831"></a><a name="p944137538084831"></a><a href="NET.md#ga6a806414e4ae5bffb09e3a1d25d8db75">setprotoent</a> (int stayopen)</p>
+<tbody><tr id="row1572881363165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p56314691165628"><a name="p56314691165628"></a><a name="p56314691165628"></a><a href="NET.md#ga6a806414e4ae5bffb09e3a1d25d8db75">setprotoent</a> (int stayopen)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1313721507084831"><a name="p1313721507084831"></a><a name="p1313721507084831"></a>void&nbsp;</p>
-<p id="p1905533569084831"><a name="p1905533569084831"></a><a name="p1905533569084831"></a>Opens a connection to the database and sets the next entry to the first entry. </p>
-</td>
-</tr>
-<tr id="row1791127363084831"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p325387340084831"><a name="p325387340084831"></a><a name="p325387340084831"></a><a href="NET.md#gaca0da70657afbc3e723990bb229deec3">getprotoent</a> (void)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1067788513084831"><a name="p1067788513084831"></a><a name="p1067788513084831"></a>struct protoent *&nbsp;</p>
-<p id="p752107161084831"><a name="p752107161084831"></a><a name="p752107161084831"></a>Retrieves the current protocol information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1163956187165628"><a name="p1163956187165628"></a><a name="p1163956187165628"></a>void </p>
+<p id="p1631345549165628"><a name="p1631345549165628"></a><a name="p1631345549165628"></a>Opens a connection to the database and sets the next entry to the first entry. </p>
 </td>
 </tr>
-<tr id="row438505839084831"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1366276791084831"><a name="p1366276791084831"></a><a name="p1366276791084831"></a><a href="NET.md#ga83ac8a97dd9d895cda658af3aa46fd55">getprotobyname</a> (const char *name)</p>
+<tr id="row1420555127165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1734829568165628"><a name="p1734829568165628"></a><a name="p1734829568165628"></a><a href="NET.md#gaca0da70657afbc3e723990bb229deec3">getprotoent</a> (void)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1033027255084831"><a name="p1033027255084831"></a><a name="p1033027255084831"></a>struct protoent *&nbsp;</p>
-<p id="p1255048031084831"><a name="p1255048031084831"></a><a name="p1255048031084831"></a>Retrieves the information about a specified protocol. </p>
-</td>
-</tr>
-<tr id="row1739474697084831"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p622390183084831"><a name="p622390183084831"></a><a name="p622390183084831"></a><a href="NET.md#gac01697dc4a5b8e434522220913bd46ea">getprotobynumber</a> (int num)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1441956951084831"><a name="p1441956951084831"></a><a name="p1441956951084831"></a>struct protoent *&nbsp;</p>
-<p id="p2138870863084831"><a name="p2138870863084831"></a><a name="p2138870863084831"></a>Retrieves the information about a protocol with the specified number. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p411043919165628"><a name="p411043919165628"></a><a name="p411043919165628"></a>struct <a href="protoent.md">protoent</a> * </p>
+<p id="p1534046576165628"><a name="p1534046576165628"></a><a name="p1534046576165628"></a>Retrieves the current protocol information. </p>
 </td>
 </tr>
-<tr id="row186676689084831"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p573441978084831"><a name="p573441978084831"></a><a name="p573441978084831"></a><a href="NET.md#gaa68de2578d4e0849f82d70b2f5b9af70">herror</a> (const char *msg)</p>
+<tr id="row1722092473165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p501971423165628"><a name="p501971423165628"></a><a name="p501971423165628"></a><a href="NET.md#ga83ac8a97dd9d895cda658af3aa46fd55">getprotobyname</a> (const char *name)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1289792866084831"><a name="p1289792866084831"></a><a name="p1289792866084831"></a>void&nbsp;</p>
-<p id="p2145388150084831"><a name="p2145388150084831"></a><a name="p2145388150084831"></a>Prints error information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p84797612165628"><a name="p84797612165628"></a><a name="p84797612165628"></a>struct <a href="protoent.md">protoent</a> * </p>
+<p id="p1271668328165628"><a name="p1271668328165628"></a><a name="p1271668328165628"></a>Retrieves the information about a specified protocol. </p>
 </td>
 </tr>
-<tr id="row1890784669084831"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1996598602084831"><a name="p1996598602084831"></a><a name="p1996598602084831"></a><a href="NET.md#gac1752c48d9cf2ff87e29f29df6caa585">hstrerror</a> (int ecode)</p>
+<tr id="row1343701595165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1024057221165628"><a name="p1024057221165628"></a><a name="p1024057221165628"></a><a href="NET.md#gac01697dc4a5b8e434522220913bd46ea">getprotobynumber</a> (int num)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1771534592084831"><a name="p1771534592084831"></a><a name="p1771534592084831"></a>const char *&nbsp;</p>
-<p id="p895640661084831"><a name="p895640661084831"></a><a name="p895640661084831"></a>Retrieves error information associated with the specified error number. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1879540640165628"><a name="p1879540640165628"></a><a name="p1879540640165628"></a>struct <a href="protoent.md">protoent</a> * </p>
+<p id="p603300628165628"><a name="p603300628165628"></a><a name="p603300628165628"></a>Retrieves the information about a protocol with the specified number. </p>
+</td>
+</tr>
+<tr id="row2010876471165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1843339889165628"><a name="p1843339889165628"></a><a name="p1843339889165628"></a><a href="NET.md#gaa68de2578d4e0849f82d70b2f5b9af70">herror</a> (const char *msg)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2103912834165628"><a name="p2103912834165628"></a><a name="p2103912834165628"></a>void </p>
+<p id="p929952898165628"><a name="p929952898165628"></a><a name="p929952898165628"></a>Prints error information. </p>
+</td>
+</tr>
+<tr id="row2078792913165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p288483793165628"><a name="p288483793165628"></a><a name="p288483793165628"></a><a href="NET.md#gac1752c48d9cf2ff87e29f29df6caa585">hstrerror</a> (int ecode)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1901645505165628"><a name="p1901645505165628"></a><a name="p1901645505165628"></a>const char * </p>
+<p id="p644563864165628"><a name="p644563864165628"></a><a name="p644563864165628"></a>Retrieves error information associated with the specified error number. </p>
 </td>
 </tr>
 </tbody>

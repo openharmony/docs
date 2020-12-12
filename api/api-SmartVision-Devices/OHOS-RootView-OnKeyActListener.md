@@ -1,6 +1,10 @@
 # OHOS::RootView::OnKeyActListener<a name="ZH-CN_TOPIC_0000001055039536"></a>
 
-## **Overview**<a name="section681200677093533"></a>
+-   [Overview](#section1624292213165633)
+-   [Summary](#section1603119504165633)
+-   [Public Member Functions](#pub-methods)
+
+## **Overview**<a name="section1624292213165633"></a>
 
 **Related Modules:**
 
@@ -18,33 +22,33 @@ Represents the listener for monitoring physical key events.
 
 1.0
 
-## **Summary**<a name="section1135965264093533"></a>
+## **Summary**<a name="section1603119504165633"></a>
 
 ## Public Member Functions<a name="pub-methods"></a>
 
-<a name="table296677302093533"></a>
-<table><thead align="left"><tr id="row1466865110093533"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p163203892093533"><a name="p163203892093533"></a><a name="p163203892093533"></a>Public Member Function Name</p>
+<a name="table1365235069165633"></a>
+<table><thead align="left"><tr id="row799947982165633"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2116869959165633"><a name="p2116869959165633"></a><a name="p2116869959165633"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1471627252093533"><a name="p1471627252093533"></a><a name="p1471627252093533"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p313812726165633"><a name="p313812726165633"></a><a name="p313812726165633"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row814917085093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p731962218093533"><a name="p731962218093533"></a><a name="p731962218093533"></a><a href="Graphic.md#gab21e31a784cc709b1f075ae53ad81818">OnKeyAct</a> (<a href="OHOS-UIView.md">UIView</a> &amp;view, const <a href="OHOS-KeyEvent.md">KeyEvent</a> &amp;event)=0</p>
+<tbody><tr id="row1685573777165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p231675074165633"><a name="p231675074165633"></a><a name="p231675074165633"></a><a href="Graphic.md#gab21e31a784cc709b1f075ae53ad81818">OnKeyAct</a> (<a href="OHOS-UIView.md">UIView</a> &amp;view, const <a href="OHOS-KeyEvent.md">KeyEvent</a> &amp;event)=0</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p975655384093533"><a name="p975655384093533"></a><a name="p975655384093533"></a>virtual bool&nbsp;</p>
-<p id="p761686446093533"><a name="p761686446093533"></a><a name="p761686446093533"></a>Responds to a physical key event. </p>
-</td>
-</tr>
-<tr id="row1893340604093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2085248697093533"><a name="p2085248697093533"></a><a name="p2085248697093533"></a><a href="Graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1769525697093533"><a name="p1769525697093533"></a><a name="p1769525697093533"></a>void *&nbsp;</p>
-<p id="p1354364131093533"><a name="p1354364131093533"></a><a name="p1354364131093533"></a>Overrides the <strong id="b380358017093533"><a name="b380358017093533"></a><a name="b380358017093533"></a>new</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p896260567165633"><a name="p896260567165633"></a><a name="p896260567165633"></a>virtual bool </p>
+<p id="p1678829355165633"><a name="p1678829355165633"></a><a name="p1678829355165633"></a>Responds to a physical key event. </p>
 </td>
 </tr>
-<tr id="row810469981093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p138500265093533"><a name="p138500265093533"></a><a name="p138500265093533"></a><a href="Graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+<tr id="row1144122482165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1791546492165633"><a name="p1791546492165633"></a><a name="p1791546492165633"></a><a href="Graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1030277281093533"><a name="p1030277281093533"></a><a name="p1030277281093533"></a>void&nbsp;</p>
-<p id="p1949452194093533"><a name="p1949452194093533"></a><a name="p1949452194093533"></a>Overrides the <strong id="b1569627093533"><a name="b1569627093533"></a><a name="b1569627093533"></a>delete</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1031266564165633"><a name="p1031266564165633"></a><a name="p1031266564165633"></a>void * </p>
+<p id="p517646602165633"><a name="p517646602165633"></a><a name="p517646602165633"></a>Overrides the <strong id="b1446787059165633"><a name="b1446787059165633"></a><a name="b1446787059165633"></a>new</strong> function. </p>
+</td>
+</tr>
+<tr id="row894176959165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p777956844165633"><a name="p777956844165633"></a><a name="p777956844165633"></a><a href="Graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p241836064165633"><a name="p241836064165633"></a><a name="p241836064165633"></a>void </p>
+<p id="p73397725165633"><a name="p73397725165633"></a><a name="p73397725165633"></a>Overrides the <strong id="b793230317165633"><a name="b793230317165633"></a><a name="b793230317165633"></a>delete</strong> function. </p>
 </td>
 </tr>
 </tbody>

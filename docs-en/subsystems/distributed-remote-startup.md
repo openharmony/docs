@@ -1,5 +1,11 @@
 # Distributed Remote Startup<a name="EN-US_TOPIC_0000001051071561"></a>
 
+-   [Overview](#section186634310418)
+-   [Basic Concepts](#section982651246)
+-   [Available APIs](#section125479541744)
+-   [Limitations and Constraints](#section1165911177314)
+-   [How to Develop](#section34171333656)
+
 ## Overview<a name="section186634310418"></a>
 
 The Distributed Manager Service sets up a distributed service platform in OpenHarmony by using a proxy between the primary and secondary devices. With the Distributed Manager Service, the primary device \(OpenHarmony-powered smart TV\) can start a Feature Ability \(FA\) deployed on the secondary device \(a memory-constrained OpenHarmony device such as an IP camera or a lite wearable\).

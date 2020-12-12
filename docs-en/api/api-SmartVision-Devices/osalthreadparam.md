@@ -1,6 +1,15 @@
 # OsalThreadParam<a name="EN-US_TOPIC_0000001054479579"></a>
 
-## **Overview**<a name="section395146536093532"></a>
+-   [Overview](#section807159970165633)
+-   [Summary](#section1112501934165633)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section180003492165633)
+-   [Field](#section1762739165633)
+-   [name](#a6bd1010a71ee937fa5fdbcbf11e733ab)
+-   [priority](#a11ba2334842664dce682fef5cadfbf30)
+-   [stackSize](#a658a540a5c27b8bbe7feb8f143364b18)
+
+## **Overview**<a name="section807159970165633"></a>
 
 **Related Modules:**
 
@@ -10,38 +19,38 @@
 
 Describes thread parameters. 
 
-## **Summary**<a name="section32478110093532"></a>
+## **Summary**<a name="section1112501934165633"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1289607295093532"></a>
-<table><thead align="left"><tr id="row1115112182093532"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1420515964093532"><a name="p1420515964093532"></a><a name="p1420515964093532"></a>Variable Name</p>
+<a name="table1456439790165633"></a>
+<table><thead align="left"><tr id="row1843591701165633"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p153028912165633"><a name="p153028912165633"></a><a name="p153028912165633"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p395519267093532"><a name="p395519267093532"></a><a name="p395519267093532"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2015243986165633"><a name="p2015243986165633"></a><a name="p2015243986165633"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row633502102093532"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p495845124093532"><a name="p495845124093532"></a><a name="p495845124093532"></a><a href="osalthreadparam.md#a6bd1010a71ee937fa5fdbcbf11e733ab">name</a></p>
+<tbody><tr id="row817597709165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2144779915165633"><a name="p2144779915165633"></a><a name="p2144779915165633"></a><a href="osalthreadparam.md#a6bd1010a71ee937fa5fdbcbf11e733ab">name</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p291972232093532"><a name="p291972232093532"></a><a name="p291972232093532"></a>char * </p>
-</td>
-</tr>
-<tr id="row1641853829093532"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p773919582093532"><a name="p773919582093532"></a><a name="p773919582093532"></a><a href="osalthreadparam.md#a658a540a5c27b8bbe7feb8f143364b18">stackSize</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p691256000093532"><a name="p691256000093532"></a><a name="p691256000093532"></a>size_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p813757892165633"><a name="p813757892165633"></a><a name="p813757892165633"></a>char * </p>
 </td>
 </tr>
-<tr id="row198251916093532"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1196053700093532"><a name="p1196053700093532"></a><a name="p1196053700093532"></a><a href="osalthreadparam.md#a11ba2334842664dce682fef5cadfbf30">priority</a></p>
+<tr id="row635466502165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p693997193165633"><a name="p693997193165633"></a><a name="p693997193165633"></a><a href="osalthreadparam.md#a658a540a5c27b8bbe7feb8f143364b18">stackSize</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p500318598093532"><a name="p500318598093532"></a><a name="p500318598093532"></a><a href="osal.md#gab8c099a9c39fdde73c74b3f7367be5d0">OSAL_THREAD_PRIORITY</a> </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1671099025165633"><a name="p1671099025165633"></a><a name="p1671099025165633"></a>size_t </p>
+</td>
+</tr>
+<tr id="row880065298165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p375847477165633"><a name="p375847477165633"></a><a name="p375847477165633"></a><a href="osalthreadparam.md#a11ba2334842664dce682fef5cadfbf30">priority</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1631567140165633"><a name="p1631567140165633"></a><a name="p1631567140165633"></a><a href="osal.md#gab8c099a9c39fdde73c74b3f7367be5d0">OSAL_THREAD_PRIORITY</a> </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section936760503093532"></a>
+## **Details**<a name="section180003492165633"></a>
 
-## **Field Documentation**<a name="section1468905692093532"></a>
+## **Field **<a name="section1762739165633"></a>
 
 ## name<a name="a6bd1010a71ee937fa5fdbcbf11e733ab"></a>
 

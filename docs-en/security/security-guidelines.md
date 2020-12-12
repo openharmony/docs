@@ -1,15 +1,28 @@
 # Security Guidelines<a name="EN-US_TOPIC_0000001052530786"></a>
 
+-   [Overview](#section1521410017353)
+-   [Hardware Security](#section2558121318351)
+-   [Mechanism](#section1312953842210)
+-   [Recommended Practices](#section37901319112311)
+-   [System Security](#section87802111361)
+-   [Mechanism](#section1654963052914)
+-   [Recommended Practices](#section45821048173613)
+-   [Data Security](#section2468927364)
+-   [Mechanism](#section11192175813293)
+-   [Recommended Practices](#section174640713306)
+-   [Device Interconnection Security](#section26153183616)
+-   [Application Security](#section852593153614)
+-   [Mechanism](#section12125105014377)
+-   [Recommended Practices](#section1641420155381)
+
 ## Overview<a name="section1521410017353"></a>
 
 OpenHarmony is an open OS that allows you to easily develop services and applications. It provides an execution environment to ensure security of application data and user data.
 
 This environment combines chip security and system security features with upper-layer security services to secure hardware, the system, data, device interconnection, applications, and updates.
 
-**Figure  1**  Security assurance framework<a name="fig1045114523114"></a>  
-
-
-![](figures/en-us_image_0000001054058325.png)
+**Figure  1**  Security assurance framework<a name="fig559035518579"></a>  
+![](figures/security-assurance-framework.png "security-assurance-framework")
 
 ## Hardware Security<a name="section2558121318351"></a>
 
@@ -71,10 +84,8 @@ For device with 128 KB to 128 MB of memory, the HarmonyOS lite kernel is recomme
 
     The following figure shows how DAC works when a process accesses a file. The DAC first matches the process UID with the file UID, and then the process GID with the file GID. If the UID and GID both fail to match, DAC checks the  **other**  attribute of the file to determine whether the process is allowed to read, write, or execute the file. In addition, the system supports a privileged capability that is not subject to DAC mechanism \(read, write, and execute\) and can access files directly. Services with high permissions \(such as system services\) can manage files of applications with low permissions \(such as third-party applications\).
 
-    **Figure  2**  How DAC works<a name="fig77437429496"></a>  
-    
-
-    ![](figures/en-us_image_0000001055079849.png)
+    **Figure  2**  How DAC works<a name="fig10480132513123"></a>  
+    ![](figures/how-dac-works.png "how-dac-works")
 
 -   Capability mechanism
 
@@ -96,24 +107,18 @@ For device with 128 KB to 128 MB of memory, the HarmonyOS lite kernel is recomme
 
 ## Mechanism<a name="section11192175813293"></a>
 
-Huawei Universal Keystore Service \(HUKS\) provides certificate management, key management, secure storage, and key authentication services. For OpenHarmony, it mainly provides key management and secure storage, as well as the basic device certification feature for HiChain \(device certification platform\). The following figure shows the functions of HUKS
+Huawei Universal Keystore Service \(HUKS\) provides key and certificate management. For OpenHarmony, it mainly provides key management for HiChain \(the device identity authentication platform\). The following figure shows the functions of HUKS
 
-**Figure  3**  HUKS functions<a name="fig34395461507"></a>  
-
-
-![](figures/en-us_image_0000001054599869.png)
+**Figure  3**  HUKS functions<a name="fig161237148195"></a>  
+![](figures/huks-functions.png "huks-functions")
 
 The following algorithms are supported:
 
-Authentication and encryption: AES-128/192/256-GCM
-
-Signature verification: ED25519
-
-Key negotiation: X25519
-
-Message authentication: HMAC-SHA256/512
-
-Data digest: SHA256/512
+-   Authentication and encryption: AES-128/192/256-GCM
+-   Signature verification: ED25519
+-   Key negotiation: X25519
+-   Message authentication: HMAC-SHA256/512
+-   Data digest: SHA256/512
 
 HUKS has the following restrictions:
 

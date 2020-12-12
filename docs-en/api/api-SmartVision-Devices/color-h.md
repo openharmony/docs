@@ -1,6 +1,11 @@
 # color.h<a name="EN-US_TOPIC_0000001054879496"></a>
 
-## **Overview**<a name="section111230994084829"></a>
+-   [Overview](#section1266474114165626)
+-   [Summary](#section899499196165626)
+-   [Data Structures](#nested-classes)
+-   [Enumerations](#enum-members)
+
+## **Overview**<a name="section1266474114165626"></a>
 
 **Related Modules:**
 
@@ -18,35 +23,35 @@ Defines color attributes for the graphics system and implements common color fun
 
 1.0
 
-## **Summary**<a name="section728647709084829"></a>
+## **Summary**<a name="section899499196165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table847084676084829"></a>
-<table><thead align="left"><tr id="row1808298263084829"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p897355548084829"><a name="p897355548084829"></a><a name="p897355548084829"></a>Data Structure Name</p>
+<a name="table1585690121165626"></a>
+<table><thead align="left"><tr id="row1747817609165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1007597681165626"><a name="p1007597681165626"></a><a name="p1007597681165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1752936549084829"><a name="p1752936549084829"></a><a name="p1752936549084829"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2039651901165626"><a name="p2039651901165626"></a><a name="p2039651901165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1434639278084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p798895613084829"><a name="p798895613084829"></a><a name="p798895613084829"></a><a href="ohos-color16.md">OHOS::Color16</a></p>
+<tbody><tr id="row1593035409165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p805972537165626"><a name="p805972537165626"></a><a name="p805972537165626"></a><a href="ohos-color16.md">OHOS::Color16</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p541641607084829"><a name="p541641607084829"></a><a name="p541641607084829"></a>Defines the color attribute when the color depth is <strong id="b74460573084829"><a name="b74460573084829"></a><a name="b74460573084829"></a>16</strong>. </p>
-</td>
-</tr>
-<tr id="row781144384084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1126409282084829"><a name="p1126409282084829"></a><a name="p1126409282084829"></a><a href="ohos-color24.md">OHOS::Color24</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1333938132084829"><a name="p1333938132084829"></a><a name="p1333938132084829"></a>Defines the color attribute when the color depth is <strong id="b301421417084829"><a name="b301421417084829"></a><a name="b301421417084829"></a>24</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1665392137165626"><a name="p1665392137165626"></a><a name="p1665392137165626"></a>Defines the color attribute when the color depth is <strong id="b476738434165626"><a name="b476738434165626"></a><a name="b476738434165626"></a>16</strong>. </p>
 </td>
 </tr>
-<tr id="row1631798050084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p70899402084829"><a name="p70899402084829"></a><a name="p70899402084829"></a><a href="ohos-color32.md">OHOS::Color32</a></p>
+<tr id="row1984945065165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1570813920165626"><a name="p1570813920165626"></a><a name="p1570813920165626"></a><a href="ohos-color24.md">OHOS::Color24</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1196181776084829"><a name="p1196181776084829"></a><a name="p1196181776084829"></a>Defines the color attribute when the color depth is <strong id="b877148956084829"><a name="b877148956084829"></a><a name="b877148956084829"></a>32</strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1860782317165626"><a name="p1860782317165626"></a><a name="p1860782317165626"></a>Defines the color attribute when the color depth is <strong id="b915896847165626"><a name="b915896847165626"></a><a name="b915896847165626"></a>24</strong>. </p>
 </td>
 </tr>
-<tr id="row572321251084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1750707651084829"><a name="p1750707651084829"></a><a name="p1750707651084829"></a><a href="ohos-color.md">OHOS::Color</a></p>
+<tr id="row416399083165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1031919468165626"><a name="p1031919468165626"></a><a name="p1031919468165626"></a><a href="ohos-color32.md">OHOS::Color32</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p112910966084829"><a name="p112910966084829"></a><a name="p112910966084829"></a>Converts colors in different formats and defines common colors. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p155998903165626"><a name="p155998903165626"></a><a name="p155998903165626"></a>Defines the color attribute when the color depth is <strong id="b43074724165626"><a name="b43074724165626"></a><a name="b43074724165626"></a>32</strong>. </p>
+</td>
+</tr>
+<tr id="row1937117996165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1645437609165626"><a name="p1645437609165626"></a><a name="p1645437609165626"></a><a href="ohos-color.md">OHOS::Color</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p341094390165626"><a name="p341094390165626"></a><a name="p341094390165626"></a>Converts colors in different formats and defines common colors. </p>
 </td>
 </tr>
 </tbody>
@@ -54,16 +59,16 @@ Defines color attributes for the graphics system and implements common color fun
 
 ## Enumerations<a name="enum-members"></a>
 
-<a name="table1045219197084829"></a>
-<table><thead align="left"><tr id="row515348285084829"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p651918131084829"><a name="p651918131084829"></a><a name="p651918131084829"></a>Enumeration Name</p>
+<a name="table456972791165626"></a>
+<table><thead align="left"><tr id="row841457211165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p229784539165626"><a name="p229784539165626"></a><a name="p229784539165626"></a>Enumeration Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p979449570084829"><a name="p979449570084829"></a><a name="p979449570084829"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2032084294165626"><a name="p2032084294165626"></a><a name="p2032084294165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row102893955084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p82526821084829"><a name="p82526821084829"></a><a name="p82526821084829"></a>{ <a href="graphic.md#gga15e4f5bc0221d99ea7d46dc54328566ead4bd10bef3f1df05fd29e023050b9cca">OHOS::OPA_TRANSPARENT</a> = 0, <a href="graphic.md#gga15e4f5bc0221d99ea7d46dc54328566eaebcfc69c18e2c29c89f800d95f32754f">OHOS::OPA_OPAQUE</a> = 255 }</p>
+<tbody><tr id="row788549544165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p929626109165626"><a name="p929626109165626"></a><a name="p929626109165626"></a>{ <a href="graphic.md#gga979211736072132173839ea26b661aeead4bd10bef3f1df05fd29e023050b9cca">OHOS::OPA_TRANSPARENT</a> = 0, <a href="graphic.md#gga979211736072132173839ea26b661aeeaebcfc69c18e2c29c89f800d95f32754f">OHOS::OPA_OPAQUE</a> = 255 }</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p34859650084829"><a name="p34859650084829"></a><a name="p34859650084829"></a>Enumerates opacity values. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1910890806165626"><a name="p1910890806165626"></a><a name="p1910890806165626"></a>Enumerates opacity values. </p>
 </td>
 </tr>
 </tbody>

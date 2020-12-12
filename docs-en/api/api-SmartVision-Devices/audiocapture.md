@@ -1,6 +1,14 @@
 # AudioCapture<a name="EN-US_TOPIC_0000001055358098"></a>
 
-## **Overview**<a name="section1550799600093529"></a>
+-   [Overview](#section1508227372165630)
+-   [Summary](#section1685488375165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section2098671874165630)
+-   [Field](#section655888037165630)
+-   [CaptureFrame](#a89f1baf4b6177f91b9135e86cc8681da)
+-   [GetCapturePosition](#ad307fd1eca38f257f865c1316db6e5d5)
+
+## **Overview**<a name="section1508227372165630"></a>
 
 **Related Modules:**
 
@@ -10,6 +18,15 @@
 
 Provides capabilities for audio capturing, including controlling the capturing, setting audio attributes, scenes, and volume, and capturing audio frames. 
 
+See also
+:   [AudioControl](audiocontrol.md) 
+
+:    [AudioAttribute](audioattribute.md) 
+
+:    [AudioScene](audioscene.md) 
+
+:    [AudioVolume](audiovolume.md) 
+
 **Since:**
 
 1.0
@@ -18,59 +35,59 @@ Provides capabilities for audio capturing, including controlling the capturing, 
 
 1.0
 
-## **Summary**<a name="section595577548093529"></a>
+## **Summary**<a name="section1685488375165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1641141835093529"></a>
-<table><thead align="left"><tr id="row1490799119093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p347042305093529"><a name="p347042305093529"></a><a name="p347042305093529"></a>Variable Name</p>
+<a name="table569602508165630"></a>
+<table><thead align="left"><tr id="row172285453165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p74744830165630"><a name="p74744830165630"></a><a name="p74744830165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1643032236093529"><a name="p1643032236093529"></a><a name="p1643032236093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1083569289165630"><a name="p1083569289165630"></a><a name="p1083569289165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1633996888093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p202617334093529"><a name="p202617334093529"></a><a name="p202617334093529"></a><em id="a3722b1e55fa79af775b5d3acd08f29c4"><a name="a3722b1e55fa79af775b5d3acd08f29c4"></a><a name="a3722b1e55fa79af775b5d3acd08f29c4"></a></em>control </p>
+<tbody><tr id="row210988567165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1956959387165630"><a name="p1956959387165630"></a><a name="p1956959387165630"></a>control </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1885462155093529"><a name="p1885462155093529"></a><a name="p1885462155093529"></a><strong id="b1030911358"><a name="b1030911358"></a><a name="b1030911358"></a></strong> struct <a href="audiocontrol.md">AudioControl</a> </p>
-<p id="p1094414039093529"><a name="p1094414039093529"></a><a name="p1094414039093529"></a>Defines the audio control. For details, see <a href="audiocontrol.md">AudioControl</a>. </p>
-</td>
-</tr>
-<tr id="row929769433093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p598134718093529"><a name="p598134718093529"></a><a name="p598134718093529"></a><em id="a3b1231763ecdab4d60809048136ae017"><a name="a3b1231763ecdab4d60809048136ae017"></a><a name="a3b1231763ecdab4d60809048136ae017"></a></em>attr </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p928200404093529"><a name="p928200404093529"></a><a name="p928200404093529"></a><strong id="b533360389"><a name="b533360389"></a><a name="b533360389"></a></strong> struct <a href="audioattribute.md">AudioAttribute</a> </p>
-<p id="p1088516646093529"><a name="p1088516646093529"></a><a name="p1088516646093529"></a>Defines the audio attribute. For details, see <a href="audioattribute.md">AudioAttribute</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p60790403165630"><a name="p60790403165630"></a><a name="p60790403165630"></a><strong id="a3722b1e55fa79af775b5d3acd08f29c4"><a name="a3722b1e55fa79af775b5d3acd08f29c4"></a><a name="a3722b1e55fa79af775b5d3acd08f29c4"></a></strong> struct <a href="audiocontrol.md">AudioControl</a> </p>
+<p id="p2015637552165630"><a name="p2015637552165630"></a><a name="p2015637552165630"></a>Defines the audio control. For details, see <a href="audiocontrol.md">AudioControl</a>. </p>
 </td>
 </tr>
-<tr id="row2044678942093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1396988978093529"><a name="p1396988978093529"></a><a name="p1396988978093529"></a><em id="a55ba54428fc285c97032ce27ae0ab4aa"><a name="a55ba54428fc285c97032ce27ae0ab4aa"></a><a name="a55ba54428fc285c97032ce27ae0ab4aa"></a></em>scene </p>
+<tr id="row1980761153165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1300432836165630"><a name="p1300432836165630"></a><a name="p1300432836165630"></a>attr </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p548690535093529"><a name="p548690535093529"></a><a name="p548690535093529"></a><strong id="b781030499"><a name="b781030499"></a><a name="b781030499"></a></strong> struct <a href="audioscene.md">AudioScene</a> </p>
-<p id="p555674588093529"><a name="p555674588093529"></a><a name="p555674588093529"></a>Defines the audio scene. For details, see <a href="audioscene.md">AudioScene</a>. </p>
-</td>
-</tr>
-<tr id="row1245657443093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2014839697093529"><a name="p2014839697093529"></a><a name="p2014839697093529"></a><em id="a066923e8aff005d677c7b7c33a036f41"><a name="a066923e8aff005d677c7b7c33a036f41"></a><a name="a066923e8aff005d677c7b7c33a036f41"></a></em>volume </p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1757452737093529"><a name="p1757452737093529"></a><a name="p1757452737093529"></a><strong id="b1895535892"><a name="b1895535892"></a><a name="b1895535892"></a></strong> struct <a href="audiovolume.md">AudioVolume</a> </p>
-<p id="p1506348135093529"><a name="p1506348135093529"></a><a name="p1506348135093529"></a>Defines audio volume. For details, see <a href="audiovolume.md">AudioVolume</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1733046245165630"><a name="p1733046245165630"></a><a name="p1733046245165630"></a><strong id="a3b1231763ecdab4d60809048136ae017"><a name="a3b1231763ecdab4d60809048136ae017"></a><a name="a3b1231763ecdab4d60809048136ae017"></a></strong> struct <a href="audioattribute.md">AudioAttribute</a> </p>
+<p id="p1400430510165630"><a name="p1400430510165630"></a><a name="p1400430510165630"></a>Defines the audio attribute. For details, see <a href="audioattribute.md">AudioAttribute</a>. </p>
 </td>
 </tr>
-<tr id="row1043506489093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p144334651093529"><a name="p144334651093529"></a><a name="p144334651093529"></a><a href="audiocapture.md#a89f1baf4b6177f91b9135e86cc8681da">CaptureFrame</a> )(struct <a href="audiocapture.md">AudioCapture</a> *capture, void *frame, uint64_t requestBytes, uint64_t *replyBytes)</p>
+<tr id="row2078626241165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p742449053165630"><a name="p742449053165630"></a><a name="p742449053165630"></a>scene </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1129021365093529"><a name="p1129021365093529"></a><a name="p1129021365093529"></a>int32_t(* </p>
-<p id="p619466526093529"><a name="p619466526093529"></a><a name="p619466526093529"></a>Reads a frame of input data (uplink data) from the audio driver for capturing. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p3653311165630"><a name="p3653311165630"></a><a name="p3653311165630"></a><strong id="a55ba54428fc285c97032ce27ae0ab4aa"><a name="a55ba54428fc285c97032ce27ae0ab4aa"></a><a name="a55ba54428fc285c97032ce27ae0ab4aa"></a></strong> struct <a href="audioscene.md">AudioScene</a> </p>
+<p id="p827282717165630"><a name="p827282717165630"></a><a name="p827282717165630"></a>Defines the audio scene. For details, see <a href="audioscene.md">AudioScene</a>. </p>
 </td>
 </tr>
-<tr id="row9833962093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1403013655093529"><a name="p1403013655093529"></a><a name="p1403013655093529"></a><a href="audiocapture.md#ad307fd1eca38f257f865c1316db6e5d5">GetCapturePosition</a> )(struct <a href="audiocapture.md">AudioCapture</a> *capture, uint64_t *frames, struct <a href="audiotimestamp.md">AudioTimeStamp</a> *<a href="en-us_topic_0000001054879478.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
+<tr id="row1677913329165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2008954166165630"><a name="p2008954166165630"></a><a name="p2008954166165630"></a>volume </p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p773940120093529"><a name="p773940120093529"></a><a name="p773940120093529"></a>int32_t(* </p>
-<p id="p1116354382093529"><a name="p1116354382093529"></a><a name="p1116354382093529"></a>Obtains the last number of input audio frames. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2001570132165630"><a name="p2001570132165630"></a><a name="p2001570132165630"></a><strong id="a066923e8aff005d677c7b7c33a036f41"><a name="a066923e8aff005d677c7b7c33a036f41"></a><a name="a066923e8aff005d677c7b7c33a036f41"></a></strong> struct <a href="audiovolume.md">AudioVolume</a> </p>
+<p id="p291840025165630"><a name="p291840025165630"></a><a name="p291840025165630"></a>Defines audio volume. For details, see <a href="audiovolume.md">AudioVolume</a>. </p>
+</td>
+</tr>
+<tr id="row2113068896165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1824437910165630"><a name="p1824437910165630"></a><a name="p1824437910165630"></a><a href="audiocapture.md#a89f1baf4b6177f91b9135e86cc8681da">CaptureFrame</a> )(struct <a href="audiocapture.md">AudioCapture</a> *capture, void *frame, uint64_t requestBytes, uint64_t *replyBytes)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p143108336165630"><a name="p143108336165630"></a><a name="p143108336165630"></a>int32_t(* </p>
+<p id="p1351518203165630"><a name="p1351518203165630"></a><a name="p1351518203165630"></a>Reads a frame of input data (uplink data) from the audio driver for capturing. </p>
+</td>
+</tr>
+<tr id="row909738583165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1457912118165630"><a name="p1457912118165630"></a><a name="p1457912118165630"></a><a href="audiocapture.md#ad307fd1eca38f257f865c1316db6e5d5">GetCapturePosition</a> )(struct <a href="audiocapture.md">AudioCapture</a> *capture, uint64_t *frames, struct <a href="audiotimestamp.md">AudioTimeStamp</a> *<a href="time.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1342911351165630"><a name="p1342911351165630"></a><a name="p1342911351165630"></a>int32_t(* </p>
+<p id="p678731176165630"><a name="p678731176165630"></a><a name="p678731176165630"></a>Obtains the last number of input audio frames. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section582608160093529"></a>
+## **Details**<a name="section2098671874165630"></a>
 
-## **Field Documentation**<a name="section492081041093529"></a>
+## **Field **<a name="section655888037165630"></a>
 
 ## CaptureFrame<a name="a89f1baf4b6177f91b9135e86cc8681da"></a>
 
@@ -84,23 +101,23 @@ Reads a frame of input data \(uplink data\) from the audio driver for capturing.
 
 **Parameters:**
 
-<a name="table140051798093529"></a>
-<table><thead align="left"><tr id="row1394800258093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p577538040093529"><a name="p577538040093529"></a><a name="p577538040093529"></a>Name</p>
+<a name="table646465127165630"></a>
+<table><thead align="left"><tr id="row1836835386165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1416518623165630"><a name="p1416518623165630"></a><a name="p1416518623165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p235927425093529"><a name="p235927425093529"></a><a name="p235927425093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1599073410165630"><a name="p1599073410165630"></a><a name="p1599073410165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row527086799093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capture</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1433720451093529"><a name="b1433720451093529"></a><a name="b1433720451093529"></a><a href="audiocapture.md">AudioCapture</a></strong> object to operate. </td>
+<tbody><tr id="row153155045165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capture</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b1153262080165630"><a name="b1153262080165630"></a><a name="b1153262080165630"></a><a href="audiocapture.md">AudioCapture</a></strong> object to operate. </td>
 </tr>
-<tr id="row2115926708093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">frame</td>
+<tr id="row1356075329165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">frame</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the input data to read. </td>
 </tr>
-<tr id="row1952493270093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">requestBytes</td>
+<tr id="row353484416165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">requestBytes</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of the input data, in bytes. </td>
 </tr>
-<tr id="row1289968801093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">replyBytes</td>
+<tr id="row1234347410165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">replyBytes</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the actual length (in bytes) of the audio data to read. </td>
 </tr>
 </tbody>
@@ -110,12 +127,10 @@ Reads a frame of input data \(uplink data\) from the audio driver for capturing.
 
 Returns  **0**  if the input data is read successfully; returns a negative value otherwise. 
 
-
-
 ## GetCapturePosition<a name="ad307fd1eca38f257f865c1316db6e5d5"></a>
 
 ```
-int32_t(* AudioCapture::GetCapturePosition) (struct [AudioCapture](audiocapture.md) *capture, uint64_t *frames, struct [AudioTimeStamp](audiotimestamp.md) *[time](en-us_topic_0000001054879478.md#gae7841e681c8c9d59818568d39553642c))
+int32_t(* AudioCapture::GetCapturePosition) (struct [AudioCapture](audiocapture.md) *capture, uint64_t *frames, struct [AudioTimeStamp](audiotimestamp.md) *[time](time.md#gae7841e681c8c9d59818568d39553642c))
 ```
 
  **Description:**
@@ -124,20 +139,20 @@ Obtains the last number of input audio frames.
 
 **Parameters:**
 
-<a name="table87355972093529"></a>
-<table><thead align="left"><tr id="row1167051633093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p379980165093529"><a name="p379980165093529"></a><a name="p379980165093529"></a>Name</p>
+<a name="table267149435165630"></a>
+<table><thead align="left"><tr id="row1006537338165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1294646800165630"><a name="p1294646800165630"></a><a name="p1294646800165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p721145769093529"><a name="p721145769093529"></a><a name="p721145769093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p216567187165630"><a name="p216567187165630"></a><a name="p216567187165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1266347294093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capture</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b862984819093529"><a name="b862984819093529"></a><a name="b862984819093529"></a><a href="audiocapture.md">AudioCapture</a></strong> object to operate. </td>
+<tbody><tr id="row1290230423165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">capture</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <strong id="b666205316165630"><a name="b666205316165630"></a><a name="b666205316165630"></a><a href="audiocapture.md">AudioCapture</a></strong> object to operate. </td>
 </tr>
-<tr id="row1834905831093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">frames</td>
+<tr id="row243601487165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">frames</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the last number of input audio frames. </td>
 </tr>
-<tr id="row671286905093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
+<tr id="row674964067165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the timestamp associated with the frame. </td>
 </tr>
 </tbody>

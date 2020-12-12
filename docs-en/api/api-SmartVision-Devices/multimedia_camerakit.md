@@ -1,6 +1,23 @@
 # MultiMedia\_CameraKit<a name="EN-US_TOPIC_0000001054598115"></a>
 
-## **Overview**<a name="section683597193084827"></a>
+-   [Overview](#section2120628768165625)
+-   [Summary](#section2055549443165625)
+-   [Files](#files)
+-   [Data Structures](#nested-classes)
+-   [Functions](#func-members)
+-   [Details](#section1483794495165625)
+-   [Function](#section1531552527165625)
+-   [CreateCamera\(\)](#gaa21f4e248e3a46a4f78f4261cba82fe2)
+-   [GetCameraAbility\(\)](#gab4cfb051de29415d080a203ca4639448)
+-   [GetCameraIds\(\)](#ga8894d876198f2614d65b432a8a002163)
+-   [GetInstance\(\)](#ga1911ba8eca0e57ddc15df25cf2b21f7b)
+-   [RegisterCameraDeviceCallback\(\)](#ga4e6cd8787f06c4a82ad982d36029b3ec)
+-   [UnregisterCameraDeviceCallback\(\)](#ga4f0117575ee988f6d74a3636e01f0aba)
+-   [\~CameraKit\(\)](#ga7d36867ec1bd57e25d1c60b5de24cbe6)
+
+## **Overview**<a name="section2120628768165625"></a>
+
+**Description:**
 
 Defines the  **CameraKit**  class for using camera functionalities. 
 
@@ -12,20 +29,20 @@ Defines the  **CameraKit**  class for using camera functionalities.
 
 1.0
 
-## **Summary**<a name="section1484193652084827"></a>
+## **Summary**<a name="section2055549443165625"></a>
 
 ## Files<a name="files"></a>
 
-<a name="table334043110084827"></a>
-<table><thead align="left"><tr id="row1826580329084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2107746870084827"><a name="p2107746870084827"></a><a name="p2107746870084827"></a>File Name</p>
+<a name="table802285835165625"></a>
+<table><thead align="left"><tr id="row1682390068165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p82272857165625"><a name="p82272857165625"></a><a name="p82272857165625"></a>File Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1283562380084827"><a name="p1283562380084827"></a><a name="p1283562380084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1079694696165625"><a name="p1079694696165625"></a><a name="p1079694696165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row903268435084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1119641327084827"><a name="p1119641327084827"></a><a name="p1119641327084827"></a><a href="camera_kit-h.md">camera_kit.h</a></p>
+<tbody><tr id="row2067151653165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p372165510165625"><a name="p372165510165625"></a><a name="p372165510165625"></a><a href="camera_kit-h.md">camera_kit.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p690072345084827"><a name="p690072345084827"></a><a name="p690072345084827"></a>Declares functions in the <strong id="b344916150084827"><a name="b344916150084827"></a><a name="b344916150084827"></a>CameraKit</strong> class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p10292843165625"><a name="p10292843165625"></a><a name="p10292843165625"></a>Declares functions in the <strong id="b1701956234165625"><a name="b1701956234165625"></a><a name="b1701956234165625"></a>CameraKit</strong> class. </p>
 </td>
 </tr>
 </tbody>
@@ -33,16 +50,16 @@ Defines the  **CameraKit**  class for using camera functionalities.
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table935100149084827"></a>
-<table><thead align="left"><tr id="row1671317617084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1939868370084827"><a name="p1939868370084827"></a><a name="p1939868370084827"></a>Data Structure Name</p>
+<a name="table214717093165625"></a>
+<table><thead align="left"><tr id="row538903499165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1035246120165625"><a name="p1035246120165625"></a><a name="p1035246120165625"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1553526741084827"><a name="p1553526741084827"></a><a name="p1553526741084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1211193714165625"><a name="p1211193714165625"></a><a name="p1211193714165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1590846664084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p103904195084827"><a name="p103904195084827"></a><a name="p103904195084827"></a><a href="ohos-media-camerakit.md">OHOS::Media::CameraKit</a></p>
+<tbody><tr id="row1135112605165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1059009592165625"><a name="p1059009592165625"></a><a name="p1059009592165625"></a><a href="ohos-media-camerakit.md">OHOS::Media::CameraKit</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1263734831084827"><a name="p1263734831084827"></a><a name="p1263734831084827"></a>Provides functions in the <strong id="b1222512211084827"><a name="b1222512211084827"></a><a name="b1222512211084827"></a><a href="ohos-media-camerakit.md">CameraKit</a></strong> class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p313691879165625"><a name="p313691879165625"></a><a name="p313691879165625"></a>Provides functions in the <strong id="b923545386165625"><a name="b923545386165625"></a><a name="b923545386165625"></a><a href="ohos-media-camerakit.md">CameraKit</a></strong> class. </p>
 </td>
 </tr>
 </tbody>
@@ -50,61 +67,61 @@ Defines the  **CameraKit**  class for using camera functionalities.
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1054311415084827"></a>
-<table><thead align="left"><tr id="row1666062271084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p54601845084827"><a name="p54601845084827"></a><a name="p54601845084827"></a>Function Name</p>
+<a name="table1153973318165625"></a>
+<table><thead align="left"><tr id="row842754971165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p493321228165625"><a name="p493321228165625"></a><a name="p493321228165625"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1006479028084827"><a name="p1006479028084827"></a><a name="p1006479028084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p908216951165625"><a name="p908216951165625"></a><a name="p908216951165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row581780631084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1816604427084827"><a name="p1816604427084827"></a><a name="p1816604427084827"></a><a href="multimedia_camerakit.md#ga7d36867ec1bd57e25d1c60b5de24cbe6">OHOS::Media::CameraKit::~CameraKit</a> ()</p>
+<tbody><tr id="row257573815165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p624932308165625"><a name="p624932308165625"></a><a name="p624932308165625"></a><a href="multimedia_camerakit.md#ga7d36867ec1bd57e25d1c60b5de24cbe6">OHOS::Media::CameraKit::~CameraKit</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1619116092084827"><a name="p1619116092084827"></a><a name="p1619116092084827"></a> </p>
-<p id="p1252907784084827"><a name="p1252907784084827"></a><a name="p1252907784084827"></a>A destructor used to delete the <strong id="b1253605341084827"><a name="b1253605341084827"></a><a name="b1253605341084827"></a><a href="ohos-media-camerakit.md">CameraKit</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row1037689089084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p374698470084827"><a name="p374698470084827"></a><a name="p374698470084827"></a><a href="multimedia_camerakit.md#ga1911ba8eca0e57ddc15df25cf2b21f7b">OHOS::Media::CameraKit::GetInstance</a> ()</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1044063199084827"><a name="p1044063199084827"></a><a name="p1044063199084827"></a>static <a href="ohos-media-camerakit.md">CameraKit</a> * </p>
-<p id="p266466968084827"><a name="p266466968084827"></a><a name="p266466968084827"></a>Obtains a single instance of the <strong id="b2101860447084827"><a name="b2101860447084827"></a><a name="b2101860447084827"></a><a href="ohos-media-camerakit.md">CameraKit</a></strong>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p393310081165625"><a name="p393310081165625"></a><a name="p393310081165625"></a> </p>
+<p id="p1724505201165625"><a name="p1724505201165625"></a><a name="p1724505201165625"></a>A destructor used to delete the <strong id="b1458382535165625"><a name="b1458382535165625"></a><a name="b1458382535165625"></a><a href="ohos-media-camerakit.md">CameraKit</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1651684844084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1231387692084827"><a name="p1231387692084827"></a><a name="p1231387692084827"></a><a href="multimedia_camerakit.md#ga8894d876198f2614d65b432a8a002163">OHOS::Media::CameraKit::GetCameraIds</a> ()</p>
+<tr id="row2073947408165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1083279582165625"><a name="p1083279582165625"></a><a name="p1083279582165625"></a><a href="multimedia_camerakit.md#ga1911ba8eca0e57ddc15df25cf2b21f7b">OHOS::Media::CameraKit::GetInstance</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1888341529084827"><a name="p1888341529084827"></a><a name="p1888341529084827"></a>std::list&lt; std::string &gt; </p>
-<p id="p1837810454084827"><a name="p1837810454084827"></a><a name="p1837810454084827"></a>Obtains IDs of cameras that are currently available. </p>
-</td>
-</tr>
-<tr id="row1825790813084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p194244963084827"><a name="p194244963084827"></a><a name="p194244963084827"></a><a href="multimedia_camerakit.md#gab4cfb051de29415d080a203ca4639448">OHOS::Media::CameraKit::GetCameraAbility</a> (std::string cameraId)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p520593555084827"><a name="p520593555084827"></a><a name="p520593555084827"></a>const <a href="ohos-media-cameraability.md">CameraAbility</a> * </p>
-<p id="p34919709084827"><a name="p34919709084827"></a><a name="p34919709084827"></a>Obtains the camera capability, including the resolutions and frame rates. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2011477407165625"><a name="p2011477407165625"></a><a name="p2011477407165625"></a>static <a href="ohos-media-camerakit.md">CameraKit</a> * </p>
+<p id="p832831252165625"><a name="p832831252165625"></a><a name="p832831252165625"></a>Obtains a single instance of the <strong id="b910850084165625"><a name="b910850084165625"></a><a name="b910850084165625"></a><a href="ohos-media-camerakit.md">CameraKit</a></strong>. </p>
 </td>
 </tr>
-<tr id="row1650936824084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1172085601084827"><a name="p1172085601084827"></a><a name="p1172085601084827"></a><a href="multimedia_camerakit.md#ga4e6cd8787f06c4a82ad982d36029b3ec">OHOS::Media::CameraKit::RegisterCameraDeviceCallback</a> (<a href="ohos-media-cameradevicecallback.md">CameraDeviceCallback</a> &amp;callback, EventHandler &amp;handler)</p>
+<tr id="row222181811165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p200395271165625"><a name="p200395271165625"></a><a name="p200395271165625"></a><a href="multimedia_camerakit.md#ga8894d876198f2614d65b432a8a002163">OHOS::Media::CameraKit::GetCameraIds</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p418136677084827"><a name="p418136677084827"></a><a name="p418136677084827"></a>void </p>
-<p id="p1907523166084827"><a name="p1907523166084827"></a><a name="p1907523166084827"></a>Registers a camera callback for camera status changes and an event callback to respond to a triggered event. </p>
-</td>
-</tr>
-<tr id="row1298271604084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2107620567084827"><a name="p2107620567084827"></a><a name="p2107620567084827"></a><a href="multimedia_camerakit.md#ga4f0117575ee988f6d74a3636e01f0aba">OHOS::Media::CameraKit::UnregisterCameraDeviceCallback</a> (<a href="ohos-media-cameradevicecallback.md">CameraDeviceCallback</a> &amp;callback)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1103417097084827"><a name="p1103417097084827"></a><a name="p1103417097084827"></a>void </p>
-<p id="p1135077910084827"><a name="p1135077910084827"></a><a name="p1135077910084827"></a>Unregisters a camera callback. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1035825072165625"><a name="p1035825072165625"></a><a name="p1035825072165625"></a>std::list&lt; std::string &gt; </p>
+<p id="p802501623165625"><a name="p802501623165625"></a><a name="p802501623165625"></a>Obtains IDs of cameras that are currently available. </p>
 </td>
 </tr>
-<tr id="row678578169084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p671493436084827"><a name="p671493436084827"></a><a name="p671493436084827"></a><a href="multimedia_camerakit.md#gaa21f4e248e3a46a4f78f4261cba82fe2">OHOS::Media::CameraKit::CreateCamera</a> (const std::string &amp;cameraId, <a href="ohos-media-camerastatecallback.md">CameraStateCallback</a> &amp;callback, EventHandler &amp;handler)</p>
+<tr id="row1210167310165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1163591381165625"><a name="p1163591381165625"></a><a name="p1163591381165625"></a><a href="multimedia_camerakit.md#gab4cfb051de29415d080a203ca4639448">OHOS::Media::CameraKit::GetCameraAbility</a> (std::string cameraId)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p702766830084827"><a name="p702766830084827"></a><a name="p702766830084827"></a>void </p>
-<p id="p529554427084827"><a name="p529554427084827"></a><a name="p529554427084827"></a>Creates a camera object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1231581671165625"><a name="p1231581671165625"></a><a name="p1231581671165625"></a>const <a href="ohos-media-cameraability.md">CameraAbility</a> * </p>
+<p id="p343496296165625"><a name="p343496296165625"></a><a name="p343496296165625"></a>Obtains the camera capability, including the resolutions and frame rates. </p>
+</td>
+</tr>
+<tr id="row414362416165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1624088892165625"><a name="p1624088892165625"></a><a name="p1624088892165625"></a><a href="multimedia_camerakit.md#ga4e6cd8787f06c4a82ad982d36029b3ec">OHOS::Media::CameraKit::RegisterCameraDeviceCallback</a> (<a href="ohos-media-cameradevicecallback.md">CameraDeviceCallback</a> &amp;callback, EventHandler &amp;handler)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p727539662165625"><a name="p727539662165625"></a><a name="p727539662165625"></a>void </p>
+<p id="p1965402564165625"><a name="p1965402564165625"></a><a name="p1965402564165625"></a>Registers a camera callback for camera status changes and an event callback to respond to a triggered event. </p>
+</td>
+</tr>
+<tr id="row889854402165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1918815756165625"><a name="p1918815756165625"></a><a name="p1918815756165625"></a><a href="multimedia_camerakit.md#ga4f0117575ee988f6d74a3636e01f0aba">OHOS::Media::CameraKit::UnregisterCameraDeviceCallback</a> (<a href="ohos-media-cameradevicecallback.md">CameraDeviceCallback</a> &amp;callback)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p291961442165625"><a name="p291961442165625"></a><a name="p291961442165625"></a>void </p>
+<p id="p967839106165625"><a name="p967839106165625"></a><a name="p967839106165625"></a>Unregisters a camera callback. </p>
+</td>
+</tr>
+<tr id="row1402665895165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2134533796165625"><a name="p2134533796165625"></a><a name="p2134533796165625"></a><a href="multimedia_camerakit.md#gaa21f4e248e3a46a4f78f4261cba82fe2">OHOS::Media::CameraKit::CreateCamera</a> (const std::string &amp;cameraId, <a href="ohos-media-camerastatecallback.md">CameraStateCallback</a> &amp;callback, EventHandler &amp;handler)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p696365378165625"><a name="p696365378165625"></a><a name="p696365378165625"></a>void </p>
+<p id="p279359183165625"><a name="p279359183165625"></a><a name="p279359183165625"></a>Creates a camera object. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section166943826084827"></a>
+## **Details**<a name="section1483794495165625"></a>
 
-## **Function Documentation**<a name="section390699371084827"></a>
+## **Function **<a name="section1531552527165625"></a>
 
 ## CreateCamera\(\)<a name="gaa21f4e248e3a46a4f78f4261cba82fe2"></a>
 
@@ -118,20 +135,20 @@ Creates a camera object.
 
 **Parameters:**
 
-<a name="table434693209084827"></a>
-<table><thead align="left"><tr id="row1882474995084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1995613672084827"><a name="p1995613672084827"></a><a name="p1995613672084827"></a>Name</p>
+<a name="table448358433165625"></a>
+<table><thead align="left"><tr id="row1533556406165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1571647926165625"><a name="p1571647926165625"></a><a name="p1571647926165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1921173270084827"><a name="p1921173270084827"></a><a name="p1921173270084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p649907434165625"><a name="p649907434165625"></a><a name="p649907434165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row250287188084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cameraId</td>
+<tbody><tr id="row805751638165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cameraId</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the camera ID. </td>
 </tr>
-<tr id="row1005769167084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">callback</td>
+<tr id="row883099022165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">callback</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the camera callback. </td>
 </tr>
-<tr id="row986493613084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handler</td>
+<tr id="row1771701930165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handler</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the event callback to register. </td>
 </tr>
 </tbody>
@@ -149,14 +166,14 @@ Obtains the camera capability, including the resolutions and frame rates.
 
 **Parameters:**
 
-<a name="table1683773556084827"></a>
-<table><thead align="left"><tr id="row1196745251084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p189854119084827"><a name="p189854119084827"></a><a name="p189854119084827"></a>Name</p>
+<a name="table1124750362165625"></a>
+<table><thead align="left"><tr id="row307565584165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1412725125165625"><a name="p1412725125165625"></a><a name="p1412725125165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p647083428084827"><a name="p647083428084827"></a><a name="p647083428084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p990396504165625"><a name="p990396504165625"></a><a name="p990396504165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1736646166084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cameraId</td>
+<tbody><tr id="row232587332165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cameraId</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the camera ID. </td>
 </tr>
 </tbody>
@@ -165,8 +182,6 @@ Obtains the camera capability, including the resolutions and frame rates.
 **Returns:**
 
 Returns the  **[CameraAbility](ohos-media-cameraability.md)**  object. 
-
-
 
 ## GetCameraIds\(\)<a name="ga8894d876198f2614d65b432a8a002163"></a>
 
@@ -182,8 +197,6 @@ Obtains IDs of cameras that are currently available.
 
 Returns the camera IDs if obtained; returns  **NULL**  otherwise. 
 
-
-
 ## GetInstance\(\)<a name="ga1911ba8eca0e57ddc15df25cf2b21f7b"></a>
 
 ```
@@ -198,8 +211,6 @@ Obtains a single instance of the  **[CameraKit](ohos-media-camerakit.md)**.
 
 Returns the  **[CameraKit](ohos-media-camerakit.md)**  instance if obtained; returns  **NULL**  otherwise. 
 
-
-
 ## RegisterCameraDeviceCallback\(\)<a name="ga4e6cd8787f06c4a82ad982d36029b3ec"></a>
 
 ```
@@ -212,17 +223,17 @@ Registers a camera callback for camera status changes and an event callback to r
 
 **Parameters:**
 
-<a name="table93748303084827"></a>
-<table><thead align="left"><tr id="row2108134398084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1894260116084827"><a name="p1894260116084827"></a><a name="p1894260116084827"></a>Name</p>
+<a name="table355151981165625"></a>
+<table><thead align="left"><tr id="row1486703896165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1332086842165625"><a name="p1332086842165625"></a><a name="p1332086842165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1610416423084827"><a name="p1610416423084827"></a><a name="p1610416423084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1621779169165625"><a name="p1621779169165625"></a><a name="p1621779169165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1691893688084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">callback</td>
+<tbody><tr id="row378364325165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">callback</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the camera callback to register. </td>
 </tr>
-<tr id="row1443766939084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handler</td>
+<tr id="row707103841165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handler</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the event callback to register. </td>
 </tr>
 </tbody>
@@ -240,14 +251,14 @@ Unregisters a camera callback.
 
 **Parameters:**
 
-<a name="table1779259241084827"></a>
-<table><thead align="left"><tr id="row1593785208084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p153850553084827"><a name="p153850553084827"></a><a name="p153850553084827"></a>Name</p>
+<a name="table1654882639165625"></a>
+<table><thead align="left"><tr id="row1798681880165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1229005671165625"><a name="p1229005671165625"></a><a name="p1229005671165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p450793440084827"><a name="p450793440084827"></a><a name="p450793440084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1528188629165625"><a name="p1528188629165625"></a><a name="p1528188629165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1980706539084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">callback</td>
+<tbody><tr id="row38505816165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">callback</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the camera callback to unregister. </td>
 </tr>
 </tbody>

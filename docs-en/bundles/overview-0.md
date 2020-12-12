@@ -50,5 +50,5 @@ This document describes how to develop OpenHarmony bundles and distributions, an
 **Figure  1**  Composition of bundles and distributions<a name="fig85033524124"></a>  
 
 
-![](figures/en-us_image_0000001054663940.png)
+![](figures/组件0924.png)
 

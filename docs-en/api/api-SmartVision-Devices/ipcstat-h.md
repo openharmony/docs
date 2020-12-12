@@ -1,6 +1,10 @@
 # ipcstat.h<a name="EN-US_TOPIC_0000001054748007"></a>
 
-## **Overview**<a name="section85995421084830"></a>
+-   [Overview](#section1683384180165627)
+-   [Summary](#section1092590116165627)
+-   [Macros](#define-members)
+
+## **Overview**<a name="section1683384180165627"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Defines the macros related to the IPC functions.
 
 1.0
 
-## **Summary**<a name="section1212940229084830"></a>
+## **Summary**<a name="section1092590116165627"></a>
 
 ## Macros<a name="define-members"></a>
 
-<a name="table1809901513084830"></a>
-<table><thead align="left"><tr id="row327007271084830"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2052873161084830"><a name="p2052873161084830"></a><a name="p2052873161084830"></a>Macro Name and Value</p>
+<a name="table1194907913165627"></a>
+<table><thead align="left"><tr id="row407418946165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p70602386165627"><a name="p70602386165627"></a><a name="p70602386165627"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1968762847084830"><a name="p1968762847084830"></a><a name="p1968762847084830"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2064224038165627"><a name="p2064224038165627"></a><a name="p2064224038165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row52547227084830"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1326198447084830"><a name="p1326198447084830"></a><a name="p1326198447084830"></a><a href="ipc.md#ga16a91ee69c3cb6bfec425e1bfd5edd18">IPC_STAT</a>   2</p>
+<tbody><tr id="row838189005165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1665740784165627"><a name="p1665740784165627"></a><a name="p1665740784165627"></a><a href="ipc.md#ga16a91ee69c3cb6bfec425e1bfd5edd18">IPC_STAT</a>   2</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1681395526084830"><a name="p1681395526084830"></a><a name="p1681395526084830"></a>Defines the input parameter used to obtain information from the kernel. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p203737693165627"><a name="p203737693165627"></a><a name="p203737693165627"></a>Defines the input parameter used to obtain information from the kernel. </p>
 </td>
 </tr>
 </tbody>

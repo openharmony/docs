@@ -1,6 +1,10 @@
 # surface.h<a name="EN-US_TOPIC_0000001055039496"></a>
 
-## **Overview**<a name="section733857185093527"></a>
+-   [Overview](#section2001065525165629)
+-   [Summary](#section1993327886165629)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section2001065525165629"></a>
 
 **Related Modules:**
 
@@ -20,20 +24,20 @@ By default, a surface can apply for a shared buffer. You can call  **SetQueueSiz
 
 1.0
 
-## **Summary**<a name="section1289888539093527"></a>
+## **Summary**<a name="section1993327886165629"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1149988448093527"></a>
-<table><thead align="left"><tr id="row228345108093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p73059274093527"><a name="p73059274093527"></a><a name="p73059274093527"></a>Data Structure Name</p>
+<a name="table647411189165629"></a>
+<table><thead align="left"><tr id="row1439611125165629"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p451587670165629"><a name="p451587670165629"></a><a name="p451587670165629"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2101485949093527"><a name="p2101485949093527"></a><a name="p2101485949093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1199785399165629"><a name="p1199785399165629"></a><a name="p1199785399165629"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row445030076093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2083625625093527"><a name="p2083625625093527"></a><a name="p2083625625093527"></a><a href="ohos-surface.md">OHOS::Surface</a></p>
+<tbody><tr id="row1614695434165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p334441282165629"><a name="p334441282165629"></a><a name="p334441282165629"></a><a href="ohos-surface.md">OHOS::Surface</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1044955904093527"><a name="p1044955904093527"></a><a name="p1044955904093527"></a>Defines the consumer listener used to notify consumers when the surface status is updated. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1060418532165629"><a name="p1060418532165629"></a><a name="p1060418532165629"></a>Defines the consumer listener used to notify consumers when the surface status is updated. </p>
 </td>
 </tr>
 </tbody>

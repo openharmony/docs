@@ -1,6 +1,6 @@
 # Basic System Capability Subsystem Set<a name="EN-US_TOPIC_0000001055358058"></a>
 
--   **[Application Framework and Ability](application-framework-and-ability.md)**  
+-   **[Application Framework](application-framework.md)**  
 
 -   **[Communication Subsystem](communication-subsystem.md)**  
 

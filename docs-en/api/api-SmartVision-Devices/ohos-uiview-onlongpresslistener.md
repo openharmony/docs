@@ -1,6 +1,10 @@
 # OHOS::UIView::OnLongPressListener<a name="EN-US_TOPIC_0000001055078167"></a>
 
-## **Overview**<a name="section743482567093535"></a>
+-   [Overview](#section2043894054165635)
+-   [Summary](#section1837107464165635)
+-   [Public Member Functions](#pub-methods)
+
+## **Overview**<a name="section2043894054165635"></a>
 
 **Related Modules:**
 
@@ -18,39 +22,39 @@ Defines a long-press event listener. You need to register this listener with the
 
 1.0
 
-## **Summary**<a name="section930024778093535"></a>
+## **Summary**<a name="section1837107464165635"></a>
 
 ## Public Member Functions<a name="pub-methods"></a>
 
-<a name="table1801485082093535"></a>
-<table><thead align="left"><tr id="row2029407940093535"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1988889838093535"><a name="p1988889838093535"></a><a name="p1988889838093535"></a>Public Member Function Name</p>
+<a name="table417424764165635"></a>
+<table><thead align="left"><tr id="row909247693165635"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p971081253165635"><a name="p971081253165635"></a><a name="p971081253165635"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1079007439093535"><a name="p1079007439093535"></a><a name="p1079007439093535"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1836615182165635"><a name="p1836615182165635"></a><a name="p1836615182165635"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1258752249093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p838618740093535"><a name="p838618740093535"></a><a name="p838618740093535"></a><a href="graphic.md#gadd8ba1ff84abfc796ddeb9c6e5d46497">OnLongPress</a> (<a href="ohos-uiview.md">UIView</a> &amp;view, const <a href="ohos-longpressevent.md">LongPressEvent</a> &amp;event)</p>
+<tbody><tr id="row1844225660165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1938725943165635"><a name="p1938725943165635"></a><a name="p1938725943165635"></a><a href="graphic.md#gadd8ba1ff84abfc796ddeb9c6e5d46497">OnLongPress</a> (<a href="ohos-uiview.md">UIView</a> &amp;view, const <a href="ohos-longpressevent.md">LongPressEvent</a> &amp;event)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p18387924093535"><a name="p18387924093535"></a><a name="p18387924093535"></a>virtual bool </p>
-<p id="p111829855093535"><a name="p111829855093535"></a><a name="p111829855093535"></a>Called when a view is long pressed. </p>
-</td>
-</tr>
-<tr id="row1233689617093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p541187875093535"><a name="p541187875093535"></a><a name="p541187875093535"></a><a href="graphic.md#ga80d9a933818b4ae9c3f34fe78f65a8f6">~OnLongPressListener</a> ()</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p366654237093535"><a name="p366654237093535"></a><a name="p366654237093535"></a>virtual </p>
-<p id="p1733408688093535"><a name="p1733408688093535"></a><a name="p1733408688093535"></a>A destructor used to delete the <strong id="b2143414095093535"><a name="b2143414095093535"></a><a name="b2143414095093535"></a><a href="ohos-uiview-onlongpresslistener.md">OnLongPressListener</a></strong> instance. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p992065868165635"><a name="p992065868165635"></a><a name="p992065868165635"></a>virtual bool </p>
+<p id="p804352709165635"><a name="p804352709165635"></a><a name="p804352709165635"></a>Called when a view is long pressed. </p>
 </td>
 </tr>
-<tr id="row171289226093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1451435920093535"><a name="p1451435920093535"></a><a name="p1451435920093535"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
+<tr id="row1550121546165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1104426454165635"><a name="p1104426454165635"></a><a name="p1104426454165635"></a><a href="graphic.md#ga80d9a933818b4ae9c3f34fe78f65a8f6">~OnLongPressListener</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p450165320093535"><a name="p450165320093535"></a><a name="p450165320093535"></a>void * </p>
-<p id="p907231392093535"><a name="p907231392093535"></a><a name="p907231392093535"></a>Overrides the <strong id="b1757071992093535"><a name="b1757071992093535"></a><a name="b1757071992093535"></a>new</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1796807259165635"><a name="p1796807259165635"></a><a name="p1796807259165635"></a>virtual </p>
+<p id="p1496968229165635"><a name="p1496968229165635"></a><a name="p1496968229165635"></a>A destructor used to delete the <strong id="b620731144165635"><a name="b620731144165635"></a><a name="b620731144165635"></a><a href="ohos-uiview-onlongpresslistener.md">OnLongPressListener</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1294462979093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1468544822093535"><a name="p1468544822093535"></a><a name="p1468544822093535"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+<tr id="row2042919393165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p453184215165635"><a name="p453184215165635"></a><a name="p453184215165635"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1973766150093535"><a name="p1973766150093535"></a><a name="p1973766150093535"></a>void </p>
-<p id="p787975215093535"><a name="p787975215093535"></a><a name="p787975215093535"></a>Overrides the <strong id="b912994109093535"><a name="b912994109093535"></a><a name="b912994109093535"></a>delete</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1421162945165635"><a name="p1421162945165635"></a><a name="p1421162945165635"></a>void * </p>
+<p id="p285178277165635"><a name="p285178277165635"></a><a name="p285178277165635"></a>Overrides the <strong id="b1113220785165635"><a name="b1113220785165635"></a><a name="b1113220785165635"></a>new</strong> function. </p>
+</td>
+</tr>
+<tr id="row468669732165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1779900719165635"><a name="p1779900719165635"></a><a name="p1779900719165635"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2059994398165635"><a name="p2059994398165635"></a><a name="p2059994398165635"></a>void </p>
+<p id="p339096820165635"><a name="p339096820165635"></a><a name="p339096820165635"></a>Overrides the <strong id="b1333975488165635"><a name="b1333975488165635"></a><a name="b1333975488165635"></a>delete</strong> function. </p>
 </td>
 </tr>
 </tbody>

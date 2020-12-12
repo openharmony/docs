@@ -1,80 +1,101 @@
 # Source Code Acquisition<a name="EN-US_TOPIC_0000001050769927"></a>
 
+-   [About OpenHarmony](#section6370143622110)
+-   [Overview of Source Code Acquisition](#section12763342204)
+-   [Method 1: Acquiring Source Code from Image Sites](#section1186691118430)
+-   [Method 2: Acquiring Source Code from the Bundle-specific HPM](#section463013147412)
+-   [When to Use](#section123926431441)
+-   [How to Use](#section1781916234118)
+-   [Method 3: Acquiring Source Code with a hpm-cli Tool](#section9459261856)
+-   [When to Use](#section1854923620139)
+-   [Preparations](#section4451113551114)
+-   [Operations](#section1445143510117)
+-   [Method 4: Acquiring Source Code from a Code Repository](#section537312010229)
+-   [When to Use](#section1492115412228)
+-   [Preparations](#section1076962313239)
+-   [Operations](#section17162735266)
+-   [Source Code Directories](#section1072115612811)
+
 ## About OpenHarmony<a name="section6370143622110"></a>
 
 OpenHarmony is an open-source version of HarmonyOS. It is donated by Huawei to OpenAtom Foundation. The first open-source version can run on 128 KB to 128 MB devices. You are welcomed to join the open-source community for continuous improvement.
 
 Access code repositories at  [https://openharmony.gitee.com](https://openharmony.gitee.com).
 
+>![](public_sys-resources/icon-note.gif) **NOTE:** 
+>Currently, OpenHarmony source code can be compiled only in a Linux environment. You may encounter exceptions in a Windows environment.
+>For example, while downloading and installing some bundles, you need to run Linux commands to set environment variables. However, if you do so in a Windows environment, an error may occur. To address this issue, change the shell of HPM to a third-party shell. For example, you can run the following command to change the shell to  **sh.exe**  of git:
+>hpm config set shellPath 'C:\\Program Files\\Git\\bin\\sh.exe'
+
 ## Overview of Source Code Acquisition<a name="section12763342204"></a>
 
-This document describes how to acquire OpenHarmony source code and provides its directory structure. The OpenHarmony code is open to you as  [bundles](../bundles/overview-0.md), which can be obtained in any of the following ways:
+This document describes how to acquire OpenHarmony source code and provides its directory structure. The OpenHarmony code is open to you as  [bundles](../bundles/overview.md), which can be obtained in any of the following ways:
 
 -   **Method 1 \(recommended\)**: Download compressed files from an image site.
 -   **Method 2**: Visit the HarmonyOS Package Manager \([HPM](https://hpm.harmonyos.com/#/en/home)\) platform, search for your desired solution, select or exclude bundles from the solution, and download it.
 -   **Method 3**: Use an hpm-cli tool available on the  [HPM](https://hpm.harmonyos.com/#/en/home)  platform, and run related HPM commands to download your desired code.
 -   **Method 4**: Use the  **repo**  or  **git**  tool to download your desired code from the code repository.
 
-## Method 1: Acquiring Source Code from Image Sites<a name="section61172538310"></a>
+## Method 1: Acquiring Source Code from Image Sites<a name="section1186691118430"></a>
 
 You can download the source code or the corresponding solutions from the image library at the sites listed below.
 
 **Table  1**  Acquiring source code from image sites
 
-<a name="table9930153132517"></a>
-<table><thead align="left"><tr id="row5928133152512"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p1792803142518"><a name="p1792803142518"></a><a name="p1792803142518"></a>Content</p>
+<a name="table91984129177"></a>
+<table><thead align="left"><tr id="row51981312101713"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p16618172471719"><a name="p16618172471719"></a><a name="p16618172471719"></a>Content</p>
 </th>
-<th class="cellrowborder" valign="top" width="16.14%" id="mcps1.2.5.1.2"><p id="p0928738254"><a name="p0928738254"></a><a name="p0928738254"></a>Version Information</p>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.2"><p id="p46181224161718"><a name="p46181224161718"></a><a name="p46181224161718"></a>Version Information</p>
 </th>
-<th class="cellrowborder" valign="top" width="24.759999999999998%" id="mcps1.2.5.1.3"><p id="p39281035251"><a name="p39281035251"></a><a name="p39281035251"></a>Site</p>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p1461814241177"><a name="p1461814241177"></a><a name="p1461814241177"></a>Site</p>
 </th>
-<th class="cellrowborder" valign="top" width="34.1%" id="mcps1.2.5.1.4"><p id="p292819322511"><a name="p292819322511"></a><a name="p292819322511"></a>SHA-256 Verification Code</p>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.4"><p id="p12618192481716"><a name="p12618192481716"></a><a name="p12618192481716"></a>SHA-256 Verification Code</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row492963182513"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p69292322516"><a name="p69292322516"></a><a name="p69292322516"></a><span id="text958012347463"><a name="text958012347463"></a><a name="text958012347463"></a>OpenHarmony</span> full code base</p>
+<tbody><tr id="row11198111281715"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p161822419172"><a name="p161822419172"></a><a name="p161822419172"></a><span id="text958012347463"><a name="text958012347463"></a><a name="text958012347463"></a>OpenHarmony</span> full code base</p>
 </td>
-<td class="cellrowborder" valign="top" width="16.14%" headers="mcps1.2.5.1.2 "><p id="p79291938252"><a name="p79291938252"></a><a name="p79291938252"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p361810245170"><a name="p361810245170"></a><a name="p361810245170"></a>1.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="24.759999999999998%" headers="mcps1.2.5.1.3 "><p id="p10929236258"><a name="p10929236258"></a><a name="p10929236258"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p11618112416174"><a name="p11618112416174"></a><a name="p11618112416174"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p992993202517"><a name="p992993202517"></a><a name="p992993202517"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
-</td>
-</tr>
-<tr id="row6929934252"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p0929163132512"><a name="p0929163132512"></a><a name="p0929163132512"></a>Hi3861 solutions (binary)</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.14%" headers="mcps1.2.5.1.2 "><p id="p392913162517"><a name="p392913162517"></a><a name="p392913162517"></a>1.0</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.759999999999998%" headers="mcps1.2.5.1.3 "><p id="p592912312511"><a name="p592912312511"></a><a name="p592912312511"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p199296318252"><a name="p199296318252"></a><a name="p199296318252"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p2619182441717"><a name="p2619182441717"></a><a name="p2619182441717"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
 </td>
 </tr>
-<tr id="row1293014352510"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p692917311258"><a name="p692917311258"></a><a name="p692917311258"></a>Hi3518 solutions (binary)</p>
+<tr id="row1019861220171"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1619102471714"><a name="p1619102471714"></a><a name="p1619102471714"></a>Hi3861 solutions (binary)</p>
 </td>
-<td class="cellrowborder" valign="top" width="16.14%" headers="mcps1.2.5.1.2 "><p id="p49291935254"><a name="p49291935254"></a><a name="p49291935254"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p1361982418176"><a name="p1361982418176"></a><a name="p1361982418176"></a>1.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="24.759999999999998%" headers="mcps1.2.5.1.3 "><p id="p1792943152517"><a name="p1792943152517"></a><a name="p1792943152517"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p6619122411710"><a name="p6619122411710"></a><a name="p6619122411710"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p1392983162514"><a name="p1392983162514"></a><a name="p1392983162514"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
-</td>
-</tr>
-<tr id="row199306317255"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1693063122511"><a name="p1693063122511"></a><a name="p1693063122511"></a>Hi3516 solutions (binary)</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.14%" headers="mcps1.2.5.1.2 "><p id="p169301335252"><a name="p169301335252"></a><a name="p169301335252"></a>1.0</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.759999999999998%" headers="mcps1.2.5.1.3 "><p id="p1393012302510"><a name="p1393012302510"></a><a name="p1393012302510"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p1393083102517"><a name="p1393083102517"></a><a name="p1393083102517"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p86198245173"><a name="p86198245173"></a><a name="p86198245173"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
 </td>
 </tr>
-<tr id="row13795111119551"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p679516111552"><a name="p679516111552"></a><a name="p679516111552"></a>RELEASE-NOTES</p>
+<tr id="row419901210176"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1461992491711"><a name="p1461992491711"></a><a name="p1461992491711"></a>Hi3518 solutions (binary)</p>
 </td>
-<td class="cellrowborder" valign="top" width="16.14%" headers="mcps1.2.5.1.2 "><p id="p13796201120553"><a name="p13796201120553"></a><a name="p13796201120553"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p0619122471719"><a name="p0619122471719"></a><a name="p0619122471719"></a>1.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="24.759999999999998%" headers="mcps1.2.5.1.3 "><p id="p8796911155518"><a name="p8796911155518"></a><a name="p8796911155518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/RELEASE-NOTES.txt" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p13619112431714"><a name="p13619112431714"></a><a name="p13619112431714"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="34.1%" headers="mcps1.2.5.1.4 "><p id="p16796011205518"><a name="p16796011205518"></a><a name="p16796011205518"></a>-</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p6619224191719"><a name="p6619224191719"></a><a name="p6619224191719"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
+</td>
+</tr>
+<tr id="row1019901219170"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p2619142411713"><a name="p2619142411713"></a><a name="p2619142411713"></a>Hi3516 solutions (binary)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p10619182441718"><a name="p10619182441718"></a><a name="p10619182441718"></a>1.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p176194245176"><a name="p176194245176"></a><a name="p176194245176"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p196193246171"><a name="p196193246171"></a><a name="p196193246171"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
+</td>
+</tr>
+<tr id="row151991912161714"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p116191324121716"><a name="p116191324121716"></a><a name="p116191324121716"></a>RELEASE-NOTES</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p176191824181712"><a name="p176191824181712"></a><a name="p176191824181712"></a>1.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p66190245178"><a name="p66190245178"></a><a name="p66190245178"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/RELEASE-NOTES.txt" target="_blank" rel="noopener noreferrer">Site</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p1161982411713"><a name="p1161982411713"></a><a name="p1161982411713"></a>-</p>
 </td>
 </tr>
 </tbody>
@@ -272,6 +293,11 @@ The following table describes the OpenHarmony source code directories.
 <tr id="row1134218692910"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p4904112910295"><a name="p4904112910295"></a><a name="p4904112910295"></a>build</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1090482942911"><a name="p1090482942911"></a><a name="p1090482942911"></a>Bundle-based compilation, building, and configuration scripts</p>
+</td>
+</tr>
+<tr id="row8166154261316"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1216719425130"><a name="p1216719425130"></a><a name="p1216719425130"></a>docs</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p17167134217134"><a name="p17167134217134"></a><a name="p17167134217134"></a>Reference documents</p>
 </td>
 </tr>
 <tr id="row1841618902919"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1390462902910"><a name="p1390462902910"></a><a name="p1390462902910"></a>domains</p>

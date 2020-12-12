@@ -1,6 +1,10 @@
 # camera\_config.h<a name="ZH-CN_TOPIC_0000001055039480"></a>
 
-## **Overview**<a name="section869431225093524"></a>
+-   [Overview](#section965545087165626)
+-   [Summary](#section1791596129165626)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section965545087165626"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares functions in the  **CameraConfig**  class.
 
 1.0
 
-## **Summary**<a name="section919359457093524"></a>
+## **Summary**<a name="section1791596129165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1227669070093524"></a>
-<table><thead align="left"><tr id="row1623396146093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2005461629093524"><a name="p2005461629093524"></a><a name="p2005461629093524"></a>Data Structure Name</p>
+<a name="table1653865772165626"></a>
+<table><thead align="left"><tr id="row1858416443165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p391165707165626"><a name="p391165707165626"></a><a name="p391165707165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2055987708093524"><a name="p2055987708093524"></a><a name="p2055987708093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1014092713165626"><a name="p1014092713165626"></a><a name="p1014092713165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row603618008093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1296958180093524"><a name="p1296958180093524"></a><a name="p1296958180093524"></a><a href="OHOS-Media-CameraConfig.md">OHOS::Media::CameraConfig</a></p>
+<tbody><tr id="row862051085165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1910170748165626"><a name="p1910170748165626"></a><a name="p1910170748165626"></a><a href="OHOS-Media-CameraConfig.md">OHOS::Media::CameraConfig</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1508337141093524"><a name="p1508337141093524"></a><a name="p1508337141093524"></a>Provides functions to configure camera parameters. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2086825454165626"><a name="p2086825454165626"></a><a name="p2086825454165626"></a>Provides functions to configure camera parameters. </p>
 </td>
 </tr>
 </tbody>

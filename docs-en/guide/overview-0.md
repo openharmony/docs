@@ -4,7 +4,7 @@ This document describes how to use the IoT camera development board and the buil
 
 You can perform operations provided in  [Use Case](use-case.md)  to learn more about development board peripheral control and then develop devices, such as security cameras.
 
-If you want to view the sample effect first, see  [Use Case](use-case.md). To customize application behavior, modify the sample code by referring to APIs described in  [Development Guidelines](development-guidelines.md).
+If you want to view the sample effect first, see  [Use Case](use-case.md). To customize application behavior, modify the sample code by referring to APIs described in the next section.
 
 For details about basic concepts for camera development, see the  [camera development overview](../subsystems/overview.md).
 

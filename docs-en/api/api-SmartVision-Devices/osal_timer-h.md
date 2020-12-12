@@ -1,6 +1,13 @@
 # osal\_timer.h<a name="EN-US_TOPIC_0000001055078115"></a>
 
-## **Overview**<a name="section1870994479093526"></a>
+-   [Overview](#section1177199249165628)
+-   [Summary](#section910346918165628)
+-   [Data Structures](#nested-classes)
+-   [Macros](#define-members)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1177199249165628"></a>
 
 **Related Modules:**
 
@@ -18,20 +25,20 @@ Declares timer types and interfaces.
 
 1.0
 
-## **Summary**<a name="section1037124455093526"></a>
+## **Summary**<a name="section910346918165628"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table89940375093526"></a>
-<table><thead align="left"><tr id="row309763686093526"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p191455963093526"><a name="p191455963093526"></a><a name="p191455963093526"></a>Data Structure Name</p>
+<a name="table1026789788165628"></a>
+<table><thead align="left"><tr id="row535914632165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p100391132165628"><a name="p100391132165628"></a><a name="p100391132165628"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1276542208093526"><a name="p1276542208093526"></a><a name="p1276542208093526"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p749382654165628"><a name="p749382654165628"></a><a name="p749382654165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row868727425093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p228665686093526"><a name="p228665686093526"></a><a name="p228665686093526"></a><a href="osaltimer.md">OsalTimer</a></p>
+<tbody><tr id="row1878633829165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p74960813165628"><a name="p74960813165628"></a><a name="p74960813165628"></a><a href="osaltimer.md">OsalTimer</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p981961793093526"><a name="p981961793093526"></a><a name="p981961793093526"></a>Describes a timer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p346755590165628"><a name="p346755590165628"></a><a name="p346755590165628"></a>Describes a timer. </p>
 </td>
 </tr>
 </tbody>
@@ -39,16 +46,16 @@ Declares timer types and interfaces.
 
 ## Macros<a name="define-members"></a>
 
-<a name="table377551050093526"></a>
-<table><thead align="left"><tr id="row1641765431093526"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2135617258093526"><a name="p2135617258093526"></a><a name="p2135617258093526"></a>Macro Name and Value</p>
+<a name="table2048569474165628"></a>
+<table><thead align="left"><tr id="row786040460165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1373872356165628"><a name="p1373872356165628"></a><a name="p1373872356165628"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1538463449093526"><a name="p1538463449093526"></a><a name="p1538463449093526"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1683351265165628"><a name="p1683351265165628"></a><a name="p1683351265165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1204774168093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1126117850093526"><a name="p1126117850093526"></a><a name="p1126117850093526"></a><a href="osal.md#ga556360caa9ece72fcbbc6aef5fc648f1">OSAL_DECLARE_TIMER</a>(timer)   <a href="osaltimer.md">OsalTimer</a> timer</p>
+<tbody><tr id="row1376509467165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1575727256165628"><a name="p1575727256165628"></a><a name="p1575727256165628"></a><a href="osal.md#ga556360caa9ece72fcbbc6aef5fc648f1">OSAL_DECLARE_TIMER</a>(timer)   <a href="osaltimer.md">OsalTimer</a> timer</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p72501071093526"><a name="p72501071093526"></a><a name="p72501071093526"></a>Defines a timer macro. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1621550508165628"><a name="p1621550508165628"></a><a name="p1621550508165628"></a>Defines a timer macro. </p>
 </td>
 </tr>
 </tbody>
@@ -56,17 +63,17 @@ Declares timer types and interfaces.
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table1183128307093526"></a>
-<table><thead align="left"><tr id="row388741668093526"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p822769755093526"><a name="p822769755093526"></a><a name="p822769755093526"></a>Typedef Name</p>
+<a name="table359462017165628"></a>
+<table><thead align="left"><tr id="row1538930911165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p825354413165628"><a name="p825354413165628"></a><a name="p825354413165628"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p511163394093526"><a name="p511163394093526"></a><a name="p511163394093526"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p414989967165628"><a name="p414989967165628"></a><a name="p414989967165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row903842177093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p69053713093526"><a name="p69053713093526"></a><a name="p69053713093526"></a><a href="osal.md#gaf3e7a12075b25df5971049d8cd77c25c">OsalTimerFunc</a>) (uintptr_t arg)</p>
+<tbody><tr id="row427440353165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1893790666165628"><a name="p1893790666165628"></a><a name="p1893790666165628"></a><a href="osal.md#gaf3e7a12075b25df5971049d8cd77c25c">OsalTimerFunc</a>) (uintptr_t arg)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1652158200093526"><a name="p1652158200093526"></a><a name="p1652158200093526"></a> typedef void(* </p>
-<p id="p185718772093526"><a name="p185718772093526"></a><a name="p185718772093526"></a>Describes a timer execution function type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p256337625165628"><a name="p256337625165628"></a><a name="p256337625165628"></a> typedef void(* </p>
+<p id="p1707200553165628"><a name="p1707200553165628"></a><a name="p1707200553165628"></a>Describes a timer execution function type. </p>
 </td>
 </tr>
 </tbody>
@@ -74,41 +81,41 @@ Declares timer types and interfaces.
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1281848753093526"></a>
-<table><thead align="left"><tr id="row1200583708093526"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2074394930093526"><a name="p2074394930093526"></a><a name="p2074394930093526"></a>Function Name</p>
+<a name="table1692715153165628"></a>
+<table><thead align="left"><tr id="row689604826165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1123962143165628"><a name="p1123962143165628"></a><a name="p1123962143165628"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p137986723093526"><a name="p137986723093526"></a><a name="p137986723093526"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1564212406165628"><a name="p1564212406165628"></a><a name="p1564212406165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1956949844093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p778400112093526"><a name="p778400112093526"></a><a name="p778400112093526"></a><a href="osal.md#ga879d9a437e1423021f95cb9341f0d6af">OsalTimerCreate</a> (<a href="osaltimer.md">OsalTimer</a> *timer, uint32_t interval, <a href="osal.md#gaf3e7a12075b25df5971049d8cd77c25c">OsalTimerFunc</a> func, uintptr_t arg)</p>
+<tbody><tr id="row416713709165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p431078891165628"><a name="p431078891165628"></a><a name="p431078891165628"></a><a href="osal.md#ga879d9a437e1423021f95cb9341f0d6af">OsalTimerCreate</a> (<a href="osaltimer.md">OsalTimer</a> *timer, uint32_t interval, <a href="osal.md#gaf3e7a12075b25df5971049d8cd77c25c">OsalTimerFunc</a> func, uintptr_t arg)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p201646993093526"><a name="p201646993093526"></a><a name="p201646993093526"></a>int32_t </p>
-<p id="p1364168080093526"><a name="p1364168080093526"></a><a name="p1364168080093526"></a>Creates a timer. </p>
-</td>
-</tr>
-<tr id="row164095846093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1566739570093526"><a name="p1566739570093526"></a><a name="p1566739570093526"></a><a href="osal.md#gab754f3522245e6b2f9ee1cdecae62b52">OsalTimerDelete</a> (<a href="osaltimer.md">OsalTimer</a> *timer)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1601400963093526"><a name="p1601400963093526"></a><a name="p1601400963093526"></a>int32_t </p>
-<p id="p1055756346093526"><a name="p1055756346093526"></a><a name="p1055756346093526"></a>Deletes a timer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p51985233165628"><a name="p51985233165628"></a><a name="p51985233165628"></a>int32_t </p>
+<p id="p709107241165628"><a name="p709107241165628"></a><a name="p709107241165628"></a>Creates a timer. </p>
 </td>
 </tr>
-<tr id="row1869464049093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1656544771093526"><a name="p1656544771093526"></a><a name="p1656544771093526"></a><a href="osal.md#gaf2e49d5b01b49e5f64a7701da8667141">OsalTimerStartOnce</a> (<a href="osaltimer.md">OsalTimer</a> *timer)</p>
+<tr id="row882786386165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1253084792165628"><a name="p1253084792165628"></a><a name="p1253084792165628"></a><a href="osal.md#gab754f3522245e6b2f9ee1cdecae62b52">OsalTimerDelete</a> (<a href="osaltimer.md">OsalTimer</a> *timer)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1100153253093526"><a name="p1100153253093526"></a><a name="p1100153253093526"></a>int32_t </p>
-<p id="p1770564991093526"><a name="p1770564991093526"></a><a name="p1770564991093526"></a>Starts a timer. </p>
-</td>
-</tr>
-<tr id="row81008697093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1527400658093526"><a name="p1527400658093526"></a><a name="p1527400658093526"></a><a href="osal.md#ga575e4f41359c737ab9690ab28838b99f">OsalTimerStartLoop</a> (<a href="osaltimer.md">OsalTimer</a> *timer)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1637415613093526"><a name="p1637415613093526"></a><a name="p1637415613093526"></a>int32_t </p>
-<p id="p28970819093526"><a name="p28970819093526"></a><a name="p28970819093526"></a>Starts a periodic timer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p146923889165628"><a name="p146923889165628"></a><a name="p146923889165628"></a>int32_t </p>
+<p id="p198545349165628"><a name="p198545349165628"></a><a name="p198545349165628"></a>Deletes a timer. </p>
 </td>
 </tr>
-<tr id="row246787403093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1517224763093526"><a name="p1517224763093526"></a><a name="p1517224763093526"></a><a href="osal.md#ga49c2fe3f54d548fe5ec0d03a79691376">OsalTimerSetTimeout</a> (<a href="osaltimer.md">OsalTimer</a> *timer, uint32_t interval)</p>
+<tr id="row173969465165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1732287903165628"><a name="p1732287903165628"></a><a name="p1732287903165628"></a><a href="osal.md#gaf2e49d5b01b49e5f64a7701da8667141">OsalTimerStartOnce</a> (<a href="osaltimer.md">OsalTimer</a> *timer)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1012634065093526"><a name="p1012634065093526"></a><a name="p1012634065093526"></a>int32_t </p>
-<p id="p1489223050093526"><a name="p1489223050093526"></a><a name="p1489223050093526"></a>Sets the interval of a timer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p624230991165628"><a name="p624230991165628"></a><a name="p624230991165628"></a>int32_t </p>
+<p id="p994162789165628"><a name="p994162789165628"></a><a name="p994162789165628"></a>Starts a timer. </p>
+</td>
+</tr>
+<tr id="row134653940165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1960214261165628"><a name="p1960214261165628"></a><a name="p1960214261165628"></a><a href="osal.md#ga575e4f41359c737ab9690ab28838b99f">OsalTimerStartLoop</a> (<a href="osaltimer.md">OsalTimer</a> *timer)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1368710211165628"><a name="p1368710211165628"></a><a name="p1368710211165628"></a>int32_t </p>
+<p id="p550147858165628"><a name="p550147858165628"></a><a name="p550147858165628"></a>Starts a periodic timer. </p>
+</td>
+</tr>
+<tr id="row1283563375165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p729151803165628"><a name="p729151803165628"></a><a name="p729151803165628"></a><a href="osal.md#ga49c2fe3f54d548fe5ec0d03a79691376">OsalTimerSetTimeout</a> (<a href="osaltimer.md">OsalTimer</a> *timer, uint32_t interval)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1120281561165628"><a name="p1120281561165628"></a><a name="p1120281561165628"></a>int32_t </p>
+<p id="p776270626165628"><a name="p776270626165628"></a><a name="p776270626165628"></a>Sets the interval of a timer. </p>
 </td>
 </tr>
 </tbody>

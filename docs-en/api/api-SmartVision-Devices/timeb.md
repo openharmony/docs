@@ -1,52 +1,62 @@
 # timeb<a name="EN-US_TOPIC_0000001054879582"></a>
 
-## **Overview**<a name="section1239581725093538"></a>
+-   [Overview](#section347936828165637)
+-   [Summary](#section2008416906165637)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1973851083165637)
+-   [Field](#section1374389041165637)
+-   [dstflag](#a951ede614d33eed486224c381df15f4e)
+-   [millitm](#aa459454ab48c84566d6b1fa72bafebe7)
+-   [time](#a6f298f9fb1327aba639d457f2989b859)
+-   [timezone](#aa1c6a12ca2a9150c5002bdfb0331bf0b)
+
+## **Overview**<a name="section347936828165637"></a>
 
 **Related Modules:**
 
-[TIME](en-us_topic_0000001054879478.md)
+[TIME](time.md)
 
 **Description:**
 
 Describes the time, accurate to millisecond. 
 
-## **Summary**<a name="section1328968830093538"></a>
+## **Summary**<a name="section2008416906165637"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table385226102093538"></a>
-<table><thead align="left"><tr id="row1578918808093538"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p722719667093538"><a name="p722719667093538"></a><a name="p722719667093538"></a>Variable Name</p>
+<a name="table99836259165637"></a>
+<table><thead align="left"><tr id="row1317241347165637"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1777341097165637"><a name="p1777341097165637"></a><a name="p1777341097165637"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1926247550093538"><a name="p1926247550093538"></a><a name="p1926247550093538"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p302180713165637"><a name="p302180713165637"></a><a name="p302180713165637"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row388147229093538"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2091846420093538"><a name="p2091846420093538"></a><a name="p2091846420093538"></a><a href="timeb.md#a6f298f9fb1327aba639d457f2989b859">time</a></p>
+<tbody><tr id="row565281716165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p702039819165637"><a name="p702039819165637"></a><a name="p702039819165637"></a><a href="timeb.md#a6f298f9fb1327aba639d457f2989b859">time</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p343386499093538"><a name="p343386499093538"></a><a name="p343386499093538"></a>time_t </p>
-</td>
-</tr>
-<tr id="row400602972093538"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p167252260093538"><a name="p167252260093538"></a><a name="p167252260093538"></a><a href="timeb.md#aa459454ab48c84566d6b1fa72bafebe7">millitm</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1667502269093538"><a name="p1667502269093538"></a><a name="p1667502269093538"></a>unsigned short </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1030292301165637"><a name="p1030292301165637"></a><a name="p1030292301165637"></a><a href="utils.md#ga138ad62ac7715e7161bf6223e35d8323">time_t</a> </p>
 </td>
 </tr>
-<tr id="row828001166093538"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p977499506093538"><a name="p977499506093538"></a><a name="p977499506093538"></a><a href="timeb.md#aa1c6a12ca2a9150c5002bdfb0331bf0b">timezone</a></p>
+<tr id="row672187973165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p443789495165637"><a name="p443789495165637"></a><a name="p443789495165637"></a><a href="timeb.md#aa459454ab48c84566d6b1fa72bafebe7">millitm</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p989267538093538"><a name="p989267538093538"></a><a name="p989267538093538"></a>short </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1914095739165637"><a name="p1914095739165637"></a><a name="p1914095739165637"></a>unsigned short </p>
 </td>
 </tr>
-<tr id="row1891619161093538"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p426310741093538"><a name="p426310741093538"></a><a name="p426310741093538"></a><a href="timeb.md#a951ede614d33eed486224c381df15f4e">dstflag</a></p>
+<tr id="row977724578165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p843052244165637"><a name="p843052244165637"></a><a name="p843052244165637"></a><a href="timeb.md#aa1c6a12ca2a9150c5002bdfb0331bf0b">timezone</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p495737605093538"><a name="p495737605093538"></a><a name="p495737605093538"></a>short </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1164452471165637"><a name="p1164452471165637"></a><a name="p1164452471165637"></a>short </p>
+</td>
+</tr>
+<tr id="row1011045200165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1461226071165637"><a name="p1461226071165637"></a><a name="p1461226071165637"></a><a href="timeb.md#a951ede614d33eed486224c381df15f4e">dstflag</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p723869407165637"><a name="p723869407165637"></a><a name="p723869407165637"></a>short </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1252638936093538"></a>
+## **Details**<a name="section1973851083165637"></a>
 
-## **Field Documentation**<a name="section1701178996093538"></a>
+## **Field **<a name="section1374389041165637"></a>
 
 ## dstflag<a name="a951ede614d33eed486224c381df15f4e"></a>
 
@@ -71,7 +81,7 @@ Number of milliseconds in the current time
 ## time<a name="a6f298f9fb1327aba639d457f2989b859"></a>
 
 ```
-time_t timeb::time
+[time_t](utils.md#ga138ad62ac7715e7161bf6223e35d8323) timeb::time
 ```
 
  **Description:**

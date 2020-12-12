@@ -1,6 +1,11 @@
 # display\_gfx.h<a name="EN-US_TOPIC_0000001054598125"></a>
 
-## **Overview**<a name="section1123174810093524"></a>
+-   [Overview](#section1079528593165626)
+-   [Summary](#section118988735165626)
+-   [Data Structures](#nested-classes)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1079528593165626"></a>
 
 **Related Modules:**
 
@@ -18,20 +23,20 @@ Declares the driver functions for implementing hardware acceleration.
 
 1.0
 
-## **Summary**<a name="section760185958093524"></a>
+## **Summary**<a name="section118988735165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1023170531093524"></a>
-<table><thead align="left"><tr id="row1359896850093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1706551451093524"><a name="p1706551451093524"></a><a name="p1706551451093524"></a>Data Structure Name</p>
+<a name="table697253543165626"></a>
+<table><thead align="left"><tr id="row557987486165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p759330443165626"><a name="p759330443165626"></a><a name="p759330443165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1864837852093524"><a name="p1864837852093524"></a><a name="p1864837852093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p841276264165626"><a name="p841276264165626"></a><a name="p841276264165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row808936824093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p611844677093524"><a name="p611844677093524"></a><a name="p611844677093524"></a><a href="gfxfuncs.md">GfxFuncs</a></p>
+<tbody><tr id="row231107550165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1963032692165626"><a name="p1963032692165626"></a><a name="p1963032692165626"></a><a href="gfxfuncs.md">GfxFuncs</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p367177210093524"><a name="p367177210093524"></a><a name="p367177210093524"></a>Defines pointers to the hardware acceleration driver functions. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1468708053165626"><a name="p1468708053165626"></a><a name="p1468708053165626"></a>Defines pointers to the hardware acceleration driver functions. </p>
 </td>
 </tr>
 </tbody>
@@ -39,23 +44,23 @@ Declares the driver functions for implementing hardware acceleration.
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1757652777093524"></a>
-<table><thead align="left"><tr id="row786632505093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p194028169093524"><a name="p194028169093524"></a><a name="p194028169093524"></a>Function Name</p>
+<a name="table441854528165626"></a>
+<table><thead align="left"><tr id="row1888104298165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p522200478165626"><a name="p522200478165626"></a><a name="p522200478165626"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p196385697093524"><a name="p196385697093524"></a><a name="p196385697093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1593185259165626"><a name="p1593185259165626"></a><a name="p1593185259165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1373644688093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p214927290093524"><a name="p214927290093524"></a><a name="p214927290093524"></a><a href="display.md#ga251580eb0614b601ef2c901c722a59d3">GfxInitialize</a> (<a href="gfxfuncs.md">GfxFuncs</a> **funcs)</p>
+<tbody><tr id="row1704404623165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1830406064165626"><a name="p1830406064165626"></a><a name="p1830406064165626"></a><a href="display.md#ga251580eb0614b601ef2c901c722a59d3">GfxInitialize</a> (<a href="gfxfuncs.md">GfxFuncs</a> **funcs)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p8785221093524"><a name="p8785221093524"></a><a name="p8785221093524"></a>int32_t </p>
-<p id="p628494205093524"><a name="p628494205093524"></a><a name="p628494205093524"></a>Initializes the hardware acceleration module to obtain the pointer to functions for hardware acceleration operations. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p865872831165626"><a name="p865872831165626"></a><a name="p865872831165626"></a>int32_t </p>
+<p id="p810662569165626"><a name="p810662569165626"></a><a name="p810662569165626"></a>Initializes the hardware acceleration module to obtain the pointer to functions for hardware acceleration operations. </p>
 </td>
 </tr>
-<tr id="row768420985093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p693311414093524"><a name="p693311414093524"></a><a name="p693311414093524"></a><a href="display.md#ga32595139adb26cfaacf709661b29b347">GfxUninitialize</a> (<a href="gfxfuncs.md">GfxFuncs</a> *funcs)</p>
+<tr id="row1948331726165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p832878662165626"><a name="p832878662165626"></a><a name="p832878662165626"></a><a href="display.md#ga32595139adb26cfaacf709661b29b347">GfxUninitialize</a> (<a href="gfxfuncs.md">GfxFuncs</a> *funcs)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1887319559093524"><a name="p1887319559093524"></a><a name="p1887319559093524"></a>int32_t </p>
-<p id="p2084723740093524"><a name="p2084723740093524"></a><a name="p2084723740093524"></a>Deinitializes the hardware acceleration module to release the memory allocated to the pointer to functions for hardware acceleration operations. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p602548685165626"><a name="p602548685165626"></a><a name="p602548685165626"></a>int32_t </p>
+<p id="p561139752165626"><a name="p561139752165626"></a><a name="p561139752165626"></a>Deinitializes the hardware acceleration module to release the memory allocated to the pointer to functions for hardware acceleration operations. </p>
 </td>
 </tr>
 </tbody>

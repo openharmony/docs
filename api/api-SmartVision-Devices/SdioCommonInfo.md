@@ -1,6 +1,13 @@
 # SdioCommonInfo<a name="ZH-CN_TOPIC_0000001054799637"></a>
 
-## **Overview**<a name="section436539131093536"></a>
+-   [Overview](#section647116408165636)
+-   [Summary](#section1139371527165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1415245331165636)
+-   [Field](#section1014289612165636)
+-   [funcInfo](#a67e7930d763c6463356b16f8086ca8a7)
+
+## **Overview**<a name="section647116408165636"></a>
 
 **Related Modules:**
 
@@ -10,30 +17,30 @@
 
 Defines SDIO common information. 
 
-You can obtain and set common SDIO information by calling  [SdioGetCommonInfo](SDIO.md#gac5c6bf733ea9e4408fd1109b18741ce8)  and  [SdioSetCommonInfo](SDIO.md#ga563b67c90fbb88075bf5a05d9b5d5706)  with  [SdioCommonInfo](SdioCommonInfo.md)  and  [SdioCommonInfoType](SDIO.md#ga4037437ac001a9848dd242e8aa632678)  passed. 
+You can obtain and set common SDIO information by calling  [SdioGetCommonInfo](SDIO.md#ga1289cc512ba56e3e904204c15d8ae23d)  and  [SdioSetCommonInfo](SDIO.md#ga6a8eb2f6413c4685f92236dd1c8083dc)  with  [SdioCommonInfo](SdioCommonInfo.md)  and  [SdioCommonInfoType](SDIO.md#ga4037437ac001a9848dd242e8aa632678)  passed. 
 
-## **Summary**<a name="section1598104081093536"></a>
+## **Summary**<a name="section1139371527165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table903726649093536"></a>
-<table><thead align="left"><tr id="row1625651468093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p854157274093536"><a name="p854157274093536"></a><a name="p854157274093536"></a>Variable Name</p>
+<a name="table1293528864165636"></a>
+<table><thead align="left"><tr id="row938893708165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p607385662165636"><a name="p607385662165636"></a><a name="p607385662165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1849140406093536"><a name="p1849140406093536"></a><a name="p1849140406093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1365177814165636"><a name="p1365177814165636"></a><a name="p1365177814165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1833868518093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1736929280093536"><a name="p1736929280093536"></a><a name="p1736929280093536"></a><a href="SdioCommonInfo.md#a67e7930d763c6463356b16f8086ca8a7">funcInfo</a></p>
+<tbody><tr id="row436070559165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1841311056165636"><a name="p1841311056165636"></a><a name="p1841311056165636"></a><a href="SdioCommonInfo.md#a67e7930d763c6463356b16f8086ca8a7">funcInfo</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p945769668093536"><a name="p945769668093536"></a><a name="p945769668093536"></a><a href="SdioFuncInfo.md">SdioFuncInfo</a>&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p56940948165636"><a name="p56940948165636"></a><a name="p56940948165636"></a><a href="SdioFuncInfo.md">SdioFuncInfo</a> </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section652250583093536"></a>
+## **Details**<a name="section1415245331165636"></a>
 
-## **Field Documentation**<a name="section178261330093536"></a>
+## **Field **<a name="section1014289612165636"></a>
 
 ## funcInfo<a name="a67e7930d763c6463356b16f8086ca8a7"></a>
 

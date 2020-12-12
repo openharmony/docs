@@ -1,6 +1,10 @@
 # OHOS::Point<a name="ZH-CN_TOPIC_0000001054479595"></a>
 
-## **Overview**<a name="section2133646854093535"></a>
+-   [Overview](#section1781125773165635)
+-   [Summary](#section1354986863165635)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1781125773165635"></a>
 
 **Related Modules:**
 
@@ -18,25 +22,25 @@ Defines a point.
 
 1.0
 
-## **Summary**<a name="section1588363134093535"></a>
+## **Summary**<a name="section1354986863165635"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table252511315093535"></a>
-<table><thead align="left"><tr id="row2010479069093535"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p859139386093535"><a name="p859139386093535"></a><a name="p859139386093535"></a>Variable Name</p>
+<a name="table1097975545165635"></a>
+<table><thead align="left"><tr id="row1266714194165635"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1592183205165635"><a name="p1592183205165635"></a><a name="p1592183205165635"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1571053816093535"><a name="p1571053816093535"></a><a name="p1571053816093535"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p260183811165635"><a name="p260183811165635"></a><a name="p260183811165635"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row636176944093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p448897706093535"><a name="p448897706093535"></a><a name="p448897706093535"></a><a href="Graphic.md#gab426145151f58e845cea92fcf216e852">x</a></p>
+<tbody><tr id="row1172551775165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p923782884165635"><a name="p923782884165635"></a><a name="p923782884165635"></a><a href="Graphic.md#gab426145151f58e845cea92fcf216e852">x</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1042862456093535"><a name="p1042862456093535"></a><a name="p1042862456093535"></a>int16_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p30107009165635"><a name="p30107009165635"></a><a name="p30107009165635"></a>int16_t </p>
 </td>
 </tr>
-<tr id="row1778453253093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1683445306093535"><a name="p1683445306093535"></a><a name="p1683445306093535"></a><a href="Graphic.md#gaadc4725f7f09240b24b79bf045924fe2">y</a></p>
+<tr id="row307754887165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1465588307165635"><a name="p1465588307165635"></a><a name="p1465588307165635"></a><a href="Graphic.md#gaadc4725f7f09240b24b79bf045924fe2">y</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1528249191093535"><a name="p1528249191093535"></a><a name="p1528249191093535"></a>int16_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p472209356165635"><a name="p472209356165635"></a><a name="p472209356165635"></a>int16_t </p>
 </td>
 </tr>
 </tbody>
