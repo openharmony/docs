@@ -1,6 +1,10 @@
 # MacAddress<a name="EN-US_TOPIC_0000001055198138"></a>
 
-## **Overview**<a name="section2034710441093531"></a>
+-   [Overview](#section1313641364165632)
+-   [Summary](#section806099061165632)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1313641364165632"></a>
 
 **Related Modules:**
 
@@ -14,20 +18,20 @@ Describes the device MAC address.
 
 1.0
 
-## **Summary**<a name="section1340893337093531"></a>
+## **Summary**<a name="section806099061165632"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1224495416093531"></a>
-<table><thead align="left"><tr id="row26651868093531"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1811710463093531"><a name="p1811710463093531"></a><a name="p1811710463093531"></a>Variable Name</p>
+<a name="table1592628930165632"></a>
+<table><thead align="left"><tr id="row734130842165632"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1310642022165632"><a name="p1310642022165632"></a><a name="p1310642022165632"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p720988972093531"><a name="p720988972093531"></a><a name="p720988972093531"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p824101310165632"><a name="p824101310165632"></a><a name="p824101310165632"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row875492391093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1606921617093531"><a name="p1606921617093531"></a><a name="p1606921617093531"></a><a href="wlan.md#gacdd7348f71376cd66b3a0079a1c393d5">addr</a> [ETH_ADDR_LEN]</p>
+<tbody><tr id="row637909393165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1927894421165632"><a name="p1927894421165632"></a><a name="p1927894421165632"></a><a href="wlan.md#gacdd7348f71376cd66b3a0079a1c393d5">addr</a> [ETH_ADDR_LEN]</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p465289272093531"><a name="p465289272093531"></a><a name="p465289272093531"></a>uint8_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1364796008165632"><a name="p1364796008165632"></a><a name="p1364796008165632"></a>uint8_t </p>
 </td>
 </tr>
 </tbody>

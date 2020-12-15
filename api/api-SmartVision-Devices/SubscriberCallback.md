@@ -1,6 +1,14 @@
 # SubscriberCallback<a name="ZH-CN_TOPIC_0000001055358146"></a>
 
-## **Overview**<a name="section1285193163093537"></a>
+-   [Overview](#section839425282165636)
+-   [Summary](#section2092979264165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1119853582165636)
+-   [Field](#section2073433366165636)
+-   [deviceObject](#af8640bdb30eb50c1d69781940b62c20d)
+-   [OnServiceConnected](#a71a9efad360e2944550c36a97791e6e6)
+
+## **Overview**<a name="section839425282165636"></a>
 
 **Related Modules:**
 
@@ -16,34 +24,34 @@ The callback is used in the service subscription mechanism. After the driver is 
 
 1.0
 
-## **Summary**<a name="section2089491515093537"></a>
+## **Summary**<a name="section2092979264165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table752331507093537"></a>
-<table><thead align="left"><tr id="row538456016093537"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p894061631093537"><a name="p894061631093537"></a><a name="p894061631093537"></a>Variable Name</p>
+<a name="table710185654165636"></a>
+<table><thead align="left"><tr id="row1728267821165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p377400158165636"><a name="p377400158165636"></a><a name="p377400158165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p176688710093537"><a name="p176688710093537"></a><a name="p176688710093537"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1672450345165636"><a name="p1672450345165636"></a><a name="p1672450345165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row841537040093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p831597522093537"><a name="p831597522093537"></a><a name="p831597522093537"></a><a href="SubscriberCallback.md#af8640bdb30eb50c1d69781940b62c20d">deviceObject</a></p>
+<tbody><tr id="row99909630165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1567642522165636"><a name="p1567642522165636"></a><a name="p1567642522165636"></a><a href="SubscriberCallback.md#af8640bdb30eb50c1d69781940b62c20d">deviceObject</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p559955705093537"><a name="p559955705093537"></a><a name="p559955705093537"></a>struct <a href="HdfDeviceObject.md">HdfDeviceObject</a> *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p218221496165636"><a name="p218221496165636"></a><a name="p218221496165636"></a>struct <a href="HdfDeviceObject.md">HdfDeviceObject</a> * </p>
 </td>
 </tr>
-<tr id="row1931952046093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p404291654093537"><a name="p404291654093537"></a><a name="p404291654093537"></a><a href="SubscriberCallback.md#a71a9efad360e2944550c36a97791e6e6">OnServiceConnected</a> )(struct <a href="HdfDeviceObject.md">HdfDeviceObject</a> *<a href="SubscriberCallback.md#af8640bdb30eb50c1d69781940b62c20d">deviceObject</a>, const struct <a href="HdfObject.md">HdfObject</a> *service)</p>
+<tr id="row1447125708165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p55193803165636"><a name="p55193803165636"></a><a name="p55193803165636"></a><a href="SubscriberCallback.md#a71a9efad360e2944550c36a97791e6e6">OnServiceConnected</a> )(struct <a href="HdfDeviceObject.md">HdfDeviceObject</a> *<a href="SubscriberCallback.md#af8640bdb30eb50c1d69781940b62c20d">deviceObject</a>, const struct <a href="HdfObject.md">HdfObject</a> *service)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p398432468093537"><a name="p398432468093537"></a><a name="p398432468093537"></a>int32_t(*&nbsp;</p>
-<p id="p776445754093537"><a name="p776445754093537"></a><a name="p776445754093537"></a>Called by the HDF when the subscribed-to driver service is loaded. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p262243306165636"><a name="p262243306165636"></a><a name="p262243306165636"></a>int32_t(* </p>
+<p id="p1023596233165636"><a name="p1023596233165636"></a><a name="p1023596233165636"></a>Called by the HDF when the subscribed-to driver service is loaded. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section616046405093537"></a>
+## **Details**<a name="section1119853582165636"></a>
 
-## **Field Documentation**<a name="section1843561605093537"></a>
+## **Field **<a name="section2073433366165636"></a>
 
 ## deviceObject<a name="af8640bdb30eb50c1d69781940b62c20d"></a>
 
@@ -67,17 +75,17 @@ Called by the HDF when the subscribed-to driver service is loaded.
 
 **Parameters:**
 
-<a name="table928045324093537"></a>
-<table><thead align="left"><tr id="row217821336093537"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1688619299093537"><a name="p1688619299093537"></a><a name="p1688619299093537"></a>Name</p>
+<a name="table1655585099165636"></a>
+<table><thead align="left"><tr id="row392484984165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2109382738165636"><a name="p2109382738165636"></a><a name="p2109382738165636"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1403642094093537"><a name="p1403642094093537"></a><a name="p1403642094093537"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p444952837165636"><a name="p444952837165636"></a><a name="p444952837165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row620005864093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">deviceObject</td>
+<tbody><tr id="row910398797165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">deviceObject</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the variable of the <a href="HdfDeviceObject.md">HdfDeviceObject</a> type. This variable is generated by the HDF and passed to the driver. </td>
 </tr>
-<tr id="row2045330729093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tr id="row1081905377165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the service object. </td>
 </tr>
 </tbody>
@@ -86,6 +94,4 @@ Called by the HDF when the subscribed-to driver service is loaded.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns a non-zero value otherwise.
-
-
 

@@ -1,25 +1,23 @@
 # 标准C库<a name="ZH-CN_TOPIC_0000001055707972"></a>
 
--   **[NET](NET.md)**  
-
--   **[IPC](IPC.md)**  
-
 -   **[FS](FS.md)**  
-
--   **[MEM](MEM.md)**  
 
 -   **[IO](IO.md)**  
 
+-   **[IPC](IPC.md)**  
+
+-   **[LINKER](LINKER.md)**  
+
 -   **[MATH](MATH.md)**  
+
+-   **[MEM](MEM.md)**  
+
+-   **[NET](NET.md)**  
 
 -   **[PROCESS](PROCESS.md)**  
 
 -   **[TIME](TIME.md)**  
 
 -   **[UTILS](UTILS.md)**  
-
--   **[LINKER](LINKER.md)**  
-
--   **[TIME-SYS](TIME-SYS.md)**  
 
 

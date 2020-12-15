@@ -1,6 +1,21 @@
 # AudioTrackInfo<a name="ZH-CN_TOPIC_0000001055678082"></a>
 
-## **Overview**<a name="section804907645093529"></a>
+-   [Overview](#section383083123165630)
+-   [Summary](#section550070999165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section160263714165630)
+-   [Field](#section1710969037165630)
+-   [bitrate](#a5e5683087b9272d3ee346180ca199afa)
+-   [channels](#a4468c447f3ad0673c6d06590ff764099)
+-   [durationMs](#a67862089989d0fae5fd35312ed5287fe)
+-   [format](#ae7b9c8bf17575184f4027cbe55b7c0a9)
+-   [language](#ac7d6fb077c4ef6f2c14737fef8f92ba7)
+-   [profile](#a87acdd081cb338b01364e1ced4c132aa)
+-   [sampleFmt](#a5a4778ebb70d50bc91f250ae6254ab26)
+-   [sampleRate](#a7504ddf6a446c7e157eeb015194e2db8)
+-   [subStreamID](#a682193c30bd99445980e3a8d591bb0ae)
+
+## **Overview**<a name="section383083123165630"></a>
 
 **Related Modules:**
 
@@ -18,68 +33,68 @@ Defines audio track information.
 
 1.0
 
-## **Summary**<a name="section907642918093529"></a>
+## **Summary**<a name="section550070999165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table863041384093529"></a>
-<table><thead align="left"><tr id="row1903670244093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1384275741093529"><a name="p1384275741093529"></a><a name="p1384275741093529"></a>Variable Name</p>
+<a name="table1913754128165630"></a>
+<table><thead align="left"><tr id="row637329224165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1592491254165630"><a name="p1592491254165630"></a><a name="p1592491254165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1797541461093529"><a name="p1797541461093529"></a><a name="p1797541461093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1232311847165630"><a name="p1232311847165630"></a><a name="p1232311847165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1156399812093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1388791705093529"><a name="p1388791705093529"></a><a name="p1388791705093529"></a><a href="AudioTrackInfo.md#ae7b9c8bf17575184f4027cbe55b7c0a9">format</a></p>
+<tbody><tr id="row593027325165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1758646818165630"><a name="p1758646818165630"></a><a name="p1758646818165630"></a><a href="AudioTrackInfo.md#ae7b9c8bf17575184f4027cbe55b7c0a9">format</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1232442678093529"><a name="p1232442678093529"></a><a name="p1232442678093529"></a><a href="Format.md#gaf7ed135f15d4b218d41705bac0122ba7">CodecFormat</a>&nbsp;</p>
-</td>
-</tr>
-<tr id="row941327642093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1261994728093529"><a name="p1261994728093529"></a><a name="p1261994728093529"></a><a href="AudioTrackInfo.md#a87acdd081cb338b01364e1ced4c132aa">profile</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p706957491093529"><a name="p706957491093529"></a><a name="p706957491093529"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p957080990165630"><a name="p957080990165630"></a><a name="p957080990165630"></a><a href="Format.md#gaf7ed135f15d4b218d41705bac0122ba7">CodecFormat</a> </p>
 </td>
 </tr>
-<tr id="row1964789528093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2105056565093529"><a name="p2105056565093529"></a><a name="p2105056565093529"></a><a href="AudioTrackInfo.md#a7504ddf6a446c7e157eeb015194e2db8">sampleRate</a></p>
+<tr id="row360703335165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1676792485165630"><a name="p1676792485165630"></a><a name="p1676792485165630"></a><a href="AudioTrackInfo.md#a87acdd081cb338b01364e1ced4c132aa">profile</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2061253995093529"><a name="p2061253995093529"></a><a name="p2061253995093529"></a>uint32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1922411288093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p237150281093529"><a name="p237150281093529"></a><a name="p237150281093529"></a><a href="AudioTrackInfo.md#a5a4778ebb70d50bc91f250ae6254ab26">sampleFmt</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2125384557093529"><a name="p2125384557093529"></a><a name="p2125384557093529"></a>uint16_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1228167615165630"><a name="p1228167615165630"></a><a name="p1228167615165630"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row882763823093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1900262980093529"><a name="p1900262980093529"></a><a name="p1900262980093529"></a><a href="AudioTrackInfo.md#a4468c447f3ad0673c6d06590ff764099">channels</a></p>
+<tr id="row1463751543165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1983975352165630"><a name="p1983975352165630"></a><a name="p1983975352165630"></a><a href="AudioTrackInfo.md#a7504ddf6a446c7e157eeb015194e2db8">sampleRate</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p868658979093529"><a name="p868658979093529"></a><a name="p868658979093529"></a>uint16_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1389326953093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1437874892093529"><a name="p1437874892093529"></a><a name="p1437874892093529"></a><a href="AudioTrackInfo.md#a682193c30bd99445980e3a8d591bb0ae">subStreamID</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p635355674093529"><a name="p635355674093529"></a><a name="p635355674093529"></a>int32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1113230733165630"><a name="p1113230733165630"></a><a name="p1113230733165630"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row668564043093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1654632933093529"><a name="p1654632933093529"></a><a name="p1654632933093529"></a><a href="AudioTrackInfo.md#a5e5683087b9272d3ee346180ca199afa">bitrate</a></p>
+<tr id="row894231661165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1547750072165630"><a name="p1547750072165630"></a><a name="p1547750072165630"></a><a href="AudioTrackInfo.md#a5a4778ebb70d50bc91f250ae6254ab26">sampleFmt</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p524801925093529"><a name="p524801925093529"></a><a name="p524801925093529"></a>uint32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1248892265093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p701986930093529"><a name="p701986930093529"></a><a name="p701986930093529"></a><a href="AudioTrackInfo.md#ac7d6fb077c4ef6f2c14737fef8f92ba7">language</a> [<a href="Format.md#gaa70508bb1089c99f9aa3d59fcbdfa8eb">FORMAT_LANGUAGE_LEN</a>]</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1403092836093529"><a name="p1403092836093529"></a><a name="p1403092836093529"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1240692784165630"><a name="p1240692784165630"></a><a name="p1240692784165630"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row110365399093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p938789872093529"><a name="p938789872093529"></a><a name="p938789872093529"></a><a href="AudioTrackInfo.md#a67862089989d0fae5fd35312ed5287fe">durationMs</a></p>
+<tr id="row1961303445165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1457788921165630"><a name="p1457788921165630"></a><a name="p1457788921165630"></a><a href="AudioTrackInfo.md#a4468c447f3ad0673c6d06590ff764099">channels</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p467044613093529"><a name="p467044613093529"></a><a name="p467044613093529"></a>int64_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p54026063165630"><a name="p54026063165630"></a><a name="p54026063165630"></a>uint16_t </p>
+</td>
+</tr>
+<tr id="row1919176094165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1753679308165630"><a name="p1753679308165630"></a><a name="p1753679308165630"></a><a href="AudioTrackInfo.md#a682193c30bd99445980e3a8d591bb0ae">subStreamID</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p374517900165630"><a name="p374517900165630"></a><a name="p374517900165630"></a>int32_t </p>
+</td>
+</tr>
+<tr id="row61780465165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p493538331165630"><a name="p493538331165630"></a><a name="p493538331165630"></a><a href="AudioTrackInfo.md#a5e5683087b9272d3ee346180ca199afa">bitrate</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1991386312165630"><a name="p1991386312165630"></a><a name="p1991386312165630"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row952557950165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2064246857165630"><a name="p2064246857165630"></a><a name="p2064246857165630"></a><a href="AudioTrackInfo.md#ac7d6fb077c4ef6f2c14737fef8f92ba7">language</a> [<a href="Format.md#gaa70508bb1089c99f9aa3d59fcbdfa8eb">FORMAT_LANGUAGE_LEN</a>]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1667413635165630"><a name="p1667413635165630"></a><a name="p1667413635165630"></a>char </p>
+</td>
+</tr>
+<tr id="row1138328144165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1215398927165630"><a name="p1215398927165630"></a><a name="p1215398927165630"></a><a href="AudioTrackInfo.md#a67862089989d0fae5fd35312ed5287fe">durationMs</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p552658326165630"><a name="p552658326165630"></a><a name="p552658326165630"></a>int64_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section515990934093529"></a>
+## **Details**<a name="section160263714165630"></a>
 
-## **Field Documentation**<a name="section426869070093529"></a>
+## **Field **<a name="section1710969037165630"></a>
 
 ## bitrate<a name="a5e5683087b9272d3ee346180ca199afa"></a>
 

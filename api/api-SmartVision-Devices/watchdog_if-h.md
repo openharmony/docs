@@ -1,6 +1,11 @@
 # watchdog\_if.h<a name="ZH-CN_TOPIC_0000001055683462"></a>
 
-## **Overview**<a name="section1177159512162113"></a>
+-   [Overview](#section621015195165630)
+-   [Summary](#section1204927856165630)
+-   [Enumerations](#enum-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section621015195165630"></a>
 
 **Related Modules:**
 
@@ -14,20 +19,20 @@ Declares standard watchdog APIs.
 
 1.0
 
-## **Summary**<a name="section1620543154162113"></a>
+## **Summary**<a name="section1204927856165630"></a>
 
 ## Enumerations<a name="enum-members"></a>
 
-<a name="table1934207372162113"></a>
-<table><thead align="left"><tr id="row1652574881162113"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p639455541162113"><a name="p639455541162113"></a><a name="p639455541162113"></a>Enumeration Name</p>
+<a name="table825080865165630"></a>
+<table><thead align="left"><tr id="row2091199588165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2231881165630"><a name="p2231881165630"></a><a name="p2231881165630"></a>Enumeration Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p712922103162113"><a name="p712922103162113"></a><a name="p712922103162113"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1092725775165630"><a name="p1092725775165630"></a><a name="p1092725775165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row715316518162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p632400594162113"><a name="p632400594162113"></a><a name="p632400594162113"></a><a href="WATCHDOG.md#ga3c77a35e1051e3f99238029519ac1954">WatchdogStatus</a> { <a href="WATCHDOG.md#gga3c77a35e1051e3f99238029519ac1954a2579c5f1c789b94d99988476031ec2a6">WATCHDOG_STOP</a>, <a href="WATCHDOG.md#gga3c77a35e1051e3f99238029519ac1954aec39073df0b03eb51cc0e17380b86c68">WATCHDOG_START</a> }</p>
+<tbody><tr id="row444866838165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p178610170165630"><a name="p178610170165630"></a><a name="p178610170165630"></a><a href="WATCHDOG.md#ga3c77a35e1051e3f99238029519ac1954">WatchdogStatus</a> { <a href="WATCHDOG.md#gga3c77a35e1051e3f99238029519ac1954a2579c5f1c789b94d99988476031ec2a6">WATCHDOG_STOP</a>, <a href="WATCHDOG.md#gga3c77a35e1051e3f99238029519ac1954aec39073df0b03eb51cc0e17380b86c68">WATCHDOG_START</a> }</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p376475876162113"><a name="p376475876162113"></a><a name="p376475876162113"></a>Enumerates watchdog statuses. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p587086751165630"><a name="p587086751165630"></a><a name="p587086751165630"></a>Enumerates watchdog statuses. </p>
 </td>
 </tr>
 </tbody>
@@ -35,59 +40,59 @@ Declares standard watchdog APIs.
 
 ## Functions<a name="func-members"></a>
 
-<a name="table230945529162113"></a>
-<table><thead align="left"><tr id="row1355399681162113"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1781456403162113"><a name="p1781456403162113"></a><a name="p1781456403162113"></a>Function Name</p>
+<a name="table229890448165630"></a>
+<table><thead align="left"><tr id="row1427995201165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p812326772165630"><a name="p812326772165630"></a><a name="p812326772165630"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p435291332162113"><a name="p435291332162113"></a><a name="p435291332162113"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1160344097165630"><a name="p1160344097165630"></a><a name="p1160344097165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row590289689162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p733925530162113"><a name="p733925530162113"></a><a name="p733925530162113"></a><a href="WATCHDOG.md#ga46db3382f1d577feb52a523b8fb5e921">WatchdogOpen</a> (int16_t wdtId)</p>
+<tbody><tr id="row509417781165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p934776026165630"><a name="p934776026165630"></a><a name="p934776026165630"></a><a href="WATCHDOG.md#ga0a88b7f3b90bf528cdc8b7589b125e85">WatchdogOpen</a> (int16_t wdtId)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p690404353162113"><a name="p690404353162113"></a><a name="p690404353162113"></a>struct <a href="DevHandle.md">DevHandle</a> *&nbsp;</p>
-<p id="p5586486162113"><a name="p5586486162113"></a><a name="p5586486162113"></a>Opens a watchdog. </p>
-</td>
-</tr>
-<tr id="row1915179051162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2085734822162113"><a name="p2085734822162113"></a><a name="p2085734822162113"></a><a href="WATCHDOG.md#ga2090460cfbf603f7ac5d71f897a21bc5">WatchdogClose</a> (struct <a href="DevHandle.md">DevHandle</a> *handle)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p881147363162113"><a name="p881147363162113"></a><a name="p881147363162113"></a>void&nbsp;</p>
-<p id="p284232915162113"><a name="p284232915162113"></a><a name="p284232915162113"></a>Closes a watchdog. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p319317254165630"><a name="p319317254165630"></a><a name="p319317254165630"></a><a href="COMMON.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> </p>
+<p id="p1539604332165630"><a name="p1539604332165630"></a><a name="p1539604332165630"></a>Opens a watchdog. </p>
 </td>
 </tr>
-<tr id="row1164888691162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1903527601162113"><a name="p1903527601162113"></a><a name="p1903527601162113"></a><a href="WATCHDOG.md#ga37d1311664523c25557b1280cb51ebdf">WatchdogGetStatus</a> (struct <a href="DevHandle.md">DevHandle</a> *handle, int32_t *status)</p>
+<tr id="row1501355297165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p176047536165630"><a name="p176047536165630"></a><a name="p176047536165630"></a><a href="WATCHDOG.md#ga9ba18801b59154c986aef6bb5cc92bf5">WatchdogClose</a> (<a href="COMMON.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1098468300162113"><a name="p1098468300162113"></a><a name="p1098468300162113"></a>int32_t&nbsp;</p>
-<p id="p685354432162113"><a name="p685354432162113"></a><a name="p685354432162113"></a>Obtains the watchdog status. </p>
-</td>
-</tr>
-<tr id="row1239342195162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1422591149162113"><a name="p1422591149162113"></a><a name="p1422591149162113"></a><a href="WATCHDOG.md#ga9e0f7009b8b117c6ffa7d10bc0267260">WatchdogStart</a> (struct <a href="DevHandle.md">DevHandle</a> *handle)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2124484602162113"><a name="p2124484602162113"></a><a name="p2124484602162113"></a>int32_t&nbsp;</p>
-<p id="p999591563162113"><a name="p999591563162113"></a><a name="p999591563162113"></a>Starts a watchdog. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2057880685165630"><a name="p2057880685165630"></a><a name="p2057880685165630"></a>void </p>
+<p id="p1323818443165630"><a name="p1323818443165630"></a><a name="p1323818443165630"></a>Closes a watchdog. </p>
 </td>
 </tr>
-<tr id="row350076709162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1735041362162113"><a name="p1735041362162113"></a><a name="p1735041362162113"></a><a href="WATCHDOG.md#ga0e45eae23d6fa67ebb2f5984d3b44c84">WatchdogStop</a> (struct <a href="DevHandle.md">DevHandle</a> *handle)</p>
+<tr id="row455587576165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1081223975165630"><a name="p1081223975165630"></a><a name="p1081223975165630"></a><a href="WATCHDOG.md#ga2fc274833b7dd18cc61209454d1fa82b">WatchdogGetStatus</a> (<a href="COMMON.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, int32_t *status)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p63724145162113"><a name="p63724145162113"></a><a name="p63724145162113"></a>int32_t&nbsp;</p>
-<p id="p400542681162113"><a name="p400542681162113"></a><a name="p400542681162113"></a>Stops a watchdog. </p>
-</td>
-</tr>
-<tr id="row800000607162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1879180127162113"><a name="p1879180127162113"></a><a name="p1879180127162113"></a><a href="WATCHDOG.md#ga3a632198f1337342fba3bdb9c91d4b99">WatchdogSetTimeout</a> (struct <a href="DevHandle.md">DevHandle</a> *handle, uint32_t seconds)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1779077595162113"><a name="p1779077595162113"></a><a name="p1779077595162113"></a>int32_t&nbsp;</p>
-<p id="p145104583162113"><a name="p145104583162113"></a><a name="p145104583162113"></a>Sets the watchdog timeout duration. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1756185016165630"><a name="p1756185016165630"></a><a name="p1756185016165630"></a>int32_t </p>
+<p id="p1515215565165630"><a name="p1515215565165630"></a><a name="p1515215565165630"></a>Obtains the watchdog status. </p>
 </td>
 </tr>
-<tr id="row1187219659162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p843532110162113"><a name="p843532110162113"></a><a name="p843532110162113"></a><a href="WATCHDOG.md#ga1dd8d1e262f8413826025cc868afc563">WatchdogGetTimeout</a> (struct <a href="DevHandle.md">DevHandle</a> *handle, uint32_t *seconds)</p>
+<tr id="row1627983185165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1273812904165630"><a name="p1273812904165630"></a><a name="p1273812904165630"></a><a href="WATCHDOG.md#ga6d15226fbc2fe5da184decb6370b0122">WatchdogStart</a> (<a href="COMMON.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p601172573162113"><a name="p601172573162113"></a><a name="p601172573162113"></a>int32_t&nbsp;</p>
-<p id="p369400817162113"><a name="p369400817162113"></a><a name="p369400817162113"></a>Obtains the watchdog timeout duration. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1088245960165630"><a name="p1088245960165630"></a><a name="p1088245960165630"></a>int32_t </p>
+<p id="p1383540761165630"><a name="p1383540761165630"></a><a name="p1383540761165630"></a>Starts a watchdog. </p>
 </td>
 </tr>
-<tr id="row78165635162113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1267914808162113"><a name="p1267914808162113"></a><a name="p1267914808162113"></a><a href="WATCHDOG.md#ga4d7a6beafd6a2702ef2a2b32618c5732">WatchdogFeed</a> (struct <a href="DevHandle.md">DevHandle</a> *handle)</p>
+<tr id="row2129379227165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p642612523165630"><a name="p642612523165630"></a><a name="p642612523165630"></a><a href="WATCHDOG.md#gac41a51b5d663f7963c06cb1241d50239">WatchdogStop</a> (<a href="COMMON.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1418627566162113"><a name="p1418627566162113"></a><a name="p1418627566162113"></a>int32_t&nbsp;</p>
-<p id="p757964831162113"><a name="p757964831162113"></a><a name="p757964831162113"></a>Feeds a watchdog, that is, resets a watchdog timer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p176490856165630"><a name="p176490856165630"></a><a name="p176490856165630"></a>int32_t </p>
+<p id="p1513724784165630"><a name="p1513724784165630"></a><a name="p1513724784165630"></a>Stops a watchdog. </p>
+</td>
+</tr>
+<tr id="row865252767165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2124903609165630"><a name="p2124903609165630"></a><a name="p2124903609165630"></a><a href="WATCHDOG.md#ga508bea0dac2cac12b0819bb7af81e628">WatchdogSetTimeout</a> (<a href="COMMON.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, uint32_t seconds)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p339565497165630"><a name="p339565497165630"></a><a name="p339565497165630"></a>int32_t </p>
+<p id="p1806783831165630"><a name="p1806783831165630"></a><a name="p1806783831165630"></a>Sets the watchdog timeout duration. </p>
+</td>
+</tr>
+<tr id="row1699053662165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1560328087165630"><a name="p1560328087165630"></a><a name="p1560328087165630"></a><a href="WATCHDOG.md#ga525602b8cacd030fb1630ea07f2a5b07">WatchdogGetTimeout</a> (<a href="COMMON.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, uint32_t *seconds)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p595167111165630"><a name="p595167111165630"></a><a name="p595167111165630"></a>int32_t </p>
+<p id="p1314559535165630"><a name="p1314559535165630"></a><a name="p1314559535165630"></a>Obtains the watchdog timeout duration. </p>
+</td>
+</tr>
+<tr id="row67496957165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p221364271165630"><a name="p221364271165630"></a><a name="p221364271165630"></a><a href="WATCHDOG.md#ga32e7d3939e8682e52502d9112ad6732a">WatchdogFeed</a> (<a href="COMMON.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p428778222165630"><a name="p428778222165630"></a><a name="p428778222165630"></a>int32_t </p>
+<p id="p372344503165630"><a name="p372344503165630"></a><a name="p372344503165630"></a>Feeds a watchdog, that is, resets a watchdog timer. </p>
 </td>
 </tr>
 </tbody>

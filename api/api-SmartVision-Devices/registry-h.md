@@ -1,6 +1,11 @@
 # registry.h<a name="ZH-CN_TOPIC_0000001055039494"></a>
 
-## **Overview**<a name="section1750823703093527"></a>
+-   [Overview](#section1164334444165628)
+-   [Summary](#section456991567165628)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1164334444165628"></a>
 
 **Related Modules:**
 
@@ -20,27 +25,27 @@ APIs provided by this file include the factory registration function of the clie
 
 1.0
 
-## **Summary**<a name="section57142229093527"></a>
+## **Summary**<a name="section456991567165628"></a>
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table1579802673093527"></a>
-<table><thead align="left"><tr id="row1532636330093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p897708944093527"><a name="p897708944093527"></a><a name="p897708944093527"></a>Typedef Name</p>
+<a name="table335539576165628"></a>
+<table><thead align="left"><tr id="row653424350165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p462350907165628"><a name="p462350907165628"></a><a name="p462350907165628"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1448794068093527"><a name="p1448794068093527"></a><a name="p1448794068093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2140031014165628"><a name="p2140031014165628"></a><a name="p2140031014165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1275950893093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1292551469093527"><a name="p1292551469093527"></a><a name="p1292551469093527"></a><a href="Registry.md#ga0c8aa2ef9883bd97b4f1309895adaa4c">Creator</a>) (const char *service, const char *feature, uint32 size)</p>
+<tbody><tr id="row685161963165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1535228553165628"><a name="p1535228553165628"></a><a name="p1535228553165628"></a><a href="Registry.md#ga0c8aa2ef9883bd97b4f1309895adaa4c">Creator</a>) (const char *service, const char *feature, uint32 size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1346593584093527"><a name="p1346593584093527"></a><a name="p1346593584093527"></a>typedef void *(*&nbsp;</p>
-<p id="p1203244515093527"><a name="p1203244515093527"></a><a name="p1203244515093527"></a>Indicates the creator of the customized client proxy. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1586822902165628"><a name="p1586822902165628"></a><a name="p1586822902165628"></a>typedef void *(* </p>
+<p id="p1057351171165628"><a name="p1057351171165628"></a><a name="p1057351171165628"></a>Indicates the creator of the customized client proxy. </p>
 </td>
 </tr>
-<tr id="row2091055333093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1543371174093527"><a name="p1543371174093527"></a><a name="p1543371174093527"></a><a href="Registry.md#ga1e6298b1246357f70ad0b581e0eb9305">Destroyer</a>) (const char *service, const char *feature, void *iproxy)</p>
+<tr id="row811052883165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p765743015165628"><a name="p765743015165628"></a><a name="p765743015165628"></a><a href="Registry.md#ga1e6298b1246357f70ad0b581e0eb9305">Destroyer</a>) (const char *service, const char *feature, void *iproxy)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p122232638093527"><a name="p122232638093527"></a><a name="p122232638093527"></a>typedef void(*&nbsp;</p>
-<p id="p1192528488093527"><a name="p1192528488093527"></a><a name="p1192528488093527"></a>Indicates the destroyer of the customized client proxy. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p626077137165628"><a name="p626077137165628"></a><a name="p626077137165628"></a>typedef void(* </p>
+<p id="p1784502678165628"><a name="p1784502678165628"></a><a name="p1784502678165628"></a>Indicates the destroyer of the customized client proxy. </p>
 </td>
 </tr>
 </tbody>
@@ -48,17 +53,17 @@ APIs provided by this file include the factory registration function of the clie
 
 ## Functions<a name="func-members"></a>
 
-<a name="table294292615093527"></a>
-<table><thead align="left"><tr id="row1788642989093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p718015609093527"><a name="p718015609093527"></a><a name="p718015609093527"></a>Function Name</p>
+<a name="table1817982157165628"></a>
+<table><thead align="left"><tr id="row2010686949165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1616234975165628"><a name="p1616234975165628"></a><a name="p1616234975165628"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p45092534093527"><a name="p45092534093527"></a><a name="p45092534093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p19232784165628"><a name="p19232784165628"></a><a name="p19232784165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2096703007093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p488816527093527"><a name="p488816527093527"></a><a name="p488816527093527"></a><a href="Registry.md#ga64797e3f63201c40dbdf21b90cff23d2">SAMGR_RegisterFactory</a> (const char *service, const char *feature, <a href="Registry.md#ga0c8aa2ef9883bd97b4f1309895adaa4c">Creator</a> creator, <a href="Registry.md#ga1e6298b1246357f70ad0b581e0eb9305">Destroyer</a> destroyer)</p>
+<tbody><tr id="row1457080904165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p834516641165628"><a name="p834516641165628"></a><a name="p834516641165628"></a><a href="Registry.md#ga64797e3f63201c40dbdf21b90cff23d2">SAMGR_RegisterFactory</a> (const char *service, const char *feature, <a href="Registry.md#ga0c8aa2ef9883bd97b4f1309895adaa4c">Creator</a> creator, <a href="Registry.md#ga1e6298b1246357f70ad0b581e0eb9305">Destroyer</a> destroyer)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p207287737093527"><a name="p207287737093527"></a><a name="p207287737093527"></a>int&nbsp;</p>
-<p id="p1454260602093527"><a name="p1454260602093527"></a><a name="p1454260602093527"></a>Registers the factory method of the client proxy object with the Samgr. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p345139889165628"><a name="p345139889165628"></a><a name="p345139889165628"></a>int </p>
+<p id="p1198075154165628"><a name="p1198075154165628"></a><a name="p1198075154165628"></a>Registers the factory method of the client proxy object with the Samgr. </p>
 </td>
 </tr>
 </tbody>

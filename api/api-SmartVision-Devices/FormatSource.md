@@ -1,6 +1,16 @@
 # FormatSource<a name="ZH-CN_TOPIC_0000001054879530"></a>
 
-## **Overview**<a name="section1841736801084835"></a>
+-   [Overview](#section1977746972165631)
+-   [Summary](#section1154583350165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1037039597165631)
+-   [Field](#section1175359571165631)
+-   [fd](#adc25d5e97f531f36d7f129136abb483d)
+-   [stream](#a33f6a121891b692ef246011e0415f3fe)
+-   [type](#abdb0407f672c5e9af53eae7726c2e7b2)
+-   [url](#adc0405c090069d6bbf2017995710a0f8)
+
+## **Overview**<a name="section1977746972165631"></a>
 
 **Related Modules:**
 
@@ -18,51 +28,49 @@ Defines the demuxer data source.
 
 1.0
 
-## **Summary**<a name="section364047497084835"></a>
+## **Summary**<a name="section1154583350165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1943431407084835"></a>
-<table><thead align="left"><tr id="row1613403606084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p472802673084835"><a name="p472802673084835"></a><a name="p472802673084835"></a>Variable Name</p>
+<a name="table193281277165631"></a>
+<table><thead align="left"><tr id="row449632266165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p551734375165631"><a name="p551734375165631"></a><a name="p551734375165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1966326085084835"><a name="p1966326085084835"></a><a name="p1966326085084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1372431400165631"><a name="p1372431400165631"></a><a name="p1372431400165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row738113921084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p320719351084835"><a name="p320719351084835"></a><a name="p320719351084835"></a><a href="FormatSource.md#abdb0407f672c5e9af53eae7726c2e7b2">type</a></p>
+<tbody><tr id="row521214892165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p316078515165631"><a name="p316078515165631"></a><a name="p316078515165631"></a><a href="FormatSource.md#abdb0407f672c5e9af53eae7726c2e7b2">type</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1000720170084835"><a name="p1000720170084835"></a><a name="p1000720170084835"></a><a href="Format.md#ga3ae727773c367ac1041d72ac770a0ab1">SourceType</a>&nbsp;</p>
-</td>
-</tr>
-<tr id="row86011175084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p10681898084835"><a name="p10681898084835"></a><a name="p10681898084835"></a><em id="a70fb2123cb4e5c7719118e8db94c13af"><a name="a70fb2123cb4e5c7719118e8db94c13af"></a><a name="a70fb2123cb4e5c7719118e8db94c13af"></a></em></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1959493610084835"><a name="p1959493610084835"></a><a name="p1959493610084835"></a><strong id="a70fb2123cb4e5c7719118e8db94c13af_1"><a name="a70fb2123cb4e5c7719118e8db94c13af_1"></a><a name="a70fb2123cb4e5c7719118e8db94c13af_1"></a></strong> union {</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1235966448165631"><a name="p1235966448165631"></a><a name="p1235966448165631"></a><a href="Format.md#ga3ae727773c367ac1041d72ac770a0ab1">SourceType</a> </p>
 </td>
 </tr>
-<tr id="row495325954084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1805485256084835"><a name="p1805485256084835"></a><a name="p1805485256084835"></a>&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;<a href="FormatSource.md#adc25d5e97f531f36d7f129136abb483d">fd</a></p>
+<tr id="row1434855637165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p202869730165631"><a name="p202869730165631"></a><a name="p202869730165631"></a><strong id="a906e88d66b9e3cafea9624d05a7517d6"><a name="a906e88d66b9e3cafea9624d05a7517d6"></a><a name="a906e88d66b9e3cafea9624d05a7517d6"></a></strong> union {</p>
 </td>
 </tr>
-<tr id="row2075347042084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p881547841084835"><a name="p881547841084835"></a><a name="p881547841084835"></a>&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;<a href="FormatSource.md#adc0405c090069d6bbf2017995710a0f8">url</a> [<a href="Format.md#ga1ac54dd3b9b49c1800b5f502a87650be">URL_LEN</a>]</p>
+<tr id="row110779224165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1376628040165631"><a name="p1376628040165631"></a><a name="p1376628040165631"></a>   int   <a href="FormatSource.md#adc25d5e97f531f36d7f129136abb483d">fd</a></p>
 </td>
 </tr>
-<tr id="row1791639536084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1422545273084835"><a name="p1422545273084835"></a><a name="p1422545273084835"></a>&nbsp;&nbsp;&nbsp;<a href="BufferStream.md">BufferStream</a> *&nbsp;&nbsp;&nbsp;<a href="FormatSource.md#a33f6a121891b692ef246011e0415f3fe">stream</a></p>
+<tr id="row1973332737165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p752246261165631"><a name="p752246261165631"></a><a name="p752246261165631"></a>   char   <a href="FormatSource.md#adc0405c090069d6bbf2017995710a0f8">url</a> [<a href="Format.md#ga1ac54dd3b9b49c1800b5f502a87650be">URL_LEN</a>]</p>
 </td>
 </tr>
-<tr id="row692051822084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1831026417084835"><a name="p1831026417084835"></a><a name="p1831026417084835"></a><em id="a70fb2123cb4e5c7719118e8db94c13af_2"><a name="a70fb2123cb4e5c7719118e8db94c13af_2"></a><a name="a70fb2123cb4e5c7719118e8db94c13af_2"></a></em></p>
+<tr id="row88304787165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1066567480165631"><a name="p1066567480165631"></a><a name="p1066567480165631"></a>   <a href="BufferStream.md">BufferStream</a> *   <a href="FormatSource.md#a33f6a121891b692ef246011e0415f3fe">stream</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p376002917084835"><a name="p376002917084835"></a><a name="p376002917084835"></a>};&nbsp;</p>
-<p id="p1172510347084835"><a name="p1172510347084835"></a><a name="p1172510347084835"></a>Defines information about different types of data sources. </p>
+</tr>
+<tr id="row1534194864165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p137038995165631"><a name="p137038995165631"></a><a name="p137038995165631"></a>}; </p>
+<p id="p1816399533165631"><a name="p1816399533165631"></a><a name="p1816399533165631"></a>Defines information about different types of data sources. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1920740890084835"></a>
+## **Details**<a name="section1037039597165631"></a>
 
-## **Field Documentation**<a name="section783899785084835"></a>
+## **Field **<a name="section1175359571165631"></a>
 
 ## fd<a name="adc25d5e97f531f36d7f129136abb483d"></a>
 

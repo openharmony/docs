@@ -1,8 +1,18 @@
 # Tool Acquisition<a name="EN-US_TOPIC_0000001055701144"></a>
 
+-   [Acquiring Compilation Toolchain](#section18750162432511)
+-   [Acquiring the Device Development Tool \(HUAWEI DevEco Device Tool\)](#section12307171315108)
+-   [Tool Introduction](#section68281728193514)
+-   [Website](#section13785205443514)
+-   [Usage Guidelines](#section14919195917361)
+-   [Acquiring the Application Development Tool \(HUAWEI DevEco Studio\)](#section5472125503411)
+-   [Tool Introduction](#section17935101224620)
+-   [Website](#section1572093543613)
+-   [Usage Guidelines](#section1125615298385)
+
 ## Acquiring Compilation Toolchain<a name="section18750162432511"></a>
 
-The following table lists the compilation toolchain downloaded from an image site. For details about how to download and install all compilation tools, see the  **Environment Setup**  section in  **Getting Started**  of the specific development board.
+The following table lists the compilation toolchain downloaded from an image site. For details about how to download and install all compilation tools, see  [Setting Up a Hi3861 Development Environment](../quick-start/setting-up-a-development-environment.md),  [Setting Up a Hi3516 Development Environment](../quick-start/setting-up-a-hi3516-board-environment.md), or  [Setting Up a Hi3518 Development Environment](../quick-start/setting-up-a-development-environment-1.md)  in  _Quick Start_.
 
 **Table  1**  Acquiring compilation toolchain
 
@@ -77,7 +87,7 @@ The following table lists the compilation toolchain downloaded from an image sit
 </tbody>
 </table>
 
-You need to check whether the compilation toolchain is downloaded from the official channel.
+You need to check whether these tools are downloaded from the official channel.
 
 1.  Run the following command in the Ubuntu environment to generate an SHA256 digest:
 

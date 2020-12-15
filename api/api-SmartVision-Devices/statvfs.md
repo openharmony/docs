@@ -1,6 +1,24 @@
 # statvfs<a name="ZH-CN_TOPIC_0000001055678142"></a>
 
-## **Overview**<a name="section467434898084843"></a>
+-   [Overview](#section2044054788165637)
+-   [Summary](#section1184727561165637)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1267364075165637)
+-   [Field](#section1524441371165637)
+-   [\_\_reserved](#a57b706767c1a69cdb86c33e7196fe647)
+-   [f\_bavail](#a38e0b0109797e233de83ff9e8c4d0520)
+-   [f\_bfree](#ab004873a74b951610b969a222116dccb)
+-   [f\_blocks](#a83b2d1725a43fef463597eda75b7af1b)
+-   [f\_bsize](#a3400d89a2627d6313da0cb39ff6209ec)
+-   [f\_favail](#a6f336f60b6cba33b9380181ef413022f)
+-   [f\_ffree](#a601437cadd9c607cba0c653706af3d22)
+-   [f\_files](#a38f6a9335cabe3bff82c2d96cc538e6f)
+-   [f\_flag](#adb8f52b3e1b3a90358ec3e97e56aafcd)
+-   [f\_frsize](#af01dafa58ce2f665bc8b6ba1741f1896)
+-   [f\_fsid](#a1a180e536ad58f06b0c05d913d0ae9cf)
+-   [f\_namemax](#a138cd6cae031d89d7ae90649fb667696)
+
+## **Overview**<a name="section2044054788165637"></a>
 
 **Related Modules:**
 
@@ -10,83 +28,83 @@
 
 Describes file system information. 
 
-## **Summary**<a name="section487801491084843"></a>
+## **Summary**<a name="section1184727561165637"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1744310502084843"></a>
-<table><thead align="left"><tr id="row880538930084843"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1828887717084843"><a name="p1828887717084843"></a><a name="p1828887717084843"></a>Variable Name</p>
+<a name="table1792759314165637"></a>
+<table><thead align="left"><tr id="row2026818172165637"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p931549021165637"><a name="p931549021165637"></a><a name="p931549021165637"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p813384273084843"><a name="p813384273084843"></a><a name="p813384273084843"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1633803627165637"><a name="p1633803627165637"></a><a name="p1633803627165637"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1867407824084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1685286715084843"><a name="p1685286715084843"></a><a name="p1685286715084843"></a><a href="statvfs.md#a3400d89a2627d6313da0cb39ff6209ec">f_bsize</a></p>
+<tbody><tr id="row2001834583165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p953761690165637"><a name="p953761690165637"></a><a name="p953761690165637"></a><a href="statvfs.md#a3400d89a2627d6313da0cb39ff6209ec">f_bsize</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p163402655084843"><a name="p163402655084843"></a><a name="p163402655084843"></a>unsigned long&nbsp;</p>
-</td>
-</tr>
-<tr id="row1880123757084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p573414300084843"><a name="p573414300084843"></a><a name="p573414300084843"></a><a href="statvfs.md#af01dafa58ce2f665bc8b6ba1741f1896">f_frsize</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1176601408084843"><a name="p1176601408084843"></a><a name="p1176601408084843"></a>unsigned long&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p356960123165637"><a name="p356960123165637"></a><a name="p356960123165637"></a>unsigned long </p>
 </td>
 </tr>
-<tr id="row2007606524084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1165750455084843"><a name="p1165750455084843"></a><a name="p1165750455084843"></a><a href="statvfs.md#a83b2d1725a43fef463597eda75b7af1b">f_blocks</a></p>
+<tr id="row699021029165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2124330337165637"><a name="p2124330337165637"></a><a name="p2124330337165637"></a><a href="statvfs.md#af01dafa58ce2f665bc8b6ba1741f1896">f_frsize</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p879585598084843"><a name="p879585598084843"></a><a name="p879585598084843"></a>fsblkcnt_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row685370762084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p387702768084843"><a name="p387702768084843"></a><a name="p387702768084843"></a><a href="statvfs.md#ab004873a74b951610b969a222116dccb">f_bfree</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p655968883084843"><a name="p655968883084843"></a><a name="p655968883084843"></a>fsblkcnt_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1816512097165637"><a name="p1816512097165637"></a><a name="p1816512097165637"></a>unsigned long </p>
 </td>
 </tr>
-<tr id="row1346350082084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1946539446084843"><a name="p1946539446084843"></a><a name="p1946539446084843"></a><a href="statvfs.md#a38e0b0109797e233de83ff9e8c4d0520">f_bavail</a></p>
+<tr id="row1017889646165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1137399787165637"><a name="p1137399787165637"></a><a name="p1137399787165637"></a><a href="statvfs.md#a83b2d1725a43fef463597eda75b7af1b">f_blocks</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p549627033084843"><a name="p549627033084843"></a><a name="p549627033084843"></a>fsblkcnt_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row441124531084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1449235955084843"><a name="p1449235955084843"></a><a name="p1449235955084843"></a><a href="statvfs.md#a38f6a9335cabe3bff82c2d96cc538e6f">f_files</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1870353056084843"><a name="p1870353056084843"></a><a name="p1870353056084843"></a>fsfilcnt_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p530731059165637"><a name="p530731059165637"></a><a name="p530731059165637"></a>fsblkcnt_t </p>
 </td>
 </tr>
-<tr id="row1256710737084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p916818028084843"><a name="p916818028084843"></a><a name="p916818028084843"></a><a href="statvfs.md#a601437cadd9c607cba0c653706af3d22">f_ffree</a></p>
+<tr id="row1837501157165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p532718118165637"><a name="p532718118165637"></a><a name="p532718118165637"></a><a href="statvfs.md#ab004873a74b951610b969a222116dccb">f_bfree</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p899579738084843"><a name="p899579738084843"></a><a name="p899579738084843"></a>fsfilcnt_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1144957159084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1046692827084843"><a name="p1046692827084843"></a><a name="p1046692827084843"></a><a href="statvfs.md#a6f336f60b6cba33b9380181ef413022f">f_favail</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p245821717084843"><a name="p245821717084843"></a><a name="p245821717084843"></a>fsfilcnt_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1290920164165637"><a name="p1290920164165637"></a><a name="p1290920164165637"></a>fsblkcnt_t </p>
 </td>
 </tr>
-<tr id="row2017259314084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p328642401084843"><a name="p328642401084843"></a><a name="p328642401084843"></a><a href="statvfs.md#a1a180e536ad58f06b0c05d913d0ae9cf">f_fsid</a></p>
+<tr id="row1983035060165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p921892712165637"><a name="p921892712165637"></a><a name="p921892712165637"></a><a href="statvfs.md#a38e0b0109797e233de83ff9e8c4d0520">f_bavail</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1545222216084843"><a name="p1545222216084843"></a><a name="p1545222216084843"></a>unsigned long&nbsp;</p>
-</td>
-</tr>
-<tr id="row312305177084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1854323337084843"><a name="p1854323337084843"></a><a name="p1854323337084843"></a><a href="statvfs.md#adb8f52b3e1b3a90358ec3e97e56aafcd">f_flag</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2034309669084843"><a name="p2034309669084843"></a><a name="p2034309669084843"></a>unsigned long&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1759613905165637"><a name="p1759613905165637"></a><a name="p1759613905165637"></a>fsblkcnt_t </p>
 </td>
 </tr>
-<tr id="row552716914084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p911170207084843"><a name="p911170207084843"></a><a name="p911170207084843"></a><a href="statvfs.md#a138cd6cae031d89d7ae90649fb667696">f_namemax</a></p>
+<tr id="row791551050165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1226820710165637"><a name="p1226820710165637"></a><a name="p1226820710165637"></a><a href="statvfs.md#a38f6a9335cabe3bff82c2d96cc538e6f">f_files</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1925551226084843"><a name="p1925551226084843"></a><a name="p1925551226084843"></a>unsigned long&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p827153462165637"><a name="p827153462165637"></a><a name="p827153462165637"></a>fsfilcnt_t </p>
 </td>
 </tr>
-<tr id="row996262555084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1312076239084843"><a name="p1312076239084843"></a><a name="p1312076239084843"></a><a href="statvfs.md#a57b706767c1a69cdb86c33e7196fe647">__reserved</a> [6]</p>
+<tr id="row1926025095165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p435081367165637"><a name="p435081367165637"></a><a name="p435081367165637"></a><a href="statvfs.md#a601437cadd9c607cba0c653706af3d22">f_ffree</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p11791822084843"><a name="p11791822084843"></a><a name="p11791822084843"></a>int&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p647566463165637"><a name="p647566463165637"></a><a name="p647566463165637"></a>fsfilcnt_t </p>
+</td>
+</tr>
+<tr id="row283375812165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1476386138165637"><a name="p1476386138165637"></a><a name="p1476386138165637"></a><a href="statvfs.md#a6f336f60b6cba33b9380181ef413022f">f_favail</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p14203768165637"><a name="p14203768165637"></a><a name="p14203768165637"></a>fsfilcnt_t </p>
+</td>
+</tr>
+<tr id="row1485160688165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p295392197165637"><a name="p295392197165637"></a><a name="p295392197165637"></a><a href="statvfs.md#a1a180e536ad58f06b0c05d913d0ae9cf">f_fsid</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1211103700165637"><a name="p1211103700165637"></a><a name="p1211103700165637"></a>unsigned long </p>
+</td>
+</tr>
+<tr id="row408352132165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p542515778165637"><a name="p542515778165637"></a><a name="p542515778165637"></a><a href="statvfs.md#adb8f52b3e1b3a90358ec3e97e56aafcd">f_flag</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1062726209165637"><a name="p1062726209165637"></a><a name="p1062726209165637"></a>unsigned long </p>
+</td>
+</tr>
+<tr id="row971797808165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p52349245165637"><a name="p52349245165637"></a><a name="p52349245165637"></a><a href="statvfs.md#a138cd6cae031d89d7ae90649fb667696">f_namemax</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p832210954165637"><a name="p832210954165637"></a><a name="p832210954165637"></a>unsigned long </p>
+</td>
+</tr>
+<tr id="row383831073165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1884302589165637"><a name="p1884302589165637"></a><a name="p1884302589165637"></a><a href="statvfs.md#a57b706767c1a69cdb86c33e7196fe647">__reserved</a> [6]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p510802318165637"><a name="p510802318165637"></a><a name="p510802318165637"></a>int </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1212205440084843"></a>
+## **Details**<a name="section1267364075165637"></a>
 
-## **Field Documentation**<a name="section683045177084843"></a>
+## **Field **<a name="section1524441371165637"></a>
 
 ## \_\_reserved<a name="a57b706767c1a69cdb86c33e7196fe647"></a>
 

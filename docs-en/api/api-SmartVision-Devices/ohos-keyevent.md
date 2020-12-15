@@ -1,6 +1,10 @@
 # OHOS::KeyEvent<a name="EN-US_TOPIC_0000001055198160"></a>
 
-## **Overview**<a name="section1810139862093535"></a>
+-   [Overview](#section628384899165635)
+-   [Summary](#section1291846480165635)
+-   [Public Member Functions](#pub-methods)
+
+## **Overview**<a name="section628384899165635"></a>
 
 **Related Modules:**
 
@@ -18,87 +22,87 @@ Defines a key event, which indicates that a physical button is pressed or releas
 
 1.0
 
-## **Summary**<a name="section302703685093535"></a>
+## **Summary**<a name="section1291846480165635"></a>
 
 ## Public Member Functions<a name="pub-methods"></a>
 
-<a name="table243125813093535"></a>
-<table><thead align="left"><tr id="row307972263093535"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1190829060093535"><a name="p1190829060093535"></a><a name="p1190829060093535"></a>Public Member Function Name</p>
+<a name="table1035499283165635"></a>
+<table><thead align="left"><tr id="row1205592068165635"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1289970861165635"><a name="p1289970861165635"></a><a name="p1289970861165635"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p792514786093535"><a name="p792514786093535"></a><a name="p792514786093535"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p404480367165635"><a name="p404480367165635"></a><a name="p404480367165635"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1184531231093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p291459893093535"><a name="p291459893093535"></a><a name="p291459893093535"></a><a href="graphic.md#ga3a52d91ac5d8fd7779baafae6ec92f9b">KeyEvent</a> (uint16_t keyId, uint16_t state)</p>
+<tbody><tr id="row1333165911165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p385082070165635"><a name="p385082070165635"></a><a name="p385082070165635"></a><a href="graphic.md#ga3a52d91ac5d8fd7779baafae6ec92f9b">KeyEvent</a> (uint16_t keyId, uint16_t state)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2068634433093535"><a name="p2068634433093535"></a><a name="p2068634433093535"></a> </p>
-<p id="p209686811093535"><a name="p209686811093535"></a><a name="p209686811093535"></a>A constructor used to create a <strong id="b835539016093535"><a name="b835539016093535"></a><a name="b835539016093535"></a><a href="ohos-keyevent.md">KeyEvent</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row327227114093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1587358560093535"><a name="p1587358560093535"></a><a name="p1587358560093535"></a><a href="graphic.md#ga468e77700a90ef155a2428af9176551e">~KeyEvent</a> ()</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1874997557093535"><a name="p1874997557093535"></a><a name="p1874997557093535"></a> </p>
-<p id="p756628997093535"><a name="p756628997093535"></a><a name="p756628997093535"></a>A destructor used to delete the <strong id="b444939318093535"><a name="b444939318093535"></a><a name="b444939318093535"></a><a href="ohos-keyevent.md">KeyEvent</a></strong> instance. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p748513168165635"><a name="p748513168165635"></a><a name="p748513168165635"></a> </p>
+<p id="p1292056428165635"><a name="p1292056428165635"></a><a name="p1292056428165635"></a>A constructor used to create a <strong id="b510153467165635"><a name="b510153467165635"></a><a name="b510153467165635"></a><a href="ohos-keyevent.md">KeyEvent</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row882871571093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1071749573093535"><a name="p1071749573093535"></a><a name="p1071749573093535"></a><a href="graphic.md#gae2b2b83cc3a562b3173f69c95722db99">GetKeyId</a> () const</p>
+<tr id="row223551182165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1054463492165635"><a name="p1054463492165635"></a><a name="p1054463492165635"></a><a href="graphic.md#ga468e77700a90ef155a2428af9176551e">~KeyEvent</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p353128776093535"><a name="p353128776093535"></a><a name="p353128776093535"></a>uint16_t </p>
-<p id="p1694673422093535"><a name="p1694673422093535"></a><a name="p1694673422093535"></a>Obtains the key ID. </p>
-</td>
-</tr>
-<tr id="row1099894104093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1259555504093535"><a name="p1259555504093535"></a><a name="p1259555504093535"></a><a href="graphic.md#gaf93661e10da4b4df75c04d8fd199a5e8">GetState</a> () const</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p278435718093535"><a name="p278435718093535"></a><a name="p278435718093535"></a>uint16_t </p>
-<p id="p1135974590093535"><a name="p1135974590093535"></a><a name="p1135974590093535"></a>Obtains the key state. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p453448000165635"><a name="p453448000165635"></a><a name="p453448000165635"></a> </p>
+<p id="p850405281165635"><a name="p850405281165635"></a><a name="p850405281165635"></a>A destructor used to delete the <strong id="b1163681193165635"><a name="b1163681193165635"></a><a name="b1163681193165635"></a><a href="ohos-keyevent.md">KeyEvent</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row889916282093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1786909497093535"><a name="p1786909497093535"></a><a name="p1786909497093535"></a><a href="graphic.md#ga89cd09ced5537a3479b7901ba8abc6da">Event</a> ()</p>
+<tr id="row1940082814165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p903405422165635"><a name="p903405422165635"></a><a name="p903405422165635"></a><a href="graphic.md#gae2b2b83cc3a562b3173f69c95722db99">GetKeyId</a> () const</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1091259189093535"><a name="p1091259189093535"></a><a name="p1091259189093535"></a> </p>
-<p id="p2042821815093535"><a name="p2042821815093535"></a><a name="p2042821815093535"></a>A default constructor used to create an <strong id="b1126951523093535"><a name="b1126951523093535"></a><a name="b1126951523093535"></a><a href="ohos-event.md">Event</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row1771507784093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1286990786093535"><a name="p1286990786093535"></a><a name="p1286990786093535"></a><a href="graphic.md#ga57a9f07c8203c6a60f3b25c4edb526a0">Event</a> (const <a href="ohos-point.md">Point</a> &amp;curPos)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2035816948093535"><a name="p2035816948093535"></a><a name="p2035816948093535"></a> </p>
-<p id="p852811048093535"><a name="p852811048093535"></a><a name="p852811048093535"></a>A constructor used to create an <strong id="b69265613093535"><a name="b69265613093535"></a><a name="b69265613093535"></a><a href="ohos-event.md">Event</a></strong> instance. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1798953297165635"><a name="p1798953297165635"></a><a name="p1798953297165635"></a>uint16_t </p>
+<p id="p1318326396165635"><a name="p1318326396165635"></a><a name="p1318326396165635"></a>Obtains the key ID. </p>
 </td>
 </tr>
-<tr id="row1141032488093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p493844563093535"><a name="p493844563093535"></a><a name="p493844563093535"></a><a href="graphic.md#gabafa07a6393f4757f402bf9437561fa4">~Event</a> ()</p>
+<tr id="row1961889737165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p11668494165635"><a name="p11668494165635"></a><a name="p11668494165635"></a><a href="graphic.md#gaf93661e10da4b4df75c04d8fd199a5e8">GetState</a> () const</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p707663655093535"><a name="p707663655093535"></a><a name="p707663655093535"></a>virtual </p>
-<p id="p881735045093535"><a name="p881735045093535"></a><a name="p881735045093535"></a>A destructor used to delete the <strong id="b1630740756093535"><a name="b1630740756093535"></a><a name="b1630740756093535"></a><a href="ohos-event.md">Event</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row1162569361093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p966463652093535"><a name="p966463652093535"></a><a name="p966463652093535"></a><a href="graphic.md#gaea811c661ad416d7f70912ad6fcce269">GetCurrentPos</a> () const</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1175853389093535"><a name="p1175853389093535"></a><a name="p1175853389093535"></a>const <a href="ohos-point.md">Point</a> &amp; </p>
-<p id="p1269379535093535"><a name="p1269379535093535"></a><a name="p1269379535093535"></a>Obtains the position where an event occurs. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p733996564165635"><a name="p733996564165635"></a><a name="p733996564165635"></a>uint16_t </p>
+<p id="p1546636084165635"><a name="p1546636084165635"></a><a name="p1546636084165635"></a>Obtains the key state. </p>
 </td>
 </tr>
-<tr id="row933499694093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1808713167093535"><a name="p1808713167093535"></a><a name="p1808713167093535"></a><a href="graphic.md#ga7d56c2a99ab2c98eec9ebc03f67b7777">GetTimeStamp</a> () const</p>
+<tr id="row1115806803165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p227734025165635"><a name="p227734025165635"></a><a name="p227734025165635"></a><a href="graphic.md#ga89cd09ced5537a3479b7901ba8abc6da">Event</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1623744739093535"><a name="p1623744739093535"></a><a name="p1623744739093535"></a>const TimeType &amp; </p>
-<p id="p623077793093535"><a name="p623077793093535"></a><a name="p623077793093535"></a>Obtains the timestamp when an event occurs. </p>
-</td>
-</tr>
-<tr id="row430276191093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1605730482093535"><a name="p1605730482093535"></a><a name="p1605730482093535"></a><a href="graphic.md#gabee47ba229e81c44f648cf5b3203010f">SetTimeStamp</a> (const TimeType &amp;timeStamp)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p510500544093535"><a name="p510500544093535"></a><a name="p510500544093535"></a>void </p>
-<p id="p698278374093535"><a name="p698278374093535"></a><a name="p698278374093535"></a>Sets the timestamp when an event occurs. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1290803494165635"><a name="p1290803494165635"></a><a name="p1290803494165635"></a> </p>
+<p id="p150069842165635"><a name="p150069842165635"></a><a name="p150069842165635"></a>A default constructor used to create an <strong id="b588104745165635"><a name="b588104745165635"></a><a name="b588104745165635"></a><a href="ohos-event.md">Event</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row598649754093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1534084902093535"><a name="p1534084902093535"></a><a name="p1534084902093535"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
+<tr id="row1494662073165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2061662627165635"><a name="p2061662627165635"></a><a name="p2061662627165635"></a><a href="graphic.md#ga57a9f07c8203c6a60f3b25c4edb526a0">Event</a> (const <a href="ohos-point.md">Point</a> &amp;curPos)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p290990255093535"><a name="p290990255093535"></a><a name="p290990255093535"></a>void * </p>
-<p id="p367949732093535"><a name="p367949732093535"></a><a name="p367949732093535"></a>Overrides the <strong id="b1072854379093535"><a name="b1072854379093535"></a><a name="b1072854379093535"></a>new</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2090355009165635"><a name="p2090355009165635"></a><a name="p2090355009165635"></a> </p>
+<p id="p662283641165635"><a name="p662283641165635"></a><a name="p662283641165635"></a>A constructor used to create an <strong id="b747802606165635"><a name="b747802606165635"></a><a name="b747802606165635"></a><a href="ohos-event.md">Event</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row846343089093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1895470073093535"><a name="p1895470073093535"></a><a name="p1895470073093535"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+<tr id="row1161042416165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1856672752165635"><a name="p1856672752165635"></a><a name="p1856672752165635"></a><a href="graphic.md#gabafa07a6393f4757f402bf9437561fa4">~Event</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1765620969093535"><a name="p1765620969093535"></a><a name="p1765620969093535"></a>void </p>
-<p id="p1060070937093535"><a name="p1060070937093535"></a><a name="p1060070937093535"></a>Overrides the <strong id="b433394960093535"><a name="b433394960093535"></a><a name="b433394960093535"></a>delete</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1665889694165635"><a name="p1665889694165635"></a><a name="p1665889694165635"></a>virtual </p>
+<p id="p2128036889165635"><a name="p2128036889165635"></a><a name="p2128036889165635"></a>A destructor used to delete the <strong id="b1889970023165635"><a name="b1889970023165635"></a><a name="b1889970023165635"></a><a href="ohos-event.md">Event</a></strong> instance. </p>
+</td>
+</tr>
+<tr id="row1378602015165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p231661948165635"><a name="p231661948165635"></a><a name="p231661948165635"></a><a href="graphic.md#gaea811c661ad416d7f70912ad6fcce269">GetCurrentPos</a> () const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1912494638165635"><a name="p1912494638165635"></a><a name="p1912494638165635"></a>const <a href="ohos-point.md">Point</a> &amp; </p>
+<p id="p354542736165635"><a name="p354542736165635"></a><a name="p354542736165635"></a>Obtains the position where an event occurs. </p>
+</td>
+</tr>
+<tr id="row1197746740165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p873986124165635"><a name="p873986124165635"></a><a name="p873986124165635"></a><a href="graphic.md#ga7d56c2a99ab2c98eec9ebc03f67b7777">GetTimeStamp</a> () const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2013782873165635"><a name="p2013782873165635"></a><a name="p2013782873165635"></a>const TimeType &amp; </p>
+<p id="p1247374170165635"><a name="p1247374170165635"></a><a name="p1247374170165635"></a>Obtains the timestamp when an event occurs. </p>
+</td>
+</tr>
+<tr id="row1627016220165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1988627863165635"><a name="p1988627863165635"></a><a name="p1988627863165635"></a><a href="graphic.md#gabee47ba229e81c44f648cf5b3203010f">SetTimeStamp</a> (const TimeType &amp;timeStamp)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1174990296165635"><a name="p1174990296165635"></a><a name="p1174990296165635"></a>void </p>
+<p id="p390363915165635"><a name="p390363915165635"></a><a name="p390363915165635"></a>Sets the timestamp when an event occurs. </p>
+</td>
+</tr>
+<tr id="row301515447165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1526475257165635"><a name="p1526475257165635"></a><a name="p1526475257165635"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p155866447165635"><a name="p155866447165635"></a><a name="p155866447165635"></a>void * </p>
+<p id="p1978392730165635"><a name="p1978392730165635"></a><a name="p1978392730165635"></a>Overrides the <strong id="b836843868165635"><a name="b836843868165635"></a><a name="b836843868165635"></a>new</strong> function. </p>
+</td>
+</tr>
+<tr id="row851657575165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2034536464165635"><a name="p2034536464165635"></a><a name="p2034536464165635"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p846374235165635"><a name="p846374235165635"></a><a name="p846374235165635"></a>void </p>
+<p id="p771744864165635"><a name="p771744864165635"></a><a name="p771744864165635"></a>Overrides the <strong id="b1836398034165635"><a name="b1836398034165635"></a><a name="b1836398034165635"></a>delete</strong> function. </p>
 </td>
 </tr>
 </tbody>

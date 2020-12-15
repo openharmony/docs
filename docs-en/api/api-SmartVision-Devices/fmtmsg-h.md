@@ -1,6 +1,11 @@
 # fmtmsg.h<a name="EN-US_TOPIC_0000001055387982"></a>
 
-## **Overview**<a name="section1421740106084829"></a>
+-   [Overview](#section1412475761165627)
+-   [Summary](#section330625145165627)
+-   [Macros](#define-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1412475761165627"></a>
 
 **Related Modules:**
 
@@ -20,140 +25,140 @@ You can use the function in the file to write messages \(especially error messag
 
 1.0
 
-## **Summary**<a name="section188608256084829"></a>
+## **Summary**<a name="section330625145165627"></a>
 
 ## Macros<a name="define-members"></a>
 
-<a name="table1050600159084829"></a>
-<table><thead align="left"><tr id="row1747719729084829"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p651338886084829"><a name="p651338886084829"></a><a name="p651338886084829"></a>Macro Name and Value</p>
+<a name="table1888733244165627"></a>
+<table><thead align="left"><tr id="row542318173165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1155702832165627"><a name="p1155702832165627"></a><a name="p1155702832165627"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p813353658084829"><a name="p813353658084829"></a><a name="p813353658084829"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1101760629165627"><a name="p1101760629165627"></a><a name="p1101760629165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row595402911084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p989910487084829"><a name="p989910487084829"></a><a name="p989910487084829"></a><a href="utils.md#ga7250644aab1a485bd6a24720d2867ad8">MM_HARD</a>   1</p>
+<tbody><tr id="row1655002781165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p621403621165627"><a name="p621403621165627"></a><a name="p621403621165627"></a><a href="utils.md#ga7250644aab1a485bd6a24720d2867ad8">MM_HARD</a>   1</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p99496457084829"><a name="p99496457084829"></a><a name="p99496457084829"></a>A hardware error occurred. </p>
-</td>
-</tr>
-<tr id="row1039139343084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1527759427084829"><a name="p1527759427084829"></a><a name="p1527759427084829"></a><a href="utils.md#ga95d4386c5cab57599cf9fdad75dbd9ef">MM_SOFT</a>   2</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2022339565084829"><a name="p2022339565084829"></a><a name="p2022339565084829"></a>A software error occurred. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1426430299165627"><a name="p1426430299165627"></a><a name="p1426430299165627"></a>A hardware error occurred. </p>
 </td>
 </tr>
-<tr id="row731862055084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p623502387084829"><a name="p623502387084829"></a><a name="p623502387084829"></a><a href="utils.md#gaad8873c0512aaad8e20a95d8d7867fa6">MM_FIRM</a>   4</p>
+<tr id="row1405544960165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p585922628165627"><a name="p585922628165627"></a><a name="p585922628165627"></a><a href="utils.md#ga95d4386c5cab57599cf9fdad75dbd9ef">MM_SOFT</a>   2</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p112584848084829"><a name="p112584848084829"></a><a name="p112584848084829"></a>A firmware error occurred. </p>
-</td>
-</tr>
-<tr id="row1128258933084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2006318538084829"><a name="p2006318538084829"></a><a name="p2006318538084829"></a><a href="utils.md#ga9c8b88fc46ddd4d418c05b4c5c685786">MM_APPL</a>   8</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p416540288084829"><a name="p416540288084829"></a><a name="p416540288084829"></a>An error is detected by an application. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1216120103165627"><a name="p1216120103165627"></a><a name="p1216120103165627"></a>A software error occurred. </p>
 </td>
 </tr>
-<tr id="row294236386084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p645610336084829"><a name="p645610336084829"></a><a name="p645610336084829"></a><a href="utils.md#ga5b43fa612f8e72db32d32385192f5bd9">MM_UTIL</a>   16</p>
+<tr id="row994903884165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1727588027165627"><a name="p1727588027165627"></a><a name="p1727588027165627"></a><a href="utils.md#gaad8873c0512aaad8e20a95d8d7867fa6">MM_FIRM</a>   4</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p696835301084829"><a name="p696835301084829"></a><a name="p696835301084829"></a>An error is detected by a utility. </p>
-</td>
-</tr>
-<tr id="row1184547156084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p748303635084829"><a name="p748303635084829"></a><a name="p748303635084829"></a><a href="utils.md#ga3257723578ef85fb0cef91ac18a6a8e9">MM_OPSYS</a>   32</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1102924964084829"><a name="p1102924964084829"></a><a name="p1102924964084829"></a>An error is detected by the operating system. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p399470314165627"><a name="p399470314165627"></a><a name="p399470314165627"></a>A firmware error occurred. </p>
 </td>
 </tr>
-<tr id="row729742812084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2127505406084829"><a name="p2127505406084829"></a><a name="p2127505406084829"></a><a href="utils.md#ga655710ff6f4600613aba693f2c933844">MM_RECOVER</a>   64</p>
+<tr id="row340422122165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1801531510165627"><a name="p1801531510165627"></a><a name="p1801531510165627"></a><a href="utils.md#ga9c8b88fc46ddd4d418c05b4c5c685786">MM_APPL</a>   8</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1581228245084829"><a name="p1581228245084829"></a><a name="p1581228245084829"></a>The error is recoverable. </p>
-</td>
-</tr>
-<tr id="row1681081749084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1745978810084829"><a name="p1745978810084829"></a><a name="p1745978810084829"></a><a href="utils.md#gaac7ced5531ea5e8af060a12930bd930b">MM_NRECOV</a>   128</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p979351813084829"><a name="p979351813084829"></a><a name="p979351813084829"></a>The error is non-recoverable. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p466700443165627"><a name="p466700443165627"></a><a name="p466700443165627"></a>An error is detected by an application. </p>
 </td>
 </tr>
-<tr id="row118318873084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p154207748084829"><a name="p154207748084829"></a><a name="p154207748084829"></a><a href="utils.md#ga28f8601bbd8dfa8c1a1133892dbaaeaf">MM_PRINT</a>   256</p>
+<tr id="row1566323313165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p132187062165627"><a name="p132187062165627"></a><a name="p132187062165627"></a><a href="utils.md#ga5b43fa612f8e72db32d32385192f5bd9">MM_UTIL</a>   16</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p63758305084829"><a name="p63758305084829"></a><a name="p63758305084829"></a>Prints error messages on standard error (stderr). </p>
-</td>
-</tr>
-<tr id="row796687722084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1716010845084829"><a name="p1716010845084829"></a><a name="p1716010845084829"></a><a href="utils.md#ga28df3705304c876e17ee22267eaa01af">MM_CONSOLE</a>   512</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p70600180084829"><a name="p70600180084829"></a><a name="p70600180084829"></a>Prints error messages on the system console. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1128264341165627"><a name="p1128264341165627"></a><a name="p1128264341165627"></a>An error is detected by a utility. </p>
 </td>
 </tr>
-<tr id="row1795315906084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1720610496084829"><a name="p1720610496084829"></a><a name="p1720610496084829"></a><a href="utils.md#ga0d1ed1880858b3eb76f4173619c58c40">MM_NULLMC</a>   0L</p>
+<tr id="row1067985276165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2146489054165627"><a name="p2146489054165627"></a><a name="p2146489054165627"></a><a href="utils.md#ga3257723578ef85fb0cef91ac18a6a8e9">MM_OPSYS</a>   32</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1713812929084829"><a name="p1713812929084829"></a><a name="p1713812929084829"></a>Ignores the <strong id="b2093917200084829"><a name="b2093917200084829"></a><a name="b2093917200084829"></a>classification</strong> parameter. </p>
-</td>
-</tr>
-<tr id="row1004149936084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p843142409084829"><a name="p843142409084829"></a><a name="p843142409084829"></a><a href="utils.md#ga3d5f92b4ab4f31431e764e04cd74de61">MM_HALT</a>   1</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p811103720084829"><a name="p811103720084829"></a><a name="p811103720084829"></a>Fatal fault. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1642250178165627"><a name="p1642250178165627"></a><a name="p1642250178165627"></a>An error is detected by the operating system. </p>
 </td>
 </tr>
-<tr id="row412352148084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1032508375084829"><a name="p1032508375084829"></a><a name="p1032508375084829"></a><a href="utils.md#ga691f4cd7904d1f6579e093fb40226b98">MM_ERROR</a>   2</p>
+<tr id="row679031816165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p168764456165627"><a name="p168764456165627"></a><a name="p168764456165627"></a><a href="utils.md#ga655710ff6f4600613aba693f2c933844">MM_RECOVER</a>   64</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1209326365084829"><a name="p1209326365084829"></a><a name="p1209326365084829"></a>Error-level fault. </p>
-</td>
-</tr>
-<tr id="row1180145008084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1450940611084829"><a name="p1450940611084829"></a><a name="p1450940611084829"></a><a href="utils.md#ga277b9951914986b139db5750177091f3">MM_WARNING</a>   3</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p217182707084829"><a name="p217182707084829"></a><a name="p217182707084829"></a>Warning condition. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p499803012165627"><a name="p499803012165627"></a><a name="p499803012165627"></a>The error is recoverable. </p>
 </td>
 </tr>
-<tr id="row323138745084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1892155226084829"><a name="p1892155226084829"></a><a name="p1892155226084829"></a><a href="utils.md#ga0c65f03a4d4009ddbc8b318c4cca2662">MM_INFO</a>   4</p>
+<tr id="row1410763946165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p749169678165627"><a name="p749169678165627"></a><a name="p749169678165627"></a><a href="utils.md#gaac7ced5531ea5e8af060a12930bd930b">MM_NRECOV</a>   128</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2023984823084829"><a name="p2023984823084829"></a><a name="p2023984823084829"></a>Informative message. </p>
-</td>
-</tr>
-<tr id="row105933198084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2008098897084829"><a name="p2008098897084829"></a><a name="p2008098897084829"></a><a href="utils.md#gaf4e60c7def20483a91f2c85b9a98420c">MM_NOSEV</a>   0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p513506778084829"><a name="p513506778084829"></a><a name="p513506778084829"></a>No severity level is set, equivalent to <a href="utils.md#gad65c53433554559cdc93e413786cc981">MM_NULLSEV</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1517137826165627"><a name="p1517137826165627"></a><a name="p1517137826165627"></a>The error is non-recoverable. </p>
 </td>
 </tr>
-<tr id="row1247527313084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1690190769084829"><a name="p1690190769084829"></a><a name="p1690190769084829"></a><a href="utils.md#ga2d55c51901766d6400ea645cfaa56ad7">MM_OK</a>   0</p>
+<tr id="row866374479165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1284345761165627"><a name="p1284345761165627"></a><a name="p1284345761165627"></a><a href="utils.md#ga28f8601bbd8dfa8c1a1133892dbaaeaf">MM_PRINT</a>   256</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1192167180084829"><a name="p1192167180084829"></a><a name="p1192167180084829"></a>The function succeeded. </p>
-</td>
-</tr>
-<tr id="row415118995084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1710324645084829"><a name="p1710324645084829"></a><a name="p1710324645084829"></a><a href="utils.md#ga6c6fa7e4345318cb7b7a12a6492f414b">MM_NOTOK</a>   (-1)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1566351378084829"><a name="p1566351378084829"></a><a name="p1566351378084829"></a>The function failed. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p885644495165627"><a name="p885644495165627"></a><a name="p885644495165627"></a>Prints error messages on standard error (stderr). </p>
 </td>
 </tr>
-<tr id="row946486379084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1486767312084829"><a name="p1486767312084829"></a><a name="p1486767312084829"></a><a href="utils.md#ga16ba492651e5414d28fbca6da09999e2">MM_NOMSG</a>   1</p>
+<tr id="row1810221818165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1310378170165627"><a name="p1310378170165627"></a><a name="p1310378170165627"></a><a href="utils.md#ga28df3705304c876e17ee22267eaa01af">MM_CONSOLE</a>   512</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p891638478084829"><a name="p891638478084829"></a><a name="p891638478084829"></a>Error writing to stderr. </p>
-</td>
-</tr>
-<tr id="row1616309604084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p339707583084829"><a name="p339707583084829"></a><a name="p339707583084829"></a><a href="utils.md#ga47ee40d662d07179517362f5796fedc6">MM_NOCON</a>   4</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p469511394084829"><a name="p469511394084829"></a><a name="p469511394084829"></a>Error writing to the console. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p143787019165627"><a name="p143787019165627"></a><a name="p143787019165627"></a>Prints error messages on the system console. </p>
 </td>
 </tr>
-<tr id="row95603939084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2051672983084829"><a name="p2051672983084829"></a><a name="p2051672983084829"></a><a href="utils.md#ga174d0d4b9bbda298cd1faec4d4f27202">MM_NULLLBL</a>   ((char*)0)</p>
+<tr id="row493508000165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1349089774165627"><a name="p1349089774165627"></a><a name="p1349089774165627"></a><a href="utils.md#ga0d1ed1880858b3eb76f4173619c58c40">MM_NULLMC</a>   0L</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p62879517084829"><a name="p62879517084829"></a><a name="p62879517084829"></a>Ignores the <strong id="b2060853437084829"><a name="b2060853437084829"></a><a name="b2060853437084829"></a>label</strong> parameter. </p>
-</td>
-</tr>
-<tr id="row464007440084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p854369195084829"><a name="p854369195084829"></a><a name="p854369195084829"></a><a href="utils.md#ga345476b2492fd41e52ec6cbb08265b07">MM_NULLTXT</a>   ((char*)0)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1033751080084829"><a name="p1033751080084829"></a><a name="p1033751080084829"></a>Ignores the <strong id="b640462846084829"><a name="b640462846084829"></a><a name="b640462846084829"></a>text</strong> parameter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1102595616165627"><a name="p1102595616165627"></a><a name="p1102595616165627"></a>Ignores the <strong id="b6693320165627"><a name="b6693320165627"></a><a name="b6693320165627"></a>classification</strong> parameter. </p>
 </td>
 </tr>
-<tr id="row327781867084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1884824031084829"><a name="p1884824031084829"></a><a name="p1884824031084829"></a><a href="utils.md#ga715bfd49536d249ea7812a4114602db0">MM_NULLACT</a>   ((char*)0)</p>
+<tr id="row332094413165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1294305234165627"><a name="p1294305234165627"></a><a name="p1294305234165627"></a><a href="utils.md#ga3d5f92b4ab4f31431e764e04cd74de61">MM_HALT</a>   1</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p731137933084829"><a name="p731137933084829"></a><a name="p731137933084829"></a>Ignores the <strong id="b1368338422084829"><a name="b1368338422084829"></a><a name="b1368338422084829"></a>action</strong> parameter. </p>
-</td>
-</tr>
-<tr id="row826624136084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2049280298084829"><a name="p2049280298084829"></a><a name="p2049280298084829"></a><a href="utils.md#ga64da80d889e56fc4dc22b0d8e07576cc">MM_NULLTAG</a>   ((char*)0)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p513441115084829"><a name="p513441115084829"></a><a name="p513441115084829"></a>Ignores the <strong id="b1967136865084829"><a name="b1967136865084829"></a><a name="b1967136865084829"></a>tag</strong> parameter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2081857746165627"><a name="p2081857746165627"></a><a name="p2081857746165627"></a>Fatal fault. </p>
 </td>
 </tr>
-<tr id="row2038831038084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1585960418084829"><a name="p1585960418084829"></a><a name="p1585960418084829"></a><a href="utils.md#gad65c53433554559cdc93e413786cc981">MM_NULLSEV</a>   0</p>
+<tr id="row1509575549165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1068936411165627"><a name="p1068936411165627"></a><a name="p1068936411165627"></a><a href="utils.md#ga691f4cd7904d1f6579e093fb40226b98">MM_ERROR</a>   2</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1738733271084829"><a name="p1738733271084829"></a><a name="p1738733271084829"></a>Ignores the <strong id="b705006479084829"><a name="b705006479084829"></a><a name="b705006479084829"></a>severity</strong> parameter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1282469924165627"><a name="p1282469924165627"></a><a name="p1282469924165627"></a>Error-level fault. </p>
+</td>
+</tr>
+<tr id="row1415474750165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1570145450165627"><a name="p1570145450165627"></a><a name="p1570145450165627"></a><a href="utils.md#ga277b9951914986b139db5750177091f3">MM_WARNING</a>   3</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1458092672165627"><a name="p1458092672165627"></a><a name="p1458092672165627"></a>Warning condition. </p>
+</td>
+</tr>
+<tr id="row982411881165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1132148966165627"><a name="p1132148966165627"></a><a name="p1132148966165627"></a><a href="utils.md#ga0c65f03a4d4009ddbc8b318c4cca2662">MM_INFO</a>   4</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p329149569165627"><a name="p329149569165627"></a><a name="p329149569165627"></a>Informative message. </p>
+</td>
+</tr>
+<tr id="row1567857483165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1545288244165627"><a name="p1545288244165627"></a><a name="p1545288244165627"></a><a href="utils.md#gaf4e60c7def20483a91f2c85b9a98420c">MM_NOSEV</a>   0</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1204252350165627"><a name="p1204252350165627"></a><a name="p1204252350165627"></a>No severity level is set, equivalent to <a href="utils.md#gad65c53433554559cdc93e413786cc981">MM_NULLSEV</a>. </p>
+</td>
+</tr>
+<tr id="row2018410790165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1959502409165627"><a name="p1959502409165627"></a><a name="p1959502409165627"></a><a href="utils.md#ga2d55c51901766d6400ea645cfaa56ad7">MM_OK</a>   0</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1430902964165627"><a name="p1430902964165627"></a><a name="p1430902964165627"></a>The function succeeded. </p>
+</td>
+</tr>
+<tr id="row621853273165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1907499861165627"><a name="p1907499861165627"></a><a name="p1907499861165627"></a><a href="utils.md#ga6c6fa7e4345318cb7b7a12a6492f414b">MM_NOTOK</a>   (-1)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p118472227165627"><a name="p118472227165627"></a><a name="p118472227165627"></a>The function failed. </p>
+</td>
+</tr>
+<tr id="row2031933445165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p520934372165627"><a name="p520934372165627"></a><a name="p520934372165627"></a><a href="utils.md#ga16ba492651e5414d28fbca6da09999e2">MM_NOMSG</a>   1</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1663517602165627"><a name="p1663517602165627"></a><a name="p1663517602165627"></a>Error writing to stderr. </p>
+</td>
+</tr>
+<tr id="row2064797920165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p426080036165627"><a name="p426080036165627"></a><a name="p426080036165627"></a><a href="utils.md#ga47ee40d662d07179517362f5796fedc6">MM_NOCON</a>   4</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1126766253165627"><a name="p1126766253165627"></a><a name="p1126766253165627"></a>Error writing to the console. </p>
+</td>
+</tr>
+<tr id="row938001510165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p45887687165627"><a name="p45887687165627"></a><a name="p45887687165627"></a><a href="utils.md#ga174d0d4b9bbda298cd1faec4d4f27202">MM_NULLLBL</a>   ((char*)0)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p166353236165627"><a name="p166353236165627"></a><a name="p166353236165627"></a>Ignores the <strong id="b1968387631165627"><a name="b1968387631165627"></a><a name="b1968387631165627"></a>label</strong> parameter. </p>
+</td>
+</tr>
+<tr id="row1208401106165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p640363465165627"><a name="p640363465165627"></a><a name="p640363465165627"></a><a href="utils.md#ga345476b2492fd41e52ec6cbb08265b07">MM_NULLTXT</a>   ((char*)0)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p875552297165627"><a name="p875552297165627"></a><a name="p875552297165627"></a>Ignores the <strong id="b1578705213165627"><a name="b1578705213165627"></a><a name="b1578705213165627"></a>text</strong> parameter. </p>
+</td>
+</tr>
+<tr id="row1203364099165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1297302406165627"><a name="p1297302406165627"></a><a name="p1297302406165627"></a><a href="utils.md#ga715bfd49536d249ea7812a4114602db0">MM_NULLACT</a>   ((char*)0)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p504757829165627"><a name="p504757829165627"></a><a name="p504757829165627"></a>Ignores the <strong id="b1133931519165627"><a name="b1133931519165627"></a><a name="b1133931519165627"></a>action</strong> parameter. </p>
+</td>
+</tr>
+<tr id="row292814534165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p4018499165627"><a name="p4018499165627"></a><a name="p4018499165627"></a><a href="utils.md#ga64da80d889e56fc4dc22b0d8e07576cc">MM_NULLTAG</a>   ((char*)0)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1130737811165627"><a name="p1130737811165627"></a><a name="p1130737811165627"></a>Ignores the <strong id="b619134174165627"><a name="b619134174165627"></a><a name="b619134174165627"></a>tag</strong> parameter. </p>
+</td>
+</tr>
+<tr id="row791738979165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p178986452165627"><a name="p178986452165627"></a><a name="p178986452165627"></a><a href="utils.md#gad65c53433554559cdc93e413786cc981">MM_NULLSEV</a>   0</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1500516220165627"><a name="p1500516220165627"></a><a name="p1500516220165627"></a>Ignores the <strong id="b1393258873165627"><a name="b1393258873165627"></a><a name="b1393258873165627"></a>severity</strong> parameter. </p>
 </td>
 </tr>
 </tbody>
@@ -161,17 +166,17 @@ You can use the function in the file to write messages \(especially error messag
 
 ## Functions<a name="func-members"></a>
 
-<a name="table607174892084829"></a>
-<table><thead align="left"><tr id="row902436941084829"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p427285574084829"><a name="p427285574084829"></a><a name="p427285574084829"></a>Function Name</p>
+<a name="table1514129715165627"></a>
+<table><thead align="left"><tr id="row930714893165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1669160518165627"><a name="p1669160518165627"></a><a name="p1669160518165627"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1898596466084829"><a name="p1898596466084829"></a><a name="p1898596466084829"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p509926345165627"><a name="p509926345165627"></a><a name="p509926345165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1483351862084829"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1817191135084829"><a name="p1817191135084829"></a><a name="p1817191135084829"></a><a href="utils.md#ga41115d5b017933dcee85d41ed7a743e7">fmtmsg</a> (long classification, const char *label, int severity, const char *text, const char *action, const char *tag)</p>
+<tbody><tr id="row1029179381165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p66573251165627"><a name="p66573251165627"></a><a name="p66573251165627"></a><a href="utils.md#ga41115d5b017933dcee85d41ed7a743e7">fmtmsg</a> (long classification, const char *label, int severity, const char *text, const char *action, const char *tag)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1930101098084829"><a name="p1930101098084829"></a><a name="p1930101098084829"></a>int </p>
-<p id="p370682208084829"><a name="p370682208084829"></a><a name="p370682208084829"></a>Prints formatted messages. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1701456410165627"><a name="p1701456410165627"></a><a name="p1701456410165627"></a>int </p>
+<p id="p98535434165627"><a name="p98535434165627"></a><a name="p98535434165627"></a>Prints formatted messages. </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,12 @@
-# bundle\_status\_callback.h<a name="ZH-CN_TOPIC_0000001054652830"></a>
+# bundle\_status\_callback.h<a name="ZH-CN_TOPIC_0000001057747360"></a>
 
-## **Overview**<a name="section1912477999113024"></a>
+-   [Overview](#section365157127165626)
+-   [Summary](#section1285246220165626)
+-   [Data Structures](#nested-classes)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section365157127165626"></a>
 
 **Related Modules:**
 
@@ -18,19 +24,20 @@ Declares the callback invoked upon state changes of an application and the struc
 
 1.0
 
-## **Summary**<a name="section2069742751113024"></a>
+## **Summary**<a name="section1285246220165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p>Data Structure Name</p>
+<a name="table1672391868165626"></a>
+<table><thead align="left"><tr id="row186282853165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p760870885165626"><a name="p760870885165626"></a><a name="p760870885165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2046696430165626"><a name="p2046696430165626"></a><a name="p2046696430165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p><a href="BundleStatusCallback.md">BundleStatusCallback</a></p>
+<tbody><tr id="row234406360165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1309670134165626"><a name="p1309670134165626"></a><a name="p1309670134165626"></a><a href="BundleStatusCallback.md">BundleStatusCallback</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p>Defines the application state callback information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1278813123165626"><a name="p1278813123165626"></a><a name="p1278813123165626"></a>Defines the application state callback information. </p>
 </td>
 </tr>
 </tbody>
@@ -38,16 +45,17 @@ Declares the callback invoked upon state changes of an application and the struc
 
 ## Typedefs<a name="typedef-members"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p>Typedef Name</p>
+<a name="table1797852399165626"></a>
+<table><thead align="left"><tr id="row263763788165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1578777169165626"><a name="p1578777169165626"></a><a name="p1578777169165626"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1569003227165626"><a name="p1569003227165626"></a><a name="p1569003227165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p><a href="BundleManager.md#gad7ea6d0bf78db2d59e6d339c31819885">BundleStateCallback</a>) (const uint8_t installType, const uint8_t resultCode, const void *resultMessage, const char *bundleName, void *data)</p>
+<tbody><tr id="row1585878610165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1786756160165626"><a name="p1786756160165626"></a><a name="p1786756160165626"></a><a href="BundleManager.md#gad7ea6d0bf78db2d59e6d339c31819885">BundleStateCallback</a>) (const uint8_t installType, const uint8_t resultCode, const void *resultMessage, const char *bundleName, void *data)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p>typedef void(*&nbsp;</p>
-<p>Called when the installation, update, or uninstallation state of an application changes. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1574856141165626"><a name="p1574856141165626"></a><a name="p1574856141165626"></a>typedef void(* </p>
+<p id="p295446638165626"><a name="p295446638165626"></a><a name="p295446638165626"></a>Called when the installation, update, or uninstallation state of an application changes. </p>
 </td>
 </tr>
 </tbody>
@@ -55,16 +63,17 @@ Declares the callback invoked upon state changes of an application and the struc
 
 ## Functions<a name="func-members"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p>Function Name</p>
+<a name="table271521178165626"></a>
+<table><thead align="left"><tr id="row672446347165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2143533500165626"><a name="p2143533500165626"></a><a name="p2143533500165626"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1905036408165626"><a name="p1905036408165626"></a><a name="p1905036408165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p><a href="BundleManager.md#gae5e0593438f073199bf6d69e47a84975">ClearBundleStatusCallback</a> (<a href="BundleStatusCallback.md">BundleStatusCallback</a> *bundleStatusCallback)</p>
+<tbody><tr id="row881276292165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p874900502165626"><a name="p874900502165626"></a><a name="p874900502165626"></a><a href="BundleManager.md#gae5e0593438f073199bf6d69e47a84975">ClearBundleStatusCallback</a> (<a href="BundleStatusCallback.md">BundleStatusCallback</a> *bundleStatusCallback)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p>void&nbsp;</p>
-<p>Clears and releases the memory occupied by the <a href="BundleStatusCallback.md">BundleStatusCallback</a> structure. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1195133642165626"><a name="p1195133642165626"></a><a name="p1195133642165626"></a>void </p>
+<p id="p985682753165626"><a name="p985682753165626"></a><a name="p985682753165626"></a>Clears and releases the memory occupied by the <a href="BundleStatusCallback.md">BundleStatusCallback</a> structure. </p>
 </td>
 </tr>
 </tbody>

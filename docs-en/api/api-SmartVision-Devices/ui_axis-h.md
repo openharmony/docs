@@ -1,6 +1,10 @@
 # ui\_axis.h<a name="EN-US_TOPIC_0000001054918137"></a>
 
-## **Overview**<a name="section926156773093528"></a>
+-   [Overview](#section1716904434165629)
+-   [Summary](#section1133905417165629)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section1716904434165629"></a>
 
 **Related Modules:**
 
@@ -18,30 +22,30 @@ Defines the attributes and functions of the x- and y-axises. This class is used 
 
 1.0
 
-## **Summary**<a name="section1671746446093528"></a>
+## **Summary**<a name="section1133905417165629"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table799814900093528"></a>
-<table><thead align="left"><tr id="row19348822093528"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p625988165093528"><a name="p625988165093528"></a><a name="p625988165093528"></a>Data Structure Name</p>
+<a name="table1009767413165629"></a>
+<table><thead align="left"><tr id="row1013679407165629"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p247006470165629"><a name="p247006470165629"></a><a name="p247006470165629"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p706737004093528"><a name="p706737004093528"></a><a name="p706737004093528"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p657986277165629"><a name="p657986277165629"></a><a name="p657986277165629"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1668509996093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p159922360093528"><a name="p159922360093528"></a><a name="p159922360093528"></a><a href="ohos-uiaxis.md">OHOS::UIAxis</a></p>
+<tbody><tr id="row344775550165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1864767043165629"><a name="p1864767043165629"></a><a name="p1864767043165629"></a><a href="ohos-uiaxis.md">OHOS::UIAxis</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p376130492093528"><a name="p376130492093528"></a><a name="p376130492093528"></a>Represents the coordinate axis base class, which defines the basic attributes of coordinate axis, sets whether a coordinate axis is visible, and sets the number of scales on a coordinate axis. This class is used in <a href="ohos-uichart.md">UIChart</a>. </p>
-</td>
-</tr>
-<tr id="row1541019867093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p130533295093528"><a name="p130533295093528"></a><a name="p130533295093528"></a><a href="ohos-uixaxis.md">OHOS::UIXAxis</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1290868007093528"><a name="p1290868007093528"></a><a name="p1290868007093528"></a>Defines the unique attributes and functions for the x-axis. This class is used in <a href="ohos-uichart.md">UIChart</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p153481088165629"><a name="p153481088165629"></a><a name="p153481088165629"></a>Represents the coordinate axis base class, which defines the basic attributes of coordinate axis, sets whether a coordinate axis is visible, and sets the number of scales on a coordinate axis. This class is used in <a href="ohos-uichart.md">UIChart</a>. </p>
 </td>
 </tr>
-<tr id="row743157527093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1207610819093528"><a name="p1207610819093528"></a><a name="p1207610819093528"></a><a href="ohos-uiyaxis.md">OHOS::UIYAxis</a></p>
+<tr id="row1868257411165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1363784469165629"><a name="p1363784469165629"></a><a name="p1363784469165629"></a><a href="ohos-uixaxis.md">OHOS::UIXAxis</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1984989969093528"><a name="p1984989969093528"></a><a name="p1984989969093528"></a>Defines the unique attributes and functions for the y-axis. This class is used in <a href="ohos-uichart.md">UIChart</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1625642115165629"><a name="p1625642115165629"></a><a name="p1625642115165629"></a>Defines the unique attributes and functions for the x-axis. This class is used in <a href="ohos-uichart.md">UIChart</a>. </p>
+</td>
+</tr>
+<tr id="row1365480951165629"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p713653810165629"><a name="p713653810165629"></a><a name="p713653810165629"></a><a href="ohos-uiyaxis.md">OHOS::UIYAxis</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1175133023165629"><a name="p1175133023165629"></a><a name="p1175133023165629"></a>Defines the unique attributes and functions for the y-axis. This class is used in <a href="ohos-uichart.md">UIChart</a>. </p>
 </td>
 </tr>
 </tbody>

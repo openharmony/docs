@@ -1,6 +1,31 @@
 # Registry<a name="EN-US_TOPIC_0000001055358060"></a>
 
-## **Overview**<a name="section1571610145084827"></a>
+-   [Overview](#section1024898275165625)
+-   [Summary](#section997159289165625)
+-   [Files](#files)
+-   [Data Structures](#nested-classes)
+-   [Macros](#define-members)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+-   [Details](#section473233789165625)
+-   [Macro Definition](#section353553314165625)
+-   [INHERIT\_CLIENT\_IPROXY](#ga86734e6a03eb089309e87ec628002034)
+-   [INHERIT\_IPROXY\_ENTRY](#ga9ad9b5f0e1f50f2528cbef67957b2319)
+-   [INHERIT\_SERVER\_IPROXY](#ga58e6d24ef278dceb3fb9c77527acdb5c)
+-   [IPROXY\_END](#ga59b6c10043506af716ce9052a5a964a7)
+-   [SERVER\_IPROXY\_BEGIN](#ga3c3f1e77cc1a495f48a4b3cd0f8934be)
+-   [SERVER\_PROXY\_VER](#gad513d97bfb873f27c9b8f69a5a418d55)
+-   [Typedef](#section172190079165625)
+-   [Creator](#ga0c8aa2ef9883bd97b4f1309895adaa4c)
+-   [Destroyer](#ga1e6298b1246357f70ad0b581e0eb9305)
+-   [INotify](#ga362a17c1bda1aace88d42dcbc88bdfac)
+-   [Function](#section890168117165625)
+-   [SAMGR\_GetRemoteIdentity\(\)](#gaa9bb385bfe593f4377a83cf513189bf1)
+-   [SAMGR\_RegisterFactory\(\)](#ga64797e3f63201c40dbdf21b90cff23d2)
+
+## **Overview**<a name="section1024898275165625"></a>
+
+**Description:**
 
 Provides APIs for registering and discovering inter-process communication \(IPC\) capabilities. 
 
@@ -14,30 +39,30 @@ Based on the Samgr development framework, this module helps you to develop syste
 
 1.0
 
-## **Summary**<a name="section142008546084827"></a>
+## **Summary**<a name="section997159289165625"></a>
 
 ## Files<a name="files"></a>
 
-<a name="table423209442084827"></a>
-<table><thead align="left"><tr id="row112523827084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p819560436084827"><a name="p819560436084827"></a><a name="p819560436084827"></a>File Name</p>
+<a name="table493499241165625"></a>
+<table><thead align="left"><tr id="row1429222307165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1092312736165625"><a name="p1092312736165625"></a><a name="p1092312736165625"></a>File Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1136875371084827"><a name="p1136875371084827"></a><a name="p1136875371084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1759310616165625"><a name="p1759310616165625"></a><a name="p1759310616165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row966121230084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p760668688084827"><a name="p760668688084827"></a><a name="p760668688084827"></a><a href="iproxy_client-h.md">iproxy_client.h</a></p>
+<tbody><tr id="row1809954868165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1565370045165625"><a name="p1565370045165625"></a><a name="p1565370045165625"></a><a href="iproxy_client-h.md">iproxy_client.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1487505542084827"><a name="p1487505542084827"></a><a name="p1487505542084827"></a>Provides the client proxy class. </p>
-</td>
-</tr>
-<tr id="row462795068084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1616108859084827"><a name="p1616108859084827"></a><a name="p1616108859084827"></a><a href="iproxy_server-h.md">iproxy_server.h</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1330847962084827"><a name="p1330847962084827"></a><a name="p1330847962084827"></a>Provides the server proxy. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p205442939165625"><a name="p205442939165625"></a><a name="p205442939165625"></a>Provides the client proxy class. </p>
 </td>
 </tr>
-<tr id="row735174859084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1879483444084827"><a name="p1879483444084827"></a><a name="p1879483444084827"></a><a href="registry-h.md">registry.h</a></p>
+<tr id="row1535531797165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p716492864165625"><a name="p716492864165625"></a><a name="p716492864165625"></a><a href="iproxy_server-h.md">iproxy_server.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1052238857084827"><a name="p1052238857084827"></a><a name="p1052238857084827"></a>Provides basic APIs for remote service registration and discovery. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p681335735165625"><a name="p681335735165625"></a><a name="p681335735165625"></a>Provides the server proxy. </p>
+</td>
+</tr>
+<tr id="row2085722168165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p664826449165625"><a name="p664826449165625"></a><a name="p664826449165625"></a><a href="registry-h.md">registry.h</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1653993481165625"><a name="p1653993481165625"></a><a name="p1653993481165625"></a>Provides basic APIs for remote service registration and discovery. </p>
 </td>
 </tr>
 </tbody>
@@ -45,21 +70,21 @@ Based on the Samgr development framework, this module helps you to develop syste
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1948359459084827"></a>
-<table><thead align="left"><tr id="row1689214566084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2040265981084827"><a name="p2040265981084827"></a><a name="p2040265981084827"></a>Data Structure Name</p>
+<a name="table670496496165625"></a>
+<table><thead align="left"><tr id="row1889835842165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2115006782165625"><a name="p2115006782165625"></a><a name="p2115006782165625"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p838376888084827"><a name="p838376888084827"></a><a name="p838376888084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2005583723165625"><a name="p2005583723165625"></a><a name="p2005583723165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row406418592084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1843435540084827"><a name="p1843435540084827"></a><a name="p1843435540084827"></a><a href="iclientproxy.md">IClientProxy</a></p>
+<tbody><tr id="row157248250165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1423204064165625"><a name="p1423204064165625"></a><a name="p1423204064165625"></a><a href="iclientproxy.md">IClientProxy</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p489200166084827"><a name="p489200166084827"></a><a name="p489200166084827"></a>Defines the client proxy object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p756842577165625"><a name="p756842577165625"></a><a name="p756842577165625"></a>Defines the client proxy object. </p>
 </td>
 </tr>
-<tr id="row823064937084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p282270800084827"><a name="p282270800084827"></a><a name="p282270800084827"></a><a href="iserverproxy.md">IServerProxy</a></p>
+<tr id="row178824933165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1461062001165625"><a name="p1461062001165625"></a><a name="p1461062001165625"></a><a href="iserverproxy.md">IServerProxy</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p128699271084827"><a name="p128699271084827"></a><a name="p128699271084827"></a>Defines the base class of the server proxy object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p670637049165625"><a name="p670637049165625"></a><a name="p670637049165625"></a>Defines the base class of the server proxy object. </p>
 </td>
 </tr>
 </tbody>
@@ -67,41 +92,41 @@ Based on the Samgr development framework, this module helps you to develop syste
 
 ## Macros<a name="define-members"></a>
 
-<a name="table1805918985084827"></a>
-<table><thead align="left"><tr id="row664104587084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2066816544084827"><a name="p2066816544084827"></a><a name="p2066816544084827"></a>Macro Name and Value</p>
+<a name="table329117510165625"></a>
+<table><thead align="left"><tr id="row1057287365165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p224024463165625"><a name="p224024463165625"></a><a name="p224024463165625"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p989331980084827"><a name="p989331980084827"></a><a name="p989331980084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p915370052165625"><a name="p915370052165625"></a><a name="p915370052165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row728499191084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1190737157084827"><a name="p1190737157084827"></a><a name="p1190737157084827"></a><a href="registry.md#ga86734e6a03eb089309e87ec628002034">INHERIT_CLIENT_IPROXY</a></p>
+<tbody><tr id="row608055959165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p896351753165625"><a name="p896351753165625"></a><a name="p896351753165625"></a><a href="registry.md#ga86734e6a03eb089309e87ec628002034">INHERIT_CLIENT_IPROXY</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p955300597084827"><a name="p955300597084827"></a><a name="p955300597084827"></a>Indicates the inherited macro of the client proxy. </p>
-</td>
-</tr>
-<tr id="row895390647084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1219145845084827"><a name="p1219145845084827"></a><a name="p1219145845084827"></a><a href="registry.md#ga9ad9b5f0e1f50f2528cbef67957b2319">INHERIT_IPROXY_ENTRY</a>(T)   <a href="samgr.md#gad6324fd90dd636180efa2a59b377e65c">INHERIT_IUNKNOWNENTRY</a>(T)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p956801964084827"><a name="p956801964084827"></a><a name="p956801964084827"></a>Inherits the server proxy class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1510093768165625"><a name="p1510093768165625"></a><a name="p1510093768165625"></a>Indicates the inherited macro of the client proxy. </p>
 </td>
 </tr>
-<tr id="row1893607541084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2132985730084827"><a name="p2132985730084827"></a><a name="p2132985730084827"></a><a href="registry.md#ga59b6c10043506af716ce9052a5a964a7">IPROXY_END</a>   <a href="samgr.md#ga4ef734474ece49aa938d8ebd5b54bdb3">IUNKNOWN_ENTRY_END</a></p>
+<tr id="row1981336978165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p634880485165625"><a name="p634880485165625"></a><a name="p634880485165625"></a><a href="registry.md#ga9ad9b5f0e1f50f2528cbef67957b2319">INHERIT_IPROXY_ENTRY</a>(T)   <a href="samgr.md#gad6324fd90dd636180efa2a59b377e65c">INHERIT_IUNKNOWNENTRY</a>(T)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1600849810084827"><a name="p1600849810084827"></a><a name="p1600849810084827"></a>Defines the end of the default initialization for the server proxy class. </p>
-</td>
-</tr>
-<tr id="row1061006930084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1817411649084827"><a name="p1817411649084827"></a><a name="p1817411649084827"></a><a href="registry.md#gad513d97bfb873f27c9b8f69a5a418d55">SERVER_PROXY_VER</a>   0x80</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p791563653084827"><a name="p791563653084827"></a><a name="p791563653084827"></a>Defines the default version number of the server proxy. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1876601801165625"><a name="p1876601801165625"></a><a name="p1876601801165625"></a>Inherits the server proxy class. </p>
 </td>
 </tr>
-<tr id="row112252814084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p232443474084827"><a name="p232443474084827"></a><a name="p232443474084827"></a><a href="registry.md#ga58e6d24ef278dceb3fb9c77527acdb5c">INHERIT_SERVER_IPROXY</a></p>
+<tr id="row15204396165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2102809050165625"><a name="p2102809050165625"></a><a name="p2102809050165625"></a><a href="registry.md#ga59b6c10043506af716ce9052a5a964a7">IPROXY_END</a>   <a href="samgr.md#ga4ef734474ece49aa938d8ebd5b54bdb3">IUNKNOWN_ENTRY_END</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p467422827084827"><a name="p467422827084827"></a><a name="p467422827084827"></a>Inherits the server proxy function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p539284945165625"><a name="p539284945165625"></a><a name="p539284945165625"></a>Defines the end of the default initialization for the server proxy class. </p>
 </td>
 </tr>
-<tr id="row2119385925084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p982839624084827"><a name="p982839624084827"></a><a name="p982839624084827"></a><a href="registry.md#ga3c3f1e77cc1a495f48a4b3cd0f8934be">SERVER_IPROXY_BEGIN</a>   <a href="samgr.md#ga52ec6b5b03d56b0dfe7277785246bda1">IUNKNOWN_ENTRY_BEGIN</a>(<a href="registry.md#gad513d97bfb873f27c9b8f69a5a418d55">SERVER_PROXY_VER</a>)</p>
+<tr id="row1690940743165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1624856570165625"><a name="p1624856570165625"></a><a name="p1624856570165625"></a><a href="registry.md#gad513d97bfb873f27c9b8f69a5a418d55">SERVER_PROXY_VER</a>   0x80</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p50798851084827"><a name="p50798851084827"></a><a name="p50798851084827"></a>Defines the beginning of the default initialization for the server proxy class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p474056086165625"><a name="p474056086165625"></a><a name="p474056086165625"></a>Defines the default version number of the server proxy. </p>
+</td>
+</tr>
+<tr id="row67676281165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p248525762165625"><a name="p248525762165625"></a><a name="p248525762165625"></a><a href="registry.md#ga58e6d24ef278dceb3fb9c77527acdb5c">INHERIT_SERVER_IPROXY</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1701494463165625"><a name="p1701494463165625"></a><a name="p1701494463165625"></a>Inherits the server proxy function. </p>
+</td>
+</tr>
+<tr id="row1979119020165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1899394885165625"><a name="p1899394885165625"></a><a name="p1899394885165625"></a><a href="registry.md#ga3c3f1e77cc1a495f48a4b3cd0f8934be">SERVER_IPROXY_BEGIN</a>   <a href="samgr.md#ga52ec6b5b03d56b0dfe7277785246bda1">IUNKNOWN_ENTRY_BEGIN</a>(<a href="registry.md#gad513d97bfb873f27c9b8f69a5a418d55">SERVER_PROXY_VER</a>)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1678467396165625"><a name="p1678467396165625"></a><a name="p1678467396165625"></a>Defines the beginning of the default initialization for the server proxy class. </p>
 </td>
 </tr>
 </tbody>
@@ -109,29 +134,29 @@ Based on the Samgr development framework, this module helps you to develop syste
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table1780424930084827"></a>
-<table><thead align="left"><tr id="row213166280084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1183586096084827"><a name="p1183586096084827"></a><a name="p1183586096084827"></a>Typedef Name</p>
+<a name="table206141927165625"></a>
+<table><thead align="left"><tr id="row1305875013165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p560609117165625"><a name="p560609117165625"></a><a name="p560609117165625"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1847727698084827"><a name="p1847727698084827"></a><a name="p1847727698084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p551474978165625"><a name="p551474978165625"></a><a name="p551474978165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row961452718084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p35474087084827"><a name="p35474087084827"></a><a name="p35474087084827"></a><a href="registry.md#ga362a17c1bda1aace88d42dcbc88bdfac">INotify</a>) (IOwner owner, int code, IpcIo *reply)</p>
+<tbody><tr id="row1718353386165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p384260198165625"><a name="p384260198165625"></a><a name="p384260198165625"></a><a href="registry.md#ga362a17c1bda1aace88d42dcbc88bdfac">INotify</a>) (IOwner owner, int code, IpcIo *reply)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1912193013084827"><a name="p1912193013084827"></a><a name="p1912193013084827"></a>typedef int(* </p>
-<p id="p2046656237084827"><a name="p2046656237084827"></a><a name="p2046656237084827"></a>Called when a client request is responded. </p>
-</td>
-</tr>
-<tr id="row2141509408084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p794523028084827"><a name="p794523028084827"></a><a name="p794523028084827"></a><a href="registry.md#ga0c8aa2ef9883bd97b4f1309895adaa4c">Creator</a>) (const char *service, const char *feature, uint32 size)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p562864898084827"><a name="p562864898084827"></a><a name="p562864898084827"></a>typedef void *(* </p>
-<p id="p419254573084827"><a name="p419254573084827"></a><a name="p419254573084827"></a>Indicates the creator of the customized client proxy. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2049678795165625"><a name="p2049678795165625"></a><a name="p2049678795165625"></a>typedef int(* </p>
+<p id="p675368108165625"><a name="p675368108165625"></a><a name="p675368108165625"></a>Called when a client request is responded. </p>
 </td>
 </tr>
-<tr id="row1206785248084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1726427226084827"><a name="p1726427226084827"></a><a name="p1726427226084827"></a><a href="registry.md#ga1e6298b1246357f70ad0b581e0eb9305">Destroyer</a>) (const char *service, const char *feature, void *iproxy)</p>
+<tr id="row1960519857165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p499655571165625"><a name="p499655571165625"></a><a name="p499655571165625"></a><a href="registry.md#ga0c8aa2ef9883bd97b4f1309895adaa4c">Creator</a>) (const char *service, const char *feature, uint32 size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1669680763084827"><a name="p1669680763084827"></a><a name="p1669680763084827"></a>typedef void(* </p>
-<p id="p2134877405084827"><a name="p2134877405084827"></a><a name="p2134877405084827"></a>Indicates the destroyer of the customized client proxy. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p479986549165625"><a name="p479986549165625"></a><a name="p479986549165625"></a>typedef void *(* </p>
+<p id="p1753241859165625"><a name="p1753241859165625"></a><a name="p1753241859165625"></a>Indicates the creator of the customized client proxy. </p>
+</td>
+</tr>
+<tr id="row1714012819165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p36015185165625"><a name="p36015185165625"></a><a name="p36015185165625"></a><a href="registry.md#ga1e6298b1246357f70ad0b581e0eb9305">Destroyer</a>) (const char *service, const char *feature, void *iproxy)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1172920219165625"><a name="p1172920219165625"></a><a name="p1172920219165625"></a>typedef void(* </p>
+<p id="p254511061165625"><a name="p254511061165625"></a><a name="p254511061165625"></a>Indicates the destroyer of the customized client proxy. </p>
 </td>
 </tr>
 </tbody>
@@ -139,31 +164,31 @@ Based on the Samgr development framework, this module helps you to develop syste
 
 ## Functions<a name="func-members"></a>
 
-<a name="table7440957084827"></a>
-<table><thead align="left"><tr id="row284964100084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p748639525084827"><a name="p748639525084827"></a><a name="p748639525084827"></a>Function Name</p>
+<a name="table646418901165625"></a>
+<table><thead align="left"><tr id="row489207949165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p622402591165625"><a name="p622402591165625"></a><a name="p622402591165625"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1333946739084827"><a name="p1333946739084827"></a><a name="p1333946739084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1901901160165625"><a name="p1901901160165625"></a><a name="p1901901160165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1111232572084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p379448324084827"><a name="p379448324084827"></a><a name="p379448324084827"></a><a href="registry.md#gaa9bb385bfe593f4377a83cf513189bf1">SAMGR_GetRemoteIdentity</a> (const char *service, const char *feature)</p>
+<tbody><tr id="row1694946025165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p675404070165625"><a name="p675404070165625"></a><a name="p675404070165625"></a><a href="registry.md#gaa9bb385bfe593f4377a83cf513189bf1">SAMGR_GetRemoteIdentity</a> (const char *service, const char *feature)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2108620922084827"><a name="p2108620922084827"></a><a name="p2108620922084827"></a>SvcIdentity </p>
-<p id="p1682349934084827"><a name="p1682349934084827"></a><a name="p1682349934084827"></a>Obtains the IPC address of a remote service and feature based on the service name and feature name. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p22749776165625"><a name="p22749776165625"></a><a name="p22749776165625"></a>SvcIdentity </p>
+<p id="p1025066003165625"><a name="p1025066003165625"></a><a name="p1025066003165625"></a>Obtains the IPC address of a remote service and feature based on the service name and feature name. </p>
 </td>
 </tr>
-<tr id="row317447451084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2121296929084827"><a name="p2121296929084827"></a><a name="p2121296929084827"></a><a href="registry.md#ga64797e3f63201c40dbdf21b90cff23d2">SAMGR_RegisterFactory</a> (const char *service, const char *feature, <a href="registry.md#ga0c8aa2ef9883bd97b4f1309895adaa4c">Creator</a> creator, <a href="registry.md#ga1e6298b1246357f70ad0b581e0eb9305">Destroyer</a> destroyer)</p>
+<tr id="row1759982273165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1660886614165625"><a name="p1660886614165625"></a><a name="p1660886614165625"></a><a href="registry.md#ga64797e3f63201c40dbdf21b90cff23d2">SAMGR_RegisterFactory</a> (const char *service, const char *feature, <a href="registry.md#ga0c8aa2ef9883bd97b4f1309895adaa4c">Creator</a> creator, <a href="registry.md#ga1e6298b1246357f70ad0b581e0eb9305">Destroyer</a> destroyer)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p304287369084827"><a name="p304287369084827"></a><a name="p304287369084827"></a>int </p>
-<p id="p601742178084827"><a name="p601742178084827"></a><a name="p601742178084827"></a>Registers the factory method of the client proxy object with the Samgr. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1254500407165625"><a name="p1254500407165625"></a><a name="p1254500407165625"></a>int </p>
+<p id="p439997916165625"><a name="p439997916165625"></a><a name="p439997916165625"></a>Registers the factory method of the client proxy object with the Samgr. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section413186903084827"></a>
+## **Details**<a name="section473233789165625"></a>
 
-## **Macro Definition Documentation**<a name="section567314991084827"></a>
+## **Macro Definition **<a name="section353553314165625"></a>
 
 ## INHERIT\_CLIENT\_IPROXY<a name="ga86734e6a03eb089309e87ec628002034"></a>
 
@@ -253,7 +278,7 @@ Defines the default version number of the server proxy.
 
 The cross-process system capabilities are registered when Samgr uses  **SERVER\_PROXY\_VER**  to query the registered server proxy. 
 
-## **Typedef Documentation**<a name="section2062440209084827"></a>
+## **Typedef **<a name="section172190079165625"></a>
 
 ## Creator<a name="ga0c8aa2ef9883bd97b4f1309895adaa4c"></a>
 
@@ -269,20 +294,20 @@ This macro creates a local client proxy for remote service APIs. If you want to 
 
 **Parameters:**
 
-<a name="table2112129773084827"></a>
-<table><thead align="left"><tr id="row2017480942084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2118264534084827"><a name="p2118264534084827"></a><a name="p2118264534084827"></a>Name</p>
+<a name="table125679121165625"></a>
+<table><thead align="left"><tr id="row783169924165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p841485431165625"><a name="p841485431165625"></a><a name="p841485431165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p284304334084827"><a name="p284304334084827"></a><a name="p284304334084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p603679463165625"><a name="p603679463165625"></a><a name="p603679463165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1788198904084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tbody><tr id="row1705391856165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the name of the service to which the function belongs. </td>
 </tr>
-<tr id="row1671598904084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
+<tr id="row348912858165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the name of the feature to which the function belongs. </td>
 </tr>
-<tr id="row2010378390084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row922006094165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of the head to be added when a client proxy is created. The required memory capacity is the head size plus the object size. </td>
 </tr>
 </tbody>
@@ -291,8 +316,6 @@ This macro creates a local client proxy for remote service APIs. If you want to 
 **Returns:**
 
 void \* Returns the applied memory capacity and initialize the memory for the client proxy. 
-
-
 
 ## Destroyer<a name="ga1e6298b1246357f70ad0b581e0eb9305"></a>
 
@@ -308,21 +331,21 @@ This macro destroys local client proxy for remote service APIs. If you want to c
 
 **Parameters:**
 
-<a name="table432185036084827"></a>
-<table><thead align="left"><tr id="row1059402118084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1638408950084827"><a name="p1638408950084827"></a><a name="p1638408950084827"></a>Name</p>
+<a name="table1882078055165625"></a>
+<table><thead align="left"><tr id="row2007399149165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p181513028165625"><a name="p181513028165625"></a><a name="p181513028165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p19697541084827"><a name="p19697541084827"></a><a name="p19697541084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p931977951165625"><a name="p931977951165625"></a><a name="p931977951165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1250788881084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tbody><tr id="row1604994159165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the name of the service to which the function belongs. </td>
 </tr>
-<tr id="row503561448084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
+<tr id="row541584396165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the name of the feature to which the function belongs. </td>
 </tr>
-<tr id="row276166625084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iproxy</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the start address of the memory that is applied by <strong id="b1157908022084827"><a name="b1157908022084827"></a><a name="b1157908022084827"></a>Creator</strong>. </td>
+<tr id="row723374507165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">iproxy</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the start address of the memory that is applied by <strong id="b470764432165625"><a name="b470764432165625"></a><a name="b470764432165625"></a>Creator</strong>. </td>
 </tr>
 </tbody>
 </table>
@@ -339,7 +362,7 @@ Called when a client request is responded.
 
 The client implements this  **INotify**  callback to receive response data from the server.  **owner**  indicates the client proxy that receives the response data;  **code**  indicates the error code of the response data from the server;  **reply**  indicates the response data. 
 
-## **Function Documentation**<a name="section599061359084827"></a>
+## **Function **<a name="section890168117165625"></a>
 
 ## SAMGR\_GetRemoteIdentity\(\)<a name="gaa9bb385bfe593f4377a83cf513189bf1"></a>
 
@@ -355,17 +378,17 @@ This function is used when  [IClientProxy](iclientproxy.md)  cannot meet your re
 
 **Parameters:**
 
-<a name="table292773344084827"></a>
-<table><thead align="left"><tr id="row1241772755084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1095716672084827"><a name="p1095716672084827"></a><a name="p1095716672084827"></a>Name</p>
+<a name="table2009177034165625"></a>
+<table><thead align="left"><tr id="row1116801620165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2108341067165625"><a name="p2108341067165625"></a><a name="p2108341067165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1984256719084827"><a name="p1984256719084827"></a><a name="p1984256719084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1984573053165625"><a name="p1984573053165625"></a><a name="p1984573053165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row525146671084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tbody><tr id="row1606087582165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the name of the remote service. </td>
 </tr>
-<tr id="row804508936084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
+<tr id="row1195929896165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the name of the remote feature. </td>
 </tr>
 </tbody>
@@ -378,8 +401,6 @@ Returns the IPC address of the remote service or feature. When the handle of the
 **Attention:**
 
 This function can be called only after  **GetFeatureApi**  in  [SamgrLite](samgrlite.md)  is successfully called. Otherwise, an invalid address is returned. When the service or feature does not support IPC communication, an invalid address will be returned. 
-
-
 
 ## SAMGR\_RegisterFactory\(\)<a name="ga64797e3f63201c40dbdf21b90cff23d2"></a>
 
@@ -395,24 +416,24 @@ If you want to call the remote APIs in the way that local APIs are called, imple
 
 **Parameters:**
 
-<a name="table1871366415084827"></a>
-<table><thead align="left"><tr id="row481271593084827"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p760675351084827"><a name="p760675351084827"></a><a name="p760675351084827"></a>Name</p>
+<a name="table1446011529165625"></a>
+<table><thead align="left"><tr id="row1423875050165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p430418700165625"><a name="p430418700165625"></a><a name="p430418700165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p454843587084827"><a name="p454843587084827"></a><a name="p454843587084827"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1352456307165625"><a name="p1352456307165625"></a><a name="p1352456307165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1428800229084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
+<tbody><tr id="row1524561680165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">service</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the service name of the client proxy. </td>
 </tr>
-<tr id="row1363604020084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
+<tr id="row1486364955165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the feature name of the client proxy. </td>
 </tr>
-<tr id="row150709120084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">creator</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <strong id="b1149023798084827"><a name="b1149023798084827"></a><a name="b1149023798084827"></a>Creator</strong> function of the client proxy. </td>
+<tr id="row1384003953165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">creator</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <strong id="b1812747358165625"><a name="b1812747358165625"></a><a name="b1812747358165625"></a>Creator</strong> function of the client proxy. </td>
 </tr>
-<tr id="row1754737552084827"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">destroyer</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <strong id="b1112061685084827"><a name="b1112061685084827"></a><a name="b1112061685084827"></a>Destroyer</strong> function of the client proxy. </td>
+<tr id="row1119000486165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">destroyer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <strong id="b837282820165625"><a name="b837282820165625"></a><a name="b837282820165625"></a>Destroyer</strong> function of the client proxy. </td>
 </tr>
 </tbody>
 </table>
@@ -420,6 +441,4 @@ If you want to call the remote APIs in the way that local APIs are called, imple
 **Returns:**
 
 Returns  **EC\_SUCCESS**  if the registration is successful; returns other error codes if the registration fails. 
-
-
 

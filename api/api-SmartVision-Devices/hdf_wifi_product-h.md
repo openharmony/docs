@@ -1,6 +1,11 @@
 # hdf\_wifi\_product.h<a name="ZH-CN_TOPIC_0000001055198100"></a>
 
-## **Overview**<a name="section1987834499093525"></a>
+-   [Overview](#section1377525537165627)
+-   [Summary](#section1704028579165627)
+-   [Data Structures](#nested-classes)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1377525537165627"></a>
 
 **Related Modules:**
 
@@ -18,20 +23,20 @@ Declares the data structure of the WLAN module.
 
 1.0
 
-## **Summary**<a name="section1034465858093525"></a>
+## **Summary**<a name="section1704028579165627"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1757959797093525"></a>
-<table><thead align="left"><tr id="row1152567051093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p585375075093525"><a name="p585375075093525"></a><a name="p585375075093525"></a>Data Structure Name</p>
+<a name="table166596782165627"></a>
+<table><thead align="left"><tr id="row1804890888165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p981428279165627"><a name="p981428279165627"></a><a name="p981428279165627"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1643675973093525"><a name="p1643675973093525"></a><a name="p1643675973093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1968159566165627"><a name="p1968159566165627"></a><a name="p1968159566165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1909329333093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p454813832093525"><a name="p454813832093525"></a><a name="p454813832093525"></a><a href="HdfWifiProductData.md">HdfWifiProductData</a></p>
+<tbody><tr id="row1562697772165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1676086497165627"><a name="p1676086497165627"></a><a name="p1676086497165627"></a><a href="HdfWifiProductData.md">HdfWifiProductData</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p412283996093525"><a name="p412283996093525"></a><a name="p412283996093525"></a>Defines the WLAN module. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p215224080165627"><a name="p215224080165627"></a><a name="p215224080165627"></a>Defines the WLAN module. </p>
 </td>
 </tr>
 </tbody>
@@ -39,17 +44,17 @@ Declares the data structure of the WLAN module.
 
 ## Functions<a name="func-members"></a>
 
-<a name="table2139465340093525"></a>
-<table><thead align="left"><tr id="row1657068747093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1090114769093525"><a name="p1090114769093525"></a><a name="p1090114769093525"></a>Function Name</p>
+<a name="table1076274323165627"></a>
+<table><thead align="left"><tr id="row598421706165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p370687047165627"><a name="p370687047165627"></a><a name="p370687047165627"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2072434802093525"><a name="p2072434802093525"></a><a name="p2072434802093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1668313930165627"><a name="p1668313930165627"></a><a name="p1668313930165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row71139749093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p34429469093525"><a name="p34429469093525"></a><a name="p34429469093525"></a><a href="WLAN.md#ga77f15efb80095134d08cc63b62229f21">HdfWifiGetProduct</a> (void)</p>
+<tbody><tr id="row1957518733165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1277781819165627"><a name="p1277781819165627"></a><a name="p1277781819165627"></a><a href="WLAN.md#ga77f15efb80095134d08cc63b62229f21">HdfWifiGetProduct</a> (void)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1966453265093525"><a name="p1966453265093525"></a><a name="p1966453265093525"></a>struct <a href="HdfWifiProductData.md">HdfWifiProductData</a> *&nbsp;</p>
-<p id="p957529376093525"><a name="p957529376093525"></a><a name="p957529376093525"></a>Obtains the data structure of the WLAN module. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p63339370165627"><a name="p63339370165627"></a><a name="p63339370165627"></a>struct <a href="HdfWifiProductData.md">HdfWifiProductData</a> * </p>
+<p id="p2022909320165627"><a name="p2022909320165627"></a><a name="p2022909320165627"></a>Obtains the data structure of the WLAN module. </p>
 </td>
 </tr>
 </tbody>

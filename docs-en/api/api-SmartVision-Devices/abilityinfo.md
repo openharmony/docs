@@ -1,6 +1,22 @@
 # AbilityInfo<a name="EN-US_TOPIC_0000001054918143"></a>
 
-## **Overview**<a name="section1626404788093529"></a>
+-   [Overview](#section882073317165630)
+-   [Summary](#section1526513014165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1783701407165630)
+-   [Field](#section1478988012165630)
+-   [abilityType](#a893eba71c44fd9c08e8733b20edf4fa9)
+-   [bundleName](#a071361f43e3973bce0c86d8d28e41692)
+-   [description](#a2c4a58f6468c279b53d3edbf28bc28c6)
+-   [deviceId](#a6c5163afaa860ee12ea029ed5968f710)
+-   [iconPath](#a50d5d440688f11d83bd10046261c6a2c)
+-   [isVisible](#abe0dd3ffd96d9b74b19548814ba79796)
+-   [label](#ad3141a1bb211abe573af09a4941e822a)
+-   [launchMode](#ad8ed168cd50b2a1bba57271d6d930ed5)
+-   [moduleName](#a1a85f8b50cbf756c4eeddaef5b83dc85)
+-   [name](#a6d005fd16f726a6800637853e46e7c24)
+
+## **Overview**<a name="section882073317165630"></a>
 
 **Related Modules:**
 
@@ -10,73 +26,73 @@
 
 Defines the ability information. 
 
-## **Summary**<a name="section1519302889093529"></a>
+## **Summary**<a name="section1526513014165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1556097726093529"></a>
-<table><thead align="left"><tr id="row1349579851093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p254323298093529"><a name="p254323298093529"></a><a name="p254323298093529"></a>Variable Name</p>
+<a name="table520217185165630"></a>
+<table><thead align="left"><tr id="row2134767577165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p900411306165630"><a name="p900411306165630"></a><a name="p900411306165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1651743798093529"><a name="p1651743798093529"></a><a name="p1651743798093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p400626307165630"><a name="p400626307165630"></a><a name="p400626307165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1422882299093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p282512093093529"><a name="p282512093093529"></a><a name="p282512093093529"></a><a href="abilityinfo.md#abe0dd3ffd96d9b74b19548814ba79796">isVisible</a></p>
+<tbody><tr id="row1983981559165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1327211728165630"><a name="p1327211728165630"></a><a name="p1327211728165630"></a><a href="abilityinfo.md#abe0dd3ffd96d9b74b19548814ba79796">isVisible</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p439310561093529"><a name="p439310561093529"></a><a name="p439310561093529"></a>bool </p>
-</td>
-</tr>
-<tr id="row1274865028093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1491219405093529"><a name="p1491219405093529"></a><a name="p1491219405093529"></a><a href="abilityinfo.md#a893eba71c44fd9c08e8733b20edf4fa9">abilityType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p500940455093529"><a name="p500940455093529"></a><a name="p500940455093529"></a><a href="bundlemanager.md#ga44b675d687acff3d739404c1227b4259">AbilityType</a> </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p74319464165630"><a name="p74319464165630"></a><a name="p74319464165630"></a>bool </p>
 </td>
 </tr>
-<tr id="row837331558093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1509207563093529"><a name="p1509207563093529"></a><a name="p1509207563093529"></a><a href="abilityinfo.md#ad8ed168cd50b2a1bba57271d6d930ed5">launchMode</a></p>
+<tr id="row1951273679165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p517086430165630"><a name="p517086430165630"></a><a name="p517086430165630"></a><a href="abilityinfo.md#a893eba71c44fd9c08e8733b20edf4fa9">abilityType</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1376077306093529"><a name="p1376077306093529"></a><a name="p1376077306093529"></a><a href="bundlemanager.md#ga605d46d860e356a74db6842e66522854">LaunchMode</a> </p>
-</td>
-</tr>
-<tr id="row1613668931093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p499979461093529"><a name="p499979461093529"></a><a name="p499979461093529"></a><a href="abilityinfo.md#a1a85f8b50cbf756c4eeddaef5b83dc85">moduleName</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1254014453093529"><a name="p1254014453093529"></a><a name="p1254014453093529"></a>char * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2054813203165630"><a name="p2054813203165630"></a><a name="p2054813203165630"></a><a href="bundlemanager.md#ga44b675d687acff3d739404c1227b4259">AbilityType</a> </p>
 </td>
 </tr>
-<tr id="row329001070093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p344295877093529"><a name="p344295877093529"></a><a name="p344295877093529"></a><a href="abilityinfo.md#a6d005fd16f726a6800637853e46e7c24">name</a></p>
+<tr id="row1128587512165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1167494759165630"><a name="p1167494759165630"></a><a name="p1167494759165630"></a><a href="abilityinfo.md#ad8ed168cd50b2a1bba57271d6d930ed5">launchMode</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1775604059093529"><a name="p1775604059093529"></a><a name="p1775604059093529"></a>char * </p>
-</td>
-</tr>
-<tr id="row2005476308093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1423687341093529"><a name="p1423687341093529"></a><a name="p1423687341093529"></a><a href="abilityinfo.md#a2c4a58f6468c279b53d3edbf28bc28c6">description</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1109141478093529"><a name="p1109141478093529"></a><a name="p1109141478093529"></a>char * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p929068909165630"><a name="p929068909165630"></a><a name="p929068909165630"></a><a href="bundlemanager.md#ga605d46d860e356a74db6842e66522854">LaunchMode</a> </p>
 </td>
 </tr>
-<tr id="row872999644093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p43075186093529"><a name="p43075186093529"></a><a name="p43075186093529"></a><a href="abilityinfo.md#a50d5d440688f11d83bd10046261c6a2c">iconPath</a></p>
+<tr id="row1005072297165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2047313203165630"><a name="p2047313203165630"></a><a name="p2047313203165630"></a><a href="abilityinfo.md#a1a85f8b50cbf756c4eeddaef5b83dc85">moduleName</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p505242961093529"><a name="p505242961093529"></a><a name="p505242961093529"></a>char * </p>
-</td>
-</tr>
-<tr id="row130073060093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1552034720093529"><a name="p1552034720093529"></a><a name="p1552034720093529"></a><a href="abilityinfo.md#a6c5163afaa860ee12ea029ed5968f710">deviceId</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p188842280093529"><a name="p188842280093529"></a><a name="p188842280093529"></a>char * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1445295422165630"><a name="p1445295422165630"></a><a name="p1445295422165630"></a>char * </p>
 </td>
 </tr>
-<tr id="row2070319647093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p567053574093529"><a name="p567053574093529"></a><a name="p567053574093529"></a><a href="abilityinfo.md#ad3141a1bb211abe573af09a4941e822a">label</a></p>
+<tr id="row1393763709165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1425392273165630"><a name="p1425392273165630"></a><a name="p1425392273165630"></a><a href="abilityinfo.md#a6d005fd16f726a6800637853e46e7c24">name</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p26030978093529"><a name="p26030978093529"></a><a name="p26030978093529"></a>char * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1311320885165630"><a name="p1311320885165630"></a><a name="p1311320885165630"></a>char * </p>
 </td>
 </tr>
-<tr id="row39946607093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1338295363093529"><a name="p1338295363093529"></a><a name="p1338295363093529"></a><a href="abilityinfo.md#a071361f43e3973bce0c86d8d28e41692">bundleName</a></p>
+<tr id="row333075411165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p881619807165630"><a name="p881619807165630"></a><a name="p881619807165630"></a><a href="abilityinfo.md#a2c4a58f6468c279b53d3edbf28bc28c6">description</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p489146495093529"><a name="p489146495093529"></a><a name="p489146495093529"></a>char * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1921507141165630"><a name="p1921507141165630"></a><a name="p1921507141165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row530351449165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1154315424165630"><a name="p1154315424165630"></a><a name="p1154315424165630"></a><a href="abilityinfo.md#a50d5d440688f11d83bd10046261c6a2c">iconPath</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p637140526165630"><a name="p637140526165630"></a><a name="p637140526165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row828812901165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p651829064165630"><a name="p651829064165630"></a><a name="p651829064165630"></a><a href="abilityinfo.md#a6c5163afaa860ee12ea029ed5968f710">deviceId</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1797551807165630"><a name="p1797551807165630"></a><a name="p1797551807165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row1672684125165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p642102389165630"><a name="p642102389165630"></a><a name="p642102389165630"></a><a href="abilityinfo.md#ad3141a1bb211abe573af09a4941e822a">label</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p556671110165630"><a name="p556671110165630"></a><a name="p556671110165630"></a>char * </p>
+</td>
+</tr>
+<tr id="row5475580165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1680075195165630"><a name="p1680075195165630"></a><a name="p1680075195165630"></a><a href="abilityinfo.md#a071361f43e3973bce0c86d8d28e41692">bundleName</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p885711705165630"><a name="p885711705165630"></a><a name="p885711705165630"></a>char * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section902154474093529"></a>
+## **Details**<a name="section1783701407165630"></a>
 
-## **Field Documentation**<a name="section808937621093529"></a>
+## **Field **<a name="section1478988012165630"></a>
 
 ## abilityType<a name="a893eba71c44fd9c08e8733b20edf4fa9"></a>
 

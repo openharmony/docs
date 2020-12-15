@@ -1,6 +1,11 @@
 # bundle\_manager.h<a name="EN-US_TOPIC_0000001055358070"></a>
 
-## **Overview**<a name="section979879720093524"></a>
+-   [Overview](#section846914803165626)
+-   [Summary](#section1561006862165626)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section846914803165626"></a>
 
 **Related Modules:**
 
@@ -20,21 +25,21 @@ You can use functions provided in this file to install, update, or uninstall an 
 
 1.0
 
-## **Summary**<a name="section957582331093524"></a>
+## **Summary**<a name="section1561006862165626"></a>
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table2121713546093524"></a>
-<table><thead align="left"><tr id="row1578854507093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1119954181093524"><a name="p1119954181093524"></a><a name="p1119954181093524"></a>Typedef Name</p>
+<a name="table634482138165626"></a>
+<table><thead align="left"><tr id="row931883904165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p77754049165626"><a name="p77754049165626"></a><a name="p77754049165626"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1395542995093524"><a name="p1395542995093524"></a><a name="p1395542995093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p206822578165626"><a name="p206822578165626"></a><a name="p206822578165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1989341526093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p715104919093524"><a name="p715104919093524"></a><a name="p715104919093524"></a><a href="bundlemanager.md#ga00f021e76d728d2d44e1a28887ccc3af">InstallerCallback</a>) (const uint8_t resultCode, const void *resultMessage)</p>
+<tbody><tr id="row721045269165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p539645095165626"><a name="p539645095165626"></a><a name="p539645095165626"></a><a href="bundlemanager.md#ga00f021e76d728d2d44e1a28887ccc3af">InstallerCallback</a>) (const uint8_t resultCode, const void *resultMessage)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p201537064093524"><a name="p201537064093524"></a><a name="p201537064093524"></a>typedef void(* </p>
-<p id="p398651634093524"><a name="p398651634093524"></a><a name="p398651634093524"></a>Called when an application is installed, updated, or uninstalled. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1461698239165626"><a name="p1461698239165626"></a><a name="p1461698239165626"></a>typedef void(* </p>
+<p id="p773570606165626"><a name="p773570606165626"></a><a name="p773570606165626"></a>Called when an application is installed, updated, or uninstalled. </p>
 </td>
 </tr>
 </tbody>
@@ -42,71 +47,71 @@ You can use functions provided in this file to install, update, or uninstall an 
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1286707292093524"></a>
-<table><thead align="left"><tr id="row104506316093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1252524407093524"><a name="p1252524407093524"></a><a name="p1252524407093524"></a>Function Name</p>
+<a name="table1180439078165626"></a>
+<table><thead align="left"><tr id="row661526162165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p702701448165626"><a name="p702701448165626"></a><a name="p702701448165626"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1314004158093524"><a name="p1314004158093524"></a><a name="p1314004158093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p900535685165626"><a name="p900535685165626"></a><a name="p900535685165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row684537882093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1782456800093524"><a name="p1782456800093524"></a><a name="p1782456800093524"></a><a href="bundlemanager.md#ga5c49620ca8b752cd6f43fabc5d5c7416">RegisterCallback</a> (BundleStatusCallback *BundleStatusCallback)</p>
+<tbody><tr id="row867141605165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p539002747165626"><a name="p539002747165626"></a><a name="p539002747165626"></a><a href="bundlemanager.md#ga5c49620ca8b752cd6f43fabc5d5c7416">RegisterCallback</a> (<a href="bundlestatuscallback.md">BundleStatusCallback</a> *<a href="bundlestatuscallback.md">BundleStatusCallback</a>)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1672981302093524"><a name="p1672981302093524"></a><a name="p1672981302093524"></a>int32_t </p>
-<p id="p703890370093524"><a name="p703890370093524"></a><a name="p703890370093524"></a>Registers a callback to monitor the installation, update, and uninstallation state changes of an application. </p>
-</td>
-</tr>
-<tr id="row1918818587093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p28868020093524"><a name="p28868020093524"></a><a name="p28868020093524"></a><a href="bundlemanager.md#ga095eee592eff6ce71a2a67a1a0e3e344">UnregisterCallback</a> ()</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p51573455093524"><a name="p51573455093524"></a><a name="p51573455093524"></a>int32_t </p>
-<p id="p1932701562093524"><a name="p1932701562093524"></a><a name="p1932701562093524"></a>Unregisters a callback previously registered for monitoring the installation, update, and uninstallation state changes of an application. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p708735747165626"><a name="p708735747165626"></a><a name="p708735747165626"></a>int32_t </p>
+<p id="p1582538794165626"><a name="p1582538794165626"></a><a name="p1582538794165626"></a>Registers a callback to monitor the installation, update, and uninstallation state changes of an application. </p>
 </td>
 </tr>
-<tr id="row338895256093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p577833894093524"><a name="p577833894093524"></a><a name="p577833894093524"></a><a href="bundlemanager.md#gaf1f1521a64cc98f076b0082df6c0abdd">Install</a> (const char *hapPath, const InstallParam *installParam, <a href="bundlemanager.md#ga00f021e76d728d2d44e1a28887ccc3af">InstallerCallback</a> installerCallback)</p>
+<tr id="row366039124165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1124650929165626"><a name="p1124650929165626"></a><a name="p1124650929165626"></a><a href="bundlemanager.md#ga095eee592eff6ce71a2a67a1a0e3e344">UnregisterCallback</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p679552401093524"><a name="p679552401093524"></a><a name="p679552401093524"></a>bool </p>
-<p id="p1200763507093524"><a name="p1200763507093524"></a><a name="p1200763507093524"></a>Installs or updates an application. </p>
-</td>
-</tr>
-<tr id="row322610870093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p708888161093524"><a name="p708888161093524"></a><a name="p708888161093524"></a><a href="bundlemanager.md#gaa117e44378315a61b4e71fd252b2e496">Uninstall</a> (const char *bundleName, const InstallParam *installParam, <a href="bundlemanager.md#ga00f021e76d728d2d44e1a28887ccc3af">InstallerCallback</a> installerCallback)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1598571794093524"><a name="p1598571794093524"></a><a name="p1598571794093524"></a>bool </p>
-<p id="p139496451093524"><a name="p139496451093524"></a><a name="p139496451093524"></a>Uninstalls an application. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p229067640165626"><a name="p229067640165626"></a><a name="p229067640165626"></a>int32_t </p>
+<p id="p134605969165626"><a name="p134605969165626"></a><a name="p134605969165626"></a>Unregisters a callback previously registered for monitoring the installation, update, and uninstallation stat changes of an application. </p>
 </td>
 </tr>
-<tr id="row455369973093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2035346100093524"><a name="p2035346100093524"></a><a name="p2035346100093524"></a><a href="bundlemanager.md#ga4360375d15224d89632f59ee110b74c9">QueryAbilityInfo</a> (const <a href="want.md">Want</a> *want, <a href="abilityinfo.md">AbilityInfo</a> *abilityInfo)</p>
+<tr id="row1667867548165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1651916774165626"><a name="p1651916774165626"></a><a name="p1651916774165626"></a><a href="bundlemanager.md#gaf1f1521a64cc98f076b0082df6c0abdd">Install</a> (const char *hapPath, const <a href="installparam.md">InstallParam</a> *installParam, <a href="bundlemanager.md#ga00f021e76d728d2d44e1a28887ccc3af">InstallerCallback</a> installerCallback)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p940481416093524"><a name="p940481416093524"></a><a name="p940481416093524"></a>uint8_t </p>
-<p id="p1297071093093524"><a name="p1297071093093524"></a><a name="p1297071093093524"></a>Queries the <a href="abilityinfo.md">AbilityInfo</a> of an ability based on the information carried in the <a href="want.md">Want</a> structure. </p>
-</td>
-</tr>
-<tr id="row589755105093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p194060647093524"><a name="p194060647093524"></a><a name="p194060647093524"></a><a href="bundlemanager.md#ga5e81134e037911654e34cc8a7ba01a2f">GetBundleInfo</a> (const char *bundleName, int32_t flags, <a href="bundleinfo.md">BundleInfo</a> *bundleInfo)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1060241240093524"><a name="p1060241240093524"></a><a name="p1060241240093524"></a>uint8_t </p>
-<p id="p1976563097093524"><a name="p1976563097093524"></a><a name="p1976563097093524"></a>Obtains the <a href="bundleinfo.md">BundleInfo</a> of an application based on the specified bundle name. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1768789153165626"><a name="p1768789153165626"></a><a name="p1768789153165626"></a>bool </p>
+<p id="p1114402030165626"><a name="p1114402030165626"></a><a name="p1114402030165626"></a>Installs or updates an application. </p>
 </td>
 </tr>
-<tr id="row2111378669093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1437306654093524"><a name="p1437306654093524"></a><a name="p1437306654093524"></a><a href="bundlemanager.md#ga2469dafbc61ba8e98b69041c13044cad">GetBundleInfos</a> (const int flags, <a href="bundleinfo.md">BundleInfo</a> **bundleInfos, int32_t *len)</p>
+<tr id="row1422554957165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1316592192165626"><a name="p1316592192165626"></a><a name="p1316592192165626"></a><a href="bundlemanager.md#gaa117e44378315a61b4e71fd252b2e496">Uninstall</a> (const char *bundleName, const <a href="installparam.md">InstallParam</a> *installParam, <a href="bundlemanager.md#ga00f021e76d728d2d44e1a28887ccc3af">InstallerCallback</a> installerCallback)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p938588569093524"><a name="p938588569093524"></a><a name="p938588569093524"></a>uint8_t </p>
-<p id="p174585517093524"><a name="p174585517093524"></a><a name="p174585517093524"></a>Obtains the <a href="bundleinfo.md">BundleInfo</a> of all bundles in the system. </p>
-</td>
-</tr>
-<tr id="row24683789093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2087923994093524"><a name="p2087923994093524"></a><a name="p2087923994093524"></a><a href="bundlemanager.md#ga0c1cb00194993ecba7337fdf0a203314">QueryKeepAliveBundleInfos</a> (<a href="bundleinfo.md">BundleInfo</a> **bundleInfos, int32_t *len)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1576599104093524"><a name="p1576599104093524"></a><a name="p1576599104093524"></a>uint8_t </p>
-<p id="p2096697820093524"><a name="p2096697820093524"></a><a name="p2096697820093524"></a>Obtains the <a href="bundleinfo.md">BundleInfo</a> of all keep-alive applications in the system. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1988024541165626"><a name="p1988024541165626"></a><a name="p1988024541165626"></a>bool </p>
+<p id="p1473535974165626"><a name="p1473535974165626"></a><a name="p1473535974165626"></a>Uninstalls an application. </p>
 </td>
 </tr>
-<tr id="row1578630687093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1791884562093524"><a name="p1791884562093524"></a><a name="p1791884562093524"></a><a href="bundlemanager.md#ga711965038390aef4fa0a6b6a98f6998b">GetBundleInfosByMetaData</a> (const char *metaDataKey, <a href="bundleinfo.md">BundleInfo</a> **bundleInfos, int32_t *len)</p>
+<tr id="row1212345590165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p841640835165626"><a name="p841640835165626"></a><a name="p841640835165626"></a><a href="bundlemanager.md#ga4360375d15224d89632f59ee110b74c9">QueryAbilityInfo</a> (const <a href="want.md">Want</a> *want, <a href="abilityinfo.md">AbilityInfo</a> *abilityInfo)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p26245787093524"><a name="p26245787093524"></a><a name="p26245787093524"></a>uint8_t </p>
-<p id="p1084706552093524"><a name="p1084706552093524"></a><a name="p1084706552093524"></a>Obtains the <a href="bundleinfo.md">BundleInfo</a> of application bundles based on the specified <a href="metadata.md">MetaData</a>. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1552839748165626"><a name="p1552839748165626"></a><a name="p1552839748165626"></a>uint8_t </p>
+<p id="p39777193165626"><a name="p39777193165626"></a><a name="p39777193165626"></a>Queries the <a href="abilityinfo.md">AbilityInfo</a> of an ability based on the information carried in the <a href="want.md">Want</a> structure. </p>
 </td>
 </tr>
-<tr id="row978035039093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1041508641093524"><a name="p1041508641093524"></a><a name="p1041508641093524"></a><a href="bundlemanager.md#ga4afdc08ba78506fce95a066e137ac46d">GetBundleNameForUid</a> (int32_t uid, char **bundleName)</p>
+<tr id="row1582983129165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p246189998165626"><a name="p246189998165626"></a><a name="p246189998165626"></a><a href="bundlemanager.md#ga5e81134e037911654e34cc8a7ba01a2f">GetBundleInfo</a> (const char *bundleName, int32_t flags, <a href="bundleinfo.md">BundleInfo</a> *bundleInfo)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p165039705093524"><a name="p165039705093524"></a><a name="p165039705093524"></a>uint8_t </p>
-<p id="p411537936093524"><a name="p411537936093524"></a><a name="p411537936093524"></a>Obtains the bundle name of an application based on the specified UID. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p447491028165626"><a name="p447491028165626"></a><a name="p447491028165626"></a>uint8_t </p>
+<p id="p1609299059165626"><a name="p1609299059165626"></a><a name="p1609299059165626"></a>Obtains the <a href="bundleinfo.md">BundleInfo</a> of an application based on the specified bundle name. </p>
+</td>
+</tr>
+<tr id="row2116074657165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1420542007165626"><a name="p1420542007165626"></a><a name="p1420542007165626"></a><a href="bundlemanager.md#ga2469dafbc61ba8e98b69041c13044cad">GetBundleInfos</a> (const int flags, <a href="bundleinfo.md">BundleInfo</a> **bundleInfos, int32_t *len)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1462506431165626"><a name="p1462506431165626"></a><a name="p1462506431165626"></a>uint8_t </p>
+<p id="p1239658312165626"><a name="p1239658312165626"></a><a name="p1239658312165626"></a>Obtains the <a href="bundleinfo.md">BundleInfo</a> of all bundles in the system. </p>
+</td>
+</tr>
+<tr id="row1491606930165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p209794018165626"><a name="p209794018165626"></a><a name="p209794018165626"></a><a href="bundlemanager.md#ga0c1cb00194993ecba7337fdf0a203314">QueryKeepAliveBundleInfos</a> (<a href="bundleinfo.md">BundleInfo</a> **bundleInfos, int32_t *len)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2089967698165626"><a name="p2089967698165626"></a><a name="p2089967698165626"></a>uint8_t </p>
+<p id="p2044540732165626"><a name="p2044540732165626"></a><a name="p2044540732165626"></a>Obtains the <a href="bundleinfo.md">BundleInfo</a> of all keep-alive applications in the system. </p>
+</td>
+</tr>
+<tr id="row1475638400165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p328534235165626"><a name="p328534235165626"></a><a name="p328534235165626"></a><a href="bundlemanager.md#ga711965038390aef4fa0a6b6a98f6998b">GetBundleInfosByMetaData</a> (const char *metaDataKey, <a href="bundleinfo.md">BundleInfo</a> **bundleInfos, int32_t *len)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p622361715165626"><a name="p622361715165626"></a><a name="p622361715165626"></a>uint8_t </p>
+<p id="p1519823460165626"><a name="p1519823460165626"></a><a name="p1519823460165626"></a>Obtains the <a href="bundleinfo.md">BundleInfo</a> of application bundles based on the specified <a href="metadata.md">MetaData</a>. </p>
+</td>
+</tr>
+<tr id="row185421783165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1963881236165626"><a name="p1963881236165626"></a><a name="p1963881236165626"></a><a href="bundlemanager.md#ga4afdc08ba78506fce95a066e137ac46d">GetBundleNameForUid</a> (int32_t uid, char **bundleName)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1229744337165626"><a name="p1229744337165626"></a><a name="p1229744337165626"></a>uint8_t </p>
+<p id="p2040514255165626"><a name="p2040514255165626"></a><a name="p2040514255165626"></a>Obtains the bundle name of an application based on the specified UID. </p>
 </td>
 </tr>
 </tbody>

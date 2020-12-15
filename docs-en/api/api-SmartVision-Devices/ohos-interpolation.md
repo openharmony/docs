@@ -1,6 +1,11 @@
 # OHOS::Interpolation<a name="EN-US_TOPIC_0000001054479581"></a>
 
-## **Overview**<a name="section692224448093533"></a>
+-   [Overview](#section1285276403165633)
+-   [Summary](#section731398620165633)
+-   [Static Public Member Functions](#pub-static-methods)
+-   [Additional Inherited Members](#inherited)
+
+## **Overview**<a name="section1285276403165633"></a>
 
 **Related Modules:**
 
@@ -18,21 +23,21 @@ Calculates the Bezier interpolation.
 
 1.0
 
-## **Summary**<a name="section1812775517093533"></a>
+## **Summary**<a name="section731398620165633"></a>
 
 ## Static Public Member Functions<a name="pub-static-methods"></a>
 
-<a name="table130379287093533"></a>
-<table><thead align="left"><tr id="row1834550703093533"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1334710493093533"><a name="p1334710493093533"></a><a name="p1334710493093533"></a>Static Public Member Function Name</p>
+<a name="table426197105165633"></a>
+<table><thead align="left"><tr id="row605581902165633"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1625361201165633"><a name="p1625361201165633"></a><a name="p1625361201165633"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1526612807093533"><a name="p1526612807093533"></a><a name="p1526612807093533"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1683133025165633"><a name="p1683133025165633"></a><a name="p1683133025165633"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1209258266093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1216283458093533"><a name="p1216283458093533"></a><a name="p1216283458093533"></a><a href="graphic.md#ga9d6eaf28db711bc05e1cd03c5df293eb">GetBezierInterpolation</a> (int16_t t, int16_t u0, int16_t u1, int16_t u2, int16_t u3)</p>
+<tbody><tr id="row120750699165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1848771234165633"><a name="p1848771234165633"></a><a name="p1848771234165633"></a><a href="graphic.md#ga9d6eaf28db711bc05e1cd03c5df293eb">GetBezierInterpolation</a> (int16_t t, int16_t u0, int16_t u1, int16_t u2, int16_t u3)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p554751512093533"><a name="p554751512093533"></a><a name="p554751512093533"></a>static int16_t </p>
-<p id="p1605616811093533"><a name="p1605616811093533"></a><a name="p1605616811093533"></a>Obtains the value calculated by the cubic Bezier equation. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1702518766165633"><a name="p1702518766165633"></a><a name="p1702518766165633"></a>static int16_t </p>
+<p id="p22811327165633"><a name="p22811327165633"></a><a name="p22811327165633"></a>Obtains the value calculated by the cubic Bezier equation. </p>
 </td>
 </tr>
 </tbody>
@@ -40,21 +45,21 @@ Calculates the Bezier interpolation.
 
 ## Additional Inherited Members<a name="inherited"></a>
 
-<a name="table189948189093533"></a>
-<table><thead align="left"><tr id="row1072298581093533"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p583554645093533"><a name="p583554645093533"></a><a name="p583554645093533"></a>Additional Inherited Member Name</p>
+<a name="table1242294843165633"></a>
+<table><thead align="left"><tr id="row382999193165633"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p966834675165633"><a name="p966834675165633"></a><a name="p966834675165633"></a>Additional Inherited Member Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p119893589093533"><a name="p119893589093533"></a><a name="p119893589093533"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1327573409165633"><a name="p1327573409165633"></a><a name="p1327573409165633"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1275350578093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2022215438093533"><a name="p2022215438093533"></a><a name="p2022215438093533"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
+<tbody><tr id="row1942843041165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1434549157165633"><a name="p1434549157165633"></a><a name="p1434549157165633"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p708186826093533"><a name="p708186826093533"></a><a name="p708186826093533"></a>Overrides the <strong id="b886473515093533"><a name="b886473515093533"></a><a name="b886473515093533"></a>new</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1293816563165633"><a name="p1293816563165633"></a><a name="p1293816563165633"></a>Overrides the <strong id="b1310762855165633"><a name="b1310762855165633"></a><a name="b1310762855165633"></a>new</strong> function. </p>
 </td>
 </tr>
-<tr id="row529425371093533"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1684148966093533"><a name="p1684148966093533"></a><a name="p1684148966093533"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+<tr id="row648129455165633"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p847457065165633"><a name="p847457065165633"></a><a name="p847457065165633"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1058288010093533"><a name="p1058288010093533"></a><a name="p1058288010093533"></a>Overrides the <strong id="b902325803093533"><a name="b902325803093533"></a><a name="b902325803093533"></a>delete</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p584702074165633"><a name="p584702074165633"></a><a name="p584702074165633"></a>Overrides the <strong id="b244450962165633"><a name="b244450962165633"></a><a name="b244450962165633"></a>delete</strong> function. </p>
 </td>
 </tr>
 </tbody>

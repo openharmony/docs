@@ -1,6 +1,13 @@
 # iproxy\_client.h<a name="ZH-CN_TOPIC_0000001055518060"></a>
 
-## **Overview**<a name="section945175763093525"></a>
+-   [Overview](#section2015427267165627)
+-   [Summary](#section498246058165627)
+-   [Data Structures](#nested-classes)
+-   [Macros](#define-members)
+-   [Typedefs](#typedef-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section2015427267165627"></a>
 
 **Related Modules:**
 
@@ -20,20 +27,20 @@ When you need to call system capabilities of other processes, obtain the class f
 
 1.0
 
-## **Summary**<a name="section1771582204093525"></a>
+## **Summary**<a name="section498246058165627"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1189857256093525"></a>
-<table><thead align="left"><tr id="row869660288093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1746347505093525"><a name="p1746347505093525"></a><a name="p1746347505093525"></a>Data Structure Name</p>
+<a name="table436830504165627"></a>
+<table><thead align="left"><tr id="row891201121165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1041597224165627"><a name="p1041597224165627"></a><a name="p1041597224165627"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p409416514093525"><a name="p409416514093525"></a><a name="p409416514093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2121430816165627"><a name="p2121430816165627"></a><a name="p2121430816165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row960292497093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p620376044093525"><a name="p620376044093525"></a><a name="p620376044093525"></a><a href="IClientProxy.md">IClientProxy</a></p>
+<tbody><tr id="row1084496579165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p618655914165627"><a name="p618655914165627"></a><a name="p618655914165627"></a><a href="IClientProxy.md">IClientProxy</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1008634076093525"><a name="p1008634076093525"></a><a name="p1008634076093525"></a>Defines the client proxy object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1072732562165627"><a name="p1072732562165627"></a><a name="p1072732562165627"></a>Defines the client proxy object. </p>
 </td>
 </tr>
 </tbody>
@@ -41,16 +48,16 @@ When you need to call system capabilities of other processes, obtain the class f
 
 ## Macros<a name="define-members"></a>
 
-<a name="table1401714948093525"></a>
-<table><thead align="left"><tr id="row1729310996093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p137817022093525"><a name="p137817022093525"></a><a name="p137817022093525"></a>Macro Name and Value</p>
+<a name="table258851761165627"></a>
+<table><thead align="left"><tr id="row1614572835165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1833677577165627"><a name="p1833677577165627"></a><a name="p1833677577165627"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1629461448093525"><a name="p1629461448093525"></a><a name="p1629461448093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p596781137165627"><a name="p596781137165627"></a><a name="p596781137165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row145346739093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p344309714093525"><a name="p344309714093525"></a><a name="p344309714093525"></a><a href="Registry.md#ga86734e6a03eb089309e87ec628002034">INHERIT_CLIENT_IPROXY</a></p>
+<tbody><tr id="row558779045165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p140572485165627"><a name="p140572485165627"></a><a name="p140572485165627"></a><a href="Registry.md#ga86734e6a03eb089309e87ec628002034">INHERIT_CLIENT_IPROXY</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1214417876093525"><a name="p1214417876093525"></a><a name="p1214417876093525"></a>Indicates the inherited macro of the client proxy. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p840358077165627"><a name="p840358077165627"></a><a name="p840358077165627"></a>Indicates the inherited macro of the client proxy. </p>
 </td>
 </tr>
 </tbody>
@@ -58,17 +65,17 @@ When you need to call system capabilities of other processes, obtain the class f
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table688085312093525"></a>
-<table><thead align="left"><tr id="row709015421093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1764537935093525"><a name="p1764537935093525"></a><a name="p1764537935093525"></a>Typedef Name</p>
+<a name="table1884081204165627"></a>
+<table><thead align="left"><tr id="row1409083449165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p254931780165627"><a name="p254931780165627"></a><a name="p254931780165627"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1327403089093525"><a name="p1327403089093525"></a><a name="p1327403089093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p832618928165627"><a name="p832618928165627"></a><a name="p832618928165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1238681677093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1460915970093525"><a name="p1460915970093525"></a><a name="p1460915970093525"></a><a href="Registry.md#ga362a17c1bda1aace88d42dcbc88bdfac">INotify</a>) (IOwner owner, int code, IpcIo *reply)</p>
+<tbody><tr id="row1224809169165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p302294247165627"><a name="p302294247165627"></a><a name="p302294247165627"></a><a href="Registry.md#ga362a17c1bda1aace88d42dcbc88bdfac">INotify</a>) (IOwner owner, int code, IpcIo *reply)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1107281460093525"><a name="p1107281460093525"></a><a name="p1107281460093525"></a>typedef int(*&nbsp;</p>
-<p id="p987410381093525"><a name="p987410381093525"></a><a name="p987410381093525"></a>Called when a client request is responded. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p140267179165627"><a name="p140267179165627"></a><a name="p140267179165627"></a>typedef int(* </p>
+<p id="p963608008165627"><a name="p963608008165627"></a><a name="p963608008165627"></a>Called when a client request is responded. </p>
 </td>
 </tr>
 </tbody>
@@ -76,17 +83,17 @@ When you need to call system capabilities of other processes, obtain the class f
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1163481891093525"></a>
-<table><thead align="left"><tr id="row587039938093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1665296112093525"><a name="p1665296112093525"></a><a name="p1665296112093525"></a>Function Name</p>
+<a name="table2067506898165627"></a>
+<table><thead align="left"><tr id="row1829463597165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1932296070165627"><a name="p1932296070165627"></a><a name="p1932296070165627"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1542950662093525"><a name="p1542950662093525"></a><a name="p1542950662093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p918286492165627"><a name="p918286492165627"></a><a name="p918286492165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1335221835093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p328162326093525"><a name="p328162326093525"></a><a name="p328162326093525"></a><a href="Registry.md#gaa9bb385bfe593f4377a83cf513189bf1">SAMGR_GetRemoteIdentity</a> (const char *service, const char *feature)</p>
+<tbody><tr id="row1908526344165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1708994885165627"><a name="p1708994885165627"></a><a name="p1708994885165627"></a><a href="Registry.md#gaa9bb385bfe593f4377a83cf513189bf1">SAMGR_GetRemoteIdentity</a> (const char *service, const char *feature)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p246328476093525"><a name="p246328476093525"></a><a name="p246328476093525"></a>SvcIdentity&nbsp;</p>
-<p id="p1476705355093525"><a name="p1476705355093525"></a><a name="p1476705355093525"></a>Obtains the IPC address of a remote service and feature based on the service name and feature name. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1775574389165627"><a name="p1775574389165627"></a><a name="p1775574389165627"></a>SvcIdentity </p>
+<p id="p1704887560165627"><a name="p1704887560165627"></a><a name="p1704887560165627"></a>Obtains the IPC address of a remote service and feature based on the service name and feature name. </p>
 </td>
 </tr>
 </tbody>

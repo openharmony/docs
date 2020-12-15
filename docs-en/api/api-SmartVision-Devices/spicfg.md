@@ -1,6 +1,16 @@
 # SpiCfg<a name="EN-US_TOPIC_0000001054879570"></a>
 
-## **Overview**<a name="section1832731980093536"></a>
+-   [Overview](#section1247638969165636)
+-   [Summary](#section519846771165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section553147246165636)
+-   [Field](#section199850120165636)
+-   [bitsPerWord](#ac671a8fc23e2998243695c7bd27232f3)
+-   [maxSpeedHz](#a81369e5879c93f2747375dffbd5f975d)
+-   [mode](#a48b7732e7d6e53d5af6ad5ce36cb96d3)
+-   [transferMode](#a4193f45f83d1501f5e0ead393e1e55a1)
+
+## **Overview**<a name="section1247638969165636"></a>
 
 **Related Modules:**
 
@@ -10,47 +20,50 @@
 
 Defines the configuration of an SPI device. 
 
+Attention
+:   The specific SPI controller determines which variables in this structure are supported.
+
 **Since:**
 
 1.0
 
-## **Summary**<a name="section1045912211093536"></a>
+## **Summary**<a name="section519846771165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1524085202093536"></a>
-<table><thead align="left"><tr id="row1591948315093536"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1900822034093536"><a name="p1900822034093536"></a><a name="p1900822034093536"></a>Variable Name</p>
+<a name="table858049802165636"></a>
+<table><thead align="left"><tr id="row550174029165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1952263539165636"><a name="p1952263539165636"></a><a name="p1952263539165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1452336588093536"><a name="p1452336588093536"></a><a name="p1452336588093536"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p462307997165636"><a name="p462307997165636"></a><a name="p462307997165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row605127639093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1410244348093536"><a name="p1410244348093536"></a><a name="p1410244348093536"></a><a href="spicfg.md#a81369e5879c93f2747375dffbd5f975d">maxSpeedHz</a></p>
+<tbody><tr id="row1280153313165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p220335440165636"><a name="p220335440165636"></a><a name="p220335440165636"></a><a href="spicfg.md#a81369e5879c93f2747375dffbd5f975d">maxSpeedHz</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p287571163093536"><a name="p287571163093536"></a><a name="p287571163093536"></a>uint32_t </p>
-</td>
-</tr>
-<tr id="row11235886093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1813205940093536"><a name="p1813205940093536"></a><a name="p1813205940093536"></a><a href="spicfg.md#a48b7732e7d6e53d5af6ad5ce36cb96d3">mode</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1798402484093536"><a name="p1798402484093536"></a><a name="p1798402484093536"></a>uint16_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2108814029165636"><a name="p2108814029165636"></a><a name="p2108814029165636"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row958582605093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p211305601093536"><a name="p211305601093536"></a><a name="p211305601093536"></a><a href="spicfg.md#a4193f45f83d1501f5e0ead393e1e55a1">transferMode</a></p>
+<tr id="row237708740165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1032058859165636"><a name="p1032058859165636"></a><a name="p1032058859165636"></a><a href="spicfg.md#a48b7732e7d6e53d5af6ad5ce36cb96d3">mode</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1272984649093536"><a name="p1272984649093536"></a><a name="p1272984649093536"></a>uint8_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1491825992165636"><a name="p1491825992165636"></a><a name="p1491825992165636"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row1528771526093536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p37181509093536"><a name="p37181509093536"></a><a name="p37181509093536"></a><a href="spicfg.md#ac671a8fc23e2998243695c7bd27232f3">bitsPerWord</a></p>
+<tr id="row531136347165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1233180448165636"><a name="p1233180448165636"></a><a name="p1233180448165636"></a><a href="spicfg.md#a4193f45f83d1501f5e0ead393e1e55a1">transferMode</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p492783748093536"><a name="p492783748093536"></a><a name="p492783748093536"></a>uint8_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1982512921165636"><a name="p1982512921165636"></a><a name="p1982512921165636"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row1570387663165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p635083884165636"><a name="p635083884165636"></a><a name="p635083884165636"></a><a href="spicfg.md#ac671a8fc23e2998243695c7bd27232f3">bitsPerWord</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p793644244165636"><a name="p793644244165636"></a><a name="p793644244165636"></a>uint8_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section601892321093536"></a>
+## **Details**<a name="section553147246165636"></a>
 
-## **Field Documentation**<a name="section1068126293093536"></a>
+## **Field **<a name="section199850120165636"></a>
 
 ## bitsPerWord<a name="ac671a8fc23e2998243695c7bd27232f3"></a>
 

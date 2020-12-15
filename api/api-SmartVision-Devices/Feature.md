@@ -1,6 +1,16 @@
 # Feature<a name="ZH-CN_TOPIC_0000001055518086"></a>
 
-## **Overview**<a name="section989380084093530"></a>
+-   [Overview](#section416481894165631)
+-   [Summary](#section1825669683165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section2084409850165631)
+-   [Field](#section589332272165631)
+-   [GetName](#ab30dc9677abd4aaa18ec88254e90b139)
+-   [OnInitialize](#adb3f9401f41e2309006568ef6e78fd43)
+-   [OnMessage](#adf249c7a1b07eb47d51f046c5c8a5f6b)
+-   [OnStop](#ab0a4b92d867106b10f3fd3c4761338ba)
+
+## **Overview**<a name="section416481894165631"></a>
 
 **Related Modules:**
 
@@ -20,47 +30,47 @@ You need to implement the pointer to the feature.
 
 1.0
 
-## **Summary**<a name="section991844430093530"></a>
+## **Summary**<a name="section1825669683165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table2147361412093530"></a>
-<table><thead align="left"><tr id="row11144604093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1021013427093530"><a name="p1021013427093530"></a><a name="p1021013427093530"></a>Variable Name</p>
+<a name="table1937197149165631"></a>
+<table><thead align="left"><tr id="row1942019000165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p879146928165631"><a name="p879146928165631"></a><a name="p879146928165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p811718199093530"><a name="p811718199093530"></a><a name="p811718199093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p661053041165631"><a name="p661053041165631"></a><a name="p661053041165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row909205846093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1537706196093530"><a name="p1537706196093530"></a><a name="p1537706196093530"></a><a href="Feature.md#ab30dc9677abd4aaa18ec88254e90b139">GetName</a> )(<a href="Feature.md">Feature</a> *feature)</p>
+<tbody><tr id="row332502951165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1167998028165631"><a name="p1167998028165631"></a><a name="p1167998028165631"></a><a href="Feature.md#ab30dc9677abd4aaa18ec88254e90b139">GetName</a> )(<a href="Feature.md">Feature</a> *feature)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1635690443093530"><a name="p1635690443093530"></a><a name="p1635690443093530"></a>const char *(*&nbsp;</p>
-<p id="p868669120093530"><a name="p868669120093530"></a><a name="p868669120093530"></a>Obtains a feature name. </p>
-</td>
-</tr>
-<tr id="row1955292831093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1807171937093530"><a name="p1807171937093530"></a><a name="p1807171937093530"></a><a href="Feature.md#adb3f9401f41e2309006568ef6e78fd43">OnInitialize</a> )(<a href="Feature.md">Feature</a> *feature, <a href="Service.md">Service</a> *parent, <a href="Identity.md">Identity</a> identity)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1424984730093530"><a name="p1424984730093530"></a><a name="p1424984730093530"></a>void(*&nbsp;</p>
-<p id="p1928763897093530"><a name="p1928763897093530"></a><a name="p1928763897093530"></a>Initializes a feature. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2002481467165631"><a name="p2002481467165631"></a><a name="p2002481467165631"></a>const char *(* </p>
+<p id="p1613108763165631"><a name="p1613108763165631"></a><a name="p1613108763165631"></a>Obtains a feature name. </p>
 </td>
 </tr>
-<tr id="row1433344278093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1907551590093530"><a name="p1907551590093530"></a><a name="p1907551590093530"></a><a href="Feature.md#ab0a4b92d867106b10f3fd3c4761338ba">OnStop</a> )(<a href="Feature.md">Feature</a> *feature, <a href="Identity.md">Identity</a> identity)</p>
+<tr id="row1108482273165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1804269092165631"><a name="p1804269092165631"></a><a name="p1804269092165631"></a><a href="Feature.md#adb3f9401f41e2309006568ef6e78fd43">OnInitialize</a> )(<a href="Feature.md">Feature</a> *feature, <a href="Service.md">Service</a> *parent, <a href="Identity.md">Identity</a> identity)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1945442908093530"><a name="p1945442908093530"></a><a name="p1945442908093530"></a>void(*&nbsp;</p>
-<p id="p2002872179093530"><a name="p2002872179093530"></a><a name="p2002872179093530"></a>Stops a feature. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1822850993165631"><a name="p1822850993165631"></a><a name="p1822850993165631"></a>void(* </p>
+<p id="p695388815165631"><a name="p695388815165631"></a><a name="p695388815165631"></a>Initializes a feature. </p>
 </td>
 </tr>
-<tr id="row1597329360093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1206771491093530"><a name="p1206771491093530"></a><a name="p1206771491093530"></a><a href="Feature.md#adf249c7a1b07eb47d51f046c5c8a5f6b">OnMessage</a> )(<a href="Feature.md">Feature</a> *feature, <a href="Request.md">Request</a> *request)</p>
+<tr id="row9839150165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1219936188165631"><a name="p1219936188165631"></a><a name="p1219936188165631"></a><a href="Feature.md#ab0a4b92d867106b10f3fd3c4761338ba">OnStop</a> )(<a href="Feature.md">Feature</a> *feature, <a href="Identity.md">Identity</a> identity)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1725262940093530"><a name="p1725262940093530"></a><a name="p1725262940093530"></a>BOOL(*&nbsp;</p>
-<p id="p1752420691093530"><a name="p1752420691093530"></a><a name="p1752420691093530"></a>Processes a feature message. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2047296109165631"><a name="p2047296109165631"></a><a name="p2047296109165631"></a>void(* </p>
+<p id="p826382864165631"><a name="p826382864165631"></a><a name="p826382864165631"></a>Stops a feature. </p>
+</td>
+</tr>
+<tr id="row1087426016165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2065112058165631"><a name="p2065112058165631"></a><a name="p2065112058165631"></a><a href="Feature.md#adf249c7a1b07eb47d51f046c5c8a5f6b">OnMessage</a> )(<a href="Feature.md">Feature</a> *feature, <a href="Request.md">Request</a> *request)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p611960672165631"><a name="p611960672165631"></a><a name="p611960672165631"></a>BOOL(* </p>
+<p id="p1832331162165631"><a name="p1832331162165631"></a><a name="p1832331162165631"></a>Processes a feature message. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1969258885093530"></a>
+## **Details**<a name="section2084409850165631"></a>
 
-## **Field Documentation**<a name="section107628635093530"></a>
+## **Field **<a name="section589332272165631"></a>
 
 ## GetName<a name="ab30dc9677abd4aaa18ec88254e90b139"></a>
 
@@ -76,14 +86,14 @@ This function is implemented by developers and called by Samgr during feature re
 
 **Parameters:**
 
-<a name="table1555701909093530"></a>
-<table><thead align="left"><tr id="row1426312071093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1930084727093530"><a name="p1930084727093530"></a><a name="p1930084727093530"></a>Name</p>
+<a name="table711360432165631"></a>
+<table><thead align="left"><tr id="row1329603654165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1973257118165631"><a name="p1973257118165631"></a><a name="p1973257118165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1057242264093530"><a name="p1057242264093530"></a><a name="p1057242264093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p957714957165631"><a name="p957714957165631"></a><a name="p957714957165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1948162938093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
+<tbody><tr id="row224180492165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the feature. </td>
 </tr>
 </tbody>
@@ -92,8 +102,6 @@ This function is implemented by developers and called by Samgr during feature re
 **Returns:**
 
 Returns a constant character string less than 16 bytes if the operation is successful; returns  **NULL**  if the operation fails.
-
-
 
 ## OnInitialize<a name="adb3f9401f41e2309006568ef6e78fd43"></a>
 
@@ -109,20 +117,20 @@ This function is implemented by developers. After Samgr dispatches tasks to a se
 
 **Parameters:**
 
-<a name="table497358319093530"></a>
-<table><thead align="left"><tr id="row1904700960093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1751017937093530"><a name="p1751017937093530"></a><a name="p1751017937093530"></a>Name</p>
+<a name="table449775449165631"></a>
+<table><thead align="left"><tr id="row933615880165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p645818123165631"><a name="p645818123165631"></a><a name="p645818123165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p604188105093530"><a name="p604188105093530"></a><a name="p604188105093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1639645214165631"><a name="p1639645214165631"></a><a name="p1639645214165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row286353037093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
+<tbody><tr id="row169854711165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the feature. </td>
 </tr>
-<tr id="row1073291468093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">parent</td>
+<tr id="row1372659902165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">parent</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the <a href="Service.md">Service</a> to which the feature belongs. </td>
 </tr>
-<tr id="row32670223093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">identity</td>
+<tr id="row615580258165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">identity</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the identity of a feature dispatched by the system.</td>
 </tr>
 </tbody>
@@ -142,17 +150,17 @@ This function is implemented by developers to process requests sent by callers t
 
 **Parameters:**
 
-<a name="table713809527093530"></a>
-<table><thead align="left"><tr id="row1802353114093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1321034633093530"><a name="p1321034633093530"></a><a name="p1321034633093530"></a>Name</p>
+<a name="table277916757165631"></a>
+<table><thead align="left"><tr id="row550515633165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p958837042165631"><a name="p958837042165631"></a><a name="p958837042165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1860585962093530"><a name="p1860585962093530"></a><a name="p1860585962093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p544853448165631"><a name="p544853448165631"></a><a name="p544853448165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1674520627093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
+<tbody><tr id="row1781844582165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the feature. </td>
 </tr>
-<tr id="row754750198093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">request</td>
+<tr id="row1227777758165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">request</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the request message. </td>
 </tr>
 </tbody>
@@ -161,8 +169,6 @@ This function is implemented by developers to process requests sent by callers t
 **Returns:**
 
 Returns  **TRUE**  if the processing is successful; returns  **FALSE**  if the processing fails.
-
-
 
 ## OnStop<a name="ab0a4b92d867106b10f3fd3c4761338ba"></a>
 
@@ -178,17 +184,17 @@ This function is implemented by developers and is called by Samgr when a feature
 
 **Parameters:**
 
-<a name="table320452396093530"></a>
-<table><thead align="left"><tr id="row2052276470093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1690570197093530"><a name="p1690570197093530"></a><a name="p1690570197093530"></a>Name</p>
+<a name="table189406589165631"></a>
+<table><thead align="left"><tr id="row2115921194165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p34644278165631"><a name="p34644278165631"></a><a name="p34644278165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1113049211093530"><a name="p1113049211093530"></a><a name="p1113049211093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p861910447165631"><a name="p861910447165631"></a><a name="p861910447165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1130713780093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
+<tbody><tr id="row1777650037165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">feature</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the feature. </td>
 </tr>
-<tr id="row440071074093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">identity</td>
+<tr id="row886232707165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">identity</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the <a href="Identity.md">Identity</a> of the feature to be stopped. </td>
 </tr>
 </tbody>

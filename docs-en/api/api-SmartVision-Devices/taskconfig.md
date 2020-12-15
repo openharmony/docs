@@ -1,6 +1,17 @@
 # TaskConfig<a name="EN-US_TOPIC_0000001055198170"></a>
 
-## **Overview**<a name="section1014853173084842"></a>
+-   [Overview](#section782171903165636)
+-   [Summary](#section664677408165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1671497423165636)
+-   [Field](#section1084727059165636)
+-   [level](#a9578c14c10691d7f1cbd8c34210630e7)
+-   [priority](#abbfc4d996107bc34e0443e1a32d46b6d)
+-   [queueSize](#ae8fd2e3f9bc0937c09e07944cc9a5d30)
+-   [stackSize](#a4a4fb5ce45d9ea90f42faa6573a03a61)
+-   [taskFlags](#afab151dbf2f1b02ec14e3e7f83207396)
+
+## **Overview**<a name="section782171903165636"></a>
 
 **Related Modules:**
 
@@ -12,48 +23,48 @@ Defines task configurations for a service.
 
 This structure defines task configurations for a service, including the task priority, stack size, queue size, task type, and shared task ID. 
 
-## **Summary**<a name="section481811103084842"></a>
+## **Summary**<a name="section664677408165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1509619256084842"></a>
-<table><thead align="left"><tr id="row456962000084842"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p852867492084842"><a name="p852867492084842"></a><a name="p852867492084842"></a>Variable Name</p>
+<a name="table79778169165636"></a>
+<table><thead align="left"><tr id="row1440325126165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1885288373165636"><a name="p1885288373165636"></a><a name="p1885288373165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p764079300084842"><a name="p764079300084842"></a><a name="p764079300084842"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p830931853165636"><a name="p830931853165636"></a><a name="p830931853165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row798630723084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p203090809084842"><a name="p203090809084842"></a><a name="p203090809084842"></a><a href="taskconfig.md#a9578c14c10691d7f1cbd8c34210630e7">level</a></p>
+<tbody><tr id="row621737925165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2012212806165636"><a name="p2012212806165636"></a><a name="p2012212806165636"></a><a href="taskconfig.md#a9578c14c10691d7f1cbd8c34210630e7">level</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p647595442084842"><a name="p647595442084842"></a><a name="p647595442084842"></a>int16 </p>
-</td>
-</tr>
-<tr id="row755076195084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p637323488084842"><a name="p637323488084842"></a><a name="p637323488084842"></a><a href="taskconfig.md#abbfc4d996107bc34e0443e1a32d46b6d">priority</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1485766601084842"><a name="p1485766601084842"></a><a name="p1485766601084842"></a>int16 </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p953882497165636"><a name="p953882497165636"></a><a name="p953882497165636"></a>int16 </p>
 </td>
 </tr>
-<tr id="row1713563028084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1725483622084842"><a name="p1725483622084842"></a><a name="p1725483622084842"></a><a href="taskconfig.md#a4a4fb5ce45d9ea90f42faa6573a03a61">stackSize</a></p>
+<tr id="row2041478384165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1530233071165636"><a name="p1530233071165636"></a><a name="p1530233071165636"></a><a href="taskconfig.md#abbfc4d996107bc34e0443e1a32d46b6d">priority</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p929844346084842"><a name="p929844346084842"></a><a name="p929844346084842"></a>uint16 </p>
-</td>
-</tr>
-<tr id="row1011965447084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1192900850084842"><a name="p1192900850084842"></a><a name="p1192900850084842"></a><a href="taskconfig.md#ae8fd2e3f9bc0937c09e07944cc9a5d30">queueSize</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1814048466084842"><a name="p1814048466084842"></a><a name="p1814048466084842"></a>uint16 </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p263247111165636"><a name="p263247111165636"></a><a name="p263247111165636"></a>int16 </p>
 </td>
 </tr>
-<tr id="row1683978059084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p696887827084842"><a name="p696887827084842"></a><a name="p696887827084842"></a><a href="taskconfig.md#afab151dbf2f1b02ec14e3e7f83207396">taskFlags</a></p>
+<tr id="row412251447165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1093013303165636"><a name="p1093013303165636"></a><a name="p1093013303165636"></a><a href="taskconfig.md#a4a4fb5ce45d9ea90f42faa6573a03a61">stackSize</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p612716008084842"><a name="p612716008084842"></a><a name="p612716008084842"></a>uint8 </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p567601751165636"><a name="p567601751165636"></a><a name="p567601751165636"></a>uint16 </p>
+</td>
+</tr>
+<tr id="row762569586165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p735007712165636"><a name="p735007712165636"></a><a name="p735007712165636"></a><a href="taskconfig.md#ae8fd2e3f9bc0937c09e07944cc9a5d30">queueSize</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p628244922165636"><a name="p628244922165636"></a><a name="p628244922165636"></a>uint16 </p>
+</td>
+</tr>
+<tr id="row1199923955165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p515175156165636"><a name="p515175156165636"></a><a name="p515175156165636"></a><a href="taskconfig.md#afab151dbf2f1b02ec14e3e7f83207396">taskFlags</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2095062712165636"><a name="p2095062712165636"></a><a name="p2095062712165636"></a>uint8 </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1835853447084842"></a>
+## **Details**<a name="section1671497423165636"></a>
 
-## **Field Documentation**<a name="section1873793850084842"></a>
+## **Field **<a name="section1084727059165636"></a>
 
 ## level<a name="a9578c14c10691d7f1cbd8c34210630e7"></a>
 

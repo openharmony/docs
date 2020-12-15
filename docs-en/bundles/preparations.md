@@ -1,5 +1,11 @@
 # Preparations<a name="EN-US_TOPIC_0000001051770836"></a>
 
+-   [Hardware Requirements](#section98535485518)
+-   [Installing  and the  Tool](#section106591616205311)
+-   [\(Optional\) Modifying HPM Configurations](#section71821165412)
+-   [Downloading  Code](#section102338221707)
+-   [Installing Dependent Bundles](#section19233183315020)
+
 ## Hardware Requirements<a name="section98535485518"></a>
 
 -   Development boards \(examples: Hi3861, Hi3516DV300, and Hi3518EV300\)

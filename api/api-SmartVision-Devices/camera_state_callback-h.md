@@ -1,6 +1,10 @@
 # camera\_state\_callback.h<a name="ZH-CN_TOPIC_0000001054918117"></a>
 
-## **Overview**<a name="section192710754093524"></a>
+-   [Overview](#section1646141065165626)
+-   [Summary](#section582079488165626)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section1646141065165626"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares functions in the  **CameraStateCallback**  class.
 
 1.0
 
-## **Summary**<a name="section447447524093524"></a>
+## **Summary**<a name="section582079488165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table781089040093524"></a>
-<table><thead align="left"><tr id="row1556717884093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p839862073093524"><a name="p839862073093524"></a><a name="p839862073093524"></a>Data Structure Name</p>
+<a name="table1035694834165626"></a>
+<table><thead align="left"><tr id="row147123106165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1630395889165626"><a name="p1630395889165626"></a><a name="p1630395889165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p183629282093524"><a name="p183629282093524"></a><a name="p183629282093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1327733175165626"><a name="p1327733175165626"></a><a name="p1327733175165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1607485191093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1658066604093524"><a name="p1658066604093524"></a><a name="p1658066604093524"></a><a href="OHOS-Media-CameraStateCallback.md">OHOS::Media::CameraStateCallback</a></p>
+<tbody><tr id="row1559640245165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1059722012165626"><a name="p1059722012165626"></a><a name="p1059722012165626"></a><a href="OHOS-Media-CameraStateCallback.md">OHOS::Media::CameraStateCallback</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1677732733093524"><a name="p1677732733093524"></a><a name="p1677732733093524"></a>Provides functions to response to camera states. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p133670493165626"><a name="p133670493165626"></a><a name="p133670493165626"></a>Provides functions to response to camera states. </p>
 </td>
 </tr>
 </tbody>

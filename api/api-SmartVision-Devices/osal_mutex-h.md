@@ -1,6 +1,12 @@
 # osal\_mutex.h<a name="ZH-CN_TOPIC_0000001055039492"></a>
 
-## **Overview**<a name="section1675701804093526"></a>
+-   [Overview](#section247873507165628)
+-   [Summary](#section287799635165628)
+-   [Data Structures](#nested-classes)
+-   [Macros](#define-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section247873507165628"></a>
 
 **Related Modules:**
 
@@ -20,20 +26,20 @@ This file provides interfaces for initializing and destroying a mutex, locking a
 
 1.0
 
-## **Summary**<a name="section1154907409093526"></a>
+## **Summary**<a name="section287799635165628"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table253295313093526"></a>
-<table><thead align="left"><tr id="row1327382104093526"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1120770094093526"><a name="p1120770094093526"></a><a name="p1120770094093526"></a>Data Structure Name</p>
+<a name="table2047770513165628"></a>
+<table><thead align="left"><tr id="row185842918165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1173075938165628"><a name="p1173075938165628"></a><a name="p1173075938165628"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1047298068093526"><a name="p1047298068093526"></a><a name="p1047298068093526"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p870290886165628"><a name="p870290886165628"></a><a name="p870290886165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1046987574093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p124045760093526"><a name="p124045760093526"></a><a name="p124045760093526"></a><a href="OsalMutex.md">OsalMutex</a></p>
+<tbody><tr id="row774074353165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1362695741165628"><a name="p1362695741165628"></a><a name="p1362695741165628"></a><a href="OsalMutex.md">OsalMutex</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p802204458093526"><a name="p802204458093526"></a><a name="p802204458093526"></a>Describes a mutex. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p348984783165628"><a name="p348984783165628"></a><a name="p348984783165628"></a>Describes a mutex. </p>
 </td>
 </tr>
 </tbody>
@@ -41,16 +47,16 @@ This file provides interfaces for initializing and destroying a mutex, locking a
 
 ## Macros<a name="define-members"></a>
 
-<a name="table1088375841093526"></a>
-<table><thead align="left"><tr id="row1965308587093526"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1218003377093526"><a name="p1218003377093526"></a><a name="p1218003377093526"></a>Macro Name and Value</p>
+<a name="table1551504458165628"></a>
+<table><thead align="left"><tr id="row1628994327165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1674161130165628"><a name="p1674161130165628"></a><a name="p1674161130165628"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1882091861093526"><a name="p1882091861093526"></a><a name="p1882091861093526"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p867024876165628"><a name="p867024876165628"></a><a name="p867024876165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row171375580093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p973819246093526"><a name="p973819246093526"></a><a name="p973819246093526"></a><a href="OSAL.md#ga63b1e9f0b9eacddc211f9a481c2597b3">OSAL_DECLARE_MUTEX</a>(mutex)&nbsp;&nbsp;&nbsp;struct <a href="OsalMutex.md">OsalMutex</a> mutex</p>
+<tbody><tr id="row803024621165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1121127683165628"><a name="p1121127683165628"></a><a name="p1121127683165628"></a><a href="OSAL.md#ga63b1e9f0b9eacddc211f9a481c2597b3">OSAL_DECLARE_MUTEX</a>(mutex)   struct <a href="OsalMutex.md">OsalMutex</a> mutex</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p284707408093526"><a name="p284707408093526"></a><a name="p284707408093526"></a>Defines a mutex. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2110765814165628"><a name="p2110765814165628"></a><a name="p2110765814165628"></a>Defines a mutex. </p>
 </td>
 </tr>
 </tbody>
@@ -58,41 +64,41 @@ This file provides interfaces for initializing and destroying a mutex, locking a
 
 ## Functions<a name="func-members"></a>
 
-<a name="table646751663093526"></a>
-<table><thead align="left"><tr id="row924545571093526"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p128272633093526"><a name="p128272633093526"></a><a name="p128272633093526"></a>Function Name</p>
+<a name="table1773745591165628"></a>
+<table><thead align="left"><tr id="row202692259165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1153128158165628"><a name="p1153128158165628"></a><a name="p1153128158165628"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1010816043093526"><a name="p1010816043093526"></a><a name="p1010816043093526"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1173255863165628"><a name="p1173255863165628"></a><a name="p1173255863165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1256918081093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p484303201093526"><a name="p484303201093526"></a><a name="p484303201093526"></a><a href="OSAL.md#ga9bbc55785f8a533b0b099956bcbe258e">OsalMutexInit</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex)</p>
+<tbody><tr id="row717817110165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p700941717165628"><a name="p700941717165628"></a><a name="p700941717165628"></a><a href="OSAL.md#ga9bbc55785f8a533b0b099956bcbe258e">OsalMutexInit</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p59244094093526"><a name="p59244094093526"></a><a name="p59244094093526"></a>int32_t&nbsp;</p>
-<p id="p21208119093526"><a name="p21208119093526"></a><a name="p21208119093526"></a>Initializes a mutex. </p>
-</td>
-</tr>
-<tr id="row500771136093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p424157742093526"><a name="p424157742093526"></a><a name="p424157742093526"></a><a href="OSAL.md#gaa37328265ee97277516f6905f90a41b3">OsalMutexDestroy</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p779952008093526"><a name="p779952008093526"></a><a name="p779952008093526"></a>int32_t&nbsp;</p>
-<p id="p1551839741093526"><a name="p1551839741093526"></a><a name="p1551839741093526"></a>Destroys a mutex. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1538947563165628"><a name="p1538947563165628"></a><a name="p1538947563165628"></a>int32_t </p>
+<p id="p2114217260165628"><a name="p2114217260165628"></a><a name="p2114217260165628"></a>Initializes a mutex. </p>
 </td>
 </tr>
-<tr id="row1271061671093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p994630793093526"><a name="p994630793093526"></a><a name="p994630793093526"></a><a href="OSAL.md#ga45d893bf49a8fb8caf76fa5d31822e0e">OsalMutexLock</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex)</p>
+<tr id="row764695368165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1701519845165628"><a name="p1701519845165628"></a><a name="p1701519845165628"></a><a href="OSAL.md#gaa37328265ee97277516f6905f90a41b3">OsalMutexDestroy</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p807436000093526"><a name="p807436000093526"></a><a name="p807436000093526"></a>int32_t&nbsp;</p>
-<p id="p72872658093526"><a name="p72872658093526"></a><a name="p72872658093526"></a>Locks a mutex. </p>
-</td>
-</tr>
-<tr id="row1212491446093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1331193672093526"><a name="p1331193672093526"></a><a name="p1331193672093526"></a><a href="OSAL.md#ga57162c8f2e812ef3e5ace498bb85a3b6">OsalMutexTimedLock</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex, uint32_t ms)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p655778290093526"><a name="p655778290093526"></a><a name="p655778290093526"></a>int32_t&nbsp;</p>
-<p id="p1792962840093526"><a name="p1792962840093526"></a><a name="p1792962840093526"></a>Locks a mutex with a specified timeout duration. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p602517345165628"><a name="p602517345165628"></a><a name="p602517345165628"></a>int32_t </p>
+<p id="p1130955227165628"><a name="p1130955227165628"></a><a name="p1130955227165628"></a>Destroys a mutex. </p>
 </td>
 </tr>
-<tr id="row1078205557093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1989495231093526"><a name="p1989495231093526"></a><a name="p1989495231093526"></a><a href="OSAL.md#gae76ffb4db66c988be5209e0dfdc7a35f">OsalMutexUnlock</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex)</p>
+<tr id="row1913185650165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2084828576165628"><a name="p2084828576165628"></a><a name="p2084828576165628"></a><a href="OSAL.md#ga45d893bf49a8fb8caf76fa5d31822e0e">OsalMutexLock</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1290042472093526"><a name="p1290042472093526"></a><a name="p1290042472093526"></a>int32_t&nbsp;</p>
-<p id="p709216398093526"><a name="p709216398093526"></a><a name="p709216398093526"></a>Unlocks a mutex. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p289548859165628"><a name="p289548859165628"></a><a name="p289548859165628"></a>int32_t </p>
+<p id="p2100407817165628"><a name="p2100407817165628"></a><a name="p2100407817165628"></a>Locks a mutex. </p>
+</td>
+</tr>
+<tr id="row1613085170165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p429698452165628"><a name="p429698452165628"></a><a name="p429698452165628"></a><a href="OSAL.md#ga57162c8f2e812ef3e5ace498bb85a3b6">OsalMutexTimedLock</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex, uint32_t ms)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p320428275165628"><a name="p320428275165628"></a><a name="p320428275165628"></a>int32_t </p>
+<p id="p1889509280165628"><a name="p1889509280165628"></a><a name="p1889509280165628"></a>Locks a mutex with a specified timeout duration. </p>
+</td>
+</tr>
+<tr id="row1105095059165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1356200253165628"><a name="p1356200253165628"></a><a name="p1356200253165628"></a><a href="OSAL.md#gae76ffb4db66c988be5209e0dfdc7a35f">OsalMutexUnlock</a> (struct <a href="OsalMutex.md">OsalMutex</a> *mutex)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p480990989165628"><a name="p480990989165628"></a><a name="p480990989165628"></a>int32_t </p>
+<p id="p940787684165628"><a name="p940787684165628"></a><a name="p940787684165628"></a>Unlocks a mutex. </p>
 </td>
 </tr>
 </tbody>

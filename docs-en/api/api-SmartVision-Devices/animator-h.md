@@ -1,6 +1,10 @@
 # animator.h<a name="EN-US_TOPIC_0000001055198090"></a>
 
-## **Overview**<a name="section1464426103093524"></a>
+-   [Overview](#section1499797814165626)
+-   [Summary](#section226975772165626)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section1499797814165626"></a>
 
 **Related Modules:**
 
@@ -18,30 +22,30 @@ Defines the attributes and common functions of the animator module.
 
 1.0
 
-## **Summary**<a name="section2107015731093524"></a>
+## **Summary**<a name="section226975772165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table923783306093524"></a>
-<table><thead align="left"><tr id="row1185525642093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p831233342093524"><a name="p831233342093524"></a><a name="p831233342093524"></a>Data Structure Name</p>
+<a name="table812027736165626"></a>
+<table><thead align="left"><tr id="row1091743008165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p692750696165626"><a name="p692750696165626"></a><a name="p692750696165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1005749105093524"><a name="p1005749105093524"></a><a name="p1005749105093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p140354021165626"><a name="p140354021165626"></a><a name="p140354021165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row749148826093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p964436287093524"><a name="p964436287093524"></a><a name="p964436287093524"></a><a href="ohos-animatorcallback.md">OHOS::AnimatorCallback</a></p>
+<tbody><tr id="row1594606242165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1143043623165626"><a name="p1143043623165626"></a><a name="p1143043623165626"></a><a href="ohos-animatorcallback.md">OHOS::AnimatorCallback</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1278061990093524"><a name="p1278061990093524"></a><a name="p1278061990093524"></a>Represents the animator callback. </p>
-</td>
-</tr>
-<tr id="row1705333953093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1355716152093524"><a name="p1355716152093524"></a><a name="p1355716152093524"></a><a href="ohos-animator.md">OHOS::Animator</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1220843209093524"><a name="p1220843209093524"></a><a name="p1220843209093524"></a>Represents an animator. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1942284400165626"><a name="p1942284400165626"></a><a name="p1942284400165626"></a>Represents the animator callback. </p>
 </td>
 </tr>
-<tr id="row1710325538093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p418405808093524"><a name="p418405808093524"></a><a name="p418405808093524"></a><a href="ohos-animatormanager.md">OHOS::AnimatorManager</a></p>
+<tr id="row211868821165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1023498712165626"><a name="p1023498712165626"></a><a name="p1023498712165626"></a><a href="ohos-animator.md">OHOS::Animator</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p145628225093524"><a name="p145628225093524"></a><a name="p145628225093524"></a>Represents the animator manager. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1036022370165626"><a name="p1036022370165626"></a><a name="p1036022370165626"></a>Represents an animator. </p>
+</td>
+</tr>
+<tr id="row1183774926165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p867911236165626"><a name="p867911236165626"></a><a name="p867911236165626"></a><a href="ohos-animatormanager.md">OHOS::AnimatorManager</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p408346797165626"><a name="p408346797165626"></a><a name="p408346797165626"></a>Represents the animator manager. </p>
 </td>
 </tr>
 </tbody>

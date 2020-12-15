@@ -1,6 +1,10 @@
 # hdf\_platform.h<a name="EN-US_TOPIC_0000001055358078"></a>
 
-## **Overview**<a name="section234141901093525"></a>
+-   [Overview](#section1287787287165627)
+-   [Summary](#section1262498046165627)
+-   [Typedefs](#typedef-members)
+
+## **Overview**<a name="section1287787287165627"></a>
 
 **Related Modules:**
 
@@ -14,20 +18,21 @@ Declares common APIs of the platform driver.
 
 1.0
 
-## **Summary**<a name="section1238090754093525"></a>
+## **Summary**<a name="section1262498046165627"></a>
 
-## Data Structures<a name="nested-classes"></a>
+## Typedefs<a name="typedef-members"></a>
 
-<a name="table11909927093525"></a>
-<table><thead align="left"><tr id="row1584631122093525"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p87737606093525"><a name="p87737606093525"></a><a name="p87737606093525"></a>Data Structure Name</p>
+<a name="table994009898165627"></a>
+<table><thead align="left"><tr id="row1014908837165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1532511268165627"><a name="p1532511268165627"></a><a name="p1532511268165627"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p107838460093525"><a name="p107838460093525"></a><a name="p107838460093525"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p27231691165627"><a name="p27231691165627"></a><a name="p27231691165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1341530929093525"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p332579235093525"><a name="p332579235093525"></a><a name="p332579235093525"></a><a href="devhandle.md">DevHandle</a></p>
+<tbody><tr id="row1062913253165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p650696122165627"><a name="p650696122165627"></a><a name="p650696122165627"></a><a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1387724030093525"><a name="p1387724030093525"></a><a name="p1387724030093525"></a>Defines the common device handle of the platform driver. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1811118560165627"><a name="p1811118560165627"></a><a name="p1811118560165627"></a>typedef void * </p>
+<p id="p641157830165627"><a name="p641157830165627"></a><a name="p641157830165627"></a>Defines the common device handle of the platform driver. </p>
 </td>
 </tr>
 </tbody>

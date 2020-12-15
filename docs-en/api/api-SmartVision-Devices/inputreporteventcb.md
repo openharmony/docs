@@ -1,6 +1,13 @@
 # InputReportEventCb<a name="EN-US_TOPIC_0000001055358110"></a>
 
-## **Overview**<a name="section306009713093530"></a>
+-   [Overview](#section530819023165631)
+-   [Summary](#section533892924165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1103444491165631)
+-   [Field](#section1797037931165631)
+-   [ReportEventCallback](#a458c9d1bae3f36937db2977fcc777136)
+
+## **Overview**<a name="section530819023165631"></a>
 
 **Related Modules:**
 
@@ -10,29 +17,29 @@
 
 Describes the input event callback registered by the input service. 
 
-## **Summary**<a name="section285004506093530"></a>
+## **Summary**<a name="section533892924165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table555771748093530"></a>
-<table><thead align="left"><tr id="row1967068550093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p891805004093530"><a name="p891805004093530"></a><a name="p891805004093530"></a>Variable Name</p>
+<a name="table892710264165631"></a>
+<table><thead align="left"><tr id="row783079434165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p52901943165631"><a name="p52901943165631"></a><a name="p52901943165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p861625448093530"><a name="p861625448093530"></a><a name="p861625448093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1686354950165631"><a name="p1686354950165631"></a><a name="p1686354950165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1078231235093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2014235093093530"><a name="p2014235093093530"></a><a name="p2014235093093530"></a><a href="inputreporteventcb.md#a458c9d1bae3f36937db2977fcc777136">ReportEventCallback</a> )(const <a href="inputeventdata.md">InputEventData</a> *eventData, uint32_t count, uint32_t devIndex)</p>
+<tbody><tr id="row830547159165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1750463617165631"><a name="p1750463617165631"></a><a name="p1750463617165631"></a><a href="inputreporteventcb.md#a458c9d1bae3f36937db2977fcc777136">ReportEventCallback</a> )(const <a href="inputeventdata.md">InputEventData</a> *eventData, uint32_t count, uint32_t devIndex)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p286590896093530"><a name="p286590896093530"></a><a name="p286590896093530"></a>void(* </p>
-<p id="p2057518916093530"><a name="p2057518916093530"></a><a name="p2057518916093530"></a>Reports input event data by the registered callback. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p308874657165631"><a name="p308874657165631"></a><a name="p308874657165631"></a>void(* </p>
+<p id="p868499198165631"><a name="p868499198165631"></a><a name="p868499198165631"></a>Reports input event data by the registered callback. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1069162285093530"></a>
+## **Details**<a name="section1103444491165631"></a>
 
-## **Field Documentation**<a name="section1142011640093530"></a>
+## **Field **<a name="section1797037931165631"></a>
 
 ## ReportEventCallback<a name="a458c9d1bae3f36937db2977fcc777136"></a>
 
@@ -46,21 +53,21 @@ Reports input event data by the registered callback.
 
 **Parameters:**
 
-<a name="table638359772093530"></a>
-<table><thead align="left"><tr id="row648975372093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1114379095093530"><a name="p1114379095093530"></a><a name="p1114379095093530"></a>Name</p>
+<a name="table1098905804165631"></a>
+<table><thead align="left"><tr id="row2098629022165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1106838111165631"><a name="p1106838111165631"></a><a name="p1106838111165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1554617536093530"><a name="p1554617536093530"></a><a name="p1554617536093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p351235312165631"><a name="p351235312165631"></a><a name="p351235312165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1273904259093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eventData</td>
+<tbody><tr id="row1295153732165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">eventData</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the input event data reported by the input driver. </td>
 </tr>
-<tr id="row1445131425093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">count</td>
+<tr id="row498111617165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">count</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of input event data packets. </td>
 </tr>
-<tr id="row2003016940093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1653505514093530"><a name="b1653505514093530"></a><a name="b1653505514093530"></a>0</strong> represents the first input device.</td>
+<tr id="row1977090500165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b150856320165631"><a name="b150856320165631"></a><a name="b150856320165631"></a>0</strong> represents the first input device.</td>
 </tr>
 </tbody>
 </table>

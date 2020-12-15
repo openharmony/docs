@@ -1,6 +1,21 @@
 # InputController<a name="ZH-CN_TOPIC_0000001055518090"></a>
 
-## **Overview**<a name="section697437093093530"></a>
+-   [Overview](#section38728142165631)
+-   [Summary](#section1909951786165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1347173943165631)
+-   [Field](#section1364095562165631)
+-   [GetChipInfo](#aa02ce599f0383c88e6efc301e31901b8)
+-   [GetChipName](#aaa131995539b4c0b783cdcbdd67b9687)
+-   [GetDeviceType](#aec8d8a22b37f572a9df8ef7ce988a6d3)
+-   [GetPowerStatus](#afd9ffc4a180609ad970df6fd79806372)
+-   [GetVendorName](#ab011f8433b9c5aa8493320dac9c4a683)
+-   [RunCapacitanceTest](#afc470fb6e33a07aaa179980a4ded39db)
+-   [RunExtraCommand](#a19c15b3b535f63fbc4e17bbad24492c9)
+-   [SetGestureMode](#a2a5b24dfc129b58ae4663ca44ab2ad91)
+-   [SetPowerStatus](#a38da915fec2698dff480ed686503f692)
+
+## **Overview**<a name="section38728142165631"></a>
 
 **Related Modules:**
 
@@ -12,77 +27,77 @@ Provides interfaces for controlling the business process of input devices.
 
 The interfaces can be called to control the power status, enable or disable a feature, get driver chip information, and control the production test. 
 
-## **Summary**<a name="section1982707845093530"></a>
+## **Summary**<a name="section1909951786165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table588765364093530"></a>
-<table><thead align="left"><tr id="row1928330313093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p539113854093530"><a name="p539113854093530"></a><a name="p539113854093530"></a>Variable Name</p>
+<a name="table1194806598165631"></a>
+<table><thead align="left"><tr id="row1847208249165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p686522201165631"><a name="p686522201165631"></a><a name="p686522201165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p384735120093530"><a name="p384735120093530"></a><a name="p384735120093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p302660226165631"><a name="p302660226165631"></a><a name="p302660226165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row789801098093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1596513748093530"><a name="p1596513748093530"></a><a name="p1596513748093530"></a><a href="InputController.md#a38da915fec2698dff480ed686503f692">SetPowerStatus</a> )(uint32_t devIndex, uint32_t status)</p>
+<tbody><tr id="row999332193165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1563527777165631"><a name="p1563527777165631"></a><a name="p1563527777165631"></a><a href="InputController.md#a38da915fec2698dff480ed686503f692">SetPowerStatus</a> )(uint32_t devIndex, uint32_t status)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1646541901093530"><a name="p1646541901093530"></a><a name="p1646541901093530"></a>int32_t(*&nbsp;</p>
-<p id="p861265943093530"><a name="p861265943093530"></a><a name="p861265943093530"></a>Sets the power status. </p>
-</td>
-</tr>
-<tr id="row1886202784093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1184408218093530"><a name="p1184408218093530"></a><a name="p1184408218093530"></a><a href="InputController.md#afd9ffc4a180609ad970df6fd79806372">GetPowerStatus</a> )(uint32_t devIndex, uint32_t *status)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p208486215093530"><a name="p208486215093530"></a><a name="p208486215093530"></a>int32_t(*&nbsp;</p>
-<p id="p1315609162093530"><a name="p1315609162093530"></a><a name="p1315609162093530"></a>Gets the power status. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p311906685165631"><a name="p311906685165631"></a><a name="p311906685165631"></a>int32_t(* </p>
+<p id="p1580338161165631"><a name="p1580338161165631"></a><a name="p1580338161165631"></a>Sets the power status. </p>
 </td>
 </tr>
-<tr id="row895538343093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1131216117093530"><a name="p1131216117093530"></a><a name="p1131216117093530"></a><a href="InputController.md#aec8d8a22b37f572a9df8ef7ce988a6d3">GetDeviceType</a> )(uint32_t devIndex, uint32_t *deviceType)</p>
+<tr id="row1328101729165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p535342853165631"><a name="p535342853165631"></a><a name="p535342853165631"></a><a href="InputController.md#afd9ffc4a180609ad970df6fd79806372">GetPowerStatus</a> )(uint32_t devIndex, uint32_t *status)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1701992983093530"><a name="p1701992983093530"></a><a name="p1701992983093530"></a>int32_t(*&nbsp;</p>
-<p id="p82170012093530"><a name="p82170012093530"></a><a name="p82170012093530"></a>Gets the type of the input device based on the specified device index. </p>
-</td>
-</tr>
-<tr id="row346466326093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p658961123093530"><a name="p658961123093530"></a><a name="p658961123093530"></a><a href="InputController.md#aa02ce599f0383c88e6efc301e31901b8">GetChipInfo</a> )(uint32_t devIndex, char *chipInfo, uint32_t length)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p941775462093530"><a name="p941775462093530"></a><a name="p941775462093530"></a>int32_t(*&nbsp;</p>
-<p id="p248616328093530"><a name="p248616328093530"></a><a name="p248616328093530"></a>Gets the chip information of the specified device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p928571729165631"><a name="p928571729165631"></a><a name="p928571729165631"></a>int32_t(* </p>
+<p id="p1834559604165631"><a name="p1834559604165631"></a><a name="p1834559604165631"></a>Gets the power status. </p>
 </td>
 </tr>
-<tr id="row664935069093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p674704398093530"><a name="p674704398093530"></a><a name="p674704398093530"></a><a href="InputController.md#ab011f8433b9c5aa8493320dac9c4a683">GetVendorName</a> )(uint32_t devIndex, char *vendorName, uint32_t length)</p>
+<tr id="row432369624165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1335281635165631"><a name="p1335281635165631"></a><a name="p1335281635165631"></a><a href="InputController.md#aec8d8a22b37f572a9df8ef7ce988a6d3">GetDeviceType</a> )(uint32_t devIndex, uint32_t *deviceType)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p968572583093530"><a name="p968572583093530"></a><a name="p968572583093530"></a>int32_t(*&nbsp;</p>
-<p id="p593222362093530"><a name="p593222362093530"></a><a name="p593222362093530"></a>Gets the module vendor name of the specified device. </p>
-</td>
-</tr>
-<tr id="row1530189608093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p100985566093530"><a name="p100985566093530"></a><a name="p100985566093530"></a><a href="InputController.md#aaa131995539b4c0b783cdcbdd67b9687">GetChipName</a> )(uint32_t devIndex, char *chipName, uint32_t length)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p933225462093530"><a name="p933225462093530"></a><a name="p933225462093530"></a>int32_t(*&nbsp;</p>
-<p id="p322446175093530"><a name="p322446175093530"></a><a name="p322446175093530"></a>Gets the driver chip name of the specified device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p9577388165631"><a name="p9577388165631"></a><a name="p9577388165631"></a>int32_t(* </p>
+<p id="p979060353165631"><a name="p979060353165631"></a><a name="p979060353165631"></a>Gets the type of the input device based on the specified device index. </p>
 </td>
 </tr>
-<tr id="row1672577160093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2021711474093530"><a name="p2021711474093530"></a><a name="p2021711474093530"></a><a href="InputController.md#a2a5b24dfc129b58ae4663ca44ab2ad91">SetGestureMode</a> )(uint32_t devIndex, uint32_t gestureMode)</p>
+<tr id="row1874408208165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1449981330165631"><a name="p1449981330165631"></a><a name="p1449981330165631"></a><a href="InputController.md#aa02ce599f0383c88e6efc301e31901b8">GetChipInfo</a> )(uint32_t devIndex, char *chipInfo, uint32_t length)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1748055144093530"><a name="p1748055144093530"></a><a name="p1748055144093530"></a>int32_t(*&nbsp;</p>
-<p id="p938246591093530"><a name="p938246591093530"></a><a name="p938246591093530"></a>Sets the gesture mode. </p>
-</td>
-</tr>
-<tr id="row1765527286093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p303770342093530"><a name="p303770342093530"></a><a name="p303770342093530"></a><a href="InputController.md#afc470fb6e33a07aaa179980a4ded39db">RunCapacitanceTest</a> )(uint32_t devIndex, uint32_t testType, char *result, uint32_t length)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1485642442093530"><a name="p1485642442093530"></a><a name="p1485642442093530"></a>int32_t(*&nbsp;</p>
-<p id="p2070920863093530"><a name="p2070920863093530"></a><a name="p2070920863093530"></a>Conducts a capacitance self-test. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1685055840165631"><a name="p1685055840165631"></a><a name="p1685055840165631"></a>int32_t(* </p>
+<p id="p834279611165631"><a name="p834279611165631"></a><a name="p834279611165631"></a>Gets the chip information of the specified device. </p>
 </td>
 </tr>
-<tr id="row72104589093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1944333747093530"><a name="p1944333747093530"></a><a name="p1944333747093530"></a><a href="InputController.md#a19c15b3b535f63fbc4e17bbad24492c9">RunExtraCommand</a> )(uint32_t devIndex, <a href="InputExtraCmd.md">InputExtraCmd</a> *cmd)</p>
+<tr id="row368682448165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p687885077165631"><a name="p687885077165631"></a><a name="p687885077165631"></a><a href="InputController.md#ab011f8433b9c5aa8493320dac9c4a683">GetVendorName</a> )(uint32_t devIndex, char *vendorName, uint32_t length)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1937640403093530"><a name="p1937640403093530"></a><a name="p1937640403093530"></a>int32_t(*&nbsp;</p>
-<p id="p1253338651093530"><a name="p1253338651093530"></a><a name="p1253338651093530"></a>Executes the extra command. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1966183049165631"><a name="p1966183049165631"></a><a name="p1966183049165631"></a>int32_t(* </p>
+<p id="p492603188165631"><a name="p492603188165631"></a><a name="p492603188165631"></a>Gets the module vendor name of the specified device. </p>
+</td>
+</tr>
+<tr id="row807381156165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1631984331165631"><a name="p1631984331165631"></a><a name="p1631984331165631"></a><a href="InputController.md#aaa131995539b4c0b783cdcbdd67b9687">GetChipName</a> )(uint32_t devIndex, char *chipName, uint32_t length)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1923254506165631"><a name="p1923254506165631"></a><a name="p1923254506165631"></a>int32_t(* </p>
+<p id="p1242785247165631"><a name="p1242785247165631"></a><a name="p1242785247165631"></a>Gets the driver chip name of the specified device. </p>
+</td>
+</tr>
+<tr id="row709346504165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p400575773165631"><a name="p400575773165631"></a><a name="p400575773165631"></a><a href="InputController.md#a2a5b24dfc129b58ae4663ca44ab2ad91">SetGestureMode</a> )(uint32_t devIndex, uint32_t gestureMode)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1135966754165631"><a name="p1135966754165631"></a><a name="p1135966754165631"></a>int32_t(* </p>
+<p id="p1809643383165631"><a name="p1809643383165631"></a><a name="p1809643383165631"></a>Sets the gesture mode. </p>
+</td>
+</tr>
+<tr id="row1936987432165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2001211302165631"><a name="p2001211302165631"></a><a name="p2001211302165631"></a><a href="InputController.md#afc470fb6e33a07aaa179980a4ded39db">RunCapacitanceTest</a> )(uint32_t devIndex, uint32_t testType, char *result, uint32_t length)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1555427518165631"><a name="p1555427518165631"></a><a name="p1555427518165631"></a>int32_t(* </p>
+<p id="p175784017165631"><a name="p175784017165631"></a><a name="p175784017165631"></a>Conducts a capacitance self-test. </p>
+</td>
+</tr>
+<tr id="row1506337588165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p870190403165631"><a name="p870190403165631"></a><a name="p870190403165631"></a><a href="InputController.md#a19c15b3b535f63fbc4e17bbad24492c9">RunExtraCommand</a> )(uint32_t devIndex, <a href="InputExtraCmd.md">InputExtraCmd</a> *cmd)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p418859781165631"><a name="p418859781165631"></a><a name="p418859781165631"></a>int32_t(* </p>
+<p id="p431429605165631"><a name="p431429605165631"></a><a name="p431429605165631"></a>Executes the extra command. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1421563314093530"></a>
+## **Details**<a name="section1347173943165631"></a>
 
-## **Field Documentation**<a name="section1150626833093530"></a>
+## **Field **<a name="section1364095562165631"></a>
 
 ## GetChipInfo<a name="aa02ce599f0383c88e6efc301e31901b8"></a>
 
@@ -98,20 +113,20 @@ A product is usually equipped with modules and driver ICs provided by multiple v
 
 **Parameters:**
 
-<a name="table69695641093530"></a>
-<table><thead align="left"><tr id="row856689106093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1847024968093530"><a name="p1847024968093530"></a><a name="p1847024968093530"></a>Name</p>
+<a name="table887577075165631"></a>
+<table><thead align="left"><tr id="row1697114015165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1015883241165631"><a name="p1015883241165631"></a><a name="p1015883241165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1990890433093530"><a name="p1990890433093530"></a><a name="p1990890433093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2141396051165631"><a name="p2141396051165631"></a><a name="p2141396051165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2143321405093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1495760722093530"><a name="b1495760722093530"></a><a name="b1495760722093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row2018703774165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b346189528165631"><a name="b346189528165631"></a><a name="b346189528165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row1585992065093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">chipInfo</td>
+<tr id="row242687629165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">chipInfo</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the chip information. </td>
 </tr>
-<tr id="row1045530419093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">length</td>
+<tr id="row1717354250165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">length</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the length of the chip information. </td>
 </tr>
 </tbody>
@@ -120,8 +135,6 @@ A product is usually equipped with modules and driver ICs provided by multiple v
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## GetChipName<a name="aaa131995539b4c0b783cdcbdd67b9687"></a>
 
@@ -135,20 +148,20 @@ Gets the driver chip name of the specified device.
 
 **Parameters:**
 
-<a name="table1273281644093530"></a>
-<table><thead align="left"><tr id="row660332278093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1155212526093530"><a name="p1155212526093530"></a><a name="p1155212526093530"></a>Name</p>
+<a name="table1791801048165631"></a>
+<table><thead align="left"><tr id="row629341621165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p94014639165631"><a name="p94014639165631"></a><a name="p94014639165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1011798820093530"><a name="p1011798820093530"></a><a name="p1011798820093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1838636957165631"><a name="p1838636957165631"></a><a name="p1838636957165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1995843575093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b257339669093530"><a name="b257339669093530"></a><a name="b257339669093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row1742795618165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1514838692165631"><a name="b1514838692165631"></a><a name="b1514838692165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row739734918093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">chipName</td>
+<tr id="row1634530157165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">chipName</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the driver chip name. </td>
 </tr>
-<tr id="row1696220219093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">length</td>
+<tr id="row710097384165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">length</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the length of the driver chip name. </td>
 </tr>
 </tbody>
@@ -157,8 +170,6 @@ Gets the driver chip name of the specified device.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## GetDeviceType<a name="aec8d8a22b37f572a9df8ef7ce988a6d3"></a>
 
@@ -172,17 +183,17 @@ Gets the type of the input device based on the specified device index.
 
 **Parameters:**
 
-<a name="table104342715093530"></a>
-<table><thead align="left"><tr id="row1105420135093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p503758972093530"><a name="p503758972093530"></a><a name="p503758972093530"></a>Name</p>
+<a name="table1482664177165631"></a>
+<table><thead align="left"><tr id="row1904450125165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p5811953165631"><a name="p5811953165631"></a><a name="p5811953165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p644133137093530"><a name="p644133137093530"></a><a name="p644133137093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p195979874165631"><a name="p195979874165631"></a><a name="p195979874165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1323847672093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1728520093530"><a name="b1728520093530"></a><a name="b1728520093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row1179540020165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1276388771165631"><a name="b1276388771165631"></a><a name="b1276388771165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row492275837093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">deviceType</td>
+<tr id="row1400268170165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">deviceType</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the device type. For details, see <a href="Input.md#gaa8225ba155dfa1ef2c4119c832bc4dd3">InputDevType</a>. </td>
 </tr>
 </tbody>
@@ -191,8 +202,6 @@ Gets the type of the input device based on the specified device index.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## GetPowerStatus<a name="afd9ffc4a180609ad970df6fd79806372"></a>
 
@@ -208,17 +217,17 @@ The input service or the power management module can set the power status for th
 
 **Parameters:**
 
-<a name="table1483665951093530"></a>
-<table><thead align="left"><tr id="row14195923093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1458245535093530"><a name="p1458245535093530"></a><a name="p1458245535093530"></a>Name</p>
+<a name="table593829208165631"></a>
+<table><thead align="left"><tr id="row1137612694165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1296918252165631"><a name="p1296918252165631"></a><a name="p1296918252165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p650724987093530"><a name="p650724987093530"></a><a name="p650724987093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1581244548165631"><a name="p1581244548165631"></a><a name="p1581244548165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1031976317093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b929800980093530"><a name="b929800980093530"></a><a name="b929800980093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row1699531319165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b81702613165631"><a name="b81702613165631"></a><a name="b81702613165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row924712870093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">status</td>
+<tr id="row833663871165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">status</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the power status of the device. For details, see <a href="Input.md#ga65e6bb4d942c22dba9975253b0a1d73f">PowerStatus</a>. </td>
 </tr>
 </tbody>
@@ -227,8 +236,6 @@ The input service or the power management module can set the power status for th
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## GetVendorName<a name="ab011f8433b9c5aa8493320dac9c4a683"></a>
 
@@ -242,20 +249,20 @@ Gets the module vendor name of the specified device.
 
 **Parameters:**
 
-<a name="table2083527662093530"></a>
-<table><thead align="left"><tr id="row1947662634093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1136705219093530"><a name="p1136705219093530"></a><a name="p1136705219093530"></a>Name</p>
+<a name="table1366574635165631"></a>
+<table><thead align="left"><tr id="row1856278085165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p228868602165631"><a name="p228868602165631"></a><a name="p228868602165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1478333431093530"><a name="p1478333431093530"></a><a name="p1478333431093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1344287734165631"><a name="p1344287734165631"></a><a name="p1344287734165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1048804186093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1314711598093530"><a name="b1314711598093530"></a><a name="b1314711598093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row1450044187165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b2088131552165631"><a name="b2088131552165631"></a><a name="b2088131552165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row588761981093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">vendorName</td>
+<tr id="row1554203859165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">vendorName</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the module vendor name. </td>
 </tr>
-<tr id="row1496283923093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">length</td>
+<tr id="row1087358545165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">length</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the length of the vendor name. </td>
 </tr>
 </tbody>
@@ -264,8 +271,6 @@ Gets the module vendor name of the specified device.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## RunCapacitanceTest<a name="afc470fb6e33a07aaa179980a4ded39db"></a>
 
@@ -281,23 +286,23 @@ The capacitance self-test items are defined by the component vendor, such as the
 
 **Parameters:**
 
-<a name="table1001200583093530"></a>
-<table><thead align="left"><tr id="row466107747093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2062502560093530"><a name="p2062502560093530"></a><a name="p2062502560093530"></a>Name</p>
+<a name="table1213313171165631"></a>
+<table><thead align="left"><tr id="row550879977165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2035638673165631"><a name="p2035638673165631"></a><a name="p2035638673165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p901812798093530"><a name="p901812798093530"></a><a name="p901812798093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p632379103165631"><a name="p632379103165631"></a><a name="p632379103165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row660227971093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1707476188093530"><a name="b1707476188093530"></a><a name="b1707476188093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row462142346165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b943402545165631"><a name="b943402545165631"></a><a name="b943402545165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row1342370918093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">testType</td>
+<tr id="row765260204165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">testType</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the capacitance test type. For details, see <a href="Input.md#gae96e484cfd64ea37b5b7782f57f38a21">CapacitanceTest</a>. </td>
 </tr>
-<tr id="row1966970213093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">result</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the capacitance test result. The value is <strong id="b1437488732093530"><a name="b1437488732093530"></a><a name="b1437488732093530"></a>SUCC</strong> for a successful operation and is an error code for a failed operation. </td>
+<tr id="row863950573165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">result</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the capacitance test result. The value is <strong id="b1611866253165631"><a name="b1611866253165631"></a><a name="b1611866253165631"></a>SUCC</strong> for a successful operation and is an error code for a failed operation. </td>
 </tr>
-<tr id="row1185785293093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">length</td>
+<tr id="row1352045397165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">length</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the length of the test result. </td>
 </tr>
 </tbody>
@@ -306,8 +311,6 @@ The capacitance self-test items are defined by the component vendor, such as the
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## RunExtraCommand<a name="a19c15b3b535f63fbc4e17bbad24492c9"></a>
 
@@ -321,17 +324,17 @@ Executes the extra command.
 
 **Parameters:**
 
-<a name="table1572845133093530"></a>
-<table><thead align="left"><tr id="row1512317628093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p693909946093530"><a name="p693909946093530"></a><a name="p693909946093530"></a>Name</p>
+<a name="table1940113581165631"></a>
+<table><thead align="left"><tr id="row2088581311165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p74502341165631"><a name="p74502341165631"></a><a name="p74502341165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1935924597093530"><a name="p1935924597093530"></a><a name="p1935924597093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p230896113165631"><a name="p230896113165631"></a><a name="p230896113165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row396536149093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1450822977093530"><a name="b1450822977093530"></a><a name="b1450822977093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row1907215862165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1024443217165631"><a name="b1024443217165631"></a><a name="b1024443217165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row1562231392093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cmd</td>
+<tr id="row593470156165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cmd</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the extra command data packet, including the command codes and parameters. For details, see <a href="InputExtraCmd.md">InputExtraCmd</a>. </td>
 </tr>
 </tbody>
@@ -340,8 +343,6 @@ Executes the extra command.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## SetGestureMode<a name="a2a5b24dfc129b58ae4663ca44ab2ad91"></a>
 
@@ -357,17 +358,17 @@ The input service can use this function to enable or disable the gesture mode by
 
 **Parameters:**
 
-<a name="table419826342093530"></a>
-<table><thead align="left"><tr id="row1579454552093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p758598910093530"><a name="p758598910093530"></a><a name="p758598910093530"></a>Name</p>
+<a name="table2055573299165631"></a>
+<table><thead align="left"><tr id="row864692000165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1492048312165631"><a name="p1492048312165631"></a><a name="p1492048312165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p683654500093530"><a name="p683654500093530"></a><a name="p683654500093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1698210876165631"><a name="p1698210876165631"></a><a name="p1698210876165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row573575260093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b527055708093530"><a name="b527055708093530"></a><a name="b527055708093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row632264915165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b2009888340165631"><a name="b2009888340165631"></a><a name="b2009888340165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row520698610093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">gestureMode</td>
+<tr id="row1649498022165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">gestureMode</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the gesture mode to set. </td>
 </tr>
 </tbody>
@@ -376,8 +377,6 @@ The input service can use this function to enable or disable the gesture mode by
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## SetPowerStatus<a name="a38da915fec2698dff480ed686503f692"></a>
 
@@ -393,17 +392,17 @@ This function is called only when the power status of the OS is changed. The inp
 
 **Parameters:**
 
-<a name="table1787836622093530"></a>
-<table><thead align="left"><tr id="row108570263093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p77564477093530"><a name="p77564477093530"></a><a name="p77564477093530"></a>Name</p>
+<a name="table1781849161165631"></a>
+<table><thead align="left"><tr id="row445441046165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p395039696165631"><a name="p395039696165631"></a><a name="p395039696165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1795801109093530"><a name="p1795801109093530"></a><a name="p1795801109093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p120194064165631"><a name="p120194064165631"></a><a name="p120194064165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row715871172093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1395435881093530"><a name="b1395435881093530"></a><a name="b1395435881093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row1015885983165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b2038157531165631"><a name="b2038157531165631"></a><a name="b2038157531165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row657233899093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">status</td>
+<tr id="row273950230165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">status</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the power status to set. The input service will notify the input device of entering the Resume or Suspend state specified by <a href="Input.md#ga65e6bb4d942c22dba9975253b0a1d73f">PowerStatus</a>. </td>
 </tr>
 </tbody>
@@ -412,6 +411,4 @@ This function is called only when the power status of the OS is changed. The inp
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 

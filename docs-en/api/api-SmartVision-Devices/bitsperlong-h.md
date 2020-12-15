@@ -1,10 +1,14 @@
 # bitsperlong.h<a name="EN-US_TOPIC_0000001055078101"></a>
 
-## **Overview**<a name="section944486675093524"></a>
+-   [Overview](#section1264278958165626)
+-   [Summary](#section1380547368165626)
+-   [Macros](#define-members)
+
+## **Overview**<a name="section1264278958165626"></a>
 
 **Related Modules:**
 
-[UTILS](en-us_topic_0000001055198076.md)
+[UTILS](utils.md)
 
 **Description:**
 
@@ -18,20 +22,20 @@ Defines the number of bits of the long data type.
 
 1.0
 
-## **Summary**<a name="section1719038578093524"></a>
+## **Summary**<a name="section1380547368165626"></a>
 
 ## Macros<a name="define-members"></a>
 
-<a name="table529270003093524"></a>
-<table><thead align="left"><tr id="row706240591093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1955197407093524"><a name="p1955197407093524"></a><a name="p1955197407093524"></a>Macro Name and Value</p>
+<a name="table296445525165626"></a>
+<table><thead align="left"><tr id="row1473267723165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p430374306165626"><a name="p430374306165626"></a><a name="p430374306165626"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1874260149093524"><a name="p1874260149093524"></a><a name="p1874260149093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1022133965165626"><a name="p1022133965165626"></a><a name="p1022133965165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row630766457093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2129036871093524"><a name="p2129036871093524"></a><a name="p2129036871093524"></a><a href="en-us_topic_0000001055198076.md#ga0bf2a26a1f15f79f80319edbaa5cc9a5">__BITS_PER_LONG</a>   32</p>
+<tbody><tr id="row1803395514165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1754656841165626"><a name="p1754656841165626"></a><a name="p1754656841165626"></a><a href="utils.md#ga0bf2a26a1f15f79f80319edbaa5cc9a5">__BITS_PER_LONG</a>   32</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1505462970093524"><a name="p1505462970093524"></a><a name="p1505462970093524"></a>Defines the number of bits of the long data type. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1202106881165626"><a name="p1202106881165626"></a><a name="p1202106881165626"></a>Defines the number of bits of the long data type. </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,17 @@
 # SubtitleTrackInfo<a name="ZH-CN_TOPIC_0000001055678132"></a>
 
-## **Overview**<a name="section1162109046093537"></a>
+-   [Overview](#section860295795165636)
+-   [Summary](#section1449578668165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section107940712165636)
+-   [Field](#section1828222786165636)
+-   [charSet](#a71f5455adc1defa10b4f292dede95f58)
+-   [format](#a8f0db970e60f19d5deb18fbbdbc7ea28)
+-   [language](#abb57b361b445696d272cf8bb54cb12d0)
+-   [originalFrameHeight](#a70c3d91bb8b6d8e79a22fe0206130a2f)
+-   [originalFrameWidth](#a7d5cefc1e9f402657c2f9c2950688472)
+
+## **Overview**<a name="section860295795165636"></a>
 
 **Related Modules:**
 
@@ -18,48 +29,48 @@ Defines subtitle stream information.
 
 1.0
 
-## **Summary**<a name="section1854808027093537"></a>
+## **Summary**<a name="section1449578668165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table667818964093537"></a>
-<table><thead align="left"><tr id="row1387054851093537"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p450220337093537"><a name="p450220337093537"></a><a name="p450220337093537"></a>Variable Name</p>
+<a name="table595094308165636"></a>
+<table><thead align="left"><tr id="row1595881816165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p834095310165636"><a name="p834095310165636"></a><a name="p834095310165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1670804223093537"><a name="p1670804223093537"></a><a name="p1670804223093537"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1069788195165636"><a name="p1069788195165636"></a><a name="p1069788195165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1641854632093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p352900465093537"><a name="p352900465093537"></a><a name="p352900465093537"></a><a href="SubtitleTrackInfo.md#a8f0db970e60f19d5deb18fbbdbc7ea28">format</a></p>
+<tbody><tr id="row196668182165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1450171382165636"><a name="p1450171382165636"></a><a name="p1450171382165636"></a><a href="SubtitleTrackInfo.md#a8f0db970e60f19d5deb18fbbdbc7ea28">format</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p679887282093537"><a name="p679887282093537"></a><a name="p679887282093537"></a><a href="Format.md#gadac45ce4731516c262292c15433439b3">SubtitleFormat</a>&nbsp;</p>
-</td>
-</tr>
-<tr id="row342940954093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1601083183093537"><a name="p1601083183093537"></a><a name="p1601083183093537"></a><a href="SubtitleTrackInfo.md#a71f5455adc1defa10b4f292dede95f58">charSet</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1638937567093537"><a name="p1638937567093537"></a><a name="p1638937567093537"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1523667424165636"><a name="p1523667424165636"></a><a name="p1523667424165636"></a><a href="Format.md#gadac45ce4731516c262292c15433439b3">SubtitleFormat</a> </p>
 </td>
 </tr>
-<tr id="row654950707093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1840499981093537"><a name="p1840499981093537"></a><a name="p1840499981093537"></a><a href="SubtitleTrackInfo.md#abb57b361b445696d272cf8bb54cb12d0">language</a> [<a href="Format.md#gac2d2d077edb8e9bb9f85ab6350015c5b">FORMAT_MAX_LANGUAGE_NUM</a>][<a href="Format.md#gaa70508bb1089c99f9aa3d59fcbdfa8eb">FORMAT_LANGUAGE_LEN</a>]</p>
+<tr id="row495363172165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1196671282165636"><a name="p1196671282165636"></a><a name="p1196671282165636"></a><a href="SubtitleTrackInfo.md#a71f5455adc1defa10b4f292dede95f58">charSet</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2083829945093537"><a name="p2083829945093537"></a><a name="p2083829945093537"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row1500367991093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1087957239093537"><a name="p1087957239093537"></a><a name="p1087957239093537"></a><a href="SubtitleTrackInfo.md#a7d5cefc1e9f402657c2f9c2950688472">originalFrameWidth</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1325418658093537"><a name="p1325418658093537"></a><a name="p1325418658093537"></a>uint16_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p361901637165636"><a name="p361901637165636"></a><a name="p361901637165636"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row862987752093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1914503094093537"><a name="p1914503094093537"></a><a name="p1914503094093537"></a><a href="SubtitleTrackInfo.md#a70c3d91bb8b6d8e79a22fe0206130a2f">originalFrameHeight</a></p>
+<tr id="row1411285524165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p365659353165636"><a name="p365659353165636"></a><a name="p365659353165636"></a><a href="SubtitleTrackInfo.md#abb57b361b445696d272cf8bb54cb12d0">language</a> [<a href="Format.md#gac2d2d077edb8e9bb9f85ab6350015c5b">FORMAT_MAX_LANGUAGE_NUM</a>][<a href="Format.md#gaa70508bb1089c99f9aa3d59fcbdfa8eb">FORMAT_LANGUAGE_LEN</a>]</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p622491950093537"><a name="p622491950093537"></a><a name="p622491950093537"></a>uint16_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1359810914165636"><a name="p1359810914165636"></a><a name="p1359810914165636"></a>char </p>
+</td>
+</tr>
+<tr id="row1335737493165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p254535958165636"><a name="p254535958165636"></a><a name="p254535958165636"></a><a href="SubtitleTrackInfo.md#a7d5cefc1e9f402657c2f9c2950688472">originalFrameWidth</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p638529911165636"><a name="p638529911165636"></a><a name="p638529911165636"></a>uint16_t </p>
+</td>
+</tr>
+<tr id="row1602257229165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p383676513165636"><a name="p383676513165636"></a><a name="p383676513165636"></a><a href="SubtitleTrackInfo.md#a70c3d91bb8b6d8e79a22fe0206130a2f">originalFrameHeight</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1459178614165636"><a name="p1459178614165636"></a><a name="p1459178614165636"></a>uint16_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section2128784002093537"></a>
+## **Details**<a name="section107940712165636"></a>
 
-## **Field Documentation**<a name="section1681909984093537"></a>
+## **Field **<a name="section1828222786165636"></a>
 
 ## charSet<a name="a71f5455adc1defa10b4f292dede95f58"></a>
 

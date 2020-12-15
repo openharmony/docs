@@ -1,6 +1,14 @@
 # IPowerEventListener<a name="EN-US_TOPIC_0000001055358112"></a>
 
-## **Overview**<a name="section777723692084836"></a>
+-   [Overview](#section189942363165632)
+-   [Summary](#section338740721165632)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section840861603165632)
+-   [Field](#section602228592165632)
+-   [Resume](#ad8501d377d185a998803ad84cacf80d7)
+-   [Suspend](#a42104ba0f92462db12a13e6b40c40d52)
+
+## **Overview**<a name="section189942363165632"></a>
 
 **Related Modules:**
 
@@ -16,33 +24,33 @@ To use the power management mechanism provided by the HDF, implement operations 
 
 1.0
 
-## **Summary**<a name="section148404377084836"></a>
+## **Summary**<a name="section338740721165632"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1139214822084836"></a>
-<table><thead align="left"><tr id="row2128190757084836"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p992424525084836"><a name="p992424525084836"></a><a name="p992424525084836"></a>Variable Name</p>
+<a name="table2082300765165632"></a>
+<table><thead align="left"><tr id="row1659540734165632"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p99820178165632"><a name="p99820178165632"></a><a name="p99820178165632"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2144368095084836"><a name="p2144368095084836"></a><a name="p2144368095084836"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1671421424165632"><a name="p1671421424165632"></a><a name="p1671421424165632"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1538457787084836"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1723737934084836"><a name="p1723737934084836"></a><a name="p1723737934084836"></a><a href="ipowereventlistener.md#ad8501d377d185a998803ad84cacf80d7">Resume</a> )(struct <a href="hdfdeviceobject.md">HdfDeviceObject</a> *deviceObject)</p>
+<tbody><tr id="row277597391165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1459367904165632"><a name="p1459367904165632"></a><a name="p1459367904165632"></a><a href="ipowereventlistener.md#ad8501d377d185a998803ad84cacf80d7">Resume</a> )(struct <a href="hdfdeviceobject.md">HdfDeviceObject</a> *deviceObject)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p371636822084836"><a name="p371636822084836"></a><a name="p371636822084836"></a>void(* </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1672936865165632"><a name="p1672936865165632"></a><a name="p1672936865165632"></a>void(* </p>
 </td>
 </tr>
-<tr id="row1309463335084836"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1016947868084836"><a name="p1016947868084836"></a><a name="p1016947868084836"></a><a href="ipowereventlistener.md#a42104ba0f92462db12a13e6b40c40d52">Suspend</a> )(struct <a href="hdfdeviceobject.md">HdfDeviceObject</a> *deviceObject)</p>
+<tr id="row958796193165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p757561708165632"><a name="p757561708165632"></a><a name="p757561708165632"></a><a href="ipowereventlistener.md#a42104ba0f92462db12a13e6b40c40d52">Suspend</a> )(struct <a href="hdfdeviceobject.md">HdfDeviceObject</a> *deviceObject)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p279061906084836"><a name="p279061906084836"></a><a name="p279061906084836"></a>void(* </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2014919113165632"><a name="p2014919113165632"></a><a name="p2014919113165632"></a>void(* </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section827948696084836"></a>
+## **Details**<a name="section840861603165632"></a>
 
-## **Field Documentation**<a name="section975064062084836"></a>
+## **Field **<a name="section602228592165632"></a>
 
 ## Resume<a name="ad8501d377d185a998803ad84cacf80d7"></a>
 

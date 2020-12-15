@@ -1,6 +1,10 @@
 # OHOS::Style<a name="EN-US_TOPIC_0000001055518122"></a>
 
-## **Overview**<a name="section2108654161093535"></a>
+-   [Overview](#section1036123221165635)
+-   [Summary](#section2120768408165635)
+-   [Public Member Functions](#pub-methods)
+
+## **Overview**<a name="section1036123221165635"></a>
 
 **Related Modules:**
 
@@ -18,51 +22,51 @@ Defines the basic attributes and functions of a style. You can use this class to
 
 1.0
 
-## **Summary**<a name="section549467273093535"></a>
+## **Summary**<a name="section2120768408165635"></a>
 
 ## Public Member Functions<a name="pub-methods"></a>
 
-<a name="table620474465093535"></a>
-<table><thead align="left"><tr id="row1392097237093535"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p844187577093535"><a name="p844187577093535"></a><a name="p844187577093535"></a>Public Member Function Name</p>
+<a name="table441089452165635"></a>
+<table><thead align="left"><tr id="row83336546165635"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p765213114165635"><a name="p765213114165635"></a><a name="p765213114165635"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1390423510093535"><a name="p1390423510093535"></a><a name="p1390423510093535"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p573759297165635"><a name="p573759297165635"></a><a name="p573759297165635"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row923617430093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p680387646093535"><a name="p680387646093535"></a><a name="p680387646093535"></a><a href="graphic.md#ga592b31b43819c40563c52fe7b45d9358">Style</a> ()</p>
+<tbody><tr id="row1913870531165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1406084941165635"><a name="p1406084941165635"></a><a name="p1406084941165635"></a><a href="graphic.md#ga592b31b43819c40563c52fe7b45d9358">Style</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p123921535093535"><a name="p123921535093535"></a><a name="p123921535093535"></a> </p>
-<p id="p428771639093535"><a name="p428771639093535"></a><a name="p428771639093535"></a>A constructor used to create a <strong id="b1519572613093535"><a name="b1519572613093535"></a><a name="b1519572613093535"></a><a href="ohos-style.md">Style</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row513978450093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p619407309093535"><a name="p619407309093535"></a><a name="p619407309093535"></a><a href="graphic.md#ga6356d56766de8fe37d4888ef70f521ec">~Style</a> ()</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1060878766093535"><a name="p1060878766093535"></a><a name="p1060878766093535"></a>virtual </p>
-<p id="p1650272926093535"><a name="p1650272926093535"></a><a name="p1650272926093535"></a>A destructor used to delete the <strong id="b411275292093535"><a name="b411275292093535"></a><a name="b411275292093535"></a><a href="ohos-style.md">Style</a></strong> instance. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p990611430165635"><a name="p990611430165635"></a><a name="p990611430165635"></a> </p>
+<p id="p1509173504165635"><a name="p1509173504165635"></a><a name="p1509173504165635"></a>A constructor used to create a <strong id="b324738571165635"><a name="b324738571165635"></a><a name="b324738571165635"></a><a href="ohos-style.md">Style</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1855002966093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1941049711093535"><a name="p1941049711093535"></a><a name="p1941049711093535"></a><a href="graphic.md#ga31941bb1abbb6744ee832d4b0fe6e080">SetStyle</a> (uint8_t key, int64_t value)</p>
+<tr id="row1487326831165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p72122697165635"><a name="p72122697165635"></a><a name="p72122697165635"></a><a href="graphic.md#ga6356d56766de8fe37d4888ef70f521ec">~Style</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1449218336093535"><a name="p1449218336093535"></a><a name="p1449218336093535"></a>void </p>
-<p id="p615725530093535"><a name="p615725530093535"></a><a name="p615725530093535"></a>Sets a style. </p>
-</td>
-</tr>
-<tr id="row678079210093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p115903671093535"><a name="p115903671093535"></a><a name="p115903671093535"></a><a href="graphic.md#ga2b4b818f26822ad6a020473e6a5e5214">GetStyle</a> (uint8_t key) const</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p365913227093535"><a name="p365913227093535"></a><a name="p365913227093535"></a>int64_t </p>
-<p id="p142755439093535"><a name="p142755439093535"></a><a name="p142755439093535"></a>Obtains the value of a style. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1420739660165635"><a name="p1420739660165635"></a><a name="p1420739660165635"></a>virtual </p>
+<p id="p114708228165635"><a name="p114708228165635"></a><a name="p114708228165635"></a>A destructor used to delete the <strong id="b617447295165635"><a name="b617447295165635"></a><a name="b617447295165635"></a><a href="ohos-style.md">Style</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1816506074093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p136577877093535"><a name="p136577877093535"></a><a name="p136577877093535"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
+<tr id="row1119542537165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p544011283165635"><a name="p544011283165635"></a><a name="p544011283165635"></a><a href="graphic.md#ga31941bb1abbb6744ee832d4b0fe6e080">SetStyle</a> (uint8_t key, int64_t value)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1640618871093535"><a name="p1640618871093535"></a><a name="p1640618871093535"></a>void * </p>
-<p id="p297654919093535"><a name="p297654919093535"></a><a name="p297654919093535"></a>Overrides the <strong id="b1856003185093535"><a name="b1856003185093535"></a><a name="b1856003185093535"></a>new</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2009644959165635"><a name="p2009644959165635"></a><a name="p2009644959165635"></a>void </p>
+<p id="p332557940165635"><a name="p332557940165635"></a><a name="p332557940165635"></a>Sets a style. </p>
 </td>
 </tr>
-<tr id="row340579671093535"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p340982175093535"><a name="p340982175093535"></a><a name="p340982175093535"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+<tr id="row1345496315165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1913146981165635"><a name="p1913146981165635"></a><a name="p1913146981165635"></a><a href="graphic.md#ga2b4b818f26822ad6a020473e6a5e5214">GetStyle</a> (uint8_t key) const</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p583621766093535"><a name="p583621766093535"></a><a name="p583621766093535"></a>void </p>
-<p id="p1471711746093535"><a name="p1471711746093535"></a><a name="p1471711746093535"></a>Overrides the <strong id="b1911358044093535"><a name="b1911358044093535"></a><a name="b1911358044093535"></a>delete</strong> function. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1421608590165635"><a name="p1421608590165635"></a><a name="p1421608590165635"></a>int64_t </p>
+<p id="p515422633165635"><a name="p515422633165635"></a><a name="p515422633165635"></a>Obtains the value of a style. </p>
+</td>
+</tr>
+<tr id="row1652901112165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1428651553165635"><a name="p1428651553165635"></a><a name="p1428651553165635"></a><a href="graphic.md#ga4854963aa969ee20a6cd174a70f5cd23">operator new</a> (size_t size)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2030904545165635"><a name="p2030904545165635"></a><a name="p2030904545165635"></a>void * </p>
+<p id="p386686216165635"><a name="p386686216165635"></a><a name="p386686216165635"></a>Overrides the <strong id="b195460588165635"><a name="b195460588165635"></a><a name="b195460588165635"></a>new</strong> function. </p>
+</td>
+</tr>
+<tr id="row1710690646165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p858396794165635"><a name="p858396794165635"></a><a name="p858396794165635"></a><a href="graphic.md#gadf1997a0f56ac2b220e7f0f8e8e0a6ef">operator delete</a> (void *p)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p973688345165635"><a name="p973688345165635"></a><a name="p973688345165635"></a>void </p>
+<p id="p1531904970165635"><a name="p1531904970165635"></a><a name="p1531904970165635"></a>Overrides the <strong id="b1876199664165635"><a name="b1876199664165635"></a><a name="b1876199664165635"></a>delete</strong> function. </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,21 @@
 # ParameterItem<a name="ZH-CN_TOPIC_0000001054799635"></a>
 
-## **Overview**<a name="section656493946084841"></a>
+-   [Overview](#section1277844240165635)
+-   [Summary](#section1337305937165635)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1974216673165635)
+-   [Field](#section648134752165635)
+-   [dValue](#af4be109572705fcd01778c2af5ad1868)
+-   [fValue](#ae6d56dc8bd3f5a206fdd085ce65a9e33)
+-   [key](#a7fd3dd0c0ddbf9e4cf04d214fae1a857)
+-   [pValue](#a7bd2066c1aa644f4cd7a88a4fa0f9776)
+-   [s32Value](#a67b4403be08a141554d8974be14c9ec4)
+-   [s64Value](#af7566b817d49b505e9a3f25be6feafe3)
+-   [size](#ad708dec0457cddcc56f1955f80ea2dfe)
+-   [u32Value](#a20cbcbc7418ac8d885418d09a4041e00)
+-   [u64Value](#a4f04b2e5166d5e39142a16b6a1ae2392)
+
+## **Overview**<a name="section1277844240165635"></a>
 
 **Related Modules:**
 
@@ -10,72 +25,71 @@
 
 Defines a structure for configuring and obtaining dynamic parameters. 
 
-## **Summary**<a name="section1318280446084841"></a>
+## **Summary**<a name="section1337305937165635"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table982081186084841"></a>
-<table><thead align="left"><tr id="row728678639084841"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1388930400084841"><a name="p1388930400084841"></a><a name="p1388930400084841"></a>Variable Name</p>
+<a name="table1832709310165635"></a>
+<table><thead align="left"><tr id="row753653102165635"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1442686330165635"><a name="p1442686330165635"></a><a name="p1442686330165635"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p570348048084841"><a name="p570348048084841"></a><a name="p570348048084841"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1296420618165635"><a name="p1296420618165635"></a><a name="p1296420618165635"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1127790613084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p102699915084841"><a name="p102699915084841"></a><a name="p102699915084841"></a><a href="ParameterItem.md#a7fd3dd0c0ddbf9e4cf04d214fae1a857">key</a></p>
+<tbody><tr id="row270620239165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1574433553165635"><a name="p1574433553165635"></a><a name="p1574433553165635"></a><a href="ParameterItem.md#a7fd3dd0c0ddbf9e4cf04d214fae1a857">key</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p999242365084841"><a name="p999242365084841"></a><a name="p999242365084841"></a>uint32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1243347874084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1526017954084841"><a name="p1526017954084841"></a><a name="p1526017954084841"></a><a href="ParameterItem.md#ad708dec0457cddcc56f1955f80ea2dfe">size</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p431414726084841"><a name="p431414726084841"></a><a name="p431414726084841"></a>int32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1253846355165635"><a name="p1253846355165635"></a><a name="p1253846355165635"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row364452827084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1002089515084841"><a name="p1002089515084841"></a><a name="p1002089515084841"></a><em id="a83a7f9de38060f001ba350c2e64c537e"><a name="a83a7f9de38060f001ba350c2e64c537e"></a><a name="a83a7f9de38060f001ba350c2e64c537e"></a></em></p>
+<tr id="row498565567165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p379208252165635"><a name="p379208252165635"></a><a name="p379208252165635"></a><a href="ParameterItem.md#ad708dec0457cddcc56f1955f80ea2dfe">size</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p716604458084841"><a name="p716604458084841"></a><a name="p716604458084841"></a><strong id="a83a7f9de38060f001ba350c2e64c537e_1"><a name="a83a7f9de38060f001ba350c2e64c537e_1"></a><a name="a83a7f9de38060f001ba350c2e64c537e_1"></a></strong> union {</p>
-</td>
-</tr>
-<tr id="row1285176023084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p849805100084841"><a name="p849805100084841"></a><a name="p849805100084841"></a>&nbsp;&nbsp;&nbsp;int32_t&nbsp;&nbsp;&nbsp;<a href="ParameterItem.md#a67b4403be08a141554d8974be14c9ec4">s32Value</a></p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1067044430165635"><a name="p1067044430165635"></a><a name="p1067044430165635"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row107209938084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p370983548084841"><a name="p370983548084841"></a><a name="p370983548084841"></a>&nbsp;&nbsp;&nbsp;uint32_t&nbsp;&nbsp;&nbsp;<a href="ParameterItem.md#a20cbcbc7418ac8d885418d09a4041e00">u32Value</a></p>
+<tr id="row1086153619165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p958791531165635"><a name="p958791531165635"></a><a name="p958791531165635"></a><strong id="a9cf4ed2fb8664644efcf6f9891001cfe"><a name="a9cf4ed2fb8664644efcf6f9891001cfe"></a><a name="a9cf4ed2fb8664644efcf6f9891001cfe"></a></strong> union {</p>
 </td>
 </tr>
-<tr id="row39893835084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2137573273084841"><a name="p2137573273084841"></a><a name="p2137573273084841"></a>&nbsp;&nbsp;&nbsp;int64_t&nbsp;&nbsp;&nbsp;<a href="ParameterItem.md#af7566b817d49b505e9a3f25be6feafe3">s64Value</a></p>
+<tr id="row1975873642165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p343965433165635"><a name="p343965433165635"></a><a name="p343965433165635"></a>   int32_t   <a href="ParameterItem.md#a67b4403be08a141554d8974be14c9ec4">s32Value</a></p>
 </td>
 </tr>
-<tr id="row76366062084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p179446130084841"><a name="p179446130084841"></a><a name="p179446130084841"></a>&nbsp;&nbsp;&nbsp;uint64_t&nbsp;&nbsp;&nbsp;<a href="ParameterItem.md#a4f04b2e5166d5e39142a16b6a1ae2392">u64Value</a></p>
+<tr id="row1682151531165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p271468283165635"><a name="p271468283165635"></a><a name="p271468283165635"></a>   uint32_t   <a href="ParameterItem.md#a20cbcbc7418ac8d885418d09a4041e00">u32Value</a></p>
 </td>
 </tr>
-<tr id="row1153258608084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p146391305084841"><a name="p146391305084841"></a><a name="p146391305084841"></a>&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;<a href="ParameterItem.md#ae6d56dc8bd3f5a206fdd085ce65a9e33">fValue</a></p>
+<tr id="row206272154165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1971628343165635"><a name="p1971628343165635"></a><a name="p1971628343165635"></a>   int64_t   <a href="ParameterItem.md#af7566b817d49b505e9a3f25be6feafe3">s64Value</a></p>
 </td>
 </tr>
-<tr id="row1556099049084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p20975611084841"><a name="p20975611084841"></a><a name="p20975611084841"></a>&nbsp;&nbsp;&nbsp;double&nbsp;&nbsp;&nbsp;<a href="ParameterItem.md#af4be109572705fcd01778c2af5ad1868">dValue</a></p>
+<tr id="row861306452165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p345295701165635"><a name="p345295701165635"></a><a name="p345295701165635"></a>   uint64_t   <a href="ParameterItem.md#a4f04b2e5166d5e39142a16b6a1ae2392">u64Value</a></p>
 </td>
 </tr>
-<tr id="row883463666084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p449346122084841"><a name="p449346122084841"></a><a name="p449346122084841"></a>&nbsp;&nbsp;&nbsp;const void *&nbsp;&nbsp;&nbsp;<a href="ParameterItem.md#a7bd2066c1aa644f4cd7a88a4fa0f9776">pValue</a></p>
+<tr id="row698493183165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p122617472165635"><a name="p122617472165635"></a><a name="p122617472165635"></a>   float   <a href="ParameterItem.md#ae6d56dc8bd3f5a206fdd085ce65a9e33">fValue</a></p>
 </td>
 </tr>
-<tr id="row1659543651084841"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1727353908084841"><a name="p1727353908084841"></a><a name="p1727353908084841"></a><em id="a83a7f9de38060f001ba350c2e64c537e_2"><a name="a83a7f9de38060f001ba350c2e64c537e_2"></a><a name="a83a7f9de38060f001ba350c2e64c537e_2"></a></em>value </p>
+<tr id="row1229403858165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p735667325165635"><a name="p735667325165635"></a><a name="p735667325165635"></a>   double   <a href="ParameterItem.md#af4be109572705fcd01778c2af5ad1868">dValue</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p252925809084841"><a name="p252925809084841"></a><a name="p252925809084841"></a>}&nbsp;</p>
-<p id="p1243062238084841"><a name="p1243062238084841"></a><a name="p1243062238084841"></a>Defines value types of the parameters. </p>
+</tr>
+<tr id="row1009327384165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2132524993165635"><a name="p2132524993165635"></a><a name="p2132524993165635"></a>   const void *   <a href="ParameterItem.md#a7bd2066c1aa644f4cd7a88a4fa0f9776">pValue</a></p>
+</td>
+</tr>
+<tr id="row510852960165635"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p866887224165635"><a name="p866887224165635"></a><a name="p866887224165635"></a><a href="ParameterItem.md#a9cf4ed2fb8664644efcf6f9891001cfe">value</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p909606355165635"><a name="p909606355165635"></a><a name="p909606355165635"></a>} </p>
+<p id="p1017849578165635"><a name="p1017849578165635"></a><a name="p1017849578165635"></a>Defines value types of the parameters. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1128522066084841"></a>
+## **Details**<a name="section1974216673165635"></a>
 
-## **Field Documentation**<a name="section847585637084841"></a>
+## **Field **<a name="section648134752165635"></a>
 
 ## dValue<a name="af4be109572705fcd01778c2af5ad1868"></a>
 

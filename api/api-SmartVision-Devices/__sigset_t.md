@@ -1,42 +1,51 @@
 # \_\_sigset\_t<a name="ZH-CN_TOPIC_0000001054479607"></a>
 
-## **Overview**<a name="section1104558195093537"></a>
+-   [Overview](#section1968748679165636)
+-   [Summary](#section1878174519165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1360351697165636)
+-   [Field](#section1821036759165636)
+-   [\_\_bits](#afb0164f3d61f19db00223f410618e224)
+
+## **Overview**<a name="section1968748679165636"></a>
 
 **Related Modules:**
 
-[IPC](zh-cn_topic_0000001054718071.md)
+[UTILS](UTILS.md)  |  [IPC](IPC.md)
 
 **Description:**
 
+Defines the data type of a signal set. 
+
 Defines a signal set. 
 
-## **Summary**<a name="section683411226093537"></a>
+## **Summary**<a name="section1878174519165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table819217554093537"></a>
-<table><thead align="left"><tr id="row20271024093537"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1218916989093537"><a name="p1218916989093537"></a><a name="p1218916989093537"></a>Variable Name</p>
+<a name="table1223112388165636"></a>
+<table><thead align="left"><tr id="row1631693624165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1792391376165636"><a name="p1792391376165636"></a><a name="p1792391376165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2029807298093537"><a name="p2029807298093537"></a><a name="p2029807298093537"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1364507745165636"><a name="p1364507745165636"></a><a name="p1364507745165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1048737231093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1620315964093537"><a name="p1620315964093537"></a><a name="p1620315964093537"></a><a href="__sigset_t.md#a2a5e8eb9ceb28a1898295eaa235bd28b">__bits</a> [128/sizeof(long)]</p>
+<tbody><tr id="row1504152339165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1067155048165636"><a name="p1067155048165636"></a><a name="p1067155048165636"></a><a href="__sigset_t.md#afb0164f3d61f19db00223f410618e224">__bits</a> [128/sizeof(long)]</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p580814190093537"><a name="p580814190093537"></a><a name="p580814190093537"></a>unsigned long&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1262918322165636"><a name="p1262918322165636"></a><a name="p1262918322165636"></a>unsigned long </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1952406966093537"></a>
+## **Details**<a name="section1360351697165636"></a>
 
-## **Field Documentation**<a name="section1622338388093537"></a>
+## **Field **<a name="section1821036759165636"></a>
 
-## \_\_bits<a name="a2a5e8eb9ceb28a1898295eaa235bd28b"></a>
+## \_\_bits<a name="afb0164f3d61f19db00223f410618e224"></a>
 
 ```
-unsigned long __sigset_t::__bits[128/sizeof(long)]
+unsigned long __sigset_t::__bits
 ```
 
  **Description:**

@@ -1,6 +1,15 @@
 # glob\_t<a name="EN-US_TOPIC_0000001054718171"></a>
 
-## **Overview**<a name="section610754998084842"></a>
+-   [Overview](#section687133126165636)
+-   [Summary](#section624234065165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section341760664165636)
+-   [Field](#section503539067165636)
+-   [gl\_offs](#ada6945e8f6ca53ecf82c9d736fb5307e)
+-   [gl\_pathc](#a69dc492f370a9793f06c11e3eb12f199)
+-   [gl\_pathv](#abd9ba3e5bd7a4767af2cd3dd98a2a64f)
+
+## **Overview**<a name="section687133126165636"></a>
 
 **Related Modules:**
 
@@ -12,38 +21,38 @@ Defines the search information.
 
 This structure is used to store information about matched files. 
 
-## **Summary**<a name="section1833441792084842"></a>
+## **Summary**<a name="section624234065165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table2100106751084842"></a>
-<table><thead align="left"><tr id="row2107463414084842"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p448547359084842"><a name="p448547359084842"></a><a name="p448547359084842"></a>Variable Name</p>
+<a name="table1645571188165636"></a>
+<table><thead align="left"><tr id="row987874000165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p729766468165636"><a name="p729766468165636"></a><a name="p729766468165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p504260849084842"><a name="p504260849084842"></a><a name="p504260849084842"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p900807525165636"><a name="p900807525165636"></a><a name="p900807525165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row536205749084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1171297856084842"><a name="p1171297856084842"></a><a name="p1171297856084842"></a><a href="glob_t.md#a69dc492f370a9793f06c11e3eb12f199">gl_pathc</a></p>
+<tbody><tr id="row1307546020165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2057856807165636"><a name="p2057856807165636"></a><a name="p2057856807165636"></a><a href="glob_t.md#a69dc492f370a9793f06c11e3eb12f199">gl_pathc</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1813797633084842"><a name="p1813797633084842"></a><a name="p1813797633084842"></a>size_t </p>
-</td>
-</tr>
-<tr id="row398824629084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1228103466084842"><a name="p1228103466084842"></a><a name="p1228103466084842"></a><a href="glob_t.md#abd9ba3e5bd7a4767af2cd3dd98a2a64f">gl_pathv</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p321657837084842"><a name="p321657837084842"></a><a name="p321657837084842"></a>char ** </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p143616628165636"><a name="p143616628165636"></a><a name="p143616628165636"></a>size_t </p>
 </td>
 </tr>
-<tr id="row1912619242084842"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1869477969084842"><a name="p1869477969084842"></a><a name="p1869477969084842"></a><a href="glob_t.md#ada6945e8f6ca53ecf82c9d736fb5307e">gl_offs</a></p>
+<tr id="row668271798165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1488996309165636"><a name="p1488996309165636"></a><a name="p1488996309165636"></a><a href="glob_t.md#abd9ba3e5bd7a4767af2cd3dd98a2a64f">gl_pathv</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1873684322084842"><a name="p1873684322084842"></a><a name="p1873684322084842"></a>size_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1834646503165636"><a name="p1834646503165636"></a><a name="p1834646503165636"></a>char ** </p>
+</td>
+</tr>
+<tr id="row404332084165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1652138949165636"><a name="p1652138949165636"></a><a name="p1652138949165636"></a><a href="glob_t.md#ada6945e8f6ca53ecf82c9d736fb5307e">gl_offs</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p653403764165636"><a name="p653403764165636"></a><a name="p653403764165636"></a>size_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section667313865084842"></a>
+## **Details**<a name="section341760664165636"></a>
 
-## **Field Documentation**<a name="section1300123413084842"></a>
+## **Field **<a name="section503539067165636"></a>
 
 ## gl\_offs<a name="ada6945e8f6ca53ecf82c9d736fb5307e"></a>
 

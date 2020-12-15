@@ -1,6 +1,16 @@
 # GrallocBuffer<a name="ZH-CN_TOPIC_0000001054718125"></a>
 
-## **Overview**<a name="section1186105809093530"></a>
+-   [Overview](#section1994522661165631)
+-   [Summary](#section197328879165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section694221750165631)
+-   [Field](#section924837173165631)
+-   [hdl](#a6bdce5004be0cb1c41326c0621581fff)
+-   [size](#a756f3d9e23d7e97a28a5228765cb8cf3)
+-   [type](#ad66bdf06909350cd1a4e5c45349e72ae)
+-   [virAddr](#a3196376b8b938cf96e008152f1ddceee)
+
+## **Overview**<a name="section1994522661165631"></a>
 
 **Related Modules:**
 
@@ -10,43 +20,43 @@
 
 Defines the memory buffer, including the buffer handle, memory type, memory size, and virtual memory address. 
 
-## **Summary**<a name="section253494518093530"></a>
+## **Summary**<a name="section197328879165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table812987329093530"></a>
-<table><thead align="left"><tr id="row1143531398093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1465700321093530"><a name="p1465700321093530"></a><a name="p1465700321093530"></a>Variable Name</p>
+<a name="table1983617942165631"></a>
+<table><thead align="left"><tr id="row342083585165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p955829571165631"><a name="p955829571165631"></a><a name="p955829571165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p483416696093530"><a name="p483416696093530"></a><a name="p483416696093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1665117093165631"><a name="p1665117093165631"></a><a name="p1665117093165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row270476948093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p907419132093530"><a name="p907419132093530"></a><a name="p907419132093530"></a><a href="GrallocBuffer.md#a6bdce5004be0cb1c41326c0621581fff">hdl</a></p>
+<tbody><tr id="row1486559222165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1152676891165631"><a name="p1152676891165631"></a><a name="p1152676891165631"></a><a href="GrallocBuffer.md#a6bdce5004be0cb1c41326c0621581fff">hdl</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1884763561093530"><a name="p1884763561093530"></a><a name="p1884763561093530"></a><a href="BufferHandle.md">BufferHandle</a>&nbsp;</p>
-</td>
-</tr>
-<tr id="row1926374375093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1877122654093530"><a name="p1877122654093530"></a><a name="p1877122654093530"></a><a href="GrallocBuffer.md#ad66bdf06909350cd1a4e5c45349e72ae">type</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p100881722093530"><a name="p100881722093530"></a><a name="p100881722093530"></a><a href="Display.md#gabd31f838aefffa46191d0d7dc36a96b2">MemType</a>&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p282765638165631"><a name="p282765638165631"></a><a name="p282765638165631"></a><a href="BufferHandle.md">BufferHandle</a> </p>
 </td>
 </tr>
-<tr id="row865172974093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1031616094093530"><a name="p1031616094093530"></a><a name="p1031616094093530"></a><a href="GrallocBuffer.md#a756f3d9e23d7e97a28a5228765cb8cf3">size</a></p>
+<tr id="row1316329232165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1955849843165631"><a name="p1955849843165631"></a><a name="p1955849843165631"></a><a href="GrallocBuffer.md#ad66bdf06909350cd1a4e5c45349e72ae">type</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p31920768093530"><a name="p31920768093530"></a><a name="p31920768093530"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1416116134165631"><a name="p1416116134165631"></a><a name="p1416116134165631"></a><a href="Display.md#gabd31f838aefffa46191d0d7dc36a96b2">MemType</a> </p>
 </td>
 </tr>
-<tr id="row169732798093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p101958938093530"><a name="p101958938093530"></a><a name="p101958938093530"></a><a href="GrallocBuffer.md#a3196376b8b938cf96e008152f1ddceee">virAddr</a></p>
+<tr id="row2109833494165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1525220670165631"><a name="p1525220670165631"></a><a name="p1525220670165631"></a><a href="GrallocBuffer.md#a756f3d9e23d7e97a28a5228765cb8cf3">size</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1686541328093530"><a name="p1686541328093530"></a><a name="p1686541328093530"></a>void *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2061653179165631"><a name="p2061653179165631"></a><a name="p2061653179165631"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row1276490407165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1333979981165631"><a name="p1333979981165631"></a><a name="p1333979981165631"></a><a href="GrallocBuffer.md#a3196376b8b938cf96e008152f1ddceee">virAddr</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1074708220165631"><a name="p1074708220165631"></a><a name="p1074708220165631"></a>void * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1801065956093530"></a>
+## **Details**<a name="section694221750165631"></a>
 
-## **Field Documentation**<a name="section594351810093530"></a>
+## **Field **<a name="section924837173165631"></a>
 
 ## hdl<a name="a6bdce5004be0cb1c41326c0621581fff"></a>
 

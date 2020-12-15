@@ -1,6 +1,21 @@
 # MultiMedia\_CameraAbility<a name="EN-US_TOPIC_0000001054479517"></a>
 
-## **Overview**<a name="section698182775093523"></a>
+-   [Overview](#section59896362165625)
+-   [Summary](#section1342120614165625)
+-   [Files](#files)
+-   [Data Structures](#nested-classes)
+-   [Functions](#func-members)
+-   [Details](#section1351292470165625)
+-   [Function](#section23304000165625)
+-   [CameraAbility\(\)](#ga7f1b94b32f7c7b121ea14b3147788497)
+-   [GetParameterRange\(\)](#ga3fb9142cc5bbeafef3201ecaaf50c737)
+-   [GetSupportedSizes\(\)](#ga840850d531b96cc5a829b257ade3c7e6)
+-   [SetParameterRange\(\)](#ga23410306b850fe7edcb736f50fe8048d)
+-   [\~CameraAbility\(\)](#ga797435bcd10278e33fb7b6f4951f0d7f)
+
+## **Overview**<a name="section59896362165625"></a>
+
+**Description:**
 
 Defines the camera capability set for applications to achieve and access the capabilities. 
 
@@ -12,20 +27,20 @@ Defines the camera capability set for applications to achieve and access the cap
 
 1.0
 
-## **Summary**<a name="section1839675005093523"></a>
+## **Summary**<a name="section1342120614165625"></a>
 
 ## Files<a name="files"></a>
 
-<a name="table705095502093523"></a>
-<table><thead align="left"><tr id="row1322854654093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p556188645093523"><a name="p556188645093523"></a><a name="p556188645093523"></a>File Name</p>
+<a name="table2070050393165625"></a>
+<table><thead align="left"><tr id="row6391294165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1009479859165625"><a name="p1009479859165625"></a><a name="p1009479859165625"></a>File Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1899359642093523"><a name="p1899359642093523"></a><a name="p1899359642093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p78425149165625"><a name="p78425149165625"></a><a name="p78425149165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row724898037093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1243338897093523"><a name="p1243338897093523"></a><a name="p1243338897093523"></a><a href="camera_ability-h.md">camera_ability.h</a></p>
+<tbody><tr id="row2118012632165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1407978261165625"><a name="p1407978261165625"></a><a name="p1407978261165625"></a><a href="camera_ability-h.md">camera_ability.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1761769916093523"><a name="p1761769916093523"></a><a name="p1761769916093523"></a>Declares functions of the <strong id="b1651688895093523"><a name="b1651688895093523"></a><a name="b1651688895093523"></a>CameraAbility</strong> class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1287626289165625"><a name="p1287626289165625"></a><a name="p1287626289165625"></a>Declares functions of the <strong id="b1721319501165625"><a name="b1721319501165625"></a><a name="b1721319501165625"></a>CameraAbility</strong> class. </p>
 </td>
 </tr>
 </tbody>
@@ -33,16 +48,16 @@ Defines the camera capability set for applications to achieve and access the cap
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table37680415093523"></a>
-<table><thead align="left"><tr id="row1263041478093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p271545586093523"><a name="p271545586093523"></a><a name="p271545586093523"></a>Data Structure Name</p>
+<a name="table532966494165625"></a>
+<table><thead align="left"><tr id="row616512864165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p138599350165625"><a name="p138599350165625"></a><a name="p138599350165625"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1007480318093523"><a name="p1007480318093523"></a><a name="p1007480318093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p435809614165625"><a name="p435809614165625"></a><a name="p435809614165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row691669081093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1500901242093523"><a name="p1500901242093523"></a><a name="p1500901242093523"></a><a href="ohos-media-cameraability.md">OHOS::Media::CameraAbility</a></p>
+<tbody><tr id="row294938108165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p12265009165625"><a name="p12265009165625"></a><a name="p12265009165625"></a><a href="ohos-media-cameraability.md">OHOS::Media::CameraAbility</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p96281731093523"><a name="p96281731093523"></a><a name="p96281731093523"></a>Declares functions of the <strong id="b1910987232093523"><a name="b1910987232093523"></a><a name="b1910987232093523"></a><a href="ohos-media-cameraability.md">CameraAbility</a></strong> class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p523213496165625"><a name="p523213496165625"></a><a name="p523213496165625"></a>Declares functions of the <strong id="b1679199873165625"><a name="b1679199873165625"></a><a name="b1679199873165625"></a><a href="ohos-media-cameraability.md">CameraAbility</a></strong> class. </p>
 </td>
 </tr>
 </tbody>
@@ -50,53 +65,59 @@ Defines the camera capability set for applications to achieve and access the cap
 
 ## Functions<a name="func-members"></a>
 
-<a name="table318539413093523"></a>
-<table><thead align="left"><tr id="row938332412093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1724640826093523"><a name="p1724640826093523"></a><a name="p1724640826093523"></a>Function Name</p>
+<a name="table1196922009165625"></a>
+<table><thead align="left"><tr id="row1340161621165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1719082145165625"><a name="p1719082145165625"></a><a name="p1719082145165625"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p177998785093523"><a name="p177998785093523"></a><a name="p177998785093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1186694806165625"><a name="p1186694806165625"></a><a name="p1186694806165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1888643303093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1436443080093523"><a name="p1436443080093523"></a><a name="p1436443080093523"></a><em id="ga7f1b94b32f7c7b121ea14b3147788497"><a name="ga7f1b94b32f7c7b121ea14b3147788497"></a><a name="ga7f1b94b32f7c7b121ea14b3147788497"></a></em>OHOS::Media::CameraAbility::CameraAbility ()</p>
+<tbody><tr id="row1921635347165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1217193645165625"><a name="p1217193645165625"></a><a name="p1217193645165625"></a><a href="multimedia_cameraability.md#ga7f1b94b32f7c7b121ea14b3147788497">OHOS::Media::CameraAbility::CameraAbility</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p302185972093523"><a name="p302185972093523"></a><a name="p302185972093523"></a><strong id="b469604895"><a name="b469604895"></a><a name="b469604895"></a></strong>  </p>
-<p id="p1403056084093523"><a name="p1403056084093523"></a><a name="p1403056084093523"></a>A constructor used to create a <strong id="b1711895316093523"><a name="b1711895316093523"></a><a name="b1711895316093523"></a><a href="ohos-media-cameraability.md">CameraAbility</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row2118320553093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2128010453093523"><a name="p2128010453093523"></a><a name="p2128010453093523"></a><em id="ga797435bcd10278e33fb7b6f4951f0d7f"><a name="ga797435bcd10278e33fb7b6f4951f0d7f"></a><a name="ga797435bcd10278e33fb7b6f4951f0d7f"></a></em>OHOS::Media::CameraAbility::~CameraAbility ()</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p956082586093523"><a name="p956082586093523"></a><a name="p956082586093523"></a><strong id="b1560299021"><a name="b1560299021"></a><a name="b1560299021"></a></strong> virtual </p>
-<p id="p1230019547093523"><a name="p1230019547093523"></a><a name="p1230019547093523"></a>A destructor used to delete the <strong id="b1526166571093523"><a name="b1526166571093523"></a><a name="b1526166571093523"></a><a href="ohos-media-cameraability.md">CameraAbility</a></strong> instance. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1503938242165625"><a name="p1503938242165625"></a><a name="p1503938242165625"></a> </p>
+<p id="p365489030165625"><a name="p365489030165625"></a><a name="p365489030165625"></a>A constructor used to create a <strong id="b2057620139165625"><a name="b2057620139165625"></a><a name="b2057620139165625"></a><a href="ohos-media-cameraability.md">CameraAbility</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1194945452093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p340826624093523"><a name="p340826624093523"></a><a name="p340826624093523"></a><a href="multimedia_cameraability.md#ga840850d531b96cc5a829b257ade3c7e6">OHOS::Media::CameraAbility::GetSupportedSizes</a> (int format) const</p>
+<tr id="row1491535356165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p948199926165625"><a name="p948199926165625"></a><a name="p948199926165625"></a><a href="multimedia_cameraability.md#ga797435bcd10278e33fb7b6f4951f0d7f">OHOS::Media::CameraAbility::~CameraAbility</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1875684875093523"><a name="p1875684875093523"></a><a name="p1875684875093523"></a>std::list&lt; CameraPicSize &gt; </p>
-<p id="p174528270093523"><a name="p174528270093523"></a><a name="p174528270093523"></a>Obtains the supported image sizes for a specified image format. </p>
-</td>
-</tr>
-<tr id="row852737074093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">&nbsp;&nbsp;</td>
-</tr>
-<tr id="row1591445299093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1347681233093523"><a name="p1347681233093523"></a><a name="p1347681233093523"></a></p>
-<p id="p666853008093523"><a name="p666853008093523"></a><a name="p666853008093523"></a>Sets value ranges for a specified parameter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p913341613165625"><a name="p913341613165625"></a><a name="p913341613165625"></a>virtual </p>
+<p id="p1398063220165625"><a name="p1398063220165625"></a><a name="p1398063220165625"></a>A destructor used to delete the <strong id="b213982537165625"><a name="b213982537165625"></a><a name="b213982537165625"></a><a href="ohos-media-cameraability.md">CameraAbility</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row2054550542093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">&nbsp;&nbsp;</td>
+<tr id="row1952825735165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p279649834165625"><a name="p279649834165625"></a><a name="p279649834165625"></a><a href="multimedia_cameraability.md#ga840850d531b96cc5a829b257ade3c7e6">OHOS::Media::CameraAbility::GetSupportedSizes</a> (int format) const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p779752790165625"><a name="p779752790165625"></a><a name="p779752790165625"></a>std::list&lt; CameraPicSize &gt; </p>
+<p id="p1708677298165625"><a name="p1708677298165625"></a><a name="p1708677298165625"></a>Obtains the supported image sizes for a specified image format. </p>
+</td>
 </tr>
-<tr id="row1268855727093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p987938746093523"><a name="p987938746093523"></a><a name="p987938746093523"></a></p>
-<p id="p844517684093523"><a name="p844517684093523"></a><a name="p844517684093523"></a>Obtains the parameter value range based on a specified parameter key. </p>
+<tr id="row1754453049165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p749937802165625"><a name="p749937802165625"></a><a name="p749937802165625"></a><a href="multimedia_cameraability.md#ga23410306b850fe7edcb736f50fe8048d">OHOS::Media::CameraAbility::SetParameterRange</a> (uint32_t key, std::list&lt; T &gt; rangeList)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2017067216165625"><a name="p2017067216165625"></a><a name="p2017067216165625"></a>template&lt;typename T &gt; int32_t </p>
+<p id="p1484943995165625"><a name="p1484943995165625"></a><a name="p1484943995165625"></a>Sets value ranges for a specified parameter. </p>
+</td>
+</tr>
+<tr id="row1439000424165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1955823406165625"><a name="p1955823406165625"></a><a name="p1955823406165625"></a><a href="multimedia_cameraability.md#ga3fb9142cc5bbeafef3201ecaaf50c737">OHOS::Media::CameraAbility::GetParameterRange</a> (uint32_t key) const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p285420957165625"><a name="p285420957165625"></a><a name="p285420957165625"></a>template&lt;typename T &gt; std::list&lt; T &gt; </p>
+<p id="p2064329154165625"><a name="p2064329154165625"></a><a name="p2064329154165625"></a>Obtains the parameter value range based on a specified parameter key. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1807837707093523"></a>
+## **Details**<a name="section1351292470165625"></a>
 
-## **Function Documentation**<a name="section510812058093523"></a>
+## **Function **<a name="section23304000165625"></a>
+
+## CameraAbility\(\)<a name="ga7f1b94b32f7c7b121ea14b3147788497"></a>
+
+```
+OHOS::Media::CameraAbility::CameraAbility ()
+```
+
+ **Description:**
+
+A constructor used to create a  **[CameraAbility](ohos-media-cameraability.md)**  instance. 
 
 ## GetParameterRange\(\)<a name="ga3fb9142cc5bbeafef3201ecaaf50c737"></a>
 
@@ -110,14 +131,14 @@ Obtains the parameter value range based on a specified parameter key.
 
 **Parameters:**
 
-<a name="table1129419647093523"></a>
-<table><thead align="left"><tr id="row350520138093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1159628151093523"><a name="p1159628151093523"></a><a name="p1159628151093523"></a>Name</p>
+<a name="table1853879664165625"></a>
+<table><thead align="left"><tr id="row269539406165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p976332592165625"><a name="p976332592165625"></a><a name="p976332592165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p171879832093523"><a name="p171879832093523"></a><a name="p171879832093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1217506138165625"><a name="p1217506138165625"></a><a name="p1217506138165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2056028241093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">key</td>
+<tbody><tr id="row1251956493165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">key</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameter key. </td>
 </tr>
 </tbody>
@@ -126,8 +147,6 @@ Obtains the parameter value range based on a specified parameter key.
 **Returns:**
 
 Returns the parameter value range if obtained; returns  **NULL**  otherwise. 
-
-
 
 ## GetSupportedSizes\(\)<a name="ga840850d531b96cc5a829b257ade3c7e6"></a>
 
@@ -141,14 +160,14 @@ Obtains the supported image sizes for a specified image format.
 
 **Parameters:**
 
-<a name="table1011279020093523"></a>
-<table><thead align="left"><tr id="row1603011335093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1183211956093523"><a name="p1183211956093523"></a><a name="p1183211956093523"></a>Name</p>
+<a name="table664064033165625"></a>
+<table><thead align="left"><tr id="row143395444165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p811083502165625"><a name="p811083502165625"></a><a name="p811083502165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1242614650093523"><a name="p1242614650093523"></a><a name="p1242614650093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1238666069165625"><a name="p1238666069165625"></a><a name="p1238666069165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1567372273093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
+<tbody><tr id="row1799204703165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">format</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the image format, which can be YUV, H.265, or H.264. </td>
 </tr>
 </tbody>
@@ -157,8 +176,6 @@ Obtains the supported image sizes for a specified image format.
 **Returns:**
 
 Returns the image size list if obtained; returns  **NULL**  otherwise. 
-
-
 
 ## SetParameterRange\(\)<a name="ga23410306b850fe7edcb736f50fe8048d"></a>
 
@@ -172,17 +189,17 @@ Sets value ranges for a specified parameter.
 
 **Parameters:**
 
-<a name="table343435186093523"></a>
-<table><thead align="left"><tr id="row1310811630093523"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p753938966093523"><a name="p753938966093523"></a><a name="p753938966093523"></a>Name</p>
+<a name="table865722346165625"></a>
+<table><thead align="left"><tr id="row1985622562165625"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p457420672165625"><a name="p457420672165625"></a><a name="p457420672165625"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p459603293093523"><a name="p459603293093523"></a><a name="p459603293093523"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p272375130165625"><a name="p272375130165625"></a><a name="p272375130165625"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row733963789093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">key</td>
+<tbody><tr id="row1456797159165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">key</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the parameter key. </td>
 </tr>
-<tr id="row1824487330093523"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">rangeList</td>
+<tr id="row1231937533165625"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">rangeList</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the list of parameter value ranges. </td>
 </tr>
 </tbody>
@@ -192,5 +209,13 @@ Sets value ranges for a specified parameter.
 
 Returns  **SUCCESS**  if the setting is successful; returns  **FAIL**  otherwise. 
 
+## \~CameraAbility\(\)<a name="ga797435bcd10278e33fb7b6f4951f0d7f"></a>
 
+```
+virtual OHOS::Media::CameraAbility::~CameraAbility ()
+```
+
+ **Description:**
+
+A destructor used to delete the  **[CameraAbility](ohos-media-cameraability.md)**  instance. 
 

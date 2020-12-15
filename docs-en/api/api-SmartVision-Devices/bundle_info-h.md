@@ -1,6 +1,11 @@
 # bundle\_info.h<a name="EN-US_TOPIC_0000001055198092"></a>
 
-## **Overview**<a name="section947952108093524"></a>
+-   [Overview](#section743573804165626)
+-   [Summary](#section62819893165626)
+-   [Data Structures](#nested-classes)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section743573804165626"></a>
 
 **Related Modules:**
 
@@ -20,20 +25,20 @@ You can use the function provided in this file to clear bundle information.
 
 1.0
 
-## **Summary**<a name="section1599015360093524"></a>
+## **Summary**<a name="section62819893165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table518741658093524"></a>
-<table><thead align="left"><tr id="row914023975093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1903601058093524"><a name="p1903601058093524"></a><a name="p1903601058093524"></a>Data Structure Name</p>
+<a name="table641366497165626"></a>
+<table><thead align="left"><tr id="row728680726165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1906235070165626"><a name="p1906235070165626"></a><a name="p1906235070165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1862194603093524"><a name="p1862194603093524"></a><a name="p1862194603093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p196696456165626"><a name="p196696456165626"></a><a name="p196696456165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row532554827093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p604247353093524"><a name="p604247353093524"></a><a name="p604247353093524"></a><a href="bundleinfo.md">BundleInfo</a></p>
+<tbody><tr id="row199652350165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1816843347165626"><a name="p1816843347165626"></a><a name="p1816843347165626"></a><a href="bundleinfo.md">BundleInfo</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1709423317093524"><a name="p1709423317093524"></a><a name="p1709423317093524"></a>Defines the bundle information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p534683531165626"><a name="p534683531165626"></a><a name="p534683531165626"></a>Defines the bundle information. </p>
 </td>
 </tr>
 </tbody>
@@ -41,17 +46,17 @@ You can use the function provided in this file to clear bundle information.
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1408618452093524"></a>
-<table><thead align="left"><tr id="row452588495093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1643032526093524"><a name="p1643032526093524"></a><a name="p1643032526093524"></a>Function Name</p>
+<a name="table300190540165626"></a>
+<table><thead align="left"><tr id="row484020351165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1781154478165626"><a name="p1781154478165626"></a><a name="p1781154478165626"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p309379371093524"><a name="p309379371093524"></a><a name="p309379371093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p655718405165626"><a name="p655718405165626"></a><a name="p655718405165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1156516029093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1924612554093524"><a name="p1924612554093524"></a><a name="p1924612554093524"></a><a href="bundlemanager.md#ga78829b21273aefd65844eba4549162ca">ClearBundleInfo</a> (<a href="bundleinfo.md">BundleInfo</a> *bundleInfo)</p>
+<tbody><tr id="row517372603165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p513466039165626"><a name="p513466039165626"></a><a name="p513466039165626"></a><a href="bundlemanager.md#ga78829b21273aefd65844eba4549162ca">ClearBundleInfo</a> (<a href="bundleinfo.md">BundleInfo</a> *bundleInfo)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p826600020093524"><a name="p826600020093524"></a><a name="p826600020093524"></a>void </p>
-<p id="p1785343512093524"><a name="p1785343512093524"></a><a name="p1785343512093524"></a>Clears a <a href="bundleinfo.md">BundleInfo</a> object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1523951563165626"><a name="p1523951563165626"></a><a name="p1523951563165626"></a>void </p>
+<p id="p1931667823165626"><a name="p1931667823165626"></a><a name="p1931667823165626"></a>Clears a <a href="bundleinfo.md">BundleInfo</a> object. </p>
 </td>
 </tr>
 </tbody>

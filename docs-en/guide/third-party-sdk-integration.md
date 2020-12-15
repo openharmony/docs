@@ -1,5 +1,14 @@
 # Third-Party SDK Integration<a name="EN-US_TOPIC_0000001054412155"></a>
 
+-   [Planning a Directory Structure](#en-us_topic_0000001051612018_section1736472718351)
+-   [Building the Service](#en-us_topic_0000001051612018_section442815485351)
+-   [Compiling Adaptation Code](#en-us_topic_0000001051612018_section3984721113613)
+-   [Compiling Code](#en-us_topic_0000001051612018_section830417531286)
+-   [Compiling a Script](#en-us_topic_0000001051612018_section13500201173710)
+-   [Compiling Service Code](#en-us_topic_0000001051612018_section8754114803918)
+-   [Runtime](#en-us_topic_0000001051612018_section7737749184012)
+-   [End](#en-us_topic_0000001051612018_section153301392411)
+
 To build a more open and complete Internet of things \(IoT\) ecosystem, a group of directories is planned to integrate SDKs provided by different vendors into OpenHarmony. This document describes how to integrate SDKs into OpenHarmony based on the Hi3861 board.
 
 ## Planning a Directory Structure<a name="en-us_topic_0000001051612018_section1736472718351"></a>

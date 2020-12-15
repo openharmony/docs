@@ -1,6 +1,16 @@
 # FileInfo<a name="ZH-CN_TOPIC_0000001054479561"></a>
 
-## **Overview**<a name="section290268220093530"></a>
+-   [Overview](#section1402189407165631)
+-   [Summary](#section964552924165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section86417929165631)
+-   [Field](#section1265510319165631)
+-   [bitrate](#ac6afb3ba1891e7fd02c3b2c942d2525f)
+-   [formatName](#a38797d4349538f098d6f14b94446bee7)
+-   [programInfo](#aeb2b662b1dd525c9b56f2ddca1013058)
+-   [programNum](#a1373e3d2662f2112eb58078c7ef7e2a2)
+
+## **Overview**<a name="section1402189407165631"></a>
 
 **Related Modules:**
 
@@ -18,43 +28,43 @@ Defines movie file information.
 
 1.0
 
-## **Summary**<a name="section2073134810093530"></a>
+## **Summary**<a name="section964552924165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table2062453253093530"></a>
-<table><thead align="left"><tr id="row624031907093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p469257558093530"><a name="p469257558093530"></a><a name="p469257558093530"></a>Variable Name</p>
+<a name="table2045705371165631"></a>
+<table><thead align="left"><tr id="row1032798109165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1725423474165631"><a name="p1725423474165631"></a><a name="p1725423474165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1083353932093530"><a name="p1083353932093530"></a><a name="p1083353932093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1738565833165631"><a name="p1738565833165631"></a><a name="p1738565833165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1140521081093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1091484620093530"><a name="p1091484620093530"></a><a name="p1091484620093530"></a><a href="FileInfo.md#a38797d4349538f098d6f14b94446bee7">formatName</a></p>
+<tbody><tr id="row1177943554165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1027891068165631"><a name="p1027891068165631"></a><a name="p1027891068165631"></a><a href="FileInfo.md#a38797d4349538f098d6f14b94446bee7">formatName</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1738966893093530"><a name="p1738966893093530"></a><a name="p1738966893093530"></a>char *&nbsp;</p>
-</td>
-</tr>
-<tr id="row458451661093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p254342205093530"><a name="p254342205093530"></a><a name="p254342205093530"></a><a href="FileInfo.md#ac6afb3ba1891e7fd02c3b2c942d2525f">bitrate</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1770872799093530"><a name="p1770872799093530"></a><a name="p1770872799093530"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1060790044165631"><a name="p1060790044165631"></a><a name="p1060790044165631"></a>char * </p>
 </td>
 </tr>
-<tr id="row1104639130093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p98231340093530"><a name="p98231340093530"></a><a name="p98231340093530"></a><a href="FileInfo.md#a1373e3d2662f2112eb58078c7ef7e2a2">programNum</a></p>
+<tr id="row924006075165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p680143417165631"><a name="p680143417165631"></a><a name="p680143417165631"></a><a href="FileInfo.md#ac6afb3ba1891e7fd02c3b2c942d2525f">bitrate</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p116201288093530"><a name="p116201288093530"></a><a name="p116201288093530"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p65847340165631"><a name="p65847340165631"></a><a name="p65847340165631"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row839933401093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p730441336093530"><a name="p730441336093530"></a><a name="p730441336093530"></a><a href="FileInfo.md#aeb2b662b1dd525c9b56f2ddca1013058">programInfo</a></p>
+<tr id="row1878111396165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p118457790165631"><a name="p118457790165631"></a><a name="p118457790165631"></a><a href="FileInfo.md#a1373e3d2662f2112eb58078c7ef7e2a2">programNum</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1140115281093530"><a name="p1140115281093530"></a><a name="p1140115281093530"></a><a href="ProgramInfo.md">ProgramInfo</a> *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1059784720165631"><a name="p1059784720165631"></a><a name="p1059784720165631"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row1806868783165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1520463838165631"><a name="p1520463838165631"></a><a name="p1520463838165631"></a><a href="FileInfo.md#aeb2b662b1dd525c9b56f2ddca1013058">programInfo</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p862463695165631"><a name="p862463695165631"></a><a name="p862463695165631"></a><a href="ProgramInfo.md">ProgramInfo</a> * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section7338217093530"></a>
+## **Details**<a name="section86417929165631"></a>
 
-## **Field Documentation**<a name="section597530444093530"></a>
+## **Field **<a name="section1265510319165631"></a>
 
 ## bitrate<a name="ac6afb3ba1891e7fd02c3b2c942d2525f"></a>
 

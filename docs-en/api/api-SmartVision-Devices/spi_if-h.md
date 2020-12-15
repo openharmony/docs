@@ -1,6 +1,13 @@
 # spi\_if.h<a name="EN-US_TOPIC_0000001054718105"></a>
 
-## **Overview**<a name="section1085515267093527"></a>
+-   [Overview](#section1643949175165628)
+-   [Summary](#section347787277165628)
+-   [Data Structures](#nested-classes)
+-   [Macros](#define-members)
+-   [Enumerations](#enum-members)
+-   [Functions](#func-members)
+
+## **Overview**<a name="section1643949175165628"></a>
 
 **Related Modules:**
 
@@ -16,30 +23,30 @@ A driver needs to use the SPI-specific interfaces for data writing and reading b
 
 1.0
 
-## **Summary**<a name="section768224834093527"></a>
+## **Summary**<a name="section347787277165628"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table168742597093527"></a>
-<table><thead align="left"><tr id="row1512900548093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1772806573093527"><a name="p1772806573093527"></a><a name="p1772806573093527"></a>Data Structure Name</p>
+<a name="table523263550165628"></a>
+<table><thead align="left"><tr id="row681406299165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p229533901165628"><a name="p229533901165628"></a><a name="p229533901165628"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1369919995093527"><a name="p1369919995093527"></a><a name="p1369919995093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p937420906165628"><a name="p937420906165628"></a><a name="p937420906165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1409435938093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p600594942093527"><a name="p600594942093527"></a><a name="p600594942093527"></a><a href="spidevinfo.md">SpiDevInfo</a></p>
+<tbody><tr id="row684096604165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1642617918165628"><a name="p1642617918165628"></a><a name="p1642617918165628"></a><a href="spidevinfo.md">SpiDevInfo</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p325436427093527"><a name="p325436427093527"></a><a name="p325436427093527"></a>Defines the general SPI device descriptor, which can be used as the unique identifier of an SPI device. When operating an SPI device, you need to specify a descriptor of the <a href="spidevinfo.md">SpiDevInfo</a> type, and obtain the handle of the SPI device by calling <a href="spi.md#ga073b44f262ca3b99fa632a1468bc1190">SpiOpen</a>. </p>
-</td>
-</tr>
-<tr id="row692333337093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1321650928093527"><a name="p1321650928093527"></a><a name="p1321650928093527"></a><a href="spimsg.md">SpiMsg</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1700013246093527"><a name="p1700013246093527"></a><a name="p1700013246093527"></a>Defines the custom SPI transfer message. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p412481405165628"><a name="p412481405165628"></a><a name="p412481405165628"></a>Defines the general SPI device descriptor, which can be used as the unique identifier of an SPI device. When operating an SPI device, you need to specify a descriptor of the <a href="spidevinfo.md">SpiDevInfo</a> type, and obtain the handle of the SPI device by calling <a href="spi.md#ga193e808f7e68a5b4c6b71ca2db47a11f">SpiOpen</a>. </p>
 </td>
 </tr>
-<tr id="row1253674709093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2091256253093527"><a name="p2091256253093527"></a><a name="p2091256253093527"></a><a href="spicfg.md">SpiCfg</a></p>
+<tr id="row1956962196165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2063945550165628"><a name="p2063945550165628"></a><a name="p2063945550165628"></a><a href="spimsg.md">SpiMsg</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p449036053093527"><a name="p449036053093527"></a><a name="p449036053093527"></a>Defines the configuration of an SPI device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1813575927165628"><a name="p1813575927165628"></a><a name="p1813575927165628"></a>Defines the custom SPI transfer message. </p>
+</td>
+</tr>
+<tr id="row1876086683165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1289826619165628"><a name="p1289826619165628"></a><a name="p1289826619165628"></a><a href="spicfg.md">SpiCfg</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p213674419165628"><a name="p213674419165628"></a><a name="p213674419165628"></a>Defines the configuration of an SPI device. </p>
 </td>
 </tr>
 </tbody>
@@ -47,51 +54,51 @@ A driver needs to use the SPI-specific interfaces for data writing and reading b
 
 ## Macros<a name="define-members"></a>
 
-<a name="table739134076093527"></a>
-<table><thead align="left"><tr id="row464382079093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p517847462093527"><a name="p517847462093527"></a><a name="p517847462093527"></a>Macro Name and Value</p>
+<a name="table2136677008165628"></a>
+<table><thead align="left"><tr id="row1514535453165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p430853731165628"><a name="p430853731165628"></a><a name="p430853731165628"></a>Macro Name and Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1661572641093527"><a name="p1661572641093527"></a><a name="p1661572641093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2093217503165628"><a name="p2093217503165628"></a><a name="p2093217503165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row868046486093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1545306063093527"><a name="p1545306063093527"></a><a name="p1545306063093527"></a><a href="spi.md#ga430ad9ccffd42f4427ba22fcc8167c64">SPI_CLK_PHASE</a>   (1 &lt;&lt; 0)</p>
+<tbody><tr id="row1718224891165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p958821592165628"><a name="p958821592165628"></a><a name="p958821592165628"></a><a href="spi.md#ga430ad9ccffd42f4427ba22fcc8167c64">SPI_CLK_PHASE</a>   (1 &lt;&lt; 0)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p298008591093527"><a name="p298008591093527"></a><a name="p298008591093527"></a>Indicates the SPI clock phase. The value <strong id="b1805599228093527"><a name="b1805599228093527"></a><a name="b1805599228093527"></a>0</strong> indicates that data will be sampled on the first clock edge, and <strong id="b1625533193093527"><a name="b1625533193093527"></a><a name="b1625533193093527"></a>1</strong> indicates that data will be sampled on the second clock edge. </p>
-</td>
-</tr>
-<tr id="row1026536706093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p626812110093527"><a name="p626812110093527"></a><a name="p626812110093527"></a><a href="spi.md#ga4cafe948918622f80c27db640c6c23c6">SPI_CLK_POLARITY</a>   (1 &lt;&lt; 1)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p752687059093527"><a name="p752687059093527"></a><a name="p752687059093527"></a>Indicates the SPI clock polarity. The value <strong id="b760995577093527"><a name="b760995577093527"></a><a name="b760995577093527"></a>0</strong> indicates a low-level clock signal in the idle state, and <strong id="b1440316075093527"><a name="b1440316075093527"></a><a name="b1440316075093527"></a>1</strong> indicates a high-level clock signal in the idle state. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2067084455165628"><a name="p2067084455165628"></a><a name="p2067084455165628"></a>Indicates the SPI clock phase. The value <strong id="b604454703165628"><a name="b604454703165628"></a><a name="b604454703165628"></a>0</strong> indicates that data will be sampled on the first clock edge, and <strong id="b788797261165628"><a name="b788797261165628"></a><a name="b788797261165628"></a>1</strong> indicates that data will be sampled on the second clock edge. </p>
 </td>
 </tr>
-<tr id="row1566082770093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1401673796093527"><a name="p1401673796093527"></a><a name="p1401673796093527"></a><a href="spi.md#ga11113e647ddd2101c1c693632f63aa7c">SPI_MODE_3WIRE</a>   (1 &lt;&lt; 2)</p>
+<tr id="row1957015182165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1956828172165628"><a name="p1956828172165628"></a><a name="p1956828172165628"></a><a href="spi.md#ga4cafe948918622f80c27db640c6c23c6">SPI_CLK_POLARITY</a>   (1 &lt;&lt; 1)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1785050281093527"><a name="p1785050281093527"></a><a name="p1785050281093527"></a>Indicates that a single data line is used for both input and output. </p>
-</td>
-</tr>
-<tr id="row1445479735093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p830610576093527"><a name="p830610576093527"></a><a name="p830610576093527"></a><a href="spi.md#ga8619b297de563eca6852af34c79daa62">SPI_MODE_LOOP</a>   (1 &lt;&lt; 3)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p715271392093527"><a name="p715271392093527"></a><a name="p715271392093527"></a>Indicates the SPI loopback mode. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1213998790165628"><a name="p1213998790165628"></a><a name="p1213998790165628"></a>Indicates the SPI clock polarity. The value <strong id="b708677398165628"><a name="b708677398165628"></a><a name="b708677398165628"></a>0</strong> indicates a low-level clock signal in the idle state, and <strong id="b1877012488165628"><a name="b1877012488165628"></a><a name="b1877012488165628"></a>1</strong> indicates a high-level clock signal in the idle state. </p>
 </td>
 </tr>
-<tr id="row559953218093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1573947038093527"><a name="p1573947038093527"></a><a name="p1573947038093527"></a><a href="spi.md#ga4da8777b0d2d7dd96d6038411791c36e">SPI_MODE_LSBFE</a>   (1 &lt;&lt; 4)</p>
+<tr id="row458292312165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1185977171165628"><a name="p1185977171165628"></a><a name="p1185977171165628"></a><a href="spi.md#ga11113e647ddd2101c1c693632f63aa7c">SPI_MODE_3WIRE</a>   (1 &lt;&lt; 2)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p38268436093527"><a name="p38268436093527"></a><a name="p38268436093527"></a>Indicates the SPI data transfer order. The value <strong id="b1857387175093527"><a name="b1857387175093527"></a><a name="b1857387175093527"></a>0</strong> indicates that data is transferred from the most significant bit (MSB) to the least significant bit (LSB), and <strong id="b950624559093527"><a name="b950624559093527"></a><a name="b950624559093527"></a>1</strong> indicates the opposite. </p>
-</td>
-</tr>
-<tr id="row326063033093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2139746966093527"><a name="p2139746966093527"></a><a name="p2139746966093527"></a><a href="spi.md#ga361195644b8e753d5469dd492c66217b">SPI_MODE_NOCS</a>   (1 &lt;&lt; 5)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p699097746093527"><a name="p699097746093527"></a><a name="p699097746093527"></a>Indicates that there is only one SPI device, and no chip select (CS) is required. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p820689627165628"><a name="p820689627165628"></a><a name="p820689627165628"></a>Indicates that a single data line is used for both input and output. </p>
 </td>
 </tr>
-<tr id="row344317221093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2133853802093527"><a name="p2133853802093527"></a><a name="p2133853802093527"></a><a href="spi.md#ga33d89d81eb33b7a5de1a03e88279163d">SPI_MODE_CS_HIGH</a>   (1 &lt;&lt; 6)</p>
+<tr id="row1725742844165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1198291188165628"><a name="p1198291188165628"></a><a name="p1198291188165628"></a><a href="spi.md#ga8619b297de563eca6852af34c79daa62">SPI_MODE_LOOP</a>   (1 &lt;&lt; 3)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1402530544093527"><a name="p1402530544093527"></a><a name="p1402530544093527"></a>Indicates that the CS level is high when an SPI device is selected. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1907417210165628"><a name="p1907417210165628"></a><a name="p1907417210165628"></a>Indicates the SPI loopback mode. </p>
 </td>
 </tr>
-<tr id="row1651797657093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p238282886093527"><a name="p238282886093527"></a><a name="p238282886093527"></a><a href="spi.md#ga42f3ef9ad5429ac10662448fe1f5a746">SPI_MODE_READY</a>   (1 &lt;&lt; 7)</p>
+<tr id="row1881290376165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p39716245165628"><a name="p39716245165628"></a><a name="p39716245165628"></a><a href="spi.md#ga4da8777b0d2d7dd96d6038411791c36e">SPI_MODE_LSBFE</a>   (1 &lt;&lt; 4)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1693715464093527"><a name="p1693715464093527"></a><a name="p1693715464093527"></a>Indicates that the SPI device is set to low for pausing data transfer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1329771987165628"><a name="p1329771987165628"></a><a name="p1329771987165628"></a>Indicates the SPI data transfer order. The value <strong id="b464048982165628"><a name="b464048982165628"></a><a name="b464048982165628"></a>0</strong> indicates that data is transferred from the most significant bit (MSB) to the least significant bit (LSB), and <strong id="b1156369380165628"><a name="b1156369380165628"></a><a name="b1156369380165628"></a>1</strong> indicates the opposite. </p>
+</td>
+</tr>
+<tr id="row1970544080165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1391534643165628"><a name="p1391534643165628"></a><a name="p1391534643165628"></a><a href="spi.md#ga361195644b8e753d5469dd492c66217b">SPI_MODE_NOCS</a>   (1 &lt;&lt; 5)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1553001600165628"><a name="p1553001600165628"></a><a name="p1553001600165628"></a>Indicates that there is only one SPI device, and no chip select (CS) is required. </p>
+</td>
+</tr>
+<tr id="row1296955538165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1129816662165628"><a name="p1129816662165628"></a><a name="p1129816662165628"></a><a href="spi.md#ga33d89d81eb33b7a5de1a03e88279163d">SPI_MODE_CS_HIGH</a>   (1 &lt;&lt; 6)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p946061116165628"><a name="p946061116165628"></a><a name="p946061116165628"></a>Indicates that the CS level is high when an SPI device is selected. </p>
+</td>
+</tr>
+<tr id="row187003238165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1762524803165628"><a name="p1762524803165628"></a><a name="p1762524803165628"></a><a href="spi.md#ga42f3ef9ad5429ac10662448fe1f5a746">SPI_MODE_READY</a>   (1 &lt;&lt; 7)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1602780297165628"><a name="p1602780297165628"></a><a name="p1602780297165628"></a>Indicates that the SPI device is set to low for pausing data transfer. </p>
 </td>
 </tr>
 </tbody>
@@ -99,16 +106,16 @@ A driver needs to use the SPI-specific interfaces for data writing and reading b
 
 ## Enumerations<a name="enum-members"></a>
 
-<a name="table1818789504093527"></a>
-<table><thead align="left"><tr id="row2071986664093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1316055075093527"><a name="p1316055075093527"></a><a name="p1316055075093527"></a>Enumeration Name</p>
+<a name="table1114056835165628"></a>
+<table><thead align="left"><tr id="row1171527200165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p182113121165628"><a name="p182113121165628"></a><a name="p182113121165628"></a>Enumeration Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1702628853093527"><a name="p1702628853093527"></a><a name="p1702628853093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1197247913165628"><a name="p1197247913165628"></a><a name="p1197247913165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2102400759093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p304953365093527"><a name="p304953365093527"></a><a name="p304953365093527"></a><a href="spi.md#ga55946d1d895fc2b7b33007019de1668f">SpiTransferMode</a> { <a href="spi.md#gga55946d1d895fc2b7b33007019de1668fad91925d3e1b3e82ff14004dd0b9d98a3">SPI_INTERRUPT_TRANSFER</a> = 0, <a href="spi.md#gga55946d1d895fc2b7b33007019de1668fa51d9bac6c8cbf4d95705563b097bb0b2">SPI_POLLING_TRANSFER</a>, <a href="spi.md#gga55946d1d895fc2b7b33007019de1668fad4d2e8d82f1d9a15198399d6540bacd1">SPI_DMA_TRANSFER</a> }</p>
+<tbody><tr id="row2111342280165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1307019249165628"><a name="p1307019249165628"></a><a name="p1307019249165628"></a><a href="spi.md#ga55946d1d895fc2b7b33007019de1668f">SpiTransferMode</a> { <a href="spi.md#gga55946d1d895fc2b7b33007019de1668fad91925d3e1b3e82ff14004dd0b9d98a3">SPI_INTERRUPT_TRANSFER</a> = 0, <a href="spi.md#gga55946d1d895fc2b7b33007019de1668fa51d9bac6c8cbf4d95705563b097bb0b2">SPI_POLLING_TRANSFER</a>, <a href="spi.md#gga55946d1d895fc2b7b33007019de1668fad4d2e8d82f1d9a15198399d6540bacd1">SPI_DMA_TRANSFER</a> }</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1792310132093527"><a name="p1792310132093527"></a><a name="p1792310132093527"></a>Enumerates transfer modes of SPI data. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p215626221165628"><a name="p215626221165628"></a><a name="p215626221165628"></a>Enumerates transfer modes of SPI data. </p>
 </td>
 </tr>
 </tbody>
@@ -116,53 +123,53 @@ A driver needs to use the SPI-specific interfaces for data writing and reading b
 
 ## Functions<a name="func-members"></a>
 
-<a name="table1140787845093527"></a>
-<table><thead align="left"><tr id="row487669440093527"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1193489648093527"><a name="p1193489648093527"></a><a name="p1193489648093527"></a>Function Name</p>
+<a name="table135442638165628"></a>
+<table><thead align="left"><tr id="row675176906165628"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1385128802165628"><a name="p1385128802165628"></a><a name="p1385128802165628"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p497023671093527"><a name="p497023671093527"></a><a name="p497023671093527"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1162411976165628"><a name="p1162411976165628"></a><a name="p1162411976165628"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1240379880093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1185178561093527"><a name="p1185178561093527"></a><a name="p1185178561093527"></a><a href="spi.md#ga073b44f262ca3b99fa632a1468bc1190">SpiOpen</a> (const struct <a href="spidevinfo.md">SpiDevInfo</a> *info)</p>
+<tbody><tr id="row1865452496165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p691430417165628"><a name="p691430417165628"></a><a name="p691430417165628"></a><a href="spi.md#ga193e808f7e68a5b4c6b71ca2db47a11f">SpiOpen</a> (const struct <a href="spidevinfo.md">SpiDevInfo</a> *info)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p528264086093527"><a name="p528264086093527"></a><a name="p528264086093527"></a>struct <a href="devhandle.md">DevHandle</a> * </p>
-<p id="p1107997835093527"><a name="p1107997835093527"></a><a name="p1107997835093527"></a>Obtains the handle of an SPI device. </p>
-</td>
-</tr>
-<tr id="row1670343611093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1339525192093527"><a name="p1339525192093527"></a><a name="p1339525192093527"></a><a href="spi.md#gad5b082d6d0699a9bc5240d6a5491f08a">SpiClose</a> (struct <a href="devhandle.md">DevHandle</a> *handle)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1432144908093527"><a name="p1432144908093527"></a><a name="p1432144908093527"></a>void </p>
-<p id="p1858896005093527"><a name="p1858896005093527"></a><a name="p1858896005093527"></a>Releases the handle of an SPI device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1688773226165628"><a name="p1688773226165628"></a><a name="p1688773226165628"></a><a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> </p>
+<p id="p1272843051165628"><a name="p1272843051165628"></a><a name="p1272843051165628"></a>Obtains the handle of an SPI device. </p>
 </td>
 </tr>
-<tr id="row880979998093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1027707973093527"><a name="p1027707973093527"></a><a name="p1027707973093527"></a><a href="spi.md#ga40e7274a4291f1482e720c956a291e9f">SpiTransfer</a> (struct <a href="devhandle.md">DevHandle</a> *handle, struct <a href="spimsg.md">SpiMsg</a> *msgs, uint32_t count)</p>
+<tr id="row283560958165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1663646452165628"><a name="p1663646452165628"></a><a name="p1663646452165628"></a><a href="spi.md#ga4c961307ea89008ba0f064c92eb1617d">SpiClose</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1725831484093527"><a name="p1725831484093527"></a><a name="p1725831484093527"></a>int32_t </p>
-<p id="p1925062623093527"><a name="p1925062623093527"></a><a name="p1925062623093527"></a>Launches a custom transfer to an SPI device. </p>
-</td>
-</tr>
-<tr id="row1807092719093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p444208565093527"><a name="p444208565093527"></a><a name="p444208565093527"></a><a href="spi.md#gad7c852b1c6aed4380e393637aeb66802">SpiRead</a> (struct <a href="devhandle.md">DevHandle</a> *handle, uint8_t *buf, uint32_t len)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2053006582093527"><a name="p2053006582093527"></a><a name="p2053006582093527"></a>int32_t </p>
-<p id="p50345262093527"><a name="p50345262093527"></a><a name="p50345262093527"></a>Reads data of a specified length from an SPI device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p100756827165628"><a name="p100756827165628"></a><a name="p100756827165628"></a>void </p>
+<p id="p2107897943165628"><a name="p2107897943165628"></a><a name="p2107897943165628"></a>Releases the handle of an SPI device. </p>
 </td>
 </tr>
-<tr id="row1821324241093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p552686047093527"><a name="p552686047093527"></a><a name="p552686047093527"></a><a href="spi.md#ga77314bd5d40f78d97b25048b2e816ff9">SpiWrite</a> (struct <a href="devhandle.md">DevHandle</a> *handle, uint8_t *buf, uint32_t len)</p>
+<tr id="row21022524165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2013036520165628"><a name="p2013036520165628"></a><a name="p2013036520165628"></a><a href="spi.md#gaf9226a2ce4ff75c7dc76279b3bbd7af4">SpiTransfer</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, struct <a href="spimsg.md">SpiMsg</a> *msgs, uint32_t count)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1162985995093527"><a name="p1162985995093527"></a><a name="p1162985995093527"></a>int32_t </p>
-<p id="p432788656093527"><a name="p432788656093527"></a><a name="p432788656093527"></a>Writes data of a specified length to an SPI device. </p>
-</td>
-</tr>
-<tr id="row990760181093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2085305013093527"><a name="p2085305013093527"></a><a name="p2085305013093527"></a><a href="spi.md#ga0d8781e50042c5d89733d21097bec359">SpiSetCfg</a> (struct <a href="devhandle.md">DevHandle</a> *handle, struct <a href="spicfg.md">SpiCfg</a> *cfg)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1448874130093527"><a name="p1448874130093527"></a><a name="p1448874130093527"></a>int32_t </p>
-<p id="p187296781093527"><a name="p187296781093527"></a><a name="p187296781093527"></a>Sets configuration parameters for an SPI device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1431289001165628"><a name="p1431289001165628"></a><a name="p1431289001165628"></a>int32_t </p>
+<p id="p2130372802165628"><a name="p2130372802165628"></a><a name="p2130372802165628"></a>Launches a custom transfer to an SPI device. </p>
 </td>
 </tr>
-<tr id="row128678419093527"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1293512203093527"><a name="p1293512203093527"></a><a name="p1293512203093527"></a><a href="spi.md#gabd835b51efecc8364c8b61914466d172">SpiGetCfg</a> (struct <a href="devhandle.md">DevHandle</a> *handle, struct <a href="spicfg.md">SpiCfg</a> *cfg)</p>
+<tr id="row1389008804165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p411155686165628"><a name="p411155686165628"></a><a name="p411155686165628"></a><a href="spi.md#gaa860e42dac8b2caabefda6e82ba1a541">SpiRead</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, uint8_t *buf, uint32_t len)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p497023749093527"><a name="p497023749093527"></a><a name="p497023749093527"></a>int32_t </p>
-<p id="p671918044093527"><a name="p671918044093527"></a><a name="p671918044093527"></a>Obtains the configuration parameters of an SPI device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p594866797165628"><a name="p594866797165628"></a><a name="p594866797165628"></a>int32_t </p>
+<p id="p1189205133165628"><a name="p1189205133165628"></a><a name="p1189205133165628"></a>Reads data of a specified length from an SPI device. </p>
+</td>
+</tr>
+<tr id="row1224118124165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p955135751165628"><a name="p955135751165628"></a><a name="p955135751165628"></a><a href="spi.md#ga0073b24fba24fb37b3ea451a0c7d911f">SpiWrite</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, uint8_t *buf, uint32_t len)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1145485114165628"><a name="p1145485114165628"></a><a name="p1145485114165628"></a>int32_t </p>
+<p id="p1100639478165628"><a name="p1100639478165628"></a><a name="p1100639478165628"></a>Writes data of a specified length to an SPI device. </p>
+</td>
+</tr>
+<tr id="row787293067165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1425152680165628"><a name="p1425152680165628"></a><a name="p1425152680165628"></a><a href="spi.md#gafbca6de683781921a8d1cb41ead0030e">SpiSetCfg</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, struct <a href="spicfg.md">SpiCfg</a> *cfg)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1253729718165628"><a name="p1253729718165628"></a><a name="p1253729718165628"></a>int32_t </p>
+<p id="p909645969165628"><a name="p909645969165628"></a><a name="p909645969165628"></a>Sets configuration parameters for an SPI device. </p>
+</td>
+</tr>
+<tr id="row1819379772165628"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p369613424165628"><a name="p369613424165628"></a><a name="p369613424165628"></a><a href="spi.md#ga77d533d55c550c4478185a02a4e12fb1">SpiGetCfg</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, struct <a href="spicfg.md">SpiCfg</a> *cfg)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p429889601165628"><a name="p429889601165628"></a><a name="p429889601165628"></a>int32_t </p>
+<p id="p795440734165628"><a name="p795440734165628"></a><a name="p795440734165628"></a>Obtains the configuration parameters of an SPI device. </p>
 </td>
 </tr>
 </tbody>

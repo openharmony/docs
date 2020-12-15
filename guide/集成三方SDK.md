@@ -1,10 +1,19 @@
 # 集成三方SDK<a name="ZH-CN_TOPIC_0000001054412155"></a>
 
+-   [规划目录结构](#zh-cn_topic_0000001051612018_section1736472718351)
+-   [构建业务libs](#zh-cn_topic_0000001051612018_section442815485351)
+-   [编写适配代码](#zh-cn_topic_0000001051612018_section3984721113613)
+-   [代码编写](#zh-cn_topic_0000001051612018_section830417531286)
+-   [脚本编写](#zh-cn_topic_0000001051612018_section13500201173710)
+-   [编写业务代码](#zh-cn_topic_0000001051612018_section8754114803918)
+-   [运行](#zh-cn_topic_0000001051612018_section7737749184012)
+-   [结束](#zh-cn_topic_0000001051612018_section153301392411)
+
 OpenHarmony致力于打造一套更加开放完善的IoT生态系统，为此OpenHarmony规划了一组目录，用于将各厂商的SDK集成到OpenHarmony中。本文档基于Hi3861开发板，向平台开发者介绍将SDK集成到OpenHarmony的方法。
 
 ## 规划目录结构<a name="zh-cn_topic_0000001051612018_section1736472718351"></a>
 
-三方SDK通常由静态库和适配代码构成。SDK的业务逻辑通过硬件模组工具链编译得到静态库libs，每款模组都有其对应的libs。SDK的南向API与OpenHarmony API的存在使用差异，该差异可通过adapter适配代码屏蔽，不同模组可共用一套adapter。
+三方SDK通常由静态库和适配代码构成。SDK的业务逻辑通过硬件模组工具链编译得到静态库libs，每款模组都有其对应的libs。SDK的南向API与OpenHarmony 的API存在使用差异，该差异可通过adapter适配代码屏蔽，不同模组可共用一套adapter。
 
 基于以上特征，在OpenHarmony目录结构中，可以对三方SDK目录做如下划分。
 
@@ -38,7 +47,7 @@ OpenHarmony致力于打造一套更加开放完善的IoT生态系统，为此Ope
 
 ## 构建业务libs<a name="zh-cn_topic_0000001051612018_section442815485351"></a>
 
-平台SDK业务一般以静态库的形式提供，平台厂商在获取到OpenHarmony代码后，需要根据对应的硬件模组vendor，进行编译业务libs，并将编译结果放置在./vendor/hisi/hi3861/hi3861/3rd\_sdk/demolink/libs/ 目录下。下面介绍业务libs的构建方法。
+平台SDK业务一般以静态库的形式提供，平台厂商在获取到OpenHarmony代码后，需要根据对应的硬件模组vendor，编译业务libs，并将编译结果放置在./vendor/hisi/hi3861/hi3861/3rd\_sdk/demolink/libs/ 目录下。下面介绍业务libs的构建方法。
 
 OpenHarmony已规划用于编译业务libs的目录./domains/iot/link/libbuild/ ，该目录中包含./domains/iot/link/libbuild/BUILD.gn和./domains/iot/link/BUILD.gn文件，目录结构如下。
 

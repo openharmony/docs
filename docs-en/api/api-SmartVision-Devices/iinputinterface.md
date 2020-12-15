@@ -1,6 +1,15 @@
 # IInputInterface<a name="EN-US_TOPIC_0000001055039518"></a>
 
-## **Overview**<a name="section981537337093530"></a>
+-   [Overview](#section978084790165631)
+-   [Summary](#section421144492165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section2072978642165631)
+-   [Field](#section789099418165631)
+-   [iInputController](#a0da92e255529827b823c19071f50fa27)
+-   [iInputManager](#a539baf2f3554b901abd4820e521ac0ea)
+-   [iInputReporter](#a592d65e0a8ad8e9bc0241a0be50669d0)
+
+## **Overview**<a name="section978084790165631"></a>
 
 **Related Modules:**
 
@@ -10,38 +19,38 @@
 
 Defines interfaces for providing driver capabilities of input devices. 
 
-## **Summary**<a name="section1102677348093530"></a>
+## **Summary**<a name="section421144492165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1505262157093530"></a>
-<table><thead align="left"><tr id="row1745860111093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1525786542093530"><a name="p1525786542093530"></a><a name="p1525786542093530"></a>Variable Name</p>
+<a name="table1943846920165631"></a>
+<table><thead align="left"><tr id="row1393890447165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1937412979165631"><a name="p1937412979165631"></a><a name="p1937412979165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2133440484093530"><a name="p2133440484093530"></a><a name="p2133440484093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p277154764165631"><a name="p277154764165631"></a><a name="p277154764165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1849185095093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1636343419093530"><a name="p1636343419093530"></a><a name="p1636343419093530"></a><a href="iinputinterface.md#a539baf2f3554b901abd4820e521ac0ea">iInputManager</a></p>
+<tbody><tr id="row446477856165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p168402172165631"><a name="p168402172165631"></a><a name="p168402172165631"></a><a href="iinputinterface.md#a539baf2f3554b901abd4820e521ac0ea">iInputManager</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p316021506093530"><a name="p316021506093530"></a><a name="p316021506093530"></a><a href="inputmanager.md">InputManager</a> * </p>
-</td>
-</tr>
-<tr id="row473614036093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1252648199093530"><a name="p1252648199093530"></a><a name="p1252648199093530"></a><a href="iinputinterface.md#a0da92e255529827b823c19071f50fa27">iInputController</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1082826122093530"><a name="p1082826122093530"></a><a name="p1082826122093530"></a><a href="inputcontroller.md">InputController</a> * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p311464088165631"><a name="p311464088165631"></a><a name="p311464088165631"></a><a href="inputmanager.md">InputManager</a> * </p>
 </td>
 </tr>
-<tr id="row513940522093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p355326634093530"><a name="p355326634093530"></a><a name="p355326634093530"></a><a href="iinputinterface.md#a592d65e0a8ad8e9bc0241a0be50669d0">iInputReporter</a></p>
+<tr id="row2079227654165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p901512404165631"><a name="p901512404165631"></a><a name="p901512404165631"></a><a href="iinputinterface.md#a0da92e255529827b823c19071f50fa27">iInputController</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p11826621093530"><a name="p11826621093530"></a><a name="p11826621093530"></a><a href="inputreporter.md">InputReporter</a> * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1113516124165631"><a name="p1113516124165631"></a><a name="p1113516124165631"></a><a href="inputcontroller.md">InputController</a> * </p>
+</td>
+</tr>
+<tr id="row1787316139165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p335538921165631"><a name="p335538921165631"></a><a name="p335538921165631"></a><a href="iinputinterface.md#a592d65e0a8ad8e9bc0241a0be50669d0">iInputReporter</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1912667535165631"><a name="p1912667535165631"></a><a name="p1912667535165631"></a><a href="inputreporter.md">InputReporter</a> * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section108468589093530"></a>
+## **Details**<a name="section2072978642165631"></a>
 
-## **Field Documentation**<a name="section163183902093530"></a>
+## **Field **<a name="section789099418165631"></a>
 
 ## iInputController<a name="a0da92e255529827b823c19071f50fa27"></a>
 

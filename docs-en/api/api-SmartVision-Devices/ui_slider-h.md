@@ -1,6 +1,10 @@
 # ui\_slider.h<a name="EN-US_TOPIC_0000001055039502"></a>
 
-## **Overview**<a name="section2071788903093528"></a>
+-   [Overview](#section618549080165630)
+-   [Summary](#section2123274729165630)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section618549080165630"></a>
 
 **Related Modules:**
 
@@ -18,25 +22,25 @@ Defines the attributes and common functions of a slider.
 
 1.0
 
-## **Summary**<a name="section1809189486093528"></a>
+## **Summary**<a name="section2123274729165630"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table863972067093528"></a>
-<table><thead align="left"><tr id="row1675529417093528"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p52383389093528"><a name="p52383389093528"></a><a name="p52383389093528"></a>Data Structure Name</p>
+<a name="table2038627028165630"></a>
+<table><thead align="left"><tr id="row1301387311165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p323758735165630"><a name="p323758735165630"></a><a name="p323758735165630"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1116795320093528"><a name="p1116795320093528"></a><a name="p1116795320093528"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p671608925165630"><a name="p671608925165630"></a><a name="p671608925165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1460158722093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p954101085093528"><a name="p954101085093528"></a><a name="p954101085093528"></a><a href="ohos-uislider.md">OHOS::UISlider</a></p>
+<tbody><tr id="row384764721165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p911948473165630"><a name="p911948473165630"></a><a name="p911948473165630"></a><a href="ohos-uislider.md">OHOS::UISlider</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p903313095093528"><a name="p903313095093528"></a><a name="p903313095093528"></a>Represents a slider. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1439272392165630"><a name="p1439272392165630"></a><a name="p1439272392165630"></a>Represents a slider. </p>
 </td>
 </tr>
-<tr id="row168631629093528"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p942687004093528"><a name="p942687004093528"></a><a name="p942687004093528"></a><a href="ohos-uislider-uislidereventlistener.md">OHOS::UISlider::UISliderEventListener</a></p>
+<tr id="row2057969984165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p511155433165630"><a name="p511155433165630"></a><a name="p511155433165630"></a><a href="ohos-uislider-uislidereventlistener.md">OHOS::UISlider::UISliderEventListener</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p58588883093528"><a name="p58588883093528"></a><a name="p58588883093528"></a>Represents the listener for a slider change. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1978518669165630"><a name="p1978518669165630"></a><a name="p1978518669165630"></a>Represents the listener for a slider change. </p>
 </td>
 </tr>
 </tbody>

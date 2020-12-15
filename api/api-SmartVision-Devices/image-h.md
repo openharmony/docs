@@ -1,6 +1,10 @@
 # image.h<a name="ZH-CN_TOPIC_0000001055358080"></a>
 
-## **Overview**<a name="section1085405268093526"></a>
+-   [Overview](#section940307500165627)
+-   [Summary](#section493870256165627)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section940307500165627"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares basic image attributes, including the image type and path.
 
 1.0
 
-## **Summary**<a name="section315224218093526"></a>
+## **Summary**<a name="section493870256165627"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table764960054093526"></a>
-<table><thead align="left"><tr id="row664918920093526"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1371173010093526"><a name="p1371173010093526"></a><a name="p1371173010093526"></a>Data Structure Name</p>
+<a name="table865697202165627"></a>
+<table><thead align="left"><tr id="row2037099014165627"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1757487008165627"><a name="p1757487008165627"></a><a name="p1757487008165627"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1173806602093526"><a name="p1173806602093526"></a><a name="p1173806602093526"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1235803141165627"><a name="p1235803141165627"></a><a name="p1235803141165627"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1236854846093526"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p769018426093526"><a name="p769018426093526"></a><a name="p769018426093526"></a><a href="OHOS-Image.md">OHOS::Image</a></p>
+<tbody><tr id="row1881284391165627"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1907059775165627"><a name="p1907059775165627"></a><a name="p1907059775165627"></a><a href="OHOS-Image.md">OHOS::Image</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1495376650093526"><a name="p1495376650093526"></a><a name="p1495376650093526"></a>Represents basic image attributes, including the image type and path. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1730159432165627"><a name="p1730159432165627"></a><a name="p1730159432165627"></a>Represents basic image attributes, including the image type and path. </p>
 </td>
 </tr>
 </tbody>

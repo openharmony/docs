@@ -1,6 +1,15 @@
-# BundleStatusCallback<a name="ZH-CN_TOPIC_0000001054652845"></a>
+# BundleStatusCallback<a name="ZH-CN_TOPIC_0000001058067356"></a>
 
-## **Overview**<a name="section1322371244113032"></a>
+-   [Overview](#section1138901815165630)
+-   [Summary](#section1984981971165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section335321196165630)
+-   [Field](#section91076479165630)
+-   [bundleName](#ad92bee444c17e378809065e23d6d796a)
+-   [callBack](#a5e6bccc1fb386a428ae77271e5b21354)
+-   [data](#ae6bd742d12d3c9034471299d69ba374a)
+
+## **Overview**<a name="section1138901815165630"></a>
 
 **Related Modules:**
 
@@ -10,37 +19,38 @@
 
 Defines the application state callback information. 
 
-## **Summary**<a name="section1627618283113032"></a>
+## **Summary**<a name="section1984981971165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p>Variable Name</p>
+<a name="table1682735928165630"></a>
+<table><thead align="left"><tr id="row1661304284165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2104728106165630"><a name="p2104728106165630"></a><a name="p2104728106165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p167942876165630"><a name="p167942876165630"></a><a name="p167942876165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p><a href="BundleStatusCallback.md#ad92bee444c17e378809065e23d6d796a">bundleName</a></p>
+<tbody><tr id="row942616751165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1121670335165630"><a name="p1121670335165630"></a><a name="p1121670335165630"></a><a href="BundleStatusCallback.md#ad92bee444c17e378809065e23d6d796a">bundleName</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p>char *&nbsp;</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p><a href="BundleStatusCallback.md#ae6bd742d12d3c9034471299d69ba374a">data</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p>void *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p28254094165630"><a name="p28254094165630"></a><a name="p28254094165630"></a>char * </p>
 </td>
 </tr>
-<tr><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p><a href="BundleStatusCallback.md#a5e6bccc1fb386a428ae77271e5b21354">callBack</a></p>
+<tr id="row522153542165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p836635152165630"><a name="p836635152165630"></a><a name="p836635152165630"></a><a href="BundleStatusCallback.md#ae6bd742d12d3c9034471299d69ba374a">data</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p><a href="BundleManager.md#gad7ea6d0bf78db2d59e6d339c31819885">BundleStateCallback</a>&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p418931144165630"><a name="p418931144165630"></a><a name="p418931144165630"></a>void * </p>
+</td>
+</tr>
+<tr id="row898667514165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p211505773165630"><a name="p211505773165630"></a><a name="p211505773165630"></a><a href="BundleStatusCallback.md#a5e6bccc1fb386a428ae77271e5b21354">callBack</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2002637700165630"><a name="p2002637700165630"></a><a name="p2002637700165630"></a><a href="BundleManager.md#gad7ea6d0bf78db2d59e6d339c31819885">BundleStateCallback</a> </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1597588585113032"></a>
+## **Details**<a name="section335321196165630"></a>
 
-## **Field Documentation**<a name="section422044125113032"></a>
+## **Field **<a name="section91076479165630"></a>
 
 ## bundleName<a name="ad92bee444c17e378809065e23d6d796a"></a>
 

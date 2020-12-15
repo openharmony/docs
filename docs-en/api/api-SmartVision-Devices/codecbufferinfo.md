@@ -1,6 +1,19 @@
 # CodecBufferInfo<a name="EN-US_TOPIC_0000001054879526"></a>
 
-## **Overview**<a name="section235147149084835"></a>
+-   [Overview](#section299982411165630)
+-   [Summary](#section1801142375165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1041610524165630)
+-   [Field](#section1222816335165630)
+-   [addr](#ac41289afc743bdc85b266166d612e244)
+-   [fd](#a8cad2128f76788aed9de86e69e78dd15)
+-   [handle](#a11122e64c16864ce1d8129102905982a)
+-   [length](#ac179611206a69c89d7c638e221ea159d)
+-   [offset](#a6c0b23a5f242d80924f2e8689c83b3ae)
+-   [size](#a9f02e97d2724dd93324d8e70793357b4)
+-   [type](#a9b30909c247d03dfc94e4cfdcb69b13a)
+
+## **Overview**<a name="section299982411165630"></a>
 
 **Related Modules:**
 
@@ -10,66 +23,64 @@
 
 Describes buffer information. 
 
-## **Summary**<a name="section1580410091084835"></a>
+## **Summary**<a name="section1801142375165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table856834695084835"></a>
-<table><thead align="left"><tr id="row485573464084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1095548666084835"><a name="p1095548666084835"></a><a name="p1095548666084835"></a>Variable Name</p>
+<a name="table769327844165630"></a>
+<table><thead align="left"><tr id="row278611737165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p327129267165630"><a name="p327129267165630"></a><a name="p327129267165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p654846566084835"><a name="p654846566084835"></a><a name="p654846566084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p30097855165630"><a name="p30097855165630"></a><a name="p30097855165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2127133339084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p612834128084835"><a name="p612834128084835"></a><a name="p612834128084835"></a><a href="codecbufferinfo.md#a9b30909c247d03dfc94e4cfdcb69b13a">type</a></p>
+<tbody><tr id="row1844689371165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p800086472165630"><a name="p800086472165630"></a><a name="p800086472165630"></a><a href="codecbufferinfo.md#a9b30909c247d03dfc94e4cfdcb69b13a">type</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p869857992084835"><a name="p869857992084835"></a><a name="p869857992084835"></a><a href="codec.md#gadf8e136713c0691010d2bec6ba63e9cf">BufferType</a> </p>
-</td>
-</tr>
-<tr id="row1360068031084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p792741990084835"><a name="p792741990084835"></a><a name="p792741990084835"></a><em id="ab1c584c3d34bf9d028c9daa97722812f"><a name="ab1c584c3d34bf9d028c9daa97722812f"></a><a name="ab1c584c3d34bf9d028c9daa97722812f"></a></em></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1078207800084835"><a name="p1078207800084835"></a><a name="p1078207800084835"></a><strong id="b1359115337"><a name="b1359115337"></a><a name="b1359115337"></a></strong> union {</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2129907763165630"><a name="p2129907763165630"></a><a name="p2129907763165630"></a><a href="codec.md#gadf8e136713c0691010d2bec6ba63e9cf">BufferType</a> </p>
 </td>
 </tr>
-<tr id="row1691745931084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1061780509084835"><a name="p1061780509084835"></a><a name="p1061780509084835"></a>   uint8_t *   <a href="codecbufferinfo.md#ac41289afc743bdc85b266166d612e244">addr</a></p>
+<tr id="row1386899135165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p795641113165630"><a name="p795641113165630"></a><a name="p795641113165630"></a><strong id="ada7293f0c9daba22ad1e2a5c5e9be014"><a name="ada7293f0c9daba22ad1e2a5c5e9be014"></a><a name="ada7293f0c9daba22ad1e2a5c5e9be014"></a></strong> union {</p>
 </td>
 </tr>
-<tr id="row1021604359084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1343803291084835"><a name="p1343803291084835"></a><a name="p1343803291084835"></a>   int32_t   <a href="codecbufferinfo.md#a8cad2128f76788aed9de86e69e78dd15">fd</a></p>
+<tr id="row312993344165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1242034242165630"><a name="p1242034242165630"></a><a name="p1242034242165630"></a>   uint8_t *   <a href="codecbufferinfo.md#ac41289afc743bdc85b266166d612e244">addr</a></p>
 </td>
 </tr>
-<tr id="row1772543833084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1453093659084835"><a name="p1453093659084835"></a><a name="p1453093659084835"></a>   <a href="bufferhandle.md">BufferHandle</a>   <a href="codecbufferinfo.md#a11122e64c16864ce1d8129102905982a">handle</a></p>
+<tr id="row118334558165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p442791287165630"><a name="p442791287165630"></a><a name="p442791287165630"></a>   int32_t   <a href="codecbufferinfo.md#a8cad2128f76788aed9de86e69e78dd15">fd</a></p>
 </td>
 </tr>
-<tr id="row638335713084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1314343236084835"><a name="p1314343236084835"></a><a name="p1314343236084835"></a><em id="i86418940"><a name="i86418940"></a><a name="i86418940"></a></em></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1526677862084835"><a name="p1526677862084835"></a><a name="p1526677862084835"></a>}; </p>
-<p id="p1120640815084835"><a name="p1120640815084835"></a><a name="p1120640815084835"></a>Describes the buffer address. </p>
+<tr id="row998879512165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1328775087165630"><a name="p1328775087165630"></a><a name="p1328775087165630"></a>   <a href="bufferhandle.md">BufferHandle</a>   <a href="codecbufferinfo.md#a11122e64c16864ce1d8129102905982a">handle</a></p>
 </td>
 </tr>
-<tr id="row774575245084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p805218848084835"><a name="p805218848084835"></a><a name="p805218848084835"></a><a href="codecbufferinfo.md#a6c0b23a5f242d80924f2e8689c83b3ae">offset</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1396926107084835"><a name="p1396926107084835"></a><a name="p1396926107084835"></a>uint32_t </p>
-</td>
-</tr>
-<tr id="row1782695706084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p409199745084835"><a name="p409199745084835"></a><a name="p409199745084835"></a><a href="codecbufferinfo.md#ac179611206a69c89d7c638e221ea159d">length</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1715663595084835"><a name="p1715663595084835"></a><a name="p1715663595084835"></a>uint32_t </p>
+<tr id="row1531893626165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1785762565165630"><a name="p1785762565165630"></a><a name="p1785762565165630"></a>}; </p>
+<p id="p1937126278165630"><a name="p1937126278165630"></a><a name="p1937126278165630"></a>Describes the buffer address. </p>
 </td>
 </tr>
-<tr id="row1771366974084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1810649543084835"><a name="p1810649543084835"></a><a name="p1810649543084835"></a><a href="codecbufferinfo.md#a9f02e97d2724dd93324d8e70793357b4">size</a></p>
+<tr id="row420480440165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1171384613165630"><a name="p1171384613165630"></a><a name="p1171384613165630"></a><a href="codecbufferinfo.md#a6c0b23a5f242d80924f2e8689c83b3ae">offset</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p540597057084835"><a name="p540597057084835"></a><a name="p540597057084835"></a>uint32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p478634835165630"><a name="p478634835165630"></a><a name="p478634835165630"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row576606627165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2060265035165630"><a name="p2060265035165630"></a><a name="p2060265035165630"></a><a href="codecbufferinfo.md#ac179611206a69c89d7c638e221ea159d">length</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p698024008165630"><a name="p698024008165630"></a><a name="p698024008165630"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row1695462870165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p312878251165630"><a name="p312878251165630"></a><a name="p312878251165630"></a><a href="codecbufferinfo.md#a9f02e97d2724dd93324d8e70793357b4">size</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p731012802165630"><a name="p731012802165630"></a><a name="p731012802165630"></a>uint32_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section820432735084835"></a>
+## **Details**<a name="section1041610524165630"></a>
 
-## **Field Documentation**<a name="section246054964084835"></a>
+## **Field **<a name="section1222816335165630"></a>
 
 ## addr<a name="ac41289afc743bdc85b266166d612e244"></a>
 

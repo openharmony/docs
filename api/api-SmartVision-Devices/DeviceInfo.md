@@ -1,6 +1,23 @@
 # DeviceInfo<a name="ZH-CN_TOPIC_0000001055678088"></a>
 
-## **Overview**<a name="section1535659843093529"></a>
+-   [Overview](#section1817258413165631)
+-   [Summary](#section402734126165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1024585535165631)
+-   [Field](#section1981473937165631)
+-   [callback](#a90b6d7e07aa21e507a7b16f380df4fb8)
+-   [chipInfo](#a39b8ad5d23fb776ec333adbd64025691)
+-   [chipName](#ad6458f297131a4f3a9dba820e069d525)
+-   [devIndex](#a1582f8d7e63ac2a2c1a1511bb73aeafd)
+-   [devNodePath](#a47e7d5536f061f3e11934fd1ff4cf61b)
+-   [devType](#aec5bff7e9a51ba2fc149156d83154448)
+-   [fd](#a8be40a9da438bed3c2f13bf2bf07217b)
+-   [powerStatus](#adcedf378ddac2489b2a6abc1970807df)
+-   [solutionX](#aba81fb331433f16cfcf435dd05c6e3c3)
+-   [solutionY](#a90174e4a421db368c2d179ab1bbb0f96)
+-   [vendorName](#a24b2b30666e776c0637d7c3f2805bb04)
+
+## **Overview**<a name="section1817258413165631"></a>
 
 **Related Modules:**
 
@@ -10,78 +27,78 @@
 
 Describes basic device information of the input device. 
 
-## **Summary**<a name="section409750682093529"></a>
+## **Summary**<a name="section402734126165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table971268846093529"></a>
-<table><thead align="left"><tr id="row970273462093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2091062555093529"><a name="p2091062555093529"></a><a name="p2091062555093529"></a>Variable Name</p>
+<a name="table1979167624165631"></a>
+<table><thead align="left"><tr id="row1481056118165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1808517400165631"><a name="p1808517400165631"></a><a name="p1808517400165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1561579757093529"><a name="p1561579757093529"></a><a name="p1561579757093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1736715230165631"><a name="p1736715230165631"></a><a name="p1736715230165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row795195298093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p897304273093529"><a name="p897304273093529"></a><a name="p897304273093529"></a><a href="DeviceInfo.md#a1582f8d7e63ac2a2c1a1511bb73aeafd">devIndex</a></p>
+<tbody><tr id="row1380498161165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1405664589165631"><a name="p1405664589165631"></a><a name="p1405664589165631"></a><a href="DeviceInfo.md#a1582f8d7e63ac2a2c1a1511bb73aeafd">devIndex</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p858450759093529"><a name="p858450759093529"></a><a name="p858450759093529"></a>uint32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1652250745093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p969033194093529"><a name="p969033194093529"></a><a name="p969033194093529"></a><a href="DeviceInfo.md#a8be40a9da438bed3c2f13bf2bf07217b">fd</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p94945599093529"><a name="p94945599093529"></a><a name="p94945599093529"></a>int32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1487657606165631"><a name="p1487657606165631"></a><a name="p1487657606165631"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row1017790068093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p546928465093529"><a name="p546928465093529"></a><a name="p546928465093529"></a><a href="DeviceInfo.md#aec5bff7e9a51ba2fc149156d83154448">devType</a></p>
+<tr id="row183961228165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p989917200165631"><a name="p989917200165631"></a><a name="p989917200165631"></a><a href="DeviceInfo.md#a8be40a9da438bed3c2f13bf2bf07217b">fd</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1180439288093529"><a name="p1180439288093529"></a><a name="p1180439288093529"></a>uint32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row232789043093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p550354030093529"><a name="p550354030093529"></a><a name="p550354030093529"></a><a href="DeviceInfo.md#adcedf378ddac2489b2a6abc1970807df">powerStatus</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1714389050093529"><a name="p1714389050093529"></a><a name="p1714389050093529"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1324048497165631"><a name="p1324048497165631"></a><a name="p1324048497165631"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row222344885093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1599036742093529"><a name="p1599036742093529"></a><a name="p1599036742093529"></a><a href="DeviceInfo.md#a39b8ad5d23fb776ec333adbd64025691">chipInfo</a> [CHIP_INFO_LEN]</p>
+<tr id="row1908202225165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p707403832165631"><a name="p707403832165631"></a><a name="p707403832165631"></a><a href="DeviceInfo.md#aec5bff7e9a51ba2fc149156d83154448">devType</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1676930840093529"><a name="p1676930840093529"></a><a name="p1676930840093529"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row590997148093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p301613518093529"><a name="p301613518093529"></a><a name="p301613518093529"></a><a href="DeviceInfo.md#a24b2b30666e776c0637d7c3f2805bb04">vendorName</a> [VENDOR_NAME_LEN]</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p219000273093529"><a name="p219000273093529"></a><a name="p219000273093529"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p697977854165631"><a name="p697977854165631"></a><a name="p697977854165631"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row1681502846093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p386821713093529"><a name="p386821713093529"></a><a name="p386821713093529"></a><a href="DeviceInfo.md#ad6458f297131a4f3a9dba820e069d525">chipName</a> [CHIP_NAME_LEN]</p>
+<tr id="row1595825562165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p582993921165631"><a name="p582993921165631"></a><a name="p582993921165631"></a><a href="DeviceInfo.md#adcedf378ddac2489b2a6abc1970807df">powerStatus</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p764070093093529"><a name="p764070093093529"></a><a name="p764070093093529"></a>char&nbsp;</p>
-</td>
-</tr>
-<tr id="row980161667093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p230478634093529"><a name="p230478634093529"></a><a name="p230478634093529"></a><a href="DeviceInfo.md#a47e7d5536f061f3e11934fd1ff4cf61b">devNodePath</a> [DEV_NODE_PATH]</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p148856172093529"><a name="p148856172093529"></a><a name="p148856172093529"></a>char&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p673254171165631"><a name="p673254171165631"></a><a name="p673254171165631"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row1134169526093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1916430122093529"><a name="p1916430122093529"></a><a name="p1916430122093529"></a><a href="DeviceInfo.md#aba81fb331433f16cfcf435dd05c6e3c3">solutionX</a></p>
+<tr id="row2128446751165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p993106241165631"><a name="p993106241165631"></a><a name="p993106241165631"></a><a href="DeviceInfo.md#a39b8ad5d23fb776ec333adbd64025691">chipInfo</a> [CHIP_INFO_LEN]</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1033716316093529"><a name="p1033716316093529"></a><a name="p1033716316093529"></a>uint32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row217329566093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1012582925093529"><a name="p1012582925093529"></a><a name="p1012582925093529"></a><a href="DeviceInfo.md#a90174e4a421db368c2d179ab1bbb0f96">solutionY</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p549001088093529"><a name="p549001088093529"></a><a name="p549001088093529"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1950493923165631"><a name="p1950493923165631"></a><a name="p1950493923165631"></a>char </p>
 </td>
 </tr>
-<tr id="row666503704093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1220179088093529"><a name="p1220179088093529"></a><a name="p1220179088093529"></a><a href="DeviceInfo.md#a90b6d7e07aa21e507a7b16f380df4fb8">callback</a></p>
+<tr id="row20470428165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p865313036165631"><a name="p865313036165631"></a><a name="p865313036165631"></a><a href="DeviceInfo.md#a24b2b30666e776c0637d7c3f2805bb04">vendorName</a> [VENDOR_NAME_LEN]</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p504307321093529"><a name="p504307321093529"></a><a name="p504307321093529"></a><a href="InputReportEventCb.md">InputReportEventCb</a> *&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p579243817165631"><a name="p579243817165631"></a><a name="p579243817165631"></a>char </p>
+</td>
+</tr>
+<tr id="row738795752165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p172184434165631"><a name="p172184434165631"></a><a name="p172184434165631"></a><a href="DeviceInfo.md#ad6458f297131a4f3a9dba820e069d525">chipName</a> [CHIP_NAME_LEN]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p475832451165631"><a name="p475832451165631"></a><a name="p475832451165631"></a>char </p>
+</td>
+</tr>
+<tr id="row2108281214165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p753784851165631"><a name="p753784851165631"></a><a name="p753784851165631"></a><a href="DeviceInfo.md#a47e7d5536f061f3e11934fd1ff4cf61b">devNodePath</a> [DEV_NODE_PATH]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1123671370165631"><a name="p1123671370165631"></a><a name="p1123671370165631"></a>char </p>
+</td>
+</tr>
+<tr id="row366715668165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1891009787165631"><a name="p1891009787165631"></a><a name="p1891009787165631"></a><a href="DeviceInfo.md#aba81fb331433f16cfcf435dd05c6e3c3">solutionX</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1092496610165631"><a name="p1092496610165631"></a><a name="p1092496610165631"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row1476052508165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1026412028165631"><a name="p1026412028165631"></a><a name="p1026412028165631"></a><a href="DeviceInfo.md#a90174e4a421db368c2d179ab1bbb0f96">solutionY</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p528084630165631"><a name="p528084630165631"></a><a name="p528084630165631"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row1105804807165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p420649689165631"><a name="p420649689165631"></a><a name="p420649689165631"></a><a href="DeviceInfo.md#a90b6d7e07aa21e507a7b16f380df4fb8">callback</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2088500700165631"><a name="p2088500700165631"></a><a name="p2088500700165631"></a><a href="InputReportEventCb.md">InputReportEventCb</a> * </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section881067031093529"></a>
+## **Details**<a name="section1024585535165631"></a>
 
-## **Field Documentation**<a name="section2035264712093529"></a>
+## **Field **<a name="section1981473937165631"></a>
 
 ## callback<a name="a90b6d7e07aa21e507a7b16f380df4fb8"></a>
 

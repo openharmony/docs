@@ -1,6 +1,15 @@
 # AudioManager<a name="EN-US_TOPIC_0000001054598151"></a>
 
-## **Overview**<a name="section2067960358093529"></a>
+-   [Overview](#section92245219165630)
+-   [Summary](#section1284654492165630)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1307104535165630)
+-   [Field](#section435920409165630)
+-   [GetAllAdapters](#a93a0ffb0df907fabcfca827d31dadf39)
+-   [LoadAdapter](#ab090e9c760a2888b55acc7baa4222ccb)
+-   [UnloadAdapter](#a556137764c5bf784972ba79303720fc3)
+
+## **Overview**<a name="section92245219165630"></a>
 
 **Related Modules:**
 
@@ -10,6 +19,9 @@
 
 Manages audio adapters through a specific adapter driver program loaded based on the given audio adapter descriptor. 
 
+See also
+:   [AudioAdapter](audioadapter.md) 
+
 **Since:**
 
 1.0
@@ -18,41 +30,41 @@ Manages audio adapters through a specific adapter driver program loaded based on
 
 1.0
 
-## **Summary**<a name="section1894073402093529"></a>
+## **Summary**<a name="section1284654492165630"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table2082499934093529"></a>
-<table><thead align="left"><tr id="row713939675093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p273140907093529"><a name="p273140907093529"></a><a name="p273140907093529"></a>Variable Name</p>
+<a name="table1340527142165630"></a>
+<table><thead align="left"><tr id="row194446610165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1369309278165630"><a name="p1369309278165630"></a><a name="p1369309278165630"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1021554312093529"><a name="p1021554312093529"></a><a name="p1021554312093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p2049272097165630"><a name="p2049272097165630"></a><a name="p2049272097165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row748406243093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1733388767093529"><a name="p1733388767093529"></a><a name="p1733388767093529"></a><a href="audiomanager.md#a93a0ffb0df907fabcfca827d31dadf39">GetAllAdapters</a> )(struct <a href="audiomanager.md">AudioManager</a> *manager, struct <a href="audioadapterdescriptor.md">AudioAdapterDescriptor</a> **descs, int32_t *size)</p>
+<tbody><tr id="row152334548165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1140648746165630"><a name="p1140648746165630"></a><a name="p1140648746165630"></a><a href="audiomanager.md#a93a0ffb0df907fabcfca827d31dadf39">GetAllAdapters</a> )(struct <a href="audiomanager.md">AudioManager</a> *manager, struct <a href="audioadapterdescriptor.md">AudioAdapterDescriptor</a> **descs, int32_t *size)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2083020219093529"><a name="p2083020219093529"></a><a name="p2083020219093529"></a>int32_t(* </p>
-<p id="p1351898503093529"><a name="p1351898503093529"></a><a name="p1351898503093529"></a>Obtains the list of all adapters supported by an audio driver. </p>
-</td>
-</tr>
-<tr id="row668891931093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p813377886093529"><a name="p813377886093529"></a><a name="p813377886093529"></a><a href="audiomanager.md#ab090e9c760a2888b55acc7baa4222ccb">LoadAdapter</a> )(struct <a href="audiomanager.md">AudioManager</a> *manager, const struct <a href="audioadapterdescriptor.md">AudioAdapterDescriptor</a> *desc, struct <a href="audioadapter.md">AudioAdapter</a> **adapter)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1268650350093529"><a name="p1268650350093529"></a><a name="p1268650350093529"></a>int32_t(* </p>
-<p id="p104197628093529"><a name="p104197628093529"></a><a name="p104197628093529"></a>Loads the driver for an audio adapter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1247730582165630"><a name="p1247730582165630"></a><a name="p1247730582165630"></a>int32_t(* </p>
+<p id="p1123591801165630"><a name="p1123591801165630"></a><a name="p1123591801165630"></a>Obtains the list of all adapters supported by an audio driver. </p>
 </td>
 </tr>
-<tr id="row698057735093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p317899072093529"><a name="p317899072093529"></a><a name="p317899072093529"></a><a href="audiomanager.md#a556137764c5bf784972ba79303720fc3">UnloadAdapter</a> )(struct <a href="audiomanager.md">AudioManager</a> *manager, struct <a href="audioadapter.md">AudioAdapter</a> *adapter)</p>
+<tr id="row341552850165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1057224458165630"><a name="p1057224458165630"></a><a name="p1057224458165630"></a><a href="audiomanager.md#ab090e9c760a2888b55acc7baa4222ccb">LoadAdapter</a> )(struct <a href="audiomanager.md">AudioManager</a> *manager, const struct <a href="audioadapterdescriptor.md">AudioAdapterDescriptor</a> *desc, struct <a href="audioadapter.md">AudioAdapter</a> **adapter)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1982866854093529"><a name="p1982866854093529"></a><a name="p1982866854093529"></a>void(* </p>
-<p id="p1868168070093529"><a name="p1868168070093529"></a><a name="p1868168070093529"></a>Unloads the driver of an audio adapter. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1283791807165630"><a name="p1283791807165630"></a><a name="p1283791807165630"></a>int32_t(* </p>
+<p id="p1190771390165630"><a name="p1190771390165630"></a><a name="p1190771390165630"></a>Loads the driver for an audio adapter. </p>
+</td>
+</tr>
+<tr id="row1688834293165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p431049628165630"><a name="p431049628165630"></a><a name="p431049628165630"></a><a href="audiomanager.md#a556137764c5bf784972ba79303720fc3">UnloadAdapter</a> )(struct <a href="audiomanager.md">AudioManager</a> *manager, struct <a href="audioadapter.md">AudioAdapter</a> *adapter)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1864726231165630"><a name="p1864726231165630"></a><a name="p1864726231165630"></a>void(* </p>
+<p id="p47368279165630"><a name="p47368279165630"></a><a name="p47368279165630"></a>Unloads the driver of an audio adapter. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1659934598093529"></a>
+## **Details**<a name="section1307104535165630"></a>
 
-## **Field Documentation**<a name="section654983564093529"></a>
+## **Field **<a name="section435920409165630"></a>
 
 ## GetAllAdapters<a name="a93a0ffb0df907fabcfca827d31dadf39"></a>
 
@@ -66,20 +78,20 @@ Obtains the list of all adapters supported by an audio driver.
 
 **Parameters:**
 
-<a name="table1056219980093529"></a>
-<table><thead align="left"><tr id="row729588104093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p551971613093529"><a name="p551971613093529"></a><a name="p551971613093529"></a>Name</p>
+<a name="table535628776165630"></a>
+<table><thead align="left"><tr id="row1870233404165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p362707567165630"><a name="p362707567165630"></a><a name="p362707567165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p546930465093529"><a name="p546930465093529"></a><a name="p546930465093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1279436868165630"><a name="p1279436868165630"></a><a name="p1279436868165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row160433142093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">manager</td>
+<tbody><tr id="row785083072165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">manager</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter manager to operate. </td>
 </tr>
-<tr id="row523725233093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">descs</td>
+<tr id="row930088954165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">descs</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the audio adapter list. </td>
 </tr>
-<tr id="row1066925309093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<tr id="row1923415004165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the length of the list. </td>
 </tr>
 </tbody>
@@ -107,20 +119,20 @@ For example, to load a USB driver, you may need to load a dynamic-link library \
 
 **Parameters:**
 
-<a name="table965009965093529"></a>
-<table><thead align="left"><tr id="row1525628476093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2042036607093529"><a name="p2042036607093529"></a><a name="p2042036607093529"></a>Name</p>
+<a name="table1759120842165630"></a>
+<table><thead align="left"><tr id="row1066157795165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p327376939165630"><a name="p327376939165630"></a><a name="p327376939165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p548932665093529"><a name="p548932665093529"></a><a name="p548932665093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p240796819165630"><a name="p240796819165630"></a><a name="p240796819165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row753263546093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">manager</td>
+<tbody><tr id="row1815017019165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">manager</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter manager to operate. </td>
 </tr>
-<tr id="row382506739093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">desc</td>
+<tr id="row1919094764165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">desc</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the descriptor of the audio adapter. </td>
 </tr>
-<tr id="row552897463093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tr id="row685686252165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to the audio adapter. </td>
 </tr>
 </tbody>
@@ -134,6 +146,8 @@ Returns  **0**  if the driver is loaded successfully; returns a negative value o
 
 [GetAllAdapters](audiomanager.md#a93a0ffb0df907fabcfca827d31dadf39) 
 
+ [UnloadAdapter](audiomanager.md#a556137764c5bf784972ba79303720fc3) 
+
 ## UnloadAdapter<a name="a556137764c5bf784972ba79303720fc3"></a>
 
 ```
@@ -146,17 +160,17 @@ Unloads the driver of an audio adapter.
 
 **Parameters:**
 
-<a name="table868679443093529"></a>
-<table><thead align="left"><tr id="row1008245406093529"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1894088234093529"><a name="p1894088234093529"></a><a name="p1894088234093529"></a>Name</p>
+<a name="table202502867165630"></a>
+<table><thead align="left"><tr id="row976104235165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1302960254165630"><a name="p1302960254165630"></a><a name="p1302960254165630"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p502549433093529"><a name="p502549433093529"></a><a name="p502549433093529"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p972442855165630"><a name="p972442855165630"></a><a name="p972442855165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row455725036093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">manager</td>
+<tbody><tr id="row321427427165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">manager</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter manager to operate. </td>
 </tr>
-<tr id="row1902824982093529"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
+<tr id="row2141599177165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">adapter</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the audio adapter whose driver will be unloaded. </td>
 </tr>
 </tbody>

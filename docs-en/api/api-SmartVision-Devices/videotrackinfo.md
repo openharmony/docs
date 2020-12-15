@@ -1,6 +1,21 @@
 # VideoTrackInfo<a name="EN-US_TOPIC_0000001055678134"></a>
 
-## **Overview**<a name="section796798877093537"></a>
+-   [Overview](#section1574075901165636)
+-   [Summary](#section624473362165636)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section202472917165636)
+-   [Field](#section1507177165165636)
+-   [bitrate](#a62bf491fa162c1b41c8ab3f8034c78a4)
+-   [durationMs](#ade7b28ac81909b6578a5b7df05f0a57c)
+-   [format](#a6c1972b11cd0dccb6dcfb5a5f9be960f)
+-   [fpsDen](#ac2340827ee1c6faac89fec69deb1f909)
+-   [fpsNum](#a2534734c1e6fd5aeaa598fb697bdce16)
+-   [height](#a6f23a6eb3e140c8d5c88067a9517ccad)
+-   [profile](#ae88938813de34933b48a0bf4c784d13e)
+-   [rotate](#a075619b83522eb991e8349bafe042455)
+-   [width](#aeb35e568d32f0e62ff156cd0add506e5)
+
+## **Overview**<a name="section1574075901165636"></a>
 
 **Related Modules:**
 
@@ -18,68 +33,68 @@ Defines video track information.
 
 1.0
 
-## **Summary**<a name="section505690563093537"></a>
+## **Summary**<a name="section624473362165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1725772344093537"></a>
-<table><thead align="left"><tr id="row1730243533093537"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1674660400093537"><a name="p1674660400093537"></a><a name="p1674660400093537"></a>Variable Name</p>
+<a name="table1277686017165636"></a>
+<table><thead align="left"><tr id="row1291302308165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2038007009165636"><a name="p2038007009165636"></a><a name="p2038007009165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p416840582093537"><a name="p416840582093537"></a><a name="p416840582093537"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p232145711165636"><a name="p232145711165636"></a><a name="p232145711165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row101352592093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p621803595093537"><a name="p621803595093537"></a><a name="p621803595093537"></a><a href="videotrackinfo.md#a6c1972b11cd0dccb6dcfb5a5f9be960f">format</a></p>
+<tbody><tr id="row401785446165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2095893300165636"><a name="p2095893300165636"></a><a name="p2095893300165636"></a><a href="videotrackinfo.md#a6c1972b11cd0dccb6dcfb5a5f9be960f">format</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p993578580093537"><a name="p993578580093537"></a><a name="p993578580093537"></a><a href="format.md#gaf7ed135f15d4b218d41705bac0122ba7">CodecFormat</a> </p>
-</td>
-</tr>
-<tr id="row1763378704093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1944945724093537"><a name="p1944945724093537"></a><a name="p1944945724093537"></a><a href="videotrackinfo.md#ae88938813de34933b48a0bf4c784d13e">profile</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1317766061093537"><a name="p1317766061093537"></a><a name="p1317766061093537"></a>uint16_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p731609312165636"><a name="p731609312165636"></a><a name="p731609312165636"></a><a href="format.md#gaf7ed135f15d4b218d41705bac0122ba7">CodecFormat</a> </p>
 </td>
 </tr>
-<tr id="row706695036093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p685582269093537"><a name="p685582269093537"></a><a name="p685582269093537"></a><a href="videotrackinfo.md#aeb35e568d32f0e62ff156cd0add506e5">width</a></p>
+<tr id="row1315378088165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p44393297165636"><a name="p44393297165636"></a><a name="p44393297165636"></a><a href="videotrackinfo.md#ae88938813de34933b48a0bf4c784d13e">profile</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2132320667093537"><a name="p2132320667093537"></a><a name="p2132320667093537"></a>uint16_t </p>
-</td>
-</tr>
-<tr id="row152717307093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1094073742093537"><a name="p1094073742093537"></a><a name="p1094073742093537"></a><a href="videotrackinfo.md#a6f23a6eb3e140c8d5c88067a9517ccad">height</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p681377827093537"><a name="p681377827093537"></a><a name="p681377827093537"></a>uint16_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1618133206165636"><a name="p1618133206165636"></a><a name="p1618133206165636"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row111447335093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p583821776093537"><a name="p583821776093537"></a><a name="p583821776093537"></a><a href="videotrackinfo.md#a2534734c1e6fd5aeaa598fb697bdce16">fpsNum</a></p>
+<tr id="row1934070173165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1747323722165636"><a name="p1747323722165636"></a><a name="p1747323722165636"></a><a href="videotrackinfo.md#aeb35e568d32f0e62ff156cd0add506e5">width</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p559030375093537"><a name="p559030375093537"></a><a name="p559030375093537"></a>uint16_t </p>
-</td>
-</tr>
-<tr id="row2022130196093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p581376600093537"><a name="p581376600093537"></a><a name="p581376600093537"></a><a href="videotrackinfo.md#ac2340827ee1c6faac89fec69deb1f909">fpsDen</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p919435708093537"><a name="p919435708093537"></a><a name="p919435708093537"></a>uint16_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p179094148165636"><a name="p179094148165636"></a><a name="p179094148165636"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row1594886727093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p944253067093537"><a name="p944253067093537"></a><a name="p944253067093537"></a><a href="videotrackinfo.md#a62bf491fa162c1b41c8ab3f8034c78a4">bitrate</a></p>
+<tr id="row1618380632165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p423749129165636"><a name="p423749129165636"></a><a name="p423749129165636"></a><a href="videotrackinfo.md#a6f23a6eb3e140c8d5c88067a9517ccad">height</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p925254282093537"><a name="p925254282093537"></a><a name="p925254282093537"></a>uint32_t </p>
-</td>
-</tr>
-<tr id="row64306728093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1364952339093537"><a name="p1364952339093537"></a><a name="p1364952339093537"></a><a href="videotrackinfo.md#a075619b83522eb991e8349bafe042455">rotate</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p818002593093537"><a name="p818002593093537"></a><a name="p818002593093537"></a>uint32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1233168009165636"><a name="p1233168009165636"></a><a name="p1233168009165636"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row1759719054093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p372155626093537"><a name="p372155626093537"></a><a name="p372155626093537"></a><a href="videotrackinfo.md#ade7b28ac81909b6578a5b7df05f0a57c">durationMs</a></p>
+<tr id="row1560765179165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1978312622165636"><a name="p1978312622165636"></a><a name="p1978312622165636"></a><a href="videotrackinfo.md#a2534734c1e6fd5aeaa598fb697bdce16">fpsNum</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2016825231093537"><a name="p2016825231093537"></a><a name="p2016825231093537"></a>int64_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p130423651165636"><a name="p130423651165636"></a><a name="p130423651165636"></a>uint16_t </p>
+</td>
+</tr>
+<tr id="row1423890170165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1284893813165636"><a name="p1284893813165636"></a><a name="p1284893813165636"></a><a href="videotrackinfo.md#ac2340827ee1c6faac89fec69deb1f909">fpsDen</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p368368683165636"><a name="p368368683165636"></a><a name="p368368683165636"></a>uint16_t </p>
+</td>
+</tr>
+<tr id="row1818842376165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p584416258165636"><a name="p584416258165636"></a><a name="p584416258165636"></a><a href="videotrackinfo.md#a62bf491fa162c1b41c8ab3f8034c78a4">bitrate</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1414113839165636"><a name="p1414113839165636"></a><a name="p1414113839165636"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row1289987933165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p664944903165636"><a name="p664944903165636"></a><a name="p664944903165636"></a><a href="videotrackinfo.md#a075619b83522eb991e8349bafe042455">rotate</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1668237199165636"><a name="p1668237199165636"></a><a name="p1668237199165636"></a>uint32_t </p>
+</td>
+</tr>
+<tr id="row1986485287165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1031687444165636"><a name="p1031687444165636"></a><a name="p1031687444165636"></a><a href="videotrackinfo.md#ade7b28ac81909b6578a5b7df05f0a57c">durationMs</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p390303377165636"><a name="p390303377165636"></a><a name="p390303377165636"></a>int64_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1067472278093537"></a>
+## **Details**<a name="section202472917165636"></a>
 
-## **Field Documentation**<a name="section2034119346093537"></a>
+## **Field **<a name="section1507177165165636"></a>
 
 ## bitrate<a name="a62bf491fa162c1b41c8ab3f8034c78a4"></a>
 

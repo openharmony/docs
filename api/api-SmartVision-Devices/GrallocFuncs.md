@@ -1,6 +1,19 @@
 # GrallocFuncs<a name="ZH-CN_TOPIC_0000001054918153"></a>
 
-## **Overview**<a name="section81925780084835"></a>
+-   [Overview](#section859227232165631)
+-   [Summary](#section1937256718165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section386149568165631)
+-   [Field](#section419891595165631)
+-   [AllocMem](#a48c1f21c086ead11bcb1a53bbec2d285)
+-   [FlushCache](#ad56665aa0ff48995b5ec72a8095416d8)
+-   [FlushMCache](#aceac1511a490c2ade1e33723d0e20960)
+-   [FreeMem](#af80e6c92c5ba7e2419da27cafe19bcff)
+-   [Mmap](#ab64438d785bc59050cd4f0a759bd531b)
+-   [MmapCache](#a25005370b14ff2a0c860b2272b354e3f)
+-   [Unmap](#a55864e4912348f40dd77584e96ad4647)
+
+## **Overview**<a name="section859227232165631"></a>
 
 **Related Modules:**
 
@@ -10,65 +23,65 @@
 
 Defines pointers to the memory driver functions. 
 
-## **Summary**<a name="section276023094084835"></a>
+## **Summary**<a name="section1937256718165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table1659591001084835"></a>
-<table><thead align="left"><tr id="row1911929041084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p762184989084835"><a name="p762184989084835"></a><a name="p762184989084835"></a>Variable Name</p>
+<a name="table2121244019165631"></a>
+<table><thead align="left"><tr id="row556565270165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p455549487165631"><a name="p455549487165631"></a><a name="p455549487165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p484447162084835"><a name="p484447162084835"></a><a name="p484447162084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1344154811165631"><a name="p1344154811165631"></a><a name="p1344154811165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1706603624084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1700833088084835"><a name="p1700833088084835"></a><a name="p1700833088084835"></a><a href="GrallocFuncs.md#a48c1f21c086ead11bcb1a53bbec2d285">AllocMem</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
+<tbody><tr id="row1064583449165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1045570690165631"><a name="p1045570690165631"></a><a name="p1045570690165631"></a><a href="GrallocFuncs.md#a48c1f21c086ead11bcb1a53bbec2d285">AllocMem</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2018125726084835"><a name="p2018125726084835"></a><a name="p2018125726084835"></a>int32_t(*&nbsp;</p>
-<p id="p1974635407084835"><a name="p1974635407084835"></a><a name="p1974635407084835"></a>Allocates memory based on the parameters passed by the GUI. </p>
-</td>
-</tr>
-<tr id="row959834804084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p75187792084835"><a name="p75187792084835"></a><a name="p75187792084835"></a><a href="GrallocFuncs.md#af80e6c92c5ba7e2419da27cafe19bcff">FreeMem</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p204246818084835"><a name="p204246818084835"></a><a name="p204246818084835"></a>void(*&nbsp;</p>
-<p id="p1340713927084835"><a name="p1340713927084835"></a><a name="p1340713927084835"></a>Releases memory. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p627157068165631"><a name="p627157068165631"></a><a name="p627157068165631"></a>int32_t(* </p>
+<p id="p997111251165631"><a name="p997111251165631"></a><a name="p997111251165631"></a>Allocates memory based on the parameters passed by the GUI. </p>
 </td>
 </tr>
-<tr id="row1472282367084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p980997475084835"><a name="p980997475084835"></a><a name="p980997475084835"></a><a href="GrallocFuncs.md#ab64438d785bc59050cd4f0a759bd531b">Mmap</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
+<tr id="row271833281165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p283432730165631"><a name="p283432730165631"></a><a name="p283432730165631"></a><a href="GrallocFuncs.md#af80e6c92c5ba7e2419da27cafe19bcff">FreeMem</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p168461579084835"><a name="p168461579084835"></a><a name="p168461579084835"></a>void *(*&nbsp;</p>
-<p id="p403700544084835"><a name="p403700544084835"></a><a name="p403700544084835"></a>Maps memory with a specified physical address and size to memory without cache in the process's address space. </p>
-</td>
-</tr>
-<tr id="row2057647528084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1341207457084835"><a name="p1341207457084835"></a><a name="p1341207457084835"></a><a href="GrallocFuncs.md#a25005370b14ff2a0c860b2272b354e3f">MmapCache</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p472609768084835"><a name="p472609768084835"></a><a name="p472609768084835"></a>void *(*&nbsp;</p>
-<p id="p372939386084835"><a name="p372939386084835"></a><a name="p372939386084835"></a>Maps memory with a specified physical address and size to memory with cache in the process's address space. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1831463626165631"><a name="p1831463626165631"></a><a name="p1831463626165631"></a>void(* </p>
+<p id="p1368547554165631"><a name="p1368547554165631"></a><a name="p1368547554165631"></a>Releases memory. </p>
 </td>
 </tr>
-<tr id="row167531346084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1970116128084835"><a name="p1970116128084835"></a><a name="p1970116128084835"></a><a href="GrallocFuncs.md#a55864e4912348f40dd77584e96ad4647">Unmap</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
+<tr id="row77092860165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1764226395165631"><a name="p1764226395165631"></a><a name="p1764226395165631"></a><a href="GrallocFuncs.md#ab64438d785bc59050cd4f0a759bd531b">Mmap</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p80143544084835"><a name="p80143544084835"></a><a name="p80143544084835"></a>int32_t(*&nbsp;</p>
-<p id="p2009230258084835"><a name="p2009230258084835"></a><a name="p2009230258084835"></a>Unmaps memory, that is, removes any mappings in the process's address space. </p>
-</td>
-</tr>
-<tr id="row1715976391084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p659267272084835"><a name="p659267272084835"></a><a name="p659267272084835"></a><a href="GrallocFuncs.md#ad56665aa0ff48995b5ec72a8095416d8">FlushCache</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1848658763084835"><a name="p1848658763084835"></a><a name="p1848658763084835"></a>int32_t(*&nbsp;</p>
-<p id="p1332482849084835"><a name="p1332482849084835"></a><a name="p1332482849084835"></a>Flushes data from the cache to memory and invalidates the data in the cache. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p419555765165631"><a name="p419555765165631"></a><a name="p419555765165631"></a>void *(* </p>
+<p id="p936439700165631"><a name="p936439700165631"></a><a name="p936439700165631"></a>Maps memory to memory without cache in the process's address space. </p>
 </td>
 </tr>
-<tr id="row1083635257084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1745886196084835"><a name="p1745886196084835"></a><a name="p1745886196084835"></a><a href="GrallocFuncs.md#aceac1511a490c2ade1e33723d0e20960">FlushMCache</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
+<tr id="row942164489165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p393929824165631"><a name="p393929824165631"></a><a name="p393929824165631"></a><a href="GrallocFuncs.md#a25005370b14ff2a0c860b2272b354e3f">MmapCache</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1810196051084835"><a name="p1810196051084835"></a><a name="p1810196051084835"></a>int32_t(*&nbsp;</p>
-<p id="p909551594084835"><a name="p909551594084835"></a><a name="p909551594084835"></a>Flushes data from the cache mapping to <a href="GrallocFuncs.md#ab64438d785bc59050cd4f0a759bd531b">Mmap</a> to memory and invalidates the data in the cache. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1660673263165631"><a name="p1660673263165631"></a><a name="p1660673263165631"></a>void *(* </p>
+<p id="p1423580838165631"><a name="p1423580838165631"></a><a name="p1423580838165631"></a>Maps memory to memory with cache in the process's address space. </p>
+</td>
+</tr>
+<tr id="row293986225165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1579508311165631"><a name="p1579508311165631"></a><a name="p1579508311165631"></a><a href="GrallocFuncs.md#a55864e4912348f40dd77584e96ad4647">Unmap</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1603726515165631"><a name="p1603726515165631"></a><a name="p1603726515165631"></a>int32_t(* </p>
+<p id="p1386531635165631"><a name="p1386531635165631"></a><a name="p1386531635165631"></a>Unmaps memory, that is, removes any mappings in the process's address space. </p>
+</td>
+</tr>
+<tr id="row634336986165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p899113969165631"><a name="p899113969165631"></a><a name="p899113969165631"></a><a href="GrallocFuncs.md#ad56665aa0ff48995b5ec72a8095416d8">FlushCache</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1974314945165631"><a name="p1974314945165631"></a><a name="p1974314945165631"></a>int32_t(* </p>
+<p id="p457604299165631"><a name="p457604299165631"></a><a name="p457604299165631"></a>Flushes data from the cache to memory and invalidates the data in the cache. </p>
+</td>
+</tr>
+<tr id="row1200838767165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p973377643165631"><a name="p973377643165631"></a><a name="p973377643165631"></a><a href="GrallocFuncs.md#aceac1511a490c2ade1e33723d0e20960">FlushMCache</a> )(<a href="GrallocBuffer.md">GrallocBuffer</a> *buffer)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1971712062165631"><a name="p1971712062165631"></a><a name="p1971712062165631"></a>int32_t(* </p>
+<p id="p643532329165631"><a name="p643532329165631"></a><a name="p643532329165631"></a>Flushes data from the cache mapped via <a href="GrallocFuncs.md#ab64438d785bc59050cd4f0a759bd531b">Mmap</a> to memory and invalidates the data in the cache. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1267296291084835"></a>
+## **Details**<a name="section386149568165631"></a>
 
-## **Field Documentation**<a name="section919666985084835"></a>
+## **Field **<a name="section419891595165631"></a>
 
 ## AllocMem<a name="a48c1f21c086ead11bcb1a53bbec2d285"></a>
 
@@ -80,29 +93,19 @@ int32_t(* GrallocFuncs::AllocMem) ([GrallocBuffer](GrallocBuffer.md) *buffer)
 
 Allocates memory based on the parameters passed by the GUI. 
 
+The allocated memory can be classified into shared memory, memory with cache, and memory without cache.
+
 **Parameters:**
 
-<a name="table1662159424084835"></a>
-<table><thead align="left"><tr id="row56459889084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p99269541084835"><a name="p99269541084835"></a><a name="p99269541084835"></a>Name</p>
+<a name="table1101777179165631"></a>
+<table><thead align="left"><tr id="row482280986165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1353010811165631"><a name="p1353010811165631"></a><a name="p1353010811165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p110894276084835"><a name="p110894276084835"></a><a name="p110894276084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p628425244165631"><a name="p628425244165631"></a><a name="p628425244165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row867311423084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">hdl</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the handle of memory. </td>
-</tr>
-<tr id="row1600437501084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">type</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the type of memory to allocate. The value<span style="background-color: yellow;"><span style="font-weight: bold">[/table/tgroup/tbody/row/entry/div
-				{""}) </span><span style="background-color: yellow;"><span style="font-weight: bold">[/table/tgroup/tbody/row/entry/div/div
-				{""}) </span>0 <span style="font-weight: bold"> (div]</span></span> <span style="font-weight: bold"> (div]</span></span> indicates memory without cache, <span style="background-color: yellow;"><span style="font-weight: bold">[/table/tgroup/tbody/row/entry/div
-				{""}) </span><span style="background-color: yellow;"><span style="font-weight: bold">[/table/tgroup/tbody/row/entry/div/div
-				{""}) </span>1 <span style="font-weight: bold"> (div]</span></span> <span style="font-weight: bold"> (div]</span></span> indicates memory with cache, and<span style="background-color: yellow;"><span style="font-weight: bold">[/table/tgroup/tbody/row/entry/div
-				{""}) </span><span style="background-color: yellow;"><span style="font-weight: bold">[/table/tgroup/tbody/row/entry/div/div
-				{""}) </span>2 <span style="font-weight: bold"> (div]</span></span> <span style="font-weight: bold"> (div]</span></span> indicates shared memory. </td>
-</tr>
-<tr id="row746736895084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of memory to allocate, in bytes.</td>
+<tbody><tr id="row1641944075165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buffer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer of the memory to allocate.</td>
 </tr>
 </tbody>
 </table>
@@ -110,8 +113,6 @@ Allocates memory based on the parameters passed by the GUI.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [DispErrCode](Display.md#ga12a925dadef7573cd74d63d06824f9b0)  otherwise. 
-
-
 
 ## FlushCache<a name="ad56665aa0ff48995b5ec72a8095416d8"></a>
 
@@ -125,18 +126,15 @@ Flushes data from the cache to memory and invalidates the data in the cache.
 
 **Parameters:**
 
-<a name="table104235383084835"></a>
-<table><thead align="left"><tr id="row128937476084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1944519611084835"><a name="p1944519611084835"></a><a name="p1944519611084835"></a>Name</p>
+<a name="table120054678165631"></a>
+<table><thead align="left"><tr id="row985480269165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2059365527165631"><a name="p2059365527165631"></a><a name="p2059365527165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1102766729084835"><a name="p1102766729084835"></a><a name="p1102766729084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1975987152165631"><a name="p1975987152165631"></a><a name="p1975987152165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1790516978084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">hdl</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the handle of the cache. </td>
-</tr>
-<tr id="row1481257992084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of the cache from which data is to flush.</td>
+<tbody><tr id="row1191285056165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buffer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer of the cache to flush.</td>
 </tr>
 </tbody>
 </table>
@@ -144,8 +142,6 @@ Flushes data from the cache to memory and invalidates the data in the cache.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [DispErrCode](Display.md#ga12a925dadef7573cd74d63d06824f9b0)  otherwise. 
-
-
 
 ## FlushMCache<a name="aceac1511a490c2ade1e33723d0e20960"></a>
 
@@ -155,22 +151,19 @@ int32_t(* GrallocFuncs::FlushMCache) ([GrallocBuffer](GrallocBuffer.md) *buffer)
 
  **Description:**
 
-Flushes data from the cache mapping to  [Mmap](GrallocFuncs.md#ab64438d785bc59050cd4f0a759bd531b)  to memory and invalidates the data in the cache. 
+Flushes data from the cache mapped via  [Mmap](GrallocFuncs.md#ab64438d785bc59050cd4f0a759bd531b)  to memory and invalidates the data in the cache. 
 
 **Parameters:**
 
-<a name="table918470824084835"></a>
-<table><thead align="left"><tr id="row341890934084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2085660690084835"><a name="p2085660690084835"></a><a name="p2085660690084835"></a>Name</p>
+<a name="table1701054931165631"></a>
+<table><thead align="left"><tr id="row1773383486165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2022302880165631"><a name="p2022302880165631"></a><a name="p2022302880165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p613319402084835"><a name="p613319402084835"></a><a name="p613319402084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p3476556165631"><a name="p3476556165631"></a><a name="p3476556165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row47699950084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">hdl</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the handle of the cache. </td>
-</tr>
-<tr id="row407551711084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of the cache from which data is to flush.</td>
+<tbody><tr id="row925564110165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buffer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer of the cache to flush.</td>
 </tr>
 </tbody>
 </table>
@@ -178,8 +171,6 @@ Flushes data from the cache mapping to  [Mmap](GrallocFuncs.md#ab64438d785bc5905
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [DispErrCode](Display.md#ga12a925dadef7573cd74d63d06824f9b0)  otherwise. 
-
-
 
 ## FreeMem<a name="af80e6c92c5ba7e2419da27cafe19bcff"></a>
 
@@ -193,15 +184,15 @@ Releases memory.
 
 **Parameters:**
 
-<a name="table526039614084835"></a>
-<table><thead align="left"><tr id="row270627118084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1723068196084835"><a name="p1723068196084835"></a><a name="p1723068196084835"></a>Name</p>
+<a name="table1216971623165631"></a>
+<table><thead align="left"><tr id="row516082350165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1628890119165631"><a name="p1628890119165631"></a><a name="p1628890119165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1977204585084835"><a name="p1977204585084835"></a><a name="p1977204585084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p97701835165631"><a name="p97701835165631"></a><a name="p97701835165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row183099994084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">hdl</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the handle of memory that has been applied for.</td>
+<tbody><tr id="row570751055165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buffer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer of the memory to release.</td>
 </tr>
 </tbody>
 </table>
@@ -214,22 +205,19 @@ void*(* GrallocFuncs::Mmap) ([GrallocBuffer](GrallocBuffer.md) *buffer)
 
  **Description:**
 
-Maps memory with a specified physical address and size to memory without cache in the process's address space. 
+Maps memory to memory without cache in the process's address space. 
 
 **Parameters:**
 
-<a name="table237558825084835"></a>
-<table><thead align="left"><tr id="row657793817084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1193131286084835"><a name="p1193131286084835"></a><a name="p1193131286084835"></a>Name</p>
+<a name="table1695810267165631"></a>
+<table><thead align="left"><tr id="row277949810165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p368052547165631"><a name="p368052547165631"></a><a name="p368052547165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p223516010084835"><a name="p223516010084835"></a><a name="p223516010084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p264263137165631"><a name="p264263137165631"></a><a name="p264263137165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row926444915084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">phyAddr</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the physical address of memory to map. </td>
-</tr>
-<tr id="row775406279084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of memory to map.</td>
+<tbody><tr id="row424967841165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buffer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer of the memory to map.</td>
 </tr>
 </tbody>
 </table>
@@ -237,8 +225,6 @@ Maps memory with a specified physical address and size to memory without cache i
 **Returns:**
 
 Returns the pointer to a valid address if the operation is successful; returns  **NULL**  otherwise. 
-
-
 
 ## MmapCache<a name="a25005370b14ff2a0c860b2272b354e3f"></a>
 
@@ -248,22 +234,19 @@ void*(* GrallocFuncs::MmapCache) ([GrallocBuffer](GrallocBuffer.md) *buffer)
 
  **Description:**
 
-Maps memory with a specified physical address and size to memory with cache in the process's address space. 
+Maps memory to memory with cache in the process's address space. 
 
 **Parameters:**
 
-<a name="table959227480084835"></a>
-<table><thead align="left"><tr id="row1468644493084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2021778635084835"><a name="p2021778635084835"></a><a name="p2021778635084835"></a>Name</p>
+<a name="table1977898769165631"></a>
+<table><thead align="left"><tr id="row375931036165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1933697965165631"><a name="p1933697965165631"></a><a name="p1933697965165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p500949379084835"><a name="p500949379084835"></a><a name="p500949379084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1251159317165631"><a name="p1251159317165631"></a><a name="p1251159317165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1302844667084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">phyAddr</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the physical address of memory to map. </td>
-</tr>
-<tr id="row1601142069084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of memory to map.</td>
+<tbody><tr id="row604586297165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buffer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer of the memory to map.</td>
 </tr>
 </tbody>
 </table>
@@ -271,8 +254,6 @@ Maps memory with a specified physical address and size to memory with cache in t
 **Returns:**
 
 Returns the pointer to a valid address if the operation is successful; returns  **NULL**  otherwise. 
-
-
 
 ## Unmap<a name="a55864e4912348f40dd77584e96ad4647"></a>
 
@@ -286,18 +267,15 @@ Unmaps memory, that is, removes any mappings in the process's address space.
 
 **Parameters:**
 
-<a name="table573218536084835"></a>
-<table><thead align="left"><tr id="row1391012883084835"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p259934062084835"><a name="p259934062084835"></a><a name="p259934062084835"></a>Name</p>
+<a name="table412365469165631"></a>
+<table><thead align="left"><tr id="row147745565165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2028105956165631"><a name="p2028105956165631"></a><a name="p2028105956165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1094849982084835"><a name="p1094849982084835"></a><a name="p1094849982084835"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p963911673165631"><a name="p963911673165631"></a><a name="p963911673165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row921700608084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">virAddr</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the virtual address of memory to unmap. </td>
-</tr>
-<tr id="row311575550084835"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the size of memory to unmap.</td>
+<tbody><tr id="row1100075082165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">buffer</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the buffer of the memory to unmap.</td>
 </tr>
 </tbody>
 </table>
@@ -305,6 +283,4 @@ Unmaps memory, that is, removes any mappings in the process's address space.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [DispErrCode](Display.md#ga12a925dadef7573cd74d63d06824f9b0)  otherwise. 
-
-
 

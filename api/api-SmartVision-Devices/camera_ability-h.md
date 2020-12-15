@@ -1,6 +1,10 @@
 # camera\_ability.h<a name="ZH-CN_TOPIC_0000001054799563"></a>
 
-## **Overview**<a name="section1655196914093524"></a>
+-   [Overview](#section1236060488165626)
+-   [Summary](#section898002719165626)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section1236060488165626"></a>
 
 **Related Modules:**
 
@@ -18,20 +22,20 @@ Declares functions of the  **CameraAbility**  class.
 
 1.0
 
-## **Summary**<a name="section1482729712093524"></a>
+## **Summary**<a name="section898002719165626"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1515180602093524"></a>
-<table><thead align="left"><tr id="row1407935690093524"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1599095877093524"><a name="p1599095877093524"></a><a name="p1599095877093524"></a>Data Structure Name</p>
+<a name="table356292608165626"></a>
+<table><thead align="left"><tr id="row1275498218165626"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1030682614165626"><a name="p1030682614165626"></a><a name="p1030682614165626"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p899718787093524"><a name="p899718787093524"></a><a name="p899718787093524"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p563934202165626"><a name="p563934202165626"></a><a name="p563934202165626"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1331069757093524"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1779998332093524"><a name="p1779998332093524"></a><a name="p1779998332093524"></a><a href="OHOS-Media-CameraAbility.md">OHOS::Media::CameraAbility</a></p>
+<tbody><tr id="row1593606526165626"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1214583974165626"><a name="p1214583974165626"></a><a name="p1214583974165626"></a><a href="OHOS-Media-CameraAbility.md">OHOS::Media::CameraAbility</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p273109115093524"><a name="p273109115093524"></a><a name="p273109115093524"></a>Declares functions of the <strong id="b1252676810093524"><a name="b1252676810093524"></a><a name="b1252676810093524"></a><a href="OHOS-Media-CameraAbility.md">CameraAbility</a></strong> class. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p845099876165626"><a name="p845099876165626"></a><a name="p845099876165626"></a>Declares functions of the <strong id="b1682507996165626"><a name="b1682507996165626"></a><a name="b1682507996165626"></a><a href="OHOS-Media-CameraAbility.md">CameraAbility</a></strong> class. </p>
 </td>
 </tr>
 </tbody>

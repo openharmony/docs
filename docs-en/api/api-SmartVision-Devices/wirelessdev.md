@@ -1,6 +1,10 @@
 # WirelessDev<a name="EN-US_TOPIC_0000001055198172"></a>
 
-## **Overview**<a name="section1558031985093537"></a>
+-   [Overview](#section1427834151165636)
+-   [Summary](#section1209428086165636)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1427834151165636"></a>
 
 **Related Modules:**
 
@@ -14,40 +18,40 @@ Describes a wireless device.
 
 1.0
 
-## **Summary**<a name="section865309565093537"></a>
+## **Summary**<a name="section1209428086165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table833426020093537"></a>
-<table><thead align="left"><tr id="row616411539093537"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2122535357093537"><a name="p2122535357093537"></a><a name="p2122535357093537"></a>Variable Name</p>
+<a name="table2042190662165636"></a>
+<table><thead align="left"><tr id="row1916613758165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1267068670165636"><a name="p1267068670165636"></a><a name="p1267068670165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1423851007093537"><a name="p1423851007093537"></a><a name="p1423851007093537"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p836440369165636"><a name="p836440369165636"></a><a name="p836440369165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row966704256093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p145353704093537"><a name="p145353704093537"></a><a name="p145353704093537"></a><a href="wlan.md#gacf9e3f94cbac9cf8ae3382aea0d6c5f6">netdev</a></p>
+<tbody><tr id="row1682593255165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p937015865165636"><a name="p937015865165636"></a><a name="p937015865165636"></a><a href="wlan.md#gacf9e3f94cbac9cf8ae3382aea0d6c5f6">netdev</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p274049953093537"><a name="p274049953093537"></a><a name="p274049953093537"></a>struct <a href="netdevice.md">NetDevice</a> * </p>
-</td>
-</tr>
-<tr id="row1584199081093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p174507643093537"><a name="p174507643093537"></a><a name="p174507643093537"></a><a href="wlan.md#ga86835b49d9ac8e3965d710334d1ecdf2">wiphy</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1101991100093537"><a name="p1101991100093537"></a><a name="p1101991100093537"></a>struct <a href="wiphy.md">Wiphy</a> * </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1110578519165636"><a name="p1110578519165636"></a><a name="p1110578519165636"></a>struct <a href="netdevice.md">NetDevice</a> * </p>
 </td>
 </tr>
-<tr id="row1647004703093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2137704803093537"><a name="p2137704803093537"></a><a name="p2137704803093537"></a><a href="wlan.md#ga8e9277b73be8498a73999151e093693e">iftype</a></p>
+<tr id="row60781676165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1726729656165636"><a name="p1726729656165636"></a><a name="p1726729656165636"></a><a href="wlan.md#ga86835b49d9ac8e3965d710334d1ecdf2">wiphy</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1058209843093537"><a name="p1058209843093537"></a><a name="p1058209843093537"></a>uint8_t </p>
-</td>
-</tr>
-<tr id="row417820863093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1980925980093537"><a name="p1980925980093537"></a><a name="p1980925980093537"></a><a href="wlan.md#ga7c1cd7fbd4ccdf7babf89394cc78ab77">resv</a> [WIRELESS_DEV_RESV_SIZE]</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p580986965093537"><a name="p580986965093537"></a><a name="p580986965093537"></a>uint8_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1708441691165636"><a name="p1708441691165636"></a><a name="p1708441691165636"></a>struct <a href="wiphy.md">Wiphy</a> * </p>
 </td>
 </tr>
-<tr id="row417335357093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p104079455093537"><a name="p104079455093537"></a><a name="p104079455093537"></a><a href="wlan.md#ga142433e20a4e8168774cf50dfbbfd27b">presetChandef</a></p>
+<tr id="row1967184998165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1126763617165636"><a name="p1126763617165636"></a><a name="p1126763617165636"></a><a href="wlan.md#ga8e9277b73be8498a73999151e093693e">iftype</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1478852859093537"><a name="p1478852859093537"></a><a name="p1478852859093537"></a>struct <a href="channeldef.md">ChannelDef</a> </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1148660101165636"><a name="p1148660101165636"></a><a name="p1148660101165636"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row892765614165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p885667957165636"><a name="p885667957165636"></a><a name="p885667957165636"></a><a href="wlan.md#ga7c1cd7fbd4ccdf7babf89394cc78ab77">resv</a> [WIRELESS_DEV_RESV_SIZE]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1340283819165636"><a name="p1340283819165636"></a><a name="p1340283819165636"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row940139808165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1613797561165636"><a name="p1613797561165636"></a><a name="p1613797561165636"></a><a href="wlan.md#ga142433e20a4e8168774cf50dfbbfd27b">presetChandef</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1314766684165636"><a name="p1314766684165636"></a><a name="p1314766684165636"></a>struct <a href="channeldef.md">ChannelDef</a> </p>
 </td>
 </tr>
 </tbody>

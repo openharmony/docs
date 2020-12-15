@@ -1,6 +1,16 @@
 # InputManager<a name="ZH-CN_TOPIC_0000001054799601"></a>
 
-## **Overview**<a name="section878781904093530"></a>
+-   [Overview](#section1517000695165631)
+-   [Summary](#section1422849149165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section1439023108165631)
+-   [Field](#section142390188165631)
+-   [CloseInputDevice](#a41f3a8a5d8995c9a08bd90c1d367209d)
+-   [GetInputDevice](#abf32ba302df150d952714776e1707bc5)
+-   [GetInputDeviceList](#a74f11b9e24d19413f5eb9b35700be078)
+-   [OpenInputDevice](#a9153e901b4811654d8dfc2e78aa29f07)
+
+## **Overview**<a name="section1517000695165631"></a>
 
 **Related Modules:**
 
@@ -12,47 +22,47 @@ Provides interfaces for managing input devices.
 
 The interfaces can be used to perform basic operations on the input devices, such as opening and closing the device files and querying information about the input device. 
 
-## **Summary**<a name="section1311907669093530"></a>
+## **Summary**<a name="section1422849149165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table124646860093530"></a>
-<table><thead align="left"><tr id="row566375354093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p267664079093530"><a name="p267664079093530"></a><a name="p267664079093530"></a>Variable Name</p>
+<a name="table214761541165631"></a>
+<table><thead align="left"><tr id="row1626022214165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p859013185165631"><a name="p859013185165631"></a><a name="p859013185165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1613400853093530"><a name="p1613400853093530"></a><a name="p1613400853093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p817772437165631"><a name="p817772437165631"></a><a name="p817772437165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row58713760093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1314530444093530"><a name="p1314530444093530"></a><a name="p1314530444093530"></a><a href="InputManager.md#a9153e901b4811654d8dfc2e78aa29f07">OpenInputDevice</a> )(uint32_t devIndex)</p>
+<tbody><tr id="row1642383983165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p996081094165631"><a name="p996081094165631"></a><a name="p996081094165631"></a><a href="InputManager.md#a9153e901b4811654d8dfc2e78aa29f07">OpenInputDevice</a> )(uint32_t devIndex)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1446221317093530"><a name="p1446221317093530"></a><a name="p1446221317093530"></a>int32_t(*&nbsp;</p>
-<p id="p1267277819093530"><a name="p1267277819093530"></a><a name="p1267277819093530"></a>Opens a specified input device file. </p>
-</td>
-</tr>
-<tr id="row1737614172093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2083449809093530"><a name="p2083449809093530"></a><a name="p2083449809093530"></a><a href="InputManager.md#a41f3a8a5d8995c9a08bd90c1d367209d">CloseInputDevice</a> )(uint32_t devIndex)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2081073080093530"><a name="p2081073080093530"></a><a name="p2081073080093530"></a>int32_t(*&nbsp;</p>
-<p id="p1828820790093530"><a name="p1828820790093530"></a><a name="p1828820790093530"></a>Closes a specified input device file. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p266945387165631"><a name="p266945387165631"></a><a name="p266945387165631"></a>int32_t(* </p>
+<p id="p716293002165631"><a name="p716293002165631"></a><a name="p716293002165631"></a>Opens a specified input device file. </p>
 </td>
 </tr>
-<tr id="row1597658332093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1172906737093530"><a name="p1172906737093530"></a><a name="p1172906737093530"></a><a href="InputManager.md#abf32ba302df150d952714776e1707bc5">GetInputDevice</a> )(uint32_t devIndex, <a href="DeviceInfo.md">DeviceInfo</a> **devInfo)</p>
+<tr id="row394296720165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p431318370165631"><a name="p431318370165631"></a><a name="p431318370165631"></a><a href="InputManager.md#a41f3a8a5d8995c9a08bd90c1d367209d">CloseInputDevice</a> )(uint32_t devIndex)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p700480360093530"><a name="p700480360093530"></a><a name="p700480360093530"></a>int32_t(*&nbsp;</p>
-<p id="p2075215123093530"><a name="p2075215123093530"></a><a name="p2075215123093530"></a>Gets information about a specified input device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p826061738165631"><a name="p826061738165631"></a><a name="p826061738165631"></a>int32_t(* </p>
+<p id="p1159292376165631"><a name="p1159292376165631"></a><a name="p1159292376165631"></a>Closes a specified input device file. </p>
 </td>
 </tr>
-<tr id="row1654362203093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p758389927093530"><a name="p758389927093530"></a><a name="p758389927093530"></a><a href="InputManager.md#a74f11b9e24d19413f5eb9b35700be078">GetInputDeviceList</a> )(uint32_t *devNum, <a href="DeviceInfo.md">DeviceInfo</a> **devList, uint32_t size)</p>
+<tr id="row1609880364165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1754696607165631"><a name="p1754696607165631"></a><a name="p1754696607165631"></a><a href="InputManager.md#abf32ba302df150d952714776e1707bc5">GetInputDevice</a> )(uint32_t devIndex, <a href="DeviceInfo.md">DeviceInfo</a> **devInfo)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1409066650093530"><a name="p1409066650093530"></a><a name="p1409066650093530"></a>int32_t(*&nbsp;</p>
-<p id="p1080841001093530"><a name="p1080841001093530"></a><a name="p1080841001093530"></a>Gets information about all input devices in the device list. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1650645130165631"><a name="p1650645130165631"></a><a name="p1650645130165631"></a>int32_t(* </p>
+<p id="p1748479069165631"><a name="p1748479069165631"></a><a name="p1748479069165631"></a>Gets information about a specified input device. </p>
+</td>
+</tr>
+<tr id="row1499675120165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p650374227165631"><a name="p650374227165631"></a><a name="p650374227165631"></a><a href="InputManager.md#a74f11b9e24d19413f5eb9b35700be078">GetInputDeviceList</a> )(uint32_t *devNum, <a href="DeviceInfo.md">DeviceInfo</a> **devList, uint32_t size)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1233368212165631"><a name="p1233368212165631"></a><a name="p1233368212165631"></a>int32_t(* </p>
+<p id="p1601347890165631"><a name="p1601347890165631"></a><a name="p1601347890165631"></a>Gets information about all input devices in the device list. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1051375939093530"></a>
+## **Details**<a name="section1439023108165631"></a>
 
-## **Field Documentation**<a name="section184532249093530"></a>
+## **Field **<a name="section142390188165631"></a>
 
 ## CloseInputDevice<a name="a41f3a8a5d8995c9a08bd90c1d367209d"></a>
 
@@ -66,15 +76,15 @@ Closes a specified input device file.
 
 **Parameters:**
 
-<a name="table926793260093530"></a>
-<table><thead align="left"><tr id="row1060271724093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1956077124093530"><a name="p1956077124093530"></a><a name="p1956077124093530"></a>Name</p>
+<a name="table450013883165631"></a>
+<table><thead align="left"><tr id="row1513269223165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1606301074165631"><a name="p1606301074165631"></a><a name="p1606301074165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p215769271093530"><a name="p215769271093530"></a><a name="p215769271093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p158114511165631"><a name="p158114511165631"></a><a name="p158114511165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row40793774093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1664744801093530"><a name="b1664744801093530"></a><a name="b1664744801093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row2085529401165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1576089454165631"><a name="b1576089454165631"></a><a name="b1576089454165631"></a>0</strong> represents the first input device. </td>
 </tr>
 </tbody>
 </table>
@@ -82,8 +92,6 @@ Closes a specified input device file.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## GetInputDevice<a name="abf32ba302df150d952714776e1707bc5"></a>
 
@@ -97,17 +105,17 @@ Gets information about a specified input device.
 
 **Parameters:**
 
-<a name="table2105604690093530"></a>
-<table><thead align="left"><tr id="row1478856302093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p296159088093530"><a name="p296159088093530"></a><a name="p296159088093530"></a>Name</p>
+<a name="table555787885165631"></a>
+<table><thead align="left"><tr id="row1022990945165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p867627162165631"><a name="p867627162165631"></a><a name="p867627162165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p442950648093530"><a name="p442950648093530"></a><a name="p442950648093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1079065607165631"><a name="p1079065607165631"></a><a name="p1079065607165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1379609664093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b237568275093530"><a name="b237568275093530"></a><a name="b237568275093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row1631778092165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b2137347081165631"><a name="b2137347081165631"></a><a name="b2137347081165631"></a>0</strong> represents the first input device. </td>
 </tr>
-<tr id="row365698105093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devInfo</td>
+<tr id="row455497556165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devInfo</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to information about the specified device. For details, see <a href="DeviceInfo.md">DeviceInfo</a>. </td>
 </tr>
 </tbody>
@@ -116,8 +124,6 @@ Gets information about a specified input device.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## GetInputDeviceList<a name="a74f11b9e24d19413f5eb9b35700be078"></a>
 
@@ -131,21 +137,21 @@ Gets information about all input devices in the device list.
 
 **Parameters:**
 
-<a name="table1984428354093530"></a>
-<table><thead align="left"><tr id="row2108289900093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1607759312093530"><a name="p1607759312093530"></a><a name="p1607759312093530"></a>Name</p>
+<a name="table1372346536165631"></a>
+<table><thead align="left"><tr id="row2141631618165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2032329217165631"><a name="p2032329217165631"></a><a name="p2032329217165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p497404522093530"><a name="p497404522093530"></a><a name="p497404522093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p390983674165631"><a name="p390983674165631"></a><a name="p390983674165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1455970221093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devNum</td>
+<tbody><tr id="row1982086959165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devNum</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the total number of input devices which have been registered. </td>
 </tr>
-<tr id="row8726055093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devList</td>
+<tr id="row938405318165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devList</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the double pointer to information about all devices in the device list. For details, see <a href="DeviceInfo.md">DeviceInfo</a>. </td>
 </tr>
-<tr id="row1469819980093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of elements in the <strong id="b899706114093530"><a name="b899706114093530"></a><a name="b899706114093530"></a>devList</strong> array. </td>
+<tr id="row141550251165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">size</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the number of elements in the <strong id="b1333087694165631"><a name="b1333087694165631"></a><a name="b1333087694165631"></a>devList</strong> array. </td>
 </tr>
 </tbody>
 </table>
@@ -153,8 +159,6 @@ Gets information about all input devices in the device list.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 
 ## OpenInputDevice<a name="a9153e901b4811654d8dfc2e78aa29f07"></a>
 
@@ -168,15 +172,15 @@ Opens a specified input device file.
 
 **Parameters:**
 
-<a name="table1921784919093530"></a>
-<table><thead align="left"><tr id="row1304247433093530"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p657643181093530"><a name="p657643181093530"></a><a name="p657643181093530"></a>Name</p>
+<a name="table535230571165631"></a>
+<table><thead align="left"><tr id="row2082251219165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p486497372165631"><a name="p486497372165631"></a><a name="p486497372165631"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1241705614093530"><a name="p1241705614093530"></a><a name="p1241705614093530"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p324580229165631"><a name="p324580229165631"></a><a name="p324580229165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row907808251093530"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b200954485093530"><a name="b200954485093530"></a><a name="b200954485093530"></a>0</strong> represents the first input device. </td>
+<tbody><tr id="row904944851165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">devIndex</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of an input device. A maximum of 32 input devices are supported. The value ranges from 0 to 31, and value <strong id="b1556340919165631"><a name="b1556340919165631"></a><a name="b1556340919165631"></a>0</strong> represents the first input device. </td>
 </tr>
 </tbody>
 </table>
@@ -184,6 +188,4 @@ Opens a specified input device file.
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns an error code defined in  [RetStatus](Input.md#ga85d58a5185669daa4995e332b63eba7a)  otherwise. 
-
-
 

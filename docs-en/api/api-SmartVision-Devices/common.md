@@ -1,48 +1,75 @@
 # COMMON<a name="EN-US_TOPIC_0000001054479513"></a>
 
-## **Overview**<a name="section99823592093521"></a>
+-   [Overview](#section1730551614165623)
+-   [Summary](#section1213833944165623)
+-   [Files](#files)
+-   [Typedefs](#typedef-members)
+-   [Details](#section1237214918165623)
+-   [Typedef](#section197799551165623)
+-   [DevHandle](#gab8c2d38e46eec50bd097a27d3d8bf041)
+
+## **Overview**<a name="section1730551614165623"></a>
+
+**Description:**
 
 Provides common APIs of the platform driver. 
 
-This module also provides  **[DevHandle](devhandle.md)**, which represents the common data structure of the platform driver.
+This module also provides  **DevHandle**, which represents the common data structure of the platform driver.
 
 **Since:**
 
 1.0
 
-## **Summary**<a name="section1538461493093521"></a>
+## **Summary**<a name="section1213833944165623"></a>
 
 ## Files<a name="files"></a>
 
-<a name="table716519392093521"></a>
-<table><thead align="left"><tr id="row1667984873093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p667720252093521"><a name="p667720252093521"></a><a name="p667720252093521"></a>File Name</p>
+<a name="table436744830165623"></a>
+<table><thead align="left"><tr id="row1234793242165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p961857939165623"><a name="p961857939165623"></a><a name="p961857939165623"></a>File Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p420457680093521"><a name="p420457680093521"></a><a name="p420457680093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1386473312165623"><a name="p1386473312165623"></a><a name="p1386473312165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row51945306093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p869610208093521"><a name="p869610208093521"></a><a name="p869610208093521"></a><a href="hdf_platform-h.md">hdf_platform.h</a></p>
+<tbody><tr id="row1381000068165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2003731035165623"><a name="p2003731035165623"></a><a name="p2003731035165623"></a><a href="hdf_platform-h.md">hdf_platform.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1394332199093521"><a name="p1394332199093521"></a><a name="p1394332199093521"></a>Declares common APIs of the platform driver. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p451896301165623"><a name="p451896301165623"></a><a name="p451896301165623"></a>Declares common APIs of the platform driver. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## Data Structures<a name="nested-classes"></a>
+## Typedefs<a name="typedef-members"></a>
 
-<a name="table1724110745093521"></a>
-<table><thead align="left"><tr id="row576744407093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p321738207093521"><a name="p321738207093521"></a><a name="p321738207093521"></a>Data Structure Name</p>
+<a name="table225992841165623"></a>
+<table><thead align="left"><tr id="row1787325095165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p953758150165623"><a name="p953758150165623"></a><a name="p953758150165623"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1659918577093521"><a name="p1659918577093521"></a><a name="p1659918577093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p679395405165623"><a name="p679395405165623"></a><a name="p679395405165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1158715064093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1834165196093521"><a name="p1834165196093521"></a><a name="p1834165196093521"></a><a href="devhandle.md">DevHandle</a></p>
+<tbody><tr id="row1420941272165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p390752215165623"><a name="p390752215165623"></a><a name="p390752215165623"></a><a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p869608245093521"><a name="p869608245093521"></a><a name="p869608245093521"></a>Defines the common device handle of the platform driver. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2059296519165623"><a name="p2059296519165623"></a><a name="p2059296519165623"></a>typedef void * </p>
+<p id="p145350080165623"><a name="p145350080165623"></a><a name="p145350080165623"></a>Defines the common device handle of the platform driver. </p>
 </td>
 </tr>
 </tbody>
 </table>
+
+## **Details**<a name="section1237214918165623"></a>
+
+## **Typedef **<a name="section197799551165623"></a>
+
+## DevHandle<a name="gab8c2d38e46eec50bd097a27d3d8bf041"></a>
+
+```
+typedef void* [DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041)
+```
+
+ **Description:**
+
+Defines the common device handle of the platform driver. 
+
+The handle is associated with a specific platform device and is used as the first input parameter for all APIs of the platform driver.
 

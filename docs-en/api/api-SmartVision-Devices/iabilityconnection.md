@@ -1,6 +1,10 @@
 # IAbilityConnection<a name="EN-US_TOPIC_0000001054479567"></a>
 
-## **Overview**<a name="section1135888675093531"></a>
+-   [Overview](#section1831135900165631)
+-   [Summary](#section1540980390165631)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1831135900165631"></a>
 
 **Related Modules:**
 
@@ -10,27 +14,27 @@
 
 Provides callbacks to be invoked when a remote  [Service](service.md)  ability is connected or disconnected. 
 
-## **Summary**<a name="section495081729093531"></a>
+## **Summary**<a name="section1540980390165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table668467472093531"></a>
-<table><thead align="left"><tr id="row1519684370093531"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p447945243093531"><a name="p447945243093531"></a><a name="p447945243093531"></a>Variable Name</p>
+<a name="table989694410165631"></a>
+<table><thead align="left"><tr id="row1213064226165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p225743872165631"><a name="p225743872165631"></a><a name="p225743872165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p69779550093531"><a name="p69779550093531"></a><a name="p69779550093531"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1420673164165631"><a name="p1420673164165631"></a><a name="p1420673164165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1852392276093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1636655364093531"><a name="p1636655364093531"></a><a name="p1636655364093531"></a><a href="abilitykit.md#ga3b9bfacbcf1564c83cffbfff7889998a">OnAbilityConnectDone</a> )(<a href="elementname.md">ElementName</a> *elementName, SvcIdentity *serviceSid, int resultCode, void *data)</p>
+<tbody><tr id="row108814336165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1167230993165631"><a name="p1167230993165631"></a><a name="p1167230993165631"></a><a href="abilitykit.md#ga3b9bfacbcf1564c83cffbfff7889998a">OnAbilityConnectDone</a> )(<a href="elementname.md">ElementName</a> *elementName, SvcIdentity *serviceSid, int resultCode, void *data)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p384130105093531"><a name="p384130105093531"></a><a name="p384130105093531"></a>void(* </p>
-<p id="p998948282093531"><a name="p998948282093531"></a><a name="p998948282093531"></a>Called when a client is connected to a <a href="service.md">Service</a> ability. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1903338102165631"><a name="p1903338102165631"></a><a name="p1903338102165631"></a>void(* </p>
+<p id="p798332460165631"><a name="p798332460165631"></a><a name="p798332460165631"></a>Called when a client is connected to a <a href="service.md">Service</a> ability. </p>
 </td>
 </tr>
-<tr id="row1262690490093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1055921306093531"><a name="p1055921306093531"></a><a name="p1055921306093531"></a><a href="abilitykit.md#gaba7cf0abb517890ef1a3949e398aaf1d">OnAbilityDisconnectDone</a> )(<a href="elementname.md">ElementName</a> *elementName, int resultCode, void *data)</p>
+<tr id="row928781257165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p457566603165631"><a name="p457566603165631"></a><a name="p457566603165631"></a><a href="abilitykit.md#gaba7cf0abb517890ef1a3949e398aaf1d">OnAbilityDisconnectDone</a> )(<a href="elementname.md">ElementName</a> *elementName, int resultCode, void *data)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p594567871093531"><a name="p594567871093531"></a><a name="p594567871093531"></a>void(* </p>
-<p id="p1012132056093531"><a name="p1012132056093531"></a><a name="p1012132056093531"></a>Called after all connections to a <a href="service.md">Service</a> ability are disconnected. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1962129111165631"><a name="p1962129111165631"></a><a name="p1962129111165631"></a>void(* </p>
+<p id="p1232143269165631"><a name="p1232143269165631"></a><a name="p1232143269165631"></a>Called after all connections to a <a href="service.md">Service</a> ability are disconnected. </p>
 </td>
 </tr>
 </tbody>

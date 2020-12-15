@@ -1,6 +1,12 @@
 # OHOS::Media::CameraConfig<a name="ZH-CN_TOPIC_0000001055198144"></a>
 
-## **Overview**<a name="section187575610084838"></a>
+-   [Overview](#section367535151165632)
+-   [Summary](#section416551332165632)
+-   [Public Member Functions](#pub-methods)
+-   [Static Public Member Functions](#pub-static-methods)
+-   [Protected Member Functions](#pro-methods)
+
+## **Overview**<a name="section367535151165632"></a>
 
 **Related Modules:**
 
@@ -18,39 +24,39 @@ Provides functions to configure camera parameters.
 
 1.0
 
-## **Summary**<a name="section614578258084838"></a>
+## **Summary**<a name="section416551332165632"></a>
 
 ## Public Member Functions<a name="pub-methods"></a>
 
-<a name="table427267154084838"></a>
-<table><thead align="left"><tr id="row289769298084838"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p149880205084838"><a name="p149880205084838"></a><a name="p149880205084838"></a>Public Member Function Name</p>
+<a name="table311755662165632"></a>
+<table><thead align="left"><tr id="row268560720165632"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1518227632165632"><a name="p1518227632165632"></a><a name="p1518227632165632"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1179545513084838"><a name="p1179545513084838"></a><a name="p1179545513084838"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1123021940165632"><a name="p1123021940165632"></a><a name="p1123021940165632"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row390608612084838"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p81273986084838"><a name="p81273986084838"></a><a name="p81273986084838"></a><a href="MultiMedia_CameraConfig.md#ga6730b1ff3808a97fe7095c1cd016d47c">~CameraConfig</a> ()</p>
+<tbody><tr id="row1409983801165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1710302049165632"><a name="p1710302049165632"></a><a name="p1710302049165632"></a><a href="MultiMedia_CameraConfig.md#ga6730b1ff3808a97fe7095c1cd016d47c">~CameraConfig</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p96119399084838"><a name="p96119399084838"></a><a name="p96119399084838"></a>virtual&nbsp;</p>
-<p id="p425279200084838"><a name="p425279200084838"></a><a name="p425279200084838"></a>A destructor used to delete the <strong id="b659897525084838"><a name="b659897525084838"></a><a name="b659897525084838"></a><a href="OHOS-Media-CameraAbility.md">CameraAbility</a></strong> instance. </p>
-</td>
-</tr>
-<tr id="row1230189627084838"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1837959456084838"><a name="p1837959456084838"></a><a name="p1837959456084838"></a><a href="MultiMedia_CameraConfig.md#gaf6d7f82e9439dce13b0213f84a35ab59">SetFrameStateCallback</a> (<a href="OHOS-Media-FrameStateCallback.md">FrameStateCallback</a> *callback, EventHandler *handler)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1972921581084838"><a name="p1972921581084838"></a><a name="p1972921581084838"></a>virtual void&nbsp;</p>
-<p id="p1612539573084838"><a name="p1612539573084838"></a><a name="p1612539573084838"></a>Sets a frame state callback to responds to state changes. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p852815311165632"><a name="p852815311165632"></a><a name="p852815311165632"></a>virtual </p>
+<p id="p456277276165632"><a name="p456277276165632"></a><a name="p456277276165632"></a>A destructor used to delete the <strong id="b1067788601165632"><a name="b1067788601165632"></a><a name="b1067788601165632"></a><a href="OHOS-Media-CameraAbility.md">CameraAbility</a></strong> instance. </p>
 </td>
 </tr>
-<tr id="row1884408694084838"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p298176385084838"><a name="p298176385084838"></a><a name="p298176385084838"></a><a href="MultiMedia_CameraConfig.md#ga65d8bb0bd5d996e51e4c6fa12a33931b">GetEventHandler</a> () const</p>
+<tr id="row879896026165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1053079439165632"><a name="p1053079439165632"></a><a name="p1053079439165632"></a><a href="MultiMedia_CameraConfig.md#gaf6d7f82e9439dce13b0213f84a35ab59">SetFrameStateCallback</a> (<a href="OHOS-Media-FrameStateCallback.md">FrameStateCallback</a> *callback, EventHandler *handler)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p982853494084838"><a name="p982853494084838"></a><a name="p982853494084838"></a>virtual EventHandler *&nbsp;</p>
-<p id="p1413526417084838"><a name="p1413526417084838"></a><a name="p1413526417084838"></a>Obtains the <strong id="b1010918611084838"><a name="b1010918611084838"></a><a name="b1010918611084838"></a>EventHandler</strong> object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p522484150165632"><a name="p522484150165632"></a><a name="p522484150165632"></a>virtual void </p>
+<p id="p472186924165632"><a name="p472186924165632"></a><a name="p472186924165632"></a>Sets a frame state callback to responds to state changes. </p>
 </td>
 </tr>
-<tr id="row760788867084838"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p957282267084838"><a name="p957282267084838"></a><a name="p957282267084838"></a><a href="MultiMedia_CameraConfig.md#gae4864312836d34b9ad56675ed3e523a1">GetFrameStateCb</a> () const</p>
+<tr id="row927781870165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1000252284165632"><a name="p1000252284165632"></a><a name="p1000252284165632"></a><a href="MultiMedia_CameraConfig.md#ga65d8bb0bd5d996e51e4c6fa12a33931b">GetEventHandler</a> () const</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1075518973084838"><a name="p1075518973084838"></a><a name="p1075518973084838"></a>virtual <a href="OHOS-Media-FrameStateCallback.md">FrameStateCallback</a> *&nbsp;</p>
-<p id="p141494526084838"><a name="p141494526084838"></a><a name="p141494526084838"></a>Obtains a <strong id="b1190604924084838"><a name="b1190604924084838"></a><a name="b1190604924084838"></a><a href="OHOS-Media-FrameStateCallback.md">FrameStateCallback</a></strong> object. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1091575572165632"><a name="p1091575572165632"></a><a name="p1091575572165632"></a>virtual EventHandler * </p>
+<p id="p1060453604165632"><a name="p1060453604165632"></a><a name="p1060453604165632"></a>Obtains the <strong id="b200622442165632"><a name="b200622442165632"></a><a name="b200622442165632"></a>EventHandler</strong> object. </p>
+</td>
+</tr>
+<tr id="row1834885067165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p413158889165632"><a name="p413158889165632"></a><a name="p413158889165632"></a><a href="MultiMedia_CameraConfig.md#gae4864312836d34b9ad56675ed3e523a1">GetFrameStateCb</a> () const</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1546428602165632"><a name="p1546428602165632"></a><a name="p1546428602165632"></a>virtual <a href="OHOS-Media-FrameStateCallback.md">FrameStateCallback</a> * </p>
+<p id="p2135762901165632"><a name="p2135762901165632"></a><a name="p2135762901165632"></a>Obtains a <strong id="b44588528165632"><a name="b44588528165632"></a><a name="b44588528165632"></a><a href="OHOS-Media-FrameStateCallback.md">FrameStateCallback</a></strong> object. </p>
 </td>
 </tr>
 </tbody>
@@ -58,17 +64,17 @@ Provides functions to configure camera parameters.
 
 ## Static Public Member Functions<a name="pub-static-methods"></a>
 
-<a name="table1849377550084838"></a>
-<table><thead align="left"><tr id="row2121946189084838"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1808415391084838"><a name="p1808415391084838"></a><a name="p1808415391084838"></a>Static Public Member Function Name</p>
+<a name="table2058747211165632"></a>
+<table><thead align="left"><tr id="row2132909137165632"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1604682860165632"><a name="p1604682860165632"></a><a name="p1604682860165632"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p145898099084838"><a name="p145898099084838"></a><a name="p145898099084838"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p480978390165632"><a name="p480978390165632"></a><a name="p480978390165632"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row970808511084838"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p630162510084838"><a name="p630162510084838"></a><a name="p630162510084838"></a><a href="MultiMedia_CameraConfig.md#ga26f37610abb783b48d3e94662523fa94">CreateCameraConfig</a> ()</p>
+<tbody><tr id="row441053106165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1122800542165632"><a name="p1122800542165632"></a><a name="p1122800542165632"></a><a href="MultiMedia_CameraConfig.md#ga26f37610abb783b48d3e94662523fa94">CreateCameraConfig</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1477391060084838"><a name="p1477391060084838"></a><a name="p1477391060084838"></a>static <a href="OHOS-Media-CameraConfig.md">CameraConfig</a> *&nbsp;</p>
-<p id="p2049619583084838"><a name="p2049619583084838"></a><a name="p2049619583084838"></a>Creates the <strong id="b55597945084838"><a name="b55597945084838"></a><a name="b55597945084838"></a><a href="OHOS-Media-CameraConfig.md">CameraConfig</a></strong> instance of this singleton class to configure and read the required parameters. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1727843336165632"><a name="p1727843336165632"></a><a name="p1727843336165632"></a>static <a href="OHOS-Media-CameraConfig.md">CameraConfig</a> * </p>
+<p id="p1340320215165632"><a name="p1340320215165632"></a><a name="p1340320215165632"></a>Creates the <strong id="b1156082362165632"><a name="b1156082362165632"></a><a name="b1156082362165632"></a><a href="OHOS-Media-CameraConfig.md">CameraConfig</a></strong> instance of this singleton class to configure and read the required parameters. </p>
 </td>
 </tr>
 </tbody>
@@ -76,17 +82,17 @@ Provides functions to configure camera parameters.
 
 ## Protected Member Functions<a name="pro-methods"></a>
 
-<a name="table1306880356084838"></a>
-<table><thead align="left"><tr id="row312114822084838"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1293960392084838"><a name="p1293960392084838"></a><a name="p1293960392084838"></a>Protected Member Function Name</p>
+<a name="table316031151165632"></a>
+<table><thead align="left"><tr id="row241912167165632"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p316116733165632"><a name="p316116733165632"></a><a name="p316116733165632"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p332266291084838"><a name="p332266291084838"></a><a name="p332266291084838"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1908849454165632"><a name="p1908849454165632"></a><a name="p1908849454165632"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1690188343084838"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1677021607084838"><a name="p1677021607084838"></a><a name="p1677021607084838"></a><a href="MultiMedia_CameraConfig.md#ga6cca70f5dea34d6ede94d0b258c0a350">CameraConfig</a> ()</p>
+<tbody><tr id="row701603792165632"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1900153896165632"><a name="p1900153896165632"></a><a name="p1900153896165632"></a><a href="MultiMedia_CameraConfig.md#ga6cca70f5dea34d6ede94d0b258c0a350">CameraConfig</a> ()</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1743429245084838"><a name="p1743429245084838"></a><a name="p1743429245084838"></a>&nbsp;</p>
-<p id="p1431271929084838"><a name="p1431271929084838"></a><a name="p1431271929084838"></a>A constructor used to create a <strong id="b1979976929084838"><a name="b1979976929084838"></a><a name="b1979976929084838"></a><a href="OHOS-Media-CameraConfig.md">CameraConfig</a></strong> instance. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p239717881165632"><a name="p239717881165632"></a><a name="p239717881165632"></a> </p>
+<p id="p456981894165632"><a name="p456981894165632"></a><a name="p456981894165632"></a>A constructor used to create a <strong id="b1552706874165632"><a name="b1552706874165632"></a><a name="b1552706874165632"></a><a href="OHOS-Media-CameraConfig.md">CameraConfig</a></strong> instance. </p>
 </td>
 </tr>
 </tbody>

@@ -1,6 +1,10 @@
 # TcpHeader<a name="ZH-CN_TOPIC_0000001054598201"></a>
 
-## **Overview**<a name="section1953793543093537"></a>
+-   [Overview](#section1543189514165636)
+-   [Summary](#section683402754165636)
+-   [Data Fields](#pub-attribs)
+
+## **Overview**<a name="section1543189514165636"></a>
 
 **Related Modules:**
 
@@ -14,60 +18,60 @@ Defines the TCP header information of a data frame, including the source port nu
 
 1.0
 
-## **Summary**<a name="section1390061163093537"></a>
+## **Summary**<a name="section683402754165636"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table889283212093537"></a>
-<table><thead align="left"><tr id="row1624938558093537"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1668033172093537"><a name="p1668033172093537"></a><a name="p1668033172093537"></a>Variable Name</p>
+<a name="table1258253794165636"></a>
+<table><thead align="left"><tr id="row957267033165636"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p372484470165636"><a name="p372484470165636"></a><a name="p372484470165636"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1436719569093537"><a name="p1436719569093537"></a><a name="p1436719569093537"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1425958488165636"><a name="p1425958488165636"></a><a name="p1425958488165636"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row411908500093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1336223475093537"><a name="p1336223475093537"></a><a name="p1336223475093537"></a><a href="WLAN.md#gae29f9cbe74e4e7f7543e74bb8d039f15">sPort</a></p>
+<tbody><tr id="row390532129165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p125525975165636"><a name="p125525975165636"></a><a name="p125525975165636"></a><a href="WLAN.md#gae29f9cbe74e4e7f7543e74bb8d039f15">sPort</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p751662242093537"><a name="p751662242093537"></a><a name="p751662242093537"></a>uint16_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1529484477093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p481373652093537"><a name="p481373652093537"></a><a name="p481373652093537"></a><a href="WLAN.md#ga2a188a6b8ee0eccceefe0e17818e8707">dPort</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p522825947093537"><a name="p522825947093537"></a><a name="p522825947093537"></a>uint16_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1342022216165636"><a name="p1342022216165636"></a><a name="p1342022216165636"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row934575775093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1889621468093537"><a name="p1889621468093537"></a><a name="p1889621468093537"></a><a href="WLAN.md#ga5409de9f82a50bf5113dafb316118d4b">seqNum</a></p>
+<tr id="row695057441165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p933765124165636"><a name="p933765124165636"></a><a name="p933765124165636"></a><a href="WLAN.md#ga2a188a6b8ee0eccceefe0e17818e8707">dPort</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1227539707093537"><a name="p1227539707093537"></a><a name="p1227539707093537"></a>uint32_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row2073948091093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p752865183093537"><a name="p752865183093537"></a><a name="p752865183093537"></a><a href="WLAN.md#ga223c54c5ebb2d92ed5f6c50115663b86">ackNum</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p599916193093537"><a name="p599916193093537"></a><a name="p599916193093537"></a>uint32_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p804387580165636"><a name="p804387580165636"></a><a name="p804387580165636"></a>uint16_t </p>
 </td>
 </tr>
-<tr id="row293846498093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1341713610093537"><a name="p1341713610093537"></a><a name="p1341713610093537"></a><a href="WLAN.md#gabac9ba66ff160d881083b1f173f411f9">offset</a></p>
+<tr id="row718897652165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p689793302165636"><a name="p689793302165636"></a><a name="p689793302165636"></a><a href="WLAN.md#ga5409de9f82a50bf5113dafb316118d4b">seqNum</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2112596228093537"><a name="p2112596228093537"></a><a name="p2112596228093537"></a>uint8_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row2005950826093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1322870382093537"><a name="p1322870382093537"></a><a name="p1322870382093537"></a><a href="WLAN.md#ga66be1d87b4d2576cee91cd3867b93701">flags</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1476317072093537"><a name="p1476317072093537"></a><a name="p1476317072093537"></a>uint8_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p941822208165636"><a name="p941822208165636"></a><a name="p941822208165636"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row1582308199093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p620034059093537"><a name="p620034059093537"></a><a name="p620034059093537"></a><a href="WLAN.md#ga55cc45eeabc0f857e51e8864ae45de8e">window</a></p>
+<tr id="row1493396848165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p670480125165636"><a name="p670480125165636"></a><a name="p670480125165636"></a><a href="WLAN.md#ga223c54c5ebb2d92ed5f6c50115663b86">ackNum</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p745572751093537"><a name="p745572751093537"></a><a name="p745572751093537"></a>uint16_t&nbsp;</p>
-</td>
-</tr>
-<tr id="row1599707411093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1616621483093537"><a name="p1616621483093537"></a><a name="p1616621483093537"></a><a href="WLAN.md#gab32c75fd1d8d8985d9861157907a3a74">check</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1744869083093537"><a name="p1744869083093537"></a><a name="p1744869083093537"></a>uint16_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p255420915165636"><a name="p255420915165636"></a><a name="p255420915165636"></a>uint32_t </p>
 </td>
 </tr>
-<tr id="row1878049471093537"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p215430300093537"><a name="p215430300093537"></a><a name="p215430300093537"></a><a href="WLAN.md#ga0c402826ed93d697342d8b1108db7754">urgent</a></p>
+<tr id="row429461712165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p320882291165636"><a name="p320882291165636"></a><a name="p320882291165636"></a><a href="WLAN.md#gabac9ba66ff160d881083b1f173f411f9">offset</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1603251521093537"><a name="p1603251521093537"></a><a name="p1603251521093537"></a>uint16_t&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p930462736165636"><a name="p930462736165636"></a><a name="p930462736165636"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row315758484165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p362585230165636"><a name="p362585230165636"></a><a name="p362585230165636"></a><a href="WLAN.md#ga66be1d87b4d2576cee91cd3867b93701">flags</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p610144225165636"><a name="p610144225165636"></a><a name="p610144225165636"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row1088302810165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2107413114165636"><a name="p2107413114165636"></a><a name="p2107413114165636"></a><a href="WLAN.md#ga55cc45eeabc0f857e51e8864ae45de8e">window</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1401286527165636"><a name="p1401286527165636"></a><a name="p1401286527165636"></a>uint16_t </p>
+</td>
+</tr>
+<tr id="row684272793165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p56039300165636"><a name="p56039300165636"></a><a name="p56039300165636"></a><a href="WLAN.md#gab32c75fd1d8d8985d9861157907a3a74">check</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p499661259165636"><a name="p499661259165636"></a><a name="p499661259165636"></a>uint16_t </p>
+</td>
+</tr>
+<tr id="row517720430165636"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p603266792165636"><a name="p603266792165636"></a><a name="p603266792165636"></a><a href="WLAN.md#ga0c402826ed93d697342d8b1108db7754">urgent</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1574479926165636"><a name="p1574479926165636"></a><a name="p1574479926165636"></a>uint16_t </p>
 </td>
 </tr>
 </tbody>

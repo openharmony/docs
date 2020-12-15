@@ -1,6 +1,35 @@
 # RTC<a name="EN-US_TOPIC_0000001055039466"></a>
 
-## **Overview**<a name="section413384609093521"></a>
+-   [Overview](#section471241871165623)
+-   [Summary](#section162759248165623)
+-   [Files](#files)
+-   [Data Structures](#nested-classes)
+-   [Typedefs](#typedef-members)
+-   [Enumerations](#enum-members)
+-   [Functions](#func-members)
+-   [Details](#section1063913536165623)
+-   [Typedef](#section1614801129165623)
+-   [RtcAlarmCallback](#gaf9932b7e647bce0503f1314bbe5eef8d)
+-   [Enumeration Type](#section1322628777165623)
+-   [RtcAlarmIndex](#gad7b3a575c848e2669db5e5b6f7e74330)
+-   [Function](#section173008276165623)
+-   [RtcAlarmInterruptEnable\(\)](#ga8b0f2951646ebd17313d905553bd8e0e)
+-   [RtcClose\(\)](#ga395aa79ef260bfcd603ed56f9839d73b)
+-   [RtcGetFreq\(\)](#ga766e2df8045177cd030e1133df4cba12)
+-   [RtcOpen\(\)](#ga35004a866f23081ce2a446f1b0f88e32)
+-   [RtcReadAlarm\(\)](#gabc4a137f0aed13e41da2db2dccc32b08)
+-   [RtcReadReg\(\)](#gaec39316c639860a032f802628276d366)
+-   [RtcReadTime\(\)](#gae8b242769eacd00b71eb1debce9be4de)
+-   [RtcRegisterAlarmCallback\(\)](#ga0c42d787adde8d56a82b0c21624049d5)
+-   [RtcReset\(\)](#ga7eb8a5ecf1058b9f90a133e2caa14573)
+-   [RtcSetFreq\(\)](#ga17fdfb7ba3c876974cf9099aab092345)
+-   [RtcWriteAlarm\(\)](#gaf4dd53c3e5b6c7a1766f6b15a77c96e9)
+-   [RtcWriteReg\(\)](#gab8cc20f50b103acef06aa7887610be1c)
+-   [RtcWriteTime\(\)](#ga7b6da87bfe9af2bcbfeebe9793876eb8)
+
+## **Overview**<a name="section471241871165623"></a>
+
+**Description:**
 
 Provides standard real-time clock \(RTC\) APIs. 
 
@@ -10,20 +39,20 @@ These APIs allow you to perform operations such as reading or writing system tim
 
 1.0
 
-## **Summary**<a name="section282649754093521"></a>
+## **Summary**<a name="section162759248165623"></a>
 
 ## Files<a name="files"></a>
 
-<a name="table704414184093521"></a>
-<table><thead align="left"><tr id="row1764677613093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1023983285093521"><a name="p1023983285093521"></a><a name="p1023983285093521"></a>File Name</p>
+<a name="table1571742485165623"></a>
+<table><thead align="left"><tr id="row27504757165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p27042430165623"><a name="p27042430165623"></a><a name="p27042430165623"></a>File Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p589755885093521"><a name="p589755885093521"></a><a name="p589755885093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1832083458165623"><a name="p1832083458165623"></a><a name="p1832083458165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row898144024093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1654962587093521"><a name="p1654962587093521"></a><a name="p1654962587093521"></a><a href="rtc_if-h.md">rtc_if.h</a></p>
+<tbody><tr id="row1957794699165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1323590233165623"><a name="p1323590233165623"></a><a name="p1323590233165623"></a><a href="rtc_if-h.md">rtc_if.h</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1726052973093521"><a name="p1726052973093521"></a><a name="p1726052973093521"></a>Declares the standard RTC APIs. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1016002406165623"><a name="p1016002406165623"></a><a name="p1016002406165623"></a>Declares the standard RTC APIs. </p>
 </td>
 </tr>
 </tbody>
@@ -31,16 +60,16 @@ These APIs allow you to perform operations such as reading or writing system tim
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table1322328909093521"></a>
-<table><thead align="left"><tr id="row128252741093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p633300058093521"><a name="p633300058093521"></a><a name="p633300058093521"></a>Data Structure Name</p>
+<a name="table508019297165623"></a>
+<table><thead align="left"><tr id="row1029355419165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p941827414165623"><a name="p941827414165623"></a><a name="p941827414165623"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p702019239093521"><a name="p702019239093521"></a><a name="p702019239093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1867337281165623"><a name="p1867337281165623"></a><a name="p1867337281165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row586840723093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1696088341093521"><a name="p1696088341093521"></a><a name="p1696088341093521"></a><a href="rtctime.md">RtcTime</a></p>
+<tbody><tr id="row1380272211165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p931244063165623"><a name="p931244063165623"></a><a name="p931244063165623"></a><a href="rtctime.md">RtcTime</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p215874222093521"><a name="p215874222093521"></a><a name="p215874222093521"></a>Defines the RTC information. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1657005899165623"><a name="p1657005899165623"></a><a name="p1657005899165623"></a>Defines the RTC information. </p>
 </td>
 </tr>
 </tbody>
@@ -48,17 +77,17 @@ These APIs allow you to perform operations such as reading or writing system tim
 
 ## Typedefs<a name="typedef-members"></a>
 
-<a name="table1051697849093521"></a>
-<table><thead align="left"><tr id="row2066230666093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p272333322093521"><a name="p272333322093521"></a><a name="p272333322093521"></a>Typedef Name</p>
+<a name="table568933711165623"></a>
+<table><thead align="left"><tr id="row789194022165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p745976579165623"><a name="p745976579165623"></a><a name="p745976579165623"></a>Typedef Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p670736132093521"><a name="p670736132093521"></a><a name="p670736132093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1268180874165623"><a name="p1268180874165623"></a><a name="p1268180874165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row668529916093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1780210016093521"><a name="p1780210016093521"></a><a name="p1780210016093521"></a><em id="gaf9932b7e647bce0503f1314bbe5eef8d"><a name="gaf9932b7e647bce0503f1314bbe5eef8d"></a><a name="gaf9932b7e647bce0503f1314bbe5eef8d"></a></em>RtcAlarmCallback ) (enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a>)</p>
+<tbody><tr id="row1164232056165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1725355956165623"><a name="p1725355956165623"></a><a name="p1725355956165623"></a><a href="rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d">RtcAlarmCallback</a>) (enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a>)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p140309370093521"><a name="p140309370093521"></a><a name="p140309370093521"></a><strong id="b656114973"><a name="b656114973"></a><a name="b656114973"></a></strong> typedef int32_t(* </p>
-<p id="p918521637093521"><a name="p918521637093521"></a><a name="p918521637093521"></a>Defines a callback that will be invoked when an alarm is generated at the specified time. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1830785880165623"><a name="p1830785880165623"></a><a name="p1830785880165623"></a>typedef int32_t(* </p>
+<p id="p232689678165623"><a name="p232689678165623"></a><a name="p232689678165623"></a>Defines a callback that will be invoked when an alarm is generated at the specified time. </p>
 </td>
 </tr>
 </tbody>
@@ -66,16 +95,16 @@ These APIs allow you to perform operations such as reading or writing system tim
 
 ## Enumerations<a name="enum-members"></a>
 
-<a name="table1542348730093521"></a>
-<table><thead align="left"><tr id="row1869879084093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p7336256093521"><a name="p7336256093521"></a><a name="p7336256093521"></a>Enumeration Name</p>
+<a name="table1839146482165623"></a>
+<table><thead align="left"><tr id="row497250337165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p572722870165623"><a name="p572722870165623"></a><a name="p572722870165623"></a>Enumeration Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1492518531093521"><a name="p1492518531093521"></a><a name="p1492518531093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1125178140165623"><a name="p1125178140165623"></a><a name="p1125178140165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2113321662093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1379837811093521"><a name="p1379837811093521"></a><a name="p1379837811093521"></a><a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> { <a href="rtc.md#ggad7b3a575c848e2669db5e5b6f7e74330a4a768788d6e3932637aed682317a7c6b">RTC_ALARM_INDEX_A</a> = 0, <a href="rtc.md#ggad7b3a575c848e2669db5e5b6f7e74330a15a8e9ba8ffd5b1ebf1f8353ca581352">RTC_ALARM_INDEX_B</a> = 1 }</p>
+<tbody><tr id="row1574409609165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p6640370165623"><a name="p6640370165623"></a><a name="p6640370165623"></a><a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> { <a href="rtc.md#ggad7b3a575c848e2669db5e5b6f7e74330a4a768788d6e3932637aed682317a7c6b">RTC_ALARM_INDEX_A</a> = 0, <a href="rtc.md#ggad7b3a575c848e2669db5e5b6f7e74330a15a8e9ba8ffd5b1ebf1f8353ca581352">RTC_ALARM_INDEX_B</a> = 1 }</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p819027507093521"><a name="p819027507093521"></a><a name="p819027507093521"></a>Enumerates alarm indexes. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1618447960165623"><a name="p1618447960165623"></a><a name="p1618447960165623"></a>Enumerates alarm indexes. </p>
 </td>
 </tr>
 </tbody>
@@ -83,97 +112,109 @@ These APIs allow you to perform operations such as reading or writing system tim
 
 ## Functions<a name="func-members"></a>
 
-<a name="table454941123093521"></a>
-<table><thead align="left"><tr id="row992707622093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1322875222093521"><a name="p1322875222093521"></a><a name="p1322875222093521"></a>Function Name</p>
+<a name="table1987287144165623"></a>
+<table><thead align="left"><tr id="row1142045917165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p133568589165623"><a name="p133568589165623"></a><a name="p133568589165623"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p869967716093521"><a name="p869967716093521"></a><a name="p869967716093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p791930282165623"><a name="p791930282165623"></a><a name="p791930282165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1011926722093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p252860186093521"><a name="p252860186093521"></a><a name="p252860186093521"></a><a href="rtc.md#ga3fcf1d7f9bd17c501282a047923161fe">RtcOpen</a> (void)</p>
+<tbody><tr id="row1153382687165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1772075848165623"><a name="p1772075848165623"></a><a name="p1772075848165623"></a><a href="rtc.md#ga35004a866f23081ce2a446f1b0f88e32">RtcOpen</a> (void)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1925072324093521"><a name="p1925072324093521"></a><a name="p1925072324093521"></a>struct <a href="devhandle.md">DevHandle</a> * </p>
-<p id="p1412189172093521"><a name="p1412189172093521"></a><a name="p1412189172093521"></a>Opens the RTC device to obtain its handle. </p>
-</td>
-</tr>
-<tr id="row439111271093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p287353328093521"><a name="p287353328093521"></a><a name="p287353328093521"></a><a href="rtc.md#gabbf47f061b0f083066ec1da5bdbad9fe">RtcClose</a> (struct <a href="devhandle.md">DevHandle</a> *handle)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p342954698093521"><a name="p342954698093521"></a><a name="p342954698093521"></a>void </p>
-<p id="p531356832093521"><a name="p531356832093521"></a><a name="p531356832093521"></a>Releases a specified handle of the RTC device. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1971350446165623"><a name="p1971350446165623"></a><a name="p1971350446165623"></a><a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> </p>
+<p id="p970270196165623"><a name="p970270196165623"></a><a name="p970270196165623"></a>Opens the RTC device to obtain its handle. </p>
 </td>
 </tr>
-<tr id="row434411123093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p379895631093521"><a name="p379895631093521"></a><a name="p379895631093521"></a><a href="rtc.md#gab3049a463cd2d18b098ae267ec4e9f48">RtcReadTime</a> (struct <a href="devhandle.md">DevHandle</a> *handle, struct <a href="rtctime.md">RtcTime</a> *<a href="en-us_topic_0000001054879478.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
+<tr id="row1763748533165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1104769890165623"><a name="p1104769890165623"></a><a name="p1104769890165623"></a><a href="rtc.md#ga395aa79ef260bfcd603ed56f9839d73b">RtcClose</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1605713419093521"><a name="p1605713419093521"></a><a name="p1605713419093521"></a>int32_t </p>
-<p id="p334046675093521"><a name="p334046675093521"></a><a name="p334046675093521"></a>Reads time from the RTC driver. </p>
-</td>
-</tr>
-<tr id="row1046218584093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p944073501093521"><a name="p944073501093521"></a><a name="p944073501093521"></a><a href="rtc.md#gaa1bfb39230ba3155d03702ad04af67b4">RtcWriteTime</a> (struct <a href="devhandle.md">DevHandle</a> *handle, const struct <a href="rtctime.md">RtcTime</a> *<a href="en-us_topic_0000001054879478.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1240921132093521"><a name="p1240921132093521"></a><a name="p1240921132093521"></a>int32_t </p>
-<p id="p413634172093521"><a name="p413634172093521"></a><a name="p413634172093521"></a>Writes format-compliant time to the RTC driver. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2076397964165623"><a name="p2076397964165623"></a><a name="p2076397964165623"></a>void </p>
+<p id="p1579684755165623"><a name="p1579684755165623"></a><a name="p1579684755165623"></a>Releases a specified handle of the RTC device. </p>
 </td>
 </tr>
-<tr id="row922490600093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1184746641093521"><a name="p1184746641093521"></a><a name="p1184746641093521"></a><a href="rtc.md#ga3a82b2990f646c8bef671ba443691a8a">RtcReadAlarm</a> (struct <a href="devhandle.md">DevHandle</a> *handle, enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> alarmIndex, struct <a href="rtctime.md">RtcTime</a> *<a href="en-us_topic_0000001054879478.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
+<tr id="row1835620604165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2117642633165623"><a name="p2117642633165623"></a><a name="p2117642633165623"></a><a href="rtc.md#gae8b242769eacd00b71eb1debce9be4de">RtcReadTime</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, struct <a href="rtctime.md">RtcTime</a> *<a href="time.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1483941894093521"><a name="p1483941894093521"></a><a name="p1483941894093521"></a>int32_t </p>
-<p id="p1741757373093521"><a name="p1741757373093521"></a><a name="p1741757373093521"></a>Reads the RTC alarm time that was set last time. </p>
-</td>
-</tr>
-<tr id="row831848830093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1591457611093521"><a name="p1591457611093521"></a><a name="p1591457611093521"></a><a href="rtc.md#gad63c5aafffb1f8bee44497f71de5de8f">RtcWriteAlarm</a> (struct <a href="devhandle.md">DevHandle</a> *handle, enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> alarmIndex, const struct <a href="rtctime.md">RtcTime</a> *<a href="en-us_topic_0000001054879478.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p727419872093521"><a name="p727419872093521"></a><a name="p727419872093521"></a>int32_t </p>
-<p id="p500970763093521"><a name="p500970763093521"></a><a name="p500970763093521"></a>Writes the RTC alarm time based on the alarm index. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1830098561165623"><a name="p1830098561165623"></a><a name="p1830098561165623"></a>int32_t </p>
+<p id="p286918814165623"><a name="p286918814165623"></a><a name="p286918814165623"></a>Reads time from the RTC driver. </p>
 </td>
 </tr>
-<tr id="row820404879093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p458584345093521"><a name="p458584345093521"></a><a name="p458584345093521"></a><a href="rtc.md#gac40e57d996375e1762968b66dedb5914">RtcRegisterAlarmCallback</a> (struct <a href="devhandle.md">DevHandle</a> *handle, enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> alarmIndex, <a href="rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d">RtcAlarmCallback</a> cb)</p>
+<tr id="row1028908492165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1655513628165623"><a name="p1655513628165623"></a><a name="p1655513628165623"></a><a href="rtc.md#ga7b6da87bfe9af2bcbfeebe9793876eb8">RtcWriteTime</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, const struct <a href="rtctime.md">RtcTime</a> *<a href="time.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2115148176093521"><a name="p2115148176093521"></a><a name="p2115148176093521"></a>int32_t </p>
-<p id="p944758566093521"><a name="p944758566093521"></a><a name="p944758566093521"></a>Registers <a href="rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d">RtcAlarmCallback</a> that will be invoked when an alarm is generated at the specified time. </p>
-</td>
-</tr>
-<tr id="row83290207093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1095240362093521"><a name="p1095240362093521"></a><a name="p1095240362093521"></a><a href="rtc.md#ga9253cd3579500b86caccd67252291259">RtcAlarmInterruptEnable</a> (struct <a href="devhandle.md">DevHandle</a> *handle, enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> alarmIndex, uint8_t enable)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1667288410093521"><a name="p1667288410093521"></a><a name="p1667288410093521"></a>int32_t </p>
-<p id="p1440709771093521"><a name="p1440709771093521"></a><a name="p1440709771093521"></a>Enables or disables alarm interrupts. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1428122832165623"><a name="p1428122832165623"></a><a name="p1428122832165623"></a>int32_t </p>
+<p id="p906667708165623"><a name="p906667708165623"></a><a name="p906667708165623"></a>Writes format-compliant time to the RTC driver. </p>
 </td>
 </tr>
-<tr id="row563780284093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1073229750093521"><a name="p1073229750093521"></a><a name="p1073229750093521"></a><a href="rtc.md#gafde58faab893e2b4c4b2a836985463e7">RtcGetFreq</a> (struct <a href="devhandle.md">DevHandle</a> *handle, uint32_t *freq)</p>
+<tr id="row1210209121165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1532931305165623"><a name="p1532931305165623"></a><a name="p1532931305165623"></a><a href="rtc.md#gabc4a137f0aed13e41da2db2dccc32b08">RtcReadAlarm</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> alarmIndex, struct <a href="rtctime.md">RtcTime</a> *<a href="time.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p641388026093521"><a name="p641388026093521"></a><a name="p641388026093521"></a>int32_t </p>
-<p id="p633410747093521"><a name="p633410747093521"></a><a name="p633410747093521"></a>Reads the RTC external frequency. </p>
-</td>
-</tr>
-<tr id="row171157579093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1902000317093521"><a name="p1902000317093521"></a><a name="p1902000317093521"></a><a href="rtc.md#ga740cb1ef1925f2c3bff31e4cfc83d745">RtcSetFreq</a> (struct <a href="devhandle.md">DevHandle</a> *handle, uint32_t freq)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p839905874093521"><a name="p839905874093521"></a><a name="p839905874093521"></a>int32_t </p>
-<p id="p1681899005093521"><a name="p1681899005093521"></a><a name="p1681899005093521"></a>Sets the frequency of the external crystal oscillator connected to the RTC driver. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p422758783165623"><a name="p422758783165623"></a><a name="p422758783165623"></a>int32_t </p>
+<p id="p1974908701165623"><a name="p1974908701165623"></a><a name="p1974908701165623"></a>Reads the RTC alarm time that was set last time. </p>
 </td>
 </tr>
-<tr id="row1036002330093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1396551746093521"><a name="p1396551746093521"></a><a name="p1396551746093521"></a><a href="rtc.md#ga775682fde8d650c958e103832ff63dc9">RtcReset</a> (struct <a href="devhandle.md">DevHandle</a> *handle)</p>
+<tr id="row1231926966165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p584895522165623"><a name="p584895522165623"></a><a name="p584895522165623"></a><a href="rtc.md#gaf4dd53c3e5b6c7a1766f6b15a77c96e9">RtcWriteAlarm</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> alarmIndex, const struct <a href="rtctime.md">RtcTime</a> *<a href="time.md#gae7841e681c8c9d59818568d39553642c">time</a>)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p644679346093521"><a name="p644679346093521"></a><a name="p644679346093521"></a>int32_t </p>
-<p id="p1633084976093521"><a name="p1633084976093521"></a><a name="p1633084976093521"></a>Resets the RTC driver. </p>
-</td>
-</tr>
-<tr id="row1386557013093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1947161351093521"><a name="p1947161351093521"></a><a name="p1947161351093521"></a><a href="rtc.md#ga94acd2872dda4b0c487da7d106db3d60">RtcReadReg</a> (struct <a href="devhandle.md">DevHandle</a> *handle, uint8_t usrDefIndex, uint8_t *value)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p182464436093521"><a name="p182464436093521"></a><a name="p182464436093521"></a>int32_t </p>
-<p id="p408281511093521"><a name="p408281511093521"></a><a name="p408281511093521"></a>Reads the configuration of a custom RTC register based on the register index. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p983306512165623"><a name="p983306512165623"></a><a name="p983306512165623"></a>int32_t </p>
+<p id="p1733817565165623"><a name="p1733817565165623"></a><a name="p1733817565165623"></a>Writes the RTC alarm time based on the alarm index. </p>
 </td>
 </tr>
-<tr id="row1691474759093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1152831449093521"><a name="p1152831449093521"></a><a name="p1152831449093521"></a><a href="rtc.md#ga786f9e5a4c2731512c084b86f6f7a3a6">RtcWriteReg</a> (struct <a href="devhandle.md">DevHandle</a> *handle, uint8_t usrDefIndex, uint8_t value)</p>
+<tr id="row326420216165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1161832165165623"><a name="p1161832165165623"></a><a name="p1161832165165623"></a><a href="rtc.md#ga0c42d787adde8d56a82b0c21624049d5">RtcRegisterAlarmCallback</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> alarmIndex, <a href="rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d">RtcAlarmCallback</a> cb)</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1967869605093521"><a name="p1967869605093521"></a><a name="p1967869605093521"></a>int32_t </p>
-<p id="p290992327093521"><a name="p290992327093521"></a><a name="p290992327093521"></a>Writes the configuration of a custom RTC register based on the register index. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p64712861165623"><a name="p64712861165623"></a><a name="p64712861165623"></a>int32_t </p>
+<p id="p362964069165623"><a name="p362964069165623"></a><a name="p362964069165623"></a>Registers <a href="rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d">RtcAlarmCallback</a> that will be invoked when an alarm is generated at the specified time. </p>
+</td>
+</tr>
+<tr id="row1040457254165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1622023988165623"><a name="p1622023988165623"></a><a name="p1622023988165623"></a><a href="rtc.md#ga8b0f2951646ebd17313d905553bd8e0e">RtcAlarmInterruptEnable</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, enum <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a> alarmIndex, uint8_t enable)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1236145395165623"><a name="p1236145395165623"></a><a name="p1236145395165623"></a>int32_t </p>
+<p id="p346656430165623"><a name="p346656430165623"></a><a name="p346656430165623"></a>Enables or disables alarm interrupts. </p>
+</td>
+</tr>
+<tr id="row1925969605165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p17537217165623"><a name="p17537217165623"></a><a name="p17537217165623"></a><a href="rtc.md#ga766e2df8045177cd030e1133df4cba12">RtcGetFreq</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, uint32_t *freq)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p849104665165623"><a name="p849104665165623"></a><a name="p849104665165623"></a>int32_t </p>
+<p id="p1791694194165623"><a name="p1791694194165623"></a><a name="p1791694194165623"></a>Reads the RTC external frequency. </p>
+</td>
+</tr>
+<tr id="row762084757165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1755606977165623"><a name="p1755606977165623"></a><a name="p1755606977165623"></a><a href="rtc.md#ga17fdfb7ba3c876974cf9099aab092345">RtcSetFreq</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, uint32_t freq)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1153618139165623"><a name="p1153618139165623"></a><a name="p1153618139165623"></a>int32_t </p>
+<p id="p1583876276165623"><a name="p1583876276165623"></a><a name="p1583876276165623"></a>Sets the frequency of the external crystal oscillator connected to the RTC driver. </p>
+</td>
+</tr>
+<tr id="row2044505511165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1396875395165623"><a name="p1396875395165623"></a><a name="p1396875395165623"></a><a href="rtc.md#ga7eb8a5ecf1058b9f90a133e2caa14573">RtcReset</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p96266623165623"><a name="p96266623165623"></a><a name="p96266623165623"></a>int32_t </p>
+<p id="p437895476165623"><a name="p437895476165623"></a><a name="p437895476165623"></a>Resets the RTC driver. </p>
+</td>
+</tr>
+<tr id="row135001762165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p372070518165623"><a name="p372070518165623"></a><a name="p372070518165623"></a><a href="rtc.md#gaec39316c639860a032f802628276d366">RtcReadReg</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, uint8_t usrDefIndex, uint8_t *value)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1576497132165623"><a name="p1576497132165623"></a><a name="p1576497132165623"></a>int32_t </p>
+<p id="p1540192612165623"><a name="p1540192612165623"></a><a name="p1540192612165623"></a>Reads the configuration of a custom RTC register based on the register index. </p>
+</td>
+</tr>
+<tr id="row1262262940165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p552803729165623"><a name="p552803729165623"></a><a name="p552803729165623"></a><a href="rtc.md#gab8cc20f50b103acef06aa7887610be1c">RtcWriteReg</a> (<a href="common.md#gab8c2d38e46eec50bd097a27d3d8bf041">DevHandle</a> handle, uint8_t usrDefIndex, uint8_t value)</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p660967104165623"><a name="p660967104165623"></a><a name="p660967104165623"></a>int32_t </p>
+<p id="p1203500521165623"><a name="p1203500521165623"></a><a name="p1203500521165623"></a>Writes the configuration of a custom RTC register based on the register index. </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section242126847093521"></a>
+## **Details**<a name="section1063913536165623"></a>
 
-## **Enumeration Type Documentation**<a name="section785151175093521"></a>
+## **Typedef **<a name="section1614801129165623"></a>
+
+## RtcAlarmCallback<a name="gaf9932b7e647bce0503f1314bbe5eef8d"></a>
+
+```
+typedef int32_t(* RtcAlarmCallback) (enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330))
+```
+
+ **Description:**
+
+Defines a callback that will be invoked when an alarm is generated at the specified time. 
+
+## **Enumeration Type **<a name="section1322628777165623"></a>
 
 ## RtcAlarmIndex<a name="gad7b3a575c848e2669db5e5b6f7e74330"></a>
 
@@ -187,55 +228,55 @@ Enumerates alarm indexes.
 
 The alarm indexes will be used when you perform operations related to alarms.
 
-<a name="table1615960987093521"></a>
-<table><thead align="left"><tr id="row760863074093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p229590463093521"><a name="p229590463093521"></a><a name="p229590463093521"></a>Enumerator</p>
+<a name="table572178946165623"></a>
+<table><thead align="left"><tr id="row1569507459165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1273952966165623"><a name="p1273952966165623"></a><a name="p1273952966165623"></a>Enumerator</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p878731569093521"><a name="p878731569093521"></a><a name="p878731569093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p436054423165623"><a name="p436054423165623"></a><a name="p436054423165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row720006758093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><strong id="ggad7b3a575c848e2669db5e5b6f7e74330a4a768788d6e3932637aed682317a7c6b"><a name="ggad7b3a575c848e2669db5e5b6f7e74330a4a768788d6e3932637aed682317a7c6b"></a><a name="ggad7b3a575c848e2669db5e5b6f7e74330a4a768788d6e3932637aed682317a7c6b"></a></strong>RTC_ALARM_INDEX_A </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1578376653093521"><a name="p1578376653093521"></a><a name="p1578376653093521"></a>Index of alarm A </p>
+<tbody><tr id="row110248306165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><strong id="ggad7b3a575c848e2669db5e5b6f7e74330a4a768788d6e3932637aed682317a7c6b"><a name="ggad7b3a575c848e2669db5e5b6f7e74330a4a768788d6e3932637aed682317a7c6b"></a><a name="ggad7b3a575c848e2669db5e5b6f7e74330a4a768788d6e3932637aed682317a7c6b"></a></strong>RTC_ALARM_INDEX_A </td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2045148054165623"><a name="p2045148054165623"></a><a name="p2045148054165623"></a>Index of alarm A </p>
  </td>
 </tr>
-<tr id="row972580826093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><strong id="ggad7b3a575c848e2669db5e5b6f7e74330a15a8e9ba8ffd5b1ebf1f8353ca581352"><a name="ggad7b3a575c848e2669db5e5b6f7e74330a15a8e9ba8ffd5b1ebf1f8353ca581352"></a><a name="ggad7b3a575c848e2669db5e5b6f7e74330a15a8e9ba8ffd5b1ebf1f8353ca581352"></a></strong>RTC_ALARM_INDEX_B </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1291793693093521"><a name="p1291793693093521"></a><a name="p1291793693093521"></a>Index of alarm B </p>
+<tr id="row1058102924165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><strong id="ggad7b3a575c848e2669db5e5b6f7e74330a15a8e9ba8ffd5b1ebf1f8353ca581352"><a name="ggad7b3a575c848e2669db5e5b6f7e74330a15a8e9ba8ffd5b1ebf1f8353ca581352"></a><a name="ggad7b3a575c848e2669db5e5b6f7e74330a15a8e9ba8ffd5b1ebf1f8353ca581352"></a></strong>RTC_ALARM_INDEX_B </td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p548978504165623"><a name="p548978504165623"></a><a name="p548978504165623"></a>Index of alarm B </p>
  </td>
 </tr>
 </tbody>
 </table>
 
-## **Function Documentation**<a name="section389380468093521"></a>
+## **Function **<a name="section173008276165623"></a>
 
-## RtcAlarmInterruptEnable\(\)<a name="ga9253cd3579500b86caccd67252291259"></a>
+## RtcAlarmInterruptEnable\(\)<a name="ga8b0f2951646ebd17313d905553bd8e0e"></a>
 
 ```
-int32_t RtcAlarmInterruptEnable (struct [DevHandle](devhandle.md) * handle, enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330) alarmIndex, uint8_t enable )
+int32_t RtcAlarmInterruptEnable ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330) alarmIndex, uint8_t enable )
 ```
 
  **Description:**
 
 Enables or disables alarm interrupts. 
 
-Before performing alarm operations, you need to call this function to enable alarm interrupts, so that the  [RtcRegisterAlarmCallback](rtc.md#gac40e57d996375e1762968b66dedb5914)  will be called when the alarm is not generated upon a timeout.
+Before performing alarm operations, you need to call this function to enable alarm interrupts, so that the  [RtcRegisterAlarmCallback](rtc.md#ga0c42d787adde8d56a82b0c21624049d5)  will be called when the alarm is not generated upon a timeout.
 
 **Parameters:**
 
-<a name="table1408051216093521"></a>
-<table><thead align="left"><tr id="row1897013525093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2079063377093521"><a name="p2079063377093521"></a><a name="p2079063377093521"></a>Name</p>
+<a name="table435187390165623"></a>
+<table><thead align="left"><tr id="row493455537165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p323234331165623"><a name="p323234331165623"></a><a name="p323234331165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p295812377093521"><a name="p295812377093521"></a><a name="p295812377093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p140741809165623"><a name="p140741809165623"></a><a name="p140741809165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row19591866093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1025858414093521"><a name="b1025858414093521"></a><a name="b1025858414093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row41724253165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1496300104165623"><a name="b1496300104165623"></a><a name="b1496300104165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row698007374093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">alarmIndex</td>
+<tr id="row905506449165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">alarmIndex</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the RTC alarm index. For details, see <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a>. </td>
 </tr>
-<tr id="row594440287093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">enable</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Specifies whether to enable RTC alarm interrupts. The value <strong id="b1899126920093521"><a name="b1899126920093521"></a><a name="b1899126920093521"></a>1</strong> means to enable alarm interrupts and value <strong id="b1648433254093521"><a name="b1648433254093521"></a><a name="b1648433254093521"></a>0</strong> means to disable alarm interrupts.</td>
+<tr id="row1426905571165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">enable</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Specifies whether to enable RTC alarm interrupts. The value <strong id="b2144735423165623"><a name="b2144735423165623"></a><a name="b2144735423165623"></a>1</strong> means to enable alarm interrupts and value <strong id="b1110317906165623"><a name="b1110317906165623"></a><a name="b1110317906165623"></a>0</strong> means to disable alarm interrupts.</td>
 </tr>
 </tbody>
 </table>
@@ -244,12 +285,10 @@ Before performing alarm operations, you need to call this function to enable ala
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcClose\(\)<a name="gabbf47f061b0f083066ec1da5bdbad9fe"></a>
+## RtcClose\(\)<a name="ga395aa79ef260bfcd603ed56f9839d73b"></a>
 
 ```
-void RtcClose (struct [DevHandle](devhandle.md) * handle)
+void RtcClose ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle)
 ```
 
  **Description:**
@@ -258,23 +297,23 @@ Releases a specified handle of the RTC device.
 
 **Parameters:**
 
-<a name="table204210916093521"></a>
-<table><thead align="left"><tr id="row2114646283093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p808114225093521"><a name="p808114225093521"></a><a name="p808114225093521"></a>Name</p>
+<a name="table570058525165623"></a>
+<table><thead align="left"><tr id="row379918104165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p644815053165623"><a name="p644815053165623"></a><a name="p644815053165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1643229674093521"><a name="p1643229674093521"></a><a name="p1643229674093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1407343045165623"><a name="p1407343045165623"></a><a name="p1407343045165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2005732189093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle to release, which is created via <strong id="b1796908560093521"><a name="b1796908560093521"></a><a name="b1796908560093521"></a>RtcGetHandle</strong>.</td>
+<tbody><tr id="row769508509165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle to release, which is created via <strong id="b952330451165623"><a name="b952330451165623"></a><a name="b952330451165623"></a>RtcGetHandle</strong>.</td>
 </tr>
 </tbody>
 </table>
 
-## RtcGetFreq\(\)<a name="gafde58faab893e2b4c4b2a836985463e7"></a>
+## RtcGetFreq\(\)<a name="ga766e2df8045177cd030e1133df4cba12"></a>
 
 ```
-int32_t RtcGetFreq (struct [DevHandle](devhandle.md) * handle, uint32_t * freq )
+int32_t RtcGetFreq ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, uint32_t * freq )
 ```
 
  **Description:**
@@ -285,17 +324,17 @@ This function reads the frequency of the external crystal oscillator connected t
 
 **Parameters:**
 
-<a name="table1235265649093521"></a>
-<table><thead align="left"><tr id="row300558597093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p224752946093521"><a name="p224752946093521"></a><a name="p224752946093521"></a>Name</p>
+<a name="table1249918021165623"></a>
+<table><thead align="left"><tr id="row1352646327165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1714362373165623"><a name="p1714362373165623"></a><a name="p1714362373165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p952995590093521"><a name="p952995590093521"></a><a name="p952995590093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p875419695165623"><a name="p875419695165623"></a><a name="p875419695165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1265750346093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b277304415093521"><a name="b277304415093521"></a><a name="b277304415093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row1019766062165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b236824185165623"><a name="b236824185165623"></a><a name="b236824185165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row1319964133093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">freq</td>
+<tr id="row243034752165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">freq</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the frequency of the external crystal oscillator, in Hz.</td>
 </tr>
 </tbody>
@@ -305,12 +344,10 @@ This function reads the frequency of the external crystal oscillator connected t
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcOpen\(\)<a name="ga3fcf1d7f9bd17c501282a047923161fe"></a>
+## RtcOpen\(\)<a name="ga35004a866f23081ce2a446f1b0f88e32"></a>
 
 ```
-struct [DevHandle](devhandle.md)* RtcOpen (void )
+[DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) RtcOpen (void )
 ```
 
  **Description:**
@@ -321,14 +358,12 @@ The OS supports only one RTC device.
 
 **Returns:**
 
-Returns  [DevHandle](devhandle.md)  if the operation is successful; returns  **NULL**  if the operation fails. 
+Returns  [DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041)  if the operation is successful; returns  **NULL**  if the operation fails. 
 
-
-
-## RtcReadAlarm\(\)<a name="ga3a82b2990f646c8bef671ba443691a8a"></a>
+## RtcReadAlarm\(\)<a name="gabc4a137f0aed13e41da2db2dccc32b08"></a>
 
 ```
-int32_t RtcReadAlarm (struct [DevHandle](devhandle.md) * handle, enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330) alarmIndex, struct [RtcTime](rtctime.md) * time )
+int32_t RtcReadAlarm ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330) alarmIndex, struct [RtcTime](rtctime.md) * time )
 ```
 
  **Description:**
@@ -337,20 +372,20 @@ Reads the RTC alarm time that was set last time.
 
 **Parameters:**
 
-<a name="table162448104093521"></a>
-<table><thead align="left"><tr id="row1493472911093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1493605734093521"><a name="p1493605734093521"></a><a name="p1493605734093521"></a>Name</p>
+<a name="table2017015443165623"></a>
+<table><thead align="left"><tr id="row565100307165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p182726196165623"><a name="p182726196165623"></a><a name="p182726196165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p846747868093521"><a name="p846747868093521"></a><a name="p846747868093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1606150799165623"><a name="p1606150799165623"></a><a name="p1606150799165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1214743885093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b387535997093521"><a name="b387535997093521"></a><a name="b387535997093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row859089252165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1001264631165623"><a name="b1001264631165623"></a><a name="b1001264631165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row1807708613093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">alarmIndex</td>
+<tr id="row354932673165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">alarmIndex</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the RTC alarm index. For details, see <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a>. </td>
 </tr>
-<tr id="row748033729093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
+<tr id="row1700778259165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC alarm time information. For details, see <a href="rtctime.md">RtcTime</a>.</td>
 </tr>
 </tbody>
@@ -360,12 +395,10 @@ Reads the RTC alarm time that was set last time.
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcReadReg\(\)<a name="ga94acd2872dda4b0c487da7d106db3d60"></a>
+## RtcReadReg\(\)<a name="gaec39316c639860a032f802628276d366"></a>
 
 ```
-int32_t RtcReadReg (struct [DevHandle](devhandle.md) * handle, uint8_t usrDefIndex, uint8_t * value )
+int32_t RtcReadReg ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, uint8_t usrDefIndex, uint8_t * value )
 ```
 
  **Description:**
@@ -376,20 +409,20 @@ One index corresponds to one byte of the configuration value.
 
 **Parameters:**
 
-<a name="table368457927093521"></a>
-<table><thead align="left"><tr id="row875214868093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p979328003093521"><a name="p979328003093521"></a><a name="p979328003093521"></a>Name</p>
+<a name="table976552511165623"></a>
+<table><thead align="left"><tr id="row318015889165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p704960702165623"><a name="p704960702165623"></a><a name="p704960702165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1367150434093521"><a name="p1367150434093521"></a><a name="p1367150434093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p464830013165623"><a name="p464830013165623"></a><a name="p464830013165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row802562778093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b155541912093521"><a name="b155541912093521"></a><a name="b155541912093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row1422971248165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1636195880165623"><a name="b1636195880165623"></a><a name="b1636195880165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row432967364093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">usrDefIndex</td>
+<tr id="row19257765165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">usrDefIndex</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of the custom register. </td>
 </tr>
-<tr id="row1942179495093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">value</td>
+<tr id="row1169451841165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">value</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the configuration value of the specified register index.</td>
 </tr>
 </tbody>
@@ -399,12 +432,10 @@ One index corresponds to one byte of the configuration value.
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcReadTime\(\)<a name="gab3049a463cd2d18b098ae267ec4e9f48"></a>
+## RtcReadTime\(\)<a name="gae8b242769eacd00b71eb1debce9be4de"></a>
 
 ```
-int32_t RtcReadTime (struct [DevHandle](devhandle.md) * handle, struct [RtcTime](rtctime.md) * time )
+int32_t RtcReadTime ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, struct [RtcTime](rtctime.md) * time )
 ```
 
  **Description:**
@@ -415,17 +446,17 @@ The time information includes the year, month, day, day of the week, hour, minut
 
 **Parameters:**
 
-<a name="table1282480086093521"></a>
-<table><thead align="left"><tr id="row2069334217093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1030216493093521"><a name="p1030216493093521"></a><a name="p1030216493093521"></a>Name</p>
+<a name="table331956472165623"></a>
+<table><thead align="left"><tr id="row1243296127165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p381800623165623"><a name="p381800623165623"></a><a name="p381800623165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p22710908093521"><a name="p22710908093521"></a><a name="p22710908093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1771047860165623"><a name="p1771047860165623"></a><a name="p1771047860165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1931844786093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1270893308093521"><a name="b1270893308093521"></a><a name="b1270893308093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row2018499715165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1898004995165623"><a name="b1898004995165623"></a><a name="b1898004995165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row25920622093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
+<tr id="row889388569165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the time information read from the RTC driver. For details, see <a href="rtctime.md">RtcTime</a>.</td>
 </tr>
 </tbody>
@@ -435,12 +466,10 @@ The time information includes the year, month, day, day of the week, hour, minut
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcRegisterAlarmCallback\(\)<a name="gac40e57d996375e1762968b66dedb5914"></a>
+## RtcRegisterAlarmCallback\(\)<a name="ga0c42d787adde8d56a82b0c21624049d5"></a>
 
 ```
-int32_t RtcRegisterAlarmCallback (struct [DevHandle](devhandle.md) * handle, enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330) alarmIndex, [RtcAlarmCallback](rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d) cb )
+int32_t RtcRegisterAlarmCallback ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330) alarmIndex, [RtcAlarmCallback](rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d) cb )
 ```
 
  **Description:**
@@ -449,20 +478,20 @@ Registers  [RtcAlarmCallback](rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d)  that w
 
 **Parameters:**
 
-<a name="table1481156665093521"></a>
-<table><thead align="left"><tr id="row600043312093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1602367490093521"><a name="p1602367490093521"></a><a name="p1602367490093521"></a>Name</p>
+<a name="table1228163297165623"></a>
+<table><thead align="left"><tr id="row1760455861165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p899778512165623"><a name="p899778512165623"></a><a name="p899778512165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p39259559093521"><a name="p39259559093521"></a><a name="p39259559093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p432298711165623"><a name="p432298711165623"></a><a name="p432298711165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1176654135093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b748939600093521"><a name="b748939600093521"></a><a name="b748939600093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row969470638165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1300545211165623"><a name="b1300545211165623"></a><a name="b1300545211165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row2080741403093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">alarmIndex</td>
+<tr id="row2115411806165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">alarmIndex</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the RTC alarm index. For details, see <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a>. </td>
 </tr>
-<tr id="row1662668017093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cb</td>
+<tr id="row1688128585165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">cb</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the callback to register. For details, see <a href="rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d">RtcAlarmCallback</a>.</td>
 </tr>
 </tbody>
@@ -472,12 +501,10 @@ Registers  [RtcAlarmCallback](rtc.md#gaf9932b7e647bce0503f1314bbe5eef8d)  that w
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcReset\(\)<a name="ga775682fde8d650c958e103832ff63dc9"></a>
+## RtcReset\(\)<a name="ga7eb8a5ecf1058b9f90a133e2caa14573"></a>
 
 ```
-int32_t RtcReset (struct [DevHandle](devhandle.md) * handle)
+int32_t RtcReset ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle)
 ```
 
  **Description:**
@@ -488,15 +515,15 @@ After the reset, the configuration registers are restored to the default values.
 
 **Parameters:**
 
-<a name="table22778335093521"></a>
-<table><thead align="left"><tr id="row1380358810093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1363536303093521"><a name="p1363536303093521"></a><a name="p1363536303093521"></a>Name</p>
+<a name="table488118312165623"></a>
+<table><thead align="left"><tr id="row1999932336165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1389850158165623"><a name="p1389850158165623"></a><a name="p1389850158165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1354884443093521"><a name="p1354884443093521"></a><a name="p1354884443093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p679100673165623"><a name="p679100673165623"></a><a name="p679100673165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1857614163093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1644655525093521"><a name="b1644655525093521"></a><a name="b1644655525093521"></a>RtcGetHandle</strong>.</td>
+<tbody><tr id="row1103377339165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b590429706165623"><a name="b590429706165623"></a><a name="b590429706165623"></a>RtcGetHandle</strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -505,12 +532,10 @@ After the reset, the configuration registers are restored to the default values.
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcSetFreq\(\)<a name="ga740cb1ef1925f2c3bff31e4cfc83d745"></a>
+## RtcSetFreq\(\)<a name="ga17fdfb7ba3c876974cf9099aab092345"></a>
 
 ```
-int32_t RtcSetFreq (struct [DevHandle](devhandle.md) * handle, uint32_t freq )
+int32_t RtcSetFreq ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, uint32_t freq )
 ```
 
  **Description:**
@@ -521,17 +546,17 @@ Note that the frequency must be configured in accordance with the requirements s
 
 **Parameters:**
 
-<a name="table94452020093521"></a>
-<table><thead align="left"><tr id="row375657748093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1370609795093521"><a name="p1370609795093521"></a><a name="p1370609795093521"></a>Name</p>
+<a name="table413379912165623"></a>
+<table><thead align="left"><tr id="row37092378165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p185519290165623"><a name="p185519290165623"></a><a name="p185519290165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p733546174093521"><a name="p733546174093521"></a><a name="p733546174093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1275254587165623"><a name="p1275254587165623"></a><a name="p1275254587165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row293457866093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b484295584093521"><a name="b484295584093521"></a><a name="b484295584093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row1528386661165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1695642743165623"><a name="b1695642743165623"></a><a name="b1695642743165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row2075686904093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">freq</td>
+<tr id="row1021535954165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">freq</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the frequency to set for the external crystal oscillator, in Hz.</td>
 </tr>
 </tbody>
@@ -541,12 +566,10 @@ Note that the frequency must be configured in accordance with the requirements s
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcWriteAlarm\(\)<a name="gad63c5aafffb1f8bee44497f71de5de8f"></a>
+## RtcWriteAlarm\(\)<a name="gaf4dd53c3e5b6c7a1766f6b15a77c96e9"></a>
 
 ```
-int32_t RtcWriteAlarm (struct [DevHandle](devhandle.md) * handle, enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330) alarmIndex, const struct [RtcTime](rtctime.md) * time )
+int32_t RtcWriteAlarm ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, enum [RtcAlarmIndex](rtc.md#gad7b3a575c848e2669db5e5b6f7e74330) alarmIndex, const struct [RtcTime](rtctime.md) * time )
 ```
 
  **Description:**
@@ -557,20 +580,20 @@ Note that the RTC start time is 1970/01/01 Thursday 00:00:00 \(UTC\). Set the ma
 
 **Parameters:**
 
-<a name="table189517181093521"></a>
-<table><thead align="left"><tr id="row1568251987093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2112482406093521"><a name="p2112482406093521"></a><a name="p2112482406093521"></a>Name</p>
+<a name="table641593273165623"></a>
+<table><thead align="left"><tr id="row1330273047165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1297849157165623"><a name="p1297849157165623"></a><a name="p1297849157165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1226669856093521"><a name="p1226669856093521"></a><a name="p1226669856093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1695099436165623"><a name="p1695099436165623"></a><a name="p1695099436165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row823916756093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b2131610602093521"><a name="b2131610602093521"></a><a name="b2131610602093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row307815348165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b143532466165623"><a name="b143532466165623"></a><a name="b143532466165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row837193087093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">alarmIndex</td>
+<tr id="row185810314165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">alarmIndex</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the RTC alarm index. For details, see <a href="rtc.md#gad7b3a575c848e2669db5e5b6f7e74330">RtcAlarmIndex</a>. </td>
 </tr>
-<tr id="row906199917093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">tm</td>
+<tr id="row1564427852165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">tm</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC alarm time information. For details, see <a href="rtctime.md">RtcTime</a>.</td>
 </tr>
 </tbody>
@@ -580,12 +603,10 @@ Note that the RTC start time is 1970/01/01 Thursday 00:00:00 \(UTC\). Set the ma
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcWriteReg\(\)<a name="ga786f9e5a4c2731512c084b86f6f7a3a6"></a>
+## RtcWriteReg\(\)<a name="gab8cc20f50b103acef06aa7887610be1c"></a>
 
 ```
-int32_t RtcWriteReg (struct [DevHandle](devhandle.md) * handle, uint8_t usrDefIndex, uint8_t value )
+int32_t RtcWriteReg ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, uint8_t usrDefIndex, uint8_t value )
 ```
 
  **Description:**
@@ -596,20 +617,20 @@ One index corresponds to one byte of the configuration value.
 
 **Parameters:**
 
-<a name="table1643532640093521"></a>
-<table><thead align="left"><tr id="row938207764093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p2074153280093521"><a name="p2074153280093521"></a><a name="p2074153280093521"></a>Name</p>
+<a name="table453707851165623"></a>
+<table><thead align="left"><tr id="row1677010335165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1199399409165623"><a name="p1199399409165623"></a><a name="p1199399409165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p286519964093521"><a name="p286519964093521"></a><a name="p286519964093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p285445909165623"><a name="p285445909165623"></a><a name="p285445909165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row363417556093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b1190980416093521"><a name="b1190980416093521"></a><a name="b1190980416093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row1875519441165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b239068854165623"><a name="b239068854165623"></a><a name="b239068854165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row2015441742093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">usrDefIndex</td>
+<tr id="row2058273234165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">usrDefIndex</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the index of the custom register. </td>
 </tr>
-<tr id="row881078034093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">value</td>
+<tr id="row287143180165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">value</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the configuration value to write at the index of the register.</td>
 </tr>
 </tbody>
@@ -619,12 +640,10 @@ One index corresponds to one byte of the configuration value.
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
 
-
-
-## RtcWriteTime\(\)<a name="gaa1bfb39230ba3155d03702ad04af67b4"></a>
+## RtcWriteTime\(\)<a name="ga7b6da87bfe9af2bcbfeebe9793876eb8"></a>
 
 ```
-int32_t RtcWriteTime (struct [DevHandle](devhandle.md) * handle, const struct [RtcTime](rtctime.md) * time )
+int32_t RtcWriteTime ([DevHandle](common.md#gab8c2d38e46eec50bd097a27d3d8bf041) handle, const struct [RtcTime](rtctime.md) * time )
 ```
 
  **Description:**
@@ -635,17 +654,17 @@ Note that the RTC start time is 1970/01/01 Thursday 00:00:00 \(UTC\). Set the ma
 
 **Parameters:**
 
-<a name="table110039299093521"></a>
-<table><thead align="left"><tr id="row1067714704093521"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p179576997093521"><a name="p179576997093521"></a><a name="p179576997093521"></a>Name</p>
+<a name="table1240516278165623"></a>
+<table><thead align="left"><tr id="row61782621165623"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p413605318165623"><a name="p413605318165623"></a><a name="p413605318165623"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p158172035093521"><a name="p158172035093521"></a><a name="p158172035093521"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1153310295165623"><a name="p1153310295165623"></a><a name="p1153310295165623"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1178085783093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b2092319530093521"><a name="b2092319530093521"></a><a name="b2092319530093521"></a>RtcGetHandle</strong>. </td>
+<tbody><tr id="row1129188031165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">handle</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the RTC device handle, which is obtained via <strong id="b576900403165623"><a name="b576900403165623"></a><a name="b576900403165623"></a>RtcGetHandle</strong>. </td>
 </tr>
-<tr id="row514929124093521"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
+<tr id="row109866393165623"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 ">time</td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 ">Indicates the pointer to the time information to write. For details, see <a href="rtctime.md">RtcTime</a>.</td>
 </tr>
 </tbody>
@@ -654,6 +673,4 @@ Note that the RTC start time is 1970/01/01 Thursday 00:00:00 \(UTC\). Set the ma
 **Returns:**
 
 Returns  **0**  if the operation is successful; returns a negative value if the operation fails. For details, see  [HDF\_STATUS](driverutils.md#ga7e01536ecbe9b17563dd3fe256202a67). 
-
-
 

@@ -1,6 +1,18 @@
 # shminfo<a name="ZH-CN_TOPIC_0000001055039564"></a>
 
-## **Overview**<a name="section679255156084843"></a>
+-   [Overview](#section764815373165637)
+-   [Summary](#section1169491627165637)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section747444635165637)
+-   [Field](#section1868399011165637)
+-   [\_\_unused](#a68b65a802c7b3bc6d911ed41808203ef)
+-   [shmall](#a4b74fbc85e2805f7b99f6aecde00c570)
+-   [shmmax](#a2d7778854ce2e55499a2036da769905a)
+-   [shmmin](#a9940d32ac5484be0f5df79296d9bc97a)
+-   [shmmni](#a084bc8449e6683ede60a6445255d14bd)
+-   [shmseg](#a11ee1150ca8aaad294c17fe939f35688)
+
+## **Overview**<a name="section764815373165637"></a>
 
 **Related Modules:**
 
@@ -10,53 +22,53 @@
 
 Describes limitations and attributes of system-level shared memory. 
 
-## **Summary**<a name="section1095350905084843"></a>
+## **Summary**<a name="section1169491627165637"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table765226721084843"></a>
-<table><thead align="left"><tr id="row1071570771084843"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1279545924084843"><a name="p1279545924084843"></a><a name="p1279545924084843"></a>Variable Name</p>
+<a name="table1687518525165637"></a>
+<table><thead align="left"><tr id="row1444592544165637"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1349301954165637"><a name="p1349301954165637"></a><a name="p1349301954165637"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p146894964084843"><a name="p146894964084843"></a><a name="p146894964084843"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p972001067165637"><a name="p972001067165637"></a><a name="p972001067165637"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1152593283084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1862920464084843"><a name="p1862920464084843"></a><a name="p1862920464084843"></a><a href="shminfo.md#a2d7778854ce2e55499a2036da769905a">shmmax</a></p>
+<tbody><tr id="row752017582165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1655303934165637"><a name="p1655303934165637"></a><a name="p1655303934165637"></a><a href="shminfo.md#a2d7778854ce2e55499a2036da769905a">shmmax</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p983861991084843"><a name="p983861991084843"></a><a name="p983861991084843"></a>unsigned long&nbsp;</p>
-</td>
-</tr>
-<tr id="row1890341097084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1505578260084843"><a name="p1505578260084843"></a><a name="p1505578260084843"></a><a href="shminfo.md#a9940d32ac5484be0f5df79296d9bc97a">shmmin</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p100342808084843"><a name="p100342808084843"></a><a name="p100342808084843"></a>unsigned long&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p886963319165637"><a name="p886963319165637"></a><a name="p886963319165637"></a>unsigned long </p>
 </td>
 </tr>
-<tr id="row1583735918084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1550845632084843"><a name="p1550845632084843"></a><a name="p1550845632084843"></a><a href="shminfo.md#a084bc8449e6683ede60a6445255d14bd">shmmni</a></p>
+<tr id="row1838668115165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1590284906165637"><a name="p1590284906165637"></a><a name="p1590284906165637"></a><a href="shminfo.md#a9940d32ac5484be0f5df79296d9bc97a">shmmin</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1918244563084843"><a name="p1918244563084843"></a><a name="p1918244563084843"></a>unsigned long&nbsp;</p>
-</td>
-</tr>
-<tr id="row1028734777084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p871184792084843"><a name="p871184792084843"></a><a name="p871184792084843"></a><a href="shminfo.md#a11ee1150ca8aaad294c17fe939f35688">shmseg</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1071198142084843"><a name="p1071198142084843"></a><a name="p1071198142084843"></a>unsigned long&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p753499164165637"><a name="p753499164165637"></a><a name="p753499164165637"></a>unsigned long </p>
 </td>
 </tr>
-<tr id="row1765219809084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1844326937084843"><a name="p1844326937084843"></a><a name="p1844326937084843"></a><a href="shminfo.md#a4b74fbc85e2805f7b99f6aecde00c570">shmall</a></p>
+<tr id="row262911906165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1230781778165637"><a name="p1230781778165637"></a><a name="p1230781778165637"></a><a href="shminfo.md#a084bc8449e6683ede60a6445255d14bd">shmmni</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p448734012084843"><a name="p448734012084843"></a><a name="p448734012084843"></a>unsigned long&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p354399726165637"><a name="p354399726165637"></a><a name="p354399726165637"></a>unsigned long </p>
 </td>
 </tr>
-<tr id="row99108698084843"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p228810183084843"><a name="p228810183084843"></a><a name="p228810183084843"></a><a href="shminfo.md#a68b65a802c7b3bc6d911ed41808203ef">__unused</a> [4]</p>
+<tr id="row1651544211165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p987008679165637"><a name="p987008679165637"></a><a name="p987008679165637"></a><a href="shminfo.md#a11ee1150ca8aaad294c17fe939f35688">shmseg</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p801009267084843"><a name="p801009267084843"></a><a name="p801009267084843"></a>unsigned long&nbsp;</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p643027796165637"><a name="p643027796165637"></a><a name="p643027796165637"></a>unsigned long </p>
+</td>
+</tr>
+<tr id="row1472178946165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p837185467165637"><a name="p837185467165637"></a><a name="p837185467165637"></a><a href="shminfo.md#a4b74fbc85e2805f7b99f6aecde00c570">shmall</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1484635494165637"><a name="p1484635494165637"></a><a name="p1484635494165637"></a>unsigned long </p>
+</td>
+</tr>
+<tr id="row408052266165637"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1404758276165637"><a name="p1404758276165637"></a><a name="p1404758276165637"></a><a href="shminfo.md#a68b65a802c7b3bc6d911ed41808203ef">__unused</a> [4]</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p243982112165637"><a name="p243982112165637"></a><a name="p243982112165637"></a>unsigned long </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section1183055754084843"></a>
+## **Details**<a name="section747444635165637"></a>
 
-## **Field Documentation**<a name="section768473825084843"></a>
+## **Field **<a name="section1868399011165637"></a>
 
 ## \_\_unused<a name="a68b65a802c7b3bc6d911ed41808203ef"></a>
 

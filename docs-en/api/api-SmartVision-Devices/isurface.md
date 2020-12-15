@@ -1,6 +1,25 @@
 # ISurface<a name="EN-US_TOPIC_0000001055518092"></a>
 
-## **Overview**<a name="section77468637093531"></a>
+-   [Overview](#section1540575515165631)
+-   [Summary](#section446071761165631)
+-   [Data Fields](#pub-attribs)
+-   [Details](#section20802730165631)
+-   [Field](#section1265100385165631)
+-   [alpha0](#ac2aa13d6c25df5d1a1fcfa92da425d29)
+-   [alpha1](#a4fd217bfeb9d0a73992c797a900ba632)
+-   [bAlphaExt1555](#a9d9ba9ee72ae25c0e84bfba10fe52f9a)
+-   [bAlphaMax255](#a17f87b9850f83633f427eeceb74c93a7)
+-   [bYCbCrClut](#ad2693b11b0cefeed40070364f9e31e84)
+-   [cbcrPhyAddr](#adc8bc02eb42a881adf57caf06ddff243)
+-   [cbcrStride](#a835f95df55db296dbf92061da1aa9627)
+-   [clutPhyAddr](#a98bca93c426df8030c0a67b8fba02525)
+-   [enColorFmt](#a260d540d41736284edc5a27c1ff46963)
+-   [height](#ae68d2e393fe150b1bde8c312c36945c6)
+-   [phyAddr](#aeac36e064994bcf2f2f1acc4b0f6a1ea)
+-   [stride](#a61ea4da3897aac944042e60df73554be)
+-   [width](#a3cc2e909bab924936e8273a237ddbb65)
+
+## **Overview**<a name="section1540575515165631"></a>
 
 **Related Modules:**
 
@@ -10,88 +29,88 @@
 
 Stores surface information for hardware acceleration, such as draw image, and bit blit. 
 
-## **Summary**<a name="section1578109880093531"></a>
+## **Summary**<a name="section446071761165631"></a>
 
 ## Data Fields<a name="pub-attribs"></a>
 
-<a name="table2101552479093531"></a>
-<table><thead align="left"><tr id="row1374822588093531"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1433976373093531"><a name="p1433976373093531"></a><a name="p1433976373093531"></a>Variable Name</p>
+<a name="table302289190165631"></a>
+<table><thead align="left"><tr id="row265234285165631"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p1018151953165631"><a name="p1018151953165631"></a><a name="p1018151953165631"></a>Variable Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p480426308093531"><a name="p480426308093531"></a><a name="p480426308093531"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p1239824126165631"><a name="p1239824126165631"></a><a name="p1239824126165631"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1975690753093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p702709694093531"><a name="p702709694093531"></a><a name="p702709694093531"></a><a href="isurface.md#aeac36e064994bcf2f2f1acc4b0f6a1ea">phyAddr</a></p>
+<tbody><tr id="row1751105728165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1156387686165631"><a name="p1156387686165631"></a><a name="p1156387686165631"></a><a href="isurface.md#aeac36e064994bcf2f2f1acc4b0f6a1ea">phyAddr</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1595665026093531"><a name="p1595665026093531"></a><a name="p1595665026093531"></a>uint64_t </p>
-</td>
-</tr>
-<tr id="row771586060093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1000998757093531"><a name="p1000998757093531"></a><a name="p1000998757093531"></a><a href="isurface.md#ae68d2e393fe150b1bde8c312c36945c6">height</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p517024595093531"><a name="p517024595093531"></a><a name="p517024595093531"></a>int32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p178702793165631"><a name="p178702793165631"></a><a name="p178702793165631"></a>uint64_t </p>
 </td>
 </tr>
-<tr id="row28891287093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1065052171093531"><a name="p1065052171093531"></a><a name="p1065052171093531"></a><a href="isurface.md#a3cc2e909bab924936e8273a237ddbb65">width</a></p>
+<tr id="row1624892688165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p510732868165631"><a name="p510732868165631"></a><a name="p510732868165631"></a><a href="isurface.md#ae68d2e393fe150b1bde8c312c36945c6">height</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1259781867093531"><a name="p1259781867093531"></a><a name="p1259781867093531"></a>int32_t </p>
-</td>
-</tr>
-<tr id="row1420795017093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1209673488093531"><a name="p1209673488093531"></a><a name="p1209673488093531"></a><a href="isurface.md#a61ea4da3897aac944042e60df73554be">stride</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2064065301093531"><a name="p2064065301093531"></a><a name="p2064065301093531"></a>int32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p51318841165631"><a name="p51318841165631"></a><a name="p51318841165631"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row1333787393093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p172889621093531"><a name="p172889621093531"></a><a name="p172889621093531"></a><a href="isurface.md#a260d540d41736284edc5a27c1ff46963">enColorFmt</a></p>
+<tr id="row1478131760165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1858506943165631"><a name="p1858506943165631"></a><a name="p1858506943165631"></a><a href="isurface.md#a3cc2e909bab924936e8273a237ddbb65">width</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p850338836093531"><a name="p850338836093531"></a><a name="p850338836093531"></a><a href="codec.md#ga60883d4958a60b91661e97027a85072a">PixelFormat</a> </p>
-</td>
-</tr>
-<tr id="row1621633371093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p484630293093531"><a name="p484630293093531"></a><a name="p484630293093531"></a><a href="isurface.md#ad2693b11b0cefeed40070364f9e31e84">bYCbCrClut</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p293511898093531"><a name="p293511898093531"></a><a name="p293511898093531"></a>bool </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1686170287165631"><a name="p1686170287165631"></a><a name="p1686170287165631"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row676301000093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p564589565093531"><a name="p564589565093531"></a><a name="p564589565093531"></a><a href="isurface.md#a17f87b9850f83633f427eeceb74c93a7">bAlphaMax255</a></p>
+<tr id="row1346602825165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1135209546165631"><a name="p1135209546165631"></a><a name="p1135209546165631"></a><a href="isurface.md#a61ea4da3897aac944042e60df73554be">stride</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p955676931093531"><a name="p955676931093531"></a><a name="p955676931093531"></a>bool </p>
-</td>
-</tr>
-<tr id="row41002544093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1829266267093531"><a name="p1829266267093531"></a><a name="p1829266267093531"></a><a href="isurface.md#a9d9ba9ee72ae25c0e84bfba10fe52f9a">bAlphaExt1555</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2017820989093531"><a name="p2017820989093531"></a><a name="p2017820989093531"></a>bool </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p41587403165631"><a name="p41587403165631"></a><a name="p41587403165631"></a>int32_t </p>
 </td>
 </tr>
-<tr id="row211353025093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1198919755093531"><a name="p1198919755093531"></a><a name="p1198919755093531"></a><a href="isurface.md#ac2aa13d6c25df5d1a1fcfa92da425d29">alpha0</a></p>
+<tr id="row1669704666165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1413758778165631"><a name="p1413758778165631"></a><a name="p1413758778165631"></a><a href="isurface.md#a260d540d41736284edc5a27c1ff46963">enColorFmt</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p807663949093531"><a name="p807663949093531"></a><a name="p807663949093531"></a>uint8_t </p>
-</td>
-</tr>
-<tr id="row399389261093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2105545223093531"><a name="p2105545223093531"></a><a name="p2105545223093531"></a><a href="isurface.md#a4fd217bfeb9d0a73992c797a900ba632">alpha1</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1970331055093531"><a name="p1970331055093531"></a><a name="p1970331055093531"></a>uint8_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1636176778165631"><a name="p1636176778165631"></a><a name="p1636176778165631"></a><a href="codec.md#ga60883d4958a60b91661e97027a85072a">PixelFormat</a> </p>
 </td>
 </tr>
-<tr id="row1136911060093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1466106312093531"><a name="p1466106312093531"></a><a name="p1466106312093531"></a><a href="isurface.md#adc8bc02eb42a881adf57caf06ddff243">cbcrPhyAddr</a></p>
+<tr id="row891351499165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1707571242165631"><a name="p1707571242165631"></a><a name="p1707571242165631"></a><a href="isurface.md#ad2693b11b0cefeed40070364f9e31e84">bYCbCrClut</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p850433995093531"><a name="p850433995093531"></a><a name="p850433995093531"></a>uint64_t </p>
-</td>
-</tr>
-<tr id="row578373665093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p2082248186093531"><a name="p2082248186093531"></a><a name="p2082248186093531"></a><a href="isurface.md#a835f95df55db296dbf92061da1aa9627">cbcrStride</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p564567463093531"><a name="p564567463093531"></a><a name="p564567463093531"></a>int32_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1198283157165631"><a name="p1198283157165631"></a><a name="p1198283157165631"></a>bool </p>
 </td>
 </tr>
-<tr id="row1256661903093531"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p226955095093531"><a name="p226955095093531"></a><a name="p226955095093531"></a><a href="isurface.md#a98bca93c426df8030c0a67b8fba02525">clutPhyAddr</a></p>
+<tr id="row365270198165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p183189322165631"><a name="p183189322165631"></a><a name="p183189322165631"></a><a href="isurface.md#a17f87b9850f83633f427eeceb74c93a7">bAlphaMax255</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p289686027093531"><a name="p289686027093531"></a><a name="p289686027093531"></a>uint64_t </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p758608946165631"><a name="p758608946165631"></a><a name="p758608946165631"></a>bool </p>
+</td>
+</tr>
+<tr id="row1587676849165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p506460194165631"><a name="p506460194165631"></a><a name="p506460194165631"></a><a href="isurface.md#a9d9ba9ee72ae25c0e84bfba10fe52f9a">bAlphaExt1555</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1139513380165631"><a name="p1139513380165631"></a><a name="p1139513380165631"></a>bool </p>
+</td>
+</tr>
+<tr id="row1172689074165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1550285264165631"><a name="p1550285264165631"></a><a name="p1550285264165631"></a><a href="isurface.md#ac2aa13d6c25df5d1a1fcfa92da425d29">alpha0</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1900906990165631"><a name="p1900906990165631"></a><a name="p1900906990165631"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row1129978837165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1452693932165631"><a name="p1452693932165631"></a><a name="p1452693932165631"></a><a href="isurface.md#a4fd217bfeb9d0a73992c797a900ba632">alpha1</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p415343364165631"><a name="p415343364165631"></a><a name="p415343364165631"></a>uint8_t </p>
+</td>
+</tr>
+<tr id="row841925010165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p770095845165631"><a name="p770095845165631"></a><a name="p770095845165631"></a><a href="isurface.md#adc8bc02eb42a881adf57caf06ddff243">cbcrPhyAddr</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1879531534165631"><a name="p1879531534165631"></a><a name="p1879531534165631"></a>uint64_t </p>
+</td>
+</tr>
+<tr id="row122361451165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1380217327165631"><a name="p1380217327165631"></a><a name="p1380217327165631"></a><a href="isurface.md#a835f95df55db296dbf92061da1aa9627">cbcrStride</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1340633950165631"><a name="p1340633950165631"></a><a name="p1340633950165631"></a>int32_t </p>
+</td>
+</tr>
+<tr id="row765968684165631"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p177463884165631"><a name="p177463884165631"></a><a name="p177463884165631"></a><a href="isurface.md#a98bca93c426df8030c0a67b8fba02525">clutPhyAddr</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p2048261407165631"><a name="p2048261407165631"></a><a name="p2048261407165631"></a>uint64_t </p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## **Details**<a name="section670846132093531"></a>
+## **Details**<a name="section20802730165631"></a>
 
-## **Field Documentation**<a name="section2027447232093531"></a>
+## **Field **<a name="section1265100385165631"></a>
 
 ## alpha0<a name="ac2aa13d6c25df5d1a1fcfa92da425d29"></a>
 

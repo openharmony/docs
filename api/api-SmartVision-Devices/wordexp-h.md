@@ -1,6 +1,10 @@
 # wordexp.h<a name="ZH-CN_TOPIC_0000001054948041"></a>
 
-## **Overview**<a name="section1195738513084834"></a>
+-   [Overview](#section958054784165630)
+-   [Summary](#section304143698165630)
+-   [Data Structures](#nested-classes)
+
+## **Overview**<a name="section958054784165630"></a>
 
 **Related Modules:**
 
@@ -18,38 +22,20 @@ Declares functions related to word expansion.
 
 1.0
 
-## **Summary**<a name="section1312842827084834"></a>
+## **Summary**<a name="section304143698165630"></a>
 
 ## Data Structures<a name="nested-classes"></a>
 
-<a name="table144080835084834"></a>
-<table><thead align="left"><tr id="row45116243084834"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p961521872084834"><a name="p961521872084834"></a><a name="p961521872084834"></a>Data Structure Name</p>
+<a name="table1921225340165630"></a>
+<table><thead align="left"><tr id="row1679386625165630"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p852079974165630"><a name="p852079974165630"></a><a name="p852079974165630"></a>Data Structure Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p863053030084834"><a name="p863053030084834"></a><a name="p863053030084834"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row784412032084834"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p52288732084834"><a name="p52288732084834"></a><a name="p52288732084834"></a><a href="wordexp_t.md">wordexp_t</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1964565883084834"><a name="p1964565883084834"></a><a name="p1964565883084834"></a>Describes information about word expansion. </p>
-</td>
-</tr>
-</tbody>
-</table>
-
-## Functions<a name="func-members"></a>
-
-<a name="table362860114084834"></a>
-<table><thead align="left"><tr id="row561484938084834"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="p169482137084834"><a name="p169482137084834"></a><a name="p169482137084834"></a>Function Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p804818291084834"><a name="p804818291084834"></a><a name="p804818291084834"></a>Description</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="p378087308165630"><a name="p378087308165630"></a><a name="p378087308165630"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row403709176084834"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p556805274084834"><a name="p556805274084834"></a><a name="p556805274084834"></a><a href="IO.md#ga1b296371dffe80c14d0c9ebd27165140">wordfree</a> (<a href="wordexp_t.md">wordexp_t</a> *we)</p>
+<tbody><tr id="row2006648654165630"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1732201972165630"><a name="p1732201972165630"></a><a name="p1732201972165630"></a><a href="wordexp_t.md">wordexp_t</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p978952142084834"><a name="p978952142084834"></a><a name="p978952142084834"></a>void&nbsp;</p>
-<p id="p1853409901084834"><a name="p1853409901084834"></a><a name="p1853409901084834"></a>Frees a word expansion buffer. </p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p1307682204165630"><a name="p1307682204165630"></a><a name="p1307682204165630"></a>Describes information about word expansion. </p>
 </td>
 </tr>
 </tbody>
