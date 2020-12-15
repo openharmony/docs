@@ -1,31 +1,44 @@
-# Documents for OpenHarmony Developers<a name="EN-US_TOPIC_0000001054183022"></a>
+# WELCOME-TO-OPEN-HARMONY
+OpenHarmony is an open-source project launched by the OpenAtom Foundation and serves as an open-source, distributed operating system (OS) that is intended to address all conceivable usage scenarios. OpenHarmony is an open-source version of HarmonyOS.
+HarmonyOS is a future-proof distributed operating system open to you as part of the initiatives for the all-scenario strategy, adaptable to a mobile office, fitness and health, social communication, and media entertainment, and so on. Unlike a legacy operating system that runs on a standalone device, HarmonyOS is built on a distributed architecture designed based on a set of system capabilities. It is able to run on a wide range of device forms, including smartphones, wearables, tablets, PCs, smart TVs, AI speakers, head units, earphones, and AR/VR glasses.
 
-This project provides documentation including the quick start, development guide, and API reference, Welcome to participate in the open source project and improve these documentation for developers.
+## Motivation
+The traditional OSs are limited to a specific type of device, OpenHarmony provides distributed features that are compatible with a wide range of different devices. The first version supports devices with 128 KB to 128 MB of memory. Join us as we keep updating OpenHarmony versions.
+For device developers, OpenHarmony utilizes a component-based design to tailor its features to better suit specific devices, based on each device's capabilities and service characteristics. OpenHarmony can run on devices with limited resources and wearables with hundreds of KB of memory, as well as more powerful devices, such as smart home cameras and dashcams with hundreds of MB of memory.
 
 [中文版本](/Readme-CN.md)
 
-## Directory Structure<a name="section135134412620"></a>
+## OpenHarmony Documentation
+- [Getting Started](https://gitee.com/openharmony/docs/blob/master/docs-en/quick-start/Readme-EN.md)
+- [Source Code Acquisition/Tool Acquisition](https://gitee.com/openharmony/docs/blob/master/docs-en/get-code/source-code-acquisition.md))
+- [Device Development Guidelines](https://gitee.com/openharmony/docs/blob/master/docs-en/driver/Readme-EN.md)
+- [Kernel Usage Guidelines](https://gitee.com/openharmony/docs/blob/master/docs-en/kernel/Readme-EN.md)
+- [Subsystem Development Guidelines](https://gitee.com/openharmony/docs/blob/master/docs-en/subsystems/Readme-EN.md)
+- [Bundle Development](https://gitee.com/openharmony/docs/blob/master/docs-en/bundles/Readme-EN.md)
+- [Privacy and Security](https://gitee.com/openharmony/docs/blob/master/docs-en/security/Readme-EN.md)
+- [LinkIoT Modules API](https://gitee.com/openharmony/docs/blob/master/docs-en/api/api-LinkIoT/Readme-EN.md)
+- [SmartVision Devices API](https://gitee.com/openharmony/docs/blob/master/docs-en/api/api-SmartVision-Devices/Readme-EN.md)
+- [Glossary](https://gitee.com/openharmony/docs/blob/master/docs-en/term/glossary.md)
 
--   quick-start: [Getting Started](quick-start/Readme-EN.md)
--   get-code: [Source Code Acquisition/Tool Acquisition](get-code/Readme-EN.md)
--   driver: [Device Development Guidelines](driver/Readme-EN.md) 
--   kernel: [Kernel Usage Guidelines](kernel/Readme-EN.md)
--   subsystems: [Subsystem Development Guidelines](subsystems/Readme-EN.md)
--   bundles: [Bundle Development](bundles/Readme-EN.md)
--   guide: [Device Development Guidelines](guide/Readme-EN.md)
--   security: [Privacy and Security](security/Readme-EN.md)
--   api-LinkIoT: [LinkIoT Modules API](api/api-LinkIoT/Readme-EN.md)
--   api-SmartVision-Devices: [SmartVision Devices API](api/api-SmartVision-Devices/Readme-EN.md)
--   contribute: [Contribution](contribute/contribution.md)
--   term: [Glossary](term/Glossary.md)
+## Start Contributing
+OpenHarmony is an Open Source Community and encourages everyone in the community to submit the patches directly to the project. You can either contribute to the code or documentation.
+- [Contributing to the Code](https://gitee.com/openharmony/docs/blob/master/docs-en/contribute/contributing-code.md)
+- [Contributing to the Documentation](https://gitee.com/openharmony/docs/blob/master/docs-en/contribute/documentation-contribution.md)
 
-## Contributors & Acknowledgements <a name="section897211181655"></a>
+For more details on Contribution, see [Contributing Documents](https://gitee.com/openharmony/docs/tree/master/docs-en/contibute)
+## Get Source Code and Tools
+To download the source code and tools required for the project, click the following links.
+- [Source Code Acquisition](https://gitee.com/openharmony/docs/blob/master/docs-en/get-code/source-code-acquisition.md)
+- [Tool Acquisition](https://gitee.com/openharmony/docs/blob/master/docs-en/get-code/tool-acquisition.md)
 
-Great Opensource project wouldn't exist without the hard work of its many contributors.
-We'd like to invite anyone from around the world to participate in this exciting journey.
-And we're grateful for your time, passion and efforts!
+## Where to Turn for Help
+You can subscribe to the mailing list to get constant updates on new features, release road maps, and community activities. For Subscribing to the mailing list or any other support, see [Communication in Community](https://gitee.com/openharmony/docs/tree/master/docs-en/contribute/communication-in-community.md). 
 
+## Code of Conduct
+OpenHarmony is committed to providing a welcoming and inspiring community for all. In order to maintain a collaborative environment, we recommend you to read and follow the community [Code of Conduct](https://gitee.com/openharmony/docs/blob/master/docs-en/contribute/code-of-conduct.md). 
 
-For more details on how to contribute, see [Contributing Documents](contribute/documentation-contribution.md).
-Excellent contributors will be awarded and publicized in the developer community.
+## Contributors & Acknowledgements
+A great Open source project wouldn't exist without the hard work of its many contributors. We'd like to invite anyone from around the world to participate in this exciting journey. And we're grateful for your time, passion, and efforts!
 
+## Release
+In order to provide new features and bug fixes, the community constantly updates the code and provides new releases. For details on Release, see Release.
