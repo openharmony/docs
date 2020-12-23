@@ -17,7 +17,7 @@ MAINTAINER dongjinguang@huawei.com
 WORKDIR /home/openharmony
 
 RUN apt-get update -y \
-	&& apt-get install curl wget -y \
+    && apt-get install curl wget -y \
 	&& apt-get install python3.8 -y \
 	&& apt-get install python3-pip -y \
 	&& apt-get install dosfstools -y \
@@ -30,6 +30,9 @@ RUN apt-get update -y \
 	&& apt-get install binutils -y \
 	&& apt-get install mtd-utils -y \
 	&& apt-get install libc6-dev-x32 -y \
+	&& DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt-get -y install tzdata \
+	&& apt-get install default-jre -y \
+	&& apt-get install default-jdk -y \
 	&& rm -rf /bin/sh /usr/bin/python /usr/bin/python3 \
 	&& ln -s /bin/bash /bin/sh \
 	&& ln -s /usr/bin/python3.8 /usr/bin/python3 \
@@ -44,20 +47,29 @@ RUN apt-get update -y \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/gn/1523/linux/gn.1523.tar \
-	&& tar xvf /home/tools/llvm-linux-9.0.0-34042.tar -C /home/tools \
+	&& wget -P /home/tools https://mirrors.huaweicloud.com/nodejs/latest-v12.x/node-v12.20.0-linux-x64.tar.gz \
+	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/develop_tools/hmos_app_packing_tool.jar \
+	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/develop_tools/hapsigntoolv2.jar \
+    && tar xvf /home/tools/llvm-linux-9.0.0-34042.tar -C /home/tools \
 	&& tar xvf /home/tools/hc-gen-0.65-linux.tar -C /home/tools \
 	&& tar xvf /home/tools/gcc_riscv32-linux-7.3.0.tar.gz -C /home/tools \
 	&& tar xvf /home/tools/ninja.1.9.0.tar -C /home/tools \
 	&& tar xvf /home/tools/gn.1523.tar -C /home/tools \
+	&& tar xvf /home/tools/node-v12.20.0-linux-x64.tar.gz -C /home/tools \
 	&& sed -i '$aexport PATH=/home/tools/llvm/bin:$PATH' /root/.bashrc \
 	&& sed -i '$aexport PATH=/home/tools/hc-gen:$PATH' /root/.bashrc \
 	&& sed -i '$aexport PATH=/home/tools/gcc_riscv32/bin:$PATH' /root/.bashrc \
 	&& sed -i '$aexport PATH=/home/tools/ninja:$PATH' /root/.bashrc \
 	&& sed -i '$aexport PATH=/home/tools/gn:$PATH' /root/.bashrc \
+	&& sed -i '$aexport PATH=/home/tools/node-v12.20.0-linux-x64/bin:$PATH' /root/.bashrc \
+	&& sed -i '$aexport PATH=/home/tools:$PATH' /root/.bashrc \
 	&& export PATH=/home/tools/llvm/bin:$PATH \
 	&& export PATH=/home/tools/hc-gen:$PATH \
 	&& export PATH=/home/tools/gcc_riscv32/bin:$PATH \
 	&& export PATH=/home/tools/ninja:$PATH \
 	&& export PATH=/home/tools/gn:$PATH \
+	&& export PATH=/home/tools/node-v12.20.0-linux-x64/bin:$PATH \
+	&& export PATH=/home/tools:$PATH \
 	&& rm -rf /home/tools/*.tar \
-	&& rm -rf /home/tools/*.gz
+	&& rm -rf /home/tools/*.gz \
+	&& npm install -g @ohos/hpm-cli --registry https://mirrors.huaweicloud.com/repository/npm/
