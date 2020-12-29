@@ -19,6 +19,7 @@
 -   contribute：[贡献](contribute/参与贡献.md)
 -   term：[术语](term/术语.md)
 -   3rd-Party-License：[第三方开源软件及许可证说明](quick-start/第三方开源软件及许可证说明.md)
+-   3rd-Party-Import：[第三方开源软件引入指导](contribute/第三方开源软件引入指导.md)
 
 ## 贡献<a name="section897211181655"></a>
 
