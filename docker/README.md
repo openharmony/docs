@@ -22,10 +22,11 @@ OpenHarmony的Docker镜像托管在**HuaweiCloud SWR**上，开发者可以通�
      ```
      docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.2
      ```
- 3. 通过如下编译脚本启动wifiiot、ipcamera_hi3516dv300、ipcamera_hi3518ev300不同平台的编译
+3. 通过如下编译脚本启动wifiiot、ipcamera_hi3516dv300、ipcamera_hi3518ev300不同平台的编译
      ```
      python build.py wifiiot/ipcamera_hi3516dv300/ipcamera_hi3518ev300
      ```
+ 
  #### 方式二：通过Dockerfile 构建本地Docker镜像进行构建
 1. 获取Dockerfile脚本文件，用来构建本地Docker镜像
      ```
@@ -35,4 +36,12 @@ OpenHarmony的Docker镜像托管在**HuaweiCloud SWR**上，开发者可以通�
      ```
      cd docs/docker
      ./build.sh
+     ```
+4. 进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境
+     ```
+     docker run -it -v $(pwd):/home/openharmony openharmony-docker:0.0.2
+     ```
+5. 通过如下编译脚本启动wifiiot、ipcamera_hi3516dv300、ipcamera_hi3518ev300不同平台的编译
+     ```
+     python build.py wifiiot/ipcamera_hi3516dv300/ipcamera_hi3518ev300
      ```
