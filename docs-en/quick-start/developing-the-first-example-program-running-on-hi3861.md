@@ -1,7 +1,7 @@
 # Developing the First Example Program Running on Hi3861<a name="EN-US_TOPIC_0000001053302600"></a>
 
 -   [Acquiring Source Code](#section1545225464016)
--   [Compiling Source Code](#section1736014117148)
+-   [Building](#section1736014117148)
 -   [Burning Images](#section1610612214150)
 -   [Connecting WLAN Module to the Internet](#section168257461059)
 
@@ -11,9 +11,11 @@ This example shows how to connect the WLAN module to the gateway using attention
 
 You need to acquire  [Hi3861 source code](https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz), download it on a Linux server, and decompress it. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
-## Compiling Source Code<a name="section1736014117148"></a>
+## Building<a name="section1736014117148"></a>
 
-This section describes how to compile the WLAN module on a Linux server.
+This section describes how to perform the WLAN module building on a Linux server.
+
+If the Linux environment is installed using Docker, perform the building by referring to  [Using Docker to Prepare the Build Environment](../get-code/tool-acquisition.md). If the Linux environment is installed using a software package, perform the following steps:
 
 1.  Open the HUAWEI DevEco Device Tool and choose  **View**  \>  **Terminal**.
 
@@ -22,16 +24,16 @@ This section describes how to compile the WLAN module on a Linux server.
 
     ![](figures/en-us_image_0000001055040538.png)
 
-    On the TERMINAL page, run the ssh command, for example,  **ssh  _user_@_ipaddr_**, to connect to the Linux server.
+    On the TERMINAL page, run the ssh command, for example,  **ssh** **_user_@_ipaddr_**, to connect to the Linux server.
 
     **Figure  2**  TERMINAL page<a name="fig91165301546"></a>  
     
 
     ![](figures/en-us_image_0000001054599199.png)
 
-2.  Go to the root directory of the code and run the  **python build.py wifiiot**  command in the TERMINAL page to start compilation.
+2.  Go to the root directory of the code and run the  **python build.py wifiiot**  command in the TERMINAL page to start building.
 
-    **Figure  3**  Running the compilation command on TERMINAL page<a name="fig17727115215612"></a>  
+    **Figure  3**  Running the command on TERMINAL page<a name="fig17727115215612"></a>  
     
 
     ![](figures/en-us_image_0000001055040596.png)
@@ -41,13 +43,13 @@ This section describes how to compile the WLAN module on a Linux server.
     **Figure  4**  Successful building<a name="fig1262101218463"></a>  
     ![](figures/successful-building.png "successful-building")
 
-4.  Run the following command to check whether the following files are generated in the  **./out/wifiiot/**  directory:
+4.  Check whether the following files are generated in the  **./out/wifiiot/**  directory.
 
     ```
     ls -l out/wifiiot
     ```
 
-    **Figure  5**  Directory for storing compilation files<a name="fig38521346164618"></a>  
+    **Figure  5**  Directory for storing the generated files<a name="fig38521346164618"></a>  
     
 
     ![](figures/en-us_image_0000001055040654.png)

@@ -23,9 +23,7 @@
 
     You are advised to install  [Node.js](https://nodejs.org/)  12.x \(including npm 6.14.4\) or a later version \(12.13.0 or later is recommended\).
 
-2.  Install the  **hpm-cli**  tool using  **npm**  delivered with  **Node.js**.
-
-    Start  **cmd.exe**  to run the following command:
+2.  Install the  **hpm-cli**  tool using  **npm**  delivered with  **Node.js**. Run the following command:
 
     ```
     npm install -g @ohos/hpm-cli

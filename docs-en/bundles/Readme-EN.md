@@ -13,3 +13,8 @@
     -   [Preparations](preparations.md)
     -   [Bundle Development](bundle-development.md)
 
+-   [HPM User Guide](hpm-user-guide.md)
+    -   [Introduction](introduction.md)
+    -   [Preparations](preparations-1.md)
+    -   [Development Example](development-example.md)
+

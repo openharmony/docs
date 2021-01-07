@@ -427,14 +427,14 @@ The following operations take a HDF-based UART driver as an example to show how 
 
 ## Compiling and Burning<a name="section660016185110"></a>
 
-Compile and burn images by referring to  [Compiling Code](developing-the-first-example-program-running-on-hi3516.md#section1077671315253)  and  [Burning](developing-the-first-example-program-running-on-hi3516.md#section08153912587).
+Compile and burn images by referring to  [Building](developing-the-first-example-program-running-on-hi3516.md#section1077671315253)  and  [Burning](developing-the-first-example-program-running-on-hi3516.md#section08153912587).
 
 ## Running an Image<a name="section197971119142915"></a>
 
 1.  Connect to a serial port.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >If the connection fails, rectify the fault by referring to  [What should I do when no command output is displayed?](faqs-1.md#section14871149155911).
+    >If the connection fails, rectify the fault by referring to  [What should I do when no command output is displayed?](faq-on-hi3516.md#section14871149155911).
 
     **Figure  1**  Serial port connection<a name="en-us_topic_0000001052906247_fig056645018495"></a>  
     

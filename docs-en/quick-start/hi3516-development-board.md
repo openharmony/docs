@@ -2,12 +2,12 @@
 
 -   **[Introduction to the Hi3516 Development Board](introduction-to-the-hi3516-development-board.md)**  
 
--   **[Setting up a Development Environment](setting-up-a-development-environment-0.md)**  
+-   **[Setting Up the Hi3516 Development Environment](setting-up-the-hi3516-development-environment.md)**  
 
 -   **[Developing the First Example Program Running on Hi3516](developing-the-first-example-program-running-on-hi3516.md)**  
 
 -   **[Developing the First Driver Running on Hi3516](developing-the-first-driver-running-on-hi3516.md)**  
 
--   **[FAQs](faqs-1.md)**  
+-   **[FAQ on Hi3516](faq-on-hi3516.md)**  
 
 

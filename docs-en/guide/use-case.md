@@ -1,8 +1,13 @@
 # Use Case<a name="EN-US_TOPIC_0000001055686082"></a>
 
--   For details bout the development board, compilation, burning, and image running process, see  [Getting Started with Hi3518](../quick-start/introduction-to-the-hi3518-development-board.md). A compilation result file of sample code is stored in  **out/ipcamera\_hi3518ev300/dev\_tools/bin/camera\_sample**. You can copy the file to a TF card, or modify the compilation script of  **camera\_sample**  to copy the result to  **rootfs.img**.
+-   For details about the development board, compilation, burning, and image running process, see  [Getting Started with Hi3518](../quick-start/introduction-to-the-hi3518-development-board.md). A compilation result file of sample code is stored in  **out/ipcamera\_hi3518ev300/dev\_tools/bin/camera\_sample**. You can copy the file to a TF card, or modify the compilation script of  **camera\_sample**  to copy the result to  **rootfs.img**.
 
-    **How to Modify**: In  **applications/sample/camera/media/BUILD.gn**, replace  **output\_dir = "$root\_out\_dir/dev\_tools"**  with  **output\_dir = "$root\_out\_dir/"**, recompile the source code repository, and burn the code into the development board. Then you can find the  **camera\_sample**  file in the  **bin**  directory of the board.
+    Modify  **output\_dir**  in  **applications/sample/camera/media/BUILD.gn**.
+
+    -   Before:  **output\_dir = "$root\_out\_dir/dev\_tools"**
+    -   After:  **output\_dir = "$root\_out\_dir/"**
+
+    Recompile the source code repository and burn the code into the development board. Then you can find the  **camera\_sample**  file in the  **bin**  directory of the board.
 
 -   The sample code for camera development is stored in  **applications/sample/camera/media/camera\_sample.cpp**.
 

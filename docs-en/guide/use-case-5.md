@@ -11,7 +11,12 @@ This use case takes  **camera\_sample**  \(contained in the source code\) as an 
 
 -   The compilation result of the sample code is stored in  **out/ipcamera\_hi3516dv300/dev\_tools/bin/camera\_sample**. To ensure that the code can be executed on the development board, you can copy the file to a TF card through a card reader, or modify the compilation script of  **camera\_sample**  to copy the compilation result to  **rootfs.img**.
 
-    How to Modify: In source code path  **applications/sample/camera/media/BUILD.gn**, replace the first  **output\_dir = "$root\_out\_dir/dev\_ools"**  with  **output\_dir = "$root\_out\_dir/"**, recompile the source code repository, and burn the code into the development board. Then you can find the  **camera\_sample**  file in the  **bin**  directory of the development board.
+    Modify the first  **output\_dir**  in the source code path  **applications/sample/camera/media/BUILD.gn**.
+
+    -   Before:  **output\_dir = "$root\_out\_dir/dev\_tools"**
+    -   After:  **output\_dir = "$root\_out\_dir/"**
+
+    Recompile the source code repository and burn the code into the development board. Then you can find the  **camera\_sample**  file in the  **bin**  directory of the board.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
     >You should insert a TF card \(up to 128 GB supported\) for photographing and video recording before system startup. This way, the TF card will be automatically mounted to the  **/sdcard**  directory. If you insert the TF card after the system is started, you have to manually mount the TF card.
