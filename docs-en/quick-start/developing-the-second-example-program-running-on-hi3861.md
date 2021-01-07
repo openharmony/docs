@@ -120,7 +120,7 @@ Call Stack 6 -- 3f5e24 addr:f78fc
 
 To parse the call stack information, the  **Hi3861\_wifiiot\_app.asm**  file is required. This file records the symbol addresses of the functions in the code in the flash memory and the disassembly information. The asm file is built and output together with the version software package and is stored in the  **./out/wifiiot/**  directory.
 
-1.  \(Optional\) Save the** CallStack**  information to a txt file for editing.
+1.  \(Optional\) Save the  **CallStack**  information to a txt file for editing.
 2.  Open the asm file, search for the function address in each call stack, and list the corresponding function. Generally, you only need to find the functions matching the first several stacks to locate exceptions.
 
     ```
@@ -133,7 +133,7 @@ To parse the call stack information, the  **Hi3861\_wifiiot\_app.asm**  file is 
     Call Stack 6 -- 3f5e24 addr:f78fc
     ```
 
-3.  Determined that an exception occurs in the  **WadRecvCB**  function based on the call stack information.
+3.  Determine that an exception occurs in the  **WadRecvCB**  function based on the call stack information.
 
     ![](figures/en-us_image_0000001054763554.png)
 

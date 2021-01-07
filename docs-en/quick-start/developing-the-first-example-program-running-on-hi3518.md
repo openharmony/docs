@@ -2,7 +2,7 @@
 
 -   [Acquiring Source Code](#section1726092873119)
 -   [Modifying a Program](#s8efc1952ebfe4d1ea717182e108c29bb)
--   [Compiling Code](#section234175193114)
+-   [Building](#section234175193114)
 -   [Burning](#section57955241588)
 -   [Running an Image](#section62131033183710)
 -   [Follow-up Learning](#section9712145420182)
@@ -33,123 +33,125 @@ int main(int argc, char **argv)
 }
 ```
 
-## Compiling Code<a name="section234175193114"></a>
+## Building<a name="section234175193114"></a>
 
-On the Linux server, access the root directory of the source code package and run the following script to compile the source code package. The result files are generated in the  **out/ipcamera\_hi3518ev300**  directory.
+If the Linux environment is installed using Docker, perform the compilation by referring to  [Using Docker to Prepare the Build Environment](../get-code/tool-acquisition.md). If the Linux compilation environment is installed using a software package, execute the following command to compile source code in the root directory of the source code package.
 
 ```
 python build.py ipcamera_hi3518ev300 -b debug
 ```
+
+The result files are generated in the  **out/ipcamera\_hi3518ev300**  directory.
 
 ## Burning<a name="section57955241588"></a>
 
 The USB port is the only burning mode supported by the Hi3518 development board.
 
 1.  Connect the PC and the target development board through the serial port and USB port. In this section, the Hi3518EV300 is used as an example. For details, please refer to  [Introduction to the Hi3518 Development Board](https://device.harmonyos.com/en/docs/start/introduce/oem_camera_start_hi3518-0000001050170473).
-2.  <a name="en-us_topic_0000001057313128_li101031912111518"></a>Open Device Manager, then check and record the serial port number corresponding to the development board.
+2.  <a name="en-us_topic_0000001072392860_li101031912111518"></a>Open Device Manager, then check and record the serial port number corresponding to the development board.
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
     >If the serial port number is not displayed correctly, follow the steps described in  [Installing the Serial Port Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/ide/user-guides/hi3516_hi3518-drivers-0000001050743695).
 
-    ![](figures/en-us_image_0000001057235010.png)
+    ![](figures/en-us_image_0000001071792503.png)
 
 3.  Go to  **Device Tool**  \>  **Configure**  \>  **Burn**. On the displayed page, set the programming information.
 
-    ![](figures/en-us_image_0000001057194144.png)
+    ![](figures/en-us_image_0000001071514657.png)
 
 4.  Set  **Burning Mode**  to  **usbport**.
 
-    ![](figures/en-us_image_0000001057392985.png)
+    ![](figures/en-us_image_0000001072552464.png)
 
 5.  Set the programming parameters.
-    -   Set  **Port number**  to the serial port number recorded in  [2](#en-us_topic_0000001057313128_li101031912111518).
+    -   Set  **Port number**  to the serial port number recorded in  [2](#en-us_topic_0000001072392860_li101031912111518).
     -   Retain the default values for the baud rate and data bits, which have been adapted for the development board.
     -   Set the memory type. For the Hi3518 series development boards, the memory type is fixed at SPI NOR.
     -   Set the information about the files to be written according to the following table.
 
-        <a name="en-us_topic_0000001057313128_table17829824143410"></a>
-        <table><thead align="left"><tr id="en-us_topic_0000001057313128_row1782992414343"><th class="cellrowborder" valign="top" width="25.130000000000003%" id="mcps1.1.5.1.1"><p id="en-us_topic_0000001057313128_p198641828133419"><a name="en-us_topic_0000001057313128_p198641828133419"></a><a name="en-us_topic_0000001057313128_p198641828133419"></a>File Name</p>
+        <a name="en-us_topic_0000001072392860_table17829824143410"></a>
+        <table><thead align="left"><tr id="en-us_topic_0000001072392860_row1782992414343"><th class="cellrowborder" valign="top" width="25.130000000000003%" id="mcps1.1.5.1.1"><p id="en-us_topic_0000001072392860_p198641828133419"><a name="en-us_topic_0000001072392860_p198641828133419"></a><a name="en-us_topic_0000001072392860_p198641828133419"></a>File Name</p>
         </th>
-        <th class="cellrowborder" valign="top" width="24.87%" id="mcps1.1.5.1.2"><p id="en-us_topic_0000001057313128_p086415289344"><a name="en-us_topic_0000001057313128_p086415289344"></a><a name="en-us_topic_0000001057313128_p086415289344"></a>Start Address</p>
+        <th class="cellrowborder" valign="top" width="24.87%" id="mcps1.1.5.1.2"><p id="en-us_topic_0000001072392860_p086415289344"><a name="en-us_topic_0000001072392860_p086415289344"></a><a name="en-us_topic_0000001072392860_p086415289344"></a>Start Address</p>
         </th>
-        <th class="cellrowborder" valign="top" width="24.98%" id="mcps1.1.5.1.3"><p id="en-us_topic_0000001057313128_p986462863413"><a name="en-us_topic_0000001057313128_p986462863413"></a><a name="en-us_topic_0000001057313128_p986462863413"></a>File Size</p>
+        <th class="cellrowborder" valign="top" width="24.98%" id="mcps1.1.5.1.3"><p id="en-us_topic_0000001072392860_p986462863413"><a name="en-us_topic_0000001072392860_p986462863413"></a><a name="en-us_topic_0000001072392860_p986462863413"></a>File Size</p>
         </th>
-        <th class="cellrowborder" valign="top" width="25.019999999999996%" id="mcps1.1.5.1.4"><p id="en-us_topic_0000001057313128_p58291224193410"><a name="en-us_topic_0000001057313128_p58291224193410"></a><a name="en-us_topic_0000001057313128_p58291224193410"></a>Enable</p>
+        <th class="cellrowborder" valign="top" width="25.019999999999996%" id="mcps1.1.5.1.4"><p id="en-us_topic_0000001072392860_p58291224193410"><a name="en-us_topic_0000001072392860_p58291224193410"></a><a name="en-us_topic_0000001072392860_p58291224193410"></a>Enable</p>
         </th>
         </tr>
         </thead>
-        <tbody><tr id="en-us_topic_0000001057313128_row4829112453415"><td class="cellrowborder" valign="top" width="25.130000000000003%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001057313128_p18829162417342"><a name="en-us_topic_0000001057313128_p18829162417342"></a><a name="en-us_topic_0000001057313128_p18829162417342"></a>u-boot-<em id="en-us_topic_0000001057313128_i1060617376418"><a name="en-us_topic_0000001057313128_i1060617376418"></a><a name="en-us_topic_0000001057313128_i1060617376418"></a>development board name</em>.bin</p>
+        <tbody><tr id="en-us_topic_0000001072392860_row4829112453415"><td class="cellrowborder" valign="top" width="25.130000000000003%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001072392860_p18829162417342"><a name="en-us_topic_0000001072392860_p18829162417342"></a><a name="en-us_topic_0000001072392860_p18829162417342"></a>u-boot-<em id="en-us_topic_0000001072392860_i1060617376418"><a name="en-us_topic_0000001072392860_i1060617376418"></a><a name="en-us_topic_0000001072392860_i1060617376418"></a>development board name</em>.bin</p>
         </td>
-        <td class="cellrowborder" valign="top" width="24.87%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001057313128_p38298241348"><a name="en-us_topic_0000001057313128_p38298241348"></a><a name="en-us_topic_0000001057313128_p38298241348"></a>0</p>
+        <td class="cellrowborder" valign="top" width="24.87%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001072392860_p38298241348"><a name="en-us_topic_0000001072392860_p38298241348"></a><a name="en-us_topic_0000001072392860_p38298241348"></a>0</p>
         </td>
-        <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001057313128_p18295244345"><a name="en-us_topic_0000001057313128_p18295244345"></a><a name="en-us_topic_0000001057313128_p18295244345"></a>1M</p>
+        <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001072392860_p18295244345"><a name="en-us_topic_0000001072392860_p18295244345"></a><a name="en-us_topic_0000001072392860_p18295244345"></a>1M</p>
         </td>
-        <td class="cellrowborder" valign="top" width="25.019999999999996%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001057313128_p1282982415342"><a name="en-us_topic_0000001057313128_p1282982415342"></a><a name="en-us_topic_0000001057313128_p1282982415342"></a>Select the check box.</p>
-        </td>
-        </tr>
-        <tr id="en-us_topic_0000001057313128_row8829192415342"><td class="cellrowborder" valign="top" width="25.130000000000003%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001057313128_p1782912420346"><a name="en-us_topic_0000001057313128_p1782912420346"></a><a name="en-us_topic_0000001057313128_p1782912420346"></a>OHOS_Image.bin</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="24.87%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001057313128_p1483012483410"><a name="en-us_topic_0000001057313128_p1483012483410"></a><a name="en-us_topic_0000001057313128_p1483012483410"></a>1M</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001057313128_p1283032433419"><a name="en-us_topic_0000001057313128_p1283032433419"></a><a name="en-us_topic_0000001057313128_p1283032433419"></a>6M</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="25.019999999999996%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001057313128_p17830524163416"><a name="en-us_topic_0000001057313128_p17830524163416"></a><a name="en-us_topic_0000001057313128_p17830524163416"></a>Select the check box if this is the first time you are programing flash memory on the development board or if the content related to the kernel and driver is modified.</p>
+        <td class="cellrowborder" valign="top" width="25.019999999999996%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001072392860_p1282982415342"><a name="en-us_topic_0000001072392860_p1282982415342"></a><a name="en-us_topic_0000001072392860_p1282982415342"></a>Select the check box.</p>
         </td>
         </tr>
-        <tr id="en-us_topic_0000001057313128_row18830192453415"><td class="cellrowborder" valign="top" width="25.130000000000003%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001057313128_p0830162453411"><a name="en-us_topic_0000001057313128_p0830162453411"></a><a name="en-us_topic_0000001057313128_p0830162453411"></a>rootfs.img</p>
+        <tr id="en-us_topic_0000001072392860_row8829192415342"><td class="cellrowborder" valign="top" width="25.130000000000003%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001072392860_p1782912420346"><a name="en-us_topic_0000001072392860_p1782912420346"></a><a name="en-us_topic_0000001072392860_p1782912420346"></a>OHOS_Image.bin</p>
         </td>
-        <td class="cellrowborder" valign="top" width="24.87%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001057313128_p7830424133418"><a name="en-us_topic_0000001057313128_p7830424133418"></a><a name="en-us_topic_0000001057313128_p7830424133418"></a>7M</p>
+        <td class="cellrowborder" valign="top" width="24.87%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001072392860_p1483012483410"><a name="en-us_topic_0000001072392860_p1483012483410"></a><a name="en-us_topic_0000001072392860_p1483012483410"></a>1M</p>
         </td>
-        <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001057313128_p1583012413417"><a name="en-us_topic_0000001057313128_p1583012413417"></a><a name="en-us_topic_0000001057313128_p1583012413417"></a>8M</p>
+        <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001072392860_p1283032433419"><a name="en-us_topic_0000001072392860_p1283032433419"></a><a name="en-us_topic_0000001072392860_p1283032433419"></a>6M</p>
         </td>
-        <td class="cellrowborder" rowspan="2" valign="top" width="25.019999999999996%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001057313128_p166645916376"><a name="en-us_topic_0000001057313128_p166645916376"></a><a name="en-us_topic_0000001057313128_p166645916376"></a>Select the check boxes if this is the first time you are programing flash memory on the development board or if the files have been modified. It is recommended that you always select these check boxes.</p>
+        <td class="cellrowborder" valign="top" width="25.019999999999996%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001072392860_p17830524163416"><a name="en-us_topic_0000001072392860_p17830524163416"></a><a name="en-us_topic_0000001072392860_p17830524163416"></a>Select the check box if this is the first time you are programing flash memory on the development board or if the content related to the kernel and driver is modified.</p>
         </td>
         </tr>
-        <tr id="en-us_topic_0000001057313128_row38301424183414"><td class="cellrowborder" valign="top" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001057313128_p983032415348"><a name="en-us_topic_0000001057313128_p983032415348"></a><a name="en-us_topic_0000001057313128_p983032415348"></a>userfs.img</p>
+        <tr id="en-us_topic_0000001072392860_row18830192453415"><td class="cellrowborder" valign="top" width="25.130000000000003%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001072392860_p0830162453411"><a name="en-us_topic_0000001072392860_p0830162453411"></a><a name="en-us_topic_0000001072392860_p0830162453411"></a>rootfs.img</p>
         </td>
-        <td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001057313128_p783016244344"><a name="en-us_topic_0000001057313128_p783016244344"></a><a name="en-us_topic_0000001057313128_p783016244344"></a>15M</p>
+        <td class="cellrowborder" valign="top" width="24.87%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001072392860_p7830424133418"><a name="en-us_topic_0000001072392860_p7830424133418"></a><a name="en-us_topic_0000001072392860_p7830424133418"></a>7M</p>
         </td>
-        <td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001057313128_p2830142412349"><a name="en-us_topic_0000001057313128_p2830142412349"></a><a name="en-us_topic_0000001057313128_p2830142412349"></a>1M</p>
+        <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001072392860_p1583012413417"><a name="en-us_topic_0000001072392860_p1583012413417"></a><a name="en-us_topic_0000001072392860_p1583012413417"></a>8M</p>
+        </td>
+        <td class="cellrowborder" rowspan="2" valign="top" width="25.019999999999996%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001072392860_p166645916376"><a name="en-us_topic_0000001072392860_p166645916376"></a><a name="en-us_topic_0000001072392860_p166645916376"></a>Select the check boxes if this is the first time you are programing flash memory on the development board or if the files have been modified. It is recommended that you always select these check boxes.</p>
+        </td>
+        </tr>
+        <tr id="en-us_topic_0000001072392860_row38301424183414"><td class="cellrowborder" valign="top" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001072392860_p983032415348"><a name="en-us_topic_0000001072392860_p983032415348"></a><a name="en-us_topic_0000001072392860_p983032415348"></a>userfs.img</p>
+        </td>
+        <td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001072392860_p783016244344"><a name="en-us_topic_0000001072392860_p783016244344"></a><a name="en-us_topic_0000001072392860_p783016244344"></a>15M</p>
+        </td>
+        <td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001072392860_p2830142412349"><a name="en-us_topic_0000001072392860_p2830142412349"></a><a name="en-us_topic_0000001072392860_p2830142412349"></a>1M</p>
         </td>
         </tr>
         </tbody>
         </table>
 
-        ![](figures/en-us_image_0000001057952739.png)
+        ![](figures/en-us_image_0000001071634551.png)
 
 
 6.  When you have done, click  **Save**  at the bottom to save the settings.
-7.  Click  ![](figures/en-us_image_0000001057311476.png)  next to  **Burn**  to start programming.
+7.  Click  ![](figures/en-us_image_0000001071984309.png)  next to  **Burn**  to start programming.
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >If this is the first time you program flash memory on the Hi3516 or Hi3518 board, the message "not find the Devices" may be displayed. In this case, follow the steps in  [Installing the USB Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/cn/docs/ide/user-guides/usb_driver-0000001058690393)  and start programming again.
+    >If this is the first time you program flash memory on the Hi3516 or Hi3518 board, the message "not find the Devices" may be displayed. In this case, follow the steps in  [Installing the USB Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/ide/user-guides/usb_driver-0000001058690393)  and start programming again.
 
-    ![](figures/en-us_image_0000001058192356.png)
+    ![](figures/en-us_image_0000001071904257.png)
 
 8.  Restart the development board within 15 seconds.
 9.  Wait until the programming is complete. If the following information is displayed on the console, it indicates that the programming is successful.
 
     ![](figures/usb烧录-6.png)
 
-10. Use the  [serial port tool](en-us_topic_0000001057649420.md)  to modify the bootcmd and bootargs contents of U-Boot. For details, please refer to  [Running an Image on the Hi3518](https://device.harmonyos.com/en/docs/start/introduce/oem_camera_start_example-0000001051610926#EN-US_TOPIC_0000001053422339__section62131033183710).
+10. Use the  [serial port tool](https://device.harmonyos.com/en/docs/ide/user-guides/serial_port-0000001057649420)  to modify the bootcmd and bootargs contents of U-Boot. For details, please refer to  [Running an Image on the Hi3518](https://device.harmonyos.com/en/docs/start/introduce/oem_camera_start_example-0000001051610926#EN-US_TOPIC_0000001053422339__section62131033183710).
 
 ## Running an Image<a name="section62131033183710"></a>
 
 1.  Connect to a serial port.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >If the connection fails, rectify the fault by referring to  [What should I do when no command output is displayed?](faqs-3.md#en-us_topic_0000001053466255_section14871149155911).
+    >If the connection fails, rectify the fault by referring to  [What should I do when no command output is displayed?](faq-on-hi3518.md#en-us_topic_0000001053466255_section14871149155911).
 
     **Figure  1**  Serial port connection<a name="fig056645018495"></a>  
     
 
-    ![](figures/chuankou1-1.png)
+    ![](figures/chuankou1-0.png)
 
     1.  Click  **Serial port**  to enable it.
     2.  Enter the serial port number queried in the "Burning" section \(COM11 is used in this example\) and press  **Enter**  until  **hisillicon**  is displayed.
-    3.  Go to step  [2](#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
+    3.  Go to  [step 2](#li9441185382314)  if the board is started for the first time or the startup parameters need to be modified; go to  [step 3](#li6442853122312)  otherwise.
 
-2.  \(Mandatory for the first burning\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-boot. This step is a fixed operation and the result can be saved. However, you need to perform the following steps again if U-boot needs to be reburnt.
+2.  <a name="li9441185382314"></a>\(Mandatory for the first burning\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-boot. This step is a fixed operation and the result can be saved. However, you need to perform the following steps again if U-boot needs to be reburnt.
 
     **Table  1**  Parameters of the U-boot
 
@@ -191,7 +193,7 @@ The USB port is the only burning mode supported by the Hi3518 development board.
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
     >**go 0x40000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-boot startup to interrupt the automatic startup.
 
-3.  If  **hisilicon \#**  is displayed during the startup, run the  **reset**  command. After the system automatically starts and  **OHOS**  is displayed, run the  **./bin/camera\_app**  command and then press  **Enter**. The system is started successfully if information shown in the following figure is displayed.
+3.  <a name="li6442853122312"></a>If  **hisilicon \#**  is displayed during the startup, run the  **reset**  command. After the system automatically starts and  **OHOS**  is displayed, run the  **./bin/camera\_app**  command and then press  **Enter**. The system is started successfully if information shown in the following figure is displayed.
 
     **Figure  2**  Successful system startup and program execution<a name="fig11838403383"></a>  
     ![](figures/successful-system-startup-and-program-execution.png "successful-system-startup-and-program-execution")

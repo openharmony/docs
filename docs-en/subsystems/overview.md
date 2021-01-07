@@ -90,7 +90,7 @@ It is considered good practice that you understand the following concepts before
 
     Similarly, you can create a surface, implement consumer logic for it, and transfer it to the  **Camera**  instance. For example, transmit video streams over the network or save captured frame data as an image file.
 
-    The graphics module also obtains stream resources from the camera module through surfaces. For details, see development guidelines on  [Graphic](graphics.md).
+    The graphics module also obtains stream resources from the camera module through surfaces. For details, see development guidelines on  [Graphic](graphics-0.md).
 
 -   Camera running process
     1.  Creating a camera

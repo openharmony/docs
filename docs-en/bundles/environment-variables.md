@@ -2,7 +2,7 @@
 
 During bundle compilation, system-provided environment variables are required to define the output and link the required binary files. These variables are injected into the context for executing scripts based on service requirements. Therefore, their values can be directly obtained from the scripts. Currently, there are global and fixed environment variables in the system.
 
-Global variables are defined by the** envs**  attribute in  **bundle.json**. All dependent bundles can obtain the values of global variables.
+Global variables are defined by the  **envs**  attribute in  **bundle.json**. All dependent bundles can obtain the values of global variables.
 
 ```
 {
