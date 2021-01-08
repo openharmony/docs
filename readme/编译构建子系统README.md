@@ -69,7 +69,7 @@ python build.py ipcamera_hi3516dv300
     │   └── src                # 源文件文件夹
     │       └── helloworld2.c  # 源文件2
     ├── build.sh               # 自定义组件build.sh脚本，非必要
-    └── Makefile               # 自定义组件Makefile脚本，非必
+    └── Makefile               # 自定义组件Makefile脚本，非必要
     ```
 
     第一步：编写example/feature1/BUILD.gn，动态库的gn脚本
