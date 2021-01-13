@@ -86,7 +86,7 @@
 
 -   **Problem**
 
-    The compilation fails, and  **xx.sh \[: xx upexpected operator**  is displayed.
+    The compilation fails, and  **xx.sh \[: xx unexpected operator**  is displayed.
 
 -   **Cause**
 
