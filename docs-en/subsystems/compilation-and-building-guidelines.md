@@ -7,20 +7,20 @@
 ## Directory Structure<a name="section56731811102915"></a>
 
 ```
-build/lite                          # Primary directory for compilation and building
-├── config                       # Compilation configuration items
+build/lite                      # Primary directory for compilation and building
+├── config                      # Compilation configuration items
 │   ├── boards                  # Declaration of development board–related variables, including its name, target architecture, and target CPU
 │   ├── component               # Definition of templates related to OpenHarmony components, including static libraries, dynamic libraries, extension components, and emulator libraries
 │   ├── kernel                  # Compilation variable declaration and configuration parameters for the OpenHarmony kernel
 │   └── subsystem               # OpenHarmony subsystem list
-├── ndk                          # NDK-related compilation scripts and configuration parameters
-├── platform                     # Platform-related configuration files
+├── ndk                         # NDK-related compilation scripts and configuration parameters
+├── platform                    # Platform-related configuration files
 │   ├── hi3516dv300_liteos_a    # Hi3516DV300 and LiteOS_A platform files, including full configuration tables and boot files
 │   ├── hi3518ev300_liteos_a    # Hi3518EV300 and LiteOS_A platform files, including full configuration tables and boot files
 │   └── hi3861v100_liteos_riscv # Hi3861V100 and LiteOS_RISCV platform files, including full configuration tables and boot files
-├── product                      # Full configuration tables of the product, including configuration units, the subsystem list, and the compiler
-├── toolchain                    # Compilation toolchains, which contain the compiler paths, compilation options, and link options
-└── tools                        # Tools on which compilation and building depend, for example, mkfs
+├── product                     # Full configuration tables of the product, including configuration units, the subsystem list, and the compiler
+├── toolchain                   # Compilation toolchains, which contain the compiler paths, compilation options, and link options
+└── tools                       # Tools on which compilation and building depend, for example, mkfs
 ```
 
 ## Compilation Commands<a name="section1475192018291"></a>
@@ -31,7 +31,7 @@ build/lite                          # Primary directory for compilation and buil
     python build.py product [options]
     ```
 
-    Replace  **product**  with  **build/lite/produc/**_xxx_**.json**. Both the product name and components configured in the JSON file can be customized. By default, all components supported by the corresponding platform are contained in the JSON file.
+    Replace  **product**  with  **build/lite/product/**_xxx_**.json**. Both the product name and components configured in the JSON file can be customized. By default, all components supported by the corresponding platform are contained in the JSON file.
 
 -   Compilation options
 
@@ -53,22 +53,22 @@ build/lite                          # Primary directory for compilation and buil
     The example component consists of two features:  **feature1**  and  **feature2**. The target of  **feature1**  is a dynamic library, and that of  **feature2**  is an executable file. The complete directory structure of the example component is as follows:
 
     ```
-    example                         # Custom component
-    ├── BUILD.gn                 # GN script of the component. The name is fixed.
-    ├── feature1                 # Custom unit 1
-    │   ├── BUILD.gn            # GN script of feature1. The name is fixed.
-    │   ├── include             # Header file folder
+    example                    # Custom component
+    ├── BUILD.gn               # GN script of the component. The name is fixed.
+    ├── feature1               # Custom unit 1
+    │   ├── BUILD.gn           # GN script of feature1. The name is fixed.
+    │   ├── include            # Header file folder
     │   │   └── helloworld1.h  # Header file 1
-    │   └── src                 # Source file folder
-    │       └── helloworld1.c   # Source file 1
-    ├── feature2                 # Custom unit 2
-    │   ├── BUILD.gn            # GN script of feature2. The name is fixed.
-    │   ├── include             # Header file folder
+    │   └── src                # Source file folder
+    │       └── helloworld1.c  # Source file 1
+    ├── feature2               # Custom unit 2
+    │   ├── BUILD.gn           # GN script of feature2. The name is fixed.
+    │   ├── include            # Header file folder
     │   │   └── helloworld2.h  # Header file 2
-    │   └── src                 # Source file folder
-    │       └── helloworld2.c   # Source file 2
-    ├── build.sh                 # (Optional) build.sh script of the custom component
-    └── Makefile                 # (Optional) Makefile script of the custom component
+    │   └── src                # Source file folder
+    │       └── helloworld2.c  # Source file 2
+    ├── build.sh               # (Optional) build.sh script of the custom component
+    └── Makefile               # (Optional) Makefile script of the custom component
     ```
 
     Example 1: GN script \(**example/feature1/BUILD.gn**\) for dynamic library compilation.
@@ -198,10 +198,10 @@ build/lite                          # Primary directory for compilation and buil
 
 2.  Compile the product solution.
 
-    The configuration of the product solution is stored in a JSON file \(for example,  **ipcamera\_hi3516dv300.json**\) under the  **build/lite/product**  directory. During the construction, the system reads the configuration file, which contains custom subsystems and components. To compile  **ipcamera\_hi3516dv30**, for example, run the following command:
+    The configuration of the product solution is stored in a JSON file \(for example,  **ipcamera\_hi3516dv300.json**\) under the  **build/lite/product**  directory. During the construction, the system reads the configuration file, which contains custom subsystems and components. To compile  **ipcamera\_hi3516dv300**, for example, run the following command:
 
     ```
-    python build.py ipcamera_hi3516dv30
+    python build.py ipcamera_hi3516dv300
     ```
 
 3.  Obtain the compilation result.
