@@ -4,7 +4,7 @@
 LiteIPC is a HarmonyOS extension to the LiteOS(a) kernel which provides a means for processes on the same device to communicate with each other.  It is a somewhat higher level mechanism than POSIX IPC methods such as message queues or shared memory, providing automatic management of resources used for IPC and control of access rights to send messages to other processes.  IPC messages are exchanged between tasks.  An IPC service is a task which has been set up to receive request type messages.  Access rights are granted to processes, if a process has access to a service then all tasks in the process are able to send requests to the service.
 
 ## API
-*Interface*  
+*Application-layer Interface*  
 //foundation/communication/frameworks/ipc_lite/liteipc/include/liteipc.h  
 //foundation/communication/interfaces/kits/ipc_lite/liteipc_adapter.h  
 
@@ -14,7 +14,7 @@ LiteIPC is a HarmonyOS extension to the LiteOS(a) kernel which provides a means 
 
 `LITEIPC_DRIVER` specifies the name of the character device used to communicate with the LiteIPC driver (currently /dev/lite_ipc).
 
-Memory mapping allocates a memory area for storing messages the process receives.  ioctl calls to the driver before it has been memory mapped return with error **ENOMEM**.
+Memory mapping allocates a memory area for storing messages received by the process' tasks.  ioctl calls to the driver before it has been memory mapped return with error **ENOMEM**.
 
 The IpcMsg structure is the basic unit of transaction for LiteIPC.
 | Member    | Type        | Description |
@@ -29,6 +29,7 @@ The IpcMsg structure is the basic unit of transaction for LiteIPC.
 | code      | UINT32      | Service function code. |
 | timestamp | UINT64      | Timestamp for when the message was sent.  Automatically set by the IPC system for requests and death notifications. |
 | taskID    | UINT32      | Specifies the message's sender.  Automatically set by the IPC system. |
+| processID | UINT32      | Additional information on the message's sender.  Automatically set by the IPC system. |
 
 SpecialObj
 | Member  | Type       | Description |
@@ -88,82 +89,97 @@ LiteIPC includes utility functions for the kernel to manage the IPC system.
 `LiteIpcInit` initializes the IPC system and must be called before it can be used.  
 `LiteIpcPoolInit` performs basic initialization of a ProcIpcInfo.  Called by the kernel on task creation to initialize the IPC variables in the task's control block.  
 `LiteIpcPoolReInit` initializes the IPC variables of a child task from it's parent's task.  Called by the kernel on the creation of child tasks for basic initialization.  
-`LiteIpcPoolDelete` removes a process' IPC memory pool allocated by memory mapping.  Also clears the processes access rights list and removes access to the process from any processes which had access rights to it.  Called by the kernel on process deletion for automatic memory and IPC resource management.  
+`LiteIpcPoolDelete` removes a process' IPC memory pool allocated by memory mapping and all the process' access rights.  Called by the kernel on process deletion for automatic memory and IPC resource management.  
 `LiteIpcRemoveServiceHandle` deregisters a service, clearing out the service task's message list and the list of processes with access rights to the service and sending death notification messages to any services with a set IPC task which had access.  Death notification messages are only sent once, if there is an error in the send (**ENOMEM**) the recipient will not get the death notification.  Death notification messages set target.token to the sevice handle of the service which terminated.  Called by the kernel on task deletion for automatic IPC resource management.  
 
 ### Sample code
-```
-#include "liteipc_adapter.h"
-#include "liteipc.h"
+1.  Initialization before we can use LiteIPC.
+    ```
+    #include "liteipc_adapter.h"
+    #include "liteipc.h"
 
-int fd = open(LITEIPC_DRIVER, O_RDONLY);
-mmap(NULL, 10000, PROT_READ, MAP_PRIVATE, fd, 0);
+    int fd = open(LITEIPC_DRIVER, O_RDONLY);
+    mmap(NULL, 10000, PROT_READ, MAP_PRIVATE, fd, 0);
+    ```
 
-#define SVCNAME "wakeup service"
-IpcMsg msg = {
-    .type = MT_REQUEST,
-    .target = { 0, 0, 0 },
-    .flag = LITEIPC_FLAG_DEFAULT,
-    .dataSz = sizeof(SVCNAME),
-    .data = SVCNAME,
-    .spObjNum = 0,
-    .offsets = NULL
-};
-IpcContent content = {
-    .flag = SEND | RECV,
-    .outMsg = &msg
-};
+2.  Send a message to the CMS.  For simplicity let's say we have a primitive CMS which simply gives us access to and returns the handle of the service named in the request we send to it.
+    ```
+    #define SVCNAME "wakeup service"
+    IpcMsg msg = {
+        .type = MT_REQUEST,
+        .target = { 0, 0, 0 },
+        .flag = LITEIPC_FLAG_DEFAULT,
+        .dataSz = sizeof(SVCNAME),
+        .data = SVCNAME,
+        .spObjNum = 0,
+        .offsets = NULL
+    };
+    IpcContent content = {
+        .flag = SEND | RECV,
+        .outMsg = &msg
+    };
 
-// Send a message to the CMS
-if (ioctl(fd, IPC_SEND_RECV_MSG, &content) < 0) {
-    goto ERROR;
-}
+    // Send a message to the CMS
+    if (ioctl(fd, IPC_SEND_RECV_MSG, &content) < 0) {
+        goto ERROR;
+    }
+    ```
 
-// Set ourselves as IPC task
-int myId = ioctl(fd, IPC_SET_IPC_THREAD, 0);
+3.  Set our IPC task and send a message to the wakeup service.
+    ```
+    // Set ourselves as IPC task so we can distribute access on our own
+    int myId = ioctl(fd, IPC_SET_IPC_THREAD, 0);
 
-struct {
-    char summary[20];
-    BuffPtr command;
-    SvcIdentity svc;
-} wakeupData = {
-    .summary = "one wakeup"
-};
-char commandStr[100] = "Wake me up at 9:00 in the morning.";
-void* wakeupOffsets[2] = {
-    (void*)((uintptr_t)&wakeupData.command - (uintptr_t)&wakeupData),
-    (void*)((uintptr_t)&wakeupData.svc - (uintptr_t)&wakeupData)
-};
+    struct {
+        char summary[20];
+        SpecialObj command;
+        SpecialObj svc;
+    } wakeupData = {
+        .summary = "one wakeup"
+    };
+    char commandStr[100] = "Wake me up at 9:00 in the morning.";
+    void* wakeupOffsets[2] = {
+        (void*)((uintptr_t)&wakeupData.command - (uintptr_t)&wakeupData),
+        (void*)((uintptr_t)&wakeupData.svc - (uintptr_t)&wakeupData)
+    };
 
-// Send a request to the wakeup service and free the CMS's reply
-content.flag = SEND | BUFF_FREE;
-content.buffToFree = content.inMsg;
-msg.type = MT_REQUEST;
-// Let's say our CMS gives us access to and returns the handle
-// of the service we named in the request we sent to it.
-msg.target.handle = *(uint32_t*)content.inMsg->data;
-// Add the auxiliary data.
-wakeupData.command.buffSz = sizeof(commandStr);
-wakeupData.command.buff = commandStr;
-// Give the wakeup service access to send us requests.
-wakeupData.svc.handle = myId;
-msg.data = &wakeupData;
-msg.dataSz = sizeof(wakeupData);
-msg.offsets = wakeupOffsets;
-msg.spObjNum = 2;
-if (ioctl(fd, IPC_SEND_RECV_MSG, &content) < 0) {
-    goto ERROR;
-}
+    // Send a request to the wakeup service and free the CMS's reply
+    content.flag = SEND | BUFF_FREE;
+    content.buffToFree = content.inMsg;
+    msg.type = MT_REQUEST;
+    // Set the recipient from the CMS' reply
+    msg.target.handle = *(uint32_t*)content.inMsg->data;
+    // Add the auxiliary data.
+    wakeupData.command.type = OBJ_PTR;
+    wakeupData.command.content.ptr.buffSz = sizeof(commandStr);
+    wakeupData.command.content.ptr.buff = commandStr;
+    // Give the wakeup service access to send us requests.
+    wakeupData.svc.type = OBJ_SVC;
+    wakeupData.svc.content.svc.handle = myId;
+    // Complete the message and send it.
+    msg.data = &wakeupData;
+    msg.dataSz = sizeof(wakeupData);
+    msg.offsets = wakeupOffsets;
+    msg.spObjNum = 2;
+    if (ioctl(fd, IPC_SEND_RECV_MSG, &content) < 0) {
+        goto ERROR;
+    }
+    ```
 
-// Enter "server" mode, wait for the service to wake us up.
-content.flag = RECV;
-ioctl(fd, IPC_SEND_RECV_MSG, &content);
+4.  Wait for wakeup and process the wakeup message.
+    ```
+    // Enter "server" mode, wait for the service to wake us up.
+    content.flag = RECV;
+    ioctl(fd, IPC_SEND_RECV_MSG, &content);
 
-// Free the received message
-content.flag = BUFF_FREE;
-content.buffToFree = content.inMsg;
-ioctl(fd, IPC_SEND_RECV_MSG, &content);
+    // Free the received message
+    content.flag = BUFF_FREE;
+    content.buffToFree = content.inMsg;
+    ioctl(fd, IPC_SEND_RECV_MSG, &content);
+    ```
 
-ERROR:
-close(fd);
-```
+5.  LiteIPC automatically cleans up our IPC resources when we exit, but closing the file descriptor when we're done using it is a good habit.
+    ```
+    ERROR:
+    close(fd);
+    ```
