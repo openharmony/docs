@@ -323,7 +323,7 @@
     python build.py ipcamera_hi3516dv300 -b debug
     ```
 
--   编写config.json，参见foundation/aafwk/frameworks/ability\_lite/example路径下的config.josn，内容如下：
+-   编写config.json，参见foundation/aafwk/frameworks/ability\_lite/example路径下的config.json，内容如下：
 
     ```
     {
