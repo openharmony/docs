@@ -124,7 +124,7 @@ The following table describes the tools required for setting up the general envi
 </td>
 <td class="cellrowborder" valign="top" width="19.921992199219922%" headers="mcps1.2.4.1.2 "><p id="p648774510589"><a name="p648774510589"></a><a name="p648774510589"></a>Functions as the compiler toolchain.</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="p148719454586"><a name="p148719454586"></a><a name="p148719454586"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar</a></p>
+<td class="cellrowborder" valign="top" width="66.996699669967%" headers="mcps1.2.4.1.3 "><p id="p148719454586"><a name="p148719454586"></a><a name="p148719454586"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar</a></p>
 </td>
 </tr>
 <tr id="row1548710453586"><td class="cellrowborder" valign="top" width="13.081308130813083%" headers="mcps1.2.4.1.1 "><p id="p15487114585814"><a name="p15487114585814"></a><a name="p15487114585814"></a>hc-gen</p>
@@ -418,11 +418,11 @@ sudo ln -s /bin/bash /bin/sh
 ### Installing LLVM<a name="section11739111964114"></a>
 
 1.  Start a Linux server.
-2.  Download  [LLVM](http://tools.harmonyos.com/mirrors/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar).
+2.  Download  [LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar).
 3.  Decompress the LLVM installation package to  **\~/llvm**.
 
     ```
-    tar -xvf llvm-linux-9.0.0-34042.tar -C ~/
+    tar -xvf llvm-linux-9.0.0-36191.tar -C ~/
     ```
 
 4.  Set an environment variable.

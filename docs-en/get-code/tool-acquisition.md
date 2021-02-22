@@ -237,11 +237,11 @@ For details about how to download and install all compilation tools, see  [Setti
 </td>
 <td class="cellrowborder" valign="top" width="10.93%" headers="mcps1.2.6.1.2 "><p id="p20794162412258"><a name="p20794162412258"></a><a name="p20794162412258"></a>llvm</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.08%" headers="mcps1.2.6.1.3 "><p id="p47941224122519"><a name="p47941224122519"></a><a name="p47941224122519"></a>9.0.0-34042</p>
+<td class="cellrowborder" valign="top" width="8.08%" headers="mcps1.2.6.1.3 "><p id="p47941224122519"><a name="p47941224122519"></a><a name="p47941224122519"></a>9.0.0-36191</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.95%" headers="mcps1.2.6.1.4 "><p id="p1379532412256"><a name="p1379532412256"></a><a name="p1379532412256"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="7.95%" headers="mcps1.2.6.1.4 "><p id="p1379532412256"><a name="p1379532412256"></a><a name="p1379532412256"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar" target="_blank" rel="noopener noreferrer">Site</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="56.69%" headers="mcps1.2.6.1.5 "><p id="p15795112414255"><a name="p15795112414255"></a><a name="p15795112414255"></a>64a518b50422b6f1ba8f6f56a5e303fb8448a311211ba10c385ad307a1d2546f</p>
+<td class="cellrowborder" valign="top" width="56.69%" headers="mcps1.2.6.1.5 "><p id="p15795112414255"><a name="p15795112414255"></a><a name="p15795112414255"></a>a32e467e4bb56b2b48f55b97809d7a246a9482337a948d76f1064b10bc2fb9f3</p>
 </td>
 </tr>
 <tr id="row1179642422512"><td class="cellrowborder" valign="top" width="16.35%" headers="mcps1.2.6.1.1 "><p id="p172311534134318"><a name="p172311534134318"></a><a name="p172311534134318"></a>Hi3516 and Hi3518</p>
