@@ -44,10 +44,9 @@ A high-priority thread in a process can preempt the resources of a low-priority 
 
     When a running thread is blocked \(for example, is pended, delayed, or reading semaphores\), the thread is deleted from the ready list, and its state changes from  **Running**  to  **Blocked**. Then, a thread switchover is triggered to run the thread with the highest priority in the ready list.
 
--   Blocked→Ready/Blocked→Running:
+-   Blocked→Ready:
 
-    After the blocked thread is restored \(for example, the thread is restored, the delay times out, the semaphore reading times out, or semaphores have been read\), the thread is added to the ready list and changes from the  **Blocked**  state to the  **Ready**  state. In this case, if the priority of the restored thread is higher than that of the running thread, a thread switchover occurs to run the restored thread, and therefore the restored thread changes from the  **Ready**  state to the  **Running**  state.
-
+    After the blocked thread is restored \(for example, the thread is restored, the delay times out, the semaphore reading times out, or semaphores have been read\), the thread is added to the ready list and changes from the  **Blocked**  state to the  **Ready**  state.
 -   Ready→Blocked:
 
     A thread may also be blocked \(suspended\) in the  **Ready**  state. The blocked thread will change from the  **Ready**  state to the  **Blocked**  state and is deleted from the ready list. In this case, the thread will not be scheduled until it is restored.
@@ -60,9 +59,6 @@ A high-priority thread in a process can preempt the resources of a low-priority 
 
     When a running thread is terminated, its state changes from  **Running**  to  **Exit**. The thread without the  **PTHREAD\_CREATE\_DETACHED**  attribute will present the  **Exit**  state after being terminated.
 
--   Blocked→Exit:
-
-    If an API is called to delete a blocked thread, the thread changes from the  **Blocked**  state to the  **Exit**  state.
 
 
 ## When to Use<a name="section44877547404"></a>
