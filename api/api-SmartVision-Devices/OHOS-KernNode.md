@@ -1,2 +1,0 @@
-# OHOS::KernNode<a name="ZH-CN_TOPIC_0000001054094265"></a>
-

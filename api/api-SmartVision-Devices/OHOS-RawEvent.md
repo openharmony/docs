@@ -1,2 +1,0 @@
-# OHOS::RawEvent<a name="ZH-CN_TOPIC_0000001054174196"></a>
-
