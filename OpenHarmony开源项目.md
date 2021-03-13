@@ -10,7 +10,7 @@ OpenHarmony在传统的单设备系统能力的基础上，创造性地提出了
 
 OpenHarmony整体遵从分层设计，从下向上依次为：内核层、系统服务层、框架层和应用层。系统功能按照“系统 \> 子系统 \> 功能/模块”逐级展开，在多设备部署场景下，支持根据实际需求裁剪某些非必要的子系统或功能/模块。OpenHarmony技术架构如下所示。
 
-![](zh-cn/readme/figures/1.png)
+![](https://gitee.com/openharmony/docs/raw/master/zh-cn/readme/figures/1.png)
 
 **内核层**
 
