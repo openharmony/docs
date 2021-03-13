@@ -50,7 +50,7 @@ OpenHarmony整体遵从分层设计，从下向上依次为：内核层、系统
 
     -   分布式软总线
 
-        分布式软总线是多设备终端的统一基座，为“[1+8+N](zh-cn_topic_0000000000029587.md#li7594174334311)”设备的无缝互联提供了统一的分布式通信能力，能够快速发现并连接设备，高效地传输任务和数据。
+        分布式软总线是多设备终端的统一基座，为“1+8+N”设备的无缝互联提供了统一的分布式通信能力，能够快速发现并连接设备，高效地传输任务和数据。
 
 
     -   分布式数据管理
@@ -305,9 +305,9 @@ OpenHarmony支持如下几种设备类型：
 
 ## 开发者文档<a name="section21031470109"></a>
 
-简体中文：[OpenHarmony开发者文档](Readme-zh-cn.md)
+简体中文：[OpenHarmony开发者文档](https://gitee.com/openharmony/docs/blob/master/Readme-zh-cn.md)
 
-English Version：[OpenHarmony Documentation](docs/Readme-en.md)
+English Version：[OpenHarmony Documentation](https://gitee.com/openharmony/docs/blob/master/Readme-en.md)
 
 ## 源码下载<a name="section39011923144212"></a>
 
