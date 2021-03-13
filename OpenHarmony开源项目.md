@@ -106,7 +106,7 @@ OpenHarmony支持如下几种设备类型：
 
 ## 详细特征<a name="section25831825174419"></a>
 
-入口：[https://gitee.com/openharmony/docs/tree/master/readme](https://gitee.com/openharmony/docs/tree/master/readme)
+入口：[https://gitee.com/openharmony/docs/tree/master/zh-cn/readme](https://gitee.com/openharmony/docs/tree/master/zh-cn/readme)
 
 \*本次开源部分主要支持百K级，百M级设备，以下内容主要介绍涉及到的相关子系统内容。
 
@@ -125,140 +125,140 @@ OpenHarmony支持如下几种设备类型：
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1314313275533"><a name="p1314313275533"></a><a name="p1314313275533"></a>作为JS应用开发框架的轻量实现，提供一套跨平台的类web应用开发框架，通过Toolkit将开发者编写的HTML、CSS和JS 文件编译打包成JS Bundle，然后再将JS Bundle解析运行成C++ UIKit的View 组件进行渲染。通过支持三方开发者使用声明式的API进行应用开发，以数据驱动视图变化，避免了大量的视图操作，大大降低了应用开发难度，提升开发者开发体验。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p614352711533"><a name="p614352711533"></a><a name="p614352711533"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/JS应用开发框架README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p614352711533"><a name="p614352711533"></a><a name="p614352711533"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/JS应用开发框架.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row119815917532"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p514412715318"><a name="p514412715318"></a><a name="p514412715318"></a>DFX</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p91441275533"><a name="p91441275533"></a><a name="p91441275533"></a>针对不同硬件架构和资源提供组件化且可定制的DFX框架。根据RISC-V、Cortex-M、Cortex-A不同硬件平台，提供两种不同的轻量级DFX框架。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p1014412277533"><a name="p1014412277533"></a><a name="p1014412277533"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/DFX子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p1014412277533"><a name="p1014412277533"></a><a name="p1014412277533"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/DFX子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1698219916532"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p1144327125310"><a name="p1144327125310"></a><a name="p1144327125310"></a>XTS认证</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p314432725311"><a name="p314432725311"></a><a name="p314432725311"></a>XTS是OpenHarmony生态认证测试套件的集合，当前包括acts（application compatibility test suite）应用兼容性测试套，后续会拓展dcts（device compatibility test suite）设备兼容性测试套等。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p6144142785310"><a name="p6144142785310"></a><a name="p6144142785310"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/XTS认证子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p6144142785310"><a name="p6144142785310"></a><a name="p6144142785310"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/XTS认证子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1998212985315"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p214412714534"><a name="p214412714534"></a><a name="p214412714534"></a>全球化</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p81444277538"><a name="p81444277538"></a><a name="p81444277538"></a>全球化资源管理子系统主要提供语言资源回溯和多偏好语言支持的能力，包括多语言资源回溯和多偏好语言支持。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p18144227185311"><a name="p18144227185311"></a><a name="p18144227185311"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/全球化子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p18144227185311"><a name="p18144227185311"></a><a name="p18144227185311"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/全球化子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1398249165320"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p13144192712533"><a name="p13144192712533"></a><a name="p13144192712533"></a>公共基础</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p91441027175313"><a name="p91441027175313"></a><a name="p91441027175313"></a>公共基础库存放OpenHarmony通用的基础组件。这些基础组件可被OpenHarmony各业务子系统及上层应用所使用。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p9144112795314"><a name="p9144112795314"></a><a name="p9144112795314"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/公共基础README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p9144112795314"><a name="p9144112795314"></a><a name="p9144112795314"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/公共基础.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row209823955313"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p17144192718536"><a name="p17144192718536"></a><a name="p17144192718536"></a>内核</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p314519273533"><a name="p314519273533"></a><a name="p314519273533"></a>OpenHarmony内核是面向IoT领域的实时操作系统内核，它具备类似RTOS般轻快和Linux般易用的特点。包括功能组件部分：进程和线程调度、内存管理、IPC机制、timer管理等操作系统基础组件。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p91453278539"><a name="p91453278539"></a><a name="p91453278539"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/内核子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p91453278539"><a name="p91453278539"></a><a name="p91453278539"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/内核子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1982159115313"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p1014542719537"><a name="p1014542719537"></a><a name="p1014542719537"></a>分布式任务调度</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1214542745310"><a name="p1214542745310"></a><a name="p1214542745310"></a>分布式任务调度模块负责跨设备组件管理，提供访问和控制远程组件的能力，支持分布式场景下的应用协同。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p141451927135317"><a name="p141451927135317"></a><a name="p141451927135317"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/分布式任务调度子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p141451927135317"><a name="p141451927135317"></a><a name="p141451927135317"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/分布式任务调度子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
-<tr id="row998219914538"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p61451927155312"><a name="p61451927155312"></a><a name="p61451927155312"></a>分布式通信</p>
+<tr id="row998219914538"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p61451927155312"><a name="p61451927155312"></a><a name="p61451927155312"></a>分布式软总线</p>
 </td>
-<td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1145327135320"><a name="p1145327135320"></a><a name="p1145327135320"></a>实现近场设备间统一的分布式通信能力管理，提供不区分链路的设备发现和传输接口。包含服务发布、数据传输、安全等功能</p>
+<td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1145327135320"><a name="p1145327135320"></a><a name="p1145327135320"></a>实现近场设备间统一的分布式通信能力管理，提供不区分链路的设备发现和传输接口。包含服务发布、数据传输、安全等功能。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p12145627125320"><a name="p12145627125320"></a><a name="p12145627125320"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/分布式通信子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p12145627125320"><a name="p12145627125320"></a><a name="p12145627125320"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/分布式软总线子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row89839920531"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p5145327155315"><a name="p5145327155315"></a><a name="p5145327155315"></a>启动恢复</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1214562745311"><a name="p1214562745311"></a><a name="p1214562745311"></a>启动恢复负责在内核启动之后，应用启动之前的操作系统中间层的启动。支持使用LiteOS-A内核的平台，当前包括：Hi3516DV300平台和Hi3518EV300平台。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p12145627135313"><a name="p12145627135313"></a><a name="p12145627135313"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/启动恢复README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p12145627135313"><a name="p12145627135313"></a><a name="p12145627135313"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/启动恢复子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1598389185315"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p1714520273532"><a name="p1714520273532"></a><a name="p1714520273532"></a>图形</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p19145132713537"><a name="p19145132713537"></a><a name="p19145132713537"></a>主要包括UI组件、布局、动画、字体、输入事件、窗口管理、渲染绘制等模块，构建基于轻量OS的应用框架，满足硬件资源较小的物联网设备的OpenHarmony系统应用开发。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p101451927175314"><a name="p101451927175314"></a><a name="p101451927175314"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/图形子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p101451927175314"><a name="p101451927175314"></a><a name="p101451927175314"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/图形子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row179834916539"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p21461127105314"><a name="p21461127105314"></a><a name="p21461127105314"></a>媒体</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1114632715314"><a name="p1114632715314"></a><a name="p1114632715314"></a>为多媒体应用开发者提供统一的开发接口，使得开发者可以专注于应用业务的开发，轻松使用多媒体的资源。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p714682716530"><a name="p714682716530"></a><a name="p714682716530"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/媒体子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p714682716530"><a name="p714682716530"></a><a name="p714682716530"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/媒体子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1698317918532"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p7146152711532"><a name="p7146152711532"></a><a name="p7146152711532"></a>安全</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p6146172719537"><a name="p6146172719537"></a><a name="p6146172719537"></a>主要提供样例给开发者展示如何去使用已有的安全机制来提升系统的安全能力，包括安全启动、应用权限管理、IPC通信鉴权、HUKS、HiChain、应用签名验签。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p314610277534"><a name="p314610277534"></a><a name="p314610277534"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/安全子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p314610277534"><a name="p314610277534"></a><a name="p314610277534"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/安全子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row198318945311"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p131461727135311"><a name="p131461727135311"></a><a name="p131461727135311"></a>测试</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p15146192795315"><a name="p15146192795315"></a><a name="p15146192795315"></a>开发过程采用测试驱动开发模式，开发者基于系统新增特性可以通过开发者自己开发用例保证，对于系统已有特性的修改，也可通过修改项目中原有自测试用例保证，旨在帮助开发者在开发阶段就能开发出高质量代码。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p141465270538"><a name="p141465270538"></a><a name="p141465270538"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/测试子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p141465270538"><a name="p141465270538"></a><a name="p141465270538"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/测试子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row99837975315"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p1614682714531"><a name="p1614682714531"></a><a name="p1614682714531"></a>用户程序框架</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p01461827195315"><a name="p01461827195315"></a><a name="p01461827195315"></a>包含两个模块：Ability子系统和包管理子系统。Ability子系统，是OpenHarmony为开发者提供的一套开发OpenHarmony应用的开发框架。包管理子系统，是OpenHarmony为开发者提供的安装包管理框架。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p2146152765317"><a name="p2146152765317"></a><a name="p2146152765317"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/用户程序框架子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p2146152765317"><a name="p2146152765317"></a><a name="p2146152765317"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/用户程序框架子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row098416935318"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p15190115891319"><a name="p15190115891319"></a><a name="p15190115891319"></a>AI子系统</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p719011584139"><a name="p719011584139"></a><a name="p719011584139"></a>AI业务子系统是提供原生的分布式AI能力的子系统，提供了统一的AI引擎框架，实现算法能力快速插件化集成。框架中主要包含插件管理、模块管理和通信管理等模块，对AI算法能力进行生命周期管理和按需部署。后续，会逐步定义统一的AI能力接口，便于AI能力的分布式调用。同时，提供适配不同推理框架层级的统一推理接口。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p855814271615"><a name="p855814271615"></a><a name="p855814271615"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/系统服务框架子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p855814271615"><a name="p855814271615"></a><a name="p855814271615"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/AI业务子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row11522144014127"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p25221640111212"><a name="p25221640111212"></a><a name="p25221640111212"></a>泛Sensor</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p952264071216"><a name="p952264071216"></a><a name="p952264071216"></a>泛Sensor中包含传感器和小器件，传感器用于侦测环境中所发生事件或变化，并将此消息发送至其他电子设备，小器件用于向外传递信号的设备，包括马达和LED灯，对开发者提供控制马达振动和LED灯开关的能力。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p49561445181217"><a name="p49561445181217"></a><a name="p49561445181217"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/系统服务框架子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p49561445181217"><a name="p49561445181217"></a><a name="p49561445181217"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/泛Sensor子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row6966123741719"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p99671837101720"><a name="p99671837101720"></a><a name="p99671837101720"></a>电源管理</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p13967237151716"><a name="p13967237151716"></a><a name="p13967237151716"></a>电源管理子系统主要提供了电池、充放电状态查询能力和系统电源管理服务能力，目前主要包括电量查询和亮灭屏控制锁的能力。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p782825121818"><a name="p782825121818"></a><a name="p782825121818"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/系统服务框架子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p782825121818"><a name="p782825121818"></a><a name="p782825121818"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/轻量级电源管理子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row163116577176"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p143265731720"><a name="p143265731720"></a><a name="p143265731720"></a>升级服务</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p9321157121712"><a name="p9321157121712"></a><a name="p9321157121712"></a>升级服务是提供设备远程升级的能力，可以让你的设备轻松支持OTA升级能力。目前仅支持全量包升级方式，全量包是将新系统全部内容做成升级包，进行升级。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p299962571810"><a name="p299962571810"></a><a name="p299962571810"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/系统服务框架子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p299962571810"><a name="p299962571810"></a><a name="p299962571810"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/升级服务子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row99841913538"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p514822710539"><a name="p514822710539"></a><a name="p514822710539"></a>编译构建</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p614816270536"><a name="p614816270536"></a><a name="p614816270536"></a>编译构建提供了一个在GN与ninja基础上的编译构建框架。支持以下功能：1.构建不同芯片平台的产品。如：Hi3518EV300平台的ipcamera产品，Hi3516DV300平台的ipcamera产品，Hi3861平台的WLAN模组产品。2.构建HPM包管理配置生成的自定义产品。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p51480270531"><a name="p51480270531"></a><a name="p51480270531"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/编译构建子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p51480270531"><a name="p51480270531"></a><a name="p51480270531"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/编译构建子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row199841792533"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p7148627185312"><a name="p7148627185312"></a><a name="p7148627185312"></a>驱动</p>
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1148627185317"><a name="p1148627185317"></a><a name="p1148627185317"></a>OpenHarmony驱动子系统采用C面向对象编程模型构建，通过平台解耦、内核解耦，兼容不同内核，提供了归一化的驱动平台底座，旨在为开发者提供更精准、更高效的开发环境，力求做到一次开发，多系统部署。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p9148132705317"><a name="p9148132705317"></a><a name="p9148132705317"></a><a href="https://gitee.com/openharmony/docs/blob/master/readme/驱动子系统README.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p9148132705317"><a name="p9148132705317"></a><a name="p9148132705317"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/驱动子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 </tbody>
