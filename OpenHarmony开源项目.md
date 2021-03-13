@@ -305,9 +305,9 @@ OpenHarmony支持如下几种设备类型：
 
 ## 开发者文档<a name="section21031470109"></a>
 
-简体中文：[OpenHarmony开发者文档](Readme-zh-cn.md)
+简体中文：[OpenHarmony开发者文档](https://gitee.com/openharmony/docs/blob/master/Readme-zh-cn.md)
 
-English Version：[OpenHarmony Documentation](docs/Readme-en.md)
+English Version：[OpenHarmony Documentation](https://gitee.com/openharmony/docs/blob/master/Readme-en.md)
 
 ## 源码下载<a name="section39011923144212"></a>
 
