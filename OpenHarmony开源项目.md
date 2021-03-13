@@ -110,8 +110,6 @@ OpenHarmony支持如下几种设备类型：
 
 \*本次开源部分主要支持百K级，百M级设备，以下内容主要介绍涉及到的相关子系统内容。
 
-**表 1**  子系统
-
 <a name="table18981149155318"></a>
 <table><thead align="left"><tr id="row69811925313"><th class="cellrowborder" valign="top" width="13.381338133813381%" id="mcps1.2.4.1.1"><p id="p9143172718537"><a name="p9143172718537"></a><a name="p9143172718537"></a>系 统</p>
 </th>
@@ -267,8 +265,6 @@ OpenHarmony支持如下几种设备类型：
 ## 快速入门<a name="section44681652104210"></a>
 
 入口：[https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/Readme-CN.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/Readme-CN.md)
-
-**表 2**  快速入门
 
 <a name="table783094717597"></a>
 <table><thead align="left"><tr id="row19831154715595"><th class="cellrowborder" valign="top" width="13.861386138613863%" id="mcps1.2.4.1.1"><p id="p10268195211411"><a name="p10268195211411"></a><a name="p10268195211411"></a>开发板类型</p>
