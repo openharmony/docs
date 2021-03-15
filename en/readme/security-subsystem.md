@@ -1,32 +1,49 @@
 # Security Subsystem<a name="EN-US_TOPIC_0000001051982984"></a>
 
+-   [Overview](#section6309125817418)
+-   [Directory Structure](#section5614117756)
+-   [Constraints](#section14134111467)
+-   [Secure Boot](#section10750510104718)
+-   [Application Permission Management](#section20822104317111)
+-   [IPC Authentication](#section156859591110)
+-   [HUKS](#section9819115764715)
+-   [HiChain](#section19390142934814)
+-   [Application Integrity Verification](#section15468226154919)
+-   [Repositories Involved](#section1665013282177)
+
 ## Overview<a name="section6309125817418"></a>
 
-This section provides samples about how to use existing security mechanisms to improve system security features, including secure boot, application permission management, inter-process communication \(IPC\) authentication, Huawei Universal Keystore Service \(HUKS\), HiChain, and application signature verification.
+This document provides samples about how to use existing security mechanisms to improve system security features, including secure boot, application permission management, inter-process communication \(IPC\) authentication, Huawei Universal Keystore Service \(HUKS\), HiChain, and application signature verification.
 
 ## Directory Structure<a name="section5614117756"></a>
 
 ```
-security
-├── framework
-│     ├── appverify    Application signature verification
-│     ├── crypto_lite    Encryption and decryption
-│     ├── hichainsdk_lite    Device authentication
-│     ├── huks_lite    Key and certificate management
-│     ├── secure_os    Secure OS
-├── interface    Interface directory
-│     ├── innerkits    Internal kit directory
-│     │     ├── appverify    Application signature verification
-│     │     ├── crypto_lite    Encryption and decryption
-│     │     ├── hichainsdk_lite    Device authentication
-│     │     ├── huks_lite    Key and certificate management
-│     │     ├── iam_lite    Application permission management
-│     │     ├── secure_os    Secure OS
-│     ├── kits    External kit directory
-│     │     ├── iam_lite    Application permission management
-├── services    Implementation
-│     ├── iam_lite    Application permission management
-│     ├── secure_os    Secure OS
+base/security
+├── appverify
+│   └── interfaces
+│       └── innerkits
+│           └── appverify_lite  # Application signature verification APIs
+├── deviceauth
+│   ├── frameworks
+│   │   └── deviceauth_lite  # Device authentication implementation
+│   └── interfaces
+│       └── innerkits
+│           └── deviceauth_lite # Device authentication APIs
+├── huks
+│   ├── frameworks
+│   │   ├── crypto_lite  # Encryption and decryption implementation
+│   │   └── huks_lite  # Key management implementation
+│   └── interfaces
+│       └── innerkits
+│           └── huks_lite  # Key management APIs
+└── permission
+    ├── interfaces
+    │   ├── innerkits
+    │   │   └── permission_lite  # Internal APIs for permission management
+    │   └── kits
+    │       └── permission_lite  # External APIs for permission management
+    └── services
+        └── permission_lite  # Permission management service
 ```
 
 ## Constraints<a name="section14134111467"></a>
@@ -43,38 +60,40 @@ Application permissions are used to control access to system resources and featu
 
 The following table describes fields in a permission.
 
+**Table  1**  Descriptions of fields in a permission
+
 <a name="table1073153511418"></a>
-<table><thead align="left"><tr id="row11107193541417"><th class="cellrowborder" valign="top" width="22.220000000000002%" id="mcps1.1.4.1.1"><p id="p6107535141420"><a name="p6107535141420"></a><a name="p6107535141420"></a>Field</p>
+<table><thead align="left"><tr id="row11107193541417"><th class="cellrowborder" valign="top" width="22.220000000000002%" id="mcps1.2.4.1.1"><p id="p6107535141420"><a name="p6107535141420"></a><a name="p6107535141420"></a>Field</p>
 </th>
-<th class="cellrowborder" valign="top" width="35.099999999999994%" id="mcps1.1.4.1.2"><p id="p111080352143"><a name="p111080352143"></a><a name="p111080352143"></a>Value</p>
+<th class="cellrowborder" valign="top" width="35.099999999999994%" id="mcps1.2.4.1.2"><p id="p111080352143"><a name="p111080352143"></a><a name="p111080352143"></a>Value</p>
 </th>
-<th class="cellrowborder" valign="top" width="42.68%" id="mcps1.1.4.1.3"><p id="p161080358141"><a name="p161080358141"></a><a name="p161080358141"></a>Description</p>
+<th class="cellrowborder" valign="top" width="42.68%" id="mcps1.2.4.1.3"><p id="p161080358141"><a name="p161080358141"></a><a name="p161080358141"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row151081735111418"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.1.4.1.1 "><p id="p1108193521417"><a name="p1108193521417"></a><a name="p1108193521417"></a>name</p>
+<tbody><tr id="row151081735111418"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p1108193521417"><a name="p1108193521417"></a><a name="p1108193521417"></a>name</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.099999999999994%" headers="mcps1.1.4.1.2 "><p id="p131081435151413"><a name="p131081435151413"></a><a name="p131081435151413"></a>String</p>
+<td class="cellrowborder" valign="top" width="35.099999999999994%" headers="mcps1.2.4.1.2 "><p id="p131081435151413"><a name="p131081435151413"></a><a name="p131081435151413"></a>String</p>
 </td>
-<td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.1.4.1.3 "><p id="p0108235141411"><a name="p0108235141411"></a><a name="p0108235141411"></a>Permission name</p>
-</td>
-</tr>
-<tr id="row19108143516148"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.1.4.1.1 "><p id="p51081355145"><a name="p51081355145"></a><a name="p51081355145"></a>reason</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.099999999999994%" headers="mcps1.1.4.1.2 "><p id="p01082358147"><a name="p01082358147"></a><a name="p01082358147"></a>Multi-language string ID</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.1.4.1.3 "><p id="p191081235171414"><a name="p191081235171414"></a><a name="p191081235171414"></a>Purpose of requesting the permission.</p>
+<td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.2.4.1.3 "><p id="p0108235141411"><a name="p0108235141411"></a><a name="p0108235141411"></a>Permission name</p>
 </td>
 </tr>
-<tr id="row13108123516145"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.1.4.1.1 "><p id="p18109835101415"><a name="p18109835101415"></a><a name="p18109835101415"></a>used-scene{</p>
+<tr id="row19108143516148"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p51081355145"><a name="p51081355145"></a><a name="p51081355145"></a>reason</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.099999999999994%" headers="mcps1.2.4.1.2 "><p id="p01082358147"><a name="p01082358147"></a><a name="p01082358147"></a>Multi-language string ID</p>
+</td>
+<td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.2.4.1.3 "><p id="p191081235171414"><a name="p191081235171414"></a><a name="p191081235171414"></a>Purpose of requesting the permission.</p>
+</td>
+</tr>
+<tr id="row13108123516145"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p18109835101415"><a name="p18109835101415"></a><a name="p18109835101415"></a>used-scene{</p>
 <p id="p910913358146"><a name="p910913358146"></a><a name="p910913358146"></a>ability,</p>
 <p id="p11109235181420"><a name="p11109235181420"></a><a name="p11109235181420"></a>when</p>
 <p id="p16109193531417"><a name="p16109193531417"></a><a name="p16109193531417"></a>}</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.099999999999994%" headers="mcps1.1.4.1.2 "><p id="p4109123511420"><a name="p4109123511420"></a><a name="p4109123511420"></a><strong id="b1164855864917"><a name="b1164855864917"></a><a name="b1164855864917"></a>ability</strong>: string of the component class name</p>
+<td class="cellrowborder" valign="top" width="35.099999999999994%" headers="mcps1.2.4.1.2 "><p id="p4109123511420"><a name="p4109123511420"></a><a name="p4109123511420"></a><strong id="b1164855864917"><a name="b1164855864917"></a><a name="b1164855864917"></a>ability</strong>: string of the component class name</p>
 <p id="p19109133531410"><a name="p19109133531410"></a><a name="p19109133531410"></a><strong id="b12827212500"><a name="b12827212500"></a><a name="b12827212500"></a>when</strong>: <strong id="b4362946506"><a name="b4362946506"></a><a name="b4362946506"></a>inuse</strong> and <strong id="b182868713508"><a name="b182868713508"></a><a name="b182868713508"></a>always</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.1.4.1.3 "><p id="p31091835151413"><a name="p31091835151413"></a><a name="p31091835151413"></a>Scene where the APIs controlled by this permission are called.</p>
+<td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.2.4.1.3 "><p id="p31091835151413"><a name="p31091835151413"></a><a name="p31091835151413"></a>Scene where the APIs controlled by this permission are called.</p>
 <p id="p93361156407"><a name="p93361156407"></a><a name="p93361156407"></a>This field declares what components can call the APIs controlled by this permission in the specified scene (foreground/background).</p>
 </td>
 </tr>
@@ -142,7 +161,7 @@ HUKS consists of native APIs, the hardware abstraction layer \(HAL\), and Core M
 
 1.  Native APIs are implemented using the C language to ensure consistency among all devices, and include the APIs for key generation, encryption, and decryption.
 2.  Core Module depends on the HAL and provides core functions such as encryption and decryption, signature verification, and key storage.
-3.  HAL shields differences between hardware and OSs and defines the unified APIs for HUKS. It contains platform algoIOrithm libraries, file systems, and logs.
+3.  HAL shields differences between hardware and OSs and defines the unified APIs for HUKS. It contains platform algorithm libraries, file systems, and logs.
 
 ## HiChain<a name="section19390142934814"></a>
 
@@ -180,89 +199,21 @@ During this process, the user needs to enter or scan the PIN provided by the IoT
 
 When an IoT controller and an IoT device communicate with each other after establishing a trust relationship, they authenticate each other by using the locally stored identity public key of the peer. Bidirectional identity authentication and session key exchange are performed using the Station-to-Station \(STS\) protocol during each communication. The session key is used to encrypt the data transmission channel between the devices.
 
-## Application Signature Verification<a name="section15468226154919"></a>
+## Application Integrity Verification<a name="section15468226154919"></a>
 
-To ensure the integrity of application content, OpenHarmony uses application signatures and profiles to manage application sources. Only pre-installed applications and applications from HUAWEI AppGallery can be installed on devices.
+To ensure the integrity and trustworthiness of the applications to be installed in OpenHarmony, the applications must be signed and their signatures must be verified.
 
-**Basic Concepts**
+In application development: After developing an application, you need to sign its installation package to ensure that the installation package is not tampered with when it is released on devices. To sign the application package, you can use the signature tools and the public key certificates and follow the signing certificate generation specifications provided by the application integrity verification module. For your convenience, a public key certificate and a corresponding private key are preset in OpenHarmony. You need to replace the public key certificate and private key in your commercial version of OpenHarmony.
 
--   **Developer certificate**
-
-
-Identity digital certificate of a developer, which is used to sign local debugging software
-
--   **Application debugging profile**
-
-
-Application debugging authorization file that allows you to install and debug an application on a specified device
-
--   **Application publishing certificate**
-
-
-Identity digital certificate of an application publisher, which is used to sign an application to be published or preset
-
--   **Application publishing profile**
-
-
-Description file of an application, which is used for reviewing an application to be published or preset
-
--   **APPID**
-
-
-Unique identifier of an application, which consists of the application bundle name and the public key of the application publishing certificate
-
-**How Application Signature Verification Works**
-
-1.  Apply for becoming an authorized application developer on HUAWEI AppGallery.
-2.  Install and debug an application on a specified device.
-3.  Publish the application.
-
-## **Signature of an Application Published on HUAWEI AppGallery**<a name="section1273895216490"></a>
-
--   **Application debugging scenario**
-
-To develop and debug applications for OpenHarmony devices, you need to apply for becoming an authorized application developer on HUAWEI AppGallery. You need to generate a public/private key pair and upload the public key to HUAWEI AppGallery. HUAWEI AppGallery creates a developer certificate based on your identity information and the uploaded public key, and issues the certificate through the developer certificate CA. You also need to upload the application information and debugging device ID for creating an application debugging profile, which contains the HUAWEI AppGallery signature and cannot be tampered with. Upon obtaining the developer certificate and application debugging profile, you can install and debug applications signed with the private key on a specified OpenHarmony device.
-
-The application installation service of OpenHarmony verifies the application signature to ensure application integrity. In addition, the service verifies the developer certificate, application debugging profile, and the mapping between them to ensure the validity of your identity and the application.
-
-![](figures/en-us_image_0000001051282241.png)
-
--   **Application publishing**
-
-To publish applications in HUAWEI AppGallery, you need to use the application publishing certificate and profile issued by HUAWEI AppGallery to sign the applications. As shown in the following figure, the procedure of applying for the application publishing certificate and profile is similar to that of applying for the developer certificate and application debugging profile \(you can use the same public/private key pair\). Applications signed by the application publishing certificate cannot be directly installed on devices. Instead, the applications must be published in HUAWEI AppGallery for review. After the applications are reviewed and approved, HUAWEI AppGallery uses the publishing certificate to re-sign the applications. The re-signed applications can be downloaded and installed by users.
-
-The application installation service of OpenHarmony verifies the application signature to ensure application integrity. In addition, the service checks whether the signature certificate is from HUAWEI AppGallery to ensure that the application is trusted.
-
-![](figures/en-us_image_0000001051562162.png)
-
+In application installation: The application framework subsystem of OpenHarmony installs applications. Upon receiving an application installation package, the Application Framework subsystem parses the signature of the installation package, and verifies the signature using the application integrity verification APIs. The application can be installed only after the verification succeeds. During the verification, the application integrity verification module uses the preset public key certificate to verify the signature.
 
 ## Repositories Involved<a name="section1665013282177"></a>
 
-security\_services\_app\_verify
+security\_permission
 
-security\_frameworks\_crypto\_lite
+security\_appverify
 
-security\_services\_hichainsdk\_lite
+security\_deviceauth
 
-security\_services\_huks\_lite
-
-security\_frameworks\_secure\_os
-
-security\_interfaces\_innerkits\_hichainsdk\_lite
-
-security\_interfaces\_innerkits\_iam\_lite
-
-security\_interfaces\_innerkits\_huks\_lite
-
-security\_interfaces\_innerkits\_app\_verify
-
-security\_interfaces\_innerkits\_crypto\_lite
-
-security\_interfaces\_innerkits\_secure\_os
-
-security\_interfaces\_kits\_iam\_lite
-
-security\_services\_iam\_lite
-
-security\_services\_secure\_os
+security\_huks
 
