@@ -69,9 +69,9 @@ None
 
 Globalization subsystem
 
-hmf/global/i18n\_lite
+[global\_resmgr\_lite](https://gitee.com/openharmony/global_resmgr_lite/blob/master/README.md)
 
-hmf/global/resmgr\_lite
+[global\_i18n\_lite](https://gitee.com/openharmony/global_i18n_lite/blob/master/README.md)
 
-hmf/global/cust\_lite
+[global\_cust\_lite](https://gitee.com/openharmony/global_cust_lite/blob/master/README.md)
 
