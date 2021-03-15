@@ -149,28 +149,28 @@ For details about the subsystems in the following table, see  [https://gitee.com
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p1149917935119"><a name="p1149917935119"></a><a name="p1149917935119"></a>X Test Suite (XTS) is a set of OpenHarmony certification test suites, including the currently supported application compatibility test suite (ACTS) and the device compatibility test suite (DCTS) that will be supported in the future.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p2049959175117"><a name="p2049959175117"></a><a name="p2049959175117"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/x-test-suite-certification-subsystem.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p2049959175117"><a name="p2049959175117"></a><a name="p2049959175117"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/x-test-suite.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1998212985315"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p349919910512"><a name="p349919910512"></a><a name="p349919910512"></a>Globalization</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p114999919515"><a name="p114999919515"></a><a name="p114999919515"></a>The globalization subsystem provides the bottom-layer resource backtracking and multi-language preference capabilities.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p194991191514"><a name="p194991191514"></a><a name="p194991191514"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/globalization-subsystem.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p194991191514"><a name="p194991191514"></a><a name="p194991191514"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/globalization.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1398249165320"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p104991999518"><a name="p104991999518"></a><a name="p104991999518"></a>Utils</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p24999919512"><a name="p24999919512"></a><a name="p24999919512"></a>The Utils repository stores basic components of OpenHarmony. These basic components are used by OpenHarmony subsystems and upper-layer applications.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p64991955113"><a name="p64991955113"></a><a name="p64991955113"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/utils-library.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p64991955113"><a name="p64991955113"></a><a name="p64991955113"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/utils.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row209823955313"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p94991894516"><a name="p94991894516"></a><a name="p94991894516"></a>Kernel</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p1049912975117"><a name="p1049912975117"></a><a name="p1049912975117"></a>The OpenHarmony kernel is a real-time OS kernel for IoT devices and is as lightweight as an RTOS and as easy-to-use as Linux. It provides basic kernel functions such as process and thread scheduling, memory management, the IPC mechanism, and timer management.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p150012975117"><a name="p150012975117"></a><a name="p150012975117"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/kernel-subsystem.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p150012975117"><a name="p150012975117"></a><a name="p150012975117"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/kernel.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1982159115313"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p4500199155118"><a name="p4500199155118"></a><a name="p4500199155118"></a>Distributed Scheduler</p>
@@ -184,7 +184,7 @@ For details about the subsystems in the following table, see  [https://gitee.com
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p750014918518"><a name="p750014918518"></a><a name="p750014918518"></a>Intelligent Soft Bus manages unified distributed communication between near-field devices and provides device discovery and data transmission APIs that apply to all links. It also provides functions such as service publishing, data transmission, and security assurance.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p145004913511"><a name="p145004913511"></a><a name="p145004913511"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/distributed-communication-subsystem.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p145004913511"><a name="p145004913511"></a><a name="p145004913511"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/intelligent-soft-bus.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row89839920531"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p1050018915515"><a name="p1050018915515"></a><a name="p1050018915515"></a>Startup</p>
@@ -205,7 +205,7 @@ For details about the subsystems in the following table, see  [https://gitee.com
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p1850179125115"><a name="p1850179125115"></a><a name="p1850179125115"></a>The multimedia subsystem provides unified interfaces for you to develop media applications. With this subsystem, you can easily obtain media resources and stay focused on service development.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p150112917512"><a name="p150112917512"></a><a name="p150112917512"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/media-subsystem.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p150112917512"><a name="p150112917512"></a><a name="p150112917512"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/multimedia.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row1698317918532"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p750110995113"><a name="p750110995113"></a><a name="p750110995113"></a>Security</p>
@@ -233,28 +233,28 @@ For details about the subsystems in the following table, see  [https://gitee.com
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p105013910511"><a name="p105013910511"></a><a name="p105013910511"></a>The AI subsystem is the part of OpenHarmony that provides native distributed AI capabilities. At the heart of the subsystem is a unified AI engine framework, which implements quick integration of AI algorithm plug-ins. The framework consists of the plug-in management, module management, and communication management modules, fulfilling lifecycle management and on-demand deployment of AI algorithms. Under this framework, AI algorithm APIs will be standardized to facilitate distributed calling of AI capabilities. In addition, unified inference APIs will be provided to adapt to different inference framework hierarchies.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p6501097519"><a name="p6501097519"></a><a name="p6501097519"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/AI业务子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p6501097519"><a name="p6501097519"></a><a name="p6501097519"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/ai.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row11522144014127"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p850119145113"><a name="p850119145113"></a><a name="p850119145113"></a>Pan-sensor</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p1250116914516"><a name="p1250116914516"></a><a name="p1250116914516"></a>The pan-sensor subsystem contains sensors and misc devices. A sensor is a device to detect events or changes in an environment and send messages about the events or changes to another electronic device. Misc devices, including vibrators and LED lights, are used to send signals externally. You can call APIs to control the vibration of vibrators and lighting-on and lighting-off of LED lights.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p145027935115"><a name="p145027935115"></a><a name="p145027935115"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/泛Sensor子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p145027935115"><a name="p145027935115"></a><a name="p145027935115"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/pan-sensor.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row6966123741719"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p1502159165116"><a name="p1502159165116"></a><a name="p1502159165116"></a>Power management</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p050219175120"><a name="p050219175120"></a><a name="p050219175120"></a>The power management subsystem provides capabilities such as querying the battery charging/discharging status and managing the system power. Currently, available capabilities include querying the battery level and keeping the device screen always on.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p20502119175116"><a name="p20502119175116"></a><a name="p20502119175116"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/轻量级电源管理子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p20502119175116"><a name="p20502119175116"></a><a name="p20502119175116"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/lite-power-management.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row163116577176"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p185021915120"><a name="p185021915120"></a><a name="p185021915120"></a>Update</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p45028945119"><a name="p45028945119"></a><a name="p45028945119"></a>The update subsystem provides Over the Air (OTA) updates. Currently, only full package updates are supported. A full package contains all the content of a new system.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p1550214965119"><a name="p1550214965119"></a><a name="p1550214965119"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/升级服务子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p1550214965119"><a name="p1550214965119"></a><a name="p1550214965119"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/update.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row99841913538"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p35025985115"><a name="p35025985115"></a><a name="p35025985115"></a>Compilation and building</p>
