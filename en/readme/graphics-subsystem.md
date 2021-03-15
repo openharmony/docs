@@ -1,5 +1,11 @@
 # Graphics Subsystem<a name="EN-US_TOPIC_0000001051979319"></a>
 
+-   [Overview](#section5243712115918)
+-   [Directory Structure](#section99241319175914)
+-   [Constraints](#section37625514114)
+-   [Adding a UI Component](#section266451716115)
+-   [Repositories Involved](#section78781240113620)
+
 ## Overview<a name="section5243712115918"></a>
 
 The graphics subsystem mainly includes user interface \(UI\) components, layout, animator, font, input event, window management, rendering and drawing modules. It builds an application framework based on the LiteOS to develop  applications on Internet of Things \(IoT\) devices with small hardware resources.
@@ -15,14 +21,14 @@ Module description:
 -   Input: processes input events.
 -   Display: processes display events.
 -   Render: renders and draws components.
--   Draw2d: draws lines, rectangles, circles, arcs, images, and texts, and interconnects with software rendering and hardware acceleration.
+-   Draw2d: draws lines, rectangles, circles, arcs, images, and texts, and connects to platforms and devices with software rendering and hardware acceleration capabilities.
 -   Surface: applies for and releases shared memory.
 -   Window: manages windows, including creating, showing, hiding a window, and combining windows.
--   Adapter: interconnects with underlying interfaces of the adaptation layer.
+-   Adapter: connects to underlying interfaces of the adaptation layer.
 
 ## Directory Structure<a name="section99241319175914"></a>
 
-**Table  1**  Directory structure of source code for the graphics subsystem
+**Table  1**  Source code directory structure of the graphics subsystem
 
 <a name="table2977131081412"></a>
 <table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="17.7%" id="mcps1.2.3.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>Directory</p>
@@ -43,7 +49,7 @@ Module description:
 </tr>
 <tr id="row6978201031415"><td class="cellrowborder" valign="top" width="17.7%" headers="mcps1.2.3.1.1 "><p id="p117935599130"><a name="p117935599130"></a><a name="p117935599130"></a>frameworks/ui</p>
 </td>
-<td class="cellrowborder" valign="top" width="82.3%" headers="mcps1.2.3.1.2 "><p id="p0793185971316"><a name="p0793185971316"></a><a name="p0793185971316"></a>UI module, which defines functions related to UI components, animators and fonts.</p>
+<td class="cellrowborder" valign="top" width="82.3%" headers="mcps1.2.3.1.2 "><p id="p0793185971316"><a name="p0793185971316"></a><a name="p0793185971316"></a>UI module, which defines functions related to UI components, animators and fonts</p>
 </td>
 </tr>
 <tr id="row1897841071415"><td class="cellrowborder" valign="top" width="17.7%" headers="mcps1.2.3.1.1 "><p id="p16793185961315"><a name="p16793185961315"></a><a name="p16793185961315"></a>hals</p>
@@ -63,12 +69,12 @@ Module description:
 </tr>
 <tr id="row1534591617478"><td class="cellrowborder" valign="top" width="17.7%" headers="mcps1.2.3.1.1 "><p id="p43456161472"><a name="p43456161472"></a><a name="p43456161472"></a>services/ims</p>
 </td>
-<td class="cellrowborder" valign="top" width="82.3%" headers="mcps1.2.3.1.2 "><p id="p23451616124717"><a name="p23451616124717"></a><a name="p23451616124717"></a>Input event management, including processing and distributing input events such as click and press.</p>
+<td class="cellrowborder" valign="top" width="82.3%" headers="mcps1.2.3.1.2 "><p id="p23451616124717"><a name="p23451616124717"></a><a name="p23451616124717"></a>Input event management, including processing and distributing input events such as click and press</p>
 </td>
 </tr>
 <tr id="row1044522874716"><td class="cellrowborder" valign="top" width="17.7%" headers="mcps1.2.3.1.1 "><p id="p644516283476"><a name="p644516283476"></a><a name="p644516283476"></a>services/wms</p>
 </td>
-<td class="cellrowborder" valign="top" width="82.3%" headers="mcps1.2.3.1.2 "><p id="p194451528144716"><a name="p194451528144716"></a><a name="p194451528144716"></a>Window management, including creating, managing, and combining windows.</p>
+<td class="cellrowborder" valign="top" width="82.3%" headers="mcps1.2.3.1.2 "><p id="p194451528144716"><a name="p194451528144716"></a><a name="p194451528144716"></a>Window management, including creating, managing, and combining windows</p>
 </td>
 </tr>
 <tr id="row48471930154713"><td class="cellrowborder" valign="top" width="17.7%" headers="mcps1.2.3.1.1 "><p id="p4847830134713"><a name="p4847830134713"></a><a name="p4847830134713"></a>utils</p>

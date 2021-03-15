@@ -1,6 +1,12 @@
 # Distributed Scheduler<a name="EN-US_TOPIC_0000001051983009"></a>
 
-## Overview<a name="section11660541593"></a>
+-   [Introduction](#section11660541593)
+-   [Directory Structure](#section1464106163817)
+-   [Constraints](#section1718733212019)
+-   [Usage](#section10729231131110)
+-   [Repositories Involved](#section176111311166)
+
+## Introduction<a name="section11660541593"></a>
 
 The Distributed Scheduler is used for cross-device component management. It allows the local device to access or control remote components, and enables application collaboration in distributed scenarios. The following figure shows the modules in the Distributed Scheduler.
 
@@ -19,7 +25,7 @@ The following table describes the directory structure of the Distributed Schedul
 </th>
 </tr>
 </thead>
-<tbody><tr id="row64161056151718"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p9416656181720"><a name="p9416656181720"></a><a name="p9416656181720"></a>dtbschedmgr_lite</p>
+<tbody><tr id="row64161056151718"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p9416656181720"><a name="p9416656181720"></a><a name="p9416656181720"></a>dmsfwk_lite</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p541645611177"><a name="p541645611177"></a><a name="p541645611177"></a>Implementation of the Distributed Scheduler</p>
 </td>
@@ -29,34 +35,13 @@ The following table describes the directory structure of the Distributed Schedul
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p04163569170"><a name="p04163569170"></a><a name="p04163569170"></a>Implementation of the foundation process</p>
 </td>
 </tr>
+<tr id="row65582011104710"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p1655851194713"><a name="p1655851194713"></a><a name="p1655851194713"></a>samgr_lite</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p145595112471"><a name="p145595112471"></a><a name="p145595112471"></a>Implementation of system ability framework</p>
+</td>
+</tr>
 </tbody>
 </table>
-
-The source code directory structure of the Distributed Scheduler is as follows:
-
-```
-├── BUILD.gn
-├── include
-│  ├── distributed_schedule_service.h        # Header file for the open APIs provided by the Distributed Scheduler
-│  ├── dmslite_check_remote_permission.h     # Header file for the permission management module of the Distributed Scheduler
-│  ├── dmslite_famgr.h                       # Header file for the FA management module of the Distributed Scheduler
-│  ├── dmslite_inner_common.h                # Internal common file for the Distributed Scheduler
-│  ├── dmslite.h                             # Header file for the implementation of the Distributed Scheduler Service
-│  ├── dmslite_log.h                         # Header file for the log module
-│  ├── dmslite_msg_parser.h                  # Header file for the distributed message parsing module
-│  ├── dmslite_tlv_common.h                  # Header file for the TLV data parsing module
-│  └── dmslite_session.h                     # Header file for the inter-device communication module
-├── readme.md
-├── LICENSE
-├── source
-    ├── distributed_schedule_service.c
-    ├── dmslite.c
-    ├── dmslite_check_remote_permission.c
-    ├── dmslite_famgr.c
-    ├── dmslite_msg_parser.c
-    ├── dmslite_tlv_common.c
-    └── dmslite_session.c
-```
 
 ## Constraints<a name="section1718733212019"></a>
 
@@ -68,12 +53,12 @@ The source code directory structure of the Distributed Scheduler is as follows:
 
 **Limitations and constraints on remote startup**:
 
--   Only FAs can be started remotely. Remote startup is unavailable to abilities using the Service template.
+-   Only Feature Abilities \(FAs\) can be started remotely. Remote startup is unavailable to abilities using the Service template.
 -   Before the remote startup, ensure that the distributed networking between the primary and secondary devices is successful. Otherwise, the remote startup fails.
 
 ## Usage<a name="section10729231131110"></a>
 
--   **Compiling the Distributed Scheduler**
+-   **Compiling and Building the Distributed Scheduler**
 
 The code of the Distributed Scheduler is stored in the following directory:
 
@@ -81,7 +66,7 @@ The code of the Distributed Scheduler is stored in the following directory:
 foundation/distributedschedule/services/dtbschedmgr_lite
 ```
 
-When compiling the code for a specific platform, you need to specify the target platform. The following code snippet uses code compilation for the Hi3516DV300 platform as an example:
+When compiling and building the code for a specific platform, you need to specify the target platform. The following code snippet uses code compilation and building for the Hi3516 DV300 platform as an example:
 
 ```
 python build.py ipcamera -p hi3516dv300_liteos_a
@@ -116,9 +101,7 @@ Call the  **startAbility**  method on the primary device to start the target FA 
 
 ## Repositories Involved<a name="section176111311166"></a>
 
-distributedschedule\_interfaces\_kits\_samgr\_lite
+[Distributed scheduler](https://gitee.com/openharmony/docs/blob/master/readme/distributedschedule/dmslite.md)
 
-distributedschedule\_services\_dtbschedmgr\_lite
-
-distributedschedule\_services\_safwk\_lite
+[System ability framework](https://gitee.com/openharmony/docs/blob/master/readme/distributedschedule/samgrlite.md)
 
