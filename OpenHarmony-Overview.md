@@ -22,7 +22,7 @@ Unlike traditional OSs, which are limited to a specific type of device, OpenHarm
 
 OpenHarmony is designed with a layered architecture, which from bottom to top, consists of the kernel layer, system service layer, framework layer, and application layer. System functions are expanded by levels, from system to subsystem, and further to function/module. In multi-device deployment scenario, unnecessary subsystems, functions, or modules can be excluded from the system as required. The following figure shows the technical architecture of OpenHarmony.
 
-![](https://gitee.com/mibo_com/docs/blob/master/en/readme/figures/1-en.png)
+![](https://gitee.com/openharmony/docs/raw/master/en/readme/figures/1-en.png)
 
 **Kernel Layer**
 
