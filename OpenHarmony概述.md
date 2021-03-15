@@ -121,7 +121,7 @@ OpenHarmony支持如下几种设备类型：
 </thead>
 <tbody><tr id="row4981119185313"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p1114318271534"><a name="p1114318271534"></a><a name="p1114318271534"></a>JS应用开发框架</p>
 </td>
-<td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1314313275533"><a name="p1314313275533"></a><a name="p1314313275533"></a>作为JS应用开发框架的轻量实现，提供一套跨平台的类web应用开发框架，通过Toolkit将开发者编写的HTML、CSS和JS 文件编译打包成JS Bundle，然后再将JS Bundle解析运行成C++ UIKit的View 组件进行渲染。通过支持三方开发者使用声明式的API进行应用开发，以数据驱动视图变化，避免了大量的视图操作，大大降低了应用开发难度，提升开发者开发体验。</p>
+<td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p1314313275533"><a name="p1314313275533"></a><a name="p1314313275533"></a>作为JS应用开发框架的轻量实现，提供一套跨平台的类web应用开发框架，通过Toolkit将开发者编写的HTML、CSS和JS 文件编译打包成JS Bundle，然后再将JS Bundle解析运行成C++ UIKit的View 组件进行渲染。通过支持三方开发者使用声明式的API进行应用开发，以数据驱动视图变化，避免了大量的视图操作，大幅降低应用开发难度，提升开发者开发体验。</p>
 </td>
 <td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p614352711533"><a name="p614352711533"></a><a name="p614352711533"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/JS应用开发框架.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
