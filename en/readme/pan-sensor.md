@@ -25,9 +25,9 @@ The following figure shows the architecture of the pan-sensor service framework.
 ```
 /base/sensors
 ├── sensor_lite          # Sensor directory
-│   ├── frameworks      # Framework code
-│   ├── interfaces      # Native APIs
-│   └── services        # Code of services
+│   ├── frameworks       # Framework code
+│   ├── interfaces       # Native APIs
+│   └── services         # Code of services
 └── miscdevice_lite      # Misc device directory
 ```
 
@@ -43,7 +43,7 @@ The following modules work cooperatively to implement pan-sensor capabilities: S
 
 **Pan-sensor subsystem**
 
-hmf/sensors/sensor\_lite
+[sensors_sensor_lite](https://gitee.com/openharmony/sensors_sensor_lite/blob/master/README.md)
 
-hmf/sensors/miscdevice\_lite
+[sensors_miscdevice_lite](https://gitee.com/openharmony/sensors_miscdevice_lite/blob/master/README.md)
 
