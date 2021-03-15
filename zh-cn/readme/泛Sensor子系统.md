@@ -25,9 +25,9 @@
 ```
 /base/sensors
 ├── sensor_lite          # Sensor组件目录
-│   ├── frameworks      # 框架代码目录
-│   ├── interfaces      # Native接口目录
-│   └── services        # 服务代码目录
+│   ├── frameworks       # 框架代码目录
+│   ├── interfaces       # Native接口目录
+│   └── services         # 服务代码目录
 └── miscdevice_lite      # 小器件组件目录
 ```
 
@@ -43,7 +43,7 @@
 
 **泛Sensor子系统**
 
-hmf/sensors/sensor\_lite
+[sensors_sensor_lite](https://gitee.com/openharmony/sensors_sensor_lite/blob/master/README_zh.md)
 
-hmf/sensors/miscdevice\_lite
+[sensors_miscdevice_lite](https://gitee.com/openharmony/sensors_miscdevice_lite/blob/master/README_zh.md)
 
