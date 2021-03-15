@@ -146,21 +146,21 @@ The OpenHarmony driver is mainly deployed in the kernel space using the static l
 
 **Driver subsystem**
 
-hmf/drivers/framework
+[drivers\_framework](https://gitee.com/openharmony/drivers_framework/blob/master/README.md)
 
-hmf/drivers/adapter\_uhdf
+[drivers\_adapter\_uhdf](https://gitee.com/openharmony/drivers_adapter_uhdf/blob/master/README.md)
 
-hmf/drivers/adapter\_khdf\_linux
+[drivers\_adapter\_khdf\_linux](https://gitee.com/openharmony/drivers_adapter_khdf_linux/blob/master/README.md)
 
-hmf/drivers/adapter\_khdf\_liteos
+[drivers\_adapter\_khdf\_liteos](https://gitee.com/openharmony/drivers_adapter_khdf_liteos/blob/master/README.md)
 
-hmf/drivers/peripheral\_display
+[drivers\_peripheral\_display](https://gitee.com/openharmony/drivers_peripheral_display/blob/master/README.md)
 
-hmf/drivers/peripheral\_input
+[drivers\_peripheral\_input](https://gitee.com/openharmony/drivers_peripheral_input/blob/master/README.md)
 
-hmf/drivers/peripheral\_wlan
+[drivers\_peripheral\_wlan](https://gitee.com/openharmony/drivers_peripheral_wlan/blob/master/README.md)
 
-hmf/drivers/peripheral\_audio
+[drivers\_peripheral\_audio](https://gitee.com/openharmony/drivers_peripheral_audio/blob/master/README.md)
 
-hmf/drivers/peripheral\_sensor
+[drivers\_peripheral\_sensor](https://gitee.com/openharmony/drivers_peripheral_sensor/blob/master/README.md)
 
