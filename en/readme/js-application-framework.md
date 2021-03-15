@@ -22,17 +22,17 @@ The source code of the framework is stored in  **/foundation/ace/ace\_engine\_li
 
 ```
 /foundation/ace/ace_engine_lite
-├── frameworks       # Framework code
+├── frameworks      # Framework code
 │   ├── examples    # Sample code
 │   ├── include     # Header files
 │   ├── packages    # JavaScript implementation
-│   ├── src        # Source code
+│   ├── src         # Source code
 │   ├── targets     # Configuration files of target devices
 │   └── tools       # Tool code
-├── interfaces       # APIs exposed externally
+├── interfaces      # APIs exposed externally
 │   └── innerkits   # Header files for internal subsystems
 │       └── builtin # JavaScript third-party module APIs exposed by the JS application framework
-└── test             # Test cases
+└── test            # Test cases
 ```
 
 ## Constraints<a name="section1718733212019"></a>
@@ -161,8 +161,8 @@ Runtime-core is a JavaScript-based simple data hijacking framework provided by t
     ├── package-lock.json # NPM dependency lock file
     ├── .prettierrc       # Configuration file for code formatting rules
      ├── scripts          # Directory for compilation scripts
-    │   ├── build.js     # Compilation script
-    │   └── configs.js   # Rollup configuration file
+    │   ├── build.js      # Compilation script
+    │   └── configs.js    # Rollup configuration file
     ├── .size-snapshot.json
     └── src               # Source code
         ├── core          # ViewModel core implementation code
@@ -200,5 +200,5 @@ The following NPM commands are supported:
 
 ## Repositories Involved<a name="section11703194974217"></a>
 
-ace\_engine\_lite
+[ace\_engine\_lite](https://gitee.com/openharmony/ace_engine_lite/blob/master/README.md)
 

@@ -200,5 +200,5 @@ acelite\_config.h主要用于对应平台的特性宏开关，也可用来进行
 
 ## 相关仓<a name="section11703194974217"></a>
 
-ace\_engine\_lite
+[ace\_engine\_lite](https://gitee.com/openharmony/ace_engine_lite/blob/master/README_zh.md)
 
