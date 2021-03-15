@@ -288,11 +288,10 @@ It is worth noting that the modified  **init.cfg**  file must be in JSON format.
 
 Startup subsystem
 
-hmf/startup/syspara\_lite
+[startup\_syspara\_lite](https://gitee.com/openharmony/startup_syspara_lite/blob/master/README.md)
 
-hmf/startup/appspawn\_lite
+[startup\_appspawn\_lite](https://gitee.com/openharmony/startup_appspawn_lite/blob/master/README.md)
 
-hmf/startup/bootstrap\_lite
+[startup\_bootstrap\_lite](https://gitee.com/openharmony/startup_bootstrap_lite/blob/master/README.md)
 
-hmf/startup/init\_lite
-
+[startup\_init\_lite](https://gitee.com/openharmony/startup_init_lite/blob/master/README.md)
