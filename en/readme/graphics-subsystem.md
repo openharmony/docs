@@ -103,5 +103,10 @@ Store new header files in the  **interfaces/ui/components**  directory and .cpp 
 
 ## Repositories Involved<a name="section78781240113620"></a>
 
-graphic\_lite
+[graphic_utils](https://gitee.com/openharmony/graphic_utils/blob/master/README.md)
 
+[graphic_wms](https://gitee.com/openharmony/graphic_wms/blob/master/README.md)
+
+[graphic_surface](https://gitee.com/openharmony/graphic_surface/blob/master/README.md)
+
+[graphic_ui](https://gitee.com/openharmony/graphic_ui/blob/master/README.md)
