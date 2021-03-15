@@ -8,7 +8,7 @@
 
 You must sign a Contributor License Agreement \(CLA\) before you can contribute to the community.
 
-Obtain the CLA from the  **docs/contribute**  directory, sign the CLA, and send an email to the [contact@openharmony.io](mailto:contact@openharmony.io) . \(Online signing is currently unavailable.\)
+Obtain the CLA from the  [**docs/en/contribute**](https://gitee.com/openharmony/docs/tree/master/en/contribute)  directory, sign the CLA, and send an email to the [contact@openharmony.io](mailto:contact@openharmony.io) . \(Online signing is currently unavailable.\)
 
 **Code of Conduct**
 
