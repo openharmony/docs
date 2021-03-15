@@ -176,11 +176,9 @@ vendor/hisi/hi3861/hi3861_adapter/hals/iot_hardware  # HAL for IoT peripheral co
 
 ## Repositories Involved<a name="section6250105871917"></a>
 
-iothardware\_frameworks\_wifiiot\_lite
+**utils**
 
-iothardware\_hals\_wifiiot\_lite
+[utils\_native\_lite](https://gitee.com/openharmony/utils_native_lite/blob/master/README.md)
 
-iothardware\_interfaces\_kits\_wifiiot\_lite
-
-utils\_native\_lite
+[iothardware\_peripheral](https://gitee.com/openharmony/iothardware_peripheral/blob/master/README.md)
 
