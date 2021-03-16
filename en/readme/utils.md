@@ -11,7 +11,7 @@ The Utils repository stores basic components of OpenHarmony. These basic compone
 
 The Utils library provides the following capabilities on different platforms:
 
--   LiteOS Cortex-M \(Hi3861 platform\): key value \(KV\) store, file operations, timer, IoT peripheral control, and system attribute dumping
+-   LiteOS Cortex-M \(Hi3861 platform\): key value \(KV\) store, file operations, timer, and system attribute dumping
 -   LiteOS Cortex-A \(Hi3516 or Hi3518 platform\): KV store, timer, JavaScript APIs for device query and data storage, and system attribute dumping
 
 **Table  1**  Utils capabilities
@@ -53,13 +53,6 @@ The Utils library provides the following capabilities on different platforms:
 <td class="cellrowborder" valign="top" width="54.010000000000005%" headers="mcps1.2.4.1.3 "><p id="p1550005422814"><a name="p1550005422814"></a><a name="p1550005422814"></a>Provides JavaScript APIs for obtaining device information and storing data.</p>
 </td>
 </tr>
-<tr id="row1763022010287"><td class="cellrowborder" valign="top" width="21.22%" headers="mcps1.2.4.1.1 "><p id="p463052016289"><a name="p463052016289"></a><a name="p463052016289"></a>IoT peripheral control</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.77%" headers="mcps1.2.4.1.2 "><p id="p1163032011284"><a name="p1163032011284"></a><a name="p1163032011284"></a>LiteOS Cortex-M</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.010000000000005%" headers="mcps1.2.4.1.3 "><p id="p5630820102812"><a name="p5630820102812"></a><a name="p5630820102812"></a>Provides the capability of performing operations for peripherals.</p>
-</td>
-</tr>
 <tr id="row5553145162815"><td class="cellrowborder" valign="top" width="21.22%" headers="mcps1.2.4.1.1 "><p id="p106300200288"><a name="p106300200288"></a><a name="p106300200288"></a>System attribute dumping</p>
 </td>
 <td class="cellrowborder" valign="top" width="24.77%" headers="mcps1.2.4.1.2 "><p id="p16300204280"><a name="p16300204280"></a><a name="p16300204280"></a>LiteOS Cortex-M and LiteOS Cortex-A</p>
@@ -73,38 +66,26 @@ The Utils library provides the following capabilities on different platforms:
 ## Directory Structure<a name="section1464106163817"></a>
 
 ```
-utils/native/lite/                 # Root directory
+utils/native/lite/              # Root directory
 ├── file                        # Implementation of the file system APIs
 ├── hals                        # HAL directory
-│   └── file                   # Header files of the hardware abstraction layer for file operations
+│   └── file                    # Header files of the hardware abstraction layer for file operations
 ├── include                     # Header files of external APIs
 ├── js                          # JavaScript APIs
-│   └── builtin					
+│   └── builtin
 │       ├── common
 │       ├── deviceinfokit       # Device information kit
 │       ├── filekit             # File kit
 │       └── kvstorekit          # KV store kit
-├── kal                          # KAL directory
+├── kal                         # KAL directory
 │   └── timer                   # KAL implementation of the timer
-├── kv_store	                    # KV store implementation
+├── kv_store	                # KV store implementation
 │   ├── innerkits               # Internal KV store APIs
 │   └── src	                    # KV store source file
 ├── memory
 │   └── include                 # Memory pool management APIs
-├── os_dump                      # System attribute dumping
-├── timer_task                   # Timer implementation
-└── unittest                     # Self-test cases
-
-base/iot_hardware                   # IoT peripheral control
-├── frameworks          
-│   └── wifiiot_lite            # Implementation of the IoT peripheral control module
-├── hals
-│   └── wifiiot_lite            # HAL API declaration
-└── interfaces
-    └── kits                     # APIs of the IoT peripheral control module
-
-vendor/hisi/hi3861/hi3861_adapter/hals/iot_hardware  # HAL for IoT peripheral control
-└── wifiiot_lite                 # Implementation of the APIs at the HAL
+├── os_dump                     # System attribute dumping
+└── timer_task                  # Timer implementation
 ```
 
 ## Usage<a name="section83091355151312"></a>
@@ -176,9 +157,7 @@ vendor/hisi/hi3861/hi3861_adapter/hals/iot_hardware  # HAL for IoT peripheral co
 
 ## Repositories Involved<a name="section6250105871917"></a>
 
-**utils**
+**Utils**
 
 [utils\_native\_lite](https://gitee.com/openharmony/utils_native_lite/blob/master/README.md)
-
-[iothardware\_peripheral](https://gitee.com/openharmony/iothardware_peripheral/blob/master/README.md)
 
