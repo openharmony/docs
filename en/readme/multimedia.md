@@ -485,11 +485,14 @@ EXIT:
 
 ## Repositories Involved<a name="section7666411192217"></a>
 
-/hmf/multimedia/camera\_lite
+**Multimedia subsystem**
 
-/hmf/multimedia/audio\_lite
+[camera\_lite](https://gitee.com/openharmony/multimedia_camera_lite/blob/master/README.md)
 
-/hmf/multimedia/media\_lite
+[camera\_sample\_lite](https://gitee.com/openharmony/applications_sample_camera/blob/master/README.md)
 
-/hmf/multimedia/utils\_lite
+[media\_utils\_lite](https://gitee.com/openharmony/multimedia_utils_lite/blob/master/README.md)
 
+[audio\_lite](https://gitee.com/openharmony/multimedia_audio_lite/blob/master/README.md)
+
+[media\_lite](https://gitee.com/openharmony/multimedia_media_lite/blob/master/README.md)
