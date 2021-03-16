@@ -34,15 +34,10 @@ base/hiviewdfx        # DFX base repository, which stores compilation-related co
 
 ## Repositories Involved<a name="section767551120815"></a>
 
-DFX subsystem:
+**DFX subsystem**
 
-**hmf/hiviwdfx**
+[hiviwdfx\_hilog\_lite](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README.md)
 
-DFX modules:
+[hiviwdfx\_hiview\_lite](https://gitee.com/openharmony/hiviewdfx_hiview_lite/blob/master/README.md)
 
-hmf/hiviwdfx/hilog\_lite
-
-hmf/hiviwdfx/hiview\_lite
-
-hmf/hiviwdfx/hievent\_lite
-
+[hiviwdfx\_hievent\_lite](https://gitee.com/openharmony/hiviewdfx_hievent_lite/blob/master/README.md)

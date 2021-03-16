@@ -34,15 +34,10 @@ base/hiviewdfx        # DFX主仓，用于存放编译相关配置
 
 ## 相关仓<a name="section767551120815"></a>
 
-DFX子系统：
+**DFX子系统**
 
-**hmf/hiviwdfx**
+[hiviwdfx\_hilog\_lite](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README_zh.md)
 
-DFX组件：
+[hiviwdfx\_hiview\_lite](https://gitee.com/openharmony/hiviewdfx_hiview_lite/blob/master/README_zh.md)
 
-hmf/hiviwdfx/hilog\_lite
-
-hmf/hiviwdfx/hiview\_lite
-
-hmf/hiviwdfx/hievent\_lite
-
+[hiviwdfx\_hievent\_lite](https://gitee.com/openharmony/hiviewdfx_hievent_lite/blob/master/README_zh.md)
