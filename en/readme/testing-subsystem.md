@@ -438,7 +438,8 @@ The test tool environment must meet the following requirements:
 
 ## Repositories Involved<a name="section6299103515474"></a>
 
-test\_developertest
+**testing subsystem**
 
-test\_xdevice
+[test\_developertest](https://gitee.com/openharmony/test_developertest/blob/master/README.md)
 
+[test\_xdevice](https://gitee.com/openharmony/test_xdevice/blob/master/README.md)
