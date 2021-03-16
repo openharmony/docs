@@ -6,6 +6,7 @@
 -   [Device Types](#section145241459142416)
 -   [Subsystems](#section25831825174419)
 -   [Getting Started](#section44681652104210)
+-   [Code Organization Address](#sectionCodeOrganizationAddress)
 -   [OpenHarmony Documentation](#section21031470109)
 -   [Source Code Downloading](#section39011923144212)
 -   [How to Participate](#section19611528174215)
@@ -311,6 +312,12 @@ For details, see  [https://gitee.com/openharmony/docs/blob/master/en/device-dev/
 </tr>
 </tbody>
 </table>
+
+## Code Organization Address<a name="sectionCodeOrganizationAddress"></a>
+
+OpenHarmony Organization Address：https://gitee.com/openharmony
+
+OpenHarmony Retired Organization Address：https://gitee.com/openharmony-retired
 
 ## OpenHarmony Documentation<a name="section21031470109"></a>
 
