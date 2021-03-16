@@ -1,18 +1,18 @@
 # Kernel<a name="EN-US_TOPIC_0000001051340509"></a>
 
--   [Overview](#section12995104752113)
+-   [Introduction](#section12995104752113)
 -   [Directory Structure](#section1121775732114)
 -   [Constraints](#section1967115154223)
 -   [Usage](#section1821123352217)
 -   [Repositories Involved](#section2392425183215)
 
-## Overview<a name="section12995104752113"></a>
+## Introduction<a name="section12995104752113"></a>
 
 The OpenHarmony kernel is a real-time OS kernel developed for IoT devices. It is as lightweight as the real-time operating system \(RTOS\) and as easy-to-use as Linux.
 
 The OpenHarmony kernel provides basic kernel functions such as process and thread scheduling, memory management, inter-process communication \(IPC\) mechanism, and timer management.
 
-The source code of the OpenHarmony kernel consists of two repositories: the  **kernel\_liteos\_a**  repository for standard devices and the  **kernel\_liteos\_m**  repository for tiny and mini devices. The following describes the  **kernel\_liteos\_a**  repository.  [Figure1](#fig115631528152315)  shows the architecture of the  LiteOS Cortex-A kernel.
+The source code of the OpenHarmony kernel consists of two repositories: the  **kernel\_liteos\_a**  repository for standard devices and the  **kernel\_liteos\_m**  repository for tiny and mini devices. The following describes the  **kernel\_liteos\_a**  repository.  [Figure1](#fig115631528152315)  shows the architecture of the OpenHarmony LiteOS Cortex-A kernel.
 
 **Figure  1**  Architecture of the OpenHarmony LiteOS Cortex-A kernel<a name="fig115631528152315"></a>  
 ![](figures/architecture-of-the-openharmony-liteos-cortex-a-kernel.png "architecture-of-the-openharmony-liteos-cortex-a-kernel")
@@ -61,19 +61,23 @@ The source code of the OpenHarmony kernel consists of two repositories: the  **k
 
 ## Constraints<a name="section1967115154223"></a>
 
-Hi3518E V300 uses the JFFS2 file system by default, and Hi3516D V300 uses the VFAT file system by default. If other file systems need to be used, the configurations of the file systems must be added accordingly.
+Hi3518E V300 uses the JFFS2 file system by default, and Hi3516D V300 uses the FAT file system by default. If other file systems need to be used, their configurations must be added accordingly.
 
 ## Usage<a name="section1821123352217"></a>
 
-For details, see the  **Usage**  section of  _LiteOS Cortex-A_  and  _LiteOS Cortex-M_
+For details, see the  **Usage**  section of  [LiteOS Cortex-A](https://gitee.com/openharmony/kernel_liteos_a/blob/master/README.md)  and  [LiteOS Cortex-M](https://gitee.com/openharmony/kernel_liteos_m/blob/master/README.md).
 
 ## Repositories Involved<a name="section2392425183215"></a>
 
-Kernel subsystem
+**Kernel subsystem**
 
-drivers\_liteos
+[drivers\_liteos](https://gitee.com/openharmony/drivers_liteos/blob/master/README.md)
 
-kernel\_liteos\_a
+[kernel\_liteos\_a](https://gitee.com/openharmony/kernel_liteos_a/blob/master/README.md)
 
-kernel\_liteos\_m
+[kernel\_liteos\_m](https://gitee.com/openharmony/kernel_liteos_m/blob/master/README.md)
+
+[device\_qemu](https://gitee.com/openharmony/device_qemu/blob/master/README.md)
+
+[prebuilts\_lite\_sysroot](https://gitee.com/openharmony/prebuilts_lite_sysroot/blob/master/README.md)
 
