@@ -299,6 +299,12 @@ OpenHarmony支持如下几种设备类型：
 </tbody>
 </table>
 
+## 代码仓地址
+
+OpenHarmony主库组织地址：https://gitee.com/openharmony
+
+OpenHarmony归档组织地址：https://gitee.com/openharmony-retired
+
 ## 开发者文档<a name="section21031470109"></a>
 
 简体中文：[OpenHarmony开发者文档](https://gitee.com/openharmony/docs/blob/master/Readme-zh-cn.md)
