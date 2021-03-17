@@ -2,7 +2,7 @@
 
 此工程存放OpenHarmony提供的快速入门、开发指南、API参考等开发者文档，欢迎参与OpenHarmony开发者文档开源项目，与我们一起完善开发者文档。
 
-[View English](Readme-EN.md)
+[View English](https://gitee.com/openharmony/docs/blob/master/Readme-en.md)
 
 ## 文档目录结构<a name="section135134412620"></a>
 
@@ -65,7 +65,7 @@
 - 3rd-Party-License：[第三方开源软件及许可证说明](zh-cn/contribute/第三方开源软件及许可证说明.md)
 
 ## 版本更新
-参考[版本更新](zh-cn/release-notes/OpenHarmony-Release-Notes.md)
+参考[Release Notes](https://gitee.com/openharmony/docs/tree/master/zh-cn/release-notes)
 
 ## 贡献<a name="section897211181655"></a>
 
