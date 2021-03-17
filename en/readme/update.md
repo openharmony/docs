@@ -18,7 +18,7 @@ By providing unified update APIs externally, the update subsystem shields the di
 /base/update/ota_lite
 ├── frameworks         # OTA update implementation, including update package parsing, verification, writing, and updating
 ├── interfaces/kits    # External APIs for OTA update
-├── hals               # Chip adaptation code, for example, Hisilicon chip adaptation code is located at device\hisilicon\hardware\update
+├── hals               # Chip adaptation code, for example, HiSilicon chip adaptation code is located at device\hisilicon\hardware\update
 ```
 
 ## Constraints<a name="section1718733212019"></a>
@@ -74,7 +74,7 @@ Add the dependency on the update subsystem. The following uses the Hi3516D V300 
 
 Update subsystem
 
-update\_ota\_lite
+[update\_ota\_lite](https://gitee.com/openharmony/update_ota_lite/blob/master/README.md)
 
-hmf/device/hisilicon/hardware
+[device\_hisilicon\_hardware](https://gitee.com/openharmony/device_hisilicon_hardware/blob/master/README.md)
 
