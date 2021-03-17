@@ -248,7 +248,7 @@ For details about the subsystems in the following table, see  [https://gitee.com
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p050219175120"><a name="p050219175120"></a><a name="p050219175120"></a>The power management subsystem provides capabilities such as querying the battery charging/discharging status and managing the system power. Currently, available capabilities include querying the battery level and keeping the device screen always on.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p20502119175116"><a name="p20502119175116"></a><a name="p20502119175116"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/lite-power-management.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p20502119175116"><a name="p20502119175116"></a><a name="p20502119175116"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/power-management.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row163116577176"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p185021915120"><a name="p185021915120"></a><a name="p185021915120"></a>Update</p>
