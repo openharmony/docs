@@ -1,4 +1,4 @@
-# Lite Power Management<a name="EN-US_TOPIC_0000001083440980"></a>
+# Power Management<a name="EN-US_TOPIC_0000001083440980"></a>
 
 -   [Introduction](#section11660541593)
 -   [Directory Structure](#section19472752217)
@@ -6,12 +6,12 @@
 
 ## Introduction<a name="section11660541593"></a>
 
-The lite power management subsystem provides the following capabilities:
+The power management subsystem provides the following capabilities:
 
 1.  Querying the battery level
 2.  Keeping the device screen always on using a lock
 
-**Figure  1**  Lite power management subsystem architecture<a name="fig106301571239"></a>  
+**Figure  1**  power management subsystem architecture<a name="fig106301571239"></a>  
 
 
 ![](figures/en-us_image_0000001130297625.png)
@@ -20,15 +20,14 @@ The lite power management subsystem provides the following capabilities:
 
 ```
 base/powermgr/powermgr_lite
-├── interfaces		# APIs
+├── interfaces		    # APIs
 │   └── kits
 │       └── battery		# API for querying the battery level
-└── services		        # Services
+└── services		    # Services
     ├── include
     └── source
 ```
 
 ## Repositories Involved<a name="section63151229062"></a>
 
-**hmf/powermgr/powermgr\_lite**
-
+[**powermgr_powermgr_lite**](https://gitee.com/openharmony/powermgr_powermgr_lite) 
