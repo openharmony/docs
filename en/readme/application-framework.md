@@ -237,7 +237,7 @@ The application framework of OpenHarmony consists of two modules:  **ability man
 
 **Application framework**
 
-aafwk\_lite
+[aafwk_\aafwk\_lite](https://gitee.com/openharmony/aafwk_aafwk_lite/blob/master/README.md)
 
-appexecfwk\_lite
+[appexecfwk_\appexecfwk\_lite](https://gitee.com/openharmony/appexecfwk_appexecfwk_lite/blob/master/README.md)
 
