@@ -34,5 +34,5 @@
 
 \* 必填。请确保邮箱与你的gitee账号绑定。
 
-请将签署后的CLA文件发送邮件至contact@openharmony.io 。（线上签署待开放）
+请将签署后的CLA Markdown文件发送邮件至contact@openharmony.io 。（线上签署待开放）
 
