@@ -323,7 +323,9 @@ English Version：[OpenHarmony Documentation](https://gitee.com/openharmony/docs
 
 ## 许可协议<a name="section1245517472115"></a>
 
-OpenHarmony是一种开源软件，参考各仓下LICENSE文本。
+OpenHarmony主要遵循Apache License V2.0协议，详情参考各代码仓LICENSE声明。
+
+OpenHarmony引用三方开源软件及许可证说明，参考[第三方开源软件说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E5%8F%8A%E8%AE%B8%E5%8F%AF%E8%AF%81%E8%AF%B4%E6%98%8E.md)。
 
 ## 联系方式<a name="section61728335424"></a>
 
