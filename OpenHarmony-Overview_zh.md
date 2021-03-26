@@ -321,6 +321,8 @@ English Version：[OpenHarmony Documentation](https://gitee.com/openharmony/docs
 
 参与贡献：[如何贡献链接](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
 
+参与API治理：[OpenHarmony API治理章程](https://gitee.com/openharmony/docs/tree/master/zh-cn/design/OpenHarmony-API-governance.md)
+
 ## 许可协议<a name="section1245517472115"></a>
 
 OpenHarmony主要遵循Apache License V2.0协议，详情参考各代码仓LICENSE声明。
