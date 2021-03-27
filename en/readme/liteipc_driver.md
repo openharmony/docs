@@ -5,8 +5,8 @@ LiteIPC is a HarmonyOS extension to the LiteOS(a) kernel which provides a means 
 
 ## API
 *Application-layer Interface*  
-//foundation/communication/frameworks/ipc_lite/liteipc/include/liteipc.h  
-//foundation/communication/interfaces/kits/ipc_lite/liteipc_adapter.h  
+//foundation/communication/ipc_lite/frameworks/liteipc/include/liteipc.h  
+//foundation/communication/ipc_lite/interfaces/kits/liteipc_adapter.h  
 
 *Implementation*  
 //kernel/liteos_a/kernel/extended/liteipc/hm_liteipc.h  
