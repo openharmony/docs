@@ -12,7 +12,7 @@
 ## API范围与定义
 应用程序接口(API)位于应用层和框架层之间，是由操作系统预定义的、由框架层和系统应用提供给应用(包括系统应用和三方应用)开发使用的类、方法等用户程序编程接口；不包括OEM扩展接口。
 
-![](figures/API-Scope-and-Definition.png)
+![](figures/API-Scope-And-Definition.png)
 
 OpenHarmony API按使用方分类包括：
 
