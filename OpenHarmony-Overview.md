@@ -218,7 +218,7 @@ For details about the subsystems in the following table, see  [https://gitee.com
 </tr>
 <tr id="row198318945311"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p25014935113"><a name="p25014935113"></a><a name="p25014935113"></a>Testing</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p1950149205111"><a name="p1950149205111"></a><a name="p1950149205111"></a>The development process is tset driven. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase.</p>
+<td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p1950149205111"><a name="p1950149205111"></a><a name="p1950149205111"></a>The development process is test driven. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase.</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p450117935113"><a name="p450117935113"></a><a name="p450117935113"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/testing-subsystem.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
