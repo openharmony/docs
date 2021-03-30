@@ -53,7 +53,7 @@ This layer provides with what you need to develop OpenHarmony applications: appl
 
 **Application layer**
 
-This layer consists of system applications and third-party applications. Each OpenHarmony application is powered by one or more Feature Abilities \(FAs\) or Particle Abilities \(PA\). An FA provides a UI for user interaction. A PA has no UI and provides background task processing as well as data access. Applications developed based on FAs and PAs provide specific service characteristics and enable cross-device scheduling and distribution, delighting users with consistent and efficient experience.
+This layer consists of system applications and third-party applications. Each OpenHarmony application is powered by one or more Feature Abilities \(FAs\) or Particle Abilities \(PAs\). An FA provides a UI for user interaction. A PA has no UI and provides background task processing as well as data access. Applications developed based on FAs and PAs provide specific service characteristics and enable cross-device scheduling and distribution, delighting users with consistent and efficient experience.
 
 ## Technical Features<a name="section12212842173518"></a>
 
