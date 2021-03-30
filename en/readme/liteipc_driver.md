@@ -1,7 +1,7 @@
 # LiteIPC driver
 
 ## Overview
-LiteIPC is a HarmonyOS extension to the LiteOS(a) kernel which provides a means for processes on the same device to communicate with each other.  It is a somewhat higher level mechanism than POSIX IPC methods such as message queues or shared memory, providing automatic management of resources used for IPC and control of access rights to send messages to other processes.  IPC messages are exchanged between tasks.  An IPC service is a task which has been set up to receive request type messages.  Access rights are granted to processes, if a process has access to a service then all tasks in the process are able to send requests to the service.
+LiteIPC is an OpenHarmony extension to the LiteOS(a) kernel which provides a means for processes on the same device to communicate with each other.  It is a somewhat higher level mechanism than POSIX IPC methods such as message queues or shared memory, providing automatic management of resources used for IPC and control of access rights to send messages to other processes.  IPC messages are exchanged between tasks.  An IPC service is a task which has been set up to receive request type messages.  Access rights are granted to processes, if a process has access to a service then all tasks in the process are able to send requests to the service.
 
 ## API
 *Application-layer Interface*  
@@ -78,7 +78,7 @@ The `IPC_SET_IPC_THREAD` request designates the current task as the IPC task for
 IPC_SEND_RECV_MSG and IPC_SET_IPC_THREAD both return with error **EINVAL** if the CMS has not been set.
 
 ### Internal functions
-The first task to use the `IPC_SET_CMS` request sets itself as the system's CMS.  HarmonyOS assigns this role to the distributed scheduler's samgr.  Once set it cannot be changed.  Returns with error **EEXIST** if the CMS has already been set.  Messages are sent to the CMS by setting a recipient handle of 0.  The argument to the request specifies the maximum size of a message sent to the CMS.  Sending a message whose total size including IpcMsg data structure, data size, size of special object offsets, and data in any BuffPtr special objects exceeds the maximum size (currently 256 bytes) returns with error **EINVAL**.
+The first task to use the `IPC_SET_CMS` request sets itself as the system's CMS.  OpenHarmony assigns this role to the distributed scheduler's samgr.  Once set it cannot be changed.  Returns with error **EEXIST** if the CMS has already been set.  Messages are sent to the CMS by setting a recipient handle of 0.  The argument to the request specifies the maximum size of a message sent to the CMS.  Sending a message whose total size including IpcMsg data structure, data size, size of special object offsets, and data in any BuffPtr special objects exceeds the maximum size (currently 256 bytes) returns with error **EINVAL**.
 
 The `IPC_CMS_CMD` request provides various service related utility functions to the CMS.  It can only be used by the CMS, any other task making this request will get an **EACCES** error.  The argument to the request is a pointer to a CmsCmdContent structure.  The cmd member indicates the function to be performed.
 - **CMS_GEN_HANDLE** creates a service handle for the task specified by taskID member and stores the handle in the serviceHandle member.  The CMS always has access rights to any created IPC services.
