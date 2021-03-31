@@ -17,8 +17,8 @@ For details, see  [Contribution Process](contribution-process.md).
 
 ## Security Issue Disclosure<a name="en-us_topic_0000001051566732_section725624119448"></a>
 
--   Security handling procedure
+-   [Security Issue Handling and Release Processes](https://gitee.com/openharmony/security/blob/master/en/security-process/README.md)
 
--   Security disclosure information
+-   [OpenHarmony Security and Disclosure Statement](https://gitee.com/openharmony/security/blob/master/en/security-process/security-disclosure.md)
 
 
