@@ -331,13 +331,13 @@ For details about how to obtain the source code of OpenHarmony, see  [Source Cod
 
 ## How to Participate<a name="section19611528174215"></a>
 
-For details about how to join in the OpenHarmony community, see  [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README.md).
+For details about how to join the OpenHarmony community, see [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README.md).
 
-For details about how to contribute, see  [Contribution](https://gitee.com/openharmony/docs/blob/master/en/contribute/contribution.md).
+For details about how to contribute, see [Contribution](https://gitee.com/openharmony/docs/blob/master/en/contribute/contribution.md).
 
 ## License Agreement<a name="section1245517472115"></a>
 
-OpenHarmony is open-source. For details, see the LICENSE in each repository.
+OpenHarmony mainly complies with Apache License v2.0. For details, see the LICENSE in each repository.
 
 ## Contact Info<a name="section61728335424"></a>
 
