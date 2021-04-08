@@ -1,6 +1,10 @@
 # OpenHarmony 1.0.1（2021-03-15）<a name="ZH-CN_TOPIC_0000001125880475"></a>
 
 -   [版本概述](#section1677664815431)
+-   [版本源码获取](#section84808293211)
+    -   [通过镜像站点获取](#section19634542131218)
+    -   [通过repo下载](#section7180193542317)
+
 -   [内核](#section11256141314463)
     -   [新增特性](#section1834713384464)
     -   [修改特性](#section6894155811483)
@@ -58,6 +62,80 @@
 ## 版本概述<a name="section1677664815431"></a>
 
 OpenHarmony1.0.1扩充组件能力，新增AI子系统、电源管理子系统、泛Sensor子系统、升级子系统。OpenHarmony有了统一AI引擎框架。liteos-m内核完成三方可移植性重构。驱动子系统完善了WIFI、Sensor、Input、Display的驱动模型。图形子系统针对UI能力及JS框架性能和内存得到优化。同时对目录结构及组件仓做了大幅优化。
+
+## 版本源码获取<a name="section84808293211"></a>
+
+### 通过镜像站点获取<a name="section19634542131218"></a>
+
+**表 1**  源码获取路径
+
+<a name="table37071442171217"></a>
+<table><thead align="left"><tr id="row20705154220120"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p67051342151216"><a name="p67051342151216"></a><a name="p67051342151216"></a>版本源码</p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.2"><p id="p470519425129"><a name="p470519425129"></a><a name="p470519425129"></a>版本信息</p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p8705194271212"><a name="p8705194271212"></a><a name="p8705194271212"></a>下载站点</p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.4"><p id="p1270594241219"><a name="p1270594241219"></a><a name="p1270594241219"></a>SHA256校验码</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row470516428125"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1870564214123"><a name="p1870564214123"></a><a name="p1870564214123"></a>全量代码</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p270504214125"><a name="p270504214125"></a><a name="p270504214125"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p1170554201212"><a name="p1170554201212"></a><a name="p1170554201212"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/code-1.0.1.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p97051842101210"><a name="p97051842101210"></a><a name="p97051842101210"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/code-1.0.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
+</td>
+</tr>
+<tr id="row11706164211210"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p77051425121"><a name="p77051425121"></a><a name="p77051425121"></a>Hi3861解决方案（二进制）</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p16705154215126"><a name="p16705154215126"></a><a name="p16705154215126"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p19705194241214"><a name="p19705194241214"></a><a name="p19705194241214"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/wifiiot-1.0.1.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p1570554271214"><a name="p1570554271214"></a><a name="p1570554271214"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/code-1.0.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
+</td>
+</tr>
+<tr id="row5706142101219"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p10706542191212"><a name="p10706542191212"></a><a name="p10706542191212"></a>Hi3518解决方案（二进制）</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p10706842121215"><a name="p10706842121215"></a><a name="p10706842121215"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p670610421126"><a name="p670610421126"></a><a name="p670610421126"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/ipcamera_hi3518ev300-1.0.1.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p47060422121"><a name="p47060422121"></a><a name="p47060422121"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/ipcamera_hi3518ev300-1.0.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
+</td>
+</tr>
+<tr id="row167061942121218"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p17706442161215"><a name="p17706442161215"></a><a name="p17706442161215"></a>Hi3516解决方案（二进制）</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p170674212126"><a name="p170674212126"></a><a name="p170674212126"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p47061428127"><a name="p47061428127"></a><a name="p47061428127"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/ipcamera_hi3516dv300-1.0.1.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p107061642151219"><a name="p107061642151219"></a><a name="p107061642151219"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/ipcamera_hi3516dv300-1.0.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
+</td>
+</tr>
+<tr id="row7706342101215"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1070654251210"><a name="p1070654251210"></a><a name="p1070654251210"></a>RELEASE-NOTES</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p47061142101217"><a name="p47061142101217"></a><a name="p47061142101217"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p97068428123"><a name="p97068428123"></a><a name="p97068428123"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/OpenHarmony_Release_Notes_zh_cn.zip" target="_blank" rel="noopener noreferrer">站点</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p9706642151212"><a name="p9706642151212"></a><a name="p9706642151212"></a>-</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+### 通过repo下载<a name="section7180193542317"></a>
+
+下载命令如下：
+
+```
+repo init -u [https://gitee.com/openharmony/manifest.git](https://gitee.com/openharmony/manifest.git)  -b OpenHarmony_1.0.1_release --no-repo-verify
+repo sync -c
+```
 
 ## 内核<a name="section11256141314463"></a>
 

@@ -1,6 +1,10 @@
 # OpenHarmony 1.0.1 \(2021-03-15\)<a name="EN-US_TOPIC_0000001125880475"></a>
 
 -   [Overview](#section1677664815431)
+-   [Source Code Acquisition](#section84808293211)
+    -   [Acquiring Source Code from an Image Site](#section19634542131218)
+    -   [Acquiring Source Code Using the repo Command](#section7180193542317)
+
 -   [Kernel](#section11256141314463)
     -   [New Features](#section1834713384464)
     -   [Modified Features](#section6894155811483)
@@ -58,6 +62,80 @@
 ## Overview<a name="section1677664815431"></a>
 
 OpenHarmony 1.0.1 supports more subsystems, including the AI, power management, pan-sensor, and update subsystems, and provides a unified AI engine framework. The LiteOS Cortex-M kernel has been reconstructed for porting third-party chips to OpenHarmony. The driver subsystem provides models for the WLAN, sensor, input, and display drivers. The graphics subsystem has been optimized for an enhanced UI and improved performance and memory for the JS application framework. In addition, the directory structure and module repositories have been significantly improved.
+
+## Source Code Acquisition<a name="section84808293211"></a>
+
+### Acquiring Source Code from an Image Site<a name="section19634542131218"></a>
+
+**Table  1**  Sites for acquiring source code
+
+<a name="table37071442171217"></a>
+<table><thead align="left"><tr id="row20705154220120"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p67051342151216"><a name="p67051342151216"></a><a name="p67051342151216"></a>Source Code</p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.2"><p id="p470519425129"><a name="p470519425129"></a><a name="p470519425129"></a>Version Information</p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p8705194271212"><a name="p8705194271212"></a><a name="p8705194271212"></a>Site</p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.4"><p id="p1270594241219"><a name="p1270594241219"></a><a name="p1270594241219"></a>SHA-256 Verification Code</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row470516428125"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1870564214123"><a name="p1870564214123"></a><a name="p1870564214123"></a>Full code base</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p270504214125"><a name="p270504214125"></a><a name="p270504214125"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p1170554201212"><a name="p1170554201212"></a><a name="p1170554201212"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/code-1.0.1.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p97051842101210"><a name="p97051842101210"></a><a name="p97051842101210"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/code-1.0.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 verification code</a></p>
+</td>
+</tr>
+<tr id="row11706164211210"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p77051425121"><a name="p77051425121"></a><a name="p77051425121"></a>Hi3861 solution (binary)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p16705154215126"><a name="p16705154215126"></a><a name="p16705154215126"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p19705194241214"><a name="p19705194241214"></a><a name="p19705194241214"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/wifiiot-1.0.1.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p1570554271214"><a name="p1570554271214"></a><a name="p1570554271214"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/code-1.0.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 verification code</a></p>
+</td>
+</tr>
+<tr id="row5706142101219"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p10706542191212"><a name="p10706542191212"></a><a name="p10706542191212"></a>Hi3518 solution (binary)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p10706842121215"><a name="p10706842121215"></a><a name="p10706842121215"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p670610421126"><a name="p670610421126"></a><a name="p670610421126"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/ipcamera_hi3518ev300-1.0.1.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p47060422121"><a name="p47060422121"></a><a name="p47060422121"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/ipcamera_hi3518ev300-1.0.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 verification code</a></p>
+</td>
+</tr>
+<tr id="row167061942121218"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p17706442161215"><a name="p17706442161215"></a><a name="p17706442161215"></a>Hi3516 solution (binary)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p170674212126"><a name="p170674212126"></a><a name="p170674212126"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p47061428127"><a name="p47061428127"></a><a name="p47061428127"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/ipcamera_hi3516dv300-1.0.1.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p107061642151219"><a name="p107061642151219"></a><a name="p107061642151219"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/ipcamera_hi3516dv300-1.0.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 verification code</a></p>
+</td>
+</tr>
+<tr id="row7706342101215"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1070654251210"><a name="p1070654251210"></a><a name="p1070654251210"></a>RELEASE-NOTES</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p47061142101217"><a name="p47061142101217"></a><a name="p47061142101217"></a>1.0.1</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p97068428123"><a name="p97068428123"></a><a name="p97068428123"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0.1/OpenHarmony_Release_Notes_zh_cn.zip" target="_blank" rel="noopener noreferrer">Site</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p9706642151212"><a name="p9706642151212"></a><a name="p9706642151212"></a>-</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+### Acquiring Source Code Using the repo Command<a name="section7180193542317"></a>
+
+The download command is as follows:
+
+```
+repo init -u [https://gitee.com/openharmony/manifest.git](https://gitee.com/openharmony/manifest.git)  -b OpenHarmony_1.0.1_release --no-repo-verify
+repo sync -c
+```
 
 ## Kernel<a name="section11256141314463"></a>
 
@@ -163,7 +241,7 @@ OpenHarmony 1.0.1 supports more subsystems, including the AI, power management, 
 ### New Features<a name="section35351941175420"></a>
 
 -   HUKS provides the SHA-256, RSA-3072, RSA-2048, AES-128, and ECC security algorithms and APIs, as well as key management and storage.
--   The lightweight HiChain is available for managing and authenticating device groups, and ensuring the communication security based on the Intelligent Soft Bus. It does not require device login using an account. It also provides APIs for system services and applications.
+-   The lightweight HiChain is available for managing and authenticating device groups without requiring login to devices using the same account, and for ensuring the communication security based on the Intelligent Soft Bus. It also provides APIs for system services and applications.
 -   A unified permission management system has been added to manage permissions for lightweight devices.
 
 ## AI<a name="section11847124175419"></a>
