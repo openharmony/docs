@@ -14,7 +14,7 @@ The Utils subsystem provides common basic components that can be used by other s
 
 **Description for HAL APIs of the Utils subsystem**
 
-The SoC needs to implement related APIs. For details about the dependency of OpenHarmony on the SoC file system APIs, see  [HAL Header Files of Utils](https://gitee.com/openharmony/utils_native_lite/tree/master/hals/file).
+The SoC needs to implement related APIs. For details about the dependency of OpenHarmony on the SoC file system APIs, see  [HAL header files of Utils](https://gitee.com/openharmony/utils_native_lite/tree/master/hals/file).
 
 ## IoT Peripheral Subsystem<a name="section958113200811"></a>
 
@@ -24,7 +24,7 @@ The IoT peripheral subsystem provides dedicated peripheral operation interfaces 
 
 **Description for HAL APIs of the IoT peripheral subsystem**
 
-The SoC needs to implement related APIs. For details about the dependency of OpenHarmony on the chip peripheral APIs, see  [HAL Header Files of wifiiot](https://gitee.com/openharmony/iothardware_hals_wifiiot_lite/tree/master).
+The SoC needs to implement related APIs. For details about the dependency of OpenHarmony on the chip peripheral APIs, see  [HAL header files of IoT peripherals](https://gitee.com/openharmony/iothardware_peripheral/tree/master/interfaces/kits).
 
 ## WLAN<a name="section1331917210911"></a>
 
@@ -70,5 +70,5 @@ vendor/hisi/hi3861/hi3861_adapter/hals/communication/wifi_lite/wifiservice/
 └── wifi_hotspot.c
 ```
 
-The SoC needs to implement related APIs. For details about the dependency of OpenHarmony on the chip peripheral APIs, see  [Header Files of WLAN](https://gitee.com/openharmony/communication_interfaces_kits_wifi_lite/tree/master/wifiservice).
+The SoC needs to implement related APIs. For details about the dependency of OpenHarmony on the chip peripheral APIs, see  [header files of WLAN](https://gitee.com/openharmony/communication_wifi_lite/tree/master/interfaces/wifiservice).
 

@@ -7,7 +7,7 @@ This module implements automatic service initialization. That is, the initializa
 
 For details about how to include the  **zInit**  code segment, see the Hi3861 linker script in  **vendor/hisi/hi3861/hi3861/build/link/link.ld.S**.
 
-For details about the macros used by the bootstrap module to implement automatic service initialization, see  [API document](https://gitee.com/openharmony/docs/blob/master/api/api-SmartVision-Devices/OHOS-Init.md)  for the startup subsystem.
+For details about the macros used by the bootstrap module to implement automatic service initialization, see  [API document](https://device.harmonyos.com/en/docs/develop/apiref/init-0000001054598113)  the startup subsystem.
 
 ## Available APIs<a name="section1633115419401"></a>
 

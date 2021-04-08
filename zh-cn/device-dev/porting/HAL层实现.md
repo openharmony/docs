@@ -24,7 +24,7 @@ HAL层主要功能是实现轻OpenHarmony与芯片的解耦，以下模块描述
 
 **IOT外设子系统HAL层接口说明**:
 
-需要芯片适配相关接口的实现，对芯片设备外设接口依赖请参考[wifiiot的HAL头文件](https://gitee.com/openharmony/iothardware_hals_wifiiot_lite/tree/master)。
+需要芯片适配相关接口的实现，对芯片设备外设接口依赖请参考[IOT外设子系统的HAL头文件](https://gitee.com/openharmony/iothardware_peripheral/tree/master/interfaces/kits)。
 
 ## WLAN服务<a name="section1331917210911"></a>
 
@@ -70,5 +70,5 @@ vendor/hisi/hi3861/hi3861_adapter/hals/communication/wifi_lite/wifiservice/
 └── wifi_hotspot.c
 ```
 
-需要芯片适配相关接口的实现，对芯片设备外设接口依赖请参考[WLAN服务的头文件](https://gitee.com/openharmony/communication_interfaces_kits_wifi_lite/tree/master/wifiservice)。
+需要芯片适配相关接口的实现，对芯片设备外设接口依赖请参考[WLAN服务的头文件](https://gitee.com/openharmony/communication_wifi_lite/tree/master/interfaces/wifiservice)。
 
