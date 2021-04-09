@@ -300,7 +300,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     Use the  **repo**  tool to download the release code.
 
     ```
-    repo init -u [https://gitee.com/openharmony/manifest.git](https://gitee.com/openharmony/manifest.git)  -b OpenHarmony_1.0.1_release --no-repo-verify
+    repo init -u https://gitee.com/openharmony/manifest.git  -b OpenHarmony_1.0.1_release --no-repo-verify
     repo sync -c 
     ```
 
