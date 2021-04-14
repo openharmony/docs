@@ -25,7 +25,7 @@ OpenHarmony is an open-source community and encourages everyone in the community
 - [Contributing to the Code](en/contribute/contributing-code.md)
 - [Contributing to the Documentation](en/contribute/documentation-contribution.md)
 
-For more details on how to contribute, see [Contributing Documents](en/contibute).
+For more details on how to contribute, see [Contributing Documents](en/contribute).
 ## Get Source Code and Tools
 To download the source code and tools required for the project, click the following links:
 - [Source Code Acquisition](en/device-dev/get-code/source-code-acquisition.md)
