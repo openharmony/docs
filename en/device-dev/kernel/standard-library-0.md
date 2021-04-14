@@ -68,7 +68,7 @@ static void *ChildThreadFunc(void *arg)
     /* Attempt to lock a mutex, which is failed in normal cases. */
     rc = pthread_mutex_trylock(&g_td.mutex);
     if (rc == 0) {
-        printf("ERROR: mutex gets an abnomal lock!\n");
+        printf("ERROR: mutex gets an abnormal lock!\n");
         goto EXIT;
     }
 
