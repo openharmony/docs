@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.0 LTS \(2021-04-27\)<a name="EN-US_TOPIC_0000001095652840"></a>
+# OpenHarmony 1.1.0 LTS \(2021-04-01\)<a name="EN-US_TOPIC_0000001095652840"></a>
 
 -   [Overview](#section1846294912228)
 -   [Source Code Acquisition](#section84808293211)
