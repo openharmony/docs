@@ -250,7 +250,7 @@ repo sync -c
 
 组件仓优化如下表所示。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+> **说明：** 
 >-   只读归档：组件仓归档到新的组织并设置为只读（openharmony-retired）。
 >-   三方芯片代码与OS解耦，海思芯片SDK由Vendor目录迁移到device/hisilicon。
 
