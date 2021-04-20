@@ -102,17 +102,16 @@ It is considered best practice to learn the following basic concepts before you 
                                 build a specified product with
                                 {product_name}@{company}, eg: ipcamera@hisilcon
           -f, --full            full code compilation
-          -n, --ndk             compile ndk
         ```
 
-        -   If you run  **hb build**  with no argument, the previously configured code directory, product, and options are used for the compilation.
+        -   If you run  **hb build**  with no argument, the previously configured code directory, product, and options are used for the compilation. The  **-f**  option will delete all products to be compiled, which is equivalent to running  **hb clean**  and  **hb build**.
         -   You can run  **hb build** _\{component\_name\}_  to compile product components separately based on the development board and kernel set for the product, for example,  **hb build kv\_store**.
         -   You can run  **hb build -p ipcamera@hisilicon**  to skip the setting step and compile the product directly.
         -   You can run  **hb build**  in  **device/device\_company/board**  to select the kernel and start compilation based on the current development board and the selected kernel to generate an image that contains the kernel and driver only.
 
     4.  **hb clean**
 
-        Clear the compilation result of the product in the  **out**  directory, and leave the  **args.gn**  and  **build.log**  files only. To clear files in a specified directory, add the directory parameter to the command, for example,  **hb clean** _xxx_**/out/**_xxx_.
+        Clear the compilation result of the product in the  **out**  directory, and retain the  **args.gn**  and  **build.log**  files only. To clear files in a specified directory, add the directory parameter to the command, for example,  **hb clean** _xxx_**/out/**_xxx_.
 
 
     ```

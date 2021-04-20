@@ -4,8 +4,7 @@
     -   [HPM-based Docker](#en-us_topic_0000001055701144_section580016182283)
     -   [Standalone Docker Environment](#en-us_topic_0000001055701144_section319412277287)
     -   [Setting Up the Docker Environment](#en-us_topic_0000001055701144_section436042904715)
-    -   [Building for  and](#en-us_topic_0000001055701144_section19121250134716)
-    -   [Setting Up the Docker Environment for](#en-us_topic_0000001055701144_section776616712419)
+    -   [Building](#en-us_topic_0000001055701144_section19121250134716)
 
 -   [Acquiring the Device Development Tool \(HUAWEI DevEco Device Tool\)](#en-us_topic_0000001055701144_section2452141120244)
 -   [Acquiring the Application Development Tool \(HUAWEI DevEco Studio\)](#en-us_topic_0000001055701144_section0904101019258)
@@ -103,7 +102,7 @@ Start building. The following takes ip\_camera\_hi3518ev300 as an example. Docke
     The following will be displayed if the building is successful:
 
     ```
-    ......
+    ...
     ohos ipcamera_hi3518 build success!
     @ohos/ip_camera_hi3518ev300: distribution building completed.
     ```
@@ -128,7 +127,7 @@ Start building. The following takes ip\_camera\_hi3518ev300 as an example. Docke
 
 The Docker image of OpenHarmony is hosted on  [HUAWEI Cloud SWR](https://auth.huaweicloud.com/authui/login.html?service=https%3A%2F%2Fconsole.huaweicloud.com%2Fswr%2F%3Fregion%3Dcn-south-1%26cloud_route_state%3D%2Fapp%2Fwarehouse%2FwarehouseMangeDetail%2Fgoldensir%2Fopenharmony-docker%2Fopenharmony-docker%3Ftype%3DownImage&locale=en-us#/login). Using the Docker image will help simplify environment configurations needed for the building. After configuring the development environments, perform the steps below to access the Docker environment. The following steps use Ubuntu as an example \(Windows is also supported\).
 
-### Setting Up the Docker Environment<a name="en-us_topic_0000001055701144_section436042904715"></a>
+### Setting Up the Docker Environment for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\)<a name="en-us_topic_0000001055701144_section436042904715"></a>
 
 **Method 1: Obtaining the Docker image from HuaweiCloud SWR**
 
@@ -207,50 +206,11 @@ The following uses the Hi3516 platform as an example to describe the build proce
     The files will be generated in the  **out/hispark\_taurus/ipcamera\_hispark\_taurus**  directory.
 
 
-### Setting Up the Docker Environment for Large-System Devices \(reference memory ≥ 1 GB\)<a name="en-us_topic_0000001055701144_section776616712419"></a>
-
-**Method 1: Obtaining the Docker image from HuaweiCloud SWR**
-
-1.  Obtain the Docker image.
-
-    ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.3
-    ```
-
-2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.3
-    ```
-
-
-**Method 2: Using the Dockerfile to Build a Local Docker Image**
-
-1.  Obtain the Dockerfile script for a local Docker image.
-
-    ```
-    git clone https://gitee.com/openharmony/docs.git
-    ```
-
-2.  Go to the directory of the Dockerfile code and run the following command to build the Docker image:
-
-    ```
-    cd docs/docker
-    ./build.sh
-    ```
-
-3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker:0.0.3
-    ```
-
-
 ## Acquiring the Device Development Tool \(HUAWEI DevEco Device Tool\)<a name="en-us_topic_0000001055701144_section2452141120244"></a>
 
-HUAWEI DevEco Device Tool is a one-stop integrated development environment \(IDE\) provided to develop applications for HarmonyOS-based smart devices. It allows on-demand customization of HarmonyOS components, code editing, compilation, burning, and debugging, and supports C and C++ languages. This tool is installed in Visual Studio Code as a plug-in. For details, see  [Tool Acquisition](https://device.harmonyos.com/en/ide)  and  [HUAWEI DevEco Device Tool User Guide](https://device.harmonyos.com/en/docs/ide/user-guides/service_introduction-0000001050166905).
+HUAWEI DevEco Device Tool is a one-stop integrated development environment \(IDE\) provided to develop applications for OpenHarmony-based smart devices. It allows on-demand customization of OpenHarmony components, code editing, compilation, burning, and debugging, and supports C and C++ languages. This tool is installed in Visual Studio Code as a plug-in. For details, see  [Tool Acquisition](https://device.harmonyos.com/en/ide)  and  [HUAWEI DevEco Device Tool User Guide](https://device.harmonyos.com/en/docs/ide/user-guides/service_introduction-0000001050166905).
 
 ## Acquiring the Application Development Tool \(HUAWEI DevEco Studio\)<a name="en-us_topic_0000001055701144_section0904101019258"></a>
 
-HUAWEI DevEco Studio \(DevEco Studio for short\) is a one-stop IDE oriented to Huawei devices in all scenarios. It provides E2E HarmonyOS application development services, ranging from project template creation to development, compilation, debugging, and release. With DevEco Studio, you will be able to efficiently develop HarmonyOS applications with distributed capabilities while speeding up innovation. For details, see  [Tool Acquisition](https://developer.harmonyos.com/en/develop/deveco-studio)  and  [HUAWEI DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/tools_overview-0000001053582387).
+HUAWEI DevEco Studio \(DevEco Studio for short\) is a one-stop IDE oriented to Huawei devices in all scenarios. It provides E2E OpenHarmony application development services, ranging from project template creation to development, compilation, debugging, and release. With DevEco Studio, you will be able to efficiently develop OpenHarmony applications with distributed capabilities while speeding up innovation. For details, see  [Tool Acquisition](https://developer.harmonyos.com/en/develop/deveco-studio)  and  [HUAWEI DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/tools_overview-0000001053582387).
 

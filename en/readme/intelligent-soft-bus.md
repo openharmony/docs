@@ -38,23 +38,25 @@ You can use APIs of the distributed communication subsystem to implement fast an
 
 1.  **Device discovery**
 
-When using device discovery, ensure that the device to perform a discovery and the device to discover are in the same LAN and the devices can receive packets from each other.
+    When using device discovery, ensure that the device to perform a discovery and the device to discover are in the same LAN and the devices can receive packets from each other.
 
-a. After a device sends a discovery request, it uses Constrained Application Protocol \(CoAP\) to send a broadcast packet in the LAN.
+    a. After a device sends a discovery request, it uses Constrained Application Protocol \(CoAP\) to send a broadcast packet in the LAN.
 
-b. The discovered device uses the  **PublishService**  API to publish services. After receiving the broadcast packet, the device sends a CoAP unicast packet to the device that performs the discovery.
+    b. The discovered device uses the  **PublishService**  API to publish services. After receiving the broadcast packet, the device sends a CoAP unicast packet to the device that performs the discovery.
 
-c. After receiving the packet, the device that performs the discovery updates device information.
+    c. After receiving the packet, the device that performs the discovery updates device information.
 
-**2. Transmission**
+2.  **Transmission**
 
 The soft bus provides unified session-based transmission. Services can receive and send data or obtain basic attributes through  **sessionId**. Currently, services can determine whether to accept a received session based on the service requirements and session attributes. Currently, sessions cannot be enabled.
 
 ## Repositories Involved<a name="section4499619123117"></a>
 
-communication\_softbus\_lite
+**Intelligent Soft Bus subsystem**
 
-communication\_ipc\_lite
+[communication\_softbus\_lite](https://gitee.com/openharmony/communication_softbus_lite/blob/master/README.md)
 
-communication\_wifi\_aware
+[communication\_ipc\_lite](https://gitee.com/openharmony/communication_ipc_lite/blob/master/README.md)
+
+[communication\_wifi\_aware](https://gitee.com/openharmony/communication_wifi_aware/blob/master/README.md)
 

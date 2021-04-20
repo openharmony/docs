@@ -235,7 +235,7 @@ OpenHarmony支持如下几种设备类型：
 </td>
 <td class="cellrowborder" valign="top" width="75.85758575857585%" headers="mcps1.2.4.1.2 "><p id="p13967237151716"><a name="p13967237151716"></a><a name="p13967237151716"></a>电源管理子系统主要提供了电池、充放电状态查询能力和系统电源管理服务能力，目前主要包括电量查询和亮灭屏控制锁的能力。</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p782825121818"><a name="p782825121818"></a><a name="p782825121818"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/轻量级电源管理子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" valign="top" width="10.76107610761076%" headers="mcps1.2.4.1.3 "><p id="p782825121818"><a name="p782825121818"></a><a name="p782825121818"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/电源管理子系统.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row163116577176"><td class="cellrowborder" valign="top" width="13.381338133813381%" headers="mcps1.2.4.1.1 "><p id="p143265731720"><a name="p143265731720"></a><a name="p143265731720"></a>升级服务</p>
@@ -321,9 +321,13 @@ English Version：[OpenHarmony Documentation](https://gitee.com/openharmony/docs
 
 参与贡献：[如何贡献链接](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
 
+参与API治理：[OpenHarmony API治理章程](https://gitee.com/openharmony/docs/tree/master/zh-cn/design/OpenHarmony-API-governance.md)
+
 ## 许可协议<a name="section1245517472115"></a>
 
-OpenHarmony是一种开源软件，参考各仓下LICENSE文本。
+OpenHarmony主要遵循Apache License V2.0协议，详情请参考各代码仓LICENSE声明。
+
+OpenHarmony引用三方开源软件及许可证说明，参考[第三方开源软件说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E5%8F%8A%E8%AE%B8%E5%8F%AF%E8%AF%81%E8%AF%B4%E6%98%8E.md)。
 
 ## 联系方式<a name="section61728335424"></a>
 

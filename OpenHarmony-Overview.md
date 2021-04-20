@@ -53,7 +53,7 @@ This layer provides with what you need to develop OpenHarmony applications: appl
 
 **Application layer**
 
-This layer consists of system applications and third-party applications. Each OpenHarmony application is powered by one or more Feature Abilities \(FAs\) or Particle Abilities \(PA\). An FA provides a UI for user interaction. A PA has no UI and provides background task processing as well as data access. Applications developed based on FAs and PAs provide specific service characteristics and enable cross-device scheduling and distribution, delighting users with consistent and efficient experience.
+This layer consists of system applications and third-party applications. Each OpenHarmony application is powered by one or more Feature Abilities \(FAs\) or Particle Abilities \(PAs\). An FA provides a UI for user interaction. A PA has no UI and provides background task processing as well as data access. Applications developed based on FAs and PAs provide specific service characteristics and enable cross-device scheduling and distribution, delighting users with consistent and efficient experience.
 
 ## Technical Features<a name="section12212842173518"></a>
 
@@ -218,7 +218,7 @@ For details about the subsystems in the following table, see  [https://gitee.com
 </tr>
 <tr id="row198318945311"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p25014935113"><a name="p25014935113"></a><a name="p25014935113"></a>Testing</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p1950149205111"><a name="p1950149205111"></a><a name="p1950149205111"></a>The development process is tset driven. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase.</p>
+<td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p1950149205111"><a name="p1950149205111"></a><a name="p1950149205111"></a>The development process is test driven. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase.</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p450117935113"><a name="p450117935113"></a><a name="p450117935113"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/testing-subsystem.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
@@ -248,7 +248,7 @@ For details about the subsystems in the following table, see  [https://gitee.com
 </td>
 <td class="cellrowborder" align="left" valign="top" width="75%" headers="mcps1.1.4.1.2 "><p id="p050219175120"><a name="p050219175120"></a><a name="p050219175120"></a>The power management subsystem provides capabilities such as querying the battery charging/discharging status and managing the system power. Currently, available capabilities include querying the battery level and keeping the device screen always on.</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p20502119175116"><a name="p20502119175116"></a><a name="p20502119175116"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/lite-power-management.md" target="_blank" rel="noopener noreferrer">README</a></p>
+<td class="cellrowborder" align="left" valign="top" width="12%" headers="mcps1.1.4.1.3 "><p id="p20502119175116"><a name="p20502119175116"></a><a name="p20502119175116"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/readme/power-management.md" target="_blank" rel="noopener noreferrer">README</a></p>
 </td>
 </tr>
 <tr id="row163116577176"><td class="cellrowborder" align="left" valign="top" width="13%" headers="mcps1.1.4.1.1 "><p id="p185021915120"><a name="p185021915120"></a><a name="p185021915120"></a>Update</p>
@@ -331,13 +331,13 @@ For details about how to obtain the source code of OpenHarmony, see  [Source Cod
 
 ## How to Participate<a name="section19611528174215"></a>
 
-For details about how to join in the OpenHarmony community, see  [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README.md).
+For details about how to join the OpenHarmony community, see [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README.md).
 
-For details about how to contribute, see  [Contribution](https://gitee.com/openharmony/docs/blob/master/en/contribute/contribution.md).
+For details about how to contribute, see [Contribution](https://gitee.com/openharmony/docs/blob/master/en/contribute/contribution.md).
 
 ## License Agreement<a name="section1245517472115"></a>
 
-OpenHarmony is open-source. For details, see the LICENSE in each repository.
+OpenHarmony mainly complies with Apache License v2.0. For details, see the LICENSE in each repository.
 
 ## Contact Info<a name="section61728335424"></a>
 

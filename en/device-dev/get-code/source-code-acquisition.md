@@ -5,12 +5,9 @@
 -   [Method 1: Acquiring Source Code from Image Sites](#section1186691118430)
 -   [Method 2: Acquiring Source Code from the Bundle-specific HPM](#section463013147412)
 -   [When to Use](#section123926431441)
+-   [Prerequisites](#section42627508156)
 -   [How to Use](#section1781916234118)
--   [Method 3: Acquiring Source Code with a hpm-cli Tool](#section9459261856)
--   [When to Use](#section1854923620139)
--   [Preparations](#section4451113551114)
--   [Operations](#section1445143510117)
--   [Method 4: Acquiring Source Code from a Code Repository](#section537312010229)
+-   [Method 3: Acquiring Source Code from a Code Repository](#section537312010229)
 -   [When to Use](#section1492115412228)
 -   [Preparations](#section1076962313239)
 -   [Operations](#section17162735266)
@@ -31,71 +28,127 @@ Access code repositories at  [https://openharmony.gitee.com](https://openharmony
 
 This document describes how to acquire OpenHarmony source code and provides its directory structure. The OpenHarmony code is open to you as  [bundles](../bundles/overview.md), which can be obtained in any of the following ways:
 
--   **Method 1 \(recommended\)**: Download compressed files from an image site.
--   **Method 2**: Visit the HarmonyOS Package Manager \([HPM](https://hpm.harmonyos.com/#/en/home)\) platform, search for your desired solution, select or exclude bundles from the solution, and download it.
--   **Method 3**: Use an hpm-cli tool available on the  [HPM](https://hpm.harmonyos.com/#/en/home)  platform, and run related HPM commands to download your desired code.
--   **Method 4**: Use the  **repo**  or  **git**  tool to download your desired code from the code repository.
+-   **Method 1**: Download the compressed file of a distribution from an image site. To obtain the source code of an earlier version, you are also advised to use this method.
+-   **Method 2**: Obtain the source code from the HarmonyOS Package Manager \(HPM\). Visit the  [HPM](https://hpm.harmonyos.com/#/en/home)  website, search for your desired open-source distribution, and download the bundle list \(or customize bundles and download the bundle list\). Then use  **hpm-cli**  to download and install the bundles and compilation toolchain on your local PC.
+-   **Method 3**: Use the  **repo**  or  **git**  tool to download your desired code from the code repository.
 
 ## Method 1: Acquiring Source Code from Image Sites<a name="section1186691118430"></a>
 
-You can download the source code or the corresponding solutions from the image library at the sites listed below.
+To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
-**Table  1**  Acquiring source code from image sites
+>![](public_sys-resources/icon-note.gif) **NOTE:** 
+>-   The table below provides only the sites for downloading the source code of the latest OpenHarmony Master and LTS versions. For details about how to obtain the source code of other versions, see the  [Release Notes](https://gitee.com/openharmony/docs/tree/master/en/release-notes).
+>-   Currently, Master 1.0 is no longer maintained. You are advised to use the LTS version.
 
-<a name="table91984129177"></a>
-<table><thead align="left"><tr id="row51981312101713"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p16618172471719"><a name="p16618172471719"></a><a name="p16618172471719"></a>Content</p>
-</th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.2"><p id="p46181224161718"><a name="p46181224161718"></a><a name="p46181224161718"></a>Version Information</p>
-</th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p1461814241177"><a name="p1461814241177"></a><a name="p1461814241177"></a>Site</p>
-</th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.4"><p id="p12618192481716"><a name="p12618192481716"></a><a name="p12618192481716"></a>SHA-256 Verification Code</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row11198111281715"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p161822419172"><a name="p161822419172"></a><a name="p161822419172"></a><span id="text958012347463"><a name="text958012347463"></a><a name="text958012347463"></a>XX</span> full code base</p>
+**Table  1**  Sites for acquiring source code from image sites
+
+<a name="table17735923173912"></a>
+<table><tbody><tr id="row1073515237392"><td class="cellrowborder" valign="top" width="25%"><p id="p5109183611392"><a name="p5109183611392"></a><a name="p5109183611392"></a><strong id="b1024917372278"><a name="b1024917372278"></a><a name="b1024917372278"></a>LTS Code</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p361810245170"><a name="p361810245170"></a><a name="p361810245170"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p13109436103916"><a name="p13109436103916"></a><a name="p13109436103916"></a><strong id="b178520552564"><a name="b178520552564"></a><a name="b178520552564"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p11618112416174"><a name="p11618112416174"></a><a name="p11618112416174"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p610923616398"><a name="p610923616398"></a><a name="p610923616398"></a><strong id="b1571518441579"><a name="b1571518441579"></a><a name="b1571518441579"></a>Site</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p2619182441717"><a name="p2619182441717"></a><a name="p2619182441717"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p2109736133914"><a name="p2109736133914"></a><a name="p2109736133914"></a><strong id="b1777314471977"><a name="b1777314471977"></a><a name="b1777314471977"></a>SHA-256 Verification Code</strong></p>
 </td>
 </tr>
-<tr id="row1019861220171"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1619102471714"><a name="p1619102471714"></a><a name="p1619102471714"></a>Hi3861 solutions (binary)</p>
+<tr id="row17736152318398"><td class="cellrowborder" valign="top" width="25%"><p id="p1110983610395"><a name="p1110983610395"></a><a name="p1110983610395"></a>Full code base</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p1361982418176"><a name="p1361982418176"></a><a name="p1361982418176"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p151091536143915"><a name="p151091536143915"></a><a name="p151091536143915"></a>1.1.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p6619122411710"><a name="p6619122411710"></a><a name="p6619122411710"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p17110133653913"><a name="p17110133653913"></a><a name="p17110133653913"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/code-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p86198245173"><a name="p86198245173"></a><a name="p86198245173"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
-</td>
-</tr>
-<tr id="row419901210176"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1461992491711"><a name="p1461992491711"></a><a name="p1461992491711"></a>Hi3518 solutions (binary)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p0619122471719"><a name="p0619122471719"></a><a name="p0619122471719"></a>1.0</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p13619112431714"><a name="p13619112431714"></a><a name="p13619112431714"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p6619224191719"><a name="p6619224191719"></a><a name="p6619224191719"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1911083643914"><a name="p1911083643914"></a><a name="p1911083643914"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/code-1.1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 </tr>
-<tr id="row1019901219170"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p2619142411713"><a name="p2619142411713"></a><a name="p2619142411713"></a>Hi3516 solutions (binary)</p>
+<tr id="row473612318396"><td class="cellrowborder" valign="top" width="25%"><p id="p511014369394"><a name="p511014369394"></a><a name="p511014369394"></a>Hi3861 solution (binary)</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p10619182441718"><a name="p10619182441718"></a><a name="p10619182441718"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p0110036193911"><a name="p0110036193911"></a><a name="p0110036193911"></a>1.1.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p176194245176"><a name="p176194245176"></a><a name="p176194245176"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p101106361397"><a name="p101106361397"></a><a name="p101106361397"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/wifiiot-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p196193246171"><a name="p196193246171"></a><a name="p196193246171"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA-256 Verification Code</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p7110183617391"><a name="p7110183617391"></a><a name="p7110183617391"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/code-1.1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 </tr>
-<tr id="row151991912161714"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p116191324121716"><a name="p116191324121716"></a><a name="p116191324121716"></a>RELEASE-NOTES</p>
+<tr id="row873614239395"><td class="cellrowborder" valign="top" width="25%"><p id="p11110113633913"><a name="p11110113633913"></a><a name="p11110113633913"></a>Hi3518 solution (binary)</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p176191824181712"><a name="p176191824181712"></a><a name="p176191824181712"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p18110193613391"><a name="p18110193613391"></a><a name="p18110193613391"></a>1.1.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p66190245178"><a name="p66190245178"></a><a name="p66190245178"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/RELEASE-NOTES.txt" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p611013618398"><a name="p611013618398"></a><a name="p611013618398"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/ipcamera_hi3518ev300-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p1161982411713"><a name="p1161982411713"></a><a name="p1161982411713"></a>-</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p411023616393"><a name="p411023616393"></a><a name="p411023616393"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/ipcamera_hi3518ev300-1.1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+</tr>
+<tr id="row1273682343914"><td class="cellrowborder" valign="top" width="25%"><p id="p15110123693919"><a name="p15110123693919"></a><a name="p15110123693919"></a>Hi3516 solution (binary)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1211012362396"><a name="p1211012362396"></a><a name="p1211012362396"></a>1.1.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p6110163613918"><a name="p6110163613918"></a><a name="p6110163613918"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/ipcamera_hi3516dv300-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p10110183620394"><a name="p10110183620394"></a><a name="p10110183620394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/ipcamera_hi3516dv300-1.1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+</tr>
+<tr id="row167371123163914"><td class="cellrowborder" valign="top" width="25%"><p id="p10110143610393"><a name="p10110143610393"></a><a name="p10110143610393"></a>RELEASE-NOTES</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>1.1.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p10111636193919"><a name="p10111636193919"></a><a name="p10111636193919"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/OpenHarmony_Release_Notes_zh_cn.zip" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p20111163663918"><a name="p20111163663918"></a><a name="p20111163663918"></a>-</p>
+</td>
+</tr>
+<tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%"><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b16812121192918"><a name="b16812121192918"></a><a name="b16812121192918"></a>Master Code</strong></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b1094411391670"><a name="b1094411391670"></a><a name="b1094411391670"></a>Version Information</strong></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b1438499929"><a name="b1438499929"></a><a name="b1438499929"></a>Site</strong></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b590440592"><a name="b590440592"></a><a name="b590440592"></a>SHA-256 Verification Code</strong></p>
+</td>
+</tr>
+<tr id="row273762316398"><td class="cellrowborder" valign="top" width="25%"><p id="p54150491393"><a name="p54150491393"></a><a name="p54150491393"></a>Full code base</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p16415124923914"><a name="p16415124923914"></a><a name="p16415124923914"></a>1.0 (no longer maintained)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p44151449203917"><a name="p44151449203917"></a><a name="p44151449203917"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1441515495392"><a name="p1441515495392"></a><a name="p1441515495392"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+</tr>
+<tr id="row107374239397"><td class="cellrowborder" valign="top" width="25%"><p id="p5415949123910"><a name="p5415949123910"></a><a name="p5415949123910"></a>Hi3861 solution (binary)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p15415949183914"><a name="p15415949183914"></a><a name="p15415949183914"></a>1.0 (no longer maintained)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1415649123916"><a name="p1415649123916"></a><a name="p1415649123916"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p11415549153913"><a name="p11415549153913"></a><a name="p11415549153913"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+</tr>
+<tr id="row9738182319392"><td class="cellrowborder" valign="top" width="25%"><p id="p241524910391"><a name="p241524910391"></a><a name="p241524910391"></a>Hi3518 solution (binary)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p6415849193915"><a name="p6415849193915"></a><a name="p6415849193915"></a>1.0 (no longer maintained)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p841584919394"><a name="p841584919394"></a><a name="p841584919394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p9415124983911"><a name="p9415124983911"></a><a name="p9415124983911"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+</tr>
+<tr id="row17381233399"><td class="cellrowborder" valign="top" width="25%"><p id="p44151149153918"><a name="p44151149153918"></a><a name="p44151149153918"></a>Hi3516 solution (binary)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p15415164917397"><a name="p15415164917397"></a><a name="p15415164917397"></a>1.0 (no longer maintained)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p154151049113914"><a name="p154151049113914"></a><a name="p154151049113914"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p164164491394"><a name="p164164491394"></a><a name="p164164491394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+</tr>
+<tr id="row1873817234394"><td class="cellrowborder" valign="top" width="25%"><p id="p1341618491393"><a name="p1341618491393"></a><a name="p1341618491393"></a>RELEASE-NOTES</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p7416184953916"><a name="p7416184953916"></a><a name="p7416184953916"></a>1.0 (no longer maintained)</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p194161849133911"><a name="p194161849133911"></a><a name="p194161849133911"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/RELEASE-NOTES.txt" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1841619490395"><a name="p1841619490395"></a><a name="p1841619490395"></a>-</p>
 </td>
 </tr>
 </tbody>
@@ -105,59 +158,13 @@ You can download the source code or the corresponding solutions from the image l
 
 ## When to Use<a name="section123926431441"></a>
 
-If OpenHarmony is new to you, sample solutions are helpful to your development. The  [HPM](https://hpm.harmonyos.com/#/en/home)  platform provides a recommended solution. You can add or exclude bundles to quickly customize your system.
+If OpenHarmony is new to you, sample solutions are helpful to your development. You can obtain an open-source distribution from the  [HPM](https://hpm.harmonyos.com/#/en/home)  platform, or customize a distribution by adding or deleting bundles of an open-source distribution.
 
-## How to Use<a name="section1781916234118"></a>
+Then use  **hpm-cli**  to download and install the bundles and compilation toolchain on your local PC.
 
-1.  Search for a proper solution.
-    1.  Access the  [HPM](https://hpm.harmonyos.com/#/en/home)  page, and click the  **Solution**  tab, as shown in the following figure.
-    2.  Enter a keyword \("camera" as an example\) in the search box. All matched solutions are found.
-    3.  Specify filter criteria, such as the bundle type \(example:  **Board support**  and  **Kernel support**\), to further filter the solutions.
-    4.  Click the solution you need to view its details.
+## Prerequisites<a name="section42627508156"></a>
 
-        **Figure  1**  HPM page<a name="fig838103114320"></a>  
-        
-
-        ![](figures/en-us_image_0000001054919529.png)
-
-
-2.  Customize the solution.
-
-    1.  Read the information under  **Readme**  to learn about the solution \(application scenarios, features, usage, and customization\), as shown in the following figure.
-    2.  Click  **Download**  to download the solution to your local PC.
-    3.  Click  **Log in to custom**  to customize the bundles for the solution.
-
-    **Figure  2**  Solution example<a name="fig1329851510414"></a>  
-    
-
-    ![](figures/en-us_image_0000001054719501.png)
-
-3.  Customize bundles.
-    1.  Access the  **Custom solution**  page, as shown in the following figure.
-    2.  Set the toggle switch next to a specific optional bundle to exclude it from the solution, or click  **Add bundle**  to add new bundles.
-    3.  Enter the basic information about your project, including the bundle name, version, and description, on the right pane.
-    4.  Click  **Download**. The system then generates the OpenHarmony code structure file \(for example,  **name.zip**\) and saves it to your local PC.
-        -   The downloaded compressed package does not contain the original file of source code. You can import the package to the IDE, decompress it, and run the  **hpm install**  command to download all required bundles.
-        -   The downloaded bundles are stored in the  **ohos\_bundles**  folder in the project directory.
-
-            **Figure  3**  Customizing bundles<a name="fig2448349749"></a>  
-            
-
-            ![](figures/en-us_image_0000001055679464.png)
-
-
-
-
-## Method 3: Acquiring Source Code with a hpm-cli Tool<a name="section9459261856"></a>
-
-## When to Use<a name="section1854923620139"></a>
-
--   You have obtained bundle-specific source code from the HPM website, and want to independently upgrade one or more bundles in the source code.
--   You are familiar with OpenHarmony development and  **hpm-cli**  tools.
-
-## Preparations<a name="section4451113551114"></a>
-
-You need to install the  **Node.js**  and hpm-cli tool as follows:
+You must install  **Node.js**  and HPM on your local PC. The installation procedure is as follows:
 
 1.  Install  **Node.js**.
 
@@ -186,35 +193,50 @@ You need to install the  **Node.js**  and hpm-cli tool as follows:
     ```
 
 
-## Operations<a name="section1445143510117"></a>
+## How to Use<a name="section1781916234118"></a>
 
-Add the bundle \(**@ohos/demo**  as an example\) to your project as follows:
+1.  Search for distributions.
+    1.  Access the  [HPM](https://hpm.harmonyos.com/#/en/home)  page, and click the  **Distribution**  tab, as shown in the following figure.
+    2.  Enter a keyword \("camera" as an example\) in the search box. All matched distributions are found.
+    3.  Specify filter criteria, such as the bundle type \(example:  **Board support**  and  **Kernel support**\), to further filter the distributions.
+    4.  Locate your desired distribution and click it to view details.
 
-1.  Go to the development directory and run the following command to create a development project using the default template:
+        **Figure  1**  HPM page<a name="fig838103114320"></a>  
+        
 
-    ```
-    hpm init -t default
-    ```
-
-2.  Run the following command to install the bundle \(**@ohos/demo**  as an example\):
-
-    ```
-    hpm install @ohos/demo
-    ```
-
-3.  Verify that the  **hpm-cli**  tool automatically downloads all dependent bundles from the server. If the download is successful, the message "Install successfully!" is displayed.
-
-    ```
-    $ hpm install @ohos/demo
-    Requesting: https://url.foo.bar/hpm/registry/api/bundles/@ohos/demo
-    downloading @ohos/demo
-    Requesting: https://lfcontentcenterdev....../bMAlLrYISLqdUTFFFCdgzA.tgz
-    extract D:\demo\ohos_bundles\@ohos\demo\@ohos-demo-1.0.7.tgz
-    Install successfully!
-    ```
+        ![](figures/en-us_image_0000001086781056.png)
 
 
-## Method 4: Acquiring Source Code from a Code Repository<a name="section537312010229"></a>
+2.  Learn more about the distribution.
+
+    1.  Read carefully the information about the distribution to learn its application scenarios, features, bundles, usage, and customization methods, as shown in the following figure.
+    2.  Click  **Download**  to download the distribution to your local PC.
+    3.  Click  **Custom**  to add or delete bundles of the distribution.
+
+    **Figure  2**  Example distribution<a name="fig1329851510414"></a>  
+    
+
+    ![](figures/en-us_image_0000001086461836.png)
+
+3.  Customize bundles.
+    1.  Access the  **Custom solution**  page, as shown in the following figure.
+    2.  Set the toggle switch next to a specific optional bundle to delete it from the distribution, or click  **Add bundle**  to add new bundles.
+    3.  Enter the basic information about your project, including the bundle name, version, and description, on the right pane.
+    4.  Click  **Download**. The system then generates the OpenHarmony code structure file \(for example,  **my\_cust\_dist.zip**\) and saves it to your local PC.
+
+        **Figure  3**  Customizing bundles<a name="fig05036599014"></a>  
+        
+
+        ![](figures/en-us_image_0000001133359093.png)
+
+
+4.  Download and install bundles.
+    1.  Decompress the downloaded file using the CLI tool CMD \(shell in Linux\).
+    2.  In the generated directory, run the  **hpm install**  command.
+    3.  The downloaded bundles are stored in the  **ohos\_bundles**  folder under the project directory. \(The source code of some bundles will be copied to a specified directory after the bundles are installed.\)
+
+
+## Method 3: Acquiring Source Code from a Code Repository<a name="section537312010229"></a>
 
 ## When to Use<a name="section1492115412228"></a>
 
@@ -232,7 +254,7 @@ Add the bundle \(**@ohos/demo**  as an example\) to your project as follows:
 ## Preparations<a name="section1076962313239"></a>
 
 1.  Register your account with gitee.
-2.  Register an SSH public key.
+2.  Register an SSH public key. For details, visit  [https://gitee.com/help/articles/4181](https://gitee.com/help/articles/4181).
 3.  Install the git client and configure basic information.
 
     ```
@@ -252,20 +274,40 @@ Add the bundle \(**@ohos/demo**  as an example\) to your project as follows:
 
 ## Operations<a name="section17162735266"></a>
 
-Method 1 \(recommended\): Use the  **repo**  tool to download source code.
+>![](public_sys-resources/icon-note.gif) **NOTE:** 
+>You can obtain the latest features from the master code, and develop commercial functionalities based on the release code.
 
-```
-repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
-repo sync -c
-```
+-   **Obtaining OpenHarmony master code**
 
-Method 2: Run the  **git clone**  command to clone a single code repository.
+    Method 1 \(recommended\): Use the  **repo**  tool to download the master code.
 
-Go to https://gitee.com/openharmony, select the code repository to be cloned, and run the following command:
+    ```
+    repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
+    repo sync -c
+    ```
 
-```
-git clone https://gitee.com/openharmony/manifest.git -b master
-```
+    Method 2: Run the  **git clone**  command to clone a single code repository.
+
+    Go to the  [code repository homepage](https://gitee.com/openharmony), select the code repository to be cloned, and run the following command:
+
+    ```
+    git clone https://gitee.com/openharmony/manifest.git -b master
+    ```
+
+
+-   **Obtaining OpenHarmony\_1.0.1\_release code**
+
+    Use the  **repo**  tool to download the release code.
+
+    ```
+    repo init -u https://gitee.com/openharmony/manifest.git  -b OpenHarmony_1.0.1_release --no-repo-verify
+    repo sync -c 
+    ```
+
+-   Obtaining the source code of other OpenHarmony releases
+
+    For details about how to obtain the source code of other releases, see the  [Release Notes](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-Release-Notes.md).
+
 
 ## Source Code Directories<a name="section1072115612811"></a>
 

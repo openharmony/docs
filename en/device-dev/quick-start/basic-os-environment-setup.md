@@ -9,16 +9,18 @@
 -   [Using Docker to Install the Linux Environment](#section107932281315)
 -   [Using an Installation Package to Install the Linux Environment](#section497484245614)
     -   [Connecting to a Linux Server](#section723115618340)
-    -   [Changing Linux Shell to Bash](#section1715027152617)
-    -   [Installing a Python Environment](#section11255767343)
+    -   [Installing and Configuring Python](#section11255767343)
     -   [Installing gn](#section9262166183410)
     -   [Installing ninja](#section02645617348)
     -   [Installing LLVM](#section149564754)
     -   [Installing hb](#section6201103143120)
 
--   [Obtaining  Source Code](#section1545225464016)
+-   [Obtaining OpenHarmony Source Code](#section1545225464016)
 -   [FAQ](#section19253140111619)
     -   [What should I do if garbled characters and segmentation faults occur during hb installation?](#section347685141717)
+    -   [What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?](#section1996804118553)
+    -   [What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb Installation?](#section6992181918582)
+    -   [What should I do if the message "ImportError: No module named apt\_pkg" is displayed during the execution of an unidentifiable command?](#section7854153010120)
 
 
 Before setting up the environment for a development board, you must set up the basic OS environment for OpenHarmony first. The basic OS environment refers to the building environment and development environment of OpenHarmony. You can choose one of the following methods to set up the basic OS environment based on your preference and the hardware and software used.
@@ -142,14 +144,7 @@ The following table describes the tools required for setting up the general envi
 </td>
 <td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p43003270510"><a name="p43003270510"></a><a name="p43003270510"></a>Executes script compilation.</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p18254155164617"><a name="p18254155164617"></a><a name="p18254155164617"></a><a href="https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz" target="_blank" rel="noopener noreferrer">https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz</a></p>
-</td>
-</tr>
-<tr id="row42668197206"><td class="cellrowborder" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p426711912014"><a name="p426711912014"></a><a name="p426711912014"></a>bash</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p14267131962014"><a name="p14267131962014"></a><a name="p14267131962014"></a>Executes commands.</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p14267101962014"><a name="p14267101962014"></a><a name="p14267101962014"></a>Internet</p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p34760459518"><a name="p34760459518"></a><a name="p34760459518"></a>Internet</p>
 </td>
 </tr>
 <tr id="row1711946154018"><td class="cellrowborder" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p15588165684216"><a name="p15588165684216"></a><a name="p15588165684216"></a>gn</p>
@@ -177,7 +172,7 @@ The following table describes the tools required for setting up the general envi
 </td>
 <td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p1244114913492"><a name="p1244114913492"></a><a name="p1244114913492"></a>Compiles the source code.</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p1244120916499"><a name="p1244120916499"></a><a name="p1244120916499"></a>The <strong id="b146115915482"><a name="b146115915482"></a><a name="b146115915482"></a>build_lite</strong> repository in HarmonyOS source code</p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p1463918124619"><a name="p1463918124619"></a><a name="p1463918124619"></a>Internet</p>
 </td>
 </tr>
 </tbody>
@@ -218,30 +213,7 @@ Using PuTTY to log in to a Linux server from a PC running Windows
     ![](figures/successful-login.png "successful-login")
 
 
-### Changing Linux Shell to Bash<a name="section1715027152617"></a>
-
-Check whether bash is used as the shell.
-
-```
-ls -l /bin/sh
-```
-
-If  **/bin/sh -\> bash**  is not displayed, do as follows to change shell to bash.
-
-**Method 1:**  Run the following command on the device and then click  **No**.
-
-```
-sudo dpkg-reconfigure dash
-```
-
-**Method 2:**  Run the first command to delete  **sh**  and then run the second command to create a new soft link.
-
-```
-sudo rm -rf /bin/sh
-sudo ln -s /bin/bash /bin/sh
-```
-
-### Installing a Python Environment<a name="section11255767343"></a>
+### Installing and Configuring Python<a name="section11255767343"></a>
 
 1.  Start a Linux server.
 2.  Check the Python version \(Python 3.7 or later is required\).
@@ -265,40 +237,33 @@ sudo ln -s /bin/bash /bin/sh
             sudo apt-get install python3.8
             ```
 
-        -   If the Ubuntu version is  **16**, download the installation package and install Python.
+        -   If the Ubuntu version is 16, perform the following steps:
 
-            1.  Install Python environment dependencies \(gcc, g++, make, zlib, libffi\).
-
-            ```
-            sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib* && sudo apt-get install libffi-dev
-            ```
-
-            1.  Obtain the  [Python 3.8.5 installation package](https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz), save it to the Linux server, and run the following command:
+            a. Install dependency packages.
 
             ```
-            tar -xvzf Python-3.8.5.tgz && cd Python-3.8.5 && sudo ./configure && sudo make && sudo make install
+            sudo apt update && sudo apt install software-properties-common
+            ```
+
+            b. Add the source of deadsnakes PPA and press  **Enter**.
+
+            ```
+            sudo add-apt-repository ppa:deadsnakes/ppa
+            ```
+
+            c. Install Python 3.8.
+
+            ```
+            sudo apt upgrade && sudo apt install python3.8
             ```
 
 
 
-3.  Link the Python path to  **/usr/bin/python**  after Python is installed.
-
-    Check whether Python is soft linked to Python 3.8.
+3.  Set the soft link of  **python**  and  **python3**  to  **python3.8**.
 
     ```
-    python --version
-    ```
-
-    If the command output is not  **python 3.8.5**, run the following command to check the directory where Python 3.8 is stored:
-
-    ```
-    which python3.8
-    ```
-
-    Replace  **python3.8-path**  in the following command with the output path of the  **which python3.8**  command.
-
-    ```
-    cd /usr/bin && sudo rm python && sudo rm python3 && sudo ln -s python3.8-path python && sudo ln -s python3.8-path python3 && python3 --version
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+    sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
     ```
 
 4.  Install and upgrade the Python package management tool \(pip3\) using either of the following methods:
@@ -315,104 +280,6 @@ sudo ln -s /bin/bash /bin/sh
         curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
         python get-pip.py
         ```
-
-
-5.  Install setuptools.
-
-    ```
-    pip3 install setuptools
-    ```
-
-6.  Install the GUI menuconfig tool \(Kconfiglib\). You are advised to install Kconfiglib 13.2.0 or later.
-    -   **Command line:**
-
-        ```
-        sudo pip3 install kconfiglib
-        ```
-
-
-    -   **Installation package:**
-        1.  Download the  **.whl**  file, for example,  **kconfiglib-13.2.0-py2.py3-none-any.whl**.
-
-            Download path:  [https://pypi.org/project/kconfiglib\#files](https://pypi.org/project/kconfiglib#files)
-
-
-        1.  Install the  **.whl**  file.
-
-            ```
-            sudo pip3 install kconfiglib-13.2.0-py2.py3-none-any.whl
-            ```
-
-
-
-7.  <a name="li195884268616"></a>Install  **pycryptodome**  using either of the following methods:
-
-    >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >Steps  [7](#li195884268616)  to  [9](#li125926111510)  are required only for the Hi3861 development board.
-
-    Install the Python component packages on which the file signature depends, including pycryptodome, six, and ecdsa. As the installation of  **ecdsa**  depends on that of  **six**, install  **six**  first.
-
-    -   **Command line:**
-
-        ```
-        sudo pip3 install pycryptodome
-        ```
-
-    -   **Installation package:**
-        1.  Download the  **.whl**  file \(for example,  **pycryptodome-3.9.9-cp38-cp38-manylinux1\_x86\_64.whl**\).
-
-            Download path:  [https://pypi.org/project/pycryptodome/\#files](https://pypi.org/project/pycryptodome/#files)
-
-
-        1.  Install the  **.whl**  file.
-
-            ```
-            sudo pip3 install pycryptodome-3.9.9-cp38-cp38-manylinux1_x86_64.whl
-            ```
-
-
-
-8.  Install  **six**  using either of the following methods:
-    -   **Command line:**
-
-        ```
-        sudo pip3 install six --upgrade --ignore-installed six
-        ```
-
-
-    -   **Installation package:**
-        1.  Download the  **.whl**  file, for example,  **six-1.12.0-py2.py3-none-any.whl**.
-
-            Download path:  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files)
-
-
-        1.  Install the  **.whl**  file.
-
-            ```
-            sudo pip3 install six-1.12.0-py2.py3-none-any.whl
-            ```
-
-
-
-9.  <a name="li125926111510"></a>Install  **ecdsa**  using either of the following methods:
-    -   **Command line:**
-
-        ```
-        sudo pip3 install ecdsa
-        ```
-
-    -   **Installation package:**
-        1.  Download the  **.whl**  file, for example,  **ecdsa-0.14.1-py2.py3-none-any.whl**.
-
-            Download path:  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files)
-
-
-        1.  Install the  **.whl**  file.
-
-            ```
-            sudo pip3 install ecdsa-0.14.1-py2.py3-none-any.whl
-            ```
-
 
 
 
@@ -513,15 +380,15 @@ sudo ln -s /bin/bash /bin/sh
 
 **Prerequisites**
 
--   Python 3.7.4 or later has been installed. For details, see steps 1 to 4 in  [Installing a Python Environment](#section11255767343).
+-   Python 3.7.4 or later has been installed. For details, see  [Installing and Configuring Python](#section11255767343).
 -   The source code has been downloaded. For details, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
 **Installation**
 
-1.  Run the following command in the root directory of the source code:
+1.  Install  **hb**.
 
     ```
-    python3 -m pip install --user build/lite
+    python3 -m pip install --user ohos-build
     ```
 
 2.  Set an environment variable.
@@ -542,7 +409,7 @@ sudo ln -s /bin/bash /bin/sh
     source ~/.bashrc
     ```
 
-3.  Run the  **hb -h**  command. The installation is successful until the following information is displayed:
+3.  Run the  **hb -h**  command. If the following information is displayed, the installation is successful:
 
     ```
     usage: hb
@@ -572,7 +439,7 @@ python3 -m pip uninstall ohos-build
 
 ## Obtaining OpenHarmony Source Code<a name="section1545225464016"></a>
 
-You need to acquire  [OpenHarmony source code](https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz), download it on a Linux server, and decompress it. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
+You need to acquire OpenHarmony  [source code](https://repo.huaweicloud.com/harmonyos/os/1.0.1/code-1.0.1.tar.gz), download it on a Linux server, and decompress it. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
 ## FAQ<a name="section19253140111619"></a>
 
@@ -580,7 +447,7 @@ You need to acquire  [OpenHarmony source code](https://repo.huaweicloud.com/harm
 
 -   **Symptom**
 
-    Garbled characters and segmentation faults occur during execution of the  **python3 -m pip install --user build/lite**  command.
+    Garbled characters and segmentation faults occur during the execution of the  **python3 -m pip install --user ohos-build**  command.
 
 
 -   **Possible Causes**
@@ -589,10 +456,72 @@ You need to acquire  [OpenHarmony source code](https://repo.huaweicloud.com/harm
 
 -   **Solutions**
 
-    Run the following command to upgrade pip:
+    Upgrade pip.
 
     ```
     python3 -m pip install -U pip
+    ```
+
+
+### What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?<a name="section1996804118553"></a>
+
+-   **Symptom**
+
+    The message "cannot import 'sysconfig' from 'distutils'" is displayed during the execution of the  **python3 -m pip install --user ohos-build**  command.
+
+
+-   **Possible Causes**
+
+    The  **distutils**  module is unavailable.
+
+-   **Solutions**
+
+    Install  **distutils**.
+
+    ```
+    sudo apt-get install python3.8-distutils
+    ```
+
+
+### What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb Installation?<a name="section6992181918582"></a>
+
+-   **Symptom**
+
+The message "module 'platform' has no attribute 'linux\_distribution'" is displayed during the execution of the  **python3 -m pip install --user ohos-build**  command.
+
+-   **Possible Causes**
+
+    There is a compatibility issue of python3-pip.
+
+-   **Solutions**
+
+    Reinstall pip.
+
+    ```
+    sudo apt remove python3-pip
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py
+    ```
+
+
+### What should I do if the message "ImportError: No module named apt\_pkg" is displayed during the execution of an unidentifiable command?<a name="section7854153010120"></a>
+
+-   **Symptom**
+
+    The message "ImportError: No module named apt\_pkg" is displayed when an unidentifiable command is executed on the Linux server.
+
+
+-   **Possible Causes**
+
+    There is a compatibility issue of python3-apt.
+
+-   **Solutions**
+
+    Reinstall python3-apt.
+
+    ```
+    sudo apt-get remove  python3-apt
+    sduo apt-get install python3-apt
     ```
 
 

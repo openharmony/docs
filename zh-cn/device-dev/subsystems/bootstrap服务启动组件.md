@@ -7,7 +7,7 @@ bootstrap服务启动组件实现了服务的自动初始化，即服务的初�
 
 zInit段的添加可参考已有的Hi3861平台的链接脚本，文件路径为vendor/hisi/hi3861/hi3861/build/link/link.ld.S。
 
-用于实现服务的自动初始化的宏定义接口请参见启动恢复子系统的[API接口文档](https://gitee.com/openharmony/docs/blob/master/api/api-SmartVision-Devices/OHOS-Init.md)。
+用于实现服务的自动初始化的宏定义接口请参见启动恢复子系统的[API接口文档](https://device.harmonyos.com/cn/docs/develop/apiref/init-0000001054598113)。
 
 ## 接口说明<a name="section1633115419401"></a>
 

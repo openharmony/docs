@@ -52,7 +52,7 @@
 -   **Solution**
 
     ```
-    sudo apt-get install dosfstools mtools
+    ​sudo apt-get install dosfstools mtools
     ```
 
 
@@ -67,7 +67,7 @@
     Permission is required to access files in the  **riscv**  compiler path.
 
 -   **Solution**
-    1.  Run the following command to query the directory where  **hcc\_riscv32**  is located:
+    1.  Run the following command to query the directory where  **gcc\_riscv32**  is located:
 
         ```
         which riscv32-unknown-elf-gcc

@@ -3,18 +3,20 @@
 -   [Prerequisites](#section2074878255)
 -   [Requirements Specific to the Hi3861 Development Environment](#section466851916410)
 -   [Installing the Linux Compilation Environment](#section497484245614)
+    -   [Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)](#section45512412251)
     -   [Installing Scons](#section13515123015279)
+    -   [Installing Python Modules](#section88701892341)
     -   [Installing gcc\_riscv32 \(Compilation Toolchain for WLAN Module\)](#section1842910288284)
 
-
->![](public_sys-resources/icon-notice.gif) **NOTICE:** 
->This section describes how to use an installation package to set up the compilation and building environment. If you are going to use Docker to set up the environment, the Linux server-related tools SCons 3.0.4+ and build-essential are not required, and you only need to install the Windows workstation.
 
 ## Prerequisites<a name="section2074878255"></a>
 
 You must complete the settings in  [Basic OS Environment Setup](basic-os-environment-setup.md).
 
 ## Requirements Specific to the Hi3861 Development Environment<a name="section466851916410"></a>
+
+>![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+>This section describes how to use an installation package to set up the compilation and building environment. If you are going to use Docker to set up the environment, the Linux server-related tools in  [Table 1](#table6299192712513)  are not required, and you only need to install the Windows workstation.
 
 The following table describes the environment configuration requirements specific to the Hi3861 development board.
 
@@ -31,7 +33,16 @@ The following table describes the environment configuration requirements specifi
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1397335913612"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p3711468218"><a name="p3711468218"></a><a name="p3711468218"></a>Linux server</p>
+<tbody><tr id="row935218593572"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p105554418586"><a name="p105554418586"></a><a name="p105554418586"></a>Linux server</p>
+</td>
+<td class="cellrowborder" valign="top" width="19.89%" headers="mcps1.2.5.1.2 "><p id="p45551740589"><a name="p45551740589"></a><a name="p45551740589"></a>Basic software package for compilation and building (required only for Ubuntu 20+)</p>
+</td>
+<td class="cellrowborder" valign="top" width="26.279999999999998%" headers="mcps1.2.5.1.3 "><p id="p655594115814"><a name="p655594115814"></a><a name="p655594115814"></a>Provides a basic software package for compilation and building.</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p165558415589"><a name="p165558415589"></a><a name="p165558415589"></a>Internet</p>
+</td>
+</tr>
+<tr id="row1397335913612"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p3711468218"><a name="p3711468218"></a><a name="p3711468218"></a>Linux server</p>
 </td>
 <td class="cellrowborder" valign="top" width="19.89%" headers="mcps1.2.5.1.2 "><p id="p097355911620"><a name="p097355911620"></a><a name="p097355911620"></a>SCons 3.0.4+</p>
 </td>
@@ -40,13 +51,22 @@ The following table describes the environment configuration requirements specifi
 <td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p1722663441514"><a name="p1722663441514"></a><a name="p1722663441514"></a>Internet</p>
 </td>
 </tr>
-<tr id="row1463517494402"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p137174662119"><a name="p137174662119"></a><a name="p137174662119"></a>Linux server</p>
+<tr id="row1968013216717"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p2681632977"><a name="p2681632977"></a><a name="p2681632977"></a>Linux server</p>
 </td>
-<td class="cellrowborder" valign="top" width="19.89%" headers="mcps1.2.5.1.2 "><p id="p258814561424"><a name="p258814561424"></a><a name="p258814561424"></a>build-essential</p>
+<td class="cellrowborder" valign="top" width="19.89%" headers="mcps1.2.5.1.2 "><p id="p1991501391312"><a name="p1991501391312"></a><a name="p1991501391312"></a>Python modules: setuptools, Kconfiglib, PyCryptodome, six, and ecdsa</p>
 </td>
-<td class="cellrowborder" valign="top" width="26.279999999999998%" headers="mcps1.2.5.1.3 "><p id="p1749611716181"><a name="p1749611716181"></a><a name="p1749611716181"></a>Provides basic software package for compilation.</p>
+<td class="cellrowborder" valign="top" width="26.279999999999998%" headers="mcps1.2.5.1.3 "><p id="p968120325715"><a name="p968120325715"></a><a name="p968120325715"></a>Executes script compilation.</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p8635174916403"><a name="p8635174916403"></a><a name="p8635174916403"></a>Internet</p>
+<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p268116326711"><a name="p268116326711"></a><a name="p268116326711"></a>Internet</p>
+</td>
+</tr>
+<tr id="row020914491313"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p20209749103116"><a name="p20209749103116"></a><a name="p20209749103116"></a>Linux server</p>
+</td>
+<td class="cellrowborder" valign="top" width="19.89%" headers="mcps1.2.5.1.2 "><p id="p7209104910317"><a name="p7209104910317"></a><a name="p7209104910317"></a>gcc riscv32</p>
+</td>
+<td class="cellrowborder" valign="top" width="26.279999999999998%" headers="mcps1.2.5.1.3 "><p id="p102093498311"><a name="p102093498311"></a><a name="p102093498311"></a>Executes script compilation.</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p321054953116"><a name="p321054953116"></a><a name="p321054953116"></a>Internet</p>
 </td>
 </tr>
 <tr id="row1596703610215"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p071946112113"><a name="p071946112113"></a><a name="p071946112113"></a>Windows workstation</p>
@@ -55,7 +75,7 @@ The following table describes the environment configuration requirements specifi
 </td>
 <td class="cellrowborder" valign="top" width="26.279999999999998%" headers="mcps1.2.5.1.3 "><p id="p94491342131413"><a name="p94491342131413"></a><a name="p94491342131413"></a>USB-to-Serial adapter driver</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p6449184214148"><a name="p6449184214148"></a><a name="p6449184214148"></a><a href="http://www.wch-ic.com/downloads/CH341SER_EXE.html" target="_blank" rel="noopener noreferrer">http://www.wch-ic.com/downloads/CH341SER_EXE.html</a></p>
+<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p6449184214148"><a name="p6449184214148"></a><a name="p6449184214148"></a><a href="http://www.wch-ic.com/downloads/CH341SER_EXE.html" target="_blank" rel="noopener noreferrer">http://www.wch.cn/search?q=ch340g&amp;t=downloads</a></p>
 </td>
 </tr>
 </tbody>
@@ -67,30 +87,22 @@ The following table describes the environment configuration requirements specifi
 >-   If you acquire the source code using an HPM component or HPM CLI tool,  **gcc\_riscv32**  is not required.
 >-   \(Recommended\) If you obtain the source code via the mirror site or code repository, install  **gcc\_riscv32**. When installing  **gcc\_riscv32**, ensure that the environment variable paths of the compilation tools are unique.
 
+### Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)<a name="section45512412251"></a>
+
+Install the software.
+
+```
+sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib* && sudo apt-get install libffi-dev
+```
+
 ### Installing Scons<a name="section13515123015279"></a>
 
 1.  Start a Linux server.
 2.  Install the SCons installation package.
 
     ```
-    sudo apt-get install scons -y
+    python3 -m pip install scons
     ```
-
-    If the installation package cannot be found in the software source, do as follows:
-
-    1.  Download the source code package from  [https://scons.org/pages/download.html](https://scons.org/pages/download.html). The recommended SCons version is 3.0.4 or later.
-    2.  Decompress the source code package to any directory, for example, scons-3.1.2.
-
-        ```
-        tar -xvf scons-3.1.2.tar.gz
-        ```
-
-    3.  Go to the source code directory and run the following command to install the source code package:
-
-        ```
-        sudo python3 setup.py install
-        ```
-
 
 3.  Check whether the installation is successful.
 
@@ -98,8 +110,106 @@ The following table describes the environment configuration requirements specifi
     scons -v
     ```
 
-    **Figure  1**  Successful installation<a name="fig235815252492"></a>  
-    ![](figures/successful-installation.png "successful-installation")
+    **Figure  1**  Successful installation \(SCons version requirement: 3.0.4 or later\)<a name="fig235815252492"></a>  
+    ![](figures/successful-installation-(scons-version-requirement-3-0-4-or-later).png "successful-installation-(scons-version-requirement-3-0-4-or-later)")
+
+
+### Installing Python Modules<a name="section88701892341"></a>
+
+1.  Install setuptools.
+
+    ```
+    pip3 install setuptools
+    ```
+
+2.  Install the GUI menuconfig tool \(Kconfiglib\). You are advised to install Kconfiglib 13.2.0 or later.
+    -   **Command line:**
+
+        ```
+        sudo pip3 install kconfiglib
+        ```
+
+
+    -   **Installation package:**
+        1.  Download the  **.whl**  file \(for example,  **kconfiglib-13.2.0-py2.py3-none-any.whl**\).
+    
+            Download path:  [https://pypi.org/project/kconfiglib\#files](https://pypi.org/project/kconfiglib#files)
+
+
+        1.  Install the  **.whl**  file.
+    
+            ```
+            sudo pip3 install kconfiglib-13.2.0-py2.py3-none-any.whl
+            ```
+
+
+
+3.  Install  **PyCryptodome**  using either of the following methods:
+
+    Install the Python component packages on which the file signature depends, including PyCryptodome, six, and ecdsa. As the installation of  **ecdsa**  depends on that of  **six**, install  **six**  first.
+
+    -   **Command line:**
+
+        ```
+        sudo pip3 install pycryptodome
+        ```
+
+    -   **Installation package:**
+        1.  Download the  **.whl**  file \(for example,  **pycryptodome-3.9.9-cp38-cp38-manylinux1\_x86\_64.whl**\).
+
+            Download path:  [https://pypi.org/project/pycryptodome/\#files](https://pypi.org/project/pycryptodome/#files)
+
+
+        1.  Install the  **.whl**  file.
+    
+            ```
+            sudo pip3 install pycryptodome-3.9.9-cp38-cp38-manylinux1_x86_64.whl
+            ```
+
+
+
+4.  Install  **six**  using either of the following methods:
+    -   **Command line:**
+
+        ```
+        sudo pip3 install six --upgrade --ignore-installed six
+        ```
+
+
+    -   **Installation package:**
+        1.  Download the  **.whl**  file, for example,  **six-1.12.0-py2.py3-none-any.whl**.
+    
+            Download path:  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files)
+
+
+        1.  Install the  **.whl**  file.
+    
+            ```
+            sudo pip3 install six-1.12.0-py2.py3-none-any.whl
+            ```
+
+
+
+5.  Install  **ecdsa**  using either of the following methods:
+    -   **Command line:**
+
+        ```
+        sudo pip3 install ecdsa
+        ```
+
+    -   **Installation package:**
+        1.  Download the  **.whl**  file, for example,  **ecdsa-0.14.1-py2.py3-none-any.whl**.
+
+            Download path:  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files)
+
+
+        1.  Install the  **.whl**  file.
+    
+            ```
+            sudo pip3 install ecdsa-0.14.1-py2.py3-none-any.whl
+            ```
+
+
 
 
 ### Installing gcc\_riscv32 \(Compilation Toolchain for WLAN Module\)<a name="section1842910288284"></a>
@@ -172,7 +282,7 @@ The following table describes the environment configuration requirements specifi
     cd /opt && mkdir gcc_riscv32
     ```
 
-13. Build  **Bintutils**.
+13. Compile  **binutils**.
 
     ```
     mkdir build_binutils && cd build_binutils && ../riscv-binutils-gdb/configure --prefix=/opt/gcc_riscv32 --target=riscv32-unknown-elf --with-arch=rv32imc --with-abi=ilp32 --disable-__cxa_atexit --disable-libgomp --disable-libmudflap --enable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-multilib --enable-poison-system-directories --enable-languages=c,c++ --with-gnu-as --with-gnu-ld --with-newlib --with-system-zlib CFLAGS="-fstack-protector-strong -O2 -D_FORTIFY_SOURCE=2 -Wl,-z,relro,-z,now,-z,noexecstack -fPIE" CXXFLAGS="-fstack-protector-strong -O2 -D_FORTIFY_SOURCE=2 -Wl,-z,relro,-z,now,-z,noexecstack -fPIE" CXXFLAGS_FOR_TARGET="-Os -mcmodel=medlow -Wall -fstack-protector-strong -Wl,-z,relro,-z,now,-z,noexecstack -Wtrampolines -fno-short-enums -fno-short-wchar" CFLAGS_FOR_TARGET="-Os -mcmodel=medlow -Wall -fstack-protector-strong -Wl,-z,relro,-z,now,-z,noexecstack -Wtrampolines -fno-short-enums -fno-short-wchar" --bindir=/opt/gcc_riscv32/bin --libexecdir=/opt/gcc_riscv32/riscv32 --libdir=/opt/gcc_riscv32 --includedir=/opt/gcc_riscv32 && make -j16 && make install && cd ..
