@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.0 LTS \(2021-04-27\)<a name="EN-US_TOPIC_0000001095652840"></a>
+# OpenHarmony 1.1.0 LTS \(2021-04-01\)<a name="EN-US_TOPIC_0000001095652840"></a>
 
 -   [Overview](#section1846294912228)
 -   [Source Code Acquisition](#section84808293211)
@@ -250,7 +250,7 @@ This version inherits all features of OpenHarmony 1.0, and adds and optimizes fe
 
 The following table describes the optimization of repositories.
 
->![](public_sys-resources/icon-note.gif) **NOTE:** 
+> **NOTE:** 
 >-   Read-only archiving means archiving a module repository to the  **openharmony-retired**  organization and setting the repository to read-only.
 >-   Code for third-party chips has been decoupled from the OS. HiSilicon chip SDKs have been moved from the  **vendor**  directory to the  **device/hisilicon**  directory.
 

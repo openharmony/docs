@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.0 LTS（2021-04-27）<a name="ZH-CN_TOPIC_0000001095652840"></a>
+# OpenHarmony 1.1.0 LTS（2021-04-01）<a name="ZH-CN_TOPIC_0000001095652840"></a>
 
 -   [版本概述](#section1846294912228)
 -   [源码获取](#section84808293211)
