@@ -250,7 +250,7 @@ This version inherits all features of OpenHarmony 1.0, and adds and optimizes fe
 
 The following table describes the optimization of repositories.
 
->![](public_sys-resources/icon-note.gif) **NOTE:** 
+> **NOTE:** 
 >-   Read-only archiving means archiving a module repository to the  **openharmony-retired**  organization and setting the repository to read-only.
 >-   Code for third-party chips has been decoupled from the OS. HiSilicon chip SDKs have been moved from the  **vendor**  directory to the  **device/hisilicon**  directory.
 
