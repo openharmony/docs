@@ -24,7 +24,6 @@ OpenHarmony的Docker镜像托管在**HuaweiCloud SWR**上，开发者可以通�
      ```
 3. 通过如下命令启动不同平台的编译
      ```
-     python3 -m pip install --user build/lite  #安装工具hb
      hb set #设置工作目录，输入点(.)表示当前目录
      在显示的页面中通过键盘上下键选择需要编译的平台，通过回车确定选择
      hb build -f #执行编译
@@ -46,7 +45,6 @@ OpenHarmony的Docker镜像托管在**HuaweiCloud SWR**上，开发者可以通�
      ```
 5. 通过如下命令启动不同平台的编译
      ```
-     python3 -m pip install --user build/lite  #安装工具hb
      hb set #设置工作目录，输入点(.)表示当前目录
      在显示的页面中通过键盘上下键选择需要编译的平台，通过回车确定选择
      hb build -f #执行编译

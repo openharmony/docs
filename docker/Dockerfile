@@ -44,6 +44,7 @@ RUN apt-get update -y \
 	&& pip3 install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple kconfiglib \
 	&& pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple pycryptodome \
 	&& pip3 install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple ecdsa \
+	&& python3 -m pip install --user ohos-build \
 	&& mkdir -p /home/tools \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar \
