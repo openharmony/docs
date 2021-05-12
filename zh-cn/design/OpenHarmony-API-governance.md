@@ -16,7 +16,7 @@
 
 OpenHarmony API按可授权使用方分类包括：
 - Public API：公开发布，提供给三方应用开发使用的API。
-- System API：非公开发布，仅授权平台签名应用、预置特权应用使用的API。
+- System API：非公开发布，仅授权平台签名应用（signature）、预置特权应用（privileged）使用的API。
 - Test API：受限发布，仅适用于xTS或应用调试阶段可使用的API。
 <p>如无特别说明，本章程定义的条款同时适用于Public API、System API或Test API等三种OpenHarmony API。针对System API和Test API的额外要求或例外说明，通过特别说明方式加以补充说明。</p>
 
