@@ -16,15 +16,15 @@
 
 OpenHarmony API按可授权使用方分类包括：
 - Public API：公开发布，提供给三方应用开发使用的API。
-- System API：非公开发布，仅授权系统应用（被额外授予某些特定系统权限能力）可使用的API。
--  Test API：受限发布，仅适用于xTS或应用调试阶段可使用的API。
-如无特别说明，本章程定义的条款同时适用于Public API、System API或Test API等三种OpenHarmony API。针对System API和Test API的额外要求或例外说明，通过特别说明方式加以补充说明。
+- System API：非公开发布，仅授权平台签名应用、预置特权应用使用的API。
+- Test API：受限发布，仅适用于xTS或应用调试阶段可使用的API。
+<p>如无特别说明，本章程定义的条款同时适用于Public API、System API或Test API等三种OpenHarmony API。针对System API和Test API的额外要求或例外说明，通过特别说明方式加以补充说明。</p>
 
 OpenHarmony API按编程语言分类包括：
 - Java API：面向应用开放的Java编程语言接口。
 - JS API：面向应用开放的JavaScript编程语言接口。
 - Native API：面向应用开放的C/C++编程语言接口。
-如无特别说明，本章程定义的条款同时适用于Java API、JS API和Native API等三种编程语言OpenHarmony API。
+<p>如无特别说明，本章程定义的条款同时适用于Java API、JS API和Native API等三种编程语言OpenHarmony API。</p>
 
 ## API治理
 
@@ -47,7 +47,7 @@ API评审流程如下：
 1. API评审申请、代码提交（Owner：Contributor），除代码提交外，如果涉及API新增或变更需同步提交相应的API设计文档，详细说明API的需求来源、场景与使用方法、权限设计、隐私保护澄清等，详见后面的API评审申请要素。为避免后续的返工，Contributor可以在正式的API评审申请、代码提交之前，先通过邮件方式将API设计文档提交Committer、领域SIG、API SIG等相关人员预审。
 1. 代码评审（Owner：Committer），代码评审和API预审，涉及API提交CodeReview通过后，还需要进一步领域SIG评审。如果单次提交同时涉及多个领域的API新增或变更，相应的API评审申请和代码需要同时提交给相关领域的Committer评审，只有所有对应领域的Committer都完成CodeReview后才能进入下一评审环节。
 1. API评审（Owner：领域SIG），新增API相关的代码提交评审，领域SIG评审通过即可代码合入；变更API相关的代码提交，领域SIG评审通过后，还需要进一步提交API SIG。如果单次提交同时涉及多个领域的API新增，相应的API评审申请和代码需要同时提交给相关领域的SIG评审，只需一个领域SIG评审通过即可代码合入。如果单次提交同时涉及多个领域的API变更，相应的API评审申请和代码需要同时提交给相关领域的SIG评审，只有所有对应领域的SIG都要评审通过才能进入下一评审环节。
-1. API变更评审（Owner：SIG），变更API相关的代码提交评审，评审通过即可代码。
+1. API变更评审（Owner：API SIG），变更API相关的代码提交评审，评审通过即可代码。
 1. 评审完成。
 
 ### API评审申请要素
