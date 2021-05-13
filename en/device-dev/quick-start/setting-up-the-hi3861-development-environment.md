@@ -3,6 +3,7 @@
 -   [Prerequisites](#section2074878255)
 -   [Requirements Specific to the Hi3861 Development Environment](#section466851916410)
 -   [Installing the Linux Compilation Environment](#section497484245614)
+-   [Changing Linux Shell to Bash](#section23838991011)
     -   [Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)](#section45512412251)
     -   [Installing Scons](#section13515123015279)
     -   [Installing Python Modules](#section88701892341)
@@ -87,6 +88,29 @@ The following table describes the environment configuration requirements specifi
 >-   If you acquire the source code using an HPM component or HPM CLI tool,  **gcc\_riscv32**  is not required.
 >-   \(Recommended\) If you obtain the source code via the mirror site or code repository, install  **gcc\_riscv32**. When installing  **gcc\_riscv32**, ensure that the environment variable paths of the compilation tools are unique.
 
+## Changing Linux Shell to Bash<a name="section23838991011"></a>
+
+Check whether bash is used as the shell.
+
+```
+ls -l /bin/sh
+```
+
+If  **/bin/sh-\>bash**  is not displayed, do as follows to change the shell to bash.
+
+**Method 1:**  Run the following command on the terminal and then select  **No**.
+
+```
+sudo dpkg-reconfigure dash
+```
+
+**Method 2:**  Run the first command to delete  **/bin/sh**  and then run the second command to create a new symbolic link.
+
+```
+sudo rm -rf /bin/sh
+sudo ln -s /bin/bash /bin/sh
+```
+
 ### Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)<a name="section45512412251"></a>
 
 Install the software.
@@ -132,12 +156,12 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
 
     -   **Installation package:**
         1.  Download the  **.whl**  file \(for example,  **kconfiglib-13.2.0-py2.py3-none-any.whl**\).
-    
+
             Download path:  [https://pypi.org/project/kconfiglib\#files](https://pypi.org/project/kconfiglib#files)
 
 
         1.  Install the  **.whl**  file.
-    
+
             ```
             sudo pip3 install kconfiglib-13.2.0-py2.py3-none-any.whl
             ```
@@ -161,7 +185,7 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
 
 
         1.  Install the  **.whl**  file.
-    
+
             ```
             sudo pip3 install pycryptodome-3.9.9-cp38-cp38-manylinux1_x86_64.whl
             ```
@@ -178,12 +202,12 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
 
     -   **Installation package:**
         1.  Download the  **.whl**  file, for example,  **six-1.12.0-py2.py3-none-any.whl**.
-    
+
             Download path:  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files)
 
 
         1.  Install the  **.whl**  file.
-    
+
             ```
             sudo pip3 install six-1.12.0-py2.py3-none-any.whl
             ```
@@ -204,7 +228,7 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
 
 
         1.  Install the  **.whl**  file.
-    
+
             ```
             sudo pip3 install ecdsa-0.14.1-py2.py3-none-any.whl
             ```
@@ -227,7 +251,7 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
 3.  Download the RISC-V GNU toolchain.
 
     ```
-    git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
+    git clone --recursive https://gitee.com/mirrors/riscv-gnu-toolchain.git
     ```
 
 4.  Open the  **riscv-gnu-toolchain**  folder and delete empty folders to prevent conflicts during the download of  **Newlib**,  **Binutils**, and  **GCC**.

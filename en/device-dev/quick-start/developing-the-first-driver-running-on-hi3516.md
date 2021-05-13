@@ -437,14 +437,14 @@ Compile and burn images by referring to  [Building](developing-the-first-example
 
     ![](figures/chuankou1.png)
 
-    1.  Click  **Serial port**  to enable it.
-    2.  Enter the serial port number queried in the "Burning" section \(COM11 is used in this example\) and press  **Enter**  until  **hisillicon**  is displayed.
+    1.  Click  **Monitor**  to enable the serial port.
+    2.  Press  **Enter**  repeatedly until  **hisilicon**  displays.
     3.  Go to step  [2](developing-the-first-example-program-running-on-hi3516.md#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](developing-the-first-example-program-running-on-hi3516.md#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
 
 2.  \(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisillicon" is displayed.
+    >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisilicon" is displayed.
 
     **Table  1**  Parameters of the U-boot
 

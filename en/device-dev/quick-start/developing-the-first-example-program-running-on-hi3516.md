@@ -1,32 +1,131 @@
 # Developing the First Example Program Running on Hi3516<a name="EN-US_TOPIC_0000001052906247"></a>
 
--   [Modifying a Program](#s8efc1952ebfe4d1ea717182e108c29bb)
+-   [Creating a Program](#s8efc1952ebfe4d1ea717182e108c29bb)
 -   [Building](#section1077671315253)
 -   [Burning](#section08153912587)
 -   [Running an Image](#section380511712615)
 -   [Running a Program](#section5276734182615)
 
-This section describes how to modify, compile, burn, and run the first program, and finally print  **Hello OHOS!**  on the develop board.
+This section describes how to create, compile, burn, and run the first program, and finally print  **Hello OHOS!**  on the develop board.
 
-## Modifying a Program<a name="s8efc1952ebfe4d1ea717182e108c29bb"></a>
+## Creating a Program<a name="s8efc1952ebfe4d1ea717182e108c29bb"></a>
 
-The code of  **helloworld.c**  in the  **applications/sample/camera/app/src**  directory is shown in the following example. You can customize the content to be printed. For example, you can change  **OHOS**  to  **World**. You can use either C or C++ to develop a program.
+1.  Create a directory and the program source code.
 
-```
-#include <stdio.h>
-#include "los_sample.h"
+    Create the  **applications/sample/camera/apps/src/helloworld.c**  directory and file whose code is shown in the following example. You can customize the content to be printed. For example, you can change  **OHOS**  to  **World**. You can use either C or C++ to develop a program.
 
-int main(int argc, char **argv)
-{
-    printf("\n************************************************\n");
-    printf("\n\t\tHello OHOS!\n");
-    printf("\n************************************************\n\n");
+    ```
+    #include <stdio.h>
+    
+    int main(int argc, char **argv)
+    {
+        printf("\n************************************************\n");
+        printf("\n\t\tHello OHOS!\n");
+        printf("\n************************************************\n\n");
+    
+        return 0;
+    }
+    ```
 
-    LOS_Sample(g_num);
+2.  Create a build file.
 
-    return 0;
-}
-```
+    Create the  **applications/sample/camera/apps/BUILD.gn**  file. The file content is as follows:
+
+    ```
+    import("//build/lite/config/component/lite_component.gni")
+    lite_component("hello-OHOS") {
+      features = [ ":helloworld" ]
+    }
+    executable("helloworld") {
+      output_name = "helloworld"
+      sources = [ "src/helloworld.c" ]
+      include_dirs = []
+      defines = []
+      cflags_c = []
+      ldflags = []
+    }
+    ```
+
+3.  Add a new component.
+
+    Add the configuration of the  **hello\_world\_app**  component to the  **build/lite/components/applications.json**  file. The sample code below shows some configurations defined in the  **applications.json**  file, and the code between  **\#\#start\#\#**  and  **\#\#end\#\#**  is the new configuration \(Delete the rows where  **\#\#start\#\#**  and  **\#\#end\#\#**  are located after the configurations are added.\)
+
+    ```
+    {
+      "components": [
+        {
+          "component": "camera_sample_communication",
+          "description": "Communication related samples.",
+          "optional": "true",
+          "dirs": [
+            "applications/sample/camera/communication"
+          ],
+          "targets": [
+            "//applications/sample/camera/communication:sample"
+          ],
+          "rom": "",
+          "ram": "",
+          "output": [],
+          "adapted_kernel": [ "liteos_a" ],
+          "features": [],
+          "deps": {
+            "components": [],
+            "third_party": []
+          }
+        },
+    ##start##
+        {
+          "component": "hello_world_app",
+          "description": "Communication related samples.",
+          "optional": "true",
+          "dirs": [
+            "applications/sample/camera/apps"
+          ],
+          "targets": [
+            "//applications/sample/camera/apps:hello-OHOS"
+          ],
+          "rom": "",
+          "ram": "",
+          "output": [],
+          "adapted_kernel": [ "liteos_a" ],
+          "features": [],
+          "deps": {
+            "components": [],
+            "third_party": []
+          }
+        },
+    ##end##
+        {
+          "component": "camera_sample_app",
+          "description": "Camera related samples.",
+          "optional": "true",
+          "dirs": [
+            "applications/sample/camera/launcher",
+            "applications/sample/camera/cameraApp",
+            "applications/sample/camera/setting",
+            "applications/sample/camera/gallery",
+            "applications/sample/camera/media"
+          ],
+    ```
+
+4.  Modify the board configuration file.
+
+    Add the  **hello\_world\_app**  component to the  **vendor/hisilicon/hispark\_taurus/config.json**  file. The sample code below shows the configurations of the  **applications**  subsystem, and the code between  **\#\#start\#\#**  and  **\#\#end\#\#**  is the new configuration \(Delete the rows where  **\#\#start\#\#**  and  **\#\#end\#\#**  are located after the configurations are added.\)
+
+    ```
+          {
+            "subsystem": "applications",
+            "components": [
+              { "component": "camera_sample_app", "features":[] },
+              { "component": "camera_sample_ai", "features":[] },
+    ##start##
+              { "component": "hello_world_app", "features":[] },
+    ##end##
+              { "component": "camera_screensaver_app", "features":[] }
+            ]
+          },
+    ```
+
 
 ## Building<a name="section1077671315253"></a>
 
@@ -45,7 +144,7 @@ hb build -f (Start building.)
 The result files are generated in the  **out/hispark\_taurus/ipcamera\_hispark\_taurus**  directory.
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
->The U-boot file of the Hi3516 development board can be obtained from the following path: vendor\\hisi\\hi35xx\\hi3516dv300\\uboot\\out\\boot\\u-boot-hi3516dv300.bin
+>The U-boot file of the Hi3516D V300 development board can be obtained from the following path: device/hisilicon/hispark\_taurus/sdk\_liteos/uboot/out/boot/u-boot-hi3516dv300.bin
 
 ## Burning<a name="section08153912587"></a>
 
@@ -71,32 +170,33 @@ The Hi3516 development board allows you to burn flash memory over the USB port, 
 
     ![](figures/en-us_image_0000001078081434.png)
 
-5.  Set the IP address of the network port. You are advised to set the local TCP/IPv4 address on your PC and then set the following options:
+5.  <a name="en-us_topic_0000001056443961_li1558813168234"></a>Check and set the IP address of the network adapter connected to the development board. For details, see  [Setting the IP Address of the Network Port for Programming on Hi3516](https://device.harmonyos.com/en/docs/ide/user-guides/set_ipaddress-0000001141825075).
+6.  Set the IP address of the network port for programming:
 
-    -   **upload\_net\_server\_ip**: Select the IP address of your PC, such as 192.168.1.2.
+    -   **upload\_net\_server\_ip**: Select the IP address set in  [5](#en-us_topic_0000001056443961_li1558813168234), such as 192.168.1.2.
     -   **upload\_net\_client\_mask**: Set the subnet mask of the development board, such as 255.255.255.0. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
     -   **upload\_net\_client\_gw**: Set the gateway of the development board, such as 192.168.1.1. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
     -   **upload\_net\_client\_ip**: Set the IP address of the development board, such as 92.168.1.3. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
 
     ![](figures/en-us_image_0000001078096426.png)
 
-6.  Switch between the  **hi3516dv300\_fastboothi3516dv300\_kernel**,  **hi3516dv300\_rootfs**, and  **hi3516dv300\_userfs**  tab pages, and modify the settings. In general cases, you can leave the fields at their default settings. To change the default settings, select the target item in the  **New Option**  field first.
+7.  Switch between the  **hi3516dv300\_fastboothi3516dv300\_kernel**,  **hi3516dv300\_rootfs**, and  **hi3516dv300\_userfs**  tab pages, and modify the settings. In general cases, you can leave the fields at their default settings. To change the default settings, select the target item in the  **New Option**  field first.
 
     ![](figures/2021-01-28_112953.png)
 
-7.  When you finish modifying, click  **Save**  in the upper right corner.
+8.  When you finish modifying, click  **Save**  in the upper right corner.
 
-    ![](figures/2021-01-27_170334-0.png)
+    ![](figures/2021-01-27_170334-2.png)
 
-8.  Open the project file and go to  ![](figures/2021-01-27_170334-1.png)  \>  **PROJECT TASKS**  \>  **env:hi3516dv300**  \>  **Upload**  to start programming.
+9.  Open the project file and go to  ![](figures/2021-01-27_170334-3.png)  \>  **PROJECT TASKS**  \>  **env:hi3516dv300**  \>  **Upload**  to start programming.
 
     ![](figures/2021-01-27_181244.png)
 
-9.  When the following message is displayed, power off the development board and then power it on.
+10. When the following message is displayed, power off the development board and then power it on.
 
     ![](figures/en-us_image_0000001097124071.png)
 
-10. Start programming. When the following message is displayed, it indicates that the programming is successful.
+11. Start programming. When the following message is displayed, it indicates that the programming is successful.
 
     ![](figures/en-us_image_0000001072956053.png)
 
@@ -113,14 +213,14 @@ The Hi3516 development board allows you to burn flash memory over the USB port, 
 
     ![](figures/chuankou1.png)
 
-    1.  Click  **Serial port**  to enable it.
-    2.  Enter the serial port number queried in the "Burning" section \(COM11 is used in this example\) and press  **Enter**  until  **hisillicon**  is displayed.
+    1.  Click  **Monitor**  to enable the serial port.
+    2.  Press  **Enter**  repeatedly until  **hisilicon**  displays.
     3.  Go to step  [2](#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
 
 2.  <a name="l5b42e79a33ea4d35982b78a22913b0b1"></a>\(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisillicon" is displayed.
+    >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisilicon" is displayed.
 
     **Table  1**  Parameters of the U-boot
 
@@ -168,10 +268,8 @@ The Hi3516 development board allows you to burn flash memory over the USB port, 
 
 ## Running a Program<a name="section5276734182615"></a>
 
-In the root directory, run the  **./bin/camera\_app**  command to operate the demo program. The compilation result is shown in the following example.
+In the root directory, run the  **./bin/helloworld**  command to operate the demo program. The compilation result is shown in the following example.
 
-**Figure  4**  Program started successfully<a name="fig36537913815"></a>  
-
-
-![](figures/qidong.png)
+**Figure  4**  Successful system startup and program execution<a name="fig1341618411997"></a>  
+![](figures/successful-system-startup-and-program-execution.png "successful-system-startup-and-program-execution")
 

@@ -78,7 +78,7 @@ Before setting up the environment for a development board, you must set up the b
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.5.1.2 "><p id="a687efa8001f140488dc1da9a2ee8f6d1"><a name="a687efa8001f140488dc1da9a2ee8f6d1"></a><a name="a687efa8001f140488dc1da9a2ee8f6d1"></a>Operating system</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="ace724e00c9094eccb8c600d6ad426ed8"><a name="ace724e00c9094eccb8c600d6ad426ed8"></a><a name="ace724e00c9094eccb8c600d6ad426ed8"></a>Ubuntu 16.04 64-bit or later is used for the Linux OS, and bash is used as the shell.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="ace724e00c9094eccb8c600d6ad426ed8"><a name="ace724e00c9094eccb8c600d6ad426ed8"></a><a name="ace724e00c9094eccb8c600d6ad426ed8"></a>Ubuntu 16.04 64-bit or later is used for the Linux OS.</p>
 <div class="note" id="note124531828194919"><a name="note124531828194919"></a><a name="note124531828194919"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1244243142810"><a name="p1244243142810"></a><a name="p1244243142810"></a>Common software such as samba and vim is installed in the OS by default. Adaptation is required to support Linux file sharing.</p>
 </div></div>
 </td>
@@ -170,7 +170,7 @@ The following table describes the tools required for setting up the general envi
 </tr>
 <tr id="row1644079184919"><td class="cellrowborder" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p744115914493"><a name="p744115914493"></a><a name="p744115914493"></a>hb</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p1244114913492"><a name="p1244114913492"></a><a name="p1244114913492"></a>Compiles the source code.</p>
+<td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p1244114913492"><a name="p1244114913492"></a><a name="p1244114913492"></a>Compiles the <span id="text344823833918"><a name="text344823833918"></a><a name="text344823833918"></a>OpenHarmony</span> source code.</p>
 </td>
 <td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p1463918124619"><a name="p1463918124619"></a><a name="p1463918124619"></a>Internet</p>
 </td>
@@ -189,8 +189,8 @@ You can use Docker to quickly install the Linux environment. For details, see  *
 ## Using an Installation Package to Install the Linux Environment<a name="section497484245614"></a>
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
->-   If you acquire the source code using an HPM component or HPM CLI tool, compilation tools like  **gn**  and  **ninja**  are not required.
->-   \(Recommended\) If you obtain the source code via the mirror site or code repository, install compilation tools such as  **gn**  and  **ninja**. When installing  **gn**  and  **ninja**, ensure that the environment variable paths of the compilation tools are unique.
+>-   If you acquire the source code using an HPM component or HPM CLI tool, compilation tools like  **gn**,  **ninja**,  **LLVM**, and  **hb**  are not required.
+>-   \(Recommended\) If you obtain the source code via the mirror site or code repository, install compilation tools such as  **gn**,  **ninja**,  **LLVM**, and  **hb**. When installing a compilation tool, ensure that its environment variable path is unique.
 
 ### Connecting to a Linux Server<a name="section723115618340"></a>
 
@@ -380,8 +380,7 @@ Using PuTTY to log in to a Linux server from a PC running Windows
 
 **Prerequisites**
 
--   Python 3.7.4 or later has been installed. For details, see  [Installing and Configuring Python](#section11255767343).
--   The source code has been downloaded. For details, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
+Python 3.7.4 or later has been installed. For details, see  [Installing and Configuring Python](#section11255767343).
 
 **Installation**
 
@@ -439,7 +438,7 @@ python3 -m pip uninstall ohos-build
 
 ## Obtaining OpenHarmony Source Code<a name="section1545225464016"></a>
 
-You need to acquire OpenHarmony  [source code](https://repo.huaweicloud.com/harmonyos/os/1.0.1/code-1.0.1.tar.gz), download it on a Linux server, and decompress it. For more obtaining methods, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
+You need to acquire  [source code](../get-code/源码获取.md), download it on a Linux server, and decompress it.
 
 ## FAQ<a name="section19253140111619"></a>
 
@@ -521,7 +520,7 @@ The message "module 'platform' has no attribute 'linux\_distribution'" is displa
 
     ```
     sudo apt-get remove  python3-apt
-    sduo apt-get install python3-apt
+    sudo apt-get install python3-apt
     ```
 
 
