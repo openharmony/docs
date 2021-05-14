@@ -350,7 +350,7 @@ Using PuTTY to log in to a Linux server from a PC running Windows
 ### Installing LLVM<a name="section149564754"></a>
 
 1.  Start a Linux server.
-2.  Download  [LLVM](repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz).
+2.  Download  [LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz).
 3.  Decompress the LLVM installation package to  **\~/llvm**.
 
     ```
