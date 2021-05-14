@@ -165,7 +165,7 @@ The following table describes the tools required for setting up the general envi
 </td>
 <td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p122171727184019"><a name="p122171727184019"></a><a name="p122171727184019"></a>Functions as the compiler toolchain.</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p871055810226"><a name="p871055810226"></a><a name="p871055810226"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar</a></p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p871055810226"><a name="p871055810226"></a><a name="p871055810226"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz</a></p>
 </td>
 </tr>
 <tr id="row1644079184919"><td class="cellrowborder" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p744115914493"><a name="p744115914493"></a><a name="p744115914493"></a>hb</p>
@@ -350,11 +350,11 @@ Using PuTTY to log in to a Linux server from a PC running Windows
 ### Installing LLVM<a name="section149564754"></a>
 
 1.  Start a Linux server.
-2.  Download  [LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar).
+2.  Download  [LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz).
 3.  Decompress the LLVM installation package to  **\~/llvm**.
 
     ```
-    tar -xvf llvm-linux-9.0.0-36191.tar -C ~/
+    tar -zxvf llvm.tar.gz -C ~/
     ```
 
 4.  Set an environment variable.
