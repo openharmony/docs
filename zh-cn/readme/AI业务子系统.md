@@ -429,5 +429,5 @@ startup\_init\_lite
 
 ## AI引擎开发导航<a name="section6808423133718"></a>
 
--   《AI插件开发指南》
+-   [《AI插件开发指南》](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/%E5%BC%80%E5%8F%91%E7%A4%BA%E4%BE%8B.md)
 
