@@ -42,7 +42,7 @@ The directory structure of the kernel is described as follows:
 │   │   │        └── xxx    --- Implementation of the particular toolchain
 │   │   ├── include         --- Header files that declare the APIs required, kernel-independent
 │   │   └── risc-v          --- RISK_V architecture
-│   │        └── gcc        --- Implementation of the IAR toolchain
+│   │        └── gcc        --- Implementation of the GCC toolchain
 │   ├── include             --- Code for defining the minimum kernel function set
 │   └── src                 --- Code for implementing the minimum kernel function set
 └──utils                    --- Basic code
