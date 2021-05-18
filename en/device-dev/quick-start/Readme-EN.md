@@ -1,7 +1,6 @@
 # Getting Started
 
--   [Environment Setup](environment-setup.md)
-    -   [Basic OS Environment Setup](basic-os-environment-setup.md)
+-   [Basic OS Environment Setup](basic-os-environment-setup.md)
 
 -   [Hi3861 Development Board](hi3861-development-board.md)
     -   [Introduction to the Hi3861 Development Board](introduction-to-the-hi3861-development-board.md)

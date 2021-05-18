@@ -157,8 +157,8 @@
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
     >The U-boot file of the two boards can be obtained from the following paths, respectively.
-    >-   Hi3516D V300: vendor\\hisi\\hi35xx\\hi3516dv300\\uboot\\out\\boot\\u-boot-hi3516dv300.bin
-    >-   Hi3518E V300: vendor\\hisi\\hi35xx\\hi3518ev300\\uboot\\out\\boot\\u-boot-hi3518ev300.bin
+    >Hi3516D V300:  **device\\hisilicon\\hispark\_taurus\\sdk\_liteos\\uboot\\out\\boot\\u-boot-hi3516dv300.bin**
+    >Hi3518E V300:  **device\\hisilicon\\hispark\_aries\\sdk\_liteos\\uboot\\out\\boot\\u-boot-hi3518ev300.bin**
 
 2.  Burn the U-boot file by following the procedures for burning a U-boot file over USB.
 

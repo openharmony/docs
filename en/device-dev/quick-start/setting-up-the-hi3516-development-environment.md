@@ -90,8 +90,8 @@ The following table describes the tools required for setting up the general envi
 ## Installing the Linux Compilation Environment<a name="section182916865219"></a>
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
->-   If you acquire the source code using an HPM component or HPM CLI tool, compilation tools like  **LLVM**  and  **hc-gen**  are not required.
->-   \(Recommended\) If you obtain the source code through an image site or a code repository, install compilation tools like  **LLVM**  and  **hc-gen**. When installing  **LLVM**  and  **hc-gen**, ensure that the environment variable paths of the compilation tools are unique.
+>-   If you acquire the source code using an HPM component or HPM CLI tool, the compilation tool  **hc-gen**  is not required.
+>-   \(Recommended\) If you obtain the source code through an image site or a code repository, you should install the compilation tool  **hc-gen**. When installing  **hc-gen**, ensure that the environment variable paths of the compilation tools are unique.
 
 ### Changing Linux Shell to Bash<a name="section1715027152617"></a>
 
