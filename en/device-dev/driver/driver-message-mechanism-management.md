@@ -24,7 +24,7 @@ The message mechanism provides the following features:
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1582426174114"><td class="cellrowborder" valign="top" width="46.379999999999995%" headers="mcps1.2.3.1.1 "><p id="p182341916144420"><a name="p182341916144420"></a><a name="p182341916144420"></a>struct HdfIoService *HdfIoServiceBind(const char *serviceName, mode_t permission)</p>
+<tbody><tr id="row1582426174114"><td class="cellrowborder" valign="top" width="46.379999999999995%" headers="mcps1.2.3.1.1 "><p id="p182341916144420"><a name="p182341916144420"></a><a name="p182341916144420"></a>struct HdfIoService *HdfIoServiceBind(const char *serviceName)</p>
 </td>
 <td class="cellrowborder" valign="top" width="53.620000000000005%" headers="mcps1.2.3.1.2 "><p id="p58272614113"><a name="p58272614113"></a><a name="p58272614113"></a>Obtains a specified driver service. After the service is obtained, the <strong id="b9799159433"><a name="b9799159433"></a><a name="b9799159433"></a>Dispatch</strong> function of the service is used to send messages to the driver.</p>
 </td>
@@ -100,7 +100,7 @@ The message mechanism provides the following features:
             HDF_LOGE("test msg is null");
             return -1;
         }
-        struct HdfIoService *serv = HdfIoServiceBind("sample_driver", 0);
+        struct HdfIoService *serv = HdfIoServiceBind("sample_driver");
         if (serv == NULL) {
             HDF_LOGE("fail to get service");
             return -1;
@@ -159,7 +159,7 @@ The message mechanism provides the following features:
         ```
         int RegisterListen()
         {
-            struct HdfIoService *serv = HdfIoServiceBind("sample_driver", 0);
+            struct HdfIoService *serv = HdfIoServiceBind("sample_driver");
             if (serv == NULL) {
                 HDF_LOGE("fail to get service");
                 return -1;

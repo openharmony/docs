@@ -429,5 +429,6 @@ startup\_init\_lite
 
 ## Reference<a name="section6808423133718"></a>
 
--   AI Engine Framework Development Guide
+-   [AI Engine Framework Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/development-examples.md)
+
 
