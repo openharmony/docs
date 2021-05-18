@@ -317,6 +317,10 @@ For details, see  [https://gitee.com/openharmony/docs/blob/master/en/device-dev/
 
 OpenHarmony Organization Address：https://gitee.com/openharmony
 
+OpenHarmony SIG Address: https://gitee.com/openharmony-sig
+
+OpenHarmony Third Party Components Address: https://gitee.com/openharmony-tpc
+
 OpenHarmony Retired Organization Address：https://gitee.com/openharmony-retired
 
 ## OpenHarmony Documentation<a name="section21031470109"></a>

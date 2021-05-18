@@ -303,6 +303,10 @@ OpenHarmony支持如下几种设备类型：
 
 OpenHarmony主库组织地址：https://gitee.com/openharmony
 
+OpenHarmonySIG组织地址：https://gitee.com/openharmony-sig
+
+OpenHarmony三方库组织地址：https://gitee.com/openharmony-tpc
+
 OpenHarmony归档组织地址：https://gitee.com/openharmony-retired
 
 ## 开发者文档<a name="section21031470109"></a>
