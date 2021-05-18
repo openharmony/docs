@@ -623,7 +623,7 @@ The code repository of the testing subsystem provides complete demo cases, which
         2.  Run the following command to start the test framework in Linux:
 
             ```
-            ./strat.sh
+            ./start.sh
             ```
 
 
