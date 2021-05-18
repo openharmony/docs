@@ -195,7 +195,7 @@ out:
 int main()
 {
     char *sendData = "default event info";
-    struct HdfIoService *serv = HdfIoServiceBind(SAMPLE_SERVICE_NAME, 0);
+    struct HdfIoService *serv = HdfIoServiceBind(SAMPLE_SERVICE_NAME);
     if (serv == NULL) {
         HDF_LOGE("fail to get service %s", SAMPLE_SERVICE_NAME);
         return HDF_FAILURE;
