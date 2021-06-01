@@ -1,4 +1,4 @@
-# OpenHarmony 2.0 Canary（2021-06-02）<a name="ZH-CN_TOPIC_0000001102397706"></a>
+# OpenHarmony 2.0 Canary（2021-06-01）<a name="ZH-CN_TOPIC_0000001102397706"></a>
 
 -   [版本概述](#section1677664815431)
 -   [配套关系](#section13201781528)
