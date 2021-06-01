@@ -1,4 +1,4 @@
-# OpenHarmony轻内核基础功能<a name="ZH-CN_TOPIC_0000001054329761"></a>
+# OpenHarmony轻内核基础功能<a name="ZH-CN_TOPIC_0000001111199438"></a>
 
 -   **[进程](进程.md)**  
 

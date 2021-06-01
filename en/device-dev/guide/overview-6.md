@@ -2,7 +2,7 @@
 
 -   [Display Effects](#section3997224182313)
 
-This document describes how to quickly set up an application development environment \(using the Hi3516DV300 development board\) for event data recorders running on OpenHarmony. An air quality monitoring application, AirQuality, is used as an example to describe how to create, develop, and debug your application. You can download  [source code](https://openharmony.gitee.com/openharmony/ace_lite_jsfwk/tree/master/examples/airquality/)  of AirQuality.
+This document describes how to quickly set up an application development environment \(using the Hi3516DV300 development board\) for event data recorders running on OpenHarmony. An air quality monitoring application, AirQuality, is used as an example to describe how to create, develop, and debug your application.
 
 ## Display Effects<a name="section3997224182313"></a>
 

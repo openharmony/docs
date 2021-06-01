@@ -10,7 +10,7 @@ The Shell provided by the OpenHarmony kernel supports commonly used commissionin
 
 -   Network-related commands: querying the IP addresses of other devices connected to the development board, querying the IP address of the local device, testing the network connectivity, and setting the access point \(AP\) and station modes of the development board
 
-    For details about the process of adding commands, see  [Development Guidelines](shell-command-development-guidelines.md#section22071515161018)  and  [Shell Command Programming Example](shell-command-programming-example.md).
+    For details about the process of adding commands, see  [Shell Command Development Guidelines](shell-command-development-guidelines.md)  and  [Shell Command Programming Example](shell-command-programming-example.md).
 
 
 ## Important Notes<a name="section12298165312328"></a>

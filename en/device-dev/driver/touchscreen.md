@@ -1,4 +1,4 @@
-# TOUCHSCREEN<a name="EN-US_TOPIC_0000001053018311"></a>
+# TOUCHSCREEN<a name="EN-US_TOPIC_0000001158161717"></a>
 
 -   **[Touchscreen Overview](touchscreenoverview.md)**  
 

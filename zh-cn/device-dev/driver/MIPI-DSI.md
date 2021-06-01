@@ -1,4 +1,4 @@
-# MIPI DSI<a name="ZH-CN_TOPIC_0000001128689421"></a>
+# MIPI DSI<a name="ZH-CN_TOPIC_0000001157479387"></a>
 
 -   **[MIPI DSI概述](MIPI-DSI概述.md)**  
 

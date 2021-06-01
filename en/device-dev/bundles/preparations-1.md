@@ -25,6 +25,12 @@ ln -s bash /bin/sh
 
 ## Node.js<a name="section9954105413153"></a>
 
+>![](public_sys-resources/icon-note.gif) **NOTE:** 
+>If the Node.js version of the source is outdated, run the following command before running  **apt-get install**:
+>```
+>curl -L https://deb.nodesource.com/setup_12.x | bash
+>```
+
 You are advised to install Node.js 12.x \(including npm 6.14.4\) or a later version \(12.13.0 or later is recommended\).
 
 ```
@@ -37,12 +43,6 @@ Run the following commands to view Node.js and NPM versions:
 ```
 node --version  # Check the Node.js version.
 npm --version   # Check the NPM version.
-```
-
-Note: If the Node.js version of the source is outdated, run the following command before running  **apt-get install**:
-
-```
-curl -L https://deb.nodesource.com/setup_12.x | bash
 ```
 
 ## HPM<a name="section15937194904819"></a>
@@ -68,7 +68,7 @@ http_proxy = http://your-proxy-server:port        # Configure the HTTP proxy.
 https_proxy = http://your-proxy-server:port       # Configure the HTTPS proxy.
 ```
 
-For details about  **hpm-cli**  commands, see  [HPM Commands](bundle-management.md#table10510164515371).
+For details about  **hpm-cli**  commands, see  [HPM Commands](bundle-management.md).
 
 ## Python Environment<a name="section1621819180417"></a>
 
@@ -117,11 +117,22 @@ sudo apt-get install mtools
 
 ## SCons<a name="section20558439191516"></a>
 
-Run the following command to install SCons:
+1.  Start a Linux server.
+2.  Run the following command to install the SCons installation package:
 
-```
-sudo apt-get install scons  # SCons 3.0.4 or later is recommended.
-```
+    ```
+    python3 -m pip install scons
+    ```
+
+3.  Run the following command to check whether SCons is successfully installed. If the installation is successful, the query result as shown in  [Figure 1](#fig235815252492)  is displayed.
+
+    ```
+    scons -v
+    ```
+
+    **Figure  1**  Successful installation \(SCons version requirement: 3.0.4 or later\)<a name="fig235815252492"></a>  
+    ![](figures/successful-installation-(scons-version-requirement-3-0-4-or-later).png "successful-installation-(scons-version-requirement-3-0-4-or-later)")
+
 
 >![](public_sys-resources/icon-note.gif) **NOTE:** 
 >SCons is required for the Hi3861 platform, but not for the Hi3518 or Hi3516 platform.

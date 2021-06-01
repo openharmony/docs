@@ -1,4 +1,4 @@
-# RTC<a name="ZH-CN_TOPIC_0000001053298310"></a>
+# RTC<a name="ZH-CN_TOPIC_0000001157479385"></a>
 
 -   **[RTC概述](RTC概述.md)**  
 

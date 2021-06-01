@@ -29,8 +29,7 @@ Enter  **help**.
 
 ## Output<a name="section092662412544"></a>
 
-**Figure  1**  Viewing all commands in the system<a name="fig112905818423"></a>  
-
+Viewing all commands in the system
 
 ```
 OHOS # help

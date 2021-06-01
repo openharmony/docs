@@ -44,6 +44,32 @@ The implementation of the OpenHarmony project directories and functions relies o
 </tbody>
 </table>
 
+The  **device**  directory is in the internal structure of  **device/\{Chip solution vendor\}/\{Development board\}**. The following uses Hisilicon  **hispark\_taurus**  as an example:
+
+```
+device
+└── hisilicon                      # Name of the chip solution vendor
+    ├── common                     # Common part of the chip solution development board
+    └── hispark_taurus             # Name of the development board
+        ├── BUILD.gn               # Entry to building the development board
+        ├── hals                   # OS hardware adaptation of the chip solution vendor
+        ├── linux                  # Linux version
+        │   └── config.gni         # Configurations of the building toolchain and building options for the Linux version
+        └── liteos_a               # LiteOS Cortex-A version
+            └── config.gni         # Configurations of the building toolchain and building options for the LiteOS Cortex-A version
+```
+
+The  **vendor**  directory is in the internal structure of  **vendor/\{Product solution vendor\}/\{Product name\}**. The following uses Huawei Wi-Fi IoT product as an example:
+
+```
+vendor                       # Product solution vendor
+└── huawei                   # Name of the product solution vendor
+    └── wifiiot              # Product name
+          ├── hals           # OS adaptation of the product solution vendor
+          ├── BUILD.gn       # Product building script
+          └── config.json    # Product configuration file
+```
+
 ## Porting Process<a name="section639315306506"></a>
 
 The  **device**  directory of OpenHarmony is the adaptation directory for the basic SoC. You can skip the porting process and directly develop system applications if complete SoC adaptation code is already available in the directory. If there is no corresponding SoC porting implementation in the directory, complete the porting process by following the instructions provided in this document. The following figure shows the process of porting OpenHarmony to a third-party SoC.
@@ -53,6 +79,6 @@ The  **device**  directory of OpenHarmony is the adaptation directory for the ba
 
 ## Porting Specifications<a name="section187870185219"></a>
 
--   The porting must comply with the basic OpenHarmony principles described in  [Contribution](https://gitee.com/openharmony/docs/blob/master/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md).
--   The code required for third-party SoC adaptation is stored in the  **device**,  **vendor**, and  **arch**  directories. Naming and usage of these directories must comply with specified naming and usage specifications. For details, see  [Directory Specifications](overview-0.md#section18127744153119)  and  [Board-level Directory Specifications](overview-1.md#section6204129143013).
+-   The porting must comply with the basic OpenHarmony principles described in  [Contribution](https://gitee.com/openharmony/docs/blob/master/en/contribute/contribution.md).
+-   The code required for third-party SoC adaptation is stored in the  **device**,  **vendor**, and  **arch**  directories. Naming and usage of these directories must comply with specified naming and usage specifications. For details, see  [Directory Specifications](overview-0.md)  and  [Board-Level Directory Specifications](overview-1.md#section6204129143013).
 

@@ -19,7 +19,7 @@
 
 -   **Solution**
 
-    Uninstall Ninja and GN and follow the instructions provided in  [Acquiring Tools](../get-code/acquiring-tools.md)  to obtain the provided compilation toolchain.
+    Uninstall Ninja and GN and follow the instructions provided in  [Acquiring Tools](../get-code/tool-acquisition.md)  to obtain the provided compilation toolchain.
 
 
 ## Ncurses library not found<a name="section21449422618"></a>

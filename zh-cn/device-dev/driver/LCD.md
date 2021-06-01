@@ -1,4 +1,4 @@
-# LCD<a name="ZH-CN_TOPIC_0000001081905200"></a>
+# LCD<a name="ZH-CN_TOPIC_0000001111441852"></a>
 
 -   **[LCD开发概述](LCD开发概述.md)**  
 

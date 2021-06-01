@@ -1,10 +1,10 @@
 # FAQs<a name="EN-US_TOPIC_0000001063231870"></a>
 
--   ["parse failed!" displayed and system startup interrupted](#section2041345718513)
+-   [System startup interrupted due to "parse failed!" error](#section2041345718513)
 -   [System automatically restarted again and again](#section57381816168)
--   [Failed to call the  or  API with correct parameter values](#section129991227141512)
+-   [Failed to call the SetParameter or GetParameter API with correct parameter values](#section129991227141512)
 
-## "parse failed!" displayed and system startup interrupted<a name="section2041345718513"></a>
+## System startup interrupted due to "parse failed!" error<a name="section2041345718513"></a>
 
 **Problem**
 
@@ -28,7 +28,7 @@ After the image burning is complete, the system keeps restarting.
 
 **Cause**
 
-Each service started by the init process has the  **importance**  attribute, as described in  [Table 3](init-module.md#table14737791471)  in  [init Module](init-module.md).
+Each service started by the init process has the  **importance**  attribute, as described in Table 3 in  [init Module](init-module.md).
 
 -   If the attribute value is  **0**, the init process does not need to restart the development board when the current service process exits.
 -   If the attribute value is  **1**, the init process needs to restart the development board when the current service process exits.

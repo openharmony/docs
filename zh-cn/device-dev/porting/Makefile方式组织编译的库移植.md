@@ -3,7 +3,7 @@
 -   [源码获取](#section114115321416)
 -   [设置交叉编译](#section81263255384)
 -   [测试](#section1830015913391)
--   [将该库编译添加到工程中](#section1898016213406)
+-   [将该库编译添加到OpenHarmony工程中](#section1898016213406)
 
 以yxml库为例，其移植过程如下文所示
 
@@ -148,7 +148,7 @@
 
 ## 测试<a name="section1830015913391"></a>
 
-yxml库测试步骤与double-conversion库基本一致，可参考[第二部分](CMake方式组织编译的库移植.md#section6686144293611)的测试过程，以下内容介绍yxml库测试用例的使用方法：
+yxml库测试步骤与double-conversion库基本一致，可参考[CMake方式组织编译的库移植](CMake方式组织编译的库移植.md#section6686144293611)的测试过程，以下内容介绍yxml库测试用例的使用方法：
 
 **表 3**  生成的test目录结构示意
 
@@ -236,7 +236,7 @@ echo "All tests completed successfully."
 
 ## 将该库编译添加到OpenHarmony工程中<a name="section1898016213406"></a>
 
-yxml库添加的过程除了适配文件build.gn和config.gni有些许变化外，其他和double-conversion库完全一致，参考[第二部分](CMake方式组织编译的库移植.md#section1651053153715)的配置过程。要修改的适配文件及添加后的目录结构如下：
+yxml库添加的过程除了适配文件build.gn和config.gni有些许变化外，其他和double-conversion库完全一致，参考[CMake方式组织编译的库移植](CMake方式组织编译的库移植.md#section1651053153715)的配置过程。要修改的适配文件及添加后的目录结构如下：
 
 -   yxml库新增的BUILD.gn实现如下：
 

@@ -1,6 +1,6 @@
 # Development<a name="EN-US_TOPIC_0000001054690948"></a>
 
-1.  Complete the operations described in  [Getting Started with Hi3861](../quick-start/introduction-to-the-hi3861-development-board.md).
+1.  Complete the operations described in  [Getting Started with Hi3861](../quick-start/hi3861-development-board.md).
 
     LED control examples are stored in the file  **applications/sample/wifi-iot/app/iothardware/led\_example.c**.
 

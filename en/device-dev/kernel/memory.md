@@ -218,7 +218,7 @@ Details on API differences:
     </table>
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >For details about the implementation differences of  **mmap**  between the OS and Linux, see  [Differences from the Linux Standard Library](differences-from-the-linux-standard-library.md).
+    >For details about the implementation differences between  **mmap**  and Linux function, see  [Differences from the Linux Standard Library](differences-from-the-linux-standard-library.md).
 
     **Return values:**
 

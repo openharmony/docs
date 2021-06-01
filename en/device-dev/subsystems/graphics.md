@@ -1,6 +1,6 @@
-# Graphics<a name="EN-US_TOPIC_0000001053134511"></a>
+# Graphics<a name="EN-US_TOPIC_0000001157479391"></a>
 
--   **[Graphics](graphics-0.md)**  
+-   **[Graphics](graphics-2.md)**  
 
 -   **[Development Guidelines on Container Components](development-guidelines-on-container-components.md)**  
 

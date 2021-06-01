@@ -1,4 +1,4 @@
-# UART<a name="EN-US_TOPIC_0000001052619599"></a>
+# UART<a name="EN-US_TOPIC_0000001157319397"></a>
 
 -   **[UART Overview](uartoverview.md)**  
 

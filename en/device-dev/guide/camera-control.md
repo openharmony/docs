@@ -1,4 +1,4 @@
-# Camera Control<a name="EN-US_TOPIC_0000001055527650"></a>
+# Camera Control<a name="EN-US_TOPIC_0000001157319429"></a>
 
 -   **[Overview](overview-0.md)**  
 

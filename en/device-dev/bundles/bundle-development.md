@@ -1,6 +1,6 @@
 # Bundle Development<a name="EN-US_TOPIC_0000001051690861"></a>
 
--   [Developing a  Bundle](#section1976410130540)
+-   [Developing a OpenHarmony Bundle](#section1976410130540)
 -   [Creating a Bundle](#section717481119145)
 -   [Modifying a Bundle](#section102861955201410)
 -   [Using HPM-provided Template to Create a Bundle](#section15882846181510)

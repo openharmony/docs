@@ -8,7 +8,7 @@ This example describes how to develop the touchscreen driver.
 
 ## Device Description Configuration<a name="section85281142102317"></a>
 
-The information about modules of the input driver model is shown as follows and enables the HDF to load the modules in sequence. For details, see  [Driver Development](driver-development.md)
+The information about modules of the input driver model is shown as follows and enables the HDF to load the modules in sequence. For details, see  [Driver Development](driver-development.md).
 
 ```
 input :: host {
@@ -84,7 +84,7 @@ root {
                     }
                     powerConfig {
                         vccType = 2;       // Values 1, 2, and 3 indicate the low-dropout regulator (LDO), GPIO, and PMIC, respectively.
-                        The vccNum =       20; // The GPIO number is 20.
+                        vccNum = 20;       // The GPIO number is 20.
                         vccValue = 1800;   // The voltage amplitude is 1800 mV.
                         vciType = 1;
                         vciNum = 12;
@@ -113,7 +113,7 @@ root {
                         powerSequence {
                             /* Power-on sequence is described as follows:
                                [Type, status, direction, delay]
-                               <type> Value 0 indicates the power or pin is empty. Values 1 and 2 indicate the VCC and VCI power, respectively. Values 3 and 4 indicate the reset and interrupt pins, respectively.
+                               <type> Value 0 indicates the power or pin is empty. Values 1 and 2 indicate the VCC (1.8 V) and VCI (3.3 V) power, respectively. Values 3 and 4 indicate the reset and interrupt pins, respectively.
                                <status> Values 0 and 1 indicate the power-off or pull-down, and the power-on or pull-up, respectively. Value 2 indicates that no operation is performed.
                                <dir> Values 0 and 1 indicate the input and output directions, respectively. Value 2 indicates that no operation is performed.
                                <delay> Delay time, in milliseconds.

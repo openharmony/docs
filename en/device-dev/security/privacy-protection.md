@@ -179,7 +179,7 @@ Collect personal data only when they are adequate, relevant, and limited to what
 
 You shall obtain consent from users and comply with applicable laws and regulations for processing personal data and give users full control over their data.
 
--   When applying for a certain sensitive permission, your product shall display a pop-up dialog to notify the user of the requested permission and the purpose of using the permission. The user shall be able to choose whether to grant the permission and how they would like to grant the permission. This ensures that permission granting and use are transparent, perceivable, and controllable. An example is provided as follows.
+-   When applying for a certain sensitive permission, your product shall display a pop-up dialog to notify the user of the requested permission and the purpose of using the permission. The user shall be able to choose whether to grant the permission and how they would like to grant the permission. This ensures that permission granting and use are transparent, perceivable, and controllable. The following figure is an example dialog for requesting a sensitive permission.
 
     **Figure  5**  Example dialog for requesting a sensitive permission<a name="fig20776134521514"></a>  
     

@@ -1,4 +1,4 @@
-# SENSOR<a name="ZH-CN_TOPIC_0000001128803029"></a>
+# SENSOR<a name="ZH-CN_TOPIC_0000001158281695"></a>
 
 -   **[传感器驱动开发概述](传感器驱动开发概述.md)**  
 

@@ -1,4 +1,4 @@
-# Driver Usage Guidelines
+# Drivers
 
 -   [HDF](hdf.md)
     -   [HDF Overview](hdfoverview.md)
@@ -50,10 +50,15 @@
         -   [Usage Example](usage-example.md)
 
 -   [Peripherals](peripherals.md)
-    -   [WLAN](wlan.md)
-        -   [WLAN Overview](wlanoverview.md)
-        -   [WLAN Development Guidelines](wlandevelopment-guidelines.md)
-        -   [WLAN Development Example](wlandevelopment-example.md)
+    -   [LCD](lcd.md)
+        -   [LCD Overview](lcdoverview.md)
+        -   [LCD Development Guidelines](lcddevelopment-guidelines.md)
+        -   [LCD Development Example](lcddevelopment-example.md)
+
+    -   [TOUCHSCREEN](touchscreen.md)
+        -   [Touchscreen Overview](touchscreenoverview.md)
+        -   [Touchscreen Development Guidelines](touchscreendevelopment-guidelines.md)
+        -   [Touchscreen Development Example](touchscreendevelopment-example.md)
 
     -   [SENSOR](sensor.md)
         -   [Sensor Driver Overview](sensor-driver-overview.md)
@@ -61,13 +66,8 @@
         -   [Sensor Driver Development Example](sensor-driver-development-example.md)
         -   [Sensor Driver Test Guidelines](sensor-driver-test-guidelines.md)
 
-    -   [TOUCHSCREEN](touchscreen.md)
-        -   [Touchscreen Overview](touchscreenoverview.md)
-        -   [Touchscreen Development Guidelines](touchscreendevelopment-guidelines.md)
-        -   [Touchscreen Development Example](touchscreendevelopment-example.md)
-
-    -   [LCD](lcd.md)
-        -   [LCD Overview](lcdoverview.md)
-        -   [LCD Development Guidelines](lcddevelopment-guidelines.md)
-        -   [LCD Development Example](lcddevelopment-example.md)
+    -   [WLAN](wlan.md)
+        -   [WLAN Overview](wlanoverview.md)
+        -   [WLAN Development Guidelines](wlandevelopment-guidelines.md)
+        -   [WLAN Development Example](wlandevelopment-example.md)
 

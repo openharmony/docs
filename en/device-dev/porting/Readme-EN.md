@@ -1,4 +1,4 @@
-# Third-Party Library Porting Guide
+# Porting Guide
 
 -   [Third-Party Library Porting Guide](third-party-library-porting-guide.md)
     -   [Overview](overview.md)
@@ -8,7 +8,7 @@
 -   [Third-Party SoC Porting Guide](third-party-soc-porting-guide.md)
     -   [Porting Preparations](porting-preparations.md)
         -   [Before You Start](before-you-start.md)
-        -   [Compilation and Building Subsystem](compilation-and-building-subsystem.md)
+        -   [Building Adaptation Process](building-adaptation-process.md)
 
     -   [Kernel Porting](kernel-porting.md)
         -   [Overview](overview-0.md)

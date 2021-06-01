@@ -1,14 +1,14 @@
-# Startup<a name="EN-US_TOPIC_0000001130845219"></a>
+# Startup<a name="EN-US_TOPIC_0000001124561621"></a>
 
 -   [Introduction](#section11660541593)
 -   [Directory Structure](#section161941989596)
 -   [Constraints](#section1718733212019)
--   [Usage](#section8533192617117)
+-   [Usage Guidelines](#section8533192617117)
 -   [Repositories Involved](#section1371113476307)
 
 ## Introduction<a name="section11660541593"></a>
 
-The startup subsystem is responsible for starting key system processes and services after the kernel is started and before applications are started. The subsystem consists of the following modules:
+The Startup subsystem provides the functions of starting key system processes and services after the kernel is started and before applications are started, and restoring the system to factory settings. The subsystem consists of the following modules:
 
 -   init\_lite
 
@@ -33,7 +33,7 @@ The startup subsystem is responsible for starting key system processes and servi
 
     This module obtains and sets system attributes.
 
-    It can be used on the Hi3861, Hi3516D V300, and Hi3518E V300 platforms powered by LiteOS Cortex-M and LiteOS Cortex-A. Supported system attributes consist of default, OEM-specified, and custom system attributes. OEM-specified system attributes provide only default values. The specific values need to be adjusted as required. For details, see  [Usage](#section8533192617117).
+    It can be used on the Hi3861, Hi3516D V300, and Hi3518E V300 platforms powered by LiteOS Cortex-M and LiteOS Cortex-A. Supported system attributes consist of default, OEM-specified, and custom system attributes. OEM-specified system attributes provide only default values. The specific values need to be adjusted as required. For details, see  [Usage Guidelines](#section8533192617117).
 
 
 ## Directory Structure<a name="section161941989596"></a>
@@ -41,7 +41,7 @@ The startup subsystem is responsible for starting key system processes and servi
 **Table  1**  Directory structure of the source code for the startup subsystem
 
 <a name="table2977131081412"></a>
-<table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="20.880000000000003%" id="mcps1.2.4.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>Name</p>
+<table><thead align="left"><tr id="row7977610131417"><th class="cellrowborder" valign="top" width="20.880000000000003%" id="mcps1.2.4.1.1"><p id="p18792459121314"><a name="p18792459121314"></a><a name="p18792459121314"></a>Directory</p>
 </th>
 <th class="cellrowborder" valign="top" width="65.2%" id="mcps1.2.4.1.2"><p id="p77921459191317"><a name="p77921459191317"></a><a name="p77921459191317"></a>Description</p>
 </th>
@@ -53,8 +53,8 @@ The startup subsystem is responsible for starting key system processes and servi
 </td>
 <td class="cellrowborder" valign="top" width="65.2%" headers="mcps1.2.4.1.2 "><p id="p879375920132"><a name="p879375920132"></a><a name="p879375920132"></a>appspawn_lite module for spawning application processes. It receives Ability Manager Service (AMS) messages via IPC, parses the messages, starts application processes based on the parsing result, and grants permissions to them.</p>
 </td>
-<td class="cellrowborder" valign="top" width="13.919999999999998%" headers="mcps1.2.4.1.3 "><p id="p63463619360"><a name="p63463619360"></a><a name="p63463619360"></a>Hi3516DV300</p>
-<p id="p141611802359"><a name="p141611802359"></a><a name="p141611802359"></a>Hi3518EV300</p>
+<td class="cellrowborder" valign="top" width="13.919999999999998%" headers="mcps1.2.4.1.3 "><p id="p63463619360"><a name="p63463619360"></a><a name="p63463619360"></a>Hi3516D V300</p>
+<p id="p141611802359"><a name="p141611802359"></a><a name="p141611802359"></a>Hi3518E V300</p>
 </td>
 </tr>
 <tr id="row6978161091412"><td class="cellrowborder" valign="top" width="20.880000000000003%" headers="mcps1.2.4.1.1 "><p id="p37931659101311"><a name="p37931659101311"></a><a name="p37931659101311"></a>base/startup/bootstrap_lite</p>
@@ -66,10 +66,10 @@ The startup subsystem is responsible for starting key system processes and servi
 </tr>
 <tr id="row6978201031415"><td class="cellrowborder" align="left" valign="top" width="20.880000000000003%" headers="mcps1.2.4.1.1 "><p id="p117935599130"><a name="p117935599130"></a><a name="p117935599130"></a>base/startup/init_lite</p>
 </td>
-<td class="cellrowborder" valign="top" width="65.2%" headers="mcps1.2.4.1.2 "><p id="p0793185971316"><a name="p0793185971316"></a><a name="p0793185971316"></a>init_lite module for implementing the init process, which is the first user-space process loaded after the kernel is initialized. Upon startup, the process parses the configuration file in <strong id="b53451945016"><a name="b53451945016"></a><a name="b53451945016"></a>/etc/init.cfg</strong>. Based on the parsing result, the process then starts other key system processes and grants required permissions to them.</p>
+<td class="cellrowborder" valign="top" width="65.2%" headers="mcps1.2.4.1.2 "><p id="p0793185971316"><a name="p0793185971316"></a><a name="p0793185971316"></a>init_lite module for implementing the init process, which is the first user-space process loaded after the kernel is initialized. Upon startup, the process parses the configuration file in <strong id="b9210192971613"><a name="b9210192971613"></a><a name="b9210192971613"></a>/etc/init.cfg</strong>. Based on the parsing result, the process then starts other key system processes and grants required permissions to them.</p>
 </td>
-<td class="cellrowborder" valign="top" width="13.919999999999998%" headers="mcps1.2.4.1.3 "><p id="p2176757193619"><a name="p2176757193619"></a><a name="p2176757193619"></a>Hi3516DV300</p>
-<p id="p51611013358"><a name="p51611013358"></a><a name="p51611013358"></a>Hi3518EV300</p>
+<td class="cellrowborder" valign="top" width="13.919999999999998%" headers="mcps1.2.4.1.3 "><p id="p2176757193619"><a name="p2176757193619"></a><a name="p2176757193619"></a>Hi3516D V300</p>
+<p id="p51611013358"><a name="p51611013358"></a><a name="p51611013358"></a>Hi3518E V300</p>
 </td>
 </tr>
 <tr id="row1897841071415"><td class="cellrowborder" valign="top" width="20.880000000000003%" headers="mcps1.2.4.1.1 "><p id="p469782418557"><a name="p469782418557"></a><a name="p469782418557"></a>base/startup/syspara_lite</p>
@@ -77,8 +77,8 @@ The startup subsystem is responsible for starting key system processes and servi
 <td class="cellrowborder" valign="top" width="65.2%" headers="mcps1.2.4.1.2 "><p id="p15697102412558"><a name="p15697102412558"></a><a name="p15697102412558"></a>syspara_lite module that provides APIs to obtain device information, including the product name, brand name, category name, and manufacturer name.</p>
 </td>
 <td class="cellrowborder" valign="top" width="13.919999999999998%" headers="mcps1.2.4.1.3 "><p id="p1956516512380"><a name="p1956516512380"></a><a name="p1956516512380"></a>Hi3861</p>
-<p id="p2670195353812"><a name="p2670195353812"></a><a name="p2670195353812"></a>Hi3516DV300</p>
-<p id="p116118053518"><a name="p116118053518"></a><a name="p116118053518"></a>Hi3518EV300</p>
+<p id="p2670195353812"><a name="p2670195353812"></a><a name="p2670195353812"></a>Hi3516D V300</p>
+<p id="p116118053518"><a name="p116118053518"></a><a name="p116118053518"></a>Hi3518E V300</p>
 </td>
 </tr>
 </tbody>
@@ -86,43 +86,52 @@ The startup subsystem is responsible for starting key system processes and servi
 
 ```
 base/startup/
-├── appspawn_lite             # appspawn_lite module
+├── appspawn_standard         # appspawn_lite module for the standard system
+│   ├── include               # Header files
+│   ├── parameter             # System parameters
+│   ├── src                   # Source files 
+│   └── test                  # Test cases 
+├── appspawn_lite             # appspawn_lite module for the mini system
 │   └── services
-│       ├── include          # Header files for the appspawn_lite module
-│       ├── src              # Source files for the appspawn_lite module
-│       └── test             # Source files of the test cases for the appspawn_lite module
+│       ├── include           # Header files 
+│       ├── src              # Source files 
+│       └── test              # Test cases
 ├── bootstrap_lite           # bootstrap_lite module
 │   └── services
-│       ├── source           # Source files for the bootstrap_lite module
+│       └── source            # Source files 
 ├── init_lite                 # init_lite module
+│   ├── initsync              # Source files
+│   ├── interfaces            # External APIs
 │   └── services
-│       ├── include          # Header files for the init_lite module
-│       ├── src              # Source files for the init_lite module
-│       └── test             # Source files of the test cases for the init_lite module
+│       ├── include           # Header files 
+│       ├── src               # Source files 
+│       └── test              # Test cases
 └── syspara_lite              # syspara_lite module
-    ├── frameworks            # Source files for the syspara_lite module
-    ├── hals                  # Header files for the hardware abstraction layer of the syspara_lite module
-    └── interfaces            # External APIs for the syspara_lite module
+    ├── adapter               # Adaptation code
+    ├── frameworks            # Source files
+    ├── hals                  # Header files for the hardware abstraction layer (HAL)
+    ├── interfaces            # External APIs
+    └── simulator             # Simulator adaptation
 ```
 
 ## Constraints<a name="section1718733212019"></a>
 
 OEM-specified system attributes provide only default values. The specific values need to be adjusted as required.
 
-## Usage<a name="section8533192617117"></a>
+## Usage Guidelines<a name="section8533192617117"></a>
 
 -   Configuration file of the init\_lite module
 
     The configuration file  **init.cfg**  of the init\_lite module contains service names, executable file paths, permissions, and other attributes of all key system services that need to be started by the init process. The file is stored in  **/vendor/hisilicon/hispark\_aries/init\_configs/**  under  **/etc/**. It is in JSON format, and its size cannot exceed 100 KB.
 
-    After the init process starts, it reads the  **/etc/init.cfg**  file, parses the JSON content, and loads system services in sequence based on the parsing result. The format and content of the  **init.cfg**  file are described as follows:
+    After the init process starts, it reads the  **/etc/init.cfg**  file, parses the JSON content, and loads system services in sequence based on the parsing result. The format and content of the configuration file are described as follows:
 
 
 ```
 {
     "jobs" : [{
             "name" : "pre-init",      -------- Job executed before the initialization. It can be used to store some operations (for example, creating a directory) performed before the init process is started.
-            "cmds" : [                -------- Commands supported by the current job. Currently, only start, mkdir, chmod, chown, and mount are supported.
+            "cmds" : [                -------- Commands supported by the current job. Currently, only start, mkdir, chmod, chown, and mount are currently supported.
                                       -------- The command name and the parameters (128 bytes or less) must be separated by only one space.
                  "mkdir /testdir",      -------- Command for creating a directory. mkdir and the target directory must be separated by only one space.
                 "chmod 0700 /testdir", -------- Command for modifying the permission. chmod, permission, and the target directory must be separated by only one space. The permission must be in the 0xxx format.
@@ -182,7 +191,7 @@ OEM-specified system attributes provide only default values. The specific values
 </td>
 <td class="cellrowborder" valign="top" width="31.05%" headers="mcps1.2.4.1.2 "><p id="p862384484010"><a name="p862384484010"></a><a name="p862384484010"></a>start ServiceName (Only one space is allowed.)</p>
 </td>
-<td class="cellrowborder" valign="top" width="56.45%" headers="mcps1.2.4.1.3 "><p id="p17872104184113"><a name="p17872104184113"></a><a name="p17872104184113"></a>Starts a service. The service name must be the same as that in the <strong id="b16534202920209"><a name="b16534202920209"></a><a name="b16534202920209"></a>services</strong> array in the file.</p>
+<td class="cellrowborder" valign="top" width="56.45%" headers="mcps1.2.4.1.3 "><p id="p17872104184113"><a name="p17872104184113"></a><a name="p17872104184113"></a>Starts a service. The service name must be the same as that in the <strong id="b796816343013"><a name="b796816343013"></a><a name="b796816343013"></a>services</strong> array in the file.</p>
 </td>
 </tr>
 <tr id="row962311443404"><td class="cellrowborder" valign="top" width="12.5%" headers="mcps1.2.4.1.1 "><p id="p13837142094117"><a name="p13837142094117"></a><a name="p13837142094117"></a>mkdir</p>
@@ -196,7 +205,7 @@ OEM-specified system attributes provide only default values. The specific values
 </td>
 <td class="cellrowborder" valign="top" width="31.05%" headers="mcps1.2.4.1.2 "><p id="p7624344134020"><a name="p7624344134020"></a><a name="p7624344134020"></a>chmod 0xxx /xxx/xx (Only one space is allowed.)</p>
 </td>
-<td class="cellrowborder" valign="top" width="56.45%" headers="mcps1.2.4.1.3 "><p id="p18872945418"><a name="p18872945418"></a><a name="p18872945418"></a>Changes the permission. The permission value must be in 0xxx format, for example, 0755 and 0600. This configuration must comply with the principle of least permission.</p>
+<td class="cellrowborder" valign="top" width="56.45%" headers="mcps1.2.4.1.3 "><p id="p18872945418"><a name="p18872945418"></a><a name="p18872945418"></a>Changes the permission. The permission value must be in <strong id="b14310113211018"><a name="b14310113211018"></a><a name="b14310113211018"></a>0<em id="i81751135191019"><a name="i81751135191019"></a><a name="i81751135191019"></a>xxx</em></strong> format, for example, <strong id="b6674104131011"><a name="b6674104131011"></a><a name="b6674104131011"></a>0755</strong> or <strong id="b052484351010"><a name="b052484351010"></a><a name="b052484351010"></a>0600</strong>. This configuration must comply with the principle of least permission.</p>
 </td>
 </tr>
 <tr id="row1462404494017"><td class="cellrowborder" valign="top" width="12.5%" headers="mcps1.2.4.1.1 "><p id="p136241144144013"><a name="p136241144144013"></a><a name="p136241144144013"></a>chown</p>
@@ -208,10 +217,9 @@ OEM-specified system attributes provide only default values. The specific values
 </tr>
 <tr id="row1285512468412"><td class="cellrowborder" valign="top" width="12.5%" headers="mcps1.2.4.1.1 "><p id="p1385515468413"><a name="p1385515468413"></a><a name="p1385515468413"></a>mount</p>
 </td>
-<td class="cellrowborder" valign="top" width="31.05%" headers="mcps1.2.4.1.2 "><p id="p358535124815"><a name="p358535124815"></a><a name="p358535124815"></a>mount fileSysType source target flags data</p>
-<p id="p178550463412"><a name="p178550463412"></a><a name="p178550463412"></a>Only one space is allowed.</p>
+<td class="cellrowborder" valign="top" width="31.05%" headers="mcps1.2.4.1.2 "><p id="p358535124815"><a name="p358535124815"></a><a name="p358535124815"></a>mount fileSysType source target flags data (Only one space is allowed.)</p>
 </td>
-<td class="cellrowborder" valign="top" width="56.45%" headers="mcps1.2.4.1.3 "><p id="p1085544611415"><a name="p1085544611415"></a><a name="p1085544611415"></a>Mounts data. Currently, <strong id="b14763949182111"><a name="b14763949182111"></a><a name="b14763949182111"></a>flags</strong> supports only <strong id="b476864919213"><a name="b476864919213"></a><a name="b476864919213"></a>nodev</strong>, <strong id="b1276813498215"><a name="b1276813498215"></a><a name="b1276813498215"></a>noexec</strong>, <strong id="b18769104917216"><a name="b18769104917216"></a><a name="b18769104917216"></a>nosuid</strong>, and <strong id="b6769114932118"><a name="b6769114932118"></a><a name="b6769114932118"></a>rdonly</strong>, and other strings are considered as <strong id="b97691749142112"><a name="b97691749142112"></a><a name="b97691749142112"></a>data</strong>.</p>
+<td class="cellrowborder" valign="top" width="56.45%" headers="mcps1.2.4.1.3 "><p id="p1085544611415"><a name="p1085544611415"></a><a name="p1085544611415"></a>Mounts data. Currently, <strong id="b7289320311"><a name="b7289320311"></a><a name="b7289320311"></a>flags</strong> can only be <strong id="b83343113120"><a name="b83343113120"></a><a name="b83343113120"></a>nodev</strong>, <strong id="b733193123116"><a name="b733193123116"></a><a name="b733193123116"></a>noexec</strong>, <strong id="b1033173113116"><a name="b1033173113116"></a><a name="b1033173113116"></a>nosuid</strong>, or <strong id="b16332038317"><a name="b16332038317"></a><a name="b16332038317"></a>rdonly</strong>, and other strings are considered as <strong id="b1234103113120"><a name="b1234103113120"></a><a name="b1234103113120"></a>data</strong>.</p>
 </td>
 </tr>
 </tbody>
@@ -256,21 +264,19 @@ It is worth noting that the modified  **init.cfg**  file must be in JSON format.
         static const char HOS_ABI_LIST[] = {"****"};
         ```
 
-    -   Default system attributes
+    -   Obtaining default system attributes
 
         ```
-        char* value1 = GetProductType();
+        const char* value1 = GetProductType();
         printf("Product type =%s\n", value1);
-        free(value1);
-        char* value2 = GetManufacture();
+        const char* value2 = GetManufacture();
         printf("Manufacture =%s\n", value2);
-        free(value2);
-        char* value3 = GetBrand();
+        const char* value3 = GetBrand();
         printf("GetBrand =%s\n", value3);
-        free(value3);
         ```
 
-    -   Custom system attributes
+
+    -   Obtaining custom system attributes
 
         ```
         const char* defSysParam = "data of sys param ***...";
@@ -288,10 +294,11 @@ It is worth noting that the modified  **init.cfg**  file must be in JSON format.
 
 Startup subsystem
 
-[startup\_syspara\_lite](https://gitee.com/openharmony/startup_syspara_lite/blob/master/README.md)
+startup\_syspara\_lite
 
-[startup\_appspawn\_lite](https://gitee.com/openharmony/startup_appspawn_lite/blob/master/README.md)
+startup\_appspawn\_lite
 
-[startup\_bootstrap\_lite](https://gitee.com/openharmony/startup_bootstrap_lite/blob/master/README.md)
+startup\_bootstrap\_lite
 
-[startup\_init\_lite](https://gitee.com/openharmony/startup_init_lite/blob/master/README.md)
+startup\_init\_lite
+

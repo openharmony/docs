@@ -10,6 +10,8 @@ Develop, review, and test code following the OpenHarmony coding standards. Make 
 -   [C Coding Style Guide](OpenHarmony-c-coding-style-guide.md)
 -   [JavaScript Coding Style Guide](OpenHarmony-JavaScript-coding-style-guide.md) 
 -   [Python Coding Style Guide](https://pep8.org/)
+-   [C&C++ Secure Coding Guide](OpenHarmony-c-cpp-secure-coding-guide.md)
+-   [Java Secure Coding Guide](OpenHarmony-Java-secure-coding-guide.md)
 
 ## Contribution Workflow<a name="en-us_topic_0000001051566732_section15769105812369"></a>
 

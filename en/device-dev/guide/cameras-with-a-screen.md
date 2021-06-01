@@ -1,4 +1,4 @@
-# Cameras with a Screen<a name="EN-US_TOPIC_0000001052854655"></a>
+# Cameras with a Screen<a name="EN-US_TOPIC_0000001111199430"></a>
 
 -   **[Screen and Camera Control](screen-and-camera-control.md)**  
 

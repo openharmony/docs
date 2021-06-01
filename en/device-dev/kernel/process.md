@@ -52,7 +52,7 @@ The user-space root process init is started by the kernel. Then other user-space
 
 -   Pending→Ready:
 
-    When any thread in a  **Pending**  process restores to the  **Ready**  state, the process is added to the ready list and changes to the  **Ready**  state. If a process switchover occurs at this time, the process state changes from the  **Ready**  state to the  **Running**  state.
+    When any thread in a  **Pending**  process restores to the  **Ready**  state, the process is added to the ready list and changes to the  **Ready**  state.
 
 -   Ready→Pending:
 

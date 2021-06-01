@@ -1,4 +1,4 @@
-# RTC<a name="EN-US_TOPIC_0000001053298310"></a>
+# RTC<a name="EN-US_TOPIC_0000001157479385"></a>
 
 -   **[RTC Overview](rtc-overview.md)**  
 

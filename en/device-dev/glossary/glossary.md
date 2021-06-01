@@ -1,4 +1,4 @@
-# Glossary<a name="EN-US_TOPIC_0000001053048859"></a>
+# Glossary<a name="EN-US_TOPIC_0000001111039518"></a>
 
 -   [A](#en-us_topic_0000001050749051_section1679023922312)
 -   [B](#en-us_topic_0000001050749051_section62182102017)
@@ -6,7 +6,6 @@
 -   [F](#en-us_topic_0000001050749051_section5406185415236)
 -   [H](#en-us_topic_0000001050749051_section891816813243)
 -   [I](#en-us_topic_0000001050749051_section10124052142516)
--   [M](#en-us_topic_0000001050749051_section0352490467)
 -   [P](#en-us_topic_0000001050749051_section779354121411)
 -   [S](#en-us_topic_0000001050749051_section25661636182615)
 
@@ -15,11 +14,6 @@
 -   **Ability**
 
     An ability is an abstraction of a functionality that an application can provide. Abilities of applications are classified into two types: Feature Ability \(FA\) and Particle Ability \(PA\).
-
-
--   **AbilityForm**
-
-    An AbilityForm displays brief information about a Feature Ability on the UI of another application and provides basic interactive features.
 
 
 -   **AbilitySlice**
@@ -48,10 +42,6 @@
 
     Distributed Management Service, a service used for distributed data management
 
--   **DV**
-
-    Device Virtualization, which employs the virtualization technology to integrate capabilities and resources of different devices
-
 
 ## F<a name="en-us_topic_0000001050749051_section5406185415236"></a>
 
@@ -64,7 +54,7 @@
 
 -   **HAP**
 
-    HarmonyOSOpenHarmony Ability Package, released as a HAP file. One HAP file describes all content of an application, including code, resources, third-party libraries, and a configuration file.
+    OpenHarmony Ability Package, released as a HAP file. One HAP file describes all content of an application, including code, resources, third-party libraries, and a configuration file.
 
 -   **HCS**
 
@@ -78,24 +68,14 @@
 
 -   **HDF**
 
-    Hardware Driver Foundation that allows unified access from peripheral devices and provides foundation for driver development and management in HarmonyOSOpenHarmony
+    Hardware Driver Foundation that allows unified access from peripheral devices and provides foundation for driver development and management in OpenHarmony
 
 
 ## I<a name="en-us_topic_0000001050749051_section10124052142516"></a>
 
 -   **IDN**
 
-    Intelligent Distributed Networking, a distributed networking capability unit specific to HarmonyOSOpenHarmony. You can use IDN to obtain the device list and device states and subscribe to the connection state changes of devices on the distributed network.
-
-
-## M<a name="en-us_topic_0000001050749051_section0352490467"></a>
-
--   **MSDP**
-
-    Mobile Sensing Development Platform, which provides the capabilities of distributed convergence sensing and distributed device virtualization.
-
-    -   Distributed convergence sensing: Backed by the distributed capabilities of HarmonyOSOpenHarmony, the MSDP integrates the sensing sources of all involved devices to accurately sense users' states such as the space status, motion status, gestures, and health status. It thereby builds ubiquitous basic sensing capabilities, bringing smart life experience to users.
-    -   Distributed device virtualization: Backed by the distributed capabilities of HarmonyOSOpenHarmony, the MSDP virtualizes various components \(such as cameras, monitors, speakers, and microphones\) of peripherals into the components available for local devices. Also, it enables local devices to share their components with other devices.
+    Intelligent Distributed Networking, a distributed networking capability unit specific to OpenHarmony. You can use IDN to obtain the device list and device states and subscribe to the connection state changes of devices on the distributed network.
 
 
 ## P<a name="en-us_topic_0000001050749051_section779354121411"></a>
@@ -106,11 +86,6 @@
 
 
 ## S<a name="en-us_topic_0000001050749051_section25661636182615"></a>
-
--   **SA**
-
-    System Ability. The system abilities include the basic hardware and software services provided by the OS.
-
 
 -   **Super virtual device**
 

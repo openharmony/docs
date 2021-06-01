@@ -50,10 +50,15 @@
         -   [MIPI DSI使用实例](MIPI-DSI使用实例.md)
 
 -   [外设](外设.md)
-    -   [WLAN](WLAN.md)
-        -   [WLAN开发概述](WLAN开发概述.md)
-        -   [WLAN开发指导](WLAN开发指导.md)
-        -   [WLAN开发实例](WLAN开发实例.md)
+    -   [LCD](LCD.md)
+        -   [LCD开发概述](LCD开发概述.md)
+        -   [LCD开发指导](LCD开发指导.md)
+        -   [LCD开发实例](LCD开发实例.md)
+
+    -   [TOUCHSCREEN](TOUCHSCREEN.md)
+        -   [Touchscreen开发概述](Touchscreen开发概述.md)
+        -   [Touchscreen开发指导](Touchscreen开发指导.md)
+        -   [Touchscreen开发实例](Touchscreen开发实例.md)
 
     -   [SENSOR](SENSOR.md)
         -   [传感器驱动开发概述](传感器驱动开发概述.md)
@@ -61,13 +66,8 @@
         -   [传感器驱动开发实例](传感器驱动开发实例.md)
         -   [传感器驱动测试指导](传感器驱动测试指导.md)
 
-    -   [TOUCHSCREEN](TOUCHSCREEN.md)
-        -   [Touchscreen开发概述](Touchscreen开发概述.md)
-        -   [Touchscreen开发指导](Touchscreen开发指导.md)
-        -   [Touchscreen开发实例](Touchscreen开发实例.md)
-
-    -   [LCD](LCD.md)
-        -   [LCD开发概述](LCD开发概述.md)
-        -   [LCD开发指导](LCD开发指导.md)
-        -   [LCD开发实例](LCD开发实例.md)
+    -   [WLAN](WLAN.md)
+        -   [WLAN开发概述](WLAN开发概述.md)
+        -   [WLAN开发指导](WLAN开发指导.md)
+        -   [WLAN开发实例](WLAN开发实例.md)
 

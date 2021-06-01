@@ -148,19 +148,9 @@ The OpenHarmony driver is mainly deployed in the kernel space using the static l
 
 [drivers\_framework](https://gitee.com/openharmony/drivers_framework/blob/master/README.md)
 
-[drivers\_adapter\_uhdf](https://gitee.com/openharmony/drivers_adapter_uhdf/blob/master/README.md)
+[drivers\_adapter](https://gitee.com/openharmony/drivers_adapter/blob/master/README.md)
 
 [drivers\_adapter\_khdf\_linux](https://gitee.com/openharmony/drivers_adapter_khdf_linux/blob/master/README.md)
 
-[drivers\_adapter\_khdf\_liteos](https://gitee.com/openharmony/drivers_adapter_khdf_liteos/blob/master/README.md)
-
-[drivers\_peripheral\_display](https://gitee.com/openharmony/drivers_peripheral_display/blob/master/README.md)
-
-[drivers\_peripheral\_input](https://gitee.com/openharmony/drivers_peripheral_input/blob/master/README.md)
-
-[drivers\_peripheral\_wlan](https://gitee.com/openharmony/drivers_peripheral_wlan/blob/master/README.md)
-
-[drivers\_peripheral\_audio](https://gitee.com/openharmony/drivers_peripheral_audio/blob/master/README.md)
-
-[drivers\_peripheral\_sensor](https://gitee.com/openharmony/drivers_peripheral_sensor/blob/master/README.md)
+[drivers\_peripheral](https://gitee.com/openharmony/drivers_peripheral/blob/master/README.md)
 

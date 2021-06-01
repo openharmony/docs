@@ -2,6 +2,6 @@
 
 -   Development board: Hi3516D V300
 
--   [Download the source code](https://device.harmonyos.com/en/docs/start/get-code/oem_sourcecode_guide-0000001050769927).
--   [Compile the application framework](https://gitee.com/openharmony/docs/blob/master/docs-en/readme/application-framework.md).
+-   [Download the source code](../get-code/source-code-acquisition.md).
+-   [Build the application framework](https://gitee.com/openharmony/docs/blob/master/en/readme/application-framework.md).
 

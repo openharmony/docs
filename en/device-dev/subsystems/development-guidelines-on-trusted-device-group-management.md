@@ -24,7 +24,7 @@ The following tables list the innerkits APIs provided by trusted device group ma
 </thead>
 <tbody><tr id="row34145016535"><td class="cellrowborder" valign="top" width="57.38999999999999%" headers="mcps1.2.3.1.1 "><p id="p188293163217"><a name="p188293163217"></a><a name="p188293163217"></a>public static DeviceGroupManager getInstance(Abilityability, StringappID, IHichainGroupCallbackcallbackHandler)</p>
 </td>
-<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p13562171015712"><a name="p13562171015712"></a><a name="p13562171015712"></a>Obtains a <strong id="b73411940163616"><a name="b73411940163616"></a><a name="b73411940163616"></a>DeviceGroupManager</strong> instance and registers a callback.</p>
+<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p13562171015712"><a name="p13562171015712"></a><a name="p13562171015712"></a>Obtains a <strong id="b73411940163616"><a name="b73411940163616"></a><a name="b73411940163616"></a>DeviceGroupManager</strong> instance and registers a listener.</p>
 </td>
 </tr>
 <tr id="row1746172917474"><td class="cellrowborder" valign="top" width="57.38999999999999%" headers="mcps1.2.3.1.1 "><p id="p2131144717619"><a name="p2131144717619"></a><a name="p2131144717619"></a>int createGroup(String appId, String groupName, int groupType, String groupInfo)</p>
@@ -89,12 +89,12 @@ The following tables list the innerkits APIs provided by trusted device group ma
 </tr>
 <tr id="row15812171974119"><td class="cellrowborder" valign="top" width="57.38999999999999%" headers="mcps1.2.3.1.1 "><p id="p208122190416"><a name="p208122190416"></a><a name="p208122190416"></a>int registerGroupNotice(String groupId, IHichainGroupChangeListener groupChangeListener)</p>
 </td>
-<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p581281912419"><a name="p581281912419"></a><a name="p581281912419"></a>Registers a callback for changes to a specified group.</p>
+<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p581281912419"><a name="p581281912419"></a><a name="p581281912419"></a>Registers a listener for changes to a specified group.</p>
 </td>
 </tr>
 <tr id="row14944183024217"><td class="cellrowborder" valign="top" width="57.38999999999999%" headers="mcps1.2.3.1.1 "><p id="p79441930184212"><a name="p79441930184212"></a><a name="p79441930184212"></a>int revokeGroupNotice(String groupId)</p>
 </td>
-<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p159441630134217"><a name="p159441630134217"></a><a name="p159441630134217"></a>Revokes the callback for changes to a specified group.</p>
+<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p159441630134217"><a name="p159441630134217"></a><a name="p159441630134217"></a>Revokes the listener for changes to a specified group.</p>
 </td>
 </tr>
 </tbody>

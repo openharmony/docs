@@ -1,4 +1,4 @@
-# Development Guidelines on HiLog\_lite<a name="EN-US_TOPIC_0000001089263241"></a>
+# Development Guidelines on HiLog\_Lite<a name="EN-US_TOPIC_0000001089263241"></a>
 
 -   [Overview](#section775017517390)
 -   [Available APIs](#section114412157402)
@@ -6,7 +6,7 @@
 
 ## Overview<a name="section775017517390"></a>
 
-HiLog\_lite is the HiLog framework for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\). It implements functions such as log printing, log output, and flow control.
+HiLog\_Lite is the HiLog framework for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\). It implements functions such as log printing, log output, and flow control.
 
 ## Available APIs<a name="section114412157402"></a>
 
@@ -64,7 +64,7 @@ HILOG_INFO/HILOG_WARN/HILOG_ERROR/HILOG_FATAL
 
 ## How to Develop<a name="section1482812550419"></a>
 
-The following provides an example of how the Samgr\_lite module uses the HiLog\_lite framework.
+The following provides an example of how the Samgr\_Lite module uses the HiLog\_Lite framework.
 
 1.  Add the module ID, and define  **HILOG\_MODULE\_SAMGR**  in the  **HiLogModuleType**  structure in  **base/hiviewdfx/hilog\_lite/interfaces/native/kits/hilog\_lite/hiview\_log.h**.
 

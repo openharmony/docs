@@ -215,7 +215,6 @@ int main()
         return HDF_FAILURE;
     }
 
-    /* wait for event receive event finishing */
     while (g_replyFlag == 0) {
         sleep(1);
     }

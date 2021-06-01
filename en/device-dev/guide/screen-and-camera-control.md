@@ -1,4 +1,4 @@
-# Screen and Camera Control<a name="EN-US_TOPIC_0000001054927709"></a>
+# Screen and Camera Control<a name="EN-US_TOPIC_0000001111199426"></a>
 
 -   **[Overview](overview-1.md)**  
 

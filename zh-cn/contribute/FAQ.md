@@ -10,6 +10,59 @@ OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编�
 
 3. 触发构建\(详见触发构建的操作帮助\)后，构建中心会识别关联了同一Issue的PR，同时下载构建，并在代码审核通过后，同时进行合并入代码库。
 
+## `Sign-off-by`相关操作
+
+### 如何在Commit中添加signoff记录
+
+使用`git commit -s` 或 `git commit –signoff` 命令提交。
+
+### 如何追加signoff到上一次commit?
+
+执行`git commit --amend --signoff`命令 。
+
+关于commit更多选项，请参考：[https://](https://git-scm.com/docs/git-commit)[git-scm.com/docs/git-commit](https://git-scm.com/docs/git-commit)
+
+## DCO校验异常处理
+
+开发者提交Pull Request后，评论`start build`会触发门禁校验：
+
+1. 该PR提交是否签署Developer Certificate of Origin（DCO) “开发者原创声明”。
+2. 该PR提交是否包含 Signed-off-by信息。
+
+校验失败可能的原因有：
+
+1. 未签署“DCO协议”，例如提示：
+
+   ```
+   当前检测到如下commit的用户未签署DCO协议：
+   
+   •345612
+   
+   •213123
+   ```
+
+   **解决办法**：
+
+   点击[这里](https://dco.openharmony.io/sign/Z2l0ZWUlMkZPcGVuQXRvbQ==)签署、查看签署状态。
+
+   在PR的评论框输入`check dco`后，单击”评论”，系统将再次进行DCO校验。
+
+2. Commits 中未包含 Signed-off-by信息，例如提示：
+
+   ```
+   当前检测到如下commit未包含Sign-off-by信息：
+   
+   •123123
+   
+   •345612
+   ```
+
+   **解决办法**：
+
+   参考`Sign-off-by`相关操作，添加Sign-off-by信息。
+
+   在PR的评论框输入`check dco`后，单击”评论”，系统将再次进行DCO校验。
+
 ## 回退提交<a name="section479422315253"></a>
 
 请参考码云帮助中心：[https://gitee.com/help/articles/4195](https://gitee.com/help/articles/4195)

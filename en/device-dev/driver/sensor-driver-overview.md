@@ -240,5 +240,5 @@ The following table lists the APIs that need to be implemented by driver develop
 </tbody>
 </table>
 
-For details about the API implementation, see  [4](sensor-driver-development-example.md#li1330491613203).
+For details about the API implementation, see the  [sensor driver development example](sensor-driver-development-example.md).
 

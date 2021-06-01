@@ -1,15 +1,18 @@
 # XTS认证子系统开发指南<a name="ZH-CN_TOPIC_0000001126156429"></a>
 
 -   [简介](#section465982318513)
--   [设备类型](#section125090457443)
+-   [系统类型](#section125090457443)
 -   [目录](#section161941989596)
 -   [约束](#section119744591305)
 -   [使用说明](#section137768191623)
 -   [用例开发指导](#section3695134065513)
-    -   [C语言用例开发编译指导（适用于轻量系统类设备产品用例开发）](#section1551164914237)
-    -   [C语言用例执行指导（适用于轻量系统类设备产品用例开发）](#section10100701294)
+    -   [C语言用例开发编译指导（适用于轻量系统产品用例开发）](#section198193336544)
+    -   [C语言用例执行指导（适用于轻量系统产品用例开发）](#section13820233175418)
+    -   [C++语言用例开发编译指导（适用于小型系统、标准系统用例开发）](#section3822123311540)
+    -   [C++语言用例执行指导（适用于小型系统、标准系统用例开发）](#section128222336544)
+    -   [JS语言用例开发指导（适用于标准系统）](#section159801435165220)
+    -   [JS语言用例编译打包指导（适用于标准系统）](#section445519106559)
 
--   [相关仓](#section1371113476307)
 
 ## 简介<a name="section465982318513"></a>
 
@@ -20,17 +23,21 @@ XTS子系统当前包括acts与tools软件包：
 -   acts，存放acts相关测试用例源码与配置文件，其目的是帮助终端设备厂商尽早发现软件与OpenHarmony的不兼容性，确保软件在整个开发过程中满足OpenHarmony的兼容性要求。
 -   tools，存放acts相关测试用例开发框架。
 
-## 设备类型<a name="section125090457443"></a>
+## 系统类型<a name="section125090457443"></a>
 
-OpenHarmony支持如下几种设备类型：
+OpenHarmony支持如下几种系统类型：
 
--   **轻量系统类设备（参考内存≥128KB）**
+-   轻量系统（mini system）
 
-    面向MCU类处理器，例如Arm Cortex-M、RISC-V 32位的设备，资源极其有限，参考内存≥128KB，提供丰富的近距连接能力以及丰富的外设总线访问能力。典型产品有智能家居领域的联接类模组、传感器设备等。联接类模组通常应用在智能物联网设备中，负责实现联接部分的硬件模块，在智能家居领域由厂家集成到其设备中。例如：联接类模组提供WLAN/Bluetooth的接入和数据的联接，模组与厂家家居的芯片通常通过UART或GPIO等总线接口进行通信。
+    面向MCU类处理器例如Arm Cortex-M、RISC-V 32位的设备，硬件资源极其有限，支持的设备最小内存为128KiB，可以提供多种轻量级网络协议，轻量级的图形框架，以及丰富的IOT总线读写部件等。可支撑的产品如智能家居领域的连接类模组、传感器设备、穿戴类设备等。
 
--   **小型系统类设备（参考内存≥1MB）**
+-   小型系统（small system）
 
-    面向应用处理器，例如Arm Cortex-A的设备，参考内存≥1MB，提供更高的安全能力，提供标准的图形框架，提供视频编解码的多媒体能力。典型产品有智能家居领域的IPCamera、电子猫眼、路由器以及智慧出行域的行车记录仪等。
+    面向应用处理器例如Arm Cortex-A的设备，支持的设备最小内存为1MiB，可以提供更高的安全能力、标准的图形框架、视频编解码的多媒体能力。可支撑的产品如智能家居领域的IP Camera、电子猫眼、路由器以及智慧出行域的行车记录仪等。
+
+-   标准系统（standard system）
+
+    面向应用处理器例如Arm Cortex-A的设备，支持的设备最小内存为128MiB，可以提供增强的交互能力、3D GPU以及硬件合成能力、更多控件以及动效更丰富的图形能力、完整的应用框架。可支撑的产品如高端的冰箱显示屏。
 
 
 ## 目录<a name="section161941989596"></a>
@@ -38,17 +45,17 @@ OpenHarmony支持如下几种设备类型：
 ```
 /test/xts
 ├── acts                 # 测试代码存放目录
-│   └── subsystem       # 大型系统类设备子系统测试用例源码存放目录
-│   └── subsystem_lite  # 轻量系统类设备、小型系统类设备子系统测试用例源码存放目录
-│   └── BUILD.gn        # 大型系统类设备测试用例编译配置
-│   └── build_lite      # 轻量系统类设备、小型系统类设备测试用例编译配置存放目录
-│       └── BUILD.gn    # 轻量系统类设备、小型系统类设备测试用例编译配置
+│   └── subsystem       # 标准系统子系统测试用例源码存放目录
+│   └── subsystem_lite  # 轻量系统、小型系统子系统测试用例源码存放目录
+│   └── BUILD.gn        # 标准系统测试用例编译配置
+│   └── build_lite      # 轻量系统、小型系统测试用例编译配置存放目录
+│       └── BUILD.gn    # 轻量系统、小型系统测试用例编译配置
 └── tools                # 测试工具代码存放目录
 ```
 
 ## 约束<a name="section119744591305"></a>
 
-轻量系统类设备用例开发语言是C，小型系统类设备用例开发语言是C++。
+轻量系统用例开发语言是C，小型系统用例开发语言是C++。
 
 ## 使用说明<a name="section137768191623"></a>
 
@@ -205,12 +212,12 @@ OpenHarmony支持如下几种设备类型：
 
 ## 用例开发指导<a name="section3695134065513"></a>
 
-根据测试设备选择测试框架和对应测试用例语言。
+根据测试系统选择测试框架和对应测试用例语言。
 
-**表 4**  设备和测试框架、开发语言对应关系
+**表 4**  系统和测试框架、开发语言对应关系
 
 <a name="table4418343171415"></a>
-<table><thead align="left"><tr id="row34183435145"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p941874311148"><a name="p941874311148"></a><a name="p941874311148"></a>设备</p>
+<table><thead align="left"><tr id="row34183435145"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p941874311148"><a name="p941874311148"></a><a name="p941874311148"></a>系统</p>
 </th>
 <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p1841804341413"><a name="p1841804341413"></a><a name="p1841804341413"></a>测试框架</p>
 </th>
@@ -218,40 +225,33 @@ OpenHarmony支持如下几种设备类型：
 </th>
 </tr>
 </thead>
-<tbody><tr id="row8419164319148"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p7419194312143"><a name="p7419194312143"></a><a name="p7419194312143"></a>轻量系统类设备</p>
+<tbody><tr id="row8419164319148"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p7419194312143"><a name="p7419194312143"></a><a name="p7419194312143"></a>轻量系统</p>
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p10419124312145"><a name="p10419124312145"></a><a name="p10419124312145"></a>hctest</p>
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p11419643191410"><a name="p11419643191410"></a><a name="p11419643191410"></a>c</p>
 </td>
 </tr>
-<tr id="row141915438147"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p441911436141"><a name="p441911436141"></a><a name="p441911436141"></a>小型系统类设备</p>
+<tr id="row141915438147"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p441911436141"><a name="p441911436141"></a><a name="p441911436141"></a>小型系统</p>
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p541916432142"><a name="p541916432142"></a><a name="p541916432142"></a>hcpptest</p>
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p54191643131416"><a name="p54191643131416"></a><a name="p54191643131416"></a>c++</p>
 </td>
 </tr>
-<tr id="row4419134341417"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p341964313143"><a name="p341964313143"></a><a name="p341964313143"></a>标准系统类设备</p>
+<tr id="row4419134341417"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p341964313143"><a name="p341964313143"></a><a name="p341964313143"></a>标准系统</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p10419443171416"><a name="p10419443171416"></a><a name="p10419443171416"></a>HJUnit、hcpptest</p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p10419443171416"><a name="p10419443171416"></a><a name="p10419443171416"></a>HJSUnit、hcpptest</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p9419143181414"><a name="p9419143181414"></a><a name="p9419143181414"></a>java、c++</p>
-</td>
-</tr>
-<tr id="row42451815115215"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p324511515528"><a name="p324511515528"></a><a name="p324511515528"></a>大型系统类设备</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p724516151520"><a name="p724516151520"></a><a name="p724516151520"></a>HJUnit、hcpptest</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p748417474533"><a name="p748417474533"></a><a name="p748417474533"></a>java、c++</p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p9419143181414"><a name="p9419143181414"></a><a name="p9419143181414"></a>js、c++</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-### C语言用例开发编译指导（适用于轻量系统类设备产品用例开发）<a name="section1551164914237"></a>
+### C语言用例开发编译指导（适用于轻量系统产品用例开发）<a name="section198193336544"></a>
 
-**示例：轻量系统类设备测试用例开发**
+**示例：轻量系统测试用例开发**
 
 当前使用的测试框架是hctest，hctest测试框架支持使用C语言编写测试用例，是在开源测试框架unity的基础上进行增强和适配。
 
@@ -350,9 +350,9 @@ OpenHarmony支持如下几种设备类型：
     >acts测试套件编译中间件为静态库，最终链接到版本镜像中 。
 
 
-### C语言用例执行指导（适用于轻量系统类设备产品用例开发）<a name="section10100701294"></a>
+### C语言用例执行指导（适用于轻量系统产品用例开发）<a name="section13820233175418"></a>
 
-**示例：轻量系统类设备测试用例执行**
+**示例：轻量系统测试用例执行**
 
 将版本镜像烧录进开发板。
 
@@ -367,9 +367,282 @@ OpenHarmony支持如下几种设备类型：
 
 每个测试套件执行以Start to run test suite开始，以xx Tests xx Failures xx Ignored结束。
 
-## 相关仓<a name="section1371113476307"></a>
+### C++语言用例开发编译指导（适用于小型系统、标准系统用例开发）<a name="section3822123311540"></a>
 
-xts\_acts
+**示例：小型系统测试用例开发**（标准参考具体样例目录：global/i18n\_standard）
 
-xts\_tools
+当前使用的测试框架是hcpptest，hcpptest测试框架是在开源的googletest测试框架的基础上进行的增强和适配。
+
+1.  规范用例目录：测试用例存储到test/xts/acts仓中。
+
+    ```
+    ├── acts
+    │ └──subsystem_lite
+    │ │ └── module_posix
+    │ │ │ └── BUILD.gn
+    │ │ │ └── src
+    │ └──build_lite
+    │ │ └── BUILD.gn
+    ```
+
+2.  测试模块src下用例编写样例：
+
+    1. 引用测试框架：
+
+    需要引用gtest.h  如：\#include "gtest/gtest.h"
+
+    ```
+    #include "gtest/gtest.h"
+    ```
+
+    2. 定义Setup与TearDown
+
+    ```
+    using namespace std;
+    using namespace testing::ext;
+    class TestSuite: public testing::Test {
+    protected:
+    // Preset action of the test suite, which is executed before the first test case
+    static void SetUpTestCase(void){
+    }
+    // Test suite cleanup action, which is executed after the last test case
+    static void TearDownTestCase(void){
+    }
+    // Preset action of the test case
+    virtual void SetUp()
+    {
+    }
+    // Cleanup action of the test case
+    virtual void TearDown()
+    {
+    }
+    };
+    ```
+
+    3. 使用宏定义HWTEST或HWTEST\_F写测试用例
+
+    普通测试用例的定义：HWTEST（测试套名称， 测试用例名称， 用例标注）。
+
+    包含SetUp和TearDown的测试用例的定义 ：HWTEST\_F（测试套名称， 测试用例名称，用例标注）。
+
+    宏定义包括三个参数：测试套件名称，测试用例名称，用例属性（测试类型、用例粒度、用例级别）。
+
+    ```
+    HWTEST_F(TestSuite, TestCase_0001, Function | MediumTest | Level1) {
+    // do something
+    }
+    ```
+
+3.  测试模块下用例配置文件（BUILD.gn）样例：
+
+    每个测试模块目录下新建BUILD.gn编译文件，用于指定编译后可执行文件的名称、依赖的头文件、依赖的库等；具体写法如下。每个测试模块将独立编译成.bin可执行文件， 该文件可直接push到单板上进行测试。
+
+    举例：
+
+    ```
+    import("//test/xts/tools/lite/build/suite_lite.gni")
+    hcpptest_suite("ActsDemoTest") {
+        suite_name = "acts"
+        sources = [
+            "src/TestDemo.cpp"
+        ]
+    
+        include_dirs = [
+            "src",
+            ...
+        ]
+        deps = [
+            ...
+        ]
+        cflags = [ "-Wno-error" ]
+    }
+    
+    ```
+
+4.  acts目录下增加编译选项（BUILD.gn）样例：
+
+    将测试模块加入到acts目录下的编译脚本中，编译脚本为：test/xts/acts/build\_lite/BUILD.gn。
+
+    ```
+     lite_component("acts") {  
+    ...
+    else if(board_name == "liteos_a") {
+            features += [
+                ...
+                "//xts/acts/subsystem_lite/module_posix:ActsDemoTest"
+            ]
+        }
+    }
+    ```
+
+5.  测试套件编译命令。
+
+    随版本编译，debug版本编译时会同步编译acts测试套件
+
+    >![](public_sys-resources/icon-note.gif) **说明：** 
+    >小型系统acts独立编译成可执行文件（bin格式）， 在编译产物的suites\\acts目录下归档。
+
+
+### C++语言用例执行指导（适用于小型系统、标准系统用例开发）<a name="section128222336544"></a>
+
+**示例：小型系统测试用例执行**
+
+目前的用例执行采用nfs共享的方式，mount到单板去执行。
+
+**环境搭建**
+
+1.  使用有限网线或无线将开发板与PC进行连接。
+2.  开发板配置IP、子网掩码、网关，确保开发板与PC处于同一个网段。
+3.  PC安装nfs服务器并完成注册，启动nfs服务。
+4.  开发板配置mount命令，确保开发板可以访问PC端的nfs共享文件。
+
+    格式：mount \[nfs服务器IP\]:\[/nfs共享目录\] \[/开发板目录\] nfs
+
+    举例：
+
+    ```
+    mount 192.168.1.10:/nfs /nfs nfs
+    ```
+
+
+**用例执行**
+
+测试套件执行 ActsDemoTest.bin 触发用例执行，基于串口打印日志进行分析。
+
+### JS语言用例开发指导（适用于标准系统）<a name="section159801435165220"></a>
+
+当前使用的测试框架是HJSUnit，用于支撑OpenHarmony application测试（特指基于JS应用框架使用 Javascript 语言开发的 APP）进行自动化测试。
+
+**用例编写基础语法**
+
+测试用例为 js 语言，必须满足 JavaScript 语言编程规范:
+
+**表 5** 
+
+<a name="table13980103565212"></a>
+<table><thead align="left"><tr id="row1098093545218"><th class="cellrowborder" valign="top" width="17.92179217921792%" id="mcps1.2.4.1.1"><p id="p49811235135214"><a name="p49811235135214"></a><a name="p49811235135214"></a>用例语法</p>
+</th>
+<th class="cellrowborder" valign="top" width="68.88688868886888%" id="mcps1.2.4.1.2"><p id="p898183565220"><a name="p898183565220"></a><a name="p898183565220"></a>描述</p>
+</th>
+<th class="cellrowborder" valign="top" width="13.19131913191319%" id="mcps1.2.4.1.3"><p id="p17981143512526"><a name="p17981143512526"></a><a name="p17981143512526"></a>要求</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row1598183515528"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p139810358527"><a name="p139810358527"></a><a name="p139810358527"></a>beforeAll</p>
+</td>
+<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p198111352526"><a name="p198111352526"></a><a name="p198111352526"></a>测试套级别的预置条件，在所有测试用例开始前执行且仅执行一次，支持一个参数：预置动作函数</p>
+</td>
+<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p298114355529"><a name="p298114355529"></a><a name="p298114355529"></a>可选</p>
+</td>
+</tr>
+<tr id="row11981103512529"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p20981135135215"><a name="p20981135135215"></a><a name="p20981135135215"></a>afterAll</p>
+</td>
+<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p39811935115217"><a name="p39811935115217"></a><a name="p39811935115217"></a>测试套级别的清理条件，在所有测试用例结束后执行且仅执行一次，支持一个参数：清理动作函数</p>
+</td>
+<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p998110354527"><a name="p998110354527"></a><a name="p998110354527"></a>可选</p>
+</td>
+</tr>
+<tr id="row1298116359526"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p898112359526"><a name="p898112359526"></a><a name="p898112359526"></a>beforeEach</p>
+</td>
+<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p149811335175215"><a name="p149811335175215"></a><a name="p149811335175215"></a>测试用例级别的预置条件，在每条测试用例开始前执行，执行次数与 it 定义的测试用例数一致，支持一个参数：预置动作函数</p>
+</td>
+<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p13981133585212"><a name="p13981133585212"></a><a name="p13981133585212"></a>可选</p>
+</td>
+</tr>
+<tr id="row6982435115219"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p19982133517525"><a name="p19982133517525"></a><a name="p19982133517525"></a>afterEach</p>
+</td>
+<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p1398213575219"><a name="p1398213575219"></a><a name="p1398213575219"></a>测试用例级别的清理条件，在每条测试用例结束后执行，执行次数与 it 定义的测试用例数一致，支持一个参数：清理动作函数</p>
+</td>
+<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p159821535195219"><a name="p159821535195219"></a><a name="p159821535195219"></a>可选</p>
+</td>
+</tr>
+<tr id="row16982143513521"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p598203510527"><a name="p598203510527"></a><a name="p598203510527"></a>describe</p>
+</td>
+<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p5982123595215"><a name="p5982123595215"></a><a name="p5982123595215"></a>定义一个测试套，支持两个参数：测试套名称和测试套函数； describe 支持嵌套，每个 describe 内均可以定义 beforeAll 、beforeEach 、afterEach 和 afterAll</p>
+</td>
+<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p898217352527"><a name="p898217352527"></a><a name="p898217352527"></a>必选</p>
+</td>
+</tr>
+<tr id="row6982113518526"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p17982123510526"><a name="p17982123510526"></a><a name="p17982123510526"></a>it</p>
+</td>
+<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p598211352522"><a name="p598211352522"></a><a name="p598211352522"></a>定义一条测试用例，支持三个参数：用例名称，过滤参数和用例函数</p>
+<p id="p5205769588"><a name="p5205769588"></a><a name="p5205769588"></a>备注：</p>
+<p id="p6965058101"><a name="p6965058101"></a><a name="p6965058101"></a>过滤参数：过滤参数为一个 32 位的 Int 类型参数，0 位 置1表示不筛选、默认执行；0-10 位 置1表示<strong id="b9169154410212"><a name="b9169154410212"></a><a name="b9169154410212"></a>测试用例类型</strong>；16-18 位 置1表示<strong id="b1427947428"><a name="b1427947428"></a><a name="b1427947428"></a>测试用例规模</strong>；24-28 位 置1表示<strong id="b289818491213"><a name="b289818491213"></a><a name="b289818491213"></a>测试层级</strong>。</p>
+<p id="p7965165151011"><a name="p7965165151011"></a><a name="p7965165151011"></a><strong id="b69449534215"><a name="b69449534215"></a><a name="b69449534215"></a>测试用例类型</strong>。置位0-10分别表示：FUNCTION 方法类测试、PERFORMANCE 性能类测试、POWER 功耗类测试、RELIABILITY 可靠性测试、SECURITY 安全合规测试、GLOBAL 整体性测试、COMPATIBILITY 兼容性测试、USER 用户测试、STANDARD 标准测试、SAFETY 安全特性测试，RESILIENCE 压力测试。</p>
+<p id="p199651555102"><a name="p199651555102"></a><a name="p199651555102"></a><strong id="b10114125712211"><a name="b10114125712211"></a><a name="b10114125712211"></a>测试用例规模</strong>。置位16-18分别表示：SMALL 小型测试、MEDIUM 中型测试、LARGE 大型测试。</p>
+<p id="p296545151020"><a name="p296545151020"></a><a name="p296545151020"></a><strong id="b167975581223"><a name="b167975581223"></a><a name="b167975581223"></a>测试层级</strong>。置位24-28分别表示：LEVEL0-0 级测试、LEVEL1-1 级测试、LEVEL2-2 级测试、LEVEL3-3 级测试、LEVEL4-4 级测试。</p>
+</td>
+<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p17601752115716"><a name="p17601752115716"></a><a name="p17601752115716"></a>必选</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+用例编写语法采用 jasmine 的标准语法，格式支持ES6格式。
+
+1.  规范用例目录：测试用例存储到entry/src/main/js/test目录。
+
+    ```
+    ├── BUILD.gn   
+    │ └──entry
+    │ │ └──src
+    │ │ │ └──main
+    │ │ │ │ └──js
+    │ │ │ │ │ └──default               
+    │ │ │ │ │ │ └──pages
+    │ │ │ │ │ │ │ └──index             
+    │ │ │ │ │ │ │ │ └──index.js        # 入口文件
+    │ │ │ │ │ └──test                  # 测试代码存放目录  
+    │ │ │ └── resources                # hap资源存放目录
+    │ │ │ └── config.json              # hap配置文件
+    ```
+
+2.  index.js示例
+
+    ```
+    // 拉起js测试框架，加载测试用例
+    import {Core, ExpectExtend} from 'deccjsunit/index'
+    
+    export default {
+        data: {
+            title: ""
+        },
+        onInit() {
+            this.title = this.$t('strings.world');
+        },
+        onShow() {
+            console.info('onShow finish')
+            const core = Core.getInstance()
+            const expectExtend = new ExpectExtend({
+                'id': 'extend'
+            })
+            core.addService('expect', expectExtend)
+            core.init()
+            const configService = core.getDefaultService('config')
+            configService.setConfig(this)
+            require('../../../test/List.test')
+            core.execute()
+        },
+        onReady() {
+        },
+    }
+    ```
+
+3.  单元测试用例示例
+
+    ```
+    // Example1: 使用HJSUnit进行单元测试
+    describe('appInfoTest', function () {    
+        it('app_info_test_001', 0, function () {
+            var info = app.getInfo()
+            expect(info.versionName).assertEqual('1.0')
+            expect(info.versionCode).assertEqual('3')
+        })
+    }) 
+    ```
+
+
+### JS语言用例编译打包指导（适用于标准系统）<a name="section445519106559"></a>
+
+hap包编译请参考[标准系统js应用开发指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/build_overview-0000001055075201)。
 

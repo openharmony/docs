@@ -81,7 +81,7 @@ int32_t HdfSampleDriverDispatch(
 
 void HdfSampleDriverRelease(struct HdfDeviceObject *deviceObject)
 {
-    // release resources here
+    // Release resources here
     return;
 }
 
@@ -215,7 +215,6 @@ int main()
         return HDF_FAILURE;
     }
 
-    /* wait for event receive event finishing */
     while (g_replyFlag == 0) {
         sleep(1);
     }

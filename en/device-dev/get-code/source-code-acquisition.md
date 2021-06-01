@@ -1,28 +1,28 @@
-# Source Code Acquisition<a name="EN-US_TOPIC_0000001050769927"></a>
+# Source Code Acquisition<a name="EN-US_TOPIC_0000001150448437"></a>
 
 -   [About OpenHarmony](#section6370143622110)
 -   [Overview of Source Code Acquisition](#section12763342204)
 -   [Method 1: Acquiring Source Code from Image Sites](#section1186691118430)
 -   [Method 2: Acquiring Source Code from the Bundle-specific HPM](#section463013147412)
--   [When to Use](#section123926431441)
--   [Prerequisites](#section42627508156)
--   [How to Use](#section1781916234118)
+    -   [When to Use](#section26661067443)
+    -   [Prerequisites](#section1254674354310)
+    -   [How to Use](#section44161731194418)
+
 -   [Method 3: Acquiring Source Code from a Code Repository](#section537312010229)
--   [When to Use](#section1492115412228)
--   [Preparations](#section1076962313239)
--   [Operations](#section17162735266)
+    -   [When to Use](#section10881513459)
+    -   [Preparations](#section10938122310459)
+    -   [Operations](#section151644112456)
+
 -   [Source Code Directories](#section1072115612811)
 
 ## About OpenHarmony<a name="section6370143622110"></a>
 
-OpenHarmony is an open-source version of HarmonyOS. It is donated by Huawei to OpenAtom Foundation. The first open-source version can run on 128 KB to 128 MB devices. You are welcomed to join the open-source community for continuous improvement.
+OpenHarmony is an open-source project launched by the OpenAtom Foundation. The purpose of this project is to build an open-source, distributed operating system \(OS\) framework for smart IoT devices in the full-scenario, full-connectivity, and full-intelligence era. 
 
-Access code repositories at  [https://openharmony.gitee.com](https://openharmony.gitee.com).
+The open-source code repositories are available at  [https://openharmony.gitee.com](https://openharmony.gitee.com).
 
 >![](public_sys-resources/icon-note.gif) **NOTE:** 
->Currently, OpenHarmony source code can be compiled only in a Linux environment. You may encounter exceptions in a Windows environment.
->For example, while downloading and installing some bundles, you need to run Linux commands to set environment variables. However, if you do so in a Windows environment, an error may occur. To address this issue, change the shell of HPM to a third-party shell. For example, you can run the following command to change the shell to  **sh.exe**  of git:
->hpm config set shellPath 'C:\\Program Files\\Git\\bin\\sh.exe'
+>At present, OpenHarmony source code can only be compiled in the Linux environment.
 
 ## Overview of Source Code Acquisition<a name="section12763342204"></a>
 
@@ -37,8 +37,8 @@ This document describes how to acquire OpenHarmony source code and provides its 
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
 >![](public_sys-resources/icon-note.gif) **NOTE:** 
->-   The table below provides only the sites for downloading the source code of the latest OpenHarmony Master and LTS versions. For details about how to obtain the source code of other versions, see the  [Release Notes](https://gitee.com/openharmony/docs/tree/master/en/release-notes).
->-   Currently, Master 1.0 is no longer maintained. You are advised to use the LTS version.
+>-   The table below provides only the sites for downloading the source code of the latest OpenHarmony Master and LTS versions. For details about earlier versions and how to obtain their source code, see the  [Release Notes](https://gitee.com/openharmony/docs/tree/master/en/release-notes).
+>-   The Master 1.0 version is no longer maintained.
 
 **Table  1**  Sites for acquiring source code from image sites
 
@@ -101,9 +101,18 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b1094411391670"><a name="b1094411391670"></a><a name="b1094411391670"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b1438499929"><a name="b1438499929"></a><a name="b1438499929"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b959378308"><a name="b959378308"></a><a name="b959378308"></a>Site</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b590440592"><a name="b590440592"></a><a name="b590440592"></a>SHA-256 Verification Code</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b783416670"><a name="b783416670"></a><a name="b783416670"></a>SHA-256 Verification Code</strong></p>
+</td>
+</tr>
+<tr id="row4769431134919"><td class="cellrowborder" valign="top" width="25%"><p id="p97691031124913"><a name="p97691031124913"></a><a name="p97691031124913"></a>Full code base</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1076916315492"><a name="p1076916315492"></a><a name="p1076916315492"></a>2.0 Canary</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p67696314491"><a name="p67696314491"></a><a name="p67696314491"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p4769123184918"><a name="p4769123184918"></a><a name="p4769123184918"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 </tr>
 <tr id="row273762316398"><td class="cellrowborder" valign="top" width="25%"><p id="p54150491393"><a name="p54150491393"></a><a name="p54150491393"></a>Full code base</p>
@@ -151,18 +160,34 @@ To ensure the download performance, you are advised to download the source code 
 <td class="cellrowborder" valign="top" width="25%"><p id="p1841619490395"><a name="p1841619490395"></a><a name="p1841619490395"></a>-</p>
 </td>
 </tr>
+<tr id="row19937626418"><td class="cellrowborder" valign="top" width="25%"><p id="p1938221842"><a name="p1938221842"></a><a name="p1938221842"></a><strong id="b1349173911553"><a name="b1349173911553"></a><a name="b1349173911553"></a>Compiler Toolchain</strong></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1093810218417"><a name="p1093810218417"></a><a name="p1093810218417"></a><strong id="b1124015405556"><a name="b1124015405556"></a><a name="b1124015405556"></a>Version Information</strong></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b57309475"><a name="b57309475"></a><a name="b57309475"></a>Site</strong></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p12520113711011"><a name="p12520113711011"></a><a name="p12520113711011"></a><strong id="b19256751175516"><a name="b19256751175516"></a><a name="b19256751175516"></a>SHA-256 Verification Code</strong></p>
+</td>
+</tr>
+<tr id="row204197817410"><td class="cellrowborder" valign="top" width="25%"><p id="p8419118242"><a name="p8419118242"></a><a name="p8419118242"></a>Compiler toolchain</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p10876124517162"><a name="p10876124517162"></a><a name="p10876124517162"></a>-</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1542078742"><a name="p1542078742"></a><a name="p1542078742"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p134201881147"><a name="p134201881147"></a><a name="p134201881147"></a>-</p>
+</td>
+</tr>
 </tbody>
 </table>
 
 ## Method 2: Acquiring Source Code from the Bundle-specific HPM<a name="section463013147412"></a>
 
-## When to Use<a name="section123926431441"></a>
+### When to Use<a name="section26661067443"></a>
 
-If OpenHarmony is new to you, sample solutions are helpful to your development. You can obtain an open-source distribution from the  [HPM](https://hpm.harmonyos.com/#/en/home)  platform, or customize a distribution by adding or deleting bundles of an open-source distribution.
+If OpenHarmony is new to you, sample solutions are helpful to your development. You can obtain an open-source distribution from the  [HPM](https://hpm.harmonyos.com/#/en/home)  website, or customize a distribution by adding or deleting bundles of an open-source distribution. Then use  **hpm-cli**  to download and install the bundles and compilation toolchain on your local PC.
 
-Then use  **hpm-cli**  to download and install the bundles and compilation toolchain on your local PC.
-
-## Prerequisites<a name="section42627508156"></a>
+### Prerequisites<a name="section1254674354310"></a>
 
 You must install  **Node.js**  and HPM on your local PC. The installation procedure is as follows:
 
@@ -193,18 +218,18 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     ```
 
 
-## How to Use<a name="section1781916234118"></a>
+### How to Use<a name="section44161731194418"></a>
 
 1.  Search for distributions.
     1.  Access the  [HPM](https://hpm.harmonyos.com/#/en/home)  page, and click the  **Distribution**  tab, as shown in the following figure.
-    2.  Enter a keyword \("camera" as an example\) in the search box. All matched distributions are found.
-    3.  Specify filter criteria, such as the bundle type \(example:  **Board support**  and  **Kernel support**\), to further filter the distributions.
+    2.  Enter a keyword \(for example:  **camera**\) in the search box. All matched distributions are found.
+    3.  Specify filter criteria, such as the bundle type \(for example:  **Board support**  and  **Kernel support**\), to further filter the distributions.
     4.  Locate your desired distribution and click it to view details.
 
         **Figure  1**  HPM page<a name="fig838103114320"></a>  
         
 
-        ![](figures/en-us_image_0000001086781056.png)
+        ![](figures/en-us_image_0000001160590725.png)
 
 
 2.  Learn more about the distribution.
@@ -216,7 +241,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     **Figure  2**  Example distribution<a name="fig1329851510414"></a>  
     
 
-    ![](figures/en-us_image_0000001086461836.png)
+    ![](figures/en-us_image_0000001114070816.png)
 
 3.  Customize bundles.
     1.  Access the  **Custom solution**  page, as shown in the following figure.
@@ -227,7 +252,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
         **Figure  3**  Customizing bundles<a name="fig05036599014"></a>  
         
 
-        ![](figures/en-us_image_0000001133359093.png)
+        ![](figures/en-us_image_0000001113910924.png)
 
 
 4.  Download and install bundles.
@@ -238,24 +263,24 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 
 ## Method 3: Acquiring Source Code from a Code Repository<a name="section537312010229"></a>
 
-## When to Use<a name="section1492115412228"></a>
+### When to Use<a name="section10881513459"></a>
 
 -   You want to establish a baseline based on stable OpenHarmony releases and distribute the baseline to your customers.
 
 -   You have interconnected your software with OpenHarmony and need official certification from OpenHarmony.
 
--   You want to contribute code to the OpenHarmony ecosystem after chips, modules, and applications are certified by OpenHarmony.
+-   You want to contribute code to the OpenHarmony community after chips, modules, and applications are certified by OpenHarmony.
 
 -   You need to address OpenHarmony issues.
 
 -   You want to learn OpenHarmony source code.
 
 
-## Preparations<a name="section1076962313239"></a>
+### Preparations<a name="section10938122310459"></a>
 
-1.  Register your account with gitee.
-2.  Register an SSH public key. For details, visit  [https://gitee.com/help/articles/4181](https://gitee.com/help/articles/4181).
-3.  Install the git client and configure basic information.
+1.  Register your account with Gitee.
+2.  Register an SSH public key for access to Gitee.
+3.  Install the  [git client](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)), and configure basic user information.
 
     ```
     git config --global user.name "yourname"
@@ -268,14 +293,16 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     ```
     curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo
     chmod a+x /usr/local/bin/repo
-    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple requests
+    pip install -i https://repo.huaweicloud.com/repository/pypi/simple requests
     ```
 
 
-## Operations<a name="section17162735266"></a>
+### Operations<a name="section151644112456"></a>
+
+**Obtaining the Source Code for Mini and Small Systems**
 
 >![](public_sys-resources/icon-note.gif) **NOTE:** 
->You can obtain the latest features from the master code, and develop commercial functionalities based on the release code.
+>You can obtain the latest features from the master code, and develop commercial functionalities based on the release code, which is more stable.
 
 -   **Obtaining OpenHarmony master code**
 
@@ -284,6 +311,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     ```
     repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
     repo sync -c
+    repo forall -c 'git lfs pull'
     ```
 
     Method 2: Run the  **git clone**  command to clone a single code repository.
@@ -301,7 +329,8 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 
     ```
     repo init -u https://gitee.com/openharmony/manifest.git  -b OpenHarmony_1.0.1_release --no-repo-verify
-    repo sync -c 
+    repo sync -c  
+    repo forall -c 'git lfs pull'
     ```
 
 -   Obtaining the source code of other OpenHarmony releases
@@ -309,11 +338,44 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     For details about how to obtain the source code of other releases, see the  [Release Notes](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-Release-Notes.md).
 
 
+**Obtaining the Source Code for Standard Systems \(2.0 Canary\)**
+
+1.  Create an OpenHarmony working directory.
+
+    ```
+    mkdir OpenHarmony
+    ```
+
+2.  Go to the OpenHarmony working directory.
+
+    ```
+    cd OpenHarmony
+    ```
+
+3.  Initialize the repository.
+
+    ```
+    repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
+    ```
+
+4.  Update the code.
+
+    ```
+    repo sync -c
+    ```
+
+5.  Update the binary files.
+
+    ```
+    repo forall -c 'git lfs pull'
+    ```
+
+
 ## Source Code Directories<a name="section1072115612811"></a>
 
 The following table describes the OpenHarmony source code directories.
 
-**Table  2**  Directory description
+**Table  2**  Source code directories
 
 <a name="table3815144702820"></a>
 <table><thead align="left"><tr id="row198162047192810"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p690319291299"><a name="p690319291299"></a><a name="p690319291299"></a>Name</p>
@@ -324,7 +386,7 @@ The following table describes the OpenHarmony source code directories.
 </thead>
 <tbody><tr id="row1981674719280"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p69031429162912"><a name="p69031429162912"></a><a name="p69031429162912"></a>applications</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p090352912914"><a name="p090352912914"></a><a name="p090352912914"></a>Application samples, including <strong id="b18983231356"><a name="b18983231356"></a><a name="b18983231356"></a>wifi-iot</strong> and <strong id="b689814231158"><a name="b689814231158"></a><a name="b689814231158"></a>ip-camera</strong></p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p090352912914"><a name="p090352912914"></a><a name="p090352912914"></a>Application samples, for example, <strong id="b689814231158"><a name="b689814231158"></a><a name="b689814231158"></a>camera</strong></p>
 </td>
 </tr>
 <tr id="row5816747132817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p99031129112918"><a name="p99031129112918"></a><a name="p99031129112918"></a>base</p>

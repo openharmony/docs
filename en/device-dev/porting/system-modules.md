@@ -14,7 +14,7 @@ This service-oriented framework enables you to develop services, features, and e
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
 >This module must be used during board-level system porting. Otherwise, other service modules cannot run properly.
 
-For details about how to use SAMGR, see  [Service Framework Subsystem](https://gitee.com/openharmony/docs/blob/master/docs-en/readme/service-framework-subsystem.md).
+For details about how to use SAMGR, see  [samgr\_lite](https://gitee.com/openharmony/distributedschedule_samgr_lite/blob/master/README.md).
 
 ## DFX<a name="section20064420420"></a>
 
@@ -22,5 +22,5 @@ For details about how to use SAMGR, see  [Service Framework Subsystem](https://g
 
 The design for X \(DFX\) subsystem mainly includes design for reliability \(DFR\) and design for testability \(DFT\), providing code maintenance and testing.
 
-For details, see  **[DFX](../subsystems/DFX.md)**.
+For details, see  [dfx](../subsystems/dfx.md).
 

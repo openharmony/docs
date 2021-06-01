@@ -3,7 +3,7 @@
 This use case takes  **camera\_sample**  \(contained in the source code\) as an example for photographing, recording, and previewing on the development board.
 
 -   You can obtain source code of the sample from  **applications/sample/camera/media/camera\_sample.cpp**.
--   Before running the sample camera, you need to compile, burn, and run the image. For details, see  [Getting Started with Hi3516](../quick-start/introduction-to-the-hi3516-development-board.md).
+-   Before running the sample camera, you need to compile, burn, and run the image. For details, see  [Getting Started with Hi3516](../quick-start/hi3516-development-board.md).
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
     >After the development board is started, the home screen is loaded and displayed above the media layer by default. To prevent covering  **camera\_sample**, you should remove the home screen during compilation or packaging.

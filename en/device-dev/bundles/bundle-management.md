@@ -217,7 +217,7 @@ You can use the hpm-cli tool to manage the lifecycle of a bundle. The following 
 </td>
 <td class="cellrowborder" valign="top" width="30.623062306230626%" headers="mcps1.2.4.1.2 "><p id="p9291492204"><a name="p9291492204"></a><a name="p9291492204"></a>hpm gen-keys</p>
 </td>
-<td class="cellrowborder" valign="top" width="48.42484248424842%" headers="mcps1.2.4.1.3 "><p id="p429249182012"><a name="p429249182012"></a><a name="p429249182012"></a>Generates a public-private key pair and configures the public key on the hpm server, achieving password-free <strong id="b139191811163315"><a name="b139191811163315"></a><a name="b139191811163315"></a>hpm-cli</strong> login for bundle publishing.</p>
+<td class="cellrowborder" valign="top" width="48.42484248424842%" headers="mcps1.2.4.1.3 "><p id="p429249182012"><a name="p429249182012"></a><a name="p429249182012"></a>Generates a public-private key pair and configures the public key on the HPM server, achieving password-free <strong id="b139191811163315"><a name="b139191811163315"></a><a name="b139191811163315"></a>hpm-cli</strong> login for bundle publishing.</p>
 </td>
 </tr>
 <tr id="row3556450102011"><td class="cellrowborder" valign="top" width="20.95209520952095%" headers="mcps1.2.4.1.1 "><p id="p35561850172015"><a name="p35561850172015"></a><a name="p35561850172015"></a>Generating third-party open source notice</p>

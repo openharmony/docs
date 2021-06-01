@@ -101,31 +101,27 @@
 
     You can use the  **<div\>**  and  **<stack\>**  \(with  **top**  and  **left**  attributes\) components.
 
-11. How do I set component opacity?
-
-    For the  **<image\>**  component, set the  **opacity**  attribute. For other components, set the alpha value \(in RGBA color channels\).
-
-12. How do I display or hide a component?
+11. How do I display or hide a component?
 
     You can use  **display**,  **show**, or  **if**. When an  **if**  clause evaluates to  **false**, the corresponding component will be removed from the VDOM. When  **show**  is set to  **false**, the component will be invisible during rendering, but will not be removed from the VDOM.
 
-13. What are the precautions for using the  **margin**  attribute?
+12. What are the precautions for using the  **margin**  attribute?
 
     The  **margin**  attribute cannot be set for child components of the  **<stack\>**  component.
 
-14. What are the precautions for event subscription?
+13. What are the precautions for event subscription?
 
     Only one page exists when the application is running. Therefore, the  **router.replace**  function destroys the previous page and then creates a new one. For event subscription pages, the event should be subscribed every time a page is created, and unsubscribed before page switching.
 
-15. What are the precautions for using dynamic binding?
+14. What are the precautions for using dynamic binding?
 
     Do not use too many dynamic bindings because they consume too much memory.
 
-16. How does the  **loop**  attribute take effect for  **<swiper\>**?
+15. How does the  **loop**  attribute take effect for  **<swiper\>**?
 
     If the total length of the child components, except for the first and last ones, is greater than the length of  **<swiper\>**, the  **loop**  attribute takes effect.
 
-17. What are the precautions for using an array?
+16. What are the precautions for using an array?
 
     Do not include too many elements in an array. Avoid frequent operations on a large array.
 

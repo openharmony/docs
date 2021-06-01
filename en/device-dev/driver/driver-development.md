@@ -164,11 +164,12 @@ Driver development based on the HDF consists of two parts: driver implementation
 >    ```
 >    typedef enum {
 >        DEVICE_PRELOAD_ENABLE = 0,
+>        DEVICE_PRELOAD_ENABLE_STEP2,
 >        DEVICE_PRELOAD_DISABLE,
 >        DEVICE_PRELOAD_INVALID
 >    } DevicePreload;
 >    ```
->    In the configuration file, if the value of the  **preload**  field is set to  **0**  \(DEVICE\_PRELOAD\_ENABLE\), driver is loaded by default during system startup. If this field value is set to  **1**  \(DEVICE\_PRELOAD\_DISABLE\), the driver is not loaded by default during system startup and can be dynamically loaded later. If the driver service does not exist when a user-level application obtains the driver service \(for details about how to obtain the driver service, see  [Driver Message Mechanism Management](driver-message-mechanism-management.md)\), the HDF attempts to dynamically load the driver.
+>    When the  **preload**  field in the configuration file is set to  **0**  \(**DEVICE\_PRELOAD\_ENABLE**\), the driver is loaded by default during system startup. When this field is set to  **1**  \(**DEVICE\_PRELOAD\_ENABLE\_STEP2**\), the driver is loaded after system startup if quick start is enabled; it is loaded during system startup otherwise. When this field is set to  **2**  \(**DEVICE\_PRELOAD\_DISABLE**\), the driver is not loaded by default during system startup and can be dynamically loaded later. If the driver service does not exist when a user-level application obtains the driver service \(for details about how to obtain the driver service, see  [Driver Message Mechanism Management](driver-message-mechanism-management.md)\), the HDF attempts to dynamically load the driver.
 >-   Sequential loading \(drivers must be loaded by default\)
 >    In the configuration file, the  **priority**  field \(the value is an integer ranging from 0 to 200\) indicates the priority of the host and driver. For drivers in different hosts, a smaller host priority value indicates a higher driver loading priority; for drivers in the same host, a smaller driver priority value indicates a higher driver loading priority.
 

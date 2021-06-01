@@ -1,4 +1,4 @@
-# TOUCHSCREEN<a name="ZH-CN_TOPIC_0000001053018311"></a>
+# TOUCHSCREEN<a name="ZH-CN_TOPIC_0000001158161717"></a>
 
 -   **[Touchscreen开发概述](Touchscreen开发概述.md)**  
 

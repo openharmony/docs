@@ -1,17 +1,17 @@
-# 集成三方SDK<a name="ZH-CN_TOPIC_0000001054412155"></a>
+# 集成三方SDK<a name="ZH-CN_TOPIC_0000001051612018"></a>
 
--   [规划目录结构](#zh-cn_topic_0000001051612018_section1736472718351)
--   [构建业务libs](#zh-cn_topic_0000001051612018_section442815485351)
--   [编写适配代码](#zh-cn_topic_0000001051612018_section3984721113613)
--   [代码编写](#zh-cn_topic_0000001051612018_section830417531286)
--   [脚本编写](#zh-cn_topic_0000001051612018_section13500201173710)
--   [编写业务代码](#zh-cn_topic_0000001051612018_section8754114803918)
--   [运行](#zh-cn_topic_0000001051612018_section7737749184012)
--   [结束](#zh-cn_topic_0000001051612018_section153301392411)
+-   [规划目录结构](#section1736472718351)
+-   [构建业务libs](#section442815485351)
+-   [编写适配代码](#section3984721113613)
+-   [代码编写](#section830417531286)
+-   [脚本编写](#section13500201173710)
+-   [编写业务代码](#section8754114803918)
+-   [运行](#section7737749184012)
+-   [结束](#section153301392411)
 
 OpenHarmony致力于打造一套更加开放完善的IoT生态系统，为此OpenHarmony规划了一组目录，用于将各厂商的SDK集成到OpenHarmony中。本文档基于Hi3861开发板，向平台开发者介绍将SDK集成到OpenHarmony的方法。
 
-## 规划目录结构<a name="zh-cn_topic_0000001051612018_section1736472718351"></a>
+## 规划目录结构<a name="section1736472718351"></a>
 
 三方SDK通常由静态库和适配代码构成。SDK的业务逻辑通过硬件模组工具链编译得到静态库libs，每款模组都有其对应的libs。SDK的南向API与OpenHarmony 的API存在使用差异，该差异可通过adapter适配代码屏蔽，不同模组可共用一套adapter。
 
@@ -45,7 +45,7 @@ OpenHarmony致力于打造一套更加开放完善的IoT生态系统，为此Ope
                          └── libs
 ```
 
-## 构建业务libs<a name="zh-cn_topic_0000001051612018_section442815485351"></a>
+## 构建业务libs<a name="section442815485351"></a>
 
 平台SDK业务一般以静态库的形式提供，平台厂商在获取到OpenHarmony代码后，需要根据对应的硬件模组vendor，编译业务libs，并将编译结果放置在device/hisilicon/hispark\_pegasus/sdk\_liteos/3rd\_sdk/demolink/libs/ 目录下。下面介绍业务libs的构建方法。
 
@@ -65,7 +65,7 @@ OpenHarmony已规划用于编译业务libs的目录domains/iot/link/libbuild/ �
 
 平台开发者在构建libs前，务必先完成如下步骤。
 
-1.  在domains/iot/link/libbuild/ 目录下放置业务源码文件，包括.c和.h文件。编译完成后清空目录下源码文件。
+1.  在domains/iot/link/libbuild/ 目录下放置业务源码文件，包括.c和.h文件。
 
     ```
     .
@@ -125,9 +125,9 @@ OpenHarmony已规划用于编译业务libs的目录domains/iot/link/libbuild/ �
 
 将库文件拷贝到device/hisilicon/hispark\_pegasus/sdk\_liteos/3rd\_sdk/demolink/libs/ 目录下，并将domains/iot/link/libbuild/ 目录中的.c和.h文件清除。
 
-## 编写适配代码<a name="zh-cn_topic_0000001051612018_section3984721113613"></a>
+## 编写适配代码<a name="section3984721113613"></a>
 
-## 代码编写<a name="zh-cn_topic_0000001051612018_section830417531286"></a>
+## 代码编写<a name="section830417531286"></a>
 
 平台SDK中使用的API通常与OpenHarmony API存在差异，无法直接使用，需要一层适配代码adapter进行中间转换。本节以domains/iot/link/demolink/demosdk\_adapter.c中的任务创建接口DemoSdkCreateTask举例，向开发者演示如何在OpenHarmony上编写适配代码。
 
@@ -202,7 +202,7 @@ OpenHarmony已规划用于编译业务libs的目录domains/iot/link/libbuild/ �
     ```
 
 
-## 脚本编写<a name="zh-cn_topic_0000001051612018_section13500201173710"></a>
+## 脚本编写<a name="section13500201173710"></a>
 
 开发者在完成代码适配后，还需要在adapter同级目录下新建BUILD.gn文件。该文件可在整包构建时，将适配代码编译成静态库，并链接到bin包中去。在domains/iot/link/demolink/BUILD.gn中，sources中为需要参与构建的源文件，include\_dirs中为依赖的头文件路径，构建目标结果是生产静态库libdemolinkadapter.a。
 
@@ -236,7 +236,7 @@ lite_component("link") {
 }
 ```
 
-## 编写业务代码<a name="zh-cn_topic_0000001051612018_section8754114803918"></a>
+## 编写业务代码<a name="section8754114803918"></a>
 
 业务libs库和适配代码准备就绪后，还需要编写业务入口函数，调起三方SDK的业务入口。
 
@@ -304,7 +304,7 @@ lite_component("link") {
     ```
 
 
-## 运行<a name="zh-cn_topic_0000001051612018_section7737749184012"></a>
+## 运行<a name="section7737749184012"></a>
 
 在代码根目录下，执行命令“hb build”编译输出版本包。最后启动运行，运行结果如图所示，与demolink预期相符。
 
@@ -319,7 +319,7 @@ it is demo biz: hello world.
 it is demo biz: hello world.
 ```
 
-## 结束<a name="zh-cn_topic_0000001051612018_section153301392411"></a>
+## 结束<a name="section153301392411"></a>
 
 至此，三方SDK集成已介绍完毕。
 

@@ -44,7 +44,7 @@ A high-priority thread in a process can preempt the resources of a low-priority 
 
 -   Running→Blocked:
 
-    When a running thread is blocked \(for example, is pended, delayed, or reading semaphores\), the thread is deleted from the ready list, and its state changes from  **Running**  to  **Blocked**. Then, a thread switchover is triggered to run the thread with the highest priority in the ready list.
+    When a running thread is blocked \(for example, is pended, delayed, or reading semaphores\), its state changes from  **Running**  to  **Blocked**. Then, a thread switchover is triggered to run the thread with the highest priority in the ready list.
 
 -   Blocked→Ready:
 
@@ -95,7 +95,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row28802274616"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p148806212469"><a name="p148806212469"></a><a name="p148806212469"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p7880720461"><a name="p7880720461"></a><a name="p7880720461"></a>pthread_attr_getinheritsched</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p7880720461"><a name="p7880720461"></a><a name="p7880720461"></a><span>pthread_attr_getinheritsched</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p588012104619"><a name="p588012104619"></a><a name="p588012104619"></a>Obtains inherit scheduler attributes of a thread attribute object.</p>
 </td>
@@ -104,7 +104,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1888132164611"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p8881202114618"><a name="p8881202114618"></a><a name="p8881202114618"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p13881142154614"><a name="p13881142154614"></a><a name="p13881142154614"></a>pthread_attr_getschedparam</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p13881142154614"><a name="p13881142154614"></a><a name="p13881142154614"></a><span>pthread_attr_getschedparam</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p12881142144612"><a name="p12881142144612"></a><a name="p12881142144612"></a>Obtains scheduling parameter attributes of a thread attribute object.</p>
 </td>
@@ -113,7 +113,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row788102134613"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p16881122114611"><a name="p16881122114611"></a><a name="p16881122114611"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p388111215466"><a name="p388111215466"></a><a name="p388111215466"></a>pthread_attr_getschedpolicy</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p388111215466"><a name="p388111215466"></a><a name="p388111215466"></a><span>pthread_attr_getschedpolicy</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p19881152174612"><a name="p19881152174612"></a><a name="p19881152174612"></a>Obtains scheduling policy attributes of a thread attribute object.</p>
 </td>
@@ -122,7 +122,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row14881423468"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p588152114611"><a name="p588152114611"></a><a name="p588152114611"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188811626465"><a name="p188811626465"></a><a name="p188811626465"></a>pthread_attr_getstacksize</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188811626465"><a name="p188811626465"></a><a name="p188811626465"></a><span>pthread_attr_getstacksize</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p08825214467"><a name="p08825214467"></a><a name="p08825214467"></a>Obtains the stack size of a thread attribute object.</p>
 </td>
@@ -131,7 +131,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row088212144619"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p688215274612"><a name="p688215274612"></a><a name="p688215274612"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p88827218466"><a name="p88827218466"></a><a name="p88827218466"></a>pthread_attr_init</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p88827218466"><a name="p88827218466"></a><a name="p88827218466"></a><span>pthread_attr_init</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p14447368158"><a name="p14447368158"></a><a name="p14447368158"></a>Initializes a thread attribute object.</p>
 </td>
@@ -140,7 +140,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1788214210462"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p3882525463"><a name="p3882525463"></a><a name="p3882525463"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1882528461"><a name="p1882528461"></a><a name="p1882528461"></a>pthread_attr_setdetachstate</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1882528461"><a name="p1882528461"></a><a name="p1882528461"></a><span>pthread_attr_setdetachstate</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p11455363157"><a name="p11455363157"></a><a name="p11455363157"></a>Sets the detach state for a thread attribute object.</p>
 </td>
@@ -149,7 +149,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row188829211469"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1088222134619"><a name="p1088222134619"></a><a name="p1088222134619"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p588272204612"><a name="p588272204612"></a><a name="p588272204612"></a>pthread_attr_setinheritsched</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p588272204612"><a name="p588272204612"></a><a name="p588272204612"></a><span>pthread_attr_setinheritsched</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p14611364154"><a name="p14611364154"></a><a name="p14611364154"></a>Sets inherit scheduler attributes for a thread attribute object.</p>
 </td>
@@ -158,7 +158,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1588310244610"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p118831210461"><a name="p118831210461"></a><a name="p118831210461"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188318214611"><a name="p188318214611"></a><a name="p188318214611"></a>pthread_attr_setschedparam</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188318214611"><a name="p188318214611"></a><a name="p188318214611"></a><span>pthread_attr_setschedparam</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p1746636141515"><a name="p1746636141515"></a><a name="p1746636141515"></a>Sets scheduling parameter attributes for a thread attribute object.</p>
 </td>
@@ -168,7 +168,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row118831264610"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1688315220469"><a name="p1688315220469"></a><a name="p1688315220469"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1488320217468"><a name="p1488320217468"></a><a name="p1488320217468"></a>pthread_attr_setschedpolicy</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1488320217468"><a name="p1488320217468"></a><a name="p1488320217468"></a><span>pthread_attr_setschedpolicy</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p154615365156"><a name="p154615365156"></a><a name="p154615365156"></a>Sets scheduling policy attributes for a thread attribute object.</p>
 </td>
@@ -177,7 +177,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row888320244618"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p88840216460"><a name="p88840216460"></a><a name="p88840216460"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p3884328461"><a name="p3884328461"></a><a name="p3884328461"></a>pthread_attr_setstacksize</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p3884328461"><a name="p3884328461"></a><a name="p3884328461"></a><span>pthread_attr_setstacksize</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p158841329461"><a name="p158841329461"></a><a name="p158841329461"></a>Sets the stack size for a thread attribute object.</p>
 </td>
@@ -195,7 +195,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row28842029469"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1788412214613"><a name="p1788412214613"></a><a name="p1788412214613"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188411220465"><a name="p188411220465"></a><a name="p188411220465"></a>pthread_cancel</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188411220465"><a name="p188411220465"></a><a name="p188411220465"></a><span>pthread_cancel</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p08001317121519"><a name="p08001317121519"></a><a name="p08001317121519"></a>Sends a cancellation request to a thread.</p>
 </td>
@@ -231,7 +231,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1288520284619"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p158851125462"><a name="p158851125462"></a><a name="p158851125462"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188511211463"><a name="p188511211463"></a><a name="p188511211463"></a>pthread_create</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188511211463"><a name="p188511211463"></a><a name="p188511211463"></a><span>pthread_create</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p18798171712153"><a name="p18798171712153"></a><a name="p18798171712153"></a>Creates a thread.</p>
 </td>
@@ -240,7 +240,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1288614204611"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p388610218462"><a name="p388610218462"></a><a name="p388610218462"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p108861274620"><a name="p108861274620"></a><a name="p108861274620"></a>pthread_detach</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p108861274620"><a name="p108861274620"></a><a name="p108861274620"></a><span>pthread_detach</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p379831718156"><a name="p379831718156"></a><a name="p379831718156"></a>Detaches a thread.</p>
 </td>
@@ -249,7 +249,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row188614213467"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p14886826461"><a name="p14886826461"></a><a name="p14886826461"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p108861527469"><a name="p108861527469"></a><a name="p108861527469"></a>pthread_equal</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p108861527469"><a name="p108861527469"></a><a name="p108861527469"></a><span>pthread_equal</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p18799817181516"><a name="p18799817181516"></a><a name="p18799817181516"></a>Compares whether two thread IDs are equal.</p>
 </td>
@@ -258,7 +258,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1488619294613"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p108867214619"><a name="p108867214619"></a><a name="p108867214619"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p988752164613"><a name="p988752164613"></a><a name="p988752164613"></a>pthread_exit</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p988752164613"><a name="p988752164613"></a><a name="p988752164613"></a><span>pthread_exit</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p979871741512"><a name="p979871741512"></a><a name="p979871741512"></a>Terminates the calling thread.</p>
 </td>
@@ -267,7 +267,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row88871220467"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p188877244617"><a name="p188877244617"></a><a name="p188877244617"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188879212461"><a name="p188879212461"></a><a name="p188879212461"></a>pthread_getschedparam</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p188879212461"><a name="p188879212461"></a><a name="p188879212461"></a><span>pthread_getschedparam</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p158001717101517"><a name="p158001717101517"></a><a name="p158001717101517"></a>Obtains the scheduling policy and parameters of a thread.</p>
 </td>
@@ -276,7 +276,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row198871527462"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1188715284613"><a name="p1188715284613"></a><a name="p1188715284613"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p088715274620"><a name="p088715274620"></a><a name="p088715274620"></a>pthread_join</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p088715274620"><a name="p088715274620"></a><a name="p088715274620"></a><span>pthread_join</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p2079921719159"><a name="p2079921719159"></a><a name="p2079921719159"></a>Waits for a thread to terminate.</p>
 </td>
@@ -393,7 +393,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row118914214464"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1289116214465"><a name="p1289116214465"></a><a name="p1289116214465"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1989116254616"><a name="p1989116254616"></a><a name="p1989116254616"></a>pthread_mutex_destroy</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1989116254616"><a name="p1989116254616"></a><a name="p1989116254616"></a><span>pthread_mutex_destroy</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p3891927469"><a name="p3891927469"></a><a name="p3891927469"></a>Destroys a mutex.</p>
 </td>
@@ -402,7 +402,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row18891326468"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p68915219469"><a name="p68915219469"></a><a name="p68915219469"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p689212124610"><a name="p689212124610"></a><a name="p689212124610"></a>pthread_mutex_init</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p689212124610"><a name="p689212124610"></a><a name="p689212124610"></a><span>pthread_mutex_init</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p189262174615"><a name="p189262174615"></a><a name="p189262174615"></a>Initializes a mutex.</p>
 </td>
@@ -411,7 +411,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1689213216461"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p38923244615"><a name="p38923244615"></a><a name="p38923244615"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p989216213462"><a name="p989216213462"></a><a name="p989216213462"></a>pthread_mutex_lock</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p989216213462"><a name="p989216213462"></a><a name="p989216213462"></a><span>pthread_mutex_lock</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p1089216218469"><a name="p1089216218469"></a><a name="p1089216218469"></a>Locks a mutex.</p>
 </td>
@@ -420,7 +420,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row989214284614"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p168927213469"><a name="p168927213469"></a><a name="p168927213469"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1389262154612"><a name="p1389262154612"></a><a name="p1389262154612"></a>pthread_mutex_trylock</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1389262154612"><a name="p1389262154612"></a><a name="p1389262154612"></a><span>pthread_mutex_trylock</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p9892182114619"><a name="p9892182114619"></a><a name="p9892182114619"></a>Attempts to lock a mutex.</p>
 </td>
@@ -429,7 +429,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1989218264610"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1892122164617"><a name="p1892122164617"></a><a name="p1892122164617"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p8893132114614"><a name="p8893132114614"></a><a name="p8893132114614"></a>pthread_mutex_unlock</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p8893132114614"><a name="p8893132114614"></a><a name="p8893132114614"></a><span>pthread_mutex_unlock</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p7893182154611"><a name="p7893182154611"></a><a name="p7893182154611"></a>Unlocks a mutex.</p>
 </td>
@@ -438,7 +438,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row10893192194614"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1789317254618"><a name="p1789317254618"></a><a name="p1789317254618"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1089320217465"><a name="p1089320217465"></a><a name="p1089320217465"></a>pthread_mutexattr_destroy</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1089320217465"><a name="p1089320217465"></a><a name="p1089320217465"></a><span>pthread_mutexattr_destroy</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p168933274614"><a name="p168933274614"></a><a name="p168933274614"></a>Destroys a mutex attribute object.</p>
 </td>
@@ -447,7 +447,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row7893523465"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p128937234619"><a name="p128937234619"></a><a name="p128937234619"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p38931922469"><a name="p38931922469"></a><a name="p38931922469"></a>pthread_mutexattr_gettype</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p38931922469"><a name="p38931922469"></a><a name="p38931922469"></a><span>pthread_mutexattr_gettype</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p547173614155"><a name="p547173614155"></a><a name="p547173614155"></a>Obtains the mutex type attribute.</p>
 </td>
@@ -456,7 +456,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row15893526464"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1989416284611"><a name="p1989416284611"></a><a name="p1989416284611"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1389413212461"><a name="p1389413212461"></a><a name="p1389413212461"></a>pthread_mutexattr_init</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1389413212461"><a name="p1389413212461"></a><a name="p1389413212461"></a><span>pthread_mutexattr_init</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p447133671516"><a name="p447133671516"></a><a name="p447133671516"></a>Initializes a mutex attribute object.</p>
 </td>
@@ -465,7 +465,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1894102194616"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1289432134614"><a name="p1289432134614"></a><a name="p1289432134614"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p18941928465"><a name="p18941928465"></a><a name="p18941928465"></a>pthread_mutexattr_settype</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p18941928465"><a name="p18941928465"></a><a name="p18941928465"></a><span>pthread_mutexattr_settype</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p1247203611159"><a name="p1247203611159"></a><a name="p1247203611159"></a>Sets the mutex type attribute.</p>
 </td>
@@ -582,7 +582,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row10900320461"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p5901229462"><a name="p5901229462"></a><a name="p5901229462"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p149018294618"><a name="p149018294618"></a><a name="p149018294618"></a>pthread_cond_broadcast</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p149018294618"><a name="p149018294618"></a><a name="p149018294618"></a><span>pthread_cond_broadcast</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p16802181771514"><a name="p16802181771514"></a><a name="p16802181771514"></a>Unblocks all threads that are currently blocked on the condition variable <strong id="b3838632172213"><a name="b3838632172213"></a><a name="b3838632172213"></a>cond</strong>.</p>
 </td>
@@ -591,7 +591,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row590115234620"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p15901202194613"><a name="p15901202194613"></a><a name="p15901202194613"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1190119212466"><a name="p1190119212466"></a><a name="p1190119212466"></a>pthread_cond_destroy</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1190119212466"><a name="p1190119212466"></a><a name="p1190119212466"></a><span>pthread_cond_destroy</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p19802017191512"><a name="p19802017191512"></a><a name="p19802017191512"></a>Destroys a condition variable.</p>
 </td>
@@ -600,7 +600,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1890192164611"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p3901112204616"><a name="p3901112204616"></a><a name="p3901112204616"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1890102184618"><a name="p1890102184618"></a><a name="p1890102184618"></a>pthread_cond_init</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1890102184618"><a name="p1890102184618"></a><a name="p1890102184618"></a><span>pthread_cond_init</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p48025173153"><a name="p48025173153"></a><a name="p48025173153"></a>Initializes a condition variable.</p>
 </td>
@@ -609,7 +609,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row129011214615"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p9902523468"><a name="p9902523468"></a><a name="p9902523468"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p59021722460"><a name="p59021722460"></a><a name="p59021722460"></a>pthread_cond_signal</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p59021722460"><a name="p59021722460"></a><a name="p59021722460"></a><span>pthread_cond_signal</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p58024177158"><a name="p58024177158"></a><a name="p58024177158"></a>Unblocks a thread.</p>
 </td>
@@ -618,7 +618,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row13902423461"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p69022025464"><a name="p69022025464"></a><a name="p69022025464"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1190252134620"><a name="p1190252134620"></a><a name="p1190252134620"></a>pthread_cond_timedwait</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1190252134620"><a name="p1190252134620"></a><a name="p1190252134620"></a><span>pthread_cond_timedwait</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p158024175151"><a name="p158024175151"></a><a name="p158024175151"></a>Blocks the calling thread to wait for the condition set by <strong id="b258919128234"><a name="b258919128234"></a><a name="b258919128234"></a>pthread_con_signal()</strong> for a period of time specified by <strong id="b7341315122310"><a name="b7341315122310"></a><a name="b7341315122310"></a>ts</strong>.</p>
 </td>
@@ -627,7 +627,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row189022218464"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p09021228463"><a name="p09021228463"></a><a name="p09021228463"></a>pthread.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p3902324460"><a name="p3902324460"></a><a name="p3902324460"></a>pthread_cond_wait</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p3902324460"><a name="p3902324460"></a><a name="p3902324460"></a><span>pthread_cond_wait</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p1690262154612"><a name="p1690262154612"></a><a name="p1690262154612"></a>Blocks the calling thread to wait for the condition set by <strong id="b1273262914233"><a name="b1273262914233"></a><a name="b1273262914233"></a>pthread_con_signal()</strong>.</p>
 </td>
@@ -636,7 +636,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row159027218467"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p990318212464"><a name="p990318212464"></a><a name="p990318212464"></a>semaphore.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p109039234617"><a name="p109039234617"></a><a name="p109039234617"></a>sem_destroy</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p109039234617"><a name="p109039234617"></a><a name="p109039234617"></a><span>sem_destroy</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p195081328171710"><a name="p195081328171710"></a><a name="p195081328171710"></a>Destroys a specified anonymous semaphore that is no longer used.</p>
 </td>
@@ -645,7 +645,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1690342194611"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1490318217469"><a name="p1490318217469"></a><a name="p1490318217469"></a>semaphore.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p0903162124610"><a name="p0903162124610"></a><a name="p0903162124610"></a>sem_getvalue</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p0903162124610"><a name="p0903162124610"></a><a name="p0903162124610"></a><span>sem_getvalue</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p650892891712"><a name="p650892891712"></a><a name="p650892891712"></a>Obtains the count value of a specified semaphore.</p>
 </td>
@@ -654,7 +654,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1490312214464"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p159031284618"><a name="p159031284618"></a><a name="p159031284618"></a>semaphore.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1790315254617"><a name="p1790315254617"></a><a name="p1790315254617"></a>sem_init</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1790315254617"><a name="p1790315254617"></a><a name="p1790315254617"></a><span>sem_init</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p2508328121711"><a name="p2508328121711"></a><a name="p2508328121711"></a>Creates and initializes an anonymous semaphore.</p>
 </td>
@@ -663,7 +663,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row1490416211462"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p3904126469"><a name="p3904126469"></a><a name="p3904126469"></a>semaphore.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p090416220464"><a name="p090416220464"></a><a name="p090416220464"></a>sem_post</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p090416220464"><a name="p090416220464"></a><a name="p090416220464"></a><span>sem_post</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p6508162813176"><a name="p6508162813176"></a><a name="p6508162813176"></a>Increments the semaphore count by 1.</p>
 </td>
@@ -672,7 +672,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row14904162164618"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p1590432194620"><a name="p1590432194620"></a><a name="p1590432194620"></a>semaphore.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p29041822467"><a name="p29041822467"></a><a name="p29041822467"></a>sem_timedwait</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p29041822467"><a name="p29041822467"></a><a name="p29041822467"></a><span>sem_timedwait</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p139049213468"><a name="p139049213468"></a><a name="p139049213468"></a>Obtains the semaphore, with a timeout period specified.</p>
 </td>
@@ -681,7 +681,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row390411211468"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p199049214612"><a name="p199049214612"></a><a name="p199049214612"></a>semaphore.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1190413217467"><a name="p1190413217467"></a><a name="p1190413217467"></a>sem_trywait</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p1190413217467"><a name="p1190413217467"></a><a name="p1190413217467"></a><span>sem_trywait</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p18509102891714"><a name="p18509102891714"></a><a name="p18509102891714"></a>Attempts to obtain the semaphore.</p>
 </td>
@@ -690,7 +690,7 @@ The following table describes the APIs provided by the thread management module 
 </tr>
 <tr id="row3905152174616"><td class="cellrowborder" valign="top" width="14.29%" headers="mcps1.2.5.1.1 "><p id="p690513215466"><a name="p690513215466"></a><a name="p690513215466"></a>semaphore.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p15905926462"><a name="p15905926462"></a><a name="p15905926462"></a>sem_wait</p>
+<td class="cellrowborder" valign="top" width="28.57%" headers="mcps1.2.5.1.2 "><p id="p15905926462"><a name="p15905926462"></a><a name="p15905926462"></a><span>sem_wait</span></p>
 </td>
 <td class="cellrowborder" valign="top" width="22.45%" headers="mcps1.2.5.1.3 "><p id="p950912813172"><a name="p950912813172"></a><a name="p950912813172"></a>Obtains the semaphore.</p>
 </td>

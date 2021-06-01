@@ -7,7 +7,7 @@
     -   [Cross-Compilation Settings](#section8168182883515)
 
 -   [Library Test](#section6686144293611)
--   [Adding the Compiled double-conversion Library to the  Project](#section1651053153715)
+-   [Adding the Compiled double-conversion Library to the OpenHarmony Project](#section1651053153715)
 
 The following shows how to port the double-conversion library.
 
@@ -339,7 +339,7 @@ The following steps show how to configure and modify the toolchains for cross-co
         action("make") {
             script = "//third_party/double-conversion/build_thirdparty.py"
             outputs = ["$root_out_dir/log_dc.txt"]
-            exec_path = rebase_path(rebase_path("./double-conversion/build", root_build_dir))
+            exec_path = rebase_path(rebase_path("./build", ohos_third_party_dir))
             command = "rm * .* -rf && $CMAKE_TOOLS_PATH/cmake .. $CMAKE_FLAG $CMAKE_TOOLCHAIN_FLAG && make -j"
             args = [
                 "--path=$exec_path",
@@ -416,50 +416,18 @@ The following steps show how to configure and modify the toolchains for cross-co
 
     ```
     declare_args() {
-        ohos_build_thirdparty_migrated_from_fuchisa = false
+        ohos_build_thirdparty_migrated_from_fuchisa = true
     }
     ```
 
-3.  Add the library to the compiling configuration.
-
-    Add the directory where the library is located to the project compiling configuration. Taking Hi3518EV300 for example, modify the  **openHarmony\\build\\lite\\product\\ ipcamera\_hi3518ev300.json**  file and add the following configuration to  **subsystem**, as shown in  [Figure 2](#fig152112412192).
-
-    ```
-    {
-      "name": "double-conversion",
-      "component": [
-        { "name": "double-conversion", "dir": "//third_party/double-conversion:double-conversion", "features":[] }
-      ]
-    },
-    ```
-
-    **Figure  2**  Position for adding the configuration<a name="fig152112412192"></a>  
-    ![](figures/position-for-adding-the-configuration.png "position-for-adding-the-configuration")
-
-4.  Build the library.
+3.  Build the library.
 
     -   Manual building
 
     Execute the following command:
 
     ```
-    python build.py ipcamera_hi3518ev300 -T //third_party/double-conversion:double-conversion
-    ```
-
-    If the compilation is successful, a static library file and test cases will be generated in the  [build](#li15717101715249)  directory.
-
-    -   Automatic building with the project
-
-    Modify the compiling configuration in the  **//build/lite/ohos\_var.gni**  file.
-
-    ```
-    ohos_build_thirdparty_migrated_from_fuchisa = true
-    ```
-
-    Execute the following command:
-
-    ```
-    python build.py ipcamera_hi3518ev300 -b debug
+    hb build -T //third_party/double-conversion:double-conversion
     ```
 
     If the compilation is successful, a static library file and test cases will be generated in the  [build](#li15717101715249)  directory.

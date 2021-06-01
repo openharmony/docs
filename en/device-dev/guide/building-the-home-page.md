@@ -85,14 +85,16 @@ The following steps describe how to build the home page with a flexible layout t
     **Figure  1**  Title bar<a name="fig14273162465317"></a>  
     ![](figures/title-bar.png "title-bar")
 
-3.  Add a  **<swiper\>**  to the root component, which is required for implementing rolling between screens.
+3.  The  **<swiper\>**  component is required to implement the switching between screens.
+
+    Add a  **<swiper\>**  to the root node.
 
     ```
     <div class="container">    
         <div class="header" onclick="exitApp">        
             <image class="back" src="common/ic_back.png"></image>        
             <text class="title">            
-                AirQuality        
+                Air quality        
             </text>    
         </div>    
         <swiper class="swiper" index="{{swiperPage}}" duration="500" onchange="swiperChange">
@@ -100,7 +102,7 @@ The following steps describe how to build the home page with a flexible layout t
     </div>
     ```
 
-    -   **class="swiper"**  sets the height and width of the component. The example code is as follows:
+    -   Use  **class="**swiper**"**  to set the height and width of the component. The sample code is as follows:
 
         ```
         .swiper {
@@ -112,7 +114,7 @@ The following steps describe how to build the home page with a flexible layout t
 
     -   **index="\{\{swiperPage\}\}" duration="500" onchange="swiperChange"**  sets the component attribute and event.  **duration="500"**  indicates that the duration of the swiping animation is 500 ms.
     -   **index="\{\{swiperPage\}\}"**  specifies the index of the child component of  **<swiper\>**.  **\{\{swiperPage\}\}**  indicates that the index value is dynamically bound to the  **swiperPage**  variable in the JavaScript code. The index value changes with the  **swiperPage**  value.
-    -   **onchange="swiperChange"**  binds the change event of the  **<swiper\>**  component to the  **swiperChange**  function. The example JavaScript code is as follows:
+    -   **onchange="swiperChange"**  binds the change event of the  **<swiper\>**  component to the  **swiperChange**  function. The JavaScript code is as follows:
 
         ```
         // Import the router module for page switching.
@@ -122,7 +124,7 @@ The following steps describe how to build the home page with a flexible layout t
         export default {
             // Define parameters.
             data: {
-              // The first swiper page is displayed by default.
+              // By default, the first page is displayed.
               swiperPage: 0 
             },
             onInit () {
@@ -343,8 +345,6 @@ The following steps describe how to build the home page with a flexible layout t
     -   **index.css**
 
     A  **.css**  file contains many classes. Each class defines the position, size, font, color, and background color of a component. Each child component is added to its parent component, and the style file of the parent component affects how the child component will be displayed.
-
-    <div class="circle-div" style="background-color: \{\{iconUncheckedColor\}\};margin-left: 36px;"\></div\>
 
     ```
     .aqi-value {

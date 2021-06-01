@@ -1,4 +1,4 @@
-# OpenHarmony Lite Kernel Basic Functions<a name="EN-US_TOPIC_0000001054329761"></a>
+# OpenHarmony Lite Kernel Basic Functions<a name="EN-US_TOPIC_0000001111199438"></a>
 
 -   **[Process](process.md)**  
 

@@ -554,7 +554,25 @@ The code repository of the testing subsystem provides complete demo cases, which
     ```
 
 2.  Modify the  **developertest/config/user\_config.xml**  file to configure the Developertest component.
-    1.  For devices that support connection to the hdc, modify the configuration file as follows:
+    1.  Modify basic configuration parameters.
+
+        \[build\]    \# Set build parameters of the test case.
+
+        ```
+        <build>
+            <example>false</example>
+            <version>false</version>
+            <testcase>true</testcase>
+            ... ...
+        </build>
+        ```
+
+        >![](public_sys-resources/icon-note.gif) **NOTE:** 
+        >**example**: whether to build the test case example. The default value is  **false**.
+        >**version**: whether to build the test version. The default value is  **false**.
+        >**testcase**: whether to build the test case. The default value is  **true**.
+
+    2.  For devices that support connection to the hdc, modify the configuration file as follows:
 
         Between the  **device**  tags with the  **"usb-hdc"**  attribute, modify the IP address of the device and the port number matching the HDC connection. For example:
 
@@ -566,7 +584,24 @@ The code repository of the testing subsystem provides complete demo cases, which
         </device>
         ```
 
-    2.  For devices that support serial ports only, modify the configuration file as follows:
+    3.  For devices that support serial ports only, modify the configuration file as follows:
+
+        \[board\_info\]    \# Configure development board information.
+
+        ```
+        <board_info>
+            <board_series>hispark</board_series>
+            <board_type>taurus</board_type>
+            <board_product>ipcamera</board_product>
+            <build_command>hb build</build_command>
+        </board_info>
+        ```
+
+        >![](public_sys-resources/icon-note.gif) **NOTE:** 
+        >**board\_series**: development board series. The default value is  **hispark**.
+        >**board\_type**: development board type. The default value is  **taurus**.
+        >**board\_product**: target product. The default value is  **ipcamera**.
+        >**build\_command**: command used for building the test version and test case. The default value is  **hb build**.
 
         Between the  **device**  tags with the  **"ipcamera"**  attribute, modify the serial port information, including the COM port and baud rate. For example:
 
@@ -623,7 +658,7 @@ The code repository of the testing subsystem provides complete demo cases, which
         2.  Run the following command to start the test framework in Linux:
 
             ```
-            ./strat.sh
+            ./start.sh
             ```
 
 

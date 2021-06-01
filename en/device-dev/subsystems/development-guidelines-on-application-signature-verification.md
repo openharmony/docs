@@ -5,7 +5,7 @@
 -   [Available APIs](#section1633115419401)
 -   [Development Procedure \(Scenario 1\)](#section4207112818418)
     -   [Signature Verification](#section11470123816297)
-    -   [Self-signed Application Generation](#section167151429133312)
+    -   [OpenHarmony Self-signed Application Generation](#section167151429133312)
     -   [Development Examples](#section174318361353)
 
 -   [Development Procedure \(Scenario 2\)](#section81272563427)
@@ -85,7 +85,7 @@ The following table lists the innerkits APIs provided by the signature verificat
 
 ### Signature Verification<a name="section11470123816297"></a>
 
-Verification of applications released in the application market, debugging applications signed with debugging certificates of the application market, and OpenHarmony self-signed applications
+To verify applications released in the application market, debugging applications signed with debugging certificates of the application market, and OpenHarmony self-signed applications, perform the following steps:
 
 1.  Construct the VerifyResult structure.
 
@@ -115,7 +115,7 @@ Verification of applications released in the application market, debugging appli
 
 ### OpenHarmony Self-signed Application Generation<a name="section167151429133312"></a>
 
-The OpenHarmony self-signed application generation procedure is as follows:
+The procedure is as follows:
 
 1.  Prepare required materials.
 
@@ -190,7 +190,7 @@ uint8_t HapSignVerify::VerifySignature(const std::string &hapFilepath, Signature
 
 ### Signature Verification<a name="section07028210442"></a>
 
-The procedure is as follows:
+To verify applications signed with certificates that are based on debugging root keys, perform the following steps:
 
 1.  Call the APPVERI\_SetDebugMode\(true\) function to enable the debugging mode.
 

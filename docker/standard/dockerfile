@@ -1,0 +1,91 @@
+FROM ubuntu:18.04
+WORKDIR /home/openharmony
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG PREBUILTS_DIR=/home/prebuilts
+ARG HOME_TOOLS=/home/tools
+ARG HOME_SCRIPTS=/home/scripts
+
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
+
+COPY sources.list /etc/apt
+
+COPY prebuilts_download.sh prepare.sh $HOME_SCRIPTS/
+
+RUN apt-get update \
+	&& apt-get install -y \
+	apt-utils \
+	vim \
+	software-properties-common \
+	openssh-server \
+	iputils-ping \
+	curl \
+	net-tools \
+	bsdmainutils \
+	kmod \
+	bc \
+	rsync \
+	gawk \
+	ssh \
+	ccache \
+	zip \
+	python-dev \
+	make \
+	m4 \
+	gcc-multilib \
+	ca-certificates-java \
+	unzip \
+	python3-yaml \
+	perl \
+	openssl \
+	libssl1.1 \
+	gnupg \
+	xsltproc \
+	x11proto-core-dev \
+	tcl \
+	python3-crypto \
+	python-yaml \
+	python-crypto \
+	libxml2-utils \
+	libxml2-dev \
+	libx11-dev \
+	libssl-dev \
+	libgl1-mesa-dev \
+	lib32z1-dev \
+	lib32ncurses5-dev \
+	g++-multilib \
+	flex \
+	bison \
+	doxygen \
+	git \
+	subversion \
+	tofrodos \
+	pigz \
+	expect \
+	python3-xlrd \
+	python-xlrd \
+	wget \
+	git-core \
+	gperf \
+	build-essential \
+	zlib1g-dev \
+	libc6-dev-i386 \
+	lib32z-dev \
+	openjdk-8-jdk \
+	&& rm -rf /bin/sh \
+	&& ln -s /bin/bash /bin/sh \
+	&& mkdir -p $PREBUILTS_DIR/prebuilts $HOME_TOOLS $HOME_SCRIPTS
+
+RUN wget -P $HOME_TOOLS https://mirrors.huaweicloud.com/nodejs/v12.18.4/node-v12.18.4-linux-x64.tar.gz \
+	&& wget -P $HOME_TOOLS https://mirrors.huaweicloud.com/nodejs/v12.18.4/node-v12.18.4-darwin-x64.tar.gz \
+	&& tar xvf $HOME_TOOLS/node-v12.18.4-linux-x64.tar.gz -C $PREBUILTS_DIR/prebuilts \
+	&& tar xvf $HOME_TOOLS/node-v12.18.4-darwin-x64.tar.gz -C $PREBUILTS_DIR/prebuilts \
+	&& sed -i '$aexport PATH='"$PREBUILTS_DIR"'/prebuilts/node-v12.18.4-linux-x64/bin:$PATH' /root/.bashrc \
+	&& sed -i '$aexport PATH='"$PREBUILTS_DIR"'/prebuilts/hc-gen:$PATH' /root/.bashrc \
+	&& export PATH=$PATH:$PREBUILTS_DIR/prebuilts/node-v12.18.4-linux-x64/bin \
+	&& export PATH=$PATH:$PREBUILTS_DIR/prebuilts/hc-gen \
+	&& rm -rf $HOME_TOOLS \
+	&& chmod -R 777 $HOME_SCRIPTS/*.sh \
+	&& $HOME_SCRIPTS/prebuilts_download.sh \
+	&& rm -rf /tmp/prebuilts \
+	&& npm install -g @ohos/hpm-cli --registry https://registry.npm.taobao.org

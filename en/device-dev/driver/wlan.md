@@ -1,4 +1,4 @@
-# WLAN<a name="EN-US_TOPIC_0000001053618310"></a>
+# WLAN<a name="EN-US_TOPIC_0000001111601748"></a>
 
 -   **[WLAN Overview](wlanoverview.md)**  
 

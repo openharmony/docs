@@ -1,4 +1,4 @@
-# MIPI DSI<a name="EN-US_TOPIC_0000001128689421"></a>
+# MIPI DSI<a name="EN-US_TOPIC_0000001157479387"></a>
 
 -   **[MIPI DSI Overview](mipi-dsi-overview.md)**  
 

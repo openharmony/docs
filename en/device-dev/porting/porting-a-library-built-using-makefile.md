@@ -3,13 +3,13 @@
 -   [Source Code Acquisition](#section114115321416)
 -   [Cross-Compilation Settings](#section81263255384)
 -   [Library Test](#section1830015913391)
--   [Adding the Compiled yxml Library to the  Project](#section1898016213406)
+-   [Adding the Compiled yxml Library to the OpenHarmony Project](#section1898016213406)
 
 The following shows how to port the yxml library.
 
 ## Source Code Acquisition<a name="section114115321416"></a>
 
-Acquire the source code of yxml from  [https://github.com/getdnsapi/yxml](https://github.com/getdnsapi/yxml). The following table lists the directory structure.
+Acquire the source code of yxml from  [the open-source repository](https://github.com/getdnsapi/yxml). The following table lists the directory structure.
 
 **Table  1**  Directory structure of the source code
 
@@ -148,7 +148,7 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 ## Library Test<a name="section1830015913391"></a>
 
-The test procedure for the yxml library is similar to that for the double-conversion library. For details, see  [Library Test](porting-a-library-built-using-cmake.md#section6686144293611). The following describes how to use the test cases of the yxml library.
+The test procedure for the yxml library is similar to that for the double-conversion library. For details, see the procedure described in  [Porting a Library Built Using CMake](porting-a-library-built-using-cmake.md#section6686144293611). The following describes how to use the test cases of the yxml library.
 
 **Table  3**  Directory structure of the test directory
 
@@ -236,7 +236,7 @@ The following operations are performed based on the assumption that the OpenHarm
 
 ## Adding the Compiled yxml Library to the OpenHarmony Project<a name="section1898016213406"></a>
 
-The procedure for adding the yxml library is almost the same as that for adding the double-conversion library, except that the implementation of  **build.gn**  and  **config.gni**  files. For details, see  [Adding the Compiled double-conversion Library to the OpenHarmony Project](porting-a-library-built-using-cmake.md#section1651053153715).
+The procedure for adding the yxml library is almost the same as that for adding the double-conversion library, except that the implementation of  **build.gn**  and  **config.gni**  files. For details, see the procedure described in  [Porting a Library Built Using CMake](porting-a-library-built-using-cmake.md#section1651053153715).
 
 -   The implementation of the newly added  **BUILD.gn**  file in the yxml library is as follows:
 

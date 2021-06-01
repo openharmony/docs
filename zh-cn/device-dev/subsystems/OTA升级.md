@@ -16,7 +16,7 @@
 
 -   [系统升级](#section151997114334)
 
-OTA（Over the Air）提供对设备远程升级的能力，可以让你的设备（如IP摄像头等），轻松支持远程升级能力。目前仅支持全量包升级，暂不支持差分包升级。全量包升级是将新系统全部内容做成升级包，进行升级；差分包升级是将新老系统的差异内容做成升级包，进行升级。
+OTA（Over the Air）提供对设备远程升级的能力，可以让您的设备（如IP摄像头等），轻松支持远程升级能力。目前仅支持全量包升级，暂不支持差分包升级。全量包升级是将新系统全部内容做成升级包，进行升级；差分包升级是将新老系统的差异内容做成升级包，进行升级。
 
 ## 约束与限制<a name="section691733275418"></a>
 
@@ -158,7 +158,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让你的设�
     set FILE_PRODUCT_NAME=Hisi
     
     @rem 设置软件版本号 不要超过16位
-    set SOFTWARE_VER=OHOS_1.1 
+    set SOFTWARE_VER=OpenHarmony 1.1 
     ```
 
 5.  执行ota\_tools下的Make\_Harmony\_PKG.bat，生成升级包Hisi\_OpenHarmony 1.1.bin。升级包通过SHA256+RSA2048方式签名，保证完整性和合法性。

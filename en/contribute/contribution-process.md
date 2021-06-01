@@ -44,7 +44,6 @@ Perform the following steps to download the code in the repository to your compu
         -   You can copy the address of the remote repository on the repository page.
 
             **Figure  1** <a name="fig1772512534014"></a>  
-            
 
         -   Run the following command on the local host:
 
@@ -100,7 +99,7 @@ Perform the following steps to download the code in the repository to your compu
 
     ```
     git add .
-    git commit -m "Reason"
+    git commit -sm "xxxxxx"  // Information to submit should include the signoff email address.
     ```
 
     You may continue to edit and test more content after the previous commit. You can use  **commit --amend**  to commit these changes.
@@ -140,14 +139,14 @@ After the code is modified, run the following command in multiple repositories:
 
 ```
 git add .
-git commit -m "xxxxxx"
+git commit -sm "xxxxxx"
 ```
 
 Alternatively, use the repo tool to batch add or commit the changes in the root directory of the code project:
 
 ```
 repo forall -c 'git add .'
-repo forall -c 'git commit -m "xxxxxx"'
+repo forall -c 'git commit -sm "xxxxxx"'
 ```
 
 4. Push the code. \(repo upload is not supported.\)

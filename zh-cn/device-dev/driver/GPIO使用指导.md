@@ -190,7 +190,7 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
 
 -   设置GPIO中断
 
-    如果要为一个GPIO管脚设置中断响程序，使用如下函数：
+    如果要为一个GPIO管脚设置中断响应程序，使用如下函数：
 
     int32\_t GpioSetIrq\(uint16\_t gpio, uint16\_t mode, GpioIrqFunc func, void \*arg\);
 

@@ -17,7 +17,7 @@ After the minimum system is ported, you can port the board-level system by:
 
 ## Board-Level Directory Specifications<a name="section6204129143013"></a>
 
-For details about board-level system building adaptation, see  [Compilation and Building Subsystem](compilation-and-building-subsystem.md). The board-related drivers, software development software kits \(SDKs\), directories, and HAL implementation are stored in the  **device**  directory. The directory structure and its description are as follows:
+For details about board-level system building adaptation, see  [Compilation and Building Subsystem](building-adaptation-process.md). The board-related drivers, software development software kits \(SDKs\), directories, and HAL implementation are stored in the  **device**  directory. The directory structure and its description are as follows:
 
 ```
 .

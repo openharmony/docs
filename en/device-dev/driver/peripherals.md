@@ -1,11 +1,11 @@
-# Peripherals<a name="EN-US_TOPIC_0000001053458312"></a>
+# Peripherals<a name="EN-US_TOPIC_0000001157319411"></a>
 
--   **[WLAN](wlan.md)**  
-
--   **[SENSOR](sensor.md)**  
+-   **[LCD](lcd.md)**  
 
 -   **[TOUCHSCREEN](touchscreen.md)**  
 
--   **[LCD](lcd.md)**  
+-   **[SENSOR](sensor.md)**  
+
+-   **[WLAN](wlan.md)**  
 
 

@@ -1,9 +1,9 @@
 # Preparations<a name="EN-US_TOPIC_0000001051770836"></a>
 
 -   [Hardware Requirements](#section98535485518)
--   [Installing  and the  Tool](#section106591616205311)
+-   [Installing Node.js and the hpm-cli Tool](#section106591616205311)
 -   [\(Optional\) Modifying HPM Configurations](#section71821165412)
--   [Downloading  Code](#section102338221707)
+-   [Downloading OpenHarmony Code](#section102338221707)
 -   [Installing Dependent Bundles](#section19233183315020)
 
 ## Hardware Requirements<a name="section98535485518"></a>
@@ -62,11 +62,11 @@ http_proxy = http://your-proxy-server:port                         # Configure t
 https_proxy = http://your-proxy-server:port                        # Configure the HTTPS proxy.
 ```
 
-For details about  **hpm-cli**  commands, see  [HPM Commands](bundle-management.md#table10510164515371).
+For details about  **hpm-cli**  commands, see  [HPM Commands](bundle-management.md).
 
 ## Downloading OpenHarmony Code<a name="section102338221707"></a>
 
-For details, see .
+For details, see  [Source Code Acquisition](../get-code/source-code-acquisition.md).
 
 ## Installing Dependent Bundles<a name="section19233183315020"></a>
 

@@ -1,6 +1,6 @@
-# Security<a name="EN-US_TOPIC_0000001073758271"></a>
+# Security<a name="EN-US_TOPIC_0000001157319395"></a>
 
--   **[Overview](overview-4.md)**  
+-   **[Overview](overview-9.md)**  
 
 -   **[Development Guidelines on Application Signature Verification](development-guidelines-on-application-signature-verification.md)**  
 
@@ -9,7 +9,5 @@
 -   **[Development Guidelines on IPC Authentication](development-guidelines-on-ipc-authentication.md)**  
 
 -   **[Development Guidelines on Trusted Device Group Management](development-guidelines-on-trusted-device-group-management.md)**  
-
--   **[Reference](reference.md)**  
 
 
