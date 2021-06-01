@@ -13,7 +13,7 @@
 -   [许可协议](#section1245517472115)
 -   [联系方式](#section61728335424)
 
-[View English](../en/OpenHarmony-Overview.md)
+[View English](https://gitee.com/openharmony/docs/blob/master/en/OpenHarmony-Overview.md)
 
 ## 项目介绍<a name="section1270210396435"></a>
 
