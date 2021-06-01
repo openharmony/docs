@@ -21,7 +21,7 @@ OpenHarmony is an open-source project incubated and operated by the OpenAtom Fou
 
 OpenHarmony is designed with a layered architecture, which from bottom to top, consists of the kernel layer, system service layer, framework layer, and application layer. System functions are expanded by levels, from system to subsystem, and further to module. In a multi-device deployment scenario, unnecessary modules can be excluded from the system as required. The following figure shows the technical architecture of OpenHarmony.
 
-![](figures/1.png)
+![](https://gitee.com/openharmony/docs/raw/master/en/figures/1.png)
 
 **Kernel Layer**
 
