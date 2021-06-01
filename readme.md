@@ -12,17 +12,14 @@
 
 ## OpenHarmony文档版本分支说明
 
-### 最新稳定版本
+### 最新版本
 
-OpenHarmony 2.0 Canary：OpenHarmony 2.0 预览版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-2-0-Canary.md)。
+master：最新开发版本。发布OpenHarmony 2.0 Canary预览版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-2-0-Canary.md)。
 
 ### 历史稳定版本
 
-OpenHarmony_v1.0.1_release： OpenHarmony 1.1.0 LTS稳定版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-1-1-0-LTS.md)。
+OpenHarmony_v1.0.1_release：OpenHarmony 1.1.0 LTS稳定版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-1-1-0-LTS.md)。
 
-### 开发版本
-
-master：最新开发版本。
 
 
 
