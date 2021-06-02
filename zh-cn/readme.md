@@ -35,8 +35,6 @@
 
   - [OTA升级](device-dev/subsystems/OTA升级.md)
 
-  - [电话服务](device-dev/subsystems/电话服务.md)
-
   - [安全](device-dev/subsystems/安全.md)
 
   - [启动恢复](device-dev/subsystems/启动恢复.md)

@@ -4,5 +4,5 @@
 
 ## Setting Up the Development Environment and Creating a Project<a name="section1912530122716"></a>
 
-Download and install DevEco Studio. For details, see the DevEco Studio User Guide for OpenHarmony.
+Download and install DevEco Studio. For details, see the  [DHUAWEI DevEco Studio User Guide](../docs/zh-cn/application-dev/quick-start/DevEco-Studio（OpenHarmony）使用指南.md).
 

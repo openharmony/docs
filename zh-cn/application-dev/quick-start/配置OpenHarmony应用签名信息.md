@@ -17,7 +17,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 
 使用[生成密钥和证书请求文件](#section153146467405)中生成的证书请求文件，来生成应用签名所需的数字证书文件。生成方法如下：
 
-进入Sdk\\toolchains\\lib目录下，打开命令行工具，执行如下命令。其中，只需要修改输入和输出即可快速生成证书文件，即修改**-infile**指定证书请求文件csr文件路径，**-outfile**指定输出证书文件名及路径。
+进入DevEco Studio安装目录的**Sdk\\toolchains\\lib**文件夹下，打开命令行工具，执行如下命令（如果keytool命令不能执行，请在系统环境变量中添加JDK的环境变量）。其中，只需要修改输入和输出即可快速生成证书文件，即修改**-infile**指定证书请求文件csr文件路径，**-outfile**指定输出证书文件名及路径。
 
 ```
 keytool -gencert -alias "OpenHarmony Application CA" -infile app.csr -outfile IDE.cer -keystore OpenHarmony.p12 -sigalg SHA384withECDSA -storepass 123456 -ext KeyUsage:"critical=digitalSignature" -validity  3650 -rfc

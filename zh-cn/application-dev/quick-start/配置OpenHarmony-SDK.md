@@ -6,9 +6,12 @@
 
 在设置OpenHarmony应用开发环境时，需要开发者在DevEco Studio中配置对应的SDK信息。
 
+>![](public_sys-resources/icon-note.gif) **说明：** 
+>请注意，OpenHarmony SDK版本是API Version 6 Canary1，并精简了部分工具链，因此不适用于HarmonyOS应用开发。
+
 ## 前提条件<a name="section164161442154812"></a>
 
--   已下载并安装好DevEco Studio 2.1 Release，点击[链接下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)。（ **预计6月2日21:00上线，敬请期待** ）
+-   已下载并安装好DevEco Studio 2.1 Release，点击[链接下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)。
 -   已获取OpenHarmony SDK包并解压，点击[链接下载](https://mirror.iscas.ac.cn/OpenHarmony/sdk/OpenHarmony-SDK-2.0-Canary.7z)。
 
 ## 配置SDK信息<a name="section1265592425017"></a>
@@ -54,17 +57,16 @@ DevEco Studio通过SDK Manager统一管理SDK及工具链，OpenHarmony包含如
 1.  运行已安装的DevEco Studio，首次使用，请选择**Do not import settings**，点击OK。
 2.  接下来DevEco Studio会根据向导指示，进入到SDK下载界面，**HarmonyOS SDK Location**选择本地解压的SDK包路径，然后点击**Next**。
 
+    >![](public_sys-resources/icon-note.gif) **说明：** 
+    >如果不是首次安装DevEco Studio，可能无法查看进入该界面，可通过欢迎页的**Configure \> Settings \> Appearance & Behavior \> System Settings \> HarmonyOS SDK**界面，点击**HarmonyOS SDK Location**加载SDK。
+
     ![](figures/zh-cn_image_0000001117288684.png)
 
 3.  SDK安装完成后，点击**Finish**，界面会进入到DevEco Studio欢迎页。
 
     ![](figures/zh-cn_image_0000001162781359.png)
 
-4.  进入**Sdk\\js\\2.2.0.0\\build-tools\\ace-loader**目录，删除node\_modules文件夹。
-
-    ![](figures/zh-cn_image_0000001117289652.png)
-
-5.  然后在该目录下运行命令行工具，分别执行如下命令，直至安装完成。
+4.  进入**Sdk\\js\\2.2.0.0\\build-tools\\ace-loader**目录，然后在该目录下运行命令行工具，分别执行如下命令，直至安装完成。
 
     ```
     npm cache clean -f
@@ -76,9 +78,9 @@ DevEco Studio通过SDK Manager统一管理SDK及工具链，OpenHarmony包含如
 
 ## 导入工程<a name="section12559415183418"></a>
 
-OpenHarmony SDK配置完成后，便可以启动应用开发。针对OpenHarmony应用开发，**通过导入Sample工程的方式来创建一个新工程**。
+OpenHarmony SDK配置完成后，便可以启动应用开发。针对OpenHarmony应用开发，**只能通过导入Sample工程的方式来创建一个新工程**。
 
-1.  在DevEco Studio的欢迎页，点击**Import HarmonyOS Smaple**按钮，导入Sample工程。
+1.  在DevEco Studio的欢迎页，点击**Import HarmonyOS Sample**按钮，导入Sample工程。
 
     ![](figures/zh-cn_image_0000001163495457.png)
 

@@ -3,13 +3,7 @@
 -   [Basic Capabilities](#section1393616301083)
 -   [Overall Structure](#section105231413161115)
 
-The JS UI framework allows you to develop cross-device applications with high performance. It supports  web-development-like  paradigm and polymorphic UIs.
-
-It is considered best practice to master the following knowledge before using this document:
-
--   HTML5
--   CSS
--   JavaScript
+The OpenHarmony JS UI framework provides basic, container, and canvas UI components and standard CSS animation capabilities. It supports the web-development-like programming paradigm.
 
 ## Basic Capabilities<a name="section1393616301083"></a>
 
@@ -18,20 +12,12 @@ It is considered best practice to master the following knowledge before using th
     The JS UI framework supports languages that are similar to those for web development, such as HTML and CSS. You can use them to describe the page layout and style, and use JavaScript \(conforming to the ECMAScript specification\) for page behavior. This paradigm allows you to avoid code for UI state switching. The view configuration information is intuitive.
 
 
--   **Cross-device UI display**
-
-    The JS UI framework allows your UI to be displayed across devices. The UI pages can automatically adapt to various styles of device screens. This is obscure to developers and reduces their cost of manual multi-device adaptation.
-
--   **High performance**
-
-    The JS UI framework has many core controls, such as lists, images, and various container components. The rendering process is optimized for the declarative coding syntax.
-
 
 ## Overall Structure<a name="section105231413161115"></a>
 
 The JS UI framework consists of the application, framework, engine, and porting layers.
 
-![](figures/en-us_image_0000001110468610.png)
+![](figures/zh-cn_image_0000001077953992.png)
 
 -   **Application**
 

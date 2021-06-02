@@ -22,7 +22,6 @@ For device developers, OpenHarmony utilizes a component-based design to tailor i
   - [Sensors](device-dev/subsystems/sensors.md)
   - [Application Framework](device-dev/subsystems/application-framework.md)
   - [OTA Upgrade](device-dev/subsystems/ota-upgrade.md)
-  - [Telephony Service](device-dev/subsystems/telephony-service.md)
   - [Security](device-dev/subsystems/security.md)
   - [Startup](device-dev/subsystems/startup.md)
   - [Testing](device-dev/subsystems/testing.md)

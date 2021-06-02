@@ -242,14 +242,6 @@
         - [开发指导](zh-cn/device-dev/subsystems/开发指导-3.md)
         - [开发实例](zh-cn/device-dev/subsystems/开发实例.md)
       - [OTA升级](zh-cn/device-dev/subsystems/OTA升级.md)
-      - [电话服务](zh-cn/device-dev/subsystems/电话服务.md)
-        - [概述](zh-cn/device-dev/subsystems/概述-4.md)
-        - [开发指导](zh-cn/device-dev/subsystems/开发指导-5.md)
-          - [Modem厂商库集成指导](zh-cn/device-dev/subsystems/Modem厂商库集成指导.md)
-          - [Modem厂商库初始化开发指导](zh-cn/device-dev/subsystems/Modem厂商库初始化开发指导.md)
-          - [Modem业务请求及响应开发指导](zh-cn/device-dev/subsystems/Modem业务请求及响应开发指导.md)
-          - [Modem事件上报开发指导](zh-cn/device-dev/subsystems/Modem事件上报开发指导.md)
-        - [开发实例](zh-cn/device-dev/subsystems/开发实例-6.md)
       - [安全](zh-cn/device-dev/subsystems/安全.md)
         - [概述](zh-cn/device-dev/subsystems/概述-7.md)
         - [应用验签开发指导](zh-cn/device-dev/subsystems/应用验签开发指导.md)
@@ -324,10 +316,10 @@
     - [外设驱动开发示例](zh-cn/device-dev/guide/外设驱动开发示例.md)
       - [概述](zh-cn/device-dev/guide/概述-12.md)
         - [硬件资源介绍](zh-cn/device-dev/guide/硬件资源介绍.md)
-        - [Input模型简介](Input模型简介.md)
+        - [Input模型简介](zh-cn/device-dev/guide/Input模型简介.md)
 
       - [环境搭建](zh-cn/device-dev/guide/环境搭建.md)
-      - [TouchScreen器件驱动开发](TouchScreen器件驱动开发.md)
+      - [TouchScreen器件驱动开发](zh-cn/device-dev/guide/TouchScreen器件驱动开发.md)
         - [配置设备描述信息](zh-cn/device-dev/guide/配置设备描述信息.md)
         - [配置Touchscreen器件信息](zh-cn/device-dev/guide/配置Touchscreen器件信息.md)
         - [适配器件私有驱动](zh-cn/device-dev/guide/适配器件私有驱动.md)
@@ -336,7 +328,7 @@
       - [调试验证](zh-cn/device-dev/guide/调试验证.md)
         - [开机日志分析](zh-cn/device-dev/guide/开机日志分析.md)
 
-      - [Input模型工作流程解析](Input模型工作流程解析.md)
+      - [Input模型工作流程解析](zh-cn/device-dev/guide/Input模型工作流程解析.md)
         - [私有配置信息解析](zh-cn/device-dev/guide/私有配置信息解析.md)
         - [管理驱动层初始化及注册驱动至HDF框架](zh-cn/device-dev/guide/管理驱动层初始化及注册驱动至HDF框架.md)
         - [公共驱动层初始化及注册驱动至HDF框架](zh-cn/device-dev/guide/公共驱动层初始化及注册驱动至HDF框架.md)
@@ -382,10 +374,15 @@
   - [术语](zh-cn/device-dev/glossary/术语.md)
 - 应用开发
   - [入门](zh-cn/application-dev/quick-start/Readme-CN.md)
+    - [DevEco Studio（OpenHarmony）使用指南](zh-cn/application-dev/quick-start/DevEco-Studio（OpenHarmony）使用指南.md)
+      -   [概述](zh-cn/application-dev/quick-start/概述.md)
+      -   [配置OpenHarmony SDK](zh-cn/application-dev/quick-start/配置OpenHarmony-SDK.md)
+  -   [配置OpenHarmony应用签名信息](zh-cn/application-dev/quick-start/配置OpenHarmony应用签名信息.md)
+      -   [安装运行OpenHarmony应用](zh-cn/application-dev/quick-start/安装运行OpenHarmony应用.md)
     - [快速入门](zh-cn/application-dev/quick-start/快速入门.md)
       - [开发准备](zh-cn/application-dev/quick-start/开发准备.md)
       - [使用JS语言开发](zh-cn/application-dev/quick-start/使用JS语言开发.md)
-
+    
   - [UI](zh-cn/application-dev/ui/Readme-CN.md)
     - [JS UI框架](zh-cn/application-dev/ui/JS-UI框架.md)
       - [JS UI框架概述](zh-cn/application-dev/ui/JS-UI框架概述.md)
@@ -407,12 +404,12 @@
     - [音频](zh-cn/application-dev/media/音频.md)
       - [音频开发概述](zh-cn/application-dev/media/音频开发概述.md)
       
-      - [音频播放开发指导](zh-cn/application-dev/media/音频播放开发指导.md)
+    - [音频播放开发指导](zh-cn/application-dev/media/音频播放开发指导.md)
       - [音频管理开发指导](zh-cn/application-dev/media/音频管理开发指导.md)
   
   
   - [网络与连接](zh-cn/application-dev/connectivity/Readme-CN.md)
-
+  
     - [IPC与RPC通信](zh-cn/application-dev/connectivity/IPC与RPC通信.md)
       - [IPC与RPC通信概述](zh-cn/application-dev/connectivity/IPC与RPC通信概述.md)
       - [IPC与RPC通信开发指导](zh-cn/application-dev/connectivity/IPC与RPC通信开发指导.md)
@@ -759,14 +756,6 @@
           - [Development Guidelines](en/device-dev/subsystems/development-guidelines-5.md)
           - [Development Example](en/device-dev/subsystems/development-example.md)
       - [OTA Upgrade](en/device-dev/subsystems/ota-upgrade.md)
-      - [Telephony Service](en/device-dev/subsystems/telephony-service.md)
-          - [Overview](en/device-dev/subsystems/overview-6.md)
-          - [Development Guidelines](en/device-dev/subsystems/development-guidelines-7.md)
-            - [Integrating Modem Vendor Library](en/device-dev/subsystems/integrating-modem-vendor-library.md)
-            - [Initializing a Modem Vendor Library](en/device-dev/subsystems/initializing-a-modem-vendor-library.md)
-            - [Responding to Modem Service Requests](en/device-dev/subsystems/responding-to-modem-service-requests.md)
-            - [Reporting Modem Events](en/device-dev/subsystems/reporting-modem-events.md)
-          - [Development Examples](en/device-dev/subsystems/development-examples-8.md)
       - [Security](en/device-dev/subsystems/security.md)
           - [Overview](en/device-dev/subsystems/overview-9.md)
           - [Development Guidelines on Application Signature Verification](en/device-dev/subsystems/development-guidelines-on-application-signature-verification.md)
@@ -893,11 +882,15 @@
   - [Glossary](en/device-dev/glossary/glossary.md)
   
 - Application Development
+  - [DevEco Studio \(OpenHarmony\) User Guide](en/application-dev/quick-start/deveco-studio-(openharmony)-user-guide.md)
+    -   [Overview](en/application-dev/quick-start/overview.md)
+    -   [Configuring the OpenHarmony SDK](en/application-dev/quick-start/configuring-the-openharmony-sdk.md)
+    -   [Configuring the OpenHarmony App Signature](en/application-dev/quick-start/configuring-the-openharmony-app-signature.md)
+-   [Installing and Running Your OpenHarmony App](en/application-dev/quick-start/installing-and-running-your-openharmony-app.md)
   - [Basics ](en/application-dev/quick-start/Readme-EN.md)
     - [Getting Started](en/application-dev/quick-start/getting-started.md)
       - [Preparations](en/application-dev/quick-start/preparations.md)
       - [Getting Started with JavaScript](en/application-dev/quick-start/getting-started-with-javascript.md)
-
   - [UI](en/application-dev/ui/Readme-EN.md)
     - [JS UI Framework](en/application-dev/ui/js-ui-framework.md)
       - [JS UI Framework Overview](en/application-dev/ui/js-ui-framework-overview.md)
@@ -914,19 +907,16 @@
         - [Event](en/application-dev/ui/event.md)
         - [Defining Page Routes](en/application-dev/ui/defining-page-routes.md)
       - [Custom Components](en/application-dev/ui/custom-components.md)
-  
   - [Media](en/application-dev/media/Readme-EN.md)
     - [Audio](en/application-dev/media/audio.md)
       - [Audio Overview](en/application-dev/media/audio-overview.md)
       - [Development Guidelines on Audio Playback](en/application-dev/media/development-guidelines-on-audio-playback.md)
       - [Development Guidelines on Audio Management](en/application-dev/media/development-guidelines-on-audio-management.md)
-    
   - [Connectivity](en/application-dev/connectivity/Readme-EN.md)
     - [IPC & RPC](en/application-dev/connectivity/ipc-rpc.md)
       - [IPC & RPC Overview](en/application-dev/connectivity/ipc-rpc-overview.md)
       - [IPC & RPC Development Guidelines](en/application-dev/connectivity/ipc-rpc-development-guidelines.md)
       - [Subscribing to State Changes of a Remote Object](en/application-dev/connectivity/subscribing-to-state-changes-of-a-remote-object.md)
-    
   - [JS Reference](en/application-dev/js-reference/Readme-EN.md)
   
     - [Framework](en/application-dev/js-reference/framework.md)

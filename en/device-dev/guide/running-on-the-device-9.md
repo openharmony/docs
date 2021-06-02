@@ -10,7 +10,7 @@ Before you install the app and run it on the development board, install the DevE
 
     Change the HDC client name to  **hdc.exe**  and add the path above to the system environment variable  **path**.
 
-2.  Open the  **cmd**  window, and run the following command to push the HAP file to the device directory, and install it:
+2.  Open the  **cmd**  window, and run the following commands to push the HAP file to the device directory, and install it:
 
     ```
     hdc smode

@@ -65,16 +65,6 @@
     -   [Development Example](development-example.md)
 
 -   [OTA Upgrade](ota-upgrade.md)
--   [Telephony Service](telephony-service.md)
-    -   [Overview](overview-6.md)
-    -   [Development Guidelines](development-guidelines-7.md)
-        -   [Integrating Modem Vendor Library](integrating-modem-vendor-library.md)
-        -   [Initializing a Modem Vendor Library](initializing-a-modem-vendor-library.md)
-        -   [Responding to Modem Service Requests](responding-to-modem-service-requests.md)
-        -   [Reporting Modem Events](reporting-modem-events.md)
-
-    -   [Development Examples](development-examples-8.md)
-
 -   [Security](security.md)
     -   [Overview](overview-9.md)
     -   [Development Guidelines on Application Signature Verification](development-guidelines-on-application-signature-verification.md)

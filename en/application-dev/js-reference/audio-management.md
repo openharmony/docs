@@ -25,6 +25,9 @@
 -   [AudioDeviceDescriptor](#en-us_topic_0000001149807881_section17427121913310)
 -   [AudioDeviceDescriptors](#en-us_topic_0000001149807881_section5181155710523)
 
+>![](public_sys-resources/icon-note.gif) **NOTE:** 
+>Due to permission issues, these feature are temporarily unavailable for the standard system.
+
 ## Modules to Import<a name="en-us_topic_0000001149807881_s56d19203690d4782bfc74069abb6bd71"></a>
 
 ```

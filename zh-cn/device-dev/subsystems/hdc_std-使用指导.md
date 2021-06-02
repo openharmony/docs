@@ -440,7 +440,7 @@ hdc\_std tmode port 8710
 
 使用方法（举例）：
 
-hdc\_std file send E:\\a.txt   /data/local/tmp
+hdc\_std file send E:\\a.txt   /data/local/tmp/a.txt
 
 -   **file recv \[-a\]  _remote local_**
 
@@ -486,7 +486,7 @@ hdc\_std file send E:\\a.txt   /data/local/tmp
 
 使用方法（举例）：
 
-hdc\_std file recv /tmp/fileb ./
+hdc\_std file recv  /data/local/tmp/a.txt   ./a.txt
 
 ## 应用相关的命令<a name="section2072647133819"></a>
 
