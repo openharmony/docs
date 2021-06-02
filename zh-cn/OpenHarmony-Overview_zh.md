@@ -403,9 +403,9 @@ English Version：[OpenHarmony Documentation](https://gitee.com/openharmony/docs
 
 ## 如何参与<a name="section19611528174215"></a>
 
-参与社区：[社区介绍链接](https://gitee.com/openharmony/community/blob/master/README.md)
+参与社区：[社区介绍](https://gitee.com/openharmony/community/blob/master/README.md)
 
-参与贡献：[如何贡献链接](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
+参与贡献：[如何贡献](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
 
 ## 许可协议<a name="section1245517472115"></a>
 
