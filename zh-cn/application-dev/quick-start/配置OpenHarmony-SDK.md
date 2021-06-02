@@ -8,8 +8,8 @@
 
 ## 前提条件<a name="section164161442154812"></a>
 
--   已下载并安装好DevEco Studio 2.1 Release，点击[链接下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)。
--   已获取OpenHarmony SDK包并解压，点击链接下载。
+-   已下载并安装好DevEco Studio 2.1 Release，点击[链接下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)。（ **预计6月2日21:00上线，敬请期待** ）
+-   已获取OpenHarmony SDK包并解压，点击[链接下载](https://mirror.iscas.ac.cn/OpenHarmony/sdk/OpenHarmony-SDK-2.0-Canary.7z)。
 
 ## 配置SDK信息<a name="section1265592425017"></a>
 
