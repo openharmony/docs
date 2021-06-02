@@ -18,6 +18,9 @@ WORKDIR /home/openharmony
 
 RUN apt-get update -y \
     && apt-get install curl wget -y \
+	&& apt-get install vim -y \
+	&& apt-get install ssh -y \
+	&& apt-get install git -y \
 	&& apt-get install python3.8 -y \
 	&& apt-get install python3-pip -y \
 	&& apt-get install dosfstools -y \
@@ -46,7 +49,7 @@ RUN apt-get update -y \
 	&& pip3 install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple ecdsa \
 	&& python3 -m pip install --user ohos-build \
 	&& mkdir -p /home/tools \
-	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-34042/linux/llvm-linux-9.0.0-34042.tar \
+	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar \
@@ -54,7 +57,7 @@ RUN apt-get update -y \
 	&& wget -P /home/tools https://mirrors.huaweicloud.com/nodejs/v12.20.0/node-v12.20.0-linux-x64.tar.gz \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/develop_tools/hmos_app_packing_tool.jar \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/develop_tools/hapsigntoolv2.jar \
-    && tar xvf /home/tools/llvm-linux-9.0.0-34042.tar -C /home/tools \
+    && tar xvf /home/tools/llvm.tar.gz -C /home/tools \
 	&& tar xvf /home/tools/hc-gen-0.65-linux.tar -C /home/tools \
 	&& tar xvf /home/tools/gcc_riscv32-linux-7.3.0.tar.gz -C /home/tools \
 	&& tar xvf /home/tools/ninja.1.9.0.tar -C /home/tools \
