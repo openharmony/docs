@@ -71,7 +71,7 @@ Driver development based on the HDF consists of two parts: driver implementation
     -   Use the  **Makefile**  template provided by the HDF to compile the driver code.
 
         ```
-        include $(LITEOSTOPDIR)/../../drivers/adapter/lite/khdf/lite.mk # (Mandatory) Import the predefined content of the HDF.
+        include $(LITEOSTOPDIR)/../../drivers/adapter/khdf/liteos/lite.mk # (Mandatory) Import the predefined content of the HDF.
         MODULE_NAME :=    # Generated result file
         LOCAL_INCLUDE: =  # Header file directory of the driver
         LOCAL_SRCS : =     # Source code file of the driver
