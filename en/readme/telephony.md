@@ -15,11 +15,9 @@ The Telephony subsystem provides APIs for obtaining information about the wirele
 
 The Telephony subsystem consists of the following modules:
 
--   Telephony core service: initializes the RIL Manager, SIM card module, and network search module, and provides access to the RIL Adapter service.
--   RIL Adapter module: provides functions such as vendor library loading, service interface implementation, and event scheduling and management.
+-   Telephony core service: initializes the RIL Manager, SIM card module, and network search module.
 -   Call Manager module: manages three types of calls – circuit switched \(CS\), IP multimedia subsystem \(IMS\), and over the top \(OTT\) calls. It is responsible for applying for the audio and video resources required for a call and resolving conflicts in a multi-channel call.
 -   Cellular call module: implements basic calls over carrier networks.
--   Cellular data module: provides functions such as cellular data activation, cellular data fault detection and rectification, and cellular data status management.
 -   SMS & MMS module: provides the capabilities of sending and receiving short message service \(SMS\) messages and encoding and decoding multimedia messaging service \(MMS\) messages.
 -   State registry module: provides APIs to register and deregister an observer that listens for various callback events of the telephony subsystem. 
 
@@ -32,19 +30,15 @@ The Telephony subsystem consists of the following modules:
 ```
 base/telephony/
 ├── core_service            # Core service
-├── ril_adapter             # RIL Adapter module
 ├── call_manager            # Call Manager module
 ├── cellular_call           # Cellular call module
-├── cellular_data           # Cellular data module
 ├── sms_mms                 # SMS & MMS module
 └── state_registry          # State registry module
 ```
 
 ## Constraints<a name="section123mcpsimp"></a>
 
-1.  The API for registering an observer for the SIM card status takes effect only when SIM cards are in position. If SIM cards are removed, no callback events will be received. Your application can call the  **getSimState**  API to check whether SIM cards are in position.
-2.  Currently, the APIs for DCall and SMS services are available only for system applications.
-3.  The open-source version currently supports only the CS call and SMS services. Cellular data and dual-SIM card are not supported.
+1.  The open-source version currently supports only the CS call and SMS services. Cellular data and dual-SIM card are not supported.
 
 ## Usage Guidelines<a name="section128mcpsimp"></a>
 
@@ -140,17 +134,13 @@ base/telephony/
 
 **Telephony subsystem**
 
-telephony\_core\_service
+[telephony_core_service](https://gitee.com/openharmony/telephony_core_service/blob/master/README.md)
 
-telephony\_ril\_adapter
+[telephony_call_manager](https://gitee.com/openharmony/telephony_call_manager/blob/master/README.md)
 
-telephony\_call\_manager
+[telephony_cellular_call](https://gitee.com/openharmony/telephony_cellular_call/blob/master/README.md)
 
-telephony\_cellular\_call
+[telephony_sms_mms](https://gitee.com/openharmony/telephony_sms_mms/blob/master/README.md)
 
-telephony\_cellular\_data
-
-telephony\_sms\_mms
-
-telephony\_state\_registry
+[telephony_state_registry](https://gitee.com/openharmony/telephony_state_registry/blob/master/README.md)
 
