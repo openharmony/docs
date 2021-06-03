@@ -71,24 +71,21 @@ java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --o
 
 在真机设备上调试前，需要使用到制作的私钥（.p12）文件、证书（.cer）文件和Profile（.p7b）文件对调试的模块进行签名。
 
-打开**File \> Project Structure**，在**Modules\>entry（模块名称）\>Signing Configs \> debug**窗口中，配置指定模块的调试签名信息。
-
->![](public_sys-resources/icon-note.gif) **说明：** 
->如果需要发布release类型的hap包，请将签名信息配置在**Modules\>entry（模块名称）\>Signing Configs \> release**中。
+打开**File \> Project Structure**，点击**Project \> Signing Configs \> debug**窗口中，去除勾选“Automatically generate signing”，然后配置指定模块的调试签名信息。
 
 -   **Store File**：选择密钥库文件，文件后缀为.p12，该文件为[生成密钥和证书请求文件](#section153146467405)中生成的.p12文件。
--   **Store Password**：输入密钥库密码。
--   **Key Alias**：输入密钥的别名信息。
--   **Key Password**：输入密钥的密码。
--   **SignAlg**：签名算法，固定为SHA256withECDSA。
+-   **Store Password**：输入密钥库密码，该密码为[生成密钥和证书请求文件](#section153146467405)中填写的密钥库密码保持一致。
+-   **Key Alias**：输入密钥的别名信息，与[生成密钥和证书请求文件](#section153146467405)中填写的别名保持一致。
+-   **Key Password**：输入密钥的密码，与**Store Password**保持一致。
+-   **Sign Alg**：签名算法，固定为SHA256withECDSA。
 -   **Profile File**：选择申请的调试Profile文件，文件后缀为.p7b。
 -   **Certpath File**：选择申请的调试数字证书文件，文件后缀为.cer。
 
-![](figures/zh-cn_image_0000001160327971.png)
+![](figures/zh-cn_image_0000001117638220.png)
 
-设置完签名信息后，点击**OK**进行保存，然后可以在模块下的build.gradle中查看签名的配置信息。
+设置完签名信息后，点击**OK**进行保存，然后可以在工程下的build.gradle中查看签名的配置信息。
 
-![](figures/zh-cn_image_0000001113648168.png)
+![](figures/zh-cn_image_0000001117638526.png)
 
 默认情况下，DevEco Studio编译hap包的类型为debug类型，如果需要编译release类型的hap包，请打开工程左下角的OhosBuild Variants，设置模块的编译构建类型为release。关于编译构建hap的详细说明请参考[HUAWEI DevEco Studio使用指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/build_hap-0000001053342418)。
 
@@ -96,5 +93,5 @@ java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --o
 
 编译完成后，OpenHarmony应用的Hap包可以从工程的bulid目录下获取。
 
-![](figures/zh-cn_image_0000001163552429.png)
+![](figures/zh-cn_image_0000001163918627.png)
 

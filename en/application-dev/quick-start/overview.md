@@ -11,6 +11,7 @@ DevEco Studio is an integrated development environment \(IDE\) of HarmonyOS apps
 The process of developing an OpenHarmony app using DevEco Studio is the same as that of developing a HarmonyOS app. This document describes the differences between OpenHarmony and HarmonyOS app development.
 
 -   **Environment setup**: You need to manually configure the SDK for the OpenHarmony app development. For details, see  [Configuring the OpenHarmony SDK](configuring-the-openharmony-sdk.md).
+-   **OpenHarmony project import**: To develop an OpenHarmony app, you can only import a sample project to start with. For details, see  [Importing an OpenHarmony Project](importing-an-openharmony-project.md).
 -   **Signature configuration for debugging**: To run an OpenHarmony app on a real device, you need to sign the app first. For instructions, see  [Configuring the OpenHarmony App Signature](configuring-the-openharmony-app-signature.md).
 -   **App running on a real device**: To run your app on a real device, you need to use the hdc tool to push the HAP package of the OpenHarmony to the real device for installation. For details, see  [Installing and Running Your OpenHarmony App](installing-and-running-your-openharmony-app.md).
 
