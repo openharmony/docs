@@ -5,8 +5,8 @@
     -   [Docker环境安装使用](#section22916211916)
 
 -   [安装包方式准备Ubuntu编译环境](#section25961010189)
-    -   [获取标准系统源码](#section15424183111912)
     -   [安装依赖工具](#section109262032104819)
+    -   [获取标准系统源码](#section6325556113718)
     -   [获取prebuilts](#section16453104219209)
     -   [配置NodeJS环境和获取Node\_modules依赖包](#section133741330192119)
     -   [安装hc-gen工具](#section149281248182116)
@@ -23,7 +23,7 @@ OpenHarmony标准系统为开发者提供的Docker环境已经将对应的编译
 
 ### 获取系统源码<a name="section58448331029"></a>
 
-具体获取方式请参考[获取标准系统设备源码](../get-code/源码获取.md)。
+具体获取方式请参考[获取标准系统源码](../get-code/源码获取.md)。
 
 ### Docker环境安装使用<a name="section22916211916"></a>
 
@@ -33,23 +33,26 @@ OpenHarmony标准系统为开发者提供的Docker环境已经将对应的编译
 
 安装包方式具体操作分为如下几步：
 
-1.  获取系统源码。
-2.  安装依赖工具。
+1.  安装依赖工具。
+2.  获取系统源码。
 3.  获取prebuilts。
 4.  配置NodeJS环境和获取Node\_modules依赖包。
 5.  安装hc-gen工具。
 
-### 获取标准系统源码<a name="section15424183111912"></a>
-
-具体获取方式请参考[获取标准系统设备源码](../get-code/源码获取.md)。
-
 ### 安装依赖工具<a name="section109262032104819"></a>
 
-安装命令：
+安装命令如下：
 
 ```
 sudo apt-get install binutils git-core git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4
 ```
+
+>![](public_sys-resources/icon-note.gif) **说明：** 
+>以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。
+
+### 获取标准系统源码<a name="section6325556113718"></a>
+
+具体获取方式请参考[获取标准系统源码](../get-code/源码获取.md)。
 
 ### 获取prebuilts<a name="section16453104219209"></a>
 
@@ -82,7 +85,7 @@ sudo apt-get install binutils git-core git-lfs gnupg flex bison gperf build-esse
 
 ### 配置NodeJS环境和获取Node\_modules依赖包<a name="section133741330192119"></a>
 
-为了编译JS Framework，开发者需要在Linux服务器下载配置NodeJS，具体操作如下：
+为了编译JS Framework，开发者需要在Linux服务器下载配置NodeJS（注意：步骤中OpenHarmony目录指代当前工程的根目录，可自定义），具体操作如下：
 
 1.  开发者在Linux服务器下载Nodejs。
 
@@ -90,25 +93,20 @@ sudo apt-get install binutils git-core git-lfs gnupg flex bison gperf build-esse
     mkdir -p OpenHarmony/prebuilts/build-tools/common/nodejs                                #创建nodejs目录
     cd OpenHarmony/prebuilts/build-tools/common/nodejs                                      #进入nodejs目录
     wget --no-check-certificate https://nodejs.org/download/release/v12.18.4/node-v12.18.4-linux-x64.tar.gz #下载nodejs
+    tar -zxvf node-v12.18.4-linux-x64.tar.gz                                                #解压nodejs压缩包
+    cd -                                                                                    #切换到之前的目录
     ```
 
-2.  解压NodeJS配置NodeJS环境。
-
-    ```
-    tar -zxvf node-v12.18.4-linux-x64.tar.gz                                                      #解压nodejs压缩包
-    echo "export PATH=`pwd`/node-v12.18.4-linux-x64/bin:${PATH}" >> ~/.bashrc;source ~/.bashrc    #设置NodeJS环境变量
-    cd -                                                                                          #切换到之前的目录
-    ```
-
-3.  进入OpenHarmony代码的third\_party/jsframework目录，下载node\_modules包。
+2.  配置NodeJS环境变量，下载node\_modules包。
 
     ```
     cd OpenHarmony/third_party/jsframework                  #进入jsframework目录
+    export PATH=../../prebuilts/build-tools/common/nodejs/node-v12.18.4-linux-x64/bin:${PATH} #设置NodeJS环境变量
     npm install                                             #下载node_modules包
     cd -                                                    #切换到之前的目录
     ```
 
-4.  把下载的node\_modules包放入OpenHarmony代码的prebuilts/build-tools/common/js-framework目录下。
+3.  把下载的node\_modules包放入OpenHarmony代码的prebuilts/build-tools/common/js-framework目录下。
 
     ```
     mkdir -p OpenHarmony/prebuilts/build-tools/common/js-framework          #创建js-framework目录

@@ -4,6 +4,8 @@
 
 -   **[配置OpenHarmony SDK](配置OpenHarmony-SDK.md)**  
 
+-   **[导入OpenHarmony工程](导入OpenHarmony工程.md)**  
+
 -   **[配置OpenHarmony应用签名信息](配置OpenHarmony应用签名信息.md)**  
 
 -   **[安装运行OpenHarmony应用](安装运行OpenHarmony应用.md)**  

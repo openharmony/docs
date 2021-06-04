@@ -71,24 +71,21 @@ Refer to the following descriptions about the parameters in the command:
 
 Before debugging on a real device, use the private key file \(.p12\), certificate file \(.cer\), and profile file \(.p7b\) to sign the target module.
 
-Go to  **File**  \>  **Project Structure**. On the displayed page, go to  **Modules**  \>  _Module name_  \>  **Signing Configs**, and set the signing parameters under  **debug**.
-
->![](public_sys-resources/icon-note.gif) **NOTE:** 
->To release a HAP package of the release type, configure the signature information from  **Modules**  \>  _Module name_  \>  **Signing Configs**  \>  **release**.
+Go to  **File**  \>  **Project Structure**  \>  **Project**  \>  **Signing Configs**  \>  **debug**, deselect  **Automatically generate signing**, and configure the signature information of the specified module.
 
 -   **Store File**: Select the key store file with the file name extension .p12, which is generated in  [Generating a Key Store and CSR](#section153146467405).
--   **Store Password**: Enter the key store password.
--   **Key Alias**: Enter the alias of the key.
--   **Key Password**: Enter the password of the key.
+-   **Store Password**: Enter the key store password, which is the same as the key store password entered in  [Generating a Key Store and CSR](#section153146467405).
+-   **Key Alias**: Enter the alias of the key, which is the same as the alias entered in  [Generating a Key Store and CSR](#section153146467405).
+-   **Key Password**: Enter the key password, which is the same as the value of  **Store Password**.
 -   **Sign Alg**: Specify the signature algorithm, which has a fixed value of  **SHA256withECDSA**.
 -   **Profile File**: Select the obtained debug profile in .p7b format.
 -   **Certpath File**: Select the obtained debug certificate in .cer format.
 
-![](figures/en-us_image_0000001160327971.png)
+![](figures/en-us_image_0000001117638220.png)
 
-Click  **OK**  to save your configurations. Then you can view the signature configuration information in  **build.gradle**  of the module.
+Click  **OK**  to save your configurations. Then you can view the signature configuration information in  **build.gradle**  of the project.
 
-![](figures/en-us_image_0000001113648168.png)
+![](figures/en-us_image_0000001117638526.png)
 
 By default, the type of a HAP package compiled using DevEco Studio is set to  **debug**. For a release type, click the  **OhosBuild Variants**  tab in the lower left corner of the project and set the type to  **release**. For details about how to compile and build the HAP, see  [HUAWEI DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/build_hap-0000001053342418).
 
@@ -96,5 +93,5 @@ By default, the type of a HAP package compiled using DevEco Studio is set to  **
 
 After the compilation is complete, you can obtain the HAP package of your OpenHarmony app from the  **build**  directory of the project.
 
-![](figures/en-us_image_0000001163552429.png)
+![](figures/en-us_image_0000001163918627.png)
 

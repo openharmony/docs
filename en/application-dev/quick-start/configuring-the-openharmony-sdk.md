@@ -2,7 +2,6 @@
 
 -   [Prerequisites](#section164161442154812)
 -   [Configuring the SDK Information](#section1265592425017)
--   [Importing the Project](#section12559415183418)
 
 To set up the OpenHarmony app development environment, configure the corresponding SDK information in DevEco Studio first.
 
@@ -58,7 +57,7 @@ DevEco Studio manages SDKs and toolchains using SDK Manager. OpenHarmony contain
 2.  Follow the instructions in DevEco Studio to go to the SDK download page. In the  **HarmonyOS SDK Location**  field, select the local directory where the SDK package was decompressed, then click  **Next**.
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >If you are not using DevEco Studio for the first time, the SDK download page may not be displayed. In this case, go to  **Configure \> Settings \> Appearance & Behavior \> System Settings \> HarmonyOS SDK**  and click  **HarmonyOS SDK Location**  to download the SDK.
+    >If you are not using DevEco Studio for the first time, the SDK download page may not be displayed. In this case, go to  **Configure**  \(or  ![](figures/en-us_image_0000001117475774.png)\) \>  **Settings**  \>  **Appearance & Behavior**  \>  **System Settings**  \>  **HarmonyOS SDK**  and click  **HarmonyOS SDK Location**  to download the SDK.
 
     ![](figures/en-us_image_0000001117288684.png)
 
@@ -74,34 +73,5 @@ DevEco Studio manages SDKs and toolchains using SDK Manager. OpenHarmony contain
     ```
 
     ![](figures/en-us_image_0000001163170097.png)
-
-
-## Importing the Project<a name="section12559415183418"></a>
-
-After the OpenHarmony SDK is configured, you can start developing your app only by  **importing a sample project**  to begin with.
-
-1.  On the DevEco Studio welcome page, click  **Import HarmonyOS Sample**  to import a sample project.
-
-    ![](figures/en-us_image_0000001163495457.png)
-
-2.  Go to  **ability**  \>  **HelloWorld**  and click  **Next**.
-
-    ![](figures/en-us_image_0000001117295732.png)
-
-3.  Configure  **App Name**  and  **Project Location**  and click  **Finish**. Wait until the sample project is imported.
-
-    ![](figures/en-us_image_0000001163500855.png)
-
-4.  Wait until the project sync is indicated to be failed. Open the  **build.gradle**  file in the project and change the version number of the HAP plugin to  **2.4.4.3-RC**.
-
-    ![](figures/en-us_image_0000001163550987.png)
-
-5.  Click  ![](figures/en-us_image_0000001117304698.png)  under  **Gradle**  in the upper right corner to sync the project again.
-
-    ![](figures/en-us_image_0000001117145200.png)
-
-6.  When the project is successfully synced, you can develop your OpenHarmony app.
-
-    ![](figures/en-us_image_0000001117145614.png)
 
 

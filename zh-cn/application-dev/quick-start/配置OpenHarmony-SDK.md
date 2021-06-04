@@ -2,7 +2,6 @@
 
 -   [前提条件](#section164161442154812)
 -   [配置SDK信息](#section1265592425017)
--   [导入工程](#section12559415183418)
 
 在设置OpenHarmony应用开发环境时，需要开发者在DevEco Studio中配置对应的SDK信息。
 
@@ -58,7 +57,7 @@ DevEco Studio通过SDK Manager统一管理SDK及工具链，OpenHarmony包含如
 2.  接下来DevEco Studio会根据向导指示，进入到SDK下载界面，**HarmonyOS SDK Location**选择本地解压的SDK包路径，然后点击**Next**。
 
     >![](public_sys-resources/icon-note.gif) **说明：** 
-    >如果不是首次安装DevEco Studio，可能无法查看进入该界面，可通过欢迎页的**Configure \> Settings \> Appearance & Behavior \> System Settings \> HarmonyOS SDK**界面，点击**HarmonyOS SDK Location**加载SDK。
+    >如果不是首次安装DevEco Studio，可能无法查看进入该界面，可通过欢迎页的**Configure （或**![](figures/zh-cn_image_0000001117475774.png)**图标）\> Settings \> Appearance & Behavior \> System Settings \> HarmonyOS SDK**界面，点击**HarmonyOS SDK Location**加载SDK。
 
     ![](figures/zh-cn_image_0000001117288684.png)
 
@@ -74,34 +73,5 @@ DevEco Studio通过SDK Manager统一管理SDK及工具链，OpenHarmony包含如
     ```
 
     ![](figures/zh-cn_image_0000001163170097.png)
-
-
-## 导入工程<a name="section12559415183418"></a>
-
-OpenHarmony SDK配置完成后，便可以启动应用开发。针对OpenHarmony应用开发，**只能通过导入Sample工程的方式来创建一个新工程**。
-
-1.  在DevEco Studio的欢迎页，点击**Import HarmonyOS Sample**按钮，导入Sample工程。
-
-    ![](figures/zh-cn_image_0000001163495457.png)
-
-2.  选择ability下的**HelloWorld**工程，然后点击**Next**。
-
-    ![](figures/zh-cn_image_0000001117295732.png)
-
-3.  设置**App Name**和**Project Location**，然后点击**Finish**，等待Sample工程导入完成。
-
-    ![](figures/zh-cn_image_0000001163500855.png)
-
-4.  Sample导入后，等待工程同步完成，此时工程会同步失败。请打开工程下的build.gradle，修改hap插件的版本号为“2.4.4.3-RC”。
-
-    ![](figures/zh-cn_image_0000001163550987.png)
-
-5.  修改完成后，点击右上角Gradle中的![](figures/zh-cn_image_0000001117304698.png)按钮，重新同步工程。
-
-    ![](figures/zh-cn_image_0000001117145200.png)
-
-6.  等待工程同步完成，同步成功后，便可以进行OpenHarmony应用开发了。
-
-    ![](figures/zh-cn_image_0000001117145614.png)
 
 
