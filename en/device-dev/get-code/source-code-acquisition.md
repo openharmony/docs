@@ -101,16 +101,16 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b1094411391670"><a name="b1094411391670"></a><a name="b1094411391670"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b959378308"><a name="b959378308"></a><a name="b959378308"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b977861765"><a name="b977861765"></a><a name="b977861765"></a>Site</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b783416670"><a name="b783416670"></a><a name="b783416670"></a>SHA-256 Verification Code</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b1382652136"><a name="b1382652136"></a><a name="b1382652136"></a>SHA-256 Verification Code</strong></p>
 </td>
 </tr>
 <tr id="row4769431134919"><td class="cellrowborder" valign="top" width="25%"><p id="p97691031124913"><a name="p97691031124913"></a><a name="p97691031124913"></a>Full code base</p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p1076916315492"><a name="p1076916315492"></a><a name="p1076916315492"></a>2.0 Canary</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p67696314491"><a name="p67696314491"></a><a name="p67696314491"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p67696314491"><a name="p67696314491"></a><a name="p67696314491"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary.tar.gz" target="_blank" rel="noopener noreferrer">Download (Site 1)</a> <a href="https://mirror.iscas.ac.cn/OpenHarmony/os/2.0/code-2.0-canary.tar.gz" target="_blank" rel="noopener noreferrer">Download (Site 2)</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p4769123184918"><a name="p4769123184918"></a><a name="p4769123184918"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
@@ -164,7 +164,7 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p1093810218417"><a name="p1093810218417"></a><a name="p1093810218417"></a><strong id="b1124015405556"><a name="b1124015405556"></a><a name="b1124015405556"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b57309475"><a name="b57309475"></a><a name="b57309475"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b1245654143"><a name="b1245654143"></a><a name="b1245654143"></a>Site</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p12520113711011"><a name="p12520113711011"></a><a name="p12520113711011"></a><strong id="b19256751175516"><a name="b19256751175516"></a><a name="b19256751175516"></a>SHA-256 Verification Code</strong></p>
 </td>
@@ -291,9 +291,9 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 4.  Run the following commands to install the  **repo**  tool:
 
     ```
-    curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo
+    curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  # If you do not have the access permission to this directory, download the tool to any other accessible directory and configure the directory to the environment variable.
     chmod a+x /usr/local/bin/repo
-    pip install -i https://repo.huaweicloud.com/repository/pypi/simple requests
+    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
     ```
 
 
