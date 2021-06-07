@@ -1,4 +1,7 @@
 ## 独立Docker环境
+
+本文为标准系统类设备Docker使用指导，[点此查看](https://gitee.com/openharmony/docs/blob/master/docker/README.md)小型和轻量系统类设备使用指导。
+
 OpenHarmony的Docker镜像托管在HuaweiCloud SWR上。开发者可以通过该镜像在很大程度上简化编译前的环境配置。开发者在配置好开发环境后，通过以下步骤来使用Docker环境。本Docker支持Ubuntu/Windows平台，下文将以Ubuntu系统为例进行使用介绍。
 
 ### 搭建Docker环境-标准系统类设备（参考内存≥128MB）
