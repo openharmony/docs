@@ -2,7 +2,8 @@
 
 OpenHarmony SDK配置完成后，便可以启动应用开发。针对OpenHarmony应用开发，**只能通过导入Sample工程的方式来创建一个新工程**。
 
-目前，支持OpenHarmony应用开发的Sample工程，只能选择common分类中的**HelloWorld**或者**JsHelloWorld**。
+目前，支持OpenHarmony应用开发的Sample工程，请选择导入含有“ **This sample is intended for novices at developing OpenHarmony applications.** ”说明的Sample，例如选择common分类中的**HelloWorld**或者**JsHelloWorld**。
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0607/153103_bf8ef3b1_8698404.png "unnaming (26).png")
 
 1.  在DevEco Studio的欢迎页，进入**Configure （或**![](figures/zh-cn_image_0000001118018452.png)**图标） \> Settings \> Version Control \> Git**界面，点击Test按钮检测是否安装Git工具。
     -   已安装，请根据[2](#li5947194711181)开始导入Sample。
@@ -18,9 +19,9 @@ OpenHarmony SDK配置完成后，便可以启动应用开发。针对OpenHarmony
 
     ![](figures/zh-cn_image_0000001163835551.png)
 
-3.  选择common下的**HelloWorld**或者**JsHelloWorld**工程，然后点击**Next**。
+3.  选择common下的**JsHelloWorld**工程，然后点击**Next**。
 
-    ![](figures/zh-cn_image_0000001164506365.png)
+    ![输入图片说明](https://images.gitee.com/uploads/images/2021/0607/153157_a61135ee_8698404.png "unnaming (27).png")
 
 4.  设置**App Name**和**Project Location**，然后点击**Finish**，等待Sample工程导入完成。
 
