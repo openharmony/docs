@@ -8,6 +8,7 @@ For device developers, OpenHarmony utilizes a component-based design to tailor i
 [中文版本](../zh-cn/readme.md)
 
 ## Device Development - Documentation Directory Structure
+- [Overview](device-dev/quick-start/overview.md)
 - [Getting Started](device-dev/quick-start/Readme-EN.md)
 - [Source Code Acquisition/Tool Acquisition](device-dev/get-code/Readme-EN.md)
 - [Kernel Usage Guidelines](device-dev/kernel/Readme-EN.md)
