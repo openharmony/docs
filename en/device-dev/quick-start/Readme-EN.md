@@ -1,6 +1,5 @@
 # Getting Started
 
--   [Overview](overview.md)
 -   [Mini and Small Systems](mini-and-small-systems.md)
     -   [Overview](overview-0.md)
     -   [Introduction to the Development Boards](introduction-to-the-development-boards.md)
