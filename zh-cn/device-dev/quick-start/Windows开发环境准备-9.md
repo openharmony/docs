@@ -1,4 +1,4 @@
-# Windows开发环境准备<a name="ZH-CN_TOPIC_0000001105567362"></a>
+# Windows开发环境准备<a name="ZH-CN_TOPIC_0000001114978364"></a>
 
 -   [获取软件](#zh-cn_topic_0000001058091994_section1483143015558)
 -   [安装Visual Studio Code](#zh-cn_topic_0000001058091994_section71401018163318)

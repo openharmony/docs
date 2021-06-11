@@ -87,8 +87,6 @@ Hi3861 WLAN模组的镜像烧录可以通过OpenHarmony IDE工具DevEco完成，
 6.  所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
 7.  打开工程文件，在DevEco Device Tool界面的“PROJECT TASKS”中，点击hi3861下的**Upload**按钮，启动烧录。
 
-    ![](figures/zh-cn_image_0000001120802383.png)
-
     ![](figures/zh-cn_image_0000001163569275.png)
 
 8.  启动烧录后，显示如下提示信息时，请按开发板上的RST按钮重启开发板。
