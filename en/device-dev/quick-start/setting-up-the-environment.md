@@ -320,7 +320,7 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
     >If you use the compiled  **riscv32 gcc**  package, perform the following steps to set environment variables:
     >1.  Decompress the package to the root directory.
     >    ```
-    >    tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C ~
+    >    tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C /opt
     >    ```
     >2.  Set an environment variable.
     >    ```
