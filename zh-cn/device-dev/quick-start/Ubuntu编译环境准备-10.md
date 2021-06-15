@@ -52,18 +52,13 @@ sudo apt-get install binutils git-core git-lfs gnupg flex bison gperf build-esse
 
 ### 获取prebuilts<a name="section16453104219209"></a>
 
-1.  切换到OpenHarmony工作目录。
+1. 在源码根目录下执行脚本。
 
-    ```
-    cd OpenHarmony
-    ```
+   ```
+   build/prebuilts_download.sh
+   ```
 
-2.  执行脚本。
+   下载的prebuilts二进制默认存放在与OpenHarmony同目录下的OpenHarmony\_2.0\_canary\_prebuilts下。
 
-    ```
-    build/prebuilts_download.sh
-    ```
-
-    下载的prebuilts二进制默认存放在与OpenHarmony同目录下的OpenHarmony\_2.0\_canary\_prebuilts下。
 
 
