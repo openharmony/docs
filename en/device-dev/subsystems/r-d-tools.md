@@ -4,4 +4,6 @@
 
 -   **[hdc\_std Usage Guidelines](hdc_std-usage-guidelines.md)**  
 
+-   **[hdc\_std FAQs](hdc_std-faqs.md)**  
+
 

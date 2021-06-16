@@ -1,5 +1,6 @@
 # Getting Started
 
+-   [Overview](overview.md)
 -   [Mini and Small Systems](mini-and-small-systems.md)
     -   [Overview](overview-0.md)
     -   [Introduction to the Development Boards](introduction-to-the-development-boards.md)
@@ -8,6 +9,7 @@
         -   [Hi3518 Development Board](hi3518-development-board.md)
 
     -   [Environment Setup](environment-setup.md)
+        -   [Overview](overview-1.md)
         -   [Windows Development Environment](windows-development-environment.md)
         -   [Ubuntu Build Environment](ubuntu-build-environment.md)
         -   [FAQ](faq.md)
@@ -20,22 +22,22 @@
             -   [FAQs](faqs.md)
 
         -   [Hi3516](hi3516.md)
-            -   [Setting Up the Environment](setting-up-the-environment-1.md)
+            -   [Setting Up the Environment](setting-up-the-environment-2.md)
             -   [Running a Hello OHOS Program](running-a-hello-ohos-program.md)
             -   [Developing a Driver](developing-a-driver.md)
-            -   [FAQs](faqs-2.md)
+            -   [FAQs](faqs-3.md)
 
         -   [Hi3518](hi3518.md)
-            -   [Setting Up the Environment](setting-up-the-environment-3.md)
-            -   [Running a Hello OHOS Program](running-a-hello-ohos-program-4.md)
-            -   [FAQs](faqs-5.md)
+            -   [Setting Up the Environment](setting-up-the-environment-4.md)
+            -   [Running a Hello OHOS Program](running-a-hello-ohos-program-5.md)
+            -   [FAQs](faqs-6.md)
 
 -   [Standard System](standard-system.md)
-    -   [Overview](overview-6.md)
-    -   [Environment Setup](environment-setup-7.md)
-        -   [Overview](overview-8.md)
-        -   [Windows Development Environment](windows-development-environment-9.md)
-        -   [Ubuntu Build Environment](ubuntu-build-environment-10.md)
+    -   [Overview](overview-7.md)
+    -   [Environment Setup](environment-setup-8.md)
+        -   [Overview](overview-9.md)
+        -   [Windows Development Environment](windows-development-environment-10.md)
+        -   [Preparing the Ubuntu Build Environment](preparing-the-ubuntu-build-environment.md)
         -   [FAQs](faqs-11.md)
 
     -   [How to Develop](how-to-develop-12.md)

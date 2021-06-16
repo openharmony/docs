@@ -10,4 +10,6 @@
 
 -   **[Running on the Device](running-on-the-device-9.md)**  
 
+-   **[FAQs](faqs-10.md)**  
+
 

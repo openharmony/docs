@@ -2,7 +2,8 @@
 
 -   [What should I do if garbled characters and segmentation faults occur during hb installation?](#section411894616119)
 -   [What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?](#section629417571626)
--   [What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb Installation?](#section10871523332)
+-   [What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb installation?](#section10871523332)
+-   [What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?](#section47351657163213)
 -   [What should I do if the message "ImportError: No module named apt\_pkg" is displayed during the execution of an unidentifiable command?](#section159891252236)
 
 ## What should I do if garbled characters and segmentation faults occur during hb installation?<a name="section411894616119"></a>
@@ -45,7 +46,7 @@
     ```
 
 
-## What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb Installation?<a name="section10871523332"></a>
+## What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb installation?<a name="section10871523332"></a>
 
 -   **Symptom**
 
@@ -65,6 +66,27 @@
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     python get-pip.py
     ```
+
+
+## What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?<a name="section47351657163213"></a>
+
+-   **Symptom**
+
+    The message "Could not find a version that satisfies the requirement ohos-build" is displayed during the execution of the  **python3 -m pip install --user ohos-build**  command.
+
+
+-   **Possible Causes**
+
+    The installation fails due to poor network connectivity.
+
+-   **Solutions**
+    1.  Ensure that your computer has a good network connection. If the network connection is unstable, rectify the network fault and reinstall hb.
+    2.  If the network is functional, run the following commands to install hb by specifying a temporary PyPI source:
+
+        ```
+        python3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ohos-build
+        ```
+
 
 
 ## What should I do if the message "ImportError: No module named apt\_pkg" is displayed during the execution of an unidentifiable command?<a name="section159891252236"></a>

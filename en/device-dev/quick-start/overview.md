@@ -59,7 +59,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><p id="p3213132491711"><a name="p3213132491711"></a><a name="p3213132491711"></a>Getting started with setup, build, burning, debugging, and running of <span id="text203751321355"><a name="text203751321355"></a><a name="text203751321355"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul1222811151378"></a><a name="ul1222811151378"></a><ul id="ul1222811151378"><li><a href="overview-0.md">Getting Started for Mini and Small Systems</a></li><li><a href="overview-6.md">Getting Started for Standard System</a></li></ul>
+<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul1222811151378"></a><a name="ul1222811151378"></a><ul id="ul1222811151378"><li><a href="overview-0.md">Getting Started for Mini and Small Systems</a></li><li><a href="overview-7.md">Getting Started for Standard System</a></li></ul>
 </td>
 </tr>
 <tr id="row421315248178"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p0213724191718"><a name="p0213724191718"></a><a name="p0213724191718"></a>Basic capabilities</p>
