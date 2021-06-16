@@ -4,7 +4,7 @@
     -   [Hardware](#section19202111020215)
     -   [Software](#section727451210318)
 
--   [Install Linux Build Tools](#section497484245614)
+-   [Installing Linux Build Tools](#section497484245614)
     -   [Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)](#section45512412251)
     -   [Installing Scons](#section7438245172514)
     -   [Installing Python Modules](#section88701892341)
@@ -94,7 +94,7 @@ The following table lists the tools required for the Hi3861 development board.
 </tbody>
 </table>
 
-## Install Linux Build Tools<a name="section497484245614"></a>
+## Installing Linux Build Tools<a name="section497484245614"></a>
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
 >-   If you acquire the source code using an HPM component or HPM CLI tool, you do not need to install  **gcc\_riscv32**.
@@ -320,7 +320,7 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
     >If you use the compiled  **riscv32 gcc**  package, perform the following steps to set environment variables:
     >1.  Decompress the package to the root directory.
     >    ```
-    >    tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C /opt
+    >    tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C ~
     >    ```
     >2.  Set an environment variable.
     >    ```
@@ -328,7 +328,7 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
     >    ```
     >3.  Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
     >    ```
-    >    export PATH=/opt/gcc_riscv32/bin:$PATH
+    >    export PATH=~/gcc_riscv32/bin:$PATH
     >    ```
 
     ```
@@ -338,7 +338,7 @@ sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get
     Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
 
     ```
-    export PATH=/opt/gcc_riscv32/bin:$PATH
+    export PATH=~/gcc_riscv32/bin:$PATH
     ```
 
 17. Validate the environment variable.

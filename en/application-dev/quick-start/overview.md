@@ -22,7 +22,7 @@ For details about how to use DevEco Studio, see  [HUAWEI DevEco Studio User Guid
 -   OpenHarmony supports only app development in JS.
 -   Developing OpenHarmony apps in DevEco Studio is supported on Windows.
 
-DevEco Studio serves as a development tool for both OpenHarmony and HarmonyOS apps. Refer to the following table for descriptions about the IDE function differences between OpenHarmony and HarmonyOS.
+DevEco Studio serves as a development tool for both OpenHarmony and HarmonyOS apps. Refer to the following table for descriptions about the functions not supported for OpenHarmony.
 
 <a name="table852516933419"></a>
 <table><thead align="left"><tr id="row1952618913415"><th class="cellrowborder" valign="top" width="29.882988298829883%" id="mcps1.1.4.1.1"><p id="p165268963418"><a name="p165268963418"></a><a name="p165268963418"></a>Feature</p>

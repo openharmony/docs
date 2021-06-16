@@ -1,11 +1,10 @@
 # Ubuntu编译环境准备<a name="ZH-CN_TOPIC_0000001105407498"></a>
 
 -   [获取软件](#section1897711811517)
--   [获取OpenHarmony源码](#section1545225464016)
+-   [获取源码](#section1545225464016)
 -   [安装和配置Python](#section1238412211211)
 -   [安装gn](#section29216201423)
 -   [安装ninja](#section8762358731)
--   [安装hc-gen](#section4924165316437)
 -   [安装LLVM](#section12202192215415)
 -   [安装hb](#section15794154618411)
     -   [前提条件](#section1083283711515)
@@ -21,9 +20,8 @@
 2.  安装和配置python
 3.  安装gn
 4.  安装ninja
-5.  安装hc-gen
-6.  安装LLVM
-7.  安装hb
+5.  安装LLVM
+6.  安装hb
 
 >![](public_sys-resources/icon-notice.gif) **须知：** 
 >-   针对Ubuntu编译环境我们提供了对应的Docker，该Docker封装了相关编译工具，选择使用Docker的开发者可跳过此章节。Docker使用可参考[Docker方式获取编译环境](../get-code/获取工具.md)。
@@ -73,13 +71,6 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 <td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p1923373393515"><a name="p1923373393515"></a><a name="p1923373393515"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar</a></p>
 </td>
 </tr>
-<tr id="row18800428194715"><td class="cellrowborder" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p280042884712"><a name="p280042884712"></a><a name="p280042884712"></a>hc-gen</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p15800428174711"><a name="p15800428174711"></a><a name="p15800428174711"></a>驱动编译工具</p>
-</td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p10800828174712"><a name="p10800828174712"></a><a name="p10800828174712"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar</a></p>
-</td>
-</tr>
 <tr id="row7531362055"><td class="cellrowborder" rowspan="2" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p1467122152710"><a name="p1467122152710"></a><a name="p1467122152710"></a></p>
 <p id="p15217227174016"><a name="p15217227174016"></a><a name="p15217227174016"></a>LLVM</p>
 <p id="p689515112108"><a name="p689515112108"></a><a name="p689515112108"></a></p>
@@ -109,7 +100,7 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 >-   如果后续通过“HPM组件方式”或“HPM包管理器命令行工具方式”获取源码，不需要安装gn、ninja编译工具。
 >-   （推荐）如果后续通过“镜像站点方式”或“代码仓库方式”获取源码，需要安装gn、ninja、LLVM编译工具。安装gn、ninja、LLVM编译工具时，请确保编译工具的环境变量路径唯一。
 
-## 获取OpenHarmony源码<a name="section1545225464016"></a>
+## 获取源码<a name="section1545225464016"></a>
 
 开发者需要在Linux服务器上下载并解压一套源代码，请参见[源码获取](../get-code/源码获取.md)。
 
@@ -238,35 +229,6 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 
     ```
     export PATH=~/ninja:$PATH
-    ```
-
-5.  生效环境变量。
-
-    ```
-    source ~/.bashrc
-    ```
-
-
-## 安装hc-gen<a name="section4924165316437"></a>
-
-1.  打开Linux编译服务器终端。
-2.  [下载hc-gen工具](https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar)。
-3.  解压hc-gen安装包到Linux服务器\~/hc-gen路径下。
-
-    ```
-    tar -xvf hc-gen-0.65-linux.tar -C ~/
-    ```
-
-4.  设置环境变量。
-
-    ```
-    vim ~/.bashrc
-    ```
-
-    将以下命令拷贝到.bashrc文件的最后一行，保存并退出。
-
-    ```
-    export PATH=~/hc-gen:$PATH
     ```
 
 5.  生效环境变量。

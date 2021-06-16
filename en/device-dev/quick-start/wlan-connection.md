@@ -75,7 +75,8 @@ You can use the DevEco tool to perform the image burning of the Hi3861 WLAN modu
 
     ![](figures/en-us_image_0000001078404538.png)
 
-4.  On the  **hi3861**  tab page, set the programming options.
+4.  On the  **Partition Configuration**  tab page, modify the settings. In general cases, you can leave the fields at their default settings.
+5.  On the  **hi3861**  tab page, set the programming options.
 
     -   **upload\_port**: Select the serial port number obtained in step  [2](#en-us_topic_0000001056563976_li848662117291).
     -   **upload\_protocol**: Select the programming protocol  **burn-serial**.
@@ -83,17 +84,10 @@ You can use the DevEco tool to perform the image burning of the Hi3861 WLAN modu
 
     ![](figures/en-us_image_0000001078244328.png)
 
-5.  Modify the settings of the  **hi3861\_app**  file. In general cases, you can leave the fields at their default settings. To change the default settings, select the target item in the  **New Option**  field first.
-
-    ![](figures/en-us_image_0000001120802173.png)
-
 6.  When you finish modifying, click  **Save**  in the upper right corner.
+7.  Open the project file. In the DevEco Device Tool window, go to  **PROJECT TASKS**  \>  **hi3861**  \>  **Upload**  to start programming.
 
-    ![](figures/en-us_image_0000001078313582.png)
-
-7.  Open the project file. In the DevEco Device Tool window, go to  **PROJECT TASKS**  \>  **env:hi3861**  \>  **Upload**  to start programming.
-
-    ![](figures/en-us_image_0000001120802383.png)
+    ![](figures/en-us_image_0000001163569275.png)
 
 8.  When the following information is displayed, press the RST button on the development board to restart it.
 

@@ -10,14 +10,14 @@
 
 ## Environment Setup<a name="section1246439101710"></a>
 
-For details about setting up the standard OpenHarmony environment, see  [Setting Up the Environment](overview-8.md). 
+For details about setting up the standard OpenHarmony environment, see  [Setting Up the Environment](overview-9.md). 
 
 >![](public_sys-resources/icon-note.gif) **NOTE:** 
 >For details about the environment requirements of the third-party development board, refer to the official guide of the development board.
 
 ## Build<a name="section375234715135"></a>
 
-Perform the following operations in the Linux environment.
+If you are using the Docker environment, refer to the Docker usage guide to build the system. If you are using the installation package, perform the following operations in the Linux environment.
 
 1.  Go to the root directory of the source code and run the following command to build the distribution.
 
@@ -72,7 +72,7 @@ The Hi3516DV300 supports programming through the USB port in Windows or Linux+Wi
 
 3.  Open DevEco Device Tool and go to  **Projects**  \>  **Settings**.
 
-    ![](figures/2021-01-27_170334-18.png)
+    ![](figures/2021-01-27_170334-17.png)
 
 4.  On the  **Partition Configuration**  tab page, enter the information about the files to be programmed, including the following.
 
@@ -216,7 +216,7 @@ The Hi3516DV300 supports programming through the USB port in Windows or Linux+Wi
     ![](figures/en-us_image_0000001160528243.png)
 
 6.  When you finish modifying, click  **Save**  in the upper right corner.
-7.  Open the project file, go to  ![](figures/2021-01-27_170334-19.png)  \>  **PROJECT TASKS**  \>  **fastboot**  \>  **Erase**  to erase U-boot.
+7.  Open the project file, go to  ![](figures/2021-01-27_170334-18.png)  \>  **PROJECT TASKS**  \>  **fastboot**  \>  **Erase**  to erase U-boot.
 
     ![](figures/en-us_image_0000001163045527.png)
 
@@ -233,7 +233,7 @@ The Hi3516DV300 supports programming through the USB port in Windows or Linux+Wi
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
     >If this is the first time you program flash memory on the Hi3516 or Hi3518 board, the message "not find the Devices" may be displayed. In this case, follow the steps in  [Installing the USB Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/ide/user-guides/usb_driver-0000001058690393)  and start programming again.
 
-    ![](figures/1-20.png)
+    ![](figures/1-19.png)
 
 11. If the following message is displayed, it indicates that the programming is successful.
 
@@ -242,5 +242,5 @@ The Hi3516DV300 supports programming through the USB port in Windows or Linux+Wi
 
 ## Development Example<a name="section5600113114323"></a>
 
-You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a  [Development Example for Platform Drivers](../guide/overview-13.md).
+You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a  [Development Example for Platform Drivers](../guide/overview-11.md).
 

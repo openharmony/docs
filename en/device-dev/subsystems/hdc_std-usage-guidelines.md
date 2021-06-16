@@ -212,9 +212,9 @@ Stops a service process.
 **Table  5**  Command description
 
 <a name="table540423782919"></a>
-<table><tbody><tr id="row8404937152910"><td class="cellrowborder" valign="top" width="50%"><p id="p7404113711295"><a name="p7404113711295"></a><a name="p7404113711295"></a><strong id="b250850493"><a name="b250850493"></a><a name="b250850493"></a>Parameter</strong></p>
+<table><tbody><tr id="row8404937152910"><td class="cellrowborder" valign="top" width="50%"><p id="p7404113711295"><a name="p7404113711295"></a><a name="p7404113711295"></a><strong id="b892176915"><a name="b892176915"></a><a name="b892176915"></a>Parameter</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p id="p4405193792919"><a name="p4405193792919"></a><a name="p4405193792919"></a><strong id="b774952731"><a name="b774952731"></a><a name="b774952731"></a>Description</strong></p>
+<td class="cellrowborder" valign="top" width="50%"><p id="p4405193792919"><a name="p4405193792919"></a><a name="p4405193792919"></a><strong id="b1368677681"><a name="b1368677681"></a><a name="b1368677681"></a>Description</strong></p>
 </td>
 </tr>
 <tr id="row174051037112912"><td class="cellrowborder" valign="top" width="50%"><p id="p134056375291"><a name="p134056375291"></a><a name="p134056375291"></a>-r</p>
@@ -222,9 +222,9 @@ Stops a service process.
 <td class="cellrowborder" valign="top" width="50%"><p id="p18405337142911"><a name="p18405337142911"></a><a name="p18405337142911"></a>Triggers the service restart.</p>
 </td>
 </tr>
-<tr id="row164052037162913"><td class="cellrowborder" valign="top" width="50%"><p id="p124051837182918"><a name="p124051837182918"></a><a name="p124051837182918"></a><strong id="b2067039134"><a name="b2067039134"></a><a name="b2067039134"></a>Return Value</strong></p>
+<tr id="row164052037162913"><td class="cellrowborder" valign="top" width="50%"><p id="p124051837182918"><a name="p124051837182918"></a><a name="p124051837182918"></a><strong id="b684557688"><a name="b684557688"></a><a name="b684557688"></a>Return Value</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p id="p8405113782918"><a name="p8405113782918"></a><a name="p8405113782918"></a><strong id="b539675609"><a name="b539675609"></a><a name="b539675609"></a>Description</strong></p>
+<td class="cellrowborder" valign="top" width="50%"><p id="p8405113782918"><a name="p8405113782918"></a><a name="p8405113782918"></a><strong id="b770856573"><a name="b770856573"></a><a name="b770856573"></a>Description</strong></p>
 </td>
 </tr>
 <tr id="row15405163702915"><td class="cellrowborder" valign="top" width="50%"><p id="p0976152811311"><a name="p0976152811311"></a><a name="p0976152811311"></a>①Kill server finish</p>
@@ -248,7 +248,7 @@ Starts the service process.
 **Table  6**  Command description
 
 <a name="table11605125417348"></a>
-<table><tbody><tr id="row176051354123419"><td class="cellrowborder" valign="top" width="50%"><p id="p16605185413418"><a name="p16605185413418"></a><a name="p16605185413418"></a><strong id="b2072965358"><a name="b2072965358"></a><a name="b2072965358"></a>Parameter</strong></p>
+<table><tbody><tr id="row176051354123419"><td class="cellrowborder" valign="top" width="50%"><p id="p16605185413418"><a name="p16605185413418"></a><a name="p16605185413418"></a><strong id="b121603420"><a name="b121603420"></a><a name="b121603420"></a>Parameter</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50%"><p id="p3605125413346"><a name="p3605125413346"></a><a name="p3605125413346"></a><strong id="b415620225414"><a name="b415620225414"></a><a name="b415620225414"></a>Description</strong></p>
 </td>
@@ -258,9 +258,9 @@ Starts the service process.
 <td class="cellrowborder" valign="top" width="50%"><p id="p1860525413414"><a name="p1860525413414"></a><a name="p1860525413414"></a>Restarts the service process if it has started.</p>
 </td>
 </tr>
-<tr id="row14606154183415"><td class="cellrowborder" valign="top" width="50%"><p id="p160695453412"><a name="p160695453412"></a><a name="p160695453412"></a><strong id="b575170795"><a name="b575170795"></a><a name="b575170795"></a>Return Value</strong></p>
+<tr id="row14606154183415"><td class="cellrowborder" valign="top" width="50%"><p id="p160695453412"><a name="p160695453412"></a><a name="p160695453412"></a><strong id="b1842320248"><a name="b1842320248"></a><a name="b1842320248"></a>Return Value</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p id="p1606154163419"><a name="p1606154163419"></a><a name="p1606154163419"></a><strong id="b1208563473"><a name="b1208563473"></a><a name="b1208563473"></a>Description</strong></p>
+<td class="cellrowborder" valign="top" width="50%"><p id="p1606154163419"><a name="p1606154163419"></a><a name="p1606154163419"></a><strong id="b1413594554"><a name="b1413594554"></a><a name="b1413594554"></a>Description</strong></p>
 </td>
 </tr>
 <tr id="row7606135433416"><td class="cellrowborder" valign="top" width="50%"><p id="p716462216389"><a name="p716462216389"></a><a name="p716462216389"></a>None</p>
@@ -438,7 +438,7 @@ Sends a file to a remote device.
 
 Example:
 
-hdc\_std file send E:\\a.txt   /data/local/tmp
+hdc\_std file send E:\\a.txt   /data/local/tmp/a.txt
 
 -   **file recv \[-a\]  _remote local_**
 
@@ -484,7 +484,7 @@ Receives a file from a remote device.
 
 Example:
 
-hdc\_std file recv /tmp/fileb ./
+hdc\_std file recv  /data/local/tmp/a.txt   ./a.txt
 
 ## App Commands<a name="section2072647133819"></a>
 

@@ -45,6 +45,8 @@
 
   - [DFX](device-dev/subsystems/DFX.md)
 
+  - [研发工具链](device-dev/subsystems/研发工具链.md)
+
   - [XTS认证](device-dev/subsystems/XTS认证子系统开发指南.md)
 
 - bundles：[组件开发](device-dev/bundles/Readme-CN.md)

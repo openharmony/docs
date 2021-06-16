@@ -179,7 +179,7 @@ The Hi3516 development board allows you to burn flash memory over the USB port, 
     -   **upload\_net\_client\_gw**: Set the gateway of the development board, such as 192.168.1.1. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
     -   **upload\_net\_client\_ip**: Set the IP address of the development board, such as 192.168.1.3. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
 
-    ![](figures/en-us_image_0000001160649345.png)
+    ![](figures/en-us_image_0000001117463460.png)
 
 8.  When you finish modifying, click  **Save**  in the upper right corner.
 9.  Open the project file and go to  ![](figures/2021-01-27_170334-2.png)  \>  **PROJECT TASKS**  \>  **hi3516dv300**  \>  **Upload**  to start programming.
@@ -200,7 +200,7 @@ The Hi3516 development board allows you to burn flash memory over the USB port, 
 1.  Connect to a serial port.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >If the connection fails, rectify the fault by referring to  [FAQs](../quick-start/faqs-2.md).
+    >If the connection fails, rectify the fault by referring to  [FAQs](../quick-start/faqs-3.md).
 
     **Figure  2**  Serial port connection<a name="fig056645018495"></a>  
     
@@ -233,7 +233,7 @@ The Hi3516 development board allows you to burn flash memory over the USB port, 
     <tr id="row12234912381"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p172306219392"><a name="p172306219392"></a><a name="p172306219392"></a>setenv bootargs "console=ttyAMA0,115200n8 root=emmc fstype=vfat rootaddr=10M rootsize=20M rw";</p>
     </td>
     <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p13489329396"><a name="p13489329396"></a><a name="p13489329396"></a>Run this command to set the output mode to serial port output, baud rate to <strong id="b1378372812210"><a name="b1378372812210"></a><a name="b1378372812210"></a>115200</strong>, data bit to <strong id="b27871628822"><a name="b27871628822"></a><a name="b27871628822"></a>8</strong>, <strong id="b678811281528"><a name="b678811281528"></a><a name="b678811281528"></a>rootfs</strong> to be mounted to the <strong id="b978813281220"><a name="b978813281220"></a><a name="b978813281220"></a>emmc</strong> component, and file system type to <strong id="b12788132814217"><a name="b12788132814217"></a><a name="b12788132814217"></a>vfat</strong>.</p>
-    <p id="p12481832163913"><a name="p12481832163913"></a><a name="p12481832163913"></a><strong id="b965011165313"><a name="b965011165313"></a><a name="b965011165313"></a>rootaddr=10 M, rootsize=20 M rw</strong> indicates the start address and size of the rootfs.img file to be burnt, respectively. The file size <strong id="b0633135515546"><a name="b0633135515546"></a><a name="b0633135515546"></a>must be the same</strong> as that of the <strong id="b69061726113015"><a name="b69061726113015"></a><a name="b69061726113015"></a>rootfs.img</strong> file in the IDE.</p>
+    <p id="p12481832163913"><a name="p12481832163913"></a><a name="p12481832163913"></a><strong id="b965011165313"><a name="b965011165313"></a><a name="b965011165313"></a>rootaddr=10M rootsize=20M rw</strong> indicates the start address and size of the <strong id="b1538675832018"><a name="b1538675832018"></a><a name="b1538675832018"></a>rootfs.img</strong> file to be burnt, respectively. The file size <strong id="b0633135515546"><a name="b0633135515546"></a><a name="b0633135515546"></a>must be the same</strong> as that of the <strong id="b69061726113015"><a name="b69061726113015"></a><a name="b69061726113015"></a>rootfs.img</strong> file in the IDE.</p>
     </td>
     </tr>
     <tr id="row18234161153820"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p823417118386"><a name="p823417118386"></a><a name="p823417118386"></a>saveenv</p>
