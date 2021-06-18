@@ -88,7 +88,7 @@ The following table describes the tools and source code required for setting up 
 <p id="p122171727184019"><a name="p122171727184019"></a><a name="p122171727184019"></a>Functions as the compiler toolchain.</p>
 <p id="p108951116109"><a name="p108951116109"></a><a name="p108951116109"></a></p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p5445144091417"><a name="p5445144091417"></a><a name="p5445144091417"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz</a></p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p5445144091417"><a name="p5445144091417"></a><a name="p5445144091417"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
 </td>
 </tr>
 <tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>For the OpenHarmony_1.0.1_release, download LLVM from the following link:</p>
@@ -279,7 +279,7 @@ You need to acquire  [source code](../get-code/source-code-acquisition.md), down
 ## Installing LLVM<a name="section12202192215415"></a>
 
 1.  Start a Linux server.
-2.  [Download LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz).
+2.  [Download LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz).
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
     >For the OpenHarmony\_1.0.1\_release, click  [here](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)  to download LLVM.

@@ -79,7 +79,7 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 <p id="p122171727184019"><a name="p122171727184019"></a><a name="p122171727184019"></a>编译工具链</p>
 <p id="p108951116109"><a name="p108951116109"></a><a name="p108951116109"></a></p>
 </td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p5445144091417"><a name="p5445144091417"></a><a name="p5445144091417"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz</a></p>
+<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p5445144091417"><a name="p5445144091417"></a><a name="p5445144091417"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
 </td>
 </tr>
 <tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>针对OpenHarmony_1.0.1_release分支使用以下链接下载：</p>
@@ -241,7 +241,7 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 ## 安装LLVM<a name="section12202192215415"></a>
 
 1.  打开Linux编译服务器终端。
-2.  [下载LLVM工具](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz)。
+2.  [下载LLVM工具](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz)。
 
     >![](public_sys-resources/icon-note.gif) **说明：** 
     >针对OpenHarmony\_1.0.1\_release分支使用此链接[下载LLVM工具](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)。
