@@ -242,5 +242,5 @@ The Hi3516DV300 supports programming through the USB port in Windows or Linux+Wi
 
 ## Development Example<a name="section5600113114323"></a>
 
-You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a  [Development Example for Platform Drivers](../guide/overview-11.md).
+You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a  [Development Example for Platform Drivers](../guide/overview-10.md).
 
