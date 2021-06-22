@@ -36,6 +36,11 @@ RUN apt-get update -y \
 	&& DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt-get -y install tzdata \
 	&& apt-get install default-jre -y \
 	&& apt-get install default-jdk -y \
+	&& apt-get install bison -y \
+	&& apt-get install flex -y \
+	&& apt-get install bc -y \
+	&& apt-get install u-boot-tools -y \
+	&& apt-get install gcc-arm-linux-gnueabi -y \
 	&& apt-get install build-essential \
 	&& apt-get install locales \
 	&& locale-gen "en_US.UTF-8" \
@@ -49,7 +54,7 @@ RUN apt-get update -y \
 	&& pip3 install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple ecdsa \
 	&& python3 -m pip install --user ohos-build \
 	&& mkdir -p /home/tools \
-	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-53907/linux/llvm.tar.gz \
+	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar \
