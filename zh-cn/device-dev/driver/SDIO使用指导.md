@@ -24,7 +24,7 @@
 
 在使用SDIO进行通信前，首先要调用SdioOpen获取SDIO控制器的设备句柄，该函数会返回指定总线号的SDIO控制器的设备句柄。
 
-DevHandle SdioOpen\(int16\_t busNum\);
+DevHandle SdioOpen\(int16\_t mmcBusNum, struct SdioFunctionConfig \*config\);
 
 **表 1**  SdioOpen函数的参数和返回值描述
 
@@ -35,9 +35,14 @@ DevHandle SdioOpen\(int16\_t busNum\);
 </th>
 </tr>
 </thead>
-<tbody><tr id="row19112195918454"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p11121759124515"><a name="p11121759124515"></a><a name="p11121759124515"></a>busNum</p>
+<tbody><tr id="row19112195918454"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p11121759124515"><a name="p11121759124515"></a><a name="p11121759124515"></a>mmcBusNum</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p111121459194519"><a name="p111121459194519"></a><a name="p111121459194519"></a>SDIO的总线号</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p111121459194519"><a name="p111121459194519"></a><a name="p111121459194519"></a>总线号</p>
+</td>
+</tr>
+<tr id="row380917163457"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1181091614519"><a name="p1181091614519"></a><a name="p1181091614519"></a>config</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p5810121634514"><a name="p5810121634514"></a><a name="p5810121634514"></a>SDIO功能配置信息</p>
 </td>
 </tr>
 <tr id="row6112659184518"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1112105919453"><a name="p1112105919453"></a><a name="p1112105919453"></a><strong id="b611215594453"><a name="b611215594453"></a><a name="b611215594453"></a>返回值</strong></p>
@@ -62,9 +67,12 @@ DevHandle SdioOpen\(int16\_t busNum\);
 
 ```
 DevHandle handle = NULL;
-int16_t busNum = 1;
+struct SdioFunctionConfig config;
+config.funcNr = 1;
+config.vendorId = 0x123;
+config.deviceId = 0x456;
 /* 打开总线号为1的SDIO控制器 */
-handle = SdioOpen(busNum);
+handle = SdioOpen(1, &config);
 if (handle == NULL) {
     HDF_LOGE("SdioOpen: failed!\n");
 }
@@ -218,7 +226,7 @@ if (ret != 0) {
 
 对应的接口函数如下所示：
 
-int32\_t SdioWriteBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+int32\_t SdioWriteBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
 **表 5**  SdioWriteBytes函数的参数和返回值描述
 
@@ -249,11 +257,6 @@ int32\_t SdioWriteBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1288813411413"><a name="p1288813411413"></a><a name="p1288813411413"></a>待写入数据的长度</p>
 </td>
 </tr>
-<tr id="row188213710445"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p08227154415"><a name="p08227154415"></a><a name="p08227154415"></a>timeOut</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p6821875446"><a name="p6821875446"></a><a name="p6821875446"></a>写入数据的最大时间限制，单位毫秒。如果该字段为0，则使用平台对应的默认值。</p>
-</td>
-</tr>
 <tr id="row18247654163519"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p486155173610"><a name="p486155173610"></a><a name="p486155173610"></a><strong id="b169231220183618"><a name="b169231220183618"></a><a name="b169231220183618"></a>返回值</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1686155113620"><a name="p1686155113620"></a><a name="p1686155113620"></a><strong id="b9924152013365"><a name="b9924152013365"></a><a name="b9924152013365"></a>返回值描述</strong></p>
@@ -279,7 +282,7 @@ int32_t ret;
 uint8_t wbuff[] = {1,2,3,4,5};
 uint32_t addr = 0x100 + 0x09;
 /* 向SDIO设备起始地址0x109，增量写入5个字节的数据 */
-ret = SdioWriteBytes(handle, wbuff, addr, sizeof(wbuff) / sizeof(wbuff[0]), 0);
+ret = SdioWriteBytes(handle, wbuff, addr, sizeof(wbuff) / sizeof(wbuff[0]));
 if (ret != 0) {
     HDF_LOGE("SdioWriteBytes: failed, ret %d\n", ret);
 }
@@ -289,7 +292,7 @@ if (ret != 0) {
 
 对应的接口函数如下所示：
 
-int32\_t SdioReadBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+int32\_t SdioReadBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
 **表 6**  SdioReadBytes函数的参数和返回值描述
 
@@ -320,11 +323,6 @@ int32\_t SdioReadBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint3
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p14676163782210"><a name="p14676163782210"></a><a name="p14676163782210"></a>待读取数据的长度</p>
 </td>
 </tr>
-<tr id="row1823311517494"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p723314152499"><a name="p723314152499"></a><a name="p723314152499"></a>timeOut</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1323351515493"><a name="p1323351515493"></a><a name="p1323351515493"></a>读取数据的最大时间限制，单位毫秒。如果该字段为0，则使用平台对应的默认值。</p>
-</td>
-</tr>
 <tr id="row964182643610"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p7833639163612"><a name="p7833639163612"></a><a name="p7833639163612"></a><strong id="b122757566365"><a name="b122757566365"></a><a name="b122757566365"></a>返回值</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p3833939113619"><a name="p3833939113619"></a><a name="p3833939113619"></a><strong id="b15276185619361"><a name="b15276185619361"></a><a name="b15276185619361"></a>返回值描述</strong></p>
@@ -350,7 +348,7 @@ int32_t ret;
 uint8_t rbuff[5] = {0};
 uint32_t addr = 0x100 + 0x09;
 /* 从SDIO设备起始地址0x109，增量读取5个字节的数据 */
-ret = SdioReadBytes(handle, rbuff, addr, 5, 0);
+ret = SdioReadBytes(handle, rbuff, addr, 5);
 if (ret != 0) {
     HDF_LOGE("SdioReadBytes: failed, ret %d\n", ret);
 }
@@ -360,7 +358,7 @@ if (ret != 0) {
 
     对应的接口函数如下所示：
 
-    int32\_t SdioWriteBytesToFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+    int32\_t SdioWriteBytesToFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t scatterLen\);
 
     **表 7**  SdioWriteBytesToFixedAddr函数的参数和返回值描述
 
@@ -391,9 +389,9 @@ if (ret != 0) {
     <td class="cellrowborder" valign="top" width="51.57000000000001%" headers="mcps1.2.3.1.2 "><p id="p7578181015113"><a name="p7578181015113"></a><a name="p7578181015113"></a>待写入数据的长度</p>
     </td>
     </tr>
-    <tr id="row58301911309"><td class="cellrowborder" valign="top" width="48.43%" headers="mcps1.2.3.1.1 "><p id="p570810551107"><a name="p570810551107"></a><a name="p570810551107"></a>timeOut</p>
+    <tr id="row58301911309"><td class="cellrowborder" valign="top" width="48.43%" headers="mcps1.2.3.1.1 "><p id="p570810551107"><a name="p570810551107"></a><a name="p570810551107"></a>scatterLen</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.57000000000001%" headers="mcps1.2.3.1.2 "><p id="p17579910915"><a name="p17579910915"></a><a name="p17579910915"></a>写入数据的最大时间限制，单位毫秒。如果该字段为0，则使用平台对应的默认值。</p>
+    <td class="cellrowborder" valign="top" width="51.57000000000001%" headers="mcps1.2.3.1.2 "><p id="p17579910915"><a name="p17579910915"></a><a name="p17579910915"></a>集散表的长度。如果该字段不为0，则data为集散表类型。</p>
     </td>
     </tr>
     <tr id="row18215162810212"><td class="cellrowborder" valign="top" width="48.43%" headers="mcps1.2.3.1.1 "><p id="p1521319452211"><a name="p1521319452211"></a><a name="p1521319452211"></a><strong id="b621312451720"><a name="b621312451720"></a><a name="b621312451720"></a>返回值</strong></p>
@@ -431,7 +429,7 @@ if (ret != 0) {
 
     对应的接口函数如下所示：
 
-    int32\_t SdioReadBytesFromFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+    int32\_t SdioReadBytesFromFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t scatterLen\);
 
     **表 8**  SdioReadBytesFromFixedAddr函数的参数和返回值描述
 
@@ -462,9 +460,9 @@ if (ret != 0) {
     <td class="cellrowborder" valign="top" width="51.300000000000004%" headers="mcps1.2.3.1.2 "><p id="p1954165031214"><a name="p1954165031214"></a><a name="p1954165031214"></a>待读取数据的长度</p>
     </td>
     </tr>
-    <tr id="row972552281111"><td class="cellrowborder" valign="top" width="48.699999999999996%" headers="mcps1.2.3.1.1 "><p id="p2753755161114"><a name="p2753755161114"></a><a name="p2753755161114"></a>timeOut</p>
+    <tr id="row972552281111"><td class="cellrowborder" valign="top" width="48.699999999999996%" headers="mcps1.2.3.1.1 "><p id="p2753755161114"><a name="p2753755161114"></a><a name="p2753755161114"></a>scatterLen</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.300000000000004%" headers="mcps1.2.3.1.2 "><p id="p3541350111218"><a name="p3541350111218"></a><a name="p3541350111218"></a>读取数据的最大时间限制，单位毫秒。如果该字段为0，则使用平台对应的默认值。</p>
+    <td class="cellrowborder" valign="top" width="51.300000000000004%" headers="mcps1.2.3.1.2 "><p id="p3541350111218"><a name="p3541350111218"></a><a name="p3541350111218"></a>集散表的长度。如果该字段不为0，则data为集散表类型。</p>
     </td>
     </tr>
     <tr id="row15725162210117"><td class="cellrowborder" valign="top" width="48.699999999999996%" headers="mcps1.2.3.1.1 "><p id="p681073451314"><a name="p681073451314"></a><a name="p681073451314"></a><strong id="b118106344137"><a name="b118106344137"></a><a name="b118106344137"></a>返回值</strong></p>
@@ -503,7 +501,7 @@ if (ret != 0) {
 
 当前只支持写入一个字节的数据，对应的接口函数如下所示：
 
-int32\_t SdioWriteBytesToFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+int32\_t SdioWriteBytesToFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
 **表 9**  SdioWriteBytesToFunc0函数的参数和返回值描述
 
@@ -534,11 +532,6 @@ int32\_t SdioWriteBytesToFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t add
 <td class="cellrowborder" valign="top" width="50.06%" headers="mcps1.2.3.1.2 "><p id="p71691449141119"><a name="p71691449141119"></a><a name="p71691449141119"></a>待写入数据的长度</p>
 </td>
 </tr>
-<tr id="row1634015181114"><td class="cellrowborder" valign="top" width="49.94%" headers="mcps1.2.3.1.1 "><p id="p9169049161114"><a name="p9169049161114"></a><a name="p9169049161114"></a>timeOut</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.06%" headers="mcps1.2.3.1.2 "><p id="p51701849121115"><a name="p51701849121115"></a><a name="p51701849121115"></a>写入数据的最大时间限制，单位毫秒。如果该字段为0，则使用平台对应的默认值。</p>
-</td>
-</tr>
 <tr id="row123407185111"><td class="cellrowborder" valign="top" width="49.94%" headers="mcps1.2.3.1.1 "><p id="p294173071617"><a name="p294173071617"></a><a name="p294173071617"></a><strong id="b1294103061611"><a name="b1294103061611"></a><a name="b1294103061611"></a>返回值</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50.06%" headers="mcps1.2.3.1.2 "><p id="p39421830111616"><a name="p39421830111616"></a><a name="p39421830111616"></a><strong id="b179429301164"><a name="b179429301164"></a><a name="b179429301164"></a>返回值描述</strong></p>
@@ -563,7 +556,7 @@ int32\_t SdioWriteBytesToFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t add
 int32_t ret;
 uint8_t wbuff = 1;
 /* 向SDIO function 0地址0x2中写入1字节的数据 */
-ret = SdioWriteBytesToFunc0(handle, &wbuff, 0x2, 1, 0);
+ret = SdioWriteBytesToFunc0(handle, &wbuff, 0x2, 1);
 if (ret != 0) {
     HDF_LOGE("SdioWriteBytesToFunc0: failed, ret %d\n", ret);
 }
@@ -573,7 +566,7 @@ if (ret != 0) {
 
 当前只支持读取一个字节的数据，对应的接口函数如下所示：
 
-int32\_t SdioReadBytesFromFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+int32\_t SdioReadBytesFromFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
 **表 10**  SdioReadBytesFromFunc0函数的参数和返回值描述
 
@@ -604,11 +597,6 @@ int32\_t SdioReadBytesFromFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t ad
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p612921851820"><a name="p612921851820"></a><a name="p612921851820"></a>待读取数据的长度</p>
 </td>
 </tr>
-<tr id="row147201613181"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p3130161831815"><a name="p3130161831815"></a><a name="p3130161831815"></a>timeOut</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1513031831816"><a name="p1513031831816"></a><a name="p1513031831816"></a>读取数据的最大时间限制，单位毫秒。如果该字段为0，则使用平台对应的默认值。</p>
-</td>
-</tr>
 <tr id="row167202113189"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1813001881810"><a name="p1813001881810"></a><a name="p1813001881810"></a><strong id="b1130151841813"><a name="b1130151841813"></a><a name="b1130151841813"></a>返回值</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1313081817184"><a name="p1313081817184"></a><a name="p1313081817184"></a><strong id="b19130141818183"><a name="b19130141818183"></a><a name="b19130141818183"></a>返回值描述</strong></p>
@@ -633,7 +621,7 @@ int32\_t SdioReadBytesFromFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t ad
 int32_t ret;
 uint8_t rbuff;
 /* 从SDIO function 0设备地址0x2中读取1字节的数据 */
-ret = SdioReadBytesFromFunc0(handle, &rbuff, 0x2, 1, 0);
+ret = SdioReadBytesFromFunc0(handle, &rbuff, 0x2, 1);
 if (ret != 0) {
     HDF_LOGE("SdioReadBytesFromFunc0: failed, ret %d\n", ret);
 }

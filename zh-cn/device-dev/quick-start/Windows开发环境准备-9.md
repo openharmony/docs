@@ -43,9 +43,9 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="zh-cn_topic_0000001058091994_p547205817316"><a name="zh-cn_topic_0000001058091994_p547205817316"></a><a name="zh-cn_topic_0000001058091994_p547205817316"></a>编译构建工具</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p1991315166416"><a name="zh-cn_topic_0000001058091994_p1991315166416"></a><a name="zh-cn_topic_0000001058091994_p1991315166416"></a>3.7.4-3.8.x 64位版本</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p1991315166416"><a name="zh-cn_topic_0000001058091994_p1991315166416"></a><a name="zh-cn_topic_0000001058091994_p1991315166416"></a>V3.7.4~V3.8.x 64位版本</p>
 </td>
-<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p1599022403"><a name="zh-cn_topic_0000001058091994_p1599022403"></a><a name="zh-cn_topic_0000001058091994_p1599022403"></a><a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">https://www.python.org/downloads/</a></p>
+<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p1599022403"><a name="zh-cn_topic_0000001058091994_p1599022403"></a><a name="zh-cn_topic_0000001058091994_p1599022403"></a>推荐下载：<a href="https://www.python.org/downloads/release/python-388/" target="_blank" rel="noopener noreferrer">https://www.python.org/downloads/release/python-388/</a></p>
 </td>
 </tr>
 <tr id="zh-cn_topic_0000001058091994_row117316576562"><td class="cellrowborder" valign="top" width="19.49%" headers="mcps1.1.5.1.1 "><p id="zh-cn_topic_0000001058091994_p16405151165717"><a name="zh-cn_topic_0000001058091994_p16405151165717"></a><a name="zh-cn_topic_0000001058091994_p16405151165717"></a>Node.js</p>
@@ -93,9 +93,9 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 
 ## 安装Python<a name="zh-cn_topic_0000001058091994_section16266553175320"></a>
 
-1.  双击Python安装包进行安装，勾选“**Add Python xx to PATH**”，然后点击**Install Now**开始安装。
+1.  双击Python安装包进行安装，勾选“**Add Python 3.8 to PATH**”，然后点击**Install Now**开始安装。
 
-    ![](figures/zh-cn_image_0000001096154076.png)
+    ![](figures/zh-cn_image_0000001168817327.png)
 
 2.  等待安装完成后，点击**Close**。
 
@@ -103,7 +103,7 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 
 3.  打开命令行工具，输入python --version，检查安装结果。
 
-    ![](figures/zh-cn_image_0000001143154485.png)
+    ![](figures/zh-cn_image_0000001122419072.png)
 
 4.  在命令行工具中，分别执行如下命令设置pip源，用于后续安装DevEco Device Tool过程中下载依赖的组件包。
 

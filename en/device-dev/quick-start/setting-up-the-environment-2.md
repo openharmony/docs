@@ -7,8 +7,7 @@
 -   [Installing Linux Build Tools](#section182916865219)
     -   [Changing Linux Shell to Bash](#section1715027152617)
     -   [Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)](#section45512412251)
-    -   [Installing a File Packing Tool](#section1969111820270)
-    -   [Installing the JVM](#section1692618112713)
+    -   [Installing File Packing Tools and JVM](#section16199102083717)
 
 
 ## Environment Requirements<a name="section179175261196"></a>
@@ -108,44 +107,16 @@ sudo ln -s /bin/bash /bin/sh
 Install the software.
 
 ```
-sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib* && sudo apt-get install libffi-dev
+sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 ```
 
-### Installing a File Packing Tool<a name="section1969111820270"></a>
+### Installing File Packing Tools and JVM<a name="section16199102083717"></a>
 
 1.  Start a Linux server.
-2.  Install  **dosfstools**.
+2.  Install the dosfstools, mtools, mtd-utils, Java Runtime Environment \(JRE\), and Java SDK.
 
     ```
-    sudo apt-get install dosfstools
-    ```
-
-3.  Install  **mtools**.
-
-    ```
-    sudo apt-get install mtools
-    ```
-
-4.  Install  **mtd-utils**.
-
-    ```
-    sudo apt-get install mtd-utils
-    ```
-
-
-### Installing the JVM<a name="section1692618112713"></a>
-
-1.  Start a Linux server.
-2.  Install the Java Runtime Environment \(JRE\).
-
-    ```
-    sudo apt-get install default-jre
-    ```
-
-3.  Install the Java Development Kit \(JDK\).
-
-    ```
-    sudo apt-get install default-jdk
+    sudo apt-get install dosfstools mtools mtd-utils default-jre default-jdk
     ```
 
 
