@@ -20,7 +20,7 @@
             -   [无屏摄像头类产品](device-dev/guide/无屏摄像头类产品.md)（摄像头控制）
             -   [带屏摄像头类产品](device-dev/guide/带屏摄像头类产品.md)（屏幕和摄像头控制、视觉应用开发）
 
-        -   porting：[移植适配](device-dev/guide/Readme-CN.md)
+        -   porting：[移植适配](device-dev/porting/Readme-CN.md)
             -   [三方芯片移植指导](device-dev/porting/三方芯片移植指导.md)
             -   [三方库移植指导](device-dev/porting/三方库移植指导.md)
 
