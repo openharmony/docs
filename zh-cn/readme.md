@@ -44,7 +44,7 @@
             -   [平台驱动](device-dev/guide/平台驱动开发示例.md)
             -   [外设驱动](device-dev/guide/外设驱动开发示例.md)
 
-        -   porting：[移植适配](device-dev/guide/Readme-CN.md)
+        -   porting：[移植适配](device-dev/porting/Readme-CN.md)
             -   [三方芯片移植指导](device-dev/porting/三方芯片移植指导.md)
             -   [三方库移植指导](device-dev/porting/三方库移植指导.md)
 
