@@ -105,7 +105,7 @@ The following table lists the tools required for the Hi3861 development board.
 Install the software.
 
 ```
-sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib* && sudo apt-get install libffi-dev
+sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 ```
 
 ### Installing Scons<a name="section7438245172514"></a>

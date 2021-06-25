@@ -5,10 +5,9 @@
     -   [Software Requirements](#section17315193935817)
 
 -   [Installing Linux Build Tools](#section8831868501)
-    -   [Changing Linux Shell to Bash](#section1715027152617)
-    -   [Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)](#section45512412251)
-    -   [Installing a File Packing Tool](#section1686964015274)
-    -   [Installing hc-gen](#section18706403274)
+    -   [Changing Linux Shell to Bash](#section434110241084)
+    -   [Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)](#section25911132141020)
+    -   [Installing File Packing Tools](#section390214473129)
 
 
 ## Environment Requirements<a name="section1724111409282"></a>
@@ -72,7 +71,7 @@ The following table describes the tools required for setting up the general envi
 >-   If you acquire the source code using an HPM component or HPM CLI tool, you do not need to install  **hc-gen**.
 >-   \(Recommended\) If you obtain the source code via the mirror site or code repository, install  **hc-gen**. When installing the compilation tool, ensure that its environment variable path is unique.
 
-### Changing Linux Shell to Bash<a name="section1715027152617"></a>
+### Changing Linux Shell to Bash<a name="section434110241084"></a>
 
 Check whether bash is used as the shell.
 
@@ -95,62 +94,21 @@ sudo rm -rf /bin/sh
 sudo ln -s /bin/bash /bin/sh
 ```
 
-### Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)<a name="section45512412251"></a>
+### Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)<a name="section25911132141020"></a>
 
 Install the software.
 
 ```
-sudo apt-get install build-essential && sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install make && sudo apt-get install zlib* && sudo apt-get install libffi-dev
+sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 ```
 
-### Installing a File Packing Tool<a name="section1686964015274"></a>
+### Installing File Packing Tools<a name="section390214473129"></a>
 
 1.  Start a Linux server.
-2.  Install  **dosfstools**.
+2.  Install dosfstools, mtools, and mtd-utils.
 
     ```
-    sudo apt-get install dosfstools
-    ```
-
-3.  Install  **mtools**.
-
-    ```
-    sudo apt-get install mtools
-    ```
-
-4.  Install  **mtd-utils**.
-
-    ```
-    sudo apt-get install mtd-utils
-    ```
-
-
-### Installing hc-gen<a name="section18706403274"></a>
-
-1.  Start a Linux server.
-2.  Download  [hc-gen](https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar).
-3.  Decompress the hc-gen installation package to  **\~/hc-gen**  on the Linux server.
-
-    ```
-    tar -xvf hc-gen-0.65-linux.tar -C ~/
-    ```
-
-4.  Set an environment variable.
-
-    ```
-    vim ~/.bashrc
-    ```
-
-    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
-
-    ```
-    export PATH=~/hc-gen:$PATH
-    ```
-
-5.  Validate the environment variable.
-
-    ```
-    source ~/.bashrc
+    sudo apt-get install dosfstools mtools mtd-utils
     ```
 
 

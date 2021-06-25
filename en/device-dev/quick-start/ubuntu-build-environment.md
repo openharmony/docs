@@ -1,11 +1,10 @@
 # Ubuntu Build Environment<a name="EN-US_TOPIC_0000001105407498"></a>
 
 -   [Obtaining Source Code and Tools](#section1897711811517)
--   [Obtaining OpenHarmony Source Code](#section1545225464016)
+-   [Obtaining Source Code](#section1545225464016)
 -   [Installing and Configuring Python](#section1238412211211)
 -   [Installing gn](#section29216201423)
 -   [Installing ninja](#section8762358731)
--   [Installing hc-gen](#section4924165316437)
 -   [Installing LLVM](#section12202192215415)
 -   [Installing hb](#section15794154618411)
     -   [Prerequisites](#section1083283711515)
@@ -21,9 +20,8 @@ Perform the following steps to set up the build environment:
 2.  Install and configure Python.
 3.  Install GN.
 4.  Install Ninja.
-5.  Installing hc-gen
-6.  Install LLVM.
-7.  Install hb.
+5.  Install LLVM.
+6.  Install hb.
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
 >-   Docker is provided for the Ubuntu build environment, which encapsulates related build tools. If you use Docker to prepare the build environment, you do not need to perform the following steps in this section. Instead, refer to  [Using Docker to Prepare the Build Environment](../get-code/tool-acquisition.md).
@@ -73,13 +71,6 @@ The following table describes the tools and source code required for setting up 
 <td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p1923373393515"><a name="p1923373393515"></a><a name="p1923373393515"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar</a></p>
 </td>
 </tr>
-<tr id="row18800428194715"><td class="cellrowborder" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p280042884712"><a name="p280042884712"></a><a name="p280042884712"></a>hc-gen</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p15800428174711"><a name="p15800428174711"></a><a name="p15800428174711"></a>Configures and compiles files.</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p10800828174712"><a name="p10800828174712"></a><a name="p10800828174712"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar</a></p>
-</td>
-</tr>
 <tr id="row7531362055"><td class="cellrowborder" rowspan="2" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p1467122152710"><a name="p1467122152710"></a><a name="p1467122152710"></a></p>
 <p id="p15217227174016"><a name="p15217227174016"></a><a name="p15217227174016"></a>LLVM</p>
 <p id="p689515112108"><a name="p689515112108"></a><a name="p689515112108"></a></p>
@@ -88,7 +79,7 @@ The following table describes the tools and source code required for setting up 
 <p id="p122171727184019"><a name="p122171727184019"></a><a name="p122171727184019"></a>Functions as the compiler toolchain.</p>
 <p id="p108951116109"><a name="p108951116109"></a><a name="p108951116109"></a></p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p5445144091417"><a name="p5445144091417"></a><a name="p5445144091417"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p49091358184"><a name="p49091358184"></a><a name="p49091358184"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
 </td>
 </tr>
 <tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>For the OpenHarmony_1.0.1_release, download LLVM from the following link:</p>
@@ -109,7 +100,7 @@ The following table describes the tools and source code required for setting up 
 >-   If you acquire the source code using an HPM component or HPM CLI tool, you do not need to install compilation tools like  **gn**  and  **ninja**.
 >-   \(Recommended\) If you obtain the source code via the mirror site or code repository, install compilation tools such as  **gn**,  **ninja**, and LLVM. When installing these tools, ensure that their environment variable paths are unique.
 
-## Obtaining OpenHarmony Source Code<a name="section1545225464016"></a>
+## Obtaining Source Code<a name="section1545225464016"></a>
 
 You need to acquire  [source code](../get-code/source-code-acquisition.md), download it on a Linux server, and decompress it.
 
@@ -238,35 +229,6 @@ You need to acquire  [source code](../get-code/source-code-acquisition.md), down
 
     ```
     export PATH=~/ninja:$PATH
-    ```
-
-5.  Validate the environment variable.
-
-    ```
-    source ~/.bashrc
-    ```
-
-
-## Installing hc-gen<a name="section4924165316437"></a>
-
-1.  Start a Linux server.
-2.  Download  [hc-gen](https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar).
-3.  Decompress the hc-gen installation package to  **\~/hc-gen**  on the Linux server.
-
-    ```
-    tar -xvf hc-gen-0.65-linux.tar -C ~/
-    ```
-
-4.  Set an environment variable.
-
-    ```
-    vim ~/.bashrc
-    ```
-
-    Copy the following command to the last line of the  **.bashrc**  file, save the file, and exit.
-
-    ```
-    export PATH=~/hc-gen:$PATH
     ```
 
 5.  Validate the environment variable.

@@ -27,12 +27,12 @@ void SdioTestSample(void)
     int32_t ret;  
     DevHandle handle = NULL;
     uint8_t data[TEST_DATA_LEN] = {0};
-    int16_t busNum = 1;
+    struct SdioFunctionConfig config = {1, 0x123, 0x456};
     uint8_t val;
     uint32_t addr;
     
     /* Open an SDIO controller whose bus number is 1. */
-    handle = SdioOpen(busNum);
+    handle = SdioOpen(1, &config);
     if (handle == NULL) {
         HDF_LOGE("SdioOpen: failed!\n");
         return;
@@ -59,25 +59,25 @@ void SdioTestSample(void)
     }
     /* Read 3-byte data from the incremental address of an SDIO device. */
     addr = TEST_FBR_BASE_ADDR * TEST_FUNC_NUM + TEST_ADDR_OFFSET;
-    ret = SdioReadBytes(handle, data, addr, TEST_DATA_LEN, 0);
+    ret = SdioReadBytes(handle, data, addr, TEST_DATA_LEN);
     if (ret != 0) {
         HDF_LOGE("SdioReadBytes: failed, ret %d\n", ret);
         goto COMM_ERR;
     }
     /* Write 3-byte data into the incremental address of an SDIO device. */
-    ret = SdioWriteBytes(handle, data, addr, TEST_DATA_LEN, 0);
+    ret = SdioWriteBytes(handle, data, addr, TEST_DATA_LEN);
     if (ret != 0) {
         HDF_LOGE("SdioWriteBytes: failed, ret %d\n", ret);
         goto COMM_ERR;
     }
     /* Read 1-byte data from the SDIO device. */
-    ret = SdioReadBytes(handle, &val, addr, 1, 0);
+    ret = SdioReadBytes(handle, &val, addr, 1);
     if (ret != 0) {
         HDF_LOGE("SdioReadBytes: failed, ret %d\n", ret);
         goto COMM_ERR;
     }
     /* Write 1-byte data into the SDIO device. */
-    ret = SdioWriteBytes(handle, &val, addr, 1, 0);
+    ret = SdioWriteBytes(handle, &val, addr, 1);
     if (ret != 0) {
         HDF_LOGE("SdioWriteBytes: failed, ret %d\n", ret);
         goto COMM_ERR;
@@ -96,13 +96,13 @@ void SdioTestSample(void)
     }
     /* Read 1-byte data from SDIO function 0. */
     addr = 0x02;
-    ret = SdioReadBytesFromFunc0(handle, &val, addr, 1, 0);
+    ret = SdioReadBytesFromFunc0(handle, &val, addr, 1);
     if (ret != 0) {
         HDF_LOGE("SdioReadBytesFromFunc0: failed, ret %d\n", ret);
         goto COMM_ERR;
     }
     /* Write 1-byte data into SDIO function 0. */
-    ret = SdioWriteBytesToFunc0(handle, &val, addr, 1, 0);
+    ret = SdioWriteBytesToFunc0(handle, &val, addr, 1);
     if (ret != 0) {
         HDF_LOGE("SdioWriteBytesToFunc0: failed, ret %d\n", ret);
         goto COMM_ERR;

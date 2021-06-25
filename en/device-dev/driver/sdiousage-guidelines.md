@@ -24,7 +24,7 @@
 
 Before performing SDIO communication, obtain the device handle of an SDIO controller by calling  **SdioOpen**. This function returns the device handle of the SDIO controller with a specified bus number.
 
-DevHandle SdioOpen\(int16\_t busNum\);
+DevHandle SdioOpen\(int16\_t mmcBusNum, struct SdioFunctionConfig \*config\);
 
 **Table  1**  Parameters and return values of SdioOpen
 
@@ -35,9 +35,14 @@ DevHandle SdioOpen\(int16\_t busNum\);
 </th>
 </tr>
 </thead>
-<tbody><tr id="row19112195918454"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p11121759124515"><a name="p11121759124515"></a><a name="p11121759124515"></a>busNum</p>
+<tbody><tr id="row19112195918454"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p11121759124515"><a name="p11121759124515"></a><a name="p11121759124515"></a>mmcBusNum</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p111121459194519"><a name="p111121459194519"></a><a name="p111121459194519"></a>SDIO bus number.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p111121459194519"><a name="p111121459194519"></a><a name="p111121459194519"></a>Bus number.</p>
+</td>
+</tr>
+<tr id="row380917163457"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1181091614519"><a name="p1181091614519"></a><a name="p1181091614519"></a>config</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p5810121634514"><a name="p5810121634514"></a><a name="p5810121634514"></a>SDIO functionality configurations.</p>
 </td>
 </tr>
 <tr id="row6112659184518"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1112105919453"><a name="p1112105919453"></a><a name="p1112105919453"></a><strong id="b1358115072811"><a name="b1358115072811"></a><a name="b1358115072811"></a>Return Value</strong></p>
@@ -62,9 +67,12 @@ The following example shows how to open an SDIO controller.
 
 ```
 DevHandle handle = NULL;
-int16_t busNum = 1;
+struct SdioFunctionConfig config;
+config.funcNr = 1;
+config.vendorId = 0x123;
+config.deviceId = 0x456;
 /* Open an SDIO controller whose bus number is 1. */
-handle = SdioOpen(busNum);
+handle = SdioOpen(1, &config);
 if (handle == NULL) {
     HDF_LOGE("SdioOpen: failed!\n");
 }
@@ -87,7 +95,7 @@ void SdioClaimHost\(DevHandle handle\);
 </thead>
 <tbody><tr id="row3114205920451"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p181141592457"><a name="p181141592457"></a><a name="p181141592457"></a>handle</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p41144595458"><a name="p41144595458"></a><a name="p41144595458"></a>Device handle of an SDIO controller</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p41144595458"><a name="p41144595458"></a><a name="p41144595458"></a>Device handle of an SDIO controller.</p>
 </td>
 </tr>
 </tbody>
@@ -218,7 +226,7 @@ if (ret != 0) {
 
 The corresponding function is as follows:
 
-int32\_t SdioWriteBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+int32\_t SdioWriteBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
 **Table  5**  Parameters and return values of SdioWriteBytes
 
@@ -249,11 +257,6 @@ int32\_t SdioWriteBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1288813411413"><a name="p1288813411413"></a><a name="p1288813411413"></a>Length of the data to write.</p>
 </td>
 </tr>
-<tr id="row188213710445"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p08227154415"><a name="p08227154415"></a><a name="p08227154415"></a>timeOut</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p6821875446"><a name="p6821875446"></a><a name="p6821875446"></a>Timeout duration for writing data, in milliseconds. If the value is <strong id="b62393444422"><a name="b62393444422"></a><a name="b62393444422"></a>0</strong>, the default value is used.</p>
-</td>
-</tr>
 <tr id="row18247654163519"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p486155173610"><a name="p486155173610"></a><a name="p486155173610"></a><strong id="b11356135114216"><a name="b11356135114216"></a><a name="b11356135114216"></a>Return Value</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1686155113620"><a name="p1686155113620"></a><a name="p1686155113620"></a><strong id="b911120524421"><a name="b911120524421"></a><a name="b911120524421"></a>Description</strong></p>
@@ -279,7 +282,7 @@ int32_t ret;
 uint8_t wbuff[] = {1,2,3,4,5};
 uint32_t addr = 0x100 + 0x09;
 /* Incrementally write 5-byte data into the start address 0x109 of the SDIO device. */
-ret = SdioWriteBytes(handle, wbuff, addr, sizeof(wbuff) / sizeof(wbuff[0]), 0);
+ret = SdioWriteBytes(handle, wbuff, addr, sizeof(wbuff) / sizeof(wbuff[0]));
 if (ret != 0) {
     HDF_LOGE("SdioWriteBytes: failed, ret %d\n", ret);
 }
@@ -289,7 +292,7 @@ if (ret != 0) {
 
 The corresponding function is as follows:
 
-int32\_t SdioReadBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+int32\_t SdioReadBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
 **Table  6**  Parameters and return values of SdioReadBytes
 
@@ -320,11 +323,6 @@ int32\_t SdioReadBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint3
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p14676163782210"><a name="p14676163782210"></a><a name="p14676163782210"></a>Length of the data to read.</p>
 </td>
 </tr>
-<tr id="row1823311517494"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p723314152499"><a name="p723314152499"></a><a name="p723314152499"></a>timeOut</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1323351515493"><a name="p1323351515493"></a><a name="p1323351515493"></a>Timeout duration for reading data, in milliseconds. If the value is <strong id="b1042211934510"><a name="b1042211934510"></a><a name="b1042211934510"></a>0</strong>, the default value is used.</p>
-</td>
-</tr>
 <tr id="row964182643610"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p7833639163612"><a name="p7833639163612"></a><a name="p7833639163612"></a><strong id="b83016222455"><a name="b83016222455"></a><a name="b83016222455"></a>Return Value</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p3833939113619"><a name="p3833939113619"></a><a name="p3833939113619"></a><strong id="b940852318450"><a name="b940852318450"></a><a name="b940852318450"></a>Description</strong></p>
@@ -350,7 +348,7 @@ int32_t ret;
 uint8_t rbuff[5] = {0};
 uint32_t addr = 0x100 + 0x09;
 /* Incrementally read 5-byte data from the start address 0x109 of the SDIO device. */
-ret = SdioReadBytes(handle, rbuff, addr, 5, 0);
+ret = SdioReadBytes(handle, rbuff, addr, 5);
 if (ret != 0) {
     HDF_LOGE("SdioReadBytes: failed, ret %d\n", ret);
 }
@@ -360,7 +358,7 @@ if (ret != 0) {
 
     The corresponding function is as follows:
 
-    int32\_t SdioWriteBytesToFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+    int32\_t SdioWriteBytesToFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t scatterLen\);
 
     **Table  7**  Parameters and return values of SdioWriteBytesToFixedAddr
 
@@ -391,9 +389,9 @@ if (ret != 0) {
     <td class="cellrowborder" valign="top" width="51.57000000000001%" headers="mcps1.2.3.1.2 "><p id="p7578181015113"><a name="p7578181015113"></a><a name="p7578181015113"></a>Length of the data to write.</p>
     </td>
     </tr>
-    <tr id="row58301911309"><td class="cellrowborder" valign="top" width="48.43%" headers="mcps1.2.3.1.1 "><p id="p570810551107"><a name="p570810551107"></a><a name="p570810551107"></a>timeOut</p>
+    <tr id="row58301911309"><td class="cellrowborder" valign="top" width="48.43%" headers="mcps1.2.3.1.1 "><p id="p570810551107"><a name="p570810551107"></a><a name="p570810551107"></a>scatterLen</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.57000000000001%" headers="mcps1.2.3.1.2 "><p id="p17579910915"><a name="p17579910915"></a><a name="p17579910915"></a>Timeout duration for writing data, in milliseconds. If the value is <strong id="b1954414402499"><a name="b1954414402499"></a><a name="b1954414402499"></a>0</strong>, the default value is used.</p>
+    <td class="cellrowborder" valign="top" width="51.57000000000001%" headers="mcps1.2.3.1.2 "><p id="p17579910915"><a name="p17579910915"></a><a name="p17579910915"></a>Length of the scatter list. If the value is not <strong id="b2073012162455"><a name="b2073012162455"></a><a name="b2073012162455"></a>0</strong>, the data is of the scatter list type.</p>
     </td>
     </tr>
     <tr id="row18215162810212"><td class="cellrowborder" valign="top" width="48.43%" headers="mcps1.2.3.1.1 "><p id="p1521319452211"><a name="p1521319452211"></a><a name="p1521319452211"></a><strong id="b13882204015494"><a name="b13882204015494"></a><a name="b13882204015494"></a>Return Value</strong></p>
@@ -431,7 +429,7 @@ if (ret != 0) {
 
     The corresponding function is as follows:
 
-    int32\_t SdioReadBytesFromFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+    int32\_t SdioReadBytesFromFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t scatterLen\);
 
     **Table  8**  Parameters and return values of SdioReadBytesFromFixedAddr
 
@@ -462,9 +460,9 @@ if (ret != 0) {
     <td class="cellrowborder" valign="top" width="51.300000000000004%" headers="mcps1.2.3.1.2 "><p id="p1954165031214"><a name="p1954165031214"></a><a name="p1954165031214"></a>Length of the data to read.</p>
     </td>
     </tr>
-    <tr id="row972552281111"><td class="cellrowborder" valign="top" width="48.699999999999996%" headers="mcps1.2.3.1.1 "><p id="p2753755161114"><a name="p2753755161114"></a><a name="p2753755161114"></a>timeOut</p>
+    <tr id="row972552281111"><td class="cellrowborder" valign="top" width="48.699999999999996%" headers="mcps1.2.3.1.1 "><p id="p2753755161114"><a name="p2753755161114"></a><a name="p2753755161114"></a>scatterLen</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.300000000000004%" headers="mcps1.2.3.1.2 "><p id="p3541350111218"><a name="p3541350111218"></a><a name="p3541350111218"></a>Timeout duration for reading data, in milliseconds. If the value is <strong id="b1649405802013"><a name="b1649405802013"></a><a name="b1649405802013"></a>0</strong>, the default value is used.</p>
+    <td class="cellrowborder" valign="top" width="51.300000000000004%" headers="mcps1.2.3.1.2 "><p id="p3541350111218"><a name="p3541350111218"></a><a name="p3541350111218"></a>Length of the scatter list. If the value is not <strong id="b1853656114520"><a name="b1853656114520"></a><a name="b1853656114520"></a>0</strong>, the data is of the scatter list type.</p>
     </td>
     </tr>
     <tr id="row15725162210117"><td class="cellrowborder" valign="top" width="48.699999999999996%" headers="mcps1.2.3.1.1 "><p id="p681073451314"><a name="p681073451314"></a><a name="p681073451314"></a><strong id="b1289515862016"><a name="b1289515862016"></a><a name="b1289515862016"></a>Return Value</strong></p>
@@ -503,7 +501,7 @@ if (ret != 0) {
 
 Currently, only 1-byte data can be written. The corresponding function is as follows:
 
-int32\_t SdioWriteBytesToFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+int32\_t SdioWriteBytesToFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
 **Table  9**  Parameters and return values of SdioWriteBytesToFunc0
 
@@ -534,11 +532,6 @@ int32\_t SdioWriteBytesToFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t add
 <td class="cellrowborder" valign="top" width="50.06%" headers="mcps1.2.3.1.2 "><p id="p71691449141119"><a name="p71691449141119"></a><a name="p71691449141119"></a>Length of the data to write.</p>
 </td>
 </tr>
-<tr id="row1634015181114"><td class="cellrowborder" valign="top" width="49.94%" headers="mcps1.2.3.1.1 "><p id="p9169049161114"><a name="p9169049161114"></a><a name="p9169049161114"></a>timeOut</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.06%" headers="mcps1.2.3.1.2 "><p id="p51701849121115"><a name="p51701849121115"></a><a name="p51701849121115"></a>Timeout duration for writing data, in milliseconds. If the value is <strong id="b845193552314"><a name="b845193552314"></a><a name="b845193552314"></a>0</strong>, the default value is used.</p>
-</td>
-</tr>
 <tr id="row123407185111"><td class="cellrowborder" valign="top" width="49.94%" headers="mcps1.2.3.1.1 "><p id="p294173071617"><a name="p294173071617"></a><a name="p294173071617"></a><strong id="b1585213582316"><a name="b1585213582316"></a><a name="b1585213582316"></a>Return Value</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50.06%" headers="mcps1.2.3.1.2 "><p id="p39421830111616"><a name="p39421830111616"></a><a name="p39421830111616"></a><strong id="b37921536122318"><a name="b37921536122318"></a><a name="b37921536122318"></a>Description</strong></p>
@@ -563,7 +556,7 @@ The following example shows how to write a given length of data into the address
 int32_t ret;
 uint8_t wbuff = 1;
 /* Write 1-byte data into the address 0x2 of SDIO function 0. */
-ret = SdioWriteBytesToFunc0(handle, &wbuff, 0x2, 1, 0);
+ret = SdioWriteBytesToFunc0(handle, &wbuff, 0x2, 1);
 if (ret != 0) {
     HDF_LOGE("SdioWriteBytesToFunc0: failed, ret %d\n", ret);
 }
@@ -573,7 +566,7 @@ if (ret != 0) {
 
 Currently, only 1-byte data can be read. The corresponding function is as follows:
 
-int32\_t SdioReadBytesFromFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t timeOut\);
+int32\_t SdioReadBytesFromFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
 **Table  10**  Parameters and return values of SdioReadBytesFromFunc0
 
@@ -604,11 +597,6 @@ int32\_t SdioReadBytesFromFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t ad
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p612921851820"><a name="p612921851820"></a><a name="p612921851820"></a>Length of the data to read.</p>
 </td>
 </tr>
-<tr id="row147201613181"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p3130161831815"><a name="p3130161831815"></a><a name="p3130161831815"></a>timeOut</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1513031831816"><a name="p1513031831816"></a><a name="p1513031831816"></a>Timeout duration for reading data, in milliseconds. If the value is <strong id="b38794374242"><a name="b38794374242"></a><a name="b38794374242"></a>0</strong>, the default value is used.</p>
-</td>
-</tr>
 <tr id="row167202113189"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1813001881810"><a name="p1813001881810"></a><a name="p1813001881810"></a><strong id="b088853932420"><a name="b088853932420"></a><a name="b088853932420"></a>Return Value</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1313081817184"><a name="p1313081817184"></a><a name="p1313081817184"></a><strong id="b7430114117242"><a name="b7430114117242"></a><a name="b7430114117242"></a>Description</strong></p>
@@ -633,7 +621,7 @@ The following example shows how to read a given length of data from the address 
 int32_t ret;
 uint8_t rbuff;
 /* Read 1-byte data from the address 0x2 of SDIO function 0. */
-ret = SdioReadBytesFromFunc0(handle, &rbuff, 0x2, 1, 0);
+ret = SdioReadBytesFromFunc0(handle, &rbuff, 0x2, 1);
 if (ret != 0) {
     HDF_LOGE("SdioReadBytesFromFunc0: failed, ret %d\n", ret);
 }
@@ -754,7 +742,7 @@ void SdioReleaseHost\(DevHandle handle\);
 </thead>
 <tbody><tr id="row135027411483"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p16502174204816"><a name="p16502174204816"></a><a name="p16502174204816"></a>handle</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p6502164184816"><a name="p6502164184816"></a><a name="p6502164184816"></a>Device handle of an SDIO controller</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p6502164184816"><a name="p6502164184816"></a><a name="p6502164184816"></a>Device handle of an SDIO controller.</p>
 </td>
 </tr>
 </tbody>
@@ -785,7 +773,7 @@ This function releases the resources requested.
 </thead>
 <tbody><tr id="row25035434810"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p175028434819"><a name="p175028434819"></a><a name="p175028434819"></a>handle</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2050274194819"><a name="p2050274194819"></a><a name="p2050274194819"></a>Device handle of an SDIO controller</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2050274194819"><a name="p2050274194819"></a><a name="p2050274194819"></a>Device handle of an SDIO controller.</p>
 </td>
 </tr>
 </tbody>
