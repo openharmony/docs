@@ -348,7 +348,10 @@ OpenHarmony支持如下几种系统类型：
 
 入口：[https://gitee.com/openharmony/docs/tree/master/zh-cn/device-dev/quick-start/Readme-CN.md](https://gitee.com/openharmony/docs/tree/master/zh-cn/device-dev/quick-start/Readme-CN.md)
 
+### 轻量和小型系统入门
+
 <a name="table783094717597"></a>
+
 <table><thead align="left"><tr id="row19831154715595"><th class="cellrowborder" valign="top" width="13.861386138613863%" id="mcps1.1.4.1.1"><p id="p10268195211411"><a name="p10268195211411"></a><a name="p10268195211411"></a>开发板类型</p>
 </th>
 <th class="cellrowborder" valign="top" width="76.03760376037604%" id="mcps1.1.4.1.2"><p id="p7268165244115"><a name="p7268165244115"></a><a name="p7268165244115"></a>简述</p>
@@ -380,6 +383,7 @@ OpenHarmony支持如下几种系统类型：
 </tr>
 </tbody>
 </table>
+### 标准系统入门：[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/标准系统入门.md)
 
 ## 代码仓地址<a name="section107651249181914"></a>
 
