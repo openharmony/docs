@@ -348,43 +348,6 @@ OpenHarmony支持如下几种系统类型：
 
 入口：[https://gitee.com/openharmony/docs/tree/master/zh-cn/device-dev/quick-start/Readme-CN.md](https://gitee.com/openharmony/docs/tree/master/zh-cn/device-dev/quick-start/Readme-CN.md)
 
-### 轻量和小型系统入门
-
-<a name="table783094717597"></a>
-
-<table><thead align="left"><tr id="row19831154715595"><th class="cellrowborder" valign="top" width="13.861386138613863%" id="mcps1.1.4.1.1"><p id="p10268195211411"><a name="p10268195211411"></a><a name="p10268195211411"></a>开发板类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="76.03760376037604%" id="mcps1.1.4.1.2"><p id="p7268165244115"><a name="p7268165244115"></a><a name="p7268165244115"></a>简述</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.101010101010102%" id="mcps1.1.4.1.3"><p id="p426845294110"><a name="p426845294110"></a><a name="p426845294110"></a>链 接</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row14831174716590"><td class="cellrowborder" valign="top" width="13.861386138613863%" headers="mcps1.1.4.1.1 "><p id="p119624458418"><a name="p119624458418"></a><a name="p119624458418"></a>Hi3861开发板</p>
-</td>
-<td class="cellrowborder" valign="top" width="76.03760376037604%" headers="mcps1.1.4.1.2 "><p id="p7962114519415"><a name="p7962114519415"></a><a name="p7962114519415"></a>Hi3861 WLAN模组是一片大约2cm*5cm大小的开发板，是一款高度集成的2.4GHz WLAN SoC芯片，集成IEEE 802.11b/g/n基带和RF（Radio Frequency）电路。支持OpenHarmony/Huawei LiteOS和第三方组件。</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.101010101010102%" headers="mcps1.1.4.1.3 "><p id="p7963045154116"><a name="p7963045154116"></a><a name="p7963045154116"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/Hi3861开发板.md" target="_blank" rel="noopener noreferrer">快速入门</a></p>
-</td>
-</tr>
-<tr id="row58311547175915"><td class="cellrowborder" valign="top" width="13.861386138613863%" headers="mcps1.1.4.1.1 "><p id="p896334514411"><a name="p896334514411"></a><a name="p896334514411"></a>Hi3516开发板</p>
-</td>
-<td class="cellrowborder" valign="top" width="76.03760376037604%" headers="mcps1.1.4.1.2 "><p id="p18963104514115"><a name="p18963104514115"></a><a name="p18963104514115"></a>Hi3516DV300作为新一代行业专用Smart HD IP摄像机SOC，集成新一代ISP、业界最新的H.265视频压缩编码器，同时集成高性能NNIE引擎。</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.101010101010102%" headers="mcps1.1.4.1.3 "><p id="p2963545124111"><a name="p2963545124111"></a><a name="p2963545124111"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/Hi3516开发板.md" target="_blank" rel="noopener noreferrer">快速入门</a></p>
-</td>
-</tr>
-<tr id="row28310478595"><td class="cellrowborder" valign="top" width="13.861386138613863%" headers="mcps1.1.4.1.1 "><p id="p296304510417"><a name="p296304510417"></a><a name="p296304510417"></a>Hi3518开发板</p>
-</td>
-<td class="cellrowborder" valign="top" width="76.03760376037604%" headers="mcps1.1.4.1.2 "><p id="p149631545114114"><a name="p149631545114114"></a><a name="p149631545114114"></a>Hi3518EV300作为新一代智慧视觉处理SOC，集成新一代ISP(Image Signal Processor)以及业界最新的H.265视频压缩编码器。</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.101010101010102%" headers="mcps1.1.4.1.3 "><p id="p4963104516411"><a name="p4963104516411"></a><a name="p4963104516411"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/Hi3518开发板.md" target="_blank" rel="noopener noreferrer">快速入门</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-### 标准系统入门：[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/标准系统入门.md)
-
 ## 代码仓地址<a name="section107651249181914"></a>
 
 OpenHarmony主库组织地址：[https://gitee.com/openharmony](https://gitee.com/openharmony)
