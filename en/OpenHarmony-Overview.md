@@ -346,39 +346,6 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 For details, see  [https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/Readme-EN.md](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/Readme-EN.md).
 
-<a name="table783094717597"></a>
-<table><thead align="left"><tr id="row19831154715595"><th class="cellrowborder" valign="top" width="13.861386138613863%" id="mcps1.1.4.1.1"><p id="p10268195211411"><a name="p10268195211411"></a><a name="p10268195211411"></a>Development board</p>
-</th>
-<th class="cellrowborder" valign="top" width="76.03760376037604%" id="mcps1.1.4.1.2"><p id="p7268165244115"><a name="p7268165244115"></a><a name="p7268165244115"></a>Description</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.101010101010102%" id="mcps1.1.4.1.3"><p id="p426845294110"><a name="p426845294110"></a><a name="p426845294110"></a>Link</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row14831174716590"><td class="cellrowborder" valign="top" width="13.861386138613863%" headers="mcps1.1.4.1.1 "><p id="p119624458418"><a name="p119624458418"></a><a name="p119624458418"></a>Hi3861 development board</p>
-</td>
-<td class="cellrowborder" valign="top" width="76.03760376037604%" headers="mcps1.1.4.1.2 "><p id="p7962114519415"><a name="p7962114519415"></a><a name="p7962114519415"></a>The Hi3861 WLAN module is a 2 x 5 cm development board. It is a 2.4 GHz WLAN SoC chip that highly integrates the IEEE 802.11b/g/n baseband and radio frequency (RF) circuit. This module is compatible with OpenHarmony, Huawei LiteOS, and third-party components.</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.101010101010102%" headers="mcps1.1.4.1.3 "><p id="p7963045154116"><a name="p7963045154116"></a><a name="p7963045154116"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/hi3861-development-board.md" target="_blank" rel="noopener noreferrer">Getting Started</a></p>
-</td>
-</tr>
-<tr id="row58311547175915"><td class="cellrowborder" valign="top" width="13.861386138613863%" headers="mcps1.1.4.1.1 "><p id="p896334514411"><a name="p896334514411"></a><a name="p896334514411"></a>Hi3516 development board</p>
-</td>
-<td class="cellrowborder" valign="top" width="76.03760376037604%" headers="mcps1.1.4.1.2 "><p id="p18963104514115"><a name="p18963104514115"></a><a name="p18963104514115"></a>Hi3516D V300 is a next-generation system on chip (SoC) designed for the industry-dedicated smart HD IP camera. It introduces a next-generation image signal processor (ISP), the latest H.265 video compression encoder, and a high-performance NNIE engine.</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.101010101010102%" headers="mcps1.1.4.1.3 "><p id="p2963545124111"><a name="p2963545124111"></a><a name="p2963545124111"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/hi3516-development-board.md" target="_blank" rel="noopener noreferrer">Getting Started</a></p>
-</td>
-</tr>
-<tr id="row28310478595"><td class="cellrowborder" valign="top" width="13.861386138613863%" headers="mcps1.1.4.1.1 "><p id="p296304510417"><a name="p296304510417"></a><a name="p296304510417"></a>Hi3518 development board</p>
-</td>
-<td class="cellrowborder" valign="top" width="76.03760376037604%" headers="mcps1.1.4.1.2 "><p id="p149631545114114"><a name="p149631545114114"></a><a name="p149631545114114"></a>Hi3518E V300 is a next-generation system on chip (SoC) designed for the industry-dedicated smart HD IP camera. It introduces a next-generation image signal processor (ISP) and the latest H.265 video compression encoder.</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.101010101010102%" headers="mcps1.1.4.1.3 "><p id="p4963104516411"><a name="p4963104516411"></a><a name="p4963104516411"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/hi3518-development-board.md" target="_blank" rel="noopener noreferrer">Getting Started</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-
 ## Code Repository Addresses<a name="section107651249181914"></a>
 
 OpenHarmony project:  [https://gitee.com/openharmony](https://gitee.com/openharmony)
