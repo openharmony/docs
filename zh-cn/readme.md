@@ -1,4 +1,4 @@
-# OpenHarmony开发者文档<a name="ZH-CN_TOPIC_0000001122921792"></a>
+# 导读<a name="ZH-CN_TOPIC_0000001122921792"></a>
 
 此工程存放OpenHarmony提供的快速入门、开发指南、API参考等开发者文档，欢迎参与OpenHarmony开发者文档开源项目，与我们一起完善开发者文档。
 
@@ -10,7 +10,7 @@
         -   overview：[设备开发导读](device-dev/quick-start/导读.md)
         -   quick-start：[快速入门](device-dev/quick-start/Readme-CN.md)（搭建环境、获取源码、编译、烧录等）
         -   开发基础能力
-            -   Kernel：[轻内核](device-dev/kernel/轻内核.md)
+            -   Kernel：[轻量和小型系统内核](device-dev/kernel/轻量和小型系统内核.md)
             -   Drivers：[驱动](device-dev/driver/Readme-CN.md)
             -   Subsystems：[子系统](device-dev/subsystems/Readme-CN.md)（编译构建、图形图像、DFX、XTS等子系统）
             -   Security：[隐私与安全](device-dev/security/Readme-CN.md)
@@ -34,7 +34,7 @@
         -   overview：[设备开发导读](device-dev/quick-start/导读.md)
         -   quick-start：[快速入门](device-dev/quick-start/Readme-CN.md)（搭建环境、获取源码、编译、烧录等）
         -   开发基础能力
-            -   Kernel：[Linux内核](device-dev/kernel/Linux内核.md)
+            -   Kernel：[标准系统内核](device-dev/kernel/标准系统内核.md)
             -   Drivers：[驱动](device-dev/driver/Readme-CN.md)
             -   Subsystems：[子系统](device-dev/subsystems/Readme-CN.md)（编译构建、图形图像、DFX、XTS等子系统）
             -   Security：[隐私与安全](device-dev/security/Readme-CN.md)
@@ -45,8 +45,8 @@
             -   [外设驱动](device-dev/guide/外设驱动开发示例.md)
 
         -   porting：[移植适配](device-dev/porting/Readme-CN.md)
-            -   [三方芯片移植指导](device-dev/porting/三方芯片移植指导.md)
-            -   [三方库移植指导](device-dev/porting/三方库移植指导.md)
+
+            [三方库移植指导](device-dev/porting/三方库移植指导.md)
 
         -   bundles：[组件开发](device-dev/bundles/Readme-CN.md)
             -   [组件开发规范](device-dev/bundles/组件开发规范.md)
@@ -55,7 +55,7 @@
 
 
 -   应用开发
-    -   overview：[应用开发导读](application-dev/application-dev-guide.md)
+    -   overview：[应用开发导读](application-dev/应用开发导读.md)
     -   quick-start：[入门](application-dev/quick-start/Readme-CN.md)
     -   ui：[UI](application-dev/ui/Readme-CN.md)
     -   media：[媒体](application-dev/media/Readme-CN.md)

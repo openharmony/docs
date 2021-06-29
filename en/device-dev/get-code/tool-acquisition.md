@@ -36,7 +36,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
     </thead>
     <tbody><tr id="row167901244115315"><td class="cellrowborder" valign="top" width="35.5064493550645%" headers="mcps1.2.4.1.1 "><p id="p87901744185316"><a name="p87901744185316"></a><a name="p87901744185316"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker</p>
     </td>
-    <td class="cellrowborder" valign="top" width="10.258974102589741%" headers="mcps1.2.4.1.2 "><p id="p15790184410536"><a name="p15790184410536"></a><a name="p15790184410536"></a>0.0.3</p>
+    <td class="cellrowborder" valign="top" width="10.258974102589741%" headers="mcps1.2.4.1.2 "><p id="p15790184410536"><a name="p15790184410536"></a><a name="p15790184410536"></a>0.0.5</p>
     </td>
     <td class="cellrowborder" valign="top" width="54.23457654234577%" headers="mcps1.2.4.1.3 "><p id="p15790124416531"><a name="p15790124416531"></a><a name="p15790124416531"></a>The <span id="text929334781813"><a name="text929334781813"></a><a name="text929334781813"></a>OpenHarmony</span> build environment has been pre-installed. This repository applies to <span id="text167042559153"><a name="text167042559153"></a><a name="text167042559153"></a>Mini-System Devices (reference memory ≥ 128 KB)</span> and <span id="text358943111611"><a name="text358943111611"></a><a name="text358943111611"></a>Small-System Devices (reference memory ≥ 1 MB)</span>.</p>
     </td>
@@ -78,7 +78,7 @@ Start building. Docker can be automatically installed only on Ubuntu. If you are
 
 -   **Automatically Installing Docker \(Ubuntu\)**
 
-    Running the following command will automatically install the Docker, pull the image, and start the pulling and building of the corresponding solution in the container.
+    Running the following command will automatically install Docker, pull the Docker image, and start the pulling and building of the corresponding solution in the container.
 
     Method 1:
 
@@ -123,8 +123,7 @@ Start building. Docker can be automatically installed only on Ubuntu. If you are
 
     ```
     # Pull the image.
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.3
-    # Build the distribution on Linux.
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.3# Compile the Docker image in the Linux environment.
     hpm run distWithDocker solution={product}
     # When using Windows, make sure to configure the Git Bash.
     hpm config set shellPath "Git Bash path"
@@ -134,22 +133,22 @@ Start building. Docker can be automatically installed only on Ubuntu. If you are
 
 ## Standalone Docker Environment<a name="section2858536103611"></a>
 
-The Docker image of OpenHarmony is hosted on  [HUAWEI Cloud SWR](https://auth.huaweicloud.com/authui/login.html?service=https%3A%2F%2Fconsole.huaweicloud.com%2Fswr%2F%3Fregion%3Dcn-south-1%26cloud_route_state%3D%2Fapp%2Fwarehouse%2FwarehouseMangeDetail%2Fgoldensir%2Fopenharmony-docker%2Fopenharmony-docker%3Ftype%3DownImage&locale=en-us#/login). Using the Docker image will help simplify environment configurations needed for the building. After configuring the development environments, perform the procedures below to access the Docker environment. Both Ubuntu and Windows are supported. The following procedures use Ubuntu as an example.
+The Docker image of OpenHarmony is hosted on  [HUAWEI CLOUD SWR](https://console.huaweicloud.com/swr/?region=cn-south-1&locale=en-us#/app/warehouse/warehouseMangeDetail/goldensir/openharmony-docker/openharmony-docker?type=ownImage). Using the Docker image will help simplify environment configurations needed for the building. After configuring the development environments, perform the procedures below to access the Docker environment. Both Ubuntu and Windows are supported. The following procedures use Ubuntu as an example.
 
 ### Setting Up the Docker Environment for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\)<a name="section319412277287"></a>
 
-**Method 1: Obtaining the Docker image from HuaweiCloud SWR**
+**Method 1: Obtaining the Docker image from HUAWEI CLOUD SWR**
 
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.3
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.3
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
     ```
 
 
@@ -171,7 +170,7 @@ The Docker image of OpenHarmony is hosted on  [HUAWEI Cloud SWR](https://auth.hu
 3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker:0.0.3
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker:0.0.5
     ```
 
 
@@ -211,7 +210,7 @@ hb set
 
 ### Setting Up the Docker Environment for Standard-System Devices \(reference memory ≥ 128 MB\)<a name="section13585262391"></a>
 
-**Method 1: Obtaining the Docker image from HuaweiCloud SWR**
+**Method 1: Obtaining the Docker image from HUAWEI CLOUD SWR**
 
 1.  Obtain the Docker image.
 
@@ -273,6 +272,10 @@ hb set
 ## Acquiring the Device Development Tool \(HUAWEI DevEco Device Tool\)<a name="section2452141120244"></a>
 
 HUAWEI DevEco Device Tool is a one-stop integrated development environment \(IDE\) provided to develop applications for OpenHarmony-based smart devices. It allows on-demand customization of OpenHarmony components, code editing, compilation, burning, and debugging, and supports C and C++ languages. This tool is installed in Visual Studio Code as a plug-in. For details, see  [Tool Acquisition](https://device.harmonyos.com/en/ide)  and  [HUAWEI DevEco Device Tool User Guide](https://device.harmonyos.com/en/docs/ide/user-guides/service_introduction-0000001050166905).
+
+The roadmap of Huawei DevEco Device Tool for supporting OpenHarmony device development is shown in the figure below.
+
+![](figures/3.png)
 
 ## Acquiring the Application Development Tool \(HUAWEI DevEco Studio\)<a name="section0904101019258"></a>
 
