@@ -55,7 +55,7 @@
 
 
 -   应用开发
-    -   overview：[应用开发导读](application-dev/应用开发导读.md)
+    -   overview：[应用开发导读](application-dev/application-dev-guide.md)
     -   quick-start：[入门](application-dev/quick-start/Readme-CN.md)
     -   ui：[UI](application-dev/ui/Readme-CN.md)
     -   media：[媒体](application-dev/media/Readme-CN.md)
