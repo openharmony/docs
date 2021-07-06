@@ -23,78 +23,148 @@ To make the integration simple and easy on different hardware, OpenHarmony defin
 
 -   Standard system
 
-    A standard system runs on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
+    A standard system runs on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as Arm Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
 
 
 In addition, OpenHarmony provides a series of optional system components that can be configured as required to support feature extension and customization. These system components are combined to form a series of system capabilities that, for better understanding, are described as features or functions for you to choose.
 
 ## Document Outline<a name="section19810171681218"></a>
 
-**Table  1**  Documents outlined based on the learning progress and development scenarios
+**Table  1**  Mini and small system development guidelines \(reference memory < 128 MB\)
 
-<a name="table12124241175"></a>
-<table><thead align="left"><tr id="row1021316249176"><th class="cellrowborder" valign="top" width="27.872787278727873%" id="mcps1.2.4.1.1"><p id="p162131124191710"><a name="p162131124191710"></a><a name="p162131124191710"></a>Topic</p>
+<a name="table3762949121211"></a>
+<table><thead align="left"><tr id="row18762649161218"><th class="cellrowborder" valign="top" width="28.472847284728473%" id="mcps1.2.4.1.1"><p id="p1750131161313"><a name="p1750131161313"></a><a name="p1750131161313"></a>Topic</p>
 </th>
-<th class="cellrowborder" valign="top" width="38.54385438543855%" id="mcps1.2.4.1.2"><p id="p721310243170"><a name="p721310243170"></a><a name="p721310243170"></a>Development Scenario</p>
+<th class="cellrowborder" valign="top" width="35.61356135613561%" id="mcps1.2.4.1.2"><p id="p8501411141319"><a name="p8501411141319"></a><a name="p8501411141319"></a>Development Scenario</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.58335833583358%" id="mcps1.2.4.1.3"><p id="p15213192431712"><a name="p15213192431712"></a><a name="p15213192431712"></a>Documents</p>
+<th class="cellrowborder" valign="top" width="35.91359135913591%" id="mcps1.2.4.1.3"><p id="p050181111314"><a name="p050181111314"></a><a name="p050181111314"></a>Documents</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row82139245176"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p021372418175"><a name="p021372418175"></a><a name="p021372418175"></a>About <span id="text64714522207"><a name="text64714522207"></a><a name="text64714522207"></a>OpenHarmony</span></p>
+<tbody><tr id="row317979135310"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p119871717125320"><a name="p119871717125320"></a><a name="p119871717125320"></a>About <span id="text64714522207"><a name="text64714522207"></a><a name="text64714522207"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><p id="p6213142414179"><a name="p6213142414179"></a><a name="p6213142414179"></a>Getting familiar with <span id="text9808161615252"><a name="text9808161615252"></a><a name="text9808161615252"></a>OpenHarmony</span></p>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p14987151715312"><a name="p14987151715312"></a><a name="p14987151715312"></a>Getting familiar with <span id="text9808161615252"><a name="text9808161615252"></a><a name="text9808161615252"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul1979224313222"></a><a name="ul1979224313222"></a><ul id="ul1979224313222"><li><a href="https://gitee.com/openharmony" target="_blank" rel="noopener noreferrer">About OpenHarmony</a></li><li><a href="../glossary/glossary.md">Glossary</a></li></ul>
-</td>
-</tr>
-<tr id="row124015595011"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p132401950505"><a name="p132401950505"></a><a name="p132401950505"></a>Development resources</p>
-</td>
-<td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><p id="p724015515504"><a name="p724015515504"></a><a name="p724015515504"></a>Preparing for your development</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul13903204717506"></a><a name="ul13903204717506"></a><ul id="ul13903204717506"><li><a href="../get-code/source-code-acquisition.md">Source Code Acquisition</a></li><li><a href="../get-code/tool-acquisition.md">Acquiring Tools</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul59871171533"></a><a name="ul59871171533"></a><ul id="ul59871171533"><li><a href="https://gitee.com/openharmony" target="_blank" rel="noopener noreferrer">About OpenHarmony</a></li><li><a href="../glossary/glossary.md">Glossary</a></li></ul>
 </td>
 </tr>
-<tr id="row11213142451711"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p18213172414174"><a name="p18213172414174"></a><a name="p18213172414174"></a>Quick start</p>
+<tr id="row69521557115217"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p69873174536"><a name="p69873174536"></a><a name="p69873174536"></a>Development resources</p>
 </td>
-<td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><p id="p3213132491711"><a name="p3213132491711"></a><a name="p3213132491711"></a>Getting started with setup, build, burning, debugging, and running of <span id="text203751321355"><a name="text203751321355"></a><a name="text203751321355"></a>OpenHarmony</span></p>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p39871917185313"><a name="p39871917185313"></a><a name="p39871917185313"></a>Preparing for your development</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul1222811151378"></a><a name="ul1222811151378"></a><ul id="ul1222811151378"><li><a href="overview-0.md">Getting Started for Mini and Small Systems</a></li><li><a href="overview-7.md">Getting Started for Standard System</a></li></ul>
-</td>
-</tr>
-<tr id="row421315248178"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p0213724191718"><a name="p0213724191718"></a><a name="p0213724191718"></a>Basic capabilities</p>
-</td>
-<td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><p id="p6214112417173"><a name="p6214112417173"></a><a name="p6214112417173"></a>Using basic capabilities of <span id="text8928941123820"><a name="text8928941123820"></a><a name="text8928941123820"></a>OpenHarmony</span></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul1293915133917"></a><a name="ul1293915133917"></a><ul id="ul1293915133917"><li><a href="../kernel/Readme-EN.md">Kernel</a></li><li><a href="../driver/Readme-EN.md">HDF</a></li><li><a href="../subsystems/Readme-EN.md">Subsystems</a></li><li><a href="../security/security-guidelines.md">Security Guidelines</a></li><li><a href="../security/privacy-protection.md">Privacy Protection</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul59871117135314"></a><a name="ul59871117135314"></a><ul id="ul59871117135314"><li><a href="../get-code/source-code-acquisition.md">Source Code Acquisition</a></li><li><a href="../get-code/tool-acquisition.md">Acquiring Tools</a></li></ul>
 </td>
 </tr>
-<tr id="row14214122410178"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p162142242175"><a name="p162142242175"></a><a name="p162142242175"></a>Advanced development</p>
+<tr id="row11602937131510"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p457713717150"><a name="p457713717150"></a><a name="p457713717150"></a>Quick start</p>
 </td>
-<td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><p id="p12214624171719"><a name="p12214624171719"></a><a name="p12214624171719"></a>Developing smart devices based on system capabilities</p>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p55771237111517"><a name="p55771237111517"></a><a name="p55771237111517"></a>Getting started with setup, build, burning, debugging, and running of <span id="text203751321355"><a name="text203751321355"></a><a name="text203751321355"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul151291418444"></a><a name="ul151291418444"></a><ul id="ul151291418444"><li><a href="../guide/led-peripheral-control.md">LED Peripheral Control</a></li><li><a href="../guide/screen-and-camera-control.md">Screen and Camera Control</a></li><li><a href="../guide/visual-application-development.md"> Development Example for Visual Apps (AirQuality)</a></li><li><a href="../guide/development-example-for-clock-apps.md">Development Example for Clock Apps</a></li><li><a href="../guide/development-example-for-platform-drivers.md">Development Example for Platform Drivers</a></li><li><a href="../guide/development-example-for-peripheral-drivers.md">Development Example for Peripheral Drivers</a></li></ul>
-</td>
-</tr>
-<tr id="row2021462441719"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p521402416177"><a name="p521402416177"></a><a name="p521402416177"></a>Porting and adaptation</p>
-</td>
-<td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><a name="ul151441577479"></a><a name="ul151441577479"></a><ul id="ul151441577479"><li>Porting and adapting the <span id="text1415622205014"><a name="text1415622205014"></a><a name="text1415622205014"></a>OpenHarmony</span> to an SoC</li><li>Porting and adapting the <span id="text82061719165013"><a name="text82061719165013"></a><a name="text82061719165013"></a>OpenHarmony</span> to a third-party library</li></ul>
-</td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul49839175470"></a><a name="ul49839175470"></a><ul id="ul49839175470"><li><a href="../porting/third-party-soc-porting-guide.md" target="_blank" rel="noopener noreferrer">Third-Party SoC Porting Guide</a></li><li><a href="../porting/third-party-library-porting-guide.md">Third-Party Library Porting Guide</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><p id="p10832159115410"><a name="p10832159115410"></a><a name="p10832159115410"></a><a href="mini-and-small-systems.md">Getting Started for Mini and Small Systems</a></p>
 </td>
 </tr>
-<tr id="row321442419177"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p102149240175"><a name="p102149240175"></a><a name="p102149240175"></a>Contributing components</p>
+<tr id="row11602103701514"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p16577163716159"><a name="p16577163716159"></a><a name="p16577163716159"></a>Basic capabilities</p>
 </td>
-<td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><p id="p12142024151711"><a name="p12142024151711"></a><a name="p12142024151711"></a>Contributing components to <span id="text207913212498"><a name="text207913212498"></a><a name="text207913212498"></a>OpenHarmony</span></p>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p857711379158"><a name="p857711379158"></a><a name="p857711379158"></a>Using basic capabilities of <span id="text8928941123820"><a name="text8928941123820"></a><a name="text8928941123820"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul1675715272499"></a><a name="ul1675715272499"></a><ul id="ul1675715272499"><li><a href="../bundles/development-specifications.md">Component Development Specifications</a></li><li><a href="../bundles/development-guidelines.md">Component Development Guidelines</a></li><li><a href="../bundles/hpm-user-guide.md">HPM User Guide</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul1577103716159"></a><a name="ul1577103716159"></a><ul id="ul1577103716159"><li><a href="../kernel/Readme-EN.md">Kernel</a></li><li><a href="../driver/Readme-EN.md">HDF</a></li><li><a href="../subsystems/Readme-EN.md">Subsystems</a></li><li><a href="../security/security-guidelines.md">Security Guidelines</a></li><li><a href="../security/privacy-protection.md">Privacy Protection</a></li></ul>
 </td>
 </tr>
-<tr id="row1621492419178"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p10214172414173"><a name="p10214172414173"></a><a name="p10214172414173"></a>Reference</p>
+<tr id="row10602193719152"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p857873713152"><a name="p857873713152"></a><a name="p857873713152"></a>Advanced development</p>
 </td>
-<td class="cellrowborder" valign="top" width="38.54385438543855%" headers="mcps1.2.4.1.2 "><p id="p122140244172"><a name="p122140244172"></a><a name="p122140244172"></a>Referring to development specifications</p>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p155782037201518"><a name="p155782037201518"></a><a name="p155782037201518"></a>Developing smart devices based on system capabilities</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.58335833583358%" headers="mcps1.2.4.1.3 "><a name="ul14961914175515"></a><a name="ul14961914175515"></a><ul id="ul14961914175515"><li><a href="https://device.harmonyos.com/en/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API References</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="../guide/led-peripheral-control.md">LED Peripheral Control</a></li><li><a href="../guide/screen-and-camera-control.md">Screen and Camera Control</a></li><li><a href="../guide/visual-application-development.md">Development Example for Visual Apps (AirQuality)</a></li></ul>
+</td>
+</tr>
+<tr id="row360273716155"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p12579163711513"><a name="p12579163711513"></a><a name="p12579163711513"></a>Porting and adaptation</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><a name="ul12579137121512"></a><a name="ul12579137121512"></a><ul id="ul12579137121512"><li>Porting and adapting the <span id="text1415622205014"><a name="text1415622205014"></a><a name="text1415622205014"></a>OpenHarmony</span> to an SoC</li><li>Porting and adapting the <span id="text82061719165013"><a name="text82061719165013"></a><a name="text82061719165013"></a>OpenHarmony</span> to a third-party library</li></ul>
+</td>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul157903731520"></a><a name="ul157903731520"></a><ul id="ul157903731520"><li><a href="../porting/third-party-soc-porting-guide.md" target="_blank" rel="noopener noreferrer">Third-Party SoC Porting Guide</a></li><li><a href="../porting/third-party-library-porting-guide.md">Third-Party Library Porting Guide</a></li></ul>
+</td>
+</tr>
+<tr id="row9601737181517"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p25791037131519"><a name="p25791037131519"></a><a name="p25791037131519"></a>Contributing components</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p45798376158"><a name="p45798376158"></a><a name="p45798376158"></a>Contributing components to <span id="text207913212498"><a name="text207913212498"></a><a name="text207913212498"></a>OpenHarmony</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul957919379156"></a><a name="ul957919379156"></a><ul id="ul957919379156"><li><a href="../bundles/development-specifications.md">Component Development Specifications</a></li><li><a href="../bundles/development-guidelines.md">Component Development Guidelines</a></li><li><a href="../bundles/hpm-user-guide.md">HPM User Guide</a></li></ul>
+</td>
+</tr>
+<tr id="row260193701512"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p95794372155"><a name="p95794372155"></a><a name="p95794372155"></a>Reference</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p458073721519"><a name="p458073721519"></a><a name="p458073721519"></a>Referring to development specifications</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul175808372155"></a><a name="ul175808372155"></a><ul id="ul175808372155"><li><a href="https://device.harmonyos.com/en/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API References</a></li></ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+**Table  2**  Standard system development guidelines \(reference memory ≥ 128 MB\)
+
+<a name="table17667535516"></a>
+<table><thead align="left"><tr id="row206665375119"><th class="cellrowborder" valign="top" width="27.872787278727873%" id="mcps1.2.4.1.1"><p id="p4661053145115"><a name="p4661053145115"></a><a name="p4661053145115"></a>Topic</p>
+</th>
+<th class="cellrowborder" valign="top" width="36.053605360536054%" id="mcps1.2.4.1.2"><p id="p126685315112"><a name="p126685315112"></a><a name="p126685315112"></a>Development Scenario</p>
+</th>
+<th class="cellrowborder" valign="top" width="36.07360736073608%" id="mcps1.2.4.1.3"><p id="p26695395112"><a name="p26695395112"></a><a name="p26695395112"></a>Documents</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row9662532514"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p066105317513"><a name="p066105317513"></a><a name="p066105317513"></a>About <span id="text805851776"><a name="text805851776"></a><a name="text805851776"></a>OpenHarmony</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p16673531512"><a name="p16673531512"></a><a name="p16673531512"></a>Getting familiar with <span id="text145137508"><a name="text145137508"></a><a name="text145137508"></a>OpenHarmony</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul10673531517"></a><a name="ul10673531517"></a><ul id="ul10673531517"><li><a href="https://gitee.com/openharmony" target="_blank" rel="noopener noreferrer">About OpenHarmony</a></li><li><a href="../glossary/glossary.md">Glossary</a></li></ul>
+</td>
+</tr>
+<tr id="row267155313513"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p13671853205113"><a name="p13671853205113"></a><a name="p13671853205113"></a>Development resources</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p0671053115115"><a name="p0671053115115"></a><a name="p0671053115115"></a>Preparing for your development</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1867185314519"></a><a name="ul1867185314519"></a><ul id="ul1867185314519"><li><a href="../get-code/source-code-acquisition.md">Source Code Acquisition</a></li><li><a href="../get-code/tool-acquisition.md">Acquiring Tools</a></li></ul>
+</td>
+</tr>
+<tr id="row13671253165120"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p166795345112"><a name="p166795345112"></a><a name="p166795345112"></a>Quick start</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1167135345112"><a name="p1167135345112"></a><a name="p1167135345112"></a>Getting started with setup, build, burning, debugging, and running of <span id="text687119202170"><a name="text687119202170"></a><a name="text687119202170"></a>OpenHarmony</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><p id="p1114162510521"><a name="p1114162510521"></a><a name="p1114162510521"></a><a href="standard-system.md">Getting Started for Standard System</a></p>
+</td>
+</tr>
+<tr id="row1168155365119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p96810536514"><a name="p96810536514"></a><a name="p96810536514"></a>Basic capabilities</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p136812535511"><a name="p136812535511"></a><a name="p136812535511"></a>Using basic capabilities of <span id="text1352039482"><a name="text1352039482"></a><a name="text1352039482"></a>OpenHarmony</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul116805318517"></a><a name="ul116805318517"></a><ul id="ul116805318517"><li><a href="../kernel/Readme-EN.md">Kernel</a></li><li><a href="../driver/Readme-EN.md">HDF</a></li><li><a href="../subsystems/Readme-EN.md">Subsystems</a></li><li><a href="../security/security-guidelines.md">Security Guidelines</a></li><li><a href="../security/privacy-protection.md">Privacy Protection</a></li></ul>
+</td>
+</tr>
+<tr id="row1368195345111"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p16681853145115"><a name="p16681853145115"></a><a name="p16681853145115"></a>Advanced development</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1568753135116"><a name="p1568753135116"></a><a name="p1568753135116"></a>Developing smart devices based on system capabilities</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul136895314518"></a><a name="ul136895314518"></a><ul id="ul136895314518"><li><a href="../guide/development-example-for-clock-apps.md">Development Example for Clock Apps</a></li><li><a href="../guide/development-example-for-platform-drivers.md">Development Example for Platform Drivers</a></li><li><a href="../guide/development-example-for-peripheral-drivers.md">Development Example for Peripheral Drivers</a></li></ul>
+</td>
+</tr>
+<tr id="row66915375119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p4696535512"><a name="p4696535512"></a><a name="p4696535512"></a>Porting and adaptation</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p185185615284"><a name="p185185615284"></a><a name="p185185615284"></a>Porting and adapting the <span id="text1434016533511"><a name="text1434016533511"></a><a name="text1434016533511"></a>OpenHarmony</span> to a third-party library</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><p id="p10262183114555"><a name="p10262183114555"></a><a name="p10262183114555"></a><a href="../porting/third-party-library-porting-guide.md">Third-Party Library Porting Guide</a></p>
+</td>
+</tr>
+<tr id="row869853125119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p3691530511"><a name="p3691530511"></a><a name="p3691530511"></a>Contributing components</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1469115335113"><a name="p1469115335113"></a><a name="p1469115335113"></a>Contributing components to <span id="text324397159"><a name="text324397159"></a><a name="text324397159"></a>OpenHarmony</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul87045395116"></a><a name="ul87045395116"></a><ul id="ul87045395116"><li><a href="../bundles/development-specifications.md">Component Development Specifications</a></li><li><a href="../bundles/development-guidelines.md">Component Development Guidelines</a></li><li><a href="../bundles/hpm-user-guide.md">HPM User Guide</a></li></ul>
+</td>
+</tr>
+<tr id="row1170153125110"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p16701253195118"><a name="p16701253195118"></a><a name="p16701253195118"></a>Reference</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p670135335116"><a name="p670135335116"></a><a name="p670135335116"></a>Referring to development specifications</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul177016538519"></a><a name="ul177016538519"></a><ul id="ul177016538519"><li><a href="https://device.harmonyos.com/en/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API References</a></li></ul>
 </td>
 </tr>
 </tbody>
