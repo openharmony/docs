@@ -117,8 +117,6 @@ Algorithm plug-in APIs including  **Prepare**,  **SyncProcess**,  **AsyncProcess
 </tbody>
 </table>
 
-For the data structure of  **ConfigInfo**,  **ClientInfo**,  **AlgorithmInfo**, and  **DataInfo**, see  [Table 2](sdk.md#table22154317482)  in the SDK development guidelines.
-
 The  **Request**  and  **Response**  classes define the requests and responses used for communication between the AI engine server and algorithm plug-ins. A request encapsulates the request content and input data of the caller. The plug-in returns the calculation result to the AI engine server through a response.
 
 [Table 3](#table16273647125120)  describes the attributes of the  **Request**  class.
