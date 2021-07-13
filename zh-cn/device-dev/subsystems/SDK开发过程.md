@@ -126,6 +126,8 @@ SDK头文件的功能实现是基于对SDK的调用映射到对client的调用�
 <td class="cellrowborder" valign="top" width="57.38573857385738%" headers="mcps1.2.4.1.3 "><p id="p198309499494"><a name="p198309499494"></a><a name="p198309499494"></a><strong id="b98303498492"><a name="b98303498492"></a><a name="b98303498492"></a>long long clientVersion</strong>：客户端设备版本号（当前还未启用）；</p>
 <p id="p15830749154912"><a name="p15830749154912"></a><a name="p15830749154912"></a><strong id="b1383084912498"><a name="b1383084912498"></a><a name="b1383084912498"></a>int clientId</strong>：客户端ID；</p>
 <p id="p38302049174916"><a name="p38302049174916"></a><a name="p38302049174916"></a><strong id="b983015499493"><a name="b983015499493"></a><a name="b983015499493"></a>int sessionId：</strong>会话ID；</p>
+<p id="p38302049174916"><a name="p38302049174916"></a><a name="p38302049174916"></a><strong id="b983015499493"><a name="b983015499493"></a><a name="b983015499493"></a>uid_t serverUid：</strong>server端UID；</p>
+<p id="p38302049174916"><a name="p38302049174916"></a><a name="p38302049174916"></a><strong id="b983015499493"><a name="b983015499493"></a><a name="b983015499493"></a>uid_t clientUid：</strong>client端UID；</p>
 <p id="p1183104954914"><a name="p1183104954914"></a><a name="p1183104954914"></a><strong id="b20831194964918"><a name="b20831194964918"></a><a name="b20831194964918"></a>int extendLen</strong>：拓展信息（extendMsg）长度；</p>
 <p id="p11831124994912"><a name="p11831124994912"></a><a name="p11831124994912"></a><strong id="b1383134914916"><a name="b1383134914916"></a><a name="b1383134914916"></a>unsigned char *extendMsg</strong>：拓展信息主体；</p>
 </td>
