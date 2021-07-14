@@ -79,10 +79,10 @@ The following table describes the tools and source code required for setting up 
 <p id="p122171727184019"><a name="p122171727184019"></a><a name="p122171727184019"></a>Functions as the compiler toolchain.</p>
 <p id="p108951116109"><a name="p108951116109"></a><a name="p108951116109"></a></p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p49091358184"><a name="p49091358184"></a><a name="p49091358184"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>For master and OpenHarmony_2.x branch/tag, please use v10.0.1 from the following link:</p><p id="p49091358184"><a name="p49091358184"></a><a name="p49091358184"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
 </td>
 </tr>
-<tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>For the OpenHarmony_1.0.1_release, download LLVM from the following link:</p>
+<tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>For OpenHarmony_1.x branch/tag, please use v9.0.0 from the following link:</p>
 <p id="p198321032101412"><a name="p198321032101412"></a><a name="p198321032101412"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar</a></p>
 </td>
 </tr>
@@ -244,7 +244,7 @@ You need to acquire  [source code](../get-code/source-code-acquisition.md), down
 2.  [Download LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz).
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >For the OpenHarmony\_1.0.1\_release, click  [here](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)  to download LLVM.
+    >For OpenHarmony\_1.x branch/tag, click  [here](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)  to download LLVM.
 
 3.  Decompress the LLVM installation package to  **\~/llvm**.
 
@@ -253,7 +253,7 @@ You need to acquire  [source code](../get-code/source-code-acquisition.md), down
     ```
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >For the OpenHarmony\_1.0.1\_release, run the following command to decompress the LLVM installation package:
+    >For OpenHarmony\_1.x branch/tag, run the following command to decompress the LLVM installation package:
     >```
     >tar -xvf llvm-linux-9.0.0-36191.tar -C ~/
     >```
