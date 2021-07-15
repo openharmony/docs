@@ -1,4 +1,4 @@
-# Running a Hello OHOS Program<a name="EN-US_TOPIC_0000001151888681"></a>
+# Running a Hello OHOS Program<a name="EN-US_TOPIC_0000001174270695"></a>
 
 -   [Creating a Program](#section204672145202)
 -   [Building](#section1077671315253)
@@ -129,7 +129,7 @@ This section describes how to create, compile, burn, and run the first program, 
 
 ## Building<a name="section1077671315253"></a>
 
-If the Linux environment is installed using Docker, perform the building by referring to  [Using Docker to Prepare the Build Environment](../get-code/tool-acquisition.md). If the Linux environment is installed using a software package, go to the root directory of the source code and run the following commands for source code compilation:
+If the Linux environment is installed using Docker, perform the building by referring to  [Using Docker to Prepare the Build Environment](../get-code/docker-environment.md). If the Linux environment is installed using a software package, go to the root directory of the source code and run the following commands for source code compilation:
 
 ```
 hb set (Set the building path.)
@@ -144,55 +144,55 @@ hb build -f (Start building.)
 The result files are generated in the  **out/hispark\_taurus/ipcamera\_hispark\_taurus**  directory.
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
->The U-boot file of the Hi3516D V300 development board can be obtained from the following path: device/hisilicon/hispark\_taurus/sdk\_liteos/uboot/out/boot/u-boot-hi3516dv300.bin
+>The U-Boot file of the Hi3516D V300 development board can be obtained from the following path: device/hisilicon/hispark\_taurus/sdk\_liteos/uboot/out/boot/u-boot-hi3516dv300.bin
 
 ## Burning<a name="section1347011412201"></a>
 
 The Hi3516 development board allows you to burn flash memory over the USB port, serial port, or network port. The following uses the network port burning as an example.
 
-1.  Connect the PC and the target development board through the power port, serial port, and network port. In this section, the Hi3516DV300 is used as an example. For details, please refer to  [Introduction to the Hi3516 Development Board](https://device.harmonyos.com/en/docs/start/introduce/oem_camera_start_3516-0000001052670587).
+1.  Connect the PC and the target development board through the power port, serial port, and network port. In this section, the Hi3516DV300 is used as an example. For details, please refer to  [Introduction to the Hi3516 Development Board](https://device.harmonyos.com/en/docs/start/introduce/oem_minitinier_des_3516-0000001152041033).
 2.  <a name="en-us_topic_0000001056443961_li142386399535"></a>Open Device Manager, then check and record the serial port number corresponding to the development board.
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
     >If the serial port number is not displayed correctly, follow the steps described in  [Installing the Serial Port Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/ide/user-guides/hi3516_hi3518-drivers-0000001050743695).
 
-    ![](figures/en-us_image_0000001114129428.png)
+    ![](figures/en-us_image_0000001174350647.png)
 
 3.  Open DevEco Device Tool and go to  **Projects**  \>  **Settings**.
 
     ![](figures/2021-01-27_170334.png)
 
 4.  On the  **Partition Configuration**  tab page, modify the settings. In general cases, you can leave the fields at their default settings.
-5.  On the  **hi3516dv300**  tab page, configure the programming options.
+5.  On the  **hi3516dv300**  tab page, set the programming options.
 
-    -   **upload\_port**: Select the serial port number obtained in step  [2](#en-us_topic_0000001056443961_li142386399535).
+    -   **upload\_port**: Select the serial port number obtained in  [2](#en-us_topic_0000001056443961_li142386399535).
     -   **upload\_protocol**: Select the programming protocol  **hiburn-net**.
     -   **upload\_partitions**: Select the file to be programmed. By default, the  **fastboot**,  **kernel**,  **rootfs**, and  **userfs**  files are programmed at the same time.
 
-    ![](figures/en-us_image_0000001160529355.png)
+    ![](figures/en-us_image_0000001128470904.png)
 
 6.  <a name="en-us_topic_0000001056443961_li1558813168234"></a>Check and set the IP address of the network adapter connected to the development board. For details, see  [Setting the IP Address of the Network Port for Programming on Hi3516](https://device.harmonyos.com/en/docs/ide/user-guides/set_ipaddress-0000001141825075).
 7.  Set the IP address of the network port for programming:
 
-    -   **upload\_net\_server\_ip**: Select the IP address set in  [6](#en-us_topic_0000001056443961_li1558813168234), such as 192.168.1.2.
-    -   **upload\_net\_client\_mask**: Set the subnet mask of the development board, such as 255.255.255.0. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
-    -   **upload\_net\_client\_gw**: Set the gateway of the development board, such as 192.168.1.1. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
-    -   **upload\_net\_client\_ip**: Set the IP address of the development board, such as 192.168.1.3. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
+    -   **upload\_net\_server\_ip**: Select the IP address set in  [6](#en-us_topic_0000001056443961_li1558813168234). Example: 192.168.1.2.
+    -   **upload\_net\_client\_mask**: Set the subnet mask of the development board, such as 255.255.255.0. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. Example: 255.255.255.0.
+    -   **upload\_net\_client\_gw**: Set the gateway of the development board, such as 192.168.1.1. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. Example: 192.168.1.1.
+    -   **upload\_net\_client\_ip**: Set the IP address of the development board, such as 192.168.1.3. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. Example: 192.168.1.3.
 
-    ![](figures/en-us_image_0000001117463460.png)
+    ![](figures/en-us_image_0000001174270733.png)
 
 8.  When you finish modifying, click  **Save**  in the upper right corner.
-9.  Open the project file and go to  ![](figures/2021-01-27_170334-2.png)  \>  **PROJECT TASKS**  \>  **hi3516dv300**  \>  **Upload**  to start programming.
+9.  Open the project file and click  ![](figures/2021-01-27_170334-2.png). In the DevEco Device Tool window, choose  **PROJECT TASKS**  \>  **hi3516dv300**  \>  **Upload**  to start programming.
 
-    ![](figures/en-us_image_0000001116405268.png)
+    ![](figures/en-us_image_0000001174270729.png)
 
 10. When the following message is displayed, power off the development board and then power it on.
 
-    ![](figures/en-us_image_0000001114129432.png)
+    ![](figures/en-us_image_0000001128470906.png)
 
-11. Start programming. When the following message is displayed, it indicates that the programming is successful.
+11. Start burning. When the following message is displayed, the burning is successful.
 
-    ![](figures/en-us_image_0000001113969542.png)
+    ![](figures/en-us_image_0000001128311098.png)
 
 
 ## Running an Image<a name="section24721014162010"></a>
@@ -211,12 +211,12 @@ The Hi3516 development board allows you to burn flash memory over the USB port, 
     2.  Press  **Enter**  repeatedly until  **hisilicon**  displays.
     3.  Go to step  [2](#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
 
-2.  <a name="l5b42e79a33ea4d35982b78a22913b0b1"></a>\(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
+2.  <a name="l5b42e79a33ea4d35982b78a22913b0b1"></a>\(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-Boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisilicon" is displayed.
+    >The default waiting time in the U-Boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisilicon" is displayed.
 
-    **Table  1**  Parameters of the U-boot
+    **Table  1**  Parameters of the U-Boot
 
     <a name="table1323441103813"></a>
     <table><thead align="left"><tr id="row1423410183818"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p623461163818"><a name="p623461163818"></a><a name="p623461163818"></a>Command</p>
@@ -250,7 +250,7 @@ The Hi3516 development board allows you to burn flash memory over the USB port, 
     </table>
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >**go 0x80000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-boot startup to interrupt the automatic startup.
+    >**go 0x80000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-Boot startup to interrupt the automatic startup.
 
 3.  <a name="ld26f18828aa44c36bfa36be150e60e49"></a>Run the  **reset**  command and press  **Enter**  to restart the board. After the board is restarted,  **OHOS**  is displayed when you press  **Enter**.
 

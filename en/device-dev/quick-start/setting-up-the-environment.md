@@ -1,4 +1,4 @@
-# Setting Up the Environment<a name="EN-US_TOPIC_0000001105989316"></a>
+# Setting Up the Environment<a name="EN-US_TOPIC_0000001174270691"></a>
 
 -   [Environment Requirements](#section466851916410)
     -   [Hardware](#section19202111020215)
@@ -362,6 +362,6 @@ Perform the following operations on the Windows station.
 2.  Install the driver.
 3.  After the driver is installed, remove and then insert the USB cable. The serial port entry should be displayed as shown in the following figure.
 
-    ![](figures/en-us_image_0000001057235392.png)
+    ![](figures/en-us_image_0000001174350633.png)
 
 

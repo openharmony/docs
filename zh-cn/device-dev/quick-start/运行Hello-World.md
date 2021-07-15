@@ -1,4 +1,4 @@
-# 运行Hello World<a name="ZH-CN_TOPIC_0000001105048942"></a>
+# 运行Hello World<a name="ZH-CN_TOPIC_0000001128311062"></a>
 
 -   [修改源码](#section79601457101015)
 -   [调测验证](#section1621064881419)
@@ -137,7 +137,7 @@ Call Stack 6 -- 3f5e24 addr:f78fc
 
 3.  根据以上调用栈信息，可以定位WadRecvCB函数中出现了异常。
 
-    ![](figures/zh-cn_image_0000001152256221.png)
+    ![](figures/zh-cn_image_0000001174270737.png)
 
 4.  完成代码排查及修改。
 

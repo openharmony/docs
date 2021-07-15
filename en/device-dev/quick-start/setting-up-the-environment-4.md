@@ -1,4 +1,4 @@
-# Setting Up the Environment<a name="EN-US_TOPIC_0000001152389293"></a>
+# Setting Up the Environment<a name="EN-US_TOPIC_0000001128470862"></a>
 
 -   [Environment Requirements](#section1724111409282)
     -   [Hardware](#section487353718276)

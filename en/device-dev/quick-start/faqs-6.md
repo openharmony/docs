@@ -1,4 +1,4 @@
-# FAQs<a name="EN-US_TOPIC_0000001152168589"></a>
+# FAQs<a name="EN-US_TOPIC_0000001128311064"></a>
 
 -   [What should I do when the images failed to be burnt over the selected serial port?](#section1498892119619)
 -   [What should I do when Windows-based PC failed to be connected to the board?](#section8512971816)
@@ -97,7 +97,7 @@
 
 -   **Symptom**
 
-    ![](figures/en-us_image_0000001105376260.png)
+    ![](figures/en-us_image_0000001174270743.png)
 
 
 -   **Possible Cause 1**
@@ -110,7 +110,7 @@
 
 -   **Possible Cause 2**: The soft link that points to the Python does not exist in the usr/bin directory.
 
-    ![](figures/en-us_image_0000001105216304.png)
+    ![](figures/en-us_image_0000001174270739.png)
 
 -   **Solutions**
 
@@ -125,7 +125,7 @@
 
     Example:
 
-    ![](figures/en-us_image_0000001152256235.png)
+    ![](figures/en-us_image_0000001174350661.png)
 
 
 ## What should I do when no command output is displayed?<a name="en-us_topic_0000001053466255_section14871149155911"></a>
@@ -169,6 +169,6 @@
 
 3.  Log in to the serial port after the burning is complete.
 
-    ![](figures/en-us_image_0000001105536118.png)
+    ![](figures/en-us_image_0000001174350659.png)
 
 

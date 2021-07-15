@@ -7,7 +7,7 @@
 -   [Openharmony概述](OpenHarmony-Overview_zh.md)
 -   轻量和小型系统开发指导（参考内存<128MB）
     -   设备开发
-        -   overview：[设备开发导读](device-dev/quick-start/导读.md)
+        -   overview：[设备开发导读](device-dev/导读.md)
         -   quick-start：[快速入门](device-dev/quick-start/Readme-CN.md)（搭建环境、获取源码、编译、烧录等）
         -   开发基础能力
             -   Kernel：[轻量和小型系统内核](device-dev/kernel/轻量和小型系统内核.md)
@@ -31,7 +31,7 @@
 
 -   标准系统开发指导（参考内存≥128MB）
     -   设备开发
-        -   overview：[设备开发导读](device-dev/quick-start/导读.md)
+        -   overview：[设备开发导读](device-dev/导读.md)
         -   quick-start：[快速入门](device-dev/quick-start/Readme-CN.md)（搭建环境、获取源码、编译、烧录等）
         -   开发基础能力
             -   Kernel：[标准系统内核](device-dev/kernel/标准系统内核.md)
@@ -40,7 +40,7 @@
             -   Security：[隐私与安全](device-dev/security/Readme-CN.md)
 
         -   guide：[开发示例](device-dev/guide/Readme-CN.md)
-            -   [时钟应用](device-dev/guide/时钟应用开发示例.md)
+            -   [时钟应用](device-dev/guide/时钟应用开发指导.md)
             -   [平台驱动](device-dev/guide/平台驱动开发示例.md)
             -   [外设驱动](device-dev/guide/外设驱动开发示例.md)
 
@@ -61,7 +61,6 @@
     -   media：[媒体](application-dev/media/Readme-CN.md)
     -   connectivity：[网络与连接](application-dev/connectivity/Readme-CN.md)
     -   js-reference：[JS参考规范](application-dev/js-reference/Readme-CN.md)
--   许可证及版权信息检查工具：[开源合规审查工具](https://gitee.com/openharmony-sig/tools_oat)    
 -   glossary：[术语](device-dev/glossary/术语.md)
 
 ## 版本更新<a name="section8910101119262"></a>

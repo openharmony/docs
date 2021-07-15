@@ -1,4 +1,4 @@
-# Hi3516 Development Board<a name="EN-US_TOPIC_0000001152041033"></a>
+# Hi3516 Development Board<a name="EN-US_TOPIC_0000001174350603"></a>
 
 -   [Introduction](#section26131214194212)
 -   [Development Board Specifications](#section15192203316533)

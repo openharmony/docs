@@ -1,4 +1,4 @@
-# Running a Hello World Program<a name="EN-US_TOPIC_0000001105048942"></a>
+# Running a Hello World Program<a name="EN-US_TOPIC_0000001128311062"></a>
 
 -   [Modifying Source Code](#section79601457101015)
 -   [Debugging and Verification](#section1621064881419)
@@ -135,7 +135,7 @@ To parse the call stack information, the  **Hi3861\_wifiiot\_app.asm**  file is 
 
 3.  Determine that an exception occurs in the  **WadRecvCB**  function based on the call stack information.
 
-    ![](figures/en-us_image_0000001152256221.png)
+    ![](figures/en-us_image_0000001174270737.png)
 
 4.  Check and modify the code.
 

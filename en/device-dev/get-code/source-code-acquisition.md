@@ -62,7 +62,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
 4.  Run the following commands to install the  **repo**  tool:
 
     ```
-    curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  # If you do not have the access permission to this directory, download the tool to any other accessible directory and configure the directory to the environment variable.
+    curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  # If you do not have the access permission to this directory, download the tool to any other accessible directory and configure the directory to the environment variable.
     chmod a+x /usr/local/bin/repo
     pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
     ```

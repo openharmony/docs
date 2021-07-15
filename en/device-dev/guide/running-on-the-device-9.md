@@ -1,6 +1,6 @@
 # Running on the Device<a name="EN-US_TOPIC_0000001115258034"></a>
 
-Before you install the app and run it on the development board, install the DevEco Device Tool by following operations provided in  [HUAWEI DevEco Device Tool User Guide](https://device.harmonyos.com/en/docs/ide/user-guides/service_introduction-0000001050166905). Burn OpenHarmony into the development board, and run it on the board. For details about how to build, burn, and run an image, see  [Getting Started with Hi3516](../quick-start/how-to-develop-12.md). After the image is running normally and the system is started properly, perform the following steps to install or uninstall the app:
+Before you install the app and run it on the development board, install the DevEco Device Tool by following operations provided in  [HUAWEI DevEco Device Tool User Guide](https://device.harmonyos.com/en/docs/ide/user-guides/service_introduction-0000001050166905). Burn OpenHarmony into the development board, and run it on the board. For details about how to build, burn, and run an image, see  [Getting Started with Hi3516](../quick-start/standard-system.md). After the image is running normally and the system is started properly, perform the following steps to install or uninstall the app:
 
 1.  Obtain the HDC client from the following path:
 

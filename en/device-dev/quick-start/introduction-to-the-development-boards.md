@@ -1,4 +1,4 @@
-# Introduction to the Development Boards<a name="EN-US_TOPIC_0000001105358844"></a>
+# Introduction to the Development Boards<a name="EN-US_TOPIC_0000001174270687"></a>
 
 -   **[Hi3861 Development Board](hi3861-development-board.md)**  
 

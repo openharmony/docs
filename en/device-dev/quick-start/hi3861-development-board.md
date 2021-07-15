@@ -1,4 +1,4 @@
-# Hi3861 Development Board<a name="EN-US_TOPIC_0000001105041324"></a>
+# Hi3861 Development Board<a name="EN-US_TOPIC_0000001174270685"></a>
 
 -   [Introduction](#section19352114194115)
 -   [Resources and Constraints](#section82610215014)
@@ -19,7 +19,7 @@ The Hi3861 WLAN module can also be connected to the Hi3861 mother board to expan
 **Figure  2**  Appearance of the Hi3861 mother board<a name="fig111746288192"></a>  
 
 
-![](figures/en-us_image_0000001119945810.png)
+![](figures/en-us_image_0000001174350615.png)
 
 -   The RF circuit includes modules such as the power amplifier \(PA\), low noise amplifier \(LNA\), RF Balun, antenna switch, and power management. It supports a standard bandwidth of 20 MHz and a narrow bandwidth of 5 MHz or 10 MHz, and provides a maximum rate of 72.2 Mbit/s at the physical layer.
 -   The Hi3861 WLAN baseband supports the orthogonal frequency division multiplexing \(OFDM\) technology and is backward compatible with the direct sequence spread spectrum \(DSSS\) and complementary code keying \(CCK\) technologies. In addition, the Hi3861 WLAN baseband supports various data rates specified in the IEEE 802.11 b/g/n protocol.
@@ -29,7 +29,7 @@ The Hi3861 WLAN module can also be connected to the Hi3861 mother board to expan
     **Figure  3**  Hi3861 functions<a name="f0d52fa2f3b094c688c805a373a6ec970"></a>  
     
 
-    ![](figures/en-us_image_0000001105524466.png)
+    ![](figures/en-us_image_0000001128311066.png)
 
 
 ## Resources and Constraints<a name="section82610215014"></a>

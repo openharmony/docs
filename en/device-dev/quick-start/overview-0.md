@@ -1,4 +1,4 @@
-# Overview<a name="EN-US_TOPIC_0000001105598722"></a>
+# Overview<a name="EN-US_TOPIC_0000001128311060"></a>
 
 The mini and small OpenHarmony systems are suitable for IoT devices with limited memory. This document describes the system development with three typical development boards: Hi3861 WLAN module, Hi3516D V300, and Hi3518E V300.
 

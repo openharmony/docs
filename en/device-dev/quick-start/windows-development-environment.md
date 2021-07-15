@@ -1,4 +1,4 @@
-# Windows Development Environment<a name="EN-US_TOPIC_0000001105567362"></a>
+# Windows Development Environment<a name="EN-US_TOPIC_0000001128311056"></a>
 
 -   [Obtaining the Software](#en-us_topic_0000001058091994_section1483143015558)
 -   [Installing Visual Studio Code](#en-us_topic_0000001058091994_section71401018163318)
@@ -87,7 +87,7 @@ DevEco Device Tool is a plug-in for Visual Studio Code. The installation procedu
 
 1.  Double-click the Visual Studio Code package to install it. During the installation, select  **Add to PATH \(requires shell restart\)**.
 
-    ![](figures/en-us_image_0000001057335403.png)
+    ![](figures/en-us_image_0000001174350653.png)
 
 2.  After the installation is complete, restart the computer for the environment variables of Visual Studio Code to take effect.
 3.  Open the CLT and run  **code --version**. If the version number can be displayed, it indicates that the installation is successful.
@@ -96,15 +96,15 @@ DevEco Device Tool is a plug-in for Visual Studio Code. The installation procedu
 
 1.  Double-click the Python software package, select  **Add Python xx to PATH**, and click  **Install Now**.
 
-    ![](figures/en-us_image_0000001096154076.png)
+    ![](figures/en-us_image_0000001128471042.png)
 
 2.  After the installation is complete, click  **Close**.
 
-    ![](figures/en-us_image_0000001142794291.png)
+    ![](figures/en-us_image_0000001128311104.png)
 
 3.  Open the CLT, and run  **python --version**  to check the installation result.
 
-    ![](figures/en-us_image_0000001143154485.png)
+    ![](figures/en-us_image_0000001174350781.png)
 
 4.  In the CLT, run the following commands to set the pip source for downloading the dependencies required for later installation:
 
@@ -123,7 +123,7 @@ DevEco Device Tool is a plug-in for Visual Studio Code. The installation procedu
 1.  Run the downloaded software package to install. Use the default settings when following the installation wizard, and click  **Next**  until  **Finish**  is displayed. During the installation, Node.js will automatically set the system Path environment variable to the installation directory of  **node.exe**.
 2.  Open the CLT and run  **node -v**. If the version number of Node.js is displayed, it indicates that Node.js has been successfully installed.
 
-    ![](figures/en-us_image_0000001056814287.png)
+    ![](figures/en-us_image_0000001128311096.png)
 
 
 ## Installing hpm<a name="en-us_topic_0000001058091994_section173054793610"></a>
@@ -147,7 +147,7 @@ and that your network can access the Internet. If your network requires a proxy 
     npm install -g @ohos/hpm-cli
     ```
 
-    ![](figures/en-us_image_0000001073840162.png)
+    ![](figures/en-us_image_0000001128311100.png)
 
 3.  After the installation is complete, run the following command to obtain the installation result:
 
@@ -155,7 +155,7 @@ and that your network can access the Internet. If your network requires a proxy 
     hpm -V
     ```
 
-    ![](figures/en-us_image_0000001100641602.png)
+    ![](figures/en-us_image_0000001174270735.png)
 
 
 ## Installing the DevEco Device Tool Plug-in<a name="en-us_topic_0000001058091994_section4336315185716"></a>
@@ -170,14 +170,14 @@ DevEco Device Tool will automatically download and install the C/C++ and CodeLLD
 1.  Decompress the DevEco Device Tool plug-in package and double-click the installer to install.
 2.  During the installation, the dependency files \(such as C/C++ and CodeLLDB plug-ins\) and execution programs required by DevEco Device Tool are automatically installed.
 
-    ![](figures/en-us_image_0000001072468991.png)
+    ![](figures/en-us_image_0000001128470902.png)
 
 3.  After the installation is complete, the CLT is automatically closed.
-4.  Open Visual Studio Code, click the  ![](figures/en-us_image_0000001072757874.png)  button on the left, and check whether C/C++, CodeLLDB, and DevEco Device Tool are listed in  **INSTALLED**.
+4.  Open Visual Studio Code, click the  ![](figures/en-us_image_0000001174350651.png)  button on the left, and check whether C/C++, CodeLLDB, and DevEco Device Tool are listed in  **INSTALLED**.
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
     >If the C/C++ and CodeLLDB plug-ins fail to be installed, DevEco Device Tool cannot run properly. To solve the issue, see  [Installing the C/C++ and CodeLLDB Plug-ins Offline](https://device.harmonyos.com/en/docs/ide/user-guides/offline_plugin_install-0000001074376846).
 
-    ![](figures/en-us_image_0000001142802505.png)
+    ![](figures/en-us_image_0000001174270727.png)
 
 

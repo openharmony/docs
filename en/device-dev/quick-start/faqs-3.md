@@ -1,4 +1,4 @@
-# FAQs<a name="EN-US_TOPIC_0000001105368702"></a>
+# FAQs<a name="EN-US_TOPIC_0000001128470856"></a>
 
 -   [What should I do when the images failed to be burnt over the selected serial port?](#section627268185113)
 -   [What should I do when Windows-based PC failed to be connected to the board?](#section195391036568)
@@ -97,7 +97,7 @@
 
 -   **Symptom**
 
-    ![](figures/en-us_image_0000001105056492.png)
+    ![](figures/en-us_image_0000001174270715.png)
 
 
 -   **Possible Cause 1**: Python is not installed.
@@ -107,7 +107,7 @@
 
 -   **Possible Cause 2**: The soft link that points to the Python does not exist in the usr/bin directory.
 
-    ![](figures/en-us_image_0000001151976069.png)
+    ![](figures/en-us_image_0000001128470880.png)
 
 -   **Solutions**
 
@@ -122,7 +122,7 @@
 
     Example:
 
-    ![](figures/en-us_image_0000001152176139.png)
+    ![](figures/en-us_image_0000001174270713.png)
 
 
 ## What should I do when no command output is displayed?<a name="section14871149155911"></a>

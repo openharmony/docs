@@ -1,4 +1,4 @@
-# Running a Hello OHOS Program<a name="EN-US_TOPIC_0000001105528572"></a>
+# Running a Hello OHOS Program<a name="EN-US_TOPIC_0000001174350607"></a>
 
 -   [Creating a Program](#section1550972416485)
 -   [Building](#section234175193114)
@@ -46,9 +46,9 @@ This section describes how to create, compile, burn, and run the first program, 
     }
     ```
 
-3.  Add a new component.
+3.  Add a component.
 
-    Add the configuration of the  **hello\_world\_app**  component to the  **build/lite/components/applications.json**  file. The sample code below shows some configurations defined in the  **applications.json**  file, and the code between  **\#\#start\#\#**  and  **\#\#end\#\#**  is the new configuration \(Delete the rows where  **\#\#start\#\#**  and  **\#\#end\#\#**  are located after the configurations are added.\)
+    Add the configuration of the  **hello\_world\_app**  component to the  **build/lite/components/applications.json**  file. The sample code below shows some configurations defined in the  **applications.json**  file, and the code between  **"\#\#start\#\#"**  and  **"\#\#end\#\#"**  is the new configuration \(Delete the rows where  **"\#\#start\#\#"**  and  **"\#\#end\#\#"**  are located after the configurations are added.\)
 
     ```
     {
@@ -128,7 +128,7 @@ This section describes how to create, compile, burn, and run the first program, 
 
 ## Building<a name="section234175193114"></a>
 
-If the Linux environment is installed using Docker, perform the building by referring to  [Using Docker to Prepare the Build Environment](../get-code/tool-acquisition.md). If the Linux environment is installed using a software package, go to the root directory of the source code and run the following commands for source code compilation:
+If the Linux environment is installed using Docker, perform the building by referring to  [Using Docker to Prepare the Build Environment](../get-code/docker-environment.md). If the Linux environment is installed using a software package, go to the root directory of the source code and run the following commands for source code compilation:
 
 ```
 hb set (Set the building path.)
@@ -143,53 +143,53 @@ The result files are generated in the  **out/hispark\_aries/ipcamera\_hispark\_a
 ![](figures/settings-4.png "settings-4")
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
->The U-boot file of the Hi3518E V300 development board can be obtained from the following path: device/hisilicon/hispark\_aries/sdk\_liteos/uboot/out/boot/u-boot-hi3518ev300.bin
+>The U-Boot file of the Hi3518E V300 development board can be obtained from the following path: device/hisilicon/hispark\_aries/sdk\_liteos/uboot/out/boot/u-boot-hi3518ev300.bin
 
 ## Burning<a name="section7609155824819"></a>
 
 The USB port is the only burning mode supported by the Hi3518 development board.
 
-1.  Connect the PC and the target development board through the serial port and USB port. In this section, the Hi3518EV300 is used as an example. For details, please refer to  [Introduction to the Hi3518 Development Board](https://device.harmonyos.com/en/docs/start/introduce/oem_camera_start_hi3518-0000001050170473).
+1.  Connect the PC and the target development board through the serial port and USB port. In this section, the Hi3518EV300 is used as an example. For details, see  [Introduction to the Hi3518 Development Board](https://device.harmonyos.com/en/docs/start/introduce/oem_minitinier_des_3518-0000001105201138).
 2.  <a name="en-us_topic_0000001057313128_li46411811196"></a>Open Device Manager, then check and record the serial port number corresponding to the development board.
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
     >If the serial port number is not displayed correctly, follow the steps described in  [Installing the Serial Port Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/ide/user-guides/hi3516_hi3518-drivers-0000001050743695).
 
-    ![](figures/en-us_image_0000001073057176.png)
+    ![](figures/en-us_image_0000001128470900.png)
 
 3.  Open DevEco Device Tool and go to  **Projects**  \>  **Settings**.
 
-    ![](figures/en-us_image_0000001077956808.png)
+    ![](figures/en-us_image_0000001174350649.png)
 
 4.  On the  **Partition Configuration**  tab page, modify the settings. In general cases, you can leave the fields at their default settings.
 5.  On the  **hi3518ev300**  tab page, set the programming options.
 
-    -   **upload\_port**: Select the serial port number obtained in step  [2](#en-us_topic_0000001057313128_li46411811196).
+    -   **upload\_port**: Select the serial port number obtained in  [2](#en-us_topic_0000001057313128_li46411811196).
     -   **upload\_protocol**: Select the programming protocol  **hiburn-usb**.
     -   **upload\_partitions**: Select the file to be programmed. By default, the  **fastboot**,  **kernel**,  **rootfs**, and  **userfs**  files are programmed at the same time.
 
-    ![](figures/en-us_image_0000001096963405.png)
+    ![](figures/en-us_image_0000001128311090.png)
 
 6.  When you finish modifying, click  **Save**  in the upper right corner.
-7.  Open the project file, go to  ![](figures/2021-01-27_170334-5.png)  \>  **PROJECT TASKS**  \>  **hi3518ev300\_fastboot**  \>  **Erase**  to erase U-boot.
+7.  Open the project file and click  ![](figures/2021-01-27_170334-5.png). In the DevEco Device Tool window, choose  **PROJECT TASKS**  \>  **hi3518ev300\_fastboot**  \>  **Erase**  to erase U-Boot.
 
-    ![](figures/en-us_image_0000001163529159.png)
+    ![](figures/en-us_image_0000001174270731.png)
 
 8.  When the following message is displayed, power off the development board and then power it on.
 
-    ![](figures/en-us_image_0000001078089378.png)
+    ![](figures/en-us_image_0000001128311092.png)
 
 9.  If the following message is displayed, it indicates that U-Boot is erased successfully.
 
-    ![](figures/en-us_image_0000001073835952.png)
+    ![](figures/en-us_image_0000001128311094.png)
 
 10. Go to  **hi3518ev300**  \>  **Upload**  to start programming.
 
-    ![](figures/en-us_image_0000001163568181.png)
+    ![](figures/en-us_image_0000001174350641.png)
 
 11. If the following message is displayed, it indicates that the programming is successful.
 
-    ![](figures/en-us_image_0000001073242197.png)
+    ![](figures/en-us_image_0000001174350643.png)
 
 
 ## Running an Image<a name="section17612105814480"></a>
@@ -208,9 +208,9 @@ The USB port is the only burning mode supported by the Hi3518 development board.
     2.  Press  **Enter**  repeatedly until  **hisilicon**  displays.
     3.  Go to  [step 2](#li9441185382314)  if the board is started for the first time or the startup parameters need to be modified; go to  [step 3](#li6442853122312)  otherwise.
 
-2.  <a name="li9441185382314"></a>\(Mandatory for the first burning\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-boot. This step is a fixed operation and the result can be saved. However, you need to perform the following steps again if U-boot needs to be reburnt.
+2.  <a name="li9441185382314"></a>\(Mandatory for first-time burning\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-Boot. This step is a fixed operation and the result can be saved. However, you need to perform the following steps again if U-Boot needs to be reburnt.
 
-    **Table  1**  Parameters of the U-boot
+    **Table  1**  Parameters of the U-Boot
 
     <a name="table1336762011222"></a>
     <table><thead align="left"><tr id="row193681920182219"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p3368202016229"><a name="p3368202016229"></a><a name="p3368202016229"></a>Command</p>
@@ -248,7 +248,7 @@ The USB port is the only burning mode supported by the Hi3518 development board.
     </table>
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >**go 0x40000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-boot startup to interrupt the automatic startup.
+    >**go 0x40000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-Boot startup to interrupt the automatic startup.
 
 3.  <a name="li6442853122312"></a>If  **hisilicon \#**  is displayed during the startup, run the  **reset**  command. After the system automatically starts and  **OHOS**  is displayed, run the  **./bin/helloworld**  command and then press  **Enter**. The system is started successfully if information shown in the following figure is displayed.
 
