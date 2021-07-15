@@ -1,4 +1,4 @@
-# Ubuntu Build Environment<a name="EN-US_TOPIC_0000001105407498"></a>
+# Ubuntu Build Environment<a name="EN-US_TOPIC_0000001174350605"></a>
 
 -   [Obtaining Source Code and Tools](#section1897711811517)
 -   [Obtaining Source Code](#section1545225464016)
@@ -10,6 +10,9 @@
     -   [Prerequisites](#section1083283711515)
     -   [Installation Procedure](#section11518484814)
     -   [Uninstalling hb](#section3512551574)
+
+-   [Installing Other Tools](#section830511218494)
+    -   [Installation Procedure](#section54409586499)
 
 
 Operating system: 64-bit version of Ubuntu 16.04 or later.
@@ -24,9 +27,9 @@ Perform the following steps to set up the build environment:
 6.  Install hb.
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
->-   Docker is provided for the Ubuntu build environment, which encapsulates related build tools. If you use Docker to prepare the build environment, you do not need to perform the following steps in this section. Instead, refer to  [Using Docker to Prepare the Build Environment](../get-code/tool-acquisition.md).
+>-   Docker is provided for the Ubuntu build environment, which encapsulates related build tools. If you use Docker to prepare the build environment, you do not need to perform the following steps in this section. Instead, refer to  [Using Docker to Prepare the Build Environment](../get-code/docker-environment.md).
 >-   By default, basic software, such as Samba and Vim, is installed in the system. Adaptation on the software is required to support file sharing between the Linux server and the Windows workstation.
->-   For details about the compilation and building subsystem of OpenHarmony, see the  [Compilation and Building Overview](../subsystems/compilation-and-building-overview.md).
+>-   For details about the compilation and building subsystem of OpenHarmony, see the  [Compilation and Building Overview](../subsystems/building-guidelines-for-mini-and-small-systems.md).
 
 ## Obtaining Source Code and Tools<a name="section1897711811517"></a>
 
@@ -79,10 +82,11 @@ The following table describes the tools and source code required for setting up 
 <p id="p122171727184019"><a name="p122171727184019"></a><a name="p122171727184019"></a>Functions as the compiler toolchain.</p>
 <p id="p108951116109"><a name="p108951116109"></a><a name="p108951116109"></a></p>
 </td>
-<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>For master and OpenHarmony_2.x branch/tag, please use v10.0.1 from the following link:</p><p id="p49091358184"><a name="p49091358184"></a><a name="p49091358184"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p9983172015313"><a name="p9983172015313"></a><a name="p9983172015313"></a>For the master and OpenHarmony_v2.x branches and tags, use version 10.0.1:</p>
+<p id="p49091358184"><a name="p49091358184"></a><a name="p49091358184"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
 </td>
 </tr>
-<tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>For OpenHarmony_1.x branch/tag, please use v9.0.0 from the following link:</p>
+<tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>For the OpenHarmony_v1.x branches and tags, use version 9.0.0:</p>
 <p id="p198321032101412"><a name="p198321032101412"></a><a name="p198321032101412"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar</a></p>
 </td>
 </tr>
@@ -91,6 +95,13 @@ The following table describes the tools and source code required for setting up 
 <td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p1244114913492"><a name="p1244114913492"></a><a name="p1244114913492"></a>Compiles the <span id="text344823833918"><a name="text344823833918"></a><a name="text344823833918"></a>OpenHarmony</span> source code.</p>
 </td>
 <td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p1463918124619"><a name="p1463918124619"></a><a name="p1463918124619"></a>Internet</p>
+</td>
+</tr>
+<tr id="row27583191444"><td class="cellrowborder" valign="top" width="25.562556255625562%" headers="mcps1.2.4.1.1 "><p id="p875851924420"><a name="p875851924420"></a><a name="p875851924420"></a>Other tools</p>
+</td>
+<td class="cellrowborder" valign="top" width="20.7020702070207%" headers="mcps1.2.4.1.2 "><p id="p18758019164415"><a name="p18758019164415"></a><a name="p18758019164415"></a>Provide functions required in compilation and building, such as packaging and creating images.</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.73537353735374%" headers="mcps1.2.4.1.3 "><p id="p14758219194415"><a name="p14758219194415"></a><a name="p14758219194415"></a>Internet</p>
 </td>
 </tr>
 </tbody>
@@ -244,7 +255,7 @@ You need to acquire  [source code](../get-code/source-code-acquisition.md), down
 2.  [Download LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz).
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >For OpenHarmony\_1.x branch/tag, click  [here](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)  to download LLVM.
+    >For the OpenHarmony\_v1.x branches and tags, click  [here](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)  to download LLVM.
 
 3.  Decompress the LLVM installation package to  **\~/llvm**.
 
@@ -253,7 +264,7 @@ You need to acquire  [source code](../get-code/source-code-acquisition.md), down
     ```
 
     >![](public_sys-resources/icon-note.gif) **NOTE:** 
-    >For OpenHarmony\_1.x branch/tag, run the following command to decompress the LLVM installation package:
+    >For the OpenHarmony\_v1.x branches and tags, run the following command to decompress the LLVM installation package:
     >```
     >tar -xvf llvm-linux-9.0.0-36191.tar -C ~/
     >```
@@ -336,4 +347,15 @@ python3 -m pip uninstall ohos-build
 
 >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
 >If you encounter any problem during the installation, resort to the  [FAQ](faq.md).
+
+## Installing Other Tools<a name="section830511218494"></a>
+
+### Installation Procedure<a name="section54409586499"></a>
+
+1.  Use  **apt-get**  to install dependent tools.
+
+    ```
+    sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils
+    ```
+
 

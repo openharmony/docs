@@ -1,4 +1,4 @@
-# Windows开发环境准备<a name="ZH-CN_TOPIC_0000001105567362"></a>
+# Windows开发环境准备<a name="ZH-CN_TOPIC_0000001128311056"></a>
 
 -   [获取软件](#zh-cn_topic_0000001058091994_section1483143015558)
 -   [安装Visual Studio Code](#zh-cn_topic_0000001058091994_section71401018163318)
@@ -86,7 +86,7 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 
 1.  双击Visual Studio Code软件包进行安装。安装过程中，请勾选“添加到PATH（重启后生效）”。
 
-    ![](figures/zh-cn_image_0000001057335403.png)
+    ![](figures/zh-cn_image_0000001174350653.png)
 
 2.  安装完成后，重启计算机，使Visual Studio Code的环境变量生效。
 3.  打开命令行工具，输入**code --version**命令，可以正常显示版本号说明安装成功。
@@ -95,15 +95,15 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 
 1.  双击Python安装包进行安装，勾选“**Add Python 3.8 to PATH**”，然后点击**Install Now**开始安装。
 
-    ![](figures/zh-cn_image_0000001168817327.png)
+    ![](figures/zh-cn_image_0000001128470908.png)
 
 2.  等待安装完成后，点击**Close**。
 
-    ![](figures/zh-cn_image_0000001142794291.png)
+    ![](figures/zh-cn_image_0000001128311104.png)
 
 3.  打开命令行工具，输入python --version，检查安装结果。
 
-    ![](figures/zh-cn_image_0000001122419072.png)
+    ![](figures/zh-cn_image_0000001174350655.png)
 
 4.  在命令行工具中，分别执行如下命令设置pip源，用于后续安装DevEco Device Tool过程中下载依赖的组件包。
 
@@ -122,7 +122,7 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 1.  点击下载后的软件包进行安装，全部按照默认设置点击**Next**，直至**Finish**。安装过程中，Node.js会自动在系统的path环境变量中配置node.exe的目录路径。
 2.  重新打开命令行工具，输入“node -v“命令，能正常查询Node.js的版本号，说明Node.js安装成功。
 
-    ![](figures/zh-cn_image_0000001056814287.png)
+    ![](figures/zh-cn_image_0000001128311096.png)
 
 
 ## 安装hpm<a name="zh-cn_topic_0000001058091994_section173054793610"></a>
@@ -146,7 +146,7 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
     npm install -g @ohos/hpm-cli
     ```
 
-    ![](figures/zh-cn_image_0000001073840162.png)
+    ![](figures/zh-cn_image_0000001128311100.png)
 
 3.  安装完成后，执行如下命令（V为大写字母）检查hpm安装结果。
 
@@ -154,7 +154,7 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
     hpm -V
     ```
 
-    ![](figures/zh-cn_image_0000001100641602.png)
+    ![](figures/zh-cn_image_0000001174270735.png)
 
 
 ## 安装DevEco Device Tool插件<a name="zh-cn_topic_0000001058091994_section4336315185716"></a>
@@ -169,14 +169,14 @@ DevEco Device Tool正常运行需要依赖于C/C++和CodeLLDB插件，在安装�
 1.  解压DevEco Device Tool插件压缩包，双击安装包程序进行安装。
 2.  安装过程中，会自动安装DevEco Device Tool所需的依赖文件（如C/C++和CodeLLDB插件）和执行程序。
 
-    ![](figures/zh-cn_image_0000001072468991.png)
+    ![](figures/zh-cn_image_0000001128470902.png)
 
 3.  安装完成后，会自动关闭命令行工具窗口。
-4.  启动Visual Studio Code，点击左侧的![](figures/zh-cn_image_0000001072757874.png)按钮，检查INSTALLED中，是否已成功安装C/C++、CodeLLDB和DevEco Device Tool。
+4.  启动Visual Studio Code，点击左侧的![](figures/zh-cn_image_0000001174350651.png)按钮，检查INSTALLED中，是否已成功安装C/C++、CodeLLDB和DevEco Device Tool。
 
     >![](public_sys-resources/icon-note.gif) **说明：** 
     >如果C/C++和CodeLLDB插件安装不成功，则DevEco Device Tool不能正常运行，解决方法，详细请参考：[离线安装C/C++和CodeLLDB插件](https://device.harmonyos.com/cn/docs/ide/user-guides/offline_plugin_install-0000001074376846)。
 
-    ![](figures/zh-cn_image_0000001142802505.png)
+    ![](figures/zh-cn_image_0000001174270727.png)
 
 

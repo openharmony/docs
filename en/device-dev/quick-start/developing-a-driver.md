@@ -1,4 +1,4 @@
-# Developing a Driver<a name="EN-US_TOPIC_0000001151968527"></a>
+# Developing a Driver<a name="EN-US_TOPIC_0000001174350613"></a>
 
 -   [Introduction to Driver](#s8efc1952ebfe4d1ea717182e108c29bb)
 -   [Compiling and Burning](#section660016185110)
@@ -423,7 +423,7 @@ The following operations take a HDF-based UART driver as an example to show how 
 
 ## Compiling and Burning<a name="section660016185110"></a>
 
-Compile and burn images by referring to  [Building](../quick-start/running-a-hello-ohos-program.md)and  [Burning](../quick-start/running-a-hello-ohos-program.md).
+Compile and burn images by referring to  [Building](../guide/development-example-for-platform-drivers.md)and  [Burning](../guide/development-example-for-platform-drivers.md).
 
 ## Running an Image<a name="section333215226219"></a>
 
@@ -439,14 +439,14 @@ Compile and burn images by referring to  [Building](../quick-start/running-a-hel
 
     1.  Click  **Monitor**  to enable the serial port.
     2.  Press  **Enter**  repeatedly until  **hisilicon**  displays.
-    3.  Go to step  [2](running-a-hello-ohos-program.md#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](running-a-hello-ohos-program.md#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
+    3.  Go to  [2](running-a-hello-ohos-program.md#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to  [3](running-a-hello-ohos-program.md#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
 
-2.  \(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
+2.  \(Mandatory when the board is started for the first time\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-Boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >The default waiting time in the U-boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisilicon" is displayed.
+    >The default waiting time in the U-Boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisilicon" is displayed.
 
-    **Table  1**  Parameters of the U-boot
+    **Table  1**  Parameters of the U-Boot
 
     <a name="en-us_topic_0000001151888681_table1323441103813"></a>
     <table><thead align="left"><tr id="en-us_topic_0000001151888681_row1423410183818"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="en-us_topic_0000001151888681_p623461163818"><a name="en-us_topic_0000001151888681_p623461163818"></a><a name="en-us_topic_0000001151888681_p623461163818"></a>Command</p>
@@ -457,30 +457,30 @@ Compile and burn images by referring to  [Building](../quick-start/running-a-hel
     </thead>
     <tbody><tr id="en-us_topic_0000001151888681_row1623471113817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001151888681_p102341719385"><a name="en-us_topic_0000001151888681_p102341719385"></a><a name="en-us_topic_0000001151888681_p102341719385"></a>setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800; go 0x80000000";</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001151888681_p92347120389"><a name="en-us_topic_0000001151888681_p92347120389"></a><a name="en-us_topic_0000001151888681_p92347120389"></a>Run this command to read content that has a size of 0x4800 (9 MB) and a start address of 0x800 (1 MB) to the memory address 0x80000000. The file size must be the same as that of the <strong id="en-us_topic_0000001151888681_b9140538191313"><a name="en-us_topic_0000001151888681_b9140538191313"></a><a name="en-us_topic_0000001151888681_b9140538191313"></a>OHOS_Image.bin</strong> file in the IDE.</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001151888681_p92347120389"><a name="en-us_topic_0000001151888681_p92347120389"></a><a name="en-us_topic_0000001151888681_p92347120389"></a>Run this command to read content that has a size of 0x4800 (9 MB) and a start address of 0x800 (1 MB) to the memory address 0x80000000. The file size must be the same as that of the <strong id="b881982511127"><a name="b881982511127"></a><a name="b881982511127"></a>OHOS_Image.bin</strong> file in the IDE.</p>
     </td>
     </tr>
     <tr id="en-us_topic_0000001151888681_row12234912381"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001151888681_p172306219392"><a name="en-us_topic_0000001151888681_p172306219392"></a><a name="en-us_topic_0000001151888681_p172306219392"></a>setenv bootargs "console=ttyAMA0,115200n8 root=emmc fstype=vfat rootaddr=10M rootsize=20M rw";</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001151888681_p13489329396"><a name="en-us_topic_0000001151888681_p13489329396"></a><a name="en-us_topic_0000001151888681_p13489329396"></a>Run this command to set the output mode to serial port output, baud rate to <strong id="en-us_topic_0000001151888681_b1378372812210"><a name="en-us_topic_0000001151888681_b1378372812210"></a><a name="en-us_topic_0000001151888681_b1378372812210"></a>115200</strong>, data bit to <strong id="en-us_topic_0000001151888681_b27871628822"><a name="en-us_topic_0000001151888681_b27871628822"></a><a name="en-us_topic_0000001151888681_b27871628822"></a>8</strong>, <strong id="en-us_topic_0000001151888681_b678811281528"><a name="en-us_topic_0000001151888681_b678811281528"></a><a name="en-us_topic_0000001151888681_b678811281528"></a>rootfs</strong> to be mounted to the <strong id="en-us_topic_0000001151888681_b978813281220"><a name="en-us_topic_0000001151888681_b978813281220"></a><a name="en-us_topic_0000001151888681_b978813281220"></a>emmc</strong> component, and file system type to <strong id="en-us_topic_0000001151888681_b12788132814217"><a name="en-us_topic_0000001151888681_b12788132814217"></a><a name="en-us_topic_0000001151888681_b12788132814217"></a>vfat</strong>.</p>
-    <p id="en-us_topic_0000001151888681_p12481832163913"><a name="en-us_topic_0000001151888681_p12481832163913"></a><a name="en-us_topic_0000001151888681_p12481832163913"></a><strong id="en-us_topic_0000001151888681_b965011165313"><a name="en-us_topic_0000001151888681_b965011165313"></a><a name="en-us_topic_0000001151888681_b965011165313"></a>rootaddr=10M rootsize=20M rw</strong> indicates the start address and size of the <strong id="en-us_topic_0000001151888681_b1538675832018"><a name="en-us_topic_0000001151888681_b1538675832018"></a><a name="en-us_topic_0000001151888681_b1538675832018"></a>rootfs.img</strong> file to be burnt, respectively. The file size <strong id="en-us_topic_0000001151888681_b0633135515546"><a name="en-us_topic_0000001151888681_b0633135515546"></a><a name="en-us_topic_0000001151888681_b0633135515546"></a>must be the same</strong> as that of the <strong id="en-us_topic_0000001151888681_b69061726113015"><a name="en-us_topic_0000001151888681_b69061726113015"></a><a name="en-us_topic_0000001151888681_b69061726113015"></a>rootfs.img</strong> file in the IDE.</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001151888681_p13489329396"><a name="en-us_topic_0000001151888681_p13489329396"></a><a name="en-us_topic_0000001151888681_p13489329396"></a>Run this command to set the output mode to serial port output, baud rate to <strong id="b433815011512"><a name="b433815011512"></a><a name="b433815011512"></a>115200</strong>, data bit to <strong id="b1933919018155"><a name="b1933919018155"></a><a name="b1933919018155"></a>8</strong>, <strong id="b433912010151"><a name="b433912010151"></a><a name="b433912010151"></a>rootfs</strong> to be mounted to the <strong id="b83409014151"><a name="b83409014151"></a><a name="b83409014151"></a>emmc</strong> component, and file system type to <strong id="b133418081511"><a name="b133418081511"></a><a name="b133418081511"></a>vfat</strong>.</p>
+    <p id="en-us_topic_0000001151888681_p12481832163913"><a name="en-us_topic_0000001151888681_p12481832163913"></a><a name="en-us_topic_0000001151888681_p12481832163913"></a><strong id="b1641214193158"><a name="b1641214193158"></a><a name="b1641214193158"></a>rootaddr=10M rootsize=20M rw</strong> indicates the start address and size of the <strong id="b1441320198151"><a name="b1441320198151"></a><a name="b1441320198151"></a>rootfs.img</strong> file to be burnt, respectively. The file size must be the same as that of the <strong id="b15414219161513"><a name="b15414219161513"></a><a name="b15414219161513"></a>rootfs.img</strong> file in the IDE.</p>
     </td>
     </tr>
     <tr id="en-us_topic_0000001151888681_row18234161153820"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001151888681_p823417118386"><a name="en-us_topic_0000001151888681_p823417118386"></a><a name="en-us_topic_0000001151888681_p823417118386"></a>saveenv</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001151888681_p32341616389"><a name="en-us_topic_0000001151888681_p32341616389"></a><a name="en-us_topic_0000001151888681_p32341616389"></a><strong id="en-us_topic_0000001151888681_b16238195319315"><a name="en-us_topic_0000001151888681_b16238195319315"></a><a name="en-us_topic_0000001151888681_b16238195319315"></a>saveenv</strong> means to save the current configuration.</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001151888681_p32341616389"><a name="en-us_topic_0000001151888681_p32341616389"></a><a name="en-us_topic_0000001151888681_p32341616389"></a><strong id="b8139162216169"><a name="b8139162216169"></a><a name="b8139162216169"></a>saveenv</strong> means to save the current configuration.</p>
     </td>
     </tr>
     <tr id="en-us_topic_0000001151888681_row192345113811"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="en-us_topic_0000001151888681_p7235111183819"><a name="en-us_topic_0000001151888681_p7235111183819"></a><a name="en-us_topic_0000001151888681_p7235111183819"></a>reset</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001151888681_p123781411114016"><a name="en-us_topic_0000001151888681_p123781411114016"></a><a name="en-us_topic_0000001151888681_p123781411114016"></a><strong id="en-us_topic_0000001151888681_b32719232420"><a name="en-us_topic_0000001151888681_b32719232420"></a><a name="en-us_topic_0000001151888681_b32719232420"></a>reset</strong> means to reset the board.</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001151888681_p123781411114016"><a name="en-us_topic_0000001151888681_p123781411114016"></a><a name="en-us_topic_0000001151888681_p123781411114016"></a><strong id="b760219545018"><a name="b760219545018"></a><a name="b760219545018"></a>reset</strong> means to reset the board.</p>
     </td>
     </tr>
     </tbody>
     </table>
 
     >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >**go 0x80000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-boot startup to interrupt the automatic startup.
+    >**go 0x80000000**  is optional. It indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-Boot startup to interrupt the automatic startup.
 
 3.  Run the  **reset**  command and press  **Enter**  to restart the board. After the board is restarted,  **OHOS**  is displayed when you press  **Enter**.
 
@@ -499,5 +499,5 @@ Compile and burn images by referring to  [Building](../quick-start/running-a-hel
 
 ## Follow-up Learning<a name="section9712145420182"></a>
 
-Congratulations! You have finished all steps! You are advised to go on learning how to develop  [Cameras with a Screen](../guide/cameras-with-a-screen.md).
+Congratulations! You have finished all steps! You are advised to go on learning how to develop  [Cameras with a Screen](../guide/cameras-without-a-screen.md).
 

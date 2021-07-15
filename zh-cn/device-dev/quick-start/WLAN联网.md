@@ -1,4 +1,4 @@
-# WLAN联网<a name="ZH-CN_TOPIC_0000001152048651"></a>
+# WLAN联网<a name="ZH-CN_TOPIC_0000001174350611"></a>
 
 -   [源码编译](#section191121332125319)
 -   [镜像烧录](#section19458165166)
@@ -10,7 +10,7 @@
 
 本节描述如何在Linux服务器上进行WLAN模组版本的编译。
 
-如果Linux编译环境通过Docker方式安装，具体编译过程请参见[Docker方式获取编译环境](../get-code/获取工具.md)的编译操作。如果Linux编译环境通过软件包方式安装，请参考如下步骤。
+如果Linux编译环境通过Docker方式安装，具体编译过程请参见[Docker方式获取编译环境](../get-code/Docker编译环境.md)的编译操作。如果Linux编译环境通过软件包方式安装，请参考如下步骤。
 
 1.  打开DevEco Device Tool工具，点击“View \> Terminal”，进入终端界面。
 
@@ -19,7 +19,7 @@
 
     ![](figures/1.png)
 
-    在终端界面使用ssh命令连接linux服务器，如“ssh  _user_@_ipaddr_”。
+    在终端界面使用ssh命令连接linux服务器，如“ssh user@ipaddr”。
 
     **图 2**  终端界面示意图<a name="fig91165301546"></a>  
     
@@ -63,17 +63,17 @@
 
 Hi3861 WLAN模组的镜像烧录可以通过OpenHarmony IDE工具DevEco完成，工具的基本使用请参考[DevEco Device Tool使用指南](https://device.harmonyos.com/cn/docs/ide/user-guides/service_introduction-0000001050166905)，烧录过程包含如下步骤。
 
-1.  请连接好电脑和待烧录开发板，需要连接USB口，具体可参考[Hi3861开发板介绍](https://device.harmonyos.com/cn/docs/start/introduce/oem_wifi_start_des-0000001050168548)。
+1.  请连接好电脑和待烧录开发板，需要连接USB口，具体可参考[Hi3861开发板介绍](https://device.harmonyos.com/cn/docs/start/introduce/oem_minitinier_des_3861-0000001105041324)。
 2.  <a name="zh-cn_topic_0000001056563976_li848662117291"></a>打开电脑的设备管理器，查看并记录对应的串口号。
 
     >![](public_sys-resources/icon-note.gif) **说明：** 
     >如果对应的串口异常，请根据[Hi3861系列开发板串口驱动安装](https://device.harmonyos.com/cn/docs/ide/user-guides/hi3861-drivers-0000001058153433)安装USB转串口的驱动程序。
 
-    ![](figures/zh-cn_image_0000001073388838.png)
+    ![](figures/zh-cn_image_0000001128311118.png)
 
 3.  打开DevEco Device Tool，在Projects中，点击**Settings**打开工程配置界面。
 
-    ![](figures/zh-cn_image_0000001078404538.png)
+    ![](figures/zh-cn_image_0000001128311116.png)
 
 4.  在“Partition Configuration”页签，设置待烧录文件信息，默认情况下，DevEco Device Tool已针对Hi3861系列开发板进行适配，无需单独修改。
 5.  在“hi3861”页签，设置烧录选项，包括upload\_port、upload\_partitions和upload\_protocol。
@@ -82,20 +82,20 @@ Hi3861 WLAN模组的镜像烧录可以通过OpenHarmony IDE工具DevEco完成，
     -   upload\_protocol：选择烧录协议，固定选择“burn-serial”。
     -   upload\_partitions：选择待烧录的文件，默认选择hi3861\_app。
 
-    ![](figures/zh-cn_image_0000001078244328.png)
+    ![](figures/zh-cn_image_0000001128470922.png)
 
 6.  所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
 7.  打开工程文件，在DevEco Device Tool界面的“PROJECT TASKS”中，点击hi3861下的**Upload**按钮，启动烧录。
 
-    ![](figures/zh-cn_image_0000001163569275.png)
+    ![](figures/zh-cn_image_0000001174270749.png)
 
 8.  启动烧录后，显示如下提示信息时，请按开发板上的RST按钮重启开发板。
 
-    ![](figures/zh-cn_image_0000001074285712.png)
+    ![](figures/zh-cn_image_0000001174270751.png)
 
 9.  重新上电后，启动烧录，界面提示如下信息时，表示烧录成功。
 
-    ![](figures/zh-cn_image_0000001074445364.png)
+    ![](figures/zh-cn_image_0000001174350669.png)
 
 
 ## WLAN模组联网<a name="section194671619167"></a>

@@ -1,4 +1,4 @@
-# 运行Hello OHOS<a name="ZH-CN_TOPIC_0000001105528572"></a>
+# 运行Hello OHOS<a name="ZH-CN_TOPIC_0000001174350607"></a>
 
 -   [新建应用程序](#section1550972416485)
 -   [编译](#section234175193114)
@@ -128,7 +128,7 @@
 
 ## 编译<a name="section234175193114"></a>
 
-如果Linux编译环境通过Docker方式安装，具体编译过程请参见[Docker方式获取编译环境](../get-code/获取工具.md)的编译操作。如果Linux编译环境通过软件包方式安装，进入源码根目录，执行如下命令进行编译：
+如果Linux编译环境通过Docker方式安装，具体编译过程请参见[Docker方式获取编译环境](../get-code/Docker编译环境.md)的编译操作。如果Linux编译环境通过软件包方式安装，进入源码根目录，执行如下命令进行编译：
 
 ```
 hb set(设置编译路径)
@@ -149,17 +149,17 @@ hb build -f（执行编译）
 
 Hi3518开发板的代码烧录仅支持USB烧录方式。
 
-1.  请连接好电脑和待烧录开发板，以Hi3518EV300为例，需要同时连接串口和USB口，具体可参考[Hi3518开发板介绍](https://device.harmonyos.com/cn/docs/start/introduce/oem_camera_start_hi3518-0000001050170473)。
+1.  请连接好电脑和待烧录开发板，以Hi3518EV300为例，需要同时连接串口和USB口，具体可参考[Hi3518开发板介绍](https://device.harmonyos.com/cn/docs/start/introduce/oem_minitinier_des_3518-0000001105201138)。
 2.  <a name="zh-cn_topic_0000001057313128_li46411811196"></a>打开电脑的设备管理器，查看并记录对应的串口号。
 
     >![](public_sys-resources/icon-note.gif) **说明：** 
     >如果对应的串口异常，请根据[Hi3516/Hi3518系列开发板串口驱动安装指导](https://device.harmonyos.com/cn/docs/ide/user-guides/hi3516_hi3518-drivers-0000001050743695)安装USB转串口的驱动程序。
 
-    ![](figures/zh-cn_image_0000001073057176.png)
+    ![](figures/zh-cn_image_0000001128470900.png)
 
 3.  打开DevEco Device Tool，在Projects中，点击**Settings**打开工程配置界面。
 
-    ![](figures/zh-cn_image_0000001077956808.png)
+    ![](figures/zh-cn_image_0000001174350649.png)
 
 4.  在“Partition Configuration”页签，设置待烧录文件信息，默认情况下，DevEco Device Tool已针对Hi3518系列开发板进行适配，无需单独修改。
 5.  在“hi3518ev300”页签，设置烧录选项，包括upload\_port、upload\_partitions和upload\_protocol。
@@ -168,28 +168,28 @@ Hi3518开发板的代码烧录仅支持USB烧录方式。
     -   upload\_protocol：选择烧录协议，固定选择“hiburn-usb”。
     -   upload\_partitions：选择待烧录的文件，默认情况下会同时烧录fastboot、kernel、rootfs和userfs。
 
-    ![](figures/zh-cn_image_0000001096963405.png)
+    ![](figures/zh-cn_image_0000001128311090.png)
 
 6.  所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
 7.  打开工程文件，点击![](figures/2021-01-27_170334-5.png)图标，打开DevEco Device Tool界面，在“PROJECT TASKS”中，点击hi3518ev300\_fastboot下的**Erase**按钮，擦除U-Boot。
 
-    ![](figures/zh-cn_image_0000001163529159.png)
+    ![](figures/zh-cn_image_0000001174270731.png)
 
 8.  执行**Erase**擦除操作后，显示如下提示信息时，请重启开发板（下电再上电）。
 
-    ![](figures/zh-cn_image_0000001078089378.png)
+    ![](figures/zh-cn_image_0000001128311092.png)
 
 9.  重新上电后，显示如下信息时，表示擦除U-Boot成功。
 
-    ![](figures/zh-cn_image_0000001073835952.png)
+    ![](figures/zh-cn_image_0000001128311094.png)
 
 10. 擦除完成后，点击hi3518ev300下的**Upload**按钮，启动烧录。
 
-    ![](figures/zh-cn_image_0000001163568181.png)
+    ![](figures/zh-cn_image_0000001174350641.png)
 
 11. 启动烧录后，界面提示如下信息时，表示烧录成功。
 
-    ![](figures/zh-cn_image_0000001073242197.png)
+    ![](figures/zh-cn_image_0000001174350643.png)
 
 
 ## 镜像运行<a name="section17612105814480"></a>

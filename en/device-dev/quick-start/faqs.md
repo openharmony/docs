@@ -1,4 +1,4 @@
-# FAQs<a name="EN-US_TOPIC_0000001105208752"></a>
+# FAQs<a name="EN-US_TOPIC_0000001128311054"></a>
 
 -   [What should I do when the message configure: error: no acceptable C compiler found in $PATH is displayed during Python 3 installation?](#section1221016541119)
 -   [What should I do when the message -bash: make: command not found is displayed during Python 3 installation?](#section1913477181213)
@@ -134,7 +134,7 @@
 
     -   Download the source code from  [https://pypi.org/project/pycrypto/\#files](https://pypi.org/project/pycrypto/#files).
 
-    ![](figures/en-us_image_0000001151976061.png)
+    ![](figures/en-us_image_0000001128470864.png)
 
     -   Save the source code package to the Linux server, decompress the package, and run the  **python3 setup.py install**  command to install  **Crypto**.
     -   Rebuild an environment.
@@ -164,7 +164,7 @@
 
     -   Download the installation package from  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files).
 
-    ![](figures/en-us_image_0000001152176131.png)
+    ![](figures/en-us_image_0000001128311072.png)
 
     -   Save the installation package to the Linux server and run the  **pip3 install ecdsa-0.15-py2.py3-none-any.whl**  command to install  **ecdsa**.
     -   Rebuild an environment.
@@ -194,7 +194,7 @@
 
     -   Download the installation package from  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files).
 
-    ![](figures/en-us_image_0000001152056191.png)
+    ![](figures/en-us_image_0000001174270699.png)
 
     -   Save the source code to the Linux server and run the  **pip3 install six-1.14.0-py2.py3-none-any.whl**  command to install  **six**.
     -   Rebuild an environment.
@@ -247,7 +247,7 @@
 
 -   **Possible Cause 2:**  The soft link that points to the Python does not exist in the  **usr/bin**  directory.
 
-    ![](figures/en-us_image_0000001105376252.png)
+    ![](figures/en-us_image_0000001128311070.png)
 
 -   **Solutions**
 
@@ -262,7 +262,7 @@
 
     Example:
 
-    ![](figures/en-us_image_0000001105216296.png)
+    ![](figures/en-us_image_0000001174350623.png)
 
 
 ## What should I do when an error with  **lsb\_release**  occurs during  **kconfiglib**  installation?<a name="section691681635814"></a>

@@ -33,12 +33,10 @@
             -   [FAQs](faqs-6.md)
 
 -   [Standard System](standard-system.md)
-    -   [Overview](overview-7.md)
-    -   [Environment Setup](environment-setup-8.md)
-        -   [Overview](overview-9.md)
-        -   [Windows Development Environment](windows-development-environment-10.md)
-        -   [Preparing the Ubuntu Build Environment](preparing-the-ubuntu-build-environment.md)
-        -   [FAQs](faqs-11.md)
-
-    -   [How to Develop](how-to-develop-12.md)
+    -   [Introduction](introduction.md)
+    -   [Setting Up Windows Development Environment](setting-up-windows-development-environment.md)
+    -   [Setting Up Ubuntu Development Environment in Docker Mode and Building Source Code](setting-up-ubuntu-development-environment-in-docker-mode-and-building-source-code.md)
+    -   [Setting Up Ubuntu Development Environment with Installation Package and Building Source Code](setting-up-ubuntu-development-environment-with-installation-package-and-building-source-code.md)
+    -   [Burning Images](burning-images.md)
+    -   [FAQs](faqs-7.md)
 

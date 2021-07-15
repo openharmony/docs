@@ -1,4 +1,4 @@
-# Overview<a name="EN-US_TOPIC_0000001119076372"></a>
+# Overview<a name="EN-US_TOPIC_0000001128470854"></a>
 
 Use the DevEco Device Tool for development, build, burning, and debugging of OpenHarmony.
 

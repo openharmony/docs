@@ -1,4 +1,4 @@
-# Ubuntu编译环境准备<a name="ZH-CN_TOPIC_0000001105407498"></a>
+# Ubuntu编译环境准备<a name="ZH-CN_TOPIC_0000001174350605"></a>
 
 -   [获取软件](#section1897711811517)
 -   [获取源码](#section1545225464016)
@@ -10,6 +10,9 @@
     -   [前提条件](#section1083283711515)
     -   [安装方法](#section11518484814)
     -   [卸载方法](#section3512551574)
+
+-   [安装其他工具](#section830511218494)
+    -   [安装方法](#section54409586499)
 
 
 系统要求：Ubuntu16.04及以上64位系统版本。
@@ -24,9 +27,9 @@
 6.  安装hb
 
 >![](public_sys-resources/icon-notice.gif) **须知：** 
->-   针对Ubuntu编译环境我们提供了对应的Docker，该Docker封装了相关编译工具，选择使用Docker的开发者可跳过此章节。Docker使用可参考[Docker方式获取编译环境](../get-code/获取工具.md)。
+>-   针对Ubuntu编译环境我们提供了对应的Docker，该Docker封装了相关编译工具，选择使用Docker的开发者可跳过此章节。Docker使用可参考[Docker方式获取编译环境](../get-code/Docker编译环境.md)。
 >-   通常系统默认安装samba、vim等常用软件，需要做适当适配以支持Linux服务器与Windows工作台之间的文件共享。
->-   想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建使用指南](../subsystems/编译构建概述.md)。
+>-   想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建使用指南](../subsystems/编译构建.md)。
 
 ## 获取软件<a name="section1897711811517"></a>
 
@@ -79,7 +82,8 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 <p id="p122171727184019"><a name="p122171727184019"></a><a name="p122171727184019"></a>编译工具链</p>
 <p id="p108951116109"><a name="p108951116109"></a><a name="p108951116109"></a></p>
 </td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>Master及OpenHarmony_v2.x分支/标签，请使用以下10.0.1版本：</p><p id="p49091358184"><a name="p49091358184"></a><a name="p49091358184"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
+<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p9983172015313"><a name="p9983172015313"></a><a name="p9983172015313"></a>Master及OpenHarmony_v2.x分支/标签，请使用以下10.0.1版本：</p>
+<p id="p49091358184"><a name="p49091358184"></a><a name="p49091358184"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
 </td>
 </tr>
 <tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>OpenHarmony_v1.x分支/标签，请使用以下9.0.0版本：</p>
@@ -91,6 +95,13 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 <td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p1244114913492"><a name="p1244114913492"></a><a name="p1244114913492"></a><span id="text565372520148"><a name="text565372520148"></a><a name="text565372520148"></a>OpenHarmony</span>编译构建命令行工具</p>
 </td>
 <td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p1463918124619"><a name="p1463918124619"></a><a name="p1463918124619"></a>通过互联网获取</p>
+</td>
+</tr>
+<tr id="row27583191444"><td class="cellrowborder" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p875851924420"><a name="p875851924420"></a><a name="p875851924420"></a>其他工具</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p18758019164415"><a name="p18758019164415"></a><a name="p18758019164415"></a>编译构建中依赖的其他工具（如打包、镜像制作等）</p>
+</td>
+<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p14758219194415"><a name="p14758219194415"></a><a name="p14758219194415"></a>通过互联网获取</p>
 </td>
 </tr>
 </tbody>
@@ -336,4 +347,15 @@ python3 -m pip uninstall ohos-build
 
 >![](public_sys-resources/icon-notice.gif) **须知：** 
 >如果安装hb的过程中遇到问题，请参见下文[常见问题](常见问题.md)进行解决。
+
+## 安装其他工具<a name="section830511218494"></a>
+
+### 安装方法<a name="section54409586499"></a>
+
+1.  apt安装全部依赖的工具
+
+    ```
+    sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils
+    ```
+
 
