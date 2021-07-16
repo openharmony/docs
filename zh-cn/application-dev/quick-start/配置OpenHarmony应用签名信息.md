@@ -11,20 +11,17 @@
 
 ## 生成密钥和证书请求文件<a name="section153146467405"></a>
 
-OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件）来保证应用的完整性，需要通过DevEco Studio来生成密钥文件（.p12文件）和证书请求文件（.csr文件）。同时，也可以使用命令行工具的方式来生成密钥文件和证书请求文件。具体操作请参考[生成密钥和证书请求文件](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404#ZH-CN_TOPIC_0000001154985555__section837891802519)。
+OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件）来保证应用的完整性，需要通过DevEco Studio来生成密钥文件（.p12文件）和证书请求文件（.csr文件）。同时，也可以使用命令行工具的方式来生成密钥文件和证书请求文件。具体操作请参考[生成密钥和证书请求文件](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/publish_app-0000001053223745#section9752152162813)。
 
 ## 生成应用证书文件<a name="section136609429562"></a>
 
 使用[生成密钥和证书请求文件](#section153146467405)中生成的证书请求文件，来生成应用签名所需的数字证书文件。生成方法如下：
 
-进入DevEco Studio安装目录的**Sdk\\toolchains\\lib**文件夹下，打开命令行工具，执行如下命令（如果keytool命令不能执行，请在系统环境变量中添加JDK的环境变量）。其中，只需要修改输入和输出即可快速生成证书文件，即修改**-infile**指定证书请求文件csr文件路径，**-outfile**指定输出证书文件名及路径。
+进入DevEco Studio安装目录的**Sdk\\toolchains\\lib**文件夹下（该SDK目录只能是OpenHarmony SDK，配置方法可参考[配置OpenHarmony SDK](配置OpenHarmony-SDK.md)），打开命令行工具，执行如下命令（如果keytool命令不能执行，请在系统环境变量中添加JDK的环境变量）。其中，只需要修改输入和输出即可快速生成证书文件，即修改**-infile**指定证书请求文件csr文件路径，**-outfile**指定输出证书文件名及路径。
 
 ```
 keytool -gencert -alias "OpenHarmony Application CA" -infile app.csr -outfile IDE.cer -keystore OpenHarmony.p12 -sigalg SHA384withECDSA -storepass 123456 -ext KeyUsage:"critical=digitalSignature" -validity  3650 -rfc
 ```
-
->![](public_sys-resources/icon-note.gif) **说明：** 
->在上述命令中，标识为蓝色字体的字段不能修改，否则会导致证书生成失败。
 
 关于该命令的参数说明如下：
 
@@ -47,9 +44,6 @@ Profile文件包含OpenHarmony应用的包名、数字证书信息、描述应�
 ```
 java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --out SgnedReleasedProfileTemplate.p7b --keystore OpenHarmony.p12 --storepass 123456 --alias "OpenHarmony Application Profile Release" --sigAlg SHA256withECDSA --cert OpenHarmonyProfileRelease.pem --validity 365 --developer-id ohosdeveloper --bundle-name 包名 --permission 受限权限名（可选） --permission 受限权限名（可选） --distribution-certificate IDE.cer
 ```
-
->![](public_sys-resources/icon-note.gif) **说明：** 
->在上述命令中，标识为蓝色字体的字段不能修改，否则会导致Profile文件生成失败。
 
 关于该命令的参数说明如下：
 
