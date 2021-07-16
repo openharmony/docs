@@ -40,7 +40,7 @@
             -   Security：[隐私与安全](device-dev/security/Readme-CN.md)
 
         -   guide：[开发示例](device-dev/guide/Readme-CN.md)
-            -   [时钟应用](device-dev/guide/时钟应用开发指导.md)
+            -   [时钟应用](device-dev/guide/时钟应用开发示例.md)
             -   [平台驱动](device-dev/guide/平台驱动开发示例.md)
             -   [外设驱动](device-dev/guide/外设驱动开发示例.md)
 
