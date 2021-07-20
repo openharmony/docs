@@ -32,7 +32,7 @@
             -   [FAQs](quickstart-lite-steps-board3518-faqs.md)
 
 -   [Standard System](quickstart-standard.md)
-    -   [FAQ](quickstart-lite-env-setup-faqs.md)
+    -   [Introduction](quickstart-standard-description.md)
     -   [Setting Up Windows Development Environment](quickstart-standard-windows-environment.md)
     -   [Setting Up Ubuntu Development Environment in Docker Mode and Building Source Code](quickstart-standard-docker-environment.md)
     -   [Setting Up Ubuntu Development Environment with Installation Package and Building Source Code](quickstart-standard-package-environment.md)

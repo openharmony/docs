@@ -32,7 +32,7 @@
             -   [常见问题](quickstart-lite-steps-board3518-faqs.md)
 
 -   [标准系统入门](quickstart-standard.md)
-    -   [常见问题](quickstart-lite-env-setup-faqs.md)
+    -   [入门介绍](quickstart-standard-description.md)
     -   [Windows开发环境准备](quickstart-standard-windows-environment.md)
     -   [搭建Ubuntu环境及编译（Docker方式）](quickstart-standard-docker-environment.md)
     -   [搭建Ubuntu环境及编译（安装包方式）](quickstart-standard-package-environment.md)

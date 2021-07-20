@@ -17,7 +17,7 @@ This project stores OpenHarmony documentation, including the quick start guide, 
 
         -   **guide**:  
             -   [WLAN-connected products](device-dev/guide/device-wifi.md)  \(LED peripheral control and third-party SDK integration\)
-            -   [Screenless cameras](device-dev/guide/device-camera.md)  \(camera control\)
+            -   [Screenless cameras](device-dev/guide/device-iotcamera.md)  \(camera control\)
             -   [Cameras with a screen](device-dev/guide/device-camera.md)  \(screen and camera control, visual application development\)
 
         -   **porting**: 
