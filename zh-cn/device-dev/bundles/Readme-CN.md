@@ -1,20 +1,12 @@
-# 组件开发
+# 组件开发指南
 
--   [组件开发规范](组件开发规范.md)
-    -   [概述](概述.md)
-    -   [组件构成](组件构成.md)
-    -   [组件管理](组件管理.md)
-    -   [组件版本](组件版本.md)
-    -   [发行版](发行版.md)
-    -   [环境变量说明](环境变量说明.md)
-
--   [组件开发指南](组件开发指南.md)
-    -   [概述](概述-0.md)
-    -   [准备工作](准备工作.md)
-    -   [组件开发](组件开发.md)
-
--   [组件开发示例](组件开发示例.md)
-    -   [HPM介绍](HPM介绍.md)
-    -   [环境准备](环境准备.md)
-    -   [操作实例](操作实例.md)
+- [组件开发规范](bundles-standard-rules.md)
+- [组件开发指南](bundles-guide.md)
+  - [组件开发指南](bundles-guide-overview.md)
+  - [准备工作](bundles-guide-prepare.md)
+  - [组件开发](bundles-guide-develop.md)
+- [组件开发示例](bundles-demo.md)
+  - [HPM介绍](bundles-demo-hpmdescription.md)
+  - [环境准备](bundles-demo-environment.md)
+  - [操作实例](bundles-demo-devsample.md)
 
