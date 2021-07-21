@@ -227,12 +227,12 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
 1.  搭建OpenHarmony环境
 
-    以hi3518ev300为例，编译出OpenHarmony镜像，烧写到开发板，参考[开发Hi3518第一个示例程序](../quick-start/quickstart-lite-steps-board3518-running.md)。
+    以hi3518ev300为例，编译出OpenHarmony镜像，烧写到开发板，参考[开发Hi3518第一个示例程序](https://device.harmonyos.com/cn/docs/start/introduce/oem_camera_start_example-0000001051610926)。
 
     进入系统如下所示：
 
     **图 1**  OpenHarmony启动成功界面<a name="fig13279524162418"></a>  
-    ![](figure/OpenHarmony启动成功界面.png "OpenHarmony启动成功界面")
+    ![](figures/OpenHarmony启动成功界面.png "OpenHarmony启动成功界面")
 
 2.  挂载nfs目录，将[表2](#table1452412391911)中test目录下cctest可执行文件放入nfs目录
 3.  执行用例
@@ -306,7 +306,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
     <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1626675812177"><a name="p1626675812177"></a><a name="p1626675812177"></a>将三方库加入工程的gn适配文件</p>
     </td>
     </tr>
-    <tr id="row1726610589179"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p12266115815170"><a name="p12266115815170"></a><a name="p12266115815170"></a>openHarmony/third_party/double-conversion/build_thirdparty.py</p>
+    <tr id="row1726610589179"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p12266115815170"><a name="p12266115815170"></a><a name="p12266115815170"></a>openHarmony/third_party/double-conversion/build_thirdpaty.py</p>
     </td>
     <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p122661958201719"><a name="p122661958201719"></a><a name="p122661958201719"></a>GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转CMake</p>
     </td>

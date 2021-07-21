@@ -148,7 +148,7 @@
 
 ## 测试<a name="section1830015913391"></a>
 
-yxml库测试步骤与double-conversion库基本一致，可参考[CMake方式组织编译的库移植](transplant-thirdparty-cmake.md#section6686144293611)的测试过程，以下内容介绍yxml库测试用例的使用方法：
+yxml库测试步骤与double-conversion库基本一致，可参考[CMake方式组织编译的库移植](CMake方式组织编译的库移植.md#section6686144293611)的测试过程，以下内容介绍yxml库测试用例的使用方法：
 
 **表 3**  生成的test目录结构示意
 
@@ -236,7 +236,7 @@ echo "All tests completed successfully."
 
 ## 将该库编译添加到OpenHarmony工程中<a name="section1898016213406"></a>
 
-yxml库添加的过程除了适配文件build.gn和config.gni有些许变化外，其他和double-conversion库完全一致，参考[CMake方式组织编译的库移植](transplant-thirdparty-cmake.md#section1651053153715)的配置过程。要修改的适配文件及添加后的目录结构如下：
+yxml库添加的过程除了适配文件build.gn和config.gni有些许变化外，其他和double-conversion库完全一致，参考[CMake方式组织编译的库移植](CMake方式组织编译的库移植.md#section1651053153715)的配置过程。要修改的适配文件及添加后的目录结构如下：
 
 -   yxml库新增的BUILD.gn实现如下：
 
@@ -289,7 +289,7 @@ if (TEST_ENABLE == "YES") {
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1626675812177"><a name="p1626675812177"></a><a name="p1626675812177"></a>将三方库加入工程的gn适配文件</p>
 </td>
 </tr>
-<tr id="row1726610589179"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p12266115815170"><a name="p12266115815170"></a><a name="p12266115815170"></a>openHarmony/third_party/yxml/build_thirdparty.py</p>
+<tr id="row1726610589179"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p12266115815170"><a name="p12266115815170"></a><a name="p12266115815170"></a>openHarmony/third_party/yxml/build_thirdpaty.py</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p122661958201719"><a name="p122661958201719"></a><a name="p122661958201719"></a>GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转Makefile</p>
 </td>
