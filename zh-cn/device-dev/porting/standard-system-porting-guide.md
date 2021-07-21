@@ -77,7 +77,7 @@
 
 `./build.sh --product-name MyProduct `
 
-构建完成后，可以在如下目录看到构建出来的OpenHarmony镜像文件
+构建完成后，可以在如下目录看到构建出来的OpenHarmony镜像文件：
 
 `//out/ohos-arm-release/packages/phone/images`
 
@@ -98,7 +98,7 @@
   },
 ```
 
-接着需要修改定义产品的配置文件`//productdefine/common/products/MyProduct.json`。将刚刚定义的子系统加入到产品中
+接着需要修改定义产品的配置文件`//productdefine/common/products/MyProduct.json`。将刚刚定义的子系统加入到产品中。
 
 ### 2. 编译内核
 
@@ -107,7 +107,7 @@
 目前OpenHarmony源码中提供了Linux 4.19的内核，归档在`//kernel/linux-4.19`。请尽可能使用这个内核。
 每个SOC必然需要对内核做一些修改或扩展，建议采用补丁的方式。
 
-建议的目录结构
+建议的目录结构如下：
 ```
 ├── build
 │   ├── kernel
@@ -181,7 +181,7 @@ root {
 }
 ```
 
-更详细的驱动开发指导，请参考 [LCD](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/LCD.md)
+更详细的驱动开发指导，请参考 [LCD](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/LCD.md)。
 
 ### 2. 触摸屏
 本节描述如何移植触摸屏驱动。触摸屏的驱动被放置在`//drivers/framework/model/input/driver/touchscreen`目录中。移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
@@ -189,7 +189,7 @@ root {
 - 创建触摸屏器件驱动
 
 在目录中创建名为`touch_ic_name.c`的文件。代码模板如下：
-注意：请替换ic_name为你所适配芯片的名称
+注意：请替换ic_name为你所适配芯片的名称。
 
 ```C
 #include "hdf_touch.h"
@@ -213,7 +213,7 @@ struct HdfDriverEntry g_touchXXXXChipEntry = {
 HDF_INIT(g_touchXXXXChipEntry);
 ```
 
-其中ChipDevice中要提供若干方法
+其中ChipDevice中要提供若干方法：
 | 方法| 实现说明|
 |------|------|
 |int32_t (*Init)(ChipDevice *device)| 器件初始化|
@@ -239,16 +239,16 @@ HDF_INIT(g_touchXXXXChipEntry);
                 }
 ```
 
-更详细的驱动开发指导，请参考 [TOUCHSCREEN](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/TOUCHSCREEN.md)
+更详细的驱动开发指导，请参考 [TOUCHSCREEN](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/TOUCHSCREEN.md)。
 
 
 ### 3. WLAN
 
-![tu](./figures/HDF_WIFI.png)
+Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分负责处理WLAN流量。`HDF WLAN`分别为这两部分做了抽象。目前支持SDIO接口的WLAN芯片。
 
-Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分负责处理WLAN流量。`HDF WLAN`分别为这两部分做了抽象。目前支持SDIO接口的WLAN芯片
+<img src="./figures/HDF_WIFI.png" alt="Wi-Fi结构图" width="800"/>
 
-主要需要实现的接口有:
+支持一款芯片的主要工作是实现一个ChipDriver驱动。实现HDF_WLAN_CORE和NetDevice提供的接口。主要需要实现的接口有:
 
 | 接口| 定义头文件| 说明|
 |------|------|------|
@@ -259,7 +259,9 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
 建议适配按如下步骤操作：
 
 1. 创建HDF驱动
-建议将代码放置在`//device/MySoCVendor/peripheral/wifi/chip_name/`
+
+建议将代码放置在`//device/MySoCVendor/peripheral/wifi/chip_name/`。
+文件模板如下：
 
 ```C
 static int32_t HdfWlanHisiChipDriverInit(struct HdfDeviceObject *device) {
@@ -282,7 +284,7 @@ struct HdfDriverEntry g_hdfXXXChipEntry = {
 HDF_INIT(g_hdfXXXChipEntry);
 ```
 
-在CreateChipDriverFactory中，需要创建一个HdfChipDriverFactory
+在CreateChipDriverFactory中需要创建一个HdfChipDriverFactory，接口如下：
 | 接口| 说明|
 |------|------|
 |const char *driverName| 当前driverName |
@@ -306,9 +308,10 @@ HdfChipDriver需要实现的接口有
 
 
 2. 编写配置文件，描述驱动支持的设备
-在产品配置目录下创建芯片的配置文件`//vendor/MyProductVendor/MyProduct/config/wifi/wlan_chip_chip_name.hcs`
 
-注意： 路径中的vendor_name、product_name、chip_name请替换成实际名称
+在产品配置目录下创建芯片的配置文件`//vendor/MyProductVendor/MyProduct/config/wifi/wlan_chip_chip_name.hcs`。
+注意： 路径中的vendor_name、product_name、chip_name请替换成实际名称。
+模板如下：
 ```hcs
 root {
     wlan_config {
@@ -330,6 +333,7 @@ root {
 
 产品的所有设备信息被定义在文件`//vendor/MyProductVendor/MyProduct/config/device_info/device_info.hcs`中。修改该文件，在名为network的host中，名为device_wlan_chips的device中增加配置。
 注意：moduleName 要与触摸屏驱动中的moduleName相同。
+模板如下：
 
 ```hcs
                 deviceN :: deviceNode {
@@ -354,21 +358,21 @@ config DRIVERS_WLAN_XXX
       Answer Y to enable XXX Host driver. Support chip xxx
 ```
 
-接着修改文件 `//drivers/adapter/khdf/linux/model/network/wifi/Kconfig`,在文件末尾加入如下代码将配置菜单加入内核中
+接着修改文件 `//drivers/adapter/khdf/linux/model/network/wifi/Kconfig`,在文件末尾加入如下代码将配置菜单加入内核中。如：
 ```
 source "../../../../../device/MySoCVendor/peripheral/Kconfig"
 ```
 
 - 创建构建脚本
 
-在`//drivers/adapter/khdf/linux/model/network/wifi/Makefile` 文件末尾增加配置，模板如下
+在`//drivers/adapter/khdf/linux/model/network/wifi/Makefile` 文件末尾增加配置，模板如下：
 
 ```
 HDF_DEVICE_ROOT := $(HDF_DIR_PREFIX)/../device
 obj-$(CONFIG_DRIVERS_WLAN_XXX) += $(HDF_DEVICE_ROOT)/MySoCVendor/peripheral/build/standard/
 ```
 
-当在内核中开启`DRIVERS_WLAN_XXX`开关时，会调用`//device/MySoCVendor/peripheral/build/standard/`中的makefile
+当在内核中开启`DRIVERS_WLAN_XXX`开关时，会调用`//device/MySoCVendor/peripheral/build/standard/`中的makefile。
 
 
-更多详细的开发手册，请参考[WLAN开发](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/WLAN.md)
+更多详细的开发手册，请参考[WLAN开发](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/WLAN.md)。
