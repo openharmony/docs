@@ -45,9 +45,6 @@
             -   [外设驱动](device-dev/guide/外设驱动开发示例.md)
 
         -   porting：[移植适配](device-dev/porting/Readme-CN.md)
-
-            [三方库移植指导](device-dev/porting/三方库移植指导.md)
-
         -   bundles：[组件开发](device-dev/bundles/Readme-CN.md)
             -   [组件开发规范](device-dev/bundles/组件开发规范.md)
             -   [组件开发指南](device-dev/bundles/组件开发指南.md)

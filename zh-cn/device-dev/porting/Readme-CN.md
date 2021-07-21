@@ -1,27 +1,28 @@
-# 移植指南
 
--   [三方库移植指导](三方库移植指导.md)
-    -   [概述](概述.md)
-    -   [CMake方式组织编译的库移植](CMake方式组织编译的库移植.md)
-    -   [Makefile方式组织编译的库移植](Makefile方式组织编译的库移植.md)
+# 开发板移植
+目前OpenHarmony已经成立了SIG组[sig-devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)。该SIG组以支持更多第三方开发板为目标，提供开发板移植的支撑。
 
--   [三方芯片移植指导](三方芯片移植指导.md)
-    -   [移植准备](移植准备.md)
-        -   [移植须知](移植须知.md)
-        -   [编译构建适配流程](编译构建适配流程.md)
+在了解开发板移植前，需要先了解一下OpenHarmony对设备的分类。不同设备类型的移植方法会有较大差异。
 
-    -   [内核移植](内核移植.md)
-        -   [移植概述](移植概述.md)
-        -   [内核基础适配](内核基础适配.md)
-        -   [内核移植验证](内核移植验证.md)
+| 设备类型    | 硬件要求        | 支持的内核          |
+|---------|-------------|----------------|
+| 轻量系统类设备 | 内存>128KB    | LiteOS-M       |
+| 小型系统类设备 | 内存>1MB、有MMU | LiteOS-A、Linux |
+| 标准系统类设备 | 内存>128MB    |  Linux       |
 
-    -   [板级系统移植](板级系统移植.md)
-        -   [移植概述](移植概述-0.md)
-        -   [板级驱动适配](板级驱动适配.md)
-        -   [HAL层实现](HAL层实现.md)
-        -   [系统组件调用](系统组件调用.md)
-        -   [三方组件适配](三方组件适配.md)
-        -   [XTS认证](XTS认证.md)
+# 1. 代码准备
 
-    -   [常见问题](常见问题.md)
+目前OpenHarmony已经为各厂家创建了仓库并在openharmony-sig中进行孵化。参与孵化仓开发，需要使用如下方法初始化和下载代码。
+
+```shell
+repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboard.xml --no-repo-verify
+```
+
+其他下载步骤与主线相同。
+
+# 2. 开始移植你的开发板
+
+- [轻量级系统](lite_system_port_guide.md)
+- 小型系统（待发布）
+- [标准系统](standard_system_porting_guide.md)
 
