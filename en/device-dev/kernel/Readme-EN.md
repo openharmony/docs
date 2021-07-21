@@ -1,7 +1,6 @@
 #  Kernel
 
 - [Kernel for Mini and Small Systems](kernel-lite.md)
-  - [Kernel for Mini Systems](kernel-lite-mini.md)
   - [Kernel for Small Systems](kernel-lite-small.md)
     - [Basic Kernel](kernel-lite-small-basic.md)
       - [Process](kernel-lite-small-process.md)

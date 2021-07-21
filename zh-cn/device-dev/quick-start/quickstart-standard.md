@@ -1,6 +1,6 @@
 # 标准系统入门<a name="ZH-CN_TOPIC_0000001111221726"></a>
 
--   **[常见问题](quickstart-lite-env-setup-faqs.md)**  
+-   **[入门介绍](quickstart-standard-description.md)**  
 
 -   **[Windows开发环境准备](quickstart-standard-windows-environment.md)**  
 

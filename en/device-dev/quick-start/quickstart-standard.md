@@ -1,6 +1,6 @@
 # Standard System<a name="EN-US_TOPIC_0000001111221726"></a>
 
--   **[FAQ](quickstart-lite-env-setup-faqs.md)**  
+-   **[Introduction](quickstart-standard-description.md)**  
 
 -   **[Setting Up Windows Development Environment](quickstart-standard-windows-environment.md)**  
 
