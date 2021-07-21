@@ -12,7 +12,7 @@
 
 -   **[AI框架](subsys-aiframework.md)**  
 
--   **[Sensor服务](subsys-densor.md)**  
+-   **[Sensor服务](subsys-sensor.md)**  
 
 -   **[用户程序框架](subsys-application-framework.md)**  
 

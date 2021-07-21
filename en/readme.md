@@ -42,8 +42,8 @@ This project stores OpenHarmony documentation, including the quick start guide, 
 
         - **guide**:
             -   [Clock apps](device-dev/guide/oem_device_clockapp_des.md)
-            -   [Platform drivers](device-dev/guide/device-drive-demo.md)
-            -   [Peripheral drivers](device-dev/guide/device-outerdrive-demo.md)
+            -   [Platform drivers](device-dev/guide/device-driver-demo.md)
+            -   [Peripheral drivers](device-dev/guide/device-outerdriver-demo.md)
 
         - **porting**:  
 

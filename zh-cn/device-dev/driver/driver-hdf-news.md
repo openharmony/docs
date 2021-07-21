@@ -49,7 +49,7 @@
 
 ## 开发步骤<a name="section946912121153"></a>
 
-1.  将驱动配置信息中服务策略policy字段设置为2（SERVICE\_POLICY\_CAPACITY，参考[policy定义](drive-hdf-servicemanage.md)）。
+1.  将驱动配置信息中服务策略policy字段设置为2（SERVICE\_POLICY\_CAPACITY，参考[policy定义](driver-hdf-servicemanage.md)）。
 
     ```
     device_sample :: Device {

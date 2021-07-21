@@ -46,7 +46,7 @@
 
 -   **Advantages of developing drivers based on the HDF**
 
-    The touchscreen driver is developed based on the  [HDF](drive-hdf-development.md)  and is implemented via calls to the OSAL and platform APIs, including bus APIs and OS native APIs \(such as memory, lock, thread, and timer\). The OSAL and platform APIs hide the differences of underlying hardware, so that the touchscreen driver can be migrated across platforms and OSs. In this regard, you can develop the touchscreen driver only once but deploy it on multiple devices.
+    The touchscreen driver is developed based on the  [HDF](driver-hdf-development.md)  and is implemented via calls to the OSAL and platform APIs, including bus APIs and OS native APIs \(such as memory, lock, thread, and timer\). The OSAL and platform APIs hide the differences of underlying hardware, so that the touchscreen driver can be migrated across platforms and OSs. In this regard, you can develop the touchscreen driver only once but deploy it on multiple devices.
 
 
 ### Available APIs<a name="section17667171301711"></a>
@@ -101,7 +101,7 @@ Regardless of the OS and system on a chip \(SoC\), the input driver is developed
 
 1.  Add the touchscreen driver-related descriptions.
 
-    Currently, the input driver is developed based on the HDF and is loaded and started by the HDF. Register the driver information, such as whether to load the driver and the loading priority in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see  [Driver Development](drive-hdf-development.md#section1969312275533).
+    Currently, the input driver is developed based on the HDF and is loaded and started by the HDF. Register the driver information, such as whether to load the driver and the loading priority in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see  [Driver Development](driver-hdf-development.md#section1969312275533).
 
 2.  Complete the board-level configuration and private data configuration of the touchscreen.
 
@@ -118,7 +118,7 @@ This example describes how to develop the touchscreen driver.
 
 ### Add the touchscreen driver-related descriptions.<a name="section18249155619195"></a>
 
-The information about modules of the input driver model is shown as follows and enables the HDF to load the modules in sequence. For details, see  [Driver Development](drive-hdf-development.md).
+The information about modules of the input driver model is shown as follows and enables the HDF to load the modules in sequence. For details, see  [Driver Development](driver-hdf-development.md).
 
 ```
 input :: host {

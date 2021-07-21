@@ -40,7 +40,7 @@ Input驱动模型核心部分由设备管理层、公共驱动层、器件驱动
 
 此外，Input模型预先实现了数据通道以及设备配置信息解析等函数。
 
-关于Input模型的详细介绍请参考《[Touchscreen开发概述](../driver/drive-peripherals-touch-des.md#section175431838101617)》。
+关于Input模型的详细介绍请参考《[Touchscreen开发概述](../driver/driver-peripherals-touch-des.md#section175431838101617)》。
 
 ## 环境搭建<a name="section661075474418"></a>
 
@@ -61,7 +61,7 @@ Input驱动模型核心部分由设备管理层、公共驱动层、器件驱动
 
 device\_info.hcs中的信息主要提供给HDF框架使用，包含了Input模型各层驱动注册到HDF框架所必需的信息，开发者无特殊场景需求无需改动。各驱动层私有配置信息通过“deviceMatchAttr”字段与input\_config.hcs中的“match\_attr”相关内容进行匹配。
 
-配置文件中与input模块相关的内容如下所示，相关字段的详细含义可以参考《[驱动配置](../driver/drive-hdf-development.md)》：
+配置文件中与input模块相关的内容如下所示，相关字段的详细含义可以参考《[驱动配置](../driver/driver-hdf-development.md)》：
 
 ```
 input :: host {

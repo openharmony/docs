@@ -42,8 +42,8 @@
 
         -   guide：开发示例
             -   [时钟应用](device-dev/guide/device-clock-guide.md)
-            -   [平台驱动](device-dev/guide/device-drive-demo.md)
-            -   [外设驱动](device-dev/guide/device-outerdrive-demo.md)
+            -   [平台驱动](device-dev/guide/device-driver-demo.md)
+            -   [外设驱动](device-dev/guide/device-outerdriver-demo.md)
 
         -   porting：移植适配
 

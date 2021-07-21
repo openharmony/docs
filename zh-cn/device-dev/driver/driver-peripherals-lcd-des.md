@@ -10,7 +10,7 @@
 
 ## 概述<a name="section141575391542"></a>
 
-LCD（Liquid Crystal Display）液晶显示驱动，对LCD进行上电，并通过接口初始化LCD内部寄存器，使LCD正常工作。Display驱动模型基于HDF（ Hardware Driver Foundation）[驱动框架](drive-hdf-overview.md)开发，实现跨OS、跨平台，为LCD硬件提供上下电功能、发送初始化序列功能，使LCD进入正常的工作模式，显示芯片平台侧的图像数据，基于HDF驱动框架的Display驱动模型如[图1](#fig69138814229)。
+LCD（Liquid Crystal Display）液晶显示驱动，对LCD进行上电，并通过接口初始化LCD内部寄存器，使LCD正常工作。Display驱动模型基于HDF（ Hardware Driver Foundation）[驱动框架](driver-hdf-overview.md)开发，实现跨OS、跨平台，为LCD硬件提供上下电功能、发送初始化序列功能，使LCD进入正常的工作模式，显示芯片平台侧的图像数据，基于HDF驱动框架的Display驱动模型如[图1](#fig69138814229)。
 
 **图 1**  基于HDF驱动框架的Display驱动模型<a name="fig69138814229"></a>  
 ![](figure/基于HDF驱动框架的Display驱动模型.png "基于HDF驱动框架的Display驱动模型")

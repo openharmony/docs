@@ -264,7 +264,7 @@ Sensor驱动是基于HDF框架、PLATFORM和OSAL基础接口进行开发，不�
 
 ## 开发实例<a name="section257750691"></a>
 
-基于HDF驱动模型，加载启动加速度计传感器驱动，代码形式如下，具体原理可参考[HDF驱动开发指南](drive-hdf-development.md)。加速度传感器选择通讯接口方式为I2C，厂家选择博世BMI160加速度传感器。
+基于HDF驱动模型，加载启动加速度计传感器驱动，代码形式如下，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)。加速度传感器选择通讯接口方式为I2C，厂家选择博世BMI160加速度传感器。
 
 1.  加速度计传感器驱动入口注册
 
@@ -286,7 +286,7 @@ HDF_INIT(g_sensorAccelDevEntry);
 
 -   加速度计传感器设备配置描述
 
-加速度传感器模型使用HCS作为配置描述源码，HCS配置字段详细介绍参考[配置管理](drive-hdf-manage.md)介绍。
+加速度传感器模型使用HCS作为配置描述源码，HCS配置字段详细介绍参考[配置管理](driver-hdf-manage.md)介绍。
 
 ```
 /* 加速度计传感器设备HCS配置 */

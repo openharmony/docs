@@ -89,7 +89,7 @@ Driver development based on the HDF consists of two parts: driver implementation
 
 3.  Configure the driver.
 
-    HDF Configuration Source \(HCS\) is the source code that describes the configuration of the HDF. For details about the HCS, see  [Driver Configuration Management](drive-hdf-manage.md).
+    HDF Configuration Source \(HCS\) is the source code that describes the configuration of the HDF. For details about the HCS, see  [Driver Configuration Management](driver-hdf-manage.md).
 
     The driver configuration consists of the driver device description defined by the HDF and private driver configuration information.
 

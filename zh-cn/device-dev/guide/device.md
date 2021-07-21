@@ -8,8 +8,8 @@
 
 -   **[时钟应用开发指导](device-clock-guide.md)**  
 
--   **[平台驱动开发示例](device-drive-demo.md)**  
+-   **[平台驱动开发示例](device-driver-demo.md)**  
 
--   **[外设驱动开发示例](device-outerdrive-demo.md)**  
+-   **[外设驱动开发示例](device-outerdriver-demo.md)**  
 
 

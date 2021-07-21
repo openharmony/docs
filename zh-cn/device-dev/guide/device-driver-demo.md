@@ -161,7 +161,7 @@ HDF_INIT(g_sampleI2cDriverEntry);
 
 2.  添加配置参数（可选）。
 
-    有时驱动可能会需要私有配置信息，以确保寄存器的配置可以满足不同产品的需求。如需要私有配置信息，则可以添加一个驱动的配置文件，用来存放一些驱动的默认配置信息，HDF框架在加载驱动的时候，会将对应的配置信息获取并保存在HdfDeviceObject 中的property里面，通过Bind和Init（参考[驱动开发](../driver/drive-hdf-development.md)）传递给驱动。驱动开发者可新建配置文件，并在板级驱动hdf.hcs中引用新建的配置文件，本例中直接在原有的配置文件i2c\_config.hcs内添加配置参数。
+    有时驱动可能会需要私有配置信息，以确保寄存器的配置可以满足不同产品的需求。如需要私有配置信息，则可以添加一个驱动的配置文件，用来存放一些驱动的默认配置信息，HDF框架在加载驱动的时候，会将对应的配置信息获取并保存在HdfDeviceObject 中的property里面，通过Bind和Init（参考[驱动开发](../driver/driver-hdf-development.md)）传递给驱动。驱动开发者可新建配置文件，并在板级驱动hdf.hcs中引用新建的配置文件，本例中直接在原有的配置文件i2c\_config.hcs内添加配置参数。
 
     本例中编辑i2c\_config.hcs，添加配置参数：
 

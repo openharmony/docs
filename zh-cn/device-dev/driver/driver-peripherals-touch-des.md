@@ -46,7 +46,7 @@
 
 -   **基于HDF驱动框架开发器件驱动的优势**
 
-    在HDF（Hardware Driver Foundation）[驱动管理框架](drive-hdf-development.md)的基础上，input驱动模型调用OSAL接口层和Platfom接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于input驱动模型实现的touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
+    在HDF（Hardware Driver Foundation）[驱动管理框架](driver-hdf-development.md)的基础上，input驱动模型调用OSAL接口层和Platfom接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于input驱动模型实现的touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
 
 
 ### 接口说明<a name="section17667171301711"></a>
@@ -101,7 +101,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 1.  设备描述配置
 
-    目前Input驱动基于HDF驱动框架编写，驱动的加载启动由HDF驱动管理框架统一处理。首先需要在对应的配置文件中，将驱动信息注册进去，如是否加载、加载优先级，此后HDF驱动框架会逐一启动注册过的驱动模块。驱动的相关配置请参考[HDF驱动框架配置指导](drive-hdf-development.md#section1969312275533)。
+    目前Input驱动基于HDF驱动框架编写，驱动的加载启动由HDF驱动管理框架统一处理。首先需要在对应的配置文件中，将驱动信息注册进去，如是否加载、加载优先级，此后HDF驱动框架会逐一启动注册过的驱动模块。驱动的相关配置请参考[HDF驱动框架配置指导](driver-hdf-development.md#section1969312275533)。
 
 2.  板级配置及Touchscreen器件私有配置
 
@@ -118,7 +118,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 ### 设备描述配置<a name="section18249155619195"></a>
 
-如下配置主要包含input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](drive-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
+如下配置主要包含input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
 
 ```
 input :: host {

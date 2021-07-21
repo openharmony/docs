@@ -264,7 +264,7 @@ Regardless of the OS and system on a chip \(SoC\), the sensor driver is develope
 
 ## Development Example<a name="section257750691"></a>
 
-This section uses a code example to demonstrate how to load and start the acceleration sensor driver based on the HDF driver model. For details about the mechanism, see  [Driver Development](drive-hdf-development.md). This example uses the Bosch BMI160 acceleration sensor that communicates over I2C.
+This section uses a code example to demonstrate how to load and start the acceleration sensor driver based on the HDF driver model. For details about the mechanism, see  [Driver Development](driver-hdf-development.md). This example uses the Bosch BMI160 acceleration sensor that communicates over I2C.
 
 1.  Register the driver entry of the acceleration sensor.
 
@@ -286,7 +286,7 @@ HDF_INIT(g_sensorAccelDevEntry);
 
 -   Acceleration sensor configuration
 
-The acceleration sensor model uses the HCS as the configuration source code. For details about the HCS configuration fields, see  [Driver Configuration Management](drive-hdf-manage.md).
+The acceleration sensor model uses the HCS as the configuration source code. For details about the HCS configuration fields, see  [Driver Configuration Management](driver-hdf-manage.md).
 
 ```
 /* HCS configuration of the acceleration sensor device */

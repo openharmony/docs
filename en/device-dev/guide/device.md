@@ -8,8 +8,8 @@
 
 -   **[Development Guidelines on Clock Apps](oem_device_clockapp_des.md)**  
 
--   **[Development Example for Platform Drivers](device-drive-demo.md)**  
+-   **[Development Example for Platform Drivers](device-driver-demo.md)**  
 
--   **[Development Example for Peripheral Drivers](device-outerdrive-demo.md)**  
+-   **[Development Example for Peripheral Drivers](device-outerdriver-demo.md)**  
 
 
