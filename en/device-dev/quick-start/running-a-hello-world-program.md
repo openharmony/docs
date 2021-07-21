@@ -47,7 +47,7 @@ The source code needs to be modified when fixing bugs or compiling a new service
     SYS_RUN(HelloWorld);
     ```
 
-3.  Compile the  **BUILD.gn**  file for building services into a static library.
+3.  Add the  **BUILD.gn**  file for building services into a static library.
 
     Create the  **BUILD.gn**  file in  **./applications/sample/wifi-iot/app/my\_first\_app**  and fill in three parts \(target, source file, and header file path\) of the  **BUILD.gn**  file.
 
@@ -66,7 +66,7 @@ The source code needs to be modified when fixing bugs or compiling a new service
     -   Specify the .c file on which a file depends and its path in  **sources**. The path that contains  **//**  represents an absolute path \(the code root path\), otherwise it is a relative path.
     -   Specify the path of .h file on which  **sources**  depends in  **include\_dirs**.
 
-4.  Compile the  **BUILD.gn**  file and specify the feature modules to be built.
+4.  Modify the  **BUILD.gn**  file and specify the feature modules to be built.
 
     Configure the  **./applications/sample/wifi-iot/app/BUILD.gn**  file and add an index to the  **features**  field to enable the target to be involved in compilation. Specify the path and target of a service module in  **features**. The following uses  **my\_first\_app**  as an example and the  **features**  is configured as follows:
 
