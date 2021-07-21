@@ -8,7 +8,7 @@
 
 -   **[System Modules](transplant-chip-board-component.md)**  
 
--   **[三方组件适配](transplant-chip-board-bundle.md)**  
+-   **[Third-party Module Adaptation](transplant-chip-board-bundle.md)**  
 
 -   **[XTS](transplant-chip-board-xts.md)**  
 

@@ -1,15 +1,15 @@
-# 三方组件适配<a name="EN-US_TOPIC_0000001117478960"></a>
+# Third-party Module Adaptation<a name="EN-US_TOPIC_0000001117478960"></a>
 
-如果需要使用third\_party目录下与产品相关的三方组件，可能需要对三方组件进行适配，下面以比较常用的mbedtls为例，介绍下适配步骤，注意本小节中仅介绍如何将适配的代码与OpenHarmony的编译框架融合，不会详细介绍mbedtls本身的原理和适配代码的具体逻辑，这些内容请参考mbedtls官方网站上的适配指南。
+To use third-party modules in the  **third\_party**  directory, you may need to adapt the modules. This section uses mbedTLS as an example to describe how to integrate the adaptation code with the OpenHarmony compilation framework. For the principles of mbedTLS and the specific logic of the adaptation code, see the adaptation guide on the mbedTLS official website.
 
-1.  编写适配层代码
+1.  <a name="li12446195633211"></a>Write the adaptation layer code.
 
-    根据mbedtls官网的适配指南，编写需要的适配层代码，以适配硬件随机数举例，下面的路径都是相对third\_party/mbedtls的路径：
+    Write the required adaptation layer code based on the mbedTLS adaptation guide. In this example, adaptation of the hardware random number is used for illustration, and the paths are relative to  **third\_party/mbedtls**:
 
-    1.  拷贝include/mbedtls/config.h到ports目录下，并修改打开MBEDTLS\_ENTROPY\_HARDWARE\_ALT开关。
-    2.  在ports目录下创建entropy\_poll\_alt.c文件include并实现entropy\_poll.h中的硬件随机数接口
-    3.  在BUILD.gn中的mbedtls\_sources中增加刚才适配的entropy\_poll\_alt.c的路径
-    4.  在BIULD.gn中的lite\_library\("mbedtls\_static"\)中增加一行MBEDTLS\_CONFIG\_FILE指定新配置文件的位置
+    1.  Copy the  **include/mbedtls/config.h**  file to the  **ports**  directory, and enable  **MBEDTLS\_ENTROPY\_HARDWARE\_ALT**  in the file.
+    2.  In the  **ports**  directory, create the  **entropy\_poll\_alt.c**  file under  **include**  and implement the hardware random number API in  **entropy\_poll.h**.
+    3.  Add the path of the adapted  **entropy\_poll\_alt.c**  file to  **mbedtls\_sources**  in the  **BUILD.gn**  file.
+    4.  Add the line  **MBEDTLS\_CONFIG\_FILE**  to  **lite\_library\("mbedtls\_static"\)**  in the  **BUILD.gn**  file to specify the path of the new configuration file.
 
         ```
         lite_library("mbedtks_static") {
@@ -20,38 +20,38 @@
         ```
 
 
-    注意，上面的修改最好都新建一个config或者新建一个xxx\_alt.c文件来修改，不要直接在原先的代码中修改，侵入式的修改会导致后续版本升级出现大量零散冲突，增加升级维护成本。
+    You are advised to make the preceding modifications in a new  **config.h**  file or  **_xxx_\_alt.c**  file. Do not directly edit the code in the original file. Intrusive modifications may cause a large number of scattered conflicts during subsequent version updates, increasing the update maintenance costs.
 
-2.  制作patch
+2.  Create a patch.
 
-    由于上面的适配是硬件相关的，上库代码时，不能直接放到通用的third\_party/mbedtls目录中，因此需要将上面的修改制作成patch，在编译之前通过打patch的方式注入到代码中。
+    The preceding adaptation is hardware-specific. Therefore, when uploading code to the library, you cannot directly store the code in the  **third\_party/mbedtls**  directory. Instead, you need to integrate the preceding modifications into a patch and inject the patch into the code for a build.
 
-    1.  首先增加设备的patch配置文件device/<company\>/<board\>/patch.yml
-    2.  编辑device/<company\>/<board\>/patch.yml，增加要打的patch的信息：
+    1.  Add the patch configuration file  **device/<_company_\>/<_board_\>/patch.yml**.
+    2.  In the  **device/<_company_\>/<_board_\>/patch.yml**  file, add the information about the patch to apply.
 
         ```
-        # 需要打patch的路径，路径均为相对代码根目录的路径
+        # Path of the patch to apply. This path is relative to the code root directory.
         third_party/mbedtls:
-          # 该路径下需要打的patch存放路径
+          # Directory in which the patch is stored.
           - device/<company>/<board>/third_party/mbedtls/adapter.patch
         third_party/wpa_supplicant:
-          # 当一个路径下有多个patch的时候会依次执行patch
+          # When there are multiple patches in a path, the patches are executed in sequence.
           - device/<company>/<board>/third_party/wpa_supplicant/xxxxx.patch
           - device/<company>/<board>/third_party/wpa_supplicant/yyyyy.patch
         ...
         ```
 
-    3.  制作上述**步骤1**修改的patch并放到对应的目录即可
+    3.  Create a patch file as described in step  [1](#li12446195633211)  and save it to the corresponding directory.
 
-3.  使用带patch的编译
+3.  Start a build with the patch.
 
-    想要在编译的时候带上patch，其他步骤不变，仅需要在触发编译的时候加上 --patch，例如全编译的命令编程
+    Add  **--patch**  when triggering a build. The following is the command for executing a full build with a patch:
 
     ```
     hb build -f --patch
     ```
 
     >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
-    >最后一次打patch的产品信息会被记录，在进行下一次编译操作时，会对上一次的patch进行回退（即执行\`patch -p1 -R < xxx\`），回退patch失败或新增patch失败均会终止编译过程，请解决patch冲突后再次尝试编译。
+    >The information about the product to which the patch is most recently applied will be recorded. Next time the build is performed, the previous patch is rolled back \(that is,  **\`patch -p1 -R < xxx\`**  is executed\). If the patch fails to be rolled back or a patch fails to be added, the build process is terminated. In this case, resolve the patch conflict and try again.
 
 

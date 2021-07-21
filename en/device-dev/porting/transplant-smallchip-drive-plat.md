@@ -1,6 +1,6 @@
 # Platform Driver Porting<a name="EN-US_TOPIC_0000001170794079"></a>
 
-Create a platform driver in the source code directory  **//device/vendor\_name/soc\_name/drivers**. If there is no repository for the vendor of your SoC, contact  [sig-devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md)  to create one.
+Create a platform driver in the source code directory  **//device/vendor\_name/soc\_name/drivers**. If there is no repository for the vendor of your SoC, contact the  [device SIG](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md)  to create one.
 
 The recommended directory structure is as follows:
 
@@ -31,9 +31,9 @@ device
 
 The HDF creates driver models for all platform drivers. The main task of porting platform drivers is to inject instances into the models. You can find the definitions of these models in the source code directory  **//drivers/framework/support/platform/include**.
 
-This section uses the GPIO as an example to describe how to port the platform driver. The porting procedure is as follows:
+The following uses the GPIO as an example to describe how to port the platform driver:
 
-1.  Creating a GPIO driver.
+1.  Create a GPIO driver.
 
     Create the  **soc\_name\_gpio.c**  file in the source code directory  **//device/vendor\_name/soc\_name/drivers/gpio**. The sample code is as follows:
 
@@ -70,7 +70,7 @@ This section uses the GPIO as an example to describe how to port the platform dr
     {
         // The GpioCntlrFromDevice method obtains the model instance registered in the init method from the abstract device object.
         struct GpioCntlr *cntlr = GpioCntlrFromDevice(device);
-    // Destroy allocations.
+        // Release resources.
     }
     
     struct HdfDriverEntry g_gpioDriverEntry = {
@@ -85,7 +85,7 @@ This section uses the GPIO as an example to describe how to port the platform dr
 
 2.  Create a build entry for the vendor driver.
 
-    As described above,  **device/vendor\_name/drivers/lite.mk**  is the entry for building vendor drivers. We need to start from this entry to build.
+    As described above,  **device/vendor\_name/drivers/lite.mk**  is the entry for building vendor drivers. We need to start building from this entry.
 
     ```
     # File: device/vendor_name/drivers/lite.mk
@@ -98,7 +98,7 @@ This section uses the GPIO as an example to describe how to port the platform dr
     LIB_SUBDIRS += $(LITEOSTOPDIR)/../../device/$(SOC_VENDOR_NAME)/$(SOC_NAME)/drivers/
     ```
 
-3.  Create a build Entry for the SoC driver.
+3.  Create a build entry for the SoC driver.
 
     ```
     # File: device/vendor_name/soc_name/drivers/lite.mk

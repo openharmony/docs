@@ -7,5 +7,5 @@ Drivers can be classified as platform drivers or device drivers. The platform dr
 
 ![](figure/分类.png)
 
-The HDF driver is designed to be used across OSs. The HDF driver framework provides strong support for the driver to achieve this goal. During HDF driver development, you are advised to use only the APIs provided by the HDF driver framework. Otherwise, the driver cannot be used across OSs. Before driver development, familiarize yourself with the  [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/hdf.md).
+The Hardware Driver Foundation \(HDF\) is designed to work across OSs. The HDF driver framework provides strong support for drivers to achieve this goal. During HDF driver development, you are advised to use only the APIs provided by the HDF driver framework. Otherwise, the driver cannot be used across OSs. Before driver development, familiarize yourself with the  [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/hdf.md).
 

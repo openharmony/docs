@@ -17,7 +17,7 @@
     - [Board-Level Driver Adaptation](transplant-chip-board-drive.md)
     - [Implementation of APIs at the HAL](transplant-chip-board-hal.md)
     - [System Modules](transplant-chip-board-component.md)
-    - [三方组件适配](transplant-chip-board-bundle.md)
+    - [Third-party Module Adaptation](transplant-chip-board-bundle.md)
     - [XTS](transplant-chip-board-xts.md)
   - [FAQ](transplant-chip-faqs.md)
 - [Small System SoC Porting Guide](transplant-smallchip.md)

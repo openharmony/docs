@@ -163,7 +163,7 @@ The WLAN driver is divided into two parts. One of the parts manages WLAN devices
 
 ![](figure/hdf_wifi.png)
 
-As shown in  [Figure 1](#fig155920160203), the left part manages Wi-Fi devices, and the right part manages WLAN traffic. The HDF WLAN framework abstracts these two parts. The porting process of the driver can be considered as the implementation of the APIs required by the two parts. These APIs are described as follows:
+As shown in  [Figure 1](#fig155920160203), the part on the left manages WLAN devices, and the part on the right manages WLAN traffic. The HDF WLAN framework abstracts these two parts. The porting process of the driver can be considered as the implementation of the APIs required by the two parts. These APIs are described as follows:
 
 <a name="table1349145511213"></a>
 <table><thead align="left"><tr id="row867115517211"><th class="cellrowborder" valign="top" width="17.28172817281728%" id="mcps1.1.4.1.1"><p id="p667255120"><a name="p667255120"></a><a name="p667255120"></a>API</p>
@@ -178,21 +178,21 @@ As shown in  [Figure 1](#fig155920160203), the left part manages Wi-Fi devices, 
 </td>
 <td class="cellrowborder" valign="top" width="39.48394839483948%" headers="mcps1.1.4.1.2 "><p id="p10671551126"><a name="p10671551126"></a><a name="p10671551126"></a>drivers\framework\include\wifi\hdf_wlan_chipdriver_manager.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="43.23432343234324%" headers="mcps1.1.4.1.3 "><p id="p26725514220"><a name="p26725514220"></a><a name="p26725514220"></a>Factory of the <strong id="b88841282246"><a name="b88841282246"></a><a name="b88841282246"></a>ChipDriver</strong>, which is used to support multiple WLAN ports of a chip.</p>
+<td class="cellrowborder" valign="top" width="43.23432343234324%" headers="mcps1.1.4.1.3 "><p id="p26725514220"><a name="p26725514220"></a><a name="p26725514220"></a>Factory of the <strong id="b88841282246"><a name="b88841282246"></a><a name="b88841282246"></a>ChipDriver</strong>, which is used to support multiple WLAN interfaces of a chip.</p>
 </td>
 </tr>
 <tr id="row186810552214"><td class="cellrowborder" valign="top" width="17.28172817281728%" headers="mcps1.1.4.1.1 "><p id="p11686551323"><a name="p11686551323"></a><a name="p11686551323"></a>HdfChipDriver</p>
 </td>
 <td class="cellrowborder" valign="top" width="39.48394839483948%" headers="mcps1.1.4.1.2 "><p id="p11686551723"><a name="p11686551723"></a><a name="p11686551723"></a>drivers\framework\include\wifi\wifi_module.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="43.23432343234324%" headers="mcps1.1.4.1.3 "><p id="p26814555217"><a name="p26814555217"></a><a name="p26814555217"></a>Manages a specific WLAN port.</p>
+<td class="cellrowborder" valign="top" width="43.23432343234324%" headers="mcps1.1.4.1.3 "><p id="p26814555217"><a name="p26814555217"></a><a name="p26814555217"></a>Manages a specific WLAN interface.</p>
 </td>
 </tr>
 <tr id="row13686559215"><td class="cellrowborder" valign="top" width="17.28172817281728%" headers="mcps1.1.4.1.1 "><p id="p76810555214"><a name="p76810555214"></a><a name="p76810555214"></a>NetDeviceInterFace</p>
 </td>
 <td class="cellrowborder" valign="top" width="39.48394839483948%" headers="mcps1.1.4.1.2 "><p id="p166818551825"><a name="p166818551825"></a><a name="p166818551825"></a>drivers\framework\include\wifi\net_device.h</p>
 </td>
-<td class="cellrowborder" valign="top" width="43.23432343234324%" headers="mcps1.1.4.1.3 "><p id="p368195513213"><a name="p368195513213"></a><a name="p368195513213"></a>Communicates with the protocol stack, such as sending data and setting the status of network ports.</p>
+<td class="cellrowborder" valign="top" width="43.23432343234324%" headers="mcps1.1.4.1.3 "><p id="p368195513213"><a name="p368195513213"></a><a name="p368195513213"></a>Communicates with the protocol stack, such as sending data and setting the status of network interfaces.</p>
 </td>
 </tr>
 </tbody>
@@ -312,11 +312,11 @@ The porting procedure is as follows:
     </tbody>
     </table>
 
-2.  Compile a configuration file to describe the chips supported by the driver.
+2.  Create a configuration file to describe the chips supported by the driver.
 
     Create a chip configuration file in the product configuration directory and save it to the source code path  **//vendor/vendor\_name/product\_name/config/wifi/wlan\_chip\_chip\_name.hcs**.
 
-    The following is the file template:
+    The sample code is as follows:
 
     ```
     root {
@@ -339,7 +339,7 @@ The porting procedure is as follows:
     >Replace the values of  **vendor\_name**,  **product\_name**, and  **chip\_name**  in the path and file with the actual names.
     >Set  **vendorId**  and  **deviceId**  to the actual vendor ID and chip ID, respectively.
 
-3.  Compile the configuration file and load the driver.
+3.  Edit the configuration file and load the driver.
 
     All device information of the product is defined in the source code file  **//vendor/vendor\_name/product\_name/config/device\_info/device\_info.hcs**. Modify the file and add configurations to the  **device**  named  **device\_wlan\_chips**  in the  **host**  of the  **network**  command. The sample code is as follows:
 
