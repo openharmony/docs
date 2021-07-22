@@ -21,7 +21,7 @@
 **图 1**  liteos-m内核模块图<a name="fig10838105524917"></a>  
 
 
-![](figures/zh-cn_image_0000001072304191.png)
+![](figure/zh-cn_image_0000001072304191.png)
 
 内核的目录结构和说明如下：
 

@@ -15,7 +15,7 @@
 **图 1**  启动流程<a name="fig10838105524917"></a>  
 
 
-![](figures/zh-cn_image_0000001073943511.png)
+![](figure/zh-cn_image_0000001073943511.png)
 
 启动文件startup.S需要确保中断向量表的入口函数（例如reset\_vector）放在RAM的首地址，它由链接配置文件来指定。其中iar、keil和gcc工程的链接配置文件分别为xxx.icf、xxx.sct和xxx.ld，如果startup.S已经完成系统时钟初始化，并且能够引导到main函数，则启动文件不需要进行修改，采用厂商自带的startup.S即可，否则需要实现以上功能。
 

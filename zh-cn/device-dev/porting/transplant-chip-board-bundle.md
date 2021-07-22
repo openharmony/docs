@@ -51,7 +51,7 @@
     hb build -f --patch
     ```
 
-    >![](public_sys-resources/icon-caution.gif) **注意：** 
+    >![](../public_sys-resources/icon-caution.gif) **注意：** 
     >最后一次打patch的产品信息会被记录，在进行下一次编译操作时，会对上一次的patch进行回退（即执行\`patch -p1 -R < xxx\`），回退patch失败或新增patch失败均会终止编译过程，请解决patch冲突后再次尝试编译。
 
 

@@ -12,7 +12,7 @@ XTS是OpenHarmony生态认证测试套件的集合，当前包括acts（applicat
 -   acts，存放acts相关测试用例源码与配置文件，其目的是帮助终端设备厂商尽早发现软件与OpenHarmony的不兼容性，确保软件在整个开发过程中满足OpenHarmony的兼容性要求。
 -   tools，存放acts相关测试用例开发框架。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>![](../public_sys-resources/icon-note.gif) **说明：** 
 >XTS的启动依赖SAMGR系统服务。
 
 适配分为两步，包括：
@@ -46,7 +46,7 @@ XTS是OpenHarmony生态认证测试套件的集合，当前包括acts（applicat
 
     请在如下目录获取版本镜像：out/hispark\_pegasus/wifiiot\_hispark\_pegasus/。
 
-    >![](public_sys-resources/icon-note.gif) **说明：** 
+    >![](../public_sys-resources/icon-note.gif) **说明：** 
     >判断当前版本镜像是否集成acts测试套件方法：在map文件中查看对应.a是否被编译即可。
 
 2.  版本镜像烧录进开发板。

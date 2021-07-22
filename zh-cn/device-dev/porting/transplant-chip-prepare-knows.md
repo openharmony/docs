@@ -33,7 +33,7 @@ OpenHarmony整体工程较为复杂，目录及实现为系统本身功能，如
 </tr>
 <tr id="row44321715131917"><td class="cellrowborder" valign="top" width="27.71%" headers="mcps1.2.3.1.1 "><p id="p20432181501911"><a name="p20432181501911"></a><a name="p20432181501911"></a>/device</p>
 </td>
-<td class="cellrowborder" valign="top" width="72.28999999999999%" headers="mcps1.2.3.1.2 "><p id="p64331415171913"><a name="p64331415171913"></a><a name="p64331415171913"></a>板级相关实现，各个三方厂商按照<span id="text117091750175520"><a name="text117091750175520"></a><a name="text117091750175520"></a>OpenHarmony</span>规范适配实现，device下具体目录结构及移植过程参见<a href="移植概述-0.md">板级系统移植</a></p>
+<td class="cellrowborder" valign="top" width="72.28999999999999%" headers="mcps1.2.3.1.2 "><p id="p64331415171913"><a name="p64331415171913"></a><a name="p64331415171913"></a>板级相关实现，各个三方厂商按照<span id="text117091750175520"><a name="text117091750175520"></a><a name="text117091750175520"></a>OpenHarmony</span>规范适配实现，device下具体目录结构及移植过程参见<a href="transplant-chip-board-overview.md">板级系统移植</a></p>
 </td>
 </tr>
 <tr id="row19497111381917"><td class="cellrowborder" valign="top" width="27.71%" headers="mcps1.2.3.1.1 "><p id="p12498181381916"><a name="p12498181381916"></a><a name="p12498181381916"></a>/vendor</p>
@@ -75,10 +75,10 @@ vendor                       # 产品解决方案厂商
 OpenHarmony的device目录是基础芯片的适配目录，如果在三方芯片应用过程中发现此目录下已经有完整的芯片适配，则不需要再额外移植，直接跳过移植过程进行系统应用开发即可，如果该目录下无对应的芯片移植实现，则根据本文完成移植过程。OpenHarmony三方芯片移植主要过程如下：
 
 **图 1**  芯片移植关键步骤<a name="fig24801925498"></a>  
-![](figures/芯片移植关键步骤.png "芯片移植关键步骤")
+![](figure/芯片移植关键步骤.png "芯片移植关键步骤")
 
 ## 移植规范<a name="section187870185219"></a>
 
 -   满足OpenHarmony[开源贡献基本规范和准则](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。
--   三方芯片适配所需要贡献的代码主要在device、vendor和arch三个目录，参照[内核目录规范](移植概述.md)和[板级目录规范](移植概述-0.md#section6204129143013)满足基本目录命名和使用规范。
+-   三方芯片适配所需要贡献的代码主要在device、vendor和arch三个目录，参照[内核目录规范](transplant-chip-kernel-overview.md)和[板级目录规范](transplant-chip-board-overview.md#section6204129143013)满足基本目录命名和使用规范。
 
