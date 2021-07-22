@@ -47,8 +47,8 @@
 
         -   porting：移植适配
 
-            [三方库移植指导](device-dev/porting/transplant-thirdparty.md)
-			[标准系统芯片移植指导](device-dev/porting/standard_system_porting_guide.md)
+            -	[三方库移植指导](device-dev/porting/transplant-thirdparty.md)
+			-	[标准系统芯片移植指导](device-dev/porting/standard_system_porting_guide.md)
 
         -   bundles：组件开发
             -   [组件开发规范](device-dev/bundles/bundles-standard-rules.md)
