@@ -358,9 +358,9 @@ OpenHarmony archived projects:  [https://gitee.com/openharmony-retired](https://
 
 ## OpenHarmony Documentation<a name="section21031470109"></a>
 
-[Chinese version](https://gitee.com/openharmony/docs/blob/master/Readme-zh-cn.md)
+[Chinese version](https://gitee.com/openharmony/docs/blob/master/zh-cn/readme.md)
 
-[English version](https://gitee.com/openharmony/docs/blob/master/Readme-en.md)
+[English version](https://gitee.com/openharmony/docs/blob/master/en/readme.md)
 
 ## Source Code Downloading<a name="section39011923144212"></a>
 
