@@ -45,22 +45,15 @@
             -   [平台驱动](device-dev/guide/device-driver-demo.md)
             -   [外设驱动](device-dev/guide/device-outerdriver-demo.md)
 
-<<<<<<< HEAD
         -   porting：移植适配
 
             [三方库移植指导](device-dev/porting/transplant-thirdparty.md)
+			[标准系统芯片移植指导](device-dev/porting/standard_system_porting_guide.md)
 
         -   bundles：组件开发
             -   [组件开发规范](device-dev/bundles/bundles-standard-rules.md)
             -   [组件开发指南](device-dev/bundles/bundles-guide.md)
             -   [组件开发示例](device-dev/bundles/bundles-demo.md)
-=======
-        -   porting：[移植适配](device-dev/porting/Readme-CN.md)
-        -   bundles：[组件开发](device-dev/bundles/Readme-CN.md)
-            -   [组件开发规范](device-dev/bundles/组件开发规范.md)
-            -   [组件开发指南](device-dev/bundles/组件开发指南.md)
-            -   [组件开发示例](device-dev/bundles/组件开发示例.md)
->>>>>>> 2969611b3e2a25755ebcd7f632c8fe3f7f0c615f
 
 
 -   应用开发
