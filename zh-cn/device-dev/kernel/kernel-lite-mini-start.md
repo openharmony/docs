@@ -1,0 +1,47 @@
+# 快速入门<a name="ZH-CN_TOPIC_0000001124066549"></a>
+
+-   [搭建开发环境](#section157851447151716)
+-   [获取OpenHarmony源码](#section381985201816)
+-   [获取示例工程源码](#section204717216181)
+-   [编译运行](#section9772514181917)
+
+OpenHarmony LiteOS-M内核的编译构建系统是一个基于gn和ninja的组件化构建系统，支持按组件配置、裁剪和拼装，按需构建出定制化的产品。编译构建系统的详细信息可以参考[考编译构建概](../subsystems/subsys-build-mini-lite.md#section10958256161119)。本文主要介绍如何基于gn和ninja编译LiteOS-M工程。
+
+## 搭建开发环境<a name="section157851447151716"></a>
+
+在搭建各个开发板环境前，需要完成OpenHarmony系统基础环境搭建。系统基础环境主要是指OpenHarmony的编译环境和开发环境，详细介绍请参考官方站点[搭建系统基础环境](../quick-start/quickstart-lite-env-setup-des.md)。开发者需要根据环境搭建文档，完成下述软件的安装：Python3.7+、gn、ninja、hb。对于LiteOS-M内核，还需要安装ARM GCC编译工具链。
+
+## 获取OpenHarmony源码<a name="section381985201816"></a>
+
+开发者需要在Linux服务器上通过Git克隆获取OpenHarmony最新源码，详细的源码获取方式，请见[源码获取](../get-code/sourcecode-acquire.md)。获取OpenHarmony完整仓代码后，假设克隆目录为\~/openHarmony。
+
+## 获取示例工程源码<a name="section204717216181"></a>
+
+以开发板Nucleo-F767Zi为例，演示如何编译运行OpenHarmony LiteOS-M内核工程。在本地目录，执行下述命令克隆示例代码。
+
+```
+git clone https://gitee.com/harylee/nucleo_f767zi.git
+```
+
+假设克隆到的代码目录为\~/nucleo\_f767zi。 执行如下命令把代码目录的device、vendor目录复制到openHarmony工程的相应目录。
+
+```
+cp -r ~/nucleo_f767zi/device/st  ~/openHarmony/device/st
+cp -r ~/nucleo_f767zi/vendor/st  ~/openHarmony/vendor/st
+```
+
+关于示例代码目录的说明，可以参考资料站点[板级目录规范](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/%E7%A7%BB%E6%A4%8D%E6%A6%82%E8%BF%B0-0.md#section6204129143013)。如果需要自行移植开发板，请参考[板级系统移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/%E6%9D%BF%E7%BA%A7%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D.md)。
+
+## 编译运行<a name="section9772514181917"></a>
+
+编译运行前，把交叉编译工具链bin目录配置到PATH环境变量中或者在device/st/nucleo\_f767zi/liteos\_m/config.gni文件中把board\_toolchain\_path配置项设置为交叉编译工具链bin目录。 在OpenHarmony根目录，执行hb set设置产品路径，选择nucleo\_f767zi产品，然后执行hb build开启编译。如下：
+
+```
+user@dev:~/OpenHarmony$ hb set
+[OHOS INFO] Input code path:          # 直接按回车，然后选择nucleo_f767zi产品即可
+OHOS Which product do you need?  nucleo_f767zi@st
+user@dev:~/OpenHarmony$ hb build
+```
+
+最终的镜像生成在\~/openHarmony/out/nucleo\_f767zi/目录中，通过STM32 ST-LINK Utility软件将镜像文件下载至单板查看运行效果。
+

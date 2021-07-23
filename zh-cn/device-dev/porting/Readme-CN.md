@@ -22,7 +22,7 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 
 # 2. 开始移植你的开发板
 
-- [轻量级系统](lite_system_port_guide.md)
-- 小型系统（待发布）
+- [轻量级系统](transplant-minichip.md)
+- [小型系统](transplant-smallchip.md)
 - [标准系统](standard_system_porting_guide.md)
 

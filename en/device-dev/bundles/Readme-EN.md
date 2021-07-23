@@ -1,20 +1,11 @@
-# Bundle Development
+#  Bundle Development
 
--   [Development Specifications](development-specifications.md)
-    -   [Overview](overview.md)
-    -   [Bundle Composition](bundle-composition.md)
-    -   [Bundle Management](bundle-management.md)
-    -   [Bundle Version](bundle-version.md)
-    -   [Distribution](distribution.md)
-    -   [Environment Variables](environment-variables.md)
-
--   [Development Guidelines](development-guidelines.md)
-    -   [Overview](overview-0.md)
-    -   [Preparations](preparations.md)
-    -   [Bundle Development](bundle-development.md)
-
--   [HPM User Guide](hpm-user-guide.md)
-    -   [Introduction](introduction.md)
-    -   [Preparations](preparations-1.md)
-    -   [Development Example](development-example.md)
-
+- [Development Specifications](bundles-standard-rules.md)
+- [Development Guidelines](bundles-guide.md)
+  - [Bundle Development](bundles-guide-overview.md)
+  - [Preparations](bundles-guide-prepare.md)
+  - [Bundle Development](bundles-guide-develop.md)
+- [HPM User Guide](bundles-demo.md)
+  - [Introduction](bundles-demo-hpmdescription.md)
+  - [Preparations](bundles-demo-environment.md)
+  - [Development Example](bundles-demo-devsample.md)

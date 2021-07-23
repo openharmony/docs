@@ -1,0 +1,54 @@
+# 操作实例<a name="ZH-CN_TOPIC_0000001072143838"></a>
+
+环境准备好后，接下来本文以Hi3861平台为例，演示如何利用HPM进行组件的安装、编译和打包。
+
+1.  执行以下命令，初始化安装目录（目录名可自行设置）：
+
+    ```
+    mkdir test3861
+    cd test3861
+    hpm init -t dist
+    ```
+
+    初始化成功则显示：
+
+    ```
+    Initialization finished.
+    ```
+
+2.  安装wifi\_iot发行版。
+
+    ```
+    hpm install @ohos/wifi_iot
+    ```
+
+    安装成功则显示：
+
+    ```
+    Installed.
+    ```
+
+    >![](../public_sys-resources/icon-note.gif) **说明：** 
+    >Hi3516平台采用下述命令：
+    >```
+    >hpm install @ohos/ip_camera_hi3516dv300
+    >```
+    >Hi3518平台采用下述命令：
+    >```
+    >hpm install @ohos/ip_camera_hi3518ev300
+    >```
+
+3.  编译打包
+
+    ```
+    hpm dist
+    ```
+
+    编译成功会显示：
+
+    ```
+    {{name}}: distribution building completed.
+    ```
+
+4.  上述所有命令执行成功后，在 ./out 目录下会生成编译结果，开发者可以将编译结果烧录到对应的开发板上进行测试。
+
