@@ -322,8 +322,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001058988952_p1814251913247"><a name="zh-cn_topic_0000001058988952_p1814251913247"></a><a name="zh-cn_topic_0000001058988952_p1814251913247"></a>number</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001058988952_p51424195244"><a name="zh-cn_topic_0000001058988952_p51424195244"></a><a name="zh-cn_topic_0000001058988952_p51424195244"></a>24</p>
-<p id="zh-cn_topic_0000001058988952_p52731028173117"><a name="zh-cn_topic_0000001058988952_p52731028173117"></a><a name="zh-cn_topic_0000001058988952_p52731028173117"></a>-<sup id="zh-cn_topic_0000001058988952_sup627311285313"><a name="zh-cn_topic_0000001058988952_sup627311285313"></a><a name="zh-cn_topic_0000001058988952_sup627311285313"></a><span>5+</span></sup></p>
+<td class="cellrowborder" valign="top" width="8.61%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001058988952_p81051142202817"><a name="zh-cn_topic_0000001058988952_p81051142202817"></a><a name="zh-cn_topic_0000001058988952_p81051142202817"></a>-<sup id="zh-cn_topic_0000001058988952_sup14229658122718"><a name="zh-cn_topic_0000001058988952_sup14229658122718"></a><a name="zh-cn_topic_0000001058988952_sup14229658122718"></a><span>5+</span></sup></p>
 </td>
 <td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001058988952_p171426196242"><a name="zh-cn_topic_0000001058988952_p171426196242"></a><a name="zh-cn_topic_0000001058988952_p171426196242"></a>否</p>
 </td>
