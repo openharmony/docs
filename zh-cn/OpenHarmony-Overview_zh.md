@@ -366,7 +366,7 @@ OpenHarmony归档组织地址：[https://gitee.com/openharmony-retired](https://
 
 ## 源码下载<a name="section39011923144212"></a>
 
-获取OpenHarmony源码：[下载说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/%E6%BA%90%E7%A0%81%E8%8E%B7%E5%8F%96.md)
+获取OpenHarmony源码：[下载说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)
 
 ## 如何参与<a name="section19611528174215"></a>
 
