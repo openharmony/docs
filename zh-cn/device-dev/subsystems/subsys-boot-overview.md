@@ -1,0 +1,66 @@
+# 启动恢复子系统概述<a name="ZH-CN_TOPIC_0000001063402122"></a>
+
+-   [约束与限制](#section2029921310472)
+
+启动恢复子系统负责从内核启动之后到应用启动之前的系统关键服务进程的启动过程以及设备恢复出厂设置的功能。涉及以下组件：
+
+-   init启动引导组件
+
+    init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[第2章表2](subsys-boot-init.md#table122681439144112)描述）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
+
+-   appspawn应用孵化组件
+
+    负责接收**用户程序框架**的命令孵化应用进程，设置新进程的权限，并调用应用程序框架的入口函数。
+
+-   bootstrap服务启动组件
+
+    提供了各服务和功能的启动入口标识。在SAMGR启动时，会调用boostrap标识的入口函数，并启动系统服务。
+
+-   syspara系统属性组件
+
+    系统属性组件，根据OpenHarmony产品兼容性规范提供获取设备信息的接口，如：产品名、品牌名、厂家名等，同时提供设置/读取系统属性的接口。
+
+
+## 约束与限制<a name="section2029921310472"></a>
+
+启动恢复子系统源代码目录和适配平台：
+
+**表 1**  启动恢复子系统源代码目录和适配平台
+
+<a name="table2144134816420"></a>
+<table><thead align="left"><tr id="row11143184819429"><th class="cellrowborder" valign="top" width="32.36%" id="mcps1.2.3.1.1"><p id="p014334816421"><a name="p014334816421"></a><a name="p014334816421"></a>名称</p>
+</th>
+<th class="cellrowborder" valign="top" width="67.64%" id="mcps1.2.3.1.2"><p id="p21434480422"><a name="p21434480422"></a><a name="p21434480422"></a>适配平台</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row171431248114219"><td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.3.1.1 "><p id="p214334884214"><a name="p214334884214"></a><a name="p214334884214"></a>base/startup/appspawn_lite</p>
+</td>
+<td class="cellrowborder" valign="top" width="67.64%" headers="mcps1.2.3.1.2 "><p id="p35161141183916"><a name="p35161141183916"></a><a name="p35161141183916"></a>小型系统设备（参考内存≥1MB），如Hi3516DV300 、Hi3518EV300</p>
+</td>
+</tr>
+<tr id="row1814320488422"><td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.3.1.1 "><p id="p1314315485427"><a name="p1314315485427"></a><a name="p1314315485427"></a>base/startup/bootstrap_lite</p>
+</td>
+<td class="cellrowborder" valign="top" width="67.64%" headers="mcps1.2.3.1.2 "><p id="p136879536392"><a name="p136879536392"></a><a name="p136879536392"></a>轻量系统设备（参考内存≥128KB），如Hi3861V100</p>
+</td>
+</tr>
+<tr id="row1114304818420"><td class="cellrowborder" align="left" valign="top" width="32.36%" headers="mcps1.2.3.1.1 "><p id="p181431448194220"><a name="p181431448194220"></a><a name="p181431448194220"></a>base/startup/init_lite</p>
+</td>
+<td class="cellrowborder" valign="top" width="67.64%" headers="mcps1.2.3.1.2 "><p id="p865161134018"><a name="p865161134018"></a><a name="p865161134018"></a>小型系统设备（参考内存≥1MB），如Hi3516DV300、Hi3518EV300</p>
+</td>
+</tr>
+<tr id="row2014324824218"><td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.3.1.1 "><p id="p14143348184215"><a name="p14143348184215"></a><a name="p14143348184215"></a>base/startup/syspara_lite</p>
+</td>
+<td class="cellrowborder" valign="top" width="67.64%" headers="mcps1.2.3.1.2 "><a name="ul15501216165214"></a><a name="ul15501216165214"></a><ul id="ul15501216165214"><li><strong id="b2467121917911"><a name="b2467121917911"></a><a name="b2467121917911"></a></strong>轻量系统设备（参考内存≥128KB），如Hi3861V100</li><li>小型系统设备（参考内存≥1MB），如Hi3516DV300、Hi3518EV300</li></ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+-   init启动引导组件：
+    -   配置文件init.cfg烧写到单板之后变成只读模式，修改时必须重新打包和烧写rootfs镜像。
+    -   配置文件init.cfg仅支持json格式。
+
+-   bootstrap服务启动组件：需要在链接脚本中配置zInit代码段。
+-   syspara系统属性组件：SetParameter/GetParameter仅支持uid大于1000的应用调用。
+

@@ -1,0 +1,7 @@
+# 搭建环境<a name="ZH-CN_TOPIC_0000001061629245"></a>
+
+-   开发板：Hi3516DV300
+
+-   [下载源码](../get-code/sourcecode-acquire.md)
+-   [编译用户程序框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6%E5%AD%90%E7%B3%BB%E7%BB%9F.md)
+

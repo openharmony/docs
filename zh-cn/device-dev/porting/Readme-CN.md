@@ -1,4 +1,3 @@
-
 # 开发板移植
 目前OpenHarmony已经成立了SIG组[sig-devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)。该SIG组以支持更多第三方开发板为目标，提供开发板移植的支撑。
 
@@ -22,7 +21,8 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 
 # 2. 开始移植你的开发板
 
-- [轻量级系统](lite-system-porting-guide.md)
-- 小型系统（待发布）
+- [轻量级系统](transplant-minichip.md)
+- [小型系统](transplant-smallchip.md)
 - [标准系统](standard-system-porting-guide.md)
+
 

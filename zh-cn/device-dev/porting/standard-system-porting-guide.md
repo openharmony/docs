@@ -246,7 +246,7 @@ HDF_INIT(g_touchXXXXChipEntry);
 
 Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分负责处理WLAN流量。`HDF WLAN`分别为这两部分做了抽象。目前支持SDIO接口的WLAN芯片。
 
-<img src="./figures/HDF_WIFI.png" alt="Wi-Fi结构图" width="800"/>
+<img src="./figure/HDF_WIFI.png" alt="Wi-Fi结构图" width="800"/>
 
 支持一款芯片的主要工作是实现一个ChipDriver驱动。实现HDF_WLAN_CORE和NetDevice提供的接口。主要需要实现的接口有:
 
