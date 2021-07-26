@@ -2,7 +2,7 @@
 
 -   [编译构建适配流程](#section2159183845319)
 
-编译构建的详细介绍请见[编译构建子系统介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/%E7%BC%96%E8%AF%91%E6%9E%84%E5%BB%BA.md)。新增三方芯片时，编译相关的适配流程如下：
+编译构建的详细介绍请见[编译构建子系统介绍](../subsystems/subsys-build-mini-lite.md)。新增三方芯片时，编译相关的适配流程如下：
 
 ## 编译构建适配流程<a name="section2159183845319"></a>
 
