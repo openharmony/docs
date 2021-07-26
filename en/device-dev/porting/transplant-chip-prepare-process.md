@@ -2,7 +2,7 @@
 
 -   [Building Adaptation Process](#section2159183845319)
 
-For details about compilation and building, see  [Compilation and Building](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/compilation-and-building.md). When adding third-party chips, perform the following steps to complete building adaptation:
+For details about compilation and building, see  [Compilation and Building](../subsystems/subsys-build-mini-lite.md). When adding third-party chips, perform the following steps to complete building adaptation:
 
 ## Building Adaptation Process<a name="section2159183845319"></a>
 
