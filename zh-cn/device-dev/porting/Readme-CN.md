@@ -9,7 +9,7 @@
 | 小型系统类设备 | 内存>1MB、有MMU | LiteOS-A、Linux |
 | 标准系统类设备 | 内存>128MB    |  Linux       |
 
-# 1. 代码准备
+## 代码准备
 
 目前OpenHarmony已经为各厂家创建了仓库并在openharmony-sig中进行孵化。参与孵化仓开发，需要使用如下方法初始化和下载代码。
 
@@ -19,10 +19,14 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 
 其他下载步骤与主线相同。
 
-# 2. 开始移植你的开发板
+## 开始移植你的开发板
 
 - [轻量级系统](transplant-minichip.md)
 - [小型系统](transplant-smallchip.md)
 - [标准系统](standard-system-porting-guide.md)
+
+# 三方库移植
+
+- [三方库移植指导](transplant-thirdparty.md)
 
 

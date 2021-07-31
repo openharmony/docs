@@ -69,7 +69,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p857711379158"><a name="p857711379158"></a><a name="p857711379158"></a>使用<span id="text5577237181514"><a name="text5577237181514"></a><a name="text5577237181514"></a>OpenHarmony</span>提供的基础能力</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul1577103716159"></a><a name="ul1577103716159"></a><ul id="ul1577103716159"><li><a href="kernel/kernel-lite.md">内核开发指南</a></li><li><a href="driver/Readme-CN.md">驱动开发指南</a></li><li><a href="subsystems/Readme-CN.md">子系统开发指南</a></li><li><a href="security/safety-safeguide-security.md">安全指南</a></li><li><a href="security/safety-protection-privacyguide.md">隐私保护</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul1577103716159"></a><a name="ul1577103716159"></a><ul id="ul1577103716159"><li><a href="kernel/kernel.md">内核开发指南</a></li><li><a href="driver/Readme-CN.md">驱动开发指南</a></li><li><a href="subsystems/Readme-CN.md">子系统开发指南</a></li><li><a href="security/safety-safeguide-security.md">安全指南</a></li><li><a href="security/safety-protection-privacyguide.md">隐私保护</a></li></ul>
 </td>
 </tr>
 <tr id="row10602193719152"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p857873713152"><a name="p857873713152"></a><a name="p857873713152"></a>进阶开发</p>
@@ -139,7 +139,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p136812535511"><a name="p136812535511"></a><a name="p136812535511"></a>使用<span id="text1068553195119"><a name="text1068553195119"></a><a name="text1068553195119"></a>OpenHarmony</span>提供的基础能力</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel-lite.md">内核开发指南</a></li><li><a href="driver/Readme-CN.md">驱动开发指南</a></li><li><a href="subsystems/Readme-CN.md">子系统开发指南</a></li><li><a href="security/safety-safeguide-security.md">安全指南</a></li><li><a href="security/safety-protection-privacyguide.md">隐私保护</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel.md">内核开发指南</a></li><li><a href="driver/Readme-CN.md">驱动开发指南</a></li><li><a href="subsystems/Readme-CN.md">子系统开发指南</a></li><li><a href="security/safety-safeguide-security.md">安全指南</a></li><li><a href="security/safety-protection-privacyguide.md">隐私保护</a></li></ul>
 </td>
 </tr>
 <tr id="row1368195345111"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p16681853145115"><a name="p16681853145115"></a><a name="p16681853145115"></a>进阶开发</p>
@@ -153,7 +153,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p185185615284"><a name="p185185615284"></a><a name="p185185615284"></a>对三方库进行移植适配</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><p id="p10262183114555"><a name="p10262183114555"></a><a name="p10262183114555"></a><a href="porting/transplant-thirdparty.md">三方库移植指导</a></p>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul14724164204819"></a><a name="ul14724164204819"></a><ul id="ul14724164204819"><li><a href="porting/transplant-thirdparty.md">三方库移植指导</a></li><li><a href="porting/standard-system-porting-guide.md">标准系统芯片移植指导</a></li></ul>
 </td>
 </tr>
 <tr id="row869853125119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p3691530511"><a name="p3691530511"></a><a name="p3691530511"></a>贡献组件</p>
