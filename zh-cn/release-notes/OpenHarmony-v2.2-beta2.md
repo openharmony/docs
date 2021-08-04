@@ -1,4 +1,4 @@
-# OpenHarmony 2.2 Beta2（2021-07-30）<a name="ZH-CN_TOPIC_0000001182379069"></a>
+# OpenHarmony v2.2 Beta2 <a name="ZH-CN_TOPIC_0000001182379069"></a>
 
 -   [版本概述](#section1677664815431)
 -   [配套关系](#section13201781528)
@@ -249,9 +249,14 @@ repo forall -c 'git lfs pull'
 </tr>
 </tbody>
 </table>
+
 ### API变更
 
-API变更待更新发布
+API变更请参考：
+
+[JS API 差异报告](api-change/native-apidiff-v2.2-beta2.md)
+
+[Native API 差异报告](api-change/native-apidiff-v2.2-beta2.md)
 
 ## 修复缺陷列表<a name="section3442123281619"></a>
 
