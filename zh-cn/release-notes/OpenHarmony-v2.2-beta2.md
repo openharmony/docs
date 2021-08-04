@@ -216,7 +216,7 @@ repo forall -c 'git lfs pull'
 </td>
 <td class="cellrowborder" valign="top" width="41.6%" headers="mcps1.2.4.1.2 "><p id="p182587563419"><a name="p182587563419"></a><a name="p182587563419"></a>NA</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.36%" headers="mcps1.2.4.1.3 "><a name="ul1742414363415"></a><a name="ul1742414363415"></a><ul id="ul1742414363415"><li>支持A4\A8、LUT8、TSC图片格式作为输入。</li><li>支持多语言字体对齐。</li><li>UIKit支持显示控件轮廓。</li><li>crollView/List支持通过弧形进度条展示滑动进度。</li><li>支持开关按钮/复选框/单选按钮动效。</li><li>UIKit支持点阵字体产品化解耦。</li><li>UI框架提供统一多后端框架支持多芯片平台。</li><li>UIKit组件支持margin/padding。</li><li>圆形/胶囊按钮支持缩放和白色蒙层动效。</li></ul>
+<td class="cellrowborder" valign="top" width="35.36%" headers="mcps1.2.4.1.3 "><a name="ul1742414363415"></a><a name="ul1742414363415"></a><ul id="ul1742414363415"><li>支持A4\A8、LUT8、TSC图片格式作为输入。</li><li>支持多语言字体对齐。</li><li>UIKit支持显示控件轮廓。</li><li>ScrollView/List支持通过弧形进度条展示滑动进度。</li><li>支持开关按钮/复选框/单选按钮动效。</li><li>UIKit支持点阵字体产品化解耦。</li><li>UI框架提供统一多后端框架支持多芯片平台。</li><li>UIKit组件支持margin/padding。</li><li>圆形/胶囊按钮支持缩放和白色蒙层动效。</li></ul>
 </td>
 </tr>
 <tr id="row115211202598"><td class="cellrowborder" valign="top" width="23.04%" headers="mcps1.2.4.1.1 "><p id="p11531320165912"><a name="p11531320165912"></a><a name="p11531320165912"></a>编译构建</p>
@@ -254,84 +254,85 @@ repo forall -c 'git lfs pull'
 
 API变更请参考：
 
-[JS API 差异报告](api-change/native-apidiff-v2.2-beta2.md)
+[JS API 差异报告](api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
 
-[Native API 差异报告](api-change/native-apidiff-v2.2-beta2.md)
+[Native API 差异报告](api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
 
 ## 修复缺陷列表<a name="section3442123281619"></a>
 
 **表 3** **解决的缺陷ISSUE列表**
 
 <a name="table158451039191811"></a>
+
 <table><thead align="left"><tr id="row178461539111814"><th class="cellrowborder" valign="top" width="13.15%" id="mcps1.2.3.1.1"><p id="p4846113915184"><a name="p4846113915184"></a><a name="p4846113915184"></a>ISSUE单号</p>
 </th>
 <th class="cellrowborder" valign="top" width="86.85000000000001%" id="mcps1.2.3.1.2"><p id="p4846039111815"><a name="p4846039111815"></a><a name="p4846039111815"></a>问题描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row8846163911187"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p18127341171919"><a name="p18127341171919"></a><a name="p18127341171919"></a><a href="https://e.gitee.com/open_harmony/unset_project?issue=I3I31W" target="_blank" rel="noopener noreferrer">I3I31W</a></p>
+<tbody><tr id="row8846163911187"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p18127341171919"><a name="p18127341171919"></a><a name="p18127341171919"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3I31W" target="_blank" rel="noopener noreferrer">I3I31W</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p01271941121913"><a name="p01271941121913"></a><a name="p01271941121913"></a>ActsNFSTest.bin会引起内核crash</p>
 </td>
 </tr>
-<tr id="row1846113981818"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p14127174118199"><a name="p14127174118199"></a><a name="p14127174118199"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3D49E" target="_blank" rel="noopener noreferrer">I3D49E</a></p>
+<tr id="row1846113981818"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p14127174118199"><a name="p14127174118199"></a><a name="p14127174118199"></a><a href="https://gitee.com/openharmony/docs/issues/I3D49E" target="_blank" rel="noopener noreferrer">I3D49E</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p141271541131915"><a name="p141271541131915"></a><a name="p141271541131915"></a>uboot的路径不对</p>
 </td>
 </tr>
-<tr id="row5846103901815"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p181274412195"><a name="p181274412195"></a><a name="p181274412195"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3D71U" target="_blank" rel="noopener noreferrer">I3D71U</a></p>
+<tr id="row5846103901815"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p181274412195"><a name="p181274412195"></a><a name="p181274412195"></a><a href="https://gitee.com/openharmony-retired/drivers_adapter_khdf_liteos/issues/I3D71U" target="_blank" rel="noopener noreferrer">I3D71U</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p131271341151912"><a name="p131271341151912"></a><a name="p131271341151912"></a>【驱动子系统】反复reset，启动到hmac_main_init SUCCESSULLY后，高概率出现系统挂死</p>
 </td>
 </tr>
-<tr id="row48467394184"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p812718412194"><a name="p812718412194"></a><a name="p812718412194"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3DGZW" target="_blank" rel="noopener noreferrer">I3DGZW</a></p>
+<tr id="row48467394184"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p812718412194"><a name="p812718412194"></a><a name="p812718412194"></a><a href="https://gitee.com/openharmony/aafwk_aafwk_lite/issues/I3DGZW" target="_blank" rel="noopener noreferrer">I3DGZW</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p3127164121913"><a name="p3127164121913"></a><a name="p3127164121913"></a>【应用程序框架子系统】HI3516开源板进入屏保后 ，点击触摸屏，出现蓝屏问题</p>
 </td>
 </tr>
-<tr id="row984633901815"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1912812411199"><a name="p1912812411199"></a><a name="p1912812411199"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3DHIL" target="_blank" rel="noopener noreferrer">I3DHIL</a></p>
+<tr id="row984633901815"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1912812411199"><a name="p1912812411199"></a><a name="p1912812411199"></a><a href="https://gitee.com/openharmony/community/issues/I3DHIL" target="_blank" rel="noopener noreferrer">I3DHIL</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1412854111192"><a name="p1412854111192"></a><a name="p1412854111192"></a>【系统问题】HI3518开源板剩余空间不足，导致ACTS用例大量失败</p>
 </td>
 </tr>
-<tr id="row984623913181"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1128184171917"><a name="p1128184171917"></a><a name="p1128184171917"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3DU36" target="_blank" rel="noopener noreferrer">I3DU36</a></p>
+<tr id="row984623913181"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1128184171917"><a name="p1128184171917"></a><a name="p1128184171917"></a><a href="https://gitee.com/openharmony/appexecfwk_appexecfwk_lite/issues/I3DU36" target="_blank" rel="noopener noreferrer">I3DU36</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p17128104114191"><a name="p17128104114191"></a><a name="p17128104114191"></a>【应用程序框架子系统】ipcamera bm 查询命令失效</p>
 </td>
 </tr>
-<tr id="row4846193919186"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p16128174171917"><a name="p16128174171917"></a><a name="p16128174171917"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EALU" target="_blank" rel="noopener noreferrer">I3EALU</a></p>
+<tr id="row4846193919186"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p16128174171917"><a name="p16128174171917"></a><a name="p16128174171917"></a><a href="https://gitee.com/openharmony/multimedia_camera_lite/issues/I3EALU" target="_blank" rel="noopener noreferrer">I3EALU</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p8128184191914"><a name="p8128184191914"></a><a name="p8128184191914"></a>【媒体子系统】cameraActs 用例执行时，找不到相机配置文件，初始失败</p>
 </td>
 </tr>
-<tr id="row851624131915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1412814111917"><a name="p1412814111917"></a><a name="p1412814111917"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
+<tr id="row851624131915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1412814111917"><a name="p1412814111917"></a><a name="p1412814111917"></a><a href="https://gitee.com/openharmony/community/issues/I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p161282419194"><a name="p161282419194"></a><a name="p161282419194"></a>【可靠性问题】反复reset，出现一次KIdle进程crash，系统挂死无法启动</p>
 </td>
 </tr>
-<tr id="row1151162411915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p181280416199"><a name="p181280416199"></a><a name="p181280416199"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EH4E" target="_blank" rel="noopener noreferrer">I3EH4E</a></p>
+<tr id="row1151162411915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p181280416199"><a name="p181280416199"></a><a name="p181280416199"></a><a href="https://gitee.com/openharmony/community/issues/I3EH4E" target="_blank" rel="noopener noreferrer">I3EH4E</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p2128841121919"><a name="p2128841121919"></a><a name="p2128841121919"></a>【流水线问题】高概率出现：uname无响应，然后执行reset也无响应</p>
 </td>
 </tr>
-<tr id="row051182419198"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p20128204114190"><a name="p20128204114190"></a><a name="p20128204114190"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EQJA" target="_blank" rel="noopener noreferrer">I3EQJA</a></p>
+<tr id="row051182419198"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p20128204114190"><a name="p20128204114190"></a><a name="p20128204114190"></a><a href="https://gitee.com/openharmony/community/issues/I3EQJA" target="_blank" rel="noopener noreferrer">I3EQJA</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1112813418191"><a name="p1112813418191"></a><a name="p1112813418191"></a>【文件系统】cat /proc/mounts功能不可用</p>
 </td>
 </tr>
-<tr id="row451132491912"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1012844171912"><a name="p1012844171912"></a><a name="p1012844171912"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EQRC" target="_blank" rel="noopener noreferrer">I3EQRC</a></p>
+<tr id="row451132491912"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1012844171912"><a name="p1012844171912"></a><a name="p1012844171912"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3EQRC" target="_blank" rel="noopener noreferrer">I3EQRC</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1612884110194"><a name="p1612884110194"></a><a name="p1612884110194"></a>磁盘文件映射延迟测试：并发3个测试进程，系统crash</p>
 </td>
 </tr>
-<tr id="row551124141912"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1212854112194"><a name="p1212854112194"></a><a name="p1212854112194"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3HVL0" target="_blank" rel="noopener noreferrer">I3HVL0</a></p>
+<tr id="row551124141912"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1212854112194"><a name="p1212854112194"></a><a name="p1212854112194"></a><a href="https://gitee.com/openharmony/docs/issues/I3HVL0" target="_blank" rel="noopener noreferrer">I3HVL0</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p2128241151910"><a name="p2128241151910"></a><a name="p2128241151910"></a>3861编译失败，报错[OHOS ERROR] Fatal error: invalid -march= option:rv32imac</p>
 </td>
 </tr>
 <tr id="row2065132419197"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1767317453201"><a name="p1767317453201"></a><a name="p1767317453201"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3TS1Y" target="_blank" rel="noopener noreferrer">I3TS1Y</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1667354518204"><a name="p1667354518204"></a><a name="p1667354518204"></a>压力场景下文件相关胡VnodeAlloc资源耗尽</p>
+<td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1667354518204"><a name="p1667354518204"></a><a name="p1667354518204"></a>压力场景下文件相关Vnode资源耗尽</p>
 </td>
 </tr>
 <tr id="row1269122413190"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p13674845202014"><a name="p13674845202014"></a><a name="p13674845202014"></a><a href="https://gitee.com/openharmony/startup_init_lite/issues/I3TXT8" target="_blank" rel="noopener noreferrer">I3TXT8</a></p>
@@ -361,7 +362,7 @@ API变更请参考：
 </tr>
 <tr id="row8360183892010"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p6674154522014"><a name="p6674154522014"></a><a name="p6674154522014"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3VEOG" target="_blank" rel="noopener noreferrer">I3VEOG</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p156747457204"><a name="p156747457204"></a><a name="p156747457204"></a>bin目录下没有mksh和toybox，导致已转测的toybox命令集和shell交互友好性提升无法测试</p>
+<td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p156747457204"><a name="p156747457204"></a><a name="p156747457204"></a>bin目录下没有mksh和toybox，导致已转测的toybox命令集无法测试</p>
 </td>
 </tr>
 </tbody>
