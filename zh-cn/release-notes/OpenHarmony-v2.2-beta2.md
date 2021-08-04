@@ -216,7 +216,7 @@ repo forall -c 'git lfs pull'
 </td>
 <td class="cellrowborder" valign="top" width="41.6%" headers="mcps1.2.4.1.2 "><p id="p182587563419"><a name="p182587563419"></a><a name="p182587563419"></a>NA</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.36%" headers="mcps1.2.4.1.3 "><a name="ul1742414363415"></a><a name="ul1742414363415"></a><ul id="ul1742414363415"><li>支持A4\A8、LUT8、TSC图片格式作为输入。</li><li>支持多语言字体对齐。</li><li>UIKit支持显示控件轮廓。</li><li>crollView/List支持通过弧形进度条展示滑动进度。</li><li>支持开关按钮/复选框/单选按钮动效。</li><li>UIKit支持点阵字体产品化解耦。</li><li>UI框架提供统一多后端框架支持多芯片平台。</li><li>UIKit组件支持margin/padding。</li><li>圆形/胶囊按钮支持缩放和白色蒙层动效。</li></ul>
+<td class="cellrowborder" valign="top" width="35.36%" headers="mcps1.2.4.1.3 "><a name="ul1742414363415"></a><a name="ul1742414363415"></a><ul id="ul1742414363415"><li>支持A4\A8、LUT8、TSC图片格式作为输入。</li><li>支持多语言字体对齐。</li><li>UIKit支持显示控件轮廓。</li><li>ScrollView/List支持通过弧形进度条展示滑动进度。</li><li>支持开关按钮/复选框/单选按钮动效。</li><li>UIKit支持点阵字体产品化解耦。</li><li>UI框架提供统一多后端框架支持多芯片平台。</li><li>UIKit组件支持margin/padding。</li><li>圆形/胶囊按钮支持缩放和白色蒙层动效。</li></ul>
 </td>
 </tr>
 <tr id="row115211202598"><td class="cellrowborder" valign="top" width="23.04%" headers="mcps1.2.4.1.1 "><p id="p11531320165912"><a name="p11531320165912"></a><a name="p11531320165912"></a>编译构建</p>
@@ -332,7 +332,7 @@ API变更请参考：
 </tr>
 <tr id="row2065132419197"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1767317453201"><a name="p1767317453201"></a><a name="p1767317453201"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3TS1Y" target="_blank" rel="noopener noreferrer">I3TS1Y</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1667354518204"><a name="p1667354518204"></a><a name="p1667354518204"></a>压力场景下文件相关胡VnodeAlloc资源耗尽</p>
+<td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1667354518204"><a name="p1667354518204"></a><a name="p1667354518204"></a>压力场景下文件相关Vnode资源耗尽</p>
 </td>
 </tr>
 <tr id="row1269122413190"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p13674845202014"><a name="p13674845202014"></a><a name="p13674845202014"></a><a href="https://gitee.com/openharmony/startup_init_lite/issues/I3TXT8" target="_blank" rel="noopener noreferrer">I3TXT8</a></p>
@@ -362,7 +362,7 @@ API变更请参考：
 </tr>
 <tr id="row8360183892010"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p6674154522014"><a name="p6674154522014"></a><a name="p6674154522014"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3VEOG" target="_blank" rel="noopener noreferrer">I3VEOG</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p156747457204"><a name="p156747457204"></a><a name="p156747457204"></a>bin目录下没有mksh和toybox，导致已转测的toybox命令集和shell交互友好性提升无法测试</p>
+<td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p156747457204"><a name="p156747457204"></a><a name="p156747457204"></a>bin目录下没有mksh和toybox，导致已转测的toybox命令集无法测试</p>
 </td>
 </tr>
 </tbody>
