@@ -287,7 +287,6 @@ docker\_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件�
         hpm run docker
         ```
 
-
     以上两种方式以@ohos/hispark\_taurus为例，执行成功结果如下：
 
     ```

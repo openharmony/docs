@@ -1,4 +1,3 @@
 # 术语
 
--   [术语](glossary.md)
-
+[术语](glossary.md)

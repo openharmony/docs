@@ -102,7 +102,6 @@
 
         ![](figure/zh-cn_image_0000001054101094.png)
 
-
     1.  Camera录像/预览流程
 
         开发者首先通过CameraKit创建Camera，然后FrameConfig类对录像或者预览帧属性进行配置。录像/预览时序如下：

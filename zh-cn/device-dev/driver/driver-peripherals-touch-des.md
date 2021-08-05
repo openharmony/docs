@@ -68,14 +68,13 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 
         通常情况下，touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，touchscreen驱动IC一般同时需要1.8v和3.3v两路供电。随着芯片演进，业内已有touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对touchscreen而言，只需要关注1.8v供电即可，其内部需要的3.3v电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
 
-
 2.  **IO控制接口**
     -   Reset：reset管脚，用于在系统休眠、唤醒时，由主机侧对驱动IC进行复位操作。
     -   INT：中断管脚，需要在驱动初始化时，配置为输入上拉状态。在驱动IC检测到外部触摸信号后，通过操作中断管脚来触发中断，器件驱动则会在中断处理函数中进行报点数据读取等操作。
 
 3.  **通信接口**
-    -   I2C：由于touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](drive-platform-i2c-des.md#section1695201514281)。
-    -   SPI：部分厂商，由于需要传递的数据不止报点坐标，而是需要获取基础容值，数据量较大，所以会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](drive-platform-spi-des.md#section71363452477)。
+    -   I2C：由于touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](driver-platform-i2c-des.md#section1695201514281)。
+    -   SPI：部分厂商，由于需要传递的数据不止报点坐标，而是需要获取基础容值，数据量较大，所以会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](driver-platform-spi-des.md#section71363452477)。
 
 
 ## 开发指导<a name="section65745222184"></a>
@@ -109,7 +108,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 3.  实现器件差异化适配接口
 
-    根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](drive-platform-gpio-des.md#section259614242196)
+    根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](driver-platform-gpio-des.md#section259614242196)
 
 
 ## 开发实例<a name="section263714411191"></a>

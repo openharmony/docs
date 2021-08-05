@@ -22,7 +22,7 @@
 
 ## 概述<a name="section86753818426"></a>
 
-本文档将介绍如何基于Hi3516DV300开发板完成基于HDF\_Input模型的触摸屏器件驱动开发，从而使开发者快速入门，进行基于的外设驱动开发。
+本文档将介绍如何基于Hi3516DV300开发板完成基于HDF\_Input模型的触摸屏器件驱动开发，从而使开发者快速入门，进行基于OpenHarmony的外设驱动开发。
 
 ### 硬件资源简介<a name="section123071189431"></a>
 
@@ -44,7 +44,7 @@ Input驱动模型核心部分由设备管理层、公共驱动层、器件驱动
 
 ## 环境搭建<a name="section661075474418"></a>
 
-环境准备具体操作请参考[标准系统基础环境搭建](../quick-start/quickstart-standard.md)。
+环境准备具体操作请参考[标准系统基础环境搭建](../quick-start/quickstart-standard-overview.md)。
 
 >![](../public_sys-resources/icon-notice.gif) **须知：** 
 >本示例针对OpenHarmony轻量系统、小型系统、标准系统都适用，本文以标准系统为例。其他系统的开发者可参考对应系统的指导文档进行环境搭建。
@@ -335,7 +335,7 @@ Input模型由三层驱动组成，开发者适配一款全新触摸屏驱动只
 
     其中touch\_gt911.o为本示例中追加的内容。
 
-2.  具体编译及烧录操作请参考[标准系统快速入门编译及烧录章节](../nottoctopics/zh-cn_topic_0000001135402541.md#section375234715135)。
+2.  具体编译及烧录操作请参考[标准系统快速入门编译及烧录章节](../quick-start/quickstart-standard-burn.md)。
 
 ## 调试验证<a name="section62577313482"></a>
 

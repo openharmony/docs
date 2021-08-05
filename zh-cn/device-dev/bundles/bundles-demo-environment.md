@@ -1,15 +1,17 @@
-# 环境准备<a name="ZH-CN_TOPIC_0000001071315859"></a>
+# 编译环境准备<a name="ZH-CN_TOPIC_0000001071315859"></a>
 
 -   [linux服务器](#section20979554791)
 -   [安装Node.js](#section9954105413153)
--   [安装HPM](#section15937194904819)
+-   [安装HPM命令行工具](#section15937194904819)
 -   [安装python环境](#section1621819180417)
 -   [安装文件打包工具](#section77617165913)
--   [安装SCons](#section20558439191516)
+-   [安装SCons](#section873135716233)
+
+![](figure/3516dv300.png)
 
 ## linux服务器<a name="section20979554791"></a>
 
-准备一台装有Ubuntu 16.04 及以上 64 位系统的linux服务器（hpm是支持windows的，但是目前OpenHarmony开源的Hi3861、Hi3516、Hi3518三个解决方案都只支持Ubuntu）。
+准备一台装有Ubuntu 16.04 及以上 64 位系统的linux服务器（当前未完全支持window环境下的编译）。
 
 将linux shell改为bash：
 
@@ -25,12 +27,6 @@ ln -s bash /bin/sh
 
 ## 安装Node.js<a name="section9954105413153"></a>
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->如果配置的源的nodejs版本太低，可以执行以下语句后再执行apt-get install：
->```
->curl -L https://deb.nodesource.com/setup_12.x | bash
->```
-
 推荐安装 Node.js 12.x （包含 npm 6.14.4）或更高版本（推荐 12.13.0+）：
 
 ```
@@ -45,7 +41,7 @@ node --version  # 查看nodejs版本
 npm --version   # 查看npm版本
 ```
 
-## 安装HPM<a name="section15937194904819"></a>
+## 安装HPM命令行工具<a name="section15937194904819"></a>
 
 通过 Node.js 自带的 npm（使用默认的源 https://registry.npmjs.org/ ）安装 hpm-cli 命令行工具：
 
@@ -59,7 +55,7 @@ npm install -g @ohos/hpm-cli
 hpm config
 ```
 
-上述命令执行后将会显示hpm的默认配置，您可以根据自己的喜好对默认配置进行修改，以下是hpm的常用配置：
+上述命令执行后将会显示hpm的默认配置，您可以根据实际情况对默认配置进行修改，以下是hpm的常用配置：
 
 ```
 registry = https://hpm.harmonyos.com              # hpm注册中心地址，下载组件必须
@@ -68,7 +64,7 @@ http_proxy = http://your-proxy-server:port        # 配置HTTP代理
 https_proxy = http://your-proxy-server:port       # 配置HTTPS代理
 ```
 
-hpm-cli的命令介绍可以参考：[hpm操作命令](bundles-standard-rules.md)
+hpm-cli的命令介绍可以参考：[hpm操作命令](oem_bundle_standard_des.md)
 
 ## 安装python环境<a name="section1621819180417"></a>
 
@@ -115,7 +111,7 @@ sudo apt-get install mtools
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >Hi3518和Hi3516两种平台需要安装打包工具，Hi3861平台不需要。
 
-## 安装SCons<a name="section20558439191516"></a>
+## 安装SCons<a name="section873135716233"></a>
 
 1.  打开Linux编译服务器终端。
 2.  运行如下命令，安装SCons安装包。
@@ -131,7 +127,7 @@ sudo apt-get install mtools
     ```
 
     **图 1**  SCons安装成功界面，版本要求3.0.4以上<a name="fig235815252492"></a>  
-    ![](figure/SCons安装成功界面-版本要求3-0-4以上-21.png "SCons安装成功界面-版本要求3-0-4以上-21")
+    ![](figure/SCons安装成功界面-版本要求3-0-4以上-26.png "SCons安装成功界面-版本要求3-0-4以上-26")
 
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
