@@ -2,7 +2,7 @@
 
 -   **[概述](subsys-application-framework-overview.md)**  
 
--   **[搭建环境](subsys-application-framework-envbuild.md)**  
+-   **[搭建环境](subsys-application-framework-builden.md)**  
 
 -   **[开发指导](subsys-application-framework-guide.md)**  
 

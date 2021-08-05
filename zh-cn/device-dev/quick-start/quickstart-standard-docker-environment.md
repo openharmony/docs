@@ -1,4 +1,4 @@
-# 搭建Ubuntu环境\(获取源码及编译，Docker方式\)<a name="ZH-CN_TOPIC_0000001119805112"></a>
+# 搭建Ubuntu环境及编译（Docker方式）<a name="ZH-CN_TOPIC_0000001119805112"></a>
 
 -   [获取标准系统源码](#section8761819202511)
     -   [前提条件](#section102871547153314)

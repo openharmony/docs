@@ -34,7 +34,7 @@ HDF驱动框架为常用外围设备提供了标准的驱动框架，驱动开�
 
 ## 环境准备<a name="section6926133918422"></a>
 
-环境准备具体操作请参考[标准系统基础环境搭建](../quick-start/quickstart-standard-overview.md)。
+环境准备具体操作请参考[标准系统基础环境搭建](../quick-start/quickstart-standard.md)。
 
 >![](../public_sys-resources/icon-notice.gif) **须知：** 
 >本示例针对OpenHarmony轻量系统、小型系统、标准系统都适用，本文以标准系统为例。其他系统的开发者可参考对应系统的指导文档进行环境搭建。

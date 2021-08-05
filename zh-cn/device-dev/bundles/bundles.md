@@ -1,9 +1,9 @@
-# HPM bundle<a name="ZH-CN_TOPIC_0000001111039520"></a>
+# 组件开发指南<a name="ZH-CN_TOPIC_0000001111039520"></a>
 
--   **[组件开发规范](oem_bundle_standard_des.md)**  
+-   **[组件开发规范](bundles-standard-rules.md)**  
 
--   **[开发指南](bundles-guide.md)**  
+-   **[组件开发指南](bundles-guide.md)**  
 
--   **[开发示例](bundles-demo.md)**  
+-   **[组件开发示例](bundles-demo.md)**  
 
 

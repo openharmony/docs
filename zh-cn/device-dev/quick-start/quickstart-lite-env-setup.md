@@ -1,10 +1,10 @@
 # 搭建系统环境<a name="ZH-CN_TOPIC_0000001128311058"></a>
 
--   **[概述](quickstart-lite-env-setup-overview.md)**  
+-   **[概述](quickstart-lite-env-setup-des.md)**  
 
--   **[Windows开发环境准备](quickstart-lite-env-setup-windows.md)**  
+-   **[Windows开发环境准备](quickstart-lite-env-setup-win.md)**  
 
--   **[获取源码及Ubuntu编译环境准备](quickstart-lite-env-setup-linux.md)**  
+-   **[Ubuntu编译环境准备](quickstart-lite-env-setup-lin.md)**  
 
 -   **[常见问题](quickstart-lite-env-setup-faqs.md)**  
 

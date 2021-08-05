@@ -1,25 +1,25 @@
 # 操作实例<a name="ZH-CN_TOPIC_0000001072143838"></a>
 
-环境准备好后，接下来本文以Hi3861平台为例，演示如何利用hpm进行发行版的安装、编译。
+环境准备好后，接下来本文以Hi3861平台为例，演示如何利用HPM进行组件的安装、编译和打包。
 
-1.  执行以下命令，创建目录，并根据模板dist创建一个默认工程（目录名可自行设置）：
+1.  执行以下命令，初始化安装目录（目录名可自行设置）：
 
     ```
     mkdir test3861
     cd test3861
-    hpm init -t dist myproduct
+    hpm init -t dist
     ```
 
-    创建成功则显示：
+    初始化成功则显示：
 
     ```
     Initialization finished.
     ```
 
-2.  安装hispark\_pegasus发行版。
+2.  安装wifi\_iot发行版。
 
     ```
-    hpm install @ohos/hispark_pegasus
+    hpm install @ohos/wifi_iot
     ```
 
     安装成功则显示：
@@ -31,11 +31,11 @@
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >Hi3516平台采用下述命令：
     >```
-    >hpm install @ohos/hispark_taurus
+    >hpm install @ohos/ip_camera_hi3516dv300
     >```
     >Hi3518平台采用下述命令：
     >```
-    >hpm install @ohos/hispark_aries
+    >hpm install @ohos/ip_camera_hi3518ev300
     >```
 
 3.  编译打包

@@ -10,24 +10,23 @@
         -   overview：[设备开发导读](device-dev/Readme-CN.md)
         -   quick-start：[快速入门](device-dev/quick-start/Readme-CN.md)（搭建环境、获取源码、编译、烧录等）
         -   Basic Capability：开发基础能力
-            -   Kernel：[轻量系统内核](device-dev/kernel/kernel-mini.md)
-            -   Kernel：[小型系统内核](device-dev/kernel/kernel-small.md)
+            -   Kernel：[轻量和小型系统内核](device-dev/kernel/kernel.md)
             -   Drivers：[驱动](device-dev/driver/Readme-CN.md)
             -   Subsystems：[子系统](device-dev/subsystems/Readme-CN.md)（编译构建、图形图像、DFX、XTS等子系统）
             -   Security：[隐私与安全](device-dev/security/Readme-CN.md)
 
         -   guide：开发示例
-            -   [WLAN连接类产品](device-dev/guide/device-wlan.md)（LED外设控制、集成三方SDK）
+            -   [WLAN连接类产品](device-dev/guide/device-wifi.md)（LED外设控制、集成三方SDK）
             -   [无屏摄像头类产品](device-dev/guide/device-iotcamera-control.md)（摄像头控制）
             -   [带屏摄像头类产品](device-dev/guide/device-camera.md)（屏幕和摄像头控制、视觉应用开发）
 
         -   porting：移植适配
-            -   [三方库移植指导](device-dev/porting/porting-thirdparty.md)
-            -   [轻量系统芯片移植指导](device-dev/porting/porting-minichip.md)
-            -   [小型系统芯片移植指导](device-dev/porting/porting-smallchip.md)
+            -   [三方库移植指导](device-dev/porting/transplant-thirdparty.md)
+            -   [轻量系统芯片移植指导](device-dev/porting/transplant-minichip.md)
+            -   [小型系统芯片移植指导](device-dev/porting/transplant-smallchip.md)
 
         -   bundles：组件开发
-            -   [组件开发规范](device-dev/bundles/oem_bundle_standard_des.md)
+            -   [组件开发规范](device-dev/bundles/bundles-standard-rules.md)
             -   [组件开发指南](device-dev/bundles/bundles-guide.md)
             -   [组件开发示例](device-dev/bundles/bundles-demo.md)
 
@@ -45,10 +44,10 @@
             -   [平台驱动](device-dev/guide/device-driver-demo.md)
             -   [外设驱动](device-dev/guide/device-outerdriver-demo.md)
         -   porting：移植适配
-            - [三方库移植指导](device-dev/porting/porting-thirdparty.md)
+            - [三方库移植指导](device-dev/porting/transplant-thirdparty.md)
             - [标准系统芯片移植指导](device-dev/porting/standard-system-porting-guide.md)
         -   bundles：组件开发
-            -   [组件开发规范](device-dev/bundles/oem_bundle_standard_des.md)
+            -   [组件开发规范](device-dev/bundles/bundles-standard-rules.md)
             -   [组件开发指南](device-dev/bundles/bundles-guide.md)
             -   [组件开发示例](device-dev/bundles/bundles-demo.md)
 
