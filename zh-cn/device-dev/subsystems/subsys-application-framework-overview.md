@@ -129,6 +129,7 @@ Ability管理服务和包管理服务启动后，就可以安装OpenHarmony应�
 
         -   ROM: \> 300K （包含JS应用开发框架，UIKit及引擎等强相关子系统）
 
+
     -   Cortex-A RAM/ROM:
 
         -   RAM：建议大于2M

@@ -334,6 +334,7 @@
 
         在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。
 
+
 4.  重写消息处理方法。
 
     MsgHandle是Service用来处理客户端消息的方法。其中funcId是客户端传过来的消息类型，request是客户端传过来的序列化请求参数。如果用户在处理完成之后想要把结果传回去，需要把结果序列化后写入reply中。
@@ -390,6 +391,7 @@
     -   停止Service。
 
         Service一旦创建就会一直保持在后台运行，开发者可以通过调用StopAbility\(\)来停止Service。
+
 
 7.  连接Service。
     -   如果Service需要与Page Ability或其他应用组件中的Service进行交互，则应创建用于连接的Service。Service支持其他Ability通过ConnectAbility\(\)与其进行连接，ConnectAbility\(\)需要传入目标Service的Want，以及IAbilityConnection的实例来处理回调。IAbilityConnection提供了两个方法供用户实现，OnAbilityConnectDone\(\)用来处理连接的回调，OnAbilityDisconnectDone\(\)用来处理断开连接的回调。

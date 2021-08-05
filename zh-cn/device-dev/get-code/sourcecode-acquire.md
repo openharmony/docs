@@ -21,9 +21,12 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 开源代码仓库地址：[https://openharmony.gitee.com](https://openharmony.gitee.com)
 
+>![](../public_sys-resources/icon-note.gif) **说明：** 
+>当前的OpenHarmony源代码仅支持在Linux环境下编译。
+
 ## 源码获取概述<a name="section12763342204"></a>
 
-本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../bundles/oem_bundle_standard_des.md)的形式开放，开发者可以通过如下其中一种方式获取：
+本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../bundles/bundles-standard-rules.md)的形式开放，开发者可以通过如下其中一种方式获取：
 
 -   **获取方式1**：从代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 -   **获取方式2**：通过HPM包管理器获取。在[HPM](https://hpm.harmonyos.com)网站，查找满足需求的开源发行版，直接下载（或者定制后下载），再通过hpm-cli命令工具将所需的组件及工具链下载、安装到本地。
@@ -156,6 +159,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
         ![](figure/zh-cn_image_0000001119915556.png)
 
+
 2.  了解发行版详情。
 
     1.  仔细阅读发行版的说明信息，以了解使用场景、特性、组件构成、使用方法以及如何进行定制化，如下图所示。
@@ -177,6 +181,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
         
 
         ![](figure/zh-cn_image_0000001166715379.png)
+
 
 4.  下载安装组件。
     1.  解压下载的压缩文件，用命令行工具CMD（Linux下的Shell终端）

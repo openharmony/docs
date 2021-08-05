@@ -66,6 +66,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
         HDF_INIT(g_sampleDriverEntry);
         ```
 
+
 2.  驱动编译
     -   驱动代码的编译必须要使用HDF框架提供的Makefile模板进行编译。
 
@@ -84,6 +85,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
         LITEOS_BASELIB +=  -lxxx  #链接生成的静态库
         LIB_SUBDIRS    +=         #驱动代码Makefile的目录
         ```
+
 
 3.  驱动配置
 

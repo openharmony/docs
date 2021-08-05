@@ -2,7 +2,7 @@
 
 -   **[概述](quickstart-lite-overview.md)**  
 
--   **[入门介绍](quickstart-lite-introduction.md)**  
+-   **[了解开发板](quickstart-lite-introduction.md)**  
 
 -   **[搭建系统环境](quickstart-lite-env-setup.md)**  
 
