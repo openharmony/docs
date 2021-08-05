@@ -1,4 +1,4 @@
-# 子系统开发指南<a name="ZH-CN_TOPIC_0000001111199452"></a>
+# 子系统<a name="ZH-CN_TOPIC_0000001135844124"></a>
 
 -   **[编译构建](subsys-build.md)**  
 
@@ -12,7 +12,7 @@
 
 -   **[AI框架](subsys-aiframework.md)**  
 
--   **[Sensor服务](subsys-sensor.md)**  
+-   **[Sensor服务](subsys-densor.md)**  
 
 -   **[用户程序框架](subsys-application-framework.md)**  
 
@@ -22,12 +22,12 @@
 
 -   **[启动恢复](subsys-boot.md)**  
 
--   **[测试](subsys-testguide-test.md)**  
+-   **[测试用例开发指导](subsys-testguide-test.md)**  
 
 -   **[DFX](subsys-dfx.md)**  
 
--   **[HiSysEvent订阅指导](subsys-dfx-hisyseventread.md)**  
+-   **[研发工具链](subsys-toolchain.md)**  
 
--   **[XTS认证子系统开发指南](subsys-xts-guide.md)**  
+-   **[XTS认证用例开发指导](subsys-xts-guide.md)**  
 
 
