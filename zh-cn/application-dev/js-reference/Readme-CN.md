@@ -69,7 +69,7 @@
         -   [CanvasGradient对象](CanvasGradient对象.md)
         -   [ImageData对象](ImageData对象.md)
 
-    -   [栅格组件](栅格组件(Rich).md)
+    -   [栅格组件](栅格组件.md)
         -   [基本概念](基本概念.md)
         -   [grid-container](grid-container.md)
         -   [grid-row](grid-row.md)
