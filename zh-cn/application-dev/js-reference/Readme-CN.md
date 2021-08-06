@@ -62,6 +62,9 @@
         -   [toolbar-item](toolbar-item.md)
         -   [toggle](toggle.md)
 
+    -   [媒体组件](媒体组件.md)
+        -   [Camera](Camera.md)
+
     -   [画布组件](画布组件.md)
         -   [canvas组件](canvas组件.md)
         -   [CanvasRenderingContext2D对象](CanvasRenderingContext2D对象.md)
