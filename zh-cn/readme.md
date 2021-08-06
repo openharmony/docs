@@ -26,10 +26,10 @@
             -   [轻量系统芯片移植指导](device-dev/porting/transplant-smallchip.md)
             -   [小型系统芯片移植指导](device-dev/porting/transplant-smallchip.md)
 
-        -   bundles：组件开发
-            -   [组件开发规范](device-dev/bundles/oem_bundle_standard_des.md)
-            -   [组件开发指南](device-dev/bundles/bundles-guide.md)
-            -   [组件开发示例](device-dev/bundles/bundles-demo.md)
+        -   bundles：Bundle开发
+            -   [Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
+            -   [Bundle开发指南](device-dev/bundles/bundles-guide.md)
+            -   [Bundle开发示例](device-dev/bundles/bundles-demo.md)
 
 -   标准系统开发指导（参考内存≥128MB）
     -   设备开发
@@ -50,10 +50,10 @@
             -   [三方库移植指导](device-dev/porting/transplant-thirdparty.md)
             -   [标准系统芯片移植指导](device-dev/porting/standard-system-porting-guide.md)
 
-        -   bundles：组件开发
-            -   [组件开发规范](device-dev/bundles/oem_bundle_standard_des.md)
-            -   [组件开发指南](device-dev/bundles/bundles-guide.md)
-            -   [组件开发示例](device-dev/bundles/bundles-demo.md)
+        -   bundles：Bundle开发
+            -   [Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
+            -   [Bundle开发指南](device-dev/bundles/bundles-guide.md)
+            -   [Bundle开发示例](device-dev/bundles/bundles-demo.md)
 
 
 -   应用开发

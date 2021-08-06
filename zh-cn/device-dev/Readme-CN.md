@@ -86,11 +86,11 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 <td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul157903731520"></a><a name="ul157903731520"></a><ul id="ul157903731520"><li><a href="porting/transplant-minichip.md">轻量系统芯片移植指导</a></li><li><a href="porting/transplant-smallchip.md">小型系统芯片移植指导</a></li><li><a href="porting/transplant-thirdparty.md">三方库移植指导</a></li></ul>
 </td>
 </tr>
-<tr id="row9601737181517"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p25791037131519"><a name="p25791037131519"></a><a name="p25791037131519"></a>贡献组件</p>
+<tr id="row9601737181517"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p25791037131519"><a name="p25791037131519"></a><a name="p25791037131519"></a>贡献Bundle</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p45798376158"><a name="p45798376158"></a><a name="p45798376158"></a>为<span id="text16579133741518"><a name="text16579133741518"></a><a name="text16579133741518"></a>OpenHarmony</span>贡献功能组件</p>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p45798376158"><a name="p45798376158"></a><a name="p45798376158"></a>为<span id="text16579133741518"><a name="text16579133741518"></a><a name="text16579133741518"></a>OpenHarmony</span>贡献Bundle</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul957919379156"></a><a name="ul957919379156"></a><ul id="ul957919379156"><li><a href="bundles/oem_bundle_standard_des.md">组件开发规范</a></li><li><a href="bundles/bundles-guide.md">组件开发指南</a></li><li><a href="bundles/bundles-demo.md">组件开发示例</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul957919379156"></a><a name="ul957919379156"></a><ul id="ul957919379156"><li><a href="bundles/oem_bundle_standard_des.md">Bundle开发规范</a></li><li><a href="bundles/bundles-guide.md">Bundle开发指南</a></li><li><a href="bundles/bundles-demo.md">Bundle开发示例</a></li></ul>
 </td>
 </tr>
 <tr id="row260193701512"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p95794372155"><a name="p95794372155"></a><a name="p95794372155"></a>参考</p>
@@ -156,11 +156,11 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 <td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul14724164204819"></a><a name="ul14724164204819"></a><ul id="ul14724164204819"><li><a href="porting/transplant-thirdparty.md">三方库移植指导</a></li><li><a href="porting/standard-system-porting-guide.md">标准系统芯片移植指导</a></li></ul>
 </td>
 </tr>
-<tr id="row869853125119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p3691530511"><a name="p3691530511"></a><a name="p3691530511"></a>贡献组件</p>
+<tr id="row869853125119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p3691530511"><a name="p3691530511"></a><a name="p3691530511"></a>贡献Bundle</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1469115335113"><a name="p1469115335113"></a><a name="p1469115335113"></a>为<span id="text6691253155112"><a name="text6691253155112"></a><a name="text6691253155112"></a>OpenHarmony</span>贡献功能组件</p>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1469115335113"><a name="p1469115335113"></a><a name="p1469115335113"></a>为<span id="text6691253155112"><a name="text6691253155112"></a><a name="text6691253155112"></a>OpenHarmony</span>贡献Bundle</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul87045395116"></a><a name="ul87045395116"></a><ul id="ul87045395116"><li><a href="bundles/oem_bundle_standard_des.md">组件开发规范</a></li><li><a href="bundles/bundles-guide.md">组件开发指南</a></li><li><a href="bundles/bundles-demo.md">组件开发示例</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul87045395116"></a><a name="ul87045395116"></a><ul id="ul87045395116"><li><a href="bundles/oem_bundle_standard_des.md">Bundle开发规范</a></li><li><a href="bundles/bundles-guide.md">Bundle开发指南</a></li><li><a href="bundles/bundles-demo.md">Bundle开发示例</a></li></ul>
 </td>
 </tr>
 <tr id="row1170153125110"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p16701253195118"><a name="p16701253195118"></a><a name="p16701253195118"></a>参考</p>
