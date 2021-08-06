@@ -1,4 +1,4 @@
-# HPM Bundle开发指南
+# Bundle开发指南
 
 - [开发规范](oem_bundle_standard_des.md)
 - [开发指南](bundles-guide.md)
