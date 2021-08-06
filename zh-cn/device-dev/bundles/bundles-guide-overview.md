@@ -1,54 +1,41 @@
 # 概述<a name="ZH-CN_TOPIC_0000001051452100"></a>
 
-本章节将简要介绍如何开发OpenHarmony组件和发行版，并通过命令行工具方式完成组件创建、开发、编译、烧录、调试等开发过程。
+-   [Bundle](#section196713235514)
+-   [Distribution](#section155387501033)
 
--   一个组件（bundle）通常和一个代码仓库对应，在代码的基础上增加bundle.json、README文件、LICENSE描述文件。
--   一个发行版（distribution）是由多个组件构成的。发行版中集合了一个完整系统的各种组件（如驱动、内核、框架、应用），可以用于设备的烧录。
+本章节将介绍OpenHarmony中的Bundle相关概念以及如何定义Bundle，并以一个示例说明如何使用hpm命令行工具完成Bundle的创建、开发、编译、发布、安装使用的全过程。
 
-**表 1**  组件和发行版的差异对比
+## Bundle<a name="section196713235514"></a>
 
-<a name="table6287133615412"></a>
-<table><thead align="left"><tr id="row17288183614415"><th class="cellrowborder" valign="top" width="16.24162416241624%" id="mcps1.2.4.1.1"><p id="p528818361545"><a name="p528818361545"></a><a name="p528818361545"></a>异同点</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.31333133313331%" id="mcps1.2.4.1.2"><p id="p1288836247"><a name="p1288836247"></a><a name="p1288836247"></a>组件</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.44504450445044%" id="mcps1.2.4.1.3"><p id="p112885362418"><a name="p112885362418"></a><a name="p112885362418"></a>发行版</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1728813361848"><td class="cellrowborder" valign="top" width="16.24162416241624%" headers="mcps1.2.4.1.1 "><p id="p2010613564815"><a name="p2010613564815"></a><a name="p2010613564815"></a>应用场景</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.31333133313331%" headers="mcps1.2.4.1.2 "><p id="p1910555184818"><a name="p1910555184818"></a><a name="p1910555184818"></a>面向功能特性开发</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.44504450445044%" headers="mcps1.2.4.1.3 "><p id="p13871955484"><a name="p13871955484"></a><a name="p13871955484"></a>面向系统开发</p>
-</td>
-</tr>
-<tr id="row676745614472"><td class="cellrowborder" valign="top" width="16.24162416241624%" headers="mcps1.2.4.1.1 "><p id="p1028816365414"><a name="p1028816365414"></a><a name="p1028816365414"></a>内容</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.31333133313331%" headers="mcps1.2.4.1.2 "><p id="p428812361042"><a name="p428812361042"></a><a name="p428812361042"></a>功能或特性的实现代码或二进制库</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.44504450445044%" headers="mcps1.2.4.1.3 "><p id="p328817366417"><a name="p328817366417"></a><a name="p328817366417"></a>依赖的组件清单及编译构建脚本</p>
-</td>
-</tr>
-<tr id="row95114356"><td class="cellrowborder" valign="top" width="16.24162416241624%" headers="mcps1.2.4.1.1 "><p id="p184894513517"><a name="p184894513517"></a><a name="p184894513517"></a>完整程度</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.31333133313331%" headers="mcps1.2.4.1.2 "><p id="p1951741155"><a name="p1951741155"></a><a name="p1951741155"></a>操作系统的一部分</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.44504450445044%" headers="mcps1.2.4.1.3 "><p id="p20521542512"><a name="p20521542512"></a><a name="p20521542512"></a>一个完整操作系统版本</p>
-</td>
-</tr>
-<tr id="row13581419518"><td class="cellrowborder" valign="top" width="16.24162416241624%" headers="mcps1.2.4.1.1 "><p id="p859171059"><a name="p859171059"></a><a name="p859171059"></a>编译后结果</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.31333133313331%" headers="mcps1.2.4.1.2 "><p id="p259201355"><a name="p259201355"></a><a name="p259201355"></a>组件包</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.44504450445044%" headers="mcps1.2.4.1.3 "><p id="p459414519"><a name="p459414519"></a><a name="p459414519"></a>系统镜像</p>
-</td>
-</tr>
-</tbody>
-</table>
+Bundle是OpenHarmony中一个用来表示分发单元的术语，等同于包，一个Bundle中通常包含以下内容：
 
-**图 1**  组件和发行版的构成<a name="fig85033524124"></a>  
+-   被分发的二进制文件（二进制类型）
+-   被分发的源代码文件（源代码/代码片段类型）
+-   编译脚本（发行版类型需要）
+-   自身的说明文件
+    -   bundle.json：元数据声明（名称，版本，依赖等）
+    -   LICENSE：许可协议文本
+    -   README.md：自述文件
+    -   CHANGELOG.md：变更日志（可选）
 
 
-![](figure/组件0924.png)
+>![](../public_sys-resources/icon-note.gif) **说明：** 
+>Bundle的类型可以分为二进制，源代码，代码片段，模板，插件，发行版等。一个Bundle可以依赖其他的Bundles，依赖关系为有向无环图
+
+一个Bundle被发布到HPM服务器（https://hpm.harmonyos.com）后，另外一些开发者就可以通过hpm包管理器下载安装使用 。
+
+一个Bundle在命名空间内拥有唯一的名称（命名格式为：@scope/name），可以进行独立的版本演进。
+
+## Distribution<a name="section155387501033"></a>
+
+Distribution是OpenHarmony的发行版，是一个完整的操作系统版本，集合了各种Bundle（驱动，内核，框架，应用等），也通过Bundle在HPM平台分发。
+
+>![](../public_sys-resources/icon-note.gif) **说明：** 
+>发行版的元数据中仅描述了依赖的Bundles以及如何编译该发行版的编译脚本，并不包含发行版的二进制镜像。下载发行版后，需要在本地将依赖的Bundles下载下来，安装编译后才能得到可用于烧录的系统镜像文件。
+>发行版可以继承，即在一个既有的发行版的基础上，通过增加/删除Bundle形成新的发行版，以实现发行版的定制。
+
+**图 1**  组Bundle和Distribution的关系<a name="fig85033524124"></a>  
+
+
+![](figure/组件和发行版的构成-英文.png)
 
