@@ -1,21 +1,12 @@
-# 准备工作<a name="ZH-CN_TOPIC_0000001051770836"></a>
+# 安装hpm命令行工具<a name="ZH-CN_TOPIC_0000001051770836"></a>
 
--   [硬件要求](#section98535485518)
--   [安装Node.js和hpm命令行工具](#section106591616205311)
--   [更改hpm的配置（可选）](#section71821165412)
--   [下载OpenHarmony代码](#section102338221707)
--   [安装开发依赖的组件](#section19233183315020)
+-   [安装](#section14480912380)
+-   [配置hpm（可选）](#section138983413013)
+-   [下载OpenHarmony代码](#section669905815300)
 
-## 硬件要求<a name="section98535485518"></a>
+要进行Bundle的开发，需要安装包管理器hpm（HarmonyOS Package Manager），这是一个基于Node.js开发的跨平台的命令行工具，所以要运行hpm，需要先安装Node.js，然后可以npm 来安装hpm。
 
--   准备设备开发的开发板（如Hi3861、Hi3516DV300、Hi3518EV300）
--   主机电脑（Windows工作台）
--   Linux服务器
-
-**图 1**  硬件环境连接关系<a name="fig113816181847"></a>  
-![](figure/硬件环境连接关系.png "硬件环境连接关系")
-
-## 安装Node.js和hpm命令行工具<a name="section106591616205311"></a>
+## 安装<a name="section14480912380"></a>
 
 1.  安装Node.js。
 
@@ -42,43 +33,41 @@
     ```
 
 
-## 更改hpm的配置（可选）<a name="section71821165412"></a>
+## 配置hpm（可选）<a name="section138983413013"></a>
 
-安装完hpm-cli命令行工具后，执行以下命令可以查看hpm配置：
+安装完hpm-cli命令行工具后，如果需要更改配置信息（如代理，shell），执行以下命令可以查看hpm配置：
 
 ```
 hpm config
 ```
 
-上述命令执行后将会显示hpm的默认配置，您可以根据自己的喜好对默认配置进行修改，以下是hpm的常用配置：
+上述命令执行后将会显示hpm的默认配置，您可以根据自己需要对默认配置进行修改，以下是hpm的常用配置：
 
 ```
-registry = https://hpm.harmonyos.com/hpm/registry/api              # hpm注册中心地址，下载组件必须
-login = https://hpm.harmonyos.com/hpm/auth/pk                      # hpm处理登录地址，发布组件必须
-loginUser = {your-account}                                         # 配置hpm登录账号，发布组件必须
-shellPath = C:\WINDOWS\System32\cmd.exe                            # hpm命令执行使用的shell
-globalRepo = C:\Users\yourname\.global                             # 配置全局安装的组件存放路径
-http_proxy = http://your-proxy-server:port                         # 配置HTTP代理
-https_proxy = http://your-proxy-server:port                        # 配置HTTPS代理
+registry = https://hpm.harmonyos.com
+### login Settings
+# loginUser = invitation_code
+
+#### Path Settings
+shellPath = C:\WINDOWS\System32\cmd.exe
+# shellPath = C:\Program Files\Git\bin\sh.exe
+# globalRepo = C:\Users\username\.hpm\global
+
+#### Network Settings
+# no_proxy = *.server.com
+# http_proxy = http://user:pwd@proxy_server:port
+# https_proxy = http://user:pwd@proxy_server:port
+# strictSsl = true
+
+#### Other Settings
+# privateSupport = true|false
+# ignoreBundles = @ohos/llvm,@ohos/gn,
+# OSPlatform = Auto|linux|darwin|win32
 ```
 
 hpm-cli的命令介绍可以参考：[hpm操作命令](bundles-guide-overview.md)
 
-## 下载OpenHarmony代码<a name="section102338221707"></a>
+## 下载OpenHarmony代码<a name="section669905815300"></a>
 
 参考[《源码获取》](../get-code/sourcecode-acquire.md)。
-
-## 安装开发依赖的组件<a name="section19233183315020"></a>
-
-hpm包管理器将常用开发开发工具（如烧录，编译，压缩等）也发布成了组件。可以通过如下命令方式进行安装，执行完该命令后，系统会自动将开发依赖的工具下载安装，且这些组件只需全局安装一次。
-
-```
-hpm i -g @ohos/llvm
-hpm i -g @ohos/ninja
-hpm i -g @ohos/gn
-hpm i -g @ohos/hc_gen
-hpm i -g @ohos/sysroot
-```
-
-这是一组开发工具的组件包（如包含gn，ninja等工具），有了这些开发态的组件，就可以进行常规的源码组件的开发了。
 
