@@ -1,5 +1,16 @@
 # FAQ<a name="ZH-CN_TOPIC_0000001053622377"></a>
 
+[多个代码仓存在编译依赖时如何同时发起构建](#section169732563435)
+
+[ `Sign-off-by`相关操作](#section-sign-off)
+
+[DCO校验异常处理](#section-dco)
+
+[回退提交](#section479422315253)
+
+[处理冲突](#section94417232274)
+
+
 ## 多个代码仓存在编译依赖时如何同时发起构建<a name="section169732563435"></a>
 
 OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编译依赖关系，需要同时构建、同时合入。为此码云平台将Issue作为具有编译依赖的多个代码仓提交PR的关联标识。具体操作如下：
@@ -10,7 +21,7 @@ OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编�
 
 3. 触发构建\(详见触发构建的操作帮助\)后，构建中心会识别关联了同一Issue的PR，同时下载构建，并在代码审核通过后，同时进行合并入代码库。
 
-## `Sign-off-by`相关操作
+## `Sign-off-by`相关操作<a name="section-sign-off"></a>
 
 ### 如何在Commit中添加signoff记录
 
@@ -22,7 +33,7 @@ OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编�
 
 关于commit更多选项，请参考：[https://](https://git-scm.com/docs/git-commit)[git-scm.com/docs/git-commit](https://git-scm.com/docs/git-commit)
 
-## DCO校验异常处理
+## DCO校验异常处理<a name="section-dco"></a>
 
 开发者提交Pull Request后，评论`start build`会触发门禁校验：
 
