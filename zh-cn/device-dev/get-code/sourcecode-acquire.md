@@ -107,7 +107,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     repo forall -c 'git lfs pull'
     ```
 
--   OpenHarmony其他版本源码获取方式请参考版本[Release-Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-Release-Notes.md)。
+-   OpenHarmony其他版本源码获取方式请参考版本[Release-Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/Readme.md)。
 
 ## 获取方式2：从HPM获取<a name="section463013147412"></a>
 
@@ -194,7 +194,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 为了获得更好的下载性能，您可以选择从以下站点的镜像库获取源码或者对应的解决方案。
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
->-   本部分只提供OpenHarmony Master最新版本和LTS最新版本的源码获取方式， 其他版本源码获取方式以及具体版本信息请参考[Release-Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-Release-Notes.md)
+>-   本部分只提供OpenHarmony Master最新版本和LTS最新版本的源码获取方式， 其他版本源码获取方式以及具体版本信息请参考[Release-Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/Readme.md)
 >-   当前Master 1.0版本已经不再维护。
 
 **表 1**  源码获取路径
