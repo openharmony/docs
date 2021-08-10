@@ -16,13 +16,13 @@
     -   [Repositories Involved](#section11578621131119)
 
 
-The Graphics subsystem mainly consists of user interface \(UI\) components, layout, animator, font, input event, window management, and rendering and drawing modules. It is an application framework that can be built on the LiteOS to develop HarmonyOSOpenHarmony applications for Internet of Things \(IoT\) devices with limited hardware resources or on the standard OS to develop HarmonyOSOpenHarmony applications for standard- and large-system devices \(for example, tablet and lite smart devices\).
+The Graphics subsystem mainly consists of user interface \(UI\) components, layout, animator, font, input event, window management, and rendering and drawing modules. It is an application framework that can be built on the LiteOS to develop OpenHarmony applications for Internet of Things \(IoT\) devices with limited hardware resources or on the standard OS to develop OpenHarmony applications for standard- and large-system devices \(for example, tablet and lite smart devices\).
 
 ## 1.1 Mini System<a name="section1346303311377"></a>
 
 ### Introduction<a name="section1165992615384"></a>
 
-The Graphics subsystem mainly consists of user interface \(UI\) components, layout, animator, font, input event, window management, and rendering and drawing modules. It is an application framework that can be built on the LiteOS to develop HarmonyOSOpenHarmony applications for Internet of Things \(IoT\) devices with limited hardware resources.
+The Graphics subsystem mainly consists of user interface \(UI\) components, layout, animator, font, input event, window management, and rendering and drawing modules. It is an application framework that can be built on the LiteOS to develop OpenHarmony applications for Internet of Things \(IoT\) devices with limited hardware resources.
 
 **Figure  1**  Graphics subsystem architecture<a name="fig16488143010409"></a>  
 ![](figures/graphics-subsystem-architecture.png "graphics-subsystem-architecture")
