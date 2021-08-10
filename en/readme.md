@@ -66,7 +66,7 @@ This project stores OpenHarmony documentation, including the quick start guide, 
 
 ## Version Change History
 
-For details, see  [Release Notes](release-notes/OpenHarmony-Release-Notes.md).
+For details, see  [Release Notes](release-notes/Readme.md).
 
 ## Third-Party Open-Source Software and License Notice
 
