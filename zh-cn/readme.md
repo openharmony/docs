@@ -69,7 +69,7 @@
 
 ## **版本更新**<a name="section945819377382"></a>
 
-参考[Release Notes](release-notes/OpenHarmony-Release-Notes.md)。
+参考[Release Notes](release-notes/Readme.md)。
 
 ## **第三方开源软件及许可说明**<a name="section840310516385"></a>
 
