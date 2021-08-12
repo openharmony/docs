@@ -23,7 +23,7 @@
 
         -   porting：移植适配
             -   [三方库移植指导](device-dev/porting/transplant-thirdparty.md)
-            -   [轻量系统芯片移植指导](device-dev/porting/transplant-smallchip.md)
+            -   [轻量系统芯片移植指导](device-dev/porting/transplant-minichip.md)
             -   [小型系统芯片移植指导](device-dev/porting/transplant-smallchip.md)
 
         -   bundles：Bundle开发
