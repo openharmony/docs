@@ -20,7 +20,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 进入DevEco Studio安装目录的**Sdk\\toolchains\\lib**文件夹下（该SDK目录只能是OpenHarmony SDK，配置方法可参考[配置OpenHarmony SDK](配置OpenHarmony-SDK.md)），打开命令行工具，执行如下命令（如果keytool命令不能执行，请在系统环境变量中添加JDK的环境变量）。其中，只需要修改输入和输出即可快速生成证书文件，即修改**-infile**指定证书请求文件csr文件路径，**-outfile**指定输出证书文件名及路径。
 
 ```
-keytool -gencert -alias "OpenHarmony Application CA" -infile app.csr -outfile IDE.cer -keystore OpenHarmony.p12 -sigalg SHA384withECDSA -storepass 123456 -ext KeyUsage:"critical=digitalSignature" -validity  3650 -rfc
+keytool -gencert -alias "OpenHarmony Application CA" -infile myApplication_debug.csr -outfile myApplication_debug.cer -keystore OpenHarmony.p12 -sigalg SHA384withECDSA -storepass 123456 -ext KeyUsage:"critical=digitalSignature" -validity  3650 -rfc
 ```
 
 关于该命令的参数说明如下：
@@ -42,7 +42,7 @@ Profile文件包含OpenHarmony应用的包名、数字证书信息、描述应�
 进入**Sdk\\toolchains\\lib**目录下，打开命令行工具，执行如下命令。
 
 ```
-java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --out SgnedReleasedProfileTemplate.p7b --keystore OpenHarmony.p12 --storepass 123456 --alias "OpenHarmony Application Profile Release" --sigAlg SHA256withECDSA --cert OpenHarmonyProfileRelease.pem --validity 365 --developer-id ohosdeveloper --bundle-name 包名 --permission 受限权限名（可选） --permission 受限权限名（可选） --distribution-certificate IDE.cer
+java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --out myApplication_debug_Provision.p7b --keystore OpenHarmony.p12 --storepass 123456 --alias "OpenHarmony Application Profile Release" --sigAlg SHA256withECDSA --cert OpenHarmonyProfileRelease.pem --validity 365 --developer-id ohosdeveloper --bundle-name 包名 --permission 受限权限名（可选） --permission 受限权限名（可选） --distribution-certificate IDE.cer
 ```
 
 关于该命令的参数说明如下：
@@ -72,8 +72,8 @@ java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --o
 -   **Key Alias**：输入密钥的别名信息，与[生成密钥和证书请求文件](#section153146467405)中填写的别名保持一致。
 -   **Key Password**：输入密钥的密码，与**Store Password**保持一致。
 -   **Sign Alg**：签名算法，固定为SHA256withECDSA。
--   **Profile File**：选择申请的调试Profile文件，文件后缀为.p7b。
--   **Certpath File**：选择申请的调试数字证书文件，文件后缀为.cer。
+-   **Profile File**：选择[生成应用Profile文件](#section2048641015325)中生产的Profile文件，文件后缀为.p7b。
+-   **Certpath File**：选择[生成应用证书文件](#section136609429562)中生成的数字证书文件，文件后缀为.cer。
 
 ![](figures/zh-cn_image_0000001117638220.png)
 
