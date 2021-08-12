@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Huawei Device Co., Ltd.
+﻿# Copyright (c) 2020 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -32,6 +32,8 @@ prebuilts,https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-g
 prebuilts/gcc/linux-x86/arm,https://repo.huaweicloud.com/harmonyos/compiler/prebuilts_gcc_linux-x86_arm_gcc-linaro-7.5.0-arm-linux-gnueabi/1.0/prebuilts_gcc_linux-x86_arm_gcc-linaro-7.5.0-arm-linux-gnueabi.tar.gz
 prebuilts/clang/host,https://repo.huaweicloud.com/harmonyos/compiler/prebuilts_clang_aosp_linux-x86_64/1.0/prebuilts_clang_aosp_linux-x86_64.tar.gz
 prebuilts/sdk/js-loader/build-tools,https://repo.huaweicloud.com/harmonyos/compiler/ace-loader/1.0/ace-loader.tar.gz
+prebuilts/clang/ohos/linux-x86_64,https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz
+prebuilts/build-tools/common,https://repo.huaweicloud.com/harmonyos/compiler/restool/1.023-c/restool.tar.gz
 """
 if [ ! -d "${bin_dir}" ];then
     mkdir -p "${bin_dir}"

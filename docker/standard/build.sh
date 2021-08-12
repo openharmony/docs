@@ -13,4 +13,4 @@
 
 
 #!/bin/sh
-docker build -t openharmony-docker-standard:0.0.1 .
+docker build -t openharmony-docker-standard:0.0.2 .
