@@ -68,14 +68,13 @@ The interfaces shown in the figure are described as follows:
 
         Generally, the touchscreen driver IC is separated from the LCD driver IC. In this case, the touchscreen driver IC requires both 1.8 V and 3.3 V power supplies. Nowadays, the touchscreen driver IC and LCD driver IC can be integrated. Therefore, the touchscreen, requires only the 1.8 V power supply, and the 3.3 V power required internally is supplied by the LCD VSP power \(typical value: 5.5 V\) in the driver IC.
 
-
 2.  **I/O control interfaces**
     -   RESET: reset pin, which is used to reset the driver IC on the host when suspending or resuming the system.
     -   INT: interrupt pin, which needs to be set to the input direction and pull-up status during driver initialization. After detecting an external touch signal, the driver triggers the interrupt by operating the interrupt pin. The driver reads the touch reporting data in the ISR function.
 
 3.  **Communications interfaces**
-    -   I2C: Since only a small amount of touch data is reported by the touchscreen, I2C is used to transmit the reported data. For details about the I2C protocol and interfaces, see  [I2C](drive-platform-i2c-des.md#section1695201514281).
-    -   SPI: In addition to touch reporting data coordinates, some vendors need to obtain basic capacitance data. Therefore, Serial Peripheral Interface \(SPI\) is used to transmit such huge amount of data. For details about the SPI protocol and interfaces, see  [SPI](drive-platform-spi-des.md#section71363452477).
+    -   I2C: Since only a small amount of touch data is reported by the touchscreen, I2C is used to transmit the reported data. For details about the I2C protocol and interfaces, see  [I2C](driver-platform-i2c-des.md#section1695201514281).
+    -   SPI: In addition to touch reporting data coordinates, some vendors need to obtain basic capacitance data. Therefore, Serial Peripheral Interface \(SPI\) is used to transmit such huge amount of data. For details about the SPI protocol and interfaces, see  [SPI](driver-platform-spi-des.md#section71363452477).
 
 
 ## Development Guidelines<a name="section65745222184"></a>
@@ -109,7 +108,7 @@ Regardless of the OS and system on a chip \(SoC\), the input driver is developed
 
 3.  Implement differentiated adaptation APIs of the touchscreen.
 
-    Use the platform APIs to perform operations for the reset pins, interrupt pins, and power based on the communications interfaces designed for boards. For details about the GPIO-related operations, see  [GPIO](drive-platform-gpio-des.md#section259614242196).
+    Use the platform APIs to perform operations for the reset pins, interrupt pins, and power based on the communications interfaces designed for boards. For details about the GPIO-related operations, see  [GPIO](driver-platform-gpio-des.md#section259614242196).
 
 
 ## Development Example<a name="section263714411191"></a>

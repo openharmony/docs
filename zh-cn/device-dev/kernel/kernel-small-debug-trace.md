@@ -83,7 +83,7 @@ OpenHarmony LiteOS-A内核的Trace框架提供下面几种功能，接口详细�
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p481141115110"><a name="p481141115110"></a><a name="p481141115110"></a>LOS_TraceBufDataGet</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p131851813173314"><a name="p131851813173314"></a><a name="p131851813173314"></a>Trace数据获取到堆缓存（缓存空间内部申请，使用完需显示释放）</p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p131851813173314"><a name="p131851813173314"></a><a name="p131851813173314"></a>Trace数据获取到堆缓存（缓存空间内部申请，使用完需显式释放）</p>
 </td>
 </tr>
 <tr id="row10185131373310"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p31851139333"><a name="p31851139333"></a><a name="p31851139333"></a>LOS_Trace2File</p>

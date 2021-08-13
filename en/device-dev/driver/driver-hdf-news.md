@@ -49,7 +49,7 @@ The message mechanism provides the following features:
 
 ## How to Develop<a name="section946912121153"></a>
 
-1.  Set the value of the  **policy**  field in the driver configuration information to  **2**  \(SERVICE\_POLICY\_CAPACITY, see  [Driver Service Management](drive-hdf-servicemanage.md)\).
+1.  Set the value of the  **policy**  field in the driver configuration information to  **2**  \(SERVICE\_POLICY\_CAPACITY, see  [Driver Service Management](driver-hdf-servicemanage.md)\).
 
     ```
     device_sample :: Device {

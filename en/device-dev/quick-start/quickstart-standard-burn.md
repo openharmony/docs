@@ -32,7 +32,7 @@ The Hi3516DV300 supports programming through the network port in Windows or Linu
 
 3.  Open DevEco Device Tool and go to  **Projects**  \>  **Settings**.
 
-    ![](figure/2021-01-27_170334-17.png)
+    ![](figure/2021-01-27_170334-18.png)
 
 4.  On the  **Partition Configuration**  tab page, enter the information about the files to be programmed, including the following.
 
@@ -186,7 +186,7 @@ The Hi3516DV300 supports programming through the network port in Windows or Linu
     ![](figure/en-us_image_0000001117463460.png)
 
 8.  When you finish modifying, click  **Save**  in the upper right corner.
-9.  Open the project file, go to  ![](figure/2021-01-27_170334-18.png)  \>  **PROJECT TASKS**  \>  **fastboot**  \>  **Erase**  to erase U-boot.
+9.  Open the project file, go to  ![](figure/2021-01-27_170334-19.png)  \>  **PROJECT TASKS**  \>  **fastboot**  \>  **Erase**  to erase U-boot.
 
     ![](figure/en-us_image_0000001163045527.png)
 
@@ -201,5 +201,5 @@ The Hi3516DV300 supports programming through the network port in Windows or Linu
 
 ## Next<a name="section5600113114323"></a>
 
-Congratulations! You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a  [Development Example for Clock App](../guide/oem_device_clockapp_des.md).
+Congratulations! You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a  [Development Example for Clock App](../guide/device-clock-guide.md).
 

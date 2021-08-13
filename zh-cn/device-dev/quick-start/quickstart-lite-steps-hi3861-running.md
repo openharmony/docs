@@ -155,5 +155,5 @@ wifi init success!
 
 ## 下一步学习<a name="section9712145420182"></a>
 
-恭喜，您已完成Hi3861 WLAN模组快速上手！建议您下一步进入[WLAN产品开发](../guide/device-wifi.md)的学习 。
+恭喜，您已完成Hi3861 WLAN模组快速上手！建议您下一步进入[WLAN产品开发](../guide/device-wlan.md)的学习 。
 

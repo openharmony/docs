@@ -142,19 +142,16 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
         sudo pip3 install kconfiglib
         ```
 
-
     -   **Installation package:**
         1.  Download the  **.whl**  file \(for example,  **kconfiglib-13.2.0-py2.py3-none-any.whl**\).
 
             Download path:  [https://pypi.org/project/kconfiglib\#files](https://pypi.org/project/kconfiglib#files)
-
 
         1.  Install the  **.whl**  file.
 
             ```
             sudo pip3 install kconfiglib-13.2.0-py2.py3-none-any.whl
             ```
-
 
 
 3.  Install  **PyCryptodome**  using either of the following methods:
@@ -172,13 +169,11 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 
             Download path:  [https://pypi.org/project/pycryptodome/\#files](https://pypi.org/project/pycryptodome/#files)
 
-
         1.  Install the  **.whl**  file.
 
             ```
             sudo pip3 install pycryptodome-3.9.9-cp38-cp38-manylinux1_x86_64.whl
             ```
-
 
 
 4.  Install  **six**  using either of the following methods:
@@ -188,19 +183,16 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
         sudo pip3 install six --upgrade --ignore-installed six
         ```
 
-
     -   **Installation package:**
         1.  Download the  **.whl**  file, for example,  **six-1.12.0-py2.py3-none-any.whl**.
 
             Download path:  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files)
-
 
         1.  Install the  **.whl**  file.
 
             ```
             sudo pip3 install six-1.12.0-py2.py3-none-any.whl
             ```
-
 
 
 5.  Install  **ecdsa**  using either of the following methods:
@@ -214,7 +206,6 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
         1.  Download the  **.whl**  file, for example,  **ecdsa-0.14.1-py2.py3-none-any.whl**.
 
             Download path:  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files)
-
 
         1.  Install the  **.whl**  file.
 

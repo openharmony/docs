@@ -22,7 +22,7 @@
 
 ## Overview<a name="section86753818426"></a>
 
-This document describes how to develop a touchscreen driver on the Hi3516D V300 development board using the HDF input driver model, helping you quickly get started with  peripheral driver development.
+This document describes how to develop a touchscreen driver on the Hi3516D V300 development board using the HDF input driver model, helping you quickly get started with OpenHarmony peripheral driver development.
 
 ### Hardware Resources<a name="section123071189431"></a>
 
@@ -40,7 +40,7 @@ The input driver model mainly consists of the device manager, common drivers, an
 
 In addition, the input driver model implements functions for reporting input data and parsing input device configurations.
 
-For details about the input driver model, see  [Touchscreen Overview](../driver/drive-peripherals-touch-des.md#section175431838101617).
+For details about the input driver model, see  [Touchscreen Overview](../driver/driver-peripherals-touch-des.md#section175431838101617).
 
 ## Setting Up the Environment<a name="section661075474418"></a>
 

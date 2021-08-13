@@ -396,7 +396,6 @@ The key directories and files are described as follows:
         -   $\{root\_path\}
         -   $\{fs\_dir\_name\}
 
-
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
     >**fs.yml**  is optional and does not need to be configured for devices without a file system.
 

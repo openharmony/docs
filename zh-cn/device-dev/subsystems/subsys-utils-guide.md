@@ -237,7 +237,6 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
         }
         ```
 
-
     -   生成hap包。
 
         -   按照如下目录结构存放文件，res/drawable下面放置资源文件：
@@ -245,7 +244,6 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
         ![](figure/unnaming.png)
 
         -   将上述文件打包生成zip包，修改后缀为.hap，例如Launcher.hap
-
 
 2.  连接单板，通过串口向单板发送安装KV存储native应用的命令。
 

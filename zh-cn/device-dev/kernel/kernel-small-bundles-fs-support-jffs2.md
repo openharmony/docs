@@ -30,7 +30,7 @@ OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读�
 
 **制作JFFS2文件系统镜像**
 
-使用mkfs.jffs2工具，制作镜像默认命令见下。页大小默认为4KiB，eraseblock大小默认64KiB，镜像大小适应源目录并以0xFF填充为eraseblock大小的整数倍。若实际参数与下面不同时，修改相应参数。
+使用mkfs.jffs2工具，制作镜像默认命令如下。页大小默认为4KiB，eraseblock大小默认64KiB。若实际参数与下面不同时，修改相应参数。
 
 ```
 ./mkfs.jffs2 -d rootfs/ -o rootfs.jffs2
@@ -57,7 +57,7 @@ OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读�
 </tr>
 <tr id="row1160020211719"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p83861361079"><a name="p83861361079"></a><a name="p83861361079"></a>-p</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p538612361575"><a name="p538612361575"></a><a name="p538612361575"></a>镜像大小，不指定默认适应源目录并以0xFF填充为eraseblock大小的整数倍</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1491185544517"><a name="p1491185544517"></a><a name="p1491185544517"></a>镜像大小。在镜像文件后面，用0xFF填充至指定大小，不指定则用0xFF填充至eraseblock对齐。</p>
 </td>
 </tr>
 <tr id="row151563245714"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p183864361579"><a name="p183864361579"></a><a name="p183864361579"></a>-d</p>

@@ -37,14 +37,14 @@ free \[_-k | -m_\]
 </tr>
 <tr id="row130mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p132mcpsimp"><a name="p132mcpsimp"></a><a name="p132mcpsimp"></a>-k</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p134mcpsimp"><a name="p134mcpsimp"></a><a name="p134mcpsimp"></a>以KB为单位显示。</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p134mcpsimp"><a name="p134mcpsimp"></a><a name="p134mcpsimp"></a>以KiB为单位显示。</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p136mcpsimp"><a name="p136mcpsimp"></a><a name="p136mcpsimp"></a>N/A</p>
 </td>
 </tr>
 <tr id="row137mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p139mcpsimp"><a name="p139mcpsimp"></a><a name="p139mcpsimp"></a>-m</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p141mcpsimp"><a name="p141mcpsimp"></a><a name="p141mcpsimp"></a>以MB为单位显示。</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p141mcpsimp"><a name="p141mcpsimp"></a><a name="p141mcpsimp"></a>以MiB为单位显示。</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p143mcpsimp"><a name="p143mcpsimp"></a><a name="p143mcpsimp"></a>N/A</p>
 </td>

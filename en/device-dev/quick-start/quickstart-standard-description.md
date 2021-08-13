@@ -22,7 +22,7 @@ Hi3516D V300 is a next-generation system on chip \(SoC\) designed for the indust
 **Figure  2**  Hi3516D V300 front view<a name="en-us_topic_0000001053666242_fig11402183715219"></a>  
 
 
-![](figure/3516正面.png)
+![](figure/3516正面-17.png)
 
 ## Development Board Specifications<a name="en-us_topic_0000001053666242_section15192203316533"></a>
 

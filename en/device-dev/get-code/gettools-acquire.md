@@ -180,13 +180,13 @@ hb set
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.2
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.1
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.2
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.1
     ```
 
 
@@ -208,7 +208,7 @@ hb set
 3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.2
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.1
     ```
 
 
@@ -287,9 +287,8 @@ Start building. Docker can be automatically installed only in Ubuntu. If you are
         hpm run docker
         ```
 
-
     This example uses the  **@ohos/hispark\_taurus**  solution for illustration. If the execution is successful, the output is as follows:
-    
+
     ```
     ...
     ohos ipcamera_hispark_taurus build success!

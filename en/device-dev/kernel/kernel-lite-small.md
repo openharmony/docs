@@ -1,11 +1,15 @@
 # Kernel for Small Systems<a name="EN-US_TOPIC_0000001171191693"></a>
 
--   **[Basic Kernel](kernel-lite-small-basic.md)**  
+-   **[Kernel Overview](kernel-small-overview.md)**  
 
--   **[File System](kernel-lite-small-file.md)**  
+-   **[Kernel Startup](kernel-small-start.md)**  
 
--   **[Standard Library](kernel-lite-small-lib.md)**  
+-   **[Basic Kernel](kernel-small-basics.md)**  
 
--   **[Commissioning](kernel-lite-small-shell.md)**  
+-   **[Extension Components](kernel-small-bundles.md)**  
+
+-   **[Debugging and Tools](kernel-small-debug.md)**  
+
+-   **[Appendix](kernel-small-apx.md)**  
 
 

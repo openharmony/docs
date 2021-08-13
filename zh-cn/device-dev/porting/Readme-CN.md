@@ -21,12 +21,37 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 
 ## 开始移植你的开发板
 
-- [轻量级系统](transplant-minichip.md)
-- [小型系统](transplant-smallchip.md)
-- [标准系统](standard-system-porting-guide.md)
+- [轻量系统芯片移植指导](porting-minichip.md)
+  - [移植准备](porting-chip-prepare.md)
+    - [移植须知](oem_transplant_chip_prepare_knows.md)
+    - [编译构建适配流程](porting-chip-prepare-process.md)
+  - [内核移植](porting-chip-kernel.md)
+    - [移植概述](porting-chip-kernel-overview.md)
+    - [内核基础适配](porting-chip-kernel-adjustment.md)
+    - [内核移植验证](porting-chip-kernel-verify.md)
+  - [板级系统移植](porting-chip-board.md)
+    - [移植概述](porting-chip-board-overview.md)
+    - [板级驱动适配](porting-chip-board-driver.md)
+    - [HAL层实现](porting-chip-board-hal.md)
+    - [系统组件调用](porting-chip-board-component.md)
+    - [三方组件适配](porting-chip-board-bundle.md)
+    - [XTS认证](porting-chip-board-xts.md)
+  - [常见问题](porting-chip-faqs.md)
+- [小型系统芯片移植指导](porting-smallchip.md)
+  - [移植准备](porting-smallchip-prepare.md)
+    - [移植须知](porting-smallchip-prepare-needs.md)
+    - [编译构建](porting-smallchip-prepare-building.md)
+  - [移植内核](porting-smallchip-kernel.md)
+    - [LiteOS-A内核](porting-smallchip-kernel-a.md)
+    - [Linux内核](porting-smallchip-kernel-linux.md)
+  - [驱动移植](porting-smallchip-driver.md)
+    - [移植概述](porting-smallchip-driver-overview.md)
+    - [平台驱动移植](porting-smallchip-driver-plat.md)
+    - [器件驱动移植](porting-smallchip-driver-oom.md)
+- [标准系统移植指南](standard-system-porting-guide.md)
 
 # 三方库移植
 
-- [三方库移植指导](transplant-thirdparty.md)
-
-
+- [概述](porting-thirdparty-overview.md)
+- [CMake方式组织编译的库移植](porting-thirdparty-cmake.md)
+- [Makefile方式组织编译的库移植](porting-thirdparty-makefile.md)

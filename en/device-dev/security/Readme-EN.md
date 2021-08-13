@@ -1,5 +1,5 @@
 # Privacy and Security
 
-- [Privacy Protection](oem_security_privacy.md)
-- [Security Guidelines](safety-safeguide-security.md)
+- [Privacy Protection](security-privacy-protection.md)
+- [Security Guidelines](security-guidelines-overall.md)
 

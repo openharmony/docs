@@ -136,7 +136,6 @@ As shown in the figure, the Ability Manager Service is responsible for displayin
 
         -   ROM: greater than 300 KB \(for the JS application development framework and related subsystems, such as UIKit and engine\)
 
-
     -   Cortex-A RAM and ROM
 
         -   RAM: greater than 2 MB \(recommended\)

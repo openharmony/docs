@@ -9,7 +9,7 @@ HUAWEI DevEco Device Tool is a one-stop integrated development environment \(IDE
 
 The roadmap of Huawei DevEco Device Tool for supporting OpenHarmony device development is shown in the figure below.
 
-![](figure/3-22.png)
+![](figure/3-27.png)
 
 ## Acquiring the Application Development Tool \(HUAWEI DevEco Studio\)<a name="section0904101019258"></a>
 

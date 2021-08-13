@@ -466,7 +466,6 @@ The testing framework integrates the open-source unit testing framework and expa
         }
         ```
 
-
 6.  Create a resource configuration file for the test case to use static resources.
     1.  Create the  **resource**  directory in the  **test**  directory of a component or module.
     2.  Create a directory for a device type, for example,  **phone**, in the  **resource**  directory.
@@ -618,7 +617,6 @@ The code repository of the testing subsystem provides complete demo cases, which
         </device>
         ```
 
-
 3.  \(Optional\) Modify the Developertest configuration. If a test case has been compiled, specify the compilation output path of the test case. In this case the test platform will not recompile the test case.
 
     Modify the  **config/user\_config.xml**  file.
@@ -640,7 +638,6 @@ The code repository of the testing subsystem provides complete demo cases, which
         </NFS>
         ```
 
-
 4.  \(Optional\) Prepare the test environment. If devices to be tested support only serial ports, check whether the environment is ready:
     -   The system image and file system have been burnt into the development board and are running properly on it. For example, in system mode, if the device prompt  **OHOS\#**  when you log in with the shell, the system is running properly.
     -   The development host has been connected to the serial port of the development board and the network port.
@@ -661,14 +658,13 @@ The code repository of the testing subsystem provides complete demo cases, which
             ./start.sh
             ```
 
-
     -   Select a device type.
-    
+
         Configure the device type based on the development board in the configuration file, for example,  **developertest/config/framework\_config.xml**.
-    
+
     -   Run test commands.
         1.  To query the subsystems, modules, product form, and test types supported by test cases, run the  **show**  commands.
-    
+
             ```
             Usage: 
                 show productlist      Query supported product forms
@@ -676,15 +672,15 @@ The code repository of the testing subsystem provides complete demo cases, which
                 show subsystemlist    Query supported subsystems
                 show modulelist       Query supported modules
             ```
-    
+
         2.  Run test commands.  **-t**  is mandatory, and  **-ss**  and  **-tm**  are optional. The following is an example:
-    
+
             ```
             run -t ut -ss subsystem_examples -tm calculator
             ```
-    
+
         3.  Specify the arguments to execute the test suite for a specific feature or module.
-    
+
             ```
             usage: run [-h] [-p PRODUCTFORM] [-t [TESTTYPE [TESTTYPE ...]]]
                 [-ss SUBSYSTEM] [-tm TESTMODULE] [-ts TESTSUIT]
@@ -702,23 +698,21 @@ The code repository of the testing subsystem provides complete demo cases, which
                 -tl TESTLEVEL, --testlevel TESTLEVEL    Specify test level
             ```
 
-
     -   View the test framework help if needed.
-    
+
         Run the following command query test commands that are supported by the test platform:
-    
+
         ```
         help
         ```
-    
+
     -   Exit the test platform.
-    
+
         Run the following command to exit the test platform:
-    
+
         ```
         quit
         ```
-
 
 6.  View the test result and logs. The test logs and reports are generated in the  **developertest/reports**  directory after you run the test commands.
     -   The test result is displayed on the console. The root path of the test result is as follows:
@@ -751,9 +745,8 @@ The code repository of the testing subsystem provides complete demo cases, which
         details_report.html
         ```
 
-
     -   The log directory of the test platform is as follows:
-    
+
         ```
         reports/platform_log_xxxx-xx-xx-xx-xx-xx.log
         ```

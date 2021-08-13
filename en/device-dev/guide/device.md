@@ -6,7 +6,7 @@
 
 -   **[Cameras with a Screen](device-camera.md)**  
 
--   **[Development Guidelines on Clock Apps](oem_device_clockapp_des.md)**  
+-   **[Development Guidelines on Clock Apps](device-clock-guide.md)**  
 
 -   **[Development Example for Platform Drivers](device-driver-demo.md)**  
 

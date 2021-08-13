@@ -106,7 +106,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
     A controller manages 12 groups of GPIO pins. Each group contains 8 GPIO pins.
 
-    GPIO pin number = GPIO group index \(0-11\) x Number of GPIO pins in each group \(8\) + Offset in the group
+    GPIO pin number = GPIO group index \(0–11\) x Number of GPIO pins in each group \(8\) + Offset in the group
 
     Example: GPIO number of GPIO10\_3 = 10 x 8 + 3 = 83
 

@@ -132,7 +132,7 @@ Before performing SPI communication, obtain an SPI device handle by calling  **S
 
 DevHandle SpiOpen\(const struct SpiDevInfo \*info\);
 
-**Table  2**  Description of  **SpiOpen**
+**Table  2**  Description of SpiOpen
 
 <a name="table7603619123820"></a>
 <table><tbody><tr id="row1060351914386"><td class="cellrowborder" valign="top" width="50%"><p id="p14603181917382"><a name="p14603181917382"></a><a name="p14603181917382"></a><strong id="b139290298482"><a name="b139290298482"></a><a name="b139290298482"></a>Parameter</strong></p>
@@ -185,7 +185,7 @@ After obtaining the SPI device handle, obtain the SPI device configuration param
 
 int32\_t SpiGetCfg\(DevHandle handle, struct SpiCfg \*cfg\);
 
-**Table  3**  Description of  **SpiGetCfg**
+**Table  3**  Description of SpiGetCfg
 
 <a name="table14209152141313"></a>
 <table><tbody><tr id="row1420918529133"><td class="cellrowborder" valign="top" width="50%"><p id="p42091852141314"><a name="p42091852141314"></a><a name="p42091852141314"></a><strong id="b6279123012486"><a name="b6279123012486"></a><a name="b6279123012486"></a>Parameter</strong></p>
@@ -224,7 +224,7 @@ int32\_t SpiGetCfg\(DevHandle handle, struct SpiCfg \*cfg\);
 ```
 int32_t ret;
 struct SpiCfg cfg = {0};                /* SPI configuration information */
-ret = SpiGetCfg(spiHandle, &cfg);       /* Set SPI device configuration parameters. */
+ret = SpiGetCfg(spiHandle, &cfg);       /* Obtain SPI device configuration parameters. */
 if (ret != 0) {
     HDF_LOGE("SpiGetCfg: failed, ret %d\n", ret);
 }
@@ -236,7 +236,7 @@ After obtaining the SPI device handle, set SPI device configuration parameters b
 
 int32\_t SpiSetCfg\(DevHandle handle, struct SpiCfg \*cfg\);
 
-**Table  4**  Description of  **SpiSetCfg**
+**Table  4**  Description of SpiSetCfg
 
 <a name="table219052945210"></a>
 <table><tbody><tr id="row14191192918522"><td class="cellrowborder" valign="top" width="50%"><p id="p17424155016529"><a name="p17424155016529"></a><a name="p17424155016529"></a><strong id="b11281163011480"><a name="b11281163011480"></a><a name="b11281163011480"></a>Parameter</strong></p>
@@ -293,7 +293,7 @@ To write data into an SPI device only once, call the following function:
 
 int32\_t SpiWrite\(DevHandle handle, uint8\_t \*buf, uint32\_t len\);
 
-**Table  5**  Description of  **SpiWrite**
+**Table  5**  Description of SpiWrite
 
 <a name="table1018490043"></a>
 <table><tbody><tr id="row31848013417"><td class="cellrowborder" valign="top" width="50%"><p id="p1415816132411"><a name="p1415816132411"></a><a name="p1415816132411"></a><strong id="b42810303484"><a name="b42810303484"></a><a name="b42810303484"></a>Parameter</strong></p>
@@ -350,7 +350,7 @@ To read data from an SPI device only once, call the following function:
 
 int32\_t SpiRead\(DevHandle handle, uint8\_t \*buf, uint32\_t len\);
 
-**Table  6**  Description of  **SpiRead**
+**Table  6**  Description of SpiRead
 
 <a name="table0265191412124"></a>
 <table><tbody><tr id="row42651914141213"><td class="cellrowborder" valign="top" width="50%"><p id="p1483184123"><a name="p1483184123"></a><a name="p1483184123"></a><strong id="b528223019480"><a name="b528223019480"></a><a name="b528223019480"></a>Parameter</strong></p>
@@ -407,7 +407,7 @@ To launch a custom transfer, call the following function:
 
 int32\_t SpiTransfer\(DevHandle handle, struct SpiMsg \*msgs, uint32\_t count\);
 
-**Table  7**  Description of  **SpiTransfer**
+**Table  7**  Description of SpiTransfer
 
 <a name="table1934414174212"></a>
 <table><tbody><tr id="row1134415176216"><td class="cellrowborder" valign="top" width="50%"><p id="p13295152320217"><a name="p13295152320217"></a><a name="p13295152320217"></a><strong id="b1628393012482"><a name="b1628393012482"></a><a name="b1628393012482"></a>Parameter</strong></p>
@@ -474,7 +474,7 @@ void SpiClose\(DevHandle handle\);
 
 This function will release the resources previously obtained.
 
-**Table  8**  Description of  **SpiClose**
+**Table  8**  Description of SpiClose
 
 <a name="table72517953115"></a>
 <table><tbody><tr id="row1525793312"><td class="cellrowborder" valign="top" width="50%"><p id="p115402031153111"><a name="p115402031153111"></a><a name="p115402031153111"></a><strong id="b1728493044820"><a name="b1728493044820"></a><a name="b1728493044820"></a>Parameter</strong></p>
@@ -491,7 +491,7 @@ This function will release the resources previously obtained.
 </table>
 
 ```
-PalHandleDestroy(spiHandle); /* Destroy the SPI device handle. */
+SpiClose(spiHandle); /* Destroy the SPI device handle. */
 ```
 
 ## Usage Example<a name="section06541058155120"></a>
@@ -540,7 +540,7 @@ void SpiTestSample(void)
         HDF_LOGE("SpiWrite: failed, ret %d\n", ret);
         goto err;
     }
-    /* Read data of a specified length from an SPI device. */
+    /* Read data of a specific length from an SPI device. */
     ret = SpiRead(spiHandle, rbuff, 4);
     if (ret != 0) {
         HDF_LOGE("SpiRead: failed, ret %d\n", ret);

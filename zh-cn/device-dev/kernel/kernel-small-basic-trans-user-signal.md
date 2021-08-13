@@ -26,12 +26,12 @@
 </td>
 <td class="cellrowborder" valign="top" width="26.49264926492649%" headers="mcps1.2.4.1.2 "><p id="p164931214913"><a name="p164931214913"></a><a name="p164931214913"></a>signal</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.41464146414641%" headers="mcps1.2.4.1.3 "><p id="p8504121996"><a name="p8504121996"></a><a name="p8504121996"></a>注册系统总入口及注册和去注册某信号的回调函数。</p>
+<td class="cellrowborder" valign="top" width="46.41464146414641%" headers="mcps1.2.4.1.3 "><p id="p8504121996"><a name="p8504121996"></a><a name="p8504121996"></a>注册信号总入口及注册和去注册某信号的回调函数。</p>
 </td>
 </tr>
 <tr id="row5449183942119"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p5450153922110"><a name="p5450153922110"></a><a name="p5450153922110"></a>sigaction</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1945083962113"><a name="p1945083962113"></a><a name="p1945083962113"></a>仅支持SIGINFO的选项。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1945083962113"><a name="p1945083962113"></a><a name="p1945083962113"></a>功能同signal，但增加了信号发送相关的配置选项，目前仅支持SIGINFO结构体中的部分参数。</p>
 </td>
 </tr>
 <tr id="row7162101814216"><td class="cellrowborder" rowspan="5" valign="top" width="27.09270927092709%" headers="mcps1.2.4.1.1 "><p id="p37331032985"><a name="p37331032985"></a><a name="p37331032985"></a>发送信号</p>
@@ -69,17 +69,18 @@
 >```
 >void *signal(int sig, void (*func)(int))(int);
 >```
->a. 31 号信号，会注册该进程的回调函数处理入口，不可重入。
->b. 0-30 号信号，判断注册回调函数，注册与去注册回调函数。
+>a. 31 号信号，该信号用来注册该进程的回调函数处理入口，不可重复注册。
+>b. 0-30 号信号，该信号段用来注册与去注册回调函数。
+>注册回调函数：
 >```
 >int sigaction(int, const struct sigaction *__restrict, struct sigaction *__restrict);
 >```
->仅支持SIGINFO的选项，SIGINFO内容见sigtimedwait接口内描述。
+>支持信号注册的配置修改和配置获取，目前仅支持SIGINFO的选项，SIGINFO内容见sigtimedwait接口内描述。
 >发送信号：
->a. 信号的默认行为不支持STOP及COTINUE，无COREDUMP功能。
->b. 不能屏蔽SIGSTOP、SIGKILL、SIGCONT。
->c. 杀死进程后，若父进程不回收，会产生僵尸进程。
->d. 异步信号，发送信号给某进程后，直到该进程被调度后才会执行信号回调（为安全起见，杀死进程的动作是进程自己执行的，内核不能通过信号强制杀死对方）。
->e. 进程消亡会发送SIGCHLD给父进程，发送动作无法取消。
->f. 无法通过信号唤醒正在DELAY状态的进程。触发调度需要usleep\(10000\)即10ms才能完成进程调度转让。
+>a. 进程接收信号存在默认行为，单不支持POSIX标准所给出的STOP及COTINUE、COREDUMP功能。
+>b. 进程无法屏蔽SIGSTOP、SIGKILL、SIGCONT信号。
+>c. 某进程后被杀死后，若其父进程不回收该进程，其转为僵尸进程。
+>d. 进程接收到某信号后，直到该进程被调度后才会执行信号回调。
+>e. 进程结束后会发送SIGCHLD信号给父进程，该发送动作无法取消。
+>f. 无法通过信号唤醒处于DELAY状态的进程。
 

@@ -155,7 +155,7 @@ int VfsJffs2Lookup(struct Vnode *parentVnode, const char *path, int len, struct 
     /* 首先从private data中提取父节点的信息 */
     parentNode = (struct jffs2_inode *)parentVnode->data;
 
-    /* 然后查询得到目标节点的信息，注意这里调用的jffs2_lookup是jffs2本身的查询函数，每个文件系统都有自己的查询函数，通过父节点的信息和VFS的查询函数对接起来 */
+    /* 然后查询得到目标节点的信息，注意这里调用的jffs2_lookup是jffs2本身的查询函数 */
     node = jffs2_lookup(parentNode, (const unsigned char *)path, len);
     if (!node) {
         LOS_MuxUnlock(&g_jffs2FsLock);
@@ -216,7 +216,7 @@ int VfsJffs2Lookup(struct Vnode *parentVnode, const char *path, int len, struct 
 核心的逻辑其实在使用私有数据完成接口的功能，这些接口都是些文件系统的通用功能，文件系统在移植前本身应该都有相应实现，所以关键是归纳总结出文件系统所需的私有数据是什么，将其存储在vnode中，供之后使用。一般情况下，私有数据的内容是可以唯一定位到文件在存储介质上位置的信息，大部分文件系统本身都会有类似数据结构可以直接使用，比如JFFS2的inode数据结构。
 
 >![](../public_sys-resources/icon-caution.gif) **注意：** 
->1.  文件系统中的Lookup接口不是访问文件必经的路径，仅在上层路径缓存失效时才会调用到。
+>1.  访问文件时，不一定会调用文件系统中的Lookup接口，仅在上层的路径缓存失效时才会调用到。
 >2.  通过VfsHashGet找到了已经存在的Vnode，不要直接将其作为结果返回，其储存的信息可能已经失效，请更新相应字段后再返回。
 >3.  Vnode会根据内存占用在后台自动释放，需要持久保存的信息，不要只保存在Vnode中。
 >4.  Reclaim接口在Vnode释放时会自动调用，请在这个接口中释放私有数据中的资源。

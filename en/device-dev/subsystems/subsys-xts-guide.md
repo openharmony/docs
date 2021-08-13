@@ -696,7 +696,6 @@ Install Python 3.7 or a later version on a Windows environment and ensure that t
 
         ![](figure/en-us_image_0000001119924146.gif)
 
-
     -   Execute the test cases of a module \(view specific module information in  **\\acts\\testcases\\**\).
 
         ```
@@ -704,7 +703,6 @@ Install Python 3.7 or a later version on a Windows environment and ensure that t
         ```
 
         ![](figure/en-us_image_0000001166643927.jpg)
-
 
     Wait until the test case is complete.
 

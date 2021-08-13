@@ -51,7 +51,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
 
 1.  Register your account with Gitee.
 2.  Register an SSH public key for access to Gitee.
-3.  Install the  [git client](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
+3.  Install the  [git client](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)), and configure basic user information.
 
     ```
     git config --global user.name "yourname"
@@ -109,7 +109,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
 
 -   Obtaining the source code of other OpenHarmony releases
 
-    For details about how to obtain the source code of other OpenHarmony releases, see the  [Release Notes](https://gitee.com/openharmony/docs/blob/master/en/release-notes/Readme.md).
+    For details about how to obtain the source code of other OpenHarmony releases, see the  [Release Notes](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-Release-Notes.md).
 
 
 ## Method 2: Acquiring Source Code from HPM<a name="section463013147412"></a>
@@ -162,7 +162,6 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 
         ![](figure/en-us_image_0000001119915556.png)
 
-
 2.  Learn more about the distribution.
 
     1.  Read carefully the information about the distribution to learn its application scenarios, features, bundles, usage, and customization methods, as shown in the following figure.
@@ -185,7 +184,6 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 
         ![](figure/en-us_image_0000001166715379.png)
 
-
 4.  Download and install bundles.
     1.  Decompress the downloaded file using the CLI tool CMD \(shell in Linux\).
     2.  In the generated directory, run the  **hpm install**  command.
@@ -197,7 +195,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the  [Release Notes](https://gitee.com/openharmony/docs/tree/master/en/release-notes/Readme.md).
+>-   The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the  [Release Notes](https://gitee.com/openharmony/docs/tree/master/en/release-notes).
 >-   The Master 1.0 version is no longer maintained.
 
 **Table  1**  Sites for acquiring source code from image sites

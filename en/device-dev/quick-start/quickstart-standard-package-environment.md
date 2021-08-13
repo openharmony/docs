@@ -92,7 +92,7 @@ Perform the following operations in the Linux environment:
     Files generated during the build are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >For details about module-specific build operations, see  [Building Guidelines](../subsystems/subsys-build-standard-large.md).
+    >For details about module-specific build operations, see  [Building Guidelines](../subsystems/subsys-build.md).
 
 3.  Burn the image. For details, see  [Burning Images](quickstart-standard-burn.md).
 

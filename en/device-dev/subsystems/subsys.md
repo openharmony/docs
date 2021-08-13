@@ -12,7 +12,7 @@
 
 -   **[AI Framework](subsys-aiframework.md)**  
 
--   **[Sensors](subsys-sensor.md)**  
+-   **[Sensors](subsys-densor.md)**  
 
 -   **[Application Framework](subsys-application-framework.md)**  
 
@@ -26,7 +26,7 @@
 
 -   **[DFX](subsys-dfx.md)**  
 
--   **[HiSysEvent订阅指导](subsys-dfx-hisyseventread.md)**  
+-   **[R&D Tools](subsys-toolchain.md)**  
 
 -   **[XTS](subsys-xts-guide.md)**  
 

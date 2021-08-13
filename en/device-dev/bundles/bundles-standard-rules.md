@@ -1,8 +1,8 @@
-# Development Specifications<a name="EN-US_TOPIC_0000001051452141"></a>
+# Bundle Development Specifications<a name="EN-US_TOPIC_0000001051452141"></a>
 
 -   [Overview](#section1725818533344)
     -   [Definition](#section4821219183514)
-    -   [Bundle Division Principles](#section1089794263513)
+    -   [Bundle Division Rules](#section1089794263513)
     -   [Bundle Dependency](#section25701647163710)
 
 -   [Bundle Composition](#section185538333914)
@@ -40,7 +40,7 @@ Bundles are designed for reuse purposes. Any reusable modules can be defined as 
 -   Code snippet
 -   Distribution
 
-### Bundle Division Principles<a name="section1089794263513"></a>
+### Bundle Division Rules<a name="section1089794263513"></a>
 
 In principle, bundles should be grouped at a fine-grained granularity as much as possible to achieve maximum reuse. The following factors are taken into account regarding bundle division:
 
@@ -59,7 +59,7 @@ A bundle dependency can be mandatory or optional.
 
 A bundle contains the following:
 
--   **src**  directory for storing code files or code library
+-   **src**  directory for storing code files or code library of the bundle
 -   **ohos\_bundles**  folder for storing dependent bundles \(It is automatically generated during bundle installation, without the need to submit to the code library.\)
 -   **README.md**  file for describing the bundle
 -   **bundle.json**  file for declaring metadata of the bundle
@@ -138,7 +138,7 @@ Each  **bundle.json**  file has the following fields:
 -   **version**: a bundle version number, for example, 1.0.0. The version number must comply with the Semantic Versioning Specification \(SemVer\) standards.
 
 -   **description**: a brief description of a bundle
--   **dependencies**: bundles that a bundle depends on
+-   **dependencies**: bundles on which this bundle depends.
 
 -   **envs**: parameters required for bundle compilation, including global parameters and dependency parameters.
 
@@ -170,7 +170,7 @@ A basic  **bundle.json**  file needs to be enriched by bundle dependencies to im
 }
 ```
 
-In this example,  **my-bundle**  depends on  **net 1.0.0**. After you globally install the hpm-cli tool, run the following command to obtain bundle dependencies from the remote repository:
+In the preceding example, the  **my-bundle**  bundle depends on the  **net 1.0.0**  bundle. After you globally install the hpm-cli tool, run the following command to obtain bundle dependencies from the remote repository:
 
 ```
 hpm install 
@@ -246,7 +246,7 @@ You can use the hpm-cli tool to manage the lifecycle of a bundle. The following 
 </td>
 <td class="cellrowborder" valign="top" width="30.623062306230626%" headers="mcps1.2.4.1.2 "><p id="p2046811558481"><a name="p2046811558481"></a><a name="p2046811558481"></a>hpm init bundle</p>
 </td>
-<td class="cellrowborder" valign="top" width="48.42484248424842%" headers="mcps1.2.4.1.3 "><p id="p1646818557481"><a name="p1646818557481"></a><a name="p1646818557481"></a>Creates a bundle project.</p>
+<td class="cellrowborder" valign="top" width="48.42484248424842%" headers="mcps1.2.4.1.3 "><p id="p1646818557481"><a name="p1646818557481"></a><a name="p1646818557481"></a>Create a bundle project.</p>
 </td>
 </tr>
 <tr id="row351184593713"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p18991313496"><a name="p18991313496"></a><a name="p18991313496"></a>hpm init -t template</p>
@@ -472,7 +472,7 @@ As it is rather complex to redefine the functionality of a distribution, OpenHar
 }
 ```
 
-In this example, the current bundle inherits from the  **dist-wifi-iot 1.0.0**  bundle of the distribution.
+In this example, the current bundle inherits from the  **Bundledist-wifi-iot 1.0.0**  bundle of the distribution.
 
 Each distribution consists of many dependent bundles, which are represented by the  **dependencies**  field in  **bundle.json**. Some dependencies are mandatory, and others can be added or removed required. In the  **bundle.json**  file, bundle names prefixed with a question mark \(?\) represent optional dependent bundles. If you want to inherit from a distribution involving such bundles, you can remove them and then add other bundles.
 

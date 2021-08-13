@@ -39,7 +39,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 -   启动关键系统程序或服务，如交互进程shell。
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >在OpenHarmony 中**init**进程通过读取/etc/init.cfg，根据配置执行指定命令，或启动指定进程（详见：[init启动引导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/init%E5%90%AF%E5%8A%A8%E5%BC%95%E5%AF%BC%E7%BB%84%E4%BB%B6.md)）。
+    >在OpenHarmony 中**init**进程通过读取/etc/init.cfg，根据配置执行指定命令，或启动指定进程（详见：[init启动引导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init.md)）。
 
 
 -   监控回收孤儿进程，清理子进程中的僵尸进程。
@@ -48,7 +48,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 
 用户态程序常见编译方式有如下两种：
 
-1.  [利用框架编译用户态进程](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/%E8%BF%90%E8%A1%8CHello-OHOS.md)。
+1.  [利用框架编译用户态进程](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-steps-hi3516-running.md)。
 2.  手动编译
 
     实例：
@@ -57,7 +57,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
     clang --target=arm-liteos --sysroot=prebuilts/lite/sysroot -o helloworld helloworld.c
     ```
 
-    **clang**：编译器下载：[llvm安装指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/Ubuntu%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.md#section12202192215415)。
+    **clang**：参考[LLVM安装指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-env-setup-linux.md)安装LLVM编译器。
 
     **--target**：--target=arm-liteos，指定编译平台为arm-liteos。
 

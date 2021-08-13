@@ -102,7 +102,6 @@ It is considered good practice that you understand the following concepts before
 
         ![](figure/en-us_image_0000001054101094.png)
 
-
     1.  Taking a video/Previewing
 
         This process creates a  **Camera**  instance via  **CameraKit**, and configures frame attributes via  **FrameConfig**  for recording or previewing. The following figure shows the time sequence.
