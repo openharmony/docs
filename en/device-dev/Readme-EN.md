@@ -139,7 +139,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p136812535511"><a name="p136812535511"></a><a name="p136812535511"></a>Using basic capabilities of <span id="text2027331797"><a name="text2027331797"></a><a name="text2027331797"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel-lite.md">Kernel</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-privacy-protection.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel-standard.md">Kernel</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-privacy-protection.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
 </td>
 </tr>
 <tr id="row1368195345111"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p16681853145115"><a name="p16681853145115"></a><a name="p16681853145115"></a>Advanced development</p>
