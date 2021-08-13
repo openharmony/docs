@@ -180,13 +180,13 @@ hb set
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.1
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.2
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.1
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.2
     ```
 
 
@@ -208,7 +208,7 @@ hb set
 3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.1
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.2
     ```
 
 
@@ -289,7 +289,7 @@ docker\_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件�
 
 
     以上两种方式以@ohos/hispark\_taurus为例，执行成功结果如下：
-
+    
     ```
     ......
     ohos ipcamera_hispark_taurus build success!
