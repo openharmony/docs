@@ -15,6 +15,8 @@
     -   [2. 触摸屏](#section229mcpsimp)
     -   [3. WLAN](#section274mcpsimp)
 
+-   [开发板移植实例](#开发板移植实例)
+
 
 ## 定义开发板<a name="section132mcpsimp"></a>
 
@@ -325,7 +327,7 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
 </tr>
 <tr id="row300mcpsimp"><td class="cellrowborder" valign="top" width="33.33333333333333%"><p id="entry301mcpsimpp0"><a name="entry301mcpsimpp0"></a><a name="entry301mcpsimpp0"></a>NetDeviceInterFace</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%"><pre class="codeblock" id="code303mcpsimp"><a name="code303mcpsimp"></a><a name="code303mcpsimp"></a>//drivers/framework/include/wifi/net_device.h</pre>
+<td class="cellrowborder" valign="top" width="33.33333333333333%"><pre class="codeblock" id="code303mcpsimp"><a name="code303mcpsimp"></a><a name="code303mcpsimp"></a>//drivers/framework/include/net/net_device.h</pre>
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%"><p id="entry304mcpsimpp0"><a name="entry304mcpsimpp0"></a><a name="entry304mcpsimpp0"></a>与协议栈之间的接口，如发送数据、设置网络接口状态等</p>
 </td>
@@ -507,4 +509,8 @@ obj-$(CONFIG_DRIVERS_WLAN_XXX) += $(HDF_DEVICE_ROOT)/MySoCVendor/peripheral/buil
 ```
 
 当在内核中开启DRIVERS\_WLAN\_XXX开关时，会调用//device/MySoCVendor/peripheral/build/standard/中的makefile更多详细的开发手册，请参考[WLAN开发](../guide/oem_wifi_sdk_des.md)。
+
+## 开发板移植实例
+
+[DAYU开发板](https://gitee.com/openharmony-sig/devboard_device_hihope_build/blob/master/DAYU%20%E5%B9%B3%E5%8F%B0OpenHarmony%20%E9%80%82%E9%85%8D%E6%8C%87%E5%AF%BC%20-202108.pdf)
 
