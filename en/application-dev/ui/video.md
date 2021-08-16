@@ -68,7 +68,7 @@ Not supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001058670744_p17246836142119"><a name="zh-cn_topic_0000001058670744_p17246836142119"></a><a name="zh-cn_topic_0000001058670744_p17246836142119"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001058670744_zh-cn_topic_0000001058340523_ab9c92d331da44a0e9114f6760340680a"><a name="zh-cn_topic_0000001058670744_zh-cn_topic_0000001058340523_ab9c92d331da44a0e9114f6760340680a"></a><a name="zh-cn_topic_0000001058670744_zh-cn_topic_0000001058340523_ab9c92d331da44a0e9114f6760340680a"></a>Whether to display the video playback control bar. The value **false** means not to display the control bar, and **true** means that the display of the control bar is controlled by the system. The default value is **true**.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001058670744_zh-cn_topic_0000001058340523_ab9c92d331da44a0e9114f6760340680a"><a name="zh-cn_topic_0000001058670744_zh-cn_topic_0000001058340523_ab9c92d331da44a0e9114f6760340680a"></a><a name="zh-cn_topic_0000001058670744_zh-cn_topic_0000001058340523_ab9c92d331da44a0e9114f6760340680a"></a>Whether to display the video playback control bar. The value <strong>false</strong> means not to display the control bar, and <strong>true</strong> means that the display of the control bar is controlled by the system. The default value is <strong>true</strong>.</p>
 </td>
 </tr>
 </tbody>
