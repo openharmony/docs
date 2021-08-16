@@ -66,7 +66,6 @@ Display驱动模型基于HDF驱动框架、Platform接口及OSAL接口开发，�
 
         根据LCD硬件接口，使用Platform接口层提供的I2C、SPI、MIPI等接口，下载LCD初始化序列，初始化参数序列可以参考LCD供应商提供的SPEC。
 
-
 4.  根据需求实现HDF框架其他接口，比如Release接口。
 5.  根据需求使用HDF框架可创建其他设备节点，用于业务逻辑或者调试功能。
 

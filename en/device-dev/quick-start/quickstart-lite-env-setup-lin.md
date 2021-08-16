@@ -29,7 +29,7 @@ Perform the following steps to set up the build environment:
 >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
 >-   Docker is provided for the Ubuntu build environment, which encapsulates related build tools. If you use Docker to prepare the build environment, you do not need to perform the following steps in this section. Instead, refer to  [Using Docker to Prepare the Build Environment](../get-code/gettools-acquire.md).
 >-   By default, basic software, such as Samba and Vim, is installed in the system. Adaptation on the software is required to support file sharing between the Linux server and the Windows workstation.
->-   For details about the compilation and building subsystem of OpenHarmony, see  [Compilation and Building Overview](../subsystems/subsys-build-mini-lite.md).
+>-   For details about the compilation and building subsystem of OpenHarmony, see  [Compilation and Building Overview](../subsystems/subsys-build.md).
 
 ## Obtaining Source Code and Tools<a name="section1897711811517"></a>
 
@@ -158,7 +158,6 @@ You need to acquire  [source code](../get-code/sourcecode-acquire.md), download 
             ```
             sudo apt upgrade && sudo apt install python3.8
             ```
-
 
 
 3.  Set the soft link of  **python**  and  **python3**  to  **python3.8**.

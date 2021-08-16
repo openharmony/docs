@@ -405,7 +405,7 @@ static int32_t TestCaseI2c(void)
     }
     OsalMSleep(10);
 
-    /* 从TP-IC的0xDO寄存器连续读7字节数据 */ 
+    /* 从TP-IC的0xD5寄存器连续读7字节数据 */ 
     ret = TpI2cReadReg(&tpDevice, 0xD5, bufRead, 7);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: tp i2c read reg fail!:%d", __func__, ret);

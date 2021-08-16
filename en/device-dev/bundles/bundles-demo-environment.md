@@ -1,15 +1,17 @@
-# Preparations<a name="EN-US_TOPIC_0000001071315859"></a>
+# Configuring the Compilation Environment<a name="EN-US_TOPIC_0000001071315859"></a>
 
 -   [Linux Server](#section20979554791)
 -   [Node.js](#section9954105413153)
--   [HPM](#section15937194904819)
+-   [Installing hpm-cli Tool](#section15937194904819)
 -   [Python Environment](#section1621819180417)
 -   [File Packaging Tool](#section77617165913)
 -   [SCons](#section20558439191516)
 
+![](figure/3516dv300.png)
+
 ## Linux Server<a name="section20979554791"></a>
 
-Prepare a 64-bit Linux server running Ubuntu 16.04 or later. HPM supports Windows Server, but the open-source Hi3861, Hi3516, and Hi3518 solutions support only Ubuntu.
+Prepare a 64-bit Linux server running Ubuntu 16.04 or later. \(Currently, the compilation in the Windows environment is not fully supported.\)
 
 Configure Ubuntu to use bash as the Linux system shell, by performing the following:
 
@@ -26,7 +28,7 @@ ln -s bash /bin/sh
 ## Node.js<a name="section9954105413153"></a>
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->If the Node.js version of the source is outdated, run the following command before running  **apt-get install**:
+>If the  **Node.js**  version of the source is outdated, run the following command before running  **apt-get install**:
 >```
 >curl -L https://deb.nodesource.com/setup_12.x | bash
 >```
@@ -38,31 +40,31 @@ sudo apt-get install nodejs
 sudo apt-get install npm
 ```
 
-Run the following commands to view Node.js and NPM versions:
+Run the following commands to view  **Node.js**  and npm versions:
 
 ```
 node --version  # Check the Node.js version.
-npm --version   # Check the NPM version.
+npm --version   # Check the npm version.
 ```
 
-## HPM<a name="section15937194904819"></a>
+## Installing hpm-cli Tool<a name="section15937194904819"></a>
 
-Install the  **hpm-cli**  command line tool by using the NPM \(default source: https://registry.npmjs.org/\) provided by the Node.js.
+Install the  **hpm-cli**  command line tool by using the npm \(default source: https://registry.npmjs.org/\) provided by  **Node.js**.
 
 ```
 npm install -g @ohos/hpm-cli
 ```
 
-After  **hpm-cli**  is installed, run the following command to view default HPM configurations:
+After  **hpm-cli**  is installed, run the following command to view the default hpm configurations:
 
 ```
 hpm config
 ```
 
-You can modify the default configurations as required. The following lists common HPM configurations:
+You can modify the default configurations as required. The following lists common hpm configurations:
 
 ```
-registry = https://hpm.harmonyos.com              # Register with the HPM registration center. This is mandatory for downloading components.
+registry = https://hpm.harmonyos.com              # Address of the hpm registry. This is mandatory for downloading bundles.
 strictSsl = true                                  # Enable strict SSL verification as HTTPS is used for connection.
 http_proxy = http://your-proxy-server:port        # Configure the HTTP proxy.
 https_proxy = http://your-proxy-server:port       # Configure the HTTPS proxy.
@@ -124,14 +126,14 @@ sudo apt-get install mtools
     python3 -m pip install scons
     ```
 
-3.  Run the following command to check whether SCons is successfully installed. If the installation is successful, the query result as shown in  [Figure 1](#fig235815252492)  is displayed.
+3.  Run the following command to check whether SCons is successfully installed. If the installation is successful, the query result shown in  [Figure 1](#fig235815252492)  is displayed.
 
     ```
     scons -v
     ```
 
     **Figure  1**  Successful installation \(SCons version requirement: 3.0.4 or later\)<a name="fig235815252492"></a>  
-    ![](figure/successful-installation-(scons-version-requirement-3-0-4-or-later)-25.png "successful-installation-(scons-version-requirement-3-0-4-or-later)-25")
+    ![](figure/successful-installation-(scons-version-requirement-3-0-4-or-later)-28.png "successful-installation-(scons-version-requirement-3-0-4-or-later)-28")
 
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 

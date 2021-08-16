@@ -396,7 +396,6 @@ vendor
         -   $\{root\_path\}
         -   $\{fs\_dir\_name\}
 
-
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >fs.yml是可选的，对于没有文件系统的设备可不配置。
 
@@ -616,7 +615,7 @@ optional arguments:
 
 1.  创建芯片解决方案目录。
 
-    按照[芯片解决方案配置规则](#section1625463413327)创建目录，以芯片厂商realtek的“rtl8720“开发板为例, 在代码根目录执行：
+    按照[芯片解决方案配置规则](#section2345183962710)创建目录，以芯片厂商realtek的“rtl8720“开发板为例, 在代码根目录执行：
 
     ```
     mkdir -p device/realtek/rtl8720
@@ -683,7 +682,7 @@ optional arguments:
 
 1.  创建产品目录
 
-    按照[产品解决方案配置规则](#section1625463413327)创建产品目录，以基于“rtl8720“开发板的wifiiot模组为例，在代码根目录执行：
+    按照[产品解决方案配置规则](#section2345183962710)创建产品目录，以基于“rtl8720“开发板的wifiiot模组为例，在代码根目录执行：
 
     ```
     mkdir -p vendor/my_company/wifiiot

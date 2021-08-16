@@ -25,7 +25,7 @@ sudo apt-get update && sudo apt-get install binutils git git-lfs gnupg flex biso
 
 1.  Register your account with Gitee.
 2.  Register an SSH public key for access to Gitee.
-3.  Install the  [git client](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)), and configure basic user information.
+3.  Install the  [git client](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
 
     ```
     git config --global user.name "yourname"
@@ -92,7 +92,7 @@ Perform the following operations in the Linux environment:
     Files generated during the build are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >For details about module-specific build operations, see  [Building Guidelines](../subsystems/subsys-build-standard-large.md).
+    >For details about module-specific build operations, see  [Building Guidelines](../subsystems/subsys-build.md).
 
 3.  Burn the image. For details, see  [Burning Images](quickstart-standard-burn.md).
 

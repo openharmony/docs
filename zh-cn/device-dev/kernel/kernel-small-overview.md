@@ -33,7 +33,7 @@ OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawe
 **图 1**  OpenHarmony LiteOS-A内核架构图<a name="fig1216111597122"></a>  
 
 
-![](figure/zh-cn_image_0000001179063579.png)
+![](figure/zh-cn_image_0000001191018697.png)
 
 -   基础内核主要包括内核的基础机制，如调度、内存管理、中断异常等
 -   扩展组件主要包括文件系统、网络协议和安全等扩展功能

@@ -1,25 +1,25 @@
 # Development Example<a name="EN-US_TOPIC_0000001072143838"></a>
 
-This following uses the Hi3861 platform as an example to describe how to install, compile, and package components by using HPM.
+The following uses the Hi3861 platform as an example to describe how to install and build bundles by using the hpm.
 
-1.  Run the following commands to initialize the installation directory \(whose name can be customized\):
+1.  Run the following commands to create a directory \(its name can be customized\) and create a default project based on the dist template:
 
     ```
     mkdir test3861
     cd test3861
-    hpm init -t dist
+    hpm init -t dist myproduct
     ```
 
-    If the following information is displayed, the initialization is successful:
+    If the following information is displayed, the project is created:
 
     ```
     Initialization finished.
     ```
 
-2.  Run the following command to install the  **wifi\_iot**  distribution:
+2.  Run the following command to install the  **hispark\_pegasus**  distribution:
 
     ```
-    hpm install @ohos/wifi_iot
+    hpm install @ohos/hispark_pegasus
     ```
 
     If the following information is displayed, the installation is successful:
@@ -29,16 +29,16 @@ This following uses the Hi3861 platform as an example to describe how to install
     ```
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >Run the following command for the Hi3516 platform:
+    >If you are using the Hi3516 platform, run the following command:
     >```
-    >hpm install @ohos/ip_camera_hi3516dv300
+    >hpm install @ohos/hispark_taurus
     >```
-    >Run the following command for the Hi3518 platform:
+    >If you are using the Hi3518 platform, run the following command:
     >```
-    >hpm install @ohos/ip_camera_hi3518ev300
+    >hpm install @ohos/hispark_aries
     >```
 
-3.  Run the following command to build and package components:
+3.  Run the following command to build and package bundles:
 
     ```
     hpm dist

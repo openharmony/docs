@@ -162,7 +162,6 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 
         ![](figure/en-us_image_0000001119915556.png)
 
-
 2.  Learn more about the distribution.
 
     1.  Read carefully the information about the distribution to learn its application scenarios, features, bundles, usage, and customization methods, as shown in the following figure.
@@ -184,7 +183,6 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
         
 
         ![](figure/en-us_image_0000001166715379.png)
-
 
 4.  Download and install bundles.
     1.  Decompress the downloaded file using the CLI tool CMD \(shell in Linux\).

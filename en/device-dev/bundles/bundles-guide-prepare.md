@@ -1,21 +1,12 @@
-# Preparations<a name="EN-US_TOPIC_0000001051770836"></a>
+# Installing hpm-cli Tool<a name="EN-US_TOPIC_0000001051770836"></a>
 
--   [Hardware Requirements](#section98535485518)
--   [Installing Node.js and the hpm-cli Tool](#section106591616205311)
--   [\(Optional\) Modifying HPM Configurations](#section71821165412)
+-   [Installing Node.js and hpm](#section106591616205311)
+-   [\(Optional\) Configuring hpm](#section71821165412)
 -   [Downloading OpenHarmony Code](#section102338221707)
--   [Installing Dependent Bundles](#section19233183315020)
 
-## Hardware Requirements<a name="section98535485518"></a>
+To develop a bundle, you first need to install the HarmonyOS Package Manager \(hpm\), a cross-platform command line tool developed based on Node.js. To run the hpm, you need to install Node.js, and then install the hpm using the Node Package Manager \(npm\).
 
--   Development boards \(examples: Hi3861, Hi3516D V300, and Hi3518E V300\)
--   Host computer \(Windows workstation\)
--   Linux server
-
-**Figure  1**  Hardware connections<a name="fig113816181847"></a>  
-![](figure/hardware-connections-24.png "hardware-connections-24")
-
-## Installing  **Node.js**  and the  **hpm-cli**  Tool<a name="section106591616205311"></a>
+## Installing Node.js and hpm<a name="section106591616205311"></a>
 
 1.  Install  **Node.js**.
 
@@ -29,37 +20,49 @@
     npm install -g @ohos/hpm-cli
     ```
 
-3.  Run the following command to check whether the installation is successful. If an HPM version is displayed, the installation is successful.
+3.  Run the following command to check whether the installation is successful. If an hpm version is displayed, the installation is successful.
 
     ```
     hpm -V or hpm --version
     ```
 
-4.  \(Optional\) Run the following command to upgrade the HPM version if needed:
+4.  \(Optional\) Run the following command to upgrade the hpm version if needed:
 
     ```
     npm update -g @ohos/hpm-cli
     ```
 
 
-## \(Optional\) Modifying HPM Configurations<a name="section71821165412"></a>
+## \(Optional\) Configuring hpm<a name="section71821165412"></a>
 
-After the  **hpm-cli**  tool is installed, run the following command to view HPM configurations:
+After the  **hpm-cli**  tool is installed, run the following command to view the hpm configuration if you need to modify the configuration information, such as proxy and shell:
 
 ```
 hpm config
 ```
 
-Default HPM configurations are displayed upon the command execution. You can modify the default configurations as required. The following lists common HPM configurations:
+Default hpm configurations are displayed upon successful command execution. You can modify the default configurations as required. The following lists common hpm configurations:
 
 ```
-registry = https://hpm.harmonyos.com/hpm/registry/api              # Configure the address of the HPM registry, mandatory for downloading bundles.
-login = https://hpm.harmonyos.com/hpm/auth/pk                      # Configure the address for HPM login, mandatory for publishing bundles.
-loginUser = {your-account}                                         # Configure the account for HPM login, mandatory for publishing bundles.
-shellPath = C:\WINDOWS\System32\cmd.exe                            # Configure the shell for running HPM commands.
-globalRepo = C:\Users\yourname\.global                             # Configure the path for storing bundles that are installed globally.
-http_proxy = http://your-proxy-server:port                         # Configure the HTTP proxy.
-https_proxy = http://your-proxy-server:port                        # Configure the HTTPS proxy.
+registry = https://hpm.harmonyos.com
+### login Settings
+# loginUser = invitation_code
+
+#### Path Settings
+shellPath = C:\WINDOWS\System32\cmd.exe
+# shellPath = C:\Program Files\Git\bin\sh.exe
+# globalRepo = C:\Users\username\.hpm\global
+
+#### Network Settings
+# no_proxy = *.server.com
+# http_proxy = http://user:pwd@proxy_server:port
+# https_proxy = http://user:pwd@proxy_server:port
+# strictSsl = true
+
+#### Other Settings
+# privateSupport = true|false
+# ignoreBundles = @ohos/llvm,@ohos/gn,
+# OSPlatform = Auto|linux|darwin|win32
 ```
 
 For details about  **hpm-cli**  commands, see  [HPM Commands](bundles-guide-overview.md).
@@ -67,18 +70,4 @@ For details about  **hpm-cli**  commands, see  [HPM Commands](bundles-guide-over
 ## Downloading OpenHarmony Code<a name="section102338221707"></a>
 
 For details, see  [Source Code Acquisition](../get-code/sourcecode-acquire.md).
-
-## Installing Dependent Bundles<a name="section19233183315020"></a>
-
-The HPM publishes commonly used development tools \(such as those for burning, compiling, and compression\) as bundles. You can run the following command to install these tools. After the command is executed, the system automatically downloads and installs the tools, which need to be installed globally only once.
-
-```
-hpm i -g @ohos/llvm
-hpm i -g @ohos/ninja
-hpm i -g @ohos/gn
-hpm i -g @ohos/hc_gen
-hpm i -g @ohos/sysroot
-```
-
-These are a set of development tools \(such as  **gn**  and  **ninja**\). With these tools, you can start your general bundle development based on source code.
 

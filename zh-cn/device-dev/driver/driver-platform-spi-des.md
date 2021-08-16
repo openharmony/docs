@@ -224,7 +224,7 @@ int32\_t SpiGetCfg\(DevHandle handle, struct SpiCfg \*cfg\);
 ```
 int32_t ret;
 struct SpiCfg cfg = {0};                /* SPI配置信息*/
-ret = SpiGetCfg(spiHandle, &cfg);       /* 配置SPI设备属性 */
+ret = SpiGetCfg(spiHandle, &cfg);       /* 获取SPI设备属性 */
 if (ret != 0) {
     HDF_LOGE("SpiGetCfg: failed, ret %d\n", ret);
 }

@@ -34,14 +34,14 @@ OpenHarmony内核中，VFS框架是通过在内存中的树结构来实现的，
     ![](figure/Vnode创建流程.png "Vnode创建流程")
 
 
-1.  PathCache：PathCache是路径缓存，与Vnode对应。PathCache同样通过哈希链表存储，通过父Vnode中缓存的PathCache可以快速获取子Vnode，加速路径查找。下图展示了文件/目录的查找流程。
+1.  PathCache：PathCache是路径缓存，它通过哈希表存储，利用父节点Vnode的地址和子节点的文件名，可以从PathCache中快速查找到子节点对应的Vnode。下图展示了文件/目录的查找流程。
 
     **图 2**  文件查找流程<a name="fig1881815597396"></a>  
     ![](figure/文件查找流程.png "文件查找流程")
 
 
-1.  PageCache：PageCache是文件级别的内核缓存。当前PageCache仅支持对二进制文件操作，在初次访问该文件时通过mmap映射到内存中，减少内核内存的占用，也大大提升了对同一个文件的读写操作速度。另外基于PageCache可实现以文件为基底的进程间通信。
-2.  fd管理：Fd（File Description）是描述一个打开的文件/目录的描述符。当前OpenHarmony内核中，fd总规格为896，分为三种类型：
+1.  PageCache：PageCache是内核中文件的缓存。当前PageCache仅支持缓存二进制文件，在初次访问文件时通过mmap映射到内存中，下次再访问时，直接从PageCache中读取，可以提升对同一个文件的读写速度。另外基于PageCache可实现以文件为基底的进程间通信。
+2.  fd管理：Fd（File Descriptor）是描述一个打开的文件/目录的描述符。当前OpenHarmony内核中，fd总规格为896，分为三种类型：
 
     -   普通文件描述符，系统总规格为512。
     -   Socket描述符，系统总规格为128。

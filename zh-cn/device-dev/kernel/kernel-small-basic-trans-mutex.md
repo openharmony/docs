@@ -12,7 +12,7 @@
 
 互斥锁又称互斥型信号量，用于实现对共享资源的独占式处理。当有任务持有时，这个任务获得该互斥锁的所有权。当该任务释放它时，任务失去该互斥锁的所有权。当一个任务持有互斥锁时，其他任务将不能再持有该互斥锁。多任务环境下往往存在多个任务竞争同一共享资源的应用场景，互斥锁可被用于对共享资源的保护从而实现独占式访问。
 
-互斥量属性包含3个属性：协议属性、优先级上限属性和类型属性。协议属性用于处理不同优先级的任务申请互斥锁，协议属性包含如下三种：
+互斥锁属性包含3个属性：协议属性、优先级上限属性和类型属性。协议属性用于处理不同优先级的任务申请互斥锁，协议属性包含如下三种：
 
 -   LOS\_MUX\_PRIO\_NONE
 
@@ -118,32 +118,32 @@
 </td>
 <td class="cellrowborder" valign="top" width="33.31333133313331%" headers="mcps1.2.4.1.2 "><p id="p171441842465"><a name="p171441842465"></a><a name="p171441842465"></a>LOS_MuxAttrGetType</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.35333533353336%" headers="mcps1.2.4.1.3 "><p id="p151444418461"><a name="p151444418461"></a><a name="p151444418461"></a>获取互斥锁类型属性</p>
+<td class="cellrowborder" valign="top" width="33.35333533353336%" headers="mcps1.2.4.1.3 "><p id="p151444418461"><a name="p151444418461"></a><a name="p151444418461"></a>获取指定互斥锁属性的类型属性</p>
 </td>
 </tr>
 <tr id="row99314413464"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p793218404613"><a name="p793218404613"></a><a name="p793218404613"></a>LOS_MuxAttrSetType</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p51371843194813"><a name="p51371843194813"></a><a name="p51371843194813"></a>设置互斥锁类型属性</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p51371843194813"><a name="p51371843194813"></a><a name="p51371843194813"></a>设置指定互斥锁属性的类型属性</p>
 </td>
 </tr>
 <tr id="row204470514615"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p13447115154614"><a name="p13447115154614"></a><a name="p13447115154614"></a>LOS_MuxAttrGetProtocol</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p20871044144720"><a name="p20871044144720"></a><a name="p20871044144720"></a>获取互斥锁协议属性</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p20871044144720"><a name="p20871044144720"></a><a name="p20871044144720"></a>获取指定互斥锁属性的协议属性</p>
 </td>
 </tr>
 <tr id="row69051358465"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p10906165124617"><a name="p10906165124617"></a><a name="p10906165124617"></a>LOS_MuxAttrSetProtocol</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1690617554610"><a name="p1690617554610"></a><a name="p1690617554610"></a>设置互斥锁协议属性</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1690617554610"><a name="p1690617554610"></a><a name="p1690617554610"></a>设置指定互斥锁属性的协议属性</p>
 </td>
 </tr>
 <tr id="row133571666467"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p6357146154616"><a name="p6357146154616"></a><a name="p6357146154616"></a>LOS_MuxAttrGetPrioceiling</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p559511469478"><a name="p559511469478"></a><a name="p559511469478"></a>获取互斥锁优先级上限属性</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p559511469478"><a name="p559511469478"></a><a name="p559511469478"></a>获取指定互斥锁属性的优先级上限属性</p>
 </td>
 </tr>
 <tr id="row5789065465"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1778916634614"><a name="p1778916634614"></a><a name="p1778916634614"></a>LOS_MuxAttrSetPrioceiling</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p16789126134614"><a name="p16789126134614"></a><a name="p16789126134614"></a>设置互斥锁优先级上限属性</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p16789126134614"><a name="p16789126134614"></a><a name="p16789126134614"></a>设置指定互斥锁属性的优先级上限属性</p>
 </td>
 </tr>
 <tr id="row10251772469"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p199321752124718"><a name="p199321752124718"></a><a name="p199321752124718"></a>LOS_MuxGetPrioceiling</p>

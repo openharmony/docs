@@ -1,4 +1,4 @@
-# Platform drivers<a name="EN-US_TOPIC_0000001111199424"></a>
+# Platform Drivers<a name="EN-US_TOPIC_0000001111199424"></a>
 
 -   **[GPIO](driver-platform-gpio-des.md)**  
 

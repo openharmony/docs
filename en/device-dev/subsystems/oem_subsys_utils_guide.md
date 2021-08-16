@@ -232,7 +232,6 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
         }
         ```
 
-
     -   Generate a HAP file.
 
         -   Add resource files in the  **res/drawable**  directory based on the following directory structure.
@@ -240,7 +239,6 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
         ![](figure/unnaming.png)
 
         -   Compress the  **libLauncher.so**,  **config.json**, and resource files into a ZIP package and change the file name extension to  **.hap**, for example,  **Launcher.hap**.
-
 
 2.  Connect the development board and send the command for installing the native KV store application to the board through the serial port.
 

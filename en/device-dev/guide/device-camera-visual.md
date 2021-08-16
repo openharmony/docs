@@ -6,7 +6,7 @@
 
 -   **[Adding Pages](device-camera-visual-addpage.md)**  
 
--   **[Building the Home Page](device-camera-visual-first-page.md)**  
+-   **[Building the Home Page](device-camera-visual-firstpage.md)**  
 
 -   **[Building the Details Page](device-camera-visual-details.md)**  
 

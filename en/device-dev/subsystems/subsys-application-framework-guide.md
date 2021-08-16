@@ -334,7 +334,6 @@
 
         This callback is invoked when a Service ability is destroyed. You should override this callback for your Service ability to clear its resources, such as threads and registered listeners.
 
-
 4.  Override the message handling function.
 
     The  **MsgHandle**  function is used by Service abilities to handle messages sent from clients.  **funcId**  indicates the type of the message sent from the client, and  **request**  indicates the pointer to the serialized request parameters sent from the client. If you want to send the result back after the message is handled, serialize the result and write it into  **reply**.
@@ -391,7 +390,6 @@
     -   Stops a Service ability.
 
         Once created, the Service ability keeps running in the background. You can call  **StopAbility\(\)**  to stop the Service ability.
-
 
 7.  Connect to a Service ability.
     -   If you need to connect a Service ability to a Page ability or to a Service ability in another application, you should first create a Service ability for connection. A Service ability allows other abilities to connect to it through  **ConnectAbility\(\)**  by passing a  **Want**  object that contains information about the target Service ability to the function. You can implement callbacks in  **IAbilityConnection**  to be invoked when a Service ability is connected or disconnected. The  **OnAbilityConnectDone\(\)**  callback is invoked when an ability is connected, and  **OnAbilityDisconnectDone\(\)**  is invoked when an ability is disconnected.

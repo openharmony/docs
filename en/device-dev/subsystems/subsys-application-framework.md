@@ -2,7 +2,7 @@
 
 -   **[Overview](subsys-application-framework-overview.md)**  
 
--   **[Setting Up a Development Environment](subsys-application-framework-builden.md)**  
+-   **[Setting Up a Development Environment](subsys-application-framework-envbuild.md)**  
 
 -   **[Development Guidelines](subsys-application-framework-guide.md)**  
 

@@ -6,7 +6,7 @@
 
 -   **[添加页面](device-camera-visual-addpage.md)**  
 
--   **[开发首页](device-camera-visual-first-page.md)**  
+-   **[开发首页](device-camera-visual-firstpage.md)**  
 
 -   **[开发详情页](device-camera-visual-details.md)**  
 

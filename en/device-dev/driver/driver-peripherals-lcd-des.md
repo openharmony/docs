@@ -10,7 +10,7 @@
 
 ## Overview<a name="section141575391542"></a>
 
-The Liquid Crystal Display \(LCD\) driver powers on the LCD and initializes internal LCD registers through APIs to enable the LCD to work properly. The display driver is developed based on the hardware driver foundation \([HDF](drive-hdf-overview.md)\). It provides power-on, power-off, and sending of the initialization sequence for LCD hardware across OSs and platforms. The display driver model is shown in  [Figure 1](#fig69138814229).
+The Liquid Crystal Display \(LCD\) driver powers on the LCD and initializes internal LCD registers through APIs to enable the LCD to work properly. The display driver is developed based on the hardware driver foundation \([HDF](driver-hdf-overview.md)\). It provides power-on, power-off, and sending of the initialization sequence for LCD hardware across OSs and platforms. The display driver model is shown in  [Figure 1](#fig69138814229).
 
 **Figure  1**  Architecture of the display driver model<a name="fig69138814229"></a>  
 ![](figure/architecture-of-the-display-driver-model.png "architecture-of-the-display-driver-model")
@@ -65,7 +65,6 @@ The display driver model is developed based on the HDF, platform APIs, and APIs 
     -   Sending the initialization sequence
 
         Based on the LCD hardware interfaces, use the I2C, SPI, and MIPI interfaces provided by the platform to download the LCD initialization sequence. For details, see the SPEC provided by the LCD supplier.
-
 
 4.  Implement other HDF interfaces as required, for example, the  **Release**  interface.
 5.  Use the HDF to create other device nodes for implementing service logic or debugging as required.

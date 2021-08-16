@@ -9,56 +9,40 @@
 
 ## 基本概念<a name="section650193717411"></a>
 
-虚拟内存管理是计算机系统管理内存的一种技术。每个进程都有连续的虚拟地址空间，虚拟地址空间的大小由CPU的位数决定，32位的硬件平台可以提供的最大的寻址空间为0-4G。整个4G空间分成两部分，LiteOS-A内核占据3G的高地址空间，1G的低地址空间留给进程使用。各个进程空间的虚拟地址空间是独立的，代码、数据互不影响。
+虚拟内存管理是计算机系统管理内存的一种技术。每个进程都有连续的虚拟地址空间，虚拟地址空间的大小由CPU的位数决定，32位的硬件平台可以提供的最大的寻址空间为0-4GiB。整个4GiB空间分成两部分，LiteOS-A内核占据3GiB的高地址空间，1GiB的低地址空间留给进程使用。各个进程空间的虚拟地址空间是独立的，代码、数据互不影响。
 
-系统将虚拟内存分割为称为虚拟页的内存块，大小一般为4k或64k，LiteOS-A内核默认的页的大小是4k，根据需要可以对MMU（Memory Management Units）进行配置。虚拟内存管理操作的最小单位就是一个页，LiteOS-A内核中一个虚拟地址区间region包含地址连续的多个虚拟页，也可只有一个页。同样，物理内存也会按照页大小进行分割，分割后的每个内存块称为页帧。虚拟地址空间划分：内核态占高地址3G\(0x40000000 \~ 0xFFFFFFFF\)，用户态占低地址1G\(0x01000000 \~ 0x3F000000\)，具体见下表，详细可以查看或配置los\_vm\_zone.h。
+系统将虚拟内存分割为称为虚拟页的内存块，大小一般为4KiB或64KiB，LiteOS-A内核默认的页的大小是4KiB，根据需要可以对MMU（Memory Management Units）进行配置。虚拟内存管理操作的最小单位就是一个页，LiteOS-A内核中一个虚拟地址区间region包含地址连续的多个虚拟页，也可只有一个页。同样，物理内存也会按照页大小进行分割，分割后的每个内存块称为页帧。虚拟地址空间划分：内核态占高地址3GiB\(0x40000000 \~ 0xFFFFFFFF\)，用户态占低地址1GiB\(0x01000000 \~ 0x3F000000\)，具体见下表，详细可以查看或配置los\_vm\_zone.h。
 
 **表 1**  内核态地址规划：
 
 <a name="table9988174163613"></a>
-<table><thead align="left"><tr id="row164675173616"><th class="cellrowborder" valign="top" width="11.761176117611761%" id="mcps1.2.6.1.1"><p id="p046752361"><a name="p046752361"></a><a name="p046752361"></a>Zone名称</p>
+<table><thead align="left"><tr id="row164675173616"><th class="cellrowborder" valign="top" width="19.99%" id="mcps1.2.4.1.1"><p id="p046752361"><a name="p046752361"></a><a name="p046752361"></a>Zone名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="22.792279227922794%" id="mcps1.2.6.1.2"><p id="p746165113619"><a name="p746165113619"></a><a name="p746165113619"></a>起始地址</p>
+<th class="cellrowborder" valign="top" width="43.13%" id="mcps1.2.4.1.2"><p id="p0461651361"><a name="p0461651361"></a><a name="p0461651361"></a>描述</p>
 </th>
-<th class="cellrowborder" valign="top" width="18.381838183818385%" id="mcps1.2.6.1.3"><p id="p6461957362"><a name="p6461957362"></a><a name="p6461957362"></a>结束地址</p>
-</th>
-<th class="cellrowborder" valign="top" width="25.372537253725376%" id="mcps1.2.6.1.4"><p id="p0461651361"><a name="p0461651361"></a><a name="p0461651361"></a>用途</p>
-</th>
-<th class="cellrowborder" valign="top" width="21.692169216921695%" id="mcps1.2.6.1.5"><p id="p446195183611"><a name="p446195183611"></a><a name="p446195183611"></a>属性</p>
+<th class="cellrowborder" valign="top" width="36.88%" id="mcps1.2.4.1.3"><p id="p446195183611"><a name="p446195183611"></a><a name="p446195183611"></a>属性</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row94619516367"><td class="cellrowborder" valign="top" width="11.761176117611761%" headers="mcps1.2.6.1.1 "><p id="p1846553363"><a name="p1846553363"></a><a name="p1846553363"></a>DMA zone</p>
+<tbody><tr id="row94619516367"><td class="cellrowborder" valign="top" width="19.99%" headers="mcps1.2.4.1.1 "><p id="p1846553363"><a name="p1846553363"></a><a name="p1846553363"></a>DMA zone</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.792279227922794%" headers="mcps1.2.6.1.2 "><p id="p2463543619"><a name="p2463543619"></a><a name="p2463543619"></a>0x40000000</p>
+<td class="cellrowborder" valign="top" width="43.13%" headers="mcps1.2.4.1.2 "><p id="p3461158364"><a name="p3461158364"></a><a name="p3461158364"></a>供IO设备的DMA使用。</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.381838183818385%" headers="mcps1.2.6.1.3 "><p id="p13461954361"><a name="p13461954361"></a><a name="p13461954361"></a>0x43FFFFFF</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.372537253725376%" headers="mcps1.2.6.1.4 "><p id="p3461158364"><a name="p3461158364"></a><a name="p3461158364"></a>USB、网络等dma内存访问</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.692169216921695%" headers="mcps1.2.6.1.5 "><p id="p10461152363"><a name="p10461152363"></a><a name="p10461152363"></a>Uncache</p>
+<td class="cellrowborder" valign="top" width="36.88%" headers="mcps1.2.4.1.3 "><p id="p10461152363"><a name="p10461152363"></a><a name="p10461152363"></a>Uncache</p>
 </td>
 </tr>
-<tr id="row246551361"><td class="cellrowborder" valign="top" width="11.761176117611761%" headers="mcps1.2.6.1.1 "><p id="p3461259362"><a name="p3461259362"></a><a name="p3461259362"></a>Normal zone</p>
+<tr id="row246551361"><td class="cellrowborder" valign="top" width="19.99%" headers="mcps1.2.4.1.1 "><p id="p3461259362"><a name="p3461259362"></a><a name="p3461259362"></a>Normal zone</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.792279227922794%" headers="mcps1.2.6.1.2 "><p id="p746059367"><a name="p746059367"></a><a name="p746059367"></a>0x80000000</p>
+<td class="cellrowborder" valign="top" width="43.13%" headers="mcps1.2.4.1.2 "><p id="p1546056362"><a name="p1546056362"></a><a name="p1546056362"></a>加载内核代码段、数据段、堆和栈的地址区间。</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.381838183818385%" headers="mcps1.2.6.1.3 "><p id="p74615519368"><a name="p74615519368"></a><a name="p74615519368"></a>0x83FFFFFF</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.372537253725376%" headers="mcps1.2.6.1.4 "><p id="p1546056362"><a name="p1546056362"></a><a name="p1546056362"></a>内核代码、数据段和堆内存和栈</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.692169216921695%" headers="mcps1.2.6.1.5 "><p id="p646125143613"><a name="p646125143613"></a><a name="p646125143613"></a>Cache</p>
+<td class="cellrowborder" valign="top" width="36.88%" headers="mcps1.2.4.1.3 "><p id="p646125143613"><a name="p646125143613"></a><a name="p646125143613"></a>Cache</p>
 </td>
 </tr>
-<tr id="row646165133613"><td class="cellrowborder" valign="top" width="11.761176117611761%" headers="mcps1.2.6.1.1 "><p id="p114675183615"><a name="p114675183615"></a><a name="p114675183615"></a>high mem zone</p>
+<tr id="row646165133613"><td class="cellrowborder" valign="top" width="19.99%" headers="mcps1.2.4.1.1 "><p id="p114675183615"><a name="p114675183615"></a><a name="p114675183615"></a>high mem zone</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.792279227922794%" headers="mcps1.2.6.1.2 "><p id="p13462058362"><a name="p13462058362"></a><a name="p13462058362"></a>0x84000000</p>
+<td class="cellrowborder" valign="top" width="43.13%" headers="mcps1.2.4.1.2 "><p id="p194611583613"><a name="p194611583613"></a><a name="p194611583613"></a>可以分配连续的虚拟内存，但其所映射的物理内存不一定连续。</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.381838183818385%" headers="mcps1.2.6.1.3 "><p id="p64655183614"><a name="p64655183614"></a><a name="p64655183614"></a>0x8BFFFFFF</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.372537253725376%" headers="mcps1.2.6.1.4 "><p id="p194611583613"><a name="p194611583613"></a><a name="p194611583613"></a>连续虚拟内存分配，物理内存不连续</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.692169216921695%" headers="mcps1.2.6.1.5 "><p id="p8461153369"><a name="p8461153369"></a><a name="p8461153369"></a>Cache</p>
+<td class="cellrowborder" valign="top" width="36.88%" headers="mcps1.2.4.1.3 "><p id="p8461153369"><a name="p8461153369"></a><a name="p8461153369"></a>Cache</p>
 </td>
 </tr>
 </tbody>
@@ -67,60 +51,40 @@
 **表 2**  用户态虚地址规划：
 
 <a name="table19965411366"></a>
-<table><thead align="left"><tr id="row646185183618"><th class="cellrowborder" valign="top" width="11.721172117211722%" id="mcps1.2.6.1.1"><p id="p3466593612"><a name="p3466593612"></a><a name="p3466593612"></a>Zone名称</p>
+<table><thead align="left"><tr id="row646185183618"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.4.1.1"><p id="p3466593612"><a name="p3466593612"></a><a name="p3466593612"></a>Zone名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="22.712271227122713%" id="mcps1.2.6.1.2"><p id="p164605153615"><a name="p164605153615"></a><a name="p164605153615"></a>起始地址</p>
+<th class="cellrowborder" valign="top" width="43.120000000000005%" id="mcps1.2.4.1.2"><p id="p84645143613"><a name="p84645143613"></a><a name="p84645143613"></a>描述</p>
 </th>
-<th class="cellrowborder" valign="top" width="18.681868186818683%" id="mcps1.2.6.1.3"><p id="p4464512361"><a name="p4464512361"></a><a name="p4464512361"></a>结束地址</p>
-</th>
-<th class="cellrowborder" valign="top" width="25.27252725272527%" id="mcps1.2.6.1.4"><p id="p84645143613"><a name="p84645143613"></a><a name="p84645143613"></a>用途</p>
-</th>
-<th class="cellrowborder" valign="top" width="21.61216121612161%" id="mcps1.2.6.1.5"><p id="p1146115203615"><a name="p1146115203615"></a><a name="p1146115203615"></a>属性</p>
+<th class="cellrowborder" valign="top" width="36.88%" id="mcps1.2.4.1.3"><p id="p1146115203615"><a name="p1146115203615"></a><a name="p1146115203615"></a>属性</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row7462511363"><td class="cellrowborder" valign="top" width="11.721172117211722%" headers="mcps1.2.6.1.1 "><p id="p2467516363"><a name="p2467516363"></a><a name="p2467516363"></a>代码段</p>
+<tbody><tr id="row7462511363"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.4.1.1 "><p id="p2467516363"><a name="p2467516363"></a><a name="p2467516363"></a>代码段</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.712271227122713%" headers="mcps1.2.6.1.2 "><p id="p747135163620"><a name="p747135163620"></a><a name="p747135163620"></a>0x0200000</p>
+<td class="cellrowborder" valign="top" width="43.120000000000005%" headers="mcps1.2.4.1.2 "><p id="p7472523618"><a name="p7472523618"></a><a name="p7472523618"></a>用户态代码段地址区间。</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.681868186818683%" headers="mcps1.2.6.1.3 "><p id="p647651366"><a name="p647651366"></a><a name="p647651366"></a>0x09FFFFFF</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.27252725272527%" headers="mcps1.2.6.1.4 "><p id="p7472523618"><a name="p7472523618"></a><a name="p7472523618"></a>用户态代码段地址空间</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.61216121612161%" headers="mcps1.2.6.1.5 "><p id="p14476563611"><a name="p14476563611"></a><a name="p14476563611"></a>Cache</p>
+<td class="cellrowborder" valign="top" width="36.88%" headers="mcps1.2.4.1.3 "><p id="p14476563611"><a name="p14476563611"></a><a name="p14476563611"></a>Cache</p>
 </td>
 </tr>
-<tr id="row34755153614"><td class="cellrowborder" valign="top" width="11.721172117211722%" headers="mcps1.2.6.1.1 "><p id="p194735173612"><a name="p194735173612"></a><a name="p194735173612"></a>堆</p>
+<tr id="row34755153614"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.4.1.1 "><p id="p194735173612"><a name="p194735173612"></a><a name="p194735173612"></a>堆</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.712271227122713%" headers="mcps1.2.6.1.2 "><p id="p7474533616"><a name="p7474533616"></a><a name="p7474533616"></a>0x0FC00000(起始地址随机)</p>
+<td class="cellrowborder" valign="top" width="43.120000000000005%" headers="mcps1.2.4.1.2 "><p id="p114720518362"><a name="p114720518362"></a><a name="p114720518362"></a>用户态堆地址区间。</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.681868186818683%" headers="mcps1.2.6.1.3 "><p id="p194717573615"><a name="p194717573615"></a><a name="p194717573615"></a>0x17BFFFFF</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.27252725272527%" headers="mcps1.2.6.1.4 "><p id="p114720518362"><a name="p114720518362"></a><a name="p114720518362"></a>用户态堆地址空间</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.61216121612161%" headers="mcps1.2.6.1.5 "><p id="p9474515364"><a name="p9474515364"></a><a name="p9474515364"></a>Cache</p>
+<td class="cellrowborder" valign="top" width="36.88%" headers="mcps1.2.4.1.3 "><p id="p9474515364"><a name="p9474515364"></a><a name="p9474515364"></a>Cache</p>
 </td>
 </tr>
-<tr id="row9476518368"><td class="cellrowborder" valign="top" width="11.721172117211722%" headers="mcps1.2.6.1.1 "><p id="p34714516369"><a name="p34714516369"></a><a name="p34714516369"></a>栈</p>
+<tr id="row9476518368"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.4.1.1 "><p id="p34714516369"><a name="p34714516369"></a><a name="p34714516369"></a>栈</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.712271227122713%" headers="mcps1.2.6.1.2 "><p id="p134785173617"><a name="p134785173617"></a><a name="p134785173617"></a>0x37000000</p>
+<td class="cellrowborder" valign="top" width="43.120000000000005%" headers="mcps1.2.4.1.2 "><p id="p74705163612"><a name="p74705163612"></a><a name="p74705163612"></a>用户态栈地址区间。</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.681868186818683%" headers="mcps1.2.6.1.3 "><p id="p20474510368"><a name="p20474510368"></a><a name="p20474510368"></a>0x3EFFFFFF(起始地址随机)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.27252725272527%" headers="mcps1.2.6.1.4 "><p id="p74705163612"><a name="p74705163612"></a><a name="p74705163612"></a>用户态栈空间地址</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.61216121612161%" headers="mcps1.2.6.1.5 "><p id="p144775143613"><a name="p144775143613"></a><a name="p144775143613"></a>Cache</p>
+<td class="cellrowborder" valign="top" width="36.88%" headers="mcps1.2.4.1.3 "><p id="p144775143613"><a name="p144775143613"></a><a name="p144775143613"></a>Cache</p>
 </td>
 </tr>
-<tr id="row1047353364"><td class="cellrowborder" valign="top" width="11.721172117211722%" headers="mcps1.2.6.1.1 "><p id="p1947145163615"><a name="p1947145163615"></a><a name="p1947145163615"></a>共享库</p>
+<tr id="row1047353364"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.4.1.1 "><p id="p1947145163615"><a name="p1947145163615"></a><a name="p1947145163615"></a>共享库</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.712271227122713%" headers="mcps1.2.6.1.2 "><p id="p147053364"><a name="p147053364"></a><a name="p147053364"></a>0x1F800000(起始地址随机)</p>
+<td class="cellrowborder" valign="top" width="43.120000000000005%" headers="mcps1.2.4.1.2 "><p id="p24745193617"><a name="p24745193617"></a><a name="p24745193617"></a>用于加载用户态共享库的地址区间，包括mmap所映射的区间。</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.681868186818683%" headers="mcps1.2.6.1.3 "><p id="p2476517362"><a name="p2476517362"></a><a name="p2476517362"></a>0x277FFFFF</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.27252725272527%" headers="mcps1.2.6.1.4 "><p id="p24745193617"><a name="p24745193617"></a><a name="p24745193617"></a>用户态共享库加载地址空间，包括mmap</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.61216121612161%" headers="mcps1.2.6.1.5 "><p id="p11472510363"><a name="p11472510363"></a><a name="p11472510363"></a>Cache</p>
+<td class="cellrowborder" valign="top" width="36.88%" headers="mcps1.2.4.1.3 "><p id="p11472510363"><a name="p11472510363"></a><a name="p11472510363"></a>Cache</p>
 </td>
 </tr>
 </tbody>
@@ -130,7 +94,7 @@
 
 虚拟内存管理中，虚拟地址空间是连续的，但是其映射的物理内存并不一定是连续的，如下图所示。可执行程序加载运行，CPU访问虚拟地址空间的代码或数据时存在两种情况：
 
--   CPU访问的虚拟地址所在的页，如V0，已经与具体的物理页P0做映射，CPU通过找到进程对应的页表条目（详见虚实映射一节），根据页表条目中的物理地址信息访问物理内存中的内容并返回。
+-   CPU访问的虚拟地址所在的页，如V0，已经与具体的物理页P0做映射，CPU通过找到进程对应的页表条目（详见[虚实映射](kernel-small-basic-inner-reflect.md)），根据页表条目中的物理地址信息访问物理内存中的内容并返回。
 -   CPU访问的虚拟地址所在的页，如V2，没有与具体的物理页做映射，系统会触发缺页异常，系统申请一个物理页，并把相应的信息拷贝到物理页中，并且把物理页的起始地址更新到页表条目中。此时CPU重新执行访问虚拟内存的指令便能够访问到具体的代码或数据。
 
 **图 1**  内存映射示意图<a name="fig144371159135620"></a>  
@@ -303,12 +267,12 @@
 </td>
 <td class="cellrowborder" valign="top" width="29.84298429842984%" headers="mcps1.2.4.1.2 "><p id="p8787345546"><a name="p8787345546"></a><a name="p8787345546"></a>LOS_KernelMalloc</p>
 </td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p17787444543"><a name="p17787444543"></a><a name="p17787444543"></a>申请小于16k的内存则通过堆内存池获取，否则申请多个连续物理页</p>
+<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p17787444543"><a name="p17787444543"></a><a name="p17787444543"></a>申请小于16KiB的内存则通过堆内存池获取，否则申请多个连续物理页</p>
 </td>
 </tr>
 <tr id="row48491549145311"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p14787149541"><a name="p14787149541"></a><a name="p14787149541"></a>LOS_KernelMallocAlign</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p478719411543"><a name="p478719411543"></a><a name="p478719411543"></a>申请具有对齐属性的内存，申请规则：申请小于16k的内存则通过堆内存池获取，否则申请多个连续物理页</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p478719411543"><a name="p478719411543"></a><a name="p478719411543"></a>申请具有对齐属性的内存，申请规则：申请小于16KiB的内存则通过堆内存池获取，否则申请多个连续物理页</p>
 </td>
 </tr>
 <tr id="row151093538536"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p15787134185412"><a name="p15787134185412"></a><a name="p15787134185412"></a>LOS_KernelFree</p>

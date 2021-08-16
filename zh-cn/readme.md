@@ -17,14 +17,14 @@
             -   Security：[隐私与安全](device-dev/security/Readme-CN.md)
 
         -   guide：开发示例
-            -   [WLAN连接类产品](device-dev/guide/device-wifi.md)（LED外设控制、集成三方SDK）
+            -   [WLAN连接类产品](device-dev/guide/device-wlan.md)（LED外设控制、集成三方SDK）
             -   [无屏摄像头类产品](device-dev/guide/device-iotcamera-control.md)（摄像头控制）
             -   [带屏摄像头类产品](device-dev/guide/device-camera.md)（屏幕和摄像头控制、视觉应用开发）
 
         -   porting：移植适配
-            -   [三方库移植指导](device-dev/porting/transplant-thirdparty.md)
-            -   [轻量系统芯片移植指导](device-dev/porting/transplant-minichip.md)
-            -   [小型系统芯片移植指导](device-dev/porting/transplant-smallchip.md)
+            -   [三方库移植指导](device-dev/porting/porting-thirdparty.md)
+            -   [轻量系统芯片移植指导](device-dev/porting/porting-minichip.md)
+            -   [小型系统芯片移植指导](device-dev/porting/porting-smallchip.md)
 
         -   bundles：Bundle开发
             -   [Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
@@ -47,7 +47,7 @@
             -   [外设驱动](device-dev/guide/device-outerdriver-demo.md)
 
         -   porting：移植适配
-            -   [三方库移植指导](device-dev/porting/transplant-thirdparty.md)
+            -   [三方库移植指导](device-dev/porting/porting-thirdparty.md)
             -   [标准系统芯片移植指导](device-dev/porting/standard-system-porting-guide.md)
 
         -   bundles：Bundle开发

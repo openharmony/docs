@@ -1,6 +1,6 @@
 # Kernel for Standard Systems<a name="EN-US_TOPIC_0000001111199444"></a>
 
--   **[Linux Kernel Overview](kernel-standard-des.md)**  
+-   **[Linux Kernel Overview](kernel-standard-overview.md)**  
 
 -   **[Guidelines for Using Patches on OpenHarmony Development Boards](kernel-standard-patch.md)**  
 
