@@ -1,13 +1,13 @@
-# drivers
+# Drivers
 
-- [HDF](drive-hdf.md)
+- [HDF](driver-hdf.md)
   - [HDF Overview](driver-hdf-overview.md)
   - [Driver Development](driver-hdf-development.md)
   - [Driver Service Management](driver-hdf-servicemanage.md)
   - [Driver Message Mechanism Management](driver-hdf-news.md)
   - [Driver Configuration Management](driver-hdf-manage.md)
   - [HDF Development Example](driver-hdf-sample.md)
-- [Platform Drivers](drive-platform.md)
+- [Platform Drivers](driver-platform.md)
   - [GPIO](driver-platform-gpio-des.md)
   - [I2C](driver-platform-i2c-des.md)
   - [RTC](driver-platform-rtc-des.md)
@@ -16,7 +16,7 @@
   - [UART](driver-platform-uart-des.md)
   - [Watchdog](driver-platform-watchdog-des.md)
   - [MIPI DSI](driver-platform-mipidsi-des.md)
-- [Peripherals](drive-peripherals.md)
+- [Peripherals](driver-peripherals.md)
   - [LCD](driver-peripherals-lcd-des.md)
   - [TOUCHSCREEN](driver-peripherals-touch-des.md)
   - [Sensor](driver-peripherals-sensor-des.md)
