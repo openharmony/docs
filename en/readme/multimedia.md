@@ -18,12 +18,14 @@ This subsystem offers various media services covering audio, videos, and cameras
 
 -   Photographing and recording \(with cameras\)
 
-**Figure  1**  Subsystem architecture<a name="fig13371156141412"></a>  
+## Architecture<a name="section11660541594"></a>
+
+**Figure  1**  Common architecture of the multimedia subsystem<a name="fig13371156141412"></a>  
 
 
 ![](figures/en-us_image_0000001163462711.png)
 
-**Figure  2**  Architecture of the subsystem suitable for the small system<a name="fig866802061417"></a>  
+**Figure  2**  Architecture of the multimedia subsystem suitable for the small system<a name="fig866802061417"></a>  
 
 
 ![](figures/multimedia-subsystem-architecture.png)
@@ -80,28 +82,28 @@ Hardware-based decoding and encoding functions of audio and video data are devic
 
 You can use the APIs in any of the provided classes based on your development requirements.
 
--   For details about how to call media APIs to implement the video recording, preview, and playback, see  _Multimedia Development Guide_.
+-   For details about how to call media APIs to implement the video recording, preview, and playback, see  [Multimedia Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-multimedia.md).
 -   For a simple player, use  **Player**  and  **Recorder**  classes to quickly implement the playback and recording features.
 -   The  **CameraKit**  class provides a group of effective methods for controlling a camera, which facilitates the camera development.
 -   You can create a  **CameraKit**  object and register various callbacks to respond to many events in the multimedia module. Then, create a  **Camera**  object to operate camera resources, for example, to start preview, recording, and stream capturing, and set related parameters.
 
 ## Installation<a name="section11914418405"></a>
 
--   Load the kernel and related drivers before installing the repository. For details, see readme files of kernel and driver subsystems.
+Load the kernel and related drivers before installing the repository. For details, see readme files of kernel and driver subsystems.
 
 ## Repositories Involved<a name="section1371113476307"></a>
 
-multimedia\_camera\_lite
+[multimedia\_camera\_lite](https://gitee.com/openharmony/multimedia_camera_lite)
 
-multimedia\_audio\_lite
+[multimedia\_audio\_lite](https://gitee.com/openharmony/multimedia_audio_lite)
 
-multimedia\_media\_lite
+[multimedia\_media\_lite](https://gitee.com/openharmony/multimedia_media_lite)
 
-multimedia\_utils\_lite
+[multimedia\_utils\_lite](https://gitee.com/openharmony/multimedia_utils_lite)
 
-multimedia\_camera\_standard
+[multimedia\_camera\_standard](https://gitee.com/openharmony/multimedia_camera_standard)
 
-multimedia\_audio\_standard
+[multimedia\_audio\_standard](https://gitee.com/openharmony/multimedia_audio_standard)
 
-multimedia\_media\_standard
+[multimedia\_media\_standard](https://gitee.com/openharmony/multimedia_media_standard)
 
