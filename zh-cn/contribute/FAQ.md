@@ -2,7 +2,7 @@
 
 [多个代码仓存在编译依赖时如何同时发起构建](#section169732563435)
 
-[ `Sign-off-by`相关操作](#section-sign-off)
+[ `Signed-off-by`相关操作](#section-signed-off)
 
 [DCO校验异常处理](#section-dco)
 
@@ -21,7 +21,7 @@ OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编�
 
 3. 触发构建\(详见触发构建的操作帮助\)后，构建中心会识别关联了同一Issue的PR，同时下载构建，并在代码审核通过后，同时进行合并入代码库。
 
-## `Sign-off-by`相关操作<a name="section-sign-off"></a>
+## `Signed-off-by`相关操作<a name="section-signed-off"></a>
 
 ### 如何在Commit中添加signoff记录
 
@@ -61,7 +61,7 @@ OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编�
 2. Commits 中未包含 Signed-off-by信息，例如提示：
 
    ```
-   当前检测到如下commit未包含Sign-off-by信息：
+   当前检测到如下commit未包含Signed-off-by信息：
    
    •123123
    
@@ -70,7 +70,7 @@ OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编�
 
    **解决办法**：
 
-   参考`Sign-off-by`相关操作，添加Sign-off-by信息。
+   参考`Signed-off-by`相关操作，添加Signed-off-by信息。格式为：Signed-off-by: user.name <user.email>
 
    在PR的评论框输入`check dco`后，单击”评论”，系统将再次进行DCO校验。
 
