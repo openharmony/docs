@@ -18,6 +18,7 @@
 -   [开发板移植实例](#开发板移植实例)
 
 
+本文描述了移植一块开发板的通用步骤，和具体芯片相关的详细移植过程无法在此一一列举。后续社区还会陆续发布开发板移植的实例供开发者参考。
 ## 定义开发板<a name="section132mcpsimp"></a>
 
 本文以移植名为MyProduct的开发板为例讲解移植过程，假定MyProduct是MyProductVendor公司的开发板，使用MySoCVendor公司生产的MySOC芯片作为处理器。
@@ -41,7 +42,7 @@
 
 ### 定义产品<a name="section145mcpsimp"></a>
 
-在“//productdefine/common/products”目录下创建以产品名命名的json文件。该文件用于描述产品所使用的SOC 以及 所需的子系统。配置如下
+在“//productdefine/common/products”目录下创建以产品名命名的json文件。该文件用于描述产品所使用的SOC 以及所需的子系统。配置如下
 
 //productdefine/common/products/MyProduct.json
 
@@ -80,7 +81,7 @@
 ./build.sh --product-name MyProduct 
 ```
 
-构建完成后，可以在“//out/ohos-arm-release/packages/phone/images”目录下看到构建出来的HarmonyOSOpenHarmony镜像文件。
+构建完成后，可以在“//out/ohos-arm-release/packages/phone/images”目录下看到构建出来的OpenHarmony镜像文件。
 
 ## 内核移植<a name="section171mcpsimp"></a>
 
@@ -99,13 +100,13 @@
   },
 ```
 
-接着需要修改定义产品的配置文件//productdefine/common/products/MyProduct.json。将刚刚定义的子系统加入到产品中
+接着需要修改定义产品的配置文件//productdefine/common/products/MyProduct.json。将刚刚定义的子系统加入到产品中。
 
 ### 2. 编译内核<a name="section182mcpsimp"></a>
 
-在上一节定义subsystem的时候，定义了构建的路径path，即//device/MySOCVendor/MySOC/build。这一节会在这个目录创建构建脚本，告诉构建系统如何构建内核。
+OpenHarmony源码中提供了Linux 4.19的内核，归档在`//kernel/linux-4.19`。本节以该内核版本为例，讲解如何编译内核。
 
-目前OpenHarmony源码中提供了Linux 4.19的内核，归档在//kernel/linux-4.19。请尽可能使用这个内核。每个SOC必然需要对内核做一些修改或扩展，建议采用补丁的方式。
+在子系统的定义中，描述了子系统构建的路径path，即`//device/MySOCVendor/MySOC/build`。这一节会在这个目录创建构建脚本，告诉构建系统如何构建内核。
 
 建议的目录结构
 
@@ -113,7 +114,7 @@
 ├── build
 │   ├── kernel
 │   │     ├── linux
-│   │           ├──standard_patch_for_4_19.patch
+│   │           ├──standard_patch_for_4_19.patch // 基于4.19版本内核的补丁
 │   ├── BUILD.gn
 │   ├── ohos.build
 ```
@@ -197,7 +198,7 @@ root {
 }
 ```
 
-更详细的驱动开发指导，请参考  [LCD](../driver/driver-peripherals-lcd-des.md)
+更详细的驱动开发指导，请参考  [LCD](../driver/driver-peripherals-lcd-des.md)。
 
 ### 2. 触摸屏<a name="section229mcpsimp"></a>
 
@@ -211,7 +212,7 @@ root {
 touch_ic_name.c
 ```
 
-的文件。代码模板如下：注意：请替换ic\_name为你所适配芯片的名称
+的文件。代码模板如下：注意：请替换ic\_name为你所适配芯片的名称。
 
 ```
 #include "hdf_touch.h"
@@ -235,7 +236,7 @@ struct HdfDriverEntry g_touchXXXXChipEntry = {
 HDF_INIT(g_touchXXXXChipEntry);
 ```
 
-其中ChipDevice中要提供若干方法
+其中ChipDevice中要提供若干方法。
 
 <a name="table240mcpsimp"></a>
 <table><tbody><tr id="row245mcpsimp"><td class="cellrowborder" valign="top" width="50%"><p id="entry246mcpsimpp0"><a name="entry246mcpsimpp0"></a><a name="entry246mcpsimpp0"></a>方法</p>
@@ -338,7 +339,7 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
 建议适配按如下步骤操作：
 
 1.创建HDF驱动建议将代码放置在//device/MySoCVendor/peripheral/wifi/chip\_name/
-
+文件模板如下：
 ```
 static int32_t HdfWlanHisiChipDriverInit(struct HdfDeviceObject *device) {
     static struct HdfChipDriverFactory factory = CreateChipDriverFactory();
@@ -360,7 +361,7 @@ struct HdfDriverEntry g_hdfXXXChipEntry = {
 HDF_INIT(g_hdfXXXChipEntry);
 ```
 
-在CreateChipDriverFactory中，需要创建一个HdfChipDriverFactory
+在CreateChipDriverFactory中需要创建一个HdfChipDriverFactory，接口如下：
 
 <a name="table312mcpsimp"></a>
 <table><tbody><tr id="row317mcpsimp"><td class="cellrowborder" valign="top" width="50%"><p id="entry318mcpsimpp0"><a name="entry318mcpsimpp0"></a><a name="entry318mcpsimpp0"></a>接口</p>
@@ -444,9 +445,10 @@ HdfChipDriver需要实现的接口有
 
 2.编写配置文件，描述驱动支持的设备
 
-在产品配置目录下创建芯片的配置文件//vendor/MyProductVendor/MyProduct/config/wifi/wlan\_chip\_chip\_name.hcs
+在产品配置目录下创建芯片的配置文件//vendor/MyProductVendor/MyProduct/config/wifi/wlan\_chip\_chip\_name.hcs。
 
 注意： 路径中的vendor\_name、product\_name、chip\_name请替换成实际名称
+模板如下：
 
 ```
 root {
@@ -492,7 +494,7 @@ config DRIVERS_WLAN_XXX
       Answer Y to enable XXX Host driver. Support chip xxx
 ```
 
-接着修改文件//drivers/adapter/khdf/linux/model/network/wifi/Kconfig,在文件末尾加入如下代码将配置菜单加入内核中。
+接着修改文件//drivers/adapter/khdf/linux/model/network/wifi/Kconfig,在文件末尾加入如下代码将配置菜单加入内核中，如：
 
 ```
 source "../../../../../device/MySoCVendor/peripheral/Kconfig"
@@ -500,7 +502,7 @@ source "../../../../../device/MySoCVendor/peripheral/Kconfig"
 
 -   创建构建脚本
 
-    在//drivers/adapter/khdf/linux/model/network/wifi/Makefile文件末尾增加配置，模板如下
+    在//drivers/adapter/khdf/linux/model/network/wifi/Makefile文件末尾增加配置，模板如下：
 
 
 ```
@@ -508,7 +510,7 @@ HDF_DEVICE_ROOT := $(HDF_DIR_PREFIX)/../device
 obj-$(CONFIG_DRIVERS_WLAN_XXX) += $(HDF_DEVICE_ROOT)/MySoCVendor/peripheral/build/standard/
 ```
 
-当在内核中开启DRIVERS\_WLAN\_XXX开关时，会调用//device/MySoCVendor/peripheral/build/standard/中的makefile更多详细的开发手册，请参考[WLAN开发](../guide/oem_wifi_sdk_des.md)。
+当在内核中开启DRIVERS\_WLAN\_XXX开关时，会调用//device/MySoCVendor/peripheral/build/standard/中的makefile。更多详细的开发手册，请参考[WLAN开发](../guide/oem_wifi_sdk_des.md)。
 
 ## 开发板移植实例
 
