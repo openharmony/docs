@@ -70,7 +70,7 @@ OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编�
 
    **解决办法**：
 
-   参考`Signed-off-by`相关操作，添加Signed-off-by信息。格式为：Signed-off-by: user.name <user.email>
+   参考`Signed-off-by`相关操作，添加Signed-off-by信息。格式为：Signed-off-by: user.name <user.email>。
 
    在PR的评论框输入`check dco`后，单击”评论”，系统将再次进行DCO校验。
 
