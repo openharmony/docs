@@ -1,9 +1,26 @@
-# Porting Guide
+# Development Board Porting
+OpenHarmony has organized a Special Interest Group (SIG) [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md) to provide support for third-party development boards.
 
-- [Third-Party Library Porting Guide](porting-thirdparty.md)
-  - [Overview](porting-thirdparty-overview.md)
-  - [Porting a Library Built Using CMake](porting-thirdparty-cmake.md)
-  - [Porting a Library Built Using Makefile](porting-thirdparty-makefile.md)
+Before learning about how to port the code of a development board, take a look at the device classification on OpenHarmony. The porting methods vary according to the device type.
+
+| Device Type| Hardware Requirement| Supported Kernel|
+|---------|-------------|----------------|
+| Mini-system devices| Memory > 128 KB| LiteOS-M       |
+| Small-system devices| Memory > 1 MB, with MMU| LiteOS-A and Linux|
+| Standard-system devices| Memory > 128 MB|  Linux       |
+
+## Code Preparation
+
+OpenHarmony has created repositories for vendors in openharmony-sig. To participate in the repository development, you need to use the following method to initialize and download the code.
+
+```shell
+repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboard.xml --no-repo-verify
+```
+
+The download steps for other resources are the same as those in the mainline version.
+
+## Porting Procedure
+
 - [Mini System SoC Porting Guide](porting-minichip.md)
   - [Porting Preparations](porting-chip-prepare.md)
     - [Before You Start](porting-chip-prepare-knows.md)
@@ -31,4 +48,10 @@
     - [Overview](porting-smallchip-driver-overview.md)
     - [Platform Driver Porting](porting-smallchip-driver-plat.md)
     - [Device Driver Porting](porting-smallchip-driver-oom.md)
-- [Standard  System SoC Porting Guide](standard-system-porting-guide.md)
+- [Standard System Porting Guide](standard-system-porting-guide.md)
+
+# Third-Party Library Porting Guide
+
+- [Overview](porting-thirdparty-overview.md)
+- [Porting a Library Built Using CMake](porting-thirdparty-cmake.md)
+- [Porting a Library Built Using Makefile](porting-thirdparty-makefile.md)
