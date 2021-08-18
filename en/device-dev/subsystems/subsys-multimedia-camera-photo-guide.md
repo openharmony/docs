@@ -152,7 +152,7 @@ Use the camera module APIs to capture frames \(photographing\).
 </td>
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p119321477495"><a name="p119321477495"></a><a name="p119321477495"></a>std::list&lt;int32_t&gt; GetSupportedAfModes() const;</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p139331079491"><a name="p139331079491"></a><a name="p139331079491"></a>Get a list of supported autofocus modes.</p>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p139331079491"><a name="p139331079491"></a><a name="p139331079491"></a>Gets a list of supported autofocus modes.</p>
 </td>
 </tr>
 <tr id="row1193267184912"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1393214717492"><a name="p1393214717492"></a><a name="p1393214717492"></a>CameraAbility</p>
@@ -271,28 +271,28 @@ Use the camera module APIs to capture frames \(photographing\).
 </td>
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>void GetVendorParameter(uint8_t *value, uint32_t len);</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>Get vendor parameter.</p>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>Gets a vendor parameter.</p>
 </td>
 </tr>
 <tr id="row994018711494"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1094016718493"><a name="p1094016718493"></a><a name="p1094016718493"></a>FrameConfig</p>
 </td>
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>void SetVendorParameter(uint8_t *value, uint32_t len);</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>Set vendor parameter.</p>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>Sets a vendor parameter.</p>
 </td>
 </tr>
 <tr id="row994018711495"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1094016718493"><a name="p1094016718493"></a><a name="p1094016718493"></a>CameraInfo</p>
 </td>
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>int32_t GetCameraType() const;</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>Get camera type.</p>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>Gets a camera type.</p>
 </td>
 </tr>
 <tr id="row994018711496"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1094016718493"><a name="p1094016718493"></a><a name="p1094016718493"></a>CameraInfo</p>
 </td>
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>int32_t GetCameraFacingType() const;</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>Get camera facing type.</p>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>Gets a camera facing type.</p>
 </td>
 </tr>
 </tbody>
