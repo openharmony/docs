@@ -6,7 +6,7 @@
 
 ## Compilation Environment Setup<a name="section3336103410314"></a>
 
-Set up the basic environment by following instructions in  [Ubuntu Build Environment](https://device.harmonyos.com/en/docs/start/introduce/oem_minitinier_environment_lin-0000001105407498). Both the user space and LiteOS Cortex-A kernel space are compiled using the LLVM compiler. If you choose to port the Linux kernel, run the following command to install the gcc-arm-linux-gnueabi cross compiler for compiling the Linux kernel-space image:
+Set up the basic environment by following instructions in  [Ubuntu Build Environment](../quick-start/quickstart-lite-env-setup-lin.md). Both the user space and LiteOS Cortex-A kernel space are compiled using the LLVM compiler. If you choose to port the Linux kernel, run the following command to install the gcc-arm-linux-gnueabi cross compiler for compiling the Linux kernel-space image:
 
 ```
 sudo apt-get install gcc-arm-linux-gnueabi
@@ -14,7 +14,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
 
 ## Introduction to the Compilation and Building Subsystem<a name="section354343816319"></a>
 
-To learn more about the compilation and building subsystem, including the compilation and building process, compilation scripts, and building chipset source code or single components, see  [Compilation and Building](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/compilation-and-building.md).
+To learn more about the compilation and building subsystem, including the compilation and building process, compilation scripts, and building chipset source code or single components, see  [Compilation and Building](../subsystems/subsys-build-mini-lite.md).
 
 ## Adding a Chipset Solution<a name="section18612153175011"></a>
 
