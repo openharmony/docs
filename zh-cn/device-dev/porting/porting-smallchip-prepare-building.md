@@ -6,7 +6,7 @@
 
 ## 编译环境搭建<a name="section3336103410314"></a>
 
-首先请搭建OpenHarmony基础环境，步骤请参考轻量和小型系统入门[linux环境搭建](https://device.harmonyos.com/cn/docs/start/introduce/oem_minitinier_environment_lin-0000001105407498)。用户态和LiteOS-A的内核态编译均使用llvm编译器编译，安装方法在搭建基础环境中已提供。若选择移植linux内核，请执行如下命令安装gcc-arm-linux-gnueabi交叉编译工具链，用于编译linux内核态镜像：
+首先请搭建OpenHarmony基础环境，步骤请参考轻量和小型系统入门[linux环境搭建](../quick-start/quickstart-lite-env-setup-linux.md)。用户态和LiteOS-A的内核态编译均使用llvm编译器编译，安装方法在搭建基础环境中已提供。若选择移植linux内核，请执行如下命令安装gcc-arm-linux-gnueabi交叉编译工具链，用于编译linux内核态镜像：
 
 ```
 sudo apt-get install gcc-arm-linux-gnueabi
@@ -14,7 +14,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
 
 ## 编译构建系统介绍<a name="section354343816319"></a>
 
-编译构建流程、编译脚本编写、目录规则、独立编译单个组件、独立编译芯片解决方案等介绍请见[编译构建子系统介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/%E7%BC%96%E8%AF%91%E6%9E%84%E5%BB%BA.md)。
+编译构建流程、编译脚本编写、目录规则、独立编译单个组件、独立编译芯片解决方案等介绍请见[编译构建子系统介绍](../subsystems/subsys-build-mini-lite.md)。
 
 ## 新建芯片解决方案<a name="section18612153175011"></a>
 
