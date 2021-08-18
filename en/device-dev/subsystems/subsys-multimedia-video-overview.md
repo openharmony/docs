@@ -60,7 +60,7 @@ Available audio and video encoding and decoding capabilities vary depending on d
 </td>
 <td class="cellrowborder" valign="top" width="8.24082408240824%" headers="mcps1.2.5.1.2 "><p id="p51202713531"><a name="p51202713531"></a><a name="p51202713531"></a>Hi3518</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul11786193316820"></a><a name="ul11786193316820"></a><ul id="ul11786193316820"><li>Audio: The MPEG-4 AAC Profile (AAC LC), MPEG-3, mono and dual channels, and the MPEG-4 (.mp4 and .m4a), MPEG-3, container format are supported.</li><li>Video: none</li></ul>
+<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul11786193316820"></a><a name="ul11786193316820"></a><ul id="ul11786193316820"><li>Audio: The MPEG-4 AAC Profile (AAC LC), MPEG Audio Layer 3 (MP3), mono and dual channels, and the MPEG-4 (.mp4 and .m4a), MP3(.mp3), container format are supported.</li><li>Video: none</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="43.41434143414341%" headers="mcps1.2.5.1.4 "><a name="ul816485812814"></a><a name="ul816485812814"></a><ul id="ul816485812814"><li>Audio: AAC-LC encoding, mono and dual channels, and the MPEG-4 (.mp4) container format are supported.</li><li>Video: H.264 and H.265 encoding and the MPEG-4 (.mp4) container format are supported.</li></ul>
 </td>
