@@ -51,7 +51,7 @@ OpenHarmony音视频编解码能力取决于具体设备类型，以当前已支
 </td>
 <td class="cellrowborder" valign="top" width="8.24082408240824%" headers="mcps1.2.5.1.2 "><p id="p1312182713535"><a name="p1312182713535"></a><a name="p1312182713535"></a>Hi3516</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul178862023587"></a><a name="ul178862023587"></a><ul id="ul178862023587"><li>音频解码：支持MPEG-4 AAC Profile (AAC LC)格式解码，支持单/双声道，支持MPEG-4(.mp4，.m4a)容器格式。</li><li>视频解码：支持H.265 HEVC/H.264 AVC格式解码（限自身编码码流），支持MPEG-4(.mp4)容器格式。</li></ul>
+<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul178862023587"></a><a name="ul178862023587"></a><ul id="ul178862023587"><li>音频解码：支持MPEG-4 AAC Profile (AAC LC)、MPEG Audio Layer 3 (MP3)格式解码,支持单/双声道，支持MPEG-4(.mp4，.m4a)、MP3(.mp3)容器格式。</li><li>视频解码：支持H.265 HEVC/H.264 AVC格式解码（限自身编码码流），支持MPEG-4(.mp4)容器格式。</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="43.41434143414341%" headers="mcps1.2.5.1.4 "><a name="ul5101301882"></a><a name="ul5101301882"></a><ul id="ul5101301882"><li>音频编码：支持音频AAC_LC编码，支持单/双声道，支持MPEG-4(.mp4)容器格式。</li><li>视频编码：支持视频H.264/H.265编码，支持MPEG-4(.mp4)容器格式。</li></ul>
 </td>
@@ -60,7 +60,7 @@ OpenHarmony音视频编解码能力取决于具体设备类型，以当前已支
 </td>
 <td class="cellrowborder" valign="top" width="8.24082408240824%" headers="mcps1.2.5.1.2 "><p id="p51202713531"><a name="p51202713531"></a><a name="p51202713531"></a>Hi3518</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul11786193316820"></a><a name="ul11786193316820"></a><ul id="ul11786193316820"><li>音频解码：支持MPEG-4 AAC Profile (AAC LC)格式解码，支持单/双声道，支持MPEG-4(.mp4，.m4a)容器格式。</li><li>视频解码：-</li></ul>
+<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul11786193316820"></a><a name="ul11786193316820"></a><ul id="ul11786193316820"><li>音频解码：支持MPEG-4 AAC Profile (AAC LC)、MPEG Audio Layer 3 (MP3)格式解码，支持单/双声道，支持MPEG-4(.mp4，.m4a)、MP3(.mp3)容器格式。</li><li>视频解码：-</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="43.41434143414341%" headers="mcps1.2.5.1.4 "><a name="ul816485812814"></a><a name="ul816485812814"></a><ul id="ul816485812814"><li>音频编码：支持音频AAC_LC编码，支持单/双声道，支持MPEG-4(.mp4)容器格式。</li><li>视频编码：支持视频H.264/H.265编码，支持MPEG-4(.mp4)容器格式。</li></ul>
 </td>

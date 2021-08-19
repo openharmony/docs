@@ -51,7 +51,7 @@ Available audio and video encoding and decoding capabilities vary depending on d
 </td>
 <td class="cellrowborder" valign="top" width="8.24082408240824%" headers="mcps1.2.5.1.2 "><p id="p1312182713535"><a name="p1312182713535"></a><a name="p1312182713535"></a>Hi3516</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul178862023587"></a><a name="ul178862023587"></a><ul id="ul178862023587"><li>Audio: The MPEG-4 AAC Profile (AAC LC), mono and dual channels, and the MPEG-4 (.mp4 and .m4a) container format are supported.</li><li>Video: The H.265 (HEVC) and H.264 (AVC) (for streams encoded using a chip of the same type) and the MPEG-4 (.mp4) container format are supported.</li></ul>
+<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul178862023587"></a><a name="ul178862023587"></a><ul id="ul178862023587"><li>Audio: MPEG-4 AAC Profile (AAC LC), MPEG Audio Layer 3 (MP3), mono and dual channels, MPEG-4 (.mp4 and .m4a), and MP3 (.mp3) are supported.</li><li>Video: The H.265 (HEVC) and H.264 (AVC) (for streams encoded using a chip of the same type) and the MPEG-4 (.mp4) container format are supported.</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="43.41434143414341%" headers="mcps1.2.5.1.4 "><a name="ul5101301882"></a><a name="ul5101301882"></a><ul id="ul5101301882"><li>Audio: AAC-LC encoding, mono and dual channels, and the MPEG-4 (.mp4) container format are supported.</li><li>Video: H.264 and H.265 encoding and the MPEG-4 (.mp4) container format are supported.</li></ul>
 </td>
@@ -60,7 +60,7 @@ Available audio and video encoding and decoding capabilities vary depending on d
 </td>
 <td class="cellrowborder" valign="top" width="8.24082408240824%" headers="mcps1.2.5.1.2 "><p id="p51202713531"><a name="p51202713531"></a><a name="p51202713531"></a>Hi3518</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul11786193316820"></a><a name="ul11786193316820"></a><ul id="ul11786193316820"><li>Audio: The MPEG-4 AAC Profile (AAC LC), mono and dual channels, and the MPEG-4 (.mp4 and .m4a) container format are supported.</li><li>Video: none</li></ul>
+<td class="cellrowborder" valign="top" width="40.82408240824083%" headers="mcps1.2.5.1.3 "><a name="ul11786193316820"></a><a name="ul11786193316820"></a><ul id="ul11786193316820"><li>Audio: MPEG-4 AAC Profile (AAC LC), MPEG Audio Layer 3 (MP3), mono and dual channels, MPEG-4 (.mp4 and .m4a), and MP3 (.mp3) are supported.</li><li>Video: none</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="43.41434143414341%" headers="mcps1.2.5.1.4 "><a name="ul816485812814"></a><a name="ul816485812814"></a><ul id="ul816485812814"><li>Audio: AAC-LC encoding, mono and dual channels, and the MPEG-4 (.mp4) container format are supported.</li><li>Video: H.264 and H.265 encoding and the MPEG-4 (.mp4) container format are supported.</li></ul>
 </td>

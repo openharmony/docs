@@ -57,6 +57,13 @@
 <td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p12929167154912"><a name="p12929167154912"></a><a name="p12929167154912"></a>创建camera实例</p>
 </td>
 </tr>
+<tr id="row16929187104913"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p6929157184911"><a name="p6929157184911"></a><a name="p6929157184911"></a>CameraKit</p>
+</td>
+<td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p1192910704914"><a name="p1192910704914"></a><a name="p1192910704914"></a>const CameraInfo *GetCameraInfo(std::string cameraId);</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p12929167154912"><a name="p12929167154912"></a><a name="p12929167154912"></a>创建cameraInfo实例</p>
+</td>
+</tr>
 <tr id="row592967184912"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p9929127134915"><a name="p9929127134915"></a><a name="p9929127134915"></a>Camera</p>
 </td>
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p0929107204913"><a name="p0929107204913"></a><a name="p0929107204913"></a>string GetCameraId()</p>
@@ -139,6 +146,20 @@
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p119321477495"><a name="p119321477495"></a><a name="p119321477495"></a>std::list&lt;T&gt; GetParameterRange(uint32_t key)</p>
 </td>
 <td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p139331079491"><a name="p139331079491"></a><a name="p139331079491"></a>获取支持的参数范围</p>
+</td>
+</tr>
+<tr id="row1193267184911"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1393214717492"><a name="p1393214717492"></a><a name="p1393214717492"></a>CameraAbility</p>
+</td>
+<td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p119321477495"><a name="p119321477495"></a><a name="p119321477495"></a>std::list&lt;int32_t&gt; GetSupportedAfModes() const;</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p139331079491"><a name="p139331079491"></a><a name="p139331079491"></a>获取支持的自动对焦模式列表</p>
+</td>
+</tr>
+<tr id="row1193267184912"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1393214717492"><a name="p1393214717492"></a><a name="p1393214717492"></a>CameraAbility</p>
+</td>
+<td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p119321477495"><a name="p119321477495"></a><a name="p119321477495"></a>std::list&lt;int32_t&gt; GetSupportedAeModes() const;</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p139331079491"><a name="p139331079491"></a><a name="p139331079491"></a>获取支持的自动曝光模式列表</p>
 </td>
 </tr>
 <tr id="row0933197134920"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1493310764917"><a name="p1493310764917"></a><a name="p1493310764917"></a>CameraDevice</p>
@@ -244,6 +265,34 @@
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>void RemoveSurface(OHOS::AGP::UISurface&amp; surface);</p>
 </td>
 <td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>删除surface</p>
+</td>
+</tr>
+<tr id="row994018711493"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1094016718493"><a name="p1094016718493"></a><a name="p1094016718493"></a>FrameConfig</p>
+</td>
+<td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>void GetVendorParameter(uint8_t *value, uint32_t len);</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>获取自定义参数</p>
+</td>
+</tr>
+<tr id="row994018711494"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1094016718493"><a name="p1094016718493"></a><a name="p1094016718493"></a>FrameConfig</p>
+</td>
+<td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>void SetVendorParameter(uint8_t *value, uint32_t len);</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>设置自定义参数</p>
+</td>
+</tr>
+<tr id="row994018711495"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1094016718493"><a name="p1094016718493"></a><a name="p1094016718493"></a>CameraInfo</p>
+</td>
+<td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>int32_t GetCameraType() const;</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>获取相机类型</p>
+</td>
+</tr>
+<tr id="row994018711496"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="p1094016718493"><a name="p1094016718493"></a><a name="p1094016718493"></a>CameraInfo</p>
+</td>
+<td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="p139411279498"><a name="p139411279498"></a><a name="p139411279498"></a>int32_t GetCameraFacingType() const;</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.41%" headers="mcps1.2.4.1.3 "><p id="p39415717494"><a name="p39415717494"></a><a name="p39415717494"></a>获取相机朝向</p>
 </td>
 </tr>
 </tbody>
