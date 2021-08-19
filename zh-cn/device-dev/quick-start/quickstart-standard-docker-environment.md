@@ -61,13 +61,13 @@ repo forall -c 'git lfs pull'
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.1
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.2
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.1
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.2
     ```
 
 
@@ -89,7 +89,7 @@ repo forall -c 'git lfs pull'
 3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.1
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.2
     ```
 
 
