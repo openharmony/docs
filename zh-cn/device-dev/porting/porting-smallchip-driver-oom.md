@@ -65,7 +65,7 @@
 
 本节描述如何移植触摸屏驱动。触摸屏的器件驱动被放置在源码目录//drivers/framework/model/input/driver/touchscreen中。 移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
 
-详细的驱动开发指导，请参考  [TOUCHSCREEN开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/TOUCHSCREEN.md)。
+详细的驱动开发指导，请参考  [TOUCHSCREEN开发指导](../driver/driver-peripherals-touch-des.md)。
 
 1.  创建触摸屏器件驱动
 
@@ -199,7 +199,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 </table>
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
->详细的接口开发指导，请参考[WLAN开发](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/WLAN.md)。
+>详细的接口开发指导，请参考[WLAN开发](../driver/driver-peripherals-external-des.md)。
 
 具体的移植步骤如下：
 
