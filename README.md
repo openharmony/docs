@@ -14,11 +14,17 @@
 
 ### 最新版本
 
-master：最新开发版本。发布OpenHarmony 2.0 Canary预览版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-2-0-Canary.md)。
+master：最新开发版本。  
+
+发布 OpenHarmony v2.2 Beta2版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v2.2-beta2.md)。
+
+发布OpenHarmony 2.0 Canary预览版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-2-0-Canary.md)。
 
 ### 历史稳定版本
 
-OpenHarmony_v1.0.1_release：OpenHarmony 1.1.0 LTS稳定版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-1-1-0-LTS.md)。
+OpenHarmony_v1.x_release：OpenHarmony 1.1.0 LTS稳定版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-1-1-0-LTS.md)。
+
+[了解更多版本详情](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/)。
 
 
 
