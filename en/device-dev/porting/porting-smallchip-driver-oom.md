@@ -65,7 +65,7 @@ The LCD drivers are stored in  **//drivers/framework/model/display/driver/panel*
 
 This section describes how to port a touchscreen driver. The touchscreen drivers are stored in the source code directory  **//drivers/framework/model/input/driver/touchscreen**. To port a touchscreen driver, register a  **ChipDevice**  model instance with the system.
 
-For details about how to develop a touchscreen driver, see  [Touchscreen Development Guidelines](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/touchscreen.md).
+For details about how to develop a touchscreen driver, see  [Touchscreen Development Guidelines](../driver/driver-peripherals-touch-des.md).
 
 1.  Create a touchscreen driver.
 
@@ -199,7 +199,7 @@ As shown in  [Figure 1](#fig155920160203), the part on the left manages WLAN dev
 </table>
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->For details about the API development, see  [WLAN Development Guidelines](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/wlan.md).
+>For details about the API development, see  [WLAN Development Guidelines](../driver/driver-peripherals-external-des.md).
 
 The porting procedure is as follows:
 

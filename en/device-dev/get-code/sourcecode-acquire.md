@@ -21,9 +21,6 @@ OpenHarmony is an open-source project launched by the OpenAtom Foundation. The p
 
 The open-source code repositories are available at  [https://openharmony.gitee.com](https://openharmony.gitee.com).
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->At present, OpenHarmony source code can only be compiled in the Linux environment.
-
 ## Overview of Source Code Acquisition<a name="section12763342204"></a>
 
 This document describes how to acquire OpenHarmony source code and provides its directory structure. The OpenHarmony code is open to you as  [bundles](../bundles/bundles-standard-rules.md), which can be obtained in any of the following ways:
@@ -51,7 +48,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
 
 1.  Register your account with Gitee.
 2.  Register an SSH public key for access to Gitee.
-3.  Install the  [git client](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
+3.  Install the  [git client](http://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
 
     ```
     git config --global user.name "yourname"
@@ -195,7 +192,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the  [Release Notes](https://gitee.com/openharmony/docs/tree/master/en/release-notes/Readme.md).
+>-   The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the  [Release Notes](https://gitee.com/openharmony/docs/blob/master/en/release-notes/Readme.md).
 >-   The Master 1.0 version is no longer maintained.
 
 **Table  1**  Sites for acquiring source code from image sites
@@ -212,56 +209,56 @@ To ensure the download performance, you are advised to download the source code 
 </tr>
 <tr id="row17736152318398"><td class="cellrowborder" valign="top" width="25%"><p id="p1110983610395"><a name="p1110983610395"></a><a name="p1110983610395"></a>Full code (for mini and small systems)</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p151091536143915"><a name="p151091536143915"></a><a name="p151091536143915"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p151091536143915"><a name="p151091536143915"></a><a name="p151091536143915"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p17110133653913"><a name="p17110133653913"></a><a name="p17110133653913"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p15931114016546"><a name="p15931114016546"></a><a name="p15931114016546"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/code-v1.1.2-LTS.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1911083643914"><a name="p1911083643914"></a><a name="p1911083643914"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p3770144281415"><a name="p3770144281415"></a><a name="p3770144281415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/code-v1.1.2-LTS.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 </tr>
 <tr id="row473612318396"><td class="cellrowborder" valign="top" width="25%"><p id="p511014369394"><a name="p511014369394"></a><a name="p511014369394"></a>Hi3861 solution (binary)</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p0110036193911"><a name="p0110036193911"></a><a name="p0110036193911"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p0110036193911"><a name="p0110036193911"></a><a name="p0110036193911"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p101106361397"><a name="p101106361397"></a><a name="p101106361397"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p29291940175415"><a name="p29291940175415"></a><a name="p29291940175415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/wifiiot-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p7110183617391"><a name="p7110183617391"></a><a name="p7110183617391"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p134864584147"><a name="p134864584147"></a><a name="p134864584147"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/wifiiot-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 </tr>
 <tr id="row873614239395"><td class="cellrowborder" valign="top" width="25%"><p id="p11110113633913"><a name="p11110113633913"></a><a name="p11110113633913"></a>Hi3518 solution (binary)</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p18110193613391"><a name="p18110193613391"></a><a name="p18110193613391"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p18110193613391"><a name="p18110193613391"></a><a name="p18110193613391"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p611013618398"><a name="p611013618398"></a><a name="p611013618398"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/ipcamera_hi3518ev300-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p125681045181518"><a name="p125681045181518"></a><a name="p125681045181518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3518ev300-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p411023616393"><a name="p411023616393"></a><a name="p411023616393"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3518ev300-1.1.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p4607175915149"><a name="p4607175915149"></a><a name="p4607175915149"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3518ev300-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 </tr>
 <tr id="row1273682343914"><td class="cellrowborder" valign="top" width="25%"><p id="p15110123693919"><a name="p15110123693919"></a><a name="p15110123693919"></a>Hi3516 solution (binary)</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1211012362396"><a name="p1211012362396"></a><a name="p1211012362396"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1211012362396"><a name="p1211012362396"></a><a name="p1211012362396"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p6110163613918"><a name="p6110163613918"></a><a name="p6110163613918"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p10455184661518"><a name="p10455184661518"></a><a name="p10455184661518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3516dv300-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p10110183620394"><a name="p10110183620394"></a><a name="p10110183620394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p84951102150"><a name="p84951102150"></a><a name="p84951102150"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3516dv300-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 </tr>
 <tr id="row167371123163914"><td class="cellrowborder" valign="top" width="25%"><p id="p10110143610393"><a name="p10110143610393"></a><a name="p10110143610393"></a>RELEASE-NOTES</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p10111636193919"><a name="p10111636193919"></a><a name="p10111636193919"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/OpenHarmony_Release_Notes_1.1.1_LTS.md" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/OpenHarmony-Release-Notes-1.1.2-LTS.zip" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p20111163663918"><a name="p20111163663918"></a><a name="p20111163663918"></a>-</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>
 </tr>
 <tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%"><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b16812121192918"><a name="b16812121192918"></a><a name="b16812121192918"></a>Master Code</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b1094411391670"><a name="b1094411391670"></a><a name="b1094411391670"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b1143579324"><a name="b1143579324"></a><a name="b1143579324"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b172399013"><a name="b172399013"></a><a name="b172399013"></a>Site</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b2069403304"><a name="b2069403304"></a><a name="b2069403304"></a>SHA-256 Verification Code</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b294086750"><a name="b294086750"></a><a name="b294086750"></a>SHA-256 Verification Code</strong></p>
 </td>
 </tr>
 <tr id="row4769431134919"><td class="cellrowborder" valign="top" width="25%"><p id="p97691031124913"><a name="p97691031124913"></a><a name="p97691031124913"></a>Full code (for standard systems)</p>
@@ -322,7 +319,7 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p1093810218417"><a name="p1093810218417"></a><a name="p1093810218417"></a><strong id="b1124015405556"><a name="b1124015405556"></a><a name="b1124015405556"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b446453043"><a name="b446453043"></a><a name="b446453043"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b1331994007"><a name="b1331994007"></a><a name="b1331994007"></a>Site</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p12520113711011"><a name="p12520113711011"></a><a name="p12520113711011"></a><strong id="b19256751175516"><a name="b19256751175516"></a><a name="b19256751175516"></a>SHA-256 Verification Code</strong></p>
 </td>

@@ -189,7 +189,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 为了获得更好的下载性能，您可以选择从以下站点的镜像库获取源码或者对应的解决方案。
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
->-   本部分只提供OpenHarmony Master最新版本和LTS最新版本的源码获取方式， 其他版本源码获取方式以及具体版本信息请参考[Release-Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/Readme.md)
+>-   本部分只提供OpenHarmony Master最新版本和LTS最新版本的源码获取方式， 其他版本源码获取方式以及具体版本信息请参考[Release-Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/Readme.md)。
 >-   当前Master 1.0版本已经不再维护。
 
 **表 1**  源码获取路径
@@ -206,47 +206,47 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 </tr>
 <tr id="row17736152318398"><td class="cellrowborder" valign="top" width="25%"><p id="p1110983610395"><a name="p1110983610395"></a><a name="p1110983610395"></a>全量代码（轻量和小型系统）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p151091536143915"><a name="p151091536143915"></a><a name="p151091536143915"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p151091536143915"><a name="p151091536143915"></a><a name="p151091536143915"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p17110133653913"><a name="p17110133653913"></a><a name="p17110133653913"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p15931114016546"><a name="p15931114016546"></a><a name="p15931114016546"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/code-v1.1.2-LTS.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1911083643914"><a name="p1911083643914"></a><a name="p1911083643914"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p3770144281415"><a name="p3770144281415"></a><a name="p3770144281415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/code-v1.1.2-LTS.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row473612318396"><td class="cellrowborder" valign="top" width="25%"><p id="p511014369394"><a name="p511014369394"></a><a name="p511014369394"></a>Hi3861解决方案（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p0110036193911"><a name="p0110036193911"></a><a name="p0110036193911"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p0110036193911"><a name="p0110036193911"></a><a name="p0110036193911"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p101106361397"><a name="p101106361397"></a><a name="p101106361397"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p29291940175415"><a name="p29291940175415"></a><a name="p29291940175415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/wifiiot-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p7110183617391"><a name="p7110183617391"></a><a name="p7110183617391"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p134864584147"><a name="p134864584147"></a><a name="p134864584147"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/wifiiot-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row873614239395"><td class="cellrowborder" valign="top" width="25%"><p id="p11110113633913"><a name="p11110113633913"></a><a name="p11110113633913"></a>Hi3518解决方案（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p18110193613391"><a name="p18110193613391"></a><a name="p18110193613391"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p18110193613391"><a name="p18110193613391"></a><a name="p18110193613391"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p611013618398"><a name="p611013618398"></a><a name="p611013618398"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.0/ipcamera_hi3518ev300-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p125681045181518"><a name="p125681045181518"></a><a name="p125681045181518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3518ev300-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p411023616393"><a name="p411023616393"></a><a name="p411023616393"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3518ev300-1.1.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p4607175915149"><a name="p4607175915149"></a><a name="p4607175915149"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3518ev300-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row1273682343914"><td class="cellrowborder" valign="top" width="25%"><p id="p15110123693919"><a name="p15110123693919"></a><a name="p15110123693919"></a>Hi3516解决方案（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1211012362396"><a name="p1211012362396"></a><a name="p1211012362396"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1211012362396"><a name="p1211012362396"></a><a name="p1211012362396"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p6110163613918"><a name="p6110163613918"></a><a name="p6110163613918"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p10455184661518"><a name="p10455184661518"></a><a name="p10455184661518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3516dv300-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p10110183620394"><a name="p10110183620394"></a><a name="p10110183620394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p84951102150"><a name="p84951102150"></a><a name="p84951102150"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3516dv300-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row167371123163914"><td class="cellrowborder" valign="top" width="25%"><p id="p10110143610393"><a name="p10110143610393"></a><a name="p10110143610393"></a>RELEASE-NOTES</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>1.1.1</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>1.1.2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p10111636193919"><a name="p10111636193919"></a><a name="p10111636193919"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/OpenHarmony_Release_Notes_1.1.1_LTS.md" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/OpenHarmony-Release-Notes-1.1.2-LTS.zip" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p20111163663918"><a name="p20111163663918"></a><a name="p20111163663918"></a>-</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>
 </tr>
 <tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%"><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b12414104919398"><a name="b12414104919398"></a><a name="b12414104919398"></a>Master版本源码</strong></p>
