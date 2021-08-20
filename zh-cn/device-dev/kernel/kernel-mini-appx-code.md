@@ -156,7 +156,8 @@ OsMuxInit
 struct MyType {  // 跟随语句放行末，前置1空格
     ...
 };               // 右大括号后面紧跟分号
-int Foo(int a) { // 函数左大括号独占一行，放行首
+int Foo(int a)
+{                // 函数左大括号独占一行，放行首
     if (a > 0) {
         Foo();   // 一行只有一条语句
         Bar();         
