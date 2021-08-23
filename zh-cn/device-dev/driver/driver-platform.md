@@ -1,4 +1,4 @@
-# 平台驱动<a name="ZH-CN_TOPIC_0000001111199424"></a>
+# 平台驱动使用<a name="ZH-CN_TOPIC_0000001111199424"></a>
 
 -   **[GPIO](driver-platform-gpio-des.md)**  
 
