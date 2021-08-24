@@ -56,7 +56,7 @@ typedef struct {
 
 This example implements the following:
 
-1. Creates a monitoring thread to obtain information about the memory pool.
+1. Creates a monitoring task to obtain information about the memory pool.
 
 2. Calls  **LOS\_MemInfoGet**  to obtain the basic information about the memory pool.
 

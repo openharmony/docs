@@ -67,7 +67,7 @@
     - [中断及异常处理](kernel-small-basic-interrupt.md)
     - [进程管理](kernel-small-basic-process.md)
       - [进程](kernel-small-basic-process-process.md)
-      - [线程](kernel-small-basic-process-thread.md)
+      - [任务](kernel-small-basic-process-thread.md)
       - [调度器](kernel-small-basic-process-scheduler.md)
     - [内存管理](kernel-small-basic-memory.md)
       - [堆内存管理](kernel-small-basic-memory-heap.md)

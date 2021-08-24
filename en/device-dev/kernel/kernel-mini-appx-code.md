@@ -156,13 +156,14 @@ Example:
 struct MyType {  // Add a comment here, and leave a space between the comment sign (//) and the comment.
     ...
 };               // The right brace is followed by a semicolon (;).
-int Foo(int a) {// The left brace of the function is placed at the beginning of a line and occupies one line.
+int Foo(int a) 
+{                // The left brace of the function is placed at the beginning of a line and occupies one line.
     if (a > 0) {
         Foo();   // There is only one statement in a line.
         Bar();         
      } else {    // The right brace, else, and the subsequent left brace are in the same line.
         ...         
-     } // The right brace occupies one line exclusively.
+     }           // The right brace occupies one line exclusively.
      ... 
 }
 ```

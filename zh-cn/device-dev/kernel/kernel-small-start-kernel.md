@@ -86,7 +86,7 @@
 <tr id="row357517134414"><td class="cellrowborder" valign="top" width="35.58%" headers="mcps1.2.3.1.1 "><p id="p12575676449"><a name="p12575676449"></a><a name="p12575676449"></a>LOS_INIT_LEVEL_KMOD_TASK</p>
 </td>
 <td class="cellrowborder" valign="top" width="64.42%" headers="mcps1.2.3.1.2 "><p id="p7128122619143"><a name="p7128122619143"></a><a name="p7128122619143"></a>内核任务创建</p>
-<p id="p1657587184419"><a name="p1657587184419"></a><a name="p1657587184419"></a>说明：进行内核任务的创建（内核线程，软件定时器任务）</p>
+<p id="p1657587184419"><a name="p1657587184419"></a><a name="p1657587184419"></a>说明：进行内核任务的创建（内核任务，软件定时器任务）</p>
 <p id="p55485297219"><a name="p55485297219"></a><a name="p55485297219"></a>例如：资源回收系统常驻任务的创建、SystemInit任务创建、CPU占用率统计任务创建</p>
 </td>
 </tr>

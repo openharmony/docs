@@ -69,7 +69,7 @@
       - [Interrupt and Exception Handling](kernel-small-basic-interrupt.md)
       - [Process Management](kernel-small-basic-process.md)
         - [Process](kernel-small-basic-process-process.md)
-        - [Thread](kernel-small-basic-process-thread.md)
+        - [Task](kernel-small-basic-process-thread.md)
         - [Scheduler](kernel-small-basic-process-scheduler.md)
       - [Memory Management](kernel-small-basic-memory.md)
         - [Heap Memory Management](kernel-small-basic-memory-heap.md)
