@@ -44,7 +44,7 @@ The lightweight kernel consists of the basic kernel, extension components, HDF, 
 
 The basic kernel implements the following mechanisms:
 
--   Process management: supports processes and threads and task-based process implementation. Processes have independent 4 GB address space.
+-   Process management: supports processes and threads and task-based process implementation. Processes have independent 4 GiB address space.
 -   Multi-core scheduling: supports task and affinity-based interrupt-core binding settings.
 -   Real-time scheduling: Tasks are scheduled based on priorities. The tasks of the same priority are scheduled by using the time slice round-robin.
 -   Virtual memory: supports page fault. The kernel space is statically mapped to 0-1 GiB addresses, and the user space is mapped to 1-4 GiB addresses.

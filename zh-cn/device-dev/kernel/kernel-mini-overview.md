@@ -7,7 +7,7 @@
 
 ## 内核简介<a name="section1429342661510"></a>
 
-OpenHarmony LiteOS-M内核是面向IoT领域构建的轻量级物联网操作系统内核，具有小体积、低功耗、高性能的特点。其代码结构简单，主要包括内核最小功能集、内核抽象层、可选组件以及工程目录等。OpenHarmony LiteOS-M内核架构包含硬件相关层以及硬件无关层，如下图所示，其中Kernel Arch模块属于硬件相关层，该模块按不同编译工具链、芯片架构分类，提供统一的HAL（Hardware Abstraction Layer）接口，提升了硬件易适配性，满足AIoT类型丰富的硬件和编译工具链的拓展；Components等其他模块属于硬件无关层，其中Kernel Task等内核模块提供基础能力，Components模块提供网络、文件系统等组件能力，Utils模块提供错误处理、调测等能力，KAL（Kernel Abstraction Layer）模块提供统一的标准接口。
+OpenHarmony LiteOS-M内核是面向IoT领域构建的轻量级物联网操作系统内核，具有小体积、低功耗、高性能的特点。其代码结构简单，主要包括内核最小功能集、内核抽象层、可选组件以及工程目录等。OpenHarmony LiteOS-M内核架构包含硬件相关层以及硬件无关层，如下图所示，其中硬件相关层按不同编译工具链、芯片架构分类，提供统一的HAL（Hardware Abstraction Layer）接口，提升了硬件易适配性，满足AIoT类型丰富的硬件和编译工具链的拓展；其他模块属于硬件无关层，其中基础内核模块提供基础能力，扩展模块提供网络、文件系统等组件能力，还提供错误处理、调测等能力；KAL（Kernel Abstraction Layer）模块提供统一的标准接口。
 
 **图 1**  内核架构图<a name="fig17231457191415"></a>  
 ![](figure/内核架构图.png "内核架构图")

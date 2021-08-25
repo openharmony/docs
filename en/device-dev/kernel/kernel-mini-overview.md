@@ -9,10 +9,9 @@
 
 The OpenHarmony LiteOS-M kernel is a lightweight operating system \(OS\) kernel designed for the IoT field. It features small size, low power consumption, and high performance. The LiteOS-M kernel has simple code structure, including the minimum function set, kernel abstraction layer, optional components, and project directory.
 
-The OpenHarmony LiteOS-M kernel architecture consists of the hardware-related layer and the hardware-irrelevant layer, as shown in  [Figure 1](#fig17231457191415).
+The OpenHarmony LiteOS-M kernel architecture consists of the  hardware layer and the hardware-irrelevant layers, as shown in  [Figure Kernel architecture](#fig17231457191415).
 
--   The  **Kernel arch**  module belongs to the hardware-related layer. This module provides unified hardware abstraction layer \(HAL\) interfaces based on the compilation toolchain and chip architecture, improving hardware adaptability and meeting the expansion requirements of diversified AIoT hardware and compilation toolchains.
--   **Components**  and other modules belong to the hardware-irrelevant layer. Kernel modules, such as the task, provide basic capabilities.  **Components**  provide component capabilities, such as network and file system capabilities.  **Utils**  provides error handling and debugging capabilities. The Kernel Abstraction Layer \(**KAL**\) provides unified standard interfaces.
+The hardware layer is classified based on the compilation toolchain and chip architecture, and provides a unified Hardware Abstraction Layer \(HAL\) interface to improve hardware adaptation and facilitate the expansion of various types of &IoT hardware and compilation toolchains. The basic kernel provides basic kernel capabilities. The extended modules provide capabilities of components, such as network and file systems, as well as exception handling and debug tools. The Kernel Abstraction Layer \(**KAL**\) provides unified standard APIs.
 
 **Figure  1**  Kernel architecture<a name="fig17231457191415"></a>  
 ![](figure/kernel-architecture.png "kernel-architecture")
