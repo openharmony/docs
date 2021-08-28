@@ -1,33 +1,27 @@
-# OpenHarmony文档
+# OpenHarmony Documentation
 
-欢迎访问OpenHarmony文档仓库，参与OpenHarmony开发者文档开源项目，与我们一起完善开发者文档。
+Welcome to the OpenHarmony documentation repository.
 
-此仓库存放OpenHarmony网站提供的设备开发、应用开发对应的开发者文档。
+This repository stores device and application development documents provided by OpenHarmony. Your contribution to the OpenHarmony documentation will be highly appreciated.
 
-## 文档目录结构
+## Contents
 
-[中文文档](zh-cn/readme.md)
+[Chinese Documentation](zh-cn/readme.md)
 
 [English Documentation](en/readme.md)
 
-## OpenHarmony文档版本分支说明
+## OpenHarmony Document Version Branches
 
-### 最新版本
+### Latest Versions
 
-master：最新开发版本。  
+master: the latest version.
 
-发布 OpenHarmony v2.2 Beta2版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v2.2-beta2.md)。
+OpenHarmony v2.2 Beta2. [Learn more](en/release-notes/OpenHarmony-v2.2-beta2.md)
 
-发布OpenHarmony 2.0 Canary预览版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-2-0-Canary.md)。
+OpenHarmony 2.0 Canary. [Learn more](en/release-notes/openharmony-2-0-canary.md)
 
-### 历史稳定版本
+### Historical Stable Versions
 
-OpenHarmony_v1.x_release：OpenHarmony 1.1.2 LTS稳定版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v1.1.2-LTS.md)。
+OpenHarmony_v1.x_release: OpenHarmony v1.1.2 LTS. [Learn more](en/release-notes/OpenHarmony-v1.1.2-LTS.md)
 
-[了解更多版本详情](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/)。
-
-
-
-
-
-
+[More versions](https://gitee.com/openharmony/docs/blob/master/en/release-notes/)
