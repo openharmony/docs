@@ -1,6 +1,6 @@
 ### 0.0.5 （2021/06/21）
 
-1、更新llvm版本从10.0.1-53907更新到10.0.1-62608。支撑ipcamera_hispark_taurus_linux编译。
+1、更新llvm版本从10.0.1-53907更新到10.0.1-62608，支撑ipcamera_hispark_taurus_linux编译。
 
 2、增加安装bison、flex、bc、u-boot-tools和gcc-arm-linux-gnueabi。
 
@@ -22,7 +22,7 @@
 
 ### 0.0.2（2020/12/23）
 
-增加安装工具tzdata、default-jre、default-jdk、nodejs、hmos_app_packing_tool、hapsigntoolv2和hpm-cli工具
+增加安装工具tzdata、default-jre、default-jdk、nodejs、hmos_app_packing_tool、hapsigntoolv2和hpm-cli工具。
 
 
 
