@@ -38,6 +38,18 @@ OpenHarmony LiteOS-M动态内存在TLSF算法的基础上，对区间的划分�
 
     包含3种类型节点：未使用空闲内存节点，已使用内存节点和尾节点。每个内存节点维护一个前序指针，指向内存池中上一个内存节点，还维护内存节点的大小和使用标记。空闲内存节点和已使用内存节点后面的内存区域是数据域，尾节点没有数据域。
 
+一些芯片片内RAM大小无法满足要求，需要使用片外物理内存进行扩充。对于这样的多段非连续性内存，OpenHarmony LiteOS-M内核支持把多个非连续性内存逻辑上合一，用户不感知底层的多段非连续性内存区域。OpenHarmony LiteOS-M内核内存模块把不连续的内存区域作为空闲内存结点插入到空闲内存节点链表，把不同内存区域间的不连续部分标记为虚拟的已使用内存节点，从逻辑上把多个非连续性内存区域实现为一个统一的内存池。下面通过示意图说明下多段非连续性内存的运行机制：
+
+**图 3**  非连续性内存合一示意图<a name="figMultiMemRegionsPrincipal"></a>
+![](figure/非连续性内存合一示意图.png "非连续性内存合一示意图")
+
+结合上述示意图，非连续性内存合并为一个统一的内存池的步骤如下：
+1. 把多段非连续性内存区域的第一块内存区域通过调用LOS_MemInit接口进行初始化。
+2. 获取下一个内存区域的开始地址和长度，计算该内存区域和上一块内存区域的间隔大小gapSize。
+3. 把内存区域间隔部分视为虚拟的已使用节点，使用上一个内存区域的尾节点，设置其大小为gapSize+ OS_MEM_NODE_HEAD_SIZE。
+4. 把当前内存区域划分为一个空闲内存节点和一个尾节点，把空闲内存节点插入到空闲链表，并设置各个节点的前后链接关系。
+5. 如果有更多的非连续内存区域，重复上述步骤2-4。
+
 
 ## 开发指导<a name="section7921151015814"></a>
 
@@ -135,12 +147,21 @@ OpenHarmony LiteOS-M的动态内存管理主要为用户提供以下功能，接
 <td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p15644611153"><a name="p15644611153"></a><a name="p15644611153"></a>对指定内存池做完整性检查，仅打开LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK时有效。</p>
 </td>
 </tr>
+<tr id=""><td class="cellrowborder" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id=""><a name=""></a><a name=""></a>增加非连续性内存区域</p>
+</td>
+<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id=""><a name=""></a><a name=""></a>LOS_MemRegionsAdd</p>
+</td>
+<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id=""><a name=""></a><a name=""></a>支持多段非连续性内存区域，把非连续性内存区域逻辑上整合为一个统一的内存池。仅打开LOSCFG_MEM_MUL_REGIONS时有效。如果内存池指针参数pool为空，则使用多段内存的第一个初始化为内存池，其他内存区域，作为空闲节点插入；如果内存池指针参数pool不为空，则把多段内存作为空闲节点，插入到指定的内存池。</p>
+</td>
+</tr>
+
 </tbody>
 </table>
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >-   由于动态内存管理需要管理控制块数据结构来管理内存，这些数据结构会额外消耗内存，故实际用户可使用内存总量小于配置项OS\_SYS\_MEM\_SIZE的大小。
 >-   对齐分配内存接口LOS\_MemAllocAlign/LOS\_MemMallocAlign因为要进行地址对齐，可能会额外消耗部分内存，故存在一些遗失内存，当系统释放该对齐内存时，同时回收由于对齐导致的遗失内存。
+>-   非连续性内存区域接口LOS\_MemRegionsAdd的LosMemRegion数组参数传入的非连续性内存区域需要按各个内存区域的内存开始地址升序，且内存区域不能重叠。
 
 ### 开发流程<a name="section07271773592"></a>
 
