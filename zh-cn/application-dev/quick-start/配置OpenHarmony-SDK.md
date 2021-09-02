@@ -11,7 +11,7 @@
 ## 前提条件<a name="section164161442154812"></a>
 
 -   已下载并安装好DevEco Studio 2.1 Release及以上版本，点击[链接下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)。
--   已获取OpenHarmony SDK包并解压，点击[链接下载](https://mirror.iscas.ac.cn/OpenHarmony/sdk/OpenHarmony-SDK-2.0-Canary.7z)。
+-   已获取OpenHarmony SDK包并解压，点击[链接下载](https://mirror.iscas.ac.cn/OpenHarmony/sdk/)。
 
 ## 配置SDK信息<a name="section1265592425017"></a>
 
@@ -65,7 +65,7 @@ DevEco Studio通过SDK Manager统一管理SDK及工具链，OpenHarmony包含如
 
     ![](figures/zh-cn_image_0000001162781359.png)
 
-4.  进入**Sdk\\js\\2.2.0.0\\build-tools\\ace-loader**目录，然后在该目录下运行命令行工具，分别执行如下命令，直至安装完成。
+4.  进入**Sdk\\js\\版本号\\build-tools\\ace-loader**目录，然后在该目录下运行命令行工具，分别执行如下命令，直至安装完成。
 
     ```
     npm cache clean -f
