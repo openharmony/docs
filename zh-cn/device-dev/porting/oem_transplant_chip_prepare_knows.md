@@ -79,6 +79,6 @@ OpenHarmony的device目录是基础芯片的适配目录，如果在三方芯片
 
 ## 移植规范<a name="section187870185219"></a>
 
--   满足OpenHarmony[开源贡献基本规范和准则](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。
+-   满足OpenHarmony[开源贡献基本规范和准则](../../contribute/参与贡献.md)。
 -   三方芯片适配所需要贡献的代码主要在device、vendor和arch三个目录，参照[内核目录规范](porting-chip-kernel-overview.md)和[板级目录规范](porting-chip-board-overview.md#section6204129143013)满足基本目录命名和使用规范。
 

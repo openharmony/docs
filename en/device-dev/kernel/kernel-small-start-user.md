@@ -39,7 +39,7 @@ During system startup,  **OsUserInitProcess**  is called to start the  **init** 
 -   Starts key system programs or services, such as shell.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >In OpenHarmony, the  **init**  process reads the  **/etc/init.cfg**  file and runs specified commands or starts specified processes based on configurations. For details, see  [init Module](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-boot-init.md).
+    >In OpenHarmony, the  **init**  process reads the  **/etc/init.cfg**  file and runs specified commands or starts specified processes based on configurations. For details, see  [init Module](../subsystems/subsys-boot-init.md).
 
 
 -   Monitors the process for reclaiming the orphan process and clears the zombie processes in child processes.
@@ -48,7 +48,7 @@ During system startup,  **OsUserInitProcess**  is called to start the  **init** 
 
 Common compilation modes of user-space programs include:
 
-1.  [Compilation using the framework](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-steps-board3516-running.md)
+1.  [Compilation using the framework](../quick-start/quickstart-lite-steps-board3516-running.md)
 2.  Manual compilation
 
     Example:
@@ -57,7 +57,7 @@ Common compilation modes of user-space programs include:
     clang --target=arm-liteos --sysroot=prebuilts/lite/sysroot -o helloworld helloworld.c
     ```
 
-    Before running the  **clang**  command, install the LLVM compiler. For details, see  [Installing LLVM](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-env-setup-lin.md).
+    Before running the  **clang**  command, install the LLVM compiler. For details, see  [Installing LLVM](../quick-start/quickstart-lite-env-setup-lin.md).
 
     **--target=arm-liteos**: specifies that the compilation platform is arm-liteos.
 
