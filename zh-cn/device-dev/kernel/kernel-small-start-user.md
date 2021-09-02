@@ -39,7 +39,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 -   启动关键系统程序或服务，如交互进程shell。
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >在OpenHarmony 中**init**进程通过读取/etc/init.cfg，根据配置执行指定命令，或启动指定进程（详见：[init启动引导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init.md)）。
+    >在OpenHarmony 中**init**进程通过读取/etc/init.cfg，根据配置执行指定命令，或启动指定进程（详见：[init启动引导](../subsystems/subsys-boot-init.md)）。
 
 
 -   监控回收孤儿进程，清理子进程中的僵尸进程。
