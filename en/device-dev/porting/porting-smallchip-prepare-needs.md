@@ -1,6 +1,6 @@
 # Before You Start<a name="EN-US_TOPIC_0000001152006279"></a>
 
-This document provides guidance on how to port the Linux and LiteOS Cortex-A kernels on the OpenHarmony  [small system](https://device.harmonyos.com/en/docs/start/introduce/oem_minitinier_des-0000001105598722)  to a development board. It is intended for developers with experience in developing embedded systems. Before following instructions in this document, it is recommended that you familiarize yourself with  [OpenHarmony](https://gitee.com/openharmony/docs/blob/master/en/OpenHarmony-Overview.md), including its technical architecture, directory structure, kernel subsystem, and driver subsystem. The following table lists the development boards that have been adapted to the small system.
+This document provides guidance on how to port the Linux and LiteOS Cortex-A kernels on the OpenHarmony  [small system](https://device.harmonyos.com/en/docs/start/introduce/oem_minitinier_des-0000001105598722)  to a development board. It is intended for developers with experience in developing embedded systems. Before following instructions in this document, it is recommended that you familiarize yourself with  [OpenHarmony](../../OpenHarmony-Overview.md), including its technical architecture, directory structure, kernel subsystem, and driver subsystem. The following table lists the development boards that have been adapted to the small system.
 
 **Table  1**  Development boards compatible with the OpenHarmony small system
 
