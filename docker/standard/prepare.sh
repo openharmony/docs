@@ -63,11 +63,12 @@ fi
 echo link mingw-w64
 ln -s $TOOLSDIR/mingw-w64 $WORKDIR/prebuilts/mingw-w64
 
-mv $TOOLSDIR/clang/host/prebuilts_clang_aosp_linux-x86_64 $TOOLSDIR/clang/host/linux-x86
+mv $TOOLSDIR/clang/ohos/linux-x86_64/clang-69957 $TOOLSDIR/clang/ohos/linux-x86_64/llvm
 if [[ -h $WORKDIR/prebuilts/clang ]]; then
 	rm $WORKDIR/prebuilts/clang
 fi
 echo link clang
+ln -snf 10.0.1 $TOOLSDIR/clang/ohos/linux-x86_64/llvm/lib/clang/current
 ln -s $TOOLSDIR/clang $WORKDIR/prebuilts/clang
 
 mv $TOOLSDIR/gcc/linux-x86/arm/prebuilts_gcc_linux-x86_arm_gcc-linaro-7.5.0-arm-linux-gnueabi $TOOLSDIR/gcc/linux-x86/arm/gcc-linaro-7.5.0-arm-linux-gnueabi
