@@ -1,6 +1,6 @@
 # 移植须知<a name="ZH-CN_TOPIC_0000001152006279"></a>
 
-本文详细介绍如何将OpenHarmony[小型系统](https://device.harmonyos.com/cn/docs/start/introduce/oem_start_guide-0000001054913231)的linux和LiteOS-A内核移植到新的开发板上，要求读者具有一定的嵌入式系统开发经验。建议先查看[入门指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/OpenHarmony-Overview_zh.md)，以了解OpenHarmony软件架构、目录结构、内核子系统和驱动子系统相关知识。当前小型系统已适配的开发板如下表所示：
+本文详细介绍如何将OpenHarmony[小型系统](https://device.harmonyos.com/cn/docs/start/introduce/oem_start_guide-0000001054913231)的linux和LiteOS-A内核移植到新的开发板上，要求读者具有一定的嵌入式系统开发经验。建议先查看[入门指导](../../OpenHarmony-Overview_zh.md)，以了解OpenHarmony软件架构、目录结构、内核子系统和驱动子系统相关知识。当前小型系统已适配的开发板如下表所示：
 
 **表 1**  OpenHarmony小型系统已适配的开发板
 
