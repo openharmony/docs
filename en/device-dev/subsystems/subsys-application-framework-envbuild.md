@@ -3,5 +3,5 @@
 -   Development board: Hi3516D V300
 
 -   [Download the source code](../get-code/sourcecode-acquire.md)
--   [Build the application framework](https://gitee.com/openharmony/docs/blob/master/en/readme/application-framework.md).
+-   [Build the application framework](../../readme/application-framework.md).
 
