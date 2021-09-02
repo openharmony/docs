@@ -33,31 +33,31 @@
     }
     /* 对class="text"的组件设置样式 */
     .text{
-        font-size: 72px;
+        font-size: 42px;
     }
     /* 对class="button"的组件设置样式 */
     .button {
-        width: 362px;
-        height: 80px;
+        width: 240px;
+        height: 60px;
         background-color: #007dff;
-        font-size: 39px;
+        font-size: 30px;
         text-color: white;
         margin-top: 20px;
     }
     ```
 
-3.  使用真机或模拟器运行项目，效果如图所示：
+3.  使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)或[模拟器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/run_simulator-0000001053303709)运行项目，效果如下图所示：
 
     ![](figures/1.png)
 
 
 ## 创建另一个页面<a name="section944219415598"></a>
 
-1.  在“Project“窗口，打开“entry \> src \> main  \>  js  \>  default“，右键点击“pages.index“文件夹，选择“New  \>  JS Page“，命名为“details“。
+1.  在“Project“窗口，打开“entry \> src \> main  \>  js  \>  default“，右键点击“pages.index“文件夹，选择“New  \>  JS Page“，命名为“details“，单击回车键。
 
-    创建完成后，可以看到变成了“pages“文件夹下的“index“和“details“文件夹。
+    创建完成后，可以看到“pages.index“文件夹下的文件目录结构如：
 
-    ![](figures/项目列表.png)
+    ![](figures/1-0.png)
 
 2.  打开“details.hml“文件，添加一个文本，示例代码如下：
 
@@ -80,7 +80,7 @@
         align-items: center;
     }
     .text {
-        font-size: 70px;
+        font-size: 42px;
         text-align: center;
     }
     ```
@@ -97,14 +97,16 @@
     export default {
       launch() {
         router.push ({
-          uri:'pages/details/details', // 指定要跳转的页面
+          uri:'pages/index/details/details', // 指定要跳转的页面
         })
       }
     }
     ```
 
-2.  再次运行项目，效果如图所示：
+2.  再次使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)或[模拟器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/run_simulator-0000001053303709)运行项目，效果如下图所示：
 
     ![](figures/2.png)
 
+
+恭喜你，至此已成功完成HarmonyOS快速入门-使用JS语言开发。
 
