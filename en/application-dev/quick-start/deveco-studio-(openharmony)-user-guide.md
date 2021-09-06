@@ -4,7 +4,7 @@
 
 -   **[Configuring the OpenHarmony SDK](configuring-the-openharmony-sdk.md)**  
 
--   **[Importing an OpenHarmony Project](importing-an-openharmony-project.md)**  
+-   **[Creating an OpenHarmony Project](creating-an-openharmony-project.md)**  
 
 -   **[Configuring the OpenHarmony App Signature](configuring-the-openharmony-app-signature.md)**  
 
