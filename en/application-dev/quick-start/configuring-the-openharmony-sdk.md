@@ -10,8 +10,8 @@ To set up the OpenHarmony app development environment, configure the correspondi
 
 ## Prerequisites<a name="section164161442154812"></a>
 
--   DevEco Studio 2.1 Release version has been downloaded and installed. You can click  [here](https://developer.harmonyos.com/en/develop/deveco-studio#download)  to download it.
--   The OpenHarmony SDK package has been obtained and decompressed. You can click  [here](https://mirror.iscas.ac.cn/OpenHarmony/sdk/OpenHarmony-SDK-2.0-Canary.7z)  to download it.
+-   [DevEco Studio 2.1 Release](https://developer.harmonyos.com/en/develop/deveco-studio#download)  or later has been downloaded and installed.
+-   The  [OpenHarmony SDK](https://mirror.iscas.ac.cn/OpenHarmony/sdk/)  package has been obtained and decompressed.
 
 ## Configuring the SDK Information<a name="section1265592425017"></a>
 
@@ -65,7 +65,7 @@ DevEco Studio manages SDKs and toolchains using SDK Manager. OpenHarmony contain
 
     ![](figures/en-us_image_0000001162781359.png)
 
-4.  Go to the  **Sdk\\js\\2.2.0.0\\build-tools\\ace-loader**  directory, run the following commands in CLI, and wait until the installation is complete.
+4.  Go to the  **Sdk\\js\\_version number_\\build-tools\\ace-loader**  directory, run the following commands in CLI, and wait until the installation is complete.
 
     ```
     npm cache clean -f

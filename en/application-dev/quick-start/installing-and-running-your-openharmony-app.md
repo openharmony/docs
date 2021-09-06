@@ -37,5 +37,5 @@ The hdc commands are as follows:
     ```
 
 
-For details about how to use the hdc tool and the command format, see [hdc_std Usage Guidelines](../../device-dev/subsystems/oem_subsys_toolchain_hdc_guide.md).
+For details about how to use the hdc tool and the command format, see the open-source repository  **docs/en/device-dev/subsystems/hdc-usage-guidelines.md**.
 
