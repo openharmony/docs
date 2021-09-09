@@ -1,4 +1,4 @@
-# Overview<a name="EN-US_TOPIC_0000001063870592"></a>
+# Overview<a name="EN-US_TOPIC_0000001153842840"></a>
 
 -   [Porting Scenario](#section93781277367)
 -   [Directory Specifications](#section18127744153119)
@@ -21,7 +21,7 @@ The kernel used by module chips is LiteOS Cortex-M, which consists of four modul
 **Figure  1**  Architecture of the LiteOS Cortex-M kernel<a name="fig10838105524917"></a>  
 
 
-![](figure/en-us_image_0000001072304191.png)
+![](figure/architecture-of-the-liteos-cortex-m-kernel.png)
 
 The directory structure of the kernel is described as follows:
 

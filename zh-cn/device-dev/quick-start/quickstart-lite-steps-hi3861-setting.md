@@ -23,7 +23,7 @@
 
 各硬件连接关系如下图所示。
 
-**图 1**  硬件连线图<a name="fig12122108211"></a>  
+**图 1**  硬件连线图<a name="fig1922334410211"></a>  
 ![](figure/硬件连线图.png "硬件连线图")
 
 ### 软件要求<a name="section727451210318"></a>
@@ -38,9 +38,9 @@ Hi3861开发板需要的工具如下表所示。
 <a name="table6299192712513"></a>
 <table><thead align="left"><tr id="row122993276512"><th class="cellrowborder" valign="top" width="17.54%" id="mcps1.2.5.1.1"><p id="p162491657102110"><a name="p162491657102110"></a><a name="p162491657102110"></a>平台类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="23.62%" id="mcps1.2.5.1.2"><p id="p1829914271858"><a name="p1829914271858"></a><a name="p1829914271858"></a>开发工具</p>
+<th class="cellrowborder" valign="top" width="23.59%" id="mcps1.2.5.1.2"><p id="p1829914271858"><a name="p1829914271858"></a><a name="p1829914271858"></a>开发工具</p>
 </th>
-<th class="cellrowborder" valign="top" width="22.55%" id="mcps1.2.5.1.3"><p id="p429918274517"><a name="p429918274517"></a><a name="p429918274517"></a>用途</p>
+<th class="cellrowborder" valign="top" width="22.58%" id="mcps1.2.5.1.3"><p id="p429918274517"><a name="p429918274517"></a><a name="p429918274517"></a>用途</p>
 </th>
 <th class="cellrowborder" valign="top" width="36.29%" id="mcps1.2.5.1.4"><p id="p12997271757"><a name="p12997271757"></a><a name="p12997271757"></a>获取途径</p>
 </th>
@@ -48,45 +48,45 @@ Hi3861开发板需要的工具如下表所示。
 </thead>
 <tbody><tr id="row935218593572"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p105554418586"><a name="p105554418586"></a><a name="p105554418586"></a>Linux服务器</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.62%" headers="mcps1.2.5.1.2 "><p id="p45551740589"><a name="p45551740589"></a><a name="p45551740589"></a>编译基础软件包(仅ubuntu 20+需要)</p>
+<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p45551740589"><a name="p45551740589"></a><a name="p45551740589"></a>编译基础软件包(仅ubuntu 20+需要)</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.55%" headers="mcps1.2.5.1.3 "><p id="p655594115814"><a name="p655594115814"></a><a name="p655594115814"></a>编译依赖的基础软件包</p>
+<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p655594115814"><a name="p655594115814"></a><a name="p655594115814"></a>编译依赖的基础软件包</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p165558415589"><a name="p165558415589"></a><a name="p165558415589"></a>通过互联网获取</p>
 </td>
 </tr>
 <tr id="row1397335913612"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p3711468218"><a name="p3711468218"></a><a name="p3711468218"></a>Linux服务器</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.62%" headers="mcps1.2.5.1.2 "><p id="p097355911620"><a name="p097355911620"></a><a name="p097355911620"></a>SCons3.0.4+</p>
+<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p097355911620"><a name="p097355911620"></a><a name="p097355911620"></a>SCons3.0.4+</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.55%" headers="mcps1.2.5.1.3 "><p id="p1973195917619"><a name="p1973195917619"></a><a name="p1973195917619"></a>编译构建工具</p>
+<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p1973195917619"><a name="p1973195917619"></a><a name="p1973195917619"></a>编译构建工具</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p1722663441514"><a name="p1722663441514"></a><a name="p1722663441514"></a>通过互联网获取</p>
 </td>
 </tr>
 <tr id="row1968013216717"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p2681632977"><a name="p2681632977"></a><a name="p2681632977"></a>Linux服务器</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.62%" headers="mcps1.2.5.1.2 "><p id="p1991501391312"><a name="p1991501391312"></a><a name="p1991501391312"></a>python模块：setuptools、kconfiglib、pycryptodome、six、ecdsa</p>
+<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p1991501391312"><a name="p1991501391312"></a><a name="p1991501391312"></a>python模块：setuptools、kconfiglib、pycryptodome、six、ecdsa</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.55%" headers="mcps1.2.5.1.3 "><p id="p968120325715"><a name="p968120325715"></a><a name="p968120325715"></a>编译构建工具</p>
+<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p968120325715"><a name="p968120325715"></a><a name="p968120325715"></a>编译构建工具</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p268116326711"><a name="p268116326711"></a><a name="p268116326711"></a>通过互联网获取</p>
 </td>
 </tr>
 <tr id="row020914491313"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p20209749103116"><a name="p20209749103116"></a><a name="p20209749103116"></a>Linux服务器</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.62%" headers="mcps1.2.5.1.2 "><p id="p7209104910317"><a name="p7209104910317"></a><a name="p7209104910317"></a>gcc riscv32</p>
+<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p7209104910317"><a name="p7209104910317"></a><a name="p7209104910317"></a>gcc riscv32</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.55%" headers="mcps1.2.5.1.3 "><p id="p102093498311"><a name="p102093498311"></a><a name="p102093498311"></a>编译构建工具</p>
+<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p102093498311"><a name="p102093498311"></a><a name="p102093498311"></a>编译构建工具</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p321054953116"><a name="p321054953116"></a><a name="p321054953116"></a>通过互联网获取</p>
 </td>
 </tr>
 <tr id="row1596703610215"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p071946112113"><a name="p071946112113"></a><a name="p071946112113"></a>Windows工作台</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.62%" headers="mcps1.2.5.1.2 "><p id="p1044974291416"><a name="p1044974291416"></a><a name="p1044974291416"></a>CH341SER.EXE</p>
+<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p1044974291416"><a name="p1044974291416"></a><a name="p1044974291416"></a>CH341SER.EXE</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.55%" headers="mcps1.2.5.1.3 "><p id="p94491342131413"><a name="p94491342131413"></a><a name="p94491342131413"></a>USB转串口驱动</p>
+<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p94491342131413"><a name="p94491342131413"></a><a name="p94491342131413"></a>USB转串口驱动</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p6449184214148"><a name="p6449184214148"></a><a name="p6449184214148"></a><a href="http://www.wch.cn/search?q=ch340g&amp;t=downloads" target="_blank" rel="noopener noreferrer">http://www.wch.cn/search?q=ch340g&amp;t=downloads</a></p>
 </td>
@@ -123,7 +123,7 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
     scons -v
     ```
 
-    **图 2**  SCons安装成功界面，版本要求3.0.4以上<a name="fig235815252492"></a>  
+    **图 2**  SCons安装成功界面，版本要求3.0.4以上<a name="fig151441613316"></a>  
     ![](figure/SCons安装成功界面-版本要求3-0-4以上.png "SCons安装成功界面-版本要求3-0-4以上")
 
 
@@ -219,7 +219,7 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 ### 安装gcc\_riscv32（WLAN模组类编译工具链）<a name="section34435451256"></a>
 
 >![](../public_sys-resources/icon-notice.gif) **须知：** 
->-   Hi3861平台仅支持使用libgcc运行时库的静态链接，不建议开发者使用libgcc运行时库的动态链接，会导致商业分发时被GPL V3污染。
+>-   Hi3861平台仅支持使用libgcc运行时库的静态链接，不建议开发者使用libgcc运行时库的动态链接，以免产品需遵从GPLV3许可证。
 >-   通过下述步骤2-15，我们编译好了gcc\_riscv32 镜像，提供给开发者[直接下载](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz)使用。直接下载 gcc\_riscv32 镜像的开发者可省略下述2-15步。
 
 1.  打开Linux编译服务器终端。
@@ -353,6 +353,6 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 2.  点击安装包，安装驱动程序。
 3.  驱动安装完成后，重新插拔USB接口，串口信息显示如下图所示。
 
-    ![](figure/zh-cn_image_0000001174350633.png)
+    ![](figure/serial-port-entry.png)
 
 

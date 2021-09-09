@@ -1,4 +1,4 @@
-# Setting Up Ubuntu Development Environment in Docker Mode and Building Source Code<a name="EN-US_TOPIC_0000001119805112"></a>
+# Setting Up Ubuntu Development Environment in Docker Mode<a name="EN-US_TOPIC_0000001119805112"></a>
 
 -   [Obtaining Standard-System Source Code](#section8761819202511)
     -   [Prerequisites](#section102871547153314)
@@ -61,13 +61,13 @@ repo forall -c 'git lfs pull'
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.2
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.2
     ```
 
 
@@ -89,7 +89,7 @@ repo forall -c 'git lfs pull'
 3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.2
     ```
 
 

@@ -1,11 +1,11 @@
 # Environment Setup<a name="EN-US_TOPIC_0000001128311058"></a>
 
--   **[Overview](quickstart-lite-env-setup-des.md)**  
+-   **[Overview](quickstart-lite-env-setup-overview.md)**  
 
--   **[Windows Development Environment](quickstart-lite-env-setup-win.md)**  
+-   **[Setting Up Windows Development Environment](quickstart-lite-env-setup-windows.md)**  
 
--   **[Ubuntu Build Environment](quickstart-lite-env-setup-lin.md)**  
+-   **[Setting Up Ubuntu Development Environment](quickstart-lite-env-setup-linux.md)**  
 
--   **[FAQ](quickstart-lite-env-setup-faqs.md)**  
+-   **[FAQs](quickstart-lite-env-setup-faqs.md)**  
 
 

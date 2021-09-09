@@ -69,7 +69,6 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </tbody>
 </table>
 
-
 ## Preparations<a name="section7337134183512"></a>
 
 Before using the Docker environment, perform the following operations:
@@ -151,10 +150,8 @@ hb set
  .
 ```
 
-**Figure  1**  Setting page<a name="fig18712183616135"></a>  
-
-
-![](figure/en-us_image_0000001101413884.png)
+**Figure  1**  Setting page<a name="fig7947145854013"></a>  
+![](figure/setting-page.png "setting-page")
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >The mapping between the development board and the building GUI:

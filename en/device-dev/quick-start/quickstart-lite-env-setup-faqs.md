@@ -1,4 +1,4 @@
-# FAQ<a name="EN-US_TOPIC_0000001128470858"></a>
+# FAQs<a name="EN-US_TOPIC_0000001128470858"></a>
 
 -   [What should I do if garbled characters and segmentation faults occur during hb installation?](#section411894616119)
 -   [What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?](#section629417571626)

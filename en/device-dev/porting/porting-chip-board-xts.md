@@ -1,4 +1,4 @@
-# XTS<a name="EN-US_TOPIC_0000001063110883"></a>
+# XTS<a name="EN-US_TOPIC_0000001199722627"></a>
 
 -   [Introduction](#section6725155811454)
     -   [Adding the XTS Subsystem to the Building Component](#section46981118105417)

@@ -1,4 +1,4 @@
-# Porting a Library Built Using CMake<a name="EN-US_TOPIC_0000001063033549"></a>
+# Porting a Library Built Using CMake<a name="EN-US_TOPIC_0000001200172241"></a>
 
 -   [Source Code Acquisition](#section1771132116245)
 -   [Porting Guidelines](#section9737174410328)
@@ -136,10 +136,10 @@ The following steps show how to configure and modify the toolchains for cross-co
     set(CMAKE_LINKER clang)
     set(CMAKE_CXX_LINKER clang++)
     set(CMAKE_C_LINKER clang)
-    set(CMAKE_C_LINK_EXECUTABLE "${CMAKE_C_LINKER}
-    ${MY_LINK_FLAGS} <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
-    set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINKER}
-    ${MY_LINK_FLAGS} <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
+    set(CMAKE_C_LINK_EXECUTABLE
+        "${CMAKE_C_LINKER} ${MY_LINK_FLAGS} <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
+    set(CMAKE_CXX_LINK_EXECUTABLE
+        "${CMAKE_CXX_LINKER} ${MY_LINK_FLAGS} <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
     # Specify the path for searching chained libraries.
     set(CMAKE_SYSROOT ${OHOS_SYSROOT_PATH})
     ```
@@ -154,7 +154,7 @@ The following steps show how to configure and modify the toolchains for cross-co
     make -j
     ```
 
-    **OHOS\_SYSROOT\_PATH**  specifies the absolute path where  **sysroot**  is located. Taking OpenHarmony for example, set  **OHOS\_SYSROOT\_PATH**  to the absolute path of  **openHarmony/prebuilts/lite/sysroot**.
+    **OHOS\_SYSROOT\_PATH**  specifies the absolute path where  **sysroot**  is located. For OpenHarmony, set  **OHOS\_SYSROOT\_PATH**  to the absolute path of the  **out/hispark\__xxx_/ipcamera\_hispark\__xxx_/sysroot**  directory. This directory is generated after full compilation is complete. Therefore, complete full compilation before porting.
 
 3.  <a name="li15717101715249"></a>View the result.
 
@@ -227,7 +227,7 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 1.  Set up the OpenHarmony environment.
 
-    Using Hi3518EV300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see  [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-board3518-running.md).
+    Using Hi3518EV300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see  [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3518-running.md).
 
     The following screen is displayed after a successful login to the OS.
 

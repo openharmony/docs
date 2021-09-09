@@ -13,7 +13,7 @@
     点击烧写并选择串口后，出现Error: Opening COMxx: Access denied。
 
     **图 1**  打开串口失败图<a name="zh-cn_topic_0000001053466255_fig066333283916"></a>  
-    ![](figure/打开串口失败图-7.png "打开串口失败图-7")
+    ![](figure/打开串口失败图-15.png "打开串口失败图-15")
 
 -   **可能原因**
 
@@ -24,19 +24,17 @@
 1.  按图依次选择下拉框，查找带有serial-xx的终端
 
     **图 2**  查找是否存在占用串口的终端<a name="zh-cn_topic_0000001053466255_fig165994164420"></a>  
-    ![](figure/查找是否存在占用串口的终端-8.png "查找是否存在占用串口的终端-8")
+    ![](figure/查找是否存在占用串口的终端-16.png "查找是否存在占用串口的终端-16")
 
 2.  点击标号中的垃圾桶图标，关闭串口。
 
     **图 3**  关闭串口终端<a name="zh-cn_topic_0000001053466255_fig7911282453"></a>  
-    ![](figure/关闭串口终端-9.png "关闭串口终端-9")
+    ![](figure/关闭串口终端-17.png "关闭串口终端-17")
 
 3.  重新点击烧写，选择串口并开始烧写程序
 
-    **图 4**  重新启动烧写任务<a name="zh-cn_topic_0000001053466255_fig1138624316485"></a>  
-    
-
-    ![](figure/changjian1-10.png)
+    **图 4**  重新启动烧写任务<a name="fig87139519227"></a>  
+    ![](figure/重新启动烧写任务-18.png "重新启动烧写任务-18")
 
 
 ## Windows电脑与单板网络连接失败<a name="section8512971816"></a>
@@ -46,7 +44,7 @@
     点击烧写并选择串口后，无法获取文件。
 
     **图 5**  网络不通，单板无法获取文件图<a name="zh-cn_topic_0000001053466255_fig5218920223"></a>  
-    ![](figure/网络不通-单板无法获取文件图-11.png "网络不通-单板无法获取文件图-11")
+    ![](figure/网络不通-单板无法获取文件图-19.png "网络不通-单板无法获取文件图-19")
 
 -   **可能原因**
 
@@ -59,23 +57,23 @@
 1.  检查网线是否连接。
 2.  点击Windows防火墙。
 
-    **图 6**  网络防火墙设置图<a name="zh-cn_topic_0000001053466255_fig62141417794"></a>  
-    ![](figure/网络防火墙设置图-12.png "网络防火墙设置图-12")
+    **图 6**  网络防火墙设置图<a name="fig954464811215"></a>  
+    ![](figure/网络防火墙设置图-20.png "网络防火墙设置图-20")
 
 3.  点击“允许应用通过防火墙”。
 
-    **图 7**  防火墙和网络保护界面图<a name="zh-cn_topic_0000001053466255_fig20703151111116"></a>  
-    ![](figure/防火墙和网络保护界面图-13.png "防火墙和网络保护界面图-13")
+    **图 7**  防火墙和网络保护界面图<a name="fig158731526101312"></a>  
+    ![](figure/防火墙和网络保护界面图-21.png "防火墙和网络保护界面图-21")
 
 4.  查找Visual Studio Code应用。
 
-    **图 8**  查找Visual Studio Code应用图<a name="zh-cn_topic_0000001053466255_fig462316612165"></a>  
-    ![](figure/查找Visual-Studio-Code应用图-14.png "查找Visual-Studio-Code应用图-14")
+    **图 8**  查找Visual Studio Code应用图<a name="fig96572537139"></a>  
+    ![](figure/查找Visual-Studio-Code应用图-22.png "查找Visual-Studio-Code应用图-22")
 
 5.  勾选Visual Studio Code的专用和公用网络的访问权限。
 
-    **图 9**  允许Visual Studio Code应用访问网络<a name="zh-cn_topic_0000001053466255_fig132725269184"></a>  
-    ![](figure/允许Visual-Studio-Code应用访问网络-15.png "允许Visual-Studio-Code应用访问网络-15")
+    **图 9**  允许Visual Studio Code应用访问网络<a name="fig18201217161411"></a>  
+    ![](figure/允许Visual-Studio-Code应用访问网络-23.png "允许Visual-Studio-Code应用访问网络-23")
 
 
 ## 烧写失败<a name="section1767804111198"></a>
@@ -97,7 +95,7 @@
 
 -   **现象描述**
 
-    ![](figure/zh-cn_image_0000001174270743.png)
+    ![](figure/error.png)
 
 
 -   **可能原因1**
@@ -110,7 +108,7 @@
 
 -   **可能原因2**
 
-    ![](figure/zh-cn_image_0000001174270739.png)
+    ![](figure/error2.png)
 
 -   **解决办法**
 
@@ -125,7 +123,7 @@
 
     例：
 
-    ![](figure/zh-cn_image_0000001174350661.png)
+    ![](figure/solution-24.png)
 
 
 ## 串口无回显<a name="zh-cn_topic_0000001053466255_section14871149155911"></a>
@@ -169,6 +167,6 @@
 
 3.  烧写完成后，登录串口如下图所示。
 
-    ![](figure/zh-cn_image_0000001174350659.png)
+    ![](figure/login-serial-port.png)
 
 

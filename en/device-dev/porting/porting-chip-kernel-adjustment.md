@@ -1,4 +1,4 @@
-# Basic Kernel Adaptation<a name="EN-US_TOPIC_0000001063432950"></a>
+# Basic Kernel Adaptation<a name="EN-US_TOPIC_0000001199842517"></a>
 
 -   [Adaptation Process](#section14523241594)
 -   [Feature Configuration](#section112994366592)
@@ -15,7 +15,7 @@ Basic adaptation consists of the following steps:
 **Figure  1**  Startup process<a name="fig10838105524917"></a>  
 
 
-![](figure/en-us_image_0000001073943511.png)
+![](figure/startup-process.png)
 
 In the  **startup.S**  file, you must ensure that the entry function \(for example,  **reset\_vector**\) of the interrupt vector table is stored in the RAM start address specified by the link configuration files. The link configuration files of IAR, Keil, and GCC projects are  **xxx.icf**,  **xxx.sct**, and  **xxx.ld**, respectively. The startup file provided by the vendor does not need to be modified if the  **startup.S**  file has initialized the system clock and returned to the  **main**  function. Otherwise, the preceding functions need to be implemented.
 
@@ -61,6 +61,11 @@ The following table shows some typical configuration items:
 <tr id="row3440642161918"><td class="cellrowborder" valign="top" width="34.81%" headers="mcps1.2.3.1.1 "><p id="p1144004261916"><a name="p1144004261916"></a><a name="p1144004261916"></a>LOSCFG_BASE_IPC_QUEUE</p>
 </td>
 <td class="cellrowborder" valign="top" width="65.19%" headers="mcps1.2.3.1.2 "><p id="p1644094201917"><a name="p1644094201917"></a><a name="p1644094201917"></a>Switch of the queue feature. The values <strong id="b1514814454405"><a name="b1514814454405"></a><a name="b1514814454405"></a>1</strong> and <strong id="b114824504011"><a name="b114824504011"></a><a name="b114824504011"></a>0</strong> indicate that the switch is turned on and turned off, respectively.</p>
+</td>
+</tr>
+<tr id="row14294143784110"><td class="cellrowborder" valign="top" width="34.81%" headers="mcps1.2.3.1.1 "><p id="p529573794111"><a name="p529573794111"></a><a name="p529573794111"></a>LOSCFG_BASE_CORE_TSK_LIMIT</p>
+</td>
+<td class="cellrowborder" valign="top" width="65.19%" headers="mcps1.2.3.1.2 "><p id="p529503704116"><a name="p529503704116"></a><a name="p529503704116"></a>Maximum number of available tasks, excluding idle tasks. You can set this item based on your actual service requirements, or you can initially set it to a large value and adjust the value at a later time.</p>
 </td>
 </tr>
 <tr id="row16440124216198"><td class="cellrowborder" valign="top" width="34.81%" headers="mcps1.2.3.1.1 "><p id="p9440184271915"><a name="p9440184271915"></a><a name="p9440184271915"></a>LOSCFG_BASE_IPC_SEM</p>

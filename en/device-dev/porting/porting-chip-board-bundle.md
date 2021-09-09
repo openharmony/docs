@@ -1,4 +1,4 @@
-# Third-party Module Adaptation<a name="EN-US_TOPIC_0000001117478960"></a>
+# Third-party Module Adaptation<a name="EN-US_TOPIC_0000001153842842"></a>
 
 To use third-party modules in the  **third\_party**  directory, you may need to adapt the modules. This section uses mbedTLS as an example to describe how to integrate the adaptation code with the OpenHarmony compilation framework. For the principles of mbedTLS and the specific logic of the adaptation code, see the adaptation guide on the mbedTLS official website.
 

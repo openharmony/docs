@@ -150,10 +150,8 @@ hb set
  .
 ```
 
-**图 1**  设置编译界面<a name="fig18712183616135"></a>  
-
-
-![](figure/zh-cn_image_0000001101413884.png)
+**图 1**  设置编译界面<a name="fig7947145854013"></a>  
+![](figure/设置编译界面.png "设置编译界面")
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >当前开发板平台和编译界面的对应关系如下：

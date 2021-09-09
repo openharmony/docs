@@ -9,27 +9,21 @@
 
 Hi3861 WLAN模组是一片大约2cm\*5cm大小的开发板，是一款高度集成的2.4GHz WLAN SoC芯片，集成IEEE 802.11b/g/n基带和RF（Radio Frequency）电路。支持OpenHarmony，并配套提供开放、易用的开发和调试运行环境。
 
-**图 1**  Hi3861 WLAN模组外观图<a name="fig74884420237"></a>  
-
-
-![](figure/3861正面.png)
+**图 1**  Hi3861 WLAN模组外观图<a name="fig5781557185810"></a>  
+![](figure/Hi3861-WLAN模组外观图.png "Hi3861-WLAN模组外观图")
 
 另外，Hi3861 WLAN模组还可以通过与Hi3861底板连接，扩充自身的外设能力，底板如下图所示。
 
-**图 2**  Hi3861底板外观图<a name="fig111746288192"></a>  
-
-
-![](figure/zh-cn_image_0000001174350615.png)
+**图 2**  Hi3861底板外观图<a name="fig12182375916"></a>  
+![](figure/Hi3861底板外观图.png "Hi3861底板外观图")
 
 -   RF电路包括功率放大器PA（Power Amplifier）、低噪声放大器LNA（Low Noise Amplifier）、RF Balun、天线开关以及电源管理等模块；支持20MHz标准带宽和5MHz/10MHz窄带宽，提供最大72.2Mbit/s物理层速率。
 -   Hi3861 WLAN基带支持正交频分复用（OFDM）技术，并向下兼容直接序列扩频（DSSS）和补码键控（CCK）技术，支持IEEE 802.11 b/g/n协议的各种数据速率。
 -   Hi3861芯片集成高性能32bit微处理器、硬件安全引擎以及丰富的外设接口，外设接口包括SPI（Synchronous Peripheral Interface）、UART（Universal Asynchronous Receiver & Transmitter）、I2C（The Inter Integrated Circuit）、PWM（Pulse Width Modulation）、GPIO（General Purpose Input/Output）和多路ADC（Analog to Digital Converter），同时支持高速SDIO2.0（Secure Digital Input/Output）接口，最高时钟可达50MHz；芯片内置SRAM（Static Random Access Memory）和Flash，可独立运行，并支持在Flash上运行程序。
 -   Hi3861芯片适用于智能家电等物联网智能终端领域。
 
-    **图 3**  Hi3861功能框图<a name="f0d52fa2f3b094c688c805a373a6ec970"></a>  
-    
-
-    ![](figure/zh-cn_image_0000001128311066.png)
+    **图 3**  Hi3861功能框图<a name="fig1367035113590"></a>  
+    ![](figure/Hi3861功能框图.png "Hi3861功能框图")
 
 
 ## 资源和约束<a name="section82610215014"></a>

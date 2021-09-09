@@ -48,7 +48,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
 
 1.  Register your account with Gitee.
 2.  Register an SSH public key for access to Gitee.
-3.  Install the  [git client](http://git-scm.com/book/en/v2)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
+3.  Install the  [git client](http://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
 
     ```
     git config --global user.name "yourname"
@@ -101,12 +101,12 @@ This document describes how to acquire OpenHarmony source code and provides its 
     ```
     repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify
     repo sync -c  
-    repo forall -c 'git lfs pull'
+    repo[Release-Notes](../../release-notes/Readme.md) forall -c 'git lfs pull'
     ```
 
 -   Obtaining the source code of other OpenHarmony releases
 
-    For details about how to obtain the source code of other OpenHarmony releases, see the  [Release Notes](../../release-notes/Readme.md).
+    For details about how to obtain the source code of other OpenHarmony releases, see the  [Release-Notes](../../release-notes/Readme.md).
 
 
 ## Method 2: Acquiring Source Code from HPM<a name="section463013147412"></a>
@@ -154,10 +154,8 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     3.  Specify filter criteria, such as the bundle type \(for example:  **Board support**  and  **Kernel support**\), to further filter the distributions.
     4.  Locate your desired distribution and click it to view details.
 
-        **Figure  1**  HPM page<a name="fig838103114320"></a>  
-        
-
-        ![](figure/en-us_image_0000001119915556.png)
+        **Figure  1**  HPM page<a name="fig414435103619"></a>  
+        ![](figure/hpm-page.png "hpm-page")
 
 2.  Learn more about the distribution.
 
@@ -165,10 +163,8 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     2.  Click  **Download**  to download the distribution to your local PC.
     3.  Click  **Custom**  to add or delete bundles of the distribution.
 
-    **Figure  2**  Example distribution<a name="fig1329851510414"></a>  
-    
-
-    ![](figure/en-us_image_0000001119755646.png)
+    **Figure  2**  Example distribution<a name="fig950763112375"></a>  
+    ![](figure/example-distribution.png "example-distribution")
 
 3.  Customize bundles.
     1.  Access the  **Custom solution**  page, as shown in the following figure.
@@ -176,10 +172,8 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     3.  Enter the basic information about your project, including the bundle name, version, and description, on the right pane.
     4.  Click  **Download**. The system then generates the OpenHarmony code structure file \(for example,  **my\_cust\_dist.zip**\) and saves it to your local PC.
 
-        **Figure  3**  Customizing bundles<a name="fig05036599014"></a>  
-        
-
-        ![](figure/en-us_image_0000001166715379.png)
+        **Figure  3**  Customizing bundles<a name="fig13979182053817"></a>  
+        ![](figure/customizing-bundles.png "customizing-bundles")
 
 4.  Download and install bundles.
     1.  Decompress the downloaded file using the CLI tool CMD \(shell in Linux\).
@@ -192,7 +186,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the  [Release Notes](../../release-notes/Readme.md).
+>-   The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the  [Release-Notes](../../release-notes/Readme.md).
 >-   The Master 1.0 version is no longer maintained.
 
 **Table  1**  Sites for acquiring source code from image sites
@@ -256,9 +250,9 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b1094411391670"><a name="b1094411391670"></a><a name="b1094411391670"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b172399013"><a name="b172399013"></a><a name="b172399013"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b311804727"><a name="b311804727"></a><a name="b311804727"></a>Site</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b294086750"><a name="b294086750"></a><a name="b294086750"></a>SHA-256 Verification Code</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b197076505"><a name="b197076505"></a><a name="b197076505"></a>SHA-256 Verification Code</strong></p>
 </td>
 </tr>
 <tr id="row4769431134919"><td class="cellrowborder" valign="top" width="25%"><p id="p97691031124913"><a name="p97691031124913"></a><a name="p97691031124913"></a>Full code (for standard systems)</p>
@@ -319,7 +313,7 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p1093810218417"><a name="p1093810218417"></a><a name="p1093810218417"></a><strong id="b1124015405556"><a name="b1124015405556"></a><a name="b1124015405556"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b1331994007"><a name="b1331994007"></a><a name="b1331994007"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b1902250690"><a name="b1902250690"></a><a name="b1902250690"></a>Site</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p12520113711011"><a name="p12520113711011"></a><a name="p12520113711011"></a><strong id="b19256751175516"><a name="b19256751175516"></a><a name="b19256751175516"></a>SHA-256 Verification Code</strong></p>
 </td>

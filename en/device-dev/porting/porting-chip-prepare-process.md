@@ -1,4 +1,4 @@
-# Building Adaptation Process<a name="EN-US_TOPIC_0000001063302771"></a>
+# Building Adaptation Process<a name="EN-US_TOPIC_0000001153683026"></a>
 
 -   [Building Adaptation Process](#section2159183845319)
 
