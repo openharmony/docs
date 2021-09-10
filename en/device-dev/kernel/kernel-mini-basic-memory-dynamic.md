@@ -176,6 +176,9 @@ The sample code is as follows:
 ```
 #include "los_memory.h"
 
+#define TEST_POOL_SIZE (2*1024)
+__attribute__((aligned(4))) UINT8 g_testPool[TEST_POOL_SIZE];
+
 VOID Example_DynMem(VOID)
 {
     UINT32 *mem = NULL;
