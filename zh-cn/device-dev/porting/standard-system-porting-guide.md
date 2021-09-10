@@ -10,7 +10,6 @@
     -   [2. 编译内核](#section182mcpsimp)
     -   [3. 移植验证](#section207mcpsimp)
 
--   [用户态启动引导](#section20665151016586)
 -   [HDF驱动移植](#section210mcpsimp)
     -   [1. LCD](#section212mcpsimp)
     -   [2. 触摸屏](#section229mcpsimp)
@@ -146,33 +145,6 @@ BUILD.gn是subsystem构建的唯一入口。
 ### 3. 移植验证<a name="section207mcpsimp"></a>
 
 启动编译，验证预期的kernel镜像是否成功生成。
-
-## 用户态启动引导<a name="section20665151016586"></a>
-
-1.  用户态进程启动引导总览。
-
-    ![](figure/overview-of-use-mode-process-startup.png)
-
-    系统上电加载内核后，按照以下流程完成系统各个服务和应用的启动：
-
-    1.  内核启动init进程，一般在bootloader启动内核时通过设置内核的cmdline来指定init的位置；如上图所示的"init=/init root/dev/xxx"。
-    2.  2init进程启动后，会挂载tmpfs，procfs，创建基本的dev设备节点，提供最基本的根文件系统。
-    3.  init继续启动ueventd监听内核热插拔事件，为这些设备创建dev设备节点；包括block设备各个分区设备都是通过此事件创建。
-    4.  init进程挂载block设备各个分区（system，vendor），开始扫描各个系统服务的init启动脚本，并拉起各个SA服务。
-    5.  samgr是各个SA的服务注册中心，每个SA启动时，都需要向samgr注册，每个SA会分配一个ID，应用可以通过该ID访问SA。
-    6.  foundation是一个特殊的SA服务进程，提供了用户程序管理框架及基础服务；由该进程负责应用的生命周期管理。
-    7.  由于应用都需要加载JS的运行环境，涉及大量准备工作，因此appspawn作为应用的孵化器，在接收到foundation里的应用启动请求时，可以直接孵化出应用进程，减少应用启动时间。
-
-2.  init。
-
-    init启动引导组件配置文件包含了所有需要由init进程启动的系统关键服务的服务名、可执行文件路径、权限和其他信息。每个系统服务各自安装其启动脚本到/system/etc/init目录下。
-
-    新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.\{hardware\}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
-
-    init相关进程代码在//base/startup/init\_lite目录下，该进程是系统第一个进程，无其它依赖。
-
-    初始化配置文件具体的开发指导请参考  [init启动引导组件](../subsystems/subsys-boot-init.md)。
-
 
 ## HDF驱动移植<a name="section210mcpsimp"></a>
 
