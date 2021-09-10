@@ -26,10 +26,10 @@
             -   [轻量系统芯片移植指导](device-dev/porting/porting-minichip.md)
             -   [小型系统芯片移植指导](device-dev/porting/porting-smallchip.md)
 
-        -   bundles：Bundle开发
-            -   [Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
-            -   [Bundle开发指南](device-dev/bundles/bundles-guide.md)
-            -   [Bundle开发示例](device-dev/bundles/bundles-demo.md)
+        -   bundles：HPM Bundle开发
+            -   [HPM Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
+            -   [HPM Bundle开发指南](device-dev/bundles/bundles-guide.md)
+            -   [HPM Bundle开发示例](device-dev/bundles/bundles-demo.md)
 
 -   标准系统开发指导（参考内存≥128MB）
     -   设备开发
