@@ -48,7 +48,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
 
 1.  Register your account with Gitee.
 2.  Register an SSH public key for access to Gitee.
-3.  Install the  [git client](http://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
+3.  Install the  [git client](http://git-scm.com/book/en/v2)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
 
     ```
     git config --global user.name "yourname"
