@@ -47,13 +47,12 @@
             -   [外设驱动](device-dev/guide/device-outerdriver-demo.md)
 
         -   porting：移植适配
-            -   [三方库移植指导](device-dev/porting/porting-thirdparty.md)
             -   [标准系统芯片移植指导](device-dev/porting/standard-system-porting-guide.md)
 
-        -   bundles：Bundle开发
-            -   [Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
-            -   [Bundle开发指南](device-dev/bundles/bundles-guide.md)
-            -   [Bundle开发示例](device-dev/bundles/bundles-demo.md)
+        -   bundles：HPM Bundle开发
+            -   [HPM Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
+            -   [HPM Bundle开发指南](device-dev/bundles/bundles-guide.md)
+            -   [HPM Bundle开发示例](device-dev/bundles/bundles-demo.md)
 
 
 -   应用开发
