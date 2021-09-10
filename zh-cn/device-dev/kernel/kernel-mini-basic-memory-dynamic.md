@@ -197,6 +197,9 @@ OpenHarmony LiteOS-M的动态内存管理主要为用户提供以下功能，接
 ```
 #include "los_memory.h"
 
+#define TEST_POOL_SIZE (2*1024)
+__attribute__((aligned(4))) UINT8 g_testPool[TEST_POOL_SIZE];
+
 VOID Example_DynMem(VOID)
 {
     UINT32 *mem = NULL;

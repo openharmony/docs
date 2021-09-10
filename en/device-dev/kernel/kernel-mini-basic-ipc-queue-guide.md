@@ -131,8 +131,6 @@ VOID RecvEntry(VOID)
     CHAR readBuf[BUFFER_LEN] = {0};
     UINT32 readLen = BUFFER_LEN;
 
-   // Sleep for 1s.
-    usleep(1000000);
     ret = LOS_QueueReadCopy(g_queue, readBuf, &readLen, 0);
     if(ret != LOS_OK) {
         printf("recv message failure, error: %x\n", ret);
@@ -145,12 +143,12 @@ VOID RecvEntry(VOID)
         printf("delete the queue failure, error: %x\n", ret);
     }
 
-    printf("delete the queue success!\n");
+    printf("delete the queue success.\n");
 }
 
 UINT32 ExampleQueue(VOID)
 {
-    printf("start queue example\n");
+    printf("start queue example.\n");
     UINT32 ret = 0;
     UINT32 task1, task2;
     TSK_INIT_PARAM_S initParam = {0};
@@ -169,6 +167,7 @@ UINT32 ExampleQueue(VOID)
 
     initParam.pcName = "RecvQueue";
     initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)RecvEntry;
+    initParam.usTaskPrio = 10;
     ret = LOS_TaskCreate(&task2, &initParam);
     if(ret != LOS_OK) {
         printf("create task2 failed, error: %x\n", ret);
@@ -180,7 +179,7 @@ UINT32 ExampleQueue(VOID)
         printf("create queue failure, error: %x\n", ret);
     }
 
-    printf("create the queue success!\n");
+    printf("create the queue success.\n");
     LOS_TaskUnlock();
     return ret;
 }
@@ -191,9 +190,9 @@ UINT32 ExampleQueue(VOID)
 The development is successful if the return result is as follows:
 
 ```
-start test example
-create the queue success!
-recv message: test message
-delete the queue success!
+start queue example.
+create the queue success.
+recv message: test message.
+delete the queue success.
 ```
 
