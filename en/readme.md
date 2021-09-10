@@ -27,8 +27,8 @@ This project stores OpenHarmony documentation, including the quick start guide, 
             -   [Third-Party Library Porting Guide](device-dev/porting/porting-thirdparty.md)
 
         -   **bundles**: 
-            -   [Development Specifications](device-dev/bundles/bundles-standard-rules.md)
-            -   [Development Guidelines](device-dev/bundles/bundles-guide.md)
+            -   [HPM Bundle Development Specifications](device-dev/bundles/bundles-standard-rules.md)
+            -   [HPM Bundle Development Guidelines](device-dev/bundles/bundles-guide.md)
             -   [HPM User Guide](device-dev/bundles/bundles-demo.md)
 
 - Standard System Development Guidelines \(Reference Memory ≥ 128 MB\)
@@ -48,12 +48,11 @@ This project stores OpenHarmony documentation, including the quick start guide, 
 
         - **porting**:  
 
-            - [Third-Party Library Porting Guide](device-dev/porting/porting-thirdparty.md)
             - [Standard  System SoC Porting Guide](device-dev/porting/standard-system-porting-guide.md)
 
         - **bundles**: 
-            -   [Development Specifications](device-dev/bundles/bundles-standard-rules.md)
-            -   [Development Guidelines](device-dev/bundles/bundles-guide.md)
+            -   [HPM Bundle Development Specifications](device-dev/bundles/bundles-standard-rules.md)
+            -   [HPM Bundle Development Guidelines](device-dev/bundles/bundles-guide.md)
             -   [HPM User Guide](device-dev/bundles/bundles-demo.md)
 
 
