@@ -114,7 +114,7 @@ As can be seen from preceding figure, kernel basic adaptation involves the follo
     </tbody>
     </table>
 
--   Implementing the  **SystemInit**  function to initialize services in the user space.  [\#EN-US\_TOPIC\_0000001200171989/fig15798236163510](#fig15798236163510)  shows a typical initialization scenario.
+-   Implementing the  **SystemInit**  function to initialize services in the user space. Figure 2 shows a typical initialization scenario.
 
     **Figure  2**  Service startup process<a name="fig1919217914418"></a>  
     ![](figure/service-startup-process.png "service-startup-process")
