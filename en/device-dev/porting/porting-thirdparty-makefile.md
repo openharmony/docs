@@ -1,4 +1,4 @@
-# Porting a Library Built Using Makefile<a name="EN-US_TOPIC_0000001064218672"></a>
+# Porting a Library Built Using Makefile<a name="EN-US_TOPIC_0000001154372572"></a>
 
 -   [Source Code Acquisition](#section114115321416)
 -   [Cross-Compilation Settings](#section81263255384)
@@ -98,7 +98,7 @@ The following steps show how to configure and modify the toolchains for cross-co
     CC:=clang
     AR:=llvm-ar
     # The --target and --sysroot flags must be specified.
-    CFLAGS:=-Wall -Wextra -Wno-unused-parameter -O2 -g --target=arm-liteos -march=armv7-a --sysroot=$(OHOS_ROOT_PATH)prebuilts/lite/sysroot
+    CFLAGS:=-Wall -Wextra -Wno-unused-parameter -O2 -g --target=arm-liteos -march=armv7-a --sysroot=$(OHOS_SYSROOT_PATH)
     ```
 
     Original configuration:
@@ -117,7 +117,7 @@ The following steps show how to configure and modify the toolchains for cross-co
     make test OHOS_SYSROOT_PATH=...
     ```
 
-    **OHOS\_SYSROOT\_PATH**  specifies the absolute path of the directory where  **sysroot**  is located. Taking OpenHarmony for example, set  **OHOS\_SYSROOT\_PATH**  to the absolute path of  **prebuilts/lite/sysroot/**.
+    **OHOS\_SYSROOT\_PATH**  specifies the absolute path of the directory where  **sysroot**  is located. For OpenHarmony, set  **OHOS\_SYSROOT\_PATH**  to the absolute path of the  **out/hispark\__xxx_/ipcamera\_hispark\__xxx_/sysroot**  directory. This directory is generated after full compilation is complete. Therefore, complete full compilation before porting.
 
 3.  View the result.
 

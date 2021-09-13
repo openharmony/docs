@@ -2,29 +2,24 @@
 
 -   [获取软件](#section1897711811517)
 -   [获取源码](#section1545225464016)
--   [安装和配置Python](#section1238412211211)
--   [安装gn](#section29216201423)
--   [安装ninja](#section8762358731)
--   [安装LLVM](#section12202192215415)
+-   [安装必要的库和工具](#section108201740181219)
+-   [安装Python3](#section1238412211211)
+-   [安装LLVM\(仅OpenHarmony\_v1.x分支/标签需要\)](#section12202192215415)
 -   [安装hb](#section15794154618411)
     -   [前提条件](#section1083283711515)
     -   [安装方法](#section11518484814)
     -   [卸载方法](#section3512551574)
 
--   [安装其他工具](#section830511218494)
-    -   [安装方法](#section54409586499)
-
 
 系统要求：Ubuntu16.04及以上64位系统版本。
 
-编译环境搭建分为如下几步：
+编译环境搭建包含如下几步：
 
 1.  获取源码
-2.  安装和配置python
-3.  安装gn
-4.  安装ninja
-5.  安装LLVM
-6.  安装hb
+2.  安装必要的库和工具
+3.  安装python3
+4.  安装LLVM\(仅OpenHarmony\_v1.x分支/标签需要\)
+5.  安装hb
 
 >![](../public_sys-resources/icon-notice.gif) **须知：** 
 >-   针对Ubuntu编译环境我们提供了对应的Docker，该Docker封装了相关编译工具，选择使用Docker的开发者可跳过此章节。Docker使用可参考[Docker方式获取编译环境](../get-code/gettools-acquire.md#section107932281315)。
@@ -38,70 +33,47 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 **表 1**  Linux服务器开发工具及获取途径
 
 <a name="table6299192712513"></a>
-<table><thead align="left"><tr id="row122993276512"><th class="cellrowborder" valign="top" width="13.350000000000001%" id="mcps1.2.4.1.1"><p id="p1829914271858"><a name="p1829914271858"></a><a name="p1829914271858"></a>开发工具</p>
+<table><thead align="left"><tr id="row122993276512"><th class="cellrowborder" valign="top" width="25.779999999999998%" id="mcps1.2.4.1.1"><p id="p1829914271858"><a name="p1829914271858"></a><a name="p1829914271858"></a>开发工具</p>
 </th>
-<th class="cellrowborder" valign="top" width="24.65%" id="mcps1.2.4.1.2"><p id="p429918274517"><a name="p429918274517"></a><a name="p429918274517"></a>用途</p>
+<th class="cellrowborder" valign="top" width="30.819999999999997%" id="mcps1.2.4.1.2"><p id="p429918274517"><a name="p429918274517"></a><a name="p429918274517"></a>用途</p>
 </th>
-<th class="cellrowborder" valign="top" width="62%" id="mcps1.2.4.1.3"><p id="p12997271757"><a name="p12997271757"></a><a name="p12997271757"></a>获取途径</p>
+<th class="cellrowborder" valign="top" width="43.4%" id="mcps1.2.4.1.3"><p id="p12997271757"><a name="p12997271757"></a><a name="p12997271757"></a>获取途径</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row45863354112"><td class="cellrowborder" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p3587173513117"><a name="p3587173513117"></a><a name="p3587173513117"></a>源码</p>
+<tbody><tr id="row45863354112"><td class="cellrowborder" valign="top" width="25.779999999999998%" headers="mcps1.2.4.1.1 "><p id="p3587173513117"><a name="p3587173513117"></a><a name="p3587173513117"></a>源码</p>
 </td>
-<td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p258713581118"><a name="p258713581118"></a><a name="p258713581118"></a>功能开发</p>
+<td class="cellrowborder" valign="top" width="30.819999999999997%" headers="mcps1.2.4.1.2 "><p id="p258713581118"><a name="p258713581118"></a><a name="p258713581118"></a>功能开发</p>
 </td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p16587835171114"><a name="p16587835171114"></a><a name="p16587835171114"></a>参考<a href="../get-code/sourcecode-acquire.md">源码获取</a></p>
-</td>
-</tr>
-<tr id="row430016273514"><td class="cellrowborder" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p330015271158"><a name="p330015271158"></a><a name="p330015271158"></a>Python3.7+</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p43003270510"><a name="p43003270510"></a><a name="p43003270510"></a>编译构建工具</p>
-</td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p34760459518"><a name="p34760459518"></a><a name="p34760459518"></a>通过互联网获取</p>
+<td class="cellrowborder" valign="top" width="43.4%" headers="mcps1.2.4.1.3 "><p id="p16587835171114"><a name="p16587835171114"></a><a name="p16587835171114"></a>参考<a href="../get-code/sourcecode-acquire.md">源码获取</a></p>
 </td>
 </tr>
-<tr id="row1711946154018"><td class="cellrowborder" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p15588165684216"><a name="p15588165684216"></a><a name="p15588165684216"></a>gn</p>
+<tr id="row020505735919"><td class="cellrowborder" valign="top" width="25.779999999999998%" headers="mcps1.2.4.1.1 "><p id="p1220513576596"><a name="p1220513576596"></a><a name="p1220513576596"></a>必要的库和工具</p>
 </td>
-<td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p4588135634213"><a name="p4588135634213"></a><a name="p4588135634213"></a>产生ninja编译脚本</p>
+<td class="cellrowborder" valign="top" width="30.819999999999997%" headers="mcps1.2.4.1.2 "><p id="p2206157145919"><a name="p2206157145919"></a><a name="p2206157145919"></a>编译所需的必要工具和库（如打包、镜像制作等）</p>
 </td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p14131813191712"><a name="p14131813191712"></a><a name="p14131813191712"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/gn/1717/linux/gn-linux-x86-1717.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/gn/1717/linux/gn-linux-x86-1717.tar.gz</a></p>
-</td>
-</tr>
-<tr id="row16990164213404"><td class="cellrowborder" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p1858825613428"><a name="p1858825613428"></a><a name="p1858825613428"></a>ninja</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p15844174611816"><a name="p15844174611816"></a><a name="p15844174611816"></a>执行ninja编译脚本</p>
-</td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p1923373393515"><a name="p1923373393515"></a><a name="p1923373393515"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar</a></p>
+<td class="cellrowborder" valign="top" width="43.4%" headers="mcps1.2.4.1.3 "><p id="p920675719597"><a name="p920675719597"></a><a name="p920675719597"></a>通过互联网获取</p>
 </td>
 </tr>
-<tr id="row7531362055"><td class="cellrowborder" rowspan="2" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p1467122152710"><a name="p1467122152710"></a><a name="p1467122152710"></a></p>
-<p id="p15217227174016"><a name="p15217227174016"></a><a name="p15217227174016"></a>LLVM</p>
-<p id="p689515112108"><a name="p689515112108"></a><a name="p689515112108"></a></p>
+<tr id="row430016273514"><td class="cellrowborder" valign="top" width="25.779999999999998%" headers="mcps1.2.4.1.1 "><p id="p330015271158"><a name="p330015271158"></a><a name="p330015271158"></a>Python3.7+</p>
 </td>
-<td class="cellrowborder" rowspan="2" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p1739432372718"><a name="p1739432372718"></a><a name="p1739432372718"></a></p>
-<p id="p122171727184019"><a name="p122171727184019"></a><a name="p122171727184019"></a>编译工具链</p>
-<p id="p108951116109"><a name="p108951116109"></a><a name="p108951116109"></a></p>
+<td class="cellrowborder" valign="top" width="30.819999999999997%" headers="mcps1.2.4.1.2 "><p id="p43003270510"><a name="p43003270510"></a><a name="p43003270510"></a>编译构建工具</p>
 </td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p9983172015313"><a name="p9983172015313"></a><a name="p9983172015313"></a>Master及OpenHarmony_v2.x分支/标签，请使用以下10.0.1版本：</p>
-<p id="p49091358184"><a name="p49091358184"></a><a name="p49091358184"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz</a></p>
+<td class="cellrowborder" valign="top" width="43.4%" headers="mcps1.2.4.1.3 "><p id="p34760459518"><a name="p34760459518"></a><a name="p34760459518"></a>通过互联网获取</p>
 </td>
 </tr>
-<tr id="row78941113109"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1974322421510"><a name="p1974322421510"></a><a name="p1974322421510"></a>OpenHarmony_v1.x分支/标签，请使用以下9.0.0版本：</p>
-<p id="p198321032101412"><a name="p198321032101412"></a><a name="p198321032101412"></a><a href="https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar</a></p>
+<tr id="row7531362055"><td class="cellrowborder" valign="top" width="25.779999999999998%" headers="mcps1.2.4.1.1 "><p id="p1467122152710"><a name="p1467122152710"></a><a name="p1467122152710"></a>LLVM(仅OpenHarmony_v1.x分支/标签需要)</p>
+</td>
+<td class="cellrowborder" valign="top" width="30.819999999999997%" headers="mcps1.2.4.1.2 "><p id="p1739432372718"><a name="p1739432372718"></a><a name="p1739432372718"></a>编译工具链</p>
+</td>
+<td class="cellrowborder" valign="top" width="43.4%" headers="mcps1.2.4.1.3 "><p id="p59711534202610"><a name="p59711534202610"></a><a name="p59711534202610"></a>通过互联网获取</p>
 </td>
 </tr>
-<tr id="row1644079184919"><td class="cellrowborder" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p744115914493"><a name="p744115914493"></a><a name="p744115914493"></a>hb</p>
+<tr id="row1644079184919"><td class="cellrowborder" valign="top" width="25.779999999999998%" headers="mcps1.2.4.1.1 "><p id="p744115914493"><a name="p744115914493"></a><a name="p744115914493"></a>hb</p>
 </td>
-<td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p1244114913492"><a name="p1244114913492"></a><a name="p1244114913492"></a><span id="text565372520148"><a name="text565372520148"></a><a name="text565372520148"></a>OpenHarmony</span>编译构建命令行工具</p>
+<td class="cellrowborder" valign="top" width="30.819999999999997%" headers="mcps1.2.4.1.2 "><p id="p1244114913492"><a name="p1244114913492"></a><a name="p1244114913492"></a><span id="text565372520148"><a name="text565372520148"></a><a name="text565372520148"></a>OpenHarmony</span>编译构建命令行工具</p>
 </td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p1463918124619"><a name="p1463918124619"></a><a name="p1463918124619"></a>通过互联网获取</p>
-</td>
-</tr>
-<tr id="row27583191444"><td class="cellrowborder" valign="top" width="13.350000000000001%" headers="mcps1.2.4.1.1 "><p id="p875851924420"><a name="p875851924420"></a><a name="p875851924420"></a>其他工具</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.65%" headers="mcps1.2.4.1.2 "><p id="p18758019164415"><a name="p18758019164415"></a><a name="p18758019164415"></a>编译构建中依赖的其他工具（如打包、镜像制作等）</p>
-</td>
-<td class="cellrowborder" valign="top" width="62%" headers="mcps1.2.4.1.3 "><p id="p14758219194415"><a name="p14758219194415"></a><a name="p14758219194415"></a>通过互联网获取</p>
+<td class="cellrowborder" valign="top" width="43.4%" headers="mcps1.2.4.1.3 "><p id="p1463918124619"><a name="p1463918124619"></a><a name="p1463918124619"></a>通过互联网获取</p>
 </td>
 </tr>
 </tbody>
@@ -115,10 +87,18 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 
 开发者需要在Linux服务器上下载并解压一套源代码，请参见[源码获取](../get-code/sourcecode-acquire.md)。
 
-## 安装和配置Python<a name="section1238412211211"></a>
+## 安装必要的库和工具<a name="section108201740181219"></a>
+
+使用如下apt-get命令安装编译所需的必要的库和工具：
+
+```
+sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi
+```
+
+## 安装Python3<a name="section1238412211211"></a>
 
 1.  打开Linux编译服务器终端。
-2.  输入如下命令，查看python版本号，需使用python3.7以上版本。
+2.  输入如下命令，查看python版本号：
 
     ```
     python3 --version
@@ -184,89 +164,19 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 
 
 
-## 安装gn<a name="section29216201423"></a>
+## 安装LLVM\(仅OpenHarmony\_v1.x分支/标签需要\)<a name="section12202192215415"></a>
+
+>![](../public_sys-resources/icon-notice.gif) **须知：** 
+>如果下载的源码为OpenHarmony\_v1.x分支/标签, 请按下面的步骤安装9.0.0版本的llvm。
+>如果下载的源码为Master及OpenHarmony\_v2.x分支/标签，可直接跳过本小节，hb会自动下载最新的llvm。
 
 1.  打开Linux编译服务器终端。
-2.  [下载gn工具](https://repo.huaweicloud.com/harmonyos/compiler/gn/1717/linux/gn-linux-x86-1717.tar.gz)。
-3.  在根目录下创建gn文件夹。
-
-    ```
-    mkdir ~/gn
-    ```
-
-4.  解压gn安装包至\~/gn路径下。
-
-    ```
-    tar -xvf gn-linux-x86-1717.tar.gz -C ~/gn
-    ```
-
-5.  设置环境变量。
-
-    ```
-    vim ~/.bashrc
-    ```
-
-    将以下命令拷贝到.bashrc文件的最后一行，保存并退出。
-
-    ```
-    export PATH=~/gn:$PATH
-    ```
-
-6.  生效环境变量。
-
-    ```
-    source ~/.bashrc
-    ```
-
-
-## 安装ninja<a name="section8762358731"></a>
-
-1.  打开Linux编译服务器终端。
-2.  [下载ninja工具](https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar)。
-3.  解压ninja安装包至\~/ninja路径下。
-
-    ```
-    tar -xvf ninja.1.9.0.tar -C ~/
-    ```
-
-4.  设置环境变量。
-
-    ```
-    vim ~/.bashrc
-    ```
-
-    将以下命令拷贝到.bashrc文件的最后一行，保存并退出。
-
-    ```
-    export PATH=~/ninja:$PATH
-    ```
-
-5.  生效环境变量。
-
-    ```
-    source ~/.bashrc
-    ```
-
-
-## 安装LLVM<a name="section12202192215415"></a>
-
-1.  打开Linux编译服务器终端。
-2.  [下载LLVM工具](https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz)。
-
-    >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >针对OpenHarmony\_v1.x分支/标签，使用此链接[下载LLVM工具](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)。
-
+2.  [下载LLVM工具](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)。
 3.  解压LLVM安装包至\~/llvm路径下。
 
     ```
     tar -zxvf llvm.tar.gz -C ~/
     ```
-
-    >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >针对OpenHarmony\_v1.x分支/标签，使用如下命令解压：
-    >```
-    >tar -xvf llvm-linux-9.0.0-36191.tar -C ~/
-    >```
 
 4.  设置环境变量。
 
@@ -291,7 +201,7 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 
 ### 前提条件<a name="section1083283711515"></a>
 
-请先安装Python 3.7.4及以上版本，请见[安装和配置Python](#section1238412211211)。
+请先安装Python 3.7.4及以上版本，请见[安装Python3](#section1238412211211)。
 
 ### 安装方法<a name="section11518484814"></a>
 
@@ -346,15 +256,4 @@ python3 -m pip uninstall ohos-build
 
 >![](../public_sys-resources/icon-notice.gif) **须知：** 
 >如果安装hb的过程中遇到问题，请参见下文[常见问题](quickstart-lite-env-setup-faqs.md)进行解决。
-
-## 安装其他工具<a name="section830511218494"></a>
-
-### 安装方法<a name="section54409586499"></a>
-
-1.  apt安装全部依赖的工具
-
-    ```
-    sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi
-    ```
-
 

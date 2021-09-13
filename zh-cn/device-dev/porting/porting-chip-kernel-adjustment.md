@@ -12,10 +12,8 @@
 1.  启动文件startup.S和相应链接配置文件。
 2.  main. c中的串口初始化和tick中断注册。
 
-**图 1**  启动流程<a name="fig10838105524917"></a>  
-
-
-![](figure/zh-cn_image_0000001073943511.png)
+**图 1**  启动流程<a name="fig113647550597"></a>  
+![](figure/启动流程.png "启动流程")
 
 启动文件startup.S需要确保中断向量表的入口函数（例如reset\_vector）放在RAM的首地址，它由链接配置文件来指定。其中iar、keil和gcc工程的链接配置文件分别为xxx.icf、xxx.sct和xxx.ld，如果startup.S已经完成系统时钟初始化，并且能够引导到main函数，则启动文件不需要进行修改，采用厂商自带的startup.S即可，否则需要实现以上功能。
 
@@ -61,6 +59,11 @@ liteos\_m的完整配置能力及默认配置在los\_config.h定义，该头文�
 <tr id="row3440642161918"><td class="cellrowborder" valign="top" width="34.81%" headers="mcps1.2.3.1.1 "><p id="p1144004261916"><a name="p1144004261916"></a><a name="p1144004261916"></a>LOSCFG_BASE_IPC_QUEUE</p>
 </td>
 <td class="cellrowborder" valign="top" width="65.19%" headers="mcps1.2.3.1.2 "><p id="p1644094201917"><a name="p1644094201917"></a><a name="p1644094201917"></a>队列功能开关，1表示打开，0表示关闭</p>
+</td>
+</tr>
+<tr id="row14294143784110"><td class="cellrowborder" valign="top" width="34.81%" headers="mcps1.2.3.1.1 "><p id="p529573794111"><a name="p529573794111"></a><a name="p529573794111"></a>LOSCFG_BASE_CORE_TSK_LIMIT</p>
+</td>
+<td class="cellrowborder" valign="top" width="65.19%" headers="mcps1.2.3.1.2 "><p id="p529503704116"><a name="p529503704116"></a><a name="p529503704116"></a>除idle task之外，总的可用task个数限制，可以根据业务使用的task个数来配置，也可以设置一个较大的值，待业务稳定了，查看运行task的个数来进行配置</p>
 </td>
 </tr>
 <tr id="row16440124216198"><td class="cellrowborder" valign="top" width="34.81%" headers="mcps1.2.3.1.1 "><p id="p9440184271915"><a name="p9440184271915"></a><a name="p9440184271915"></a>LOSCFG_BASE_IPC_SEM</p>

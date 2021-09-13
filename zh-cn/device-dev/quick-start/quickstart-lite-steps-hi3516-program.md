@@ -432,10 +432,8 @@
     >![](../public_sys-resources/icon-notice.gif) **须知：** 
     >若无法连接串口，请参考[常见问题](quickstart-lite-steps-hi3516-faqs.md#section14871149155911)进行排查。
 
-    **图 1**  连接串口图<a name="zh-cn_topic_0000001151888681_fig056645018495"></a>  
-    
-
-    ![](figure/chuankou1.png)
+    **图 1**  连接串口图<a name="fig124315964718"></a>  
+    ![](figure/连接串口图-4.png "连接串口图-4")
 
     1.  单击**Monitor**打开串口。
     2.  连续输入回车直到串口显示"hisilicon"。
@@ -484,10 +482,8 @@
 
 3.  输入**“reset”**指令并回车，重启单板，启动成功如下图，输入回车串口显示OHOS字样。
 
-    **图 2**  系统启动图<a name="zh-cn_topic_0000001151888681_fig10181006376"></a>  
-    
-
-    ![](figure/qi1.png)
+    **图 2**  系统启动图<a name="fig14618415485"></a>  
+    ![](figure/系统启动图-5.png "系统启动图-5")
 
 4.  根目录下，在命令行输入指令“**./bin/hello\_uart**”执行写入的demo程序，显示成功结果如下所示。
 

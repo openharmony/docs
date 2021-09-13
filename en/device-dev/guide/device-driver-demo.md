@@ -34,7 +34,7 @@ In this example, an I2C driver is used.  [Figure 1](#fig148041484161)  shows the
 
 ## Preparations<a name="section6926133918422"></a>
 
-Follow the instructions in  [Environment Setup for Standard System](../quick-start/quickstart-standard-description.md).
+Follow the instructions in  [Environment Setup for Standard System](../quick-start/quickstart-standard-overview.md).
 
 >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
 >This development example applies to standard, small, and mini OpenHarmony systems. The following sections use the standard system as an example. You can refer to the specific guide for your system to set up the environment.

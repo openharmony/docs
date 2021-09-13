@@ -48,8 +48,8 @@ During system startup,  **OsUserInitProcess**  is called to start the  **init** 
 
 Common compilation modes of user-space programs include:
 
-1.  [Compilation using the framework](../quick-start/quickstart-lite-steps-board3516-running.md)
-2.  Manual compilation
+1. [Compilation using the framework](../quick-start/quickstart-lite-steps-hi3516-running.md)
+2. Manual compilation
 
     Example:
 
@@ -57,7 +57,7 @@ Common compilation modes of user-space programs include:
     clang --target=arm-liteos --sysroot=prebuilts/lite/sysroot -o helloworld helloworld.c
     ```
 
-    Before running the  **clang**  command, install the LLVM compiler. For details, see  [Installing LLVM](../quick-start/quickstart-lite-env-setup-lin.md).
+    Before running the  **clang**  command, install the LLVM compiler. For details, see  [Installing LLVM](../quick-start/quickstart-lite-env-setup-linux.md).
 
     **--target=arm-liteos**: specifies that the compilation platform is arm-liteos.
 

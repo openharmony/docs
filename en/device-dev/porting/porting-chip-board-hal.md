@@ -1,4 +1,4 @@
-# Implementation of APIs at the HAL<a name="EN-US_TOPIC_0000001062862633"></a>
+# Implementation of APIs at the HAL<a name="EN-US_TOPIC_0000001199722623"></a>
 
 -   [Utils](#section1394788286)
 -   [IoT Peripheral Subsystem](#section958113200811)

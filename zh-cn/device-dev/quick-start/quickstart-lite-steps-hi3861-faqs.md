@@ -73,7 +73,7 @@
 
     方法2：如果软件源中没有该软件，请从“www.zlib.net”下载版本代码，并离线安装。
 
-    ![](figure/10.png)
+    ![](figure/download-zlib.png)
 
     完成下载后，通过以下命令安装：
 
@@ -134,7 +134,7 @@
 
     通过网页[https://pypi.org/project/pycrypto/\#files](https://pypi.org/project/pycrypto/#files)，下载源码。
 
-    ![](figure/zh-cn_image_0000001128470864.png)
+    ![](figure/Download-the-source-code.png)
 
     将源码放置在Linux服务器中，解压，并安装“python3 setup.py install”。
 
@@ -165,7 +165,7 @@
 
     通过网页[https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files)，下载安装包。
 
-    ![](figure/zh-cn_image_0000001128311072.png)
+    ![](figure/download-ecdsa.png)
 
     将安装包放置Linux服务器中，并安装“pip3 install ecdsa-0.15-py2.py3-none-any.whl”。
 
@@ -196,7 +196,7 @@
 
     通过网页[https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files)，下载安装包。
 
-    ![](figure/zh-cn_image_0000001174270699.png)
+    ![](figure/download-six.png)
 
     将源码放置在Linux服务器中，并安装“pip3 install six-1.14.0-py2.py3-none-any.whl”。
 
@@ -253,7 +253,7 @@
 
 -   **可能原因2**
 
-    ![](figure/zh-cn_image_0000001128311070.png)
+    ![](figure/reason-2.png)
 
 -   **解决办法**
 
@@ -268,7 +268,7 @@
 
     例：
 
-    ![](figure/zh-cn_image_0000001174350623.png)
+    ![](figure/solution.png)
 
 
 ## 安装 kconfiglib时，遇到lsb\_release错误<a name="section691681635814"></a>

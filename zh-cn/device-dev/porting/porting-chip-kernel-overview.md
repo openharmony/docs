@@ -18,10 +18,8 @@
 -   在Kernel模块中，其中硬件相关的代码放在kernel的arch目录中，其余为硬件无关的代码。内核功能集（task、sem等）的实现依赖硬件相关的arch代码，例如任务上下文切换、原子操作等。
 -   Utils模块作为基础代码块，被其他模块依赖。
 
-**图 1**  liteos-m内核模块图<a name="fig10838105524917"></a>  
-
-
-![](figure/zh-cn_image_0000001072304191.png)
+**图 1**  liteos-m内核模块图<a name="fig1573612275124"></a>  
+![](figure/liteos-m内核模块图.png "liteos-m内核模块图")
 
 内核的目录结构和说明如下：
 

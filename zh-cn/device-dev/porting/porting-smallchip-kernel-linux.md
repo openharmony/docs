@@ -58,18 +58,16 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ## 验证<a name="section17318153325311"></a>
 
-调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony[小型系统](https://device.harmonyos.com/cn/docs/start/introduce/oem_start_guide-0000001054913231)的OS镜像结构以及linux用户态的启动流程如下图1所示：
+调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony[小型系统](../quick-start/quickstart-lite-overview.md)的OS镜像结构以及linux用户态的启动流程如下图1所示：
 
-**图 1**  基于linux内核的OS镜像结构和用户态程序启动流程<a name="fig1296918391004"></a>  
-
-
-![](figure/zh-cn_image_0000001126354076.png)
+**图 1**  基于linux内核的OS镜像结构和用户态程序启动流程<a name="fig91631652715"></a>  
+![](figure/基于linux内核的OS镜像结构和用户态程序启动流程.png "基于linux内核的OS镜像结构和用户态程序启动流程")
 
 基于上述流程，推荐按以下步骤完成验证：
 
 1.  制作根文件系统镜像。
 
-    请参考[新建芯片解决方案和产品解决方案](https://device.harmonyos.com/cn/docs/develop/subsystems/oem_subsys_build_guide-0000001060378721)生成根文件系统镜像rootfs.img。从上图可以看到启动过程与产品配置强相关，在制作rootfs.img过程中请完成如下四种配置：
+    请参考[新建芯片解决方案和产品解决方案](../subsystems/subsys-build-mini-lite.md)生成根文件系统镜像rootfs.img。从上图可以看到启动过程与产品配置强相关，在制作rootfs.img过程中请完成如下四种配置：
 
     -   组件配置
 
@@ -99,17 +97,13 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
     若串口有如下版本号日志打印，则表示init程序启动正常：
 
-    **图 2**  init启动正常日志<a name="fig13510844174415"></a>  
-    
-
-    ![](figure/init.jpg)
+    **图 2**  init启动正常日志<a name="fig1111661083719"></a>  
+    ![](figure/init启动正常日志.png "init启动正常日志")
 
     正常进入shell后执行ls命令，串口打印信息如下图：
 
-    **图 3**  正常进入shell后输入ls命令串口打印<a name="fig584415944917"></a>  
-    
-
-    ![](figure/shell.jpg)
+    **图 3**  正常进入shell后输入ls命令串口打印<a name="fig64571257103717"></a>  
+    ![](figure/正常进入shell后输入ls命令串口打印.png "正常进入shell后输入ls命令串口打印")
 
 3.  配置NFS。
 

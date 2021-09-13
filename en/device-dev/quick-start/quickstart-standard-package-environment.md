@@ -1,4 +1,4 @@
-# Setting Up Ubuntu Development Environment with Installation Package and Building Source Code<a name="EN-US_TOPIC_0000001119804790"></a>
+# Setting Up Ubuntu Development Environment with Installation Package<a name="EN-US_TOPIC_0000001119804790"></a>
 
 -   [Installing Dependent Tools](#section18431165519244)
 -   [Obtaining Standard-System Source Code](#section113751052102517)
@@ -17,7 +17,7 @@ sudo apt-get update && sudo apt-get install binutils git git-lfs gnupg flex biso
 ```
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The preceding command is applicable to Ubuntu 18.04. For other Ubuntu versions, modify the preceding installation command based on the installation package name.
+>The preceding command is applicable to Ubuntu 18.04. For other Ubuntu versions, modify the preceding installation command based on the installation package name. Python 3.7 or later is required. Python 3.8 is used as an example.
 
 ## Obtaining Standard-System Source Code<a name="section113751052102517"></a>
 
@@ -92,7 +92,7 @@ Perform the following operations in the Linux environment:
     Files generated during the build are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >For details about module-specific build operations, see  [Building Guidelines](../subsystems/subsys-build.md).
+    >For details about module-specific build operations, see  [Building Guidelines](../subsystems/subsys-build-standard-large.md).
 
 3.  Burn the image. For details, see  [Burning Images](quickstart-standard-burn.md).
 
