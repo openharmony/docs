@@ -20,7 +20,7 @@ Use the CSR generated in  [Generating a Key Store and CSR](#section153146467405)
 Go to the  **Sdk\\toolchains\\lib**  directory where the OpenHarmony SDK is saved \(see  [Configuring the OpenHarmony SDK](configuring-the-openharmony-sdk.md)  for details\) in the DevEco Studio installation directory, and run the following command in the CLI. If the  **keytool**  command cannot be executed, add the JDK environment variables to the system environment variables. You only need to modify the input and output to quickly generate a certificate. That is, modify  **-infile**  to specify the path of the CSR and  **-outfile**  to specify the name and path of the output certificate.
 
 ```
-keytool -gencert -alias "OpenHarmony Application CA" -infile myApplication_debug.csr -outfile myApplication_debug.cer -keystore OpenHarmony.p12 -sigalg SHA384withECDSA -storepass 123456 -ext KeyUsage:"critical=digitalSignature" -validity  3650 -rfc
+keytool -gencert -alias "OpenHarmony Application CA" -infile myApplication_ohos.csr -outfile myApplication_ohos.cer -keystore OpenHarmony.p12 -sigalg SHA384withECDSA -storepass 123456 -ext KeyUsage:"critical=digitalSignature" -validity  3650 -rfc
 ```
 
 Refer to the following descriptions about the parameters in the command:
@@ -42,7 +42,7 @@ The profile contains the package name of the OpenHarmony app, digital certificat
 Go to the  **Sdk\\toolchains\\lib**  directory, open the command-line tool, and run the following command.
 
 ```
-java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --out myApplication_debug_Provision.p7b --keystore OpenHarmony.p12 --storepass 123456 --alias "OpenHarmony Application Profile Release" --sigAlg SHA256withECDSA --cert OpenHarmonyProfileRelease.pem --validity 365 --developer-id ohosdeveloper --bundle-name package name --permission restricted permission name (optional) --permission restricted permission name (optional) --distribution-certificate myApplication_debug.cer
+java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --out myApplication_ohos_Provision.p7b --keystore OpenHarmony.p12 --storepass 123456 --alias "OpenHarmony Application Profile Release" --sigAlg SHA256withECDSA --cert OpenHarmonyProfileRelease.pem --validity 365 --developer-id ohosdeveloper --bundle-name package name --permission restricted permission name (optional) --permission restricted permission name (optional) --distribution-certificate myApplication_ohos.cer
 ```
 
 Refer to the following descriptions about the parameters in the command:

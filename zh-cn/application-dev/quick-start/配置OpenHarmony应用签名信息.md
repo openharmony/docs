@@ -20,7 +20,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 进入DevEco Studio安装目录的**Sdk\\toolchains\\lib**文件夹下（该SDK目录只能是OpenHarmony SDK，配置方法可参考[配置OpenHarmony SDK](配置OpenHarmony-SDK.md)），打开命令行工具，执行如下命令（如果keytool命令不能执行，请在系统环境变量中添加JDK的环境变量）。其中，只需要修改输入和输出即可快速生成证书文件，即修改**-infile**指定证书请求文件csr文件路径，**-outfile**指定输出证书文件名及路径。
 
 ```
-keytool -gencert -alias "OpenHarmony Application CA" -infile myApplication_debug.csr -outfile myApplication_debug.cer -keystore OpenHarmony.p12 -sigalg SHA384withECDSA -storepass 123456 -ext KeyUsage:"critical=digitalSignature" -validity  3650 -rfc
+keytool -gencert -alias "OpenHarmony Application CA" -infile myApplication_ohos.csr -outfile myApplication_ohos.cer -keystore OpenHarmony.p12 -sigalg SHA384withECDSA -storepass 123456 -ext KeyUsage:"critical=digitalSignature" -validity  3650 -rfc
 ```
 
 关于该命令的参数说明如下：
@@ -42,7 +42,7 @@ Profile文件包含OpenHarmony应用的包名、数字证书信息、描述应�
 进入**Sdk\\toolchains\\lib**目录下，打开命令行工具，执行如下命令。
 
 ```
-java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --out myApplication_debug_Provision.p7b --keystore OpenHarmony.p12 --storepass 123456 --alias "OpenHarmony Application Profile Release" --sigAlg SHA256withECDSA --cert OpenHarmonyProfileRelease.pem --validity 365 --developer-id ohosdeveloper --bundle-name 包名 --permission 受限权限名（可选） --permission 受限权限名（可选） --distribution-certificate myApplication_debug.cer
+java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --out myApplication_ohos_Provision.p7b --keystore OpenHarmony.p12 --storepass 123456 --alias "OpenHarmony Application Profile Release" --sigAlg SHA256withECDSA --cert OpenHarmonyProfileRelease.pem --validity 365 --developer-id ohosdeveloper --bundle-name 包名 --permission 受限权限名（可选） --permission 受限权限名（可选） --distribution-certificate myApplication_ohos.cer
 ```
 
 关于该命令的参数说明如下：
@@ -75,11 +75,11 @@ java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --o
 -   **Profile File**：选择[生成应用Profile文件](#section2048641015325)中生成的Profile文件，文件后缀为.p7b。
 -   **Certpath File**：选择[生成应用证书文件](#section136609429562)中生成的数字证书文件，文件后缀为.cer。
 
-![](figures/zh-cn_image_0000001144765960.png)
+![](figures/zh-cn_image_0000001155643492.png)
 
 设置完签名信息后，点击**OK**进行保存，然后可以在工程下的build.gradle中查看签名的配置信息。
 
-![](figures/zh-cn_image_0000001144606358.png)
+![](figures/zh-cn_image_0000001202722349.png)
 
 默认情况下，DevEco Studio编译hap包的类型为debug类型，如果需要编译release类型的hap包，请打开工程左下角的OhosBuild Variants，设置模块的编译构建类型为release。关于编译构建hap的详细说明请参考[HUAWEI DevEco Studio使用指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/build_hap-0000001053342418)。
 
