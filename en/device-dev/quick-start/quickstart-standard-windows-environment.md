@@ -180,7 +180,7 @@ DevEco Device Tool will automatically download and install the C/C++ and CodeLLD
 
     ![](figure/installation-complete.png)
 
-5.  启动Visual Studio Code，会自动安装DevEco Device Tool依赖的C/C++、CodeLLDB插件。等待安装完成后，点击Visual Studio Code左侧的![](figure/button.png)按钮，检查INSTALLED中，是否已成功安装C/C++、CodeLLDB和DevEco Device Tool。
+5.  Start Visual Studio Code. The C/C++ and CodeLLDB plug-ins on which DevEco Device Tool depends will be automatically installed. After the installation is complete, click ![](figure/button.png)on the left of Visual Studio Code to check whether C/C++, CodeLLDB, and DevEco Device Tool are included in the INSTALLED list.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
     >If the C/C++ and CodeLLDB plug-ins fail to be installed, DevEco Device Tool cannot run properly. To solve the issue, see  [Installing the C/C++ and CodeLLDB Plug-ins Offline](https://device.harmonyos.com/en/docs/ide/user-guides/offline_plugin_install-0000001074376846).
