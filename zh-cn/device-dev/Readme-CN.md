@@ -146,7 +146,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p155782037201518"><a name="p155782037201518"></a><a name="p155782037201518"></a>结合系统能力开发智能设备</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-wlan.md">WLAN连接类产品</a></li><li><a href="guide/device-iotcamera-control.md">无屏摄像头类产品</a></li><li><a href="guide/device-camera.md">带屏摄像头类产品</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-clock-guide.md">时钟应用开发指导</a></li><li><a href="guide/device-driver-demo.md">平台驱动开发示例</a></li><li><a href="guide/device-outerdriver-demo.md">外设驱动开发示例</a></li></ul>
 </td>
 </tr>
 <tr id="row66915375119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p4696535512"><a name="p4696535512"></a><a name="p4696535512"></a>移植适配</p>
