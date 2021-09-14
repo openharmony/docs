@@ -203,7 +203,7 @@ VOID Example_DynMem(VOID)
 
     /* Assign a value.*/
     *mem = 828;
-    printf("*Memory = %d\n", *mem);
+    printf("*mem = %d\n", *mem);
 
     /* Release memory.*/
     ret = LOS_MemFree(g_testPool, mem);
@@ -224,7 +224,7 @@ The output is as follows:
 ```
 Memory pool initialized.
 Memory allocated.
-*Memory = 828
+*mem = 828
 Memory released.
 ```
 
