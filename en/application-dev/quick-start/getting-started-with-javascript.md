@@ -6,7 +6,7 @@
 
 ## Building the First Page<a name="section17436202895811"></a>
 
-1.  Add a  **<text\>**  and a  **<button\>**  component to the first page.
+1.  Add a  **Text**  and a  **Button**  component to the first page.
 
     In the  **Project**  window, choose  **entry**  \>  **src**  \>  **main**  \>  **js**  \>  **default**  \>  **pages.index**, open the  **index.hml**  file, and add the components.
 
@@ -33,31 +33,31 @@
     }
     /* Set the style for the component of the text class. */
     .text{
-        font-size: 72px;
+        font-size: 42px;
     }
     /* Set the style for the component of the button class. */
     .button {
-        width: 362px;
-        height: 80px;
+        width: 240px;
+        height: 60px;
         background-color: #007dff;
-        font-size: 39px;
+        font-size: 30px;
         text-color: white;
         margin-top: 20px;
     }
     ```
 
-3.  Run your project on a real mobile phone or the simulator. The following figure shows the display effect:
+3.  [Preview](https://developer.harmonyos.com/en/docs/documentation/doc-guides/previewer-0000001054328973#EN-US_TOPIC_0000001056725592__section16523172216252)  or  [run your app on the emulator](https://developer.harmonyos.com/en/docs/documentation/doc-guides/run_simulator-0000001053303709). The following figure shows the running effect.
 
     ![](figures/1.png)
 
 
 ## Creating the Second Page<a name="section944219415598"></a>
 
-1.  In the  **Project**  window, choose  **entry**  \>  **src**  \>  **main**  \>  **js**  \>  **default**, right-click the  **pages.index**  folder, and choose  **New**  \>  **JS Page**. Set the new page name to  **details**.
+1.  In the  **Project**  window, choose  **entry**  \>  **src**  \>  **main**  \>  **js**  \>  **default**, right-click the  **pages.index**  folder, and choose  **New**  \>  **JS Page**. Name the new page  **details**  and press  **Enter**.
 
-    The  **index**  and  **details**  folders are displayed in the  **pages**  folder.
+    Below is the structure of the  **pages.index**  folder:
 
-    ![](figures/项目列表.png)
+    ![](figures/1-0.png)
 
 2.  Open the  **details.hml**  file, add the  **<text\>**  component, and set its layout.
 
@@ -80,7 +80,7 @@
         align-items: center;
     }
     .text {
-        font-size: 70px;
+        font-size: 42px;
         text-align: center;
     }
     ```
@@ -97,14 +97,16 @@
     export default {
       launch() {
         router.push ({
-          uri:'pages/details/details', // Specify the page to be redirected to.
+          uri:'pages/index/details/details', // Specify the page to be redirected to.
         })
       }
     }
     ```
 
-2.  Run the project again. The following figure shows the effect.
+2.  [Preview](https://developer.harmonyos.com/en/docs/documentation/doc-guides/previewer-0000001054328973#EN-US_TOPIC_0000001056725592__section16523172216252)  or  [run your app on the emulator](https://developer.harmonyos.com/en/docs/documentation/doc-guides/run_simulator-0000001053303709)  again. The following figure shows the running effect.
 
     ![](figures/2.png)
 
+
+Congratulations! You have finished developing your HarmonyOS app in JavaScript.
 

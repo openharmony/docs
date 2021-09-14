@@ -197,6 +197,9 @@ OpenHarmony LiteOS-M的动态内存管理主要为用户提供以下功能，接
 ```
 #include "los_memory.h"
 
+#define TEST_POOL_SIZE (2*1024)
+__attribute__((aligned(4))) UINT8 g_testPool[TEST_POOL_SIZE];
+
 VOID Example_DynMem(VOID)
 {
     UINT32 *mem = NULL;
@@ -205,19 +208,19 @@ VOID Example_DynMem(VOID)
     /*初始化内存池*/
     ret = LOS_MemInit(g_testPool, TEST_POOL_SIZE);
     if (LOS_OK  == ret) {
-        printf("Mem init success!\n");
+        printf("Memory pool initialized.\n");
     } else {
-        printf("Mem init failed!\n");
+        printf("Memory pool initialization failed.\n");
         return;
     }
 
     /*分配内存*/
     mem = (UINT32 *)LOS_MemAlloc(g_testPool, 4);
     if (NULL == mem) {
-        printf("Mem alloc failed!\n");
+        printf("Memory allocation failed.\n");
         return;
     }
-    printf("Mem alloc success!\n");
+    printf("Memory allocated.\n");
 
     /*赋值*/
     *mem = 828;
@@ -226,9 +229,9 @@ VOID Example_DynMem(VOID)
     /*释放内存*/
     ret = LOS_MemFree(g_testPool, mem);
     if (LOS_OK == ret) {
-        printf("Mem free success!\n");
+        printf("Memory released.\n");
     } else {
-        printf("Mem free failed!\n");
+        printf("Memory release failed.\n");
     }
 
     return;
@@ -240,9 +243,9 @@ VOID Example_DynMem(VOID)
 输出结果如下：
 
 ```
-Mem init success!
-Mem alloc success!
+Memory pool initialized.
+Memory allocated.
 *mem = 828
-Mem free success!
+Memory released.
 ```
 

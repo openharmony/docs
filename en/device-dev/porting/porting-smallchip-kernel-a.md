@@ -1,4 +1,4 @@
-# LiteOS Cortex-A<a name="EN-US_TOPIC_0000001113392962"></a>
+# LiteOS Cortex-A<a name="EN-US_TOPIC_0000001200171989"></a>
 
 -   [Overview](#section14876256185510)
     -   [Porting Scenario](#section1986014410569)
@@ -23,20 +23,20 @@ For details about the LiteOS Cortex-A directory specifications, see  [LiteOS Cor
 
 LiteOS Cortex-A provides the system initialization process and custom configuration options required for system running. During porting, pay attention to the functions related to hardware configuration in the initialization process.
 
-The LiteOS Cortex-A initialization process consists of five steps:
+The LiteOS Cortex-A initialization process consists of seven steps:
 
 1.  Add the  **target\_config.h**  file and compile the macros  **DDR\_MEM\_ADDR**  and  **DDR\_MEM\_SIZE**, which indicate the start address and length of the board memory, respectively. The prelinker script  **board.ld.S**  creates the linker script  **board.ld**  based on the two macros.
-2.  The kernel creates a kernel image based on the linker script  **board.ld**.
-3.  Operations such as initialization of the interrupt vector table and MMU page table are performed in the assembly files:  **reset\_vector\_up.S**  and  **reset\_vector\_mp.S**, from which a single-core CPU and a multi-core CPU start, respectively.
-4.  The assembly code in  **reset\_vector.S**  jumps to the  **main**  function of the C programming language to initialize the hardware clock, software timer, memory, and tasks. This process depends on the feature macro configuration in  **target\_config.h**  . The  **SystemInit**  task to be implemented in the board code is then created, and  **OsSchedStart\(\)**  is enabled for task scheduling.
-5.  The  **DeviceManagerStart**  function is called to initialize the HDF driver. This process is implemented by calling the driver configuration file  **hdf.hcs**  and driver source code in the board code.
+2.  Define  **g\_archMmuInitMapping**, the global array of MMU mappings, to specify the memory segment attributes and the virtual-to-physical address mappings. The memory mapping will be established based on this array during kernel startup.
+3.  If there are multiple cores, define  **struct SmpOps**, the handle to the slave core operation function. The  **SmpOps-\>SmpCpuOn**  function needs to implement the feature of waking up a slave core. Then, define the  **SmpRegFunc**  function and call the  **LOS\_SmpOpsSet**  interface to register the handle. The registration process is completed by starting the framework using  **LOS\_MODULE\_INIT\(SmpRegFunc, LOS\_INIT\_LEVEL\_EARLIEST\)**.
+4.  Create a kernel image based on the linker script  **board.ld**.
+5.  Perform operations such as initialization of the interrupt vector table and MMU page table are performed in the assembly files:  **reset\_vector\_up.S**  and  **reset\_vector\_mp.S**, from which a single-core CPU and a multi-core CPU start, respectively.
+6.  Enable the assembly code in  **reset\_vector.S**  to jump to the  **main**  function of the C programming language to initialize the hardware clock, software timer, memory, and tasks. This process depends on the feature macro configuration in  **target\_config.h**. Then, create the  **SystemInit**  task to be implemented in the board code, with  **OsSchedStart\(\)**  enabled for task scheduling.
+7.  Call the  **DeviceManagerStart**  function to initialize the HDF driver. This process is implemented by calling the driver configuration file  **hdf.hcs**  and drivers source code in the board code.
 
-Below is the overall initialization process.
+The figure below shows the overall initialization process.
 
-**Figure  1**  Overall initialization process<a name="fig10838105524917"></a>  
-
-
-![](figure/en-us_image_0000001126358814.png)
+**Figure  1**  Overall initialization process<a name="fig68283211926"></a>  
+![](figure/overall-initialization-process.png "overall-initialization-process")
 
 As can be seen from preceding figure, kernel basic adaptation involves the following parts:
 
@@ -116,23 +116,21 @@ As can be seen from preceding figure, kernel basic adaptation involves the follo
 
 -   Implementing the  **SystemInit**  function to initialize services in the user space. Figure 2 shows a typical initialization scenario.
 
-    **Figure  1**  Service startup process<a name="fig15798236163510"></a>  
-    
+    **Figure  2**  Service startup process<a name="fig1919217914418"></a>  
+    ![](figure/service-startup-process.png "service-startup-process")
 
-    ![](figure/en-us_image_0000001126198996.png)
-
--   Implementing the  **main**  function for basic kernel initialization and initialization of services in the board kernel space. Figure 3 shows the initialization process, where the kernel startup framework takes the lead in the initialization process. The light blue part in the figure indicates the phase in which external modules can be registered and started in the startup framework.
+-   Implementing the  **main**  function for basic kernel initialization and initialization of services in the board kernel space.  [Figure 3](#fig32611728133919)  shows the initialization process, where the kernel startup framework takes the lead in the initialization process. The light blue part in the figure indicates the phase in which external modules can be registered and started in the startup framework.
 
     >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
     >Modules at the same layer cannot depend on each other.
 
-    **Figure  2**  Kernel startup framework<a name="fig32611728133919"></a>  
+    **Figure  3**  Kernel startup framework<a name="fig32611728133919"></a>  
     ![](figure/kernel-startup-framework.jpg "kernel-startup-framework")
 
     **Table  2**  Startup framework layers
 
     <a name="table38544719428"></a>
-    <table><thead align="left"><tr id="row286134714423"><th class="cellrowborder" valign="top" width="34.089999999999996%" id="mcps1.2.3.1.1"><p id="p886164717423"><a name="p886164717423"></a><a name="p886164717423"></a>Level</p>
+    <table><thead align="left"><tr id="row286134714423"><th class="cellrowborder" valign="top" width="34.089999999999996%" id="mcps1.2.3.1.1"><p id="p886164717423"><a name="p886164717423"></a><a name="p886164717423"></a>Layer</p>
     </th>
     <th class="cellrowborder" valign="top" width="65.91%" id="mcps1.2.3.1.2"><p id="p586194716421"><a name="p586194716421"></a><a name="p586194716421"></a>Description</p>
     </th>
@@ -199,9 +197,9 @@ As can be seen from preceding figure, kernel basic adaptation involves the follo
     </tr>
     <tr id="row357517134414"><td class="cellrowborder" valign="top" width="34.089999999999996%" headers="mcps1.2.3.1.1 "><p id="p12575676449"><a name="p12575676449"></a><a name="p12575676449"></a>LOS_INIT_LEVEL_KMOD_TASK</p>
     </td>
-    <td class="cellrowborder" valign="top" width="65.91%" headers="mcps1.2.3.1.2 "><p id="p7128122619143"><a name="p7128122619143"></a><a name="p7128122619143"></a>Kernel task creation</p>
+    <td class="cellrowborder" valign="top" width="65.91%" headers="mcps1.2.3.1.2 "><p id="p7128122619143"><a name="p7128122619143"></a><a name="p7128122619143"></a>Kernel task creation.</p>
     <p id="p1657587184419"><a name="p1657587184419"></a><a name="p1657587184419"></a>This layer can be used to create kernel tasks (kernel thread and software timer tasks).</p>
-    <p id="p55485297219"><a name="p55485297219"></a><a name="p55485297219"></a>Example: creation of the resident resource reclaiming task, SystemInit task, and CPU usage statistics task.</p>
+    <p id="p55485297219"><a name="p55485297219"></a><a name="p55485297219"></a>Example: creation of the resident resource reclaiming task, SystemInit task, and CPU usage statistics task</p>
     </td>
     </tr>
     </tbody>

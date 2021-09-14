@@ -1,4 +1,4 @@
-# Board-Level Driver Adaptation<a name="EN-US_TOPIC_0000001063265278"></a>
+# Board-Level Driver Adaptation<a name="EN-US_TOPIC_0000001153683028"></a>
 
 To implement board-level driver adaptation, perform the following steps:
 

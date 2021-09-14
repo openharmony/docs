@@ -39,7 +39,7 @@ The task transition process is as follows:
 
 -   Running → Blocked
 
-    When a running task is blocked \(suspended, delayed, or reading semaphores\), it will be deleted from the Ready queue and changes from the Running state to the Blocked state. Then, task switching is triggered to run the task with the highest priority in the Ready queue.
+    When a running task is blocked \(suspended, delayed, or reading semaphores\), it will be inserted into the corresponding blocking queue and changes from the Running state to the Blocked state. Then, task switching is triggered to run the task with the highest priority in the Ready queue.
 
 -   Blocked → Ready \(Blocked → Running\)
 

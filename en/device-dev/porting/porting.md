@@ -6,4 +6,6 @@
 
 -   **[Small System SoC Porting Guide](porting-smallchip.md)**  
 
+-   **[Standard System Porting Guide](standard-system-porting-guide.md)**  
+
 

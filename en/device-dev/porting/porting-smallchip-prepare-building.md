@@ -1,4 +1,4 @@
-# Compilation and Building<a name="EN-US_TOPIC_0000001105406466"></a>
+# Compilation and Building<a name="EN-US_TOPIC_0000001154212512"></a>
 
 -   [Compilation Environment Setup](#section3336103410314)
 -   [Introduction to the Compilation and Building Subsystem](#section354343816319)
@@ -6,7 +6,7 @@
 
 ## Compilation Environment Setup<a name="section3336103410314"></a>
 
-Set up the basic environment by following instructions in  [Ubuntu Build Environment](../quick-start/quickstart-lite-env-setup-lin.md). Both the user space and LiteOS Cortex-A kernel space are compiled using the LLVM compiler. If you choose to port the Linux kernel, run the following command to install the gcc-arm-linux-gnueabi cross compiler for compiling the Linux kernel-space image:
+Set up the basic environment by following instructions in  [Ubuntu Build Environment](../quick-start/quickstart-lite-env-setup-linux.md). Both the user space and LiteOS Cortex-A kernel space are compiled using the LLVM compiler. If you choose to port the Linux kernel, run the following command to install the gcc-arm-linux-gnueabi cross compiler for compiling the Linux kernel-space image:
 
 ```
 sudo apt-get install gcc-arm-linux-gnueabi
@@ -121,12 +121,12 @@ After learning the compilation framework and setting up the compilation environm
 
 3.  Edit the build script of the development board.
 
-    In the  **BUILD.gn**  file described in 1, build code related to the development board, such as code for the on-device driver, on-device interface adaptation \(media and graphics\), and SDK on the development board.
+    In the  **BUILD.gn**  file described in step  [1](#li20894101862), build code related to the development board, such as code for the on-device driver, on-device interface adaptation \(media and graphics\), and SDK on the development board.
 
     For example, edit the  **device/hisilicon/hispark\_taurus/BUILD.gn**  file as follows:
 
     ```
-    # It is recommended that the group name be the same as the developer board name.
+    # It is recommended that the group name be the same as the development board name.
     group("hispark_taurus") {   
       deps = [ "//kernel/linux/patches:linux_kernel" ] # Start kernel compilation.
       deps += [

@@ -1,4 +1,4 @@
-# Linux Kernel<a name="EN-US_TOPIC_0000001159912785"></a>
+# Linux Kernel<a name="EN-US_TOPIC_0000001200171987"></a>
 
 -   [Overview](#section6282121355111)
     -   [Basic Information](#section19589322515)
@@ -58,18 +58,16 @@ You can use the Bootloader provided by the chipset vendor or open-source U-Boot 
 
 ## Verification<a name="section17318153325311"></a>
 
-Debug the  **init**  process, start shell, and run a simple program in the user space to check whether the kernel porting is successful. Below is the OS image structure of the OpenHarmony  [small system](https://device.harmonyos.com/en/docs/start/introduce/oem_minitinier_des-0000001105598722)  and the Linux user-space program startup process.
+Debug the  **init**  process, start shell, and run a simple program in the user space to check whether the kernel porting is successful. Below is the OS image structure of the OpenHarmony  [small system](../quick-start/quickstart-lite-overview.md)  and the Linux user-space program startup process.
 
-**Figure  1**  OS image structure and user-space program startup process based on the Linux kernel<a name="fig1296918391004"></a>  
-
-
-![](figure/en-us_image_0000001126354076.png)
+**Figure  1**  OS image structure and user-space program startup process based on the Linux kernel<a name="fig91631652715"></a>  
+![](figure/os-image-structure-and-user-space-program-startup-process-based-on-the-linux-kernel.png "os-image-structure-and-user-space-program-startup-process-based-on-the-linux-kernel")
 
 Based on the preceding process, the recommended verification procedure is as follows:
 
 1.  Create a root file system image.
 
-    Create a root file system image  **rootfs.img**  by following instructions in  [Adding a Chipset Solution and a Product Solution](https://device.harmonyos.com/en/docs/develop/subsystems/oem_subsys_build_guide-0000001060378721). As shown in the preceding figure, the startup process is closely related to the product configuration. You need to complete the following configuration when creating  **rootfs.img**:
+    Create a root file system image  **rootfs.img**  by following instructions in  [Adding a Chipset Solution and a Product Solution](../subsystems/subsys-build-mini-lite.md). As shown in the preceding figure, the startup process is closely related to the product configuration. You need to complete the following configuration when creating  **rootfs.img**:
 
     -   Component configuration
 
@@ -99,17 +97,13 @@ Based on the preceding process, the recommended verification procedure is as fol
 
     If the init startup log contains the version number, the init program is started properly:
 
-    **Figure  2**  Log indicating that the init process is started properly<a name="fig13510844174415"></a>  
-    
-
-    ![](figure/en-us_image_0000001172273945.jpg)
+    **Figure  2**  Log indicating that the init process is started properly<a name="fig1111661083719"></a>  
+    ![](figure/log-indicating-that-the-init-process-is-started-properly.png "log-indicating-that-the-init-process-is-started-properly")
 
     After entering the shell, run the  **ls**  command. The following figure shows the information printed over the serial port.
 
-    **Figure  3**  Information printed after the ls command is executed in the shell<a name="fig584415944917"></a>  
-    
-
-    ![](figure/en-us_image_0000001172393865.jpg)
+    **Figure  3**  Information printed after the ls command is executed in the shell<a name="fig64571257103717"></a>  
+    ![](figure/information-printed-after-the-ls-command-is-executed-in-the-shell.png "information-printed-after-the-ls-command-is-executed-in-the-shell")
 
 3.  Configure the NFS.
 

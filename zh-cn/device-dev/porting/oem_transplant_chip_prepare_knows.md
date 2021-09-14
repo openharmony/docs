@@ -56,7 +56,7 @@ device
         ├── linux                  # linux版本
         │   └── config.gni         # linux版本编译工具链和编译选项配置
         └── liteos_a               # liteos-a版本
-            └── config.gni         # liteos_a版本编译工具链和编译选项配置
+            └── config.gni         # liteos-a版本编译工具链和编译选项配置
 ```
 
 vendor目录规则：vendor/\{产品解决方案厂商\}/\{产品名称\}。以华为的wifiiot产品为例：

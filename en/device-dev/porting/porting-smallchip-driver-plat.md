@@ -1,4 +1,4 @@
-# Platform Driver Porting<a name="EN-US_TOPIC_0000001170794079"></a>
+# Platform Driver Porting<a name="EN-US_TOPIC_0000001154372314"></a>
 
 Create a platform driver in the source code directory  **//device/vendor\_name/soc\_name/drivers**. If there is no repository for the vendor of your SoC, contact the  [device SIG](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md)  to create one.
 

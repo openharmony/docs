@@ -1,4 +1,4 @@
-# Windows开发环境准备<a name="ZH-CN_TOPIC_0000001128311056"></a>
+# Windows开发环境准备<a name="ZH-CN_TOPIC_0000001196067299"></a>
 
 -   [获取软件](#zh-cn_topic_0000001058091994_section1483143015558)
 -   [安装Visual Studio Code](#zh-cn_topic_0000001058091994_section71401018163318)
@@ -7,7 +7,10 @@
 -   [安装hpm](#zh-cn_topic_0000001058091994_section173054793610)
 -   [安装DevEco Device Tool插件](#zh-cn_topic_0000001058091994_section4336315185716)
 
-系统要求：Windows 10 64位系统。
+系统要求：
+
+-   Windows 10 64位系统。
+-   系统的用户名不能含有中文字符。
 
 DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展，安装分为如下几步：
 
@@ -34,7 +37,7 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="zh-cn_topic_0000001058091994_p12332194816317"><a name="zh-cn_topic_0000001058091994_p12332194816317"></a><a name="zh-cn_topic_0000001058091994_p12332194816317"></a>代码编辑工具</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p711918919618"><a name="zh-cn_topic_0000001058091994_p711918919618"></a><a name="zh-cn_topic_0000001058091994_p711918919618"></a>V1.53及以上 64位版本。</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p711918919618"><a name="zh-cn_topic_0000001058091994_p711918919618"></a><a name="zh-cn_topic_0000001058091994_p711918919618"></a>V1.53及以上64位版本。</p>
 </td>
 <td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p2721438193710"><a name="zh-cn_topic_0000001058091994_p2721438193710"></a><a name="zh-cn_topic_0000001058091994_p2721438193710"></a><a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com/Download</a></p>
 </td>
@@ -43,16 +46,17 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="zh-cn_topic_0000001058091994_p547205817316"><a name="zh-cn_topic_0000001058091994_p547205817316"></a><a name="zh-cn_topic_0000001058091994_p547205817316"></a>编译构建工具</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p1991315166416"><a name="zh-cn_topic_0000001058091994_p1991315166416"></a><a name="zh-cn_topic_0000001058091994_p1991315166416"></a>V3.7.4~V3.8.x 64位版本</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p1991315166416"><a name="zh-cn_topic_0000001058091994_p1991315166416"></a><a name="zh-cn_topic_0000001058091994_p1991315166416"></a>V3.8.9及以上64位版本</p>
 </td>
-<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p1599022403"><a name="zh-cn_topic_0000001058091994_p1599022403"></a><a name="zh-cn_topic_0000001058091994_p1599022403"></a>推荐下载：<a href="https://www.python.org/downloads/release/python-388/" target="_blank" rel="noopener noreferrer">https://www.python.org/downloads/release/python-388/</a></p>
+<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p108321457411"><a name="zh-cn_topic_0000001058091994_p108321457411"></a><a name="zh-cn_topic_0000001058091994_p108321457411"></a><a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">https://www.python.org/downloads/</a></p>
 </td>
 </tr>
 <tr id="zh-cn_topic_0000001058091994_row117316576562"><td class="cellrowborder" valign="top" width="19.49%" headers="mcps1.1.5.1.1 "><p id="zh-cn_topic_0000001058091994_p16405151165717"><a name="zh-cn_topic_0000001058091994_p16405151165717"></a><a name="zh-cn_topic_0000001058091994_p16405151165717"></a>Node.js</p>
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="zh-cn_topic_0000001058091994_p1773185765616"><a name="zh-cn_topic_0000001058091994_p1773185765616"></a><a name="zh-cn_topic_0000001058091994_p1773185765616"></a>提供npm环境</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p573118572567"><a name="zh-cn_topic_0000001058091994_p573118572567"></a><a name="zh-cn_topic_0000001058091994_p573118572567"></a>v12.0.0及以上 64位版本</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p16304104120181"><a name="zh-cn_topic_0000001058091994_p16304104120181"></a><a name="zh-cn_topic_0000001058091994_p16304104120181"></a>以下版本三选一：</p>
+<a name="zh-cn_topic_0000001058091994_ul875854471719"></a><a name="zh-cn_topic_0000001058091994_ul875854471719"></a><ul id="zh-cn_topic_0000001058091994_ul875854471719"><li>V12.22.5及以上64位版本</li><li>V14.17.5及以上64版本</li><li>V16.6.0及以上64位版本</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p9200911141112"><a name="zh-cn_topic_0000001058091994_p9200911141112"></a><a name="zh-cn_topic_0000001058091994_p9200911141112"></a><a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener noreferrer">https://nodejs.org/zh-cn/download/</a></p>
 </td>
@@ -61,7 +65,7 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="zh-cn_topic_0000001058091994_p1632215161040"><a name="zh-cn_topic_0000001058091994_p1632215161040"></a><a name="zh-cn_topic_0000001058091994_p1632215161040"></a>包管理工具</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p773185715566"><a name="zh-cn_topic_0000001058091994_p773185715566"></a><a name="zh-cn_topic_0000001058091994_p773185715566"></a>最新版</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p773185715566"><a name="zh-cn_topic_0000001058091994_p773185715566"></a><a name="zh-cn_topic_0000001058091994_p773185715566"></a>V1.3.0及以上</p>
 </td>
 <td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p14731125745610"><a name="zh-cn_topic_0000001058091994_p14731125745610"></a><a name="zh-cn_topic_0000001058091994_p14731125745610"></a>请参考<a href="#zh-cn_topic_0000001058091994_section173054793610">安装hpm</a>。</p>
 </td>
@@ -70,9 +74,9 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="zh-cn_topic_0000001058091994_p1690316506517"><a name="zh-cn_topic_0000001058091994_p1690316506517"></a><a name="zh-cn_topic_0000001058091994_p1690316506517"></a>OpenHarmony源码的编译、烧录、调试插件工具</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p113171956185715"><a name="zh-cn_topic_0000001058091994_p113171956185715"></a><a name="zh-cn_topic_0000001058091994_p113171956185715"></a>v2.2 Beta1</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="zh-cn_topic_0000001058091994_p113171956185715"><a name="zh-cn_topic_0000001058091994_p113171956185715"></a><a name="zh-cn_topic_0000001058091994_p113171956185715"></a>V2.2 Beta2</p>
 </td>
-<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p3503163074720"><a name="zh-cn_topic_0000001058091994_p3503163074720"></a><a name="zh-cn_topic_0000001058091994_p3503163074720"></a><a href="https://device.harmonyos.com/cn/ide#download" target="_blank" rel="noopener noreferrer">https://device.harmonyos.com/cn/ide#download</a></p>
+<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="zh-cn_topic_0000001058091994_p3503163074720"><a name="zh-cn_topic_0000001058091994_p3503163074720"></a><a name="zh-cn_topic_0000001058091994_p3503163074720"></a><a href="https://device.harmonyos.com/cn/ide#download_beta" target="_blank" rel="noopener noreferrer">https://device.harmonyos.com/cn/ide#download_beta</a></p>
 <p id="zh-cn_topic_0000001058091994_p23171856135717"><a name="zh-cn_topic_0000001058091994_p23171856135717"></a><a name="zh-cn_topic_0000001058091994_p23171856135717"></a>下载前，请使用华为开发者帐号登录，如未注册，请先<a href="https://developer.huawei.com/consumer/cn/doc/start/registration-and-verification-0000001053628148" target="_blank" rel="noopener noreferrer">注册华为开发者帐号</a>。</p>
 </td>
 </tr>
@@ -86,24 +90,23 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 
 1.  双击Visual Studio Code软件包进行安装。安装过程中，请勾选“添加到PATH（重启后生效）”。
 
-    ![](figure/zh-cn_image_0000001174350653.png)
+    ![](figure/installing-visual-studio-code.png)
 
-2.  安装完成后，重启计算机，使Visual Studio Code的环境变量生效。
-3.  打开命令行工具，输入**code --version**命令，可以正常显示版本号说明安装成功。
+2.  安装完成后，打开命令行工具，输入**code --version**命令，可以正常显示版本号说明安装成功。
 
 ## 安装Python<a name="zh-cn_topic_0000001058091994_section16266553175320"></a>
 
 1.  双击Python安装包进行安装，勾选“**Add Python 3.8 to PATH**”，然后点击**Install Now**开始安装。
 
-    ![](figure/zh-cn_image_0000001128470908.png)
+    ![](figure/installing-python.png)
 
 2.  等待安装完成后，点击**Close**。
 
-    ![](figure/zh-cn_image_0000001128311104.png)
+    ![](figure/setup-was-successful.png)
 
 3.  打开命令行工具，输入python --version，检查安装结果。
 
-    ![](figure/zh-cn_image_0000001174350655.png)
+    ![](figure/checking-the-installation-result.png)
 
 4.  在命令行工具中，分别执行如下命令设置pip源，用于后续安装DevEco Device Tool过程中下载依赖的组件包。
 
@@ -121,9 +124,6 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
 
 1.  点击下载后的软件包进行安装，全部按照默认设置点击**Next**，直至**Finish**。安装过程中，Node.js会自动在系统的path环境变量中配置node.exe的目录路径。
 2.  重新打开命令行工具，输入“node -v“命令，能正常查询Node.js的版本号，说明Node.js安装成功。
-
-    ![](figure/zh-cn_image_0000001128311096.png)
-
 
 ## 安装hpm<a name="zh-cn_topic_0000001058091994_section173054793610"></a>
 
@@ -146,7 +146,7 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
     npm install -g @ohos/hpm-cli
     ```
 
-    ![](figure/zh-cn_image_0000001128311100.png)
+    ![](figure/hpm-version.png)
 
 3.  安装完成后，执行如下命令（V为大写字母）检查hpm安装结果。
 
@@ -154,12 +154,10 @@ DevEco Device Tool以插件方式提供，基于Visual Studio Code进行扩展�
     hpm -V
     ```
 
-    ![](figure/zh-cn_image_0000001174270735.png)
-
 
 ## 安装DevEco Device Tool插件<a name="zh-cn_topic_0000001058091994_section4336315185716"></a>
 
-安装DevEco Device Tool插件，**主机的用户名不能包含中文字符**，否则可能导致运行出现错误。
+安装DevEco Device Tool插件，**主机的用户名不能包含中文字符**，否则在运行DevEco Device Tool时，DevEco Home界面会一直处于Loading状态，导致不能正常使用。
 
 DevEco Device Tool正常运行需要依赖于C/C++和CodeLLDB插件，在安装完DevEco Device Tool后，会自动从Visual Studio Code的插件市场安装C/C++和CodeLLDB插件。因此，在安装DevEco Device Tool前，请检查Visual Studio Code的网络连接状态，如果网络不能直接访问Internet，则需要通过代理服务器才可以访问，请先[Visual Studio Code代理设置](https://device.harmonyos.com/cn/docs/ide/user-guides/vscode_proxy-0000001074231144)。
 
@@ -167,16 +165,26 @@ DevEco Device Tool正常运行需要依赖于C/C++和CodeLLDB插件，在安装�
 >安装DevEco Device Tool时，请先关闭Visual Studio Code。
 
 1.  解压DevEco Device Tool插件压缩包，双击安装包程序进行安装。
-2.  安装过程中，会自动安装DevEco Device Tool所需的依赖文件（如C/C++和CodeLLDB插件）和执行程序。
+2.  DevEco Device Tool会检测安装依赖的工具包是否符合要求。如果不符合要求，请按照本章节前面的内容进行安装。
 
-    ![](figure/zh-cn_image_0000001128470902.png)
+    >![](../public_sys-resources/icon-note.gif) **说明：** 
+    >如果已经安装Visual Studio Code，但依然检测不到，可重启电脑解决。
 
-3.  安装完成后，会自动关闭命令行工具窗口。
-4.  启动Visual Studio Code，点击左侧的![](figure/zh-cn_image_0000001174350651.png)按钮，检查INSTALLED中，是否已成功安装C/C++、CodeLLDB和DevEco Device Tool。
+    ![](figure/installing-the-deveco-device-tool.png)
+
+3.  点击**Install**进行安装。
+
+    ![](figure/install.png)
+
+4.  等待安装完成后，点击Close关闭安装界面。
+
+    ![](figure/installation-complete.png)
+
+5.  启动Visual Studio Code，会自动安装DevEco Device Tool依赖的C/C++、CodeLLDB插件。等待安装完成后，点击Visual Studio Code左侧的![](figure/button.png)按钮，检查INSTALLED中，是否已成功安装C/C++、CodeLLDB和DevEco Device Tool。
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >如果C/C++和CodeLLDB插件安装不成功，则DevEco Device Tool不能正常运行，解决方法，详细请参考：[离线安装C/C++和CodeLLDB插件](https://device.harmonyos.com/cn/docs/ide/user-guides/offline_plugin_install-0000001074376846)。
 
-    ![](figure/zh-cn_image_0000001174270727.png)
+    ![](figure/visual-studio-code.png)
 
 

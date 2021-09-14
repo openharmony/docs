@@ -138,7 +138,7 @@ Call Stack 6 -- 3f5e24 addr:f78fc
 
 3.  根据以上调用栈信息，可以定位WadRecvCB函数中出现了异常。
 
-    ![](figure/zh-cn_image_0000001134641222.png)
+    ![](figure/WadRecvCB-function.png)
 
 4.  完成代码排查及修改。
 

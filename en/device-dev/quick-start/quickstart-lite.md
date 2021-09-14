@@ -2,7 +2,7 @@
 
 -   **[Overview](quickstart-lite-overview.md)**  
 
--   **[Introduction to the Development Boards](quickstart-lite-introduction.md)**  
+-   **[Introduction](quickstart-lite-introduction.md)**  
 
 -   **[Environment Setup](quickstart-lite-env-setup.md)**  
 

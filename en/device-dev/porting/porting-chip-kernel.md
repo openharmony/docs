@@ -1,4 +1,4 @@
-# Kernel Porting<a name="EN-US_TOPIC_0000001063110705"></a>
+# Kernel Porting<a name="EN-US_TOPIC_0000001153842846"></a>
 
 -   **[Overview](porting-chip-kernel-overview.md)**  
 

@@ -4,17 +4,20 @@
 -   [Installing Visual Studio Code](#en-us_topic_0000001058091994_section71401018163318)
 -   [Installing Python](#en-us_topic_0000001058091994_section16266553175320)
 -   [Installing Node.js](#en-us_topic_0000001058091994_section5353233124511)
--   [Installing hpm](#en-us_topic_0000001058091994_section173054793610)
+-   [Installing HPM](#en-us_topic_0000001058091994_section173054793610)
 -   [Installing the DevEco Device Tool Plug-in](#en-us_topic_0000001058091994_section4336315185716)
 
-Operating system: 64-bit version of Windows 10.
+System requirements:
+
+-   OS: 64-bit Windows 10
+-   User name: cannot contain Chinese characters
 
 DevEco Device Tool is a plug-in for Visual Studio Code. The installation procedure includes five parts:
 
 1.  Installing Visual Studio Code
 2.  Installing Python
 3.  Installing Node.js
-4.  Installing hpm
+4.  Installing HPM
 5.  Installing the DevEco Device Tool Plug-in
 
 ## Obtaining the Software<a name="en-us_topic_0000001058091994_section1483143015558"></a>
@@ -26,7 +29,7 @@ DevEco Device Tool is a plug-in for Visual Studio Code. The installation procedu
 </th>
 <th class="cellrowborder" valign="top" width="20.03%" id="mcps1.1.5.1.3"><p id="en-us_topic_0000001058091994_p373085711569"><a name="en-us_topic_0000001058091994_p373085711569"></a><a name="en-us_topic_0000001058091994_p373085711569"></a>Version</p>
 </th>
-<th class="cellrowborder" valign="top" width="39.98%" id="mcps1.1.5.1.4"><p id="en-us_topic_0000001058091994_p197309576566"><a name="en-us_topic_0000001058091994_p197309576566"></a><a name="en-us_topic_0000001058091994_p197309576566"></a>Obtaining Channel</p>
+<th class="cellrowborder" valign="top" width="39.98%" id="mcps1.1.5.1.4"><p id="en-us_topic_0000001058091994_p197309576566"><a name="en-us_topic_0000001058091994_p197309576566"></a><a name="en-us_topic_0000001058091994_p197309576566"></a>How to Obtain</p>
 </th>
 </tr>
 </thead>
@@ -43,37 +46,37 @@ DevEco Device Tool is a plug-in for Visual Studio Code. The installation procedu
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001058091994_p547205817316"><a name="en-us_topic_0000001058091994_p547205817316"></a><a name="en-us_topic_0000001058091994_p547205817316"></a>Programming tool</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001058091994_p1991315166416"><a name="en-us_topic_0000001058091994_p1991315166416"></a><a name="en-us_topic_0000001058091994_p1991315166416"></a>v3.7.4–3.8.x (64-bit)</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001058091994_p1991315166416"><a name="en-us_topic_0000001058091994_p1991315166416"></a><a name="en-us_topic_0000001058091994_p1991315166416"></a>V3.8.9 or later (64-bit)</p>
 </td>
-<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001058091994_p1599022403"><a name="en-us_topic_0000001058091994_p1599022403"></a><a name="en-us_topic_0000001058091994_p1599022403"></a><a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">https://www.python.org/downloads/</a></p>
+<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001058091994_p108321457411"><a name="en-us_topic_0000001058091994_p108321457411"></a><a name="en-us_topic_0000001058091994_p108321457411"></a><a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">https://www.python.org/downloads/</a></p>
 </td>
 </tr>
 <tr id="en-us_topic_0000001058091994_row117316576562"><td class="cellrowborder" valign="top" width="19.49%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001058091994_p16405151165717"><a name="en-us_topic_0000001058091994_p16405151165717"></a><a name="en-us_topic_0000001058091994_p16405151165717"></a>Node.js</p>
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001058091994_p1773185765616"><a name="en-us_topic_0000001058091994_p1773185765616"></a><a name="en-us_topic_0000001058091994_p1773185765616"></a>The npm environment provider</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001058091994_p573118572567"><a name="en-us_topic_0000001058091994_p573118572567"></a><a name="en-us_topic_0000001058091994_p573118572567"></a>v12.0.0 or later (64-bit)</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001058091994_p16304104120181"><a name="en-us_topic_0000001058091994_p16304104120181"></a><a name="en-us_topic_0000001058091994_p16304104120181"></a>Any of the following versions:</p>
+<a name="en-us_topic_0000001058091994_ul875854471719"></a><a name="en-us_topic_0000001058091994_ul875854471719"></a><ul id="en-us_topic_0000001058091994_ul875854471719"><li>V12.22.5 or later (64-bit)</li><li>V14.17.5 or later (64-bit)</li><li>V16.6.0 or later (64-bit)</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001058091994_p9200911141112"><a name="en-us_topic_0000001058091994_p9200911141112"></a><a name="en-us_topic_0000001058091994_p9200911141112"></a><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener noreferrer">https://nodejs.org/en/download/</a></p>
 </td>
 </tr>
-<tr id="en-us_topic_0000001058091994_row6731105715561"><td class="cellrowborder" valign="top" width="19.49%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001058091994_p2081865318571"><a name="en-us_topic_0000001058091994_p2081865318571"></a><a name="en-us_topic_0000001058091994_p2081865318571"></a>hpm</p>
+<tr id="en-us_topic_0000001058091994_row6731105715561"><td class="cellrowborder" valign="top" width="19.49%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001058091994_p2081865318571"><a name="en-us_topic_0000001058091994_p2081865318571"></a><a name="en-us_topic_0000001058091994_p2081865318571"></a>HPM</p>
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001058091994_p1632215161040"><a name="en-us_topic_0000001058091994_p1632215161040"></a><a name="en-us_topic_0000001058091994_p1632215161040"></a>Package manager</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001058091994_p773185715566"><a name="en-us_topic_0000001058091994_p773185715566"></a><a name="en-us_topic_0000001058091994_p773185715566"></a>Latest version</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001058091994_p773185715566"><a name="en-us_topic_0000001058091994_p773185715566"></a><a name="en-us_topic_0000001058091994_p773185715566"></a>V1.3.0 or later</p>
 </td>
-<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001058091994_p14731125745610"><a name="en-us_topic_0000001058091994_p14731125745610"></a><a name="en-us_topic_0000001058091994_p14731125745610"></a>Run the following command:</p>
-<pre class="screen" id="en-us_topic_0000001058091994_screen54628167163"><a name="en-us_topic_0000001058091994_screen54628167163"></a><a name="en-us_topic_0000001058091994_screen54628167163"></a>npm install -g @ohos/hpm-cli</pre>
+<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001058091994_p14731125745610"><a name="en-us_topic_0000001058091994_p14731125745610"></a><a name="en-us_topic_0000001058091994_p14731125745610"></a>For details, see <a href="#en-us_topic_0000001058091994_section173054793610">Installing HPM</a>.</p>
 </td>
 </tr>
 <tr id="en-us_topic_0000001058091994_row13317205645717"><td class="cellrowborder" valign="top" width="19.49%" headers="mcps1.1.5.1.1 "><p id="en-us_topic_0000001058091994_p143411112587"><a name="en-us_topic_0000001058091994_p143411112587"></a><a name="en-us_topic_0000001058091994_p143411112587"></a>DevEco Device Tool</p>
 </td>
 <td class="cellrowborder" valign="top" width="20.5%" headers="mcps1.1.5.1.2 "><p id="en-us_topic_0000001058091994_p1690316506517"><a name="en-us_topic_0000001058091994_p1690316506517"></a><a name="en-us_topic_0000001058091994_p1690316506517"></a>Plug-in for the OpenHarmony source code compilation, programming, and debugging</p>
 </td>
-<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001058091994_p113171956185715"><a name="en-us_topic_0000001058091994_p113171956185715"></a><a name="en-us_topic_0000001058091994_p113171956185715"></a>v2.2 Beta1</p>
+<td class="cellrowborder" valign="top" width="20.03%" headers="mcps1.1.5.1.3 "><p id="en-us_topic_0000001058091994_p113171956185715"><a name="en-us_topic_0000001058091994_p113171956185715"></a><a name="en-us_topic_0000001058091994_p113171956185715"></a>V2.2 Beta2</p>
 </td>
-<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001058091994_p3503163074720"><a name="en-us_topic_0000001058091994_p3503163074720"></a><a name="en-us_topic_0000001058091994_p3503163074720"></a><a href="https://device.harmonyos.com/en/ide#download" target="_blank" rel="noopener noreferrer">https://device.harmonyos.com/en/ide#download</a></p>
+<td class="cellrowborder" valign="top" width="39.98%" headers="mcps1.1.5.1.4 "><p id="en-us_topic_0000001058091994_p3503163074720"><a name="en-us_topic_0000001058091994_p3503163074720"></a><a name="en-us_topic_0000001058091994_p3503163074720"></a><a href="https://device.harmonyos.com/cn/ide#download_beta" target="_blank" rel="noopener noreferrer">https://device.harmonyos.com/cn/ide#download_beta</a></p>
 <p id="en-us_topic_0000001058091994_p23171856135717"><a name="en-us_topic_0000001058091994_p23171856135717"></a><a name="en-us_topic_0000001058091994_p23171856135717"></a>Log in with your HUAWEI ID to download it. You can <a href="https://developer.huawei.com/consumer/en/doc/start/registration-and-verification-0000001053628148" target="_blank" rel="noopener noreferrer">register an account here</a>.</p>
 </td>
 </tr>
@@ -87,24 +90,23 @@ DevEco Device Tool is a plug-in for Visual Studio Code. The installation procedu
 
 1.  Double-click the Visual Studio Code package to install it. During the installation, select  **Add to PATH \(requires shell restart\)**.
 
-    ![](figure/en-us_image_0000001057335403.png)
+    ![](figure/installing-visual-studio-code.png)
 
-2.  After the installation is complete, restart the computer for the environment variables of Visual Studio Code to take effect.
-3.  Open the CLT and run  **code --version**. If the version number can be displayed, it indicates that the installation is successful.
+2.  After the installation is complete, open the CLT and run  **code --version**. If the version number can be displayed, it indicates that the installation is successful.
 
 ## Installing Python<a name="en-us_topic_0000001058091994_section16266553175320"></a>
 
-1.  Double-click the Python software package, select  **Add Python xx to PATH**, and click  **Install Now**.
+1.  Double-click the Python software package, select  **Add Python 3.8 to PATH**, and click  **Install Now**.
 
-    ![](figure/en-us_image_0000001096154076.png)
+    ![](figure/installing-python.png)
 
 2.  After the installation is complete, click  **Close**.
 
-    ![](figure/en-us_image_0000001142794291.png)
+    ![](figure/setup-was-successful.png)
 
 3.  Open the CLT, and run  **python --version**  to check the installation result.
 
-    ![](figure/en-us_image_0000001143154485.png)
+    ![](figure/checking-the-installation-result.png)
 
 4.  In the CLT, run the following commands to set the pip source for downloading the dependencies required for later installation:
 
@@ -123,17 +125,14 @@ DevEco Device Tool is a plug-in for Visual Studio Code. The installation procedu
 1.  Run the downloaded software package to install. Use the default settings when following the installation wizard, and click  **Next**  until  **Finish**  is displayed. During the installation, Node.js will automatically set the system Path environment variable to the installation directory of  **node.exe**.
 2.  Open the CLT and run  **node -v**. If the version number of Node.js is displayed, it indicates that Node.js has been successfully installed.
 
-    ![](figure/en-us_image_0000001056814287.png)
+## Installing HPM<a name="en-us_topic_0000001058091994_section173054793610"></a>
 
+Before installing HPM, ensure that Node.js has been installed
 
-## Installing hpm<a name="en-us_topic_0000001058091994_section173054793610"></a>
-
-Before installing hpm, ensure that Node.js has been installed
-
-and that your network can access the Internet. If your network requires a proxy to access the Internet,  [set up the npm proxy](https://device.harmonyos.com/cn/docs/ide/user-guides/npm_proxy-0000001054491032)  first.
+and that your network can access the Internet. If your network requires a proxy to access the Internet,  [set up the npm proxy](https://device.harmonyos.com/en/docs/ide/user-guides/npm_proxy-0000001054491032)  first.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->If hpm has been installed, run  **npm update -g @ohos/hpm-cli**  to update it to the latest version.
+>If HPM has been installed, run  **npm update -g @ohos/hpm-cli**  to update it to the latest version.
 
 1.  You are advised to set the npm source to an image in China, for example, a HUAWEI CLOUD image source.
 
@@ -141,13 +140,13 @@ and that your network can access the Internet. If your network requires a proxy 
     npm config set registry https://repo.huaweicloud.com/repository/npm/
     ```
 
-2.  Open the CLT and run the following command to install the latest version of hpm:
+2.  Open the CLT and run the following command to install the latest version of HPM:
 
     ```
     npm install -g @ohos/hpm-cli
     ```
 
-    ![](figure/en-us_image_0000001073840162.png)
+    ![](figure/hpm-version.png)
 
 3.  After the installation is complete, run the following command to obtain the installation result:
 
@@ -155,29 +154,37 @@ and that your network can access the Internet. If your network requires a proxy 
     hpm -V
     ```
 
-    ![](figure/en-us_image_0000001100641602.png)
-
 
 ## Installing the DevEco Device Tool Plug-in<a name="en-us_topic_0000001058091994_section4336315185716"></a>
 
-To install the DevEco Device Tool plug-in, ensure that the  **user name of the host cannot contain Chinese characters**; otherwise, the plug-in may fail to run.
+Before installing DevEco Device Tool, make sure the user name of the host does not contain Chinese characters. Otherwise, the  **DevEco Home**  page will be stuck loading and the DevEco Device Tool cannot work.
 
-DevEco Device Tool will automatically download and install the C/C++ and CodeLLDB plug-ins from the Visual Studio Code Marketplace during the installation process. Therefore, make sure Visual Studio Code can access the Internet. If your network requires a proxy to access the Internet,  [set up the Visual Studio Code proxy](https://device.harmonyos.com/cn/docs/ide/user-guides/vscode_proxy-0000001074231144)  first.
+DevEco Device Tool will automatically download and install the C/C++ and CodeLLDB plug-ins from the Visual Studio Code Marketplace during the installation process. Therefore, make sure Visual Studio Code can access the Internet. If your network requires a proxy to access the Internet,  [set up the Visual Studio Code proxy](https://device.harmonyos.com/en/docs/ide/user-guides/vscode_proxy-0000001074231144)  first.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >Before installing DevEco Device Tool, ensure that Visual Studio Code is closed.
 
 1.  Decompress the DevEco Device Tool plug-in package and double-click the installer to install.
-2.  During the installation, the dependency files \(such as C/C++ and CodeLLDB plug-ins\) and execution programs required by DevEco Device Tool are automatically installed.
+2.  DevEco Device Tool checks whether the toolkit on which the installation depends meets the requirements. If the requirements are not met, follow the preceding installation instructions in this section.
 
-    ![](figure/en-us_image_0000001072468991.png)
+    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >If Visual Studio Code has been installed but fails to be detected, restart your computer.
 
-3.  After the installation is complete, the CLT is automatically closed.
-4.  Open Visual Studio Code, click the  ![](figure/en-us_image_0000001072757874.png)  button on the left, and check whether C/C++, CodeLLDB, and DevEco Device Tool are listed in  **INSTALLED**.
+    ![](figure/installing-the-deveco-device-tool.png)
+
+3.  Click  **Install**.
+
+    ![](figure/install.png)
+
+4.  After the installation is complete, click  **Close**.
+
+    ![](figure/installation-complete.png)
+
+5.  Start Visual Studio Code. The C/C++ and CodeLLDB plug-ins on which DevEco Device Tool depends will be automatically installed. After the installation is complete, click ![](figure/button.png)on the left of Visual Studio Code to check whether C/C++, CodeLLDB, and DevEco Device Tool are included in the INSTALLED list.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
     >If the C/C++ and CodeLLDB plug-ins fail to be installed, DevEco Device Tool cannot run properly. To solve the issue, see  [Installing the C/C++ and CodeLLDB Plug-ins Offline](https://device.harmonyos.com/en/docs/ide/user-guides/offline_plugin_install-0000001074376846).
 
-    ![](figure/en-us_image_0000001142802505.png)
+    ![](figure/visual-studio-code.png)
 
 

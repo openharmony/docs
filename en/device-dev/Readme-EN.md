@@ -1,4 +1,4 @@
-# Overview<a name="EN-US_TOPIC_0000001191785779"></a>
+# Overview<a name="EN-US_TOPIC_0000001152533331"></a>
 
 -   [System Types](#section767218232110)
 -   [Document Outline](#section19810171681218)
@@ -69,7 +69,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p857711379158"><a name="p857711379158"></a><a name="p857711379158"></a>Using basic capabilities of <span id="text8928941123820"><a name="text8928941123820"></a><a name="text8928941123820"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul1577103716159"></a><a name="ul1577103716159"></a><ul id="ul1577103716159"><li><a href="kernel/kernel-lite.md">Kernel</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-guidelines-overall.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul1577103716159"></a><a name="ul1577103716159"></a><ul id="ul1577103716159"><li><a href="kernel/kernel-lite-mini.md">HarmonyOS Kernel Development Guide (LiteOS-M)</a></li><li><a href="kernel/kernel-lite-small.md">HarmonyOS Kernel Development Guide (LiteOS-A)</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-guidelines-overall.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
 </td>
 </tr>
 <tr id="row10602193719152"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p857873713152"><a name="p857873713152"></a><a name="p857873713152"></a>Advanced development</p>
@@ -90,7 +90,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p45798376158"><a name="p45798376158"></a><a name="p45798376158"></a>Contributing components to <span id="text207913212498"><a name="text207913212498"></a><a name="text207913212498"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul957919379156"></a><a name="ul957919379156"></a><ul id="ul957919379156"><li><a href="bundles/bundles-standard-rules.md">Component Development Specifications</a></li><li><a href="bundles/bundles-guide.md">Component Development Guidelines</a></li><li><a href="bundles/bundles-demo.md">HPM User Guide</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul957919379156"></a><a name="ul957919379156"></a><ul id="ul957919379156"><li><a href="bundles/bundles-standard-rules.md">HPM Bundle Development Specifications</a></li><li><a href="bundles/bundles-guide.md">HPM Bundle Development Guidelines</a></li><li><a href="bundles/bundles-demo.md">HPM Bundle Development Example</a></li></ul>
 </td>
 </tr>
 <tr id="row260193701512"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p95794372155"><a name="p95794372155"></a><a name="p95794372155"></a>Reference</p>
@@ -114,11 +114,11 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </th>
 </tr>
 </thead>
-<tbody><tr id="row9662532514"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p066105317513"><a name="p066105317513"></a><a name="p066105317513"></a>About <span id="text1523091643"><a name="text1523091643"></a><a name="text1523091643"></a>OpenHarmony</span></p>
+<tbody><tr id="row9662532514"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p066105317513"><a name="p066105317513"></a><a name="p066105317513"></a>About <span id="text70243343"><a name="text70243343"></a><a name="text70243343"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p16673531512"><a name="p16673531512"></a><a name="p16673531512"></a>Getting familiar with <span id="text280142300"><a name="text280142300"></a><a name="text280142300"></a>OpenHarmony</span></p>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p16673531512"><a name="p16673531512"></a><a name="p16673531512"></a>Getting familiar with <span id="text897788591"><a name="text897788591"></a><a name="text897788591"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul10673531517"></a><a name="ul10673531517"></a><ul id="ul10673531517"><li><a href="https://gitee.com/openharmony" target="_blank" rel="noopener noreferrer">About OpenHarmony</a></li><li><a href="glossary/glossary.md">Glossary</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul10673531517"></a><a name="ul10673531517"></a><ul id="ul10673531517"><li><a href="https://gitee.com/openharmony/docs/blob/master/en/OpenHarmony-Overview.md" target="_blank" rel="noopener noreferrer">About OpenHarmony</a></li><li><a href="glossary/glossary.md">Glossary</a></li></ul>
 </td>
 </tr>
 <tr id="row267155313513"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p13671853205113"><a name="p13671853205113"></a><a name="p13671853205113"></a>Development resources</p>
@@ -137,31 +137,30 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </tr>
 <tr id="row1168155365119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p96810536514"><a name="p96810536514"></a><a name="p96810536514"></a>Basic capabilities</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p136812535511"><a name="p136812535511"></a><a name="p136812535511"></a>Using basic capabilities of <span id="text2027331797"><a name="text2027331797"></a><a name="text2027331797"></a>OpenHarmony</span></p>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p136812535511"><a name="p136812535511"></a><a name="p136812535511"></a>Using basic capabilities of <span id="text1468659507"><a name="text1468659507"></a><a name="text1468659507"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel-standard.md">Kernel</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-privacy-protection.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel-standard.md">Kernel Development Guide</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-guidelines-overall.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
 </td>
 </tr>
-<tr id="row1368195345111"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p16681853145115"><a name="p16681853145115"></a><a name="p16681853145115"></a>Advanced development</p>
+<tr id="row10602193719152"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p857873713152"><a name="p857873713152"></a><a name="p857873713152"></a>Advanced development</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1568753135116"><a name="p1568753135116"></a><a name="p1568753135116"></a>Developing smart devices based on system capabilities</p>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p155782037201518"><a name="p155782037201518"></a><a name="p155782037201518"></a>Developing smart devices based on system capabilities</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul136895314518"></a><a name="ul136895314518"></a><ul id="ul136895314518"><li><a href="guide/device-clock-guide.md">Development Example for Clock Apps</a></li><li><a href="guide/device-driver-demo.md">Development Example for Platform Drivers</a></li><li><a href="guide/device-outerdriver-demo.md">Development Example for Peripheral Drivers</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-clock-guide.md">Development Guidelines on Clock Apps</a></li><li><a href="guide/device-driver-demo.md">Development Example for Platform Drivers</a></li><li><a href="guide/device-outerdriver-demo.md">Development Example for Peripheral Drivers</a></li></ul>
 </td>
 </tr>
 <tr id="row66915375119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p4696535512"><a name="p4696535512"></a><a name="p4696535512"></a>Porting and adaptation</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p185185615284"><a name="p185185615284"></a><a name="p185185615284"></a>Porting and adapting the <span id="text1434016533511"><a name="text1434016533511"></a><a name="text1434016533511"></a>OpenHarmony</span> to a third-party library</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><p id="p10262183114555"><a name="p10262183114555"></a><a name="p10262183114555"></a><a href="porting/porting-thirdparty.md">Third-Party Library Porting Guide</a></p>
-<p id="p123471211096"><a name="p123471211096"></a><a name="p123471211096"></a><a href="porting/standard-system-porting-guide">Standard  System SoC Porting Guide</a></p>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul14724164204819"></a><a name="ul14724164204819"></a><ul id="ul14724164204819"><li><a href="porting/standard-system-porting-guide.md">Standard System SoC Porting Guide</a></li></ul>
 </td>
 </tr>
 <tr id="row869853125119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p3691530511"><a name="p3691530511"></a><a name="p3691530511"></a>Contributing components</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1469115335113"><a name="p1469115335113"></a><a name="p1469115335113"></a>Contributing components to <span id="text262674084"><a name="text262674084"></a><a name="text262674084"></a>OpenHarmony</span></p>
+<td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1469115335113"><a name="p1469115335113"></a><a name="p1469115335113"></a>Contributing components to <span id="text1180831622"><a name="text1180831622"></a><a name="text1180831622"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul87045395116"></a><a name="ul87045395116"></a><ul id="ul87045395116"><li><a href="bundles/bundles-standard-rules.md">Component Development Specifications</a></li><li><a href="bundles/bundles-guide.md">Component Development Guidelines</a></li><li><a href="bundles/bundles-demo.md">HPM User Guide</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul44949625110"></a><a name="ul44949625110"></a><ul id="ul44949625110"><li><a href="bundles/bundles-standard-rules.md">HPM Bundle Development Specifications</a></li><li><a href="bundles/bundles-guide.md">HPM Bundle Development Guidelines</a></li><li><a href="bundles/bundles-demo.md">HPM Bundle Development Example</a></li></ul>
 </td>
 </tr>
 <tr id="row1170153125110"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p16701253195118"><a name="p16701253195118"></a><a name="p16701253195118"></a>Reference</p>

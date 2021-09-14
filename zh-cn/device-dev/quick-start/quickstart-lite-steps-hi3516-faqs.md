@@ -12,7 +12,7 @@
 
     点击烧写并选择串口后，出现Error: Opening COMxx: Access denied。
 
-    **图 1**  打开串口失败图<a name="fig066333283916"></a>  
+    **图 1**  打开串口失败图<a name="fig1756105874814"></a>  
     ![](figure/打开串口失败图.png "打开串口失败图")
 
 -   **可能原因**
@@ -23,20 +23,18 @@
 
 1.  按图依次选择下拉框，查找带有serial-xx的终端
 
-    **图 2**  查找是否存在占用串口的终端<a name="fig165994164420"></a>  
+    **图 2**  查找是否存在占用串口的终端<a name="fig723433664916"></a>  
     ![](figure/查找是否存在占用串口的终端.png "查找是否存在占用串口的终端")
 
 2.  点击标号中的垃圾桶图标，关闭串口。
 
-    **图 3**  关闭串口终端<a name="fig7911282453"></a>  
+    **图 3**  关闭串口终端<a name="fig197211713185012"></a>  
     ![](figure/关闭串口终端.png "关闭串口终端")
 
 3.  重新点击烧写，选择串口并开始烧写程序
 
-    **图 4**  重新启动烧写任务<a name="fig1138624316485"></a>  
-    
-
-    ![](figure/changjian1.png)
+    **图 4**  重新启动烧写任务<a name="fig2196042514"></a>  
+    ![](figure/重新启动烧写任务.png "重新启动烧写任务")
 
 
 ## Windows电脑与单板网络连接失败<a name="section195391036568"></a>
@@ -45,7 +43,7 @@
 
     点击烧写并选择串口后，无法获取文件。
 
-    **图 5**  网络不通，单板无法获取文件图<a name="fig5218920223"></a>  
+    **图 5**  网络不通，单板无法获取文件图<a name="fig135261439195819"></a>  
     ![](figure/网络不通-单板无法获取文件图.png "网络不通-单板无法获取文件图")
 
 -   **可能原因**
@@ -59,22 +57,22 @@
 1.  检查网线是否连接。
 2.  点击Windows防火墙。
 
-    **图 6**  网络防火墙设置图<a name="fig62141417794"></a>  
+    **图 6**  网络防火墙设置图<a name="fig168416458311"></a>  
     ![](figure/网络防火墙设置图.png "网络防火墙设置图")
 
 3.  点击“允许应用通过防火墙”。
 
-    **图 7**  防火墙和网络保护界面图<a name="fig20703151111116"></a>  
+    **图 7**  防火墙和网络保护界面图<a name="fig19866154513414"></a>  
     ![](figure/防火墙和网络保护界面图.png "防火墙和网络保护界面图")
 
 4.  查找Visual Studio Code应用。
 
-    **图 8**  查找Visual Studio Code应用图<a name="fig462316612165"></a>  
+    **图 8**  查找Visual Studio Code应用图<a name="fig9213244657"></a>  
     ![](figure/查找Visual-Studio-Code应用图.png "查找Visual-Studio-Code应用图")
 
 5.  勾选Visual Studio Code的专用和公用网络的访问权限。
 
-    **图 9**  允许Visual Studio Code应用访问网络<a name="fig132725269184"></a>  
+    **图 9**  允许Visual Studio Code应用访问网络<a name="fig019395421210"></a>  
     ![](figure/允许Visual-Studio-Code应用访问网络.png "允许Visual-Studio-Code应用访问网络")
 
 
@@ -97,7 +95,7 @@
 
 -   **现象描述**
 
-    ![](figure/zh-cn_image_0000001174270715.png)
+    ![](figure/Symptom.png)
 
 
 -   **可能原因1**
@@ -110,7 +108,7 @@
 
 -   **可能原因2**
 
-    ![](figure/zh-cn_image_0000001128470880.png)
+    ![](figure/reason-for-not-finding-python.png)
 
 -   **解决办法**
 
@@ -125,7 +123,7 @@
 
     例：
 
-    ![](figure/zh-cn_image_0000001174270713.png)
+    ![](figure/solution-6.png)
 
 
 ## 串口无回显<a name="section14871149155911"></a>

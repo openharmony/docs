@@ -1,4 +1,4 @@
-# Kernel Porting Verification<a name="EN-US_TOPIC_0000001062953117"></a>
+# Kernel Porting Verification<a name="EN-US_TOPIC_0000001153842844"></a>
 
 Add the sample program file  **main.c**  to the  **device**  directory of the project and compile the file. After LOS\_KernelInit is complete, this sample program will create two tasks that loop the  **LOS\_TaskDelay**  function and print the log information cyclically. In this way, you can check whether system scheduling and the clock work properly.
 

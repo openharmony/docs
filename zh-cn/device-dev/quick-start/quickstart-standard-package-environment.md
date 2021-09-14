@@ -17,7 +17,7 @@ sudo apt-get update && sudo apt-get install binutils git git-lfs gnupg flex biso
 ```
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
->以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。
+>以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。其中Python要求安装Python 3.7及以上版本，此处以Python 3.8为例。
 
 ## 获取标准系统源码<a name="section113751052102517"></a>
 
