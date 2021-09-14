@@ -146,7 +146,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p155782037201518"><a name="p155782037201518"></a><a name="p155782037201518"></a>Developing smart devices based on system capabilities</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-clock-guide.md">Development Guidelines on Clock Apps</a></li><li><a href="device-driver-demo.md">Development Example for Platform Drivers</a></li><li><a href="device-outerdriver-demo.md">Development Example for Peripheral Drivers</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-clock-guide.md">Development Guidelines on Clock Apps</a></li><li><a href="guide/device-driver-demo.md">Development Example for Platform Drivers</a></li><li><a href="guide/device-outerdriver-demo.md">Development Example for Peripheral Drivers</a></li></ul>
 </td>
 </tr>
 <tr id="row66915375119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p4696535512"><a name="p4696535512"></a><a name="p4696535512"></a>Porting and adaptation</p>
