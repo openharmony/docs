@@ -22,8 +22,7 @@ hdc\_std（OpenHarmony Device Connector）是OpenHarmony为开发人员提供的
 
 **hdc\_std 工具获取方式：**
 
-从开源仓developtools\_hdc\_standard中获取，具体位置在该开源仓的prebuilt目录，开源仓链接如下：https://gitee.com/openharmony/developtools\_hdc\_standard
-
+从开源仓developtools\_hdc\_standard中获取，具体位置在该开源仓的prebuilt目录，开源仓链接请参考[hdc标准开发工具](https://gitee.com/openharmony/developtools_hdc_standard)。
 **使用举例：**
 
 下面以windows侧使用方式举例：
