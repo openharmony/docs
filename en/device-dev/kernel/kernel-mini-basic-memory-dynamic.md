@@ -187,30 +187,30 @@ VOID Example_DynMem(VOID)
  /* Initialize the memory pool. */
     ret = LOS_MemInit(g_testPool, TEST_POOL_SIZE);
     if (LOS_OK  == ret) {
-        printf("Mem init success!\n");
+        printf("Memory pool initialized.\n");
     } else {
-        printf("Mem init failed!\n");
+        printf("Memory pool initialization failed.\n");
         return;
     }
 
     /* Allocate memory.*/
     mem = (UINT32 *)LOS_MemAlloc(g_testPool, 4);
     if (NULL == mem) {
-        printf("Mem alloc failed!\n");
+        printf("Memory allocation failed.\n");
         return;
     }
-    printf("Mem alloc success!\n");
+    printf("Memory allocated.\n");
 
     /* Assign a value.*/
     *mem = 828;
-    printf("*mem = %d\n", *mem);
+    printf("*Memory = %d\n", *mem);
 
     /* Release memory.*/
     ret = LOS_MemFree(g_testPool, mem);
     if (LOS_OK == ret) {
-        printf("Mem free success!\n");
+        printf("Memory released.\n");
     } else {
-        printf("Mem free failed!\n");
+        printf("Memory release failed.\n");
     }
 
     return;
@@ -222,9 +222,9 @@ VOID Example_DynMem(VOID)
 The output is as follows:
 
 ```
-Mem init success!
-Mem alloc success!
-*mem = 828
-Mem free success!
+Memory pool initialized.
+Memory allocated.
+*Memory = 828
+Memory released.
 ```
 

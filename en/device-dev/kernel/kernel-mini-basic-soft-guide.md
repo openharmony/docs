@@ -116,7 +116,7 @@ void Timer1_Callback(UINT32 arg) // Callback function 1
 {
     UINT32 tick_last1;
     g_timerCount1++;
-    tick_last1 = (UINT32)LOS_TickCountGet(); //Obtain the current number of ticks.
+    tick_last1 = (UINT32)LOS_TickCountGet(); // Obtain the current number of ticks.
     printf("g_timerCount1=%d, tick_last1=%d\n", g_timerCount1, tick_last1);
 }  
 
@@ -140,29 +140,29 @@ void Timer_example(void)
 
     /* Create a periodic software timer and execute callback function 2 every 100 ticks. */
     LOS_SwtmrCreate(100, LOS_SWTMR_MODE_PERIOD, Timer2_Callback, &id2, 1);
-    printf("create Timer1 success\n");
+    printf("Timer 1 created.\n");
 
     LOS_SwtmrStart(id1); // Start the one-shot software timer.
-    printf("start Timer1 success\n");
+    printf("Timer 1 started.\n");
 
     LOS_TaskDelay(200); // Delay 200 ticks.
     LOS_SwtmrTimeGet(id1, &tickCount); // Obtain the number of remaining ticks of the one-short software timer.
     printf("tickCount=%d\n", tickCount);
 
     LOS_SwtmrStop(id1); // Stop the software timer.
-    printf("stop Timer1 success\n");
+    printf("Timer 1 stopped.\n");
 
     LOS_SwtmrStart(id1);
     LOS_TaskDelay(1000);
 
     LOS_SwtmrStart(id2); // Start the periodic software timer.
-    printf("start Timer2\n");
+    printf("Timer 2 started.\n");
 
     LOS_TaskDelay(1000);
     LOS_SwtmrStop(id2);
     ret = LOS_SwtmrDelete(id2);  // Delete the software timer.
     if (ret == LOS_OK) {
-        printf("delete Timer2 success\n");
+        printf("Timer 2 deleted.\n");
     }
 }
 
@@ -182,7 +182,7 @@ UINT32 Example_TaskEntry(VOID)
     task1.usTaskPrio   = 5;
     ret = LOS_TaskCreate(&g_testTaskId01, &task1);
     if (ret != LOS_OK) {
-        printf("TimerTsk create failed.\n");
+        printf("Failed to create the timer task.\n");
         return LOS_NOK;
     }
 
@@ -198,12 +198,12 @@ UINT32 Example_TaskEntry(VOID)
 The output is as follows:
 
 ```
-create Timer1 success
-start Timer1 success
+Timer 1 created.
+Timer 1 started.
 tickCount=798
-stop Timer1 success
+Timer 1 stopped.
 g_timerCount1=1, tick_last1=1208
-start Timer2
+Timer 2 started.
 g_timerCount2=1 tick_last2=1313
 g_timerCount2=2 tick_last2=1413
 g_timerCount2=3 tick_last2=1513
@@ -214,6 +214,6 @@ g_timerCount2=7 tick_last2=1913
 g_timerCount2=8 tick_last2=2013
 g_timerCount2=9 tick_last2=2113
 g_timerCount2=10 tick_last2=2213
-delete Timer2 success
+Timer 2 deleted.
 ```
 

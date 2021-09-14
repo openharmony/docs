@@ -121,7 +121,7 @@ VOID SendEntry(VOID)
 
     ret = LOS_QueueWriteCopy(g_queue, abuf, len, 0);
     if(ret != LOS_OK) {
-        printf("send message failure, error: %x\n", ret);
+        printf("Failed to send the message. Error: %x\n", ret);
     }
 }
 
@@ -133,22 +133,22 @@ VOID RecvEntry(VOID)
 
     ret = LOS_QueueReadCopy(g_queue, readBuf, &readLen, 0);
     if(ret != LOS_OK) {
-        printf("recv message failure, error: %x\n", ret);
+        printf("Failed to receive the message. Error: %x\n", ret);
     }
 
-    printf("recv message: %s\n", readBuf);
+    printf("Message received: %s\n", readBuf);
 
     ret = LOS_QueueDelete(g_queue);
     if(ret != LOS_OK) {
-        printf("delete the queue failure, error: %x\n", ret);
+        printf("Failed to delete the queue. Error: %x\n", ret);
     }
 
-    printf("delete the queue success.\n");
+    printf("Queue deleted.\n");
 }
 
 UINT32 ExampleQueue(VOID)
 {
-    printf("start queue example.\n");
+    printf("Start queue example.\n");
     UINT32 ret = 0;
     UINT32 task1, task2;
     TSK_INIT_PARAM_S initParam = {0};
@@ -161,7 +161,7 @@ UINT32 ExampleQueue(VOID)
     LOS_TaskLock();
     ret = LOS_TaskCreate(&task1, &initParam);
     if(ret != LOS_OK) {
-        printf("create task1 failed, error: %x\n", ret);
+        printf("Failed to create task1. Error: %x\n", ret);
         return ret;
     }
 
@@ -170,16 +170,16 @@ UINT32 ExampleQueue(VOID)
     initParam.usTaskPrio = 10;
     ret = LOS_TaskCreate(&task2, &initParam);
     if(ret != LOS_OK) {
-        printf("create task2 failed, error: %x\n", ret);
+        printf("Failed to create task2. Error: %x\n", ret);
         return ret;
     }
 
     ret = LOS_QueueCreate("queue", 5, &g_queue, 0, 50);
     if(ret != LOS_OK) {
-        printf("create queue failure, error: %x\n", ret);
+        printf("Failed to create the queue. Error: %x\n", ret);
     }
 
-    printf("create the queue success.\n");
+    printf("Queue created.\n");
     LOS_TaskUnlock();
     return ret;
 }
@@ -190,9 +190,9 @@ UINT32 ExampleQueue(VOID)
 编译运行得到的结果为：
 
 ```
-start queue example.
-create the queue success.
-recv message: test message.
-delete the queue success.
+Start queue example.
+Queue created.
+Message received: test message.
+Queue deleted.
 ```
 

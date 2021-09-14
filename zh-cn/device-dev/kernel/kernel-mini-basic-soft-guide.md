@@ -140,29 +140,29 @@ void Timer_example(void)
 
     /*创建周期性软件定时器，每100Tick数执行回调函数2 */
     LOS_SwtmrCreate(100, LOS_SWTMR_MODE_PERIOD, Timer2_Callback, &id2, 1);
-    printf("create Timer1 success\n");
+    printf("Timer 1 created.\n");
 
     LOS_SwtmrStart(id1); //启动单次软件定时器 
-    printf("start Timer1 success\n");
+    printf("Timer 1 started.\n");
 
     LOS_TaskDelay(200); //延时200Tick数
     LOS_SwtmrTimeGet(id1, &tickCount); // 获得单次软件定时器剩余Tick数
     printf("tickCount=%d\n", tickCount);
 
     LOS_SwtmrStop(id1); // 停止软件定时器
-    printf("stop Timer1 success\n");
+    printf("Timer 1 stopped.\n");
 
     LOS_SwtmrStart(id1);
     LOS_TaskDelay(1000);
 
     LOS_SwtmrStart(id2); // 启动周期性软件定时器
-    printf("start Timer2\n");
+    printf("Timer 2 started.\n");
 
     LOS_TaskDelay(1000);
     LOS_SwtmrStop(id2);
     ret = LOS_SwtmrDelete(id2);  // 删除软件定时器
     if (ret == LOS_OK) {
-        printf("delete Timer2 success\n");
+        printf("Timer 2 deleted.\n");
     }
 }
 
@@ -182,7 +182,7 @@ UINT32 Example_TaskEntry(VOID)
     task1.usTaskPrio   = 5;
     ret = LOS_TaskCreate(&g_testTaskId01, &task1);
     if (ret != LOS_OK) {
-        printf("TimerTsk create failed.\n");
+        printf("Failed to create the timer task.\n");
         return LOS_NOK;
     }
 
@@ -198,12 +198,12 @@ UINT32 Example_TaskEntry(VOID)
 编译烧录运行，输出结果如下：
 
 ```
-create Timer1 success
-start Timer1 success
+Timer 1 created.
+Timer 1 started.
 tickCount=798
-stop Timer1 success
+Timer 1 stopped.
 g_timerCount1=1, tick_last1=1208
-start Timer2
+Timer 2 started.
 g_timerCount2=1 tick_last2=1313
 g_timerCount2=2 tick_last2=1413
 g_timerCount2=3 tick_last2=1513
@@ -214,6 +214,6 @@ g_timerCount2=7 tick_last2=1913
 g_timerCount2=8 tick_last2=2013
 g_timerCount2=9 tick_last2=2113
 g_timerCount2=10 tick_last2=2213
-delete Timer2 success
+Timer 2 deleted.
 ```
 
