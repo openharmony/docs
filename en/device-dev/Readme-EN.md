@@ -142,6 +142,13 @@ In addition, OpenHarmony provides a series of optional system components that ca
 <td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel-standard.md">Kernel Development Guide</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-guidelines-overall.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
 </td>
 </tr>
+<tr id="row10602193719152"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p857873713152"><a name="p857873713152"></a><a name="p857873713152"></a>Advanced development</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p155782037201518"><a name="p155782037201518"></a><a name="p155782037201518"></a>Developing smart devices based on system capabilities</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-clock-guide.md">Development Guidelines on Clock Apps</a></li><li><a href="guide/device-driver-demo.md">Development Example for Platform Drivers</a></li><li><a href="guide/device-outerdriver-demo.md">Development Example for Peripheral Drivers</a></li></ul>
+</td>
+</tr>
 <tr id="row66915375119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p4696535512"><a name="p4696535512"></a><a name="p4696535512"></a>Porting and adaptation</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p185185615284"><a name="p185185615284"></a><a name="p185185615284"></a>Porting and adapting the <span id="text1434016533511"><a name="text1434016533511"></a><a name="text1434016533511"></a>OpenHarmony</span> to a third-party library</p>
