@@ -101,7 +101,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     ```
     repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify
     repo sync -c  
-    repo[Release-Notes](../../release-notes/Readme.md) forall -c 'git lfs pull'
+    repo forall -c 'git lfs pull'
     ```
 
 -   OpenHarmony其他版本源码获取方式请参考版本[Release-Notes](../../release-notes/Readme.md)。

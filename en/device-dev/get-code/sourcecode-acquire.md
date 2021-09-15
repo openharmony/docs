@@ -101,7 +101,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
     ```
     repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify
     repo sync -c  
-    repo[Release-Notes](../../release-notes/Readme.md) forall -c 'git lfs pull'
+    repo forall -c 'git lfs pull'
     ```
 
 -   Obtaining the source code of other OpenHarmony releases
