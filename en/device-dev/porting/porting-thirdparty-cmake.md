@@ -131,7 +131,7 @@ The following steps show how to configure and modify the toolchains for cross-co
     # Specify the C++ compiler (ensure that the path of the toolchain has been added to the PATH environment variable) and its flags. To perform cross-compilation, the --target flag must be specified.
     set(CMAKE_CXX_COMPILER clang++) 
     set(CMAKE_CXX_FLAGS "--target=arm-liteos -D__clang__ -march=armv7-a -w")
-    # Specify the linker and its flags. --target and --sysroot must be specified. You can specify OHOS_ROOT_PATH via the suffix parameter of the cmake command.
+    # Specify the linker and its flags. --target and --sysroot must be specified. You can specify OHOS_SYSROOT_PATH via the suffix parameter of the cmake command.
     set(MY_LINK_FLAGS "--target=arm-liteos --sysroot=${OHOS_SYSROOT_PATH}")
     set(CMAKE_LINKER clang)
     set(CMAKE_CXX_LINKER clang++)
