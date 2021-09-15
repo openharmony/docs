@@ -104,7 +104,7 @@
 
 在操作看门狗之前，需要使用WatchdogOpen打开一个看门狗设备，一个系统可能有多个看门狗，通过ID号来打开指定的看门狗设备：
 
-int32\_t WatchdogOpen\(int16\_t wdtId\);
+DevHandle WatchdogOpen\(int16\_t wdtId\);
 
 **表 2**  WatchdogOpen参数和返回值描述
 
@@ -201,7 +201,7 @@ if (ret != 0) {
 
 ### 设置超时时间<a name="section182386137111"></a>
 
-int32\_t WatchdogSetTimeout\(PalHandle \*handle, uint32\_t seconds\); 
+int32\_t WatchdogSetTimeout\(DevHandle \*handle, uint32\_t seconds\); 
 
 **表 4**  WatchdogSetTimeout参数和返回值描述
 
@@ -253,7 +253,7 @@ if (ret != 0) {
 
 ### 获取超时时间<a name="section1883310371114"></a>
 
-int32\_t WatchdogGetTimeout\(PalHandle \*handle, uint32\_t \*seconds\);
+int32\_t WatchdogGetTimeout\(DevHandle \*handle, uint32\_t \*seconds\);
 
 **表 5**  WatchdogGetTimeout参数和返回值描述
 
