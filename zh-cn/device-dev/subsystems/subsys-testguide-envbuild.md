@@ -10,67 +10,68 @@
 
 ## 安装流程
 1. 安装Linux扩展组件readline，安装命令如下：
-```
-sudo apt-get install libreadline-dev
-```
-安装成功提示如下：
-```
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-libreadline-dev is already the newest version (7.0-3).
-0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
-```
+    ```
+    sudo apt-get install libreadline-dev
+    ```
+    安装成功提示如下：
+    ```
+    Reading package lists... Done
+    Building dependency tree
+    Reading state information... Done
+    libreadline-dev is already the newest version (7.0-3).
+    0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
+    ```
 2. 安装setuptools插件，安装命令如下：
-```
-pip3 install setuptools
-```
-安装成功提示如下：
-```
-Requirement already satisfied: setuptools in d:\programs\python37\lib\site-packages (41.2.0)
-```
+    ```
+    pip3 install setuptools
+    ```
+    安装成功提示如下：
+    ```
+    Requirement already satisfied: setuptools in d:\programs\python37\lib\site-packages (41.2.0)
+    ```
 3. 安装paramiko插件，安装命令如下：
-```
-pip3 install paramiko
-```
-安装成功提示如下：
-```
-Installing collected packages: pycparser, cffi, pynacl, bcrypt, cryptography, paramiko
-Successfully installed bcrypt-3.2.0 cffi-1.14.4 cryptography-3.3.1 paramiko-2.7.2 pycparser-2.20 pynacl-1.4.0
-```
+    ```
+    pip3 install paramiko
+    ```
+    安装成功提示如下：
+    ```
+    Installing collected packages: pycparser, cffi, pynacl, bcrypt, cryptography, paramiko
+    Successfully installed bcrypt-3.2.0 cffi-1.14.4 cryptography-3.3.1 paramiko-2.7.2 pycparser-2.20 pynacl-1.4.0
+    ```
 4. 安装python的rsa插件，安装命令如下：
-```
-pip3 install rsa
-```
-安装成功提示如下：
-```
-Installing collected packages: pyasn1, rsa
-Successfully installed pyasn1-0.4.8 rsa-4.7
-```
+    ```
+    pip3 install rsa
+    ```
+    安装成功提示如下：
+    ```
+    Installing collected packages: pyasn1, rsa
+    Successfully installed pyasn1-0.4.8 rsa-4.7
+    ```
 5. 安装串口插件pyserial，安装命令如下：
-```
-pip3 install pyserial
-```
-安装成功提示如下：
-```
-Requirement already satisfied: pyserial in d:\programs\python37\lib\site-packages\pyserial-3.4-py3.7.egg (3.4)
-```
+    ```
+    pip3 install pyserial
+    ```
+    安装成功提示如下：
+    ```
+    Requirement already satisfied: pyserial in d:\programs\python37\lib\site-packages\pyserial-3.4-py3.7.egg (3.4)
+    ```
 6. 如果设备仅支持串口输出测试结果，则需要安装NFS Server
-- Windows环境下安装，例如安装haneWIN NFS Server1.2.50。
-- Linux环境下安装，安装命令如下：
-```
-sudo apt install nfs-kernel-server
-```
-安装成功提示如下：
-```
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-nfs-kernel-server is already the newest version (1:1.3.4-2.1ubuntu5.3).
-0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
-```
+    - Windows环境下安装，例如安装haneWIN NFS Server1.2.50。
+    - Linux环境下安装，安装命令如下：
+    ```
+    sudo apt install nfs-kernel-server
+    ```
+    安装成功提示如下：
+    ```
+    Reading package lists... Done
+    Building dependency tree
+    Reading state information... Done
+    nfs-kernel-server is already the newest version (1:1.3.4-2.1ubuntu5.3).
+    0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
+    ```
 7. 如果设备支持HDC连接，则需要安装HDC工具，安装流程请参考如下链接
-https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README_zh.md
+
+    https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README_zh.md
 
 ## 安装环境检查
 
