@@ -2,8 +2,9 @@
 
 Welcome to the OpenHarmony documentation repository.
 
-This repository stores device and application development documents provided by OpenHarmony. Your contribution to the OpenHarmony documentation will be highly appreciated.
+This repository stores device and application development documents provided by OpenHarmony. Your contribution to the OpenHarmony documentation will be highly appreciate
 
+2021年9月17日17:50:41
 ## Contents
 
 [Chinese Documentation](zh-cn/readme.md)
