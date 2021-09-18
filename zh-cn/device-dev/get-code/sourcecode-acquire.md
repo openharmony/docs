@@ -412,7 +412,9 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 </tr>
 </tbody>
 </table>
+
 ## 获取方式4：从github镜像仓库获取(每天UTC时间23点同步)<a name="section23448418360"></a>
+
 
 方式一（推荐）：通过repo + ssh 下载（需注册公钥，请参考GitHub帮助中心）。
 
