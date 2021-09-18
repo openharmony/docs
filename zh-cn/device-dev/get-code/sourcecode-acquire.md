@@ -2,7 +2,7 @@
 
 -   [OpenHarmony介绍](#section6370143622110)
 -   [源码获取概述](#section12763342204)
--   [获取方式1：从代码仓库获取](#section537312010229)
+-   [获取方式1：从gitee代码仓库获取](#section537312010229)
     -   [适用场景](#section10881513459)
     -   [前提条件](#section102871547153314)
     -   [操作步骤](#section429012478331)
@@ -13,6 +13,7 @@
     -   [操作步骤](#section954619433333)
 
 -   [获取方式3：从镜像站点获取](#section1186691118430)
+-   [获取方式4：从github镜像仓库获取(每天UTC时间23点同步)](#section23448418360)
 -   [源码目录简介](#section1072115612811)
 
 ## OpenHarmony介绍<a name="section6370143622110"></a>
@@ -25,11 +26,12 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../bundles/oem_bundle_standard_des.md)的形式开放，开发者可以通过如下其中一种方式获取：
 
--   **获取方式1**：从代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
+-   **获取方式1**：从gitee代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 -   **获取方式2**：通过HPM包管理器获取。在[HPM](https://hpm.harmonyos.com)网站，查找满足需求的开源发行版，直接下载（或者定制后下载），再通过hpm-cli命令工具将所需的组件及工具链下载、安装到本地。
 -   **获取方式3**：从镜像站点下载归档后的发行版压缩文件。如果要获取旧版本的源码，也可通过此方式获取，此方式下载速度较快。
+-   **获取方式4**：从github代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 
-## 获取方式1：从代码仓库获取<a name="section537312010229"></a>
+## 获取方式1：从gitee代码仓库获取<a name="section537312010229"></a>
 
 ### 适用场景<a name="section10881513459"></a>
 
@@ -327,89 +329,185 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 </tbody>
 </table>
 
+
+## 获取方式4：从github镜像仓库获取(每天UTC时间23点同步)<a name="section23448418360"></a>
+
+
+方式一（推荐）：通过repo + ssh 下载（需注册公钥，请参考[GitHub帮助中心](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)）。
+
+    repo init -u git@github.com:openharmony/manifest.git -b master --no-repo-verify
+    repo sync -c
+    repo forall -c 'git lfs pull'
+
+方式二：通过repo + https 下载。
+
+    repo init -u https://github.com/openharmony/manifest.git -b master --no-repo-verify
+    repo sync -c
+    repo forall -c 'git lfs pull'
+
 ## 源码目录简介<a name="section1072115612811"></a>
 
 下表是OpenHarmony源码的目录及简单说明：
 
-**表 2**  源码目录
+**表 2** 源码目录
 
 <a name="table3815144702820"></a>
+
 <table><thead align="left"><tr id="row198162047192810"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p690319291299"><a name="p690319291299"></a><a name="p690319291299"></a>目录名</p>
+
 </th>
+
 <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p5903122962918"><a name="p5903122962918"></a><a name="p5903122962918"></a>描述</p>
+
 </th>
+
 </tr>
+
 </thead>
+
 <tbody><tr id="row1981674719280"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p69031429162912"><a name="p69031429162912"></a><a name="p69031429162912"></a>applications</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p090352912914"><a name="p090352912914"></a><a name="p090352912914"></a>应用程序样例，包括camera等</p>
+
 </td>
+
 </tr>
+
 <tr id="row5816747132817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p99031129112918"><a name="p99031129112918"></a><a name="p99031129112918"></a>base</p>
+
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p790472962914"><a name="p790472962914"></a><a name="p790472962914"></a>基础软件服务子系统集&amp;硬件服务子系统集</p>
+
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p790472962914"><a name="p790472962914"></a><a name="p790472962914"></a>基础软件服务子系统集硬件服务子系统集</p>
+
 </td>
+
 </tr>
+
 <tr id="row1134218692910"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p4904112910295"><a name="p4904112910295"></a><a name="p4904112910295"></a>build</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1090482942911"><a name="p1090482942911"></a><a name="p1090482942911"></a>组件化编译、构建和配置脚本</p>
+
 </td>
+
 </tr>
+
 <tr id="row8166154261316"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1216719425130"><a name="p1216719425130"></a><a name="p1216719425130"></a>docs</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p17167134217134"><a name="p17167134217134"></a><a name="p17167134217134"></a>说明文档</p>
+
 </td>
+
 </tr>
+
 <tr id="row1841618902919"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1390462902910"><a name="p1390462902910"></a><a name="p1390462902910"></a>domains</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1390432914296"><a name="p1390432914296"></a><a name="p1390432914296"></a>增强软件服务子系统集</p>
+
 </td>
+
 </tr>
+
 <tr id="row841620912298"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p119041629182919"><a name="p119041629182919"></a><a name="p119041629182919"></a>drivers</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p9904629132911"><a name="p9904629132911"></a><a name="p9904629132911"></a>驱动子系统</p>
+
 </td>
+
 </tr>
+
 <tr id="row164164992915"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p79042298298"><a name="p79042298298"></a><a name="p79042298298"></a>foundation</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p18904132922915"><a name="p18904132922915"></a><a name="p18904132922915"></a>系统基础能力子系统集</p>
+
 </td>
+
 </tr>
+
 <tr id="row1441610922915"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p490402916299"><a name="p490402916299"></a><a name="p490402916299"></a>kernel</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1904112932912"><a name="p1904112932912"></a><a name="p1904112932912"></a>内核子系统</p>
+
 </td>
+
 </tr>
+
 <tr id="row194175972917"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1904132912910"><a name="p1904132912910"></a><a name="p1904132912910"></a>prebuilts</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p390492919296"><a name="p390492919296"></a><a name="p390492919296"></a>编译器及工具链子系统</p>
+
 </td>
+
 </tr>
+
 <tr id="row841718942913"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p12904929202919"><a name="p12904929202919"></a><a name="p12904929202919"></a>test</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p4904152912297"><a name="p4904152912297"></a><a name="p4904152912297"></a>测试子系统</p>
+
 </td>
+
 </tr>
+
 <tr id="row24175915294"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p13904162992916"><a name="p13904162992916"></a><a name="p13904162992916"></a>third_party</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p6904829112917"><a name="p6904829112917"></a><a name="p6904829112917"></a>开源第三方组件</p>
+
 </td>
+
 </tr>
+
 <tr id="row334210652914"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1390442918299"><a name="p1390442918299"></a><a name="p1390442918299"></a>utils</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p690412296297"><a name="p690412296297"></a><a name="p690412296297"></a>常用的工具集</p>
+
 </td>
+
 </tr>
+
 <tr id="row73421664298"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p7905172920292"><a name="p7905172920292"></a><a name="p7905172920292"></a>vendor</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p290510290293"><a name="p290510290293"></a><a name="p290510290293"></a>厂商提供的软件</p>
+
 </td>
+
 </tr>
+
 <tr id="row734319617292"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p09056291290"><a name="p09056291290"></a><a name="p09056291290"></a>build.py</p>
+
 </td>
+
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1790542912290"><a name="p1790542912290"></a><a name="p1790542912290"></a>编译脚本文件</p>
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
+
+
 
