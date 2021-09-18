@@ -97,17 +97,17 @@ bash build/prebuilts_download.sh
 
 ## 编译<a name="section92391739152318"></a>
 
-通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
+1. 通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
 
-```
-./build.sh --product-name {product_name}
-```
+   ```
+   ./build.sh --product-name {product_name}
+   ```
 
-\{product\_name\}为当前版本支持的平台，比如：Hi3516DV300
+   \{product\_name\}为当前版本支持的平台，比如：Hi3516DV300
 
-编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
+   编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
 
-3.  编译源码完成，请进行镜像烧录，具体请参见[镜像烧录](quickstart-standard-burn.md)。
+2. 编译源码完成，请进行镜像烧录，具体请参见[镜像烧录](quickstart-standard-burn.md)。
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >退出Docker执行exit命令即可。

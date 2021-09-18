@@ -97,17 +97,17 @@ bash build/prebuilts_download.sh
 
 ## Building Source Code<a name="section92391739152318"></a>
 
-Run the following script to start building for Standard-System Devices \(reference memory ≥ 128 MB\):
+1. Run the following script to start building for Standard-System Devices \(reference memory ≥ 128 MB\):
 
-```
-./build.sh --product-name {product_name}
-```
+   ```
+   ./build.sh --product-name {product_name}
+   ```
 
-**product\_name**  indicates the product supported by the current distribution, for example,  **Hi3516DV300**.
+   **product\_name**  indicates the product supported by the current distribution, for example,  **Hi3516DV300**.
 
-Files generated during the build are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
+   Files generated during the build are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
 
-3.  Burn the image. For details, see  [Burning Images](quickstart-standard-burn.md).
+2. Burn the image. For details, see  [Burning Images](quickstart-standard-burn.md).
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >You can exit Docker by simply running the  **exit**  command.
