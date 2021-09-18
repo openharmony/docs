@@ -41,8 +41,8 @@ subsystem  # 子系统
 │   │       │   │   ├── BUILD.gn  # 测试用例编译配置
 │   │       │   │   ├── testA_test.cpp  # 单元测试用例源码
 │   │       │   ├── phone  # 手机形态用例
-│   │       │   ├── ivi  # 车机形态
-│   │       │   └── liteos-a  # ipcamera使用liteos内核时的用例
+│   │       │   ├── ivi  # 车机形态用例
+│   │       │   └── liteos-a  # ipcamera使用liteos内核的用例
 │   │       └── resource  # 依赖资源
 │   │           └── ohos_test.xml   
 │   ├── moduleB  # 模块B   
@@ -60,303 +60,312 @@ subsystem  # 子系统
 
 ###  测试用例编写
 本测试框架支持多种语言用例编写，针对不同语言提供了不同的模板以供编写参考。
-- **C++参考示例**
 
-1.用例源文件命名规范
+**C++参考示例**
 
-测试用例源文件名称和测试套内容保持一致，文件命名采用全小写+下划线方式命名，以test结尾，具体格式为：[功能]_[子功能]_test，子功能支持向下细分。
+- 用例源文件命名规范
+
+    测试用例源文件名称和测试套内容保持一致，文件命名采用全小写+下划线方式命名，以test结尾，具体格式为：[功能]_[子功能]_test，子功能支持向下细分。
 示例：
-```
-calculator_sub_test.cpp
-```
+    ```
+    calculator_sub_test.cpp
+    ```
 
-2.用例示例
-```
-/*
- * Copyright (c) 2021 XXXX Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+- 用例示例
+    ```
+    /*
+     * Copyright (c) 2021 XXXX Device Co., Ltd.
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    
+    #include "calculator.h"
+    #include <gtest/gtest.h>
+    
+    using namespace testing::ext;
+    
+    class CalculatorSubTest : public testing::Test {
+    public:
+        static void SetUpTestCase(void);
+        static void TearDownTestCase(void);
+        void SetUp();
+        void TearDown();
+    };
+    
+    void CalculatorSubTest::SetUpTestCase(void)
+    {
+        // input testsuit setup step，setup invoked before all testcases
+    }
+    
+    void CalculatorSubTest::TearDownTestCase(void)
+    {
+        // input testsuit teardown step，teardown invoked after all testcases
+    }
+    
+    void CalculatorSubTest::SetUp(void)
+    {
+        // input testcase setup step，setup invoked before each testcases
+    }
+    
+    void CalculatorSubTest::TearDown(void)
+    {
+        // input testcase teardown step，teardown invoked after each testcases
+    }
+    
+    /**
+     * @tc.name: integer_sub_001
+     * @tc.desc: Verify the sub function.
+     * @tc.type: FUNC
+     * @tc.require: Issue Number
+     */
+    HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
+    {
+        // step 1:调用函数获取结果
+        int actual = Sub(4，0)；
 
-#include "calculator.h"
-#include <gtest/gtest.h>
+        // Step 2:使用断言比较预期与实际结果
+        EXPECT_EQ(4, actual);
+    }
+    ```
+    详细内容介绍：
+    1. 添加测试用例文件头注释信息
+	    ```
+    	/*
+    	 * Copyright (c) 2021 XXXX Device Co., Ltd.
+    	 * Licensed under the Apache License, Version 2.0 (the "License");
+    	 * you may not use this file except in compliance with the License.
+    	 * You may obtain a copy of the License at
+    	 *
+    	 *     http://www.apache.org/licenses/LICENSE-2.0
+    	 *
+    	 * Unless required by applicable law or agreed to in writing, software
+    	 * distributed under the License is distributed on an "AS IS" BASIS,
+    	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    	 * See the License for the specific language governing permissions and
+    	 * limitations under the License.
+    	 */
+    	```
+    2. 引用测试框架头文件和命名空间
+	    ```
+    	#include <gtest/gtest.h>
+    
+    	using namespace testing::ext;
+    	```
+    3. 添加被测试类的头文件
+	    ```
+    	#include "calculator.h"
+    	```
+    4. 定义测试套（测试类）
+	    ```
+    	class CalculatorSubTest : public testing::Test {
+    	public:
+    	    static void SetUpTestCase(void);
+    	    static void TearDownTestCase(void);
+    	    void SetUp();
+    	    void TearDown();
+    	};
+    
+    	void CalculatorSubTest::SetUpTestCase(void)
+    	{
+    	    // input testsuit setup step，setup invoked before all testcases
+    	}
+    
+    	void CalculatorSubTest::TearDownTestCase(void)
+    	{
+    	    // input testsuit teardown step，teardown invoked after all testcases
+    	}
+    
+    	void CalculatorSubTest::SetUp(void)
+    	{
+    	    // input testcase setup step，setup invoked before each testcases
+    	}
+    
+    	void CalculatorSubTest::TearDown(void)
+    	{
+    	    // input testcase teardown step，teardown invoked after each testcases
+    	}
+    	```
+	    > **注意：** 在定义测试套时，测试套名称应与编译目标保持一致，采用大驼峰风格。
 
-using namespace testing::ext;
+    5. 测试用例实现，包含用例注释和逻辑实现
+	    ```
+    	/**
+    	 * @tc.name: integer_sub_001
+    	 * @tc.desc: Verify the sub function.
+    	 * @tc.type: FUNC
+    	 * @tc.require: Issue Number
+    	 */
+    	HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
+    	{
+    	    //step 1:调用函数获取结果
+    	    int actual = Sub(4，0)；
 
-class CalculatorSubTest : public testing::Test {
-public:
-    static void SetUpTestCase(void);
-    static void TearDownTestCase(void);
-    void SetUp();
-    void TearDown();
-};
-
-void CalculatorSubTest::SetUpTestCase(void)
-{
-    // input testsuit setup step，setup invoked before all testcases
-}
-
-void CalculatorSubTest::TearDownTestCase(void)
-{
-    // input testsuit teardown step，teardown invoked after all testcases
-}
-
-void CalculatorSubTest::SetUp(void)
-{
-    // input testcase setup step，setup invoked before each testcases
-}
-
-void CalculatorSubTest::TearDown(void)
-{
-    // input testcase teardown step，teardown invoked after each testcases
-}
-
-/**
- * @tc.name: integer_sub_001
- * @tc.desc: Verify the sub function.
- * @tc.type: FUNC
- * @tc.require: Issue Number
- */
-HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
-{
-    // step 1:调用函数计算结果
-    int actual = Sub(4，0)；
-    // Step 2:使用断言比较预期与计算结果
-    EXPECT_EQ(4, actual);
-}
-```
-详细内容介绍：
-1. 添加测试用例文件头注释信息
-	```
-	/*
-	 * Copyright (c) 2021 XXXX Device Co., Ltd.
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 *     http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
-	 */
-	```
-2. 引用测试框架头文件和命名空间
-	```
-	#include <gtest/gtest.h>
-
-	using namespace testing::ext;
-	```
-3. 添加被测试类的头文件
-	```
-	#include "calculator.h"
-	```
-4. 定义测试套（测试类）
-	```
-	class CalculatorSubTest : public testing::Test {
-	public:
-	    static void SetUpTestCase(void);
-	    static void TearDownTestCase(void);
-	    void SetUp();
-	    void TearDown();
-	};
-
-	void CalculatorSubTest::SetUpTestCase(void)
-	{
-	    // input testsuit setup step，setup invoked before all testcases
-	}
-
-	void CalculatorSubTest::TearDownTestCase(void)
-	{
-	    // input testsuit teardown step，teardown invoked after all testcases
-	}
-
-	void CalculatorSubTest::SetUp(void)
-	{
-	    // input testcase setup step，setup invoked before each testcases
-	}
-
-	void CalculatorSubTest::TearDown(void)
-	{
-	    // input testcase teardown step，teardown invoked after each testcases
-	}
-	```
-	> **注意：** 在定义测试套时，测试套名称应与编译目标保持一致，采用大驼峰风格。
-
-5. 测试用例实现，包含用例注释和逻辑实现
-	```
-	/**
-	 * @tc.name: integer_sub_001
-	 * @tc.desc: Verify the sub function.
-	 * @tc.type: FUNC
-	 * @tc.require: Issue Number
-	 */
-	HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
-	{
-	    //step 1:调用函数计算结果
-	    int actual = Sub(4，0)；
-	    //Step 2:使用断言比较预期与计算结果
-	    EXPECT_EQ(4, actual);
-	}
-	```
-	在编写用例时，我们提供了三种用例模板供您选择。
+    	    //Step 2:使用断言比较预期与实际结果
+    	    EXPECT_EQ(4, actual);
+    	}
+    	```
+	    在编写用例时，我们提供了三种用例模板供您选择。
 	
-	|      类型 |    描述 |
-	| ------------| ------------|
-	| HWTEST(A,B,C)| 用例执行不依赖Setup()时，可选取|
-	| HWTEST(A,B,C)| 用例执行依赖于Setup()时，可选取|
-	| HWTEST(A,B,C)| 需要做参数化测试时，可选取|
+	    |      类型 |    描述 |
+    	| ------------| ------------|
+    	| HWTEST(A,B,C)| 用例执行不依赖Setup&Teardown时，可选取|
+    	| HWTEST_F(A,B,C)| 用例执行(不含参数)依赖于Setup&Teardown时，可选取|
+    	| HWTEST_P(A,B,C)| 用例执行(含参数)依赖于Set&Teardown时，可选取|
 
-	其中，参数A，B，C的含义如下：
+	    其中，参数A，B，C的含义如下：
 	- 参数A为测试套名。
-	- 参数B为测试用例名，其命名必须遵循[功能点]_[编号]的格式，编号为3位						数字，从001开始。
-	- 参数C为测试用例等级，具体分为门禁level0 以及非门禁level1-level4共五	个等级，其中非门禁level1-level4等级的具体选取规则为：测试用例功能越重要，level等级越低。
+	- 参数B为测试用例名，其命名必须遵循[功能点]_[编号]的格式，编号为3位数字，从001开始。
+	- 参数C为测试用例等级，具体分为门禁level0 以及非门禁level1-level4共五个等级，其中非门禁level1-level4等级的具体选取规则为：测试用例功能越重要，level等级越低。
 
-	**注意：**
+	    **注意：**
 	- 测试用例的预期结果必须有对应的断言。
 	- 测试用例必须填写用例等级。
 	- 测试体建议按照模板分步实现。
 	- 用例描述信息按照标准格式@tc.xxx value书写，注释信息必须包含用例名称，用例类型，需求编号四项。其中用例测试类型@tc.type参数的选取，可参考下表。
 
-	| 测试类型名称|功能测试|性能测试|可靠性测试|安全测试|模糊测试|
-	| ------------|------------|------------|------------|------------|------------|
-	| 类型编码|FUNC|PERF|RELI|SECU|FUZZ|
+	    | 测试类型名称|功能测试|性能测试|可靠性测试|安全测试|模糊测试|
+    	| ------------|------------|------------|------------|------------|------------|
+    	| 类型编码|FUNC|PERF|RELI|SECU|FUZZ|
+    
 
+**JavaScript参考示例**
 
-- **JavaScript参考示例**
+- 用例源文件命名规范
 
-1.用例源文件命名规范
-
-测试用例原文件名称采用大驼峰风格，以TEST结尾，具体格式为：[功能][子功能]TEST，子功能支持向下细分。
+    测试用例原文件名称采用大驼峰风格，以TEST结尾，具体格式为：[功能][子功能]TEST，子功能支持向下细分。
 示例：
-```
-AppInfoTest.js
-```
+    ```
+    AppInfoTest.js
+    ```
 
-2.用例示例
-```
-/*
- * Copyright (C) 2021 XXXX Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-import app from '@system.app'
-
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-
-describe("AppInfoTest", function () {
-    beforeAll(function() {
-        // input testsuit setup step，setup invoked before all testcases
-         console.info('beforeAll caled')
-    })
-    
-    afterAll(function() {
-         // input testsuit teardown step，teardown invoked after all testcases
-         console.info('afterAll caled')
-    })
-    
-    beforeEach(function() {
-        // input testcase setup step，setup invoked before each testcases
-         console.info('beforeEach caled')
-    })
-    
-    afterEach(function() {
-        // input testcase teardown step，teardown invoked after each testcases
-         console.info('afterEach caled')
-    })
-
+- 用例示例
+    ```
     /*
-     * @tc.name:appInfoTest001
-     * @tc.desc:verify app info is not null
-     * @tc.type: FUNC
-     * @tc.require: Issue Number
+     * Copyright (C) 2021 XXXX Device Co., Ltd.
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
      */
-    it("appInfoTest001", 0, function () {
-        var info = app.getInfo()
-        expect(info != null).assertEqual(true)
-    })
-})
-```
-详细内容介绍：
-1. 添加测试用例文件头注释信息
-	```
-	/*
-	 * Copyright (C) 2021 XXXX Device Co., Ltd.
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 *     http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
-	 */
-	```
-2. 导入被测api和jsunit测试库
-	```
-	import app from '@system.app'
+    import app from '@system.app'
+    
+    import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+    
+    describe("AppInfoTest", function () {
+        beforeAll(function() {
+            // input testsuit setup step，setup invoked before all testcases
+             console.info('beforeAll caled')
+        })
+        
+        afterAll(function() {
+             // input testsuit teardown step，teardown invoked after all testcases
+             console.info('afterAll caled')
+        })
+        
+        beforeEach(function() {
+            // input testcase setup step，setup invoked before each testcases
+             console.info('beforeEach caled')
+        })
+        
+        afterEach(function() {
+            // input testcase teardown step，teardown invoked after each testcases
+             console.info('afterEach caled')
+        })
+    
+        /*
+         * @tc.name:appInfoTest001
+         * @tc.desc:verify app info is not null
+         * @tc.type: FUNC
+         * @tc.require: Issue Number
+         */
+        it("appInfoTest001", 0, function () {
+            //step 1:调用函数获取结果
+            var info = app.getInfo()
 
-	import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-	```
-3. 定义测试套
-	```
-	describe("AppInfoTest", function () {
-	    beforeAll(function() {
-	        // input testsuit setup step，setup invoked before all testcases
-	         console.info('beforeAll caled')
-	    })
-	    
-	    afterAll(function() {
-	         // input testsuit teardown step，teardown invoked after all testcases
-	         console.info('afterAll caled')
-	    })
-	    
-	    beforeEach(function() {
-	        // input testcase setup step，setup invoked before each testcases
-	         console.info('beforeEach caled')
-	    })
-	    
-	    afterEach(function() {
-	        // input testcase teardown step，teardown invoked after each testcases
-	         console.info('afterEach caled')
-	    })
-	```
-4. 测试用例实现
-	```
-	/*
-	 * @tc.name:appInfoTest001
-	 * @tc.desc:verify app info is not null
-	 * @tc.type: FUNC
-	 * @tc.require: Issue Number
-	 */
-	 it("appInfoTest001", 0, function () {
-	     var info = app.getInfo()
-	     expect(info != null).assertEqual(true)
-	 })
-	```
+            //Step 2:使用断言比较预期与实际结果
+            expect(info != null).assertEqual(true)
+        })
+    })
+    ```
+    详细内容介绍：
+    1. 添加测试用例文件头注释信息
+	    ```
+    	/*
+    	 * Copyright (C) 2021 XXXX Device Co., Ltd.
+    	 * Licensed under the Apache License, Version 2.0 (the "License");
+    	 * you may not use this file except in compliance with the License.
+    	 * You may obtain a copy of the License at
+    	 *
+    	 *     http://www.apache.org/licenses/LICENSE-2.0
+    	 *
+    	 * Unless required by applicable law or agreed to in writing, software
+    	 * distributed under the License is distributed on an "AS IS" BASIS,
+    	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    	 * See the License for the specific language governing permissions and
+    	 * limitations under the License.
+    	 */
+    	```
+    2. 导入被测api和jsunit测试库
+	    ```
+    	import app from '@system.app'
+    
+    	import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+    	```
+    3. 定义测试套（测试类）
+	    ```
+    	describe("AppInfoTest", function () {
+    	    beforeAll(function() {
+    	        // input testsuit setup step，setup invoked before all testcases
+    	         console.info('beforeAll caled')
+    	    })
+    	    
+    	    afterAll(function() {
+    	         // input testsuit teardown step，teardown invoked after all testcases
+    	         console.info('afterAll caled')
+    	    })
+    	    
+    	    beforeEach(function() {
+    	        // input testcase setup step，setup invoked before each testcases
+    	         console.info('beforeEach caled')
+    	    })
+    	    
+    	    afterEach(function() {
+    	        // input testcase teardown step，teardown invoked after each testcases
+    	         console.info('afterEach caled')
+    	    })
+    	```
+    4. 测试用例实现
+	    ```
+    	/*
+    	 * @tc.name:appInfoTest001
+    	 * @tc.desc:verify app info is not null
+    	 * @tc.type: FUNC
+    	 * @tc.require: Issue Number
+    	 */
+    	 it("appInfoTest001", 0, function () {
+    	    //step 1:调用函数获取结果
+            var info = app.getInfo()
+
+            //Step 2:使用断言比较预期与实际结果
+            expect(info != null).assertEqual(true)
+    	 })
+    	```
 
 ### 测试用例编译文件编写
 根据测试用例目录规划，当执行某一用例时，测试框架会根据编译文件逐层查找，最终找到所需用例进行编译。下面通过不同示例来讲解gn文件如何编写。
@@ -365,257 +374,257 @@ describe("AppInfoTest", function () {
 针对不同语言，下面提供不同的编译模板以供参考。
 
 - **C++用例编译配置示例**
-```
-# Copyright (c) 2021 XXXX Device Co., Ltd.
+    ```
+    # Copyright (c) 2021 XXXX Device Co., Ltd.
+    
+    import("//build/test.gni")
+    
+    module_output_path = "subsystem_examples/calculator"
+    
+    config("module_private_config") {
+      visibility = [ ":*" ]
+    
+      include_dirs = [ "../../../include" ]
+    }
+    
+    ohos_unittest("CalculatorSubTest") {
+      module_out_path = module_output_path
+    
+      sources = [
+        "../../../include/calculator.h",
+        "../../../src/calculator.cpp",
+      ]
+    
+      sources += [ "calculator_sub_test.cpp" ]
+    
+      configs = [ ":module_private_config" ]
+    
+      deps = [ "//third_party/googletest:gtest_main" ]
+    }
+    
+    group("unittest") {
+      testonly = true
+      deps = [":CalculatorSubTest"]
+    }
+    ```
+    详细内容如下：
 
-import("//build/test.gni")
+    1. 添加文件头注释信息
+	    ```
+    	# Copyright (c) 2021 XXXX Device Co., Ltd.
+    	```
+    2. 导入编译模板文件
+	    ```
+    	import("//build/test.gni")
+    	```
+    3. 指定文件输出路径
+    	```
+    	module_output_path = "subsystem_examples/calculator"
+    	```
+    	> **说明：** 此处输出路径为部件/模块名。
+    
+    4. 配置依赖包含目录
+    
+    	```
+    	config("module_private_config") {
+    	  visibility = [ ":*" ]
+    	   
+    	  include_dirs = [ "../../../include" ]
+    	}
+    	```
+    	> **说明：** 一般在此处对相关配置进行设置，在测试用例编译脚本中可直接引用。
+    
+    5. 指定测试用例编译目标输出的文件名称
+    
+    	```
+    	ohos_unittest("CalculatorSubTest") {
+    	}
+    	```
+    6. 编写具体的测试用例编译脚本（添加需要参与编译的源文件、配置和依赖）
+    	```
+    	ohos_unittest("CalculatorSubTest") {
+    	  module_out_path = module_output_path
+    	  sources = [
+    	    "../../../include/calculator.h",
+    	    "../../../src/calculator.cpp",
+    	    "../../../test/calculator_sub_test.cpp"
+    	  ]
+    	  sources += [ "calculator_sub_test.cpp" ]
+    	  configs = [ ":module_private_config" ]
+    	  deps = [ "//third_party/googletest:gtest_main" ]
+    	}
+    	```
 
-module_output_path = "subsystem_examples/calculator"
+	    > **说明：根据测试类型的不同，在具体编写过程中可选择不同的测试类型：**
+    	> - ohos_unittest：单元测试
+    	> - ohos_moduletest：模块测试
+    	> - ohos_systemtest：系统测试
+    	> - ohos_performancetest：性能测试
+    	> - ohos_securitytest：安全测试
+    	> - ohos_reliabilitytest：可靠性测试
+    	> - ohos_distributedtest：分布式测试
 
-config("module_private_config") {
-  visibility = [ ":*" ]
-
-  include_dirs = [ "../../../include" ]
-}
-
-ohos_unittest("CalculatorSubTest") {
-  module_out_path = module_output_path
-
-  sources = [
-    "../../../include/calculator.h",
-    "../../../src/calculator.cpp",
-  ]
-
-  sources += [ "calculator_sub_test.cpp" ]
-
-  configs = [ ":module_private_config" ]
-
-  deps = [ "//third_party/googletest:gtest_main" ]
-}
-
-group("unittest") {
-  testonly = true
-  deps = [":CalculatorSubTest"]
-}
-```
-详细内容如下：
-
-1. 添加文件头注释信息
-	```
-	# Copyright (c) 2021 XXXX Device Co., Ltd.
-	```
-2. 导入编译模板文件
-	```
-	import("//build/test.gni")
-	```
-3. 指定文件输出路径
-	```
-	module_output_path = "subsystem_examples/calculator"
-	```
-	> **说明：** 此处输出路径为部件/模块名。
-
-4. 配置依赖包含目录
-
-	```
-	config("module_private_config") {
-	  visibility = [ ":*" ]
-	   
-	  include_dirs = [ "../../../include" ]
-	}
-	```
-	> **说明：** 一般在此处对相关配置进行设置，在测试用例编译脚本中可直接引用。
-
-5. 指定测试用例编译目标输出的文件名称
-
-	```
-	ohos_unittest("CalculatorSubTest") {
-	}
-	```
-6. 编写具体的测试用例编译脚本（添加需要参与编译的源文件、配置和依赖）
-	```
-	ohos_unittest("CalculatorSubTest") {
-	  module_out_path = module_output_path
-	  sources = [
-	    "../../../include/calculator.h",
-	    "../../../src/calculator.cpp",
-	    "../../../test/calculator_sub_test.cpp"
-	  ]
-	  sources += [ "calculator_sub_test.cpp" ]
-	  configs = [ ":module_private_config" ]
-	  deps = [ "//third_party/googletest:gtest_main" ]
-	}
-	```
-
-	> **说明：根据测试类型的不同，在具体编写过程中可选择不同的测试类型：**
-	> - ohos_unittest：单元测试
-	> - ohos_moduletest：模块测试
-	> - ohos_systemtest：系统测试
-	> - ohos_performancetest：性能测试
-	> - ohos_securitytest：安全测试
-	> - ohos_reliabilitytest：可靠性测试
-	> - ohos_distributedtest：分布式测试
-
-7. 对目标测试用例文件进行条件分组
-
-	```
-	group("unittest") {
-	  testonly = true
-	  deps = [":CalculatorSubTest"]
-	}
-	```
-	> **说明：** 进行条件分组的目的在于执行用例时可以选择性的执行某一种特定类型的用例。
-
+    7. 对目标测试用例文件进行条件分组
+    
+    	```
+    	group("unittest") {
+    	  testonly = true
+    	  deps = [":CalculatorSubTest"]
+    	}
+    	```
+    	> **说明：** 进行条件分组的目的在于执行用例时可以选择性的执行某一种特定类型的用例。
+    
 - **JavaScript用例编译配置示例**
 
-```
-# Copyright (C) 2021 XXXX Device Co., Ltd.
+    ```
+    # Copyright (C) 2021 XXXX Device Co., Ltd.
+    
+    import("//build/test.gni")
+    
+    module_output_path = "subsystem_examples/app_info"
+    
+    ohos_js_unittest("GetAppInfoJsTest") {
+      module_out_path = module_output_path
+    
+      hap_profile = "./config.json"
+      certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
+    }
+    
+    group("unittest") {
+      testonly = true
+      deps = [ ":GetAppInfoJsTest" ]
+    }
+    ```
 
-import("//build/test.gni")
+    详细内容如下：
 
-module_output_path = "subsystem_examples/app_info"
-
-ohos_js_unittest("GetAppInfoJsTest") {
-  module_out_path = module_output_path
-
-  hap_profile = "./config.json"
-  certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
-}
-
-group("unittest") {
-  testonly = true
-  deps = [ ":GetAppInfoJsTest" ]
-}
-```
-
-详细内容如下：
-
-1. 添加文件头注释信息
-
-	```
-	# Copyright (C) 2021 XXXX Device Co., Ltd.
-	```
-2. 导入编译模板文件
-
-	```
-	import("//build/test.gni")
-	```
-3. 指定文件输出路径
-
-	```
-	module_output_path = "subsystem_examples/app_info"
-	```
-	> **说明：** 此处输出路径为部件/模块名。
-	
-4. 指定测试用例编译目标输出的文件名称
-
-	```
-	ohos_js_unittest("GetAppInfoJsTest") {
-	}
-	```
-	> **说明：**
-	>- 使用模板ohos_js_unittest定义js测试套，注意与C++用例区分。
-	>- js测试套编译输出文件为hap类型，hap名为此处定义的测试套名，测试套名称必须以JsTest结尾。
-
-5. 指定hap包配置文件config.json和签名文件，两个配置为必选项
-
-	```
-	ohos_js_unittest("GetAppInfoJsTest") {
-	  module_out_path = module_output_path
-	   
-	  hap_profile = "./config.json"
-	  certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
-	}
-	```
-	 config.json为hap编译所需配置文件，需要开发者根据被测sdk版本配置“target”项，其余项可默认，具体如下所示：
-
-	```
-	{
-	  "app": {
-	    "bundleName": "com.example.myapplication",
-	    "vendor": "example",
-	    "version": {
-	      "code": 1,
-	      "name": "1.0"
-	    },
-	    "apiVersion": {
-	           "compatible": 4,
-	         "target": 5     # 根据被测sdk版本进行修改，此例为sdk5
-	    }
-	  },
-	  "deviceConfig": {},
-	  "module": {
-	    "package": "com.example.myapplication",
-	    "name": ".MyApplication",
-	    "deviceType": [
-	      "phone"
-	    ],
-	    "distro": {
-	      "deliveryWithInstall": true,
-	      "moduleName": "entry",
-	      "moduleType": "entry"
-	    },
-	    "abilities": [
-	      {
-	      "skills": [
-	          {
-	            "entities": [
-	              "entity.system.home"
-	            ],
-	            "actions": [
-	              "action.system.home"
-	            ]
-	          }
-	        ],
-	        "name": "com.example.myapplication.MainAbility",
-	        "icon": "$media:icon",
-	        "description": "$string:mainability_description",
-	        "label": "MyApplication",
-	        "type": "page",
-	        "launchType": "standard"
-	      }
-	    ],
-	    "js": [
-	      {
-	        "pages": [
-	          "pages/index/index"
-	        ],
-	        "name": "default",
-	          "window": {
-	             "designWidth": 720,
-	             "autoDesignWidth": false
-	          }
-	        }
-	      ]
-	    }
-	  }
-	```
-6. 对目标测试用例文件进行条件分组
-	```
-	group("unittest") {
-	  testonly = true
-	  deps = [ ":GetAppInfoJsTest" ]
-	}
-	```
-	> **说明：** 进行条件分组的目的在于执行用例时可以选择性的执行某一种特定类型的用例。
-  
+    1. 添加文件头注释信息
+    
+    	```
+    	# Copyright (C) 2021 XXXX Device Co., Ltd.
+    	```
+    2. 导入编译模板文件
+    
+    	```
+    	import("//build/test.gni")
+    	```
+    3. 指定文件输出路径
+    
+    	```
+    	module_output_path = "subsystem_examples/app_info"
+    	```
+    	> **说明：** 此处输出路径为部件/模块名。
+    	
+    4. 指定测试用例编译目标输出的文件名称
+    
+    	```
+    	ohos_js_unittest("GetAppInfoJsTest") {
+    	}
+    	```
+    	> **说明：**
+    	>- 使用模板ohos_js_unittest定义js测试套，注意与C++用例区分。
+    	>- js测试套编译输出文件为hap类型，hap名为此处定义的测试套名，测试套名称必须以JsTest结尾。
+    
+    5. 指定hap包配置文件config.json和签名文件，两个配置为必选项
+    
+    	```
+    	ohos_js_unittest("GetAppInfoJsTest") {
+    	  module_out_path = module_output_path
+    	   
+    	  hap_profile = "./config.json"
+    	  certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
+    	}
+    	```
+    	 config.json为hap编译所需配置文件，需要开发者根据被测sdk版本配置“target”项，其余项可默认，具体如下所示：
+    
+    	```
+    	{
+    	  "app": {
+    	    "bundleName": "com.example.myapplication",
+    	    "vendor": "example",
+    	    "version": {
+    	      "code": 1,
+    	      "name": "1.0"
+    	    },
+    	    "apiVersion": {
+    	           "compatible": 4,
+    	         "target": 5     // 根据被测sdk版本进行修改，此例为sdk5
+    	    }
+    	  },
+    	  "deviceConfig": {},
+    	  "module": {
+    	    "package": "com.example.myapplication",
+    	    "name": ".MyApplication",
+    	    "deviceType": [
+    	      "phone"
+    	    ],
+    	    "distro": {
+    	      "deliveryWithInstall": true,
+    	      "moduleName": "entry",
+    	      "moduleType": "entry"
+    	    },
+    	    "abilities": [
+    	      {
+    	      "skills": [
+    	          {
+    	            "entities": [
+    	              "entity.system.home"
+    	            ],
+    	            "actions": [
+    	              "action.system.home"
+    	            ]
+    	          }
+    	        ],
+    	        "name": "com.example.myapplication.MainAbility",
+    	        "icon": "$media:icon",
+    	        "description": "$string:mainability_description",
+    	        "label": "MyApplication",
+    	        "type": "page",
+    	        "launchType": "standard"
+    	      }
+    	    ],
+    	    "js": [
+    	      {
+    	        "pages": [
+    	          "pages/index/index"
+    	        ],
+    	        "name": "default",
+    	          "window": {
+    	             "designWidth": 720,
+    	             "autoDesignWidth": false
+    	          }
+    	        }
+    	      ]
+    	    }
+    	  }
+    	```
+    6. 对目标测试用例文件进行条件分组
+    	```
+    	group("unittest") {
+    	  testonly = true
+    	  deps = [ ":GetAppInfoJsTest" ]
+    	}
+    	```
+    	> **说明：** 进行条件分组的目的在于执行用例时可以选择性的执行某一种特定类型的用例。
+      
 #### 编译入口配置文件ohos.build
-
+    
 当完成用例编译配置文件编写后，需要进一步编写部件编译配置文件，以关联到具体的测试用例。
 ```
 "partA": {
     "module_list": [
-      
+          
     ],
     "inner_list": [
-      
+          
     ],
     "system_kits": [
-      
+          
     ],
     "test_list": [
       "//system/subsystem/partA/calculator/test:unittest"  //配置模块calculator下的test
     ]
-  }
+ }
 ```
 > **说明：** test_list中配置的是对应模块的测试用例。
 
@@ -625,7 +634,7 @@ group("unittest") {
 依赖资源文件配置步骤如下：
 1. 在部件或者模块的test目录下创建resource目录，存放需要的资源文件
 
-2. 在resource目录下创建一个ohos_test.xml文件，文件内容格式如下
+2. 在resource目录下创建一个ohos_test.xml文件，文件内容格式如下:
 	```
 	<?xml version="1.0" encoding="UTF-8"?>
 	<configuration ver="2.0">
@@ -736,10 +745,12 @@ group("unittest") {
 	start.bat
 	```
 2. 选择产品形态
-进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。例如：Hi3516DV300。
+
+    进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。例如：Hi3516DV300。
 
 3. 执行测试用例
-当选择完产品形态，可参考如下指令执行测试用例。
+
+    当选择完产品形态，可参考如下指令执行测试用例。
 	```
 	run -t UT -ts CalculatorSubTest -tc interger_sub_00l
 	```
@@ -774,10 +785,12 @@ group("unittest") {
 	./start.sh
 	```
 2. 选择产品形态
-进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。例如：Hi3516DV300。
+
+    进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。例如：Hi3516DV300。
 
 3. 执行测试用例
-测试框架在执行用例时会根据指令找到所需用例，自动实现用例编译，执行过程，完成自动化测试。
+
+    测试框架在执行用例时会根据指令找到所需用例，自动实现用例编译，执行过程，完成自动化测试。
 	```
 	run -t UT -ts CalculatorSubTest -tc interger_sub_00l
 	```
