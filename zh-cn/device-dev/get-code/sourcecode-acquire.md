@@ -14,6 +14,8 @@
 
 -   [获取方式3：从镜像站点获取](#section1186691118430)
 -   [源码目录简介](#section1072115612811)
+-   [获取方式4：从github镜像仓库获取(每天UTC时间23点同步)](#section23448418360)
+    -   [源码目录简介](#section1072115612811)
 
 ## OpenHarmony介绍<a name="section6370143622110"></a>
 
@@ -416,7 +418,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 ## 获取方式4：从github镜像仓库获取(每天UTC时间23点同步)<a name="section23448418360"></a>
 
 
-方式一（推荐）：通过repo + ssh 下载（需注册公钥，请参考GitHub帮助中心）。
+方式一（推荐）：通过repo + ssh 下载（需注册公钥，请参考[GitHub帮助中心](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)）。
 
     repo init -u git@github.com:openharmony/manifest.git -b master --no-repo-verify
     repo sync -c
