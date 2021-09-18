@@ -12,7 +12,7 @@
 
 -   **[AI Framework](subsys-aiframework.md)**  
 
--   **[Sensors](subsys-densor.md)**  
+-   **[Sensors](subsys-sensor.md)**  
 
 -   **[Application Framework](subsys-application-framework.md)**  
 
