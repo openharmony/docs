@@ -13,7 +13,7 @@
     -   [操作步骤](#section954619433333)
 
 -   [获取方式3：从镜像站点获取](#section1186691118430)
--   [源码目录简介](#section1072115612811)
+    -   [源码目录简介](#section1072115612811)
 -   [获取方式4：从github镜像仓库获取(每天UTC时间23点同步)](#section23448418360)
     -   [源码目录简介](#section1072115612811)
 
@@ -426,7 +426,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 方式二：通过repo + https 下载。
 
-    repo init -u [https://github.com/openharmony/manifest.git](https://github.com/openharmony/manifest.git) -b master --no-repo-verify
+    repo init -u https://github.com/openharmony/manifest.git -b master --no-repo-verify
     repo sync -c
     repo forall -c 'git lfs pull'
 
