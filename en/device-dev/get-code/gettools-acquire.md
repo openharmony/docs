@@ -52,7 +52,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.6.1.3 "><p id="p552616549297"><a name="p552616549297"></a><a name="p552616549297"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.3</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.4</p>
 </td>
 </tr>
 <tr id="row5986201731214"><td class="cellrowborder" align="center" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p136981216143"><a name="p136981216143"></a><a name="p136981216143"></a>HPM-based Docker environment</p>
@@ -68,6 +68,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </tr>
 </tbody>
 </table>
+
 
 ## Preparations<a name="section7337134183512"></a>
 
@@ -178,13 +179,13 @@ hb set
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 
@@ -206,27 +207,21 @@ hb set
 3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
     ```
 
 
 ### Building for Standard-System Devices \(reference memory ≥ 128 MB\)<a name="section193711513406"></a>
 
-1.  Run the preprocessing script in the root directory of the source code.
+Run the following script to start building for standard-system devices \(reference memory ≥ 128 MB\).
 
-    ```
-    ../scripts/prepare.sh
-    ```
+```
+./build.sh --product-name {product_name}
+```
 
-2.  Run the following script to start building for standard-system devices \(reference memory ≥ 128 MB\).
+**product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300.
 
-    ```
-    ./build.sh --product-name {product_name}
-    ```
-
-    **product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300.
-
-    Files generated during building are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
+Files generated during building are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
 
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
@@ -306,5 +301,4 @@ Start building. Docker can be automatically installed only in Ubuntu. If you are
     hpm config set shellPath "Git Bash path"
     hpm run distWithDocker solution={product}
     ```
-
 

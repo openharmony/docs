@@ -52,7 +52,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.6.1.3 "><p id="p552616549297"><a name="p552616549297"></a><a name="p552616549297"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.3</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.4</p>
 </td>
 </tr>
 <tr id="row5986201731214"><td class="cellrowborder" align="center" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p136981216143"><a name="p136981216143"></a><a name="p136981216143"></a>HPM Docker环境</p>
@@ -68,6 +68,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </tr>
 </tbody>
 </table>
+
 
 ## 环境准备<a name="section7337134183512"></a>
 
@@ -178,13 +179,13 @@ hb set
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 
@@ -206,27 +207,21 @@ hb set
 3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
     ```
 
 
 ### 编译源码-标准系统类设备（参考内存≥128MB）<a name="section193711513406"></a>
 
-1.  在源码的根目录执行预处理脚本。
+通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
 
-    ```
-    ../scripts/prepare.sh
-    ```
+```
+./build.sh --product-name {product_name}
+```
 
-2.  通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
+\{product\_name\}为当前版本支持的平台。比如：Hi3516DV300等。
 
-    ```
-    ./build.sh --product-name {product_name}
-    ```
-
-    \{product\_name\}为当前版本支持的平台。比如：Hi3516DV300等。
-
-    编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
+编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
 
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
@@ -306,5 +301,4 @@ docker\_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件�
     hpm config set shellPath "gitbash路径"
     hpm run distWithDocker solution={product}
     ```
-
 

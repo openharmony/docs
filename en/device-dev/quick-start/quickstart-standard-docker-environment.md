@@ -44,6 +44,7 @@ Method 1 \(recommended\): Use the  **repo**  tool to download the source code ov
 repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
+bash build/prebuilts_download.sh
 ```
 
 Method 2: Use the  **repo**  tool to download the source code over HTTPS.
@@ -52,6 +53,7 @@ Method 2: Use the  **repo**  tool to download the source code over HTTPS.
 repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
+bash build/prebuilts_download.sh
 ```
 
 ## Obtaining the Docker Environment<a name="section181431248132513"></a>
@@ -61,13 +63,13 @@ repo forall -c 'git lfs pull'
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 
@@ -89,29 +91,23 @@ repo forall -c 'git lfs pull'
 3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
     ```
 
 
 ## Building Source Code<a name="section92391739152318"></a>
 
-1.  Run the preprocessing script in the root directory of the source code.
+1. Run the following script to start building for Standard-System Devices \(reference memory ≥ 128 MB\):
 
-    ```
-    ../scripts/prepare.sh
-    ```
+   ```
+   ./build.sh --product-name {product_name}
+   ```
 
-2.  Run the following script to start building for Standard-System Devices \(reference memory ≥ 128 MB\):
+   **product\_name**  indicates the product supported by the current distribution, for example,  **Hi3516DV300**.
 
-    ```
-    ./build.sh --product-name {product_name}
-    ```
+   Files generated during the build are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
 
-    **product\_name**  indicates the product supported by the current distribution, for example,  **Hi3516DV300**.
-
-    Files generated during the build are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
-
-3.  Burn the image. For details, see  [Burning Images](quickstart-standard-burn.md).
+2. Burn the image. For details, see  [Burning Images](quickstart-standard-burn.md).
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >You can exit Docker by simply running the  **exit**  command.
