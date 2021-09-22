@@ -213,7 +213,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       (void)obj;
       return HDF_SUCCESS;
     }
-    //挂载init的
+    
     static int32_t HdfPwmInit(struct HdfDeviceObject *obj)
     {
       int ret;
