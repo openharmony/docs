@@ -104,7 +104,7 @@ A watchdog, also called a watchdog timer, is a hardware timing device. If an err
 
 Use  **WatchdogOpen**  to open a watchdog. A system may have multiple watchdogs. You can open the specified watchdog by using the ID.
 
-int32\_t WatchdogOpen\(int16\_t wdtId\); 
+DevHandle WatchdogOpen\(int16\_t wdtId\);
 
 **Table  2**  Description of WatchdogOpen
 
@@ -201,7 +201,7 @@ if (ret != 0) {
 
 ### Setting the Timeout Duration<a name="section182386137111"></a>
 
-int32\_t WatchdogSetTimeout\(PalHandle \*handle, uint32\_t seconds\); 
+int32\_t WatchdogSetTimeout\(DevHandle \*handle, uint32\_t seconds\); 
 
 **Table  4**  Description of WatchdogSetTimeout
 
@@ -253,7 +253,7 @@ if (ret != 0) {
 
 ### Obtaining the Timeout Duration<a name="section1883310371114"></a>
 
-int32\_t WatchdogGetTimeout\(PalHandle \*handle, uint32\_t \*seconds\); 
+int32\_t WatchdogGetTimeout\(DevHandle \*handle, uint32\_t \*seconds\);
 
 **Table  5**  Description of WatchdogGetTimeout
 

@@ -250,7 +250,8 @@ The OpenHarmony kernel uses the  **musl libc**  library and self-developed APIs 
 <td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="p5747174219504"><a name="p5747174219504"></a><a name="p5747174219504"></a>Deletes a file.</p>
 </td>
 </tr>
-<tr id="row117941848155011"><td class="cellrowborder" valign="top" headers="mcps1.2.5.1.1 "><p id="p157951148105019"><a name="p157951148105019"></a><a name="p157951148105019"></a>#include &lt;fcntl.h</p>
+<tr id="row117941848155011"><td class="cellrowborder" valign="top" headers="mcps1.2.5.1.1 "><p id="p157951148105019"><a
+name="p157951148105019"></a><a name="p157951148105019"></a>#include &lt;fcntl.h&gt;</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.5.1.2 "><p id="p1086884114190"><a name="p1086884114190"></a><a name="p1086884114190"></a>int open(const char *path, int oflags, ...);</p>
 </td>
