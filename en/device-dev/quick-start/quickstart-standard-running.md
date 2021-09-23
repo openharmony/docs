@@ -1,6 +1,6 @@
 # Running an Image<a name="EN-US_TOPIC_0000001142160948"></a>
 
--   [\#EN-US\_TOPIC\_0000001142160948/section153991115191314](#section153991115191314)
+## Running an Image
 
 After the image burning is complete, perform the following steps to run the system:
 
@@ -43,4 +43,6 @@ After the image burning is complete, perform the following steps to run the syst
 
     ![](figure/start-the-system.png)
 
+## Next
 
+Congratulations! You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a [Development Example for Clock App](../device/device-clock-guide.md).
