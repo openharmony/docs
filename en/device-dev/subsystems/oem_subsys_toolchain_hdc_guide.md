@@ -45,7 +45,7 @@ This section describes how to set up the hdc\_std environment and use its common
 
 **Obtaining hdc\_std:**
 
-Obtain hdc\_std from the  **developtools\_hdc\_standard**  repository in the  **prebuilt**  directory.
+Obtain **hdc\_std** from the **prebuilt** directory at [developtools\_hdc\_standard](https://gitee.com/openharmony/developtools_hdc_standard).
 
 **Example:**
 
@@ -702,5 +702,3 @@ hdc\_std shell
 -   **Solutions**
 
     **hdc\_std.exe**  requires no installation. It can be directly used on a disk or added to environment variables. Open the cmd window and run the  **hdc\_std**  command to use  **hdc\_std.exe**.
-
-
