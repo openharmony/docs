@@ -1,6 +1,9 @@
 # 镜像运行<a name="ZH-CN_TOPIC_0000001142160948"></a>
 
--   [\#ZH-CN\_TOPIC\_0000001142160948/section153991115191314](#section153991115191314)
+- [镜像运行](#section153991115191314)
+- [下一步](#section5600113114323)
+
+## 镜像运行<a name="section153991115191314"></a>
 
 烧录完成后通过以下步骤运行系统：
 
@@ -44,3 +47,5 @@
     ![](figure/start-the-system.png)
 
 
+## 下一步<a name="section5600113114323"></a>
+恭喜！您已经完成了OpenHarmony标准系统的快速入门，接下来可[开发一个小示例](../guide/device-clock-guide.md)，进一步熟悉OpenHarmony的开发。
