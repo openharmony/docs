@@ -21,10 +21,9 @@ OpenHarmony API按可授权使用方分类包括：
 <p>如无特别说明，本章程定义的条款同时适用于Public API、System API或Test API等三种OpenHarmony API。针对System API和Test API的额外要求或例外说明，通过特别说明方式加以补充说明。</p>
 
 OpenHarmony API按编程语言分类包括：
-- Java API：面向应用开放的Java编程语言接口。
 - JS API：面向应用开放的JavaScript编程语言接口。
 - Native API：面向应用开放的C/C++编程语言接口。
-<p>如无特别说明，本章程定义的条款同时适用于Java API、JS API和Native API等三种编程语言OpenHarmony API。</p>
+<p>如无特别说明，本章程定义的条款同时适用于JS API和Native API。</p>
 
 ## API治理
 
@@ -65,7 +64,7 @@ API评审流程如下：
 针对变更API，需要额外包含如下要素：
 1. 针对老接口的处理方式（废弃、隐藏或彻底删除）以及对使用老SDK开发应用的兼容措施（必须）；
 2. 变更影响、替代接口和相应的应用适配方案（必须）。
-3. 刷新ChangeLog（必须） 和 API-diff文档（涉及JS/Native API变更，必须；Java API的差异报告可工具化生成，不需要人工提交）。
+3. 刷新ChangeLog（必须） 和 API-diff文档（涉及JS/Native API变更，必须）。
 
 ## API设计要求
 ### 一致性要求
@@ -90,10 +89,9 @@ API评审流程如下：
 1. 作用域越大，命名应越精确。
 1. 不用或少用缩写，业界通用术语遵从行业习惯允许使用缩写。
 1. 包名/模块名/命名空间前缀约定：
-   1. Java API 统一包名： package ohos.\*。
-   2. JS API 统一模块名：@ohos.\*。
-   3. Native API 统一命名空间：namespace OHOS.\*。
-   4. 引用外部开源代码的，可以保留原包名/模块名/命名空间，也可以按照上述规则对包名统一进行替换。
+   1. JS API 统一模块名：@ohos.\*。
+   2. Native API 统一命名空间：namespace OHOS.\*。
+   3. 引用外部开源代码的，可以保留原包名/模块名/命名空间，也可以按照上述规则对包名统一进行替换。
 1. 包名/模块名/命名空间最短不少于2段，最长不超过4段；每一段建议使用一个单词，最长不超过2个单词。
 1. 类名、方法名/函数名、成员变量、变量名最多不超过4个单词。
 
