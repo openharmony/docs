@@ -127,7 +127,7 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
             match_attr = "hisilicon_hi35xx_pl061"; //【必要】必须和device_info.hcs中的deviceMatchAttr值一致
             groupNum = 12;       //【必要】GPIO组索引 需要根据设备情况填写
             bitNum = 8;          //【必要】每组GPIO管脚数 
-            regBase = 0x120d0000;//【必要】物理及地址
+            regBase = 0x120d0000;//【必要】物理基地址
             regStep = 0x1000;    //【必要】寄存器偏移步进
             irqStart = 48;       //【必要】开启中断
             irqShare = 0;        //【必要】共享中断

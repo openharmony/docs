@@ -59,7 +59,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 > 
 > |函数|入参|出参|返回值|功能|
 > |-|-|-|-|-|
-> |ReadTime             |**host**: 结构体指针,核心层RTC控制器 ; |**time**: 结构体指针,<br />传出的时间值; |HDF_STATUS相关状态| 读RTC时间信息[^2] |
+> |ReadTime             |**host**: 结构体指针,核心层RTC控制器 ; |**time**: 结构体指针,<br />传出的时间值; |HDF_STATUS相关状态| 读RTC时间信息 |
 > |WriteTime            |**host**: 结构体指针,核心层RTC控制器 ;<br />**time**: 结构体指针,时间传入值; |无 |HDF_STATUS相关状态| 写RTC时间信息（包括毫秒~年） |
 > |ReadAlarm            |**host**: 结构体指针,核心层RTC控制器 ;<br />**alarmIndex**: 枚举值，闹钟报警索引 ;|**time**: 结构体指针,<br />传出的时间值;|HDF_STATUS相关状态| 读RTC报警时间信息 |
 > |WriteAlarm           |**host**: 结构体指针,核心层RTC控制器 ;<br />**alarmIndex**: 枚举值，闹钟报警索引 ;<br />**time**: 结构体指针,时间传入值;|无|HDF_STATUS相关状态| 写RTC报警时间信息 |
@@ -76,7 +76,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 下方将以rtc_hi35xx.c为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 
 1. 驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组的段地址空间，方便上层调用。
-    
+   
     一般在加载驱动时HDF会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
 - RTC驱动入口参考
@@ -94,7 +94,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     ```
 
 2. 完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在 rtc_config.hcs 中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值与核心层RtcHost成员的默认值或限制范围有密切关系。
-    
+   
     **本例只有一个RTC控制器，如有多个器件信息，则需要在device_info文件增加deviceNode信息，以及在rtc_config文件中增加对应的器件属性**。
 
 - device_info.hcs 配置参考
@@ -108,7 +108,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
               policy = 1;                              //2:用户态可见,1:内核态可见,0:不需要发布服务
               priority = 30;                           //优先级越大，值越小
               permission = 0644;                       //驱动创建设备节点权限
-              moduleName = "HDF_PLATFORM_RTC";         //【必要】驱动注册名字
+              moduleName = "HDF_PLATFORM_RTC";         //【必要】用于指定驱动名称，需要与驱动Entry中的moduleName一致；
               serviceName = "HDF_PLATFORM_RTC";        //【必要】驱动对外发布服务的名称，必须唯一
               deviceMatchAttr = "hisilicon_hi35xx_rtc";//【必要】需要与设备hcs文件中的 match_attr 匹配
             }
@@ -208,8 +208,9 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     > |HDF_ERR_IO           |I/O 错误|
     > |HDF_SUCCESS            |初始化成功|
     > |HDF_FAILURE           |初始化失败|
+    > 
     > **函数说明：**
-    > 链接HdfDeviceObject对象和RtcHost
+    > 关联HdfDeviceObject对象和RtcHost
     
     ```c 
     static int32_t HiRtcBind(struct HdfDeviceObject *device)

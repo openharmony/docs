@@ -228,10 +228,7 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     > |HDF_ERR_IO           |I/O 错误|
     > |HDF_SUCCESS            |初始化成功|
     > |HDF_FAILURE           |初始化失败|
-    > 
-    > **函数说明：**
-    > 将 MmcCntlr 对象同 HdfDeviceObject 进行了关联 
-    > 
+    >  
     > **函数说明：**
     > 初始化自定义结构体对象，初始化SdioCntlr成员，调用核心层SdioCntlrAdd函数，以及其他厂商自定义初始化操作
     
@@ -295,7 +292,7 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     > 无
     > 
     > **函数说明：**
-    > 释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用 Release 释放驱动资源。所有强制转换获取相应对象的操作**前提**是在Bnit函数中具备对应赋值的操作。
+    > 释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用 Release 释放驱动资源。所有强制转换获取相应对象的操作**前提**是在Bind函数中具备对应赋值的操作。
     
     ```c
     static void Hi35xxLinuxSdioRelease(struct HdfDeviceObject *obj)

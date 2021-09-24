@@ -112,7 +112,7 @@ MIPI-DSI模块适配的三个环节是配置属性文件，实例化驱动入口
 3.  完成驱动入口注册之后，最后一步就是以核心层MipiDsiCntlr对象的初始化为核心，包括厂商自定义结构体（传递参数和数据），实例化MipiDsiCntlr成员MipiDsiCntlrMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind，Init，Release）
 
 - 自定义结构体参考 
-    
+  
     > 从驱动的角度看，自定义结构体是参数和数据的载体，一般来说，config文件中的数值也会用来初始化结构体成员，但本例的mipidsi无器件属性文件，故基本成员结构与MipiDsiCntlr无太大差异。
 
     ```c
@@ -196,8 +196,8 @@ MIPI-DSI模块适配的三个环节是配置属性文件，实例化驱动入口
     
         g_mipiDsihandle[cntlr->devNo].cntlr = cntlr;//初始化MipiDsiHandle成员
         g_mipiDsihandle[cntlr->devNo].priv = NULL;  
-        cntlr->device = device;                     //使HdfDeviceObject与MmcCntlr可以相互转化的前提
-        device->service = &(cntlr->service);        //使HdfDeviceObject与MmcCntlr可以相互转化的前提
+        cntlr->device = device;                     //使HdfDeviceObject与MipiDsiHandle可以相互转化的前提
+        device->service = &(cntlr->service);        //使HdfDeviceObject与MipiDsiHandle可以相互转化的前提
         cntlr->priv = NULL;	
         ...
         return HDF_SUCCESS;

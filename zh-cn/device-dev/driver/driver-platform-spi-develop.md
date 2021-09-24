@@ -15,7 +15,7 @@ SPI是串行外设接口（Serial Peripheral Interface）的缩写，在HDF框�
 
 ## 开发步骤 <a name="2"></a>
 
-SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动入口，以及填充核心层接口函数。
+SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动入口，以及实例化核心层接口函数。
 
 1. **实例化驱动入口：**   
     - 实例化HdfDriverEntry结构体成员。
@@ -61,7 +61,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 下方将以spi_hi35xx.c为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 
 1. 驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组的段地址空间，方便上层调用。
-    
+   
     一般在加载驱动时HDF会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
 - SPI驱动入口参考
@@ -214,7 +214,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 - **【重要】** SpiCntlr成员回调函数结构体SpiCntlrMethod的实例化，其他成员在Init函数中初始化
 
     ```c 
-    // spi_hi35xx.c 中的示例：钩子函数的填充
+    // spi_hi35xx.c 中的示例：钩子函数的实例化
     struct SpiCntlrMethod g_method = {
         .Transfer = Pl022Transfer,
         .SetCfg = Pl022SetCfg,
@@ -247,7 +247,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     {
         struct SpiCntlr *cntlr = NULL;      //创建核心层 SpiCntlr 对象
         ...
-        cntlr = (struct SpiCntlr *)OsalMemCalloc(sizeof(*cntlr));//非配内存
+        cntlr = (struct SpiCntlr *)OsalMemCalloc(sizeof(*cntlr));//分配内存
         ...
         cntlr->device = device;             //使HdfDeviceObject与SpiCntlr可以相互转化的前提
         device->service = &(cntlr->service);//使HdfDeviceObject与SpiCntlr可以相互转化的前提
@@ -280,7 +280,6 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     > 初始化自定义结构体对象，初始化SpiCntlr成员。
     
     ```c 
-    //挂载init的
     static int32_t HdfSpiDeviceInit(struct HdfDeviceObject *device)
     {
     int32_t ret;
@@ -289,7 +288,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     cntlr = SpiCntlrFromDevice(device);//这里有HdfDeviceObject到SpiCntlr的强制转化，通过service成员，赋值见Bind函数
                                         //return (device == NULL) ? NULL : (struct SpiCntlr *)device->service;
     ...
-    ret = Pl022Init(cntlr, device);//【必要】填充厂商自定义操作对象，示例见下
+    ret = Pl022Init(cntlr, device);//【必要】实例化厂商自定义操作对象，示例见下
     ...
     ret = Pl022Probe(cntlr->priv);
     ...
@@ -303,10 +302,10 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     ...
     pl022 = (struct Pl022 *)OsalMemCalloc(sizeof(*pl022));//申请内存
     ...
-    ret = SpiGetBaseCfgFromHcs(pl022, device->property);  //填充busNum, numCs, speed, fifoSize, clkRate, 
+    ret = SpiGetBaseCfgFromHcs(pl022, device->property);  //初始化busNum, numCs, speed, fifoSize, clkRate, 
                                                             //mode, bitsPerWord, transferMode参数值
     ...
-    ret = SpiGetRegCfgFromHcs(pl022, device->property);   //填充regBase, phyBase, irqNum, regCrg, clkEnBit, 
+    ret = SpiGetRegCfgFromHcs(pl022, device->property);   //初始化regBase, phyBase, irqNum, regCrg, clkEnBit, 
                                                             //clkRstBit, regMiscCtrl, regMiscCtrl, miscCtrlCs, 
                                                             //miscCtrlCsShift参数值
     ...
@@ -327,7 +326,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     return 0;
     }
     ```
-
+    
 - **Release函数参考**
 
     > **入参：** 

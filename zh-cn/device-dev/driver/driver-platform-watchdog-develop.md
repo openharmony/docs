@@ -6,7 +6,7 @@
 
 ## 概述 <a name="1"></a>
 
-看门狗（watchdog），又叫看门狗计时器（watchdog timer），是一种硬件的计时设备，在HDF框架中，watchdog接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。
+看门狗（Watchdog），又叫看门狗计时器（Watchdog timer），是一种硬件的计时设备，在HDF框架中，Watchdog接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。
 
 独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
 
@@ -15,7 +15,7 @@
 
 ## 开发步骤 <a name="2"></a>
 
-watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱动入口，以及填充核心层接口函数。
+Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱动入口，以及填充核心层接口函数。
 
 1. **实例化驱动入口：**   
     - 实例化HdfDriverEntry结构体成员。
@@ -45,7 +45,7 @@ watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
 >   int32_t (*start)(struct WatchdogCntlr *wdt);
 >   int32_t (*stop)(struct WatchdogCntlr *wdt);
 >   int32_t (*feed)(struct WatchdogCntlr *wdt);
->   int32_t (*getPriv)(struct WatchdogCntlr *wdt); //【可选】如果WatchdogCntlr 中的priv成员存在，则按需填充 
+>   int32_t (*getPriv)(struct WatchdogCntlr *wdt); //【可选】如果WatchdogCntlr 中的priv成员存在，则按需进行实例化
 >   void (*releasePriv)(struct WatchdogCntlr *wdt);//【可选】
 > };
 > ```
@@ -66,10 +66,10 @@ watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
 下方将以watchdog_hi35xx.c为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 
 1. 驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组的段地址空间，方便上层调用。
-    
+   
     一般在加载驱动时HDF会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
-- watchdog驱动入口参考
+- Watchdog驱动入口参考
 
     ```c
     struct HdfDriverEntry g_watchdogDriverEntry = {
@@ -83,7 +83,7 @@ watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
     ```
 
 2. 完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在 watchdog_config.hcs 中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值与核心层WatchdogCntlr 成员的默认值或限制范围有密切关系。
-    
+   
     **本例只有一个Watchdog控制器，如有多个器件信息，则需要在device_info文件增加deviceNode信息，以及在watchdog_config文件中增加对应的器件属性**。
 
 - device_info.hcs 配置参考
@@ -145,8 +145,8 @@ watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
     };
     //WatchdogCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
     struct WatchdogCntlr {
-      struct IDeviceIoService service;//驱动服务，【无需挂载】
-      struct HdfDeviceObject *device; //驱动设备，需要挂载 bind 函数的入参：struct HdfDeviceObject *device
+      struct IDeviceIoService service;//驱动服务
+      struct HdfDeviceObject *device; //驱动设备
       OsalSpinlock lock;              //在HDF核心层调用时从系统代码实现了一个自旋锁的机制，挂载的变量需要是相同的变量，不建议挂载
       struct WatchdogMethod *ops;     //接口回调函数
       int16_t wdtId;                  //WDG设备的识别id
@@ -207,7 +207,7 @@ watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
     ...
     //最重要的是这个挂载的过程
     hwdt->wdt.priv = (void *)device->property;//【可选】此处填充的是设备属性，但后续没有调用 priv 成员，
-                                                // 如果需要用到 priv 成员，需要实现对应的钩子函数填充 WatchdogMethod 
+                                                // 如果需要用到 priv 成员，需要实现对应的钩子函数实例化WatchdogMethod 
                                                 // 结构体的 getPriv 和 releasePriv 成员函数
     hwdt->wdt.ops = &g_method;                //【必要】WatchdogMethod的实例化对象的挂载
     hwdt->wdt.device = device;                //【必要】使HdfDeviceObject与WatchdogcCntlr可以相互转化的前提
@@ -238,13 +238,13 @@ watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
     struct WatchdogCntlr *wdt = NULL;
     struct Hi35xxWatchdog *hwdt = NULL;
     ...
-    wdt = WatchdogCntlrFromDevice(device);//这里有HdfDeviceObject到MmcCntlr的强制转化，通过service成员(第一个成员)，赋值见Bind函数
+    wdt = WatchdogCntlrFromDevice(device);//这里有HdfDeviceObject到WatchdogCntlr的强制转化，通过service成员(第一个成员)，赋值见Bind函数
                                             //return (device == NULL) ? NULL : (struct WatchdogCntlr *)device->service;
     if (wdt == NULL) {
         return;
     }
     WatchdogCntlrRemove(wdt);				//核心层函数，实际执行wdt->device->service = NULL以及cntlr->lock的释放
-    hwdt = (struct Hi35xxWatchdog *)wdt;  //这里有MmcCntlr到HimciHost的强制转化
+    hwdt = (struct Hi35xxWatchdog *)wdt;  //这里有WatchdogCntlr到HimciHost的强制转化
     if (hwdt->regBase != NULL) {			//地址反映射
         OsalIoUnmap((void *)hwdt->regBase);
         hwdt->regBase = NULL;
