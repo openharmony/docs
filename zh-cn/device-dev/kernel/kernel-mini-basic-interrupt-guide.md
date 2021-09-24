@@ -94,7 +94,7 @@ static UINT32 Example_Interrupt(VOID)
     HWI_PRIOR_T hwiPrio = 3;
     HWI_MODE_T mode = 0;
     HWI_ARG_T arg = 0;
-  
+
     /*创建中断*/
     ret = HalHwiCreate(HWI_NUM_TEST, hwiPrio, mode, (HWI_PROC_FUNC)HwiUsrIrq, arg);
     if(ret == LOS_OK){
@@ -125,6 +125,6 @@ static UINT32 Example_Interrupt(VOID)
 
 ```
 Hwi create success!
-Hwi delete success!.
+Hwi delete success!
 ```
 
