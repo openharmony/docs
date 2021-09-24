@@ -59,12 +59,12 @@
 </td>
 <td class="cellrowborder" valign="top" width="18.43%" headers="mcps1.1.4.1.2 "><p id="p147061033103117"><a name="p147061033103117"></a><a name="p147061033103117"></a>LOS_IntUnLock</p>
 </td>
-<td class="cellrowborder" valign="top" width="61.67%" headers="mcps1.1.4.1.3 "><p id="p167061333193114"><a name="p167061333193114"></a><a name="p167061333193114"></a>打开<span>当前处理器所有中断响应</span></p>
+<td class="cellrowborder" valign="top" width="61.67%" headers="mcps1.1.4.1.3 "><p id="p167061333193114"><a name="p167061333193114"></a><a name="p167061333193114"></a>打开当前处理器所有中断响应</p>
 </td>
 </tr>
 <tr id="row1270603314312"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p1970623343114"><a name="p1970623343114"></a><a name="p1970623343114"></a>LOS_IntLock</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1370623373115"><a name="p1370623373115"></a><a name="p1370623373115"></a>关闭<span>当前处理器所有中断响应</span></p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1370623373115"><a name="p1370623373115"></a><a name="p1370623373115"></a>关闭当前处理器所有中断响应</p>
 </td>
 </tr>
 <tr id="row8706233173113"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p1770620337313"><a name="p1770620337313"></a><a name="p1770620337313"></a>LOS_IntRestore</p>

@@ -129,7 +129,7 @@ typedef struct {
 </tr>
 <tr id="row16936856185111"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p49361156195113"><a name="p49361156195113"></a><a name="p49361156195113"></a>LOS_QueueWriteHeadCopy</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1193625675116"><a name="p1193625675116"></a><a name="p1193625675116"></a>向指定队列头节点中<em id="i1183903561620"><a name="i1183903561620"></a><a name="i1183903561620"></a>写入入参</em>bufferAddr中保存的数据</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1193625675116"><a name="p1193625675116"></a><a name="p1193625675116"></a>向指定队列头节点中写入入参bufferAddr中保存的数据</p>
 </td>
 </tr>
 <tr id="row1936756155114"><td class="cellrowborder" valign="top" width="23.56%" headers="mcps1.1.4.1.1 "><p id="p149371956105114"><a name="p149371956105114"></a><a name="p149371956105114"></a>获取队列信息</p>
