@@ -78,6 +78,6 @@
 | 检查项 |操作  |满足环境  |
 | --- | --- | --- |
 | 检查python安装成功 |命令行窗口执行命令：python --version  |版本不小于3.7.5即可 |
-| 检查python扩展插件安装成功 |打开test/xdevice目录，执行run.bat或run.sh| 可进入提示符“>>>”界面即可 |
+| 检查python扩展插件安装成功 |打开test/developertest目录，执行run.bat或run.sh| 可进入提示符“>>>”界面即可 |
 |检查NFS Server启动状态（被测设备仅支持串口时检测）  |通过串口登录开发板，执行mount命令挂载NFS  |可正常挂载文件目录即可  |
 |检查HDC安装成功  |命令行窗口执行命令：hdc_std -v |版本不小于1.1.0即可 |
