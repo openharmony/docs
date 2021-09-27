@@ -10,11 +10,11 @@ The Docker image of OpenHarmony is hosted on [HUAWEI Cloud SWR](https://auth.hua
 
 1. Obtain the Docker image.
 ```
-docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
 ```
 2. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 ```
-docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
 ```
 
 ##### **Method 2: Using the Dockerfile to Build a Local Docker Image**
@@ -30,15 +30,12 @@ cd docs/docker/standard
 ```
 3. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 ```
-docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.3
+docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
 ```
 
 ### Building for Standard-System Devices (reference memory ≥ 128 MB)
-1. Run the preprocessing script in the root directory of the source code.
-```
-../scripts/prepare.sh
-```
-2. Run the following script to start building for Standard-System Devices (reference memory ≥ 128 MB)
+Run the following script to start building for Standard-System Devices (reference memory ≥ 128 MB)
+
 ```
 ./build.sh --product-name {product_name}
 ```
