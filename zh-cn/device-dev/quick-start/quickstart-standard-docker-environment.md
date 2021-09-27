@@ -44,6 +44,7 @@ OpenHarmony标准系统为开发者提供的Docker环境已经将对应的编译
 repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
+bash build/prebuilts_download.sh
 ```
 
 方式二：通过repo + https 下载。
@@ -52,6 +53,7 @@ repo forall -c 'git lfs pull'
 repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
+bash build/prebuilts_download.sh
 ```
 
 ## 获取Docker环境<a name="section181431248132513"></a>
@@ -61,13 +63,13 @@ repo forall -c 'git lfs pull'
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 
@@ -89,27 +91,21 @@ repo forall -c 'git lfs pull'
 3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.3
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
     ```
 
 
 ## 编译<a name="section92391739152318"></a>
 
-1.  在源码的根目录执行预处理脚本。
+1. 通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
 
-    ```
-    ../scripts/prepare.sh
-    ```
+   ```
+   ./build.sh --product-name {product_name}
+   ```
 
-2.  通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
+   \{product\_name\}为当前版本支持的平台，比如：Hi3516DV300
 
-    ```
-    ./build.sh --product-name {product_name}
-    ```
-
-    \{product\_name\}为当前版本支持的平台，比如：Hi3516DV300
-
-    编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
+   编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
 
 3.  编译源码完成，请进行镜像烧录，具体请参见[镜像烧录](quickstart-standard-burn.md)。
 
