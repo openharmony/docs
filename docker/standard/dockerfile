@@ -17,13 +17,10 @@ WORKDIR /home/openharmony
 ARG DEBIAN_FRONTEND=noninteractive
 ARG PREBUILTS_DIR=/home/prebuilts
 ARG HOME_TOOLS=/home/tools
-ARG HOME_SCRIPTS=/home/scripts
 
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
 
 COPY sources.list /etc/apt
-
-COPY prebuilts_download.sh prepare.sh $HOME_SCRIPTS/
 
 RUN apt-get update \
 	&& apt-get install -y \
@@ -85,9 +82,10 @@ RUN apt-get update \
 	libc6-dev-i386 \
 	lib32z-dev \
 	openjdk-8-jdk \
+	ruby \
 	&& rm -rf /bin/sh \
 	&& ln -s /bin/bash /bin/sh \
-	&& mkdir -p $PREBUILTS_DIR/prebuilts $HOME_TOOLS $HOME_SCRIPTS
+	&& mkdir -p $PREBUILTS_DIR/prebuilts $HOME_TOOLS
 
 RUN wget -P $HOME_TOOLS https://mirrors.huaweicloud.com/nodejs/v12.18.4/node-v12.18.4-linux-x64.tar.gz \
 	&& wget -P $HOME_TOOLS https://mirrors.huaweicloud.com/nodejs/v12.18.4/node-v12.18.4-darwin-x64.tar.gz \
@@ -98,7 +96,4 @@ RUN wget -P $HOME_TOOLS https://mirrors.huaweicloud.com/nodejs/v12.18.4/node-v12
 	&& export PATH=$PATH:$PREBUILTS_DIR/prebuilts/node-v12.18.4-linux-x64/bin \
 	&& export PATH=$PATH:$PREBUILTS_DIR/prebuilts/hc-gen \
 	&& rm -rf $HOME_TOOLS \
-	&& chmod -R 777 $HOME_SCRIPTS/*.sh \
-	&& $HOME_SCRIPTS/prebuilts_download.sh \
-	&& rm -rf /tmp/prebuilts \
 	&& npm install -g @ohos/hpm-cli --registry https://registry.npm.taobao.org

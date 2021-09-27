@@ -10,11 +10,11 @@ OpenHarmony的Docker镜像托管在HuaweiCloud SWR上。开发者可以通过该
 
 1. 获取Docker镜像。
 ```
-docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
 ```
 2. 进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 ```
-docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.3
+docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
 ```
 
 ##### 方式二：通过Dockerfile 构建本地Docker镜像进行构建
@@ -30,15 +30,12 @@ cd docs/docker/standard
 ```
 3. 进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 ```
-docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.3
+docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
 ```
 
 ### 编译源码-标准系统类设备（参考内存≥128MB）
-1. 在源码的根目录执行预处理脚本。
-```
-../scripts/prepare.sh
-```
-2. 通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
+通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
+
 ```
 ./build.sh --product-name {product_name}
 ```
