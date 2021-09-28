@@ -40,13 +40,15 @@ OpenHarmony = OpenHarmony 内核态层 + OpenHarmony 用户态层
 
 ### 获得内核态层的两种方法
 
+为了表述方便，我们在下文部分地方用“OH”代替“OpenHarmony”。
+
 将OH 内核态层继续分解
 
 OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选特性，如必选特性HDF，今后的可选特性HMDFS等）
 
-而OH Linux内核  = 标准LTS Linux 内核  +  三方SOC芯片平台代码  +  OH内核态基础代码（支撑OH用户态层运行的最基础代码）
+而OH Linux内核  = 标准LTS Linux 内核  +  三方SoC芯片平台代码  +  OH内核态基础代码（支撑OH用户态层运行的最基础代码）
 
-因此OH 内核态层 = 标准LTS Linux 内核  +  三方SOC芯片平台代码  +  OH内核态基础代码  + OH内核态特性（如HDF）
+因此OH 内核态层 = 标准LTS Linux 内核  +  三方SoC芯片平台代码  +  OH内核态基础代码  + OH内核态特性（如HDF，今后的HMDFS等）
 
 ![zh-cn_image_0000001208365855](figure/zh-cn_image_0000001208365855.png)
 
@@ -56,7 +58,7 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 
 也就是直接借助三方Linux内核，再加上基础OH内核态基础代码、以及HDF等OH内核态特性。
 
-方法二：OH 内核态层 =  OH Linux内核 + OH内核态特性（如HDF，今后的可选特性HMDFS等）
+方法二：OH 内核态层 =  OH Linux内核 + OH内核态特性（如HDF，今后的HMDFS等）
 
 也就是直接采用OH Linux内核，然后再加入OH的其他内核态特性。
 
@@ -65,7 +67,7 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 
 ### 快速移植到三方芯片平台的流程简介
 
-本节介绍以上的方案一，即借助三方Linux内核，快速的移植OpenHarmony到三方的芯片平台。
+本节介绍以上的方法一，即借助三方Linux内核，快速的移植OpenHarmony到三方的芯片平台。
 
 整个移植流程可以分为三步：
 
@@ -122,7 +124,7 @@ drivers/staging/hilog
 drivers/staging/hievent
 ```
 
-将以上代码，从OpenHarmony内核代码目录中，拷贝到out/KERNEL_OBJ/kernel的对应目录下。
+将以上代码，从OpenHarmony内核代码目录kernel/linux/linux-4.19/drivers/staging中，拷贝到out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b/drivers/staging 下
 
 在内核config项中打开对应的CONFIG控制宏：CONFIG_HILOG和CONFIG_HIEVENT
 
