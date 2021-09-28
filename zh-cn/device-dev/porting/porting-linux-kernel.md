@@ -31,7 +31,7 @@ OpenHarmony = OpenHarmony 内核态层 + OpenHarmony 用户态层
 
 ![zh-cn_image_0000001162805936](figure/zh-cn_image_0000001162805936.png)
 
-其中OpenHarmony 内核层就是上图的紫色部分，可以看到，它主要由内核本身（如Linux Kernel，LiteOS），和一些运行在内核态的一些特性组成，比如HDF等。
+其中OpenHarmony 内核态层就是上图的紫色部分，可以看到，它主要由内核本身（如Linux Kernel，LiteOS），和一些运行在内核态的一些特性组成，比如HDF等。
 
 而OpenHarmony用户态层，在上图，就是紫色之外的部分。可以看到，由下往上看，它主要由系统服务层，框架层，应用层组成。在这儿我们将这三层整体称为“OpenHarmony 用户态层”。
 
@@ -50,7 +50,7 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 
 ![zh-cn_image_0000001208365855](figure/zh-cn_image_0000001208365855.png)
 
-而将前两项组合，标准LTS Linux 内核  +  三方SOC芯片平台代码，其实就是一个三方Linux内核的基础组成。从上面的推导可以看出，OpenHarmony 内核态层其实能够由两种方法得到：
+而将前两项组合，标准LTS Linux 内核  +  三方SoC芯片平台代码，其实就是一个三方Linux内核的基础组成。从上面的推导可以看出，OpenHarmony 内核态层其实能够由两种方法得到：
 
 方法一：OH 内核态层 =  三方Linux内核 +  OH内核态基础代码  + OH内核态特性（如HDF，今后的HMDFS等）
 
