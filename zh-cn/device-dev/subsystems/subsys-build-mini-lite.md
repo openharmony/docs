@@ -580,7 +580,7 @@ optional arguments:
 
 3.  将组件配置到产品。
 
-    产品的配置文件config.json位于位于vendor/company/product/下，产品配置文件需包含产品名称、OpenHarmony版本号、device厂商、开发板、内核类型、内核版本号，以及配置的子系统和组件。以将hello\_world组件加入产品配置文件my\_product.json中为例，加入hello\_wolrd对象：
+    产品的配置文件config.json位于vendor/company/product/下，产品配置文件需包含产品名称、OpenHarmony版本号、device厂商、开发板、内核类型、内核版本号，以及配置的子系统和组件。以将hello\_world组件加入产品配置文件my\_product.json中为例，加入hello\_wolrd对象：
 
     ```
     {
