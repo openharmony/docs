@@ -353,9 +353,8 @@ console.log(url); //url can be accessed, output: http://127.0.0.1:8080
 **Example:**
 
 ```javascript
-// ES5.1 Using var to declare variables
 function open() {
-  var url = 'http://127.0.0.1:8080';
+  let url = 'http://127.0.0.1:8080';
   // todo something
 }
 open();
@@ -363,7 +362,6 @@ console.log(url); //Report: Uncaught ReferenceError: url is not defined
 ```
 
 ```javascript
-// In ES6, the let and const keywords are preferred to declare variables.
 function open() {
   const url = 'http://127.0.0.1:8080';
   //todo something
