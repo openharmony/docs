@@ -354,9 +354,8 @@ console.log(url); //url可以被访问到，输出内容：http://127.0.0.1:8080
 **正例：**
 
 ```javascript
-// ES5.1使用var声明变量
 function open() {
-  var url = 'http://127.0.0.1:8080';
+  let url = 'http://127.0.0.1:8080';
   // todo something
 }
 open();
@@ -364,7 +363,6 @@ console.log(url); //报错：Uncaught ReferenceError: url is not defined
 ```
 
 ```javascript
-// ES6中，优先推荐使用let和const关键字来声明变量
 function open() {
   const url = 'http://127.0.0.1:8080';
   //todo something
