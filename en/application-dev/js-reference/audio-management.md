@@ -1,63 +1,63 @@
 # Audio Management<a name="EN-US_TOPIC_0000001149807881"></a>
 
--   [Modules to Import](#s56d19203690d4782bfc74069abb6bd71)
--   [Required Permissions](#section11257113618419)
--   [getAudioManager\(\): AudioManager](#section84581011418)
--   [AudioVolumeType](#section92261857172218)
--   [DeviceFlag](#section11285183164210)
--   [DeviceRole](#section380038142619)
--   [DeviceType](#section11727420122710)
--   [AudioRingMode7+](#section14948916131018)
--   [AudioManager](#section8265143814015)
-    -   [setVolume\(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void\>\): void](#section189141826104616)
-    -   [setVolume\(volumeType: AudioVolumeType, volume: number\): Promise<void\>](#section102021249114612)
-    -   [getVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void](#section4387320194714)
-    -   [getVolume\(volumeType: AudioVolumeType\): Promise<number\>](#section04121965119)
-    -   [getMinVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void](#section188714283511)
-    -   [getMinVolume\(volumeType: AudioVolumeType\): Promise<number\>](#section41556389511)
-    -   [getMaxVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void](#section690395418516)
-    -   [getMaxVolume\(volumeType: AudioVolumeType\): Promise<number\>](#section155151345217)
-    -   [mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void7+](#section13516136134613)
-    -   [mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\>7+](#section7519036144616)
-    -   [isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void7+](#section10684183819585)
-    -   [isMute\(volumeType: AudioVolumeType\): Promise<boolean\>7+](#section6920211145610)
-    -   [isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void7+](#section380012544121)
-    -   [isActive\(volumeType: AudioVolumeType\): Promise<boolean\>7+](#section1880315481216)
-    -   [setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void7+](#section18572131483613)
-    -   [setRingerMode\(mode: AudioRingMode\): Promise<void\>7+](#section55741914143615)
-    -   [getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void7+](#section149044108162)
-    -   [getRingerMode\(\): Promise<AudioRingMode\>7+](#section13908210101620)
-    -   [setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void7+](#section1691957174818)
-    -   [setAudioParameter\(key: string, value: string\): Promise<void\>7+](#section18121057174820)
-    -   [getAudioParameter\(key: string, callback: AsyncCallback<string\>\): void7+](#section1415145714812)
-    -   [getAudioParameter\(key: string\): Promise<string\>7+](#section3185577485)
-    -   [getDevices\(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors\>\): void](#section11536182020523)
-    -   [getDevices\(deviceFlag: DeviceFlag\): Promise<AudioDeviceDescriptors\>](#section181733125210)
-    -   [setDeviceActive\(deviceType: DeviceType, active: boolean, callback: AsyncCallback<void\>\): void7+](#section103558400222)
-    -   [setDeviceActive\(deviceType: DeviceType, active: boolean\): Promise<void\>7+](#section1235914401228)
-    -   [isDeviceActive\(deviceType: DeviceType, callback: AsyncCallback<boolean\>\): void7+](#section12363240122219)
-    -   [isDeviceActive\(deviceType: DeviceType\): Promise<boolean\>7+](#section18366184012213)
-    -   [setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void7+](#section14703163618122)
-    -   [setMicrophoneMute\(mute: boolean\): Promise<void\>7+](#section56287111791)
-    -   [isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void7+](#section6632141119912)
-    -   [isMicrophoneMute\(\): Promise<boolean\>7+](#section196363111918)
+  - [Modules to Import</a>](#modules-to-import)
+  - [Required Permissions</a>](#required-permissions)
+  - [getAudioManager\(\): AudioManager](#getaudiomanager-audiomanager)
+  - [AudioVolumeType](#audiovolumetype)
+  - [DeviceFlag](#deviceflag)
+  - [DeviceRole](#devicerole)
+  - [DeviceType](#devicetype)
+  - [ActiveDeviceType7+](#activedevicetype)
+  - [AudioRingMode7+](#audioringmode)
+  - [AudioManager](#audiomanager)
+    - [setVolume\(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void\>\): void](#setvolume-asynccallback)
+    - [setVolume\(volumeType: AudioVolumeType, volume: number\): Promise<void\>](#setvolume-promise)
+    - [getVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void](#getvolume-asynccallback)
+    - [getVolume\(volumeType: AudioVolumeType\): Promise<number\>](#getvolume-promise)
+    - [getMinVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void](#getminvolume-asynccallback)
+    - [getMinVolume\(volumeType: AudioVolumeType\): Promise<number\>](#getminvolume-promise)
+    - [getMaxVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void](#getmaxvolume-asynccallback)
+    - [getMaxVolume\(volumeType: AudioVolumeType\): Promise<number\>](#getmaxvolume-promise)
+    - [mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void7+](#mute-asynccallback)
+    - [mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\>7+](#mute-promise)
+    - [isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void7+](#ismute-asynccallback)
+    - [isMute\(volumeType: AudioVolumeType\): Promise<boolean\>7+](#ismute-promise)
+    - [isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void7+](#isactive-asynccallback)
+    - [isActive\(volumeType: AudioVolumeType\): Promise<boolean\>7+](#isactive-promise)
+    - [setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void7+](#setringermode-asynccallback)
+    - [setRingerMode\(mode: AudioRingMode\): Promise<void\>7+](#setringermode-promise)
+    - [getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void7+](#getringermode-asynccallback)
+    - [getRingerMode\(\): Promise<AudioRingMode\>7+](#getringermode-promise)
+    - [setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void7+](#setaudioparameter-asynccallback)
+    - [setAudioParameter\(key: string, value: string\): Promise<void\>7+](#setaudioparameter-promise)
+    - [getAudioParameter\(key: string, callback: AsyncCallback<string\>\): void7+](#getaudioparameter-asynccallback)
+    - [getAudioParameter\(key: string\): Promise<string\>7+](#getaudioparameter-promise)
+    - [getDevices\(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors\>\): void](#getdevices-asynccallback)
+    - [getDevices\(deviceFlag: DeviceFlag\): Promise<AudioDeviceDescriptors\>](#getdevices-promise)
+    - [setDeviceActive\(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback<void\>\): void7+](#setdeviceactive-asynccallback)
+    - [setDeviceActive\(deviceType: ActiveDeviceType, active: boolean\): Promise<void\>7+](#setdeviceactive-promise)
+    - [isDeviceActive\(deviceType: ActiveDeviceType, callback: AsyncCallback<boolean\>\): void7+](#isdeviceactive-asynccallback)
+    - [isDeviceActive\(deviceType: ActiveDeviceType\): Promise<boolean\>7+](#isdeviceactive-promise)
+    - [setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void7+](#setmicrophonemute-asynccallback)
+    - [setMicrophoneMute\(mute: boolean\): Promise<void\>7+](#setmicrophonemute-promise)
+    - [isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void7+](#ismicrophonemute-asynccallback)
+    - [isMicrophoneMute\(\): Promise<boolean\>7+](#ismicrophonemute-promise)
+  - [AudioDeviceDescriptor](#audiodevicedescriptor)
+    - [Attributes](#attributes)
+  - [AudioDeviceDescriptors](#audiodevicedescriptors)
 
--   [AudioDeviceDescriptor](#section164657411927)
-    -   [Attributes](#section4947115405)
 
--   [AudioDeviceDescriptors](#section5181155710523)
-
-## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
+## Modules to Import<a name="modules-to-import"></a>
 
 ```
 import audio from '@ohos.multimedia.audio';
 ```
 
-## Required Permissions<a name="section11257113618419"></a>
+## Required Permissions<a name="required-permissions"></a>
 
 None
 
-## getAudioManager\(\): AudioManager<a name="section84581011418"></a>
+## getAudioManager\(\): AudioManager<a name="getaudiomanager-audiomanager"></a>
 
 Obtains an  **AudioManager**  instance.
 
@@ -78,13 +78,14 @@ Obtains an  **AudioManager**  instance.
 </tbody>
 </table>
 
+
 **Example**
 
 ```
 var audioManager = audio.getAudioManager();
 ```
 
-## AudioVolumeType<a name="section92261857172218"></a>
+## AudioVolumeType<a name="audiovolumetype"></a>
 
 Enumerates audio stream types.
 
@@ -114,7 +115,7 @@ Enumerates audio stream types.
 </tbody>
 </table>
 
-## DeviceFlag<a name="section11285183164210"></a>
+## DeviceFlag<a name="deviceflag"></a>
 
 Enumerates audio device flags.
 
@@ -151,7 +152,7 @@ Enumerates audio device flags.
 </tbody>
 </table>
 
-## DeviceRole<a name="section380038142619"></a>
+## DeviceRole<a name="devicerole"></a>
 
 Enumerates audio device roles.
 
@@ -181,65 +182,31 @@ Enumerates audio device roles.
 </tbody>
 </table>
 
-## DeviceType<a name="section11727420122710"></a>
+## DeviceType<a name="devicetype"></a>
 
 Enumerates audio device types.
 
-<a name="table67271020132718"></a>
-<table><thead align="left"><tr id="row4727122012711"><th class="cellrowborder" valign="top" width="30.380000000000003%" id="mcps1.1.4.1.1"><p id="p157271520152715"><a name="p157271520152715"></a><a name="p157271520152715"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="9.950000000000001%" id="mcps1.1.4.1.2"><p id="p187271620152719"><a name="p187271620152719"></a><a name="p187271620152719"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.67%" id="mcps1.1.4.1.3"><p id="p772720201277"><a name="p772720201277"></a><a name="p772720201277"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row572714205272"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p1895057192713"><a name="p1895057192713"></a><a name="p1895057192713"></a>INVALID</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p772892012273"><a name="p772892012273"></a><a name="p772892012273"></a>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p137281920172712"><a name="p137281920172712"></a><a name="p137281920172712"></a>Invalid device</p>
-</td>
-</tr>
-<tr id="row16728520192714"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p4753161132815"><a name="p4753161132815"></a><a name="p4753161132815"></a>SPEAKER</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p3728920162713"><a name="p3728920162713"></a><a name="p3728920162713"></a>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p17728112062715"><a name="p17728112062715"></a><a name="p17728112062715"></a>Speaker</p>
-</td>
-</tr>
-<tr id="row1758117472814"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p74802011112815"><a name="p74802011112815"></a><a name="p74802011112815"></a>WIRED_HEADSET</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p35820462819"><a name="p35820462819"></a><a name="p35820462819"></a>2</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p155821548285"><a name="p155821548285"></a><a name="p155821548285"></a>Wired headset</p>
-</td>
-</tr>
-<tr id="row1335108192818"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p107521514142811"><a name="p107521514142811"></a><a name="p107521514142811"></a>BLUETOOTH_SCO</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p18335108112819"><a name="p18335108112819"></a><a name="p18335108112819"></a>3</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p193351683289"><a name="p193351683289"></a><a name="p193351683289"></a>Bluetooth device using the synchronous connection oriented (SCO) link</p>
-</td>
-</tr>
-<tr id="row1649111617286"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p10784017102818"><a name="p10784017102818"></a><a name="p10784017102818"></a>BLUETOOTH_A2DP</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p849110610286"><a name="p849110610286"></a><a name="p849110610286"></a>4</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p549117620284"><a name="p549117620284"></a><a name="p549117620284"></a>Bluetooth device using the advanced audio distribution profile (A2DP)</p>
-</td>
-</tr>
-<tr id="row81701220112812"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p168642028152812"><a name="p168642028152812"></a><a name="p168642028152812"></a>MIC</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p517062012812"><a name="p517062012812"></a><a name="p517062012812"></a>5</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p5170520112813"><a name="p5170520112813"></a><a name="p5170520112813"></a>Microphone</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name           | Default Value | Description                                                           |
+| -------------- | ------------- | --------------------------------------------------------------------- |
+| INVALID        | 0             | Invalid device                                                        |
+| EARPIECE       | 1             | Earpiece                                                              |
+| SPEAKER        | 2             | Speaker                                                               |
+| WIRED_HEADSET  | 3             | Wired headset                                                         |
+| BLUETOOTH_SCO  | 7             | Bluetooth device using the synchronous connection oriented (SCO) link |
+| BLUETOOTH_A2DP | 8             | Bluetooth device using the advanced audio distribution profile (A2DP) |
+| MIC            | 15            | Microphone                                                            |
 
-## AudioRingMode<sup>7+</sup><a name="section14948916131018"></a>
+
+## ActiveDeviceType<sup>7+</sup><a name="activedevicetype"></a>
+
+Enumerates active device types.
+
+| Name          | Default Value | Description                                                           |
+| ------------- | ------------- | --------------------------------------------------------------------- |
+| SPEAKER       | 2             | Speaker                                                               |
+| BLUETOOTH_SCO | 7             | Bluetooth device using the synchronous connection oriented (SCO) link |
+
+## AudioRingMode<sup>7+</sup><a name="audioringmode"></a>
 
 Enumerates ringer modes.
 
@@ -280,7 +247,7 @@ Enumerates ringer modes.
 
 Implements audio volume and audio device management.
 
-### setVolume\(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void\>\): void<a name="section189141826104616"></a>
+### setVolume\(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void\>\): void<a name="setvolume-asynccallback"></a>
 
 Sets the volume for a stream. This method uses an asynchronous callback to return the execution result.
 
@@ -343,7 +310,7 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err)=>{
 })
 ```
 
-### setVolume\(volumeType: AudioVolumeType, volume: number\): Promise<void\><a name="section102021249114612"></a>
+### setVolume\(volumeType: AudioVolumeType, volume: number\): Promise<void\><a name="setvolume-promise"></a>
 
 Sets the volume for a stream. This method uses a promise to return the execution result.
 
@@ -406,7 +373,7 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(()=>
 )
 ```
 
-### getVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section4387320194714"></a>
+### getVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="getvolume-asynccallback"></a>
 
 Obtains the volume of a stream. This method uses an asynchronous callback to return the query result.
 
@@ -460,7 +427,7 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### getVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section04121965119"></a>
+### getVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="getvolume-promise"></a>
 
 Obtains the volume of a stream. This method uses a promise to return the query result.
 
@@ -514,7 +481,7 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### getMinVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section188714283511"></a>
+### getMinVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="getminvolume-asynccallback"></a>
 
 Obtains the minimum volume allowed for a stream. This method uses an asynchronous callback to return the query result.
 
@@ -568,7 +535,7 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### getMinVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section41556389511"></a>
+### getMinVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="getminvolume-promise"></a>
 
 Obtains the minimum volume allowed for a stream. This method uses a promise to return the query result.
 
@@ -622,7 +589,7 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### getMaxVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section690395418516"></a>
+### getMaxVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="getmaxvolume-asynccallback"></a>
 
 Obtains the maximum volume allowed for a stream. This method uses an asynchronous callback to return the query result.
 
@@ -676,7 +643,7 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### getMaxVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section155151345217"></a>
+### getMaxVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="getmaxvolume-promise"></a>
 
 Obtains the maximum volume allowed for a stream. This method uses a promise to return the query result.
 
@@ -730,7 +697,7 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data)=>
 )
 ```
 
-### mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section13516136134613"></a>
+### mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="mute-asynccallback"></a>
 
 Mutes a stream. This method uses an asynchronous callback to return the execution result.
 
@@ -793,7 +760,7 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
 })
 ```
 
-### mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\><sup>7+</sup><a name="section7519036144616"></a>
+### mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\><sup>7+</sup><a name="mute-promise"></a>
 
 Mutes a stream. This method uses a promise to return the execution result.
 
@@ -856,7 +823,7 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() =>
 )
 ```
 
-### isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section10684183819585"></a>
+### isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="ismute-asynccallback"></a>
 
 Checks whether a stream is muted. This method uses an asynchronous callback to return the query result.
 
@@ -910,7 +877,7 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### isMute\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="section6920211145610"></a>
+### isMute\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="ismute-promise"></a>
 
 Checks whether a stream is muted. This method uses a promise to return the execution result.
 
@@ -964,7 +931,7 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section380012544121"></a>
+### isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="isactive-asynccallback"></a>
 
 Checks whether a stream is active. This method uses an asynchronous callback to return the query result.
 
@@ -1018,7 +985,7 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### isActive\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="section1880315481216"></a>
+### isActive\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="isactive-promise"></a>
 
 Checks whether a stream is active. This method uses a promise to return the query result.
 
@@ -1072,7 +1039,7 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section18572131483613"></a>
+### setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="setringermode-asynccallback"></a>
 
 Sets the ringer mode. This method uses an asynchronous callback to return the execution result.
 
@@ -1126,7 +1093,7 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 })
 ```
 
-### setRingerMode\(mode: AudioRingMode\): Promise<void\><sup>7+</sup><a name="section55741914143615"></a>
+### setRingerMode\(mode: AudioRingMode\): Promise<void\><sup>7+</sup><a name="setringermode-promise"></a>
 
 Sets the ringer mode. This method uses a promise to return the execution result.
 
@@ -1180,7 +1147,7 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() =>
 )
 ```
 
-### getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void<sup>7+</sup><a name="section149044108162"></a>
+### getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void<sup>7+</sup><a name="getringermode-asynccallback"></a>
 
 Obtains the ringer mode. This method uses an asynchronous callback to return the query result.
 
@@ -1225,7 +1192,7 @@ audioManager.getRingerMode((err, value) => {
 })
 ```
 
-### getRingerMode\(\): Promise<AudioRingMode\><sup>7+</sup><a name="section13908210101620"></a>
+### getRingerMode\(\): Promise<AudioRingMode\><sup>7+</sup><a name="getringermode-promise"></a>
 
 Obtains the ringer mode. This method uses a promise to return the query result.
 
@@ -1258,7 +1225,7 @@ audioManager.getRingerMode().then((value) =>
 )
 ```
 
-### setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section1691957174818"></a>
+### setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="setaudioparameter-asynccallback"></a>
 
 Sets an audio parameter. This method uses an asynchronous callback to return the execution result.
 
@@ -1321,7 +1288,7 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 })
 ```
 
-### setAudioParameter\(key: string, value: string\): Promise<void\><sup>7+</sup><a name="section18121057174820"></a>
+### setAudioParameter\(key: string, value: string\): Promise<void\><sup>7+</sup><a name="setaudioparameter-promise"></a>
 
 Sets an audio parameter. This method uses a promise to return the execution result.
 
@@ -1384,7 +1351,7 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() =>
 )
 ```
 
-### getAudioParameter\(key: string, callback: AsyncCallback<string\>\): void<sup>7+</sup><a name="section1415145714812"></a>
+### getAudioParameter\(key: string, callback: AsyncCallback<string\>\): void<sup>7+</sup><a name="getaudioparameter-asynccallback"></a>
 
 Obtains the value of an audio parameter. This method uses an asynchronous callback to return the query result.
 
@@ -1438,7 +1405,7 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 })
 ```
 
-### getAudioParameter\(key: string\): Promise<string\><sup>7+</sup><a name="section3185577485"></a>
+### getAudioParameter\(key: string\): Promise<string\><sup>7+</sup><a name="getaudioparameter-promise"></a>
 
 Obtains the value of an audio parameter. This method uses a promise to return the query result.
 
@@ -1492,7 +1459,7 @@ audioManager.getAudioParameter('PBits per sample').then((value) =>
 )
 ```
 
-### getDevices\(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors\>\): void<a name="section11536182020523"></a>
+### getDevices\(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors\>\): void<a name="getdevices-asynccallback"></a>
 
 Obtains the audio devices with a specific flag. This method uses an asynchronous callback to return the query result.
 
@@ -1546,7 +1513,7 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
 })
 ```
 
-### getDevices\(deviceFlag: DeviceFlag\): Promise<AudioDeviceDescriptors\><a name="section181733125210"></a>
+### getDevices\(deviceFlag: DeviceFlag\): Promise<AudioDeviceDescriptors\><a name="getdevices-promise"></a>
 
 Obtains the audio devices with a specific flag. This method uses a promise to return the query result.
 
@@ -1600,7 +1567,7 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
 )
 ```
 
-### setDeviceActive\(deviceType: DeviceType, active: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section103558400222"></a>
+### setDeviceActive\(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="setdeviceactive-asynccallback"></a>
 
 Sets a device to the active state. This method uses an asynchronous callback to return the execution result.
 
@@ -1619,7 +1586,7 @@ Sets a device to the active state. This method uses an asynchronous callback to 
 </thead>
 <tbody><tr id="row15356174052213"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p6356240182212"><a name="p6356240182212"></a><a name="p6356240182212"></a>deviceType</p>
 </td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p1982716244344"><a name="p1982716244344"></a><a name="p1982716244344"></a><a href="#section11727420122710">DeviceType</a></p>
+<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p1982716244344"><a name="p1982716244344"></a><a name="p1982716244344"></a><a href="#section11727420122710">ActiveDeviceType</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="9.78%" headers="mcps1.1.5.1.3 "><p id="p035794062216"><a name="p035794062216"></a><a name="p035794062216"></a>Yes</p>
 </td>
@@ -1654,7 +1621,7 @@ None
 **Example**
 
 ```
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err)=> {
     if (err) {
         console.error('Failed to set the active status of the device. ${err.message}');
 	return;
@@ -1663,7 +1630,7 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
 })
 ```
 
-### setDeviceActive\(deviceType: DeviceType, active: boolean\): Promise<void\><sup>7+</sup><a name="section1235914401228"></a>
+### setDeviceActive\(deviceType: ActiveDeviceType, active: boolean\): Promise<void\><sup>7+</sup><a name="setdeviceactive-promise"></a>
 
 Sets a device to the active state. This method uses a promise to return the execution result.
 
@@ -1682,7 +1649,7 @@ Sets a device to the active state. This method uses a promise to return the exec
 </thead>
 <tbody><tr id="row6360124010225"><td class="cellrowborder" valign="top" width="17.599999999999998%" headers="mcps1.1.5.1.1 "><p id="p21049584484"><a name="p21049584484"></a><a name="p21049584484"></a>deviceType</p>
 </td>
-<td class="cellrowborder" valign="top" width="19.49%" headers="mcps1.1.5.1.2 "><p id="p98241474910"><a name="p98241474910"></a><a name="p98241474910"></a><a href="#section11727420122710">DeviceType</a></p>
+<td class="cellrowborder" valign="top" width="19.49%" headers="mcps1.1.5.1.2 "><p id="p98241474910"><a name="p98241474910"></a><a name="p98241474910"></a><a href="#section11727420122710">ActiveDeviceType</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p103601240202216"><a name="p103601240202216"></a><a name="p103601240202216"></a>Yes</p>
 </td>
@@ -1721,12 +1688,12 @@ Sets a device to the active state. This method uses a promise to return the exec
 **Example**
 
 ```
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(()=>
     console.log('Promise returned to indicate that the device is set to the active status.');
 )
 ```
 
-### isDeviceActive\(deviceType: DeviceType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section12363240122219"></a>
+### isDeviceActive\(deviceType: DeviceType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="isdeviceactive-asynccallback"></a>
 
 Checks whether a device is active. This method uses an asynchronous callback to return the query result.
 
@@ -1745,7 +1712,7 @@ Checks whether a device is active. This method uses an asynchronous callback to 
 </thead>
 <tbody><tr id="row1536417409223"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p12364174016224"><a name="p12364174016224"></a><a name="p12364174016224"></a>deviceType</p>
 </td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p1779218497578"><a name="p1779218497578"></a><a name="p1779218497578"></a><a href="#section11727420122710">DeviceType</a></p>
+<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p1779218497578"><a name="p1779218497578"></a><a name="p1779218497578"></a><a href="#section11727420122710">ActiveDeviceType</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="9.25%" headers="mcps1.1.5.1.3 "><p id="p122111521127"><a name="p122111521127"></a><a name="p122111521127"></a>Yes</p>
 </td>
@@ -1771,7 +1738,7 @@ None
 **Example**
 
 ```
-audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
     if (err) {
         console.error('Failed to obtain the active status of the device. ${err.message}');
 	return;
@@ -1780,7 +1747,7 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
 })
 ```
 
-### isDeviceActive\(deviceType: DeviceType\): Promise<boolean\><sup>7+</sup><a name="section18366184012213"></a>
+### isDeviceActive\(deviceType: ActiveDeviceType\): Promise<boolean\><sup>7+</sup><a name="isdeviceactive-promise"></a>
 
 Checks whether a device is active. This method uses a promise to return the query result.
 
@@ -1799,7 +1766,7 @@ Checks whether a device is active. This method uses a promise to return the quer
 </thead>
 <tbody><tr id="row12367340122213"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p11637137420"><a name="p11637137420"></a><a name="p11637137420"></a>deviceType</p>
 </td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p1616311136412"><a name="p1616311136412"></a><a name="p1616311136412"></a><a href="#section11727420122710">DeviceType</a></p>
+<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p1616311136412"><a name="p1616311136412"></a><a name="p1616311136412"></a><a href="#section11727420122710">ActiveDeviceType</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="8.99%" headers="mcps1.1.5.1.3 "><p id="p201646138419"><a name="p201646138419"></a><a name="p201646138419"></a>Yes</p>
 </td>
@@ -1829,12 +1796,12 @@ Checks whether a device is active. This method uses a promise to return the quer
 **Example**
 
 ```
-audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) =>
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) =>
     console.log('Promise returned to indicate that the active status of the device is obtained.' + value);
 )
 ```
 
-### setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section14703163618122"></a>
+### setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="setmicrophonemute-asynccallback"></a>
 
 Mutes or unmutes the microphone. This method uses an asynchronous callback to return the execution result.
 
@@ -1888,7 +1855,7 @@ audioManager.setMicrophoneMute(true, (err) => {
 })
 ```
 
-### setMicrophoneMute\(mute: boolean\): Promise<void\><sup>7+</sup><a name="section56287111791"></a>
+### setMicrophoneMute\(mute: boolean\): Promise<void\><sup>7+</sup><a name="setmicrophonemute-promise"></a>
 
 Mutes or unmutes the microphone. This method uses a promise to return the execution result.
 
@@ -1942,7 +1909,7 @@ audioManager.setMicrophoneMute(true).then(() =>
 )
 ```
 
-### isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section6632141119912"></a>
+### isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="ismicrophonemute-asynccallback"></a>
 
 Checks whether the microphone is muted. This method uses an asynchronous callback to return the query result.
 
@@ -1987,7 +1954,7 @@ audioManager.isMicrophoneMute((err, value) => {
 })
 ```
 
-### isMicrophoneMute\(\): Promise<boolean\><sup>7+</sup><a name="section196363111918"></a>
+### isMicrophoneMute\(\): Promise<boolean\><sup>7+</sup><a name="ismicrophonemute-promise"></a>
 
 Checks whether the microphone is muted. This method uses a promise to return the query result.
 
@@ -2020,11 +1987,11 @@ audioManager.isMicrophoneMute().then((value) =>
 )
 ```
 
-## AudioDeviceDescriptor<a name="section164657411927"></a>
+## AudioDeviceDescriptor<a name="audiodevicedescriptor"></a>
 
 Describes an audio device.
 
-### Attributes<a name="section4947115405"></a>
+### Attributes<a name="attributes"></a>
 
 <a name="table92548495595"></a>
 <table><thead align="left"><tr id="row132541749175917"><th class="cellrowborder" valign="top" width="22.65226522652265%" id="mcps1.1.6.1.1"><p id="p925404965919"><a name="p925404965919"></a><a name="p925404965919"></a>Name</p>
@@ -2064,7 +2031,7 @@ Describes an audio device.
 </tbody>
 </table>
 
-## AudioDeviceDescriptors<a name="section5181155710523"></a>
+## AudioDeviceDescriptors<a name="audiodevicedescriptors"></a>
 
 <a name="table169751229266"></a>
 <table><thead align="left"><tr id="row169757224268"><th class="cellrowborder" valign="top" width="19.7%" id="mcps1.1.3.1.1"><p id="p19975182202612"><a name="p19975182202612"></a><a name="p19975182202612"></a>Name</p>
