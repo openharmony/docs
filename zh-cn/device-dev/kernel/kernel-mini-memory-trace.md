@@ -1,196 +1,351 @@
-# Trace调测<a name="ZH-CN_TOPIC_0000001162019075"></a>
+# Trace调测
 
--   [基本概念](#section44851752123712)
--   [运行机制](#section5282148123813)
--   [接口说明](#section16304193215387)
--   [开发指导](#section498695853819)
-    -   [开发流程](#section1875652316393)
-    -   [编程实例](#section0403134913395)
-    -   [示例代码](#section1492711418400)
-    -   [结果验证](#section869613984012)
+- [基本概念](#section1)
 
+- [运行机制](#section2)
 
-## 基本概念<a name="section44851752123712"></a>
+- [接口说明](#section3)
 
+- [开发指导](#section4)
+
+    - [开发流程](#section4.1)
+
+    - [编程实例](#section4.2)
+
+    - [实例代码](#section4.3)
+
+    - [结果验证](#section4.4)
+
+## 基本概念 <a name = "section1"></a>
 Trace调测旨在帮助开发者获取内核的运行流程，各个模块、任务的执行顺序，从而可以辅助开发者定位一些时序问题或者了解内核的代码运行过程。
 
-## 运行机制<a name="section5282148123813"></a>
+## 运行机制<a name = "section2"></a>
+内核提供一套Hook框架，将Hook点预埋在各个模块的主要流程中, 在内核启动初期完成Trace功能的初始化，并注册Trace的处理函数到Hook中。
 
-内核提供一套Hook框架，将Hook点预埋在各个模块的主要流程中，开发者通过注册的形式在自己所需的Hook点上注册回调函数，当内核运行至对应流程中会由内核主动调用Hook函数，将当前流程的关键数据传递给开发者。
+当系统触发到一个Hook点时，Trace模块会对输入信息进行封装，添加Trace帧头信息，包含事件类型、运行的cpuid、运行的任务id、运行的相对时间戳等信息；
 
-## 接口说明<a name="section16304193215387"></a>
+Trace提供2种工作模式，离线模式和在线模式。
 
-OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细信息可以查看API参考。
+离线模式会将trace frame记录到预先申请好的循环buffer中。如果循环buffer记录的frame过多则可能出现翻转，会覆盖之前的记录，故保持记录的信息始终是最新的信息。Trace循环buffer的数据可以通过shell命令导出进行详细分析，导出信息已按照时间戳信息完成排序。
 
-**表 1**  Trace模块接口说明
+![](figure/zh-cn_image_0000001127390512.png)
 
-<a name="table208266479117"></a>
-<table><thead align="left"><tr id="row19826947121114"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>功能分类</p>
+在线模式需要配合IDE使用，实时将trace frame记录发送给IDE，IDE端进行解析并可视化展示。
+
+## 接口说明<a name = "section3"></a>
+OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细信息可以查看[API](https://gitee.com/openharmony/kernel_liteos_m/blob/master/components/trace/los_trace.h)参考。
+
+**表 1** Trace模块接口说明
+<a name="traceApi"></a>
+<table><thead align="left"><tr id="row0"><th class="cellrowborder" valign="top" width="30%" id="mcps1.2.4.1.1"><p id="p0"><a name="p0"></a><a name="p0"></a>功能分类</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>接口名</p>
+<th class="cellrowborder" valign="top" width="28%" id="mcps1.2.4.1.2"><p id="p1"><a name="p1"></a><a name="p1"></a>接口名</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p1641533755612"><a name="p1641533755612"></a><a name="p1641533755612"></a>描述</p>
+<th class="cellrowborder" valign="top" width="57.34573457345735%" id="mcps1.2.4.1.3"><p id="p2"><a name="p2"></a><a name="p2"></a>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row082617478118"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p1082624717117"><a name="p1082624717117"></a><a name="p1082624717117"></a>Hook注册接口</p>
+<tbody><tr id="row1"><td class="cellrowborder" rowspan="2" valign="top" headers="mcps1.2.4.1.1 "><p id="p3"><a name="p3"></a><a name="p3"></a>启停控制</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p1182654713112"><a name="p1182654713112"></a><a name="p1182654713112"></a>LOS_HookReg</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p4"><a name="p4"></a><a name="p4"></a>LOS_TraceStart</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1582614474114"><a name="p1582614474114"></a><a name="p1582614474114"></a>向指定Hook点注册回调函数</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.3 "><p id="p5"><a name="p5"></a><a name="p5"></a>启动Trace</p>
 </td>
 </tr>
-<tr id="row19470201017154"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p1747021015152"><a name="p1747021015152"></a><a name="p1747021015152"></a>Hook解注册接口</p>
+<tr id="row2"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p6"><a name="p6"></a><a name="p6"></a>LOS_TraceStop</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p16470410201517"><a name="p16470410201517"></a><a name="p16470410201517"></a>LOS_HookUnReg</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p7"><a name="p7"></a><a name="p7"></a>停止Trace</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p147021017155"><a name="p147021017155"></a><a name="p147021017155"></a>解注册当前Hook点的回调函数</p>
+</tr>
+<tr id="row3"><td class="cellrowborder" rowspan="3" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p8"><a name="p8"></a><a name="p8"></a>操作Trace记录的数据</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p9"><a name="p9"></a><a name="p9"></a>LOS_TraceRecordDump</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.3 "><p id="p10"><a name="p10"></a><a name="p10"></a>输出Trace缓冲区数据</p>
+</td>
+</tr>
+<tr id="row4"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p11"><a name="p11"></a><a name="p11"></a>LOS_TraceRecordGet</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p12"><a name="p12"></a><a name="p12"></a>获取Trace缓冲区的首地址</p>
+</td>
+</tr>
+<tr id="row5"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p13"><a name="p13"></a><a name="p13"></a>LOS_TraceReset</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p14"><a name="p14"></a><a name="p14"></a>清除Trace缓冲区中的事件</p>
+</td>
+</tr>
+<tr id="row6"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p15"><a name="p15"></a><a name="p15"></a>过滤Trace记录的数据</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p16"><a name="p16"></a><a name="p16"></a>LOS_TraceEventMaskSet</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.3 "><p id="p17"><a name="p17"></a><a name="p17"></a>设置事件掩码，仅记录某些模块的事件</p>
+</td>
+</tr>
+<tr id="row7"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p18"><a name="p18"></a><a name="p18"></a>屏蔽某些中断号事件</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p19"><a name="p19"></a><a name="p19"></a>LOS_TraceHwiFilterHookReg</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.3 "><p id="p20"><a name="p20"></a><a name="p20"></a>注册过滤特定中断号事件的钩子函数</p>
+</td>
+</tr>
+<tr id="row8"><td class="cellrowborder" rowspan="2" valign="top" headers="mcps1.2.4.1.1 "><p id="p21"><a name="p21"></a><a name="p21"></a>插桩函数</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p22"><a name="p22"></a><a name="p22"></a>LOS_TRACE_EASY</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.3 "><p id="p23"><a name="p23"></a><a name="p23"></a>简易插桩</p>
+</td>
+</tr>
+<tr id="row9"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p24"><a name="p24"></a><a name="p24"></a>LOS_TRACE</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p25"><a name="p25"></a><a name="p25"></a>标准插桩</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## 开发指导<a name="section498695853819"></a>
 
-### 开发流程<a name="section1875652316393"></a>
+1. 当用户需要针对自定义事件进行追踪时，可按规则在目标源代码中进行插桩，系统提供如下2种插桩接口：
+
++ LOS_TRACE_EASY(TYPE, IDENTITY, params...) 简易插桩。
+
+   - 一句话插桩，用户在目标源代码中插入该接口即可。
+
+   - TYPE有效取值范围为[0, 0xF]，表示不同的事件类型，不同取值表示的含义由用户自定义。
+
+   - IDENTITY类型UINTPTR，表示事件操作的主体对象。
+
+   - Params类型UINTPTR，表示事件的参数。
+
+   - 示例：
+
+   ```
+   假设需要新增对文件（fd1、fd2）读写操作的简易插桩,
+   自定义读操作为type：1， 写操作为type：2，则
+   在读fd1文件的适当位置插入：
+   LOS_TRACE_EASY(1, fd1, flag, size);
+   在读fd2文件的适当位置插入：
+   LOS_TRACE_EASY(1, fd2, flag, size);
+   在写fd1文件的适当位置插入：
+   LOS_TRACE_EASY(2, fd1, flag, size);
+   在写fd2文件的适当位置插入：
+   LOS_TRACE_EASY(2, fd2，flag, size);
+   ```
+
++ LOS_TRACE(TYPE, IDENTITY, params...) 标准插桩。
+
+   - 相比简易插桩，支持动态过滤事件和参数裁剪，但使用上需要用户按规则来扩展。
+
+   - TYPE用于设置具体的事件类型，可以在头文件los_trace.h中的enum LOS_TRACE_TYPE中自定义事件类型。定义方法和规则可以参考其他事件类型。
+
+   - IDENTITY和Params的类型及含义同简易插桩。
+
+   - 示例：
+```
+     1.在enum LOS_TRACE_MASK中定义事件掩码，即模块级别的事件类型。
+     定义规范为TRACE_#MOD#_FLAG，#MOD#表示模块名，例如:
+     TRACE_FS_FLAG = 0x4000
+     2.在enum LOS_TRACE_TYPE中定义具体事件类型。定义规范为#TYPE# = TRACE_#MOD#_FLAG | NUMBER，例如:
+     FS_READ  = TRACE_FS_FLAG | 0; // 读文件
+     FS_WRITE = TRACE_FS_FLAG | 1; // 写文件
+     3.定义事件参数。定义规范为#TYPE#_PARAMS(IDENTITY, parma1...) IDENTITY, ...
+     其中的#TYPE#就是上面2中的#TYPE#，例如:
+     #define FS_READ_PARAMS(fp, fd, flag, size)    fp, fd, flag, size
+     宏定义的参数对应于Trace缓冲区中记录的事件参数，用户可对任意参数字段进行裁剪:
+     当定义为空时，表示不追踪该类型事件:
+     #define FS_READ_PARAMS(fp, fd, flag, size) // 不追踪文件读事件
+     4.在适当位置插入代码桩。定义规范为LOS_TRACE(#TYPE#, #TYPE#_PARAMS(IDENTITY, parma1...))
+     LOS_TRACE(FS_READ, fp, fd, flag, size); // 读文件的代码桩,
+     #TYPE#之后的入参就是上面3中的FS_READ_PARAMS函数的入参
+```
+2. 预置的Trace事件及参数均可以通过上述方式进行裁剪，参数详见kernel\include\los_trace.h。
+
+3. Trace Mask事件过滤接口LOS_TraceEventMaskSet(UINT32 mask)，其入参mask仅高28位生效（对应LOS_TRACE_MASK中某模块的使能位），仅用于模块的过滤，暂不支持针对某个特定事件的细粒度过滤。例如：LOS_TraceEventMaskSet(0x202)，则实际设置生效的mask为0x200（TRACE_QUE_FLAG），QUE模块的所有事件均会被采集。一般建议使用的方法为：
+	LOS_TraceEventMaskSet(TRACE_EVENT_FLAG | TRACE_MUX_FLAG | TRACE_SEM_FLAG | TRACE_QUE_FLAG);
+
+4. 如果仅需要过滤简易插桩事件，通过设置Trace Mask为TRACE_MAX_FLAG即可。
+
+5. Trace缓冲区有限，事件写满之后会覆盖写，用户可通过LOS_TraceRecordDump中打印的CurEvtIndex识别最新记录。
+
+6. Trace的典型操作流程为：LOS_TraceStart、 LOS_TraceStop、 LOS_TraceRecordDump.
+
+7. 针对中断事件的Trace, 提供中断号过滤，用于解决某些场景下特定中断号频繁触发导致其他事件被覆盖的情况，用户可自定义中断过滤的规则，
+
+   示例如下：
+```
+BOOL Example_HwiNumFilter(UINT32 hwiNum)
+{
+    if ((hwi == TIMER_INT) || (hwi == DMA_INT)) {
+        return TRUE;
+    }
+    return FALSE;
+}
+LOS_TraceHwiFilterHookReg(Example_HwiNumFilter);
+```
+则当中断号为TIMER_INT 或者DMA_INT时，不记录中断事件。
+
+## 开发指导<a name = "section4"></a>
+
+### 开发流程<a name = "section4.1"></a>
 
 开启Trace调测的典型流程如下：
 
-1.  配置Trace模块相关宏。
+1. 配置Trace模块相关宏。
 
-    需要在target\_config.h头文件中修改配置：
+需要在target_config.h头文件中修改配置：
 
-    <a name="table1078714915105"></a>
-    <table><thead align="left"><tr id="row1280518971010"><th class="cellrowborder" valign="top" width="27.24%" id="mcps1.1.4.1.1"><p id="p1380510912104"><a name="p1380510912104"></a><a name="p1380510912104"></a>配置项</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="30.330000000000002%" id="mcps1.1.4.1.2"><p id="p08051291106"><a name="p08051291106"></a><a name="p08051291106"></a>含义</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="42.43%" id="mcps1.1.4.1.3"><p id="p12805149151012"><a name="p12805149151012"></a><a name="p12805149151012"></a>设置值</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row168052913104"><td class="cellrowborder" valign="top" width="27.24%" headers="mcps1.1.4.1.1 "><p id="p180618915101"><a name="p180618915101"></a><a name="p180618915101"></a>LOSCFG_DEBUG_HOOK</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="30.330000000000002%" headers="mcps1.1.4.1.2 "><p id="p198061196105"><a name="p198061196105"></a><a name="p198061196105"></a>Trace功能的开关</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.43%" headers="mcps1.1.4.1.3 "><p id="p1980609121010"><a name="p1980609121010"></a><a name="p1980609121010"></a>0：关闭；1：打开</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| 配置项                         | 含义                                                         | 设置值 |
+| ------------------------------ | ------------------------------------------------------------ | ------ |
+| LOSCFG_KERNEL_TRACE            | Trace模块的裁剪开关                                          | YES/NO |
+| LOSCFG_RECORDER_MODE_OFFLINE   | Trace工作模式为离线模式                                      | YES/NO |
+| LOSCFG_RECORDER_MODE_ONLINE    | Trace工作模式为在线模式                                      | YES/NO |
+| LOSCFG_TRACE_CLIENT_INTERACT   | 使能与Trace IDE （dev tools）的交互，包括数据可视化和流程控制 | YES/NO |
+| LOSCFG_TRACE_FRAME_CORE_MSG    | 记录CPUID、中断状态、锁任务状态                              | YES/NO |
+| LOSCFG_TRACE_FRAME_EVENT_COUNT | 记录事件的次序编号                                           | YES/NO |
+| LOSCFG_TRACE_FRAME_MAX_PARAMS  | 配置记录事件的最大参数个数                                   | INT    |
+| LOSCFG_TRACE_BUFFER_SIZE       | 配置Trace的缓冲区大小                                        | INT    |
 
-2.  选择想要注册的Hook点，实现对应的回调函数，Hook类型清单见liteos\_m/utils/internal/los\_hook\_types.h。
-3.  调用LOS\_HookReg进行函数注册。
+2. (可选)预置事件参数和事件桩（或使用系统默认的事件参数配置和事件桩）。
 
-### 编程实例<a name="section0403134913395"></a>
+3. (可选)调用LOS_TraceStop停止Trace后，清除缓冲区LOS_TraceReset（系统默认已启动trace）。
 
-本实例实现功能：模拟运行时malloc、free不同大小的内存，记录每次malloc，free的行为及时序。
+4. (可选)调用LOS_TraceEventMaskSet设置需要追踪的事件掩码（系统默认的事件掩码仅使能中断与任务事件），事件掩码参见los_trace.h 中的LOS_TRACE_MASK定义。
 
-### 示例代码<a name="section1492711418400"></a>
+5. 在需要记录事件的代码起始点调用LOS_TraceStart。
 
-示例代码如下：
+6. 在需要记录事件的代码结束点调用LOS_TraceStop。
 
-```
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
-#include "los_hook.h"
+7. 调用LOS_TraceRecordDump输出缓冲区数据（函数的入参为布尔型，FALSE表示格式化输出，TRUE表示输出到windows客户端）。
 
-#define SIZE_512        512
-#define SIZE_1K         1024
-#define SIZE_2K         2048
 
-/* 回调时打印malloc出来的大小 */
-void MallocRecord(void *pool, unsigned int size)
-{
-    printf("malloc size = %u\n", size);
-    return;
+上述第3-7步中的接口，均封装有对应的shell命令，对应关系如下
+
+- LOS_TraceReset —— trace_reset
+
+- LOS_TraceEventMaskSet —— trace_mask
+
+- LOS_TraceStart —— trace_start
+
+- LOS_TraceStop —— trace_stop
+
+- LOS_TraceRecordDump —— trace_dump
+
+### 编程实例<a name = "section4.2"></a>
+
+   本实例实现如下功能：
+
+   1. 创建一个用于Trace测试的任务。
+
+   2. 设置事件掩码。
+
+   3. 启动trace。
+
+   4. 停止trace。
+
+   5. 格式化输出trace数据。
+
+### 示例代码<a name = "section4.3"></a>
+
+实例代码如下：
+
+```C
+#include "los_trace.h"
+UINT32 g_traceTestTaskId;
+VOID Example_Trace(VOID)
+{ 
+    UINT32 ret;    
+    LOS_TaskDelay(10);
+    /* 开启trace */
+    ret = LOS_TraceStart();    
+    if (ret != LOS_OK) {        
+        dprintf("trace start error\n");        
+        return;    
+    }    
+    /* 触发任务切换的事件 */    
+    LOS_TaskDelay(1);    
+    LOS_TaskDelay(1);    
+    LOS_TaskDelay(1);    
+    /* 停止trace */    
+    LOS_TraceStop();    
+    LOS_TraceRecordDump(FALSE);
 }
 
-/* 回调时打印free的指针地址 */
-void FreeRecord(void *pool, void *ptr)
-{
-    printf("free pool = 0x%x ptr = 0x%x\n", pool, ptr);
-    return;
-}
-
-void TestTrace(void)
-{
-    char *pool1 = NULL;
-    char *pool2 = NULL;
-    char *pool3 = NULL;
-    char *retptr = NULL;
-    /* 分别为pool1，pool2，pool3分配不同大小的内存，用于区分验证 */
-    pool1 = (char *)malloc(SIZE_512);
-    if (pool1 == NULL) {
-        printf("pool1 malloc failed!\n");
-        return;
-    }
-    retptr = memset(pool1, 'a', SIZE_512);
-    if (retptr == NULL) {
-        printf("pool1 memset failed!\n");
-        return;
-    }
-    printf("pool1 addr = 0x%x *pool1[0] = %c\n", pool1, *pool1);
-
-    pool2 = (char *)malloc(SIZE_1K);
-    if (pool2 == NULL) {
-        printf("pool2 malloc failed!\n");
-        return;
-    }
-    retptr = memset(pool2, 'b', SIZE_1K);
-    if (retptr == NULL) {
-        printf("pool2 memset failed!\n");
-        return;
-    }
-    printf("pool2 addr = 0x%x *pool2[0] = %c\n", pool2, *pool2);
-
-    pool3 = (char *)malloc(SIZE_2K);
-    if (pool3 == NULL) {
-        printf("pool3 malloc failed!\n");
-        return;
-    }
-    retptr = memset(pool3, 'c', SIZE_2K);
-    if (retptr == NULL) {
-        printf("pool3 memset failed!\n");
-        return;
-    }
-    printf("pool3 addr = 0x%x *pool3[0] = %c\n", pool3, *pool3);
-
-    /* 按pool3, pool1, pool2的顺序释放，来检验回调函数的时序 */
-    free(pool3);
-    free(pool1);
-    free(pool2);
-
-    return;
-}
-/* 在使用Trace模块功能之前，首先进行回调函数的注册，注意回调函数的返回值都为void */
-void InitTest(void)
-{
-    printf("init hook\n");
-    /* 根据想要获取的Trace信息选择对应的Hook类型进行注册，具体可选Hook类型清单见liteos_m/utils/internal/los_hook_types.h */
-    LOS_HookReg(LOS_HOOK_TYPE_MEM_ALLOC, MallocRecord);
-    LOS_HookReg(LOS_HOOK_TYPE_MEM_FREE, FreeRecord);
-    return;
+UINT32 Example_Trace_test(VOID){
+    UINT32 ret;    
+    TSK_INIT_PARAM_S traceTestTask;
+    /* 创建用于trace测试的任务 */    
+    memset(&traceTestTask, 0, sizeof(TSK_INIT_PARAM_S));    
+    traceTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_Trace;    
+    traceTestTask.pcName       = "TestTraceTsk";    /* 测试任务名称 */    				     
+    traceTestTask.uwStackSize  = 0x800;    
+    traceTestTask.usTaskPrio   = 5;    
+    traceTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;    
+    ret = LOS_TaskCreate(&g_traceTestTaskId, &traceTestTask);    
+    if(ret != LOS_OK){        
+        dprintf("TraceTestTask create failed .\n");        
+        return LOS_NOK;    
+    }    
+    /* 系统默认情况下已启动trace, 因此可先关闭trace后清除缓存区后，再重启trace */                    	  
+    LOS_TraceStop();    
+    LOS_TraceReset();    
+    /* 开启任务模块事件记录 */    
+    LOS_TraceEventMaskSet(TRACE_TASK_FLAG);    
+    return LOS_OK;
 }
 ```
 
-### 结果验证<a name="section869613984012"></a>
+### 结果验证<a name = "section4.4"></a>
 
 输出结果如下：
 
-```
-init hook
-malloc size = 512
-pool1 addr = 0x20002f44 *pool1[0] = a
-malloc size = 1024
-pool2 addr = 0x2000314c *pool2[0] = b
-malloc size = 2048
-pool3 addr = 0x20003554 *pool3[0] = c
-free pool = 0x200002a4 ptr = 0x20003554
-free pool = 0x200002a4 ptr = 0x20002f44
-free pool = 0x200002a4 ptr = 0x2000314c
+```c
+*******TraceInfo begin*******
+clockFreq = 50000000
+CurEvtIndex = 7
+Index   Time(cycles)      EventType      CurTask   Identity      params    
+0       0x366d5e88        0x45           0x1       0x0           0x1f         0x4       0x0
+1       0x366d74ae        0x45           0x0       0x1           0x0          0x8       0x1f
+2       0x36940da6        0x45           0x1       0xc           0x1f         0x4       0x9
+3       0x3694337c        0x45           0xc       0x1           0x9          0x8       0x1f
+4       0x36eea56e        0x45           0x1       0xc           0x1f         0x4       0x9
+5       0x36eec810        0x45           0xc       0x1           0x9          0x8       0x1f
+6       0x3706f804        0x45           0x1       0x0           0x1f         0x4       0x0
+7       0x37070e59        0x45           0x0       0x1           0x0          0x8       0x1f
+*******TraceInfo end*******
 ```
 
-根据地址信息，可以看到free的顺序为pool3，pool1，pool2。
+输出的事件信息包括：发生时间、事件类型、事件发生在哪个任务中、事件操作的主体对象、事件的其他参数。
+
+- EventType：表示的具体事件可查阅头文件los_trace.h中的enum LOS_TRACE_TYPE。
+
+- CurrentTask：表示当前运行在哪个任务中，值为taskid。
+
+- Identity：表示事件操作的主体对象，可查阅头文件los_trace.h中的#TYPE#_PARAMS。
+
+- params：表示的事件参数可查阅头文件los_trace.h中的#TYPE#_PARAMS。
+
+下面以序号为0的输出项为例，进行说明。
+
+```
+Index   Time(cycles)      EventType      CurTask   Identity      params
+0       0x366d5e88        0x45           0x1       0x0           0x1f         0x4
+```
+
+- Time cycles可换算成时间，换算公式为cycles/clockFreq，单位为s。
+
+- 0x45为TASK_SWITCH即任务切换事件，当前运行的任务taskid为0x1。
+
+- Identity和params的含义需要查看TASK_SWITCH_PARAMS宏定义：
+
+```c
+#define TASK_SWITCH_PARAMS(taskId, oldPriority, oldTaskStatus, newPriority, newTaskStatus) \
+taskId, oldPriority, oldTaskStatus, newPriority, newTaskStatus
+```
+
+因为#TYPE#_PARAMS(IDENTITY, parma1...) IDENTITY, ...，所以Identity为taskId（0x0），第一个参数为oldPriority（0x1f）
+
+> ![](../public_sys-resources/icon-note.gif)**说明**
+
+  > params的个数由LOSCFG_TRACE_FRAME_MAX_PARAMS配置，默认为3，超出的参数不会被记录，用户应自行合理配置该值。
+
+  综上所述，任务由0x1切换到0x0，0x1任务的优先级为0x1f，状态为0x4，0x0任务的优先级为0x0。
 
