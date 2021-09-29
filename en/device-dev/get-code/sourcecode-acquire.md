@@ -29,7 +29,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
 -   **Method 1**: Acquire the source code from a code repository. You can use the**repo**or**git** tool to download the latest code from the code repository.
 -   **Method 2**: Acquire the source code from the HarmonyOS Package Manager \(HPM\). Visit the [HPM](https://hpm.harmonyos.com/#/en/home) website, search for your desired open-source distribution, and download the bundle list \(or customize bundles and download the bundle list\). Then use **hpm-cli** to download and install the bundles and compilation toolchain on your local PC.
 -   **Method 3**: Download the compressed file of a distribution from a mirror site. This method provides a fast download speed, so you can also use this method for obtaining the source code of an earlier version.
--   ** Method 4**: Acquire the source code from the GitHub image repository. You can use the **repo**or **git**tool to download the latest code from the code repository.
+-   **Method 4**: Acquire the source code from the GitHub image repository. You can use the **repo**or **git**tool to download the latest code from the code repository.
 
 ## Method 1: Acquiring Source Code from a Code Repository<a name="section537312010229"></a>
 
