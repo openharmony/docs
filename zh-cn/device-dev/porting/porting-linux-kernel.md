@@ -88,14 +88,14 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 1. 将三方内核纳入OpenHarmony编译环境
    完整编译过一遍标准 Hi3516DV300 内核之后，clone 树莓派内核源码并复制到 manifest 输出目录下：
 
-   ```undefined
+   ```
    export PROJ_ROOT=[OpenHarmony manifest]
    git clone https://gitee.com/xfan1024/oh-rpi3b-kernel.git
    cp -r oh-rpi3b-kernel $PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b
    ```
 
 2. 配置树莓派内核编译环境
-   ```undefined
+   ```shell
    # 进入树莓派 kernel 目录
    cd out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b
    
@@ -108,7 +108,7 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 3. 注释掉clang不识别的flag
    PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b/arch/arm/Makefile 注释掉以下这一行：
 
-   ```undefined
+   ```makefile
    KBUILD_CFLAGS  +=-fno-omit-frame-pointer -mapcs -mno-sched-prolog
    ```
 
@@ -117,7 +117,7 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 
 目前OpenHarmony内核态的基础代码，主要是日志服务相关。轻量化内核日志服务代码包含：
 
-```undefined
+```
 drivers/staging/hilog
 drivers/staging/hievent
 ```
@@ -139,13 +139,13 @@ drivers/staging/hievent
    3. 执行 patch_hdf.sh 脚本依次传入三个变量参数。
    patch_hdf.sh 脚本三个参数含义为：第一个入参为工程根目录路径，第二入参为内核目录路径，第三个入参为hdf补丁文件。
 
-   ```undefined
+   ```
    ./patch_hdf.sh [工程根目录路径] [内核目录路径] [hdf补丁文件]
    ```
 
    以树莓派3b为示例介绍：
 
-   ```undefined
+   ```
    # 进入树莓派 kernel 目录
    PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
    PROJ_ROOT  # 指定工程根目录路径 \
@@ -158,7 +158,7 @@ drivers/staging/hievent
 
    HDF补丁执行成功后，默认HDF开关是关闭的，打开HDF基本配置选项如下：
 
-   ```undefined
+   ```
    CONFIG_DRIVERS_HDF=y
    CONFIG_HDF_SUPPORT_LEVEL=2
    CONFIG_DRIVERS_HDF_PLATFORM=y
@@ -171,7 +171,7 @@ drivers/staging/hievent
 
    或者通过 menuconfig 界面打开HDF相关配置，命令如下：
 
-   ```undefined
+   ```
    # 生成 .config 配置文件
    make ${MAKE_OPTIONS} rpi3b_oh_defconfig
    
@@ -188,7 +188,7 @@ drivers/staging/hievent
 
 ### 编译Image
 
-```undefined
+```
 # 执行编译命令
 make ${MAKE_OPTIONS} -j33 zImage
 ```
@@ -218,7 +218,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 1. 编译hdf测试用例
    编译hdf测试用例命令和文件路径如下：
 
-   ```undefined
+   ```
    ./build.sh --product-name Hi3516DV300 --build-target hdf_test
    ```
 
@@ -228,11 +228,11 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
    方法一：使用 hdc 工具
 
    1. 先在树莓派里新建data/test目录
-       ```undefined
+       ```
        mkdir -p data/test
        ```
    2. 推送依赖库和测试用例到树莓派
-       ```undefined
+       ```
        hdc file send XXX\out\ohos-arm-release\hdf\hdf\libhdf_test_common.z.so  /system/lib
        hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\config\hdf_adapter_uhdf_test_config  /data/test
        hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\devmgr\DevMgrTest  /data/test
@@ -244,7 +244,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
    1. 拔掉树莓派连接电脑的串口、USB线，然后拔下数据卡。
    2. 将数据卡插入到电脑的读取口，将编译好的 zImage 和测试文件夹 test/ 下载到电脑，然后移动到数据卡的根目录下。zImage 文件会被替换，请提前做好备份。
    3. 最后将数据卡插回树莓派。
-       ```undefined
+       ```
        # 让树莓派文件系统读取储存卡根目录
        mount -t vfat /dev/block/mmcblk0p1 /boot
        cd /boot/[测试文件目录]
@@ -258,15 +258,15 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
 3. 执行测试
    1. 进入目录执行测试文件目录 data/test
-       ```undefined
+       ```
        cd /data/test
        ```
    2. 修改文件执行权限
-       ```undefined
+       ```
        chmod 777 hdf_adapter_uhdf_test_config DevMgrTest OsalTest SbufTest
        ```
    3. 开始测试
-       ```undefined
+       ```
        ./hdf_adapter_uhdf_test_config
        ./DevMgrTest
        ./OsalTest
@@ -274,7 +274,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
        ```
    4. 如果所有测试文件输出均显示 PASSED，那么 HDF 功能即安装成功。
        示例：DevMgrTest 用例成功结果显示：
-              ```undefined
+              ```
               ./DevMgrTest
               Running main() from gmock_main.cc
               [==========] Running 1 test from 1 test case.
