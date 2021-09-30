@@ -227,7 +227,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
 2. 将测试文件移动到目标移植设备上（以树莓派为例）
 
-   方法一：使用 [hdc_std 工具](http://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)。
+   方法一：使用 [hdc_std工具](http://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)。
 
    1. 先在树莓派里新建data/test目录。
        ```
@@ -235,13 +235,13 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
        ```
    2. 推送依赖库和测试用例到树莓派。
        ```
-       hdc file send XXX\out\ohos-arm-release\hdf\hdf\libhdf_test_common.z.so  /system/lib
-       hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\config\hdf_adapter_uhdf_test_config  /data/test
-       hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\devmgr\DevMgrTest  /data/test
-       hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\osal\OsalTest  /data/test
-       hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\sbuf\SbufTest  /data/test
+       hdc_std file send XXX\out\ohos-arm-release\hdf\hdf\libhdf_test_common.z.so  /system/lib
+       hdc_std file send XXX\out\ohos-arm-release\tests\unittest\hdf\config\hdf_adapter_uhdf_test_config  /data/test
+       hdc_std file send XXX\out\ohos-arm-release\tests\unittest\hdf\devmgr\DevMgrTest  /data/test
+       hdc_std file send XXX\out\ohos-arm-release\tests\unittest\hdf\osal\OsalTest  /data/test
+       hdc_std file send XXX\out\ohos-arm-release\tests\unittest\hdf\sbuf\SbufTest  /data/test
        ```
-   方法二：移动到储存卡内，启动树莓派之后装载
+   方法二：移动到储存卡内，启动树莓派之后装载。
 
    1. 拔掉树莓派连接电脑的串口、USB线，然后拔下数据卡。
    2. 将数据卡插入到电脑的读取口，将编译好的 zImage 和测试文件夹 test/ 下载到电脑，然后移动到数据卡的根目录下。zImage 文件会被替换，请提前做好备份。
@@ -259,15 +259,15 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
        ```
 
 3. 执行测试
-   1. 进入目录执行测试文件目录 data/test
+   1. 进入目录执行测试文件目录 data/test。
        ```
        cd /data/test
        ```
-   2. 修改文件执行权限
+   2. 修改文件执行权限。
        ```
        chmod 777 hdf_adapter_uhdf_test_config DevMgrTest OsalTest SbufTest
        ```
-   3. 开始测试
+   3. 开始测试。
        ```
        ./hdf_adapter_uhdf_test_config
        ./DevMgrTest
