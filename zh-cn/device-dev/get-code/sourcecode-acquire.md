@@ -2,7 +2,7 @@
 
 -   [OpenHarmony介绍](#section6370143622110)
 -   [源码获取概述](#section12763342204)
--   [获取方式1：从gitee代码仓库获取](#section537312010229)
+-   [获取方式1：从码云仓库获取](#section537312010229)
     -   [适用场景](#section10881513459)
     -   [前提条件](#section102871547153314)
     -   [操作步骤](#section429012478331)
@@ -13,7 +13,7 @@
     -   [操作步骤](#section954619433333)
 
 -   [获取方式3：从镜像站点获取](#section1186691118430)
--   [获取方式4：从github镜像仓库获取(每天UTC时间23点同步)](#section23448418360)
+-   [获取方式4：从github镜像仓库获取\(每天UTC时间23点同步\)](#section23448418360)
 -   [源码目录简介](#section1072115612811)
 
 ## OpenHarmony介绍<a name="section6370143622110"></a>
@@ -26,12 +26,12 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../bundles/oem_bundle_standard_des.md)的形式开放，开发者可以通过如下其中一种方式获取：
 
--   **获取方式1**：从gitee代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
+-   **获取方式1**：从码云代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 -   **获取方式2**：通过HPM包管理器获取。在[HPM](https://hpm.harmonyos.com)网站，查找满足需求的开源发行版，直接下载（或者定制后下载），再通过hpm-cli命令工具将所需的组件及工具链下载、安装到本地。
 -   **获取方式3**：从镜像站点下载归档后的发行版压缩文件。如果要获取旧版本的源码，也可通过此方式获取，此方式下载速度较快。
 -   **获取方式4**：从github代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 
-## 获取方式1：从gitee代码仓库获取<a name="section537312010229"></a>
+## 获取方式1：从码云仓库获取<a name="section537312010229"></a>
 
 ### 适用场景<a name="section10881513459"></a>
 
@@ -69,10 +69,10 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 ### 操作步骤<a name="section429012478331"></a>
 
-**获取轻量/小型/标准系统（2.0 Canary）源码**
+**获取轻量/小型/标准系统源码**
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
->主干代码为开发分支，开发者可通过主干代码获取最新特性。release分支代码相对比较稳定，开发者可基于release分支代码进行商用功能开发。
+>Master主干为开发分支，开发者可通过Master主干获取最新特性。发布版本代码相对比较稳定，开发者可基于发布版本代码进行商用功能开发。
 
 -   **OpenHarmony主干代码获取**
 
@@ -93,20 +93,10 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     ```
 
 
--   **OpenHarmony release 分支最新代码获取**
+-   **OpenHarmony 发布版本代码获取**
 
-    >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >当前通过release分支只能获取轻量和小型系统源码。
+    OpenHarmony发布版本源码获取方式请参考版本[Release-Notes](../../release-notes/Readme.md)。
 
-    通过repo下载。
-
-    ```
-    repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify
-    repo sync -c  
-    repo forall -c 'git lfs pull'
-    ```
-
--   OpenHarmony其他版本源码获取方式请参考版本[Release-Notes](../../release-notes/Readme.md)。
 
 ## 获取方式2：从HPM获取<a name="section463013147412"></a>
 
@@ -154,7 +144,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     4.  查找合适的发行版，点击查看发行版的详情介绍。
 
         **图 1**  包管理<a name="fig414435103619"></a>  
-        ![](figure/包管理.png "包管理")
+        ![](figures/包管理.png "包管理")
 
 2.  了解发行版详情。
 
@@ -163,7 +153,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     3.  点击「定制组件」，将对发行版包含的组件进行定制（添加/删除）。
 
     **图 2**  发行版示例<a name="fig950763112375"></a>  
-    ![](figure/发行版示例.png "发行版示例")
+    ![](figures/发行版示例.png "发行版示例")
 
 3.  定制组件。
     1.  进入发行版的定制页面，如下图所示。
@@ -172,7 +162,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     4.  点击“下载“，系统会根据您的选择，生成相应的OpenHarmony代码结构文件\(如my\_cust\_dist.zip\)，保存至本地文件。
 
         **图 3**  组件定制<a name="fig13979182053817"></a>  
-        ![](figure/组件定制.png "组件定制")
+        ![](figures/组件定制.png "组件定制")
 
 4.  下载安装组件。
     1.  解压下载的压缩文件，用命令行工具CMD（Linux下的Shell终端）
@@ -200,47 +190,65 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 <td class="cellrowborder" valign="top" width="25%"><p id="p2109736133914"><a name="p2109736133914"></a><a name="p2109736133914"></a><strong id="b18109113613397"><a name="b18109113613397"></a><a name="b18109113613397"></a>SHA256校验码</strong></p>
 </td>
 </tr>
-<tr id="row17736152318398"><td class="cellrowborder" valign="top" width="25%"><p id="p1110983610395"><a name="p1110983610395"></a><a name="p1110983610395"></a>全量代码（轻量和小型系统）</p>
+<tr id="row17736152318398"><td class="cellrowborder" valign="top" width="25%"><p id="p1110983610395"><a name="p1110983610395"></a><a name="p1110983610395"></a>全量代码（标准、轻量和小型系统）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p151091536143915"><a name="p151091536143915"></a><a name="p151091536143915"></a>1.1.2</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p151091536143915"><a name="p151091536143915"></a><a name="p151091536143915"></a>3.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p15931114016546"><a name="p15931114016546"></a><a name="p15931114016546"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/code-v1.1.2-LTS.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p15931114016546"><a name="p15931114016546"></a><a name="p15931114016546"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p3770144281415"><a name="p3770144281415"></a><a name="p3770144281415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/code-v1.1.2-LTS.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p3770144281415"><a name="p3770144281415"></a><a name="p3770144281415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+</td>
+</tr>
+<tr id="row14814218214"><td class="cellrowborder" valign="top" width="25%"><p id="p2481132228"><a name="p2481132228"></a><a name="p2481132228"></a>标准系统解决方案（二进制）</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p94811121629"><a name="p94811121629"></a><a name="p94811121629"></a>3.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1358555631"><a name="p1358555631"></a><a name="p1358555631"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p10581551639"><a name="p10581551639"></a><a name="p10581551639"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/wifiiot-3.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row473612318396"><td class="cellrowborder" valign="top" width="25%"><p id="p511014369394"><a name="p511014369394"></a><a name="p511014369394"></a>Hi3861解决方案（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p0110036193911"><a name="p0110036193911"></a><a name="p0110036193911"></a>1.1.2</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p0110036193911"><a name="p0110036193911"></a><a name="p0110036193911"></a>3.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p29291940175415"><a name="p29291940175415"></a><a name="p29291940175415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/wifiiot-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p29291940175415"><a name="p29291940175415"></a><a name="p29291940175415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p134864584147"><a name="p134864584147"></a><a name="p134864584147"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/wifiiot-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p134864584147"><a name="p134864584147"></a><a name="p134864584147"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row873614239395"><td class="cellrowborder" valign="top" width="25%"><p id="p11110113633913"><a name="p11110113633913"></a><a name="p11110113633913"></a>Hi3518解决方案（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p18110193613391"><a name="p18110193613391"></a><a name="p18110193613391"></a>1.1.2</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p18110193613391"><a name="p18110193613391"></a><a name="p18110193613391"></a>3.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p125681045181518"><a name="p125681045181518"></a><a name="p125681045181518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3518ev300-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p125681045181518"><a name="p125681045181518"></a><a name="p125681045181518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p4607175915149"><a name="p4607175915149"></a><a name="p4607175915149"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3518ev300-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p4607175915149"><a name="p4607175915149"></a><a name="p4607175915149"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
-<tr id="row1273682343914"><td class="cellrowborder" valign="top" width="25%"><p id="p15110123693919"><a name="p15110123693919"></a><a name="p15110123693919"></a>Hi3516解决方案（二进制）</p>
+<tr id="row1273682343914"><td class="cellrowborder" valign="top" width="25%"><p id="p15110123693919"><a name="p15110123693919"></a><a name="p15110123693919"></a>Hi3516解决方案-LiteOS（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1211012362396"><a name="p1211012362396"></a><a name="p1211012362396"></a>1.1.2</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p1211012362396"><a name="p1211012362396"></a><a name="p1211012362396"></a>3.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p10455184661518"><a name="p10455184661518"></a><a name="p10455184661518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3516dv300-1.1.2.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p10455184661518"><a name="p10455184661518"></a><a name="p10455184661518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p84951102150"><a name="p84951102150"></a><a name="p84951102150"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/ipcamera_hi3516dv300-1.1.2.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p84951102150"><a name="p84951102150"></a><a name="p84951102150"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+</td>
+</tr>
+<tr id="row18945941460"><td class="cellrowborder" valign="top" width="25%"><p id="p12945204118618"><a name="p12945204118618"></a><a name="p12945204118618"></a>Hi3516解决方案-Linux（二进制）</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p7686415384"><a name="p7686415384"></a><a name="p7686415384"></a>3.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p156861155812"><a name="p156861155812"></a><a name="p156861155812"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p16686201510815"><a name="p16686201510815"></a><a name="p16686201510815"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row167371123163914"><td class="cellrowborder" valign="top" width="25%"><p id="p10110143610393"><a name="p10110143610393"></a><a name="p10110143610393"></a>RELEASE-NOTES</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>1.1.2</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>3.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.2/OpenHarmony-Release-Notes-1.1.2-LTS.zip" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/Readme.md" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>
@@ -252,6 +260,15 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 <td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b341584914393"><a name="b341584914393"></a><a name="b341584914393"></a>下载站点</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b8415114953915"><a name="b8415114953915"></a><a name="b8415114953915"></a>SHA256校验码</strong></p>
+</td>
+</tr>
+<tr id="row18518114121312"><td class="cellrowborder" valign="top" width="25%"><p id="p4437184283419"><a name="p4437184283419"></a><a name="p4437184283419"></a>Beta版本（标准系统）</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p15437144213345"><a name="p15437144213345"></a><a name="p15437144213345"></a>2.2 Beta2</p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p64379420343"><a name="p64379420343"></a><a name="p64379420343"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%"><p id="p13437842103414"><a name="p13437842103414"></a><a name="p13437842103414"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row4769431134919"><td class="cellrowborder" valign="top" width="25%"><p id="p97691031124913"><a name="p97691031124913"></a><a name="p97691031124913"></a>全量代码（标准系统）</p>
@@ -329,185 +346,107 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 </tbody>
 </table>
 
-
-## 获取方式4：从github镜像仓库获取(每天UTC时间23点同步)<a name="section23448418360"></a>
-
+## 获取方式4：从github镜像仓库获取\(每天UTC时间23点同步\)<a name="section23448418360"></a>
 
 方式一（推荐）：通过repo + ssh 下载（需注册公钥，请参考[GitHub帮助中心](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)）。
 
-    repo init -u git@github.com:openharmony/manifest.git -b master --no-repo-verify
-    repo sync -c
-    repo forall -c 'git lfs pull'
+```
+repo init -u git@github.com:openharmony/manifest.git -b master --no-repo-verify
+repo sync -c
+repo forall -c 'git lfs pull'
+```
 
 方式二：通过repo + https 下载。
 
-    repo init -u https://github.com/openharmony/manifest.git -b master --no-repo-verify
-    repo sync -c
-    repo forall -c 'git lfs pull'
+```
+repo init -u https://github.com/openharmony/manifest.git -b master --no-repo-verify
+repo sync -c
+repo forall -c 'git lfs pull'
+```
 
 ## 源码目录简介<a name="section1072115612811"></a>
 
 下表是OpenHarmony源码的目录及简单说明：
 
-**表 2** 源码目录
+**表 2**  源码目录
 
 <a name="table3815144702820"></a>
-
 <table><thead align="left"><tr id="row198162047192810"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p690319291299"><a name="p690319291299"></a><a name="p690319291299"></a>目录名</p>
-
 </th>
-
 <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p5903122962918"><a name="p5903122962918"></a><a name="p5903122962918"></a>描述</p>
-
 </th>
-
 </tr>
-
 </thead>
-
 <tbody><tr id="row1981674719280"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p69031429162912"><a name="p69031429162912"></a><a name="p69031429162912"></a>applications</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p090352912914"><a name="p090352912914"></a><a name="p090352912914"></a>应用程序样例，包括camera等</p>
-
 </td>
-
 </tr>
-
 <tr id="row5816747132817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p99031129112918"><a name="p99031129112918"></a><a name="p99031129112918"></a>base</p>
-
 </td>
-
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p790472962914"><a name="p790472962914"></a><a name="p790472962914"></a>基础软件服务子系统集硬件服务子系统集</p>
-
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p790472962914"><a name="p790472962914"></a><a name="p790472962914"></a>基础软件服务子系统集&amp;硬件服务子系统集</p>
 </td>
-
 </tr>
-
 <tr id="row1134218692910"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p4904112910295"><a name="p4904112910295"></a><a name="p4904112910295"></a>build</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1090482942911"><a name="p1090482942911"></a><a name="p1090482942911"></a>组件化编译、构建和配置脚本</p>
-
 </td>
-
 </tr>
-
 <tr id="row8166154261316"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1216719425130"><a name="p1216719425130"></a><a name="p1216719425130"></a>docs</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p17167134217134"><a name="p17167134217134"></a><a name="p17167134217134"></a>说明文档</p>
-
 </td>
-
 </tr>
-
 <tr id="row1841618902919"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1390462902910"><a name="p1390462902910"></a><a name="p1390462902910"></a>domains</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1390432914296"><a name="p1390432914296"></a><a name="p1390432914296"></a>增强软件服务子系统集</p>
-
 </td>
-
 </tr>
-
 <tr id="row841620912298"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p119041629182919"><a name="p119041629182919"></a><a name="p119041629182919"></a>drivers</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p9904629132911"><a name="p9904629132911"></a><a name="p9904629132911"></a>驱动子系统</p>
-
 </td>
-
 </tr>
-
 <tr id="row164164992915"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p79042298298"><a name="p79042298298"></a><a name="p79042298298"></a>foundation</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p18904132922915"><a name="p18904132922915"></a><a name="p18904132922915"></a>系统基础能力子系统集</p>
-
 </td>
-
 </tr>
-
 <tr id="row1441610922915"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p490402916299"><a name="p490402916299"></a><a name="p490402916299"></a>kernel</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1904112932912"><a name="p1904112932912"></a><a name="p1904112932912"></a>内核子系统</p>
-
 </td>
-
 </tr>
-
 <tr id="row194175972917"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1904132912910"><a name="p1904132912910"></a><a name="p1904132912910"></a>prebuilts</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p390492919296"><a name="p390492919296"></a><a name="p390492919296"></a>编译器及工具链子系统</p>
-
 </td>
-
 </tr>
-
 <tr id="row841718942913"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p12904929202919"><a name="p12904929202919"></a><a name="p12904929202919"></a>test</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p4904152912297"><a name="p4904152912297"></a><a name="p4904152912297"></a>测试子系统</p>
-
 </td>
-
 </tr>
-
 <tr id="row24175915294"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p13904162992916"><a name="p13904162992916"></a><a name="p13904162992916"></a>third_party</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p6904829112917"><a name="p6904829112917"></a><a name="p6904829112917"></a>开源第三方组件</p>
-
 </td>
-
 </tr>
-
 <tr id="row334210652914"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1390442918299"><a name="p1390442918299"></a><a name="p1390442918299"></a>utils</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p690412296297"><a name="p690412296297"></a><a name="p690412296297"></a>常用的工具集</p>
-
 </td>
-
 </tr>
-
 <tr id="row73421664298"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p7905172920292"><a name="p7905172920292"></a><a name="p7905172920292"></a>vendor</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p290510290293"><a name="p290510290293"></a><a name="p290510290293"></a>厂商提供的软件</p>
-
 </td>
-
 </tr>
-
 <tr id="row734319617292"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p09056291290"><a name="p09056291290"></a><a name="p09056291290"></a>build.py</p>
-
 </td>
-
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1790542912290"><a name="p1790542912290"></a><a name="p1790542912290"></a>编译脚本文件</p>
-
 </td>
-
 </tr>
-
 </tbody>
-
 </table>
-
-
 
