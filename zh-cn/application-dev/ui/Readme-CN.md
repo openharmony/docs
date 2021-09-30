@@ -1,6 +1,5 @@
 # UI
-
--   -   [JS UI框架](ui-js.md)
+   -   [JS UI框架](ui-js.md)
         -   [JS UI框架概述](ui-js-overview.md)
         -   [构建用户界面](ui-js-building-ui.md)
             -   [组件介绍](ui-js-building-ui-component.md)
