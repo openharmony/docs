@@ -4,7 +4,7 @@
 
 ## Directory Structure<a name="section3523121414020"></a>
 
-The following table describes the directory structure of the startup subsystem.
+The following table describes the directory structure of the Startup subsystem.
 
 **Table  1**  Directory Structure
 

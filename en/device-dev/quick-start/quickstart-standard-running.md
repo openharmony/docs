@@ -45,4 +45,4 @@ After the image burning is complete, perform the following steps to run the syst
 
 ## Next
 
-Congratulations! You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a [Development Example for Clock App](../device/device-clock-guide.md).
+Congratulations! You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a [Development Example for Clock App](../guide/device-clock-guide.md).

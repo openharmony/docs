@@ -203,64 +203,26 @@ The following uses the USB port burning as an example.
 
 ## Running an Image<a name="section17612105814480"></a>
 
-1.  Connect to a serial port.
+After programming is completed, you need to configure the bootloader to run the OpenHarmony system.
 
-    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >If the connection fails, rectify the fault by referring to  [FAQs](quickstart-lite-steps-hi3518-faqs.md#en-us_topic_0000001053466255_section14871149155911).
+1. In the Hi3518E V300 task, click  **Configure bootloader \(Boot OS\)**  to configure the bootloader.
 
-    **Figure  2**  Serial port connection<a name="fig049019841616"></a>  
-    ![](figure/serial-port-connection-15.png "serial-port-connection-15")
+   > ![](../public_sys-resources/icon-note.gif) **NOTE:** 
+   > The bootloader configuration in DevEco Device Tool has been adapted to Hi3518E V300. Therefore, no manual modification is needed.
 
-    1.  Click  **Monitor**  to enable the serial port. The  **TERMINAL**  window is displayed.
-    2.  Press  **Enter**  repeatedly until  **hisilicon**  displays.
-    3.  Go to  [step 2](#li9441185382314)  if the board is started for the first time or the startup parameters need to be modified; go to  [step 3](#li6442853122312)  otherwise.
+   ![](D:/IDP%E5%8F%91%E5%B8%83%E4%BB%B6/220/For%20OpenHarmony2.0/en/quick-start/figures/3518_bootloader.png)
 
-2.  <a name="li9441185382314"></a>\(Mandatory for first-time burning\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-Boot. This step is a fixed operation and the result can be saved. However, you need to perform the following steps again if U-Boot needs to be reburnt.
+2. When the message shown below is displayed, restart the development board. If  **SUCCESS**  is displayed, it indicates that the configuration is successful.
 
-    **Table  1**  Parameters of the U-Boot
+   ![](figure/3518_reset_success.png)
 
-    <a name="table1336762011222"></a>
-    <table><thead align="left"><tr id="row193681920182219"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p3368202016229"><a name="p3368202016229"></a><a name="p3368202016229"></a>Command</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p936812052217"><a name="p936812052217"></a><a name="p936812052217"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row10368142032210"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1636882092214"><a name="p1636882092214"></a><a name="p1636882092214"></a>setenv bootcmd "sf probe 0;sf read 0x40000000 0x100000 0x600000;go 0x40000000";</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p17368202082213"><a name="p17368202082213"></a><a name="p17368202082213"></a>Run this command to set the content of <strong id="b209671361282"><a name="b209671361282"></a><a name="b209671361282"></a>bootcmd</strong>. Select the flash whose number is 0, and read content that has a size of 0x600000 (6 MB) and a start address of 0x100000 to memory address 0x40000000. The size must be the same as that of the <strong id="b12634352103017"><a name="b12634352103017"></a><a name="b12634352103017"></a>OHOS_Image.bin</strong> file in the IDE.</p>
-    </td>
-    </tr>
-    <tr id="row136814209227"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p234414019231"><a name="p234414019231"></a><a name="p234414019231"></a>setenv bootargs "console=ttyAMA0,115200n8 root=flash fstype=jffs2 rw rootaddr=7M rootsize=8M";</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p10368102010223"><a name="p10368102010223"></a><a name="p10368102010223"></a>In this command, <strong id="b1475793912349"><a name="b1475793912349"></a><a name="b1475793912349"></a>bootargs</strong> is set to the serial port output, the baud rate is <strong id="b1310782917185"><a name="b1310782917185"></a><a name="b1310782917185"></a>115200</strong>, the data bit is <strong id="b149010367189"><a name="b149010367189"></a><a name="b149010367189"></a>8</strong>, and the <strong id="b19757173918344"><a name="b19757173918344"></a><a name="b19757173918344"></a>rootfs</strong> is mounted to the flash memory. The file system type is set to <strong id="b875763919342"><a name="b875763919342"></a><a name="b875763919342"></a>jffs2 rw</strong>, which provides the read-write attribute for the JFFS2 file system. <strong id="b186911414141517"><a name="b186911414141517"></a><a name="b186911414141517"></a>rootaddr=7M rootsize=8M</strong> indicates the actual start address and length of the <strong id="b841582383217"><a name="b841582383217"></a><a name="b841582383217"></a>rootfs.img</strong> file to be burnt, respectively. The file size must be the same as that of the <strong id="b51690521108"><a name="b51690521108"></a><a name="b51690521108"></a>rootfs.img</strong> file in the IDE.</p>
-    </td>
-    </tr>
-    <tr id="row2368120112219"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p20368142072217"><a name="p20368142072217"></a><a name="p20368142072217"></a>saveenv</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p19368102020220"><a name="p19368102020220"></a><a name="p19368102020220"></a><strong id="b12547103053713"><a name="b12547103053713"></a><a name="b12547103053713"></a>saveenv</strong> means to save the current configuration.</p>
-    </td>
-    </tr>
-    <tr id="row63689205220"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p3368162015223"><a name="p3368162015223"></a><a name="p3368162015223"></a>reset</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p23681820182217"><a name="p23681820182217"></a><a name="p23681820182217"></a><strong id="b29195356377"><a name="b29195356377"></a><a name="b29195356377"></a>reset</strong> means to reset the board.</p>
-    </td>
-    </tr>
-    <tr id="row346253519253"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p16462113512251"><a name="p16462113512251"></a><a name="p16462113512251"></a>pri</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p3462335152514"><a name="p3462335152514"></a><a name="p3462335152514"></a><strong id="b18592103953712"><a name="b18592103953712"></a><a name="b18592103953712"></a>pri</strong> means to view the displayed parameters.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+3. Click  **Monitor**  on the taskbar to start the serial port tool.
 
-    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >**go 0x40000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-Boot startup to interrupt the automatic startup.
+   ![](figure/3518_monitor.png)
 
-3.  <a name="li6442853122312"></a>If  **hisilicon \#**  is displayed during the startup, run the  **reset**  command. After the system automatically starts and  **OHOS**  is displayed, run the  **./bin/helloworld**  command and then press  **Enter**. The system is started successfully if information shown in the following figure is displayed.
+4. Follow the onscreen instructions until  **OHOS \#**  is displayed, indicating that the system is started successfully.
 
-    **Figure  3**  Successful system startup and program execution<a name="fig2103121215172"></a>  
-    ![](figure/successful-system-startup-and-program-execution-16.png "successful-system-startup-and-program-execution-16")
+   ![](figure/3518_reboot_success.png)
 
 
 ## Follow-up Learning<a name="section9712145420182"></a>

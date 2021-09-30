@@ -10,7 +10,8 @@
 
 系统启动过程中，打印“\[Init\] InitReadCfg, parse failed! please check file /etc/init.cfg format.”错误，启动过程停止，如下图所示：
 
-![](figure/zh-cn_image_0000001063839940.png)
+**图 1**  运行报错图<a name="fig15217111545118"></a>  
+![](figure/运行报错图.png "运行报错图")
 
 **可能原因**
 

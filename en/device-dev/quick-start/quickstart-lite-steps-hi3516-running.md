@@ -203,63 +203,26 @@ To program flash memory through the network port in the Windows or Linux environ
 
 ## Running an Image<a name="section24721014162010"></a>
 
-1.  Connect to a serial port.
+After programming is completed, you need to configure the bootloader to run the OpenHarmony system.
 
-    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >If the connection fails, rectify the fault by referring to  [FAQs](quickstart-lite-steps-hi3516-faqs.md).
+1. In the Hi3516D V300 task, click  **Configure bootloader \(Boot OS\)**  to configure the bootloader.
 
-    **Figure  2**  Serial port connection<a name="fig139171488431"></a>  
-    ![](figure/serial-port-connection.png "serial-port-connection")
+   > ![](../public_sys-resources/icon-note.gif) **NOTE:** 
+   > The bootloader configuration in DevEco Device Tool has been adapted to Hi3516D V300. Therefore, no manual modification is needed.
 
-    1.  Click  **Monitor**  to enable the serial port.
-    2.  Press  **Enter**  repeatedly until  **hisilicon**  displays.
-    3.  Go to step  [2](#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
+   ![](figure/bootloader.png)
 
-2.  <a name="l5b42e79a33ea4d35982b78a22913b0b1"></a>\(Mandatory when the board is started for the first time\) Modify the bootcmd and bootargs parameters of U-Boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
+2. When the message shown below is displayed, restart the development board. If  **SUCCESS**  is displayed, it indicates that the configuration is successful.
 
-    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >The default waiting time in the U-Boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisilicon" is displayed.
+   ![](figure/reset_success.png)
 
-    **Table  1**  Parameters of the U-Boot
+3. Click  **Monitor**  on the taskbar to start the serial port tool.
 
-    <a name="table1323441103813"></a>
-    <table><thead align="left"><tr id="row1423410183818"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p623461163818"><a name="p623461163818"></a><a name="p623461163818"></a>Command</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p42341014388"><a name="p42341014388"></a><a name="p42341014388"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1623471113817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p102341719385"><a name="p102341719385"></a><a name="p102341719385"></a>setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800; go 0x80000000";</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p92347120389"><a name="p92347120389"></a><a name="p92347120389"></a>Run this command to read content that has a size of 0x4800 (9 MB) and a start address of 0x800 (1 MB) to the memory address 0x80000000. The file size must be the same as that of the <strong id="b9140538191313"><a name="b9140538191313"></a><a name="b9140538191313"></a>OHOS_Image.bin</strong> file in the IDE.</p>
-    </td>
-    </tr>
-    <tr id="row12234912381"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p172306219392"><a name="p172306219392"></a><a name="p172306219392"></a>setenv bootargs "console=ttyAMA0,115200n8 root=emmc fstype=vfat rootaddr=10M rootsize=20M rw";</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p13489329396"><a name="p13489329396"></a><a name="p13489329396"></a>Run this command to set the output mode to serial port output, baud rate to <strong id="b1378372812210"><a name="b1378372812210"></a><a name="b1378372812210"></a>115200</strong>, data bit to <strong id="b27871628822"><a name="b27871628822"></a><a name="b27871628822"></a>8</strong>, <strong id="b678811281528"><a name="b678811281528"></a><a name="b678811281528"></a>rootfs</strong> to be mounted to the <strong id="b978813281220"><a name="b978813281220"></a><a name="b978813281220"></a>emmc</strong> component, and file system type to <strong id="b12788132814217"><a name="b12788132814217"></a><a name="b12788132814217"></a>vfat</strong>.</p>
-    <p id="p12481832163913"><a name="p12481832163913"></a><a name="p12481832163913"></a><strong id="b965011165313"><a name="b965011165313"></a><a name="b965011165313"></a>rootaddr=10M rootsize=20M rw</strong> indicates the start address and size of the <strong id="b1538675832018"><a name="b1538675832018"></a><a name="b1538675832018"></a>rootfs.img</strong> file to be burnt, respectively. The file size <strong id="b0633135515546"><a name="b0633135515546"></a><a name="b0633135515546"></a>must be the same</strong> as that of the <strong id="b69061726113015"><a name="b69061726113015"></a><a name="b69061726113015"></a>rootfs.img</strong> file in the IDE.</p>
-    </td>
-    </tr>
-    <tr id="row18234161153820"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p823417118386"><a name="p823417118386"></a><a name="p823417118386"></a>saveenv</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p32341616389"><a name="p32341616389"></a><a name="p32341616389"></a><strong id="b16238195319315"><a name="b16238195319315"></a><a name="b16238195319315"></a>saveenv</strong> means to save the current configuration.</p>
-    </td>
-    </tr>
-    <tr id="row192345113811"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p7235111183819"><a name="p7235111183819"></a><a name="p7235111183819"></a>reset</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p123781411114016"><a name="p123781411114016"></a><a name="p123781411114016"></a><strong id="b32719232420"><a name="b32719232420"></a><a name="b32719232420"></a>reset</strong> means to reset the board.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+   ![](figure/monitor.png)
 
-    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >**go 0x80000000**  \(optional\) indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-Boot startup to interrupt the automatic startup.
+4. Follow the onscreen instructions until  **OHOS \#**  is displayed, indicating that the system is started successfully.
 
-3.  <a name="ld26f18828aa44c36bfa36be150e60e49"></a>Run the  **reset**  command and press  **Enter**  to restart the board. After the board is restarted,  **OHOS**  is displayed when you press  **Enter**.
-
-    **Figure  3**  System startup<a name="fig784813366444"></a>  
-    ![](figure/system-startup.png "system-startup")
+   1. ![](figure/reboot_success.png)
 
 
 ## Running a Program<a name="section5276734182615"></a>
