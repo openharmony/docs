@@ -147,10 +147,10 @@ drivers/staging/hievent
 
    ```undefined
    # 进入树莓派 kernel 目录
-   PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
-   PROJ_ROOT  # 指定工程根目录路径 \
-   PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b  # 打补丁的内核目录路径 \
-   PROJ_ROOT/kernel/linux/patches/linux-4.19/hi3516dv300_patch/hdf.patch  # HDF补丁文件
+   $PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
+   $PROJ_ROOT  # 指定工程根目录路径 \
+   $PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b  # 打补丁的内核目录路径 \
+   $PROJ_ROOT/kernel/linux/patches/linux-4.19/hi3516dv300_patch/hdf.patch  # HDF补丁文件
    ```
 
 2. 配置config
@@ -225,7 +225,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
    等待编译完成。
 
 2. 将测试文件移动到目标移植设备上（以树莓派为例）
-   方法一：使用 hdc 工具
+   方法一：使用 [hdc_std 工具](http://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)
 
    1. 先在树莓派里新建data/test目录
        ```undefined
