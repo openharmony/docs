@@ -178,7 +178,7 @@ drivers/staging/hievent
    make ${MAKE_OPTIONS} rpi3b_oh_defconfig
    
    # 更改HDF内核配置
-   make ${MAKE_OPTIONES} menuconfig
+   make ${MAKE_OPTIONS} menuconfig
    # [*] Device Drivers
    # [*]   HDF driver framework support --->
    ```
@@ -200,7 +200,7 @@ make ${MAKE_OPTIONS} -j33 zImage
 
 **简介**
 
-HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外设的基本功能，提供用户态用例和内核态用例测试，本文主要介绍HDF内核态用例测试方法。
+HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外设的基本功能，本文主要介绍HDF内核态用例测试方法。
 
 **预置条件**
 
