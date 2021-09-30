@@ -102,7 +102,7 @@ repo forall -c 'git lfs pull'
 | 事件通知 | -&nbsp;支持应用通知订阅&nbsp;&amp;&nbsp;取消订阅<br/>-&nbsp;支持应用侧发布&amp;取消本地文本、图片通知<br/>-&nbsp;支持应用通知消息跳转能力<br/>-&nbsp;支持应用侧增加&amp;删除slot<br/>-&nbsp;支持通知流控处理、死亡监听能力 | NA | 
 | 分布式软总线 | 软总线:<br/>-&nbsp;支持基于CoAP的主动发现和被动发现，支持通过BLE主动发现连接<br/>-&nbsp;支持基于WLAN网络的手动入网和自组网<br/>-&nbsp;支持基于WLAN网络，直通模式下的消息、字节、文件传输<br/>IPC:<br/>-&nbsp;支持设备内基于linux内核binder协议的进程间通信能力<br/>-&nbsp;支持对象和序列化数据通信<br/>RPC：<br/>-&nbsp;支持设备间基于分布式软总线的进程间通信能力<br/>-&nbsp;支持对象和序列化数据通信<br/>-&nbsp;接口与IPC保持一致 | 软总线:<br/>-&nbsp;支持基于CoAP的主动发现和被动发现<br/>-&nbsp;支持基于WLAN网络的手动入网和自组网<br/>-&nbsp;支持基于WLAN网络，直通模式下的消息、字节、文件传输<br/>IPC:<br/>-&nbsp;支持设备内基于Linux/LiteOS内核binder协议的进程间通信<br/>-&nbsp;支持char/int/long基础数据接口的序列化通信 | 
 | 全球化 | 提供获取系统设置的语言、地区、区域信息，以及获取语言和地区的本地化名称的能力 | 轻量级全球化能力增强支持，新增31种语言支持 | 
-| 系统应用 | -&nbsp;桌面：全新架构优化<br/>-&nbsp;SystemUI：<br/>&nbsp;&nbsp;-&nbsp;通知中心以及普通文本通知功能<br/>&nbsp;&nbsp;-&nbsp;控制中心：wifi、飞行模式开关、亮度调节、声音调节<br/>&nbsp;&nbsp;-&nbsp;全新架构优化<br/>-&nbsp;设置：全新架构优化<br/>-&nbsp;相机：<br/>&nbsp;&nbsp;-&nbsp;支持基础拍照、录像功能<br/>&nbsp;&nbsp;-&nbsp;分布式协同：拉起对端相机并拍照 | NA | 
+| 系统应用 | -&nbsp;桌面：全新架构优化<br/>-&nbsp;SystemUI：<br/>&nbsp;&nbsp;-&nbsp;通知中心以及普通文本通知功能<br/>&nbsp;&nbsp;-&nbsp;控制中心：WLAN、飞行模式开关、亮度调节、声音调节<br/>&nbsp;&nbsp;-&nbsp;全新架构优化<br/>-&nbsp;设置：全新架构优化<br/>-&nbsp;相机：<br/>&nbsp;&nbsp;-&nbsp;支持基础拍照、录像功能<br/>&nbsp;&nbsp;-&nbsp;分布式协同：拉起对端相机并拍照 | NA | 
 | 语言编译运行时 | 新增方舟JS编译工具链和运行时，支持OpenHarmony&nbsp;JS&nbsp;UI框架应用开发和运行 | NA | 
 | 媒体 | -&nbsp;相机组件中新增录像功能<br/>-&nbsp;新增音频录制功能接口 | 新增支持播放mp3格式文件 | 
 | JS&nbsp;UI框架 | -&nbsp;支持迁移相关生命周期<br/>-&nbsp;支持系统服务弹窗<br/>-&nbsp;支持使用JS开发service类型和data类型的Ability | NA | 
