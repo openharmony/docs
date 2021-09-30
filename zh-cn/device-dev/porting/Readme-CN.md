@@ -49,6 +49,7 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [平台驱动移植](porting-smallchip-driver-plat.md)
     - [器件驱动移植](porting-smallchip-driver-oom.md)
 - [标准系统移植指南](standard-system-porting-guide.md)
+- [一种快速移植OpenHarmony Linux内核的方法](porting-linux-kernel.md)
 
 # 三方库移植
 
