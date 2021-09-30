@@ -203,63 +203,28 @@ Hi3516DV300开发板使用网口烧录方式，支持Windows和Linux系统。
 
 ## 镜像运行<a name="section24721014162010"></a>
 
-1.  连接串口。
+在完成Hi3516DV300的烧录后，还需要设置BootLoader引导程序，才能运行OpenHarmony系统。
 
-    >![](../public_sys-resources/icon-notice.gif) **须知：** 
-    >若无法连接串口，请参考[常见问题](quickstart-lite-steps-hi3516-faqs.md)进行排查。
+1. 在Hi3516DV300任务中，点击**Configure bootloader（Boot OS）**进行配置即可。
 
-    **图 2**  连接串口图<a name="fig139171488431"></a>  
-    ![](figure/连接串口图.png "连接串口图")
+   > ![](../public_sys-resources/icon-note.gif) **说明：** 
+   > DevEco Device Tool针对Hi3516DV300开发板的BootLoader设置进行了适配，无需开发者手动修改。
 
-    1.  单击**Monitor**打开串口。
-    2.  连续输入回车直到串口显示"hisilicon"。
-    3.  单板初次启动或修改启动参数，请进入[步骤2](#l5b42e79a33ea4d35982b78a22913b0b1)，否则进入[步骤3](#ld26f18828aa44c36bfa36be150e60e49)。
+   ![](D:/IDP%E5%8F%91%E5%B8%83%E4%BB%B6/220/For%20OpenHarmony2.0/zh/quick-start/figures/bootloader.png)
 
-2.  <a name="l5b42e79a33ea4d35982b78a22913b0b1"></a>（单板初次启动必选）修改U-boot的bootcmd及bootargs内容：该步骤为固化操作，若不修改参数只需执行一次。每次复位单板均会自动进入系统。
+2. 提示如下图中的重启开发板的提示信息时，重启开发板，然后在控制台输出“SUCCESS”表示设置成功。
 
-    >![](../public_sys-resources/icon-notice.gif) **须知：** 
-    >U-boot引导程序默认会有2秒的等待时间，用户可使用回车打断等待并显示"hisilicon"，通过**reset**命令可再次启动系统。
+   ![](figure/reset_success.png)
 
-    **表 1**  U-boot修改命令
+3. 在任务栏点击**Monitor**按钮，启动串口工具。
 
-    <a name="table1323441103813"></a>
-    <table><thead align="left"><tr id="row1423410183818"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p623461163818"><a name="p623461163818"></a><a name="p623461163818"></a>执行命令</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p42341014388"><a name="p42341014388"></a><a name="p42341014388"></a>命令解释</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1623471113817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p102341719385"><a name="p102341719385"></a><a name="p102341719385"></a>setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800; go 0x80000000";</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p92347120389"><a name="p92347120389"></a><a name="p92347120389"></a>读取FLASH起始地址为0x800（单位为512B，即1MB），大小为0x4800（单位为512B，即9MB）的内容到0x80000000的内存地址，该大小（9MB）与IDE中所填写OHOS_Image.bin文件大小<strong id="b15685648113111"><a name="b15685648113111"></a><a name="b15685648113111"></a>必须相同</strong>。</p>
-    </td>
-    </tr>
-    <tr id="row12234912381"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p172306219392"><a name="p172306219392"></a><a name="p172306219392"></a>setenv bootargs "console=ttyAMA0,115200n8 root=emmc fstype=vfat rootaddr=10M rootsize=20M rw";</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p13489329396"><a name="p13489329396"></a><a name="p13489329396"></a>表示设置启动参数，输出模式为串口输出，波特率为115200，数据位8，rootfs挂载于emmc器件，文件系统类型为vfat，</p>
-    <p id="p12481832163913"><a name="p12481832163913"></a><a name="p12481832163913"></a>“rootaddr=10M rootsize=20M rw”处对应填入rootfs.img的烧写起始位置与长度，此处与IDE中新增rootfs.img文件时所填大小<strong id="b24816327398"><a name="b24816327398"></a><a name="b24816327398"></a>必须相同</strong>。</p>
-    </td>
-    </tr>
-    <tr id="row18234161153820"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p823417118386"><a name="p823417118386"></a><a name="p823417118386"></a>saveenv</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p32341616389"><a name="p32341616389"></a><a name="p32341616389"></a>表示保存当前配置。</p>
-    </td>
-    </tr>
-    <tr id="row192345113811"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p7235111183819"><a name="p7235111183819"></a><a name="p7235111183819"></a>reset</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p123781411114016"><a name="p123781411114016"></a><a name="p123781411114016"></a>表示复位单板。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+   ![](figure/monitor.png)
 
-    >![](../public_sys-resources/icon-notice.gif) **须知：** 
-    >**“go 0x80000000”**为可选指令，默认配置已将该指令固化在启动参数中，单板复位后可自动启动。若想切换为手动启动，可在U-boot启动倒数阶段使用"回车"打断自动启动。
+4. 然后根据界面提示进行操作，直到在界面打印**OHOS \#**信息，表示系统启动成功。
 
-3.  <a name="ld26f18828aa44c36bfa36be150e60e49"></a>输入**“reset”**指令并回车，重启单板，启动成功如下图，输入回车串口显示OHOS字样。
+   ![](figure/reboot_success.png)
 
-    **图 3**  系统启动图<a name="fig784813366444"></a>  
-    ![](figure/系统启动图.png "系统启动图")
+
 
 
 ## 执行应用程序<a name="section5276734182615"></a>

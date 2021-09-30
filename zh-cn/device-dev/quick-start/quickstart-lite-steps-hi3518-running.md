@@ -203,64 +203,28 @@ Hi3518EV300开发板的代码烧录支持USB烧录和串口烧录两种方式，
 
 ## 镜像运行<a name="section17612105814480"></a>
 
-1.  连接串口。
+在完成Hi3518EV300的烧录后，还需要设置BootLoader引导程序，才能运行OpenHarmony系统。
 
-    >![](../public_sys-resources/icon-notice.gif) **须知：** 
-    >若无法连接串口，请参考[常见问题](quickstart-lite-steps-hi3518-faqs.md#zh-cn_topic_0000001053466255_section14871149155911)进行排查。
+1. 在Hi3518EV300任务中，点击**Configure bootloader（Boot OS）**进行配置即可。
 
-    **图 2**  连接串口图<a name="fig049019841616"></a>  
-    ![](figure/连接串口图-14.png "连接串口图-14")
+   > ![](../public_sys-resources/icon-note.gif) **说明：** 
+   > DevEco Device Tool针对Hi3518EV300开发板的BootLoader设置进行了适配，无需开发者手动修改。
 
-    1.  单击**Monitor**打开串口。
-    2.  连续输入回车直到串口显示"hisilicon"。
-    3.  单板初次启动或修改启动参数，请进入[步骤2](#li9441185382314)，否则进入[步骤3](#li6442853122312)。
+   ![](figure/3518_bootloader.png)
 
-2.  <a name="li9441185382314"></a>（初次烧写必选）修改U-boot的bootcmd及bootargs内容：该步骤为固化操作，可保存执行结果，但U-boot重新烧入，则需要再次执行下述步骤。
+2. 提示如下图中的重启开发板的提示信息时，重启开发板，然后在控制台输出“SUCCESS”表示设置成功。
 
-    **表 1**  U-boot修改命令
+   ![](figure/3518_reset_success.png)
 
-    <a name="table1336762011222"></a>
-    <table><thead align="left"><tr id="row193681920182219"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p3368202016229"><a name="p3368202016229"></a><a name="p3368202016229"></a>执行命令</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p936812052217"><a name="p936812052217"></a><a name="p936812052217"></a>命令解释</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row10368142032210"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1636882092214"><a name="p1636882092214"></a><a name="p1636882092214"></a>setenv bootcmd "sf probe 0;sf read 0x40000000 0x100000 0x600000;go 0x40000000";</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p17368202082213"><a name="p17368202082213"></a><a name="p17368202082213"></a>设置bootcmd内容，选择FLASH器件0，读取FLASH起始地址为0x100000，大小为0x600000字节的内容到0x40000000的内存地址，此处0x600000为6MB，与IDE中填写OHOS_Image.bin的文件大小<strong id="b1355784283916"><a name="b1355784283916"></a><a name="b1355784283916"></a>必须相同</strong>。</p>
-    </td>
-    </tr>
-    <tr id="row136814209227"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p234414019231"><a name="p234414019231"></a><a name="p234414019231"></a>setenv bootargs "console=ttyAMA0,115200n8 root=flash fstype=jffs2 rw rootaddr=7M rootsize=8M";</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p10368102010223"><a name="p10368102010223"></a><a name="p10368102010223"></a>表示设置bootargs参数为串口输出，波特率为115200，数据位8，rootfs挂载于FLASH上，文件系统类型为jffs2 rw，以支持可读写JFFS2文件系统。“rootaddr=7M rootsize=8M”处对应填入实际rootfs.img的烧写起始位置与长度，与IDE内所填大小<strong id="b1461083410403"><a name="b1461083410403"></a><a name="b1461083410403"></a>必须相同</strong>。</p>
-    </td>
-    </tr>
-    <tr id="row2368120112219"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p20368142072217"><a name="p20368142072217"></a><a name="p20368142072217"></a>saveenv</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p19368102020220"><a name="p19368102020220"></a><a name="p19368102020220"></a>表示保存当前配置。</p>
-    </td>
-    </tr>
-    <tr id="row63689205220"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p3368162015223"><a name="p3368162015223"></a><a name="p3368162015223"></a>reset</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p23681820182217"><a name="p23681820182217"></a><a name="p23681820182217"></a>表示复位单板。</p>
-    </td>
-    </tr>
-    <tr id="row346253519253"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p16462113512251"><a name="p16462113512251"></a><a name="p16462113512251"></a>pri</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p3462335152514"><a name="p3462335152514"></a><a name="p3462335152514"></a>表示查看显示参数。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+3. 在任务栏点击**Monitor**按钮，启动串口工具。
 
-    >![](../public_sys-resources/icon-notice.gif) **须知：** 
-    >**“go 0x40000000”**为可选指令，默认配置已将该指令固化在启动参数中，单板复位后可自动启动。若想切换为手动启动，可在U-boot启动倒数阶段使用"回车"打断自动启动。
+   ![](figure/3518_monitor.png)
 
-3.  <a name="li6442853122312"></a>若启动时显示**"hisilicon \#**字样，请输入**“reset”**指令，等待系统自启动进入系统，系统启动后，显示**“OHOS”**字样，输入**”./bin/helloworld”**并回车，显示成功结果如下图所示。
+4. 然后根据界面提示进行操作，直到在界面打印OHOS \#信息，表示系统启动成功。
 
-    **图 3**  启动成功并执行应用程序图<a name="fig2103121215172"></a>  
-    ![](figure/启动成功并执行应用程序图.png "启动成功并执行应用程序图")
+   ![](figure/3518_reboot_success.png)
+
+
 
 
 ## 下一步学习<a name="section9712145420182"></a>
