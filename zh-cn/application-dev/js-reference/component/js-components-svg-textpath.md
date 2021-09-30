@@ -1,0 +1,383 @@
+# textPath<a name="ZH-CN_TOPIC_0000001164417164"></a>
+
+-   [权限列表](#zh-cn_topic_0000001127284818_section11257113618419)
+-   [子组件](#zh-cn_topic_0000001127284818_section9288143101012)
+-   [属性](#zh-cn_topic_0000001127284818_section2907183951110)
+-   [示例](#zh-cn_topic_0000001127284818_section360556124815)
+
+沿路径绘制文本。
+
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>-   从API Version 7 开始支持。
+>-   按指定的路径绘制文本，可嵌套子标签tspan分段。
+>-   只支持被父元素标签text嵌套。
+
+## 权限列表<a name="zh-cn_topic_0000001127284818_section11257113618419"></a>
+
+无
+
+## 子组件<a name="zh-cn_topic_0000001127284818_section9288143101012"></a>
+
+tspan。
+
+## 属性<a name="zh-cn_topic_0000001127284818_section2907183951110"></a>
+
+支持以下表格中的属性。
+
+<a name="zh-cn_topic_0000001127284818_table20633101642315"></a>
+<table><thead align="left"><tr id="zh-cn_topic_0000001127284818_row663331618238"><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p id="zh-cn_topic_0000001127284818_aaf1247770b244944bbcc9f28d9a6f00b"><a name="zh-cn_topic_0000001127284818_aaf1247770b244944bbcc9f28d9a6f00b"></a><a name="zh-cn_topic_0000001127284818_aaf1247770b244944bbcc9f28d9a6f00b"></a>名称</p>
+</th>
+<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p id="zh-cn_topic_0000001127284818_a6efc3502761f4faf9630e484280f75b6"><a name="zh-cn_topic_0000001127284818_a6efc3502761f4faf9630e484280f75b6"></a><a name="zh-cn_topic_0000001127284818_a6efc3502761f4faf9630e484280f75b6"></a>类型</p>
+</th>
+<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p id="zh-cn_topic_0000001127284818_a27a37273d9ad47569ddbcb8db985d302"><a name="zh-cn_topic_0000001127284818_a27a37273d9ad47569ddbcb8db985d302"></a><a name="zh-cn_topic_0000001127284818_a27a37273d9ad47569ddbcb8db985d302"></a>默认值</p>
+</th>
+<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p id="zh-cn_topic_0000001127284818_p824610360217"><a name="zh-cn_topic_0000001127284818_p824610360217"></a><a name="zh-cn_topic_0000001127284818_p824610360217"></a>必填</p>
+</th>
+<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p id="zh-cn_topic_0000001127284818_a2ff3361bfd3b420ba4967452d2ddd098"><a name="zh-cn_topic_0000001127284818_a2ff3361bfd3b420ba4967452d2ddd098"></a><a name="zh-cn_topic_0000001127284818_a2ff3361bfd3b420ba4967452d2ddd098"></a>描述</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="zh-cn_topic_0000001127284818_row36332165231"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_a83b6dd280109466fb015e64de1ef4df3"><a name="zh-cn_topic_0000001127284818_a83b6dd280109466fb015e64de1ef4df3"></a><a name="zh-cn_topic_0000001127284818_a83b6dd280109466fb015e64de1ef4df3"></a>id</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_abc38fa2b85854bc687af75eb17a00a4d"><a name="zh-cn_topic_0000001127284818_abc38fa2b85854bc687af75eb17a00a4d"></a><a name="zh-cn_topic_0000001127284818_abc38fa2b85854bc687af75eb17a00a4d"></a>string</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_a8d12e4af905d4743a5ec9cd6018d2972"><a name="zh-cn_topic_0000001127284818_a8d12e4af905d4743a5ec9cd6018d2972"></a><a name="zh-cn_topic_0000001127284818_a8d12e4af905d4743a5ec9cd6018d2972"></a>-</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p42461736102118"><a name="zh-cn_topic_0000001127284818_p42461736102118"></a><a name="zh-cn_topic_0000001127284818_p42461736102118"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_a1a1731af05554f119fa365748f276bb2"><a name="zh-cn_topic_0000001127284818_a1a1731af05554f119fa365748f276bb2"></a><a name="zh-cn_topic_0000001127284818_a1a1731af05554f119fa365748f276bb2"></a>组件的唯一标识。</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row1634171618236"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_a3cf785e2a2a043268d168f58d59207c8"><a name="zh-cn_topic_0000001127284818_a3cf785e2a2a043268d168f58d59207c8"></a><a name="zh-cn_topic_0000001127284818_a3cf785e2a2a043268d168f58d59207c8"></a>path</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_aa9b258d23e1e425dbc2ffe8edbc91a42"><a name="zh-cn_topic_0000001127284818_aa9b258d23e1e425dbc2ffe8edbc91a42"></a><a name="zh-cn_topic_0000001127284818_aa9b258d23e1e425dbc2ffe8edbc91a42"></a>string</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_ac312df4f14444c98955ed055456848a7"><a name="zh-cn_topic_0000001127284818_ac312df4f14444c98955ed055456848a7"></a><a name="zh-cn_topic_0000001127284818_ac312df4f14444c98955ed055456848a7"></a>0</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p1624612362219"><a name="zh-cn_topic_0000001127284818_p1624612362219"></a><a name="zh-cn_topic_0000001127284818_p1624612362219"></a>是</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_adbe7ecbee96b4f938b04a4b8d62791bf"><a name="zh-cn_topic_0000001127284818_adbe7ecbee96b4f938b04a4b8d62791bf"></a><a name="zh-cn_topic_0000001127284818_adbe7ecbee96b4f938b04a4b8d62791bf"></a>设置路径的形状。</p>
+<p id="zh-cn_topic_0000001127284818_p46751932620"><a name="zh-cn_topic_0000001127284818_p46751932620"></a><a name="zh-cn_topic_0000001127284818_p46751932620"></a>字母指令表示的意义如下：</p>
+<a name="zh-cn_topic_0000001127284818_ul146753321226"></a><a name="zh-cn_topic_0000001127284818_ul146753321226"></a><ul id="zh-cn_topic_0000001127284818_ul146753321226"><li>M = moveto</li><li>L = lineto</li><li>H = horizontal lineto</li><li>V = vertical lineto</li><li>C = curveto</li><li>S = smooth curveto</li><li>Q = quadratic Belzier curve</li><li>T = smooth quadratic Belzier curveto</li><li>A = elliptical Arc</li><li>Z = closepath</li></ul>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row1259531661611"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_p1359601671613"><a name="zh-cn_topic_0000001127284818_p1359601671613"></a><a name="zh-cn_topic_0000001127284818_p1359601671613"></a>startOffset</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_p65967163165"><a name="zh-cn_topic_0000001127284818_p65967163165"></a><a name="zh-cn_topic_0000001127284818_p65967163165"></a>&lt;length&gt;|&lt;percentage&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_p10596151671610"><a name="zh-cn_topic_0000001127284818_p10596151671610"></a><a name="zh-cn_topic_0000001127284818_p10596151671610"></a>0</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p1059610169169"><a name="zh-cn_topic_0000001127284818_p1059610169169"></a><a name="zh-cn_topic_0000001127284818_p1059610169169"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_p125961416161611"><a name="zh-cn_topic_0000001127284818_p125961416161611"></a><a name="zh-cn_topic_0000001127284818_p125961416161611"></a>设置文本沿path绘制的起始偏移。</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row1539273652316"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_p136018399235"><a name="zh-cn_topic_0000001127284818_p136018399235"></a><a name="zh-cn_topic_0000001127284818_p136018399235"></a>font-size</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_p2360123910236"><a name="zh-cn_topic_0000001127284818_p2360123910236"></a><a name="zh-cn_topic_0000001127284818_p2360123910236"></a>&lt;length&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_p1536023952313"><a name="zh-cn_topic_0000001127284818_p1536023952313"></a><a name="zh-cn_topic_0000001127284818_p1536023952313"></a>30px</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p123607393234"><a name="zh-cn_topic_0000001127284818_p123607393234"></a><a name="zh-cn_topic_0000001127284818_p123607393234"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_p1736083914232"><a name="zh-cn_topic_0000001127284818_p1736083914232"></a><a name="zh-cn_topic_0000001127284818_p1736083914232"></a>设置文本的尺寸。</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row1530844982318"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_p1161816329244"><a name="zh-cn_topic_0000001127284818_p1161816329244"></a><a name="zh-cn_topic_0000001127284818_p1161816329244"></a>fill</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_p46187324247"><a name="zh-cn_topic_0000001127284818_p46187324247"></a><a name="zh-cn_topic_0000001127284818_p46187324247"></a>&lt;color&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_p19618123262419"><a name="zh-cn_topic_0000001127284818_p19618123262419"></a><a name="zh-cn_topic_0000001127284818_p19618123262419"></a>black</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p861833282418"><a name="zh-cn_topic_0000001127284818_p861833282418"></a><a name="zh-cn_topic_0000001127284818_p861833282418"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_p1661813321247"><a name="zh-cn_topic_0000001127284818_p1661813321247"></a><a name="zh-cn_topic_0000001127284818_p1661813321247"></a>字体填充颜色</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row818611518331"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_a4a0bae0e1bb946d6bc7bf30e0a535343"><a name="zh-cn_topic_0000001127284818_a4a0bae0e1bb946d6bc7bf30e0a535343"></a><a name="zh-cn_topic_0000001127284818_a4a0bae0e1bb946d6bc7bf30e0a535343"></a>opacity</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_a2679e4565dbc4370b40d1be831a6148d"><a name="zh-cn_topic_0000001127284818_a2679e4565dbc4370b40d1be831a6148d"></a><a name="zh-cn_topic_0000001127284818_a2679e4565dbc4370b40d1be831a6148d"></a>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_a0b0d56a245e14779a5561f99cd1ce9f6"><a name="zh-cn_topic_0000001127284818_a0b0d56a245e14779a5561f99cd1ce9f6"></a><a name="zh-cn_topic_0000001127284818_a0b0d56a245e14779a5561f99cd1ce9f6"></a>1</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p324614367213"><a name="zh-cn_topic_0000001127284818_p324614367213"></a><a name="zh-cn_topic_0000001127284818_p324614367213"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_aa0471c31e05e465aa9c42312b9ab9f6f"><a name="zh-cn_topic_0000001127284818_aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="zh-cn_topic_0000001127284818_aa0471c31e05e465aa9c42312b9ab9f6f"></a>元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row2924118202412"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_p196181832182412"><a name="zh-cn_topic_0000001127284818_p196181832182412"></a><a name="zh-cn_topic_0000001127284818_p196181832182412"></a>fill-opacity</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_p86181832172411"><a name="zh-cn_topic_0000001127284818_p86181832172411"></a><a name="zh-cn_topic_0000001127284818_p86181832172411"></a>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_p196181432132411"><a name="zh-cn_topic_0000001127284818_p196181432132411"></a><a name="zh-cn_topic_0000001127284818_p196181432132411"></a>1.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p11618632132414"><a name="zh-cn_topic_0000001127284818_p11618632132414"></a><a name="zh-cn_topic_0000001127284818_p11618632132414"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_p8618113232414"><a name="zh-cn_topic_0000001127284818_p8618113232414"></a><a name="zh-cn_topic_0000001127284818_p8618113232414"></a>字体填充透明度</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row2173171232411"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_p10618143213244"><a name="zh-cn_topic_0000001127284818_p10618143213244"></a><a name="zh-cn_topic_0000001127284818_p10618143213244"></a>stroke</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_p8618432172410"><a name="zh-cn_topic_0000001127284818_p8618432172410"></a><a name="zh-cn_topic_0000001127284818_p8618432172410"></a>&lt;color&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_p11618113218244"><a name="zh-cn_topic_0000001127284818_p11618113218244"></a><a name="zh-cn_topic_0000001127284818_p11618113218244"></a>black</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p17618143212415"><a name="zh-cn_topic_0000001127284818_p17618143212415"></a><a name="zh-cn_topic_0000001127284818_p17618143212415"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_p11619183202419"><a name="zh-cn_topic_0000001127284818_p11619183202419"></a><a name="zh-cn_topic_0000001127284818_p11619183202419"></a>绘制字体边框并指定颜色</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row2291916102415"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_p206197323248"><a name="zh-cn_topic_0000001127284818_p206197323248"></a><a name="zh-cn_topic_0000001127284818_p206197323248"></a>stroke-width</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_p46191932112412"><a name="zh-cn_topic_0000001127284818_p46191932112412"></a><a name="zh-cn_topic_0000001127284818_p46191932112412"></a>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_p18619632182413"><a name="zh-cn_topic_0000001127284818_p18619632182413"></a><a name="zh-cn_topic_0000001127284818_p18619632182413"></a>1px</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p126191432162418"><a name="zh-cn_topic_0000001127284818_p126191432162418"></a><a name="zh-cn_topic_0000001127284818_p126191432162418"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_p1061943252417"><a name="zh-cn_topic_0000001127284818_p1061943252417"></a><a name="zh-cn_topic_0000001127284818_p1061943252417"></a>字体边框宽度</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001127284818_row20141131962416"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001127284818_p11619173282415"><a name="zh-cn_topic_0000001127284818_p11619173282415"></a><a name="zh-cn_topic_0000001127284818_p11619173282415"></a>stroke-opacity</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001127284818_p761918327249"><a name="zh-cn_topic_0000001127284818_p761918327249"></a><a name="zh-cn_topic_0000001127284818_p761918327249"></a>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001127284818_p8619193222410"><a name="zh-cn_topic_0000001127284818_p8619193222410"></a><a name="zh-cn_topic_0000001127284818_p8619193222410"></a>1.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001127284818_p56194325241"><a name="zh-cn_topic_0000001127284818_p56194325241"></a><a name="zh-cn_topic_0000001127284818_p56194325241"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001127284818_p1461983272420"><a name="zh-cn_topic_0000001127284818_p1461983272420"></a><a name="zh-cn_topic_0000001127284818_p1461983272420"></a>字体边框透明度</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+## 示例<a name="zh-cn_topic_0000001127284818_section360556124815"></a>
+
+textspan属性示例，textpath文本内容沿着属性path中的路径绘制文本，起点偏移20%的path长度。（绘制的元素<path\>曲线仅做参照）。
+
+```
+<!-- xxx.css -->
+.container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 1200px;
+    width: 600px;
+}
+```
+
+```
+<!-- xxx.hml -->
+<div class="container">
+    <svg fill="#00FF00" x="50">
+        <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none"></path>
+        <text>
+            <textpath fill="blue" startOffset="20%" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
+                This is textpath test.
+            </textpath>
+        </text>
+    </svg>
+</div>
+```
+
+**图 1** <a name="zh-cn_topic_0000001127284818_fig3511513152614"></a>  
+![](figures/zh-cn_image_0000001173164775.png "zh-cn_image_0000001173164775")
+
+textpath与tspan组合示例与效果图
+
+```
+<!-- xxx.hml -->
+<div class="container">
+    <svg fill="#00FF00" x="50">
+        <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none"></path>
+        <text>
+            <textpath fill="blue" startOffset="20%" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="15px">
+                <tspan dx="-50px" fill="red">This is tspan onTextPath.</tspan>
+                <tspan font-size="25px">Let's play.</tspan>
+                <tspan font-size="30px" fill="#00FF00">12345678912354567891234567891234567891234567891234567890</tspan>
+            </textpath>
+        </text>
+    </svg>
+</div>
+```
+
+**图 2** <a name="zh-cn_topic_0000001127284818_fig61591047132814"></a>  
+![](figures/zh-cn_image_0000001173324691.png "zh-cn_image_0000001173324691")
+
+```
+<!-- xxx.hml -->
+<div class="container">
+    <svg fill="#00FF00" x="50">
+        <path d="M40,760 Q360,760 360,580 Q360,440 200,440 Q40,440 40,560 Q40,680 180,680 Q280,680 300,600" stroke="red" fill="none"></path>
+        <text>
+            <textpath fill="#D2691E" path="M40,760 Q360,760 360,580 Q360,440 200,440 Q40,440 40,560 Q40,680 180,680 Q280,680 300,600" font-size="30px" stroke="black" stroke-width="1" >
+                This is TextPath.
+                <tspan font-size="20px" fill="red">This is tspan onTextPath.</tspan>
+                <tspan font-size="30px">Let's play.</tspan>
+                <tspan font-size="40px" fill="#00FF00"  stroke="blue" stroke-width="2">12345678912354567891234567891234567891234567891234567890</tspan>
+            </textpath>
+        </text>
+    </svg>
+</div>
+```
+
+**图 3** <a name="zh-cn_topic_0000001127284818_fig1118120416291"></a>  
+![](figures/zh-cn_image_0000001173324689.png "zh-cn_image_0000001173324689")
+
+```
+<!-- xxx.hml -->
+<div class="container">
+    <svg fill="#00FF00" x="50">
+        <path d="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" stroke="red" fill="none"></path>
+        <!--      数值百分比    -->
+        <text>
+            <textpath fill="#D2691E" path="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" font-size="30px">
+                This is TextPath.
+                <tspan x="50" fill="blue">This is first tspan.</tspan>
+                <tspan x="50%">This is second tspan.</tspan>
+                <tspan dx="10%">12345678912354567891234567891234567891234567891234567890</tspan>
+            </textpath>
+        </text>
+    </svg>
+</div>
+```
+
+**图 4** <a name="zh-cn_topic_0000001127284818_fig1525135516293"></a>  
+![](figures/zh-cn_image_0000001127284930.png "zh-cn_image_0000001127284930")
+
+startOffset属性动画，文本绘制时起点偏移从10%运动到40%，不绘制超出path长度范围的文本。
+
+```
+<!-- xxx.css -->
+.container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 3000px;
+    width: 1080px;
+}
+```
+
+```
+<!-- xxx.hml -->
+<div class="container">
+   <svg fill="#00FF00">
+      <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none"></path>
+      <text>
+         <textpath fill="blue" startOffset="10%" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="15px">
+            <tspan dx="-50px" fill="red">This is tspan onTextPath.</tspan>
+            <tspan font-size="25px">Let's play.</tspan>
+            <tspan font-size="30px" fill="#00FF00">12345678912354567891234567891234567891234567891234567890</tspan>
+            <animate attributeName="startOffset" from="10%" to="40%" dur="3s" repeatCount="indefinite"></animate>
+         </textpath>
+      </text>
+   </svg>
+</div>
+```
+
+![](figures/textpath-animate1.gif)
+
+textpath与tspan组合属性动画与效果图
+
+```
+<!-- xxx.hml -->
+<div class="container">
+  <svg fill="#00FF00">
+    <path d="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" stroke="red" fill="none"></path>
+    <text>
+        <textpath fill="#D2691E" path="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" font-size="30px">
+            This is TextPath.
+            <tspan x="50" fill="blue">
+                tspan attribute x|rotate
+                <animate attributeName="x" from="50" to="100" dur="5s" repeatCount="indefinite"></animate>
+                <animate attributeName="rotate" from="0" to="360" dur="5s" repeatCount="indefinite"></animate>
+            </tspan>
+            <tspan x="30%">tspan static.</tspan>
+            <tspan>
+                tspan attribute dx|opacity
+                <animate attributeName="dx" from="0%" to="30%" dur="3s" repeatCount="indefinite"></animate>
+                <animate attributeName="opacity" from="0.01" to="0.99" dur="3s" repeatCount="indefinite"></animate>
+             </tspan>
+             <tspan dx="5%">tspan move</tspan>
+        </textpath>
+    </text>
+  </svg>
+</div>
+```
+
+![](figures/textpath-animate2.gif)
+
+\(1\) "tspan attribute x|rotate"  文本绘制起点偏移从50px运动到100px，顺时针旋转0度到360度。
+
+\(2\) "tspan attribute dx|opacity" 在 "tspan static." 绘制结束后再开始绘制，向后偏移量从0%运动到30%，透明度从浅到深变化。
+
+\(3\) "tspan move" 在上一段tspan绘制完成后，向后偏移5%的距离进行绘制，呈现跟随前一段tspan运动的效果。
+
+textpath与tspan组合属性动画与效果图
+
+```
+<!-- xxx.hml -->
+<div class="container">
+   <svg fill="#00FF00">
+     <path d="M40,1560 Q360,1560 360,1380 Q360,1240 200,1240 Q40,1240 40,1360 Q40,1480 180,1480 Q280,1480 300,1400" stroke="red" fill="none"></path>
+     <text>
+        <textpath fill="#D2691E" path="M40,1560 Q360,1560 360,1380 Q360,1240 200,1240 Q40,1240 40,1360 Q40,1480 180,1480 Q280,1480 300,1400" font-size="30px">
+            This is TextPath.
+            <tspan dx="20" fill="blue">
+                tspan attribute fill|fill-opacity
+                <animate attributeName="fill" from="blue" to="red" dur="3s" repeatCount="indefinite"></animate>
+                <animate attributeName="fill-opacity" from="0.01" to="0.99" dur="3s" repeatCount="indefinite"></animate>
+            </tspan>
+            <tspan dx="20" fill="blue">
+                tspan attribute font-size
+                <animate attributeName="font-size" from="10" to="50" dur="3s" repeatCount="indefinite"></animate>
+             </tspan>
+        </textpath>
+        <tspan font-size="30">Single tspan</tspan>
+     </text>
+   </svg>
+</div>
+```
+
+![](figures/textpath-animate3.gif)
+
+\(1\) "This is TextPath." 在path上无偏移绘制第一段文本内容，大小30px，颜色"\#D2691E"。
+
+\(2\) "tspan attribute fill|fill-opacity"  相对上一段文本结束后偏移20px，颜色从蓝到红，透明度从浅到深。
+
+\(3\) "tspan attribute font-size" 绘制起点相对上一段结束后偏移20px，起点静止，字体大小从10px到50px，整体长度持续拉长。
+
+\(4\) "Single tspan" 在上一段的尾部做水平绘制，呈现跟随上一段运动的效果。
+
+textpath与tspan组合属性动画与效果图
+
+```
+<!-- xxx.hml -->
+<div class="container">
+   <svg fill="#00FF00">
+     <path d="M40,1960 Q360,1960 360,1780 Q360,1640 200,1640 Q40,1640 40,1760 Q40,1880 180,1880 Q280,1880 300,1800" stroke="red" fill="none"></path>
+     <text>
+        <textpath fill="#D2691E" path="M40,1960 Q360,1960 360,1780 Q360,1640 200,1640 Q40,1640 40,1760 Q40,1880 180,1880 Q280,1880 300,1800" font-size="30px">
+            This is TextPath.
+            <tspan dx="20" fill="blue">
+                tspan attribute stroke
+                <animate attributeName="stroke" from="red" to="#00FF00" dur="3s" repeatCount="indefinite"></animate>
+            </tspan>
+            <tspan dx="20" fill="white" stroke="red">
+                tspan attribute stroke-width-opacity
+                <animate attributeName="stroke-width" from="1" to="5" dur="3s" repeatCount="indefinite"></animate>
+                <animate attributeName="stroke-opacity" from="0.01" to="0.99" dur="3s" repeatCount="indefinite"></animate>
+             </tspan>
+        </textpath>
+     </text>
+   </svg>
+</div>
+```
+
+![](figures/textpath-animate4.gif)
+
+\(1\) "tspan attribute stroke" 轮廓颜色从红色逐渐转变成绿色。
+
+\(2\) "tspan attribute stroke-width-opacity" 轮廓宽度从细1px转变粗5px，透明度从浅到深。
+
