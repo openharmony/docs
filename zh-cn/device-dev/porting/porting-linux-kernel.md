@@ -1,7 +1,7 @@
 # 一种快速移植OpenHarmony Linux内核的方法
 
-- [摘要](#摘要)
-- [移植到三方芯片平台的整体思路概述](#移植到三方芯片平台的整体思路概述)
+- [移植概述](#移植概述)
+- [移植到三方芯片平台的整体思路](#移植到三方芯片平台的整体思路)
     - [内核态层和用户态层](#内核态层和用户态层)
     - [获得内核态层的两种方法](#获得内核态层的两种方法)
     - [快速移植到三方芯片平台的流程简介](#快速移植到三方芯片平台的流程简介)
@@ -12,13 +12,13 @@
     - [编译Image](#编译image)
     - [编译和运行HDF测试用例（可选）](#编译和运行hdf测试用例-可选-)
 
-## 摘要
+## 移植概述
 
 
 本文面向希望将OpenHarmony 移植到三方芯片平台硬件的开发者，介绍一种借助三方芯片平台自带Linux内核的现有能力，快速移植OpenHarmony到三方芯片平台的方法。
 
 
-## 移植到三方芯片平台的整体思路概述
+## 移植到三方芯片平台的整体思路
 
 
 ### 内核态层和用户态层
@@ -62,12 +62,11 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 
 也就是直接采用OH Linux内核，然后再加入OH的其他内核态特性。
 
-方案二中的OH Linux内核，当前所支持的三方芯片平台还不够丰富。为了能够响应三方开发者快速移植OpenHarmony到三方芯片平台的要求，下文会着重介绍方法一，即借助三方已有的Linux内核，来快速移植OpenHarmony到三方芯片平台上。
+当前方法二中OH Linux内核支持的三方芯片平台还不够丰富。为了能够响应三方开发者快速移植OpenHarmony的要求，下文会着重介绍方法一，即借助三方已有的Linux内核，来快速移植OpenHarmony。
 
 
-### 快速移植到三方芯片平台的流程简介
+### 借助已有Linux内核来移植OpenHarmony的流程
 
-本节介绍以上的方法一，即借助三方Linux内核，快速的移植OpenHarmony到三方的芯片平台。
 
 整个移植流程可以分为三步：
 
@@ -87,7 +86,7 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 
 ### 整体构建环境的准备
 
-1. 将三方内核纳入OpenHarmony编译环境
+1. 将三方内核纳入OpenHarmony编译环境。
    完整编译过一遍标准 Hi3516DV300 内核之后，clone 树莓派内核源码并复制到 manifest 输出目录下：
 
    ```
@@ -124,9 +123,9 @@ drivers/staging/hilog
 drivers/staging/hievent
 ```
 
-将以上代码，从OpenHarmony内核代码目录kernel/linux/linux-4.19/drivers/staging中，拷贝到out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b/drivers/staging 下
+将以上代码，从OpenHarmony内核代码目录kernel/linux/linux-4.19/drivers/staging中，拷贝到out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b/drivers/staging 下。
 
-在内核config项中打开对应的CONFIG控制宏：CONFIG_HILOG和CONFIG_HIEVENT
+在内核config项中打开对应的CONFIG控制宏：CONFIG_HILOG和CONFIG_HIEVENT。
 
 具体日志使用说明请参见：[Hilog_lite组件介绍](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README_zh.md)。
 
@@ -136,8 +135,8 @@ drivers/staging/hievent
 1. 打HDF 补丁
    在 Linux 内核打 HDF 补丁时，执行补丁 shell 脚本合入 HDF 补丁。
 
-   1. 配置HDF补丁脚本的三个变量参数；
-   2. 获取 patch_hdf.sh 脚本；
+   1. 配置HDF补丁脚本的三个变量参数。
+   2. 获取 patch_hdf.sh 脚本。
    3. 执行 patch_hdf.sh 脚本依次传入三个变量参数。
    patch_hdf.sh 脚本三个参数含义为：第一个入参为工程根目录路径，第二入参为内核目录路径，第三个入参为hdf补丁文件。
 
@@ -208,12 +207,12 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
 **用例编译和测试方法**
 
-通过HDC工具把用例执行文件推送到设备中，然后执行用例即可，操作步骤如下：
-1. 编译hdf测试用例
+通过[hdc_std工具](http://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)把用例执行文件推送到设备中，然后执行用例即可，操作步骤如下：
+1. 编译hdf测试用例。
 
-2. 用HDC工具推送测试文件到设备中
+2. 用hdc_std工具推送测试文件到设备中。
 
-3. 进入设备data/test目录，执行测试文件即可
+3. 进入设备data/test目录，执行测试文件即可。
 
 用例编译和测试详细步骤如下：
 
@@ -227,13 +226,13 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
    等待编译完成。
 
 2. 将测试文件移动到目标移植设备上（以树莓派为例）
-   方法一：使用 [hdc_std 工具](http://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)
+   方法一：使用 [hdc_std 工具](http://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)。
 
-   1. 先在树莓派里新建data/test目录
+   1. 先在树莓派里新建data/test目录。
        ```
        mkdir -p data/test
        ```
-   2. 推送依赖库和测试用例到树莓派
+   2. 推送依赖库和测试用例到树莓派。
        ```
        hdc file send XXX\out\ohos-arm-release\hdf\hdf\libhdf_test_common.z.so  /system/lib
        hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\config\hdf_adapter_uhdf_test_config  /data/test
@@ -276,17 +275,17 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
        ```
    4. 如果所有测试文件输出均显示 PASSED，那么 HDF 功能即安装成功。
        示例：DevMgrTest 用例成功结果显示：
-              ```
-              ./DevMgrTest
-              Running main() from gmock_main.cc
-              [==========] Running 1 test from 1 test case.
-              [----------] Global test environment set-up.
-              [----------] 1 test from DevMgrTest
-              [ RUN      ] DevMgrTest.DriverLoaderTest_001
-              [       OK ] DevMgrTest.DriverLoaderTest_001 (0 ms)
-              [----------] 1 test from DevMgrTest (0 ms total)
-              [----------] Global test environment tear-down
-              Gtest xml output finished
-              [==========] 1 test from 1 test case ran. (0 ms total)
-              [  PASSED  ] 1 test.
-              ```
+       ```
+       ./DevMgrTest
+       Running main() from gmock_main.cc
+       [==========] Running 1 test from 1 test case.
+       [----------] Global test environment set-up.
+       [----------] 1 test from DevMgrTest
+       [ RUN      ] DevMgrTest.DriverLoaderTest_001
+       [       OK ] DevMgrTest.DriverLoaderTest_001 (0 ms)
+       [----------] 1 test from DevMgrTest (0 ms total)
+       [----------] Global test environment tear-down
+       Gtest xml output finished
+       [==========] 1 test from 1 test case ran. (0 ms total)
+       [  PASSED  ] 1 test.
+       ```
