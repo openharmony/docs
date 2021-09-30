@@ -222,7 +222,7 @@ After programming is completed, you need to configure the bootloader to run the 
 
 4. Follow the onscreen instructions until  **OHOS \#**  is displayed, indicating that the system is started successfully.
 
-   1. ![](figure/reboot_success.png)
+   ![](figure/reboot_success.png)
 
 
 ## Running a Program<a name="section5276734182615"></a>
