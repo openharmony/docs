@@ -81,6 +81,7 @@ Perform the following steps to download the code in the repository to your compu
     Update your local branch.
 
     ```
+    git remote add origin $remote_link
     git fetch origin
     git checkout master  
     git pull --rebase 
