@@ -5,7 +5,6 @@
 To help the OpenHarmony application ecosystem develop in a healthy and orderly way, this Charter defines the governance process and API lifecycle (create, change, deprecate, and delete) and specifies basic design requirements of OpenHarmony APIs.
 
 
-
 ## API Scope and Definition
 
 APIs locate between the application layer and framework layer. They are predefined class and methods provided by the framework layer and system to developers for the development of system and third-party applications. The APIs do not include OEM-extended interfaces.
@@ -16,12 +15,16 @@ OpenHarmony APIs are classified into the following types by authorized usage:
 
 - Public API: released publicly for third-party application development.
 - System API: released privately for applications with authorization signature and privileged applications only.
-- Test API: released with restrictions and used only for X test suite (XTS) or application debugging. Unless otherwise specified, the terms defined in this Charter apply to Public APIs, System APIs, and Test APIs of OpenHarmony. Additional requirements or exceptions for the System and Test APIs are provided as a supplement.
+- Test API: released with restrictions and used only for X test suite (XTS) or application debugging.
+
+Unless otherwise specified, the terms defined in this Charter apply to Public APIs, System APIs, and Test APIs of OpenHarmony. Additional requirements or exceptions for the System and Test APIs are provided as a supplement.
 
 OpenHarmony APIs are classified into the following types by programming language:
 
-- JS APIs: JavaScript programming interfaces open to applications.
-- Native APIs: C/C++ programming interfaces open to applications. Unless otherwise specified, the terms defined in this Charter also apply to JS APIs, and Native APIs.
+- JS APIs: JavaScript programming APIs open to applications.
+- Native APIs: C/C++ programming APIs open to applications.
+
+Unless otherwise specified, the terms defined in this Charter apply to JS APIs and Native APIs.
 
 ## API Governance
 
