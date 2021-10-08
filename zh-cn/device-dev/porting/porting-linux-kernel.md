@@ -15,7 +15,7 @@
 ## 移植概述
 
 
-本文面向希望将OpenHarmony 移植到三方芯片平台硬件的开发者，介绍一种借助三方芯片平台自带Linux内核的现有能力，快速移植OpenHarmony到三方芯片平台的方法。
+本文面向希望将OpenHarmony移植到三方芯片平台硬件的开发者，介绍一种借助三方芯片平台自带Linux内核的现有能力，快速移植OpenHarmony到三方芯片平台的方法。
 
 
 ## 移植到三方芯片平台的整体思路
@@ -27,13 +27,13 @@
 
 我们可以把OpenHarmony简单的分为
 
-OpenHarmony = OpenHarmony 内核态层 + OpenHarmony 用户态层
+OpenHarmony = OpenHarmony内核态层 + OpenHarmony用户态层
 
 ![zh-cn_image_0000001162805936](figure/zh-cn_image_0000001162805936.png)
 
-其中OpenHarmony 内核态层就是上图的紫色部分，可以看到，它主要由内核本身（如Linux Kernel，LiteOS），和一些运行在内核态的一些特性组成，比如HDF等。
+其中OpenHarmony内核态层就是上图的紫色部分，可以看到，它主要由内核本身（如Linux Kernel，LiteOS），和一些运行在内核态的一些特性组成，比如HDF等。
 
-而OpenHarmony用户态层，在上图，就是紫色之外的部分。可以看到，由下往上看，它主要由系统服务层，框架层，应用层组成。在这儿我们将这三层整体称为“OpenHarmony 用户态层”。
+而OpenHarmony用户态层，在上图，就是紫色之外的部分。可以看到，由下往上看，它主要由系统服务层，框架层，应用层组成。在这儿我们将这三层整体称为“OpenHarmony用户态层”。
 
 为什么这么区分呢？因为我们这篇文章主要是要讨论如何快速的把OpenHarmony移植到三方芯片平台上。而OpenHarmony的用户态层，整体来说和三方芯片平台的耦合度不高，移植较为方便。而内核态层中的内核本身以及HDF驱动框架等，和三方芯片平台的耦合度较高，是移植的重难点。我们先做这个区分，就是为了先把聚光灯打到我们最需要关注的OpenHarmony内核态层上，开始分析和解题。另外说明，本文只包含Linux内核的快速移植，不包含LiteOS的移植。
 
@@ -42,23 +42,23 @@ OpenHarmony = OpenHarmony 内核态层 + OpenHarmony 用户态层
 
 为了表述方便，我们在下文部分地方用“OH”代替“OpenHarmony”。
 
-将OH 内核态层继续分解
+将OH内核态层继续分解
 
-OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选特性，如必选特性HDF，今后的可选特性HMDFS等）
+OH内核态层 = OH Linux内核 + OH内核态特性（可选特性或者必选特性，如必选特性HDF，今后的可选特性HMDFS等）
 
-而OH Linux内核  = 标准LTS Linux 内核  +  三方SoC芯片平台代码  +  OH内核态基础代码（支撑OH用户态层运行的最基础代码）
+而OH Linux内核 = 标准LTS Linux内核 + 三方SoC芯片平台代码 + OH内核态基础代码（支撑OH用户态层运行的最基础代码）
 
-因此OH 内核态层 = 标准LTS Linux 内核  +  三方SoC芯片平台代码  +  OH内核态基础代码  + OH内核态特性（如HDF，今后的HMDFS等）
+因此OH内核态层 = 标准LTS Linux内核 + 三方SoC芯片平台代码 + OH内核态基础代码 + OH内核态特性（如HDF，今后的HMDFS等）
 
 ![zh-cn_image_0000001208365855](figure/zh-cn_image_0000001208365855.png)
 
-而将前两项组合，标准LTS Linux 内核  +  三方SoC芯片平台代码，其实就是一个三方Linux内核的基础组成。从上面的推导可以看出，OpenHarmony 内核态层其实能够由两种方法得到：
+而将前两项组合，标准LTS Linux 内核 + 三方SoC芯片平台代码，其实就是一个三方Linux内核的基础组成。从上面的推导可以看出，OpenHarmony内核态层其实能够由两种方法得到：
 
-方法一：OH 内核态层 =  三方Linux内核 +  OH内核态基础代码  + OH内核态特性（如HDF，今后的HMDFS等）
+方法一：OH内核态层 = 三方Linux内核 + OH内核态基础代码 + OH内核态特性（如HDF，今后的HMDFS等）
 
 也就是直接借助三方Linux内核，再加上基础OH内核态基础代码、以及HDF等OH内核态特性。
 
-方法二：OH 内核态层 =  OH Linux内核 + OH内核态特性（如HDF，今后的HMDFS等）
+方法二：OH内核态层 = OH Linux内核 + OH内核态特性（如HDF，今后的HMDFS等）
 
 也就是直接采用OH Linux内核，然后再加入OH的其他内核态特性。
 
@@ -87,7 +87,8 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
 ### 整体构建环境的准备
 
 1. 将三方内核纳入OpenHarmony编译环境。
-   完整编译过一遍标准 Hi3516DV300 内核之后，clone 树莓派内核源码并复制到 manifest 输出目录下：
+
+   完整编译过一遍标准Hi3516DV300内核之后，clone树莓派内核源码并复制到manifest输出目录下：
 
    ```
    export PROJ_ROOT=[OpenHarmony manifest]
@@ -95,9 +96,9 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
    cp -r oh-rpi3b-kernel $PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b
    ```
 
-2. 配置树莓派内核编译环境
+2. 配置树莓派内核编译环境。
    ```shell
-   # 进入树莓派 kernel 目录
+   # 进入树莓派kernel目录
    cd out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b
    
    # 配置编译环境,使用工程项目自带的clang
@@ -106,8 +107,9 @@ OH 内核态层 =  OH Linux内核 + OH内核态特性（可选特性或者必选
    export PRODUCT_PATH=vendor/hisilicon/Hi3516DV300
    ```
 
-3. 注释掉clang不识别的flag
-   PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b/arch/arm/Makefile 注释掉以下这一行：
+3. 注释掉clang不识别的flag。
+
+   PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b/arch/arm/Makefile注释掉以下这一行：
 
    ```makefile
    KBUILD_CFLAGS  +=-fno-omit-frame-pointer -mapcs -mno-sched-prolog
@@ -132,13 +134,15 @@ drivers/staging/hievent
 
 ### 内核态必选特性HDF的移植
 
-1. 打HDF 补丁
-   在 Linux 内核打 HDF 补丁时，执行补丁 shell 脚本合入 HDF 补丁。
+1. 打HDF补丁。
+
+   在Linux内核打HDF补丁时，执行补丁shell脚本合入HDF补丁。
 
    1. 配置HDF补丁脚本的三个变量参数。
-   2. 获取 patch_hdf.sh 脚本。
-   3. 执行 patch_hdf.sh 脚本依次传入三个变量参数。
-   patch_hdf.sh 脚本三个参数含义为：第一个入参为工程根目录路径，第二入参为内核目录路径，第三个入参为hdf补丁文件。
+   2. 获取patch_hdf.sh脚本。
+   3. 执行patch_hdf.sh脚本依次传入三个变量参数。
+
+   patch_hdf.sh脚本三个参数含义为：第一个入参为工程根目录路径，第二入参为内核目录路径，第三个入参为hdf补丁文件。
 
    ```
    ./patch_hdf.sh [工程根目录路径] [内核目录路径] [hdf补丁文件]
@@ -147,15 +151,16 @@ drivers/staging/hievent
    以树莓派3b为示例介绍：
 
    ```
-   # 进入树莓派 kernel 目录
+   # 进入树莓派kernel目录
    $PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
    $PROJ_ROOT  # 指定工程根目录路径 \
    $PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b  # 打补丁的内核目录路径 \
    $PROJ_ROOT/kernel/linux/patches/linux-4.19/hi3516dv300_patch/hdf.patch  # HDF补丁文件
    ```
 
-2. 配置config
-   提供HDF基本配置，如果需要其他功能，通过 menuconfig 打开对应驱动开关即可。
+2. 配置config。
+
+   提供HDF基本配置，如果需要其他功能，通过menuconfig打开对应驱动开关即可。
 
    HDF补丁执行成功后，默认HDF开关是关闭的，打开HDF基本配置选项如下：
 
@@ -170,10 +175,10 @@ drivers/staging/hievent
    CONFIG_DRIVERS_HDF_TEST=y
    ```
 
-   或者通过 menuconfig 界面打开HDF相关配置，命令如下：
+   或者通过menuconfig界面打开HDF相关配置，命令如下：
 
    ```
-   # 生成 .config 配置文件
+   # 生成.config配置文件
    make ${MAKE_OPTIONS} rpi3b_oh_defconfig
    
    # 更改HDF内核配置
@@ -182,7 +187,7 @@ drivers/staging/hievent
    # [*]   HDF driver framework support --->
    ```
 
-   配置如下（在 Device Drivers -&gt; HDF driver framework support 目录下）：
+   配置如下（在Device Drivers -&gt; HDF driver framework support目录下）：
 
    ![zh-cn_image_0000001208524821](figure/zh-cn_image_0000001208524821.png)
 
@@ -216,7 +221,8 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
 用例编译和测试详细步骤如下：
 
-1. 编译hdf测试用例
+1. 编译hdf测试用例。
+
    编译hdf测试用例命令和文件路径如下：
 
    ```
@@ -227,7 +233,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
 2. 将测试文件移动到目标移植设备上（以树莓派为例）
 
-   方法一：使用 [hdc_std工具](http://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)。
+   方法一：使用[hdc_std工具](http://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)。
 
    1. 先在树莓派里新建data/test目录。
        ```
@@ -244,7 +250,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
    方法二：移动到储存卡内，启动树莓派之后装载。
 
    1. 拔掉树莓派连接电脑的串口、USB线，然后拔下数据卡。
-   2. 将数据卡插入到电脑的读取口，将编译好的 zImage 和测试文件夹 test/ 下载到电脑，然后移动到数据卡的根目录下。zImage 文件会被替换，请提前做好备份。
+   2. 将数据卡插入到电脑的读取口，将编译好的zImage和测试文件夹test/下载到电脑，然后移动到数据卡的根目录下。zImage文件会被替换，请提前做好备份。
    3. 最后将数据卡插回树莓派。
        ```
        # 让树莓派文件系统读取储存卡根目录
@@ -259,7 +265,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
        ```
 
 3. 执行测试
-   1. 进入目录执行测试文件目录 data/test。
+   1. 进入目录执行测试文件目录data/test。
        ```
        cd /data/test
        ```
@@ -274,8 +280,9 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
        ./OsalTest
        ./SbufTest
        ```
-   4. 如果所有测试文件输出均显示 PASSED，那么 HDF 功能即安装成功。
-       示例：DevMgrTest 用例成功结果显示：
+   4. 如果所有测试文件输出均显示PASSED，那么HDF功能即安装成功。
+
+       示例：DevMgrTest用例成功结果显示：
        ```
        ./DevMgrTest
        Running main() from gmock_main.cc
