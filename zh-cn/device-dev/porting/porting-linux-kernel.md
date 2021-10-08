@@ -127,6 +127,14 @@ drivers/staging/hievent
 
 将以上代码，从OpenHarmony内核代码目录kernel/linux/linux-4.19/drivers/staging中，拷贝到out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b/drivers/staging 下。
 
+在三方内核的drivers/staging/Kconfig文件内增加如下代码：
+```
+source "drivers/staging/hilog/Kconfig"
+
+source "drivers/staging/hievent/Kconfig"
+
+```
+
 在内核config项中打开对应的CONFIG控制宏：CONFIG_HILOG和CONFIG_HIEVENT。
 
 具体日志使用说明请参见：[Hilog_lite组件介绍](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README_zh.md)。
