@@ -8,7 +8,7 @@
 
 You must sign the Developer Certificate of Origin (DCO) before you can contribute to the community.
 
-[Sign the DCO and check the signing status](https://dco.openharmony.io/sign/Z2l0ZWUlMkZvcGVuX2hhcm1vbnk=).
+Click [here](https://dco.openharmony.io/sign/Z2l0ZWUlMkZvcGVuX2hhcm1vbnk=) to sign the DCO, and click [here](https://dco.openharmony.io/check-sign-status) to check the signing status.
 
 **Code of Conduct**
 
