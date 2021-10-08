@@ -1,14 +1,5 @@
 ### DataUriUtils模块(JS端SDK接口)
 
-#### 支持设备
-
-| API                                            | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 智慧视觉设备 |
-| ---------------------------------------------- | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| DataUriUtils.getId(uri: string)                | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataUriUtils.attachId(uri: string, id: number) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataUriUtils.deleteId(uri: string)             | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataUriUtils.updateId(uri: string, id: number) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-
 #### 权限列表
 
 ohos.permission.RUNNING_LOCK permission
