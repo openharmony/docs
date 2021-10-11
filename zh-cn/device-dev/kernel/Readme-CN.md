@@ -164,7 +164,7 @@
           - [tftp](kernel-small-debug-shell-net-tftp.md)
       - [魔法键使用方法](kernel-small-debug-shell-magickey.md)
       - [用户态异常信息说明](kernel-small-debug-shell-error.md)
-    - [Trace](kernel-small-debug-trace.md)
+    - [Trace调测](kernel-small-debug-trace.md)
     - [进程调测](kernel-small-debug-process.md)
       - [CPU占用率](kernel-small-debug-process-cpu.md)
     - [内存调测](kernel-small-debug-memory.md)
