@@ -106,7 +106,7 @@ repo forall -c 'git lfs pull'
 | 语言编译运行时 | 新增方舟JS编译工具链和运行时，支持OpenHarmony&nbsp;JS&nbsp;UI框架应用开发和运行 | NA | 
 | 媒体 | -&nbsp;相机组件中新增录像功能<br/>-&nbsp;新增音频录制功能接口 | 新增支持播放mp3格式文件 | 
 | JS&nbsp;UI框架 | -&nbsp;支持迁移相关生命周期<br/>-&nbsp;支持系统服务弹窗<br/>-&nbsp;支持使用JS开发service类型和data类型的Ability | NA | 
-| 内核 | 新增支持OpenHarmony&nbsp;Common&nbsp;Linux&nbsp;Kernel&nbsp;5.10 | 轻量系统新增支持OpenHarmony&nbsp;Common&nbsp;Linux&nbsp;Kernel&nbsp;5.10 | 
+| 内核 | 新增支持OpenHarmony&nbsp;Common&nbsp;Linux&nbsp;Kernel&nbsp;5.10 | 小型系统新增支持OpenHarmony&nbsp;Common&nbsp;Linux&nbsp;Kernel&nbsp;5.10 | 
 | DFX | -&nbsp;提供HiAppEvent应用事件打点的JS&nbsp;API<br/>-&nbsp;提供HiCollie卡死检测框架<br/>-&nbsp;提供HiTrace分布式调用链基础库 | NA | 
 | 驱动 | 新增I2S、陀螺仪、压力、霍尔驱动模型 | NA | 
 | 安全 | 在标准设备间的分布式组网下，提供应用跨设备访问对端资源或能力时的权限校验功能 | 轻量系统上新增权限属性字段及其写入接口，上层应用可通过该字段实现相关业务（如弹框授权场景下，用户拒绝授权后不再弹框） | 
