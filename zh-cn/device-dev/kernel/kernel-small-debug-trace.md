@@ -189,7 +189,7 @@ OpenHarmony LiteOS-A内核的Trace模块提供下面几种功能，接口详细�
 ```
 BOOL Example_HwiNumFilter(UINT32 hwiNum)
 {
-    if ((hwi == TIMER_INT) || (hwi == DMA_INT)) {
+    if ((hwiNum == TIMER_INT) || (hwiNum == DMA_INT)) {
         return TRUE;
     }
     return FALSE;
