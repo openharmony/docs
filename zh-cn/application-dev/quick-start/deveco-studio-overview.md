@@ -1,100 +1,48 @@
-# 概述<a name="ZH-CN_TOPIC_0000001116414108"></a>
+# 概述
 
--   [总体说明](#section189422248491)
--   [使用约束](#section65191625782)
--   [DevEco Studio演进路标](#section187875207166)
+- [总体说明](#总体说明)
+- [使用约束](#使用约束)
+- [DevEco Studio演进路标](#deveco-studio演进路标)
 
-## 总体说明<a name="section189422248491"></a>
+## 总体说明
 
-DevEco Studio是HarmonyOS的配套的开发IDE，因为HarmonyOS是基于OpenHarmony开发的，因此，使用DevEco Studio（配套HarmonyOS）也可以进行OpenHarmony的应用开发。
+DevEco Studio 是 HarmonyOS 的配套的开发 IDE ，因为HarmonyOS 是基于OpenHarmony 开发的，因此，使用 DevEco Studio （配套 HarmonyOS ）也可以进行 OpenHarmony 的应用开发。
 
 使用DevEco Studio开发OpenHarmony应用的流程与开发HarmonyOS的流程完全一样，本文档仅描述OpenHarmony应用开发与HarmonyOS应用开发的差异点。
 
--   **搭建开发环境差异**：OpenHarmony应用开发环境需要先安装OpenHarmony SDK，具体可参考[配置OpenHarmony SDK](configuring-openharmony-sdk.md)章节。
--   **导入OpenHarmony工程**：OpenHarmony应用开发，只能通过导入Sample工程的方式来创建一个新工程，具体可参考[通过导入Sample方式创建新工程](import-sample-to-create-project.md)。
--   **调试签名配置**：OpenHarmony应用运行在真机设备上，需要对应用进行签名，关于OpenHarmony应用的签名指导请参考[配置OpenHarmony应用签名信息](configuring-openharmony-app-signature.md)。
--   **在真机设备上运行应用**：需要使用hdc工具将OpenHarmony的hap包推送到真机设备上进行安装，具体可参考[安装运行OpenHarmony应用](installing-openharmony-app.md)。
+- **搭建开发环境差异**：OpenHarmony应用开发环境需要先安装OpenHarmony SDK，具体可参考[配置OpenHarmony SDK](../quick-start/configuring-openharmony-sdk.md)章节。
+
+- **导入OpenHarmony工程**：OpenHarmony应用开发，只能通过导入Sample工程的方式来创建一个新工程，具体可参考[通过导入Sample方式创建新工程](../quick-start/import-sample-to-create-project.md)。
+
+- **调试签名配置**：OpenHarmony应用运行在真机设备上，需要对应用进行签名，关于OpenHarmony应用的签名指导请参考[配置OpenHarmony应用签名信息](../quick-start/configuring-openharmony-app-signature.md)。
+
+- **在真机设备上运行应用**：需要使用hdc工具将OpenHarmony的hap包推送到真机设备上进行安装，具体可参考[安装运行OpenHarmony应用](../quick-start/installing-openharmony-app.md)。
 
 关于DevEco Studio的详细操作指导，请访问[HUAWEI DevEco Studio使用指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/tools_overview-0000001053582387)。
 
-## 使用约束<a name="section65191625782"></a>
 
--   OpenHarmony只支持使用JS语言开发应用，不支持Java、C/C++语言。
--   OpenHarmony开发环境DevEco Studio暂只支持Windows系统。
+## 使用约束
+
+- OpenHarmony只支持使用JS语言开发应用，不支持Java、C/C++语言。
+
+- OpenHarmony开发环境DevEco Studio暂只支持Windows系统。
 
 OpenHarmony与HarmonyOS的开发工具都是DevEco Studio，下表为OpenHarmony相比HarmonyOS不支持的功能说明：
 
-<a name="table852516933419"></a>
-<table><thead align="left"><tr id="row1952618913415"><th class="cellrowborder" valign="top" width="29.882988298829883%" id="mcps1.1.4.1.1"><p id="p165268963418"><a name="p165268963418"></a><a name="p165268963418"></a>特性名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="36.783678367836785%" id="mcps1.1.4.1.2"><p id="p25262914349"><a name="p25262914349"></a><a name="p25262914349"></a>HarmonyOS版本</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.3"><p id="p125265912343"><a name="p125265912343"></a><a name="p125265912343"></a>OpenHarmony版本</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row3627192183319"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p1362817213320"><a name="p1362817213320"></a><a name="p1362817213320"></a>创建Module</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p8226191353"><a name="p8226191353"></a><a name="p8226191353"></a><strong id="b17226139143511"><a name="b17226139143511"></a><a name="b17226139143511"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p14226894353"><a name="p14226894353"></a><a name="p14226894353"></a><strong id="b122614963510"><a name="b122614963510"></a><a name="b122614963510"></a>X</strong></p>
-</td>
-</tr>
-<tr id="row955132319355"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p1655172423517"><a name="p1655172423517"></a><a name="p1655172423517"></a>服务卡片</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p1555192493516"><a name="p1555192493516"></a><a name="p1555192493516"></a><strong id="b11551102403511"><a name="b11551102403511"></a><a name="b11551102403511"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p85511324183514"><a name="p85511324183514"></a><a name="p85511324183514"></a><strong id="b255116244356"><a name="b255116244356"></a><a name="b255116244356"></a>X</strong></p>
-</td>
-</tr>
-<tr id="row1552619933411"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p11430122863614"><a name="p11430122863614"></a><a name="p11430122863614"></a>自动化签名</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p243122863614"><a name="p243122863614"></a><a name="p243122863614"></a><strong id="b14431122873617"><a name="b14431122873617"></a><a name="b14431122873617"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p4431162819362"><a name="p4431162819362"></a><a name="p4431162819362"></a><strong id="b4431328163619"><a name="b4431328163619"></a><a name="b4431328163619"></a>X</strong></p>
-</td>
-</tr>
-<tr id="row115263913344"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p1323118352362"><a name="p1323118352362"></a><a name="p1323118352362"></a>远程模拟器</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p723143573614"><a name="p723143573614"></a><a name="p723143573614"></a><strong id="b8231173533613"><a name="b8231173533613"></a><a name="b8231173533613"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p7231435143619"><a name="p7231435143619"></a><a name="p7231435143619"></a><strong id="b1523111352363"><a name="b1523111352363"></a><a name="b1523111352363"></a>X</strong></p>
-</td>
-</tr>
-<tr id="row183441037105115"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p5345237155119"><a name="p5345237155119"></a><a name="p5345237155119"></a>本地模拟器</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p393214320517"><a name="p393214320517"></a><a name="p393214320517"></a><strong id="b1693264315118"><a name="b1693264315118"></a><a name="b1693264315118"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p139324438515"><a name="p139324438515"></a><a name="p139324438515"></a><strong id="b169321543175116"><a name="b169321543175116"></a><a name="b169321543175116"></a>X</strong></p>
-</td>
-</tr>
-<tr id="row15269933419"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p152318351369"><a name="p152318351369"></a><a name="p152318351369"></a>使用DevEco Studio运行调试、日志查看、调优</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p623118353360"><a name="p623118353360"></a><a name="p623118353360"></a><strong id="b10231535143615"><a name="b10231535143615"></a><a name="b10231535143615"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p192313353367"><a name="p192313353367"></a><a name="p192313353367"></a><strong id="b1423123514368"><a name="b1423123514368"></a><a name="b1423123514368"></a>X</strong></p>
-</td>
-</tr>
-<tr id="row7357734143617"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p76694468363"><a name="p76694468363"></a><a name="p76694468363"></a>云测试</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p2066918465369"><a name="p2066918465369"></a><a name="p2066918465369"></a><strong id="b3669546133610"><a name="b3669546133610"></a><a name="b3669546133610"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p1266910467363"><a name="p1266910467363"></a><a name="p1266910467363"></a><strong id="b11669144693616"><a name="b11669144693616"></a><a name="b11669144693616"></a>X</strong></p>
-</td>
-</tr>
-<tr id="row124331939191517"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p146691546143619"><a name="p146691546143619"></a><a name="p146691546143619"></a>安全测试</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p614815145371"><a name="p614815145371"></a><a name="p614815145371"></a><strong id="b101485149375"><a name="b101485149375"></a><a name="b101485149375"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p1514811149374"><a name="p1514811149374"></a><a name="p1514811149374"></a><strong id="b01481614133717"><a name="b01481614133717"></a><a name="b01481614133717"></a>X</strong></p>
-</td>
-</tr>
-</tbody>
-</table>
+| 特性名称 | HarmonyOS版本 | OpenHarmony版本 | 
+| -------- | -------- | -------- |
+| 创建Module | **√** | **X** | 
+| 服务卡片 | **√** | **X** | 
+| 自动化签名 | **√** | **X** | 
+| 远程模拟器 | **√** | **X** | 
+| 本地模拟器 | **√** | **X** | 
+| 使用DevEco&nbsp;Studio运行调试、日志查看、调优 | **√** | **X** | 
+| 云测试 | **√** | **X** | 
+| 安全测试 | **√** | **X** | 
 
-## DevEco Studio演进路标<a name="section187875207166"></a>
+
+## DevEco Studio演进路标
 
 Huawei DevEco Studio分阶段支持OpenHarmony应用开发的演进路标如下：
 
-![](figures/zh-cn_image_0000001210018359.png)
-
+![zh-cn_image_0000001210018359](figures/zh-cn_image_0000001210018359.png)

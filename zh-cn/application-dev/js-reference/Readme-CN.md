@@ -1,10 +1,10 @@
 # JS开发参考
 
--   [框架说明](js-framework.md)
+-   框架说明
     -   [文件组织](js-framework-file.md)
     -   [js标签配置](js-framework-js-tag.md)
     -   [app.js](js-framework-js-file.md)
-    -   [语法](js-framework-syntax.md)
+    -   语法
         -   [HML语法参考](js-framework-syntax-hml.md)
         -   [CSS语法参考](js-framework-syntax-css.md)
         -   [JS语法参考](js-framework-syntax-js.md)
@@ -14,7 +14,7 @@
     -   [多语言支持](js-framework-multiple-languages.md)
 
 -   [组件](component/Readme-CN.md)
-    -   [通用](component/js-components-common.md)
+    -   通用
         -   [通用属性](component/js-components-common-attributes.md)
         -   [通用样式](component/js-components-common-styles.md)
         -   [通用事件](component/js-components-common-events.md)
@@ -26,7 +26,7 @@
         -   [自定义字体样式](component/js-components-common-customizing-font.md)
         -   [原子布局](component/js-components-common-atomic-layout.md)
 
-    -   [容器组件](component/js-components-container.md)
+    -   容器组件
         -   [badge](component/js-components-container-badge.md)
         -   [dialog](component/js-components-container-dialog.md)
         -   [div](component/js-components-container-div.md)
@@ -45,7 +45,7 @@
         -   [tab-bar](component/js-components-container-tab-bar.md)
         -   [tab-content](component/js-components-container-tab-content.md)
 
-    -   [基础组件](component/js-components-basic.md)
+    -   基础组件
         -   [button](component/js-components-basic-button.md)
         -   [chart](component/js-components-basic-chart.md)
         -   [divider](component/js-components-basic-divider.md)
@@ -74,10 +74,10 @@
         -   [toolbar-item](component/js-components-basic-toolbar-item.md)
         -   [toggle](component/js-components-basic-toggle.md)
 
-    -   [媒体组件](component/js-components-media.md)
+    -   媒体组件
         -   [video](component/js-components-media-video.md)
 
-    -   [画布组件](component/js-components-canvas.md)
+    -   画布组件
         -   [canvas组件](component/js-components-canvas-canvas.md)
         -   [CanvasRenderingContext2D对象](component/js-components-canvas-canvasrenderingcontext2d.md)
         -   [Image对象](component/js-components-canvas-image.md)
@@ -88,15 +88,15 @@
         -   [OffscreenCanvas对象](component/js-components-canvas-offscreencanvas.md)
         -   [OffscreenCanvasRenderingContext2D对象](component/js-components-canvas-offscreencanvasrenderingcontext2d.md)
 
-    -   [栅格组件](component/js-components-grid.md)
+    -   栅格组件
         -   [基本概念](component/js-components-grid-basic-concepts.md)
         -   [grid-container](component/js-components-grid-container.md)
         -   [grid-row](component/js-components-grid-row.md)
         -   [grid-col](component/js-components-grid-col.md)
 
-    -   [svg组件](component/js-components-svg.md)
+    -   svg组件
         -   [通用属性](component/js-components-svg-common-attributes.md)
-        -   [svg](component/js-components-svg-0.md)
+        -   [svg](component/js-components-svg.md)
         -   [rect](component/js-components-svg-rect.md)
         -   [circle](component/js-components-svg-circle.md)
         -   [ellipse](component/js-components-svg-ellipse.md)
@@ -111,7 +111,7 @@
         -   [animateMotion](component/js-components-svg-animate-motion.md)
         -   [animateTransform](component/js-components-svg-animate-transform.md)
 
--   [自定义组件](component/js-components-custom.md)
+-   自定义组件
     -   [基本用法](component/js-components-custom-basic-usage.md)
     -   [自定义事件](component/js-components-custom-events.md)
     -   [Props](component/js-components-custom-props.md)
@@ -130,7 +130,7 @@
         -   [Notification模块](apis/js-apis-notification.md)
         -   [Context模块](apis/js-apis-Context.md)
 
-    - [基本功能](apis/js-apis-basic-features.md)
+    - 基本功能
         -   [应用上下文](apis/js-apis-system-app.md)
         -   [日志打印](apis/js-apis-basic-features-logs.md)
         -   [页面路由](apis/js-apis-system-router.md)
@@ -141,8 +141,8 @@
         -   [应用打点](apis/js-apis-hiappevent.md)
         -   [性能打点](apis/js-apis-bytrace.md)
         -   [分布式帐号管理](apis/js-apis-distributedaccount.md)
-  
-    -   [媒体](apis/js-apis-multmedia.md)
+    
+    -   媒体
         -   [音频管理](apis/js-apis-audio.md)
         -   [音频播放](apis/js-apis-media.md)
 
@@ -152,7 +152,7 @@
         -   [SIM卡管理](apis/js-apis-sim.md)
         -   [网络搜索](apis/js-apis-radio.md)
     
-    -   [数据管理](apis/js-apis-data.md)
+    -   数据管理
         -   [文件管理](apis/js-apis-fileio.md)
         -   [单版本分布式数据库](apis/js-apis-data-singlekvstore.md)
         -   [创建和获取分布式数据库](apis/js-apis-data-kvmanager.md)
@@ -160,8 +160,8 @@
         -   [分布式数据库操作描述](apis/js-apis-data-kvstore.md)
         -   [数据类型描述](apis/js-apis-data-type.md)
         -   [轻量级存储](apis/js-apis-data-storage.md)
-  
-    -   [设备管理](apis/js-apis-device-mgmt.md)
+    
+    -   设备管理
         -   [设备信息](apis/js-apis-deviceinfo.md)
         -   [系统属性](apis/js-apis-systemparameter.md)
         -   [系统恢复](apis/js-apis-update.md)
