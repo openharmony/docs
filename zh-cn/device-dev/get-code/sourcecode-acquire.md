@@ -7,7 +7,7 @@
     -   [前提条件](#section102871547153314)
     -   [操作步骤](#section429012478331)
 
--   [获取方式2：从HPM获取](#section463013147412)
+-   [获取方式2：从DevEco Marketplace获取](#section463013147412)
     -   [适用场景](#section26661067443)
     -   [前提条件](#section17544943123315)
     -   [操作步骤](#section954619433333)
@@ -27,7 +27,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../bundles/oem_bundle_standard_des.md)的形式开放，开发者可以通过如下其中一种方式获取：
 
 -   **获取方式1**：从码云代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
--   **获取方式2**：通过HPM包管理器获取。在[HPM](https://hpm.harmonyos.com)网站，查找满足需求的开源发行版，直接下载（或者定制后下载），再通过hpm-cli命令工具将所需的组件及工具链下载、安装到本地。
+-   **获取方式2**：通过[DevEco Marketplace](https://repo.harmonyos.com/#/cn/home)网站获取。访问[DevEco Marketplace](https://repo.harmonyos.com/#/cn/home)网站，查找满足需求的开源发行版，直接下载（或者定制后下载），再通过hpm-cli命令工具将所需的组件及工具链下载、安装到本地。
 -   **获取方式3**：从镜像站点下载归档后的发行版压缩文件。如果要获取旧版本的源码，也可通过此方式获取，此方式下载速度较快。
 -   **获取方式4**：从github代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 
@@ -50,7 +50,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 1.  注册码云gitee账号。
 2.  注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
-3.  安装[git客户端](http://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
+3.  安装[git客户端](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
 
     ```
     git config --global user.name "yourname"
@@ -98,11 +98,11 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     OpenHarmony发布版本源码获取方式请参考版本[Release-Notes](../../release-notes/Readme.md)。
 
 
-## 获取方式2：从HPM获取<a name="section463013147412"></a>
+## 获取方式2：从DevEco Marketplace获取<a name="section463013147412"></a>
 
 ### 适用场景<a name="section26661067443"></a>
 
-对于刚接触OpenHarmony的新用户，希望能够参考一些示例解决方案从而进行快速开发。可以在[HPM](https://hpm.harmonyos.com)网站获取下载开源发行版，也可以在开源发行版的基础上定制（添加或删除组件）。然后通过包管理器命令行工具（hpm-cli）将需要的组件及相关的编译工具链全部下载、安装到本地。
+对于刚接触OpenHarmony的新用户，希望能够参考一些示例解决方案从而进行快速开发。可以在[DevEco Marketplace](https://repo.harmonyos.com/#/cn/home)网站获取下载开源发行版，也可以在开源发行版的基础上定制（添加或删除组件）。然后通过包管理器命令行工具（hpm-cli）将需要的组件及相关的编译工具链全部下载、安装到本地。
 
 ### 前提条件<a name="section17544943123315"></a>
 
@@ -112,7 +112,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
     官网下载并在本地安装Node.js.
 
-    推荐安装  [Node.js](https://nodejs.org/)  12.x \(包含 npm 6.14.4\)或更高版本 \(推荐 12.13.0+\)。
+    [Node.js](https://nodejs.org/)  版本需不低于12.x \(包含 npm 6.14.4\)，推荐安装 LTS版本。
 
 2.  通过Node.js自带的npm安装hpm命令行工具。
 
@@ -138,13 +138,13 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 ### 操作步骤<a name="section954619433333"></a>
 
 1.  查找发行版。
-    1.  打开包管理页面[HPM](https://hpm.harmonyOS.com)，设定搜索的对象为“发行版“，如下图所示。
+    1.  访问[DevEco Marketplace](https://repo.harmonyos.com/#/cn/home)，设定搜索的对象为“设备组件“，并在左侧边栏选择“开源发行版“，如下图所示。
     2.  在搜索框输入关键字搜索，如“摄像头”。
     3.  结果中显示与关键字匹配的发行版，可以进一步根据组件类别等过滤条件（如：适配的开发板，内核）精确筛选。
     4.  查找合适的发行版，点击查看发行版的详情介绍。
 
-        **图 1**  包管理<a name="fig414435103619"></a>  
-        ![](figure/包管理.png "包管理")
+        **图 1**  包管理<a name="fig349416264520"></a>  
+        ![](figures/包管理.png "包管理")
 
 2.  了解发行版详情。
 
@@ -152,8 +152,8 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     2.  点击「直接下载」，将发行版下载到本地。
     3.  点击「定制组件」，将对发行版包含的组件进行定制（添加/删除）。
 
-    **图 2**  发行版示例<a name="fig950763112375"></a>  
-    ![](figure/发行版示例.png "发行版示例")
+    **图 2**  发行版示例<a name="fig142484411121"></a>  
+    ![](figures/发行版示例.png "发行版示例")
 
 3.  定制组件。
     1.  进入发行版的定制页面，如下图所示。
@@ -161,13 +161,13 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     3.  在右边填写您的项目基本信息，包括名称、版本、描述等信息。
     4.  点击“下载“，系统会根据您的选择，生成相应的OpenHarmony代码结构文件\(如my\_cust\_dist.zip\)，保存至本地文件。
 
-        **图 3**  组件定制<a name="fig13979182053817"></a>  
-        ![](figure/组件定制.png "组件定制")
+        **图 3**  组件定制<a name="fig1256020372197"></a>  
+        ![](figures/组件定制.png "组件定制")
 
-4.  下载安装组件。
-    1.  解压下载的压缩文件，用命令行工具CMD（Linux下的Shell终端）
-    2.  在解压后的文件目录下执行hpm install指令
-    3.  下载的组件存在工程目录下的ohos\_bundles文件夹中（部分组件安装后会将源码复制到指定目录下）。
+4.  安装组件。
+    1.  解压下载的压缩文件，用命令行工具CMD（Linux下的Shell终端）。
+    2.  在解压后的文件目录下执行hpm install指令，系统会自动下载并安装组件。安装窗口显示“Install sucessful”表示组件下载及安装成功。
+    3.  下载的组件将保存在工程目录下的ohos\_bundles文件夹中（部分组件安装后会将源码复制到指定目录下）。
 
 
 ## 获取方式3：从镜像站点获取<a name="section1186691118430"></a>
