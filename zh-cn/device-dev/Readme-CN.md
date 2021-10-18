@@ -83,7 +83,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><a name="ul12579137121512"></a><a name="ul12579137121512"></a><ul id="ul12579137121512"><li>针对特定芯片做移植适配</li><li>对三方库进行移植适配</li></ul>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul157903731520"></a><a name="ul157903731520"></a><ul id="ul157903731520"><li><a href="porting/porting-minichip.md">轻量系统芯片移植指导</a></li><li><a href="porting/porting-smallchip.md">小型系统芯片移植指导</a></li><li><a href="porting/porting-thirdparty.md">三方库移植指导</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul157903731520"></a><a name="ul157903731520"></a><ul id="ul157903731520"><li><a href="porting/porting-minichip.md">轻量系统芯片移植指导</a></li><li><a href="porting/porting-smallchip.md">小型系统芯片移植指导</a></li><li><a href="porting/porting-thirdparty.md">轻量和小型系统三方库移植指导</a></li></ul>
 </td>
 </tr>
 <tr id="row9601737181517"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p25791037131519"><a name="p25791037131519"></a><a name="p25791037131519"></a>贡献组件</p>
