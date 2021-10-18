@@ -1,35 +1,21 @@
-# 组件介绍<a name="ZH-CN_TOPIC_0000001063340551"></a>
+# 组件介绍
 
--   [组件分类](#section154381954142018)
+- [组件分类](#组件分类)
 
-组件（Component）是构建页面的核心，每个组件通过对数据和方法的简单封装，实现独立的可视、可交互功能单元。组件之间相互独立，随取随用，也可以在需求相同的地方重复使用。
+组件（Component）是构建页面的核心，每个组件通过对数据和方法的简单封装，实现独立的可视、可交互功能单元。组件之间相互独立，随取随用，也可以在需求相同的地方重复使用。关于组件的详细参考文档请参见[组件](../js-reference/component/Readme-CN.md)。
 
-## 组件分类<a name="section154381954142018"></a>
+开发者还可以通过组件间合理的搭配定义满足业务需求的新组件，减少开发量，自定义组件的开发方法请参见[自定义组件](../js-reference/component/js-components-custom.md)。
+
+## 组件分类
 
 根据组件的功能，可以分为以下四大类：
 
-<a name="table1566416553433"></a>
-<table><thead align="left"><tr id="row466410559436"><th class="cellrowborder" valign="top" width="33.23%" id="mcps1.1.3.1.1"><p id="p1166485514432"><a name="p1166485514432"></a><a name="p1166485514432"></a>组件类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="66.77%" id="mcps1.1.3.1.2"><p id="p146651555174320"><a name="p146651555174320"></a><a name="p146651555174320"></a>主要组件</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row166525516430"><td class="cellrowborder" valign="top" width="33.23%" headers="mcps1.1.3.1.1 "><p id="p116655558432"><a name="p116655558432"></a><a name="p116655558432"></a>基础组件</p>
-</td>
-<td class="cellrowborder" valign="top" width="66.77%" headers="mcps1.1.3.1.2 "><p id="p12145036194419"><a name="p12145036194419"></a><a name="p12145036194419"></a>text、image、progress、rating、span、marquee、image-animator、divider、search、menu、chart</p>
-</td>
-</tr>
-<tr id="row10665555154310"><td class="cellrowborder" valign="top" width="33.23%" headers="mcps1.1.3.1.1 "><p id="p1266535584311"><a name="p1266535584311"></a><a name="p1266535584311"></a>容器组件</p>
-</td>
-<td class="cellrowborder" valign="top" width="66.77%" headers="mcps1.1.3.1.2 "><p id="p18127648144417"><a name="p18127648144417"></a><a name="p18127648144417"></a>div、list、list-item、stack、swiper、tabs、tab-bar、tab-content、list-item-group、refresh、dialog</p>
-</td>
-</tr>
-<tr id="row3665175512436"><td class="cellrowborder" valign="top" width="33.23%" headers="mcps1.1.3.1.1 "><p id="p196651055164310"><a name="p196651055164310"></a><a name="p196651055164310"></a>画布组件</p>
-</td>
-<td class="cellrowborder" valign="top" width="66.77%" headers="mcps1.1.3.1.2 "><p id="p066545564313"><a name="p066545564313"></a><a name="p066545564313"></a>canvas</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 组件类型 | 主要组件 | 
+| -------- | -------- |
+| 基础组件 | button、chart、divider、image、image-animator、input、label、marquee、menu、option、picker、picker-view、piece、progress、qrcode、rating、richtext、search、select、slider、span、switch、text、textarea、toolbar、toolbar-item、toggle | 
+| 容器组件 | badge、dialog、div、form、list、list-item、list-item-group、panel、popup、refresh、stack、stepper、stepper-item、swiper、tabs、tab-bar、tab-content | 
+|媒体组件|video|
+| 画布组件 | canvas |
+|栅格组件|grid-container、grid-row、grid-col|
+|svg组件|svg、rect、circle、ellipse、path、line、polyline、polygon、text、tspan、textPath、animate、animateMotion、animateTransform|
 

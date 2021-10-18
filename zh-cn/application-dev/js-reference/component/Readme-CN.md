@@ -80,9 +80,9 @@
     -   [grid-row](js-components-grid-row.md)
     -   [grid-col](js-components-grid-col.md)
 
--   [svg组件](js-components-svg.md)
+-   [svg组件](js-svg.md)
     -   [通用属性](js-components-svg-common-attributes.md)
-    -   [svg](js-components-svg-0.md)
+    -   [svg](js-components-svg.md)
     -   [rect](js-components-svg-rect.md)
     -   [circle](js-components-svg-circle.md)
     -   [ellipse](js-components-svg-ellipse.md)

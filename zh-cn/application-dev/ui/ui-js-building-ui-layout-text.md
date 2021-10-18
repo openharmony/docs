@@ -1,6 +1,7 @@
-# 添加标题行和文本区域<a name="ZH-CN_TOPIC_0000001063749052"></a>
+# 添加标题行和文本区域
 
 实现标题和文本区域最常用的是基础组件text。text组件用于展示文本，可以设置不同的属性和样式，文本内容需要写在标签内容区。在页面中插入标题和文本区域的示例如下：
+
 
 ```
 <!-- xxx.hml -->
@@ -10,6 +11,7 @@
   <text class="paragraph-text">{{paragraphSecond}}</text>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -31,6 +33,7 @@
 }
 ```
 
+
 ```
 // xxx.js
 export default {
@@ -41,4 +44,3 @@ export default {
   },
 }
 ```
-

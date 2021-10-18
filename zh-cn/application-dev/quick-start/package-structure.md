@@ -1,8 +1,10 @@
-# 包结构说明<a name="ZH-CN_TOPIC_0000001117322842"></a>
+# 包结构说明
 
 在应用开发的工程中，需要在config.json配置文件中对应用的包结构进行声明。
 
+
 配置文件示例如下：
+
 
 ```
 {
@@ -67,9 +69,12 @@
 }
 ```
 
+
 **包结构声明需要注意以下约束：**
 
--   "package"字段命名要保证在相同bundleName的应用内唯一。
--   "abilities"字段下只能声明一个ability。
--   "abilities"字段中ability的"name"字段命名要保证在相同bundleName的应用内唯一。
 
+- "package"字段命名要保证在相同bundleName的应用内唯一。
+
+- "abilities"字段下只能声明一个ability。
+
+- "abilities"字段中ability的"name"字段命名要保证在相同bundleName的应用内唯一。

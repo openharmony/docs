@@ -57,7 +57,9 @@
 
 
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
->从 API Version 6 开始支持。
+>
+>- 从 API Version 6 开始支持。
+>- 标记<sup>7+</sup>的接口从API Version 7开始支持。
 
 ## 导入模块<a name="zh-cn_topic_0000001208447259_s56d19203690d4782bfc74069abb6bd71"></a>
 
@@ -72,35 +74,8 @@ import fileio from '@ohos.fileio';
 ## 使用说明<a name="zh-cn_topic_0000001208447259_section17323786612"></a>
 
 使用该功能模块对文件/目录进行操作前，需要先获取其绝对路径。
-
-<a name="zh-cn_topic_0000001208447259_table859142263817"></a>
-<table><thead align="left"><tr id="zh-cn_topic_0000001208447259_row165922243812"><th class="cellrowborder" valign="top" width="21.6%" id="mcps1.1.4.1.1"><p id="zh-cn_topic_0000001208447259_p20593226383"><a name="zh-cn_topic_0000001208447259_p20593226383"></a><a name="zh-cn_topic_0000001208447259_p20593226383"></a>目录类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.57000000000001%" id="mcps1.1.4.1.2"><p id="zh-cn_topic_0000001208447259_p125911229389"><a name="zh-cn_topic_0000001208447259_p125911229389"></a><a name="zh-cn_topic_0000001208447259_p125911229389"></a>说明</p>
-</th>
-<th class="cellrowborder" valign="top" width="24.830000000000002%" id="mcps1.1.4.1.3"><p id="zh-cn_topic_0000001208447259_p1177425414331"><a name="zh-cn_topic_0000001208447259_p1177425414331"></a><a name="zh-cn_topic_0000001208447259_p1177425414331"></a>相关接口</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="zh-cn_topic_0000001208447259_row14604221386"><td class="cellrowborder" valign="top" width="21.6%" headers="mcps1.1.4.1.1 "><p id="zh-cn_topic_0000001208447259_p0605228382"><a name="zh-cn_topic_0000001208447259_p0605228382"></a><a name="zh-cn_topic_0000001208447259_p0605228382"></a>内部存储的缓存目录</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.57000000000001%" headers="mcps1.1.4.1.2 "><p id="zh-cn_topic_0000001208447259_p76010229385"><a name="zh-cn_topic_0000001208447259_p76010229385"></a><a name="zh-cn_topic_0000001208447259_p76010229385"></a>可读写，随时可能清除，不保证持久性。一般用作下载临时目录或缓存目录。</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.830000000000002%" headers="mcps1.1.4.1.3 "><p id="zh-cn_topic_0000001208447259_p1677525420331"><a name="zh-cn_topic_0000001208447259_p1677525420331"></a><a name="zh-cn_topic_0000001208447259_p1677525420331"></a>getCacheDir</p>
-</td>
-</tr>
-<tr id="zh-cn_topic_0000001208447259_row20601622183813"><td class="cellrowborder" valign="top" width="21.6%" headers="mcps1.1.4.1.1 "><p id="zh-cn_topic_0000001208447259_p166062273813"><a name="zh-cn_topic_0000001208447259_p166062273813"></a><a name="zh-cn_topic_0000001208447259_p166062273813"></a>内部存储目录</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.57000000000001%" headers="mcps1.1.4.1.2 "><p id="zh-cn_topic_0000001208447259_p19601522103813"><a name="zh-cn_topic_0000001208447259_p19601522103813"></a><a name="zh-cn_topic_0000001208447259_p19601522103813"></a>随应用卸载删除。</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.830000000000002%" headers="mcps1.1.4.1.3 "><p id="zh-cn_topic_0000001208447259_p147753546339"><a name="zh-cn_topic_0000001208447259_p147753546339"></a><a name="zh-cn_topic_0000001208447259_p147753546339"></a>getFilesDir</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-“文件/目录绝对路径”=“应用目录路径”+“文件/目录名”
-
+“文件/目录绝对路径”=“应用目录路径”+“文件/目录名”。
+应用目录路径可通过[Context模块的接口getOrCreateLocalDir](js-apis-Context.md)获取。
 通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在绝对路径为：
 
 ```
@@ -2128,5 +2103,4 @@ isSymbolicLink\(\): boolean
     let dir = fileio.opendirSync(dpath);
     let isSymbolicLink = dir.readSync().isSymbolicLink();
     ```
-
 
