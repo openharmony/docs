@@ -23,7 +23,7 @@
 
 ## 开发准备<a name="section6592121861218"></a>
 
-首先需要下载和配置DevEco Studio，具体操作请参考[DevEco Studio 使用指南](../../application-dev/quick-start/DevEco-Studio（OpenHarmony）使用指南.md)。
+首先需要下载和配置DevEco Studio，具体操作请参考[DevEco Studio 使用指南](../../application-dev/deveco-studio-user-guide-for-openharmony.md)。
 
 ## 开发步骤<a name="section19901741111312"></a>
 
@@ -257,7 +257,7 @@
 
 ## 签名打包<a name="section10601181101516"></a>
 
-代码编写完成后，在真机设备上运行应用，需要先对应用进行签名，然后再进行打包，具体操作请参考[签名打包指导](../../application-dev/quick-start/配置OpenHarmony应用签名信息.md)。
+代码编写完成后，在真机设备上运行应用，需要先对应用进行签名，然后再进行打包，具体操作请参考[签名打包指导](../../application-dev/quick-start/configuring-openharmony-app-signature.md.md)。
 
 ## 真机运行<a name="section092721731511"></a>
 
