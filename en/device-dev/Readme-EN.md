@@ -83,7 +83,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><a name="ul12579137121512"></a><a name="ul12579137121512"></a><ul id="ul12579137121512"><li>Porting and adapting the <span id="text1415622205014"><a name="text1415622205014"></a><a name="text1415622205014"></a>OpenHarmony</span> to an SoC</li><li>Porting and adapting the <span id="text82061719165013"><a name="text82061719165013"></a><a name="text82061719165013"></a>OpenHarmony</span> to a third-party library</li></ul>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul157903731520"></a><a name="ul157903731520"></a><ul id="ul157903731520"><li><a href="porting/porting-minichip.md">Mini System SoC Porting Guide</a></li><li><a href="porting/porting-smallchip.md">Small System SoC Porting Guide</a></li><li><a href="porting/porting-thirdparty.md">Third-Party Library Porting Guide</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul157903731520"></a><a name="ul157903731520"></a><ul id="ul157903731520"><li><a href="porting/porting-minichip.md">Mini System SoC Porting Guide</a></li><li><a href="porting/porting-smallchip.md">Small System SoC Porting Guide</a></li><li><a href="porting/porting-thirdparty.md">Third-Party Library Porting Guide for Mini and Small Systems</a></li></ul>
 </td>
 </tr>
 <tr id="row9601737181517"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p25791037131519"><a name="p25791037131519"></a><a name="p25791037131519"></a>Contributing components</p>
