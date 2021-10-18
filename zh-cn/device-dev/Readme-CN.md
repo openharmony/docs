@@ -153,7 +153,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p185185615284"><a name="p185185615284"></a><a name="p185185615284"></a>对三方库进行移植适配</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul14724164204819"></a><a name="ul14724164204819"></a><ul id="ul14724164204819"><li><a href="porting/standard-system-porting-guide.md">标准系统芯片移植指导</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul14724164204819"></a><a name="ul14724164204819"></a><ul id="ul14724164204819"><li><a href="porting/standard-system-porting-guide.md">标准系统芯片移植指导</a></li><li><a href="porting/porting-linux-kernel.md">一种快速移植OpenHarmony Linux内核的方法</a></li></ul>
 </td>
 </tr>
 <tr id="row869853125119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p3691530511"><a name="p3691530511"></a><a name="p3691530511"></a>贡献组件</p>
