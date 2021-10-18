@@ -21,11 +21,11 @@ This project stores OpenHarmony documentation, including the quick start guide, 
             -   [Screenless cameras](device-dev/guide/device-iotcamera-control.md)  \(camera control\)
             -   [Cameras with a screen](device-dev/guide/device-camera.md)  \(screen and camera control, visual application development\)
 
-        -   **porting**: 
+        -   **porting**:
+            -   [Third-Party Library Porting Guide for Mini and Small Systems](device-dev/porting/porting-thirdparty.md) 
             -   [Mini System SoC Porting Guide](device-dev/porting/porting-minichip.md)
             -   [Small System SoC Porting Guide](device-dev/porting/porting-smallchip.md)
-            -   [Third-Party Library Porting Guide](device-dev/porting/porting-thirdparty.md)
-
+            
         -   **bundles**: 
             -   [HPM Bundle Development Specifications](device-dev/bundles/bundles-standard-rules.md)
             -   [HPM Bundle Development Guidelines](device-dev/bundles/bundles-guide.md)
