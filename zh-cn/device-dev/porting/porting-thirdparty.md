@@ -1,4 +1,4 @@
-# 三方库移植指导<a name="ZH-CN_TOPIC_0000001157479373"></a>
+# 轻量和小型系统三方库移植指导<a name="ZH-CN_TOPIC_0000001157479373"></a>
 
 -   **[概述](porting-thirdparty-overview.md)**  
 

@@ -22,7 +22,7 @@
             -   [带屏摄像头类产品](device-dev/guide/device-camera.md)（屏幕和摄像头控制、视觉应用开发）
 
         -   porting：移植适配
-            -   [三方库移植指导](device-dev/porting/porting-thirdparty.md)
+            -   [轻量和小型系统三方库移植指导](device-dev/porting/porting-thirdparty.md)
             -   [轻量系统芯片移植指导](device-dev/porting/porting-minichip.md)
             -   [小型系统芯片移植指导](device-dev/porting/porting-smallchip.md)
 
@@ -48,6 +48,7 @@
 
         -   porting：移植适配
             -   [标准系统芯片移植指导](device-dev/porting/standard-system-porting-guide.md)
+            -   [一种快速移植OpenHarmony Linux内核的方法](device-dev/porting/porting-linux-kernel.md)
 
         -   bundles：HPM Bundle开发
             -   [HPM Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
