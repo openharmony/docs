@@ -144,7 +144,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     4.  Find your desired distribution and click it to view details.
 
         **Figure  1**  HPM page<a name="fig349416264520"></a>  
-        ![](figures/hpm-page.png "hpm-page")
+        ![](figure/hpm-page.png "hpm-page")
 
 2.  Learn more about the distribution.
 
@@ -153,7 +153,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     3.  Click  **Custom**  to add or delete bundles of the distribution.
 
     **Figure  2**  Example distribution<a name="fig142484411121"></a>  
-    ![](figures/example-distribution.png "example-distribution")
+    ![](figure/example-distribution.png "example-distribution")
 
 3.  Customize bundles.
     1.  Access the  **Custom solution**  page, as shown in the following figure.
@@ -162,7 +162,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
     4.  Click  **Download**. The system then generates the OpenHarmony code structure file \(for example,  **my\_cust\_dist.zip**\) and saves it to your local PC.
 
         **Figure  3**  Customizing bundles<a name="fig1256020372197"></a>  
-        ![](figures/customizing-bundles.png "customizing-bundles")
+        ![](figure/customizing-bundles.png "customizing-bundles")
 
 4.  Install bundles.
     1.  Decompress the downloaded code structure file using CMD on Windows \(or shell in Linux\).
