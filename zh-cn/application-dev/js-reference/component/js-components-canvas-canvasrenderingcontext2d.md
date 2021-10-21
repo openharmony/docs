@@ -950,7 +950,7 @@
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="zh-cn_topic_0000001173164707_p123296247468"><a name="zh-cn_topic_0000001173164707_p123296247468"></a><a name="zh-cn_topic_0000001173164707_p123296247468"></a>string</p>
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="zh-cn_topic_0000001173164707_p6170185410516"><a name="zh-cn_topic_0000001173164707_p6170185410516"></a><a name="zh-cn_topic_0000001173164707_p6170185410516"></a>可选值为：</p>
-    <a name="zh-cn_topic_0000001173164707_ul12274577810"></a><a name="zh-cn_topic_0000001173164707_ul12274577810"></a><ul id="zh-cn_topic_0000001173164707_ul12274577810"><li>left（默认）：文本左对齐。</li><li>right：文本右对齐。</li><li>center：文本居中对齐。</li><li>start：文本对齐界线开始的地方。</li><li>end：文本对齐接线结束的地方。</li></ul>
+    <a name="zh-cn_topic_0000001173164707_ul12274577810"></a><a name="zh-cn_topic_0000001173164707_ul12274577810"></a><ul id="zh-cn_topic_0000001173164707_ul12274577810"><li>left（默认）：文本左对齐。</li><li>right：文本右对齐。</li><li>center：文本居中对齐。</li><li>start：文本对齐界线开始的地方。</li><li>end：文本对齐界线结束的地方。</li></ul>
     <div class="note" id="zh-cn_topic_0000001173164707_note1344535811710"><a name="zh-cn_topic_0000001173164707_note1344535811710"></a><a name="zh-cn_topic_0000001173164707_note1344535811710"></a><span class="notetitle"> 说明： </span><div class="notebody"><p id="zh-cn_topic_0000001173164707_p1854535417539"><a name="zh-cn_topic_0000001173164707_p1854535417539"></a><a name="zh-cn_topic_0000001173164707_p1854535417539"></a>ltr布局模式下start和left一致，rtl布局模式下start和right一致&middot;。</p>
     </div></div>
     </td>
