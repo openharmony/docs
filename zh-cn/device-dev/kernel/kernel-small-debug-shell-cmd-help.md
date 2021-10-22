@@ -1,46 +1,64 @@
 # help<a name="ZH-CN_TOPIC_0000001134006250"></a>
 
--   [命令功能](#section991211345413)
--   [命令格式](#section19103204016410)
--   [参数说明](#section1533416233432)
--   [使用指南](#section4156445417)
--   [使用实例](#section12776124712417)
--   [输出说明](#section092662412544)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section991211345413"></a>
+## 命令功能<a name="section01"></a>
 
-help命令用于显示当前操作系统内所有操作指令。
+help命令用于显示当前操作系统内所有操作指令和部分toybox指令。
 
-## 命令格式<a name="section19103204016410"></a>
+## 命令格式<a name="section02"></a>
 
 help
 
-## 参数说明<a name="section1533416233432"></a>
+## 参数说明<a name="section03"></a>
 
 无。
 
-## 使用指南<a name="section4156445417"></a>
+## 使用指南<a name="section04"></a>
 
 help用于显示当前操作系统内所有操作指令。
 
-## 使用实例<a name="section12776124712417"></a>
+## 使用实例<a name="section05"></a>
 
-举例：输入help
+举例：输入help。
 
-## 输出说明<a name="section092662412544"></a>
+## 输出说明<a name="section06"></a>
 
-查看系统内所有操作指令。
+**示例1**  查看系统内所有操作指令
 
-```
-OHOS # help
+```shell
+OHOS:/$ help
 *******************shell commands:*************************
 
-arp           cat           cd            chgrp         chmod         chown         cp            cpup          
-date          dhclient      dmesg         dns           format        free          help          hwi           
-ifconfig      ipdebug       kill          log           ls            lsfd          memcheck      mkdir         
-mount         netstat       oom           partinfo      partition     ping          ping6         pwd           
-reset         rm            rmdir         sem           statfs        su            swtmr         sync          
-systeminfo    task          telnet        tftp          touch         umount        uname         watch         
-writeproc     
+arp           cat           cat_logmpp    cd            chgrp         chmod         chown         cp
+cpup          date          dhclient      dmesg         dns           format        free          help
+hi3881        hwi           ifconfig      ipdebug       kill          log           ls            lsfd
+memcheck      mkdir         mount         netstat       oom           panicreset    partinfo      partition
+ping          ping6         pmm           pwd           reset         rm            rmdir         sem
+shm           stack         statfs        su            swtmr         sync          systeminfo    task
+telnet        touch         umount        uname         v2p           vmm           watch         writeproc
+usage: help [command]
+
+Show usage information for toybox commands.
+Run "toybox" with no arguments for a list of available commands.
 ```
+
+**内容声明：**
+
+展示toybox指令请使用toybox。
+
+**示例2**  toybox指令集
+
+```shell
+OHOS:/$ toybox
+chgrp chmod chown cp date du free help ifconfig kill ls mkdir mount
+mv ping ps reboot rm rmdir top touch umount uname
+```
+
+
 

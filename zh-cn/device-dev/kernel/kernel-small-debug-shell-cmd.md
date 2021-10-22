@@ -6,6 +6,8 @@
 
 -   **[dmesg](kernel-small-debug-shell-cmd-dmesg.md)**  
 
+-   **[du](kernel-small-debug-shell-file-du.md)**  
+
 -   **[exec](kernel-small-debug-shell-cmd-exec.md)**  
 
 -   **[free](kernel-small-debug-shell-cmd-free.md)**  
@@ -24,6 +26,8 @@
 
 -   **[pmm](kernel-small-debug-shell-cmd-pmm.md)**  
 
+-   **[reboot](kernel-small-debug-shell-cmd-reboot.md)**  
+
 -   **[reset](kernel-small-debug-shell-cmd-reset.md)**  
 
 -   **[sem](kernel-small-debug-shell-cmd-sem.md)**  
@@ -38,10 +42,10 @@
 
 -   **[task](kernel-small-debug-shell-cmd-task.md)**  
 
+-   **[top](kernel-small-debug-shell-cmd-top.md)**  
+
 -   **[uname](kernel-small-debug-shell-cmd-uname.md)**  
 
 -   **[vmm](kernel-small-debug-shell-cmd-vmm.md)**  
 
 -   **[watch](kernel-small-debug-shell-cmd-watch.md)**  
-
-

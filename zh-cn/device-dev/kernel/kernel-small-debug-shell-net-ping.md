@@ -1,25 +1,21 @@
 # ping<a name="ZH-CN_TOPIC_0000001133846496"></a>
 
--   [命令功能](#section119672573385)
--   [命令格式](#section869419010390)
--   [参数说明](#section9877183173918)
--   [使用指南](#section1097046193914)
--   [使用实例](#section14564129113911)
--   [输出说明](#section1621732891215)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section119672573385"></a>
+## 命令功能<a name="section01"></a>
 
 ping命令用于测试网络连接是否正常。
 
-## 命令格式<a name="section869419010390"></a>
+## 命令格式<a name="section02"></a>
 
-ping_ _\[_-n cnt_\] \[_-w interval_\] \[_-l data\_len_\]_ <IP\>_
+ping _\[-4\] \[-c cnt\] \[-f\] \[-i interval\] \[-q\] \[-s size\] <IP\>_
 
-ping \[_-t_\] \[_-w interval_\]  _<IP\>_
-
-ping  _-k_
-
-## 参数说明<a name="section9877183173918"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
@@ -32,66 +28,88 @@ ping  _-k_
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2677mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2679mcpsimp"><a name="p2679mcpsimp"></a><a name="p2679mcpsimp"></a>IP</p>
+<tbody><tr id="row451mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2500105121818"><a name="p2500105121818"></a><a name="p2500105121818"></a>--help</p>
+</td>
+<td class="cellrowborder" valign="top" width="51.92%" headers="mcps1.2.4.1.2 "><p id="p1149945111817"><a name="p1149945111817"></a><a name="p1149945111817"></a>查看ping命令支持的参数列表</p>
+</td>
+<td class="cellrowborder" valign="top" width="27.08%" headers="mcps1.2.4.1.3 "><p id="p749810571812"><a name="p749810571812"></a><a name="p749810571812"></a>N/A</p>
+</td>
+</tr>
+<tr id="row2703mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2705mcpsimp"><a name="p2705mcpsimp"></a><a name="p2705mcpsimp"></a>-4</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2707mcpsimp"><a name="p2707mcpsimp"></a><a name="p2707mcpsimp"></a>强制以IPV4通讯协议ping目标地址。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p2710mcpsimp"><a name="p2710mcpsimp"></a><a name="p2710mcpsimp"></a>0-65500</p>
+</td>
+</tr>
+<tr id="row2690mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2692mcpsimp"><a name="p2692mcpsimp"></a><a name="p2692mcpsimp"></a>-c CNT</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2694mcpsimp"><a name="p2694mcpsimp"></a><a name="p2694mcpsimp"></a>执行的次数，不带本参数则默认为3次。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p2696mcpsimp"><a name="p2696mcpsimp"></a><a name="p2696mcpsimp"></a>1-65535</p>
+</td>
+</tr>
+<tr id="row2711mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2713mcpsimp"><a name="p2713mcpsimp"></a><a name="p2713mcpsimp"></a>-f</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2715mcpsimp"><a name="p2715mcpsimp"></a><a name="p2715mcpsimp"></a>隐式的ping IPv4地址，其默认参数配置等价于"-c 15 -i 0.2"</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p20501182215720"><a name="p20501182215720"></a><a name="p20501182215720"></a>N/A</p>
+</td>
+</tr>
+<tr id="row2697mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2699mcpsimp"><a name="p2699mcpsimp"></a><a name="p2699mcpsimp"></a>-i interval</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2701mcpsimp"><a name="p2701mcpsimp"></a><a name="p2701mcpsimp"></a>发送两次ping包的时间间隔，单位毫秒。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p971414819577"><a name="p971414819577"></a><a name="p971414819577"></a>1-200</p>
+</td>
+</tr>
+<tr id="row2718mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2720mcpsimp"><a name="p2720mcpsimp"></a><a name="p2720mcpsimp"></a>-q</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2722mcpsimp"><a name="p2722mcpsimp"></a><a name="p2722mcpsimp"></a>隐式的ping IPv4地址，如果主机还存活，则在返回 true 后停止ping。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p940472325719"><a name="p940472325719"></a><a name="p940472325719"></a>N/A</p>
+</td>
+</tr>
+<tr id="row2718mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2720mcpsimp"><a name="p2720mcpsimp"></a><a name="p2720mcpsimp"></a>-s SIZE</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2722mcpsimp"><a name="p2722mcpsimp"></a><a name="p2722mcpsimp"></a>设置每个ping包的大小，SIZE是以字节为单位的数据（默认为56字节）。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p940472325719"><a name="p940472325719"></a><a name="p940472325719"></a>0-4088</p>
+</td>
+</tr>
+<tr id="row2677mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2679mcpsimp"><a name="p2679mcpsimp"></a><a name="p2679mcpsimp"></a>IP</p>
 </td>
 <td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2681mcpsimp"><a name="p2681mcpsimp"></a><a name="p2681mcpsimp"></a>要测试是否网络连通的IPv4地址。</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="entry2682mcpsimpp0"><a name="entry2682mcpsimpp0"></a><a name="entry2682mcpsimpp0"></a>N/A</p>
 </td>
 </tr>
-<tr id="row2690mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2692mcpsimp"><a name="p2692mcpsimp"></a><a name="p2692mcpsimp"></a>-n cnt</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2694mcpsimp"><a name="p2694mcpsimp"></a><a name="p2694mcpsimp"></a>执行的次数，不带本参数则默认为4次。</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p2696mcpsimp"><a name="p2696mcpsimp"></a><a name="p2696mcpsimp"></a>1-65535</p>
-</td>
-</tr>
-<tr id="row2697mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2699mcpsimp"><a name="p2699mcpsimp"></a><a name="p2699mcpsimp"></a>-w interval</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2701mcpsimp"><a name="p2701mcpsimp"></a><a name="p2701mcpsimp"></a>发送两次ping包的时间间隔，单位毫秒。</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p971414819577"><a name="p971414819577"></a><a name="p971414819577"></a>&gt;0</p>
-</td>
-</tr>
-<tr id="row2703mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2705mcpsimp"><a name="p2705mcpsimp"></a><a name="p2705mcpsimp"></a>-l data_len</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2707mcpsimp"><a name="p2707mcpsimp"></a><a name="p2707mcpsimp"></a>ping包，即ICMP echo request报文的数据长度，不包含ICMP包头。</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p2710mcpsimp"><a name="p2710mcpsimp"></a><a name="p2710mcpsimp"></a>0-65500</p>
-</td>
-</tr>
-<tr id="row2711mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2713mcpsimp"><a name="p2713mcpsimp"></a><a name="p2713mcpsimp"></a>-t</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2715mcpsimp"><a name="p2715mcpsimp"></a><a name="p2715mcpsimp"></a>表示永久ping，直到使用ping -k杀死ping线程。</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p20501182215720"><a name="p20501182215720"></a><a name="p20501182215720"></a>N/A</p>
-</td>
-</tr>
-<tr id="row2718mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2720mcpsimp"><a name="p2720mcpsimp"></a><a name="p2720mcpsimp"></a>-k</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p2722mcpsimp"><a name="p2722mcpsimp"></a><a name="p2722mcpsimp"></a>杀死ping线程，停止ping。</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p940472325719"><a name="p940472325719"></a><a name="p940472325719"></a>N/A</p>
-</td>
-</tr>
 </tbody>
 </table>
 
-## 使用指南<a name="section1097046193914"></a>
+## 使用指南<a name="section04"></a>
 
 -   ping命令用来测试到目的IP的网络连接是否正常，参数为目的IP地址。
 -   如果目的IP不可达，会显示请求超时。
 -   如果显示发送错误，说明没有到目的IP的路由。
 -   命令需要启动TCP/IP协议栈后才能使用。
 
-## 使用实例<a name="section14564129113911"></a>
+## 使用实例<a name="section05"></a>
 
-举例：输入ping 192.168.1.10
+举例：输入ping 192.168.1.3
 
-## 输出说明<a name="section1621732891215"></a>
+## 输出说明<a name="section06"></a>
 
-**图 1**  ping tftp 服务器地址<a name="fig525762695417"></a>  
+**示例 1**  ping tftp 服务器地址
 
+```shell
+OHOS:/$ ping 192.168.1.3
+Ping 192.168.1.3 (192.168.1.3): 56(84) bytes.
+84 bytes from 192.168.1.3: icmp_seq=0 ttl=0 time=0 ms
+84 bytes from 192.168.1.3: icmp_seq=0 ttl=0 time=1 ms
+84 bytes from 192.168.1.3: icmp_seq=0 ttl=0 time=0 ms
 
-![](figure/Snipaste_2021-01-26_10-38-58-26.png)
-
+--- 192.168.1.3 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss
+round-trip min/avg/max = 0/0/0 ms
+```

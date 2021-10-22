@@ -1,21 +1,21 @@
 # free<a name="ZH-CN_TOPIC_0000001133846472"></a>
 
--   [命令功能](#section175151514841)
--   [命令格式](#section8488721749)
--   [参数说明](#section27272181949)
--   [使用指南](#section148661259410)
--   [使用实例](#section68081530242)
--   [输出说明](#section171235517543)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section175151514841"></a>
+## 命令功能<a name="section01"></a>
 
-free命令可显示系统内存的使用情况，同时显示系统的text段、data段、rodata段、bss段大小。
+free命令可显示系统内存的使用情况。
 
-## 命令格式<a name="section8488721749"></a>
+## 命令格式<a name="section02"></a>
 
-free \[_-k | -m_\]
+free \[_-b | -k | -m | -g | -t_\]
 
-## 参数说明<a name="section27272181949"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
@@ -35,6 +35,20 @@ free \[_-k | -m_\]
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p129mcpsimp"><a name="p129mcpsimp"></a><a name="p129mcpsimp"></a>N/A</p>
 </td>
 </tr>
+<tr id="row130mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p132mcpsimp"><a name="p132mcpsimp"></a><a name="p132mcpsimp"></a>--help/-h</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p134mcpsimp"><a name="p134mcpsimp"></a><a name="p134mcpsimp"></a>查看free命令支持的参数列表。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p136mcpsimp"><a name="p136mcpsimp"></a><a name="p136mcpsimp"></a>N/A</p>
+</td>
+</tr>
+<tr id="row130mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p132mcpsimp"><a name="p132mcpsimp"></a><a name="p132mcpsimp"></a>-b</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p134mcpsimp"><a name="p134mcpsimp"></a><a name="p134mcpsimp"></a>以Byte为单位显示。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p136mcpsimp"><a name="p136mcpsimp"></a><a name="p136mcpsimp"></a>N/A</p>
+</td>
+</tr>
 <tr id="row130mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p132mcpsimp"><a name="p132mcpsimp"></a><a name="p132mcpsimp"></a>-k</p>
 </td>
 <td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p134mcpsimp"><a name="p134mcpsimp"></a><a name="p134mcpsimp"></a>以KiB为单位显示。</p>
@@ -49,23 +63,54 @@ free \[_-k | -m_\]
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p143mcpsimp"><a name="p143mcpsimp"></a><a name="p143mcpsimp"></a>N/A</p>
 </td>
 </tr>
+<tr id="row137mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p139mcpsimp"><a name="p139mcpsimp"></a><a name="p139mcpsimp"></a>-g</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p141mcpsimp"><a name="p141mcpsimp"></a><a name="p141mcpsimp"></a>以GiB为单位显示。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p143mcpsimp"><a name="p143mcpsimp"></a><a name="p143mcpsimp"></a>N/A</p>
+</td>
+</tr>
+<tr id="row137mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p139mcpsimp"><a name="p139mcpsimp"></a><a name="p139mcpsimp"></a>-t</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p141mcpsimp"><a name="p141mcpsimp"></a><a name="p141mcpsimp"></a>以TiB为单位显示。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p143mcpsimp"><a name="p143mcpsimp"></a><a name="p143mcpsimp"></a>N/A</p>
+</td>
+</tr>
 </tbody>
 </table>
 
-## 使用指南<a name="section148661259410"></a>
+## 使用指南<a name="section04"></a>
 
 无。
 
-## 使用实例<a name="section68081530242"></a>
+## 使用实例<a name="section05"></a>
 
-举例：分别输入free、free -k、free -m.
+举例：分别输入free、free -k、free -m。
 
-## 输出说明<a name="section171235517543"></a>
+## 输出说明<a name="section06"></a>
 
-**图 1**  以三种方式显示内存使用情况<a name="fig478715471421"></a>  
-![](figure/以三种方式显示内存使用情况.png "以三种方式显示内存使用情况")
+**示例 1**  以三种方式显示内存使用情况
 
-**表 2**  输出说明
+```shell
+OHOS:/$ free
+                total        used        free      shared     buffers
+Mem:          2819652     2754468       65184           0           0
+-/+ buffers/cache:        2754468       65184
+Swap:               0           0           0
+OHOS:/$ free -k
+                total        used        free      shared     buffers
+Mem:             2753        2692          60           0           0
+-/+ buffers/cache:           2692          60
+Swap:               0           0           0
+OHOS:/$ free -m
+                total        used        free      shared     buffers
+Mem:                2           2           0           0           0
+-/+ buffers/cache:              2           0
+Swap:               0           0           0
+```
+
+**表 2**  输出元素说明
 
 <a name="table633mcpsimp"></a>
 <table><thead align="left"><tr id="row638mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p640mcpsimp"><a name="p640mcpsimp"></a><a name="p640mcpsimp"></a>输出</p>
@@ -89,31 +134,15 @@ free \[_-k | -m_\]
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p657mcpsimp"><a name="p657mcpsimp"></a><a name="p657mcpsimp"></a>表示未被分配的内存大小。</p>
 </td>
 </tr>
-<tr id="row658mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p660mcpsimp"><a name="p660mcpsimp"></a><a name="p660mcpsimp"></a>heap</p>
+<tr id="row658mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p660mcpsimp"><a name="p660mcpsimp"></a><a name="p660mcpsimp"></a>shared</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p662mcpsimp"><a name="p662mcpsimp"></a><a name="p662mcpsimp"></a>表示已分配堆大小。</p>
-</td>
-</tr>
-<tr id="row10101624938"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p610724734"><a name="p610724734"></a><a name="p610724734"></a>text</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1510024539"><a name="p1510024539"></a><a name="p1510024539"></a>表示代码段大小。</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p662mcpsimp"><a name="p662mcpsimp"></a><a name="p662mcpsimp"></a>表示共享内存大小。</p>
 </td>
 </tr>
-<tr id="row207288271839"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p572872713317"><a name="p572872713317"></a><a name="p572872713317"></a>data</p>
+<tr id="row10101624938"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p610724734"><a name="p610724734"></a><a name="p610724734"></a>buffers</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p272852716315"><a name="p272852716315"></a><a name="p272852716315"></a>表示数据段大小。</p>
-</td>
-</tr>
-<tr id="row1774316321731"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p274343218317"><a name="p274343218317"></a><a name="p274343218317"></a>rodata</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1974319321133"><a name="p1974319321133"></a><a name="p1974319321133"></a>表示只读数据段大小。</p>
-</td>
-</tr>
-<tr id="row121618371536"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p0161183720314"><a name="p0161183720314"></a><a name="p0161183720314"></a>bss</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p09295155511"><a name="p09295155511"></a><a name="p09295155511"></a>表示未初始化全局变量占用内存大小。</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1510024539"><a name="p1510024539"></a><a name="p1510024539"></a>表示缓冲区内存大小。</p>
 </td>
 </tr>
 </tbody>
 </table>
-

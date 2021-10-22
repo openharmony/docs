@@ -1,21 +1,21 @@
 # chmod<a name="ZH-CN_TOPIC_0000001179845927"></a>
 
--   [命令功能](#section13992936121418)
--   [命令格式](#section63342439147)
--   [参数说明](#section894414671411)
--   [使用指南](#section182415221419)
--   [使用实例](#section8518195718147)
--   [输出说明](#section127391818158)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section13992936121418"></a>
+## 命令功能<a name="section01"></a>
 
 chmod用于修改文件操作权限。
 
-## 命令格式<a name="section63342439147"></a>
+## 命令格式<a name="section02"></a>
 
-chmod \[_mode_\] \[_pathname_\]
+chmod \[_mode_\] \[_filename_\]
 
-## 参数说明<a name="section894414671411"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
@@ -35,7 +35,7 @@ chmod \[_mode_\] \[_pathname_\]
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p182181026104214"><a name="p182181026104214"></a><a name="p182181026104214"></a>[0,777]</p>
 </td>
 </tr>
-<tr id="row172161126124218"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p12217026154215"><a name="p12217026154215"></a><a name="p12217026154215"></a>pathname</p>
+<tr id="row172161126124218"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p12217026154215"><a name="p12217026154215"></a><a name="p12217026154215"></a>filename</p>
 </td>
 <td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p4218826194210"><a name="p4218826194210"></a><a name="p4218826194210"></a>文件路径。</p>
 </td>
@@ -45,16 +45,25 @@ chmod \[_mode_\] \[_pathname_\]
 </tbody>
 </table>
 
-## 使用指南<a name="section182415221419"></a>
+## 使用指南<a name="section04"></a>
 
-在需要修改的文件名前加上文件权限值就可以修改该文件的权限值。
+- 在需要修改的文件名前加上文件权限值就可以修改该文件的权限值。
+- fatfs文件系统所有创建的文件和挂载节点的权限属性保持一致，目前节点的权限只有用户读写权限，group和others权限不生效；且只允许修改用户读写权限，读写权限只有rw和ro两种。其他文件系统无限制。
 
-## 使用实例<a name="section8518195718147"></a>
+## 使用实例<a name="section05"></a>
 
-举例：chmod 666 hello-harmony.txt
+举例：chmod 644 hello-harmony.txt ;  chmod 777 hello-harmony.txt
 
-## 输出说明<a name="section127391818158"></a>
+## 输出说明<a name="section06"></a>
 
-**图 1**  修改 hello-harmony.txt 文件的权限为666<a name="fig501223144912"></a>  
-![](figure/修改-hello-harmony-txt-文件的权限为666.png "修改-hello-harmony-txt-文件的权限为666")
+**示例 1**  修改/dev目录下 hello-harmony.txt 文件的权限
+
+```shell
+OHOS:/dev$ chmod 644 hello-harmony.txt
+OHOS:/dev$ ll hello-harmony.txt
+-rw-r--r-- 0 0 0 0 1970-01-01 00:00 hello-harmony.txt
+OHOS:/dev$ chmod 777 hello-harmony.txt
+OHOS:/dev$ ll hello-harmony.txt
+-rwxrwxrwx 0 0 0 0 1970-01-01 00:00 hello-harmony.txt
+```
 
