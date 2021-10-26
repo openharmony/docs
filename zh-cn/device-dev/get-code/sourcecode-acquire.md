@@ -144,7 +144,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     4.  查找合适的发行版，点击查看发行版的详情介绍。
 
         **图 1**  包管理<a name="fig349416264520"></a>  
-        ![](figures/包管理.png "包管理")
+        ![](figure/包管理.png "包管理")
 
 2.  了解发行版详情。
 
@@ -153,7 +153,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     3.  点击「定制组件」，将对发行版包含的组件进行定制（添加/删除）。
 
     **图 2**  发行版示例<a name="fig142484411121"></a>  
-    ![](figures/发行版示例.png "发行版示例")
+    ![](figure/发行版示例.png "发行版示例")
 
 3.  定制组件。
     1.  进入发行版的定制页面，如下图所示。
@@ -162,7 +162,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
     4.  点击“下载“，系统会根据您的选择，生成相应的OpenHarmony代码结构文件\(如my\_cust\_dist.zip\)，保存至本地文件。
 
         **图 3**  组件定制<a name="fig1256020372197"></a>  
-        ![](figures/组件定制.png "组件定制")
+        ![](figure/组件定制.png "组件定制")
 
 4.  安装组件。
     1.  解压下载的压缩文件，用命令行工具CMD（Linux下的Shell终端）。
