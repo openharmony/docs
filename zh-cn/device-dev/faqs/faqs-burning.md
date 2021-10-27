@@ -1,7 +1,7 @@
 # 烧录常见问题<a name="ZH-CN_TOPIC_0000001170009518"></a>
 
 -   [轻量和小型系统](#section278314413530)
-    -   [烧写选择串口后提示失败](#section18988185615914)
+    -   [烧写选择串口后，提示“Error: Opening COMxx: Access denied”](#section18988185615914)
     -   [烧写失败](#section1370982513317)
     -   [串口无回显](#section183421944953)
     -   [Windows电脑与单板网络连接失败](#section1215410450215)
@@ -9,11 +9,11 @@
 
 ## 轻量和小型系统<a name="section278314413530"></a>
 
-### 烧写选择串口后提示失败<a name="section18988185615914"></a>
+### 烧写选择串口后，提示“Error: Opening COMxx: Access denied”<a name="section18988185615914"></a>
 
 -   **现象描述**
 
-    点击烧写并选择串口后，出现Error: Opening COMxx: Access denied。
+    点击烧写并选择串口后，出现“Error: Opening COMxx: Access denied”。
 
     ![](figures/Failed-to-open-the-serial-port.png)
 
@@ -21,19 +21,15 @@
 
     串口已经被占用。
 
--   **解决办法**
+-   解决方法
 
-1.  按图依次选择下拉框，查找带有serial-xx的终端
+    检查主机中可能占用该端口的工具，关闭即可。若是当前工具占用，可按以下步骤排查并关闭：
 
-    ![](figures/hi3516-checking-whether-the-serial-port-is-used.png)
+    1.  排查终端窗口列表，检查是否被monitor或其他终端占用。
 
-2.  点击标号中的垃圾桶图标，关闭串口。
+        ![](figures/terminal-list.png)
 
-    ![](figures/hi3516-disabling-the-terminal-using-the-serial-port.png)
-
-3.  重新点击烧写，选择串口并开始烧写程序
-
-    ![](figures/hi3516-restarting-burning.png)
+    2.  找到占用，点击垃圾桶图标，关闭占用。
 
 
 ### 烧写失败<a name="section1370982513317"></a>

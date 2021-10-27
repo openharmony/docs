@@ -29,7 +29,7 @@
 
 **可能原因**
 
-被init启动的服务都有一个叫做“importance”的属性（详见[第2章表3](../nottoctopics/zh-cn_topic_0000001062722441.md#table14737791471)[第2章表3](../subsystems/subsys-boot-init.md)描述）。
+被init启动的服务都有一个叫做“importance”的属性（详见[第2章表3](../subsystems/subsys-boot-init.md)描述）。
 
 -   当该属性为0时，表示若当前服务进程退出，init不需要重启单板。
 -   当该属性为1时，表示若当前服务进程退出，init需要重启单板。

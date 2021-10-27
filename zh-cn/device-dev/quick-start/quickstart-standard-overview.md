@@ -13,14 +13,14 @@
 标准系统快速入门流程如下图所示，其中“搭建Ubuntu环境及编译”环节可根据实际情况选择docker方式或工具包方式其中一种即可。
 
 **图 1**  标准环境快速入门流程<a name="fig19162195553211"></a>  
-![](figure/标准环境快速入门流程.png "标准环境快速入门流程")
+![](figures/标准环境快速入门流程.png "标准环境快速入门流程")
 
 ## 开发板简介<a name="zh-cn_topic_0000001053666242_section047719215429"></a>
 
 Hi3516DV300作为新一代行业专用Smart HD IP摄像机SOC，集成新一代ISP\(Image Signal Processor\)、H.265视频压缩编码器，同时集成高性能NNIE引擎，使得Hi3516DV300在低码率、高画质、智能处理和分析、低功耗等方面引领行业水平。
 
 **图 2**  Hi3516单板正面外观图<a name="fig202901538183412"></a>  
-![](figure/Hi3516单板正面外观图-25.png "Hi3516单板正面外观图-25")
+![](figures/Hi3516单板正面外观图-0.png "Hi3516单板正面外观图-0")
 
 ## 开发板规格<a name="zh-cn_topic_0000001053666242_section15192203316533"></a>
 
@@ -40,10 +40,10 @@ Hi3516DV300作为新一代行业专用Smart HD IP摄像机SOC，集成新一代I
 </tr>
 <tr id="zh-cn_topic_0000001053666242_row21721687435"><td class="cellrowborder" valign="top" width="14.77%" headers="mcps1.2.3.1.1 "><p id="zh-cn_topic_0000001053666242_p817216810435"><a name="zh-cn_topic_0000001053666242_p817216810435"></a><a name="zh-cn_topic_0000001053666242_p817216810435"></a><strong id="zh-cn_topic_0000001053666242_b1172016266246"><a name="zh-cn_topic_0000001053666242_b1172016266246"></a><a name="zh-cn_topic_0000001053666242_b1172016266246"></a>外部器件</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="85.22999999999999%" headers="mcps1.2.3.1.2 "><a name="zh-cn_topic_0000001053666242_ul179543016208"></a><a name="zh-cn_topic_0000001053666242_ul179543016208"></a><ul id="zh-cn_topic_0000001053666242_ul179543016208"><li>以太网口</li><li>音频视频<a name="zh-cn_topic_0000001053666242_ul5941311869"></a><a name="zh-cn_topic_0000001053666242_ul5941311869"></a><ul id="zh-cn_topic_0000001053666242_ul5941311869"><li>1路语音输入</li><li>1路单声道(AC_L)输出，接3W功放(LM4871)</li><li>MicroHDMI（1路HDMI 1.4）</li></ul>
+<td class="cellrowborder" valign="top" width="85.22999999999999%" headers="mcps1.2.3.1.2 "><a name="zh-cn_topic_0000001053666242_ul179543016208"></a><a name="zh-cn_topic_0000001053666242_ul179543016208"></a><ul id="zh-cn_topic_0000001053666242_ul179543016208"><li>以太网口</li><li>音频视频<a name="zh-cn_topic_0000001053666242_ul5941311869"></a><a name="zh-cn_topic_0000001053666242_ul5941311869"></a><ul id="zh-cn_topic_0000001053666242_ul5941311869"><li>1路语音输入</li><li>1路单声道(AC_L)输出，接3W功率放大器(LM4871)</li><li>MicroHDMI（1路HDMI 1.4）</li></ul>
 </li><li>摄像头<a name="zh-cn_topic_0000001053666242_ul924263620"></a><a name="zh-cn_topic_0000001053666242_ul924263620"></a><ul id="zh-cn_topic_0000001053666242_ul924263620"><li>传感器IMX335</li><li>镜头M12，焦距4mm，光圈1.8</li></ul>
 </li><li>显示屏<a name="zh-cn_topic_0000001053666242_ul101471711667"></a><a name="zh-cn_topic_0000001053666242_ul101471711667"></a><ul id="zh-cn_topic_0000001053666242_ul101471711667"><li>LCD连接器（2.35寸）</li><li>LCD连接器（5.5寸）</li></ul>
-</li><li>外部器件及接口<a name="zh-cn_topic_0000001053666242_ul089255556"></a><a name="zh-cn_topic_0000001053666242_ul089255556"></a><ul id="zh-cn_topic_0000001053666242_ul089255556"><li>SD卡接口</li><li>JTAG/I2S 接口</li><li>ADC接口</li><li>舵机接口</li><li>Grove连接器</li><li>USB2.0(Type C)</li><li>功能按键3个，2个用户自定义按键，1个升级按键</li><li>LED指示灯，绿灯，红灯</li></ul>
+</li><li>外部器件及接口<a name="zh-cn_topic_0000001053666242_ul089255556"></a><a name="zh-cn_topic_0000001053666242_ul089255556"></a><ul id="zh-cn_topic_0000001053666242_ul089255556"><li>SD卡接口</li><li>JTAG/I2S接口</li><li>ADC接口</li><li>舵机接口</li><li>Grove连接器</li><li>USB2.0(Type C)</li><li>功能按键3个，2个用户自定义按键，1个升级按键</li><li>LED指示灯，绿灯，红灯</li></ul>
 </li></ul>
 </td>
 </tr>

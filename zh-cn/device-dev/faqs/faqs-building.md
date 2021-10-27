@@ -205,7 +205,7 @@
 
 -   **解决办法**
 
-    请按照[安装Python环境](../quickstart/quickstart-lite-env-setup-linux.md)
+    请按照[安装Python环境](../quick-start/quickstart-lite-env-setup-linux.md)
 
 -   **可能原因2**
 

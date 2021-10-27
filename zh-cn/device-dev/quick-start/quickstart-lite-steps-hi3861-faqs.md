@@ -9,6 +9,7 @@
 -   [编译构建过程中，提示“Could not find a version that satisfies the requirement six\>=1.9.0”](#section4498158162320)
 -   [编译构建过程中，提示找不到“-lgcc”](#section11181036112615)
 -   [编译构建过程中，提示找不到“python”](#section1571810194619)
+-   [编译构建过程中，提示找不到“python3”](#section108385316482)
 -   [安装 kconfiglib时，遇到lsb\_release错误](#section691681635814)
 
 ## 安装python3过程中，提示“configure: error: no acceptable C compiler found in $PATH”<a name="section1221016541119"></a>
@@ -60,7 +61,7 @@
     安装python3过程中出现以下错误：
 
     ```
-    zipimport.ZipImportError: can't decompress data; zlib not avaliable
+    zipimport.ZipImportError: can't decompress data; zlib not available
     ```
 
 -   **可能原因**
@@ -73,7 +74,7 @@
 
     方法2：如果软件源中没有该软件，请从“www.zlib.net”下载版本代码，并离线安装。
 
-    ![](figure/download-zlib.png)
+    ![](figures/download-zlib.png)
 
     完成下载后，通过以下命令安装：
 
@@ -134,7 +135,7 @@
 
     通过网页[https://pypi.org/project/pycrypto/\#files](https://pypi.org/project/pycrypto/#files)，下载源码。
 
-    ![](figure/Download-the-source-code.png)
+    ![](figures/Download-the-source-code.png)
 
     将源码放置在Linux服务器中，解压，并安装“python3 setup.py install”。
 
@@ -165,7 +166,7 @@
 
     通过网页[https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files)，下载安装包。
 
-    ![](figure/download-ecdsa.png)
+    ![](figures/download-ecdsa.png)
 
     将安装包放置Linux服务器中，并安装“pip3 install ecdsa-0.15-py2.py3-none-any.whl”。
 
@@ -196,7 +197,7 @@
 
     通过网页[https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files)，下载安装包。
 
-    ![](figure/download-six.png)
+    ![](figures/download-six.png)
 
     将源码放置在Linux服务器中，并安装“pip3 install six-1.14.0-py2.py3-none-any.whl”。
 
@@ -249,11 +250,11 @@
 
 -   **解决办法**
 
-    请按照[安装Python环境](quickstart-lite-env-setup-linux.md#section1238412211211)
+    请按照[安装Python环境](../quick-start/quickstart-lite-env-setup-linux.md)
 
 -   **可能原因2**
 
-    ![](figure/reason-2.png)
+    ![](figures/reason-no-python-soft-link.png)
 
 -   **解决办法**
 
@@ -268,7 +269,23 @@
 
     例：
 
-    ![](figure/solution.png)
+    ![](figures/solution-add-soft-link.png)
+
+
+## 编译构建过程中，提示找不到“python3”<a name="section108385316482"></a>
+
+-   **现象描述**
+
+    ![](figures/11.png)
+
+
+-   **可能原因**
+
+    没有装python3。
+
+-   **解决办法**
+
+    请按照[安装python](../quick-start/quickstart-lite-env-setup-linux.md)。
 
 
 ## 安装 kconfiglib时，遇到lsb\_release错误<a name="section691681635814"></a>

@@ -1,40 +1,32 @@
 # 常见问题<a name="ZH-CN_TOPIC_0000001128311064"></a>
 
--   [烧写选择串口后提示失败](#section1498892119619)
+-   [烧写选择串口后，提示“Error: Opening COMxx: Access denied”](#section1498892119619)
 -   [Windows电脑与单板网络连接失败](#section8512971816)
 -   [烧写失败](#section1767804111198)
 -   [编译构建过程中，提示找不到“python”](#zh-cn_topic_0000001053466255_section1039835245619)
 -   [串口无回显](#zh-cn_topic_0000001053466255_section14871149155911)
 
-## 烧写选择串口后提示失败<a name="section1498892119619"></a>
+## 烧写选择串口后，提示“Error: Opening COMxx: Access denied”<a name="section1498892119619"></a>
 
 -   **现象描述**
 
-    点击烧写并选择串口后，出现Error: Opening COMxx: Access denied。
+    点击烧写并选择串口后，出现“Error: Opening COMxx: Access denied”。
 
-    **图 1**  打开串口失败图<a name="zh-cn_topic_0000001053466255_fig066333283916"></a>  
-    ![](figure/打开串口失败图-15.png "打开串口失败图-15")
+    ![](figures/Failed-to-open-the-serial-port.png)
 
 -   **可能原因**
 
     串口已经被占用。
 
--   **解决办法**
+-   解决方法
 
-1.  按图依次选择下拉框，查找带有serial-xx的终端
+    检查主机中可能占用该端口的工具，关闭即可。若是当前工具占用，可按以下步骤排查并关闭：
 
-    **图 2**  查找是否存在占用串口的终端<a name="zh-cn_topic_0000001053466255_fig165994164420"></a>  
-    ![](figure/查找是否存在占用串口的终端-16.png "查找是否存在占用串口的终端-16")
+    1.  排查终端窗口列表，检查是否被monitor或其他终端占用。
 
-2.  点击标号中的垃圾桶图标，关闭串口。
+        ![](figures/terminal-list.png)
 
-    **图 3**  关闭串口终端<a name="zh-cn_topic_0000001053466255_fig7911282453"></a>  
-    ![](figure/关闭串口终端-17.png "关闭串口终端-17")
-
-3.  重新点击烧写，选择串口并开始烧写程序
-
-    **图 4**  重新启动烧写任务<a name="fig87139519227"></a>  
-    ![](figure/重新启动烧写任务-18.png "重新启动烧写任务-18")
+    2.  找到占用，点击垃圾桶图标，关闭占用。
 
 
 ## Windows电脑与单板网络连接失败<a name="section8512971816"></a>
@@ -43,8 +35,8 @@
 
     点击烧写并选择串口后，无法获取文件。
 
-    **图 5**  网络不通，单板无法获取文件图<a name="zh-cn_topic_0000001053466255_fig5218920223"></a>  
-    ![](figure/网络不通-单板无法获取文件图-19.png "网络不通-单板无法获取文件图-19")
+    **图 1**  网络不通，Hi3518单板无法获取文件<a name="zh-cn_topic_0000001053466255_fig5218920223"></a>  
+    ![](figures/网络不通-Hi3518单板无法获取文件.png "网络不通-Hi3518单板无法获取文件")
 
 -   **可能原因**
 
@@ -57,23 +49,19 @@
 1.  检查网线是否连接。
 2.  点击Windows防火墙。
 
-    **图 6**  网络防火墙设置图<a name="fig954464811215"></a>  
-    ![](figure/网络防火墙设置图-20.png "网络防火墙设置图-20")
+    ![](figures/hi3518-network-and-firewall-setting.png)
 
 3.  点击“允许应用通过防火墙”。
 
-    **图 7**  防火墙和网络保护界面图<a name="fig158731526101312"></a>  
-    ![](figure/防火墙和网络保护界面图-21.png "防火墙和网络保护界面图-21")
+    ![](figures/hi3518-firewall-and-network-protection.png)
 
 4.  查找Visual Studio Code应用。
 
-    **图 8**  查找Visual Studio Code应用图<a name="fig96572537139"></a>  
-    ![](figure/查找Visual-Studio-Code应用图-22.png "查找Visual-Studio-Code应用图-22")
+    ![](figures/hi3518-selecting-the-visual-studio-code-application.png)
 
 5.  勾选Visual Studio Code的专用和公用网络的访问权限。
 
-    **图 9**  允许Visual Studio Code应用访问网络<a name="fig18201217161411"></a>  
-    ![](figure/允许Visual-Studio-Code应用访问网络-23.png "允许Visual-Studio-Code应用访问网络-23")
+    ![](figures/hi3518-allowing-the-visual-studio-code-application-to-access-the-network.png)
 
 
 ## 烧写失败<a name="section1767804111198"></a>
@@ -95,7 +83,7 @@
 
 -   **现象描述**
 
-    ![](figure/error.png)
+    ![](figures/hi3518-error-for-not-finding-python.png)
 
 
 -   **可能原因1**
@@ -104,11 +92,11 @@
 
 -   **解决办法**
 
-    请按照[安装Python环境](quickstart-lite-env-setup-linux.md#section1238412211211)。
+    请按照[安装Python环境](../quick-start/quickstart-lite-env-setup-linux.md)。
 
 -   **可能原因2**
 
-    ![](figure/error2.png)
+    ![](figures/hi3518-reason-no-python-soft-link.png)
 
 -   **解决办法**
 
@@ -123,7 +111,7 @@
 
     例：
 
-    ![](figure/solution-24.png)
+    ![](figures/hi3518-solution-set-python-soft-link.png)
 
 
 ## 串口无回显<a name="zh-cn_topic_0000001053466255_section14871149155911"></a>
@@ -167,6 +155,6 @@
 
 3.  烧写完成后，登录串口如下图所示。
 
-    ![](figure/login-serial-port.png)
+    ![](figures/login-serial-port.png)
 
 

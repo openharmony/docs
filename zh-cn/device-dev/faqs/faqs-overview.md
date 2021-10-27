@@ -60,7 +60,7 @@
 
 ### 轻量和小型系统<a name="section1029933713812"></a>
 
--   [烧写选择串口后提示失败](faqs-burning.md#section18988185615914)
+-   [烧写选择串口后，提示“Error: Opening COMxx: Access denied”](faqs-burning.md#section18988185615914)
 
 -   [烧写失败](faqs-burning.md#section1370982513317)
 -   [串口无回显](faqs-burning.md#section183421944953)
@@ -70,8 +70,8 @@
 
 ### 基础内核<a name="section1723365191114"></a>
 
--   [LiteOS-A和LiteOS-M内核对外API的差异](faqs-kernel.md#section147031836183210)
--   [如何分析线程栈溢出](faqs-kernel.md#section0683151131613)
+-   [LiteOS-A和LiteOS-M内核对外API的差异](faqs-kernel.md#section447571122918)
+-   [如何分析线程栈溢出](faqs-kernel.md#section8623141711293)
 
 ### 文件系统<a name="section14523145918136"></a>
 
@@ -84,14 +84,14 @@
 
 ### 三方组件<a name="section4988163321816"></a>
 
--   [HarmonyOS已支持哪些三方组件](faqs-kernel.md#section74138185411)[OpenHarmony已支持哪些三方组件](faqs-kernel.md#section74138185411)
--   [在HarmonyOS上使用OpenSSL，出现秘钥长度校验不正确](faqs-kernel.md#section10564614135516)[在OpenHarmony上使用OpenSSL，出现秘钥长度校验不正确](faqs-kernel.md#section10564614135516)
+-   [OpenHarmony已支持哪些三方组件](faqs-kernel.md#section74138185411)
+-   [在OpenHarmony上使用OpenSSL，出现秘钥长度校验不正确](faqs-kernel.md#section10564614135516)
 -   [setsockopt是否支持SO\_RCVBUF和SO\_SNDBUF选项](faqs-kernel.md#section2093373215556)
 
 ### 编译链接<a name="section080219574225"></a>
 
 -   [Arm Linux开发的应用程序，如何在LiteOS-A上运行](faqs-kernel.md#section1164175713557)
--   [HarmonyOS在什么系统下编译，使用什么编译器](faqs-kernel.md#section132287223567)[OpenHarmony在什么系统下编译，使用什么编译器](faqs-kernel.md#section132287223567)
+-   [OpenHarmony在什么系统下编译，使用什么编译器](faqs-kernel.md#section132287223567)
 -   [LiteOS-M上使用单独编译成静态库的三方组件，出现三方组件中的全局变量值不正确，或调用三方组件的函数后系统卡死](faqs-kernel.md#section15189154225619)
 -   [LiteOS-A生成目标可执行文件，提示 use  VFP register arguments，xxx.o does not](faqs-kernel.md#section193571012578)
 -   [clock\_gettime接口获取的时间打印不对](faqs-kernel.md#section8973152015717)

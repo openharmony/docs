@@ -4,6 +4,7 @@
     -   [前提条件](#section102871547153314)
     -   [操作步骤](#section429012478331)
 
+-   [执行prebuilts](#section0495320152619)
 -   [获取Docker环境](#section181431248132513)
 -   [编译](#section92391739152318)
 
@@ -19,7 +20,7 @@ OpenHarmony标准系统为开发者提供的Docker环境已经将对应的编译
 
 1.  注册码云gitee账号。
 2.  注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
-3.  安装[git客户端](http://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
+3.  安装[git客户端](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
 
     ```
     git config --global user.name "yourname"
@@ -38,13 +39,14 @@ OpenHarmony标准系统为开发者提供的Docker环境已经将对应的编译
 
 ### 操作步骤<a name="section429012478331"></a>
 
+可通过下方两种方式获取OpenHarmony主干代码，两种方式二选一即可。建议新建个文件夹，在此文件夹下执行以下命令，下载源码，此文件夹即为源码根目录。
+
 方式一（推荐）：通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
 ```
 repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
-bash build/prebuilts_download.sh
 ```
 
 方式二：通过repo + https 下载。
@@ -53,8 +55,17 @@ bash build/prebuilts_download.sh
 repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
+```
+
+## 执行prebuilts<a name="section0495320152619"></a>
+
+在源码根目录下执行脚本，安装编译器及二进制工具。
+
+```
 bash build/prebuilts_download.sh
 ```
+
+下载的prebuilts二进制默认存放在与OpenHarmony同目录下的OpenHarmony\_2.0\_canary\_prebuilts下。
 
 ## 获取Docker环境<a name="section181431248132513"></a>
 
@@ -66,14 +77,14 @@ bash build/prebuilts_download.sh
     docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
-2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
+2.  进入源码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
     docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
     ```
 
 
-**方式二：通过Dockerfile 构建本地Docker镜像进行构建**
+**方式二：通过Dockerfile 构建本地Docker镜像进行构建**：
 
 1.  获取Dockerfile脚本文件，用来构建本地Docker镜像。
 
@@ -88,7 +99,7 @@ bash build/prebuilts_download.sh
     ./build.sh
     ```
 
-3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
+3.  进入源码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
     docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
@@ -97,17 +108,17 @@ bash build/prebuilts_download.sh
 
 ## 编译<a name="section92391739152318"></a>
 
-1. 通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
+1.  通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
 
-   ```
-   ./build.sh --product-name {product_name}
-   ```
+    ```
+    ./build.sh --product-name {product_name}
+    ```
 
-   \{product\_name\}为当前版本支持的平台，比如：Hi3516DV300
+    \{product\_name\}为当前版本支持的平台。比如：Hi3516DV300等。
 
-   编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
+    编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
 
-2. 编译源码完成，请进行镜像烧录，具体请参见[镜像烧录](quickstart-standard-burn.md)。
+2.  编译源码完成，请进行镜像烧录，具体请参见[镜像烧录](quickstart-standard-burn.md)。
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >退出Docker执行exit命令即可。
