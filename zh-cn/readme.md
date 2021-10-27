@@ -53,7 +53,7 @@
             -   [HPM Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
             -   [HPM Bundle开发指南](device-dev/bundles/bundles-guide.md)
             -   [HPM Bundle开发示例](device-dev/bundles/bundles-demo.md)
-    -   [常见问题](device-dev/FAQs/Readme.md)
+    -   [常见问题](device-dev/faqs/Readme-CN.md)
 
 
 -   应用开发
