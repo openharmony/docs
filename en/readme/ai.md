@@ -321,7 +321,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     }
     ```
 
-4.  **Sample development**  [\(similar to keyword spotting\)](https://gitee.com/openharmony/applications_sample_camera/tree/master/ai)
+4.  Develop a sample application.  For details, see the [\(keyword spotting demo\)](https://gitee.com/openharmony/applications_sample_camera/tree/master/ai).
 
     Directory: //applications/sample/camera/ai/asr/keyword\_spotting
 
