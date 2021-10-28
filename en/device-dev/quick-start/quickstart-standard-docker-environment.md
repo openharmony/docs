@@ -63,13 +63,13 @@ bash build/prebuilts_download.sh
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
     ```
 
 
@@ -91,7 +91,7 @@ bash build/prebuilts_download.sh
 3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.5
     ```
 
 
