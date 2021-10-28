@@ -26,6 +26,8 @@ RUN apt-get update \
 	&& apt-get install -y \
 	apt-utils \
 	vim \
+	tar \
+	binutils \
 	software-properties-common \
 	openssh-server \
 	iputils-ping \
@@ -68,6 +70,7 @@ RUN apt-get update \
 	bison \
 	doxygen \
 	git \
+	git-lfs \
 	subversion \
 	tofrodos \
 	pigz \
@@ -83,6 +86,10 @@ RUN apt-get update \
 	lib32z-dev \
 	openjdk-8-jdk \
 	ruby \
+	gnutls-bin \
+	python3.8 \
+	python3-pip \
+	cpio \
 	&& rm -rf /bin/sh \
 	&& ln -s /bin/bash /bin/sh \
 	&& mkdir -p $PREBUILTS_DIR/prebuilts $HOME_TOOLS
