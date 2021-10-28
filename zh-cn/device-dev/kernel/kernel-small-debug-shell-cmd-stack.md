@@ -29,10 +29,18 @@ stack
 
 ## 输出说明<a name="section075617368542"></a>
 
-**图 1**  系统堆栈使用情况<a name="fig478715471421"></a>  
+**示例 1**  系统堆栈使用情况
 
+```shell
+OHOS # stack
 
-![](figure/zh-cn_image_0000001133848370.png)
+ stack name    cpu id     stack addr     total size   used size
+ ----------    ------     ---------      --------     --------
+  svc_stack      1        0x405c4000     0x2000       0x484
+  svc_stack      0        0x405c6000     0x2000       0xae4
+  exc_stack      1        0x405c8000     0x1000       0x0
+  exc_stack      0        0x405c9000     0x1000       0x0
+```
 
 **表 1**  输出说明
 
@@ -70,4 +78,3 @@ stack
 </tr>
 </tbody>
 </table>
-

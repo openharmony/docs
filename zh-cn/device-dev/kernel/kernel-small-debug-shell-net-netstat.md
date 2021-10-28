@@ -27,10 +27,24 @@ netstat
 
 举例：输入netstat
 
-**图 1**  netstat 打印信息<a name="fig51865585412"></a>  
+**示例 1**  netstat 打印信息
 
+```shell
+OHOS # netstat
+========== total sockets 128 ======  unused sockets 119 ==========
+Proto   Recv-Q      Send-Q      Local Address           Foreign Address         State
+tcp     0           0           192.168.1.10:578        192.168.1.3:2049        ESTABLISHED
+tcp     0           0           192.168.1.10:58653      0.0.0.0:0               LISTEN
+tcp     0           0           192.168.1.10:58652      0.0.0.0:0               LISTEN
+tcp     0           0           192.168.1.10:58651      0.0.0.0:0               LISTEN
 
-![](figure/Snipaste_2021-01-26_10-38-58-25.png)
+Proto   Recv-Q      Send-Q      Local Address           Foreign Address
+udp     0           0           127.0.0.1:62177         127.0.0.1:62178
+udp     0           0           0.0.0.0:5684            0.0.0.0:0
+udp     0           0           127.0.0.1:62179         127.0.0.1:62180
+udp     0           0           127.0.0.1:62180         127.0.0.1:62179
+udp     0           0           127.0.0.1:62178         127.0.0.1:62177
+```
 
 ## 输出说明<a name="section1357015107117"></a>
 

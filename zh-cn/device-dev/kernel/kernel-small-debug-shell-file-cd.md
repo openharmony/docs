@@ -45,6 +45,7 @@ cd \[_path_\]
 -   路径名以 /（斜杠）开头时，表示根目录。
 -   .（点）表示当前目录。
 -   ..（点点）表示父目录。
+-   cd - 可以在最近访问的两个目录切换。
 
 ## 使用实例<a name="section211620301412"></a>
 
@@ -52,6 +53,12 @@ cd \[_path_\]
 
 ## 输出说明<a name="section1968117214577"></a>
 
-**图 1**  显示结果如下<a name="fig16500959144812"></a>  
-![](figure/显示结果如下.png "显示结果如下")
+**示例 1**  显示结果如下
+
+```shell
+OHOS:/nfs$ cd ../
+OHOS:/$ ls
+bin  etc  nfs   sdcard   system  tmp  vendor
+dev  lib  proc  storage  test    usr
+```
 

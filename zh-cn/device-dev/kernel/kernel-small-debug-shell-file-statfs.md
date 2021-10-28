@@ -47,6 +47,20 @@ statfs \[_directory_\]
 
 statfs /nfs
 
-**图 1**  statfs输出说明<a name="fig1810654276"></a>  
-![](figure/statfs输出说明.png "statfs输出说明")
+**示例 1**  statfs输出说明
+
+```shell
+OHOS # statfs ./nfs
+statfs got:
+ f_type     = 26985
+ cluster_size   = 512
+ total_clusters = 1579575176
+ free_clusters  = 499254808
+ avail_clusters = 499254808
+ f_namelen    = 255
+
+./nfs
+ total size: 808742490112 Bytes
+ free  size: 255618461696 Bytes
+```
 

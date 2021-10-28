@@ -74,13 +74,16 @@ arp \[_-i IF_\] -d  _IPADDR_
 
 1.  输入arp
 
-    **图 1**  打印整个 ARP 缓存表<a name="fig19980104045317"></a>  
+    **示例 1**  打印整个 ARP 缓存表
     
-
-    ![](figure/Snipaste_2021-01-26_10-38-58.png)
-
+    ```shell
+    OHOS # arp
+    Address                 HWaddress               Iface       Type
+    192.168.1.10            E6:2B:99:2C:4B:20       eth0        static
+    ```
+    
     **表 2**  参数说明
-
+    
     <a name="table1901mcpsimp"></a>
     <table><thead align="left"><tr id="row1906mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1908mcpsimp"><a name="p1908mcpsimp"></a><a name="p1908mcpsimp"></a>参数</p>
     </th>
@@ -110,5 +113,4 @@ arp \[_-i IF_\] -d  _IPADDR_
     </tr>
     </tbody>
     </table>
-
 

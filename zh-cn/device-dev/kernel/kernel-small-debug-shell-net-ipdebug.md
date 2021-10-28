@@ -21,7 +21,7 @@ ipdebug
 
 ipdebug打印信息如下：
 
-```
+```shell
 OHOS # ipdebug
 =================
 || Prefix List ||

@@ -30,9 +30,36 @@ memcheck
 
 ## 输出说明<a name="section13406205385413"></a>
 
-**图 1**  当前没有内存越界<a name="fig1115313610438"></a>  
-![](figure/当前没有内存越界.png "当前没有内存越界")
+**示例 1**  当前没有内存越界
 
-**图 2**  出现内存越界<a name="fig6414131084419"></a>  
-![](figure/出现内存越界.png "出现内存越界")
+```shell
+OHOS # memcheck
+system memcheck over, all passed!
+```
+
+**示例 2**  出现内存越界<a name="fig6414131084419"></a>  
+
+```shell
+[L0S DLnkCheckMenl 349, memory check
+stFreeNodeInfo.pstPrev:0x7e0d31f3 is out of legal mem range[0x80ba5f40, 0х83d00000]
+cur node: 0x81f2ce0c
+pre node: 0x81f28a98
+pre node was allocated by task:sofia
+uwEхcTуpe = 0х2
+puмExcBuffAddr pc = 0x803ad7a4
+puwExcBuffAddr lr = 0x803ad7a4
+puwExcBuffAddr sp = 0х80cb7de0
+puwExcBuffAddr fp = 0x80cb7dec
+*******backtrace begin*******
+traceback 0 -- lr = 0х8037cb84
+traceback 0 -- fp = 0х80cb7e1c
+traceback 1 -- lr = 0х8037033c
+traceback 1 -- fp = 0х80cb7e24
+traceback 2 -- lr = 0x8000d108
+traceback 2 -- fp = 0х80cb7e94
+traceback 3 -- lr = 0х8037c7ac
+traceback 3 -- fp = 0х80cb7ea4
+traceback 4 -- lr = 0x803ad9e8
+traceback 4 -- fp = 9x11111111
+```
 

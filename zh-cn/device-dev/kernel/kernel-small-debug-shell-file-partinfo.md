@@ -48,5 +48,16 @@ partinfo /dev/mmcblk0p0
 
 ## 输出说明<a name="section66689331412"></a>
 
-![](figure/zh-cn_image_0000001133848906.png)
+```shell
+OHOS # partinfo /dev/mmcblk0p0
+
+part info :
+disk id          : 0
+part_id in system: 1
+part no in disk  : 0
+part no in mbr   : 0
+part filesystem  : 00
+part sec start   : 20480
+part sec count   : 102400
+```
 

@@ -32,14 +32,14 @@ su \[_uid_\] \[_gid_\]
 </td>
 <td class="cellrowborder" valign="top" width="51.93%" headers="mcps1.2.4.1.2 "><p id="p14138191243"><a name="p14138191243"></a><a name="p14138191243"></a>目标用户的用户id值。</p>
 </td>
-<td class="cellrowborder" valign="top" width="27.07%" headers="mcps1.2.4.1.3 "><a name="ul14151675449"></a><a name="ul14151675449"></a><ul id="ul14151675449"><li>为空。</li><li>[0,60000]</li></ul>
+    <td class="cellrowborder" valign="top" width="27.07%" headers="mcps1.2.4.1.3 "><a name="ul14151675449"></a><a name="ul14151675449"></a><a name="p14138191456"></a>[0,60000]</p>
 </td>
 </tr>
 <tr id="row172161126124218"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p12217026154215"><a name="p12217026154215"></a><a name="p12217026154215"></a>gid</p>
 </td>
 <td class="cellrowborder" valign="top" width="51.93%" headers="mcps1.2.4.1.2 "><p id="p48748461789"><a name="p48748461789"></a><a name="p48748461789"></a>目标用户的群组id值。</p>
 </td>
-<td class="cellrowborder" valign="top" width="27.07%" headers="mcps1.2.4.1.3 "><a name="ul10433713134417"></a><a name="ul10433713134417"></a><ul id="ul10433713134417"><li>为空。</li><li>[0,60000]</li></ul>
+    <td class="cellrowborder" valign="top" width="27.07%" headers="mcps1.2.4.1.3 "><a name="ul10433713134417"></a><a name="ul10433713134417"></a><a name="p14138191123"></a>[0,60000]</p>
 </td>
 </tr>
 </tbody>
@@ -57,6 +57,17 @@ su \[_uid_\] \[_gid_\]
 
 ## 输出说明<a name="section125021924194613"></a>
 
-**图 1** **切换到**为uid为1000，gid为1000的用户<a name="fig666918538448"></a>  
-![](figure/切换到为uid为1000-gid为1000的用户.png "切换到为uid为1000-gid为1000的用户")
+**示例 1** **切换到**为uid为1000，gid为1000的用户
+
+```shell
+OHOS # ls
+Directory /data/system/param:
+-rw-r--r-- 0 u:0 g:0 hello_1.txt
+OHOS # su 1000 1000
+OHOS # touch hello 2.txt
+OHOS # ls
+Directory /data/system/param:
+-rw-r--r-- O u:1000 g:1000 hello 2.txt
+-гw-r--r-- 0 u:0 g:0 hello_1.txt
+```
 
