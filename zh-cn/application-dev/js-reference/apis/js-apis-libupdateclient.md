@@ -39,7 +39,7 @@
 ## 导入模块<a name="zh-cn_topic_0000001149710363_section749mcpsimp"></a>
 
 ```
-import client from 'libupdateclient.z.so'
+import client from '@ohos.update'
 ```
 
 ## 权限列表<a name="zh-cn_topic_0000001149710363_section752mcpsimp"></a>
