@@ -19,8 +19,8 @@
 
 各硬件连接关系如下图所示。
 
-**图 1**  硬件连线图<a name="fig38451744110"></a>  
-![](figure/硬件连线图-0.png "硬件连线图-0")
+**图 1**  Hi3516开发硬件连线图<a name="fig86246141414"></a>  
+![](figures/Hi3516开发硬件连线图.png "Hi3516开发硬件连线图")
 
 ### 软件要求<a name="section965634210501"></a>
 
@@ -61,7 +61,7 @@ Hi3516开发板对Linux服务器通用环境配置需要的工具及其获取途
 <td class="cellrowborder" valign="top" width="59.75597559755976%" headers="mcps1.2.4.1.3 "><p id="p280018394233"><a name="p280018394233"></a><a name="p280018394233"></a>通过apt-get install安装</p>
 </td>
 </tr>
-<tr id="row29204072315"><td class="cellrowborder" valign="top" width="25.112511251125113%" headers="mcps1.2.4.1.1 "><p id="p5921190162318"><a name="p5921190162318"></a><a name="p5921190162318"></a>Java 虚拟机环境</p>
+<tr id="row29204072315"><td class="cellrowborder" valign="top" width="25.112511251125113%" headers="mcps1.2.4.1.1 "><p id="p5921190162318"><a name="p5921190162318"></a><a name="p5921190162318"></a>Java虚拟机环境</p>
 </td>
 <td class="cellrowborder" valign="top" width="15.13151315131513%" headers="mcps1.2.4.1.2 "><p id="p17921110152311"><a name="p17921110152311"></a><a name="p17921110152311"></a>编译、调试和运行Java程序</p>
 </td>
@@ -87,7 +87,7 @@ ls -l /bin/sh
 
 如果显示为“/bin/sh -\> bash”则为正常，否则请按以下方式修改：
 
-**方法一**：在终端运行如下命令，然后选择 no。
+**方法一**：在终端运行如下命令，然后选择no。
 
 ```
 sudo dpkg-reconfigure dash
@@ -111,7 +111,7 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 ### 安装文件打包工具及Java虚拟机环境<a name="section16199102083717"></a>
 
 1.  打开Linux编译服务器终端
-2.  运行如下命令，安装dosfstools,mtools,mtd-utils,Java运行时环境（JRE）和Java sdk 开发工具包。
+2.  运行如下命令，安装dosfstools、mtools、mtd-utils、Java运行时环境（JRE）和Java sdk 开发工具包。
 
     ```
     sudo apt-get install dosfstools mtools mtd-utils default-jre default-jdk

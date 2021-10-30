@@ -8,7 +8,7 @@
 -   [运行结果](#section18115713118)
 -   [下一步学习](#section9712145420182)
 
-本示例将演示如何编写简单业务，输出“Hello World”，初步了解OpenHarmony 如何运行在开发板上。
+本示例将演示如何编写简单业务，输出“Hello World”，初步了解OpenHarmony如何运行在开发板上。
 
 ## 修改源码<a name="section79601457101015"></a>
 
@@ -138,7 +138,7 @@ Call Stack 6 -- 3f5e24 addr:f78fc
 
 3.  根据以上调用栈信息，可以定位WadRecvCB函数中出现了异常。
 
-    ![](figure/WadRecvCB-function.png)
+    ![](figures/WadRecvCB-function.png)
 
 4.  完成代码排查及修改。
 

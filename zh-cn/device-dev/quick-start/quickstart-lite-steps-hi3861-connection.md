@@ -15,27 +15,27 @@
 1.  打开DevEco Device Tool工具，点击“View \> Terminal”，进入终端界面。
 
     **图 1**  IDE终端工具打开方法<a name="fig755583241511"></a>  
-    ![](figure/IDE终端工具打开方法.png "IDE终端工具打开方法")
+    ![](figures/IDE终端工具打开方法.png "IDE终端工具打开方法")
 
     在终端界面使用ssh命令连接linux服务器，如“ssh user@ipaddr”。
 
     **图 2**  终端界面示意图<a name="fig14407256101510"></a>  
-    ![](figure/终端界面示意图.png "终端界面示意图")
+    ![](figures/终端界面示意图.png "终端界面示意图")
 
 2.  进入代码根路径，并在终端窗口，执行脚本命令“hb set”、“.”，选择需要编译的版本“wifiiot\_hispark\_pegasus”。
 
     **图 3**  在终端界面选择目标构建版本示意图<a name="fig191035701814"></a>  
-    ![](figure/在终端界面选择目标构建版本示意图.png "在终端界面选择目标构建版本示意图")
+    ![](figures/在终端界面选择目标构建版本示意图.png "在终端界面选择目标构建版本示意图")
 
 3.  执行“hb build”启动版本构建。
 
     **图 4**  在终端界面执行编译命令示意图<a name="fig10635942111916"></a>  
-    ![](figure/在终端界面执行编译命令示意图.png "在终端界面执行编译命令示意图")
+    ![](figures/在终端界面执行编译命令示意图.png "在终端界面执行编译命令示意图")
 
 4.  编译结束后，如果出现“wifiiot\_hispark\_pegasus build success”字样，则证明构建成功，如下图所示。
 
     **图 5**  编译成功示意图<a name="fig195291328182015"></a>  
-    ![](figure/编译成功示意图.png "编译成功示意图")
+    ![](figures/编译成功示意图.png "编译成功示意图")
 
 5.  构建成功后，会在./out/wifiiot/路径中生成以下文件，使用如下命令可以查看，至此编译构建流程结束。
 
@@ -44,7 +44,7 @@
     ```
 
     **图 6**  编译文件存放目录示意图<a name="fig112257131214"></a>  
-    ![](figure/编译文件存放目录示意图.png "编译文件存放目录示意图")
+    ![](figures/编译文件存放目录示意图.png "编译文件存放目录示意图")
 
 
 ## 镜像烧录<a name="section3288165814218"></a>
@@ -59,38 +59,42 @@
 Hi3861V100在Windows和Linux环境下的烧录操作完全一致，区别仅在于DevEco Device Tool环境搭建不同。
 
 1.  请连接好电脑和待烧录开发板，需要连接USB口，具体可参考[Hi3861V100开发板介绍](https://device.harmonyos.com/cn/docs/start/introduce/oem_minitinier_des_3861-0000001105041324)。
-2.  <a name="zh-cn_topic_0000001056563976_li848662117291"></a>打开电脑的设备管理器，查看并记录对应的串口号。
+2.  打开电脑的设备管理器，查看并记录对应的串口号。
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >如果对应的串口异常，请根据[Hi3861V100开发板串口驱动安装](https://device.harmonyos.com/cn/docs/ide/user-guides/hi3861-drivers-0000001058153433)安装USB转串口的驱动程序。
 
-    ![](figure/record-the-serial-port-number.png)
+    ![](figures/hi3861-record-the-serial-port-number.png)
 
-3.  打开DevEco Device Tool，在Projects中，点击**Settings**打开工程配置界面。
+3.  打开DevEco Device Tool，在QUICK ACCESS \> DevEco Home \> Projects中，点击**Settings**打开工程配置界面。
 
-    ![](figure/setting.png)
+    ![](figures/hi3861-deveco-device-tool-setting.png)
 
 4.  在“Partition Configuration”页签，设置待烧录文件信息，默认情况下，DevEco Device Tool已针对Hi3861V100开发板进行适配，无需单独修改。
+
+    >![](../public_sys-resources/icon-note.gif) **说明：** 
+    >如果待烧录文件是直接通过拷贝的方式获取，需要手动修改待烧录文件的路径。打开待烧录文件的页签，在Partition Settings的New Opiton的下拉列表中，选择Partition\_bin，然后在Partition Opiton的Partition\_bin设置待烧录文件的路径。
+
 5.  在“hi3861”页签，设置烧录选项，包括upload\_port、upload\_partitions和upload\_protocol。
 
-    -   upload\_port：选择步骤[2](#zh-cn_topic_0000001056563976_li848662117291)中查询的串口号。
+    -   upload\_port：选择步骤2中查询的串口号。
     -   upload\_protocol：选择烧录协议，Windows系统可以选择“burn-serial”或“hiburn-serial”，Linux系统只能选择“hiburn-serial”。
     -   upload\_partitions：选择待烧录的文件，默认选择hi3861\_app。
 
-    ![](figure/options.png)
+    ![](figures/options.png)
 
 6.  所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
 7.  打开工程文件，在DevEco Device Tool界面的“PROJECT TASKS”中，点击hi3861下的**Upload**按钮，启动烧录。
 
-    ![](figure/upload.png)
+    ![](figures/hi3861-upload.png)
 
 8.  启动烧录后，显示如下提示信息时，请按开发板上的RST按钮重启开发板。
 
-    ![](figure/restart-the-development-board.png)
+    ![](figures/hi3861-restart-the-development-board.png)
 
-9.  重新上电后，启动烧录，界面提示如下信息时，表示烧录成功。
+9.  重新上电后，界面提示如下信息时，表示烧录成功。
 
-    ![](figure/burning-succeeded.png)
+    ![](figures/hi3861-burning-succeeded.png)
 
 
 ## WLAN模组联网<a name="section194671619167"></a>
@@ -100,12 +104,12 @@ Hi3861V100在Windows和Linux环境下的烧录操作完全一致，区别仅在�
 1.  保持Windows工作台和WLAN模组的连接状态，在DevEco工具最下方，点击“DevEco:Serial Monitor”按钮。
 
     **图 7**  打开DevEco串口终端示意图<a name="fig464411253297"></a>  
-    ![](figure/打开DevEco串口终端示意图.png "打开DevEco串口终端示意图")
+    ![](figures/打开DevEco串口终端示意图.png "打开DevEco串口终端示意图")
 
 2.  复位WLAN模组，终端界面显示“ready to OS start”，则启动成功。
 
     **图 8**  WLAN复位成功示意图<a name="fig3327108143016"></a>  
-    ![](figure/WLAN复位成功示意图.png "WLAN复位成功示意图")
+    ![](figures/WLAN复位成功示意图.png "WLAN复位成功示意图")
 
 3.  在DevEco的串口终端中，依次执行如下AT命令，启动STA模式，连接指定AP热点，并开启DHCP功能。
 
@@ -126,6 +130,6 @@ Hi3861V100在Windows和Linux环境下的烧录操作完全一致，区别仅在�
     ```
 
     **图 9**  WLAN模组联网成功示意图<a name="fig7672858203010"></a>  
-    ![](figure/WLAN模组联网成功示意图.png "WLAN模组联网成功示意图")
+    ![](figures/WLAN模组联网成功示意图.png "WLAN模组联网成功示意图")
 
 

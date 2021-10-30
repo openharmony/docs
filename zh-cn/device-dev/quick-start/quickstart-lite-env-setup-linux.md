@@ -108,11 +108,11 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg
 
     1.  运行如下命令，查看Ubuntu版本：
 
-    ```
-    cat /etc/issue
-    ```
+        ```
+        cat /etc/issue
+        ```
 
-    1.  根据Ubuntu不同版本，安装python。
+    2.  根据Ubuntu不同版本，安装python。
         -   如果Ubuntu 版本为18+，运行如下命令。
 
             ```
@@ -175,7 +175,7 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg
 3.  解压LLVM安装包至\~/llvm路径下。
 
     ```
-    tar -zxvf llvm.tar.gz -C ~/
+    tar -zxvf llvm.tar -C ~/
     ```
 
 4.  设置环境变量。

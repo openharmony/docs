@@ -10,12 +10,12 @@
 Hi3861 WLAN模组是一片大约2cm\*5cm大小的开发板，是一款高度集成的2.4GHz WLAN SoC芯片，集成IEEE 802.11b/g/n基带和RF（Radio Frequency）电路。支持OpenHarmony，并配套提供开放、易用的开发和调试运行环境。
 
 **图 1**  Hi3861 WLAN模组外观图<a name="fig5781557185810"></a>  
-![](figure/Hi3861-WLAN模组外观图.png "Hi3861-WLAN模组外观图")
+![](figures/Hi3861-WLAN模组外观图.png "Hi3861-WLAN模组外观图")
 
 另外，Hi3861 WLAN模组还可以通过与Hi3861底板连接，扩充自身的外设能力，底板如下图所示。
 
 **图 2**  Hi3861底板外观图<a name="fig12182375916"></a>  
-![](figure/Hi3861底板外观图.png "Hi3861底板外观图")
+![](figures/Hi3861底板外观图.png "Hi3861底板外观图")
 
 -   RF电路包括功率放大器PA（Power Amplifier）、低噪声放大器LNA（Low Noise Amplifier）、RF Balun、天线开关以及电源管理等模块；支持20MHz标准带宽和5MHz/10MHz窄带宽，提供最大72.2Mbit/s物理层速率。
 -   Hi3861 WLAN基带支持正交频分复用（OFDM）技术，并向下兼容直接序列扩频（DSSS）和补码键控（CCK）技术，支持IEEE 802.11 b/g/n协议的各种数据速率。
@@ -23,7 +23,7 @@ Hi3861 WLAN模组是一片大约2cm\*5cm大小的开发板，是一款高度集�
 -   Hi3861芯片适用于智能家电等物联网智能终端领域。
 
     **图 3**  Hi3861功能框图<a name="fig1367035113590"></a>  
-    ![](figure/Hi3861功能框图.png "Hi3861功能框图")
+    ![](figures/Hi3861功能框图.png "Hi3861功能框图")
 
 
 ## 资源和约束<a name="section82610215014"></a>

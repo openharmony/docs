@@ -18,12 +18,12 @@
     -   [新增产品解决方案](#section1097623294220)
 
 -   [常见问题](#section19909721104319)
-    -   [ninja版本问题导致编译失败](#section138233464318)
-    -   [ncurses库缺失导致编译失败](#section151033911442)
-    -   [未安装mcopy导致编译失败](#section19811838104418)
-    -   [权限问题导致编译失败](#section03111118451)
-    -   [未安装Crypto导致编译失败](#section69981127125013)
-    -   [编译环境为shell导致编译失败](#section967617530505)
+    -   [编译构建过程中，提示“usr/sbin/ninja: invalid option -- w”](#section138233464318)
+    -   [编译构建过程中，提示“/usr/bin/ld: cannot find -lncurses”](#section151033911442)
+    -   [编译构建过程中，提示“line 77: mcopy: command not found”](#section19811838104418)
+    -   [编译构建过程中，提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”](#section03111118451)
+    -   [编译构建过程中，提示“No module named 'Crypto'”](#section69981127125013)
+    -   [编译构建过程中，提示“xx.sh : xx unexpected operator”](#section967617530505)
 
 
 ## 概述<a name="section10958256161119"></a>
@@ -37,7 +37,7 @@
 
 ### 基本概念<a name="section1732301411128"></a>
 
-在使用编译构建子系统前，应了解如下基本概念：
+在使用编译构建子系统前，应了解如下基本概念：s
 
 -   子系统
 
@@ -66,7 +66,7 @@
 ```
 build/lite
 ├── components                  # 组件描述文件
-├── figures                     # readme中的图片
+├── figure                     # readme中的图片
 ├── hb                          # hb pip安装包源码
 ├── make_rootfs                 # 文件系统镜像制作脚本
 ├── config                      # 编译配置项
@@ -97,7 +97,7 @@ build/lite
 
 为了实现芯片解决方案、产品解决方案与OpenHarmony是解耦的、可插拔的，组件、芯片解决方案和产品解决方案的路径、目录树和配置需遵循一定的规则，具体如下：
 
-### **组件**<a name="section142532518308"></a>
+### 组件<a name="section142532518308"></a>
 
 组件源码路径命名规则为：**\{领域\}/\{子系统\}/\{组件\}**，组件目录树规则如下：
 
@@ -206,7 +206,7 @@ component
 	}
 ```
 
-### **芯片解决方案**<a name="section121501451143710"></a>
+### 芯片解决方案<a name="section121501451143710"></a>
 
 -   芯片解决方案是指基于某款开发板的完整解决方案，包含驱动、设备侧接口适配、开发板sdk等。
 -   芯片解决方案是一个特殊的组件，源码路径规则为：**device/\{芯片解决方案厂商\}/\{开发板\}**。
@@ -244,7 +244,7 @@ board_cxx_flags：       开发板配置的cpp文件编译选项。
 board_ld_flags：        开发板配置的链接选项。
 ```
 
-### **产品解决方案**<a name="section134549283435"></a>
+### 产品解决方案<a name="section134549283435"></a>
 
 产品解决方案为基于开发板的完整产品，主要包含产品对OS的适配、组件拼装配置、启动配置和文件系统配置等。产品解决方案的源码路径规则为：**vendor/\{产品解决方案厂商\}/\{产品名称\}**_。_产品解决方案也是一个特殊的组件。
 
@@ -880,7 +880,7 @@ optional arguments:
 
 ## 常见问题<a name="section19909721104319"></a>
 
-### ninja版本问题导致编译失败<a name="section138233464318"></a>
+### 编译构建过程中，提示“usr/sbin/ninja: invalid option -- w”<a name="section138233464318"></a>
 
 -   **现象描述：**
 
@@ -892,10 +892,10 @@ optional arguments:
 
 -   **解决办法：**
 
-    卸载环境中ninja和gn，按照HarmonyOS官网[获取工具](../get-code/gettools-ide.md)。
+    卸载环境中ninja和gn，按照[获取工具](../get-code/gettools-ide.md)。
 
 
-### ncurses库缺失导致编译失败<a name="section151033911442"></a>
+### 编译构建过程中，提示“/usr/bin/ld: cannot find -lncurses”<a name="section151033911442"></a>
 
 -   **现象描述：**
 
@@ -912,7 +912,7 @@ optional arguments:
     ```
 
 
-### 未安装mcopy导致编译失败<a name="section19811838104418"></a>
+### 编译构建过程中，提示“line 77: mcopy: command not found”<a name="section19811838104418"></a>
 
 -   **现象描述：**
 
@@ -929,7 +929,7 @@ optional arguments:
     ```
 
 
-### 权限问题导致编译失败<a name="section03111118451"></a>
+### 编译构建过程中，提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”<a name="section03111118451"></a>
 
 -   **现象描述：**
 
@@ -950,7 +950,7 @@ optional arguments:
     使用chmod命令修改目录权限为755。
 
 
-### 未安装Crypto导致编译失败<a name="section69981127125013"></a>
+### 编译构建过程中，提示“No module named 'Crypto'”<a name="section69981127125013"></a>
 
 -   **现象描述：**
 
@@ -975,7 +975,7 @@ optional arguments:
 
 
 
-### 编译环境为shell导致编译失败<a name="section967617530505"></a>
+### 编译构建过程中，提示“xx.sh : xx unexpected operator”<a name="section967617530505"></a>
 
 -   **现象描述：**
 

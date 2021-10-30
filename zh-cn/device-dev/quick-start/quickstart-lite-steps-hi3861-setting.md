@@ -23,8 +23,8 @@
 
 各硬件连接关系如下图所示。
 
-**图 1**  硬件连线图<a name="fig1922334410211"></a>  
-![](figure/硬件连线图.png "硬件连线图")
+**图 1**  Hi3861开发硬件连线图<a name="fig285519359396"></a>  
+![](figures/Hi3861开发硬件连线图.png "Hi3861开发硬件连线图")
 
 ### 软件要求<a name="section727451210318"></a>
 
@@ -124,7 +124,7 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
     ```
 
     **图 2**  SCons安装成功界面，版本要求3.0.4以上<a name="fig151441613316"></a>  
-    ![](figure/SCons安装成功界面-版本要求3-0-4以上.png "SCons安装成功界面-版本要求3-0-4以上")
+    ![](figures/SCons安装成功界面-版本要求3-0-4以上.png "SCons安装成功界面-版本要求3-0-4以上")
 
 
 ### 安装python模块<a name="section88701892341"></a>
@@ -220,13 +220,13 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 
 >![](../public_sys-resources/icon-notice.gif) **须知：** 
 >-   Hi3861平台仅支持使用libgcc运行时库的静态链接，不建议开发者使用libgcc运行时库的动态链接，以免产品需遵从GPLV3许可证。
->-   通过下述步骤2-15，我们编译好了gcc\_riscv32 镜像，提供给开发者[直接下载](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz)使用。直接下载 gcc\_riscv32 镜像的开发者可省略下述2-15步。
+>-   通过下述步骤2-15，我们编译好了gcc\_riscv32镜像，提供给开发者[直接下载](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz)使用。直接下载gcc\_riscv32镜像的开发者可省略下述2-15步。
 
 1.  打开Linux编译服务器终端。
 2.  环境准备，请安装"gcc, g++, bison, flex, makeinfo"软件，确保工具链能正确编译。
 
     ```
-    sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install flex bison && sudo apt-get install texinfo
+    sudo apt-get install gcc g++  flex bison  texinfo
     ```
 
 3.  下载riscv-gnu-toolchain交叉编译工具链。
@@ -353,6 +353,6 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 2.  点击安装包，安装驱动程序。
 3.  驱动安装完成后，重新插拔USB接口，串口信息显示如下图所示。
 
-    ![](figure/serial-port-entry.png)
+    ![](figures/serial-port-entry.png)
 
 

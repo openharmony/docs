@@ -97,7 +97,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p458073721519"><a name="p458073721519"></a><a name="p458073721519"></a>开发参考</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul175808372155"></a><a name="ul175808372155"></a><ul id="ul175808372155"><li><a href="https://device.harmonyos.com/cn/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API参考</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul175808372155"></a><a name="ul175808372155"></a><ul id="ul175808372155"><li><a href="https://device.harmonyos.com/cn/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API参考</a></li><li><a href="faqs/Readme-CN.md" target="_blank" rel="noopener noreferrer">常见问题</a></li></ul>
 </td>
 </tr>
 </tbody>
@@ -167,7 +167,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p670135335116"><a name="p670135335116"></a><a name="p670135335116"></a>开发参考</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul177016538519"></a><a name="ul177016538519"></a><ul id="ul177016538519"><li><a href="https://device.harmonyos.com/cn/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API参考</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul177016538519"></a><a name="ul177016538519"></a><ul id="ul177016538519"><li><a href="https://device.harmonyos.com/cn/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API参考</a></li><li><a href="faqs/Readme-CN.md" target="_blank" rel="noopener noreferrer">常见问题</a></li></ul>
 </td>
 </tr>
 </tbody>

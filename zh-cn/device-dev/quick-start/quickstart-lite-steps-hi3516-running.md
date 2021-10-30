@@ -4,8 +4,8 @@
 -   [编译](#section1077671315253)
 -   [烧录](#section1347011412201)
     -   [使用网口烧录](#section1935410617363)
+    -   [镜像运行](#section24721014162010)
 
--   [镜像运行](#section24721014162010)
 -   [执行应用程序](#section5276734182615)
 
 本节指导开发者在单板上运行第一个应用程序，其中包括新建应用程序、编译、烧写、运行等步骤，最终输出“Hello OHOS！”。
@@ -140,8 +140,8 @@ hb set(设置编译路径)
 hb build -f（执行编译）
 ```
 
-**图 1**  设置图例<a name="fig1458988766"></a>  
-![](figure/设置图例.png "设置图例")
+**图 1**  Hi3516编译设置图例<a name="fig1458988766"></a>  
+![](figures/Hi3516编译设置图例.png "Hi3516编译设置图例")
 
 结果文件生成在out/hispark\_taurus/ipcamera\_hispark\_taurus目录下。
 
@@ -162,11 +162,11 @@ Hi3516DV300开发板使用网口烧录方式，支持Windows和Linux系统。
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >如果对应的串口异常，请根据[Hi3516DV300/Hi3518EV300开发板串口驱动安装指导](https://device.harmonyos.com/cn/docs/ide/user-guides/hi3516_hi3518-drivers-0000001050743695)安装USB转串口的驱动程序。
 
-    ![](figure/record-the-serial-port-number-1.png)
+    ![](figures/hi3516-record-the-serial-port-number.png)
 
-3.  打开DevEco Device Tool，在Projects中，点击**Settings**打开工程配置界面。
+3.  打开DevEco Device Tool，在QUICK ACCESS \> DevEco Home \> Projects中，点击**Settings**打开工程配置界面。
 
-    ![](figure/settings.png)
+    ![](figures/hi3516-deveco-device-tool-setting.png)
 
 4.  在“Partition Configuration”页签，设置待烧录文件信息，默认情况下，DevEco Device Tool已针对Hi3516DV300开发板进行适配，无需单独修改。
 5.  在“hi3516dv300”页签，设置烧录选项，包括upload\_port、upload\_partitions和upload\_protocol。
@@ -175,7 +175,7 @@ Hi3516DV300开发板使用网口烧录方式，支持Windows和Linux系统。
     -   upload\_protocol：选择烧录协议，固定选择“hiburn-net”。
     -   upload\_partitions：选择待烧录的文件，默认情况下会同时烧录fastboot、kernel、rootfs和userfs。
 
-    ![](figure/hi3516-upload-options.png)
+    ![](figures/hi3516-upload-options.png)
 
 6.  检查和设置连接开发板后的网络适配器的IP地址信息，设置方法请参考[设置Hi3516DV300网口烧录的IP地址信息](https://device.harmonyos.com/cn/docs/ide/user-guides/set_ipaddress-0000001141825075)。
 7.  设置网口烧录的IP地址信息，设置如下选项：
@@ -185,52 +185,51 @@ Hi3516DV300开发板使用网口烧录方式，支持Windows和Linux系统。
     -   upload\_net\_client\_gw：设置开发板的网关，工具会自动根据选择的upload\_net\_server\_ip进行设置。例如192.168.1.1
     -   upload\_net\_client\_ip：设置开发板的IP地址，工具会自动根据选择的upload\_net\_server\_ip进行设置。例如192.168.1.3
 
-    ![](figure/ip-address-information.png)
+    ![](figures/ip-address-information.png)
 
 8.  所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
-9.  打开工程文件，点击![](figure/deveco-device-tool-logo.png)图标，打开DevEco Device Tool界面，在“PROJECT TASKS”中，点击hi3516dv300下的**Upload**按钮，启动烧录。
+9.  打开工程文件，点击![](figures/hi3516-deveco-device-tool-logo.png)图标，打开DevEco Device Tool界面，在“PROJECT TASKS”中，点击hi3516dv300下的**Upload**按钮，启动烧录。
 
-    ![](figure/start-burning.png)
+    ![](figures/hi3516-upload-start-burning.png)
 
 10. 启动烧录后，显示如下提示信息时，请重启开发板（下电再上电）。
 
-    ![](figure/restart-the-development-board-2.png)
+    ![](figures/hi3516-restart-the-development-board.png)
 
-11. 重新上电后，启动烧录，界面提示如下信息时，表示烧录成功。
+11. 重新上电后，界面提示如下信息时，表示烧录成功。
 
-    ![](figure/burning-succeeded-3.png)
+    ![](figures/hi3516-burning-succeeded-net.png)
 
+12. 烧录成功后，请根据镜像运行章节进行操作，启动系统。
 
-## 镜像运行<a name="section24721014162010"></a>
+### 镜像运行<a name="section24721014162010"></a>
 
 在完成Hi3516DV300的烧录后，还需要设置BootLoader引导程序，才能运行OpenHarmony系统。
 
-1. 在Hi3516DV300任务中，点击**Configure bootloader（Boot OS）**进行配置即可。
+1.  在Hi3516DV300任务中，点击**Configure bootloader（Boot OS）**进行配置即可。
 
-   > ![](../public_sys-resources/icon-note.gif) **说明：** 
-   > DevEco Device Tool针对Hi3516DV300开发板的BootLoader设置进行了适配，无需开发者手动修改。
+    >![](../public_sys-resources/icon-note.gif) **说明：** 
+    >DevEco Device Tool针对Hi3516DV300开发板的BootLoader设置进行了适配，无需开发者手动修改。
 
-   ![](D:/IDP%E5%8F%91%E5%B8%83%E4%BB%B6/220/For%20OpenHarmony2.0/zh/quick-start/figures/bootloader.png)
+    ![](figures/bootloader.png)
 
-2. 提示如下图中的重启开发板的提示信息时，重启开发板，然后在控制台输出“SUCCESS”表示设置成功。
+2.  提示如下图中的重启开发板的提示信息时，重启开发板，然后在控制台输出“SUCCESS”表示设置成功。
 
-   ![](figure/reset_success.png)
+    ![](figures/reset_success.png)
 
-3. 在任务栏点击**Monitor**按钮，启动串口工具。
+3.  在任务栏点击**Monitor**按钮，启动串口工具。
 
-   ![](figure/monitor.png)
+    ![](figures/monitor.png)
 
-4. 然后根据界面提示进行操作，直到在界面打印**OHOS \#**信息，表示系统启动成功。
+4.  然后根据界面提示进行操作，直到在界面打印**OHOS \#**信息，表示系统启动成功。
 
-   ![](figure/reboot_success.png)
-
-
+    ![](figures/reboot_success.png)
 
 
 ## 执行应用程序<a name="section5276734182615"></a>
 
 根目录下，在命令行输入指令“**./bin/helloworld**”执行写入的demo程序，显示成功结果如下图所示。
 
-**图 4**  启动并成功执行应用程序图<a name="fig149821431194515"></a>  
-![](figure/启动并成功执行应用程序图.png "启动并成功执行应用程序图")
+**图 2**  启动并成功执行应用程序图<a name="fig149821431194515"></a>  
+![](figures/启动并成功执行应用程序图.png "启动并成功执行应用程序图")
 

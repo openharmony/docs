@@ -1,12 +1,12 @@
 # 常见问题<a name="ZH-CN_TOPIC_0000001128470858"></a>
 
--   [hb 安装过程中出现乱码、段错误](#section411894616119)
--   [hb 安装过程中提示"cannot import 'sysconfig' from 'distutils'"](#section629417571626)
--   [hb 安装过程中提示"module 'platform' has no attribute 'linux\_distribution'"](#section10871523332)
--   [hb 安装过程中提示"Could not find a version that satisfies the requirement ohos-build"](#section47351657163213)
+-   [安装hb过程中，出现乱码、段错误](#section411894616119)
+-   [安装hb过程中，提示"cannot import 'sysconfig' from 'distutils'"](#section629417571626)
+-   [安装hb过程中，提示"module 'platform' has no attribute 'linux\_distribution'"](#section10871523332)
+-   [安装hb过程中，提示"Could not find a version that satisfies the requirement ohos-build"](#section47351657163213)
 -   [Linux编译服务器终端输入不识别的命令时提示“ImportError: No module named apt\_pkg”](#section159891252236)
 
-## hb 安装过程中出现乱码、段错误<a name="section411894616119"></a>
+## 安装hb过程中，出现乱码、段错误<a name="section411894616119"></a>
 
 -   **现象描述**
 
@@ -26,11 +26,11 @@
     ```
 
 
-## hb 安装过程中提示"cannot import 'sysconfig' from 'distutils'"<a name="section629417571626"></a>
+## 安装hb过程中，提示"cannot import 'sysconfig' from 'distutils'"<a name="section629417571626"></a>
 
 -   **现象描述**
 
-    执行“python3 -m pip install --user ohos-build”提示"cannot import 'sysconfig' from 'distutils'"
+    执行“python3 -m pip install --user ohos-build”提示"cannot import 'sysconfig' from 'distutils'"。
 
 
 -   **可能原因**
@@ -46,11 +46,11 @@
     ```
 
 
-## hb 安装过程中提示"module 'platform' has no attribute 'linux\_distribution'"<a name="section10871523332"></a>
+## 安装hb过程中，提示"module 'platform' has no attribute 'linux\_distribution'"<a name="section10871523332"></a>
 
 -   **现象描述**
 
-    执行“python3 -m pip install --user ohos-build”提示"module 'platform' has no attribute 'linux\_distribution'"
+    执行“python3 -m pip install --user ohos-build”提示"module 'platform' has no attribute 'linux\_distribution'"。
 
 
 -   **可能原因**
@@ -68,7 +68,7 @@
     ```
 
 
-## hb 安装过程中提示"Could not find a version that satisfies the requirement ohos-build"<a name="section47351657163213"></a>
+## 安装hb过程中，提示"Could not find a version that satisfies the requirement ohos-build"<a name="section47351657163213"></a>
 
 -   **现象描述**
 

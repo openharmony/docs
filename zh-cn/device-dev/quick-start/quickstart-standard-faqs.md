@@ -4,7 +4,6 @@
 
     Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt\_pkg"
 
-
 -   **可能原因**
 
     python3 apt安装兼容性问题。
