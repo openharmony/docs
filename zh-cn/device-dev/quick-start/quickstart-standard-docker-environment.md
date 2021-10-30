@@ -74,13 +74,13 @@ bash build/prebuilts_download.sh
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
     ```
 
 2.  进入源码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.4
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
     ```
 
 
@@ -102,7 +102,7 @@ bash build/prebuilts_download.sh
 3.  进入源码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.4
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.5
     ```
 
 
