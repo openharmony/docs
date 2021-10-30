@@ -92,7 +92,7 @@ Linux服务器通用环境配置需要的工具及其获取途径如下表所示
 使用如下apt-get命令安装编译所需的必要的库和工具：
 
 ```
-sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi
+sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi cpio device-tree-compiler
 ```
 
 ## 安装Python3<a name="section1238412211211"></a>
