@@ -53,7 +53,7 @@ subsystem # Subsystem
 │   │       ├── ivi                
 │   │       └── liteos-a                  
 │   │   ...
- │   └── ohos_build  # Build entry configuration
+│   └── ohos_build  # Build entry configuration
 ...
 ```
 > **Note:** Test cases are classified into common test cases and device-specific test cases. You are advised to place common test cases in the **common** directory and device-specific test cases in the directories of the related devices.
@@ -113,12 +113,12 @@ Example:
     
     void CalculatorSubTest::SetUp(void)
     {
-        // Set a setup function, which will be called before all test cases.
+        // Set a setup function, which will be called before each test case.
     }
     
     void CalculatorSubTest::TearDown(void)
     {
-        // Set a teardown function, which will be called after all test cases.
+        // Set a teardown function, which will be called after each test case.
     }
     
     /**
@@ -186,12 +186,12 @@ Example:
     
     	void CalculatorSubTest::SetUp(void)
     	{
-    	    // Set a setup function, which will be called before all test cases.
+    	    // Set a setup function, which will be called before each test case.
     	}
     
     	void CalculatorSubTest::TearDown(void)
     	{
-    	    // Set a teardown function, which will be called after all test cases.
+    	    // Set a teardown function, which will be called after each test case.
     	}
     	```
 	    > **Note**: When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
@@ -279,12 +279,12 @@ Example:
         })
         
         beforeEach(function() {
-            // Set a setup function, which will be called before all test cases.
+            // Set a setup function, which will be called before each test case.
              console.info('beforeEach caled')
         })
         
         afterEach(function() {
-            // Set a teardown function, which will be called after all test cases.
+            // Set a teardown function, which will be called after each test case.
              console.info('afterEach caled')
         })
     
@@ -341,12 +341,12 @@ Example:
     	    })
     	    
     	    beforeEach(function() {
-    	        // Set a setup function, which will be called before all test cases.
+    	        // Set a setup function, which will be called before each test case.
     	         console.info('beforeEach caled')
     	    })
     	    
     	    afterEach(function() {
-    	        // Set a teardown function, which will be called after all test cases.
+    	        // Set a teardown function, which will be called after each test case.
     	         console.info('afterEach caled')
     	    })
     	```
@@ -757,12 +757,12 @@ When the build is complete, the test cases are automatically saved in the **out/
 	```
 	In the command:
 	```
-	-**t [TESTTYPE]**: specifies the test case type, which can be **UT**, **MST**, **ST**, or **PERF**. This parameter is mandatory.
-	-**tp [TESTTYPE]**: specifies a part, which can be used independently.
-	-**tm [TESTTYPE]**: specifies a module. This parameter must be specified together with **-tp**.
-	-**ts [TESTTYPE]**: specifies a test suite, which can be used independently.
-	-**tc [TESTTYPE]**: specifies a test case. This parameter must be specified together with **-ts**.
-	-You can run **h** to display help information.
+	-t [TESTTYPE]: specifies the test case type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
+	-tp [TESTTYPE]: specifies a part, which can be used independently.
+	-tm [TESTTYPE]: specifies a module. This parameter must be specified together with -tp.
+	-ts [TESTTYPE]: specifies a test suite, which can be used independently.
+	-tc [TESTTYPE]: specifies a test case. This parameter must be specified together with -ts.
+	You can run -h to display help information.
 	```
 ### Executing Test Cases on Linux
 #### Mapping Remote Port
@@ -797,12 +797,12 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	```
 	In the command:
 	```
-	-**t [TESTTYPE]**: specifies the test case type, which can be **UT**, **MST**, **ST**, or **PERF**. This parameter is mandatory.
-	-**tp [TESTTYPE]**: specifies a part, which can be used independently.
-	-**tm [TESTTYPE]**: specifies a module. This parameter must be specified together with **-tp**.
-	-**ts [TESTTYPE]**: specifies a test suite, which can be used independently.
-	-**tc [TESTTYPE]**: specifies a test case. This parameter must be specified together with **-ts**.
-	-You can run **h** to display help information.
+	-t [TESTTYPE]: specifies the test case type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
+	-tp [TESTTYPE]: specifies a part, which can be used independently.
+	-tm [TESTTYPE]: specifies a module. This parameter must be specified together with -tp.
+	-ts [TESTTYPE]: specifies a test suite, which can be used independently.
+	-tc [TESTTYPE]: specifies a test case. This parameter must be specified together with -ts.
+	You can run -h to display help information.
 	```
 
 ## Viewing the Test Report
