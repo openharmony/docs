@@ -5,7 +5,7 @@ This document describes how to use the OpenHarmony test framework.
 ## Setting Up the Environment
 The test framework depends on the Python running environment. Before using the test framework, set up the environment as follows:
  - [Setting Up the Environment](subsys-testguide-envbuild.md)
- - [Obtaining Source Code](../device-dev/get-code/sourcecode-acquire.md)
+ - [Obtaining Source Code](../get-code/sourcecode-acquire.md)
 
 
 ## Directory Structure
