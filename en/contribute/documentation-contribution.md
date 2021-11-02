@@ -1,4 +1,4 @@
-# Documentation Contribution<a name="ZH-CN_TOPIC_0000001053069234"></a>
+# Documentation Contribution<a name="EN-US_TOPIC_0000001053069234"></a>
 
 You are welcome to make contributions to OpenHarmony documentation, in any of the methods provided below. You can help us improve the existing documents or submit new, original content.
 
@@ -48,7 +48,7 @@ You can perform the following steps to modify or supplement a file:
 
     Signed-off-by: user.name &lt;user.email&gt; // Note that *user.name* and *user.email* must be the same as those used for DCO signing.
 
-    ![ ](figures/Signed-off-by-example.png)
+    ![](pictures/Signed-off-by-example.png)
 
     The Docs team will review your edits and update the file accordingly.
 
