@@ -48,8 +48,7 @@ You can perform the following steps to modify or supplement a file:
 
     Signed-off-by: user.name &lt;user.email&gt; // Note that *user.name* and *user.email* must be the same as those used for DCO signing.
 
-    ![](figures/Signed-off-by-example.png)
-![](figures/无标题2.png)
+![](figures/Signed-off-by-example.png)
 
     The Docs team will review your edits and update the file accordingly.
 
