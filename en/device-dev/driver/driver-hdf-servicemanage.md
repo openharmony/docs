@@ -128,7 +128,7 @@ The development of driver service management includes compiling, binding, obtain
 
     -   Using the subscription mechanism
 
-        If the kernel sapce unaware of the time for loading drivers \(on the same host\), use the subscription mechanism provided by the HDF to subscribe to the drivers. After the drivers are loaded, the HDF releases the driver services to you. The implementation is as follows:
+        If the kernel mode is unaware of the time for loading drivers \(on the same host\), use the subscription mechanism provided by the HDF to subscribe to the drivers. After the drivers are loaded, the HDF releases the driver services to you. The implementation is as follows:
 
         ```
         // Subscription callback function. After the subscribed drivers are loaded, the HDF releases the driver services to you using this function.

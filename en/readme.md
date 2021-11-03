@@ -49,6 +49,7 @@ This project stores OpenHarmony documentation, including the quick start guide, 
         - **porting**:  
 
             - [Standard  System SoC Porting Guide](device-dev/porting/standard-system-porting-guide.md)
+            - [A Method for Rapidly Porting the OpenHarmony Linux Kernel ](device-dev/porting/porting-linux-kernel-overview.md)
 
         - **bundles**: 
             -   [HPM Bundle Development Specifications](device-dev/bundles/bundles-standard-rules.md)

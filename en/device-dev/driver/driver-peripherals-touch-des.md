@@ -1,11 +1,8 @@
 # TOUCHSCREEN<a name="EN-US_TOPIC_0000001052857350"></a>
 
 -   [Overview](#section175431838101617)
-    -   [Available APIs](#section17667171301711)
-
--   [Development Guidelines](#section65745222184)
-    -   [How to Develop](#section865734181916)
-
+-   [Available APIs](#section105459441659)
+-   [How to Develop](#section65745222184)
 -   [Development Example](#section263714411191)
     -   [Add the touchscreen driver-related descriptions.](#section18249155619195)
     -   [Board-level Hardware Configuration and Private Data Configuration](#section3571192072014)
@@ -27,7 +24,7 @@
 
 
 **Figure  1**  Architecture of the input driver model<a name="fig6251184817261"></a>  
-![](figure/architecture-of-the-input-driver-model.png "architecture-of-the-input-driver-model")
+![](figures/architecture-of-the-input-driver-model.png "architecture-of-the-input-driver-model")
 
 -   **Input driver model**
 
@@ -49,7 +46,7 @@
     The touchscreen driver is developed based on the  [HDF](driver-hdf-development.md)  and is implemented via calls to the OSAL and platform APIs, including bus APIs and OS native APIs \(such as memory, lock, thread, and timer\). The OSAL and platform APIs hide the differences of underlying hardware, so that the touchscreen driver can be migrated across platforms and OSs. In this regard, you can develop the touchscreen driver only once but deploy it on multiple devices.
 
 
-### Available APIs<a name="section17667171301711"></a>
+## Available APIs<a name="section105459441659"></a>
 
 Based on the attributes of the pins, interfaces on the touchscreens can be classified into the following types:
 
@@ -58,7 +55,7 @@ Based on the attributes of the pins, interfaces on the touchscreens can be class
 -   Communications interfaces
 
 **Figure  2**  Common pins of the touchscreen<a name="fig1290384314416"></a>  
-![](figure/common-pins-of-the-touchscreen.png "common-pins-of-the-touchscreen")
+![](figures/common-pins-of-the-touchscreen.png "common-pins-of-the-touchscreen")
 
 The interfaces shown in the figure are described as follows:
 
@@ -73,30 +70,29 @@ The interfaces shown in the figure are described as follows:
     -   INT: interrupt pin, which needs to be set to the input direction and pull-up status during driver initialization. After detecting an external touch signal, the driver triggers the interrupt by operating the interrupt pin. The driver reads the touch reporting data in the ISR function.
 
 3.  **Communications interfaces**
-    -   I2C: Since only a small amount of touch data is reported by the touchscreen, I2C is used to transmit the reported data. For details about the I2C protocol and interfaces, see  [I2C](driver-platform-i2c-des.md#section1695201514281).
-    -   SPI: In addition to touch reporting data coordinates, some vendors need to obtain basic capacitance data. Therefore, Serial Peripheral Interface \(SPI\) is used to transmit such huge amount of data. For details about the SPI protocol and interfaces, see  [SPI](driver-platform-spi-des.md#section71363452477).
+    -   I2C: Since only a small amount of touch data is reported by the touchscreen, I2C is used to transmit the reported data. For details about the I2C protocol and interfaces, see  [I2C](driver-platform-i2c-des.md#section5361140416).
+    -   SPI: In addition to touch reporting data coordinates, some vendors need to obtain basic capacitance data. Therefore, Serial Peripheral Interface \(SPI\) is used to transmit such huge amount of data. For details about the SPI protocol and interfaces, see  [SPI](driver-platform-spi-des.md#section193356154511).
 
 
-## Development Guidelines<a name="section65745222184"></a>
+## How to Develop<a name="section65745222184"></a>
 
 Regardless of the OS and system on a chip \(SoC\), the input driver is developed based on the HDF, platform, and OSAL APIs to provide a unified driver model for touchscreen devices.
 
--   The following uses the touchscreen driver as an example to describe the loading process of the input driver model:
+The following uses the touchscreen driver as an example to describe the loading process of the input driver model:
 
-    \(1\) Complete the device description configuration, such as the loading priority, board-level hardware information, and private data, by referring to the existing template.
+\(1\) Complete the device description configuration, such as the loading priority, board-level hardware information, and private data, by referring to the existing template.
 
-    \(2\) Load the input device management driver. The input management driver is loaded automatically by the HDF to create and initialize the device manager.
+\(2\) Load the input device management driver. The input management driver is loaded automatically by the HDF to create and initialize the device manager.
 
-    \(3\) Load the platform driver. The platform driver is loaded automatically by the HDF to parse the board-level configuration, initialize the hardware, and provide the API for registering the touchscreen.
+\(3\) Load the platform driver. The platform driver is loaded automatically by the HDF to parse the board-level configuration, initialize the hardware, and provide the API for registering the touchscreen.
 
-    \(4\) Load the touchscreen driver. The touchscreen driver is loaded automatically by the HDF to instantiate the touchscreen device, parse the private data, and implement differentiated APIs provided by the platform.
+\(4\) Load the touchscreen driver. The touchscreen driver is loaded automatically by the HDF to instantiate the touchscreen device, parse the private data, and implement differentiated APIs provided by the platform.
 
-    \(5\) Register the instantiated touchscreen device with the platform driver. Then bind this device to the platform driver, and complete touchscreen initialization such as interrupt registration and power-on and power-off.
+\(5\) Register the instantiated touchscreen device with the platform driver. Then bind this device to the platform driver, and complete touchscreen initialization such as interrupt registration and power-on and power-off.
 
-    \(6\) Instantiate the input device and register it with the input manager after the touchscreen is initialized.
+\(6\) Instantiate the input device and register it with the input manager after the touchscreen is initialized.
 
-
-### How to Develop<a name="section865734181916"></a>
+Perform the following steps:
 
 1.  Add the touchscreen driver-related descriptions.
 
@@ -108,7 +104,7 @@ Regardless of the OS and system on a chip \(SoC\), the input driver is developed
 
 3.  Implement differentiated adaptation APIs of the touchscreen.
 
-    Use the platform APIs to perform operations for the reset pins, interrupt pins, and power based on the communications interfaces designed for boards. For details about the GPIO-related operations, see  [GPIO](driver-platform-gpio-des.md#section259614242196).
+    Use the platform APIs to perform operations for the reset pins, interrupt pins, and power based on the communications interfaces designed for boards. For details about the GPIO-related operations, see  [GPIO](driver-platform-gpio-des.md#section1635911016188).
 
 
 ## Development Example<a name="section263714411191"></a>

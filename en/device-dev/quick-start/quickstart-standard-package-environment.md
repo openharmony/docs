@@ -1,4 +1,4 @@
-# Setting Up Ubuntu Development Environment with Installation Package<a name="EN-US_TOPIC_0000001119804790"></a>
+# Setting Up a Ubuntu Development Environment Using the Installation Package<a name="EN-US_TOPIC_0000001119804790"></a>
 
 -   [Installing Dependent Tools](#section18431165519244)
 -   [Obtaining Standard-System Source Code](#section113751052102517)
@@ -25,7 +25,7 @@ sudo apt-get update && sudo apt-get install binutils git git-lfs gnupg flex biso
 
 1.  Register your account with Gitee.
 2.  Register an SSH public key for access to Gitee.
-3.  Install the  [git client](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
+3.  Install the  [git client](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  and  [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
 
     ```
     git config --global user.name "yourname"
@@ -43,6 +43,8 @@ sudo apt-get update && sudo apt-get install binutils git git-lfs gnupg flex biso
 
 
 ### Procedure<a name="section429012478331"></a>
+
+Two methods are provided for you to obtain the OpenHarmony master code. You are advised to create a new folder and run the related commands in this folder to download the source code. This folder will then be the root directory of the source code.
 
 Method 1 \(recommended\): Use the  **repo**  tool to download the source code over SSH. \(You must have registered an SSH public key for access to Gitee.\)
 

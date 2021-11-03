@@ -10,12 +10,12 @@
 The Hi3861 WLAN module is a development board with 2 x 5 cm form factor. It contains a 2.4 GHz WLAN SoC that highly integrates the IEEE 802.11b/g/n baseband and radio frequency \(RF\) circuit. This module provides open and easy-to-use development and debugging environments for running OpenHarmony.
 
 **Figure  1**  Appearance of Hi3861 WLAN module<a name="fig5781557185810"></a>  
-![](figure/appearance-of-hi3861-wlan-module.png "appearance-of-hi3861-wlan-module")
+![](figures/appearance-of-hi3861-wlan-module.png "appearance-of-hi3861-wlan-module")
 
 The Hi3861 WLAN module can also be connected to the Hi3861 mother board to expand its peripheral capabilities. The following figure shows the Hi3861 mother board.
 
 **Figure  2**  Appearance of the Hi3861 mother board<a name="fig12182375916"></a>  
-![](figure/appearance-of-the-hi3861-mother-board.png "appearance-of-the-hi3861-mother-board")
+![](figures/appearance-of-the-hi3861-mother-board.png "appearance-of-the-hi3861-mother-board")
 
 -   The RF circuit includes modules such as the power amplifier \(PA\), low noise amplifier \(LNA\), RF Balun, antenna switch, and power management. It supports a standard bandwidth of 20 MHz and a narrow bandwidth of 5 MHz or 10 MHz, and provides a maximum rate of 72.2 Mbit/s at the physical layer.
 -   The Hi3861 WLAN baseband supports the orthogonal frequency division multiplexing \(OFDM\) technology and is backward compatible with the direct sequence spread spectrum \(DSSS\) and complementary code keying \(CCK\) technologies. In addition, the Hi3861 WLAN baseband supports various data rates specified in the IEEE 802.11 b/g/n protocol.
@@ -23,7 +23,7 @@ The Hi3861 WLAN module can also be connected to the Hi3861 mother board to expan
 -   The Hi3861 chip applies to Internet of Things \(IoT\) devices such as smart home appliances.
 
     **Figure  3**  Hi3861 functions<a name="fig1367035113590"></a>  
-    ![](figure/hi3861-functions.png "hi3861-functions")
+    ![](figures/hi3861-functions.png "hi3861-functions")
 
 
 ## Resources and Constraints<a name="section82610215014"></a>

@@ -1,8 +1,7 @@
-# RTC<a name="EN-US_TOPIC_0000001051778226"></a>
+# RTC<a name="EN-US_TOPIC_0000001206373007"></a>
 
 -   [Overview](#section104842041574)
-    -   [Available APIs](#section3373340142215)
-
+-   [Available APIs](#section20331159102519)
 -   [Usage Guidelines](#section20636145604113)
     -   [How to Use](#section16919828134215)
     -   [Creating an RTC Device Handle](#section1131212144310)
@@ -16,7 +15,7 @@
 
 The real-time clock \(RTC\) driver provides precise real time for the operating system \(OS\). If the OS is powered off, the RTC driver continues to keep track of the system time using an external battery.
 
-### Available APIs<a name="section3373340142215"></a>
+## Available APIs<a name="section20331159102519"></a>
 
 **Table  1**  APIs provided by the RTC driver
 
@@ -116,12 +115,10 @@ The real-time clock \(RTC\) driver provides precise real time for the operating 
 
 During the OS startup, the HDF loads the RTC driver based on the configuration file. The RTC driver detects the RTC component and initializes the driver.
 
-[Figure 1](#fig166181128151112)  illustrates the process of using an RTC device.
+[Figure 1](#fig1610020107333)  illustrates the process of using an RTC device.
 
-**Figure  1**  Process of using an RTC device<a name="fig166181128151112"></a>  
-
-
-![](figure/en-us_image_0000001123675706.png)
+**Figure  1**  Process of using an RTC device<a name="fig1610020107333"></a>  
+![](figures/process-of-using-an-rtc-device.png "process-of-using-an-rtc-device")
 
 ### Creating an RTC Device Handle<a name="section1131212144310"></a>
 

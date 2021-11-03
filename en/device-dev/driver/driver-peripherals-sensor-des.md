@@ -1,11 +1,8 @@
 # Sensor<a name="EN-US_TOPIC_0000001078401780"></a>
 
 -   [Overview](#section3634112111)
-    -   [Available APIs](#section188213414114)
-
--   [Development Guidelines](#section1140943382)
-    -   [How to Develop](#section7893102915819)
-
+-   [Available APIs](#section20930112117478)
+-   [How to Develop](#section1140943382)
 -   [Development Example](#section257750691)
 -   [Test Guidelines](#section106021256121219)
 
@@ -14,7 +11,7 @@
 The sensor driver module provides APIs for upper-layer sensor services to implement basic sensor capabilities, including querying the sensor list, enabling or disabling a sensor, subscribing to or unsubscribing from sensor data, and setting sensor options. The sensor driver model is developed based on the Hardware Driver Foundation \(HDF\) and supports functions such as cross-OS migration and differentiated device configuration. The following figure shows the architecture of the sensor driver model.
 
 **Figure  1**  Architecture of the sensor driver model<a name="fig10451455446"></a>  
-![](figure/architecture-of-the-sensor-driver-model.png "architecture-of-the-sensor-driver-model")
+![](figures/architecture-of-the-sensor-driver-model.png "architecture-of-the-sensor-driver-model")
 
 The sensor driver model offers the following APIs:
 
@@ -22,7 +19,7 @@ The sensor driver model offers the following APIs:
 -   APIs for implementing sensor driver model capabilities: These APIs implement the capabilities of registering, loading, and unregistering sensor drivers as well as detecting sensor devices depending on the HDF. The APIs include normalized APIs for sensor devices of the same type, APIs for parsing register configurations, abstract APIs for bus access, and abstract platform APIs.
 -   APIs to be implemented by developers: Based on the HDF Configuration Source \(HCS\), developers can implement differentiated configuration for sensors of the same type and serialized configuration of sensor device parameters. Some sensor device operations can be abstracted as APIs to simplify sensor driver development.
 
-### Available APIs<a name="section188213414114"></a>
+## Available APIs<a name="section20930112117478"></a>
 
 The following table lists the APIs provided by the sensor driver model.
 
@@ -248,11 +245,9 @@ The following table lists the APIs that need to be implemented by driver develop
 
 For details about the API implementation, see  [Development Example](#section257750691).
 
-## Development Guidelines<a name="section1140943382"></a>
+## How to Develop<a name="section1140943382"></a>
 
 Regardless of the OS and system on a chip \(SoC\), the sensor driver is developed based on the HDF, platform, and OSAL APIs to provide a unified driver model for sensor devices. This section uses the acceleration sensor as an example to describe how to develop a sensor driver.
-
-### How to Develop<a name="section7893102915819"></a>
 
 1.  Register the acceleration sensor driver. The HDF provides a unified driver management model. The HDF identifies and loads the target module driver based on the configuration of the acceleration sensor module.
 2.  Initialize and deinitialize the acceleration sensor driver. Using the  **init**  function, the HDF starts loading the sensor device driver and allocating configuration resources for sensor device data, respectively. Using the  **release**  function, the HDF releases the resources and configurations loaded by the driver.

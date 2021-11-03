@@ -2,18 +2,20 @@
 
 -   [HDF Configuration Overview](#section59914284576)
 -   [Configuration Syntax](#section533713333580)
--   [Keywords](#section1316625413586)
--   [Basic Syntax](#section173481622115918)
--   [Data Types](#section96521601302)
--   [Pre-processing](#section8164295515)
--   [Commenting](#section0338205819610)
--   [Modifying a Reference](#section179799204716)
--   [Replicating Node Configuration](#section382424014712)
--   [Deleting a Node or Attribute](#section165211112586)
--   [Referencing an Attribute](#section192841514490)
--   [Keyword Template](#section520134294)
+    -   [Keywords](#section4522107333)
+    -   [Basic Structures](#section853042911312)
+    -   [Data Types](#section177001259134)
+    -   [Pre-Processing](#section14867121641)
+    -   [Comments](#section1323412417)
+    -   [Reference Modifications](#section193708571145)
+    -   [Node Replication](#section1487792020513)
+    -   [Delete](#section1096515391155)
+    -   [Attribute References](#section20271317611)
+    -   [Template](#section958819191063)
+
 -   [Configuration Generation](#section106152531919)
--   [Introduction to HC-GEN](#section8260625101012)
+    -   [Introduction to hc-gen](#section359734416616)
+
 
 ## HDF Configuration Overview<a name="section59914284576"></a>
 
@@ -26,10 +28,8 @@ HDF Configuration Generator \(HC-GEN\) is a tool for converting a configuration 
 
 The following figure shows the typical application scenario of the HCB mode.
 
-**Figure  1**  Process of using HCS<a name="fig814111371944"></a>  
-
-
-![](figure/en-us_image_0000001053405727.png)
+**Figure  1**  Configuration process<a name="fig772653312159"></a>  
+![](figures/configuration-process.png "configuration-process")
 
 The HCS is compiled using the HC-GEN tool to generate an HCB file. The HCS Parser module in the HDF recreates a configuration tree using the HCB file. Then, the HDF driver modules obtain the configurations using the API provided by the HCS Paser.
 
@@ -37,7 +37,7 @@ The HCS is compiled using the HC-GEN tool to generate an HCB file. The HCS Parse
 
 The HCS syntax is described as follows:
 
-## Keywords<a name="section1316625413586"></a>
+### Keywords<a name="section4522107333"></a>
 
 The keywords listed in the following table below are reserved for HCS configuration files.
 
@@ -90,7 +90,7 @@ The keywords listed in the following table below are reserved for HCS configurat
 </tbody>
 </table>
 
-## Basic Syntax<a name="section173481622115918"></a>
+### Basic Structures<a name="section853042911312"></a>
 
 The HCS configuration file consists of configurations of attributes and nodes.
 
@@ -106,7 +106,7 @@ An attribute, as the minimum configuration unit, is an independent configuration
 
 -   Available formats of  **value**  are as follows:
 
-    -   A binary, octal, decimal, or hexadecimal integer. For details, see  [Data Types](#section96521601302).
+    -   A binary, octal, decimal, or hexadecimal integer. For details, see  [Data Types](#section177001259134).
 
     -   A character string. The content should be enclosed in double quotation marks \(" "\).
 
@@ -137,9 +137,9 @@ A node is a set of attributes. Its syntax is as follows:
 
 -   The  **match\_attr**  attribute can be added to a node. Its value is a globally unique character string. During configuration parsing, the query interface can be invoked to query the nodes with the attribute based on the attribute value.
 
-## Data Types<a name="section96521601302"></a>
+### Data Types<a name="section177001259134"></a>
 
-Attributes automatically use built-in data types, including integers, strings, arrays, and booleans. You do not need to explicitly specify the data type for the attribute values.
+Attributes automatically use built-in data types, including integer, string, array, and boolean. You do not need to explicitly specify the data type for the attribute values.
 
 **Integer**
 
@@ -170,7 +170,7 @@ attr_bar = ["hello", "world"];
 
 A Boolean data type has two possible values:  **true**  and  **false**.
 
-## Pre-processing<a name="section8164295515"></a>
+### Pre-Processing<a name="section14867121641"></a>
 
 **include**
 
@@ -184,7 +184,7 @@ The  **include**  keyword is used to import other HCS files. The syntax is as fo
 -   The file names must be enclosed by double quotation marks \(" "\). Files in different directories can be referenced using relative paths. The file included must be a valid HCS file.
 -   In the scenario that multiple HCS files are imported using  **include**, if the same nodes exist, the latter node will override the former one, and other nodes are listed in sequence.
 
-## Commenting<a name="section0338205819610"></a>
+### Comments<a name="section1323412417"></a>
 
 Comments can be formatted as follows:
 
@@ -206,7 +206,7 @@ Comments can be formatted as follows:
     >Multi-line comments cannot be nested.
 
 
-## Modifying a Reference<a name="section179799204716"></a>
+### Reference Modifications<a name="section193708571145"></a>
 
 You can use the following syntax to modify the content of any other node:
 
@@ -258,7 +258,7 @@ In the preceding example, the  **foo.foo\_**  node changes the value of the refe
 -   A node of the same level can be referenced simply using the node name. A node of a different level must be referenced by the absolute path, and node names are separated using a period \(.\).  **root**  indicates the root node. The path format is the node path sequence starting with root. For example,  **root.foo.bar**  is a valid absolute path.
 -   If multiple modifications are made to the same attribute, only one uncertain modification can take effect, and a warning will be displayed.
 
-## Replicating Node Configuration<a name="section382424014712"></a>
+### Node Replication<a name="section1487792020513"></a>
 
 The content of a node can be replicated to another node to define the node with similar content. The syntax is as follows:
 
@@ -297,9 +297,9 @@ root {
 
 In the preceding example, the  **bar**  node configuration includes both the  **attr\_0**  and  **attr\_1**  values. The modification to  **attr\_0**  in the  **bar**  node does not affect the  **foo**  node.
 
-The path of the  **foo**  node is not required if the  **foo**  node and the  **bar**  node are of the same level. Otherwise, the absolute path must be used. For details, see  [Modifying a Reference](#section179799204716).
+The path of the  **foo**  node is not required if the  **foo**  node and the  **bar**  node are of the same level. Otherwise, the absolute path must be used. For details, see  [Reference Modifications](#section193708571145).
 
-## Deleting a Node or Attribute<a name="section165211112586"></a>
+### Delete<a name="section1096515391155"></a>
 
 You can use the keyword  **delete**  to delete unnecessary nodes or attributes in the base configuration tree imported by the  **include**  keyword. In the following example,  **sample1.hcs**  imports the configuration of  **sample2.hcs**  using  **include**, and deletes the  **attribute2**  attribute and the  **foo\_2**  node using the  **delete**  keyword.
 
@@ -333,7 +333,7 @@ root {
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >The  **delete**  keyword cannot be used in the same HCS file. It is recommended that you delete unnecessary attributes directly from the configuration source code.
 
-## Referencing an Attribute<a name="section192841514490"></a>
+### Attribute References<a name="section20271317611"></a>
 
 To quickly locate the associated node during configuration parsing, you can use the node as the value of the attribute and read the attribute to find the corresponding node. The syntax is as follows:
 
@@ -353,7 +353,7 @@ node2 {
 }
 ```
 
-## Keyword Template<a name="section520134294"></a>
+### Template<a name="section958819191063"></a>
 
 The  **template**  keyword is used to generate nodes with strictly consistent syntax, thereby facilitating the traverse and management of nodes of the same type.
 
@@ -398,7 +398,7 @@ In the preceding example, the  **bar**  and  **bar\_1**  nodes inherit the  **fo
 
 The HC-GEN tool is used to generate configurations. It checks the HCS configuration syntax and converts HCS source files into HCB files.
 
-## Introduction to HC-GEN<a name="section8260625101012"></a>
+### Introduction to hc-gen<a name="section359734416616"></a>
 
 Parameter description:
 

@@ -2,11 +2,11 @@
 
 -   **[Introduction](quickstart-standard-overview.md)**  
 
--   **[Setting Up Windows Development Environment](quickstart-standard-windows-environment.md)**  
+-   **[Setting Up a Windows Development Environment](quickstart-standard-windows-environment.md)**  
 
--   **[Setting Up Ubuntu Development Environment in Docker Mode](quickstart-standard-docker-environment.md)**  
+-   **[Setting Up a Ubuntu Development Environment in Docker Mode](quickstart-standard-docker-environment.md)**  
 
--   **[Setting Up Ubuntu Development Environment with Installation Package](quickstart-standard-package-environment.md)**  
+-   **[Setting Up a Ubuntu Development Environment Using the Installation Package](quickstart-standard-package-environment.md)**  
 
 -   **[Burning Images](quickstart-standard-burn.md)**  
 

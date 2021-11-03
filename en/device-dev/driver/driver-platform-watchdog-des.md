@@ -1,8 +1,7 @@
-# Watchdog<a name="EN-US_TOPIC_0000001052935969"></a>
+# Watchdog<a name="EN-US_TOPIC_0000001206372825"></a>
 
 -   [Overview](#section14918241977)
-    -   [Available APIs](#section20177131219818)
-
+-   [Available APIs](#section1180575010271)
 -   [Usage Guidelines](#section10103184312813)
     -   [How to Use](#section10181195910815)
     -   [Opening a Watchdog](#section66089201107)
@@ -20,7 +19,7 @@
 
 A watchdog, also called a watchdog timer, is a hardware timing device. If an error occurs in the main program of the system and fails to reset the watchdog timer, the watchdog timer sends a reset signal to restore the system to a normal state.
 
-### Available APIs<a name="section20177131219818"></a>
+## Available APIs<a name="section1180575010271"></a>
 
 **Table  1**  Watchdog APIs
 
@@ -93,18 +92,16 @@ A watchdog, also called a watchdog timer, is a hardware timing device. If an err
 
 ### How to Use<a name="section10181195910815"></a>
 
-[Figure 1](#fig19134125410189)  illustrates the process of using a watchdog.
+[Figure 1](#fig430533913392)  illustrates the process of using a watchdog.
 
-**Figure  1**  Process of using a watchdog<a name="fig19134125410189"></a>  
-
-
-![](figure/en-us_image_0000001170229891.png)
+**Figure  1**  Process of using a watchdog<a name="fig430533913392"></a>  
+![](figures/process-of-using-a-watchdog.png "process-of-using-a-watchdog")
 
 ### Opening a Watchdog<a name="section66089201107"></a>
 
 Use  **WatchdogOpen**  to open a watchdog. A system may have multiple watchdogs. You can open the specified watchdog by using the ID.
 
-DevHandle WatchdogOpen\(int16\_t wdtId\);
+int32\_t WatchdogOpen\(int16\_t wdtId\); 
 
 **Table  2**  Description of WatchdogOpen
 
@@ -201,7 +198,7 @@ if (ret != 0) {
 
 ### Setting the Timeout Duration<a name="section182386137111"></a>
 
-int32\_t WatchdogSetTimeout\(DevHandle \*handle, uint32\_t seconds\); 
+int32\_t WatchdogSetTimeout\(PalHandle \*handle, uint32\_t seconds\); 
 
 **Table  4**  Description of WatchdogSetTimeout
 
@@ -253,7 +250,7 @@ if (ret != 0) {
 
 ### Obtaining the Timeout Duration<a name="section1883310371114"></a>
 
-int32\_t WatchdogGetTimeout\(DevHandle \*handle, uint32\_t \*seconds\);
+int32\_t WatchdogGetTimeout\(PalHandle \*handle, uint32\_t \*seconds\); 
 
 **Table  5**  Description of WatchdogGetTimeout
 

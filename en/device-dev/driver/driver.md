@@ -1,9 +1,11 @@
-# Driver Usage Guidelines<a name="EN-US_TOPIC_0000001111039544"></a>
+# Drivers<a name="EN-US_TOPIC_0000001111039544"></a>
 
 -   **[HDF](driver-hdf.md)**  
 
--   **[Platform Drivers](driver-platform.md)**  
+-   **[Platform Driver Development](driver-develop.md)**  
 
--   **[Peripherals](driver-peripherals.md)**  
+-   **[Platform Driver Usage](driver-platform.md)**  
+
+-   **[Peripheral Driver Usage](driver-peripherals.md)**  
 
 

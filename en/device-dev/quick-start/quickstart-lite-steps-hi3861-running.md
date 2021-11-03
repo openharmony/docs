@@ -136,7 +136,7 @@ To parse the call stack information, the  **Hi3861\_wifiiot\_app.asm**  file is 
 
 3.  Based on the above call stack information, it can be determined that an exception occurs in the  **WadRecvCB**  function.
 
-    ![](figure/wadrecvcb-function.png)
+    ![](figures/wadrecvcb-function.png)
 
 4.  Check and modify the code.
 

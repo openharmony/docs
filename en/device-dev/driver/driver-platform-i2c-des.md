@@ -1,8 +1,7 @@
-# I2C<a name="EN-US_TOPIC_0000001052778273"></a>
+# I2C<a name="EN-US_TOPIC_0000001206171515"></a>
 
 -   [Overview](#section5361140416)
-    -   [Available APIs](#section459052019177)
-
+-   [Available APIs](#section545869122317)
 -   [Usage Guidelines](#section1695201514281)
     -   [How to Use](#section1338373417288)
     -   [Opening an I2C Controller](#section13751110132914)
@@ -25,10 +24,10 @@
     -   I2C message transfer: custom transfer by using a message array
 
     **Figure  1**  Physical connection diagram for I2C<a name="fig1135561232714"></a>  
-    ![](figure/physical-connection-diagram-for-i2c.png "physical-connection-diagram-for-i2c")
+    ![](figures/physical-connection-diagram-for-i2c.png "physical-connection-diagram-for-i2c")
 
 
-### Available APIs<a name="section459052019177"></a>
+## Available APIs<a name="section545869122317"></a>
 
 **Table  1**  APIs available for the I2C driver
 
@@ -70,12 +69,10 @@
 
 ### How to Use<a name="section1338373417288"></a>
 
-[Figure 2](#fig166181128151112)  illustrates the process of an I2C device.
+[Figure 2](#fig183017194234)  illustrates the process of an I2C device.
 
-**Figure  2**  Process of using an I2C device<a name="fig166181128151112"></a>  
-
-
-![](figure/en-us_image_0000001123509750.png)
+**Figure  2**  Process of using an I2C device<a name="fig183017194234"></a>  
+![](figures/process-of-using-an-i2c-device.png "process-of-using-an-i2c-device")
 
 ### Opening an I2C Controller<a name="section13751110132914"></a>
 
@@ -405,7 +402,7 @@ static int32_t TestCaseI2c(void)
     }
     OsalMSleep(10);
 
-    /* Continuously read 7-byte data from register 0xDO of TP-IC. */
+    /* Continuously read 7-byte data from register 0xD5 of TP-IC. */
     ret = TpI2cReadReg(&tpDevice, 0xD5, bufRead, 7);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: tp i2c read reg fail!:%d", __func__, ret);

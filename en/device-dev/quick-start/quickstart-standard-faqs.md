@@ -1,9 +1,12 @@
 # FAQs<a name="EN-US_TOPIC_0000001166804465"></a>
 
+-   [What Should I Do If "ImportError: No module named apt\_pkg" Is Displayed During Compilation and Building?](#section32195464215)
+
+## What Should I Do If "ImportError: No module named apt\_pkg" Is Displayed During Compilation and Building?<a name="section32195464215"></a>
+
 -   **Symptom**
 
     The message "ImportError: No module named apt\_pkg" is displayed when an unidentifiable command is executed on the Linux server.
-
 
 -   **Possible Causes**
 

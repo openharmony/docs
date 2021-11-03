@@ -101,7 +101,7 @@ OpenHarmony  WLAN模组基于Hi3861平台提供了丰富的外设操作能力，
 
 ## 验证<a name="section1949121910344"></a>
 
-编译过程请参考《[Hi3861快速入门-源码编译](../quick-start/quickstart-lite-steps-hi3861-connection.md#section191121332125319)》，烧录过程请参考《[Hi3861快速入门-镜像烧录](../quick-start/quickstart-lite-steps-hi3861-connection.md#section19458165166)》。
+编译过程请参考《[Hi3861快速入门-源码编译](../quick-start/quickstart-lite-steps-hi3861-connection.md#section191121332125319)》，烧录过程请参考《[Hi3861快速入门-镜像烧录](../quick-start/quickstart-lite-steps-hi3861-connection.md#section3288165814218)》。
 
 完成以上两步后，按下RST键复位模组，可发现LED在周期性闪烁，与预期相符，验证完毕。
 

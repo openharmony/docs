@@ -2,21 +2,17 @@
 
 -   [Overview](#section729758162218)
     -   [WLAN Driver API Architecture](#section178022416377)
-    -   [Available APIs](#section149681312202415)
 
--   [Development Guidelines](#section15957746172412)
-    -   [How to Develop](#section11776186132513)
-
+-   [Available APIs](#section7331102018815)
+-   [How to Develop](#section15957746172412)
 -   [Development Example](#section1395253612512)
 
 ## Overview<a name="section729758162218"></a>
 
-The WLAN module is developed based on the Hardware Driver Foundation \(HDF\). It supports cross-OS migration, component adaptation, and modular assembly and compilation. Based on the unified APIs provided by the WLAN module, driver developers of WLAN vendors can adapt their driver code and are capable of creating, disabling, scanning, and connecting to WLAN hotspots. The WLAN driver provides the Hardware Driver Interface \(HDI\) layer with the capabilities of setting and obtaining the device MAC address and setting the transmit power. The following figure shows the framework of the  [WLAN module](#fig967034316227):
+The WLAN module is developed based on the Hardware Driver Foundation \(HDF\). It supports cross-OS migration, component adaptation, and modular assembly and compilation. Based on the unified APIs provided by the WLAN module, driver developers of WLAN vendors can adapt their driver code and are capable of creating, disabling, scanning, and connecting to WLAN hotspots. The WLAN driver provides the Hardware Driver Interface \(HDI\) layer with the capabilities of setting and obtaining the device MAC address and setting the transmit power. The following figure shows the framework of the WLAN module:
 
-**Figure  1**  WLAN framework<a name="fig967034316227"></a>  
-
-
-![](figure/en-us_image_0000001170383063.png)
+**Figure  1**  WLAN framework<a name="fig4415112614415"></a>  
+![](figures/wlan-framework.png "wlan-framework")
 
 ### WLAN Driver API Architecture<a name="section178022416377"></a>
 
@@ -28,12 +24,10 @@ The WLAN module provides the following three types of APIs:
 
 3. Capability APIs for vendors
 
-**Figure  2**  Available APIs of the WLAN module<a name="fig15016395217"></a>  
+**Figure  2**  Available APIs of the WLAN module<a name="fig1492411431166"></a>  
+![](figures/available-apis-of-the-wlan-module.png "available-apis-of-the-wlan-module")
 
-
-![](figure/接口分布图4.png)
-
-### Available APIs<a name="section149681312202415"></a>
+## Available APIs<a name="section7331102018815"></a>
 
 The WLAN driver module provides APIs that can be directly called by driver developers, such as creating/releasing a  **WifiModule**, connecting to/disconnecting from a WLAN hotspot, applying for/releasing a  **NetBuf**, and converting between the  **pbuf**  structure of Lightweight IP \(lwIP\) and a  **NetBuf**.  [Table 1](#table1521573319472)  describes some APIs.
 
@@ -232,11 +226,9 @@ The WLAN driver provides the HDI layer with the APIs for creating and destroying
 </tbody>
 </table>
 
-## Development Guidelines<a name="section15957746172412"></a>
+## How to Develop<a name="section15957746172412"></a>
 
 The WLAN driver is developed based on the HDF and PLATFORM. It provides a unified driver model for WLAN modules of different vendors regardless of the operating system \(OS\) and system on a chip \(SoC\).
-
-### How to Develop<a name="section11776186132513"></a>
 
 1.  Set hardware parameters such as  **module**  \(different features\) and  **chip**  in the  **wifi\_config.hcs**  file.
 2.  Parse the  **wifi\_config.hcs**  file and generate a structure with the configured parameters.

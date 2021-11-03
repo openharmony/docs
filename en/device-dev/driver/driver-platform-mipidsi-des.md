@@ -1,8 +1,7 @@
-# MIPI DSI<a name="EN-US_TOPIC_0000001062724343"></a>
+# MIPI DSI<a name="EN-US_TOPIC_0000001160971534"></a>
 
 -   [Overview](#section16806142183217)
-    -   [Available APIs](#section129611916132011)
-
+-   [Available APIs](#section12720125432316)
 -   [Usage Guidelines](#section037231715335)
     -   [How to Use](#section49299119344)
     -   [Obtains a MIPI DSI device handle.](#section5126155683811)
@@ -20,10 +19,10 @@
 -   [Figure 1](#fig1122611461203)  shows a simplified DSI interface. Conceptually, a DSI-compliant interface has the same features as interfaces complying with DBI-2 and DPI-2 standards. It sends pixels or commands to a peripheral and can read status or pixel information from the peripheral. The main difference is that the DSI serializes all pixel data, commands, and events that, in traditional interfaces, are conveyed to and from the peripheral on a parallel data bus with additional control signals.
 
     **Figure  1**  DSI transmitting and receiving interface<a name="fig1122611461203"></a>  
-    ![](figure/dsi-transmitting-and-receiving-interface.png "dsi-transmitting-and-receiving-interface")
+    ![](figures/dsi-transmitting-and-receiving-interface.png "dsi-transmitting-and-receiving-interface")
 
 
-### Available APIs<a name="section129611916132011"></a>
+## Available APIs<a name="section12720125432316"></a>
 
 **Table  1**  APIs for MIPI DSI
 
@@ -94,12 +93,10 @@
 
 ### How to Use<a name="section49299119344"></a>
 
-[Figure 2](#fig99821771782)  shows the process of using a MIPI DSI device.
+[Figure 2](#fig129103491241)  shows the process of using a MIPI DSI device.
 
-**Figure  2**  Process of using a MIPI DSI device<a name="fig99821771782"></a>  
-
-
-![](figure/en-us_image_0000001123514210.png)
+**Figure  2**  Process of using a MIPI DSI device<a name="fig129103491241"></a>  
+![](figures/process-of-using-a-mipi-dsi-device.png "process-of-using-a-mipi-dsi-device")
 
 ### Obtains a MIPI DSI device handle.<a name="section5126155683811"></a>
 

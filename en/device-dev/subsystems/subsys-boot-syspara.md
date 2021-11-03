@@ -260,7 +260,7 @@ The following table provides the sequence of loading system parameter value defi
 </td>
 <td class="cellrowborder" valign="top" width="30.183018301830185%" headers="mcps1.2.4.1.2 "><p id="p33425183117"><a name="p33425183117"></a><a name="p33425183117"></a>/vendor/etc/param/*.para</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.15531553155315%" headers="mcps1.2.4.1.3 "><p id="p9342171861112"><a name="p9342171861112"></a><a name="p9342171861112"></a>The definition file containing system parameters in the <strong id="b974219911015"><a name="b974219911015"></a><a name="b974219911015"></a>vendor</strong> directory is loaded with the secondary priority. It can overwrite the definition file containing system parrameters in the <strong id="b1544125011115"><a name="b1544125011115"></a><a name="b1544125011115"></a>system</strong> directory.</p>
+<td class="cellrowborder" valign="top" width="53.15531553155315%" headers="mcps1.2.4.1.3 "><p id="p9342171861112"><a name="p9342171861112"></a><a name="p9342171861112"></a>The definition file containing system parameters in the <strong id="b974219911015"><a name="b974219911015"></a><a name="b974219911015"></a>vendor</strong> directory is loaded with the secondary priority. It can overwrite the definition file containing system parameters in the <strong id="b1544125011115"><a name="b1544125011115"></a><a name="b1544125011115"></a>system</strong> directory.</p>
 </td>
 </tr>
 <tr id="row1301784115"><td class="cellrowborder" valign="top" width="16.661666166616662%" headers="mcps1.2.4.1.1 "><p id="p234241851115"><a name="p234241851115"></a><a name="p234241851115"></a>System parameters in the <strong id="b0483162515513"><a name="b0483162515513"></a><a name="b0483162515513"></a>system</strong> directory</p>
