@@ -4,7 +4,7 @@ OpenHarmony provides a comprehensive auto-test framework for designing test case
 This document describes how to use the OpenHarmony test framework.
 ## Setting Up the Environment
 The test framework depends on the Python running environment. Before using the test framework, set up the environment as follows:
- - [Setting Up the Environment](../device-dev/subsystems/subsys-testguide-test.md#section175012297491.md)
+ - [Setting Up the Environment](../device-dev/subsystems/subsys-testguide-test.md#section6511193210111)
  - [Obtaining Source Code](../device-dev/get-code/sourcecode-acquire.md)
 
 
