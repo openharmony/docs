@@ -205,10 +205,10 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
         }
         ```
 
-3.  Initialize the  **WatchdogCntlr**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **WatchdogMethod**  \(used to call underlying functions of the driver\) in  **WatchdogCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the  **WatchdogCntlr**  object at the core layer, including initializing the vendor custom structure \(passing parameters and data\), instantiating  **WatchdogMethod**  \(used to call underlying functions of the driver\) in  **WatchdogCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **watchdog\_config.hcs**  file are read by the HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the index and the number of pins, are also transferred to the  **WatchdogCntlr**  object at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the  **watchdog\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the index and the number of pins, are also passed to the  **WatchdogCntlr**  object at the core layer.
 
         ```
         struct Hi35xxWatchdog {
