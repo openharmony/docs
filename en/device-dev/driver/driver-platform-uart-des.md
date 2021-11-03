@@ -1,8 +1,7 @@
-# UART<a name="EN-US_TOPIC_0000001052215244"></a>
+# UART<a name="EN-US_TOPIC_0000001160652800"></a>
 
 -   [Overview](#section833012453535)
-    -   [Available APIs](#section1680292311549)
-
+-   [Available APIs](#section1928742202715)
 -   [Usage Guidelines](#section12779050105412)
     -   [How to Use](#section1858116395510)
     -   [Obtaining a UART Device Handle](#section124512065617)
@@ -21,27 +20,23 @@
 
 -   The Universal Asynchronous Receiver/Transmitter \(UART\) is a universal serial data bus used for asynchronous communication. It enables bi-directional communication between devices in full-duplex mode.
 -   UART is widely used to print information for debugging or to connect to various external modules such as GPS and Bluetooth.
--   A UART is connected to other modules through two wires \(as shown in  [Figure 1](#fig209936401896)\) or four wires \(as shown in  [Figure 2](#fig1435614171015)\).
+-   A UART is connected to other modules through two wires \(as shown in  [Figure 1](#fig68294715408)\) or four wires \(as shown in  [Figure 2](#fig179241542163112)\).
     -   TX: TX pin of the transmitting UART. It is connected to the RX pin of the peer UART.
     -   RX: RX pin of the receiving UART. It is connected to the TX pin of the peer UART.
     -   RTS: Request to Send signal pin. It is connected to the CTS pin of the peer UART and is used to indicate whether the local UART is ready to receive data.
     -   CTS: Clear to Send signal pin. It is connected to the RTS pin of the peer UART and is used to indicate whether the local UART is allowed to send data to the peer end.
 
-        **Figure  1**  2-wire UART communication<a name="fig209936401896"></a>  
-        
+        **Figure  1**  2-wire UART communication<a name="fig68294715408"></a>  
+        ![](figures/2-wire-uart-communication.png "2-wire-uart-communication")
 
-        ![](figure/en-us_image_0000001170262141.png)
-
-        **Figure  2**  4-wire UART communication<a name="fig1435614171015"></a>  
-        
-
-        ![](figure/en-us_image_0000001123582482.png)
+        **Figure  2**  4-wire UART communication<a name="fig179241542163112"></a>  
+        ![](figures/4-wire-uart-communication.png "4-wire-uart-communication")
 
 
 -   The transmitting and receiving UARTs must ensure that they have the same settings on particular attributes such as the baud rate and data format \(start bit, data bit, parity bit, and stop bit\) before they start to communicate. During data transmission, a UART sends data to the peer end over the TX pin and receives data from the peer end over the RX pin. When the size of the buffer used by a UART for storing received data reaches the preset threshold, the RTS signal of the UART changes to  **1**  \(data cannot be received\), and the peer UART stops sending data to it because its CTS signal does not allow it to send data.
 -   The UART interface defines a set of common functions for operating a UART port, including obtaining and releasing device handles, reading and writing data of a specified length, and obtaining and setting the baud rate, as well as the device attributes.
 
-### Available APIs<a name="section1680292311549"></a>
+## Available APIs<a name="section1928742202715"></a>
 
 **Table  1**  APIs for the UART driver
 
@@ -122,12 +117,10 @@
 
 ### How to Use<a name="section1858116395510"></a>
 
-[Figure 3](#fig1852173020185)  shows the process of using a UART device.
+[Figure 3](#fig99673244388)  shows the process of using a UART device.
 
-**Figure  3**  Process of using a UART device<a name="fig1852173020185"></a>  
-
-
-![](figure/en-us_image_0000001170227689.png)
+**Figure  3**  Process of using a UART device<a name="fig99673244388"></a>  
+![](figures/process-of-using-a-uart-device.png "process-of-using-a-uart-device")
 
 ### Obtaining a UART Device Handle<a name="section124512065617"></a>
 

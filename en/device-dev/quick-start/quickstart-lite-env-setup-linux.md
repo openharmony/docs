@@ -92,7 +92,7 @@ You need to acquire  [source code](../get-code/sourcecode-acquire.md), download 
 Run the following command to install the libraries and tools required for compilation:
 
 ```
-sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi
+sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi cpio device-tree-compiler
 ```
 
 ## Installing Python3<a name="section1238412211211"></a>
@@ -108,11 +108,11 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg
 
     1.  Check the Ubuntu version.
 
-    ```
-    cat /etc/issue
-    ```
+        ```
+        cat /etc/issue
+        ```
 
-    1.  Install Python based on the Ubuntu version.
+    2.  Install Python based on the Ubuntu version.
         -   If the Ubuntu version is 18 or later, run the following command:
 
             ```
@@ -175,7 +175,7 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg
 3.  Decompress the LLVM installation package to  **\~/llvm**.
 
     ```
-    tar -zxvf llvm.tar.gz -C ~/
+    tar -zxvf llvm.tar -C ~/
     ```
 
 4.  Set an environment variable.

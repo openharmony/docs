@@ -433,13 +433,13 @@ Perform the  [building](quickstart-lite-steps-hi3516-running.md#section107767131
     >If the connection fails, rectify the fault by referring to  [FAQs](quickstart-lite-steps-hi3516-faqs.md#section14871149155911).
 
     **Figure  1**  Serial port connection<a name="fig124315964718"></a>  
-    ![](figure/serial-port-connection-5.png "serial-port-connection-5")
+    ![](figures/serial-port-connection.png "serial-port-connection")
 
     1.  Click  **Monitor**  to enable the serial port.
     2.  Press  **Enter**  repeatedly until  **hisilicon**  displays.
-    3.  Go to step  [2](quickstart-lite-steps-hi3516-running.md#l5b42e79a33ea4d35982b78a22913b0b1)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](quickstart-lite-steps-hi3516-running.md#ld26f18828aa44c36bfa36be150e60e49)  otherwise.
+    3.  Go to step  [2](#li109940111259)  if the board is started for the first time or the startup parameters need to be modified; go to step  [3](#li448312542515)  otherwise.
 
-2.  \(Mandatory when the board is started for the first time\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-Boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
+2.  <a name="li109940111259"></a>\(Mandatory when the board is started for the first time\) Modify the  **bootcmd**  and  **bootargs**  parameters of U-Boot. You need to perform this step only once if the parameters need not to be modified during the operation. The board automatically starts after it is reset.
 
     >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
     >The default waiting time in the U-Boot is 2s. You can press  **Enter**  to interrupt the waiting and run the  **reset**  command to restart the system after "hisilicon" is displayed.
@@ -480,10 +480,10 @@ Perform the  [building](quickstart-lite-steps-hi3516-running.md#section107767131
     >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
     >**go 0x80000000**  is optional. It indicates that the command is fixed in the startup parameters by default and the board automatically starts after it is reset. If you want to manually start the board, press  **Enter**  in the countdown phase of the U-Boot startup to interrupt the automatic startup.
 
-3.  Run the  **reset**  command and press  **Enter**  to restart the board. After the board is restarted,  **OHOS**  is displayed when you press  **Enter**.
+3.  <a name="li448312542515"></a>Run the  **reset**  command and press  **Enter**  to restart the board. After the board is restarted,  **OHOS**  is displayed when you press  **Enter**.
 
     **Figure  2**  System startup<a name="fig14618415485"></a>  
-    ![](figure/system-startup-6.png "system-startup-6")
+    ![](figures/system-startup.png "system-startup")
 
 4.  In the root directory, run the  **./bin/hello\_uart**  command line to execute the demo program. The compilation result is shown in the following example.
 

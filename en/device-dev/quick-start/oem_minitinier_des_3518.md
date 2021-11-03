@@ -8,10 +8,10 @@
 Hi3518E V300 is a next-generation system on chip \(SoC\) designed for the industry-dedicated smart HD IP camera. It introduces a next-generation image signal processor \(ISP\), the H.265 video compression encoder, and the advanced low-power process and architecture design, leading the industry in terms of low bit rate, high image quality, and low power consumption.
 
 **Figure  1**  Hi3518E V300 front view<a name="fig73059502010"></a>  
-![](figure/hi3518e-v300-front-view.png "hi3518e-v300-front-view")
+![](figures/hi3518e-v300-front-view.png "hi3518e-v300-front-view")
 
 **Figure  2**  Hi3518E V300 rear view<a name="fig14828141713116"></a>  
-![](figure/hi3518e-v300-rear-view.png "hi3518e-v300-rear-view")
+![](figures/hi3518e-v300-rear-view.png "hi3518e-v300-rear-view")
 
 ## Development Board Specifications<a name="section765112478446"></a>
 

@@ -6,7 +6,7 @@
 
 -   **[Driver Service Management](driver-hdf-servicemanage.md)**  
 
--   **[Driver Message Mechanism Management](driver-hdf-news.md)**  
+-   **[Driver Message Mechanism Management](driver-hdf-message-management.md)**  
 
 -   **[Driver Configuration Management](driver-hdf-manage.md)**  
 

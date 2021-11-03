@@ -139,22 +139,22 @@ hb build -f (Start building.)
 
 The result files are generated in the  **out/hispark\_aries/ipcamera\_hispark\_aries**  directory.
 
-**Figure  1**  Settings<a name="fig1766174411418"></a>  
-![](figure/settings-9.png "settings-9")
+**Figure  1**  Hi3518 settings<a name="fig12982192583111"></a>  
+![](figures/hi3518-settings.png "hi3518-settings")
 
 >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
 >The U-Boot file of the Hi3518E V300 development board can be obtained from the following path: device/hisilicon/hispark\_aries/sdk\_liteos/uboot/out/boot/u-boot-hi3518ev300.bin
 
 ## Burning<a name="section7609155824819"></a>
 
-Programming the flash memory is the process of downloading compiled program files to a chipset development board to provide a basis for subsequent debugging. With the one-click flash memory programming function of DevEco Device Tool, you can program flash memory on development boards quickly and efficiently.
+Burning is the process of downloading compiled program files to a chipset development board to provide a basis for subsequent debugging. With the one-click burning function of DevEco Device Tool, you can burn development boards quickly and efficiently.
 
-The Hi3518E V300 development board allows you to program flash memory through the USB port or serial port.
+You can burn the Hi3518E V300 development board through the USB port or serial port.
 
--   **Windows system: Supports programming through the USB port or serial port**
--   **Linux system: Supports programming through the serial port \(Linux+Windows dual system: Supports programming through the serial port or USB port\)**
+-   **Windows system: Supports burning through the USB port or serial port**
+-   **Linux system: Supports burning through the serial port \(Linux+Windows dual system: Supports burning through the serial port or USB port\)**
 
-Except for environment setup, the operations of programming are the same for Windows and Linux.
+Except for environment setup, the operations of burning are the same for Windows and Linux.
 
 The following uses the USB port burning as an example.
 
@@ -164,68 +164,76 @@ The following uses the USB port burning as an example.
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
     >If the serial port number is not displayed correctly, follow the steps described in  [Installing the Serial Port Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/ide/user-guides/hi3516_hi3518-drivers-0000001050743695).
 
-    ![](figure/record-the-serial-port-number-10.png)
+    ![](figures/hi3518-record-the-serial-port-number.png)
 
-3.  Open DevEco Device Tool and go to  **Projects**  \>  **Settings**.
+3.  Open DevEco Device Tool, choose  **QUICK ACCESS**  \>  **DevEco Home**  \>  **Projects**, and then click  **Settings**.
 
-    ![](figure/setting-11.png)
+    ![](figures/hi3518-deveco-device-tool-setting.png)
 
 4.  On the  **Partition Configuration**  tab page, modify the settings. In general cases, you can leave the fields at their default settings.
-5.  On the  **hi3518ev300**  tab page, set the programming options.
+
+    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >If the file to be burnt is obtained by copying, you must manually change the path of the file to be burnt: Click the tab of the file to be burnt, select  **Partition\_bin**  from the  **New Option**  drop-down list box in  **Partition Settings**, and set the path of the file to be burnt in  **Partition\_bin**.
+
+5.  On the  **hi3518ev300**  tab page, set the burning options.
 
     -   **upload\_port**: Select the serial port number obtained in step  [2](#en-us_topic_0000001057313128_li46411811196).
-    -   **upload\_protocol**: Select the programming protocol  **hiburn-usb**.
-    -   **upload\_partitions**: Select the file to be programmed. By default, the  **fastboot**,  **kernel**,  **rootfs**, and  **userfs**  files are programmed at the same time.
+    -   **upload\_protocol**: Select the burning protocol  **hiburn-usb**.
+    -   **upload\_partitions**: Select the files to be burnt. By default, the  **fastboot**,  **kernel**,  **rootfs**, and  **userfs**  files are burnt at the same time.
 
-    ![](figure/upload-options.png)
+    ![](figures/upload-options.png)
 
 6.  When you finish modifying, click  **Save**  in the upper right corner.
-7.  Open the project file, go to  ![](figure/deveco-device-toollogo.png)  \>  **PROJECT TASKS**  \>  **hi3518ev300\_fastboot**  \>  **Erase**  to erase U-Boot.
+7.  Open the project file, go to  ![](figures/hi3518-deveco-device-tool-logo.png)  \>  **PROJECT TASKS**  \>  **hi3518ev300\_fastboot**  \>  **Erase**  to erase U-Boot.
 
-    ![](figure/erase-u-boot.png)
+    ![](figures/erase-u-boot.png)
 
 8.  When the following message is displayed, power off the development board and then power it on.
 
-    ![](figure/restart-the-development-board-12.png)
+    ![](figures/hi3518-restart-the-development-board.png)
 
 9.  If the following message is displayed, it indicates that U-Boot is erased successfully.
 
-    ![](figure/u-boot-erased-successfully.png)
+    ![](figures/u-boot-erased-successfully.png)
 
-10. Go to  **hi3518ev300**  \>  **Upload**  to start programming.
+10. Go to  **hi3518ev300**  \>  **Upload**  to start burning.
 
-    ![](figure/upload-13.png)
+    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >If this is the first time you burn the Hi3516D V300 or Hi3518E V300 board, the message "not find the Devices" may be displayed. In this case, follow the steps in  [Installing the USB Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/ide/user-guides/usb_driver-0000001058690393)  and start burning again.
 
-11. If the following message is displayed, it indicates that the programming is successful.
+    ![](figures/hi3518-upload.png)
 
-    ![](figure/burning-succeeded-14.png)
+11. If the following message is displayed, it indicates that the burning is successful.
 
+    ![](figures/hi3518-burning-succeeded.png)
+
+12. When the burning is successful, perform the operations in Running an Image to start the system.
 
 ## Running an Image<a name="section17612105814480"></a>
 
-After programming is completed, you need to configure the bootloader to run the OpenHarmony system.
+After burning is completed, you need to configure the bootloader to run the OpenHarmony system.
 
-1. In the Hi3518E V300 task, click  **Configure bootloader \(Boot OS\)**  to configure the bootloader.
+1.  In the Hi3518E V300 task, click  **Configure bootloader \(Boot OS\)**  to configure the bootloader.
 
-   > ![](../public_sys-resources/icon-note.gif) **NOTE:** 
-   > The bootloader configuration in DevEco Device Tool has been adapted to Hi3518E V300. Therefore, no manual modification is needed.
+    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >The bootloader configuration in DevEco Device Tool has been adapted to Hi3518E V300. Therefore, no manual modification is needed.
 
-   ![](D:/IDP%E5%8F%91%E5%B8%83%E4%BB%B6/220/For%20OpenHarmony2.0/en/quick-start/figures/3518_bootloader.png)
+    ![](figures/hi3518-bootloader.png)
 
-2. When the message shown below is displayed, restart the development board. If  **SUCCESS**  is displayed, it indicates that the configuration is successful.
+2.  When the message shown below is displayed, restart the development board. If  **SUCCESS**  is displayed, it indicates that the configuration is successful.
 
-   ![](figure/3518_reset_success.png)
+    ![](figures/hi3518-reset-success.png)
 
-3. Click  **Monitor**  on the taskbar to start the serial port tool.
+3.  Click  **Monitor**  on the taskbar to start the serial port tool.
 
-   ![](figure/3518_monitor.png)
+    ![](figures/hi3518-monitor.png)
 
-4. Follow the onscreen instructions until  **OHOS \#**  is displayed, indicating that the system is started successfully.
+4.  Follow the onscreen instructions until  **OHOS \#**  is displayed, indicating that the system is started successfully.
 
-   ![](figure/3518_reboot_success.png)
+    ![](figures/hi3518-reboot-success.png)
 
 
 ## Follow-up Learning<a name="section9712145420182"></a>
 
-Congratulations! You have finished all steps! You are advised to go on learning how to develop  [Cameras with a Screen](../guide/device-wlan-sdk.md).
+Congratulations! You have finished all steps! You are advised to go on learning how to develop  [Cameras with a Screen](../guide/device-iotcamera.md).
 

@@ -3,9 +3,9 @@
 -   [Creating a Program](#section204672145202)
 -   [Building](#section1077671315253)
 -   [Burning](#section1347011412201)
-    -   [Programming Flash Memory Through the Network Port](#section1935410617363)
+    -   [Burning Through the Network Port](#section1935410617363)
+    -   [Running an Image](#section24721014162010)
 
--   [Running an Image](#section24721014162010)
 -   [Running a Program](#section5276734182615)
 
 This section describes how to create, compile, burn, and run the first program, and finally print  **Hello OHOS!**  on the develop board.
@@ -140,8 +140,8 @@ Select ipcamera_hispark_taurus@hisilicon and press Enter.
 hb build -f (Start building.)
 ```
 
-**Figure  1**  Settings<a name="fig1458988766"></a>  
-![](figure/settings.png "settings")
+**Figure  1**  Hi3516 settings<a name="fig1458988766"></a>  
+![](figures/hi3516-settings.png "hi3516-settings")
 
 The result files are generated in the  **out/hispark\_taurus/ipcamera\_hispark\_taurus**  directory.
 
@@ -152,9 +152,9 @@ The result files are generated in the  **out/hispark\_taurus/ipcamera\_hispark\_
 
 The Hi3516 development board allows you to burn flash memory over the USB port, serial port, or network port. The following uses the network port burning as an example.
 
-### Programming Flash Memory Through the Network Port<a name="section1935410617363"></a>
+### Burning Through the Network Port<a name="section1935410617363"></a>
 
-To program flash memory through the network port in the Windows or Linux environment:
+To burn Hi3516D V300 through the network port in the Windows or Linux environment:
 
 1.  Connect the PC and the target development board through the serial port, network port, and power port. For details, see  [Introduction to the Hi3516 Development Board](https://device.harmonyos.com/en/docs/start/introduce/oem_minitinier_des_3516-0000001152041033).
 2.  <a name="en-us_topic_0000001056443961_li142386399535"></a>Open Device Manager, then check and record the serial port number corresponding to the development board.
@@ -162,73 +162,74 @@ To program flash memory through the network port in the Windows or Linux environ
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
     >If the serial port number is not displayed correctly, follow the steps described in  [Installing the Serial Port Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/ide/user-guides/hi3516_hi3518-drivers-0000001050743695).
 
-    ![](figure/record-the-serial-port-number-1.png)
+    ![](figures/hi3516-record-the-serial-port-number.png)
 
-3.  Open DevEco Device Tool and go to  **Projects**  \>  **Settings**.
+3.  Open DevEco Device Tool, choose  **QUICK ACCESS**  \>  **DevEco Home**  \>  **Projects**, and then click  **Settings**.
 
-    ![](figure/settings-2.png)
+    ![](figures/hi3516-deveco-device-tool-setting.png)
 
 4.  On the  **Partition Configuration**  tab page, modify the settings. In general cases, you can leave the fields at their default settings.
-5.  On the  **hi3516dv300**  tab page, configure the programming options.
+5.  On the  **hi3516dv300**  tab page, configure the burning options.
 
     -   **upload\_port**: Select the serial port number obtained in step  [2](#en-us_topic_0000001056443961_li142386399535).
-    -   **upload\_protocol**: Select the programming protocol  **hiburn-net**.
-    -   **upload\_partitions**: Select the file to be programmed. By default, the  **fastboot**,  **kernel**,  **rootfs**, and  **userfs**  files are programmed at the same time.
+    -   **upload\_protocol**: Select the burning protocol  **hiburn-net**.
+    -   **upload\_partitions**: Select the file to be burnt. By default, the  **fastboot**,  **kernel**,  **rootfs**, and  **userfs**  files are burnt at the same time.
 
-    ![](figure/hi3516-upload-options.png)
+    ![](figures/hi3516-upload-options.png)
 
-6.  <a name="en-us_topic_0000001056443961_li1558813168234"></a>Check and set the IP address of the network adapter connected to the development board. For details, see  [Setting the IP Address of the Network Port for Programming on Hi3516](https://device.harmonyos.com/en/docs/ide/user-guides/set_ipaddress-0000001141825075).
-7.  Set the IP address of the network port for programming:
+6.  <a name="en-us_topic_0000001056443961_li1558813168234"></a>Check and set the IP address of the network adapter connected to the development board. For details, see  [Setting the IP Address of the Network Port for Burning to Hi3516](https://device.harmonyos.com/en/docs/ide/user-guides/set_ipaddress-0000001141825075).
+7.  Set the IP address of the network port for burning:
 
     -   **upload\_net\_server\_ip**: Select the IP address set in step  [6](#en-us_topic_0000001056443961_li1558813168234), such as 192.168.1.2.
     -   **upload\_net\_client\_mask**: Set the subnet mask of the development board, such as 255.255.255.0. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated.
-    -   **upload\_net\_client\_gw**: Set the gateway of the development board, such as 192.168.1.1. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
-    -   **upload\_net\_client\_ip**: Set the IP address of the development board, such as 192.168.1.3. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated. 
+    -   **upload\_net\_client\_gw**: Set the gateway of the development board, such as 192.168.1.1. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated.
+    -   **upload\_net\_client\_ip**: Set the IP address of the development board, such as 192.168.1.3. Once the  **upload\_net\_server\_ip**  field is set, this field will be automatically populated.
 
-    ![](figure/ip-address-information.png)
+    ![](figures/ip-address-information.png)
 
 8.  When you finish modifying, click  **Save**  in the upper right corner.
-9.  Open the project file and go to  ![](figure/deveco-device-tool-logo.png)  \>  **PROJECT TASKS**  \>  **hi3516dv300**  \>  **Upload**  to start programming.
+9.  Open the project file and go to  ![](figures/hi3516-deveco-device-tool-logo.png)  \>  **PROJECT TASKS**  \>  **hi3516dv300**  \>  **Upload**  to start burning.
 
-    ![](figure/start-burning.png)
+    ![](figures/hi3516-upload-start-burning.png)
 
 10. When the following message is displayed, power off the development board and then power it on.
 
-    ![](figure/restart-the-development-board-3.png)
+    ![](figures/hi3516-restart-the-development-board.png)
 
-11. Start programming. If the following message is displayed, it indicates that the programming is successful.
+11. If the following message is displayed, it indicates that the burning is successful.
 
-    ![](figure/burning-succeeded-4.png)
+    ![](figures/hi3516-burning-succeeded-net.png)
 
+12. When the burning is successful, perform the operations in Running an Image to start the system.
 
-## Running an Image<a name="section24721014162010"></a>
+### Running an Image<a name="section24721014162010"></a>
 
-After programming is completed, you need to configure the bootloader to run the OpenHarmony system.
+After burning is completed, you need to configure the bootloader to run the OpenHarmony system.
 
-1. In the Hi3516D V300 task, click  **Configure bootloader \(Boot OS\)**  to configure the bootloader.
+1.  In the Hi3516D V300 task, click  **Configure bootloader \(Boot OS\)**  to configure the bootloader.
 
-   > ![](../public_sys-resources/icon-note.gif) **NOTE:** 
-   > The bootloader configuration in DevEco Device Tool has been adapted to Hi3516D V300. Therefore, no manual modification is needed.
+    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >The bootloader configuration in DevEco Device Tool has been adapted to Hi3516D V300. Therefore, no manual modification is needed.
 
-   ![](figure/bootloader.png)
+    ![](figures/bootloader.png)
 
-2. When the message shown below is displayed, restart the development board. If  **SUCCESS**  is displayed, it indicates that the configuration is successful.
+2.  When the message shown below is displayed, restart the development board. If  **SUCCESS**  is displayed, it indicates that the configuration is successful.
 
-   ![](figure/reset_success.png)
+    ![](figures/reset_success.png)
 
-3. Click  **Monitor**  on the taskbar to start the serial port tool.
+3.  Click  **Monitor**  on the taskbar to start the serial port tool.
 
-   ![](figure/monitor.png)
+    ![](figures/monitor.png)
 
-4. Follow the onscreen instructions until  **OHOS \#**  is displayed, indicating that the system is started successfully.
+4.  Follow the onscreen instructions until  **OHOS \#**  is displayed, indicating that the system is started successfully.
 
-   ![](figure/reboot_success.png)
+    ![](figures/reboot_success.png)
 
 
 ## Running a Program<a name="section5276734182615"></a>
 
 In the root directory, run the  **./bin/helloworld**  command to operate the demo program. The compilation result is shown in the following example.
 
-**Figure  4**  Successful system startup and program execution<a name="fig149821431194515"></a>  
-![](figure/successful-system-startup-and-program-execution.png "successful-system-startup-and-program-execution")
+**Figure  2**  Successful system startup and program execution<a name="fig149821431194515"></a>  
+![](figures/successful-system-startup-and-program-execution.png "successful-system-startup-and-program-execution")
 

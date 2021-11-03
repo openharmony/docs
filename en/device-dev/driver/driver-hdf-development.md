@@ -5,12 +5,10 @@
 
 ## Introduction<a name="section157425168112"></a>
 
-The HDF is designed based on the component-based driver model. It provides more refined driver management to make driver development and deployment more standard. Device drivers of the same type are placed in the same host. You can develop and deploy the drivers separately. One driver can have multiple nodes.  [Figure 1](#fig5487113011526)  shows the HDF driver model.
+The HDF is designed based on the component-based driver model. It provides more refined driver management to make driver development and deployment more standard. Device drivers of the same type are placed in the same host. You can develop and deploy the drivers separately. One driver can have multiple nodes.  [Figure 1](#fig3580184214210)  shows the HDF driver model.
 
-**Figure  1**  HDF driver model<a name="fig5487113011526"></a>  
-
-
-![](figure/en-us_image_0000001054564784.png)
+**Figure  1**  HDF driver model<a name="fig3580184214210"></a>  
+![](figures/hdf-driver-model.png "hdf-driver-model")
 
 ## How to Develop<a name="section1969312275533"></a>
 
@@ -167,7 +165,7 @@ Driver development based on the HDF consists of two parts: driver implementation
 >        DEVICE_PRELOAD_INVALID
 >    } DevicePreload;
 >    ```
->    When the  **preload**  field in the configuration file is set to  **0**  \(**DEVICE\_PRELOAD\_ENABLE**\), the driver is loaded by default during system startup. When this field is set to  **1**  \(**DEVICE\_PRELOAD\_ENABLE\_STEP2**\), the driver is loaded after system startup if quick start is enabled; it is loaded during system startup otherwise. When this field is set to  **2**  \(**DEVICE\_PRELOAD\_DISABLE**\), the driver is not loaded by default during system startup and can be dynamically loaded later. If the driver service does not exist when a user-level application obtains the driver service \(for details about how to obtain the driver service, see  [Driver Message Mechanism Management](driver-hdf-news.md)\), the HDF attempts to dynamically load the driver.
+>    When the  **preload**  field in the configuration file is set to  **0**  \(**DEVICE\_PRELOAD\_ENABLE**\), the driver is loaded by default during system startup. When this field is set to  **1**  \(**DEVICE\_PRELOAD\_ENABLE\_STEP2**\), the driver is loaded after system startup if quick start is enabled; it is loaded during system startup otherwise. When this field is set to  **2**  \(**DEVICE\_PRELOAD\_DISABLE**\), the driver is not loaded by default during system startup and can be dynamically loaded later. If the driver service does not exist when a user-level application obtains the driver service \(for details about how to obtain the driver service, see  [Driver Message Mechanism Management](driver-hdf-message-management.md)\), the HDF attempts to dynamically load the driver.
 >-   Sequential loading \(drivers must be loaded by default\)
 >    In the configuration file, the  **priority**  field \(the value is an integer ranging from 0 to 200\) indicates the priority of the host and driver. For drivers in different hosts, a smaller host priority value indicates a higher driver loading priority; for drivers in the same host, a smaller driver priority value indicates a higher driver loading priority.
 

@@ -1,8 +1,7 @@
-# SDIO<a name="EN-US_TOPIC_0000001053055057"></a>
+# SDIO<a name="EN-US_TOPIC_0000001160653028"></a>
 
 -   [Overview](#section1155271783811)
-    -   [Available APIs](#section08064247248)
-
+-   [Available APIs](#section12601496259)
 -   [Usage Guidelines](#section1878939192515)
     -   [How to Use](#section1490685512255)
     -   [Opening an SDIO Controller](#section10782428132616)
@@ -32,11 +31,11 @@
     **Figure  1**  Connections between the host and devices in SDIO<a name="fig1185316527498"></a>  
     
 
-    ![](figure/en-us_image_0000001054280608.png)
+    ![](figures/en-us_image_0000001160971556.png)
 
 -   The SDIO interface defines a set of common methods for operating an SDIO device, including opening and closing an SDIO controller, exclusively claiming and releasing the host, enabling and disabling devices, claiming and releasing an SDIO IRQ, reading and writing data based on SDIO, and obtaining and setting common information.
 
-### Available APIs<a name="section08064247248"></a>
+## Available APIs<a name="section12601496259"></a>
 
 **Table  1**  APIs available for the SDIO driver
 
@@ -170,7 +169,7 @@
 **Figure  2**  Process of using an SDIO<a name="fig1343742311264"></a>  
 
 
-![](figure/en-us_image_0000001123540984.png)
+![](figures/en-us_image_0000001206291517.png)
 
 ### Opening an SDIO Controller<a name="section10782428132616"></a>
 

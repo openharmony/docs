@@ -23,8 +23,8 @@
 
 The following figure shows the hardware connections.
 
-**Figure  1**  Hardware connections<a name="fig1922334410211"></a>  
-![](figure/hardware-connections.png "hardware-connections")
+**Figure  1**  Hi3861 hardware connections<a name="fig285519359396"></a>  
+![](figures/hi3861-hardware-connections.png "hi3861-hardware-connections")
 
 ### Software<a name="section727451210318"></a>
 
@@ -124,7 +124,7 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
     ```
 
     **Figure  2**  Successful installation \(SCons version requirement: 3.0.4 or later\)<a name="fig151441613316"></a>  
-    ![](figure/successful-installation-(scons-version-requirement-3-0-4-or-later).png "successful-installation-(scons-version-requirement-3-0-4-or-later)")
+    ![](figures/successful-installation-(scons-version-requirement-3-0-4-or-later).png "successful-installation-(scons-version-requirement-3-0-4-or-later)")
 
 
 ### Installing Python Modules<a name="section88701892341"></a>
@@ -220,13 +220,13 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 
 >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
 >-   The Hi3861 platform supports only the static link of the libgcc library. The dynamic link is not recommended because version 3 of the GNU General Public License \(GPLv3\) will be polluted during commercial distribution.
->-   Steps 2 to 15 of the following procedure are used to build the  **gcc\_riscv32**  image. You can simply  [download the image](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz)  and skip these steps.
+>-   Steps 2 to 15 of the following procedure are used to build the  **gcc\_riscv32**  image. You can and skip these steps and directly  [download the image](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz).
 
 1.  Start a Linux server.
 2.  Install the  **GCC**,  **G++**,  **Bison**,  **Flex**,  **Makeinfo**  tools to ensure that the toolchain can be correctly compiled.
 
     ```
-    sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install flex bison && sudo apt-get install texinfo
+    sudo apt-get install gcc g++  flex bison  texinfo
     ```
 
 3.  Download the RISC-V GNU toolchain.
@@ -353,6 +353,6 @@ Perform the following operations on the Windows station.
 2.  Install the driver.
 3.  After the driver is installed, remove and then insert the USB cable. The serial port entry should be displayed as shown in the following figure.
 
-    ![](figure/serial-port-entry.png)
+    ![](figures/serial-port-entry.png)
 
 

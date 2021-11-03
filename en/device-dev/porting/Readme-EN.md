@@ -49,6 +49,7 @@ The download steps for other resources are the same as those in the mainline ver
     - [Platform Driver Porting](porting-smallchip-driver-plat.md)
     - [Device Driver Porting](porting-smallchip-driver-oom.md)
 - [Standard System Porting Guide](standard-system-porting-guide.md)
+- [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting-linux-kernel-overview.md)
 
 # Third-Party Library Porting Guide
 

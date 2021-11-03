@@ -1,40 +1,32 @@
 # FAQs<a name="EN-US_TOPIC_0000001128311064"></a>
 
--   [What should I do when the images failed to be burnt over the selected serial port?](#section1498892119619)
+-   ["Error: Opening COMxx: Access denied" Is Displayed After a Serial Port Is Selected for Burning](#section1498892119619)
 -   [What should I do when Windows-based PC failed to be connected to the board?](#section8512971816)
 -   [What should I do when the image failed to be burnt?](#section1767804111198)
 -   [What should I do when the message indicating Python cannot be found is displayed during compilation and building?](#en-us_topic_0000001053466255_section1039835245619)
 -   [What should I do when no command output is displayed?](#en-us_topic_0000001053466255_section14871149155911)
 
-## What should I do when the images failed to be burnt over the selected serial port?<a name="section1498892119619"></a>
+## "Error: Opening COMxx: Access denied" Is Displayed After a Serial Port Is Selected for Burning<a name="section1498892119619"></a>
 
 -   **Symptom**
 
     **Error: Opening COMxx: Access denied**  is displayed after clicking  **Burn**  and selecting a serial port.
 
-    **Figure  1**  Failed to open the serial port<a name="en-us_topic_0000001053466255_fig066333283916"></a>  
-    ![](figure/failed-to-open-the-serial-port-17.png "failed-to-open-the-serial-port-17")
+    ![](figures/failed-to-open-the-serial-port.png)
 
 -   **Possible Causes**
 
     The serial port has been used.
 
--   **Solutions**
+-   Solution
 
-1.  Search for the terminal using serial-xx from the drop-down list in the  **TERMINAL**  panel.
+    The serial port may be in use. Perform the following steps to troubleshoot:
 
-    **Figure  2**  Checking whether the serial port is used<a name="en-us_topic_0000001053466255_fig165994164420"></a>  
-    ![](figure/checking-whether-the-serial-port-is-used-18.png "checking-whether-the-serial-port-is-used-18")
+    1.  Search for the serial port from the drop-down list in the  **TERMINAL**  panel.
 
-2.  Click the dustbin icon as shown in the following figure to disable the terminal using the serial port.
+        ![](figures/terminal-list.png)
 
-    **Figure  3**  Disabling the terminal using the serial port<a name="en-us_topic_0000001053466255_fig7911282453"></a>  
-    ![](figure/disabling-the-terminal-using-the-serial-port-19.png "disabling-the-terminal-using-the-serial-port-19")
-
-3.  Click  **Burn**, select the serial port, and start burning images again.
-
-    **Figure  4**  Restarting burning<a name="fig87139519227"></a>  
-    ![](figure/restarting-burning-20.png "restarting-burning-20")
+    2.  Click the dustbin for the terminal using the serial port to disable the terminal.
 
 
 ## What should I do when Windows-based PC failed to be connected to the board?<a name="section8512971816"></a>
@@ -43,8 +35,8 @@
 
     The file image cannot be obtained after clicking  **Burn**  and selecting a serial port.
 
-    **Figure  5**  Failed to obtain the image file due to unavailable connection<a name="en-us_topic_0000001053466255_fig5218920223"></a>  
-    ![](figure/failed-to-obtain-the-image-file-due-to-unavailable-connection-21.png "failed-to-obtain-the-image-file-due-to-unavailable-connection-21")
+    **Figure  1**  Failed to obtain the image file due to unavailable connection<a name="en-us_topic_0000001053466255_fig5218920223"></a>  
+    ![](figures/failed-to-obtain-the-image-file-due-to-unavailable-connection-0.png "failed-to-obtain-the-image-file-due-to-unavailable-connection-0")
 
 -   **Possible Causes**
 
@@ -57,23 +49,19 @@
 1.  Check whether the network cable is properly connected.
 2.  Click  **Windows Firewall**.
 
-    **Figure  6**  Network and firewall setting<a name="fig954464811215"></a>  
-    ![](figure/network-and-firewall-setting-22.png "network-and-firewall-setting-22")
+    ![](figures/hi3518-network-and-firewall-setting.png)
 
 3.  Click  **Firewall & network protection**, and on the displayed page, click  **Allow applications to communicate through Windows Firewall**.
 
-    **Figure  7**  Firewall and network protection<a name="fig158731526101312"></a>  
-    ![](figure/firewall-and-network-protection-23.png "firewall-and-network-protection-23")
+    ![](figures/hi3518-firewall-and-network-protection.png)
 
 4.  Select the Visual Studio Code application.
 
-    **Figure  8**  Selecting the Visual Studio Code application<a name="fig96572537139"></a>  
-    ![](figure/selecting-the-visual-studio-code-application-24.png "selecting-the-visual-studio-code-application-24")
+    ![](figures/hi3518-selecting-the-visual-studio-code-application.png)
 
 5.  Select the  **Private**  and  **Public**  network access rights for the Visual Studio Code application.
 
-    **Figure  9**  Allowing the Visual Studio Code application to access the network<a name="fig18201217161411"></a>  
-    ![](figure/allowing-the-visual-studio-code-application-to-access-the-network-25.png "allowing-the-visual-studio-code-application-to-access-the-network-25")
+    ![](figures/hi3518-allowing-the-visual-studio-code-application-to-access-the-network.png)
 
 
 ## What should I do when the image failed to be burnt?<a name="section1767804111198"></a>
@@ -95,7 +83,7 @@
 
 -   **Symptom**
 
-    ![](figure/error.png)
+    ![](figures/hi3518-error-for-not-finding-python.png)
 
 
 -   **Possible Cause 1**
@@ -104,11 +92,11 @@
 
 -   **Solutions**
 
-    Install Python as instructed in  [Installing and Configuring Python](quickstart-lite-env-setup-linux.md#section1238412211211).
+    [Install Python](../quick-start/quickstart-lite-env-setup-linux.md).
 
 -   **Possible Cause 2**: The soft link that points to the Python does not exist in the usr/bin directory.
 
-    ![](figure/error2.png)
+    ![](figures/hi3518-reason-no-python-soft-link.png)
 
 -   **Solutions**
 
@@ -123,7 +111,7 @@
 
     Example:
 
-    ![](figure/solution-26.png)
+    ![](figures/hi3518-solution-set-python-soft-link.png)
 
 
 ## What should I do when no command output is displayed?<a name="en-us_topic_0000001053466255_section14871149155911"></a>
@@ -140,7 +128,7 @@
 
     Change the serial port number.
 
-    Start  **Device Manager**  to check whether the serial port connected to the board is the same as that connected to the terminal device. If the serial ports are different, perform step  [1](#section1498892119619)  in the  **Running an Image**  section to change the serial port number.
+    Start  **Device Manager**  to check whether the serial port connected to the board is the same as that connected to the terminal device. If the serial ports are different, perform step 1 in the  **Running an Image**  section to change the serial port number.
 
 
 -   **Possible Cause 2**
@@ -167,6 +155,6 @@
 
 3.  Log in to the serial port after the burning is complete.
 
-    ![](figure/login-serial-port.png)
+    ![](figures/login-serial-port.png)
 
 

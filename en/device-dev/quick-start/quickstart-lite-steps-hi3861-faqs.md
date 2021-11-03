@@ -9,6 +9,7 @@
 -   [What should I do when the message Could not find a version that satisfies the requirement six\>=1.9.0 is displayed during compilation and building?](#section4498158162320)
 -   [What should I do when the message cannot find -lgcc is displayed during compilation and building?](#section11181036112615)
 -   [What should I do when the message indicating Python cannot be found is displayed during compilation and building?](#section1571810194619)
+-   [What should I do when the message indicating Python3 cannot be found is displayed during compilation and building?](#section108385316482)
 -   [What should I do when an error with lsb\_release occurs during kconfiglib installation?](#section691681635814)
 
 ## What should I do when the message  **configure: error: no acceptable C compiler found in $PATH**  is displayed during Python 3 installation?<a name="section1221016541119"></a>
@@ -60,7 +61,7 @@
     The following error occurs during Python 3 installation:
 
     ```
-    zipimport.ZipImportError: can't decompress data; zlib not avaliable
+    zipimport.ZipImportError: can't decompress data; zlib not available
     ```
 
 -   **Possible Causes**
@@ -73,7 +74,7 @@
 
     Solution 2: If the software source does not contain  **zlib**, download the source code from  [http://www.zlib.net/](http://www.zlib.net/).
 
-    ![](figure/download-zlib.png)
+    ![](figures/download-zlib.png)
 
     Then run the following commands to install  **zlib**  offline:
 
@@ -134,7 +135,7 @@
 
     -   Download the source code from  [https://pypi.org/project/pycrypto/\#files](https://pypi.org/project/pycrypto/#files).
 
-    ![](figure/download-the-source-code.png)
+    ![](figures/download-the-source-code.png)
 
     -   Save the source code package to the Linux server, decompress the package, and run the  **python3 setup.py install**  command to install  **Crypto**.
     -   Rebuild an environment.
@@ -164,7 +165,7 @@
 
     -   Download the installation package from  [https://pypi.org/project/ecdsa/\#files](https://pypi.org/project/ecdsa/#files).
 
-    ![](figure/download-ecdsa.png)
+    ![](figures/download-ecdsa.png)
 
     -   Save the installation package to the Linux server and run the  **pip3 install ecdsa-0.15-py2.py3-none-any.whl**  command to install  **ecdsa**.
     -   Rebuild an environment.
@@ -194,7 +195,7 @@
 
     -   Download the installation package from  [https://pypi.org/project/six/\#files](https://pypi.org/project/six/#files).
 
-    ![](figure/download-six.png)
+    ![](figures/download-six.png)
 
     -   Save the source code to the Linux server and run the  **pip3 install six-1.14.0-py2.py3-none-any.whl**  command to install  **six**.
     -   Rebuild an environment.
@@ -243,11 +244,11 @@
 -   **Possible Cause 1:**  Python is not installed.
 -   **Solutions**
 
-    Install Python as instructed in  [Installing and Configuring Python](quickstart-lite-env-setup-linux.md#section1238412211211).
+    [Install Python](../quick-start/quickstart-lite-env-setup-linux.md).
 
 -   **Possible Cause 2:**  The soft link that points to the Python does not exist in the  **usr/bin**  directory.
 
-    ![](figure/reason-2.png)
+    ![](figures/reason-no-python-soft-link.png)
 
 -   **Solutions**
 
@@ -262,7 +263,23 @@
 
     Example:
 
-    ![](figure/solution.png)
+    ![](figures/solution-add-soft-link.png)
+
+
+## What should I do when the message indicating Python3 cannot be found is displayed during compilation and building?<a name="section108385316482"></a>
+
+-   **Symptom**
+
+    ![](figures/11.png)
+
+
+-   **Possible Causes**
+
+    Python 3 is not installed.
+
+-   **Solutions**
+
+    [Install Python](../quick-start/quickstart-lite-env-setup-linux.md).
 
 
 ## What should I do when an error with  **lsb\_release**  occurs during  **kconfiglib**  installation?<a name="section691681635814"></a>

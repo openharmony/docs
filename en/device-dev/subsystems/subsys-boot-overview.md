@@ -7,7 +7,7 @@
 
 The following figure shows the context structure of the Startup subsystem.
 
-![](figure/startup-subsystem.png)
+![](figure/The-following-figure-shows-the-context-structure-of-the-Startup-subsystem.png)
 
 Upon completion of system power-on and kernel loading, system services and applications are started as follows:
 
@@ -35,7 +35,7 @@ The Startup subsystem consists of the following modules:
 
 -   bootstrap module
 
-    This module provides entry identifiers for starting services and features. When samgr is started, the entry function identified by boostrap is called and system services are started.
+    This module provides entry identifiers for starting services and features. When samgr is started, the entry function identified by bootstrap is called and system services are started.
 
 -   syspara module
 

@@ -1,4 +1,4 @@
-# Platform Drivers<a name="EN-US_TOPIC_0000001111199424"></a>
+# Platform Driver Usage<a name="EN-US_TOPIC_0000001111199424"></a>
 
 -   **[GPIO](driver-platform-gpio-des.md)**  
 
@@ -15,5 +15,7 @@
 -   **[Watchdog](driver-platform-watchdog-des.md)**  
 
 -   **[MIPI DSI](driver-platform-mipidsi-des.md)**  
+
+-   **[PWM](driver-platform-pwm-des.md)**  
 
 

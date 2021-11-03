@@ -19,8 +19,8 @@
 
     The following figure shows the hardware connections.
 
-    **Figure  1**  Hardware connections<a name="fig19272182991417"></a>  
-    ![](figure/hardware-connections-8.png "hardware-connections-8")
+    **Figure  1**  Hi3518 hardware connections<a name="fig145521530134016"></a>  
+    ![](figures/hi3518-hardware-connections.png "hi3518-hardware-connections")
 
 
 ### Software<a name="section17315193935817"></a>

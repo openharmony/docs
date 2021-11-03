@@ -1,8 +1,7 @@
-# SPI<a name="EN-US_TOPIC_0000001053057951"></a>
+# SPI<a name="EN-US_TOPIC_0000001206171293"></a>
 
 -   [Overview](#section193356154511)
-    -   [Available APIs](#section232141411476)
-
+-   [Available APIs](#section1325964832615)
 -   [Usage Guidelines](#section71363452477)
     -   [How to Use](#section32846814820)
     -   [Obtaining an SPI Device Handle](#section1927265711481)
@@ -24,12 +23,10 @@
     -   CS: signals enabled by an SPI device and controlled by the SPI controller
 
 
--   [Figure 1](#fig15227181812587)  shows the connection between one SPI controller and two SPI devices \(device A and device B\). In this figure, device A and device B share three pins \(SCLK, MISO, and MOSI\) of the controller. CS0 of device A and CS1 of device B are connected to CS0 and CS1 of the controller, respectively.
+-   [Figure 1](#fig89085710359)  shows the connection between one SPI controller and two SPI devices \(device A and device B\). In this figure, device A and device B share three pins \(SCLK, MISO, and MOSI\) of the controller. CS0 of device A and CS1 of device B are connected to CS0 and CS1 of the controller, respectively.
 
-**Figure  1**  SPI controller/device connection<a name="fig15227181812587"></a>  
-
-
-![](figure/en-us_image_0000001123742254.png)
+**Figure  1**  SPI controller/device connection<a name="fig89085710359"></a>  
+![](figures/spi-controller-device-connection.png "spi-controller-device-connection")
 
 -   SPI communication is usually initiated by the SPI controller and is operated as follows:
 
@@ -54,7 +51,7 @@
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >Currently, these functions are only applicable in the communication initiated by the SPI controller.
 
-### Available APIs<a name="section232141411476"></a>
+## Available APIs<a name="section1325964832615"></a>
 
 **Table  1**  APIs for the SPI driver
 
@@ -119,12 +116,10 @@
 
 ### How to Use<a name="section32846814820"></a>
 
-[Figure 2](#fig23885455594)  shows the process of using an SPI device.
+[Figure 2](#fig1586912310348)  shows the process of using an SPI device.
 
-**Figure  2**  Process of using an SPI device<a name="fig23885455594"></a>  
-
-
-![](figure/en-us_image_0000001123703482.png)
+**Figure  2**  Process of using an SPI device<a name="fig1586912310348"></a>  
+![](figures/process-of-using-an-spi-device.png "process-of-using-an-spi-device")
 
 ### Obtaining an SPI Device Handle<a name="section1927265711481"></a>
 

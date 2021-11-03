@@ -1,8 +1,7 @@
-# GPIO<a name="EN-US_TOPIC_0000001051777586"></a>
+# GPIO<a name="EN-US_TOPIC_0000001206171135"></a>
 
 -   [Overview](#section1635911016188)
-    -   [Available APIs](#section17715915181611)
-
+-   [Available APIs](#section589913442203)
 -   [Usage Guidelines](#section259614242196)
     -   [How to Use](#section103477714216)
     -   [Determining a GPIO Pin Number](#section370083272117)
@@ -22,63 +21,63 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 -   Setting an interrupt service routine \(ISR\) function and interrupt trigger mode for a pin
 -   Enabling or disabling a pin interrupt
 
-### Available APIs<a name="section17715915181611"></a>
+## Available APIs<a name="section589913442203"></a>
 
 **Table  1**  APIs available for the GPIO driver
 
-<a name="table1731550155318"></a>
-<table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" valign="top" width="19.74%" id="mcps1.2.4.1.1"><p id="p641050105320"><a name="p641050105320"></a><a name="p641050105320"></a>Capability</p>
+<a name="table89681075215"></a>
+<table><thead align="left"><tr id="row996807162115"><th class="cellrowborder" valign="top" width="19.74%" id="mcps1.2.4.1.1"><p id="p296817716212"><a name="p296817716212"></a><a name="p296817716212"></a>Capability</p>
 </th>
-<th class="cellrowborder" valign="top" width="32.36%" id="mcps1.2.4.1.2"><p id="p54150165315"><a name="p54150165315"></a><a name="p54150165315"></a>Function</p>
+<th class="cellrowborder" valign="top" width="32.36%" id="mcps1.2.4.1.2"><p id="p596897172119"><a name="p596897172119"></a><a name="p596897172119"></a>Function</p>
 </th>
-<th class="cellrowborder" valign="top" width="47.9%" id="mcps1.2.4.1.3"><p id="p941150145313"><a name="p941150145313"></a><a name="p941150145313"></a>Description</p>
+<th class="cellrowborder" valign="top" width="47.9%" id="mcps1.2.4.1.3"><p id="p39681677213"><a name="p39681677213"></a><a name="p39681677213"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row34145016535"><td class="cellrowborder" rowspan="2" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p229610227124"><a name="p229610227124"></a><a name="p229610227124"></a>GPIO read/write</p>
+<tbody><tr id="row896847202113"><td class="cellrowborder" rowspan="2" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p1796814719210"><a name="p1796814719210"></a><a name="p1796814719210"></a>GPIO read/write</p>
 </td>
-<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p19389143041518"><a name="p19389143041518"></a><a name="p19389143041518"></a>GpioRead</p>
+<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p39683732112"><a name="p39683732112"></a><a name="p39683732112"></a>GpioRead</p>
 </td>
-<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p8738101941716"><a name="p8738101941716"></a><a name="p8738101941716"></a>Reads the level value of a GPIO pin.</p>
-</td>
-</tr>
-<tr id="row5632152611414"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p143890309153"><a name="p143890309153"></a><a name="p143890309153"></a>GpioWrite</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p67306152404"><a name="p67306152404"></a><a name="p67306152404"></a>Writes the level value of a GPIO pin.</p>
+<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p59687710219"><a name="p59687710219"></a><a name="p59687710219"></a>Reads the level value of a GPIO pin.</p>
 </td>
 </tr>
-<tr id="row17493124814141"><td class="cellrowborder" rowspan="2" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p321814526178"><a name="p321814526178"></a><a name="p321814526178"></a>GPIO settings</p>
+<tr id="row17968872212"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p396812722116"><a name="p396812722116"></a><a name="p396812722116"></a>GpioWrite</p>
 </td>
-<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p16390153015156"><a name="p16390153015156"></a><a name="p16390153015156"></a>GpioSetDir</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p1873761519408"><a name="p1873761519408"></a><a name="p1873761519408"></a>Sets the direction for a GPIO pin.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p396814715219"><a name="p396814715219"></a><a name="p396814715219"></a>Writes the level value of a GPIO pin.</p>
 </td>
 </tr>
-<tr id="row10681146181417"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p15390153014151"><a name="p15390153014151"></a><a name="p15390153014151"></a>GpioGetDir</p>
+<tr id="row129681576218"><td class="cellrowborder" rowspan="2" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p1496813782116"><a name="p1496813782116"></a><a name="p1496813782116"></a>GPIO settings</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p974061515406"><a name="p974061515406"></a><a name="p974061515406"></a>Obtains the direction for a GPIO pin.</p>
+<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p29688742119"><a name="p29688742119"></a><a name="p29688742119"></a>GpioSetDir</p>
 </td>
-</tr>
-<tr id="row10288191441518"><td class="cellrowborder" rowspan="4" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p13927416134716"><a name="p13927416134716"></a><a name="p13927416134716"></a>GPIO interrupt settings</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p17390113013158"><a name="p17390113013158"></a><a name="p17390113013158"></a>GpioSetIrq</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p10314104354416"><a name="p10314104354416"></a><a name="p10314104354416"></a>Sets the ISR function for a GPIO pin.</p>
+<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p179682792111"><a name="p179682792111"></a><a name="p179682792111"></a>Sets the direction for a GPIO pin.</p>
 </td>
 </tr>
-<tr id="row163795912473"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p523618345323"><a name="p523618345323"></a><a name="p523618345323"></a>GpioUnSetIrq</p>
+<tr id="row1196817715217"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p896827182120"><a name="p896827182120"></a><a name="p896827182120"></a>GpioGetDir</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1138195912478"><a name="p1138195912478"></a><a name="p1138195912478"></a>Cancels the setting of the ISR function for a GPIO pin.</p>
-</td>
-</tr>
-<tr id="row155161515124816"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p657344273218"><a name="p657344273218"></a><a name="p657344273218"></a>GpioEnableIrq</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p115163154488"><a name="p115163154488"></a><a name="p115163154488"></a>Enables a GPIO interrupt.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p39689792111"><a name="p39689792111"></a><a name="p39689792111"></a>Obtains the direction for a GPIO pin.</p>
 </td>
 </tr>
-<tr id="row1742119174820"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1865114616324"><a name="p1865114616324"></a><a name="p1865114616324"></a>GpioDisableIrq</p>
+<tr id="row69682071217"><td class="cellrowborder" rowspan="4" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p296818714213"><a name="p296818714213"></a><a name="p296818714213"></a>GPIO interrupt settings</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p97421219174820"><a name="p97421219174820"></a><a name="p97421219174820"></a>Disables a GPIO interrupt.</p>
+<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p1396916710216"><a name="p1396916710216"></a><a name="p1396916710216"></a>GpioSetIrq</p>
+</td>
+<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p99693712113"><a name="p99693712113"></a><a name="p99693712113"></a>Sets the ISR function for a GPIO pin.</p>
+</td>
+</tr>
+<tr id="row4969117172110"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p119692079215"><a name="p119692079215"></a><a name="p119692079215"></a>GpioUnSetIrq</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1996916792114"><a name="p1996916792114"></a><a name="p1996916792114"></a>Cancels the setting of the ISR function for a GPIO pin.</p>
+</td>
+</tr>
+<tr id="row396907112117"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p109694717216"><a name="p109694717216"></a><a name="p109694717216"></a>GpioEnableIrq</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p2969473216"><a name="p2969473216"></a><a name="p2969473216"></a>Enables a GPIO interrupt.</p>
+</td>
+</tr>
+<tr id="row14969117152113"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p18969157182116"><a name="p18969157182116"></a><a name="p18969157182116"></a>GpioDisableIrq</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p19690710214"><a name="p19690710214"></a><a name="p19690710214"></a>Disables a GPIO interrupt.</p>
 </td>
 </tr>
 </tbody>
@@ -91,12 +90,10 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 
 ### How to Use<a name="section103477714216"></a>
 
-The GPIO APIs use the GPIO pin number to specify a pin.  [Figure 1](#fig1399416053717)  shows the general process of using a GPIO.
+The GPIO APIs use the GPIO pin number to specify a pin.  [Figure 1](#fig16151101653713)  shows the general process of using a GPIO.
 
-**Figure  1**  Process of using a GPIO<a name="fig1399416053717"></a>  
-
-
-![](figure/en-us_image_0000001170187071.png)
+**Figure  1**  Process of using a GPIO<a name="fig16151101653713"></a>  
+![](figures/process-of-using-a-gpio.png "process-of-using-a-gpio")
 
 ### Determining a GPIO Pin Number<a name="section370083272117"></a>
 

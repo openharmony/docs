@@ -1,6 +1,9 @@
 # Running an Image<a name="EN-US_TOPIC_0000001142160948"></a>
 
-## Running an Image
+-   [Running an Image](#section153991115191314)
+-   [Next](#section5600113114323)
+
+## Running an Image<a name="section153991115191314"></a>
 
 After the image burning is complete, perform the following steps to run the system:
 
@@ -9,23 +12,23 @@ After the image burning is complete, perform the following steps to run the syst
 
 1.  In DevEco Device Tool, click  **Monitor**  to open the serial port tool.
 
-    ![](figure/open-the-serial-port-tool.png)
+    ![](figures/open-the-serial-port-tool.png)
 
 2.  Restart the development board. Before the autoboot countdown ends, press any key to enter the system.
 
-    ![](figure/press-any-key-to-enter-the-system.gif)
+    ![](figures/press-any-key-to-enter-the-system.gif)
 
 3.  Run the following commands to set system boot parameters:
 
     ```
-    setenv bootargs 'mem=640M console=ttyAMA0,115200 mmz=anonymous,0,0xA8000000,384M clk_ignore_unused androidboot.selinux=permissive skip_initramfs rootdelay=5 init=/init root=/dev/mmcblk0p5 rootfstype=ext4 rw blkdevparts=mmcblk0:1M(boot),15M(kernel),20M(updater),1M(misc),3307M(system),256M(vendor),-(userdata)'
+    setenv bootargs 'mem=640M console=ttyAMA0,115200 mmz=anonymous,0,0xA8000000,384M clk_ignore_unused rootdelay=10 hardware=Hi3516DV300 init=/init root=/dev/ram0 rw blkdevparts=mmcblk0:1M(boot),15M(kernel),20M(updater),2M(misc),3307M(system),256M(vendor),-(userdata)';
     ```
 
     ```
-    setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800; bootm 0x80000000";
+    setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800; bootm 0x82000000'
     ```
 
-    ![](figure/start.png)
+    ![](figures/setenv-bootargs.png)
 
 4.  Save the parameter settings.
 
@@ -33,7 +36,7 @@ After the image burning is complete, perform the following steps to run the syst
     save
     ```
 
-    ![](figure/save-the-parameter-settings.png)
+    ![](figures/save-the-parameter-settings.png)
 
 5.  Restart the development board to start the system.
 
@@ -41,8 +44,10 @@ After the image burning is complete, perform the following steps to run the syst
     reset
     ```
 
-    ![](figure/start-the-system.png)
+    ![](figures/start-the-system.png)
 
-## Next
 
-Congratulations! You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a [Development Example for Clock App](../guide/device-clock-guide.md).
+## Next<a name="section5600113114323"></a>
+
+Congratulations! You have completed the quick start for the standard system. Get yourself familiar with OpenHarmony by a  [Development Example for Clock App](../guide/device-clock-guide.md).
+
