@@ -8,7 +8,7 @@
 
 ## Overview<a name="section2040078630114257"></a>
 
-The Inter-Integrated Circuit \(I2C\) bus is a simple and bidirectional two-wire synchronous serial bus developed by Philips. In the HDF framework, the I2C module uses the unified service mode for API adaptation. In this mode, a device service is used as the I2C manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the I2C module has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
+The Inter-Integrated Circuit \(I2C\) bus is a simple and bidirectional two-wire synchronous serial bus developed by Philips. In the Hardware Driver Foundation (HDF) framework, the I2C module uses the unified service mode for API adaptation. In this mode, a device service is used as the I2C manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the I2C module has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
 
 **Figure  1**  Unified service mode<a name="fig17640124912440"></a>  
 ![](figures/unified-service-mode-8.png "unified-service-mode-8")
@@ -380,7 +380,7 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
         static void Hi35xxI2cRemoveByNode(const struct DeviceResourceNode *node)
         {
             ... 
-            // (Mandatory) Call the I2cCntlrGet function obtain the I2cCntlr object based on busid of the device, and call the I2cCntlrRemove function to release the I2cCntlr object.
+            // (Mandatory) Call the I2cCntlrGet function to obtain the I2cCntlr object based on busid of the device, and call the I2cCntlrRemove function to release the I2cCntlr object.
             cntlr = I2cCntlrGet(bus);
             if (cntlr != NULL && cntlr->priv == node) {
                 ...
