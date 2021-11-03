@@ -264,7 +264,7 @@ This version has the following updates to OpenHarmony 2.2 Beta2.
 
 ### API Updates<a name="section10338601455"></a>
 
-For details, see  [JS API Differences](api-change/v3.0-lts/js-apidiff-v3.0-lts.md).
+For details, see JS API Differences.
 
 ### Chip and Development Board Adaptation<a name="section16410114834516"></a>
 
