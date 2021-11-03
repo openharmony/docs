@@ -1,21 +1,21 @@
 # mount<a name="ZH-CN_TOPIC_0000001134006264"></a>
 
--   [命令功能](#section11631837182)
--   [命令格式](#section1697638111820)
--   [参数说明](#section1650151221819)
--   [使用指南](#section124541520171912)
--   [使用实例](#section7424625171917)
--   [输出说明](#section14757018116)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section11631837182"></a>
+## 命令功能<a name="section01"></a>
 
 mount命令用来将设备挂载到指定目录。
 
-## 命令格式<a name="section1697638111820"></a>
+## 命令格式<a name="section02"></a>
 
-mount <_device_\> <_path_\> <_name_\> \[_uid gid_\]
+mount \[_-f_\] \[_-t TYPE_\] \[_-o OPTION,_\] \[\[_DEVICE_\] _DIR_\]
 
-## 参数说明<a name="section1650151221819"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
@@ -28,14 +28,42 @@ mount <_device_\> <_path_\> <_name_\> \[_uid gid_\]
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1351mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1353mcpsimp"><a name="p1353mcpsimp"></a><a name="p1353mcpsimp"></a>device</p>
+<tbody><tr id="row451mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2500105121818"><a name="p2500105121818"></a><a name="p2500105121818"></a>--help</p>
+</td>
+<td class="cellrowborder" valign="top" width="51.92%" headers="mcps1.2.4.1.2 "><p id="p1149945111817"><a name="p1149945111817"></a><a name="p1149945111817"></a>查看mount命令支持的参数列表。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27.08%" headers="mcps1.2.4.1.3 "><p id="p749810571812"><a name="p749810571812"></a><a name="p749810571812"></a>N/A</p>
+</td>
+</tr>
+<tr id="row1351mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1353mcpsimp"><a name="p1353mcpsimp"></a><a name="p1353mcpsimp"></a>-f</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1355mcpsimp"><a name="p1355mcpsimp"></a><a name="p1355mcpsimp"></a>佯装挂载动作（实际不做挂载）。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1357mcpsimp"><a name="p1357mcpsimp"></a><a name="p1357mcpsimp"></a>N/A</p>
+</td>
+</tr>
+<tr id="row1351mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1353mcpsimp"><a name="p1353mcpsimp"></a><a name="p1353mcpsimp"></a>-t</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1355mcpsimp"><a name="p1355mcpsimp"></a><a name="p1355mcpsimp"></a>文件系统的种类。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1357mcpsimp"><a name="p1357mcpsimp"></a><a name="p1357mcpsimp"></a>TYPE：vfat, yaffs, jffs, ramfs, nfs，procfs, romfs.</p>
+</td>
+</tr>
+<tr id="row1351mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1353mcpsimp"><a name="p1353mcpsimp"></a><a name="p1353mcpsimp"></a>-o</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1355mcpsimp"><a name="p1355mcpsimp"></a><a name="p1355mcpsimp"></a>挂载选项。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1357mcpsimp"><a name="p1357mcpsimp"></a><a name="p1357mcpsimp"></a>N/A</p>
+</td>
+</tr>
+<tr id="row1351mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1353mcpsimp"><a name="p1353mcpsimp"></a><a name="p1353mcpsimp"></a>DEVICE</p>
 </td>
 <td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1355mcpsimp"><a name="p1355mcpsimp"></a><a name="p1355mcpsimp"></a>要挂载的设备（格式为设备所在路径）。</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1357mcpsimp"><a name="p1357mcpsimp"></a><a name="p1357mcpsimp"></a>系统拥有的设备。</p>
 </td>
 </tr>
-<tr id="row1358mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1360mcpsimp"><a name="p1360mcpsimp"></a><a name="p1360mcpsimp"></a>path</p>
+<tr id="row1358mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1360mcpsimp"><a name="p1360mcpsimp"></a><a name="p1360mcpsimp"></a>DIR</p>
 </td>
 <td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1362mcpsimp"><a name="p1362mcpsimp"></a><a name="p1362mcpsimp"></a>指定目录。</p>
 <p id="p1363mcpsimp"><a name="p1363mcpsimp"></a><a name="p1363mcpsimp"></a>用户必须具有指定目录中的执行（搜索）许可权。</p>
@@ -43,36 +71,28 @@ mount <_device_\> <_path_\> <_name_\> \[_uid gid_\]
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1365mcpsimp"><a name="p1365mcpsimp"></a><a name="p1365mcpsimp"></a>N/A</p>
 </td>
 </tr>
-<tr id="row1366mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1368mcpsimp"><a name="p1368mcpsimp"></a><a name="p1368mcpsimp"></a>name</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1370mcpsimp"><a name="p1370mcpsimp"></a><a name="p1370mcpsimp"></a>文件系统的种类。</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1372mcpsimp"><a name="p1372mcpsimp"></a><a name="p1372mcpsimp"></a>vfat, yaffs, jffs, ramfs, nfs，procfs, romfs.</p>
-</td>
-</tr>
-<tr id="row138821392219"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p15883891213"><a name="p15883891213"></a><a name="p15883891213"></a>uid gid</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p158834917217"><a name="p158834917217"></a><a name="p158834917217"></a>uid是指用户ID。</p>
-<p id="p18500185615215"><a name="p18500185615215"></a><a name="p18500185615215"></a>gid是指组ID。</p>
-<p id="p519052614387"><a name="p519052614387"></a><a name="p519052614387"></a>可选参数，缺省值uid:0，gid:0。</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p178835919211"><a name="p178835919211"></a><a name="p178835919211"></a>N/A</p>
-</td>
-</tr>
 </tbody>
 </table>
 
-## 使用指南<a name="section124541520171912"></a>
+## 使用指南<a name="section04"></a>
 
 mount后加需要挂载的设备信息、指定目录以及设备文件格式，就能成功挂载文件系统到指定目录。
 
-## 使用实例<a name="section7424625171917"></a>
+## 使用实例<a name="section05"></a>
 
-举例：mount /dev/mmcblk0p0 /bin1/vs/sd vfat
+举例：mount -t nfs 192.168.1.3:/nfs nfs
 
-## 输出说明<a name="section14757018116"></a>
+## 输出说明<a name="section06"></a>
 
-将/dev/mmcblk0p0 挂载到/bin1/vs/sd目录
+**示例 1** 将服务器端nfs目录192.168.1.3:/nfs挂载到当前系统下新建的/nfs目录：
 
-![](figure/zh-cn_image_0000001134008688.png)
-
+```shell
+OHOS:/$ mkdir nfs
+OHOS:/$ mount -t nfs 192.168.1.3:/nfs nfs
+Mount nfs on 192.168.1.3:/nfs, uid:0, gid:0
+Mount nfs finished.
+OHOS:/$ ls nfs/
+16d.xml         gpio_test             ohos_test.txt    userfs_vfat.img
+OHOS_Image.bin  hello                 rootfs_vfat.img
+dev_tools       mksh_rootfs_vfat.img  test_demo
+```

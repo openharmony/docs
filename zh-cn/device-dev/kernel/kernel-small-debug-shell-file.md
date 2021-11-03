@@ -22,6 +22,8 @@
 
 -   **[mount](kernel-small-debug-shell-file-mount.md)**  
 
+-   **[mv](kernel-small-debug-shell-file-mv.md)**  
+
 -   **[partinfo](kernel-small-debug-shell-file-partinfo.md)**  
 
 -   **[partition](kernel-small-debug-shell-file-partition.md)**  
@@ -41,5 +43,3 @@
 -   **[writeproc](kernel-small-debug-shell-file-write.md)**  
 
 -   **[umount](kernel-small-debug-shell-file-umount.md)**  
-
-

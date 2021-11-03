@@ -1,25 +1,26 @@
 # chgrp<a name="ZH-CN_TOPIC_0000001134006260"></a>
 
--   [命令功能](#section6103119161418)
--   [命令格式](#section186958132141)
--   [参数说明](#section81796174141)
--   [使用指南](#section14330152417140)
--   [使用实例](#section951823119149)
--   [输出说明](#section14271133125715)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section6103119161418"></a>
+## 命令功能<a name="section01"></a>
 
 chgrp用于修改文件的群组。
 
-## 命令格式<a name="section186958132141"></a>
+## 命令格式<a name="section02"></a>
 
 chgrp \[_group_\] \[_pathname_\]
 
-## 参数说明<a name="section81796174141"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
 <a name="table1049mcpsimp"></a>
+
 <table><thead align="left"><tr id="row1055mcpsimp"><th class="cellrowborder" valign="top" width="21%" id="mcps1.2.4.1.1"><p id="p1057mcpsimp"><a name="p1057mcpsimp"></a><a name="p1057mcpsimp"></a>参数</p>
 </th>
 <th class="cellrowborder" valign="top" width="52%" id="mcps1.2.4.1.2"><p id="p1059mcpsimp"><a name="p1059mcpsimp"></a><a name="p1059mcpsimp"></a>参数说明</p>
@@ -45,16 +46,24 @@ chgrp \[_group_\] \[_pathname_\]
 </tbody>
 </table>
 
-## 使用指南<a name="section14330152417140"></a>
+## 使用指南<a name="section04"></a>
 
-在需要修改的文件名前加上文件群组值就可以修改该文件的所属组。
+- 在需要修改的文件名前加上文件群组值就可以修改该文件的所属组。
+- fatfs文件系统不支持修改用户组id。
 
-## 使用实例<a name="section951823119149"></a>
+## 使用实例<a name="section05"></a>
 
-举例：chgrp 100 hello-harmony.txt
+举例：chgrp 100 testfile
 
-## 输出说明<a name="section14271133125715"></a>
+## 输出说明<a name="section06"></a>
 
-**图 1**  修改 hello-harmony.txt 文件的群组为100<a name="fig17908710194919"></a>  
-![](figure/修改-hello-harmony-txt-文件的群组为100.png "修改-hello-harmony-txt-文件的群组为100")
+**示例 1**  修改 dev/目录下testfile 文件的群组为100
 
+```shell
+OHOS:/dev$ ll testfile
+-rw-r--r-- 0 0 0 0 1970-01-01 00:00 testfile
+OHOS:/dev$ chgrp 100 testfile                                           
+OHOS:/dev$ ll testfile                                                   
+-rw-r--r-- 0 0 100 0 1970-01-01 00:00 testfile
+OHOS:/dev$
+```

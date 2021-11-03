@@ -1,21 +1,21 @@
 # umount<a name="ZH-CN_TOPIC_0000001179965855"></a>
 
--   [命令功能](#section365125133520)
--   [命令格式](#section9615254123512)
--   [参数说明](#section63446577355)
--   [使用指南](#section92931509368)
--   [使用实例](#section144311323616)
--   [输出说明](#section360525113611)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section365125133520"></a>
+## 命令功能<a name="section01"></a>
 
 umount命令用来卸载指定文件系统。
 
-## 命令格式<a name="section9615254123512"></a>
+## 命令格式<a name="section02"></a>
 
-umount \[_dir_\]
+umount  \[_-a \[-t TYPE\]_\]  \[_dir_\]
 
-## 参数说明<a name="section63446577355"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
@@ -28,7 +28,29 @@ umount \[_dir_\]
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1726mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1728mcpsimp"><a name="p1728mcpsimp"></a><a name="p1728mcpsimp"></a>dir</p>
+<tbody><tr id="row451mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p2500105121818"><a name="p2500105121818"></a><a name="p2500105121818"></a>--help</p>
+</td>
+<td class="cellrowborder" valign="top" width="51.92%" headers="mcps1.2.4.1.2 "><p id="p1149945111817"><a name="p1149945111817"></a><a name="p1149945111817"></a>查看umount命令支持的参数列表。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27.08%" headers="mcps1.2.4.1.3 "><p id="p749810571812"><a name="p749810571812"></a><a name="p749810571812"></a>N/A</p>
+</td>
+</tr>
+<tr id="row1726mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1728mcpsimp"><a name="p1728mcpsimp"></a><a name="p1728mcpsimp"></a>-a</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1730mcpsimp"><a name="p1730mcpsimp"></a><a name="p1730mcpsimp"></a>卸载所有已挂载的目录。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1732mcpsimp"><a name="p1732mcpsimp"></a><a name="p1732mcpsimp"></a>N/A</p>
+</td>
+</tr>
+</tr>
+<tr id="row1726mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1728mcpsimp"><a name="p1728mcpsimp"></a><a name="p1728mcpsimp"></a>-t</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1730mcpsimp"><a name="p1730mcpsimp"></a><a name="p1730mcpsimp"></a>同-a选项一起使用，限制-a，只卸载-t所指定的文件系统类型。</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1732mcpsimp"><a name="p1732mcpsimp"></a><a name="p1732mcpsimp"></a>N/A</p>
+</td>
+</tr>
+<tr id="row1726mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1728mcpsimp"><a name="p1728mcpsimp"></a><a name="p1728mcpsimp"></a>dir</p>
 </td>
 <td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1730mcpsimp"><a name="p1730mcpsimp"></a><a name="p1730mcpsimp"></a>需要卸载文件系统对应的目录。</p>
 </td>
@@ -38,18 +60,28 @@ umount \[_dir_\]
 </tbody>
 </table>
 
-## 使用指南<a name="section92931509368"></a>
+## 使用指南<a name="section04"></a>
 
 umount后加上需要卸载的指定文件系统的目录，即将指定文件系统卸载。
 
-## 使用实例<a name="section144311323616"></a>
+## 使用实例<a name="section05"></a>
 
-举例：umount /bin1/vs/sd
+举例：umount ./nfs 、umount -a -t nfs ./nfs
 
-## 输出说明<a name="section360525113611"></a>
+## 输出说明<a name="section06"></a>
 
-将已在/bin1/vs/sd挂载的文件系统卸载
+将已在./nfs挂载的文件系统卸载
 
-**图 1**  umount输出示例<a name="fig2304134118557"></a>  
-![](figure/umount输出示例.png "umount输出示例")
+**示例 1**  umount输出示例
 
+```shell
+OHOS:/$ umount ./nfs/
+umount ok
+```
+
+**示例 2** umount指定文件类型
+
+```shell
+OHOS:/$ umount -a -t nfs ./nfs/
+umount ok
+```

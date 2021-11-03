@@ -1,17 +1,17 @@
 # ifconfig<a name="ZH-CN_TOPIC_0000001133846494"></a>
 
--   [命令功能](#section174940284379)
--   [命令格式](#section136073203715)
--   [参数说明](#section6493235203710)
--   [使用指南](#section05763403371)
--   [使用实例](#section168802042123717)
--   [输出说明](#section124638211109)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section174940284379"></a>
+## 命令功能<a name="section01"></a>
 
 ifconfig命令用来查询和设置网卡的IP地址、网络掩码、网关、硬件mac地址等参数。并能够启用/关闭网卡。
 
-## 命令格式<a name="section136073203715"></a>
+## 命令格式<a name="section02"></a>
 
 ifconfig
 
@@ -27,7 +27,7 @@ ifconfig
 
 \[_up|down_\]
 
-## 参数说明<a name="section6493235203710"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
@@ -129,30 +129,30 @@ ifconfig
 </tbody>
 </table>
 
-## 使用指南<a name="section05763403371"></a>
+## 使用指南<a name="section04"></a>
 
 -   命令需要启动TCP/IP协议栈后才能使用。
 -   由于IP冲突检测需要反应时间，每次使用ifconfig设置IP后会有2S左右的延时。
 
-## 使用实例<a name="section168802042123717"></a>
+## 使用实例<a name="section05"></a>
 
 1.  ifconfig eth0 192.168.100.31 netmask 255.255.255.0 gateway 192.168.100.1 hw ether 00:49:cb:6c:a1:31
 2.  ifconfig -a
 3.  ifconfig eth0 inet6 add 2001:a:b:c:d:e:f:d
 4.  ifconfig eth0 inet6 del 2001:a:b:c:d:e:f:d
 
-## 输出说明<a name="section124638211109"></a>
+## 输出说明<a name="section06"></a>
 
 1.  设置网络参数
 
-    ```
-    OHOS # ifconfig eth0 192.168.100.31 netmask 255.255.255.0 gateway 192.168.100.1 hw ether 00:49:cb:6c:a1:31
-    OHOS # ifconfig
-    eth0     ip:192.168.100.31 netmask:255.255.255.0 gateway:192.168.100.1
-    HWaddr 00:49:cb:6c:a1:31 MTU:1500 Running Default Link UP
-    lo         ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
-    ip6: ::1/64
-    HWaddr 00 MTU:0 Running Link UP
+    ```shell
+    OHOS:/$ ifconfig eth0 192.168.100.31 netmask 255.255.255.0 gateway 192.168.100.1 hw ether 00:49:cb:6c:a1:31
+    OHOS:/$ ifconfig
+    lo      ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
+            ip6: ::1/64
+            HWaddr 00 MTU:0 Running Link UP
+    eth0    ip:192.168.100.31 netmask:255.255.255.0 gateway:192.168.100.1
+            HWaddr 00:49:cb:6c:a1:31 MTU:1500 Running Default Link UP
     ```
 
     输出的各参数说明如下表所示：
@@ -211,7 +211,7 @@ ifconfig
 
 2.  获取协议栈统计信息
 
-    ```
+    ```shell
     OHOS # ifconfig -a
     RX packets:6922  errors:0        ip dropped:4312         link dropped:67         overrun:0       bytes:0 (0.0 B)
     RX packets(ip6):3     errors:0        dropped:0       overrun:0       bytes:0 (0.0 B)
@@ -283,33 +283,35 @@ ifconfig
     </tbody>
     </table>
 
-3.  设置IPv6的地址信息
+3. 设置IPv6的地址信息
 
-    ```
-    OHOS # ifconfig eth0 inet6 add 2001:a:b:c:d:e:f:d
-    OHOS # ifconfig
-    eth1    ip:192.168.3.60 netmask:255.255.255.0 gateway:0.0.0.0
-    HWaddr 00:0e:c6:a8:5a:c2 MTU:1500 Running Link UP
-    eth0    ip:192.168.2.60 netmask:255.255.255.0 gateway:0.0.0.0
-    ip6: 2001:A:B:C:D:E:F:D/64
-    HWaddr 46:44:02:02:03:03 MTU:1500 Running Link UP
-    lo        ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
-    ip6: ::1/64
-    HWaddr 00 MTU:16436 Running Link UP
-    ```
+   ```shell
+   OHOS:/$ ifconfig eth0 inet6 add 2001:a:b:c:d:e:f:d
+   NetifStatusCallback(eth0): nsc event: 0x8
+   NetifStatusCallback(eth0): nsc status changed: 0
+   NetifStatusCallback(eth0): nsc event: 0x200
+   NetifStatusCallback(eth0): nsc event: 0x8
+   NetifStatusCallback(eth0): nsc status changed: 1
+   NetifStatusCallback(eth0): nsc event: 0x200
+   NetifStatusCallback(eth0): nsc event: 0x200
+   OHOS:/$ ifconfig
+   lo      ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
+           ip6: ::1/64
+           HWaddr 00 MTU:0 Running Link UP
+   eth0    ip:192.168.1.10 netmask:255.255.255.0 gateway:192.168.1.1
+           ip6: 2001:A:B:C:D:E:F:D/64
+           HWaddr 66:2f:e5:bd:24:e6 MTU:1500 Running Default Link UP
+   ```
 
 4.  删除IPv6的地址信息
 
+    ```shell
+    OHOS:/$ ifconfig eth0 inet6 del 2001:a:b:c:d:e:f:d
+    NetifStatusCallback(eth0): nsc event: 0x200
+    OHOS:/$ ifconfig
+    lo      ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
+            ip6: ::1/64
+            HWaddr 00 MTU:0 Running Link UP
+    eth0    ip:192.168.1.10 netmask:255.255.255.0 gateway:192.168.1.1
+            HWaddr 66:2f:e5:bd:24:e6 MTU:1500 Running Default Link UP
     ```
-    OHOS # ifconfig eth0 inet6 del 2001:a:b:c:d:e:f:d
-    OHOS # ifconfig
-    eth1    ip:192.168.3.60 netmask:255.255.255.0 gateway:0.0.0.0
-    HWaddr 00:0e:c6:a8:5a:c2 MTU:1500 Running Link UP
-    eth0    ip:192.168.2.60 netmask:255.255.255.0 gateway:0.0.0.0
-    HWaddr 46:44:02:02:03:03 MTU:1500 Running Link UP
-    lo        ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
-    ip6: ::1/64
-    HWaddr 00 MTU:16436 Running Link UP
-    ```
-
-
