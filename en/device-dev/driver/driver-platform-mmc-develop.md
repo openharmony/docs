@@ -167,7 +167,7 @@ struct MmcCntlrOps {
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p59196416307"><a name="p59196416307"></a><a name="p59196416307"></a>HDF_STATUS</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p169207416301"><a name="p169207416301"></a><a name="p169207416301"></a>Set the voltage.</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p169207416301"><a name="p169207416301"></a><a name="p169207416301"></a>Sets the voltage.</p>
 </td>
 </tr>
 <tr id="row1992015417301"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1892014463010"><a name="p1892014463010"></a><a name="p1892014463010"></a>devReadOnly</p>
@@ -298,21 +298,21 @@ The following uses  **himci.c**  as an example to present the contents that need
                 freqDef = 400000; // (Mandatory) Default frequency
                 maxBlkNum = 2048; // (Mandatory) Maximum block number
                 maxBlkSize = 512; // (Mandatory) Maximum number of blocks
-                ocrDef = 0x300000; // (Mandatory) Set the working voltage.
-                caps2 = 0; // (Mandatory) Set the attribute register. For details, see MmcCaps2 in mmc_caps.h.
+                ocrDef = 0x300000; // (Mandatory) Working voltage.
+                caps2 = 0; // (Mandatory) Attribute register. For details, see MmcCaps2 in mmc_caps.h.
                 regSize = 0x118; // (Mandatory) Register bit width
                 hostId = 0; // (Mandatory) Host ID
             regBasePhy = 0x10020000;// (Mandatory) Physical base address of the register
                 irqNum = 63; // (Mandatory) Interrupt number
                 devType = 2; // (Mandatory) Device mode, which can be eMMC, SD, SDIO, or COMBO
-                caps = 0x0001e045; // (Mandatory) Set the attribute register. For details, see MmcCaps in mmc_caps.h.
+                caps = 0x0001e045; // (Mandatory) Attribute register. For details, see MmcCaps in mmc_caps.h.
               }
               controller_0x10100000 :: mmc_controller {
                 match_attr = "hi3516_mmc_emmc";// (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.
                 hostId = 0;
                 regBasePhy = 0x10100000;
                 irqNum = 96;
-                devType = 0; // The value 0 indicates an embedded MultiMedia card (eMMC).
+                devType = 0; // The value 0 indicates an eMMC.
                 caps = 0xd001e045;
                 caps2 = 0x60;
               }
@@ -321,7 +321,7 @@ The following uses  **himci.c**  as an example to present the contents that need
                 hostId = 1;
                 regBasePhy = 0x100f0000;
                 irqNum = 62;
-                devType = 1; // The value 1 indicates a Secure Digital (SD) card.
+                devType = 1; // The value 1 indicates an SD card.
                 caps = 0xd001e005;
               }
               controller_0x10020000 :: mmc_controller {
@@ -329,7 +329,7 @@ The following uses  **himci.c**  as an example to present the contents that need
                 hostId = 2;
                 regBasePhy = 0x10020000;
                 irqNum = 63;
-                devType = 2; // The value 2 indicates a Secure Digital Input Output (SDIO) device.
+                devType = 2; // The value 2 indicates an SDIO device.
                 caps = 0x0001e04d;
               }
             }
