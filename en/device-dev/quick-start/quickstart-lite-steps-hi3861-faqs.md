@@ -9,7 +9,7 @@
 -   [What should I do when the message Could not find a version that satisfies the requirement six\>=1.9.0 is displayed during compilation and building?](#section4498158162320)
 -   [What should I do when the message cannot find -lgcc is displayed during compilation and building?](#section11181036112615)
 -   [What should I do when the message indicating Python cannot be found is displayed during compilation and building?](#section1571810194619)
--   [What should I do when the message indicating Python cannot be found is displayed during compilation and building?](#section108385316482)
+-   [What should I do when the message indicating Python3 cannot be found is displayed during compilation and building?](#section108385316482)
 -   [What should I do when an error with lsb\_release occurs during kconfiglib installation?](#section691681635814)
 
 ## What should I do when the message  **configure: error: no acceptable C compiler found in $PATH**  is displayed during Python 3 installation?<a name="section1221016541119"></a>
