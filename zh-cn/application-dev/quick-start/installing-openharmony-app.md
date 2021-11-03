@@ -28,5 +28,5 @@ hdc工具本身需要手动从开源仓中获取。然后通过工具命令将�
   ```
 
 
-完整的hdc工具使用指导及命令格式请参见docs仓"zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md"。
+完整的hdc工具使用指导及命令格式请参见[hdc_std使用指导](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)。
 
