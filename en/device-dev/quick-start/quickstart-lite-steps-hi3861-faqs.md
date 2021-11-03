@@ -266,7 +266,7 @@
     ![](figures/solution-add-soft-link.png)
 
 
-## What should I do when the message indicating Python cannot be found is displayed during compilation and building?<a name="section108385316482"></a>
+## What should I do when the message indicating Python3 cannot be found is displayed during compilation and building?<a name="section108385316482"></a>
 
 -   **Symptom**
 
