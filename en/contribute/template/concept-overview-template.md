@@ -1,6 +1,6 @@
 # Overview Template
 
-##Basic Concepts
+## Basic Concepts
 
 ***[Writing Requirements]***
 
@@ -64,13 +64,13 @@ It is considered good practice that you understand the following concepts before
 - Semaphore allows only a specified number of tasks to access a shared resource at a time. When the number of tasks accessing the resource reaches the limit, other tasks will be blocked until the semaphore is released.
   
 
-  ***[Example 2]***
+***[Example 2]***
 
-  **Working Principles of Mutexes**
+**Working Principles of Mutexes**
 
-  In a multi-task environment, multiple tasks may access the same shared resource. However, certain shared resources are not shared, and can only be accessed exclusively by tasks. A mutex can be used to address this issue.
+In a multi-task environment, multiple tasks may access the same shared resource. However, certain shared resources are not shared, and can only be accessed exclusively by tasks. A mutex can be used to address this issue.
 
-  When non-shared resources are accessed by a task, the mutex is locked. Other tasks will be blocked until the mutex is released by the task. The mutex allows only one task to access the shared resources at a time, ensuring integrity of operations on the shared resources.
+When non-shared resources are accessed by a task, the mutex is locked. Other tasks will be blocked until the mutex is released by the task. The mutex allows only one task to access the shared resources at a time, ensuring integrity of operations on the shared resources.
 
 
 
@@ -80,15 +80,15 @@ It is considered good practice that you understand the following concepts before
 
 *Mandatory. Describe the constraints of the development task and the negative impact of the constraints, including but not limited to the following:*
 
-- ***[Function Limitations]***
+- ***Function Limitations***
   - *Application scope of the function (specify scenarios that are not supported)*
   - *Specification limitations*
 
-***Operation constraints**:*
+- ***Operation Limitations***
 
-  *Operations on known issues*
-  *Potentially risky operations (such as performance deterioration)*
-  *Operations that may cause performance deterioration*
+  - *Operations on known issues*
+  - *Potentially risky operations (such as performance deterioration)*
+  - *Operations that may cause performance deterioration*
 
 *The table below describes the writing requirements. After finishing the writing, check your content against these requirements one by one.*
 
