@@ -15,7 +15,4 @@ The LTS version provides long-term kernel maintenance \(in fixing bugs and secur
 
 ## OpenHarmony Kernel Version Selection<a name="section2716416191715"></a>
 
-You can select an appropriate LTS kernel version as the Linux kernel for OpenHarmony. Currently, LTS version 4.19 is used on most devices. LTS versions 4.4 to 4.14 are old and do not support new features. Additionally, these versions will no longer be maintained in 2023 as planned. In this regard, they can be adopted only by the systems for short-term use but are not suitable for the systems of the first release. The more up-to-date LTS version 5.4 has not been widely used in released products. In comparison, version 4.19 is more well-recognized and can shorten the kernel adaptation period. New versions will be released continuously.
-
-In OpenHarmony, the Linux kernel is recommended for devices whose memory is greater than or equal to 128 MB.
-
+Select an appropriate LTS kernel version as the Linux kernel for OpenHarmony. Currently, Linux-4.19 and Linux-5.10 are supported.
