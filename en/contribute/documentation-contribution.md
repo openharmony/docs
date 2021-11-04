@@ -48,7 +48,7 @@ You can perform the following steps to modify or supplement a file:
 
     Signed-off-by: user.name &lt;user.email&gt; // Note that *user.name* and *user.email* must be the same as those used for DCO signing.
 
-![](figures/Signed-off-by-example.png)
+![](figures/Signed-off-by-example.png.png)
 
     The Docs team will review your edits and update the file accordingly.
 
@@ -65,7 +65,7 @@ You are welcome to contribute documents to the release. For details, see [Writin
 
 You are welcome to share your experience and expertise with other developers to help them get started. For example, you can contribute tutorials and FAQs by using the following templates:
 
--   [Tutorial Template](template/tutorial-template.md)
--   [FAQ Template](template/faq-template.md)
+-   [Tutorial Template](template/tutorial-template.md.md)
+-   [FAQ Template](template/faq-template.md.md)
 
 More writing templates are available in the **contribute** folder in the **Docs** repository.
