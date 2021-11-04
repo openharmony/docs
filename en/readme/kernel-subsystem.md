@@ -55,7 +55,7 @@ LiteOS provides basic kernel functions, such as process and thread scheduling, m
 The LiteOS source code is stored in **kernel&#92;\_liteos&#92;\_a** and **kernel&#92;\_liteos&#92;\_m** repositories. The **kernel&#92;\_liteos&#92;\_a** repository stores kernel code for small and standard systems. The **kernel\\_liteos&#92;\_m** repository stores kernel code for mini systems. This document describes the **kernel&#92;\_liteos&#92;\_a** repository. Figure 1 shows the architecture of OpenHarmony LiteOS-A.
 
 **Figure 1** OpenHarmony LiteOS-A kernel architecture <a name="fig225412228353"></a>
-![](figures/OpenHarmony-LiteOS-A Kernel Architecture.png "OpenHarmony-LiteOS-A Kernel Architecture")
+![](figures/architecture-of-the-openharmony-liteos-cortex-a-kernel.png "OpenHarmony-LiteOS-A Kernel Architecture")
 
 ## Linux<a name="section143373618411"></a>
 
