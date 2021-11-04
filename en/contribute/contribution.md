@@ -20,7 +20,7 @@ For details about how to participate in Special Interest Group (SIG), see **SIG 
 
 ## Starting Contributing<a name="en-us_topic_0000001053868136_section184321756134618"></a>
 
-For details about how to contribute to code, see  [Contributing Code](contributing-code.md#EN-US_TOPIC_0000001055088095).
+For details about how to contribute to code, see  [Code Contributing ](code-contribution).
 
 ## Contributing Documents<a name="en-us_topic_0000001053868136_section11234185012131"></a>
 
