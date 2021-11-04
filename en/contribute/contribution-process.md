@@ -178,11 +178,11 @@ repo push --br="20200903" --d="master" --content="#I1TVV4"
 
 On the editing page displayed, open the comment tags for the repository, branch, and commit.
 
-![](figures/无标题2.png)
+![](figures/figure2.png)
 
 Save the settings and exit. The repo tool automatically pushes the local branch to the remote fork repository \(creates a fork repository if there is no fork repository\) and generates a PR.
 
-![](figures/无标题3.png)
+![](figures/figure3.png)
 
 The tool automatically associates the PR with the issue.
 
