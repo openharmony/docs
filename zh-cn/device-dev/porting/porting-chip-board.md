@@ -8,6 +8,8 @@
 
 -   **[系统组件调用](porting-chip-board-component.md)**  
 
+-   **[lwip组件适配](porting-chip-board-lwip.md)**  
+
 -   **[三方组件适配](porting-chip-board-bundle.md)**  
 
 -   **[XTS认证](porting-chip-board-xts.md)**  
