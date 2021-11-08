@@ -7,7 +7,7 @@
 ## 编写第一个页面
 
 1. 第一个页面内有一个文本和一个按钮，通过text和button组件来实现。
-   在 “Project“窗口，选择“entry &gt; src &gt; mainjsdefaultpages &gt; index”，打开”index.hml“文件，添加一个文本和一个按钮，示例代码如下：
+   在 “Project“窗口，选择“entry &gt; src &gt; main &gt; js &gt; default &gt; pages &gt; index”，打开”index.hml“文件，添加一个文本和一个按钮，示例代码如下：
    
       ```
       <!-- index.hml -->
@@ -52,7 +52,7 @@
 
 ## 创建另一个页面
 
-1. 在 “Project“窗口，打开“entry &gt; src &gt; mainjsdefault”，右键点击“pages”文件夹，选择“New > JS Page”，命名为“details”，单击回车键。
+1. 在 “Project“窗口，打开“entry &gt; src &gt; main &gt; js &gt; default”，右键点击“pages”文件夹，选择“New > JS Page”，命名为“details”，单击回车键。
    创建完成后，可以看到pages文件夹下的文件目录结构如下：
 
    ![zh-cn_image_0000001166744640](figures/zh-cn_image_0000001166744640.png)
