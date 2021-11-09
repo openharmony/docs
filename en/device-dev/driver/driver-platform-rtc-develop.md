@@ -200,7 +200,7 @@ struct RtcMethod {
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.4 "><p id="p198162173118"><a name="p198162173118"></a><a name="p198162173118"></a>HDF_STATUS</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.5 "><p id="p13981421203110"><a name="p13981421203110"></a><a name="p13981421203110"></a>Configure the RTC register based on the register index. One index corresponds to one byte of the configuration value.</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.5 "><p id="p13981421203110"><a name="p13981421203110"></a><a name="p13981421203110"></a>Configures the RTC register based on the register index. One index corresponds to one byte of the configuration value.</p>
 </td>
 </tr>
 </tbody>
@@ -287,11 +287,11 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
                  uint32_t           spiBaseAddr; // Used for address mapping
           volatile void      *remapBaseAddr;  // Used for address mapping
          uint16_t           regAddrLength; // Used for address mapping
-            uint8_t            supportAnaCtrl; // Indicates whether anaCtrl is supported.
+            uint8_t            supportAnaCtrl; // Indicates whether ANACTRL is supported.
            uint8_t            supportLock;    // Indicates whether lock is supported.
           uint8_t            irq;            // Interrupt number
           uint8_t            alarmIndex;    // Clock alarm index
-           uint8_t            anaCtrlAddr; // anaCtrl address
+           uint8_t            anaCtrlAddr; // ANACTRL address
           struct RtcLockAddr lockAddr;      // Lock address
             RtcAlarmCallback   cb;             // Callback
           struct OsalMutex   mutex;          // Mutex
@@ -425,7 +425,7 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
           if (HiRtcSwInit(rtcInfo)! = 0) {// Related to address mapping and interrupt registration
             ...
           }
-          if (HiRtcHwInit(rtcInfo)! = 0) {// Initialize anaCtrl and lockAddr.
+          if (HiRtcHwInit(rtcInfo)! = 0) {// Initialize ANACTRL and lockAddr.
             ...
           }
         
