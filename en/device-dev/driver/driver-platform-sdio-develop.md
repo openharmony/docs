@@ -295,7 +295,7 @@ struct SdioDeviceOps {
 >-   **maxBlockNum**: specifies the maximum number of blocks in a request.
 >-   **maxBlockSize**: specifies the maximum number of bytes in a block.
 >-   **maxRequestSize**: specifies the maximum number of bytes in a request.
->-   **enTimeout**: specifies the maximum timeout period in milliseconds.
+>-   **enTimeout**: specifies the maximum timeout period, in milliseconds.
 >-   **funcNum**: specifies the function number, which ranges from  **1**  to  **7**.
 >-   **irqCap**: specifies the interrupt request \(IRQ\) capabilities.
 >-   **\(void \*\)data**
