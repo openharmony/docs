@@ -8,7 +8,7 @@
 
 ## Overview<a name="section1266787503161538"></a>
 
-The Display Serial Interface \(DSI\) is a specification developed by the Mobile Industry Processor Interface \(MIPI\) Alliance to reduce the cost of display controllers in mobile devices. In the HDF framework, the MIPI-DSI module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode,  **DevHandle**  \(a void pointer\) directly points to the kernel-mode address of the device object.
+The Display Serial Interface \(DSI\) is a specification developed by the Mobile Industry Processor Interface \(MIPI\) Alliance to reduce the cost of display controllers in mobile devices. In the Hardware Driver Foundation (HDF) framework, the MIPI-DSI module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode,  **DevHandle**  \(a void pointer\) directly points to the kernel-mode address of the device object.
 
 **Figure  1**  Service-free mode<a name="fig207610236189"></a>  
 ![](figures/service-free-mode-9.png "service-free-mode-9")
@@ -183,7 +183,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
         typedef struct {
           unsigned int devno; // Device number
           short laneId[LANE_MAX_NUM]; // Lane ID
-          OutPutModeTag outputMode; // Output mode, which can be csi mode, dsi video mode, or dsi command mode.
+          OutPutModeTag outputMode; // Output mode, which can be CSI mode, DSI Video mode, or DSI Command mode.
           VideoModeTag videoMode; // Synchronization mode of the display device
           OutputFormatTag outputFormat; // Format of the output DSI image, which can be RGB or YUV.
           SyncInfoTag syncInfo; // Settings related to timing
@@ -203,7 +203,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
         };
         ```
 
-    -   Instantiate the callback function structure  **MipiDsiCntlrMethod**  in  **MipiDsiCntlr**. Other members are initialized by using the  **Init**  function.
+    -   Instantiate the callback function structure  **MipiDsiCntlrMethod**  in  **MipiDsiCntlr**. Other members are initialized by using the Init  function.
 
         ```
         static struct MipiDsiCntlrMethod g_method = {
@@ -273,7 +273,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
         static int32_t Hi35xxMipiTxInit(struct HdfDeviceObject *device)
         {
         int32_t ret;
-        g_mipiTx.priv = NULL; // g_mipiTx is a global variable defined.
+        g_mipiTx.priv = NULL; // g_mipiTx is a global variable.
                                 //static struct MipiDsiCntlr g_mipiTx { 
                                 //     .devNo=0
                                 //};
@@ -283,7 +283,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
         return MipiTxDrvInit(0); // (Mandatory) Device initialization customized by the vendor.
         }
         
-        //mipi_dsi_core.c, core layer file. 
+        // mipi_dsi_core.c, core layer file. 
         int32_t MipiDsiRegisterCntlr(struct MipiDsiCntlr *cntlr, struct HdfDeviceObject *device)
         {
         ...
