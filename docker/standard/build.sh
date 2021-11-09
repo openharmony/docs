@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copyright (c) 2020 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-#!/bin/sh
 docker build -t openharmony-docker-standard:0.0.5 .
