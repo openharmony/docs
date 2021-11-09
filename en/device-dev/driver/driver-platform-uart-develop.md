@@ -317,7 +317,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
         #define UART_FLG_RD_BLOCK     (1 << 2)
             RecvNotify recv; // Pointer to the function that receives serial port data
             struct UartOps *ops; // Custom function pointer structure. For details, see device/hisilicon/drivers/uart/uart_pl011.c.
-            void *private; // It stores the start address of UartPl011Port for easy invocation.
+            void *private; // It stores the pointer to the start address of UartPl011Port for easy invocation.
         };
         
         // UartHost is the controller structure at the core layer. Its members are assigned with values by using the Init function.
@@ -326,7 +326,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
             struct HdfDeviceObject *device;
             uint32_t num;
             OsalAtomic atom;
-            void *priv; // It stores the start address of the vendor's custom structure for invoking the structure.
+            void *priv; // It stores the pointer to the start address of the vendor's custom structure for invoking the structure.
             struct UartHostMethod *method; // Hook at the core layer. The vendor needs to implement and instantiate its member functions.
         };
         ```
@@ -461,7 +461,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
         static int32_t Hi35xxAttach(struct UartHost *host, struct HdfDeviceObject *device)
         {
             int32_t ret;
-            // udd and port are structure objects customized by the vendor. Implement related functions as required.
+            // udd and port are structure objects customized by the vendor. The vendor needs to implement related functions as required.
             struct UartDriverData *udd = NULL;
             struct UartPl011Port *port = NULL;
             ...
