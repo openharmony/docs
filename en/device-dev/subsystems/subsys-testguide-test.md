@@ -230,7 +230,7 @@ Example:
 	- The expected result of each test case must have an assertion.
 	- The test case level must be specified.
 	- It is recommended that the test be implemented step by step according to the template.
-	- The comment must contain the test case name, description, type, and requirement number. The test case description must be in the @tc.xxx format. The test case type @tc.type can be any of the following:
+	- The comment must contain the test case name, description, type, and requirement number, which are in the @tc.xxx: value format. The test case type @tc.type can be any of the following:
 
 	    | Test Case Type|Function test|Performance test|Reliability test|Security test|Fuzz test|
     	| ------------|------------|------------|------------|------------|------------|
@@ -656,7 +656,7 @@ Perform the following steps:
 	>- **target_name** indicates the test suite name defined in the **BUILD.gn** file in the **test** directory.
 	>- **preparer** indicates the action to perform before the test suite is executed.
 	>- **src="res"** indicates that the test resources are in the **resource** directory under the **test** directory.
-	>- **src="out"** indicates that the test resources are in the **out/release/$(component)** directory.
+	>- **src="out"** indicates that the test resources are in the **out/release/$(part)** directory.
 ## Executing Test Cases
 Before executing test cases, you need to modify the configuration based on the device used.
 
@@ -730,7 +730,7 @@ When the build is complete, the test cases are automatically saved in the **out/
 3. Modify the **user_config.xml** file.
 	```
 	<build>
-	  <!-- Because the test cases have been built, change the value to false -->.
+	  <!-- Because the test cases have been built, change the value to false. -->
 	  <testcase>false</testcase>
 	</build>
 	<test_cases>
@@ -757,16 +757,16 @@ When the build is complete, the test cases are automatically saved in the **out/
 	```
 	In the command:
 	```
-	-t [TESTTYPE]: specifies the test case type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
-	-tp [TESTTYPE]: specifies a part, which can be used independently.
-	-tm [TESTTYPE]: specifies a module. This parameter must be specified together with -tp.
-	-ts [TESTTYPE]: specifies a test suite, which can be used independently.
-	-tc [TESTTYPE]: specifies a test case. This parameter must be specified together with -ts.
+	-t [TESTTYPE]: specifies the test type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
+	-tp [TESTPART]: specifies the part to test. This parameter can be used independently.
+	-tm [TESTMODULE]: specifies the module to test. This parameter must be specified together with -tp.
+	-ts [TESTSUITE]: specifies the test suite. This parameter can be used independently.
+	-tc [TESTCASE]: specifies the test case. This parameter must be specified together with -ts.
 	You can run -h to display help information.
 	```
 ### Executing Test Cases on Linux
 #### Mapping Remote Port
-To enable test cases to be executed on a remote Linux server or a Linux VM, map the port to enable communication between the device and the remove server or VM. Configure port mapping as follows:
+To enable test cases to be executed on a remote Linux server or a Linux VM, map the port to enable communication between the device and the remote server or VM. Configure port mapping as follows:
 1. On the HDC server, run the following commands:
 	```
 	hdc_std kill
@@ -797,11 +797,11 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	```
 	In the command:
 	```
-	-t [TESTTYPE]: specifies the test case type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
-	-tp [TESTTYPE]: specifies a part, which can be used independently.
-	-tm [TESTTYPE]: specifies a module. This parameter must be specified together with -tp.
-	-ts [TESTTYPE]: specifies a test suite, which can be used independently.
-	-tc [TESTTYPE]: specifies a test case. This parameter must be specified together with -ts.
+	-t [TESTTYPE]: specifies the test type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
+	-tp [TESTPART]: specifies the part to test. This parameter can be used independently.
+	-tm [TESTMODULE]: specifies the module to test. This parameter must be specified together with -tp.
+	-ts [TESTSUITE]: specifies the test suite. This parameter can be used independently.
+	-tc [TESTCASE]: specifies the test case. This parameter must be specified together with -ts.
 	You can run -h to display help information.
 	```
 
