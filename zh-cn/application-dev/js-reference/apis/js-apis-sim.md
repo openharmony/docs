@@ -1,22 +1,5 @@
 # SIM卡管理
 
--   [导入模块](#导入模块)
--   [sim.getSimIccId](#sim.getSimIccId-callback)
--   [sim.getSimIccId](#sim.getSimIccId-promise)
--   [sim.getDefaultVoiceSlotId<sup>7+</sup>](#sim.getDefaultVoiceSlotId-callback)
--   [sim.getDefaultVoiceSlotId<sup>7+</sup>](#sim.getDefaultVoiceSlotId-promise)
--   [sim.getISOCountryCodeForSim](#sim.getISOCountryCodeForSim-callback)
--   [sim.getISOCountryCodeForSim](#sim.getISOCountryCodeForSim-promise)
--   [sim.getSimOperatorNumeric](#sim.getSimOperatorNumeric-callback)
--   [sim.getSimOperatorNumeric](#sim.getSimOperatorNumeric-promise)
--   [sim.getSimSpn](#sim.getSimSpn-callback)
--   [sim.getSimSpn](#sim.getSimSpn-promise)
--   [sim.getSimState](#sim.getSimState-callback)
--   [sim.getSimState](#sim.getSimState-promise)
--   [sim.getSimGid1](#sim.getSimGid1-callback)
--   [sim.getSimGid1](#sim.getSimGid1-promise)
--   [SimState](#SimState)
-
 >**说明：** 
 >
 >- 从 API Version 6 开始支持。

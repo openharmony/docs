@@ -5,3 +5,4 @@
 
 - **[使用JS语言开发](start-with-js.md)**
 
+- **[使用eTS语言开发](start-with-ets.md)**

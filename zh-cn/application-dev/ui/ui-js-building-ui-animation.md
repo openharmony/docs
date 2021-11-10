@@ -1,8 +1,5 @@
 # 动画
 
-- [静态动画](#静态动画)
-- [连续动画](#连续动画)
-
 动画分为[静态动画](#静态动画)和[连续动画](#连续动画)。
 
 
@@ -16,7 +13,7 @@
 
 - **rotate**：将指定组件沿横轴或纵轴或中心点旋转指定的角度。
 
-具体的使用示例如下。
+具体的使用示例如下，更多信息请参考[组件方法](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md)。
 
 ```
 <!-- xxx.hml -->
@@ -58,8 +55,8 @@
 ```
 
 
-**图1** 静态动画效果图<br/>
-![zh-cn_image_0000001212066279](figures/zh-cn_image_0000001212066279.png)
+**图1** 静态动画效果图
+![zh-cn_image_0000001071134933](figures/zh-cn_image_0000001071134933.png)
 
 
 ## 连续动画
@@ -70,7 +67,7 @@
 
 - **animation-name**：设置动画执行后应用到组件上的背景颜色、透明度、宽高和变换类型。
 
-- **animation-delay**和 **animation-duration**：分别设置动画执行后元素延迟和持续的时间。
+- **animation-delay**和**animation-duration**：分别设置动画执行后元素延迟和持续的时间。
 
 - **animation-timing-function**：描述动画执行的速度曲线，使动画更加平滑。
 
@@ -159,6 +156,5 @@ export default {
 }
 ```
 
-**图2** 连续动画效果图<br/>
-![zh-cn_image_0000001166744904](figures/zh-cn_image_0000001166744904.gif)
-
+**图2** 连续动画效果图
+![zh-cn_image_0000001063148757](figures/zh-cn_image_0000001063148757.gif)

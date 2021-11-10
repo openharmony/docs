@@ -3,7 +3,7 @@
 添加交互可以通过在组件上关联事件实现。本节将介绍如何用div、text、image组件关联click事件，构建一个如下图所示的点赞按钮。
 **图1** 点赞按钮效果
 
-![zh-cn_image_0000001212146221](figures/zh-cn_image_0000001212146221.gif)
+![zh-cn_image_0000001064068638](figures/zh-cn_image_0000001064068638.gif)
 
 
 点赞按钮通过一个div组件关联click事件实现。div组件包含一个image组件和一个text组件：
@@ -77,4 +77,4 @@ export default {
 ```
 
 
-JS UI框架还提供了很多表单组件，例如开关、标签、滑动选择器等，以便于开发者在页面布局时灵活使用和提高交互性。
+除此之外，还提供了很多表单组件，例如开关、标签、滑动选择器等，以便于开发者在页面布局时灵活使用和提高交互性，详见[容器组件](../js-reference/js-based-web-like-development-paradigm/js-components-container-badge.md)。

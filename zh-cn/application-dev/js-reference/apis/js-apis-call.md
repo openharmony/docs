@@ -1,26 +1,5 @@
 # 拨打电话
 
--   [导入模块](#导入模块)
--   [call.dial](#call.dial-callback1)
--   [call.dial](#call.dial-callback2)
--   [call.dial](#call.dial-promise)
--   [call.hasCall](#call.hasCall-callback)
--   [call.hasCall](#call.hasCall-promise)
--   [call.getCallState](#call.getCallState-callback])
--   [call.getCallState](#call.getCallState-promise)
--   [call.isEmergencyPhoneNumber<sup>7+</sup>](#call.isEmergencyPhoneNumber-callback1)
--   [call.isEmergencyPhoneNumber<sup>7+</sup>](#call.isEmergencyPhoneNumber-callback2)
--   [call.isEmergencyPhoneNumber<sup>7+</sup>](#call.isEmergencyPhoneNumber-promise)
--   [call.formatPhoneNumber<sup>7+</sup>](#call.formatPhoneNumber-callback1)
--   [call.formatPhoneNumber<sup>7+</sup>](#call.formatPhoneNumber-callback2)
--   [call.formatPhoneNumber<sup>7+</sup>](#call.formatPhoneNumber-promise)
--   [call.formatPhoneNumberToE164<sup>7+</sup>](#call.formatPhoneNumberToE164-callback)
--   [call.formatPhoneNumberToE164<sup>7+</sup>](#call.formatPhoneNumberToE164-promise)
--   [DialOptions](#DialOptions)
--   [CallState](#CallState)
--   [EmergencyNumberOptions<sup>7+</sup>](#EmergencyNumberOptions)
--   [NumberFormatOptions<sup>7+</sup>](#NumberFormatOptions)
-
 >**说明：** 
 >
 >- 从 API Version 6 开始支持。

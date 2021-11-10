@@ -1,6 +1,4 @@
-
-
-### Notification模块(JS端SDK接口)
+# Notification模块(JS端SDK接口)
 
 #### 支持设备
 
@@ -203,7 +201,7 @@ NotificationContent类型说明
 | extras    | 读、写   | Array<String>  | 否   | 按钮扩展信息              |
 | icon      | 读、写   | image.PixelMap | 否   | 按钮图标                  |
 
-- 
+- 返回值
 
   返回值为void
 
@@ -237,7 +235,7 @@ Notification.publish(notificationRequest, publishCallback)
 
   发布通知（Promise形式）
 
-- 
+- 返回值
 
   返回值为Promise<**void**>
 
@@ -278,7 +276,7 @@ Notification.publish(notificationRequest).then((void) => {
   | lable    | 只读     | string              | 是   | 通知标签             |
   | callback | 只读     | AsyncCallback<void> | 是   | 表示被指定的回调方法 |
 
-- 
+- 返回值
 
   返回值为void
 
@@ -307,7 +305,7 @@ Notification.cancel(0, "label", cancelCallback)
   | id    | 只读     | number | 是   | 通知ID   |
   | lable | 只读     | string | 是   | 通知标签 |
 
-- 
+- 返回值
 
   返回值为Promise<**void**>
 
@@ -334,7 +332,7 @@ Notification.cancel(0).then((void) => {
   | id       | 只读     | number              | 是   | 通知ID               |
   | callback | 只读     | AsyncCallback<void> | 是   | 表示被指定的回调方法 |
 
-- 
+- 返回值
 
   返回值为void
 
@@ -362,7 +360,7 @@ Notification.cancel(0, cancelCallback)
   | -------- | -------- | ------------------- | ---- | -------------------- |
   | callback | 只读     | AsyncCallback<void> | 是   | 表示被指定的回调方法 |
 
-- 
+- 返回值
 
   返回值为void
 
@@ -388,7 +386,7 @@ Notification.cancelAll(cancelCallback)
 
   无参数
 
-- 
+- 返回值
 
   返回值为void
 
@@ -422,7 +420,7 @@ Notification.cancelAll().then((void) => {
 | CONTENT_INFORMATION  | 只读     | SlotType | 否   | 内容类型 |
 | OTHER_TYPES          | 只读     | SlotType | 否   | 其他类型 |
 
-* 
+* 返回值
 
   返回值为void
 
@@ -450,7 +448,7 @@ Notification.addSlot(SOCIAL_COMMUNICATION, addSlotCallBack)
   | ---- | -------- | -------- | ---- | ---------------------- |
   | type | 只读     | SlotType | 是   | 要创建的通知通道的类型 |
 
-- 
+- 返回值
 
   返回值为Promise<**void**>
 
@@ -475,7 +473,7 @@ Notification.addSlot(SOCIAL_COMMUNICATION).then((void) => {
   | slotType | 只读     | slotType                        | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型 |
   | callback | 只读     | AsyncCallback<NotificationSlot> | 是   | 表示被指定的回调方法                                        |
 
-- 
+- 返回值
 
   返回值为void
 
@@ -504,7 +502,7 @@ Notification.getSlot(slotType, getSlotCallback)
   | -------- | -------- | -------- | ---- | ----------------------------------------------------------- |
   | slotType | 只读     | slotType | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型 |
 
-* 
+* 返回值
 
   返回值为Promise<NotificationSlot>
 
@@ -530,7 +528,7 @@ Notification.getSlot(slotType).then((data) => {
   | -------- | -------- | ------------------------------- | ---- | -------------------- |
   | callback | 只读     | AsyncCallback<NotificationSlot> | 是   | 表示被指定的回调方法 |
 
-- 
+- 返回值
 
   返回值为void
 
@@ -556,7 +554,7 @@ Notification.getSlots(getSlotsCallback)
 
   无参数
 
-- 
+- 返回值
 
   返回值为Promise<Array<NotificationSlot>>
 

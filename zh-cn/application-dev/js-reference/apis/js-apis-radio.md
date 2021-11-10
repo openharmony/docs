@@ -1,27 +1,5 @@
 # 网络搜索
 
--   [导入模块](#导入模块)
--   [radio.getRadioTech](#radio.getRadioTech-callback)
--   [radio.getRadioTech](#radio.getRadioTech-promise)
--   [radio.getNetworkState](#radio.getNetworkState-callback1)
--   [radio.getNetworkState](#radio.getNetworkState-callback2)
--   [radio.getNetworkState](#radio.getNetworkState-promise)
--   [radio.getNetworkSelectionMode](#radio.getNetworkSelectionMode-callback)
--   [radio.getNetworkSelectionMode](#radio.getNetworkSelectionMode-promise)
--   [radio.getISOCountryCodeForNetwork<sup>7+</sup>](#radio.getISOCountryCodeForNetwork-callback)
--   [radio.getISOCountryCodeForNetwork<sup>7+</sup>](#radio.getISOCountryCodeForNetwork-promise)
--   [radio.getSignalInformation](#radio.getSignalInformation-callback)
--   [radio.getSignalInformation](#radio.getSignalInformation-promise)
--   [radio.isRadioOn<sup>7+</sup>](#radio.isRadioOn-callback)
--   [radio.isRadioOn<sup>7+</sup>](#radio.isRadioOn-promise)
--   [RadioTechnology](#RadioTechnology)
--   [SignalInformation](#SignalInformation)
--   [NetworkType](#NetworkType)
--   [NetworkState](#NetworkState)
--   [RegState](#RegState)
--   [NsaState](#NsaState)
--   [NetworkSelectionMode](#NetworkSelectionMode)
-
 >**说明：**
 >
 >- 从 API Version 6 开始支持。
@@ -157,8 +135,8 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 - 返回值
 
   | 类型                                     | 说明                        |
-   | ---------------------------------------- | --------------------------- |
-   | Promise\<[NetworkState](#NetworkState)\> | 以Promise形式返回网络状态。 |
+  | ---------------------------------------- | --------------------------- |
+  | Promise\<[NetworkState](#NetworkState)\> | 以Promise形式返回网络状态。 |
 
 -   示例
 

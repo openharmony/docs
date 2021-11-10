@@ -1,24 +1,5 @@
 # 音频播放<a name="ZH-CN_TOPIC_0000001164295590"></a>
 
--   [导入模块](#zh-cn_topic_0000001103383404_s56d19203690d4782bfc74069abb6bd71)
--   [权限](#zh-cn_topic_0000001103383404_section11257113618419)
--   [createAudioPlayer\(\)](#zh-cn_topic_0000001103383404_section582314017253)
--   [AudioPlayer](#zh-cn_topic_0000001103383404_section5174142818365)
-    -   [属性](#zh-cn_topic_0000001103383404_section4947115405)
-    -   [play\(\): void](#zh-cn_topic_0000001103383404_section964512672913)
-    -   [pause\(\): void](#zh-cn_topic_0000001103383404_section78173258296)
-    -   [stop\(\): void](#zh-cn_topic_0000001103383404_section122114334296)
-    -   [seek\(timeMs: number\): void](#zh-cn_topic_0000001103383404_section1387113816298)
-    -   [setVolume\(vol: number\): void](#zh-cn_topic_0000001103383404_section164235176552)
-    -   [reset\(\): void7+](#zh-cn_topic_0000001103383404_section1473283011356)
-    -   [release\(\): void](#zh-cn_topic_0000001103383404_section9224621145512)
-    -   [on\(type: string, callback: \(\) =\> void\): void](#zh-cn_topic_0000001103383404_section4486193914193)
-    -   [on\(type: string, callback: Callback<number\>\): void](#zh-cn_topic_0000001103383404_section632591014157)
-    -   [on\(type: string, callback: ErrorCallback\): void](#zh-cn_topic_0000001103383404_section92241852949)
-    -   [事件](#zh-cn_topic_0000001103383404_section1825183472812)
-
--   [AudioState](#zh-cn_topic_0000001103383404_section5181155710523)
-
 ## 导入模块<a name="zh-cn_topic_0000001103383404_s56d19203690d4782bfc74069abb6bd71"></a>
 
 ```

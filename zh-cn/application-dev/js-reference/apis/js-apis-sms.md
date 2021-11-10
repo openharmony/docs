@@ -1,22 +1,5 @@
 # 短信服务
 
--   [导入模块](#导入模块)
--   [sms.createMessage](#sms.createMessage-callback)
--   [sms.createMessage](#sms.createMessage-promise)
--   [sms.sendMessage](#sms.sendMessage)
--   [sms.getDefaultSmsSlotId<sup>7+</sup>](#sms.getDefaultSmsSlotId-callback)
--   [sms.getDefaultSmsSlotId<sup>7+</sup>](#sms.getDefaultSmsSlotId-promise)
--   [sms.setSmscAddr<sup>7+</sup>](#sms.setSmscAddr-callback)
--   [sms.setSmscAddr<sup>7+</sup>](#sms.setSmscAddr-promise)
--   [sms.getSmscAddr<sup>7+</sup>](#sms.getSmscAddr-callback)
--   [sms.getSmscAddr<sup>7+</sup>](#sms.getSmscAddr-promise)
--   [ShortMessage](#ShortMessage)
--   [ShortMessageClass](#ShortMessageClass)
--   [SendMessageOptions](#SendMessageOptions)
--   [ISendShortMessageCallback](#ISendShortMessageCallback)
--   [IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback)
--   [SendSmsResult](#SendSmsResult)
-
 >**说明：** 
 >
 >- 从 API Version 6 开始支持。
