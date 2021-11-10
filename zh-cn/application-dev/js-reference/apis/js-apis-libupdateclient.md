@@ -1,34 +1,5 @@
 # 升级<a name="ZH-CN_TOPIC_0000001209257051"></a>
 
--   [导入模块](#zh-cn_topic_0000001149710363_section749mcpsimp)
--   [权限列表](#zh-cn_topic_0000001149710363_section752mcpsimp)
--   [getNewVersionInfo\(callback: AsyncCallback<NewVersionInfo\>\): void](#zh-cn_topic_0000001149710363_section755mcpsimp)
--   [getNewVersionInfo\(\): Promise<NewVersionInfo\>](#zh-cn_topic_0000001149710363_section6448163034418)
--   [checkNewVersion\(callback: AsyncCallback<NewVersionInfo\>\): void](#zh-cn_topic_0000001149710363_section817mcpsimp)
--   [checkNewVersion\(\): Promise<NewVersionInfo\>](#zh-cn_topic_0000001149710363_section1849020253364)
--   [verifyUpdatePackage\(upgradeFile: string, certsFile: string\): void](#zh-cn_topic_0000001149710363_section16874643181519)
--   [rebootAndCleanUserData\(\): Promise<number\>](#zh-cn_topic_0000001149710363_section3242122116516)
--   [rebootAndCleanUserData\(callback: AsyncCallback<number\>\): void](#zh-cn_topic_0000001149710363_section15242102114516)
--   [applyNewVersion\(\): Promise<number\>](#zh-cn_topic_0000001149710363_section129661811195815)
--   [applyNewVersion\(callback: AsyncCallback<number\>\): void](#zh-cn_topic_0000001149710363_section3381192816421)
--   [download\(\): void](#zh-cn_topic_0000001149710363_section879mcpsimp)
--   [updater.upgrade\(\):void](#zh-cn_topic_0000001149710363_section894mcpsimp)
--   [setUpdatePolicy\(policy: UpdatePolicy, callback: AsyncCallback<number\>\): void](#zh-cn_topic_0000001149710363_section909mcpsimp)
--   [setUpdatePolicy\(policy: UpdatePolicy\): Promise<number\>](#zh-cn_topic_0000001149710363_section8623195623216)
--   [getUpdatePolicy\(callback: AsyncCallback<UpdatePolicy\>\): void](#zh-cn_topic_0000001149710363_section1572219615412)
--   [getUpdatePolicy\(\): Promise<UpdatePolicy\>](#zh-cn_topic_0000001149710363_section1553973516586)
--   [getUpdater\(upgradeFile: string, updateType?: UpdateTypes\): Updater](#zh-cn_topic_0000001149710363_section24411282249)
--   [getUpdaterForOther\(upgradeFile: string, device: string, updateType?: UpdateTypes\): Updater](#zh-cn_topic_0000001149710363_section13233572411)
--   [getUpdaterFromOther\(upgradeFile: string, device: string, updateType?: UpdateTypes\): Updater](#zh-cn_topic_0000001149710363_section8954144012416)
--   [UpdateTypes](#zh-cn_topic_0000001149710363_section197492318513)
--   [PackageTypes](#zh-cn_topic_0000001149710363_section19316738135716)
--   [InstallMode](#zh-cn_topic_0000001149710363_section15197191318487)
--   [NewVersionStatus](#zh-cn_topic_0000001149710363_section148419085512)
--   [UpdatePolicy](#zh-cn_topic_0000001149710363_section5220623434)
--   [NewVersionInfo](#zh-cn_topic_0000001149710363_section15357856134620)
--   [CheckResult](#zh-cn_topic_0000001149710363_section125591515125819)
--   [DescriptionInfo](#zh-cn_topic_0000001149710363_section6472174588)
-
 升级范围：升级整个OpenHarmony系统，包括内置的资源、预置应用；第三方的应用不在升级的范围。
 
 升级依赖：升级分为SD卡升级和在线升级两种。
