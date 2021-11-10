@@ -9,7 +9,7 @@
 
 ## 驱动程序介绍<a name="s8efc1952ebfe4d1ea717182e108c29bb"></a>
 
-下面基于HDF框架，提供一个简单的UART（Universal Asynchronous Receiver/Transmitter）平台驱动开发样例，包含配置文件的添加，驱动代码的实现以及用户态程序和驱动交互的流程。驱动程序源码位于vendor/huawei/hdf/sample目录
+下面基于HDF框架，提供一个简单的UART（Universal Asynchronous Receiver/Transmitter）平台驱动开发样例，包含配置文件的添加，驱动代码的实现以及用户态程序和驱动交互的流程。驱动程序源码位于drivers/framework/sample目录
 
 1.  添加配置。
 
@@ -360,7 +360,7 @@
 
     ```
     LITEOS_BASELIB += -lhdf_uart_sample
-    LIB_SUBDIRS    += $(LITEOS_SOURCE_ROOT)/vendor/huawei/hdf/sample/platform/uart
+    LIB_SUBDIRS    += $(LITEOS_SOURCE_ROOT)/drivers/framework/sample/platform/uart
     ```
 
 4.  用户程序和驱动交互代码。
@@ -400,7 +400,7 @@
     }
     ```
 
-    在build/lite/components/drivers.json驱动配置中hdf\_hi3516dv300\_liteos\_a组件下的targets中增加hello\_uart\_sample组件，代码如下：
+    在build/lite/components/hdf.json驱动配置中hdf\_hi3516dv300\_liteos\_a组件下的targets中增加hello\_uart\_sample组件，代码如下：
 
     ```
     {
@@ -409,7 +409,7 @@
           "component": "hdf_hi3516dv300_liteos_a",
           ...
           "targets": [
-            "//vendor/huawei/hdf/sample/platform/uart:hello_uart_sample"
+            "//drivers/framework/sample/platform/uart:hello_uart_sample"
           ]
         }
       ]
@@ -417,7 +417,7 @@
     ```
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >如上代码均为示例代码，完整代码可以在vendor/huawei/hdf/sample查看。
+    >如上代码均为示例代码，完整代码可以在drivers/framework/sample查看。
     >示例代码默认不参与编译，需要手动添加到编译脚本中。
 
 
