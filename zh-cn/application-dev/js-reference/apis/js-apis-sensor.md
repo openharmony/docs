@@ -2055,7 +2055,7 @@ sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(error, data) {
 );
 ```
 
-## senor.once\(SensorType.SENSOR\_TYPE\_ID\_HUMIDITY\)<a name="section481181811512"></a>
+## sensor.once\(SensorType.SENSOR\_TYPE\_ID\_HUMIDITY\)<a name="section481181811512"></a>
 
 once\(type: SensorType.SENSOR\_TYPE\_ID\_HUMIDITY, callback: AsyncCallback<HumidityResponse\>\): void
 
