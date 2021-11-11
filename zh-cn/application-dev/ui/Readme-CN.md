@@ -40,14 +40,14 @@
 - [自定义组件](ui-js-custom-components.md)
         
 - 基于TS扩展的声明式开发范式
-        - [概述](ui-ts-overview.md)
-        - [开发说明](ui-ts-developing-intro.md)
-        - 体验声明式UI
-            - [创建声明式UI工程](ui-ts-creating-project.md)
-            - [初识Component](ui-ts-components.md)
-            - [创建简单视图](ui-ts-creating-simple-page.md)
-        - 页面布局与连接
-            - [构建食物数据模型](ui-ts-building-data-model.md)
-            - [构建食物列表List布局](ui-ts-building-category-list-layout.md)
-            - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
-            - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
+    - [概述](ui-ts-overview.md)
+    - [开发说明](ui-ts-developing-intro.md)
+    - 体验声明式UI
+        - [创建声明式UI工程](ui-ts-creating-project.md)
+        - [初识Component](ui-ts-components.md)
+        - [创建简单视图](ui-ts-creating-simple-page.md)
+    - 页面布局与连接
+        - [构建食物数据模型](ui-ts-building-data-model.md)
+        - [构建食物列表List布局](ui-ts-building-category-list-layout.md)
+        - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
+        - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
