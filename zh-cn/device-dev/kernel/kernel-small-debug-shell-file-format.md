@@ -1,21 +1,21 @@
 # format<a name="ZH-CN_TOPIC_0000001134006262"></a>
 
--   [命令功能](#section1922331919169)
--   [命令格式](#section249226169)
--   [参数说明](#section985173416177)
--   [使用指南](#section1510162714162)
--   [使用实例](#section25691431161611)
--   [输出说明](#section17368112365920)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section1922331919169"></a>
+## 命令功能<a name="section01"></a>
 
 format指令用于格式化磁盘。
 
-## 命令格式<a name="section249226169"></a>
+## 命令格式<a name="section02"></a>
 
 format <_dev\_inodename_\> <_sectors_\> <_option_\> \[_label_\]
 
-## 参数说明<a name="section985173416177"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
@@ -51,19 +51,22 @@ format <_dev\_inodename_\> <_sectors_\> <_option_\> \[_label_\]
 </tbody>
 </table>
 
-## 使用指南<a name="section1510162714162"></a>
+## 使用指南<a name="section04"></a>
 
 -   format指令用于格式化磁盘，设备名可以在dev目录下查找。format时必须安装存储卡。
 -   format只能格式化U盘、sd和mmc卡，对Nand flash和Nor flash格式化不起作用。
 -   sectors参数必须传入合法值，传入非法参数可能引发异常。
 
-## 使用实例<a name="section25691431161611"></a>
+## 使用实例<a name="section05"></a>
 
-举例：输入format /dev/mmcblk0 128 2
+举例：输入format /dev/mmcblk1 128 2
 
-## 输出说明<a name="section17368112365920"></a>
+## 输出说明<a name="section06"></a>
 
-结果如下
+结果如下:
 
-![](figure/zh-cn_image_0000001134008686.png)
-
+```shell
+OHOS # format /dev/mmcblk1 128 2
+Format to FAT32, 128 sectors per cluster.
+format /dev/mmcblk1 Success 
+```

@@ -58,5 +58,8 @@ partition \[_nand / spinor_\]
 
 查看spinor flash分区信息
 
-![](figure/zh-cn_image_0000001179848349.png)
+```shell
+OHOS # partition spinor
+spinor partition num:0,  blkdev name:/dev/spinorblk0, mountpt:/, startaddr:0x00500000, length:0x00a00000
+```
 

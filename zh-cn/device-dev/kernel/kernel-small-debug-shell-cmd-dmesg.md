@@ -1,17 +1,17 @@
 # dmesg<a name="ZH-CN_TOPIC_0000001179845915"></a>
 
--   [命令功能](#section4643204919313)
--   [命令格式](#section6553153635)
--   [参数说明](#section208971157532)
--   [使用指南](#section213115219413)
--   [使用实例](#section13736564418)
--   [输出说明](#section194005101413)
+-   [命令功能](#section01)
+-   [命令格式](#section02)
+-   [参数说明](#section03)
+-   [使用指南](#section04)
+-   [使用实例](#section05)
+-   [输出说明](#section06)
 
-## 命令功能<a name="section4643204919313"></a>
+## 命令功能<a name="section01"></a>
 
 dmesg命令用于控制内核dmesg缓存区。
 
-## 命令格式<a name="section6553153635"></a>
+## 命令格式<a name="section02"></a>
 
 dmesg
 
@@ -23,7 +23,7 @@ dmesg -l \[_level_\]
 
 dmesg \> \[_fileA_\]
 
-## 参数说明<a name="section208971157532"></a>
+## 参数说明<a name="section03"></a>
 
 **表 1**  参数说明
 
@@ -66,9 +66,9 @@ dmesg \> \[_fileA_\]
 </tr>
 <tr id="row3941mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p3943mcpsimp"><a name="p3943mcpsimp"></a><a name="p3943mcpsimp"></a>-s size</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p3945mcpsimp"><a name="p3945mcpsimp"></a><a name="p3945mcpsimp"></a>设置缓存区大小 size是要设置的大小。</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p3945mcpsimp"><a name="p3945mcpsimp"></a><a name="p3945mcpsimp"></a>设置缓存区大小，size是要设置的大小。</p>
 </td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p3947mcpsimp"><a name="p3947mcpsimp"></a><a name="p3947mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p3947mcpsimp"><a name="p3947mcpsimp"></a><a name="p3947mcpsimp"></a>1-81920</p>
 </td>
 </tr>
 <tr id="row3948mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p3950mcpsimp"><a name="p3950mcpsimp"></a><a name="p3950mcpsimp"></a>-l level</p>
@@ -88,7 +88,7 @@ dmesg \> \[_fileA_\]
 </tbody>
 </table>
 
-## 使用指南<a name="section213115219413"></a>
+## 使用指南<a name="section04"></a>
 
 -   该命令依赖于LOSCFG\_SHELL\_DMESG，使用时通过menuconfig在配置项中开启"Enable Shell dmesg"：
 
@@ -100,14 +100,17 @@ dmesg \> \[_fileA_\]
     2.  关闭串口打印会影响shell使用，建议先连接telnet再尝试关闭串口。
 
 
-## 使用实例<a name="section13736564418"></a>
+## 使用实例<a name="section05"></a>
 
 举例：
 
-输入dmesg \> /usr/dmesg.log。
+输入dmesg \> dmesg.log。
 
-## 输出说明<a name="section194005101413"></a>
+## 输出说明<a name="section06"></a>
 
-**图 1**  dmesg重定向到文件。<a name="fig11150135113566"></a>  
-![](figure/dmesg重定向到文件.png "dmesg重定向到文件")
+**示例 1**  dmesg重定向到文件。
 
+```shell
+OHOS # dmesg > dmesg.log
+Dmesg write log to dmesg.log success
+```

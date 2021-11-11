@@ -57,6 +57,11 @@ cpup \[_mode_\] \[_taskID_\]
 
 ## 输出说明<a name="section19871522144219"></a>
 
-**图 1**  指令输出结果<a name="fig1251224812504"></a>  
-![](figure/指令输出结果.png "指令输出结果")
+**示例 1**  指令输出结果
+
+```shell
+OHOS # cpup 1 5
+
+pid 5 CpuUsage in 1s: 0.0
+```
 

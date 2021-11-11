@@ -60,6 +60,10 @@ telnet \[_on | off_\]
 
 ## 输出说明<a name="section11846624191310"></a>
 
-**图 1**  输入 telnet on<a name="fig127221042155418"></a>  
-![](figure/输入-telnet-on.png "输入-telnet-on")
+**示例 1**  输入 telnet on
+
+```shell
+OHOS # telnet on
+OHOS # start telnet server successfully, waiting for connection.
+```
 

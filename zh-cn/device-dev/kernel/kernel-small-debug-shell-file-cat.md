@@ -48,6 +48,10 @@ cat用于显示文本文件的内容。
 
 ## 输出说明<a name="section183926225561"></a>
 
-**图 1**  查看 hello-harmony.txt 文件的信息<a name="fig15578152824618"></a>  
-![](figure/查看-hello-harmony-txt-文件的信息.png "查看-hello-harmony-txt-文件的信息")
+**示例 1**  查看 hello-harmony.txt 文件的信息
+
+```shell
+OHOS # cat hello-harmony.txt
+OHOS # Hello Harmony ;)
+```
 

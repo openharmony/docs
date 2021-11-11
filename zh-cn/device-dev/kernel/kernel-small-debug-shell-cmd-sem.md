@@ -60,12 +60,44 @@ sem \[_ID__ / fulldata_\]
 
 ## 输出说明<a name="section1975118519456"></a>
 
-**图 1**  查询所有在用的信号量信息<a name="fig18750181620222"></a>  
-![](figure/查询所有在用的信号量信息.png "查询所有在用的信号量信息")
+**示例 1**  查询所有在用的信号量信息
+
+```shell
+OHOS # sem
+
+   SemID       Count
+   ----------  -----
+   0x00000000  1
+
+   SemID       Count
+   ----------  -----
+   0x00000001  0
+
+   SemID       Count
+   ----------  -----
+   0x00000002  0
+
+   SemID       Count
+   ----------  -----
+   0x00000003  1
+
+   SemID       Count
+   ----------  -----
+   0x00000004  0
+
+   SemID       Count
+   ----------  -----
+   0x00000005  1
+
+   SemID       Count
+   ----------  -----
+   0x00000006  0
+```
 
 **表 2**  输出说明
 
 <a name="table487mcpsimp"></a>
+
 <table><thead align="left"><tr id="row492mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p494mcpsimp"><a name="p494mcpsimp"></a><a name="p494mcpsimp"></a>输出</p>
 </th>
 <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p496mcpsimp"><a name="p496mcpsimp"></a><a name="p496mcpsimp"></a>说明</p>

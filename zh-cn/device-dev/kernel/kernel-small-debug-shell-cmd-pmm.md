@@ -29,8 +29,34 @@ Debug版本才具备的命令。
 
 ## 输出说明<a name="section075617368542"></a>
 
-**图 1**  查看物理页使用情况<a name="fig19209202618618"></a>  
-![](figure/查看物理页使用情况.png "查看物理页使用情况")
+**示例 1**  查看物理页使用情况
+
+```shell
+OHOS # pmm
+
+ phys_seg      base         size        free_pages
+ --------      -------      ----------  ---------
+ 0x4065552c    0x809b0000   0x07550000      22344
+order = 0, free_count = 16
+order = 1, free_count = 12
+order = 2, free_count = 8
+order = 3, free_count = 6
+order = 4, free_count = 13
+order = 5, free_count = 16
+order = 6, free_count = 12
+order = 7, free_count = 4
+order = 8, free_count = 79
+active   anon   0
+inactive anon   0
+active   file   1385
+inactice file   84
+
+pmm pages: total = 30032, used = 7688, free = 22344
+pathCache number = 325
+pathCache memory size = 17621(B)
+Vnode number = 67
+Vnode memory size = 10720(B)
+```
 
 **表 1**  输出说明
 
@@ -88,4 +114,3 @@ Debug版本才具备的命令。
 </tr>
 </tbody>
 </table>
-

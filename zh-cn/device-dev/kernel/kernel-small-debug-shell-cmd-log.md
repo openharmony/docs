@@ -32,7 +32,7 @@ log level \[_levelNum_\]
 </td>
 <td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p254mcpsimp"><a name="p254mcpsimp"></a><a name="p254mcpsimp"></a>配置日志打印等级。</p>
 </td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p256mcpsimp"><a name="p256mcpsimp"></a><a name="p256mcpsimp"></a>[0x0，0x5]</p>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p256mcpsimp"><a name="p256mcpsimp"></a><a name="p256mcpsimp"></a>[0,5]</p>
 </td>
 </tr>
 </tbody>
@@ -60,15 +60,20 @@ log level \[_levelNum_\]
 
     若level不在有效范围内，会打印提示信息。
 
--   若log level命令不加\[levelNum\]参数，则默认查看当前打印等级，并且提示使用方法。
+- 若log level命令不加\[levelNum\]参数，则默认查看当前打印等级，并且提示使用方法。
+
+-   开源小型系统源码设置level 为4或者5会有超多打印。
 
 ## 使用实例<a name="section176301333259"></a>
 
 举例：
 
-输入log level 4
+输入log level 3
 
 ## 输出说明<a name="section14354765415"></a>
 
-![](figure/zh-cn_image_0000001179847649.png)
+```shell
+OHOS # log level 3
+Set current log level WARN
+```
 

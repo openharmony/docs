@@ -49,11 +49,41 @@ swtmr \[_ID_\]
 
 ## 输出说明<a name="section1541991614710"></a>
 
-**图 1**  查询所有软件定时器相关信息<a name="fig9860611451"></a>  
-![](figure/查询所有软件定时器相关信息.png "查询所有软件定时器相关信息")
+**示例 1**  查询所有软件定时器相关信息
 
-**图 2**  查询对应 ID 的软件定时器信息<a name="fig22051415124512"></a>  
-![](figure/查询对应-ID-的软件定时器信息.png "查询对应-ID-的软件定时器信息")
+```shell
+OHOS # swtmr
+
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000000  Ticking  Period   100      77      0x40802a50  0x4037b8a0
+
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000001  Ticking  Period   1000     876     0x00000000  0x4037fc04
+
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000002  Ticking  Period   100      76      0x00000000  0x403727f4
+
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000016  Ticking  NSD      10       6       0x8021e000  0x401fe7d8
+
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000079  Ticking  NSD      30000    1749    0x406189d8  0x40160e1c
+```
+
+**示例 2**  查询对应 ID 的软件定时器信息
+
+```shell
+OHOS # swtmr 1
+
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000001  Ticking  Period   1000     841     0x00000000  0x4037fc04
+```
 
 **表 2**  输出说明
 

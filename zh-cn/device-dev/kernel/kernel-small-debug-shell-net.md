@@ -4,8 +4,6 @@
 
 -   **[dhclient](kernel-small-debug-shell-net-dhclient.md)**  
 
--   **[dns](kernel-small-debug-shell-net-dns.md)**  
-
 -   **[ifconfig](kernel-small-debug-shell-net-ifconfig.md)**  
 
 -   **[ipdebug](kernel-small-debug-shell-net-ipdebug.md)**  
@@ -21,5 +19,4 @@
 -   **[telnet](kernel-small-debug-shell-net-telnet.md)**  
 
 -   **[tftp](kernel-small-debug-shell-net-tftp.md)**  
-
 
