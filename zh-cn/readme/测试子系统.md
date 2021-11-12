@@ -39,21 +39,23 @@ subsystem  # 子系统
 │   │       ├── unittest  # 单元测试
 │   │       │   ├── common  # 公共用例
 │   │       │   │   ├── BUILD.gn  # 测试用例编译配置
-│   │       │   │   ├── testA_test.cpp  # 单元测试用例源码
+│   │       │   │   └── testA_test.cpp  # 单元测试用例源码
 │   │       │   ├── phone  # 手机形态用例
 │   │       │   ├── ivi  # 车机形态用例
 │   │       │   └── liteos-a  # ipcamera使用liteos内核的用例
-│   │       └── resource  # 依赖资源
-│   │           └── ohos_test.xml   
+│   │       ├── moduletest  # 模块测试
+│   │       ...
+│   │            
 │   ├── moduleB  # 模块B   
 │   ├── test               
-│   │   └── moduletest  # 模块测试
-│   │       ├── common     
-│   │       ├── phone                  
-│   │       ├── ivi                
-│   │       └── liteos-a                  
-│   │   ...
-│   └── ohos_build  # 编译入口配置
+│   │   └── resource  # 依赖资源    
+│   │       ├── moduleA  # 模块A
+│   │       │   ├── ohos_test.xml  # 资源配置文件
+│   │       ... └── 1.txt  # 资源   
+│   │            
+│   ├── ohos_build  # 编译入口配置  
+│   ...
+│
 ...
 ```
 > **注意：** 测试用例根据不同设备形态差异分为通用用例和非通用用例，建议将通用用例存放在common目录下，非通用用例存放在相应设备形态目录下。
@@ -232,9 +234,13 @@ subsystem  # 子系统
 	- 测试体建议按照模板分步实现。
 	- 用例描述信息按照标准格式@tc.xxx value书写，注释信息必须包含用例名称，用例类型，需求编号四项。其中用例测试类型@tc.type参数的选取，可参考下表。
 
-	    | 测试类型名称|功能测试|性能测试|可靠性测试|安全测试|模糊测试|
-    	| ------------|------------|------------|------------|------------|------------|
-    	| 类型编码|FUNC|PERF|RELI|SECU|FUZZ|
+	    | 测试类型名称|类型编码|
+    	| ------------|------------|
+    	|功能测试      |FUNC|
+        |性能测试      |PERF|
+        |可靠性测试    |RELI|
+        |安全测试      |SECU|
+        |模糊测试      |FUZZ|
     
 
 **JavaScript参考示例**
@@ -632,9 +638,9 @@ subsystem  # 子系统
 测试依赖资源主要包括测试用例在执行过程中需要的图片文件，视频文件、第三方库等对外的文件资源。
 
 依赖资源文件配置步骤如下：
-1. 在部件或者模块的test目录下创建resource目录，存放需要的资源文件
+1. 在部件的test目录下创建resource目录，在resource目录下创建对应的模块，在模块目录中存放该模块所需要的资源文件
 
-2. 在resource目录下创建一个ohos_test.xml文件，文件内容格式如下:
+2. 在resource目录下对应的模块目录中创建一个ohos_test.xml文件，文件内容格式如下:
 	```
 	<?xml version="1.0" encoding="UTF-8"?>
 	<configuration ver="2.0">
@@ -649,12 +655,12 @@ subsystem  # 子系统
 3. 在测试用例的编译配置文件中定义resource_config_file进行指引，用来指定对应的资源文件ohos_test.xml
 	```
 	ohos_unittest("CalculatorSubTest") {
-	  resource_config_file = "//system/subsystem/partA/calculator/test/resource/ohos_test.xml"
+	  resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
 	}
 	```
 	>**说明：**
 	>- target_name: 测试套的名称，定义在测试目录的BUILD.gn中。preparer: 表示该测试套执行前执行的动作。
-	>- src="res": 表示测试资源位于test目录下的resource目录下，src="out"   表示位于out/release/$(部件)目录下。
+	>- src="res": 表示测试资源位于test目录下的resource目录下，src="out"：表示位于out/release/$(部件)目录下。
 
 ## 测试用例执行
 在执行测试用例之前，针对用例使用设备的不同，需要对相应配置进行修改，修改完成即可执行测试用例。
@@ -757,10 +763,10 @@ subsystem  # 子系统
 	执行命令参数说明：
 	```
 	-t [TESTTYPE]: 指定测试用例类型，有UT，MST，ST，PERF等。（必选参数）
-	-tp [TESTTYPE]: 指定部件，可独立使用。
-	-tm [TESTTYPE]: 指定模块，不可独立使用，需结合-tp指定上级部件使用。
-	-ts [TESTTYPE]: 指定测试套，可独立使用。
-	-tc [TESTTYPE]: 指定测试用例，不可独立使用，需结合-ts指定上级测试套使用。
+	-tp [TESTPART]: 指定部件，可独立使用。
+	-tm [TESTMODULE]: 指定模块，不可独立使用，需结合-tp指定上级部件使用。
+	-ts [TESTSUITE]: 指定测试套，可独立使用。
+	-tc [TESTCASE]: 指定测试用例，不可独立使用，需结合-ts指定上级测试套使用。
 	-h : 帮助命令。
 	```
 ### Linux环境执行
@@ -797,10 +803,10 @@ subsystem  # 子系统
 	执行命令参数说明：
 	```
 	-t [TESTTYPE]: 指定测试用例类型，有UT，MST，ST，PERF等。（必选参数）
-	-tp [TESTTYPE]: 指定部件，可独立使用。
-	-tm [TESTTYPE]: 指定模块，不可独立使用，需结合-tp指定上级部件使用。
-	-ts [TESTTYPE]: 指定测试套，可独立使用。
-	-tc [TESTTYPE]: 指定测试用例，不可独立使用，需结合-ts指定上级测试套使用。
+	-tp [TESTPART]: 指定部件，可独立使用。
+	-tm [TESTMODULE]: 指定模块，不可独立使用，需结合-tp指定上级部件使用。
+	-ts [TESTSUITE]: 指定测试套，可独立使用。
+	-tc [TESTCASE]: 指定测试用例，不可独立使用，需结合-ts指定上级测试套使用。
 	-h : 帮助命令。
 	```
 
