@@ -1,9 +1,5 @@
 # Device Information<a name="EN-US_TOPIC_0000001115814850"></a>
 
--   [Modules to Import](#en-us_topic_0000001139910745_section370mcpsimp)
--   [Required Permissions](#en-us_topic_0000001139910745_section373mcpsimp)
--   [Attributes](#en-us_topic_0000001139910745_section62871841172112)
-
 ## Modules to Import<a name="en-us_topic_0000001139910745_section370mcpsimp"></a>
 
 ```

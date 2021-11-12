@@ -1,15 +1,5 @@
 # HiAppEvent<a name="EN-US_TOPIC_0000001162414647"></a>
 
--   [Modules to Import](#en-us_topic_0000001150092213_s56d19203690d4782bfc74069abb6bd71)
--   [Required Permissions](#en-us_topic_0000001150092213_section11257113618419)
--   [Functions](#en-us_topic_0000001150092213_section125675489541)
--   [write\(string, EventType, any..., AsyncCallback<number\>\)](#en-us_topic_0000001150092213_section192192415554)
--   [write\(string, EventType, any...\)](#en-us_topic_0000001150092213_section1696563334210)
--   [writeJson\(string, EventType, object, AsyncCallback<number\>\)](#en-us_topic_0000001150092213_section570630172512)
--   [writeJson\(string, EventType, object\)](#en-us_topic_0000001150092213_section0857164934517)
--   [Enums](#en-us_topic_0000001150092213_section1978842154715)
--   [EventType](#en-us_topic_0000001150092213_section099619567453)
-
 ## Modules to Import<a name="en-us_topic_0000001150092213_s56d19203690d4782bfc74069abb6bd71"></a>
 
 ```

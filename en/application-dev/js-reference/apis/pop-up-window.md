@@ -1,10 +1,5 @@
 # Pop-up Window<a name="EN-US_TOPIC_0000001162494633"></a>
 
--   [Module to Import](#en-us_topic_0000001059340516_s1fada83813e64efcbc67e970ced86588)
--   [Permission List](#en-us_topic_0000001059340516_section11257113618419)
--   [prompt.showToast\(OBJECT\)](#en-us_topic_0000001059340516_sc34d255befcf467dab069802dc9e54d8)
--   [prompt.showDialog\(OBJECT\)](#en-us_topic_0000001059340516_sc6babedb391e4de9af1189ebc9ff5e69)
-
 ## Module to Import<a name="en-us_topic_0000001059340516_s1fada83813e64efcbc67e970ced86588"></a>
 
 ```

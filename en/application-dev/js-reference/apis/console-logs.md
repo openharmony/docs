@@ -1,9 +1,5 @@
 # Console Logs<a name="EN-US_TOPIC_0000001115814846"></a>
 
--   [Module to Import](#en-us_topic_0000001058460515_s56d19203690d4782bfc74069abb6bd71)
--   [Permission List](#en-us_topic_0000001058460515_section11257113618419)
--   [Log Category](#en-us_topic_0000001058460515_s298a3cf59a3b470dbb0742706102ced7)
-
 ## Module to Import<a name="en-us_topic_0000001058460515_s56d19203690d4782bfc74069abb6bd71"></a>
 
 No module is required.
@@ -50,9 +46,9 @@ Prints a log using  **console.debug|log|info|warn|error\(message\)**.
 
     Switch to the  **HiLog**  window at the bottom of HUAWEI DevEco Studio. Specifically, select the current device and process, set the log level to  **Info**, and enter  **Hello World**  in the search box. Logs that meet the search criteria are displayed, as shown in the following figure.
 
-    ![](figures/打印日志.png)
+    ![](figures/log.png)
 
-    >![](public_sys-resources/icon-note.gif) **NOTE:** 
+    > **NOTE:** 
     >The  **console.log\(\)**  function prints logs at the debug level.
 
 

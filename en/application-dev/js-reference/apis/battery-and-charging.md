@@ -1,12 +1,5 @@
 # Battery and Charging<a name="EN-US_TOPIC_0000001115974766"></a>
 
--   [Modules to Import](#en-us_topic_0000001100730486_section199443271307)
--   [BatteryInfo](#en-us_topic_0000001100730486_section1853612361618)
--   [Enums](#en-us_topic_0000001100730486_section14572171519166)
--   [BatteryPluggedType](#en-us_topic_0000001100730486_section1861134715488)
--   [BatteryChargeState](#en-us_topic_0000001100730486_section629045815408)
--   [BatteryHealthState](#en-us_topic_0000001100730486_section1636311513419)
-
 ## Modules to Import<a name="en-us_topic_0000001100730486_section199443271307"></a>
 
 ```

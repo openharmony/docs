@@ -1,9 +1,5 @@
 # Screen Brightness<a name="EN-US_TOPIC_0000001162494637"></a>
 
--   [Modules to Import](#en-us_topic_0000001101127828_s56d19203690d4782bfc74069abb6bd71)
--   [Functions](#en-us_topic_0000001101127828_section1998783153219)
--   [setValue\(value: number\)](#en-us_topic_0000001101127828_section1853612361618)
-
 ## Modules to Import<a name="en-us_topic_0000001101127828_s56d19203690d4782bfc74069abb6bd71"></a>
 
 ```

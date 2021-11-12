@@ -1,14 +1,5 @@
 # Updater<a name="EN-US_TOPIC_0000001115974768"></a>
 
--   [Modules to Import](#en-us_topic_0000001149710363_section749mcpsimp)
--   [Required Permissions](#en-us_topic_0000001149710363_section752mcpsimp)
--   [updater.getNewVersionInfo\(\)](#en-us_topic_0000001149710363_section755mcpsimp)
--   [updater.checkNewVersion\(\)](#en-us_topic_0000001149710363_section817mcpsimp)
--   [updater.download\(\)](#en-us_topic_0000001149710363_section879mcpsimp)
--   [updater.upgrade\(\)](#en-us_topic_0000001149710363_section894mcpsimp)
--   [updater.setUpdatePolicy\(\)](#en-us_topic_0000001149710363_section909mcpsimp)
--   [updater.getUpdatePolicy\(\)](#en-us_topic_0000001149710363_section985mcpsimp)
-
 ## Modules to Import<a name="en-us_topic_0000001149710363_section749mcpsimp"></a>
 
 ```

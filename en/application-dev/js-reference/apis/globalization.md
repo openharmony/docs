@@ -1,16 +1,5 @@
 # Globalization<a name="EN-US_TOPIC_0000001115814852"></a>
 
--   [Imported Modules](#en-us_topic_0000001103315838_s56d19203690d4782bfc74069abb6bd71)
--   [Permissions](#en-us_topic_0000001103315838_section11257113618419)
--   [Class](#en-us_topic_0000001103315838_section1956131218111)
--   [Locale](#en-us_topic_0000001103315838_section189341937163212)
-    -   [Attributes](#en-us_topic_0000001103315838_section23751576140)
-    -   [Locale](#en-us_topic_0000001103315838_section1410593619146)
-
--   [DateTimeFormat](#en-us_topic_0000001103315838_section88061769522)
-    -   [DateTimeFormat](#en-us_topic_0000001103315838_section28081362523)
-    -   [format](#en-us_topic_0000001103315838_section917151185514)
-
 
 ## Imported Modules<a name="en-us_topic_0000001103315838_s56d19203690d4782bfc74069abb6bd71"></a>
 

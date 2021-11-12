@@ -1,12 +1,5 @@
 # Timer<a name="EN-US_TOPIC_0000001115814848"></a>
 
--   [Module to Import](#en-us_topic_0000001058562847_section7480141454919)
--   [Permission List](#en-us_topic_0000001058562847_section11257113618419)
--   [setTimeout\(handler\[, delay\[, ...args\]\]\)](#en-us_topic_0000001058562847_section691616559215)
--   [clearTimeout\(timeoutID\)](#en-us_topic_0000001058562847_section591824471012)
--   [setInterval\(handler\[, delay\[, ...args\]\]\)](#en-us_topic_0000001058562847_section3644185910144)
--   [clearInterval\(intervalID\)](#en-us_topic_0000001058562847_section16451595149)
-
 ## Module to Import<a name="en-us_topic_0000001058562847_section7480141454919"></a>
 
 None

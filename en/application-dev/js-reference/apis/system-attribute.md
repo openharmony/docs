@@ -1,16 +1,5 @@
 # System Attribute<a name="EN-US_TOPIC_0000001162414651"></a>
 
--   [Modules to Import](#en-us_topic_0000001094819718_section370mcpsimp)
--   [Required Permissions](#en-us_topic_0000001094819718_section373mcpsimp)
--   [Functions](#en-us_topic_0000001094819718_section1319529172015)
--   [getSync\(key: string, def?: string\)](#en-us_topic_0000001094819718_section3381192816421)
--   [get\(key: string, callback: AsyncCallback<string\>\)](#en-us_topic_0000001094819718_section19655131534912)
--   [get\(key: string, def: string, callback: AsyncCallback<string\>\)](#en-us_topic_0000001094819718_section045334733915)
--   [get\(key: string, def?: string\)](#en-us_topic_0000001094819718_section10288162818402)
--   [setSync\(key: string, value: string\)](#en-us_topic_0000001094819718_section63102185493)
--   [set\(key: string, value: string, callback: AsyncCallback<void\>\)](#en-us_topic_0000001094819718_section18770184911197)
--   [set\(key: string, def?: string\)](#en-us_topic_0000001094819718_section187724496193)
-
 ## Modules to Import<a name="en-us_topic_0000001094819718_section370mcpsimp"></a>
 
 ```

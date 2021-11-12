@@ -1,31 +1,5 @@
 # Audio Playback<a name="EN-US_TOPIC_0000001103383404"></a>
 
--   [Modules to Import](#s56d19203690d4782bfc74069abb6bd71)
--   [Required Permissions](#section11257113618419)
--   [Methods](#section125675489541)
--   [createAudioPlayer\(\)](#section582314017253)
--   [Appendixes](#section1933416317165)
--   [AudioPlayer](#section5174142818365)
-    -   [Attributes](#section4947115405)
-    -   [play\(\)](#section964512672913)
-    -   [pause\(\)](#section78173258296)
-    -   [stop\(\)](#section122114334296)
-    -   [seek\(number\)](#section1387113816298)
-    -   [setVolume\(number\)](#section164235176552)
-    -   [reset\(\)7+](#section1473283011356)
-    -   [release\(\)](#section9224621145512)
-    -   [Events](#section5453721192911)
-    -   [play](#section87307411494)
-    -   [pause](#section198217471590)
-    -   [stop](#section437616531910)
-    -   [dataLoad](#section982114219106)
-    -   [timeUpdate](#section13687114181014)
-    -   [volumeChange](#section139227715717)
-    -   [finish](#section15181321181018)
-    -   [error](#section5593132921016)
-
--   [AudioState](#section5181155710523)
-
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
 ```

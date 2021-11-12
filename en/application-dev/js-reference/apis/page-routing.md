@@ -1,15 +1,6 @@
 # Page Routing<a name="EN-US_TOPIC_0000001115974762"></a>
 
--   [Module to Import](#en-us_topic_0000001058340511_s0e7b1e85a4274f58a8206e0b065bd80c)
--   [Permission List](#en-us_topic_0000001058340511_section11257113618419)
--   [router.push\(OBJECT\)](#en-us_topic_0000001058340511_s938bf8d664f9475485e83d445c0eeeae)
--   [router.replace\(OBJECT\)](#en-us_topic_0000001058340511_s6d485e6ae3064996a4de2f407bc4287d)
--   [router.back\(OBJECT\)](#en-us_topic_0000001058340511_s3f958a02dde141e69b7f02f22fb2e401)
--   [router.clear\(\)](#en-us_topic_0000001058340511_sa5c3dfd1bb0d4b43906c3d770d6ab2d9)
--   [router.getLength\(\)](#en-us_topic_0000001058340511_s3f121f4005934fda9a1830a909c92c25)
--   [router.getState\(\)](#en-us_topic_0000001058340511_s8843a443a12048e68e33f586aee8dc34)
-
->![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+> **NOTICE:** 
 >Page routing APIs can be invoked only after page rendering is complete. Do not call the APIs in  **onInit**  and  **onReady**  when the page is still in the rendering phase.
 
 ## Module to Import<a name="en-us_topic_0000001058340511_s0e7b1e85a4274f58a8206e0b065bd80c"></a>
@@ -94,7 +85,7 @@ Navigates to a specified page in the application based on the page URL and param
     }
     ```
 
-    >![](public_sys-resources/icon-note.gif) **NOTE:** 
+    >**NOTE:** 
     >The page routing stack supports a maximum of 32 pages.
 
 
@@ -214,7 +205,7 @@ Returns to the previous page or a specified page.
     router.back({uri:'pages/detail/detail'});
     ```
 
-    >![](public_sys-resources/icon-note.gif) **NOTE:** 
+    > **NOTE:** 
     >In the example, the  **uri**  field indicates the page route, which is specified by the  **pages**  list in the  **config.json**  file.
 
 

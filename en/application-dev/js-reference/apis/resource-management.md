@@ -1,40 +1,5 @@
 # Resource Management<a name="EN-US_TOPIC_0000001162414653"></a>
 
--   [Imported Modules](#en-us_topic_0000001150318493_s56d19203690d4782bfc74069abb6bd71)
--   [Permissions](#en-us_topic_0000001150318493_section11257113618419)
--   [Methods](#en-us_topic_0000001150318493_section125675489541)
--   [getResourceManager](#en-us_topic_0000001150318493_section192192415554)
--   [getResourceManager](#en-us_topic_0000001150318493_section46989284018)
--   [getResourceManager](#en-us_topic_0000001150318493_section0543541673)
--   [getResourceManager](#en-us_topic_0000001150318493_section1816951410716)
--   [Enum](#en-us_topic_0000001150318493_section1978842154715)
--   [Direction](#en-us_topic_0000001150318493_section099619567453)
--   [DeviceType](#en-us_topic_0000001150318493_section4734636131914)
--   [ScreenDensity](#en-us_topic_0000001150318493_section7331173812197)
--   [Appendix](#en-us_topic_0000001150318493_section1933416317165)
--   [AsyncCallback<T\>](#en-us_topic_0000001150318493_section256244135613)
--   [Configuration](#en-us_topic_0000001150318493_section12882825611)
-    -   [Attributes](#en-us_topic_0000001150318493_section1059684317312)
-
--   [DeviceCapability](#en-us_topic_0000001150318493_section7200123494410)
-    -   [Attributes](#en-us_topic_0000001150318493_section2201153419440)
-
--   [ResourceManager](#en-us_topic_0000001150318493_section137771134135415)
-    -   [getString](#en-us_topic_0000001150318493_section9779153419548)
-    -   [getString](#en-us_topic_0000001150318493_section159261924165411)
-    -   [getStringArray](#en-us_topic_0000001150318493_section4490132775420)
-    -   [getStringArray](#en-us_topic_0000001150318493_section1992322017541)
-    -   [getMedia](#en-us_topic_0000001150318493_section6710152513409)
-    -   [getMedia](#en-us_topic_0000001150318493_section6711152517409)
-    -   [getMediaBase64](#en-us_topic_0000001150318493_section11402326194315)
-    -   [getMediaBase64](#en-us_topic_0000001150318493_section6404726124312)
-    -   [getConfiguration](#en-us_topic_0000001150318493_section8123152874015)
-    -   [getConfiguration](#en-us_topic_0000001150318493_section312515284406)
-    -   [getDeviceCapability](#en-us_topic_0000001150318493_section104951210135017)
-    -   [getDeviceCapability](#en-us_topic_0000001150318493_section114961410115013)
-    -   [getPluralString](#en-us_topic_0000001150318493_section1549163064013)
-    -   [getPluralString](#en-us_topic_0000001150318493_section165183015405)
-
 
 ## Imported Modules<a name="en-us_topic_0000001150318493_s56d19203690d4782bfc74069abb6bd71"></a>
 
