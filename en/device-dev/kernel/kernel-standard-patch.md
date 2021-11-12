@@ -1,17 +1,35 @@
-# Guidelines for Using Patches on OpenHarmony Development Boards<a name="EN-US_TOPIC_0000001081980461"></a>
+# Applying Patches on OpenHarmony Development Boards<a name="EN-US_TOPIC_0000001081980461"></a>
 
-The patch files are stored in the  **kernel/linux/patches/linux-4.19**  source code path of the project. You can obtain the driver patch of a specific chip architecture from this directory.
+1. Apply HDF patches.
 
-To use the patch of a specific chip platform driver, you need to merge the required kernel patch into the kernel code.
+	Apply the HDF kernel patches matching your kernel version. For details, see the method in **kernel.mk** in the **kernel/linux/build** repository.
+	
+	```
+	$(OHOS_BUILD_HOME)/drivers/adapter/khdf/linux/patch_hdf.sh $(OHOS_BUILD_HOME) $(KERNEL_SRC_TMP_PATH) $(HDF_PATCH_FILE)
+	```
 
-Merge the corresponding patches for different chip platforms.
+2. Apply the chip driver patches.
 
-The following uses Hi3516D V300 as an example:
+	The following uses Hi3516D V300 as an example.
+	
+	Place the patches for the chip component in the corresponding path based on the path and naming rules for the patches of the chip component in **kernel.mk** in the **kernel/linux/build** repository.
+	
+	```
+	DEVICE_PATCH_DIR := $(OHOS_BUILD_HOME)/kernel/linux/patches/${KERNEL_VERSION}/$(DEVICE_NAME)_patch
+	DEVICE_PATCH_FILE := $(DEVICE_PATCH_DIR)/$(DEVICE_NAME).patch
+	```
 
-```
-patch -p1 < device/hisilicon/hi3516dv300/sdk_linux/open_source/linux/hisi_linux-4.19_hos_l2.patch 
-```
+3. Modify the **config** file to build.
 
->![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
->Because patches are applied after the code environment of  **kernel/linux-4.19**  is copied during compilation and building of the OpenHarmony project, you must retain the original code environment of  **kernel/linux-4.19**  before running the OpenHarmony version-level build command.
+	Place the **config** file for the chip component in the corresponding path based on the path and naming rules of the chip component in **kernel.mk** in the **kernel/linux/build** repository.
+	
+	```
+	KERNEL_CONFIG_PATH := $(OHOS_BUILD_HOME)/kernel/linux/config/${KERNEL_VERSION}
+	DEFCONFIG_FILE := $(DEVICE_NAME)_$(BUILD_TYPE)_defconfig
+	```
 
+	> **Note**:
+	>
+	>In the OpenHarmony project build process, patches are installed after **kernel/linux/linux-\*\.\*** is copied. Before using the version-level build command of OpenHarmony, ensure that the **kernel/linux/linux-\*\.\*** source code is available.
+	>
+	>The kernel built is generated in the **kernel** directory under the **out** directory. Modify the **config** file based on the kernel built, and copy the generated **.config** file to the corresponding path in the **config** repository. Then, the configuration takes effect.

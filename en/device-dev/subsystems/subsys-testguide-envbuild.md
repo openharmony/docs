@@ -5,8 +5,8 @@
 
 |Environment|Operating System|Linux Extended Component|Python|Python Plug-ins|NFS Server|HDC|
 |------------|------------|------------|------------|------------|------------|------------|
-|Version|Ubuntu 18.04 or later|libreadline-dev|3.7.5 or later|pyserial 3.3 or later, paramiko 2.7.1 or later, setuptools 40.8.0 or later, and rsa4.0 or later|haneWIN NFS Server 1.2.50 or later, or NFS v4 or later|  1.1.0 or later|
-|Description|Provides code build environment.|Plug-in used to read commands.|Language used by the test framework.|pyserial: supports Python serial port communication. <br>paramiko: allows Python to use SSH. <br>setuptools: allows Python packages to be created and distributed easily. <br>rsa: implements RSA encryption in Python.|Enables devices to be connected through the serial port.| A tool that enables devices to be connected through the HarmonyOS Device Connector (HDC).|
+|Version|Ubuntu 18.04 or later|libreadline-dev|3.7.5 or later|- pySerial 3.3 or later<br>- Paramiko 2.7.1 or later<br>- Setuptools 40.8.0 or later<br>- rsa4.0 or later|haneWIN NFS Server 1.2.50 or later, or NFS v4 or later|  1.1.0 or later|
+|Description|Provides code build environment.|Plug-in used to read commands.|Language used by the test framework.|- pySerial: supports Python serial port communication. <br>- Paramiko: allows Python to use SSH. <br>- Setuptools: allows Python packages to be created and distributed easily. <br>- rsa: implements RSA encryption in Python.|Enables devices to be connected through the serial port.| A tool that enables devices to be connected through the HarmonyOS Device Connector (HDC).|
 
 ## Installation Process
 1. Run the following command to install the Linux extended component libreadline:
@@ -21,7 +21,7 @@
     libreadline-dev is already the newest version (7.0-3).
     0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
     ```
-2. Run the following command to install the setuptools plug-in:
+2. Run the following command to install the Setuptools plug-in:
     ```
     pip3 install setuptools
     ```
@@ -29,7 +29,7 @@
     ```
     Requirement already satisfied: setuptools in d:\programs\python37\lib\site-packages (41.2.0)
     ```
-3. Run the following command to install the paramiko plug-in:
+3. Run the following command to install the Paramiko plug-in:
     ```
     pip3 install paramiko
     ```
@@ -47,7 +47,7 @@
     Installing collected packages: pyasn1, rsa
     Successfully installed pyasn1-0.4.8 rsa-4.7
     ```
-5. Run the following command to install the pyserial plug-in:
+5. Run the following command to install the pySerial plug-in:
     ```
     pip3 install pyserial
     ```
@@ -80,4 +80,4 @@
 | Check whether Python is installed successfully.|Run the **python --version** command.|The Python version is 3.7.5 or later.|
 | Check whether Python plug-ins are successfully installed.|Go to the **test/developertest** directory and run **run.bat** or **run.sh**.| The **>>>** prompt is displayed.|
 |Check the NFS server status (for the devices that support only serial port output).|Log in to the development board through the serial port and run the **mount** command to mount the NFS.|The file directory can be mounted.|
-|Check whether the HDC is successfully installed.|Run the **hdc_std -v** command.|The HDC version is 1.1.0 or later.|
+|Check whether the HDC tool is successfully installed.|Run the **hdc_std -v** command.|The HDC version is 1.1.0 or later.|
