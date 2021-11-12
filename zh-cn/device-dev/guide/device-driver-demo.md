@@ -19,18 +19,10 @@
 
 HDF驱动框架为常用外围设备提供了标准的驱动框架，驱动开发者只需将驱动适配至HDF驱动框架，即可通过HDF驱动框架提供的接口操作外围设备。
 
-本文以I2C为例。其时序流程如[图1](#fig148041484161)所示。
+本文以I2C为例。其时序流程如[图1](#fig9596628607)所示。
 
-**图 1**  I2C时序流程图<a name="fig148041484161"></a>  
-
-
-![](figure/zh-cn_image_0000001169991055.png)
-
--   User Business：用户业务驱动。
--   i2cManagerEntry：I2C管理器入口，注册I2cManager到HDF驱动框架。
--   I2cManager：I2C管理器，管理I2C控制器。
--   I2cCntlr：I2C控制器。
--   i2cDriverEntry：I2C控制器入口，注册I2cCntlr到HDF驱动框架。
+**图 1**  I2C时序流程图<a name="fig9596628607"></a>  
+![](figures/I2C时序流程图.png "I2C时序流程图")
 
 ## 环境准备<a name="section6926133918422"></a>
 

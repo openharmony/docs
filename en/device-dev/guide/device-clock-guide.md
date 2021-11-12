@@ -19,7 +19,7 @@ The clock app displays the current time, as shown in the following figure.
 **Figure  1**  Clock display effect<a name="fig7763172132019"></a>  
 
 
-![](figure/clock.png)
+![](figures/clock.png)
 
 ## Preparations<a name="section6592121861218"></a>
 
@@ -257,7 +257,7 @@ To build such an app, we can create a page that has a flexible layout with two r
 
 ## Signing and Packaging<a name="section10601181101516"></a>
 
-After finishing writing the app code, you need to sign and package the app before running it on a real device. For details, see  [Configuring the OpenHarmony App Signature](../../application-dev/quick-start/configuring-the-openharmony-app-signature.md).
+After finishing writing the app code, you need to sign and package the app before running it on a real device. For details, see  [Signing and Packaging Guide](../../application-dev/quick-start/configuring-the-openharmony-app-signature.md).
 
 ## Running on the Real Device<a name="section092721731511"></a>
 

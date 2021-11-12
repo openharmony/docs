@@ -106,5 +106,5 @@ OpenHarmony  WLAN模组基于Hi3861平台提供了丰富的外设操作能力，
 完成以上两步后，按下RST键复位模组，可发现LED在周期性闪烁，与预期相符，验证完毕。
 
 **图 1**  LED闪烁图<a name="fig20768175218527"></a>  
-![](figure/LED闪烁图.gif "LED闪烁图")
+![](figures/LED闪烁图.gif "LED闪烁图")
 

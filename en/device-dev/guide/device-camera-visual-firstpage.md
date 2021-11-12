@@ -2,7 +2,7 @@
 
 The application home page displays air quality information of different cities. The home page provides two screens \(for two information bars\), which can be added as required. Each screen displays the air quality information of one city, including the Air Quality Index \(AQI\), city name, pollution level, update time, and data source.
 
-The home page of AirQuality consists of three parts:
+The home page of  [AirQuality](device-camera-visual-overview.md)  consists of three parts:
 
 -   Title bar: displays the page title and provides an exit button. The title bar is fixed at the top of the page.
 -   Information bar: displays air quality information. Multiple information bars can be added based on user requirements and support looping scroll.
@@ -83,7 +83,7 @@ The following steps describe how to build the home page with a flexible layout t
     After the code is compiled, run the project on the simulator. The following figure shows the display effect.
 
     **Figure  1**  Title bar<a name="fig14273162465317"></a>  
-    ![](figure/title-bar.png "title-bar")
+    ![](figures/title-bar.png "title-bar")
 
 3.  The  **<swiper\>**  component is required to implement the switching between screens.
 
@@ -175,7 +175,7 @@ The following steps describe how to build the home page with a flexible layout t
     After the code is compiled, the display effect on the simulator is as follows.
 
     **Figure  2**  Title bar and information bar<a name="fig177003454238"></a>  
-    ![](figure/title-bar-and-information-bar.png "title-bar-and-information-bar")
+    ![](figures/title-bar-and-information-bar.png "title-bar-and-information-bar")
 
 5.  Add the indicator bar. Currently, the  **<swiper\>**  component does not support indicator settings. You need to implement a dots indicator by adding  **<div\>**  components and setting the style. Add a  **<div\>**  as a child component to the root node and set the style. Add two  **<div\>**  to the parent  **<div\>**, set  **border-radius**  for the two child  **<div\>**, and dynamically change the background colors of the  **<div\>**  components in the swiping event.
 
@@ -187,7 +187,7 @@ The following steps describe how to build the home page with a flexible layout t
     ```
 
     **Figure  3**  Indicator bar<a name="fig767374119496"></a>  
-    ![](figure/indicator-bar.png "indicator-bar")
+    ![](figures/indicator-bar.png "indicator-bar")
 
 6.  Set the style, animation effect, and dynamic data binding for all components. The complete sample code is as follows:
 

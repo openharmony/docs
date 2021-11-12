@@ -19,18 +19,10 @@ This document uses the I2C driver as an example to describe how to develop platf
 
 The HDF provides a standard driver framework for common peripherals. To use the APIs provided by the HDF to perform operations on peripherals, you only need to adapt the specific driver to the HDF.
 
-In this example, an I2C driver is used.  [Figure 1](#fig148041484161)  shows the sequence diagram of the I2C driver.
+In this example, an I2C driver is used.  [Figure 1](#fig9596628607)  shows the sequence diagram of the I2C driver.
 
-**Figure  1**  I2C driver sequence diagram<a name="fig148041484161"></a>  
-
-
-![](figure/en-us_image_0000001169991055.png)
-
--   User Business: business-triggered driver
--   i2cManagerEntry: entry to the I2C manager, which is used to register the I2C manager with the HDF
--   I2cManager: I2C manager, which manages the I2C controller
--   I2cCntlr: I2C controller
--   i2cDriverEntry: entry to the I2C controller, which is used to register the I2C controller with the HDF
+**Figure  1**  I2C driver sequence diagram<a name="fig9596628607"></a>  
+![](figures/i2c-driver-sequence-diagram.png "i2c-driver-sequence-diagram")
 
 ## Preparations<a name="section6926133918422"></a>
 

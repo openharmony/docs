@@ -76,7 +76,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p155782037201518"><a name="p155782037201518"></a><a name="p155782037201518"></a>Developing smart devices based on system capabilities</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-wifi.md">WLAN-connected Products</a></li><li><a href="guide/device-iotcamera-control.md">Cameras Without a Screen</a></li><li><a href="guide/device-camera.md">Cameras with a Screen</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-wlan-touch.md">OneHop</a></li><li><a href="guide/device-wifi.md">WLAN-connected Products</a></li><li><a href="guide/device-iotcamera-control.md">Cameras Without a Screen</a></li><li><a href="guide/device-camera.md">Cameras with a Screen</a></li></ul>
 </td>
 </tr>
 <tr id="row360273716155"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p12579163711513"><a name="p12579163711513"></a><a name="p12579163711513"></a>Porting and adaptation</p>
@@ -97,7 +97,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p458073721519"><a name="p458073721519"></a><a name="p458073721519"></a>Referring to development specifications</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul175808372155"></a><a name="ul175808372155"></a><ul id="ul175808372155"><li><a href="https://device.harmonyos.com/en/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API References</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul175808372155"></a><a name="ul175808372155"></a><ul id="ul175808372155"><li><a href="https://device.harmonyos.com/en/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API References</a></li><li><a href="faqs/Readme-EN" target="_blank" rel="noopener noreferrer">FAQs</a></li></ul>
 </td>
 </tr>
 </tbody>
@@ -167,7 +167,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p670135335116"><a name="p670135335116"></a><a name="p670135335116"></a>Referring to development specifications</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul177016538519"></a><a name="ul177016538519"></a><ul id="ul177016538519"><li><a href="https://device.harmonyos.com/en/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API References</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul177016538519"></a><a name="ul177016538519"></a><ul id="ul177016538519"><li><a href="https://device.harmonyos.com/en/docs/develop/apiref/js-framework-file-0000000000611396" target="_blank" rel="noopener noreferrer">API References</a></li><li><a href="faqs/Readme-EN" target="_blank" rel="noopener noreferrer">FAQs</a></li></ul>
 </td>
 </tr>
 </tbody>

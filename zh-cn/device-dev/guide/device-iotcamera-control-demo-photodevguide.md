@@ -310,7 +310,7 @@
     };
     ```
 
-3.  <a name="zh-cn_topic_0000001052170554_li6671035102514"></a>实现相机状态回调的派生类，当相机状态发生变化（配置成功/失败，创建成功/失败\)时，自定义操作。
+3.  <a name="zh-cn_topic_0000001052170554_li6671035102514"></a>实现相机状态回调的派生类，自定义相机状态发生变化（配置成功/失败，创建成功/失败\)时的操作。
 
     ```
     class SampleCameraStateMng : public CameraStateCallback {
@@ -363,7 +363,7 @@
     camKit->CreateCamera(camId, CamStateMng, eventHdlr);
     ```
 
-6.  根据[步骤1](#zh-cn_topic_0000001052170554_li378084192111)、[步骤2](#zh-cn_topic_0000001052170554_li8716104682913)、[步骤3](#zh-cn_topic_0000001052170554_li6671035102514)中的回调设计，camera实例创建成功后会进行配置操作，主流程中app需要设计同步机制。
+6.  根据[步骤1](#zh-cn_topic_0000001052170554_li378084192111)、[步骤2](#zh-cn_topic_0000001052170554_li8716104682913)、[步骤3](#zh-cn_topic_0000001052170554_li6671035102514)中的回调设计，同步等待 OnCreated 回调拿到 cam\_ 之后，进行相关操作。
 
     ```
     void OnCreated(Camera &c) override

@@ -1,206 +1,415 @@
-# OTA Upgrade<a name="EN-US_TOPIC_0000001052170816"></a>
+# OTA Update<a name="EN-US_TOPIC_0000001163932574"></a>
 
--   [Limitations and Constraints](#section691733275418)
--   [Generating a Public/Private Key Pair](#section94411533155010)
--   [Generating an Upgrade Package](#section632383718539)
--   [Uploading the Upgrade Package](#section5772112473213)
--   [Downloading the Upgrade Package](#section251732474917)
--   [Integrating OTA Update Capabilities](#section298217330534)
--   [API Application Scenario \(Default\)](#section7685171192916)
-    -   [How to Develop](#section0745926153017)
-    -   [Sample Code](#section1337111363306)
+-   [Introduction](#section753413913562)
+-   [Constraints](#section61232796162135)
+-   [Generating a Public/Private Key Pair](#section1392711588162135)
+-   [Generating an Update Package](#section704519924162135)
+    -   [Mini and Small Systems](#section527064658162135)
+    -   [Standard System](#section1291354584162135)
 
--   [API Application Scenario \(Custom\)](#section1686395317306)
-    -   [How to Develop](#section524515314317)
-    -   [Sample Code](#section525974743120)
+-   [Uploading the Update Package](#section1040019352162135)
+-   [Downloading the Update Package](#section1870792413162135)
+-   [Integrating OTA Update Capabilities](#section2107348555162135)
+-   [API Application Scenario \(Default\)](#section1308521557162135)
+    -   [How to Develop](#section2103641927162135)
+    -   [Sample Code](#section1918621904162135)
 
--   [Upgrading the System](#section151997114334)
+-   [API Application Scenario \(Custom\)](#section1332839930162135)
+    -   [How to Develop](#section2120976727162135)
+    -   [Sample Code](#section1743369672162135)
 
-Over the Air \(OTA\) is a technology that makes it easier for you to remotely update devices, such as IP cameras. A device can be upgraded with a full or differential package. A full package contains all content of a new system, and a differential package contains the differences between the old and new systems. Currently, only the full-package upgrade is supported.
+-   [Upgrading the System](#section1704276175162135)
 
-## Limitations and Constraints<a name="section691733275418"></a>
+## Introduction<a name="section753413913562"></a>
 
--   The open-source suites for devices developed based on Hi3861, Hi3518E V300 and Hi3516D V300 are supported.
+Over the Air \(OTA\) is a technology that makes it easier for you to remotely update devices, such as IP cameras. Currently, the mini and small systems support update using a full package, but not a differential package. A full package contains all content of a new system, and a differential package contains the differences between the old and new systems.
+
+## Constraints<a name="section61232796162135"></a>
+
+-   Only the open-source suites for devices powered by Hi3861, Hi3518E V300, and Hi3516D V300 are supported.
 -   Devices developed based on Hi3518E V300 and Hi3516D V300 must support the SD card in the Virtual Festival of Aerobatic Teams \(VFAT\) format.
 
-## Generating a Public/Private Key Pair<a name="section94411533155010"></a>
+    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >Generation of update packages can only be performed on the Linux system.
 
-1.  Download the OpenSSL tool from the following website and install it on a Windows PC, and configure environment variables.
 
-    [http://slproweb.com/products/Win32OpenSSL.html](http://slproweb.com/products/Win32OpenSSL.html)
+## Generating a Public/Private Key Pair<a name="section1392711588162135"></a>
 
-2.  Access the  **tools\\update\_tools\\update\_pkg\_tools**  directory, download the upgrade package making tool, and save it to a local directory, for example,  **D:\\ota\_tools**.
-3.  Run  **Generate\_public\_private\_key.bat**  in the  **ota\_tools\\key**  directory to generate  **Metis\_PUBLIC.key**,  **private.key**, and  **public\_arr.txt**  that contains public values, as shown in the following figure. Keep the private key properly.
+1.  Download the  [OpenSSL](http://slproweb.com/products/Win32OpenSSL.html)  tool, install it on a Windows PC, and configure environment variables.
+2.  Use the OpenSSL tool to generate a public/private key pair.
+3.  Keep the private key file properly as this file stores the private key used to sign the update package. You need to specify the private key file in the command used for preparing the update package. The public key is used to verify the signature of the update package during the upgrade, and it is stored as follows:
 
-    **Figure  1**  Generating a Public/Private Key Pair<a name="fig12913135294011"></a>  
-    
+    For the mini and small systems, the generated public key is preset in the code. The vendor needs to implement the  **HotaHalGetPubKey**  API to obtain the key. For the standard system, the generated public key is stored in the  **./device/hisilicon/hi3516dv300/build/updater\_config/signing\_cert.crt**  file.
 
-    ![](figure/en-us_image_0000001060200050.png)
-
-4.  Use the array written in  **public\_arr.txt**  as a substitute for  **g\_pubKeyBuf**  in  **base\\update\\ota\_lite\\frameworks\\source\\verify\\hota\_verify.c**  of the OTA module.
-
-    Example array in  **public\_arr.txt**:
-
-    ```
-    0x30,0x82,0x1,0xa,0x2,0x82,0x1,0x1,0x0,0xc7,0x8c,0xf3,0x91,0xa1,0x98,0xbf,0xb1,0x8c,
-    0xbe,0x22,0xde,0x32,0xb2,0xfa,0xec,0x2c,0x69,0xf6,0x8f,0x43,0xa7,0xb7,0x6f,0x1e,0x4a,0x97,
-    0x4b,0x27,0x5d,0x56,0x33,0x9a,0x73,0x4e,0x7c,0xf8,0xfd,0x1a,0xf0,0xe4,0x50,0xda,0x2b,0x8,
-    0x74,0xe6,0x28,0xcc,0xc8,0x22,0x1,0xa8,0x14,0x9,0x46,0x46,0x6a,0x10,0xcd,0x39,0xd,0xf3,
-    0x4a,0x7f,0x1,0x63,0x21,0x33,0x74,0xc6,0x4a,0xeb,0x68,0x40,0x55,0x3,0x80,0x1d,0xd9,0xbc,
-    0xd4,0xb0,0x4a,0x84,0xb7,0xac,0x43,0x1d,0x76,0x3a,0x61,0x40,0x23,0x3,0x88,0xcc,0x80,0xe,
-    0x75,0x10,0xe4,0xad,0xac,0xb6,0x4c,0x90,0x8,0x17,0x26,0x21,0xff,0xbe,0x1,0x82,0x16,0x76,
-    0x9a,0x1c,0xee,0x8e,0xd9,0xb0,0xea,0xd5,0x50,0x61,0xcc,0x9c,0x2e,0x78,0x15,0x2d,0x1f,0x8b,
-    0x94,0x77,0x30,0x39,0x70,0xcf,0x16,0x22,0x82,0x99,0x7c,0xe2,0x55,0x37,0xd4,0x76,0x9e,0x4b,
-    0xfe,0x48,0x26,0xc,0xff,0xd9,0x59,0x6f,0x77,0xc6,0x92,0xdd,0xce,0x23,0x68,0x83,0xbd,0xd4,
-    0xeb,0x5,0x1b,0x2a,0x7e,0xda,0x9a,0x59,0x93,0x41,0x7b,0x4d,0xef,0x19,0x89,0x4,0x8d,0x5,
-    0x7d,0xbc,0x3,0x1f,0x77,0xe6,0x3d,0xa5,0x32,0xf5,0x4,0xb7,0x9c,0xe9,0xfa,0x6e,0xc,0x9f,
-    0x4,0x62,0xfe,0x2a,0x5f,0xbf,0xeb,0x9a,0x73,0xa8,0x2a,0x72,0xe3,0xf0,0x57,0x56,0x5c,0x59,
-    0x14,0xdd,0x79,0x11,0x42,0x3a,0x48,0xf7,0xe8,0x80,0xb1,0xaf,0x1c,0x40,0xa2,0xc6,0xec,0xf5,
-    0x67,0xc1,0x88,0xf6,0x26,0x5c,0xd3,0x11,0x5,0x11,0xed,0xb1,0x45,0x2,0x3,0x1,0x0,0x1,
-    ```
-
-    Example configuration for the public key of the OTA module:
-
-    ```
-    #define PUBKEY_LENGTH 270
-    
-    static uint8 g_pubKeyBuf[PUBKEY_LENGTH] = {
-        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01, 0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
-        0x63, 0x07, 0x84, 0xCF, 0x37, 0xF0, 0x45, 0xE8, 0xB9, 0x6E, 0xEF, 0x04, 0x88, 0xD3, 0x43, 0x06,
-    ```
-
-5.  \(Optional\) For Hi3518E V300 and Hi3516D V300 suites, further replace the array written in  **g\_pub\_key**  with that in  **public\_arr.txt**. The  **g\_pub\_key**  file is provided in  **device\\hisilicon\\third\_party\\uboot\\u-boot-2020.01\\product\\hiupdate\\verify\\update\_public\_key.c**  of the U-Boot module.
+4.  For the mini and small systems that use the Hi3518E V300 or Hi3516D V300 suite, also use the content in  **public\_arr.txt**  to replace the content in  **g\_pub\_key**  in the  **device\\hisilicon\\third\_party\\uboot\\u-boot-2020.01\\product\\hiupdate\\verify\\update\_public\_key.c**  file of the U-Boot module.
 
     Example configuration for the public key of the U-Boot module:
 
     ```
     static unsigned char g_pub_key[PUBKEY_LEN] = {
-    	0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
-    	0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
+        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
+        0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
+    }
     ```
 
 
-## Generating an Upgrade Package<a name="section632383718539"></a>
+## Generating an Update Package<a name="section704519924162135"></a>
 
-1.  Save the files to be upgraded in the  **ota\_tools\\Components**  directory.
+### Mini and Small Systems<a name="section527064658162135"></a>
 
-    **Figure  2**  Location of original image files<a name="fig98691649182817"></a>  
-    
+1.  Create the  **target\_package**  folder with the following directory structure:
 
-    ![](figure/en-us_image_0000001061889268.png)
+    ```
+     target_package
+     ├── OTA.tag
+     ├── config
+     ├── {component_1}
+     ├── {component_2}
+     ├── ...
+     ├── {component_N}
+     └── updater_config
+         └── updater_specified_config.xml
+    ```
 
-    **Table  1**  Files to be upgraded
+2.  Place the components to be updated, including the image file \(for example,  **rootfs.img**\), as \{component\_N\} in the root directory of the  **target\_package**  folder.
+3.  Configure the  **updater\_specified\_config.xml**  file in the  **update\_config**  folder.
 
-    <a name="table49058318812"></a>
-    <table><thead align="left"><tr id="row16905131385"><th class="cellrowborder" valign="top" width="18.790000000000003%" id="mcps1.2.3.1.1"><p id="p390543111811"><a name="p390543111811"></a><a name="p390543111811"></a>File</p>
+    Example configuration of the  **updater\_specified\_config.xml**  file:
+
+    ```
+    <?xml version="1.0"?>
+    <package>
+        <head name="Component header information">
+            <info fileVersion="01" prdID="hisi" softVersion="OpenHarmony x.x" date="202x.xx.xx" time="xx:xx:xx">head info</info>
+        </head>
+        <group name="Component information">
+        <component compAddr="ota_tag" compId="27" resType="5" compType="0" compVer="1.0">./OTA.tag</component>
+        <component compAddr="config" compId="23" resType="5" compType="0" compVer="1.0">./config</component>
+        <component compAddr="bootloader" compId="24" resType="5" compType="0" compVer="1.0">./u-boot-xxxx.bin</component>
+        </group>
+    </package>
+    ```
+
+    **Table 1**  Description of nodes in the component configuration file
+
+    <a name="table252476175162135"></a>
+    <table><thead align="left"><tr id="row479509028162135"><th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.1"><p id="entry1406757300162135p0"><a name="entry1406757300162135p0"></a><a name="entry1406757300162135p0"></a>Type</p>
     </th>
-    <th class="cellrowborder" valign="top" width="81.21000000000001%" id="mcps1.2.3.1.2"><p id="p139066318815"><a name="p139066318815"></a><a name="p139066318815"></a>Description</p>
+    <th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.2"><p id="entry442152588162135p0"><a name="entry442152588162135p0"></a><a name="entry442152588162135p0"></a>Node Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.3"><p id="entry1001010016162135p0"><a name="entry1001010016162135p0"></a><a name="entry1001010016162135p0"></a>Node Label</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.4"><p id="entry523786033162135p0"><a name="entry523786033162135p0"></a><a name="entry523786033162135p0"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.5"><p id="entry1703280805162135p0"><a name="entry1703280805162135p0"></a><a name="entry1703280805162135p0"></a>Description</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row3906631180"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p14906331987"><a name="p14906331987"></a><a name="p14906331987"></a>u-boot.bin</p>
+    <tbody><tr id="row1146183787162135"><td class="cellrowborder" rowspan="6" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p id="p1965185185211"><a name="p1965185185211"></a><a name="p1965185185211"></a>Header information (head node)</p>
     </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p11368820172317"><a name="p11368820172317"></a><a name="p11368820172317"></a>Renamed from the <strong id="b996114032518"><a name="b996114032518"></a><a name="b996114032518"></a>u-boot-hi351XevX00.bin</strong> file generated after compilation.</p>
+    <td class="cellrowborder" rowspan="6" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p id="entry787291920162135p0"><a name="entry787291920162135p0"></a><a name="entry787291920162135p0"></a>info</p>
     </td>
-    </tr>
-    <tr id="row775316253222"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p14753102517226"><a name="p14753102517226"></a><a name="p14753102517226"></a>kernel.bin</p>
+    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p id="entry1321423743162135p0"><a name="entry1321423743162135p0"></a><a name="entry1321423743162135p0"></a>/</p>
     </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p675362582216"><a name="p675362582216"></a><a name="p675362582216"></a>Renamed from the <strong id="b4150615191011"><a name="b4150615191011"></a><a name="b4150615191011"></a>liteos.bin</strong> or <strong id="b115001531019"><a name="b115001531019"></a><a name="b115001531019"></a>kernel</strong> file generated after compilation.</p>
+    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p id="entry414082731162135p0"><a name="entry414082731162135p0"></a><a name="entry414082731162135p0"></a>Yes</p>
     </td>
-    </tr>
-    <tr id="row2171010122214"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p2017171022212"><a name="p2017171022212"></a><a name="p2017171022212"></a>rootfs.img</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p618310192211"><a name="p618310192211"></a><a name="p618310192211"></a>Renamed from the <strong id="b168991949142619"><a name="b168991949142619"></a><a name="b168991949142619"></a>rootfs_xxxxx.img</strong> file generated after compilation.</p>
+    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p id="entry783609139162135p0"><a name="entry783609139162135p0"></a><a name="entry783609139162135p0"></a>Content of this node: head info</p>
     </td>
     </tr>
-    <tr id="row1499631732214"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p999617175226"><a name="p999617175226"></a><a name="p999617175226"></a>config</p>
+    <tr id="row1958159196162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry1679905595162135p0"><a name="entry1679905595162135p0"></a><a name="entry1679905595162135p0"></a>fileVersion</p>
     </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p199621712227"><a name="p199621712227"></a><a name="p199621712227"></a>Provides development board and kernel information. For details, see the SD card burning description of the corresponding open-source suite.</p>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry658282018162135p0"><a name="entry658282018162135p0"></a><a name="entry658282018162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry1810096705162135p0"><a name="entry1810096705162135p0"></a><a name="entry1810096705162135p0"></a>This field is reserved and does not affect the generation of the update package.</p>
     </td>
     </tr>
-    <tr id="row8996101712222"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p4996141772214"><a name="p4996141772214"></a><a name="p4996141772214"></a>OTA.tag</p>
+    <tr id="row147166457162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry1081707070162135p0"><a name="entry1081707070162135p0"></a><a name="entry1081707070162135p0"></a>prdID</p>
     </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p1735535514293"><a name="p1735535514293"></a><a name="p1735535514293"></a>Contains 32 bytes in the <strong id="b1017052314336"><a name="b1017052314336"></a><a name="b1017052314336"></a>package_type:otaA1S2D3F4G5H6J7K8</strong> format. The last 16 bytes are random, varying with the version.</p>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry1297695863162135p0"><a name="entry1297695863162135p0"></a><a name="entry1297695863162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry876347577162135p0"><a name="entry876347577162135p0"></a><a name="entry876347577162135p0"></a>This field is reserved and does not affect the generation of the update package.</p>
+    </td>
+    </tr>
+    <tr id="row713278098162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry1527725234162135p0"><a name="entry1527725234162135p0"></a><a name="entry1527725234162135p0"></a>softVersion</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry1298699378162135p0"><a name="entry1298699378162135p0"></a><a name="entry1298699378162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry1986606994162135p0"><a name="entry1986606994162135p0"></a><a name="entry1986606994162135p0"></a>Software version number, that is, the version number of the update package. The version number must be within the range specified by <strong id="b1587416137107"><a name="b1587416137107"></a><a name="b1587416137107"></a>VERSION.mbn</strong>. Otherwise, an update package will not be generated.</p>
+    </td>
+    </tr>
+    <tr id="row1998569355162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry40037754162135p0"><a name="entry40037754162135p0"></a><a name="entry40037754162135p0"></a>date</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry1867473067162135p0"><a name="entry1867473067162135p0"></a><a name="entry1867473067162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry1898510646162135p0"><a name="entry1898510646162135p0"></a><a name="entry1898510646162135p0"></a>Date when the update package is generated. This field is reserved and does not affect the generation of the update package.</p>
+    </td>
+    </tr>
+    <tr id="row853604644162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry341395756162135p0"><a name="entry341395756162135p0"></a><a name="entry341395756162135p0"></a>time</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry411979929162135p0"><a name="entry411979929162135p0"></a><a name="entry411979929162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry1952723593162135p0"><a name="entry1952723593162135p0"></a><a name="entry1952723593162135p0"></a>Time when the update package is generated. This field is reserved and does not affect the generation of the update package.</p>
+    </td>
+    </tr>
+    <tr id="row311903547162135"><td class="cellrowborder" rowspan="5" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p id="entry1756487158162135p0"><a name="entry1756487158162135p0"></a><a name="entry1756487158162135p0"></a>Component information (group node)</p>
+    </td>
+    <td class="cellrowborder" rowspan="5" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p id="entry2070156141162135p0"><a name="entry2070156141162135p0"></a><a name="entry2070156141162135p0"></a>component</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p id="entry894043714162135p0"><a name="entry894043714162135p0"></a><a name="entry894043714162135p0"></a>/</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p id="entry1899300718162135p0"><a name="entry1899300718162135p0"></a><a name="entry1899300718162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p id="entry1457912275162135p0"><a name="entry1457912275162135p0"></a><a name="entry1457912275162135p0"></a>Content of this node: path of the component or image file to be packed into the update package. It is the root directory of the version package by default.</p>
+    </td>
+    </tr>
+    <tr id="row691331702162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry1271021967162135p0"><a name="entry1271021967162135p0"></a><a name="entry1271021967162135p0"></a>compAddr</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry967575438162135p0"><a name="entry967575438162135p0"></a><a name="entry967575438162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry2010019875162135p0"><a name="entry2010019875162135p0"></a><a name="entry2010019875162135p0"></a>Name of the partition corresponding to the component, for example, <strong id="b19437823131512"><a name="b19437823131512"></a><a name="b19437823131512"></a>system</strong> or <strong id="b375692501514"><a name="b375692501514"></a><a name="b375692501514"></a>vendor</strong>.</p>
+    </td>
+    </tr>
+    <tr id="row849226815162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry21721216162135p0"><a name="entry21721216162135p0"></a><a name="entry21721216162135p0"></a>compId</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry674558287162135p0"><a name="entry674558287162135p0"></a><a name="entry674558287162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry1193039499162135p0"><a name="entry1193039499162135p0"></a><a name="entry1193039499162135p0"></a>Component ID, which must be unique.</p>
+    </td>
+    </tr>
+    <tr id="row813205598162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry897639380162135p0"><a name="entry897639380162135p0"></a><a name="entry897639380162135p0"></a>resType</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry204468393162135p0"><a name="entry204468393162135p0"></a><a name="entry204468393162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry1005669355162135p0"><a name="entry1005669355162135p0"></a><a name="entry1005669355162135p0"></a>This field is reserved and does not affect the generation of the update package.</p>
+    </td>
+    </tr>
+    <tr id="row2087193735162135"><td class="cellrowborder" valign="top" headers="mcps1.1.6.1.1 "><p id="entry800634310162135p0"><a name="entry800634310162135p0"></a><a name="entry800634310162135p0"></a>compType</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.2 "><p id="entry1484190922162135p0"><a name="entry1484190922162135p0"></a><a name="entry1484190922162135p0"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" headers="mcps1.1.6.1.3 "><p id="entry894563848162135p0"><a name="entry894563848162135p0"></a><a name="entry894563848162135p0"></a>Image type, which can be a full or differential package. The value <strong id="b16850185911295"><a name="b16850185911295"></a><a name="b16850185911295"></a>0</strong> indicates a full package, and value <strong id="b2095321320305"><a name="b2095321320305"></a><a name="b2095321320305"></a>1</strong> indicates a differential package.</p>
     </td>
     </tr>
     </tbody>
     </table>
 
-2.  Open the  **packet\_harmony.xml**  file in  **ota\_tools\\xml**  to modify  **compAddr**  as follows. Other items are reserved.
+    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >As mini and small systems do not support update using a differential package,  **compType**  must be set to  **0**, other than  **1**.
+    >For mini and small systems, an update package cannot be created by changing partitions.
 
-    Example configuration for the component information:
-
-    ```
-        <group name="own">
-            <list>
-                <component compAddr="rootfs" compId="0x0017" resType="0x05" isDelete="0x00" compType ="0x00" compVer="1.0">.\Components\rootfs_jffs2.img</component>
-    			<component compAddr="kernel_A" compId="0x0018" resType="0x05" isDelete="0x00" compType ="0x00" compVer="1.1">.\Components\liteos.bin</component>
-    			<component compAddr="data" compId="0x0019" resType="0x05" isDelete="0x00" compType ="0x00" compVer="1.2">.\Components\userfs_jffs2.img</component>
-            </list>
-    ```
-
-3.  Configure the paths of private and public keys in  **packet\_harmony.xml**.
-
-    Example configuration for paths of private and public keys:
+4.  Create the  **OTA.tag**  file, which contains the magic number of the update package. The magic number is as follows:
 
     ```
-    <encryption>
-        <privateKey type="der">.\key\private.key</privateKey>
-        <publicKey type="der">.\key\Metis_PUBLIC.key</publicKey>
-    </encryption>
+    package_type:ota1234567890qwertw
     ```
 
-4.  Configure the product name and software version in  **ota\_tools\\VersionDefine.bat**  for anti-rollback.
+5.  Create the  **config**  file, and configure the  **bootargs**  and  **bootcmd**  information in the file.
 
-    Example configuration for the product name and software version:
+    Example configuration:
 
     ```
-    set FILE_PRODUCT_NAME=Hisi
-    
-    @rem Set the software version number to a string of no more than 16 characters.
-    set SOFTWARE_VER=OpenHarmony 1.1 
+    setenv bootargs 'mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M
+    (u-boot.bin),9M(kernel.bin),50M(rootfs_ext4.img),50M(userfs.img)' setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800;bootm 0x82000000'
     ```
 
-5.  Run  **Make\_Harmony\_PKG.bat**  in the  **ota\_tools**  directory to generate the  **Hisi\_OpenHarmony 1.1.bin**  upgrade package. The upgrade package is signed using  **SHA-256**  and  **RSA 2048**  to ensure its integrity and validity.
+6.  Generate the update package.
 
-    **Figure  3**  Upgrade package making tool<a name="fig046712449315"></a>  
-    
+    ```
+    python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem -nz -nl2x
+    ```
 
-    ![](figure/en-us_image_0000001059334449.png)
+    -   **./target\_package/**: path of  **target\_package**
+    -   **./output\_package/**: output path of the update package
+    -   **-pk ./rsa\_private\_key3072.pem**: path of the private key file
+    -   **-nz**:  **not zip**  mode
+    -   **-nl2**: non-standard system mode
 
 
-## Uploading the Upgrade Package<a name="section5772112473213"></a>
+### Standard System<a name="section1291354584162135"></a>
 
-Upload the  **Hisi\_OpenHarmony 1.1.bin**  upgrade package to the vendor's OTA server.
+1.  Create the  **target\_package**  folder with the following directory structure:
 
-## Downloading the Upgrade Package<a name="section251732474917"></a>
+    ```
+    target_package
+    ├── {component_1}
+    ├── {component_2}
+    ├── ...
+    ├── {component_N}
+    └── updater_config
+            ├── BOARD.list
+            ├── VERSION.mbn
+            └── updater_specified_config.xml
+    ```
 
-1.  Download the  **Hisi\_OpenHarmony 1.1.bin**  upgrade package from the OTA server.
-2.  \(Optional\) Insert an SD card \(capacity greater than 100 MB\) if the device is developed based on Hi3518E V300 or Hi3516D V300.
+2.  Place the components to be updated, including the image file \(for example,  **system.img**\), as \{component\_N\} in the root directory of the  **target\_package**  folder.
 
-## Integrating OTA Update Capabilities<a name="section298217330534"></a>
+3.  Configure the component configuration file in the  **update\_config**  folder.
 
--   If vendors request OTA capabilities, use the dynamic library  **libhota.so**  and include the header files  **hota\_partition.h**  and  **hota\_updater.h**  in  **base\\update\\ota\_lite\\interfaces\\kits**.
--   The  **libhota.so**  source code is stored in  **base\\update\\ota\_lite\\frameworks\\source**.
--   For details about how to use APIs, see  [API Application Scenario \(Default\)](#section7685171192916)  and OTA APIs in  _API Reference_.
--   If the development board needs to be adapted, see the  **base\\update\\ota\_lite\\hals\\hal\_hota\_board.h**  header file.
+4.  Configure the list of products supported by the current update package in  **BOARD.list**  in the  **update\_config**  folder.
 
-## API Application Scenario \(Default\)<a name="section7685171192916"></a>
+    Example configuration:
 
-The upgrade package is generated by following the instructions provided in  [Generating a Public/Private Key Pair](#section94411533155010)  and  [Generating an Upgrade Package](#section632383718539).
+    ```
+    HI3516
+    HI3518
+    ```
 
-### **How to Develop**<a name="section0745926153017"></a>
+5.  Configure the versions supported by the current update package in  **VERSION.mbn**  in the  **update\_config**  folder.
 
-1.  Download the upgrade package for the current device, and then call the  **HotaInit**  function to initialize the OTA module.
+    Version number format: Hi3516DV300-eng 10 QP1A.XXXXXX.\{Major version number \(6 digits\)\}.XXX\{Minor version number \(3 digits\)\}
+
+    For example, Hi3516DV300-eng 10 QP1A.190711.020, where  **190711**  is the major version number, and  **020**  is the minor version number.
+
+    Example configuration:
+
+    ```
+    Hi3516DV300-eng 10 QP1A.190711.001
+    Hi3516DV300-eng 10 QP1A.190711.020
+    Hi3518DV300-eng 10 QP1A.190711.021
+    ```
+
+6.  For update using an incremental \(differential\) package, also prepare a source version package \(source\_package\) in the same format as the target version package \(target\_package\), and then compress it as a  **.zip**  file, that is,  **source\_package.zip**.
+
+7.  If you create an update package with partitions changed, also provide the partition table file named  **partition\_file.xml**. You can specify the file using the  **-pf**  parameter. For details about the configuration nodes, see the description below.
+
+    The partition table is generated with the image. The format is as follows:
+
+    ```
+    <?xml version="1.0" encoding="GB2312" ?>
+    <Partition_Info>
+    <Part Sel="1" PartitionName="Image 1" FlashType="Flash type" FileSystem="File system type" Start="Start address of the partition" Length="Size of the partition" SelectFile="Actual path of the image"/>
+    <Part Sel="1" PartitionName="Image 2" FlashType="Flash type" FileSystem="File system type" Start="Start address of the partition" Length="Size of the partition" SelectFile="Actual path of the image"/>
+    </Partition_Info>
+    ```
+
+    **Table 2**  Description of labels in the partition table
+
+    <a name="table806330288162135"></a>
+    <table><thead align="left"><tr id="row682144517162135"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry387204270162135p0"><a name="entry387204270162135p0"></a><a name="entry387204270162135p0"></a>Label</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="entry750055172162135p0"><a name="entry750055172162135p0"></a><a name="entry750055172162135p0"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1074495132162135"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1271686486162135p0"><a name="entry1271686486162135p0"></a><a name="entry1271686486162135p0"></a>Sel</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1588639785162135p0"><a name="entry1588639785162135p0"></a><a name="entry1588639785162135p0"></a>Whether the partition is effective. The value <strong id="b156151453173416"><a name="b156151453173416"></a><a name="b156151453173416"></a>1</strong> indicates that the partition is effective, and value <strong id="b166297633517"><a name="b166297633517"></a><a name="b166297633517"></a>0</strong> indicates the opposite.</p>
+    </td>
+    </tr>
+    <tr id="row1838873028162135"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry405380697162135p0"><a name="entry405380697162135p0"></a><a name="entry405380697162135p0"></a>PartitionName</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry539229490162135p0"><a name="entry539229490162135p0"></a><a name="entry539229490162135p0"></a>Partition name, for example, <strong id="b1173483114376"><a name="b1173483114376"></a><a name="b1173483114376"></a>fastboot</strong> or <strong id="b163708336376"><a name="b163708336376"></a><a name="b163708336376"></a>boot</strong>.</p>
+    </td>
+    </tr>
+    <tr id="row1321400941162135"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry360591364162135p0"><a name="entry360591364162135p0"></a><a name="entry360591364162135p0"></a>FlashType</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1536610466162135p0"><a name="entry1536610466162135p0"></a><a name="entry1536610466162135p0"></a>Flash type, for example, <strong id="b1711717453820"><a name="b1711717453820"></a><a name="b1711717453820"></a>emmc</strong> or <strong id="b86479117387"><a name="b86479117387"></a><a name="b86479117387"></a>ufs</strong>.</p>
+    </td>
+    </tr>
+    <tr id="row1724163696162135"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry278309753162135p0"><a name="entry278309753162135p0"></a><a name="entry278309753162135p0"></a>FileSystem</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry218585771162135p0"><a name="entry218585771162135p0"></a><a name="entry218585771162135p0"></a>File system type, for example, <strong id="b63519206383"><a name="b63519206383"></a><a name="b63519206383"></a>ext3/4</strong> or <strong id="b172821252383"><a name="b172821252383"></a><a name="b172821252383"></a>f2fs</strong>. The value can also be <strong id="b63162773815"><a name="b63162773815"></a><a name="b63162773815"></a>none</strong>.</p>
+    </td>
+    </tr>
+    <tr id="row1809526161162135"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1440557777162135p0"><a name="entry1440557777162135p0"></a><a name="entry1440557777162135p0"></a>Start</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry814481339162135p0"><a name="entry814481339162135p0"></a><a name="entry814481339162135p0"></a>Start address of the partition, in MB. The start address of all partitions is <strong id="b1171284398"><a name="b1171284398"></a><a name="b1171284398"></a>0</strong>.</p>
+    </td>
+    </tr>
+    <tr id="row1052365500162135"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry463606592162135p0"><a name="entry463606592162135p0"></a><a name="entry463606592162135p0"></a>Length</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry18613946162135p0"><a name="entry18613946162135p0"></a><a name="entry18613946162135p0"></a>Size of the partition, in MB.</p>
+    </td>
+    </tr>
+    <tr id="row2062761324162135"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1424721291162135p0"><a name="entry1424721291162135p0"></a><a name="entry1424721291162135p0"></a>SelectFile</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1154631273162135p0"><a name="entry1154631273162135p0"></a><a name="entry1154631273162135p0"></a>Actual path of the image or file.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+8.  Generate the update package.
+
+    **Full package**
+
+    Run the following command:
+
+    ```
+    python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem
+    ```
+
+    -   **./target\_package/**: path of  **target\_package**
+    -   **./output\_package/**: output path of the update package
+    -   **-pk ./rsa\_private\_key3072.pem**: path of the private key file
+
+    **Incremental \(differential\) package**
+
+    Run the following command:
+
+    ```
+    python build_update.py ./target_package/ ./output_package/  -s ./source_package.zip  -pk ./rsa_private_key3072.pem
+    ```
+
+    -   **./target\_package/**: path of  **target\_package**
+    -   **./output\_package/**: output path of the update package
+    -   **-s ./source\_package.zip**: path of the  **source\_package.zip**  file. For update using a differential package, use the  **-s**  parameter to specify the source version package.
+    -   **-pk ./rsa\_private\_key3072.pem**: path of the private key file
+
+    **Update package with partitions changed**
+
+    Run the following command:
+
+    ```
+    python build_update.py  ./target_package/ ./output_package/  -pk ./rsa_private_key3072.pem  -pf ./partition_file.xml
+    ```
+
+    -   **./target\_package/**: path of  **target\_package**
+    -   **./output\_package/**: output path of the update package
+    -   **-pk ./rsa\_private\_key3072.pem**: path of the private key file
+    -   **-pf ./partition\_file.xml**: path of the partition table file
+
+
+## Uploading the Update Package<a name="section1040019352162135"></a>
+
+Upload the update package to the vendor's OTA server.
+
+## Downloading the Update Package<a name="section1870792413162135"></a>
+
+1.  Download the update package from the OTA server.
+2.  \(Optional\) Insert an SD card \(with a capacity greater than 100 MB\) if the device is developed based on Hi3518E V300 or Hi3516D V300.
+
+## Integrating OTA Update Capabilities<a name="section2107348555162135"></a>
+
+1.  For mini and small systems
+
+    -   If a vendor requests OTA capabilities, use the dynamic library  **libhota.so**  and include the header files  **hota\_partition.h**  and  **hota\_updater.h**  in  **base\\update\\ota\_lite\\interfaces\\kits**.
+
+    -   The  **libhota.so**  source code is stored in  **base\\update\\ota\_lite\\frameworks\\source**.
+
+    -   For details about how to use APIs, see  _API Application Scenario_  and OTA APIs in  _API Reference_.
+
+    -   If the development board needs to be adapted, see the  **base\\update\\ota\_lite\\hals\\hal\_hota\_board.h**  file.
+
+2.  For the standard system, see the  _JS Reference Specifications_  for details.
+
+
+## API Application Scenario \(Default\)<a name="section1308521557162135"></a>
+
+The update package is generated by following the instructions provided in Generating a Public/Private Key Pair and Generating an Update Package.
+
+### **How to Develop**<a name="section2103641927162135"></a>
+
+1.  Download the update package for the current device, and then call the  **HotaInit**  function to initialize the OTA module.
+
 2.  Call the  **HotaWrite**  function to verify, parse, and write data streams into the device.
-3.  Call the  **HotaRestart**  function to restart the system.
 
-    If you want to cancel the upgrade, call the  **HotaCancel**  function.
+3.  Call the  **HotaRestart**  function to restart the system for the update to take effect. Call the  **HotaCancel**  function if you want to cancel the update.
 
 
-### **Sample Code**<a name="section1337111363306"></a>
+### **Sample Code**<a name="section1918621904162135"></a>
 
-Perform an OTA update using the upgrade package format and verification method provided by OpenHarmony.
+Perform an OTA update using the update package format and verification method provided by OpenHarmony.
 
 ```
 int main(int argc, char **argv)
@@ -252,25 +461,28 @@ int main(int argc, char **argv)
 }
 ```
 
-## API Application Scenario \(Custom\)<a name="section1686395317306"></a>
+## API Application Scenario \(Custom\)<a name="section1332839930162135"></a>
 
-The upgrade package is generated in other ways instead of by referring to the preceding two sections.
+The update package is generated in other ways instead of following the instructions provided in Generating a Public/Private Key Pair and Generating an Update Package.
 
-### **How to Develop**<a name="section524515314317"></a>
+### **How to Develop**<a name="section2120976727162135"></a>
 
-1.  Download the upgrade package for the current device, and then call the  **HotaInit**  function to initialize the OTA module.
+1.  Download the update package for the current device, and then call the  **HotaInit**  function to initialize the OTA module.
+
 2.  Call the  **HotaSetPackageType**  function to set the package type to  **NOT\_USE\_DEFAULT\_PKG**.
+
 3.  Call the  **HotaWrite**  function to write data streams into the device.
-4.  Call the  **HotaRead**  function to read data. Vendors can choose to verify the data.
-5.  \(Optional\) Call the  **HotaSetBootSettings**  function to set the startup tag used for entering the U-Boot mode after restarting the system.
-6.  Call the  **HotaRestart**  function to restart the system.
 
-    If you want to cancel the upgrade, call the  **HotaCancel**  function.
+4.  Call the  **HotaRead**  function to read data. Vendors can choose whether to verify the data.
+
+5.  \(Optional\) Call the  **HotaSetBootSettings**  function to set the startup tag used for entering the U-Boot mode during system restarting.
+
+6.  Call the  **HotaRestart**  function to restart the system for the update to take effect. Call the  **HotaCancel**  function if you want to cancel the update.
 
 
-### **Sample Code**<a name="section525974743120"></a>
+### **Sample Code**<a name="section1743369672162135"></a>
 
-Perform an OTA update using the upgrade package format and verification method not provided by OpenHarmony.
+Perform an OTA update using the update package format and verification method not provided by OpenHarmony.
 
 ```
 int main(int argc, char **argv)
@@ -339,11 +551,11 @@ int main(int argc, char **argv)
 }
 ```
 
-## Upgrading the System<a name="section151997114334"></a>
+## Upgrading the System<a name="section1704276175162135"></a>
 
-Vendor applications call APIs of the OTA module to perform functions such as signature verification of the upgrade package, anti-rollback, burning and data flushing-to-disk. After the upgrade is complete, the system automatically restarts.
+Vendor applications call APIs of the OTA module to perform functions such as signature verification of the update package, anti-rollback, burning and data flushing-to-disk. After the update is complete, the system automatically restarts.
 
-For Hi3518E V300 and Hi3516D V300 open-source suites, the value of  **LOCAL\_VERSION**  needs to be modified for anti-rollback, for example, modifying  **ohos default 1.0**  to  **ohos default 1.1**. The macro  **LOCAL\_VERSION**  is provided in  **device\\hisilicon\\third\_party\\uboot\\u-boot-2020.01\\product\\hiupdate\\ota\_update\\ota\_local\_info.c**.
+For the mini and small systems that use the Hi3518E V300 or Hi3516D V300 open source suite, add the value of  **LOCAL\_VERSION**  to the version that needs to implement the anti-rollback function. For example, for  **"ohos default 1.0"-\>"ohos default 1.1"**, add the value of  **LOCAL\_VERSION**  in  **device\\hisilicon\\third\_party\\uboot\\u-boot-2020.01\\product\\hiupdate\\ota\_update\\ota\_local\_info.c**.
 
 Example for modification of the local version:
 
@@ -351,8 +563,8 @@ Example for modification of the local version:
 const char *get_local_version(void)
 {
 #if defined(CONFIG_TARGET_HI3516EV200) || \
-	defined(CONFIG_TARGET_HI3516DV300) || \
-	defined(CONFIG_TARGET_HI3518EV300)
+    defined(CONFIG_TARGET_HI3516DV300) || \
+    defined(CONFIG_TARGET_HI3518EV300)
 #define LOCAL_VERSION "ohos default 1.0" /* increase: default release version */
 ```
 

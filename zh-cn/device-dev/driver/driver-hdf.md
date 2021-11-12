@@ -6,7 +6,7 @@
 
 -   **[驱动服务管理](driver-hdf-servicemanage.md)**  
 
--   **[驱动消息机制管理](driver-hdf-news.md)**  
+-   **[驱动消息机制管理](driver-hdf-message-management.md)**  
 
 -   **[配置管理](driver-hdf-manage.md)**  
 

@@ -10,7 +10,7 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
 ## Development<a name="section13857170163412"></a>
 
-1.  Complete the operations described in  [Getting Started with Hi3861](../quick-start/quickstart-lite-introduction-hi3861.md#section19352114194115).
+1.  Complete the operations described in  [Getting Started with Hi3861](../quick-start/oem_minitinier_des_3861.md#section19352114194115).
 
     LED control examples are stored in the file  **applications/sample/wifi-iot/app/iothardware/led\_example.c**.
 
@@ -101,10 +101,10 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
 ## Verification<a name="section1949121910344"></a>
 
-For details about the compilation and burning processes, see  [Building Source Code](../quick-start/quickstart-lite-steps-board3861-connection.md#section191121332125319)  and  [Burning Images](../quick-start/quickstart-lite-steps-board3861-connection.md#section19458165166)  in the  _Getting Started with Hi3861_.
+For details about the compilation and burning processes, see  [Building Source Code](../quick-start/quickstart-lite-steps-hi3861-connection.md#section191121332125319)  and  [Burning Images](../quick-start/quickstart-lite-steps-hi3861-connection.md#section3288165814218)  in the  _Getting Started with Hi3861_.
 
 After the preceding two steps are complete, press the  **RST**  button to reset the module. If the LED blinks periodically as expected, the verification is passed.
 
 **Figure  1**  LED blinking<a name="fig20768175218527"></a>  
-![](figure/led-blinking.gif "led-blinking")
+![](figures/led-blinking.gif "led-blinking")
 

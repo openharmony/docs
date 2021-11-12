@@ -1,11 +1,8 @@
 # TOUCHSCREEN<a name="ZH-CN_TOPIC_0000001052857350"></a>
 
 -   [概述](#section175431838101617)
-    -   [接口说明](#section17667171301711)
-
--   [开发指导](#section65745222184)
-    -   [开发步骤](#section865734181916)
-
+-   [接口说明](#section105459441659)
+-   [开发步骤](#section65745222184)
 -   [开发实例](#section263714411191)
     -   [设备描述配置](#section18249155619195)
     -   [板级配置及器件私有配置](#section3571192072014)
@@ -21,13 +18,13 @@
 
 -   **Touchscreen驱动层次说明**
 
-    本节主要介绍基于input驱动模型开发touchscreen器件驱动，其整体的框架模型如[图1](#fig6251184817261)。
+    本节主要介绍基于input驱动模型开发touchscreen器件驱动，input模型整体的框架如[图1](#fig6251184817261)。
 
     Input驱动模型基于HDF驱动框架、PLATFORM接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Driver Interface）层，通过Input-HDI层对外提供硬件能力，即上层input service可以通过HDI接口层获取相应的驱动能力，进而操控touchscreen等输入设备。
 
 
 **图 1**  基于HDF驱动框架的input驱动模型<a name="fig6251184817261"></a>  
-![](figure/基于HDF驱动框架的input驱动模型.png "基于HDF驱动框架的input驱动模型")
+![](figures/基于HDF驱动框架的input驱动模型.png "基于HDF驱动框架的input驱动模型")
 
 -   **Input驱动模型介绍**
 
@@ -49,7 +46,7 @@
     在HDF（Hardware Driver Foundation）[驱动管理框架](driver-hdf-development.md)的基础上，input驱动模型调用OSAL接口层和Platfom接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于input驱动模型实现的touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
 
 
-### 接口说明<a name="section17667171301711"></a>
+## 接口说明<a name="section105459441659"></a>
 
 Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简单分为如下三类:
 
@@ -58,7 +55,7 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 -   通信接口
 
 **图 2**  Touchscreen器件常用管脚<a name="fig1290384314416"></a>  
-![](figure/Touchscreen器件常用管脚.png "Touchscreen器件常用管脚")
+![](figures/Touchscreen器件常用管脚.png "Touchscreen器件常用管脚")
 
 如上图所示的三类接口，分别做简要说明如下：
 
@@ -73,30 +70,29 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
     -   INT：中断管脚，需要在驱动初始化时，配置为输入上拉状态。在驱动IC检测到外部触摸信号后，通过操作中断管脚来触发中断，器件驱动则会在中断处理函数中进行报点数据读取等操作。
 
 3.  **通信接口**
-    -   I2C：由于touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](driver-platform-i2c-des.md#section1695201514281)。
-    -   SPI：部分厂商，由于需要传递的数据不止报点坐标，而是需要获取基础容值，数据量较大，所以会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](driver-platform-spi-des.md#section71363452477)。
+    -   I2C：由于touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](driver-platform-i2c-des.md#section5361140416)。
+    -   SPI：部分厂商，由于需要传递的数据不止报点坐标，而是需要获取基础容值，数据量较大，所以会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](driver-platform-spi-des.md#section193356154511)。
 
 
-## 开发指导<a name="section65745222184"></a>
+## 开发步骤<a name="section65745222184"></a>
 
 Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区分操作系统和芯片平台，为touchscreen等输入器件提供统一的驱动开发架构。
 
--   如下以touchscreen器件驱动为例，说明input驱动模型的完整加载流程：
+如下以touchscreen器件驱动为例，说明input驱动模型的完整加载流程：
 
-    （1）设备描述配置：由开发者参考已有模板进行设备描述配置，包括驱动加载顺序、板级硬件信息、器件私有数据信息等。
+（1）设备描述配置：由开发者参考已有模板进行设备描述配置，包括驱动加载顺序、板级硬件信息、器件私有数据信息等。
 
-    （2）加载input设备管理驱动：input设备管理驱动由HDF驱动加载，完成设备manager的创建并对其初始化。
+（2）加载input设备管理驱动：input设备管理驱动由HDF驱动加载，完成设备manager的创建并对其初始化。
 
-    （3）加载平台驱动：平台驱动由HDF框架加载，主要完成板级配置解析及硬件初始化，并提供器件注册接口。
+（3）加载平台驱动：平台驱动由HDF框架加载，主要完成板级配置解析及硬件初始化，并提供器件注册接口。
 
-    （4）加载器件驱动：器件驱动也由HDF框架加载，完成器件设备的实例化，包括器件私有配置解析和平台预留的差异化接口适配。
+（4）加载器件驱动：器件驱动也由HDF框架加载，完成器件设备的实例化，包括器件私有配置解析和平台预留的差异化接口适配。
 
-    （5）器件设备向平台驱动注册：将实例化的器件设备向平台驱动注册，实现设备和驱动的绑定，并完成中断注册、上下电等器件初始化工作。
+（5）器件设备向平台驱动注册：将实例化的器件设备向平台驱动注册，实现设备和驱动的绑定，并完成中断注册、上下电等器件初始化工作。
 
-    （6）input设备注册：在器件初始化完成后，实例化input设备，并将其注册到input manager进行管理。
+（6）input设备注册：在器件初始化完成后，实例化input设备，并将其注册到input manager进行管理。
 
-
-### 开发步骤<a name="section865734181916"></a>
+请参考如下相关步骤：
 
 1.  设备描述配置
 
@@ -108,7 +104,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 3.  实现器件差异化适配接口
 
-    根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](driver-platform-gpio-des.md#section259614242196)
+    根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](driver-platform-gpio-des.md#section1635911016188)
 
 
 ## 开发实例<a name="section263714411191"></a>
