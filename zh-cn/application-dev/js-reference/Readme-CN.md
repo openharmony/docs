@@ -333,6 +333,8 @@
         -   [短信服务](apis/js-apis-sms.md)
         -   [SIM卡管理](apis/js-apis-sim.md)
         -   [网络搜索](apis/js-apis-radio.md)
+    -   [网络与连接](apis/js-apis-connectivity.md)
+        -   [WLAN](apis/js-apis-wifi.md)  
     -   [设备管理](apis/js-apis-device-mgmt.md)
         -   [传感器](apis/js-apis-sensor.md)
         -   [振动](apis/js-apis-vibrator.md)
