@@ -71,7 +71,7 @@ rmdir \[_-p_\] \[_dirname..._\]
 
 ## 输出说明<a name="section06"></a>
 
-**示例 1**  删除一个名为 dir 的目录
+**示例**  删除一个名为 dir 的目录
 
 ```shell
 OHOS:/test$ mkdir dir

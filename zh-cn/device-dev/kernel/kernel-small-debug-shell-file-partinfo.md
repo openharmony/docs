@@ -40,13 +40,15 @@ partinfo <_dev\_inodename_\>
 
 ## 使用指南<a name="section4566131982520"></a>
 
-无
+无。
 
 ## 使用实例<a name="section4351134942514"></a>
 
-partinfo /dev/mmcblk0p0
+举例：partinfo /dev/mmcblk0p0
 
 ## 输出说明<a name="section66689331412"></a>
+
+**示例** 查看系统分区信息
 
 ```shell
 OHOS # partinfo /dev/mmcblk0p0

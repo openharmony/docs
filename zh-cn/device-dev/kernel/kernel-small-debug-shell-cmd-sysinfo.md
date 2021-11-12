@@ -29,8 +29,18 @@ systeminfo
 
 ## 输出说明<a name="section1657011114915"></a>
 
-**图 1**  查看系统资源使用情况<a name="fig15631172415455"></a>  
-![](figure/查看系统资源使用情况.png "查看系统资源使用情况")
+**示例**  查看系统资源使用情况
+
+```shell
+OHOS:/$ systeminfo
+
+   Module    Used      Total     Enabled
+--------------------------------------------
+   Task      96        256       YES
+   Sem       435       1024      YES
+   Queue     13        1024      YES
+   SwTmr     20        1024      YES
+```
 
 **表 1**  输出说明
 
@@ -88,4 +98,3 @@ systeminfo
 </tr>
 </tbody>
 </table>
-

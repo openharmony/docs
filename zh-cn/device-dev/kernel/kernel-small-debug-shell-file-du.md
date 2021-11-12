@@ -84,7 +84,7 @@ du \[_-kKmh_\] \[_file..._\]
 
 ## 输出说明<a name="section06"></a>
 
-**示例 1**  显示结果如下 
+**示例**  显示结果如下
 
 ```shell
 OHOS:/$ du -h testfile

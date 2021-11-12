@@ -52,11 +52,11 @@ chmod \[_mode_\] \[_filename_\]
 
 ## 使用实例<a name="section05"></a>
 
-举例：chmod 644 hello-harmony.txt ;  chmod 777 hello-harmony.txt
+举例：修改hello-harmony.txt 文件权限为644和777。
 
 ## 输出说明<a name="section06"></a>
 
-**示例 1**  修改/dev目录下 hello-harmony.txt 文件的权限
+**示例**  修改/dev目录下 hello-harmony.txt 文件的权限
 
 ```shell
 OHOS:/dev$ chmod 644 hello-harmony.txt

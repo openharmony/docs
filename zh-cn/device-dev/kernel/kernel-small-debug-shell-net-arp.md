@@ -12,11 +12,12 @@
 
 ## 命令格式<a name="section579813484364"></a>
 
-arp
+- arp
 
-arp \[_-i IF_\] -s  _IPADDR HWADDR_
+- arp \[_-i IF_\] -s  _IPADDR HWADDR_
 
-arp \[_-i IF_\] -d  _IPADDR_
+- arp \[_-i IF_\] -d  _IPADDR_
+
 
 ## 参数说明<a name="section168065311366"></a>
 
@@ -72,45 +73,45 @@ arp \[_-i IF_\] -d  _IPADDR_
 
 举例：
 
-1.  输入arp
+输入arp
 
-    **示例 1**  打印整个 ARP 缓存表
-    
-    ```shell
-    OHOS # arp
-    Address                 HWaddress               Iface       Type
-    192.168.1.10            E6:2B:99:2C:4B:20       eth0        static
-    ```
-    
-    **表 2**  参数说明
-    
-    <a name="table1901mcpsimp"></a>
-    <table><thead align="left"><tr id="row1906mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1908mcpsimp"><a name="p1908mcpsimp"></a><a name="p1908mcpsimp"></a>参数</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p1910mcpsimp"><a name="p1910mcpsimp"></a><a name="p1910mcpsimp"></a>说明</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1911mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1913mcpsimp"><a name="p1913mcpsimp"></a><a name="p1913mcpsimp"></a>Address</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1915mcpsimp"><a name="p1915mcpsimp"></a><a name="p1915mcpsimp"></a>表示网络设备的IPv4地址。</p>
-    </td>
-    </tr>
-    <tr id="row1916mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1918mcpsimp"><a name="p1918mcpsimp"></a><a name="p1918mcpsimp"></a>HWaddress</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1920mcpsimp"><a name="p1920mcpsimp"></a><a name="p1920mcpsimp"></a>表示网络设备的MAC地址。</p>
-    </td>
-    </tr>
-    <tr id="row1921mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1923mcpsimp"><a name="p1923mcpsimp"></a><a name="p1923mcpsimp"></a>Iface</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1925mcpsimp"><a name="p1925mcpsimp"></a><a name="p1925mcpsimp"></a>表示该ARP表项使用的接口名。</p>
-    </td>
-    </tr>
-    <tr id="row1926mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1928mcpsimp"><a name="p1928mcpsimp"></a><a name="p1928mcpsimp"></a>Type</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1930mcpsimp"><a name="p1930mcpsimp"></a><a name="p1930mcpsimp"></a>表示该ARP表项是动态的还是静态的，动态是指ARP表项由协议栈自动创建，静态是指ARP表项是由用户增加的。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+**示例**  打印整个 ARP 缓存表
+
+```shell
+OHOS # arp
+Address                 HWaddress               Iface       Type
+192.168.1.10            E6:2B:99:2C:4B:20       eth0        static
+```
+
+**表 2**  参数说明
+
+<a name="table1901mcpsimp"></a>
+<table><thead align="left"><tr id="row1906mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1908mcpsimp"><a name="p1908mcpsimp"></a><a name="p1908mcpsimp"></a>参数</p>
+</th>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p1910mcpsimp"><a name="p1910mcpsimp"></a><a name="p1910mcpsimp"></a>说明</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row1911mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1913mcpsimp"><a name="p1913mcpsimp"></a><a name="p1913mcpsimp"></a>Address</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1915mcpsimp"><a name="p1915mcpsimp"></a><a name="p1915mcpsimp"></a>表示网络设备的IPv4地址。</p>
+</td>
+</tr>
+<tr id="row1916mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1918mcpsimp"><a name="p1918mcpsimp"></a><a name="p1918mcpsimp"></a>HWaddress</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1920mcpsimp"><a name="p1920mcpsimp"></a><a name="p1920mcpsimp"></a>表示网络设备的MAC地址。</p>
+</td>
+</tr>
+<tr id="row1921mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1923mcpsimp"><a name="p1923mcpsimp"></a><a name="p1923mcpsimp"></a>Iface</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1925mcpsimp"><a name="p1925mcpsimp"></a><a name="p1925mcpsimp"></a>表示该ARP表项使用的接口名。</p>
+</td>
+</tr>
+<tr id="row1926mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1928mcpsimp"><a name="p1928mcpsimp"></a><a name="p1928mcpsimp"></a>Type</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1930mcpsimp"><a name="p1930mcpsimp"></a><a name="p1930mcpsimp"></a>表示该ARP表项是动态的还是静态的，动态是指ARP表项由协议栈自动创建，静态是指ARP表项是由用户增加的。</p>
+</td>
+</tr>
+</tbody>
+</table>
 

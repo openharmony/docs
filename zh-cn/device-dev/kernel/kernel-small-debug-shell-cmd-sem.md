@@ -56,11 +56,11 @@ sem \[_ID__ / fulldata_\]
 
 ## 使用实例<a name="section79281818476"></a>
 
-举例1：输入 sem fulldata
+举例：输入 sem fulldata
 
 ## 输出说明<a name="section1975118519456"></a>
 
-**示例 1**  查询所有在用的信号量信息
+**示例**  查询所有在用的信号量信息
 
 ```shell
 OHOS # sem

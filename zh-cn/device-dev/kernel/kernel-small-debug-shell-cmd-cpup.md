@@ -57,7 +57,7 @@ cpup \[_mode_\] \[_taskID_\]
 
 ## 输出说明<a name="section19871522144219"></a>
 
-**示例 1**  指令输出结果
+**示例**  指令输出结果
 
 ```shell
 OHOS # cpup 1 5

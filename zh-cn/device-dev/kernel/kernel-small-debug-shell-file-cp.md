@@ -13,8 +13,6 @@
 
 ## 命令格式<a name="section02"></a>
 
-cp --help
-
 cp \[_SOURCEFILE_\] \[_DESTFILE_\]
 
 ## 参数说明<a name="section03"></a>
@@ -73,7 +71,7 @@ cp \[_SOURCEFILE_\] \[_DESTFILE_\]
 
 ## 输出说明<a name="section06"></a>
 
-**示例 1**  显示结果如下
+**示例**  同时拷贝两个文件至指定目录
 
 ```shell
 OHOS:/$ ls

@@ -45,7 +45,10 @@ swtmr \[_ID_\]
 
 ## 使用实例<a name="section16676026389"></a>
 
-举例：输入swtmr和swtmr 1
+举例：
+
+- swtmr
+- swtmr 1
 
 ## 输出说明<a name="section1541991614710"></a>
 

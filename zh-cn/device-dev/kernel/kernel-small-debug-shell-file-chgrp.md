@@ -57,7 +57,7 @@ chgrp \[_group_\] \[_pathname_\]
 
 ## 输出说明<a name="section06"></a>
 
-**示例 1**  修改 dev/目录下testfile 文件的群组为100
+**示例**  修改 /dev目录下testfile 文件的群组为100
 
 ```shell
 OHOS:/dev$ ll testfile

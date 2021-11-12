@@ -12,15 +12,16 @@
 
 ## 命令格式<a name="section8833164614615"></a>
 
-oom
+- oom
 
-oom -i \[_interval_\]
+- oom -i \[_interval_\]
 
-oom -m \[_mem byte_\]
+- oom -m \[_mem byte_\]
 
-oom -r \[_mem byte_\]
+- oom -r \[_mem byte_\]
 
-oom -h | --help
+- oom -h | --help
+
 
 ## 参数说明<a name="section12809111019453"></a>
 
@@ -73,11 +74,25 @@ oom -h | --help
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >当系统内存不足时，会打印出内存不足的提示信息。
 
+- oom -i 100
+
 ## 输出说明<a name="section12742311179"></a>
+
+**示例 1** oom缺省打印配置信息
+
+```shell
+OHOS:/$ oom
+[oom] oom loop task status: enabled
+      oom low memory threshold: 0x80000(byte)
+      oom reclaim memory threshold: 0x500000(byte)
+      oom check interval: 100(microsecond)
+```
+
+系统内存不足时打印提示信息
 
 ```shell
 T:20 Enter:IT MEM 00M 001
-[oom] 0S is in low memory state
+[oom] OS is in low memory state
 total physical memory: 0x1bcf000(byte), used: 0x1b50000(byte) ,free: 0x7f000(byte), low memory threshold: 0x80000(byte)
 [oom] candidate victim process init pid: 1, actual phy mem byte:82602
 [oom] candidate victim process shell pid: 3, actual phy mem byte:14950e
@@ -118,6 +133,13 @@ traceback 2 -- 1r = 0x9396ab0 fp = 0x20e20cec lr in /usr/bin/testsuits app -> 0�
 traceback 3 -- lr = 0x9393eb4 fp = 0x20e20cf4 lr in /usr/bin/testsuits ap --> 0x19ceb4
 traceback 4 -- lr = 0x92427d4 fp = 0x20e20d44 lr in /usr/bin/testsuits app --> 0x4b7d4
 traceback 5 -- 1r = 0x20c4df50 fp = 0хb0b0b0b 1r in /1ib/libc.so - -> 0x62f50
+```
+
+**示例 2** 设置 oom 线程任务检查的时间间隔
+
+```shell
+OHOS:/$ oom -i 100
+[oom] set oom check interval (100)ms successful
 ```
 
 **表 2**  输出说明

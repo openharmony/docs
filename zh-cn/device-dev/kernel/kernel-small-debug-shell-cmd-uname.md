@@ -12,7 +12,7 @@ uname命令用于显示当前操作系统的名称，版本创建时间，系统
 
 ## 命令格式<a name="section02"></a>
 
-uname \[_-a | -s | -r | -m | -n | -v --help_\]
+uname \[_-a | -s | -r | -m | -n | -v | --help_\]
 
 **表 1**  参数说明
 
@@ -68,15 +68,21 @@ uname \[_-a | -s | -r | -m | -n | -v --help_\]
 
 ## 使用指南<a name="section03"></a>
 
-uname用于显示当前操作系统名称。语法uname -a | -s | -r | -m | -n | -v 描述uname 命令将正在使用的操作系统名写到标准输出中。
+- uname用于显示当前操作系统名称。
+
+- 除参数--help和-a以外，其他参数可以相互搭配使用；uname -a 等价于 uname -srmnv。
+
 
 ## 使用实例<a name="section04"></a>
 
-举例：输入uname -a 、uname -ms
+举例：
+
+- uname -a
+- uname -ms
 
 ## 输出说明<a name="section05"></a>
 
-**示例 1** 查看系统信息
+**示例 1** 查看系统详细信息
 
 ```shell
 OHOS:/$ uname -a

@@ -24,7 +24,7 @@ lsfd命令显示当前已经打开文件的fd号以及文件的名字。
 
 ## 输出说明<a name="section42491639151813"></a>
 
-**示例 1**  lsfd输出说明
+**示例**  lsfd输出说明
 
 ```shell
 OHOS # lsfd

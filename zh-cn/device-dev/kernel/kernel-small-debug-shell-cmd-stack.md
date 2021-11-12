@@ -25,11 +25,11 @@ stack
 
 ## 使用实例<a name="section11545171957"></a>
 
-输入：stack
+举例：输入stack
 
 ## 输出说明<a name="section075617368542"></a>
 
-**示例 1**  系统堆栈使用情况
+**示例**  系统堆栈使用情况
 
 ```shell
 OHOS # stack

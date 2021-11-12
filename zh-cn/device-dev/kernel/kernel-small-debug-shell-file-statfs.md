@@ -45,9 +45,9 @@ statfs \[_directory_\]
 
 以nfs文件系统为例：
 
-statfs /nfs
+输入statfs /nfs
 
-**示例 1**  statfs输出说明
+**示例**  但因nfs文件系统信息
 
 ```shell
 OHOS # statfs ./nfs

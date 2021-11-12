@@ -13,9 +13,10 @@
 
 ## 命令格式<a name="section1795712553416"></a>
 
-vmm \[_-a / -h / --help_\]
+- vmm \[_-a / -h / --help_\]
 
-vmm \[_pid_\]
+- vmm \[_pid_\]
+
 
 ## 参数说明<a name="section92544592410"></a>
 
@@ -60,11 +61,11 @@ vmm \[_pid_\]
 
 ## 使用实例<a name="section11545171957"></a>
 
-输入vmm 3
+举例：输入vmm 3
 
 ## 输出说明<a name="section075617368542"></a>
 
-**示例 1**  PID为3的进程虚拟内存使用信息
+**示例**  PID为3的进程虚拟内存使用信息
 
 ```shell
 OHOS # vmm 3
