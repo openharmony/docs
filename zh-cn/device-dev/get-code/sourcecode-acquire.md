@@ -14,13 +14,16 @@
 
 -   [获取方式3：从镜像站点获取](#section1186691118430)
 -   [获取方式4：从github镜像仓库获取\(每天UTC时间23点同步\)](#section23448418360)
--   [源码目录简介](#section1072115612811)
+-   [附录](#section1072115612811)
+    -   [\#ZH-CN\_TOPIC\_0000001150448437/section15415163192517](#section15415163192517)
+    -   [\#ZH-CN\_TOPIC\_0000001150448437/section41841823112517](#section41841823112517)
+
 
 ## OpenHarmony介绍<a name="section6370143622110"></a>
 
 OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及运营的开源项目，目标是面向全场景、全连接、全智能时代，搭建一个智能终端设备操作系统的框架和平台，促进万物互联产业的繁荣发展。
 
-开源代码仓库地址：[https://openharmony.gitee.com](https://openharmony.gitee.com)
+开源代码仓库地址：[https://openharmony.gitee.com](https://openharmony.gitee.com)。
 
 ## 源码获取概述<a name="section12763342204"></a>
 
@@ -95,7 +98,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 -   **OpenHarmony 发布版本代码获取**
 
-    OpenHarmony发布版本源码获取方式请参考版本[Release-Notes](../../release-notes/Readme.md)。
+    OpenHarmony发布版本源码获取方式请参考[Release-Notes](../../release-notes/Readme.md)。
 
 
 ## 获取方式2：从DevEco Marketplace获取<a name="section463013147412"></a>
@@ -174,9 +177,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 为了获得更好的下载性能，您可以选择从以下站点的镜像库获取源码或者对应的解决方案。
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->-   本部分只提供OpenHarmony Master最新版本和LTS最新版本的源码获取方式， 其他版本源码获取方式以及具体版本信息请参考[Release-Notes](../../release-notes/Readme.md)。
->-   当前Master 1.0版本已经不再维护。
+本部分只提供OpenHarmony Master最新版本和LTS最新版本的源码获取方式， 其他版本源码获取方式以及具体版本信息请参考[Release-Notes](../../release-notes/Readme.md)。
 
 **表 1**  源码获取路径
 
@@ -271,56 +272,11 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 <td class="cellrowborder" valign="top" width="25%"><p id="p13437842103414"><a name="p13437842103414"></a><a name="p13437842103414"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
-<tr id="row4769431134919"><td class="cellrowborder" valign="top" width="25%"><p id="p97691031124913"><a name="p97691031124913"></a><a name="p97691031124913"></a>全量代码（标准系统）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1076916315492"><a name="p1076916315492"></a><a name="p1076916315492"></a>2.0 Canary</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p67696314491"><a name="p67696314491"></a><a name="p67696314491"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz" target="_blank" rel="noopener noreferrer">站点1</a>，<a href="https://mirror.iscas.ac.cn/OpenHarmony/os/2.0/code-2.0-canary.tar.gz" target="_blank" rel="noopener noreferrer">站点2</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p4769123184918"><a name="p4769123184918"></a><a name="p4769123184918"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
-</td>
-</tr>
-<tr id="row273762316398"><td class="cellrowborder" valign="top" width="25%"><p id="p54150491393"><a name="p54150491393"></a><a name="p54150491393"></a>全量代码（轻量和小型系统）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p16415124923914"><a name="p16415124923914"></a><a name="p16415124923914"></a>1.0（不再维护）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p44151449203917"><a name="p44151449203917"></a><a name="p44151449203917"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1441515495392"><a name="p1441515495392"></a><a name="p1441515495392"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
-</td>
-</tr>
-<tr id="row107374239397"><td class="cellrowborder" valign="top" width="25%"><p id="p5415949123910"><a name="p5415949123910"></a><a name="p5415949123910"></a>Hi3861解决方案（二进制）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p15415949183914"><a name="p15415949183914"></a><a name="p15415949183914"></a>1.0（不再维护）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1415649123916"><a name="p1415649123916"></a><a name="p1415649123916"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p11415549153913"><a name="p11415549153913"></a><a name="p11415549153913"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
-</td>
-</tr>
-<tr id="row9738182319392"><td class="cellrowborder" valign="top" width="25%"><p id="p241524910391"><a name="p241524910391"></a><a name="p241524910391"></a>Hi3518解决方案（二进制）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p6415849193915"><a name="p6415849193915"></a><a name="p6415849193915"></a>1.0（不再维护）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p841584919394"><a name="p841584919394"></a><a name="p841584919394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p9415124983911"><a name="p9415124983911"></a><a name="p9415124983911"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
-</td>
-</tr>
-<tr id="row17381233399"><td class="cellrowborder" valign="top" width="25%"><p id="p44151149153918"><a name="p44151149153918"></a><a name="p44151149153918"></a>Hi3516解决方案（二进制）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p15415164917397"><a name="p15415164917397"></a><a name="p15415164917397"></a>1.0（不再维护）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p154151049113914"><a name="p154151049113914"></a><a name="p154151049113914"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p164164491394"><a name="p164164491394"></a><a name="p164164491394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256 校验码</a></p>
-</td>
-</tr>
 <tr id="row1873817234394"><td class="cellrowborder" valign="top" width="25%"><p id="p1341618491393"><a name="p1341618491393"></a><a name="p1341618491393"></a>RELEASE-NOTES</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p7416184953916"><a name="p7416184953916"></a><a name="p7416184953916"></a>1.0（不再维护）</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p7416184953916"><a name="p7416184953916"></a><a name="p7416184953916"></a>2.2 Beta2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p194161849133911"><a name="p194161849133911"></a><a name="p194161849133911"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/RELEASE-NOTES.txt" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p194161849133911"><a name="p194161849133911"></a><a name="p194161849133911"></a><a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v2.2-beta2.md" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p1841619490395"><a name="p1841619490395"></a><a name="p1841619490395"></a>-</p>
 </td>
@@ -364,7 +320,7 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-## 源码目录简介<a name="section1072115612811"></a>
+## 附录<a name="section1072115612811"></a>
 
 下表是OpenHarmony源码的目录及简单说明：
 
