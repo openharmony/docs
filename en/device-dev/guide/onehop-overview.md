@@ -1,7 +1,7 @@
 # Overview<a name="EN-US_TOPIC_0000001168073314"></a>
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->This guide is prepared for the purpose of helping individual developers to try out the HarmonyOS's OneHop feature. Do not use it to develop or release a commercial solution of OneHop. To develop OneHop for commercial applications, see  [HarmonyOS Connect Atomic Service Development](https://developer.huawei.com/consumer/cn/doc/development/SmartDevicePartner-Guides/atomic-service-overview-0000001136377936).
+>This guide is prepared for the purpose of helping individual developers to try out the HarmonyOS's OneHop feature. Do not use it to develop or release a commercial solution of OneHop. 
 
 The OneHop feature in HarmonyOS is designed for multi-device collaboration. By leveraging the Near Field Communication \(NFC\) protocol, the feature simplifies connections between phones and other devices with a single tap. Combined with the phone's atomic service capabilities, OneHop offers seamless service hopping between devices, complete with lightning-fast device pairing and effortless remote control.
 

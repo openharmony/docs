@@ -104,7 +104,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     -   实例化SpiCntlr成员SpiCntlrMethod。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化SpiCntlr成员SpiCntlrMethod，其定义和成员说明见[SpiCntlrMethod定义](#section715682993110)和[表1](#table7167123615321)。
+        >实例化SpiCntlr成员SpiCntlrMethod，其定义和成员说明见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**

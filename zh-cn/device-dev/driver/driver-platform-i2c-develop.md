@@ -72,7 +72,7 @@ I2C模块适配的三个环节是配置属性文件，实例化驱动入口，�
     -   实例化I2cCntlr成员I2cMethod和I2cLockMethod。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化I2cCntlr成员I2cMethod和I2cLockMethod，其[I2cMethod和I2cLockMethod定义](#section1683458184518)和[成员说明](#table10549174014611)见下。
+        >实例化I2cCntlr成员I2cMethod和I2cLockMethod，详见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**

@@ -157,7 +157,7 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
     -   实例化GpioCntlr成员GpioMethod。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化GpioCntlr成员GpioMethod，详见[GpioMethod定义](#section20369125172319)定义及[GpioMethod结构体成员的回调函数功能说明](#table151341544111)。
+        >实例化GpioCntlr成员GpioMethod，详见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**

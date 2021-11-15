@@ -120,7 +120,7 @@ MIPI-DSI模块适配的三个环节是配置属性文件，实例化驱动入口
     -   实例化MipiDsiCntlr成员MipiDsiCntlrMethod。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化MipiDsiCntlr成员MipiDsiCntlrMethod，其定义和成员**说明**见[MipiDsiCntlrMethod定义](#section10711202141617)和[表1](#table218771071713)。
+        >实例化MipiDsiCntlr成员MipiDsiCntlrMethod，其定义和成员说明见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**

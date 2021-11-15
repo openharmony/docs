@@ -85,7 +85,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     -   实例化PwmDev成员PwmMethod。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化PwmDev成员PwmMethod，其定义和成员说明见[PwmMethod定义](#section14560119104318)和[表1](#table11173154124311)
+        >实例化PwmDev成员PwmMethod，其定义和成员说明见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**

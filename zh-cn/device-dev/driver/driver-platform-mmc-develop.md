@@ -204,7 +204,7 @@ MMC模块适配的三个环节是配置属性文件，实例化驱动入口，�
     -   实例化MmcCntlr成员MmcCntlrOps。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化MmcCntlr成员MmcCntlrOps，其定义和成员说明见[MmcCntlrOps定义](#section6203107192915)和[表1](#table99129433019)。
+        >实例化MmcCntlr成员MmcCntlrOps，其定义和成员说明见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**

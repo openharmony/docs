@@ -92,7 +92,7 @@ ADC模块适配的三个环节是配置属性文件，实例化驱动入口，�
     -   实例化AdcDevice成员AdcMethod。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化AdcDevice成员AdcMethod，其定义和成员说明见[AdcMethod定义](#section1618135285210)和[表1](#table1943202316536)。
+        >实例化AdcDevice成员AdcMethod，其定义和成员说明见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**

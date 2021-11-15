@@ -188,7 +188,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     -   实例化RtcHost成员RtcMethod。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化RtcHost成员RtcMethod，其定义和成员说明见[RtcMethod定义](#section13652132473017)和[表1](#table12929217311)。
+        >实例化RtcHost成员RtcMethod，其定义和成员说明见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**

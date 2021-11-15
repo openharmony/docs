@@ -185,7 +185,7 @@ Sensor驱动模型对驱动开发者开放的功能接口，驱动开发者无�
 </tbody>
 </table>
 
-Sensor驱动模型要求驱动开发者实现的接口功能，参考表3
+Sensor驱动模型要求驱动开发者实现的接口功能，参考表3。
 
 **表 3**  Sensor驱动模型要求驱动开发者实现的接口列表
 
@@ -202,22 +202,22 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考表3
 </td>
 <td class="cellrowborder" valign="top" width="45.77457745774577%" headers="mcps1.2.4.1.2 "><p id="p880485195711"><a name="p880485195711"></a><a name="p880485195711"></a>int32_t <strong id="b16497123107"><a name="b16497123107"></a><a name="b16497123107"></a>init</strong>(void)</p>
 </td>
-<td class="cellrowborder" valign="top" width="45.81458145814582%" headers="mcps1.2.4.1.3 "><p id="p1480465165710"><a name="p1480465165710"></a><a name="p1480465165710"></a>传感器器设备探测成功后，需要对传感器器设备初始化配置。</p>
+<td class="cellrowborder" valign="top" width="45.81458145814582%" headers="mcps1.2.4.1.3 "><p id="p1480465165710"><a name="p1480465165710"></a><a name="p1480465165710"></a>传感器设备探测成功后，需要对传感器器设备初始化配置。</p>
 </td>
 </tr>
 <tr id="row10831296333"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1783115910333"><a name="p1783115910333"></a><a name="p1783115910333"></a>int32_t <strong id="b146831650010"><a name="b146831650010"></a><a name="b146831650010"></a>GetInfo</strong>(struct SensorBasicInfo *info)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p4831139153316"><a name="p4831139153316"></a><a name="p4831139153316"></a>从传感器器设备的HCS配置里，获取当前传感器设备的基本信息。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p4831139153316"><a name="p4831139153316"></a><a name="p4831139153316"></a>从传感器设备的HCS配置里，获取当前传感器设备的基本信息。</p>
 </td>
 </tr>
 <tr id="row178311493339"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p208318963320"><a name="p208318963320"></a><a name="p208318963320"></a>int32_t <strong id="b189921571402"><a name="b189921571402"></a><a name="b189921571402"></a>Enable</strong>(void)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p68310953312"><a name="p68310953312"></a><a name="p68310953312"></a>根据当前传感器器设备的HCS配置，下发传感器设备使能操作组的寄存器配置。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p68310953312"><a name="p68310953312"></a><a name="p68310953312"></a>根据当前传感器设备的HCS配置，下发传感器设备使能操作组的寄存器配置。</p>
 </td>
 </tr>
 <tr id="row0831129153318"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p0831169183314"><a name="p0831169183314"></a><a name="p0831169183314"></a>int32_t <strong id="b13541291106"><a name="b13541291106"></a><a name="b13541291106"></a>Disable</strong>(void)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p138314912336"><a name="p138314912336"></a><a name="p138314912336"></a>根据当前传感器器设备的HCS配置，下发传感器设备去使能操作组的寄存器配置。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p138314912336"><a name="p138314912336"></a><a name="p138314912336"></a>根据当前传感器设备的HCS配置，下发传感器设备去使能操作组的寄存器配置。</p>
 </td>
 </tr>
 <tr id="row178311093334"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p583118920338"><a name="p583118920338"></a><a name="p583118920338"></a>int32_t <strong id="b111117118017"><a name="b111117118017"></a><a name="b111117118017"></a>SetBatch</strong>(int64_t samplingInterval, int64_t reportInterval)</p>

@@ -42,8 +42,4 @@ Let's see how to configure the association intent for an atomic service on the H
 
     ![](figures/ability-test.png)
 
-    接下来在“真机测试”中，点击**创建按钮**，添加真机测试名单。此处填写的华为帐号信息需要与手机上登录的华为帐号保持一致。
-
-    ![](figures/prototype-test.png)
-
 

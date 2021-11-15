@@ -130,7 +130,7 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
     -   实例化WatchdogCntlr成员WatchdogMethod。
 
         >![](../public_sys-resources/icon-note.gif) **说明：** 
-        >实例化WatchdogCntlr成员WatchdogMethod，其定义和成员**说明**见[WatchdogMethod定义](#section220331929)和[表1](#table1370451732)。
+        >实例化WatchdogCntlr成员WatchdogMethod，其定义和成员说明见[接口说明](#section752964871810)。
 
 
 4.  **驱动调试：**
