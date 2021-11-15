@@ -14,7 +14,7 @@
 
 -   [获取方式3：从镜像站点获取](#section1186691118430)
 -   [获取方式4：从github镜像仓库获取\(每天UTC时间23点同步\)](#section23448418360)
--   [附录](#section1072115612811)
+-   [源码目录](#section1072115612811)
 
 
 ## OpenHarmony介绍<a name="section6370143622110"></a>
@@ -318,7 +318,7 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-## 附录<a name="section1072115612811"></a>
+## 源码目录<a name="section1072115612811"></a>
 
 下表是OpenHarmony源码的目录及简单说明：
 
