@@ -1,4 +1,4 @@
-# Source Code Acquisition<a name="EN-US_TOPIC_0000001150448437"></a>
+# Obtaining Source Code<a name="EN-US_TOPIC_0000001150448437"></a>
 
 -   [About OpenHarmony](#section6370143622110)
 -   [Overview of Source Code Acquisition](#section12763342204)
@@ -6,15 +6,14 @@
     -   [When to Use](#section10881513459)
     -   [Prerequisites](#section102871547153314)
     -   [How to Use](#section429012478331)
-
 -   [Method 2: Acquiring Source Code from DevEco Marketplace](#section463013147412)
     -   [When to Use](#section26661067443)
     -   [Prerequisites](#section17544943123315)
     -   [How to Use](#section954619433333)
-
 -   [Method 3: Acquiring Source Code from a Mirror Site](#section1186691118430)
 -   [Method 4: Acquiring Source Code from the GitHub Image Repository \(at 23:00 UTC Every Day\)](#section23448418360)
--   [Source Code Directories](#section1072115612811)
+-   [ Source Code Directories](#section1072115612811)
+
 
 ## About OpenHarmony<a name="section6370143622110"></a>
 
@@ -174,9 +173,7 @@ You must install  **Node.js**  and HPM on your local PC. The installation proced
 
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the  [Release-Notes](../../release-notes/Readme.md).
->-   The Master 1.0 version is no longer maintained.
+The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the  [Release-Notes](../../release-notes/Readme.md).
 
 **Table  1**  Sites for acquiring source code
 
@@ -248,7 +245,7 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>3.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/Readme.md" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-v3.0-LTS.md" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>
@@ -257,9 +254,9 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b1094411391670"><a name="b1094411391670"></a><a name="b1094411391670"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b1926765243"><a name="b1926765243"></a><a name="b1926765243"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p8414649193919"><a name="p8414649193919"></a><a name="p8414649193919"></a><strong id="b1789439821"><a name="b1789439821"></a><a name="b1789439821"></a>Site</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b143972604"><a name="b143972604"></a><a name="b143972604"></a>SHA-256 Verification Code</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b533148863"><a name="b533148863"></a><a name="b533148863"></a>SHA-256 Verification Code</strong></p>
 </td>
 </tr>
 <tr id="row18518114121312"><td class="cellrowborder" valign="top" width="25%"><p id="p4437184283419"><a name="p4437184283419"></a><a name="p4437184283419"></a>Beta version (for standard systems)</p>
@@ -271,56 +268,11 @@ To ensure the download performance, you are advised to download the source code 
 <td class="cellrowborder" valign="top" width="25%"><p id="p13437842103414"><a name="p13437842103414"></a><a name="p13437842103414"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 </tr>
-<tr id="row4769431134919"><td class="cellrowborder" valign="top" width="25%"><p id="p97691031124913"><a name="p97691031124913"></a><a name="p97691031124913"></a>Full code (for standard systems)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1076916315492"><a name="p1076916315492"></a><a name="p1076916315492"></a>2.0 Canary</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p67696314491"><a name="p67696314491"></a><a name="p67696314491"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz" target="_blank" rel="noopener noreferrer">Download (Site 1)</a> <a href="https://mirror.iscas.ac.cn/OpenHarmony/os/2.0/code-2.0-canary.tar.gz" target="_blank" rel="noopener noreferrer">Download (Site 2)</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p4769123184918"><a name="p4769123184918"></a><a name="p4769123184918"></a><a href="https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-</tr>
-<tr id="row273762316398"><td class="cellrowborder" valign="top" width="25%"><p id="p54150491393"><a name="p54150491393"></a><a name="p54150491393"></a>Full code (for mini and small systems)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p16415124923914"><a name="p16415124923914"></a><a name="p16415124923914"></a>1.0 (no longer maintained)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p44151449203917"><a name="p44151449203917"></a><a name="p44151449203917"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1441515495392"><a name="p1441515495392"></a><a name="p1441515495392"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/code-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-</tr>
-<tr id="row107374239397"><td class="cellrowborder" valign="top" width="25%"><p id="p5415949123910"><a name="p5415949123910"></a><a name="p5415949123910"></a>Hi3861 solution (binary)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p15415949183914"><a name="p15415949183914"></a><a name="p15415949183914"></a>1.0 (no longer maintained)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p1415649123916"><a name="p1415649123916"></a><a name="p1415649123916"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p11415549153913"><a name="p11415549153913"></a><a name="p11415549153913"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/wifiiot-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-</tr>
-<tr id="row9738182319392"><td class="cellrowborder" valign="top" width="25%"><p id="p241524910391"><a name="p241524910391"></a><a name="p241524910391"></a>Hi3518 solution (binary)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p6415849193915"><a name="p6415849193915"></a><a name="p6415849193915"></a>1.0 (no longer maintained)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p841584919394"><a name="p841584919394"></a><a name="p841584919394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p9415124983911"><a name="p9415124983911"></a><a name="p9415124983911"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3518ev300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-</tr>
-<tr id="row17381233399"><td class="cellrowborder" valign="top" width="25%"><p id="p44151149153918"><a name="p44151149153918"></a><a name="p44151149153918"></a>Hi3516 solution (binary)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p15415164917397"><a name="p15415164917397"></a><a name="p15415164917397"></a>1.0 (no longer maintained)</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p154151049113914"><a name="p154151049113914"></a><a name="p154151049113914"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p164164491394"><a name="p164164491394"></a><a name="p164164491394"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/ipcamera_hi3516dv300-1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
-</td>
-</tr>
 <tr id="row1873817234394"><td class="cellrowborder" valign="top" width="25%"><p id="p1341618491393"><a name="p1341618491393"></a><a name="p1341618491393"></a>RELEASE-NOTES</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p7416184953916"><a name="p7416184953916"></a><a name="p7416184953916"></a>1.0 (no longer maintained)</p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p7416184953916"><a name="p7416184953916"></a><a name="p7416184953916"></a>2.2 Beta2</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p194161849133911"><a name="p194161849133911"></a><a name="p194161849133911"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.0/RELEASE-NOTES.txt" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p194161849133911"><a name="p194161849133911"></a><a name="p194161849133911"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-v2.2-beta2.md" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p1841619490395"><a name="p1841619490395"></a><a name="p1841619490395"></a>-</p>
 </td>
@@ -329,7 +281,7 @@ To ensure the download performance, you are advised to download the source code 
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p1093810218417"><a name="p1093810218417"></a><a name="p1093810218417"></a><strong id="b1124015405556"><a name="b1124015405556"></a><a name="b1124015405556"></a>Version Information</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b1495715178"><a name="b1495715178"></a><a name="b1495715178"></a>Site</strong></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p9938132648"><a name="p9938132648"></a><a name="p9938132648"></a><strong id="b1225148075"><a name="b1225148075"></a><a name="b1225148075"></a>Site</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p12520113711011"><a name="p12520113711011"></a><a name="p12520113711011"></a><strong id="b19256751175516"><a name="b19256751175516"></a><a name="b19256751175516"></a>SHA-256 Verification Code</strong></p>
 </td>
@@ -364,7 +316,7 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-## Source Code Directories<a name="section1072115612811"></a>
+##  Source Code Directories<a name="section1072115612811"></a>
 
 The following table describes the OpenHarmony source code directories.
 
