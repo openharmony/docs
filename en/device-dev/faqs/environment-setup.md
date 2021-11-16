@@ -158,7 +158,7 @@
 
     Solution 1: Run the  **apt-get install zlib**  command to install  **zlib**  online.
 
-    Solution 2: If the software source does not contain  **zlib**, download the source code from  [http://www.zlib.net/](http://www.zlib.net/).
+    Solution 2: If the software source does not contain  **zlib**, download the source code from  https://www.zlib.net/.
 
     ![](figures/download-zlib.png)
 
