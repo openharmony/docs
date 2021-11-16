@@ -75,7 +75,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
    ​            驱动代码的编译必须要使用HDF框架提供的Makefile模板进行编译。
 
    ```
-          include $(LITEOSTOPDIR)/../../drivers/adapter/lite/khdf/lite.mk #导入hdf预定义内容，必需
+          include $(LITEOSTOPDIR)/../../drivers/adapter/khdf/liteos/lite.mk #导入hdf预定义内容，必需
           MODULE_NAME :=    #生成的结果文件
           LOCAL_INCLUDE :=  #本驱动的头文件目录
           LOCAL_SRCS :=     #本驱动的源代码文件
