@@ -638,9 +638,9 @@ Configure the part build file to associate with specific test cases.
 Test case resources include external file resources, such as image files, video files, and third-party libraries, required for test case execution.
 
 Perform the following steps:
-1. Under the **test** directory of a part or module, create the **resource** directory to store resource files.
+1. Create the **resource** directory in the **test** directory of the part, and create a directory for the module in the **resource** directory to store resource files of the module.
 
-2. In the **resource** directory, create the **ohos_test.xml** file in the following format:
+2. In the module directory under **resource**, create the **ohos_test.xml** file in the following format:
 	```
 	<?xml version="1.0" encoding="UTF-8"?>
 	<configuration ver="2.0">
@@ -655,7 +655,7 @@ Perform the following steps:
 3. In the build file of the test cases, configure **resource\_config\_file** to point to the resource file **ohos\_test.xml**.
 	```
 	ohos_unittest("CalculatorSubTest") {
-	  resource_config_file = "//system/subsystem/partA/calculator/test/resource/ohos_test.xml"
+	  resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
 	}
 	```
 	>**Note:**
