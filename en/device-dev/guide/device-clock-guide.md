@@ -23,7 +23,7 @@ The clock app displays the current time, as shown in the following figure.
 
 ## Preparations<a name="section6592121861218"></a>
 
-Download and install DevEco Studio. For details, see the  [HUAWEI DevEco Studio User Guide](../../application-dev/quick-start/deveco-studio-(openharmony)-user-guide.md). 
+Download and install DevEco Studio. For details, see the  [HUAWEI DevEco Studio User Guide](../../application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md). 
 
 ## How to Develop<a name="section19901741111312"></a>
 
@@ -257,7 +257,7 @@ To build such an app, we can create a page that has a flexible layout with two r
 
 ## Signing and Packaging<a name="section10601181101516"></a>
 
-After finishing writing the app code, you need to sign and package the app before running it on a real device. For details, see  [Signing and Packaging Guide](../../application-dev/quick-start/configuring-the-openharmony-app-signature.md).
+After finishing writing the app code, you need to sign and package the app before running it on a real device. For details, see  [Signing and Packaging Guide](../../application-dev/quick-start/configuring-openharmony-app-signature.md).
 
 ## Running on the Real Device<a name="section092721731511"></a>
 
