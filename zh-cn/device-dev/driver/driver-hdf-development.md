@@ -102,25 +102,26 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
        module_switch = defined(LOSCFG_DRIVERS_HDF_PLATFORM)
        module_name = "xxx"
        hdf_driver(module_name) {
-              sources = [
-                  "xxx/xxx/xxx.c",
-              ]
-              public_configs = [ ":public" ] --添加依赖头文件
+            sources = [
+                "xxx/xxx/xxx.c", #模块源文件
+            ]
+            public_configs = [ ":public" ] #使用模块依赖的头文件配置
        }
-       config("public") {  --定义依赖的头文件
-              include_dirs = [
-              ]
+       config("public") {  #定义模块依赖的头文件配置
+            include_dirs = [
+			"xxx/xxx",   #模块依赖的头文件
+            ]
        }
        ```
 
-       把新增的BUILD.gn所在的目录添加到/drivers/adapter/khdf/liteos/BUILD.gn里面：
+       把模块BUILD.gn所在的目录添加到/drivers/adapter/khdf/liteos/BUILD.gn里面：
 
        ```
        group("liteos") {
-              public_deps = [ ":$module_name" ]
-                  deps = [
-                     "xxx/xxx",   --新增的BUILD.gn所在的目录
-                 ]
+            public_deps = [ ":$module_name" ]
+                deps = [
+                    "xxx/xxx",   #模块BUILD.gn所在的目录
+                ]
        }
        ```
 
