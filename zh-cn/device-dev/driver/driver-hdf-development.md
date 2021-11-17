@@ -68,81 +68,87 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
 
 2. 驱动编译
 
-   -   liteos
+   - liteos
 
-   ​        涉及makefile和BUILD.gn修改:
-   ​        makefile部分：
-   ​            驱动代码的编译必须要使用HDF框架提供的Makefile模板进行编译。
+     涉及makefile和BUILD.gn修改:
 
-   ```
-          include $(LITEOSTOPDIR)/../../drivers/adapter/khdf/liteos/lite.mk #导入hdf预定义内容，必需
-          MODULE_NAME :=    #生成的结果文件
-          LOCAL_INCLUDE :=  #本驱动的头文件目录
-          LOCAL_SRCS :=     #本驱动的源代码文件
-          LOCAL_CFLAGS ：=  #自定义的编译选项
-          include $(HDF_DRIVER) #导入模板makefile完成编译
-   ```
+     * makefile部分：
 
-   ​            编译结果文件链接到内核镜像，添加到drivers/adapter/khdf/liteos目录下的hdf_lite.mk里面，示例如下：
+       驱动代码的编译必须要使用HDF框架提供的Makefile模板进行编译。
 
-   ```
-          LITEOS_BASELIB +=  -lxxx  #链接生成的静态库
-          LIB_SUBDIRS    +=         #驱动代码Makefile的目录
-   ```
+       ```
+       include $(LITEOSTOPDIR)/../../drivers/adapter/khdf/liteos/lite.mk #导入hdf预定义内容，必需
+       MODULE_NAME :=    #生成的结果文件
+       LOCAL_INCLUDE :=  #本驱动的头文件目录
+       LOCAL_SRCS :=     #本驱动的源代码文件
+       LOCAL_CFLAGS ：=  #自定义的编译选项
+       include $(HDF_DRIVER) #导入模板makefile完成编译
+       ```
 
-   ​        BUILD.gn部分:
+       编译结果文件链接到内核镜像，添加到drivers/adapter/khdf/liteos目录下的hdf_lite.mk里面，示例如下：
 
-   ​            添加模块BUILD.gn参考定义如下内容：
+       ```
+       LITEOS_BASELIB +=  -lxxx  #链接生成的静态库
+       LIB_SUBDIRS    +=         #驱动代码Makefile的目录
+       ```
 
-   ```
-          import("//build/lite/config/component/lite_component.gni")
-          import("//drivers/adapter/khdf/liteos/hdf.gni")
-          module_switch = defined(LOSCFG_DRIVERS_HDF_PLATFORM)
-          module_name = "xxx"
-          hdf_driver(module_name) {
+     * BUILD.gn部分:
+
+       添加模块BUILD.gn参考定义如下内容：
+
+       ```
+       import("//build/lite/config/component/lite_component.gni")
+       import("//drivers/adapter/khdf/liteos/hdf.gni")
+       module_switch = defined(LOSCFG_DRIVERS_HDF_PLATFORM)
+       module_name = "xxx"
+       hdf_driver(module_name) {
               sources = [
-                "xxx/xxx/xxx.c",
+                  "xxx/xxx/xxx.c",
               ]
               public_configs = [ ":public" ] --添加依赖头文件
-          }
-   
-          config("public") {  --定义依赖的头文件
+       }
+       config("public") {  --定义依赖的头文件
               include_dirs = [
               ]
-          }
-   ```
+       }
+       ```
 
-   ​            把新增的BUILD.gn所在的目录添加到/drivers/adapter/khdf/liteos/BUILD.gn里面：
+       把新增的BUILD.gn所在的目录添加到/drivers/adapter/khdf/liteos/BUILD.gn里面：
 
-   ```
-          group("liteos") {
-             public_deps = [ ":$module_name" ]
-                deps = [
-                   "xxx/xxx",   --新增的BUILD.gn所在的目录
-               ]
-          }
-   ```
+       ```
+       group("liteos") {
+              public_deps = [ ":$module_name" ]
+                  deps = [
+                     "xxx/xxx",   --新增的BUILD.gn所在的目录
+                 ]
+       }
+       ```
 
-   -    linux
+   - linux
 
+     如果需要定义模块控制宏，需要在模块目录xxx里面添加Kconfig文件，并把Kconfig文件路径添加到drivers/adapter/khdf/linux/Kconfig里面：
 
-​           如果需要定义模块控制宏，需要在模块目录xxx里面添加Kconfig文件，并把Kconfig文件路径添加到drivers/adapter/khdf/linux/Kconfig里面：
+     ```
+     source "drivers/hdf/khdf/xxx/Kconfig"
+     ```
 
-```
-         source "drivers/hdf/khdf/xxx/Kconfig"
-```
+     如果需要定义模块控制宏，需要在模块目录xxx里面添加Kconfig文件，并把Kconfig文件路径添加到drivers/adapter/khdf/linux/Kconfig里面：
 
-​           添加模块目录到drivers/adapter/khdf/linux/Makefile：
+     ```
+     source "drivers/hdf/khdf/xxx/Kconfig"
+     ```
 
-```
-         obj-$(CONFIG_DRIVERS_HDF)  += xxx/
-```
+     添加模块目录到drivers/adapter/khdf/linux/Makefile：
 
-​           在模块目录xxx里面添加Makefile文件，在Makefile文件里面添加模块代码编译规则：
+     ```
+     obj-$(CONFIG_DRIVERS_HDF)  += xxx/
+     ```
 
-```
-         obj-y  += xxx.o
-```
+     在模块目录xxx里面添加Makefile文件，在Makefile文件里面添加模块代码编译规则：
+
+     ```
+     obj-y  += xxx.o
+     ```
 
 
 
