@@ -99,7 +99,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
        ```
        import("//build/lite/config/component/lite_component.gni")
        import("//drivers/adapter/khdf/liteos/hdf.gni")
-       module_switch = defined(LOSCFG_DRIVERS_HDF_PLATFORM)
+       module_switch = defined(LOSCFG_DRIVERS_HDF_xxx)
        module_name = "xxx"
        hdf_driver(module_name) {
               sources = [
@@ -113,13 +113,13 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
        }
        ```
 
-       把新增的BUILD.gn所在的目录添加到/drivers/adapter/khdf/liteos/BUILD.gn里面：
+       把新增模块的BUILD.gn所在的目录添加到/drivers/adapter/khdf/liteos/BUILD.gn里面：
 
        ```
        group("liteos") {
               public_deps = [ ":$module_name" ]
                   deps = [
-                     "xxx/xxx",   --新增的BUILD.gn所在的目录
+                     "xxx/xxx",   --新增模块BUILD.gn所在的目录
                  ]
        }
        ```
