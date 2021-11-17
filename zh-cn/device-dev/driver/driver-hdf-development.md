@@ -109,7 +109,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
        }
        config("public") {  #定义依赖的头文件配置
            include_dirs = [
-		   "xxx/xxx/xxx", #依赖的头文件
+		   "xxx/xxx/xxx", #依赖的头文件目录
            ]
        }
        ```
