@@ -15,13 +15,13 @@ Download and install DevEco Studio. For details, see the  [HUAWEI DevEco Studio 
 
 2.  Choose the  **Smart Vision**  for  **Device**  and  **Empty Feature Ability**  for  **Template**.
 
-    ![](figure/en-us_image_0000001082434703.png)
+    ![](figures/empty-feature-ability.png)
 
 3.  Click  **Next**  and configure the project.
     -   **Project Name**: project name.
     -   **Package Name**: software package name. By default, this name will also be used as your application ID. Your application must have a unique ID to be released.
     -   **Save Location**: path for storing project files. The path cannot contain Chinese characters or spaces.
-    -   **Compatible API Version**: compatible API version.
+    -   **Compatible API Version**: compatible API version of the SDK.
 
 4.  Click  **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
 

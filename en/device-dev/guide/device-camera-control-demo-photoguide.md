@@ -363,7 +363,7 @@ None
     camKit->CreateCamera(camId, CamStateMng, eventHdlr);
     ```
 
-6.  In the main process, synchronize configurations set by callback functions implemented in  [step 1](#en-us_topic_0000001052170554_li378084192111),  [step 2](#en-us_topic_0000001052170554_li8716104682913), and  [step 3](#en-us_topic_0000001052170554_li6671035102514).
+6.  Based on the callback design in  [1](#en-us_topic_0000001052170554_li378084192111),  [2](#en-us_topic_0000001052170554_li8716104682913), and  [3](#en-us_topic_0000001052170554_li6671035102514), perform related operations until the  **OnCreated**  callback obtains  **cam\_**.
 
     ```
     void OnCreated(Camera &c) override

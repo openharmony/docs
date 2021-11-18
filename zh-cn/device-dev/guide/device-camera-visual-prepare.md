@@ -15,7 +15,7 @@
 
 2.  选择“Smart Vision”下的“Empty Feature Ability”模板。
 
-    ![](figure/zh-cn_image_0000001082434703.png)
+    ![](figures/empty-feature-ability.png)
 
 3.  点击**Next**，进入到工程配置阶段，需要根据向导配置工程的基本信息。
     -   **Project Name**：工程的名称，可以自定义。

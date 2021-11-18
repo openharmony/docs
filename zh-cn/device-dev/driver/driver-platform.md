@@ -16,4 +16,6 @@
 
 -   **[MIPI DSI](driver-platform-mipidsi-des.md)**  
 
+-   **[PWM](driver-platform-pwm-des.md)**  
+
 

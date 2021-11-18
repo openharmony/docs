@@ -121,7 +121,7 @@ Before building  **libs**, you must perform the following steps:
 
 After the preceding operations are complete, run the  **hb build -T //domains/iot/link:iot**  command in the root directory of the code and then check whether the target library file is generated in the  **out/hispark\_pegasus/wifiiot\_hispark\_pegasus/libs/**  directory.
 
-![](figure/en-us_image_0000001078563230.png)
+![](figures/device-wlan-sdk-files.png)
 
 Copy the library file to the  **device/hisilicon/hispark\_pegasus/sdk\_liteos/3rd\_sdk/demolink/libs/**  directory and delete the  **.c**  and  **.h**  files from the  **domains/iot/link/libbuild/**  directory.
 

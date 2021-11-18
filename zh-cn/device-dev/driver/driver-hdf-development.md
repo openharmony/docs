@@ -7,10 +7,8 @@
 
 HDF框架以组件化的驱动模型作为核心设计思路，为开发者提供更精细化的驱动管理，让驱动开发和部署更加规范。HDF框架将一类设备驱动放在同一个host里面，开发者也可以将驱动功能分层独立开发和部署，支持一个驱动多个node，HDF驱动模型如下图所示：
 
-**图 1**  HDF驱动模型<a name="fig5487113011526"></a>  
-
-
-![](figure/zh-cn_image_0000001054564784.png)
+**图 1**  HDF驱动模型<a name="fig3580184214210"></a>  
+![](figures/HDF驱动模型.png "HDF驱动模型")
 
 ## 驱动开发步骤<a name="section1969312275533"></a>
 
@@ -230,7 +228,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
 >        DEVICE_PRELOAD_INVALID
 >    } DevicePreload;
 >    ```
->    配置文件中preload 字段配成 0 （DEVICE\_PRELOAD\_ENABLE ），则系统启动过程中默认加载；配成1（DEVICE\_PRELOAD\_ENABLE\_STEP2），当系统支持快启的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE\_PRELOAD\_ENABLE 含义相同；配成2（DEVICE\_PRELOAD\_DISABLE），则系统启动过程中默认不加载，支持后续动态加载，当用户态获取驱动服务（参考[消息机制](driver-hdf-news.md)）时，如果驱动服务不存在时，HDF框架会尝试动态加载该驱动。
+>    配置文件中preload 字段配成 0 （DEVICE\_PRELOAD\_ENABLE ），则系统启动过程中默认加载；配成1（DEVICE\_PRELOAD\_ENABLE\_STEP2），当系统支持快启的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE\_PRELOAD\_ENABLE 含义相同；配成2（DEVICE\_PRELOAD\_DISABLE），则系统启动过程中默认不加载，支持后续动态加载，当用户态获取驱动服务（参考[消息机制](driver-hdf-message-management.md)）时，如果驱动服务不存在时，HDF框架会尝试动态加载该驱动。
 >-   按序加载（需要驱动为默认加载）
 >    配置文件中的priority（取值范围为整数0到200）是用来表示host和驱动的优先级，不同的host内的驱动，host的priority值越小，驱动加载优先级越高；同一个host内驱动的priority值越小，加载优先级越高。
 

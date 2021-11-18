@@ -8,8 +8,6 @@ This document describes how to quickly set up an application development environ
 
 AirQuality displays information about the urban air quality on two pages, the home page and details page. The following GIF shows AirQuality on the DevEco Studio simulator.
 
-**Figure  1**  Display effects of the AirQuality<a name="fig18250512195914"></a>  
-
-
-![](figure/video_2020-07-25_173141.gif)
+**Figure  1**  Display effect of the AirQuality application<a name="fig1760214255613"></a>  
+![](figures/display-effect-of-the-airquality-application.gif "display-effect-of-the-airquality-application")
 

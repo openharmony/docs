@@ -121,7 +121,7 @@ OpenHarmony已规划用于编译业务libs的目录domains/iot/link/libbuild/ �
 
 完成以上3点后，需在代码根目录下执行命令“hb build -T //domains/iot/link:iot”，等待执行完成，检查out/hispark\_pegasus/wifiiot\_hispark\_pegasus/libs/目录下是否生成了目标库文件。
 
-![](figure/zh-cn_image_0000001078563230.png)
+![](figures/device-wlan-sdk-files.png)
 
 将库文件拷贝到device/hisilicon/hispark\_pegasus/sdk\_liteos/3rd\_sdk/demolink/libs/ 目录下，并将domains/iot/link/libbuild/ 目录中的.c和.h文件清除。
 

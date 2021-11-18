@@ -1,8 +1,7 @@
-# SPI<a name="ZH-CN_TOPIC_0000001053057951"></a>
+# SPI<a name="ZH-CN_TOPIC_0000001206171293"></a>
 
 -   [概述](#section193356154511)
-    -   [接口说明](#section232141411476)
-
+-   [接口说明](#section1325964832615)
 -   [使用指导](#section71363452477)
     -   [使用流程](#section32846814820)
     -   [获取SPI设备句柄](#section1927265711481)
@@ -24,12 +23,10 @@
     -   CS – 片选，从设备使能信号，由主设备控制。
 
 
--   一个主设备和两个从设备的连接示意图如[图1](#fig15227181812587)所示，Device A和Device B共享主设备的SCLK、MISO和MOSI三根引脚，Device A的片选CS0连接主设备的CS0，Device B的片选CS1连接主设备的CS1。
+-   一个主设备和两个从设备的连接示意图如[图1](#fig89085710359)所示，Device A和Device B共享主设备的SCLK、MISO和MOSI三根引脚，Device A的片选CS0连接主设备的CS0，Device B的片选CS1连接主设备的CS1。
 
-**图 1**  SPI主从设备连接示意图。<a name="fig15227181812587"></a>  
-
-
-![](figure/zh-cn_image_0000001123742254.png)
+**图 1**  SPI主从设备连接示意图。<a name="fig89085710359"></a>  
+![](figures/SPI主从设备连接示意图.png "SPI主从设备连接示意图")
 
 -   SPI通信通常由主设备发起，通过以下步骤完成一次通信：
 
@@ -54,7 +51,7 @@
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >当前只支持主机模式，不支持从机模式。
 
-### 接口说明<a name="section232141411476"></a>
+## 接口说明<a name="section1325964832615"></a>
 
 **表 1**  SPI驱动API接口功能介绍
 
@@ -119,12 +116,10 @@
 
 ### 使用流程<a name="section32846814820"></a>
 
-使用SPI的一般流程如[图2](#fig23885455594)所示。
+使用SPI的一般流程如[图2](#fig1586912310348)所示。
 
-**图 2**  SPI使用流程图<a name="fig23885455594"></a>  
-
-
-![](figure/zh-cn_image_0000001123703482.png)
+**图 2**  SPI使用流程图<a name="fig1586912310348"></a>  
+![](figures/SPI使用流程图.png "SPI使用流程图")
 
 ### 获取SPI设备句柄<a name="section1927265711481"></a>
 

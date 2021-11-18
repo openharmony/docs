@@ -1,8 +1,7 @@
-# SDIO<a name="ZH-CN_TOPIC_0000001053055057"></a>
+# SDIO<a name="ZH-CN_TOPIC_0000001160653028"></a>
 
 -   [概述](#section1155271783811)
-    -   [接口说明](#section08064247248)
-
+-   [接口说明](#section12601496259)
 -   [使用指导](#section1878939192515)
     -   [使用流程](#section1490685512255)
     -   [打开SDIO控制器](#section10782428132616)
@@ -29,14 +28,12 @@
     -   D0-3信号：4条数据线，其中，DAT1信号线复用为中断线，在1BIT模式下DAT0用来传输数据，在4BIT模式下DAT0-DAT3用来传输数据。
     -   CMD信号：用于HOST发送命令和DEVICE回复响应。
 
-    **图 1**  SDIO的HOST-DEVICE连接示意图<a name="fig1185316527498"></a>  
-    
-
-    ![](figure/zh-cn_image_0000001054280608.png)
+    **图 1**  SDIO的HOST-DEVICE连接示意图<a name="fig1895112631810"></a>  
+    ![](figures/SDIO的HOST-DEVICE连接示意图.png "SDIO的HOST-DEVICE连接示意图")
 
 -   SDIO接口定义了操作SDIO的通用方法集合，包括打开/关闭SDIO控制器、独占/释放HOST、使能/去使能设备、申请/释放中断、读写、获取/设置公共信息等。
 
-### 接口说明<a name="section08064247248"></a>
+## 接口说明<a name="section12601496259"></a>
 
 **表 1**  SDIO驱动API接口功能介绍
 
@@ -165,12 +162,10 @@
 
 ### 使用流程<a name="section1490685512255"></a>
 
-使用SDIO的一般流程如[图2](#fig1343742311264)所示。
+使用SDIO的一般流程如[图2](#fig1969028202613)所示。
 
-**图 2**  SDIO使用流程图<a name="fig1343742311264"></a>  
-
-
-![](figure/zh-cn_image_0000001123540984.png)
+**图 2**  SDIO使用流程图<a name="fig1969028202613"></a>  
+![](figures/SDIO使用流程图.png "SDIO使用流程图")
 
 ### 打开SDIO控制器<a name="section10782428132616"></a>
 

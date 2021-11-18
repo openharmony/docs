@@ -28,7 +28,7 @@ This document describes how to develop a touchscreen driver on the Hi3516D V300 
 
 The touchscreen integrated circuit \(IC\) provided by the Hi3516D V300 development board is GT911, which uses the standard inter-integrated circuit \(I2C\) to communicate with the development board and connects to the main board through the 6-pin flexible flat cable. The following figure shows the distribution of the 6 pins and their connection.
 
-![](figure/绘图1.png)
+![](figures/6-pin-distribution-and-physical-connection.png)
 
 ### Input Driver Model<a name="section53684425430"></a>
 
@@ -44,7 +44,7 @@ For details about the input driver model, see  [Touchscreen Overview](../driver/
 
 ## Setting Up the Environment<a name="section661075474418"></a>
 
-Follow the instructions in  [Environment Setup for Standard System](../quick-start/quickstart-standard.md).
+Follow the instructions in  [Environment Setup for Standard System](../quick-start/quickstart-standard-overview.md).
 
 >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
 >This development example applies to standard, small, and mini OpenHarmony systems. The following sections use the standard system as an example. You can refer to the specific guide for your system to set up the environment.
@@ -335,7 +335,7 @@ The input driver model consists of three parts of drivers. To develop a brand-ne
 
     **touch\_gt911.o**  is the content added in this example.
 
-2.  Build source code and burn images. For details, see the related sections in  [Getting Started for Standard System](../nottoctopics/en-us_topic_0000001135402541.md#section375234715135).
+2.  Build source code and burn images. For details, see the related sections in  [Getting Started for Standard System](../quick-start/quickstart-standard.md).
 
 ## Debugging and Verification<a name="section62577313482"></a>
 
