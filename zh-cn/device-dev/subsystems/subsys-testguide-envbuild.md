@@ -5,7 +5,7 @@
 
 |环境依赖|操作系统|Linux系统扩展组件|python|python插件|NFS Server|HDC|
 |------------|------------|------------|------------|------------|------------|------------|
-|版本型号|Ubuntu18.04及以上|libreadline-dev|3.7.5版本及以上|pyserial 3.3及以上、paramiko2.7.1及以上、setuptools40.8.0及以上、rsa4.0及以上|haneWIN NFS Server 1.2.50及以上或者 NFSSv4及以上|  1.1.0版本及以上  |
+|版本型号|Ubuntu18.04及以上|libreadline-dev|3.7.5版本及以上|pyserial 3.3及以上、paramiko2.7.1及以上、setuptools40.8.0及以上、rsa4.0及以上|haneWIN NFS Server 1.2.50及以上或者 NFS v4及以上|  1.1.0版本及以上  |
 |详细说明|代码编译环境|命令行读取插件|测试框架语言 |pyserial：支持python的串口通信；paramiko：支持python使用SSH协议；setuptools：支持python方便创建和分发python包；rsa：支持python rsa加密   |支持设备通过串口连接| 支持设备通过HDC连接 |
 
 ## 安装流程
@@ -78,6 +78,6 @@
 | 检查项 |操作  |满足环境  |
 | --- | --- | --- |
 | 检查python安装成功 |命令行窗口执行命令：python --version  |版本不小于3.7.5即可 |
-| 检查python扩展插件安装成功 |打开test/developertest目录，执行run.bat或run.sh| 可进入提示符“>>>”界面即可 |
+| 检查python扩展插件安装成功 |打开test/developertest目录，执行start.bat或start.sh| 可进入提示符“>>>”界面即可 |
 |检查NFS Server启动状态（被测设备仅支持串口时检测）  |通过串口登录开发板，执行mount命令挂载NFS  |可正常挂载文件目录即可  |
 |检查HDC安装成功  |命令行窗口执行命令：hdc_std -v |版本不小于1.1.0即可 |
