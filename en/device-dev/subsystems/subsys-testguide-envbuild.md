@@ -78,6 +78,6 @@
 | Check Item|Operation|Requirements|
 | --- | --- | --- |
 | Check whether Python is installed successfully.|Run the **python --version** command.|The Python version is 3.7.5 or later.|
-| Check whether Python plug-ins are successfully installed.|Go to the **test/developertest** directory and run **run.bat** or **run.sh**.| The **>>>** prompt is displayed.|
+| Check whether Python plug-ins are successfully installed.|Go to the **test/developertest** directory and run **start.bat** or **start.sh**.| The **>>>** prompt is displayed.|
 |Check the NFS server status (for the devices that support only serial port output).|Log in to the development board through the serial port and run the **mount** command to mount the NFS.|The file directory can be mounted.|
 |Check whether the HDC tool is successfully installed.|Run the **hdc_std -v** command.|The HDC version is 1.1.0 or later.|
