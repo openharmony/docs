@@ -1,12 +1,12 @@
-# lwip组件适配<a name="ZH-CN_TOPIC_0000001172881086"></a>
+# lwIP组件适配<a name="ZH-CN_TOPIC_0000001172881086"></a>
 
-lwip是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwip做了适配和功能增强，lwip代码分为两部分：
+lwIP是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwIP做了适配和功能增强，lwIP代码分为两部分：
 
-- third_party/lwip目录下是lwip开源代码，里面只做了少量的侵入式修改，为了适配增强功能。
+- third_party/lwip目录下是lwIP开源代码，里面只做了少量的侵入式修改，为了适配增强功能。
 
-- kernel/liteos_m/components/net/lwip-2.1目录下是lwip适配和功能增强代码，里面提供了lwip的默认配置文件。
+- kernel/liteos_m/components/net/lwip-2.1目录下是lwIP适配和功能增强代码，里面提供了lwIP的默认配置文件。
 
-如果需要使用lwip组件，请按如下步骤适配：
+如果需要使用lwIP组件，请按如下步骤适配：
 
 1. 在产品目录下新建一个目录用来存放配置文件，如lwip_adapter。
 
@@ -26,7 +26,7 @@ lwip是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwip做了适�
     include_dirs += "//xxx/lwip_adapter/include"
     ```
 
-5. 在产品的配置文件中设置编译lwip的开关和编译路径，如config.json。
+5. 在产品的配置文件中设置编译lwIP的开关和编译路径，如config.json。
 
     ```
     {
@@ -37,7 +37,7 @@ lwip是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwip做了适�
     },
     ```
 
-6. 其他模块需要引用lwip头文件时，头文件路径应该包含如下两个部分，且顺序不能变。
+6. 其他模块需要引用lwIP头文件时，头文件路径应该包含如下两个部分，且顺序不能变。
 
     ```
     include_dir = [
