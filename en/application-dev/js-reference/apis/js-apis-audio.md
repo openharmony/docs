@@ -247,7 +247,7 @@ Obtains the minimum volume allowed for a stream. This method uses a promise to r
 
 ```
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) =>
-    console.log('Promised returned to indicate that the minimum  volume is obtained.' + value);
+    console.log('Promised returned to indicate that the minimum volume is obtained.' + value);
 )
 ```
 
