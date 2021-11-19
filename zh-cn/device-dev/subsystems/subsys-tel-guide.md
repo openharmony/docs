@@ -606,5 +606,5 @@ ohos_shared_library("ril_vendor") { // Modem厂商库名称
 ### 调测验证<a name="section620mcpsimp"></a>
 
 1.  编译代码。
-2.  查看/out/ohos-arm-release/telephony/ril\_adapter目录是否存在libril\_vendor.z.so，存在证明集成成功。否则检查代码，重新编译验证。
+2.  查看/out/{device_name}/telephony/ril\_adapter目录是否存在libril\_vendor.z.so，存在证明集成成功。否则检查代码，重新编译验证。
 

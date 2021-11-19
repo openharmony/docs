@@ -91,7 +91,7 @@ bash build/prebuilts_download.sh
     =====build Hi3516DV300 successful.
     ```
 
-    编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在out/ohos-arm-release/packages/phone/images/ 目录下。
+    编译所生成的文件都归档在out/{device_name}/目录下，结果镜像输出在out/{device_name}/packages/phone/images/ 目录下。
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >其他模块化编译操作，可参见[编译构建指导](../subsystems/subsys-build-standard-large.md)。

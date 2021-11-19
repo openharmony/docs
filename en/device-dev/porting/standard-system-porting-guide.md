@@ -81,7 +81,7 @@ Run the following command to start the build of your product:
 ./build.sh --product-name MyProduct 
 ```
 
-After the build is complete, you can view the built OpenHarmony image file in  **//out/ohos-arm-release/packages/phone/images**.
+After the build is complete, you can view the built OpenHarmony image file in  **//out/{device_name}/packages/phone/images**.
 
 ## Porting the Kernel<a name="section171mcpsimp"></a>
 

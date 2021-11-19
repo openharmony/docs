@@ -100,7 +100,7 @@ The process to build OpenHarmony is as follows:
 
     **product\_name**  indicates the product supported by the current distribution, for example, Hi3516D V300.
 
-    The image generated after build is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
+    The image generated after build is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 
 -   The build command supports the following options:
 
@@ -232,6 +232,6 @@ The process to build OpenHarmony is as follows:
 
 4.  Obtain the build result.
 
-    Files generated during the build process are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
+    Files generated during the build process are stored in the  **out/hi3516dv300/**  directory, and the generated image is stored in the  **out/hi3516dv300/packages/phone/images/**  directory.
 
 

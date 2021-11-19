@@ -116,7 +116,7 @@ bash build/prebuilts_download.sh
 
     \{product\_name\}为当前版本支持的平台。比如：Hi3516DV300等。
 
-    编译所生成的文件都归档在out/ohos-arm-release/目录下，结果镜像输出在 out/ohos-arm-release/packages/phone/images/ 目录下。
+    编译所生成的文件都归档在out/{device_name}/目录下，结果镜像输出在 out/{device_name}/packages/phone/images/ 目录下。
 
 2.  编译源码完成，请进行镜像烧录，具体请参见[镜像烧录](quickstart-standard-burn.md)。
 

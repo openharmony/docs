@@ -721,7 +721,7 @@ Test cases cannot be built on Windows. You need to run the following command to 
 ```
 ./build.sh --product-name Hi3516DV300 --build-target make_test
 ```
-When the build is complete, the test cases are automatically saved in the **out/ohos-arm-release/packages/phone/images/tests** directory.
+When the build is complete, the test cases are automatically saved in the **out/hi3516dv300/packages/phone/images/tests** directory.
 
 >**Note:** In the command, **Hi3516DV300** is the platform supported by the current version, and **make_test** indicates all test cases. You can set the build options based on requirements:
 > -  --**product-name**: specifies the name of the product to build. It is mandatory.

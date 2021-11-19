@@ -91,7 +91,7 @@ Perform the following operations in the Linux environment:
     =====build Hi3516DV300 successful.
     ```
 
-    Files generated during the build are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
+    Files generated during the build are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
     >For details about module-specific build operations, see  [Building Guidelines](../subsystems/subsys-build-standard-large.md).
