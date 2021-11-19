@@ -48,7 +48,7 @@
  <div class="container">  
    <comp>
      <text class="text-style" slot="second">插入第二个插槽中</text> 
-     <text class="text-style" slot="sfirst">插入第一个插槽中</text>
+     <text class="text-style" slot="first">插入第一个插槽中</text>
    </comp>  
  </div>
 ```

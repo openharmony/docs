@@ -113,6 +113,71 @@
 ## 示例<a name="section81001951259"></a>
 
 ```
-<qrcode value="https://huawei.com"></qrcode>
+<!-- xxx.hml -->
+<div class="container">
+  <qrcode value="{{qr_value}}" type="{{qr_type}}"
+  style="color: {{qr_col}};background-color: {{qr_bcol}};width: {{qr_size}};height: {{qr_size}};margin-bottom: 70px;"></qrcode>
+  <text class="txt">Type</text>
+  <switch showtext="true" checked="true" texton="rect" textoff="circle" onchange="settype"></switch>
+  <text class="txt">Color</text>
+  <select onchange="setcol">
+    <option for="{{col_list}}" value="{{$item}}">{{$item}}</option>
+  </select>
+  <text class="txt">Background Color</text>
+  <select onchange="setbcol">
+    <option for="{{bcol_list}}" value="{{$item}}">{{$item}}</option>
+  </select>
+</div>
 ```
+
+```
+/* xxx.css */
+.container {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.txt {
+  margin: 30px;
+  color: orangered;
+}
+select{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+```
+
+```
+/* index.js */
+export default {
+  data: {
+    qr_type: 'rect',
+    qr_size: '300px',
+    qr_col: '#87ceeb',
+    col_list: ['#87ceeb','#fa8072','#da70d6','#80ff00ff','#00ff00ff'],
+    qr_bcol: '#f0ffff',
+    bcol_list: ['#f0ffff','#ffffe0','#d8bfd8']
+  },
+  settype(e) {
+    if (e.checked) {
+      this.qr_type = 'rect'
+    } else {
+      this.qr_type = 'circle'
+    }
+  },
+  setvalue(e) {
+    this.qr_value = e.newValue
+  },
+  setcol(e) {
+    this.qr_col = e.newValue
+  },
+  setbcol(e) {
+    this.qr_bcol = e.newValue
+  }
+}
+```
+
+![](figures/12.gif)
 

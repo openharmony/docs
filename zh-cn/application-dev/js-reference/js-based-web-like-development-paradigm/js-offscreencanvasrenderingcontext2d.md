@@ -72,139 +72,238 @@ var bitmap = offscreen.transferToImageBitmap();
 ctx.transferFromImageBitmap(bitmap);
 ```
 
-![](figures/zh-cn_image_0000001152773860.png)
+![](figures/c3.png)
 
 ## 方法<a name="section47669296127"></a>
 
 除支持与CanvasRenderingContext2D对象相同的方法外，还支持如下方法：
 
-<a name="td0f869ce272e4d90b1c7df558ad7635e"></a>
-<table><thead align="left"><tr id="rf11e90428c78465b9e3a0c3ec2222a3c"><th class="cellrowborder" valign="top" width="10.81%" id="mcps1.1.4.1.1"><p id="a11b4cb4edcf14b5584841b089cbea895"><a name="a11b4cb4edcf14b5584841b089cbea895"></a><a name="a11b4cb4edcf14b5584841b089cbea895"></a>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="26.19%" id="mcps1.1.4.1.2"><p id="ac56fe081db8a4ddca537c39d9abfcd33"><a name="ac56fe081db8a4ddca537c39d9abfcd33"></a><a name="ac56fe081db8a4ddca537c39d9abfcd33"></a>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="63%" id="mcps1.1.4.1.3"><p id="a05cdd2c741a54fe3a44575a5b2384be3"><a name="a05cdd2c741a54fe3a44575a5b2384be3"></a><a name="a05cdd2c741a54fe3a44575a5b2384be3"></a>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="r960677f8f5e64d7f9b33b8a0ae0c824f"><td class="cellrowborder" valign="top" width="10.81%" headers="mcps1.1.4.1.1 "><p id="p931916913120"><a name="p931916913120"></a><a name="p931916913120"></a>isPointInPath</p>
-<p id="p11907165844810"><a name="p11907165844810"></a><a name="p11907165844810"></a></p>
-</td>
-<td class="cellrowborder" valign="top" width="26.19%" headers="mcps1.1.4.1.2 "><p id="p13193144905014"><a name="p13193144905014"></a><a name="p13193144905014"></a>path?: Path2D, x: number, y: number</p>
-</td>
-<td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p id="p16545402518"><a name="p16545402518"></a><a name="p16545402518"></a>判断指定点是否在路径的区域内。</p>
-<p id="p18921037165115"><a name="p18921037165115"></a><a name="p18921037165115"></a>path：可选对象，指定用来判断的路径。若没有设置，则使用当前路径</p>
-<p id="p10885826185416"><a name="p10885826185416"></a><a name="p10885826185416"></a>x：待判断点的x轴坐标</p>
-<p id="p17751133085419"><a name="p17751133085419"></a><a name="p17751133085419"></a>y：待判断点的y轴坐标</p>
-</td>
-</tr>
-<tr id="row13364759185512"><td class="cellrowborder" valign="top" width="10.81%" headers="mcps1.1.4.1.1 "><p id="p5364145915552"><a name="p5364145915552"></a><a name="p5364145915552"></a>isPointInStroke</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.19%" headers="mcps1.1.4.1.2 "><p id="p162714244571"><a name="p162714244571"></a><a name="p162714244571"></a>path?: Path2D, x: number, y: number</p>
-</td>
-<td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p id="p1336455955512"><a name="p1336455955512"></a><a name="p1336455955512"></a>判断指定点是否在路径的边缘线上。</p>
-<p id="p1362284019185"><a name="p1362284019185"></a><a name="p1362284019185"></a>path：可选对象，指定用来判断的路径。若没有设置，则使用当前路径</p>
-<p id="p1262224011185"><a name="p1262224011185"></a><a name="p1262224011185"></a>x：待判断点的x轴坐标</p>
-<p id="p66220409182"><a name="p66220409182"></a><a name="p66220409182"></a>y：待判断点的y轴坐标</p>
-</td>
-</tr>
-<tr id="row477613917194"><td class="cellrowborder" valign="top" width="10.81%" headers="mcps1.1.4.1.1 "><p id="p107779911916"><a name="p107779911916"></a><a name="p107779911916"></a>resetTransform</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.19%" headers="mcps1.1.4.1.2 "><p id="p107771192192"><a name="p107771192192"></a><a name="p107771192192"></a>无</p>
-</td>
-<td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p id="p277714913197"><a name="p277714913197"></a><a name="p277714913197"></a>将当前变换重置为单位矩阵。</p>
-</td>
-</tr>
-</tbody>
-</table>
+### isPointInPath<a name="section12576152143713"></a>
 
--   isPointInPath示例
+isPointInPath\(path?: Path2D, x: number, y: number\): boolean
 
-![](figures/zh-cn_image_0000001181449919.png)
+判断指定点是否在路径的区域内。
 
-```
-<!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
-  <text>In path:{{textValue}}</text>
-</div>
-<canvas ref="canvasId" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
-```
+-   参数
 
-```
-// xxx.js
-export default {
-  data: {
-    textValue: 0
-  },
-  onShow(){
+    <a name="table3592161817496"></a>
+    <table><thead align="left"><tr id="row19592141864916"><th class="cellrowborder" valign="top" width="21.04%" id="mcps1.1.5.1.1"><p id="p229575610288"><a name="p229575610288"></a><a name="p229575610288"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.260000000000002%" id="mcps1.1.5.1.2"><p id="p929585682819"><a name="p929585682819"></a><a name="p929585682819"></a>参数类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.5.1.3"><p id="p988715163459"><a name="p988715163459"></a><a name="p988715163459"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="56.18%" id="mcps1.1.5.1.4"><p id="p1929645618282"><a name="p1929645618282"></a><a name="p1929645618282"></a>描述</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1559261834915"><td class="cellrowborder" valign="top" width="21.04%" headers="mcps1.1.5.1.1 "><p id="p115927183493"><a name="p115927183493"></a><a name="p115927183493"></a>path</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.260000000000002%" headers="mcps1.1.5.1.2 "><p id="p95921918114914"><a name="p95921918114914"></a><a name="p95921918114914"></a>Path2D</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p1188716161453"><a name="p1188716161453"></a><a name="p1188716161453"></a>否</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="56.18%" headers="mcps1.1.5.1.4 "><p id="p168291512124013"><a name="p168291512124013"></a><a name="p168291512124013"></a>可选对象，指定用来判断的路径。若没有设置，则使用当前路径。</p>
+    </td>
+    </tr>
+    <tr id="row195921118184916"><td class="cellrowborder" valign="top" width="21.04%" headers="mcps1.1.5.1.1 "><p id="p1622015388394"><a name="p1622015388394"></a><a name="p1622015388394"></a>x</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.260000000000002%" headers="mcps1.1.5.1.2 "><p id="p1635295333919"><a name="p1635295333919"></a><a name="p1635295333919"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p17887616174515"><a name="p17887616174515"></a><a name="p17887616174515"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="56.18%" headers="mcps1.1.5.1.4 "><p id="p6592518124911"><a name="p6592518124911"></a><a name="p6592518124911"></a>待判断点的x轴坐标。</p>
+    </td>
+    </tr>
+    <tr id="row449114413392"><td class="cellrowborder" valign="top" width="21.04%" headers="mcps1.1.5.1.1 "><p id="p1349212448390"><a name="p1349212448390"></a><a name="p1349212448390"></a>y</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.260000000000002%" headers="mcps1.1.5.1.2 "><p id="p44927443396"><a name="p44927443396"></a><a name="p44927443396"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p18888101694519"><a name="p18888101694519"></a><a name="p18888101694519"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="56.18%" headers="mcps1.1.5.1.4 "><p id="p79061374406"><a name="p79061374406"></a><a name="p79061374406"></a>待判断点的y轴坐标。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值
+
+    <a name="table0782932202818"></a>
+    <table><thead align="left"><tr id="row3782832172814"><th class="cellrowborder" valign="top" width="19.77%" id="mcps1.1.3.1.1"><p id="p1278314323284"><a name="p1278314323284"></a><a name="p1278314323284"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="80.23%" id="mcps1.1.3.1.2"><p id="p17783153216281"><a name="p17783153216281"></a><a name="p17783153216281"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row278317321285"><td class="cellrowborder" valign="top" width="19.77%" headers="mcps1.1.3.1.1 "><p id="p98384418408"><a name="p98384418408"></a><a name="p98384418408"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="80.23%" headers="mcps1.1.3.1.2 "><p id="p1537310444489"><a name="p1537310444489"></a><a name="p1537310444489"></a>指定点是否在路径的区域内。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    <!-- xxx.hml -->
+    <div style="width: 180px; height: 60px;">
+      <text>In path:{{textValue}}</text>
+    </div>
+    <canvas ref="canvasId" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+    ```
+
+    ```
+    // xxx.js
+    export default {
+      data: {
+        textValue: 0
+      },
+      onShow(){
+        var canvas = this.$refs.canvas.getContext('2d');
+        var offscreen = new OffscreenCanvas(500,500);
+        var offscreenCanvasCtx = offscreen.getContext("2d");
+    
+        offscreenCanvasCtx.rect(10, 10, 100, 100);
+        offscreenCanvasCtx.fill();
+        this.textValue = offscreenCanvasCtx.isPointInPath(30, 70);
+    
+        var bitmap = offscreen.transferToImageBitmap();
+        canvas.transferFromImageBitmap(bitmap);
+      }
+    }
+    ```
+
+    ![](figures/zh-cn_image_0000001224354967.png)
+
+
+### isPointInStroke<a name="section18889155054014"></a>
+
+isPointInStroke\(path?: Path2D, x: number, y: number\): boolean
+
+判断指定点是否在路径的边缘线上。
+
+-   参数
+
+    <a name="table101720539407"></a>
+    <table><thead align="left"><tr id="row1317185315401"><th class="cellrowborder" valign="top" width="21.04%" id="mcps1.1.5.1.1"><p id="p71725384017"><a name="p71725384017"></a><a name="p71725384017"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.260000000000002%" id="mcps1.1.5.1.2"><p id="p171715334016"><a name="p171715334016"></a><a name="p171715334016"></a>参数类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.5.1.3"><p id="p1182841194515"><a name="p1182841194515"></a><a name="p1182841194515"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="56.18%" id="mcps1.1.5.1.4"><p id="p171718539408"><a name="p171718539408"></a><a name="p171718539408"></a>描述</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row121716534405"><td class="cellrowborder" valign="top" width="21.04%" headers="mcps1.1.5.1.1 "><p id="p1717953184014"><a name="p1717953184014"></a><a name="p1717953184014"></a>path</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.260000000000002%" headers="mcps1.1.5.1.2 "><p id="p171817535409"><a name="p171817535409"></a><a name="p171817535409"></a>Path2D</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p8822419452"><a name="p8822419452"></a><a name="p8822419452"></a>否</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="56.18%" headers="mcps1.1.5.1.4 "><p id="p91855319403"><a name="p91855319403"></a><a name="p91855319403"></a>可选对象，指定用来判断的路径。若没有设置，则使用当前路径。</p>
+    </td>
+    </tr>
+    <tr id="row1181653114010"><td class="cellrowborder" valign="top" width="21.04%" headers="mcps1.1.5.1.1 "><p id="p518253104016"><a name="p518253104016"></a><a name="p518253104016"></a>x</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.260000000000002%" headers="mcps1.1.5.1.2 "><p id="p17181653194010"><a name="p17181653194010"></a><a name="p17181653194010"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p48214116452"><a name="p48214116452"></a><a name="p48214116452"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="56.18%" headers="mcps1.1.5.1.4 "><p id="p518185344013"><a name="p518185344013"></a><a name="p518185344013"></a>待判断点的x轴坐标。</p>
+    </td>
+    </tr>
+    <tr id="row118185354016"><td class="cellrowborder" valign="top" width="21.04%" headers="mcps1.1.5.1.1 "><p id="p91895354013"><a name="p91895354013"></a><a name="p91895354013"></a>y</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.260000000000002%" headers="mcps1.1.5.1.2 "><p id="p1318953104011"><a name="p1318953104011"></a><a name="p1318953104011"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p782114119457"><a name="p782114119457"></a><a name="p782114119457"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="56.18%" headers="mcps1.1.5.1.4 "><p id="p2018195312409"><a name="p2018195312409"></a><a name="p2018195312409"></a>待判断点的y轴坐标。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值
+
+    <a name="table3572363195"></a>
+    <table><thead align="left"><tr id="row1572669197"><th class="cellrowborder" valign="top" width="19.77%" id="mcps1.1.3.1.1"><p id="p1857211681912"><a name="p1857211681912"></a><a name="p1857211681912"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="80.23%" id="mcps1.1.3.1.2"><p id="p1257216171910"><a name="p1257216171910"></a><a name="p1257216171910"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row195722063190"><td class="cellrowborder" valign="top" width="19.77%" headers="mcps1.1.3.1.1 "><p id="p8572369196"><a name="p8572369196"></a><a name="p8572369196"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="80.23%" headers="mcps1.1.3.1.2 "><p id="p12572186101919"><a name="p12572186101919"></a><a name="p12572186101919"></a>指定点是否在路径的区域内。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    <!-- xxx.hml -->
+    <div style="width: 180px; height: 60px;">
+      <text>In path:{{textValue}}</text>
+    </div>
+    <canvas ref="canvasId" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+    ```
+
+    ```
+    // xxx.js
+    export default {
+      data: {
+        textValue: 0
+      },
+      onShow(){
+        var canvas = this.$refs.canvas.getContext('2d');
+        var offscreen = new OffscreenCanvas(500,500);
+        var offscreenCanvasCtx = offscreen.getContext("2d");
+    
+        offscreenCanvasCtx.rect(10, 10, 100, 100);
+        offscreenCanvasCtx.stroke();
+        this.textValue = offscreenCanvasCtx.isPointInStroke(50, 10);
+    
+        var bitmap = offscreen.transferToImageBitmap();
+        canvas.transferFromImageBitmap(bitmap);
+      }
+    }
+    ```
+
+    ![](figures/zh-cn_image_0000001178875308.png)
+
+
+### resetTransform<a name="section1098812560426"></a>
+
+resetTransform\(\): void
+
+-   示例
+
+    ```
     var canvas = this.$refs.canvas.getContext('2d');
     var offscreen = new OffscreenCanvas(500,500);
     var offscreenCanvasCtx = offscreen.getContext("2d");
-
-    offscreenCanvasCtx.rect(10, 10, 100, 100);
-    offscreenCanvasCtx.fill();
-    this.textValue = offscreenCanvasCtx.isPointInPath(30, 70);
-
+    
+    offscreenCanvasCtx.transform(1, 0, 1.7, 1, 0, 0);
+    offscreenCanvasCtx.fillStyle = 'gray';
+    offscreenCanvasCtx.fillRect(40, 40, 50, 20);
+    offscreenCanvasCtx.fillRect(40, 90, 50, 20);
+    
+    // Non-skewed rectangles
+    offscreenCanvasCtx.resetTransform();
+    offscreenCanvasCtx.fillStyle = 'red';
+    offscreenCanvasCtx.fillRect(40, 40, 50, 20);
+    offscreenCanvasCtx.fillRect(40, 90, 50, 20);
+    
     var bitmap = offscreen.transferToImageBitmap();
     canvas.transferFromImageBitmap(bitmap);
-  }
-}
-```
+    ```
 
--   isPointInStroke示例
+    ![](figures/zh-cn_image_0000001179035242.png)
 
-![](figures/zh-cn_image_0000001181458721.png)
-
-```
-<!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
-  <text>In path:{{textValue}}</text>
-</div>
-<canvas ref="canvasId" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
-```
-
-```
-// xxx.js
-export default {
-  data: {
-    textValue: 0
-  },
-  onShow(){
-    var canvas = this.$refs.canvas.getContext('2d');
-    var offscreen = new OffscreenCanvas(500,500);
-    var offscreenCanvasCtx = offscreen.getContext("2d");
-
-    offscreenCanvasCtx.rect(10, 10, 100, 100);
-    offscreenCanvasCtx.stroke();
-    this.textValue = offscreenCanvasCtx.isPointInStroke(50, 10);
-
-    var bitmap = offscreen.transferToImageBitmap();
-    canvas.transferFromImageBitmap(bitmap);
-  }
-}
-```
-
--   resetTransform示例
-
-![](figures/zh-cn_image_0000001135171488.png)
-
-```
-var canvas = this.$refs.canvas.getContext('2d');
-var offscreen = new OffscreenCanvas(500,500);
-var offscreenCanvasCtx = offscreen.getContext("2d");
-
-offscreenCanvasCtx.transform(1, 0, 1.7, 1, 0, 0);
-offscreenCanvasCtx.fillStyle = 'gray';
-offscreenCanvasCtx.fillRect(40, 40, 50, 20);
-offscreenCanvasCtx.fillRect(40, 90, 50, 20);
-
-// Non-skewed rectangles
-offscreenCanvasCtx.resetTransform();
-offscreenCanvasCtx.fillStyle = 'red';
-offscreenCanvasCtx.fillRect(40, 40, 50, 20);
-offscreenCanvasCtx.fillRect(40, 90, 50, 20);
-
-var bitmap = offscreen.transferToImageBitmap();
-canvas.transferFromImageBitmap(bitmap);
-```
 

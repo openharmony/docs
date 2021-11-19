@@ -141,7 +141,7 @@ window用于定义与显示窗口相关的配置。对于屏幕适配问题，�
 ```
 {
   "app": {
-    "bundleName": "com.huawei.player",
+    "bundleName": "com.example.player",
     "version": {
         "code": 1,
         "name": "1.0"

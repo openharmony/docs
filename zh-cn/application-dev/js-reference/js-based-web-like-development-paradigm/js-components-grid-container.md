@@ -1,6 +1,6 @@
 # grid-container<a name="ZH-CN_TOPIC_0000001173324617"></a>
 
-栅格布局容器根节点，使用grid-row与gird-col进行栅格布局。
+栅格布局容器根节点，使用grid-row与grid-col进行栅格布局。
 
 ## 权限列表<a name="section11257113618419"></a>
 

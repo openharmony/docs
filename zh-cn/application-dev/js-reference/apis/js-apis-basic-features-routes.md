@@ -194,21 +194,41 @@ back\(Object\): void
 
     ```
     // index页面
-    router.push({
-      uri: 'pages/detail/detail',
-    });
+    export default {    
+      indexPushPage() {        
+        router.push({            
+          uri: 'pages/detail/detail',        
+        });        
+      }
+    }
     
     // detail页面
-    router.push({
-      uri: 'pages/mall/mall',
-    });
+    export default {    
+      detailPushPage() {        
+        router.push({            
+          uri: 'pages/mall/mall',        
+        });    
+      }
+    }
     
     // mall页面通过back，将返回detail页面
-    router.back();
+    export default {    
+      mallBackPage() {        
+        router.back();    
+      }
+    }
     // detail页面通过back，将返回index页面
-    router.back();
+    export default {    
+      defaultBack() {        
+        router.back();    
+      }
+    }
     // 通过back，返回到detail页面
-    router.back({uri:'pages/detail/detail'});
+    export default {    
+      backToDetail() {        
+        router.back({uri:'pages/detail/detail'});    
+      }
+    }
     ```
 
     >![](../../public_sys-resources/icon-note.gif) **说明：** 
@@ -224,8 +244,11 @@ clear\(\): void
 -   示例
 
     ```
-    
-    router.clear();
+    export default {    
+      clearPage() {        
+        router.clear();    
+      }
+    }
     ```
 
 
@@ -255,9 +278,12 @@ getLength\(\): string
 -   示例
 
     ```
-    
-    var size = router.getLength();
-    console.log('pages stack size = ' + size);
+    export default {     
+      getLength() {        
+        var size = router.getLength();        
+        console.log('pages stack size = ' + size);    
+      }
+    }
     ```
 
 
@@ -309,11 +335,14 @@ getState\(\): <[RouterState](#tf9e3eb9ef0aa4d9880f996fe6afa6d1b)\>
 -   示例
 
     ```
-    
-    var page = router.getState();
-    console.log('current index = ' + page.index);
-    console.log('current name = ' + page.name);
-    console.log('current path = ' + page.path);
+    export default {     
+      getState() {        
+        var page = router.getState();
+        console.log('current index = ' + page.index);
+        console.log('current name = ' + page.name);
+        console.log('current path = ' + page.path);
+      }
+    }
     ```
 
 
@@ -378,16 +407,19 @@ enableAlertBeforeBackPage\(Object\): void
 -   示例
 
     ```
-    
-    router.enableAlertBeforeBackPage({
-      message: 'Message Info',
-      success: function() {
-        console.log('success');
-      },
-      fail: function() {
-        console.log('fail');
-      },
-    });
+    export default {    
+      enableAlertBeforeBackPage() {        
+        router.enableAlertBeforeBackPage({            
+          message: 'Message Info',            
+          success: function() {                
+            console.log('success');            
+          },            
+          fail: function() {                
+            console.log('fail');            
+          },        
+        });    
+      }
+    }
     ```
 
 
@@ -443,15 +475,18 @@ disableAlertBeforeBackPage\(Object\): void
 -   示例
 
     ```
-    
-    router.disableAlertBeforeBackPage({
-      success: function() {
-        console.log('success');
-      },
-      fail: function() {
-        console.log('fail');
-      },
-    });
+    export default {    
+      disableAlertBeforeBackPage() {        
+        router.disableAlertBeforeBackPage({            
+          success: function() {                
+            console.log('success');            
+          },            
+          fail: function() {                
+            console.log('fail');            
+          },        
+        });    
+      }
+    }
     ```
 
 

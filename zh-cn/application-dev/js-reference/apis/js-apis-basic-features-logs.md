@@ -171,12 +171,15 @@ error\(message: string\): void
 ## 示例<a name="section738673813104"></a>
 
 ```
-
-var versionCode = 1;
-console.info('Hello World. The current version code is ' + versionCode);
-console.log(`versionCode: ${versionCode}`)
-// 以下写法从API Version 6开始支持
-console.log('versionCode:%d.', versionCode);
+export default {    
+  clickConsole(){        
+    var versionCode = 1;        
+    console.info('Hello World. The current version code is ' + versionCode);        
+    console.log(`versionCode: ${versionCode}`);        
+    // 以下写法从API Version 6开始支持        
+    console.log('versionCode:%d.', versionCode);    
+  }
+}
 ```
 
 在DevEco Studio的底部，切换到“HiLog”窗口。选择当前的设备及进程，日志级别选择Info，搜索内容设置为“Hello World”。此时窗口仅显示符合条件的日志，效果如图所示：

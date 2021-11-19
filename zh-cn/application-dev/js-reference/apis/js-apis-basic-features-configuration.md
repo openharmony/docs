@@ -65,9 +65,12 @@ getLocale\(\): <[LocaleResponse](#table1544853546)\>
 -   示例
 
     ```
-    
-    const localeInfo = configuration.getLocale();
-    console.info(localeInfo.language);
+    export default {    
+      getLocale() {        
+        const localeInfo = configuration.getLocale();        
+        console.info(localeInfo.language);    
+      }
+    }
     ```
 
 

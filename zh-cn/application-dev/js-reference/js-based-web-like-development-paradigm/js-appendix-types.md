@@ -118,7 +118,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="36.44%" headers="mcps1.2.4.1.2 "><p id="p19954173420433"><a name="p19954173420433"></a><a name="p19954173420433"></a>#000000</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.85%" headers="mcps1.2.4.1.3 "><p id="p1782641372612"><a name="p1782641372612"></a><a name="p1782641372612"></a><a name="image1826213162617"></a><a name="image1826213162617"></a><span><img id="image1826213162617" src="figures/000000-3.png"></span></p>
+<td class="cellrowborder" valign="top" width="30.85%" headers="mcps1.2.4.1.3 "><p id="p1782641372612"><a name="p1782641372612"></a><a name="p1782641372612"></a><a name="image1826213162617"></a><a name="image1826213162617"></a><span><img id="image1826213162617" src="figures/000000-5.png"></span></p>
 </td>
 </tr>
 <tr id="row17880250144216"><td class="cellrowborder" valign="top" width="32.71%" headers="mcps1.2.4.1.1 "><p id="p119544349431"><a name="p119544349431"></a><a name="p119544349431"></a>blanchedalmond</p>
@@ -993,7 +993,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="36.44%" headers="mcps1.2.4.1.2 "><p id="p139671234134310"><a name="p139671234134310"></a><a name="p139671234134310"></a>#708090</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.85%" headers="mcps1.2.4.1.3 "><p id="p74881432316"><a name="p74881432316"></a><a name="p74881432316"></a><a name="image7301503270"></a><a name="image7301503270"></a><span><img id="image7301503270" src="figures/slategray-4.png"></span></p>
+<td class="cellrowborder" valign="top" width="30.85%" headers="mcps1.2.4.1.3 "><p id="p74881432316"><a name="p74881432316"></a><a name="p74881432316"></a><a name="image7301503270"></a><a name="image7301503270"></a><span><img id="image7301503270" src="figures/slategray-6.png"></span></p>
 </td>
 </tr>
 <tr id="row138922050154211"><td class="cellrowborder" valign="top" width="32.71%" headers="mcps1.2.4.1.1 "><p id="p796733464316"><a name="p796733464316"></a><a name="p796733464316"></a>snow</p>

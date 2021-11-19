@@ -83,7 +83,21 @@
 <td class="cellrowborder" valign="top" width="51.754824517548236%" headers="mcps1.1.6.1.5 "><p id="a8e6a00e044b44797a3db0ea017c82cd5"><a name="a8e6a00e044b44797a3db0ea017c82cd5"></a><a name="a8e6a00e044b44797a3db0ea017c82cd5"></a>当前组件是否可以获取焦点。 当focusable设置为true时，组件可以响应焦点事件和按键事件。当组件额外设置了按键事件或者点击事件时，框架会设置该属性为true。</p>
 </td>
 </tr>
-<tr id="rc6c4586e5aa8487ba77c1e8df90c121d"><td class="cellrowborder" valign="top" width="19.598040195980403%" headers="mcps1.1.6.1.1 "><p id="a751c9d46a62348ec902c7fdf97468b9d"><a name="a751c9d46a62348ec902c7fdf97468b9d"></a><a name="a751c9d46a62348ec902c7fdf97468b9d"></a>data-*<sup id="sup186963594254"><a name="sup186963594254"></a><a name="sup186963594254"></a>6+</sup></p>
+<tr id="row17245762598"><td class="cellrowborder" valign="top" width="19.598040195980403%" headers="mcps1.1.6.1.1 "><p id="p4643111525911"><a name="p4643111525911"></a><a name="p4643111525911"></a>data</p>
+</td>
+<td class="cellrowborder" valign="top" width="11.178882111788822%" headers="mcps1.1.6.1.2 "><p id="p586671911599"><a name="p586671911599"></a><a name="p586671911599"></a>string</p>
+</td>
+<td class="cellrowborder" valign="top" width="9.899010098990102%" headers="mcps1.1.6.1.3 "><p id="p18866121905913"><a name="p18866121905913"></a><a name="p18866121905913"></a>-</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.56924307569243%" headers="mcps1.1.6.1.4 "><p id="p168661719165920"><a name="p168661719165920"></a><a name="p168661719165920"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="51.754824517548236%" headers="mcps1.1.6.1.5 "><p id="p84627247592"><a name="p84627247592"></a><a name="p84627247592"></a>给当前组件设置data属性，进行相应的数据存储和读取。JS文件中：</p>
+<a name="ul711919169212"></a><a name="ul711919169212"></a><ul id="ul711919169212"><li>在事件回调中使用 e.target.attr.data 读取数据，e为事件回调函数入参。</li><li>使用$element或者$refs获取DOM元素后，通过attr.data 进行访问。</li></ul>
+<div class="note" id="note259213045911"><a name="note259213045911"></a><a name="note259213045911"></a><span class="notetitle"> 说明： </span><div class="notebody"><p id="p359213019595"><a name="p359213019595"></a><a name="p359213019595"></a>从API Version 6 开始，建议使用data-*。</p>
+</div></div>
+</td>
+</tr>
+<tr id="rc6c4586e5aa8487ba77c1e8df90c121d"><td class="cellrowborder" valign="top" width="19.598040195980403%" headers="mcps1.1.6.1.1 "><p id="p2077661832920"><a name="p2077661832920"></a><a name="p2077661832920"></a>data-*<sup id="sup186963594254"><a name="sup186963594254"></a><a name="sup186963594254"></a>6+</sup></p>
 </td>
 <td class="cellrowborder" valign="top" width="11.178882111788822%" headers="mcps1.1.6.1.2 "><p id="a8e6d1bb4d0bc423fb8466ee3acd1882f"><a name="a8e6d1bb4d0bc423fb8466ee3acd1882f"></a><a name="a8e6d1bb4d0bc423fb8466ee3acd1882f"></a>string</p>
 </td>

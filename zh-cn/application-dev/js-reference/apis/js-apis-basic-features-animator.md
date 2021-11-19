@@ -439,7 +439,6 @@ createAnimator\(options\[...\]\): void
 
     ```
     // js
-    import Animator from "@ohos.animator";
     export default {
       data : {
         divWidth: 200,
@@ -455,7 +454,7 @@ createAnimator\(options\[...\]\): void
           begin: 200.0,
           end: 400.0
         };
-        this.animator = Animator.createAnimator(options);
+        this.animator = animator.createAnimator(options);
       },
       Show() {
         var options1 = {

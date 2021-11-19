@@ -513,7 +513,7 @@ ctx.fillRect(30, 30, 100, 100);
 
 ```
 var img = new Image();
-img.src = 'common/image/huawei.jpg';
+img.src = 'common/image/example.jpg';
 img.onload = function() {
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(img, 0, 0, 400, 200);
