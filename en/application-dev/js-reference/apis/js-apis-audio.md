@@ -103,7 +103,7 @@ Sets the volume for a stream. This method uses an asynchronous callback to retur
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | volume       | number              | Yes        | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.                                                       |
 | callback       | AsyncCallback<void\>              | Yes        | Callback used to return the execution result.                                                       |
 
@@ -131,7 +131,7 @@ Sets the volume for a stream. This method uses a promise to return the execution
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | volume       | number              | Yes        | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.                                                       |
 
 **Return values**
@@ -156,7 +156,7 @@ Obtains the volume of a stream. This method uses an asynchronous callback to ret
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | callback       | AsyncCallback<number\>              | Yes        | Callback used to return the volume.                                                       |
 
 **Return values**
@@ -183,7 +183,7 @@ Obtains the volume of a stream. This method uses a promise to return the query r
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 
 **Return values**
 
@@ -207,7 +207,7 @@ Obtains the minimum volume allowed for a stream. This method uses an asynchronou
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | callback       | AsyncCallback<number\>              | Yes        | Callback used to return the minimum volume.                                                       |
 
 **Return values**
@@ -234,7 +234,7 @@ Obtains the minimum volume allowed for a stream. This method uses a promise to r
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 
 **Return values**
 
@@ -259,7 +259,7 @@ Obtains the maximum volume allowed for a stream. This method uses an asynchronou
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | callback       | AsyncCallback<number\>              | Yes        | Callback used to return the maximum volume.                                                       |
 
 **Return values**
@@ -286,7 +286,7 @@ Obtains the maximum volume allowed for a stream. This method uses a promise to r
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 
 
 **Return values**
@@ -311,7 +311,7 @@ Mutes a stream. This method uses an asynchronous callback to return the executio
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | mute       | boolean              | Yes        | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.                                                       |
 | callback       | AsyncCallback<void\>              | Yes        | Callback used to return the execution result.                                                       |
 
@@ -339,7 +339,7 @@ Mutes a stream. This method uses a promise to return the execution result.
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | mute       | boolean              | Yes        | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.                                                       |
 
 **Return values**
@@ -364,7 +364,7 @@ Checks whether a stream is muted. This method uses an asynchronous callback to r
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | callback       | AsyncCallback<boolean\>              | Yes        | Callback used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite.                                                       |
 
 **Return values**
@@ -391,7 +391,7 @@ Checks whether a stream is muted. This method uses a promise to return the execu
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 
 
 **Return values**
@@ -416,7 +416,7 @@ Checks whether a stream is active. This method uses an asynchronous callback to 
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 | callback       | AsyncCallback<boolean\>              | Yes        | Callback used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite.                                                       |
 
 **Return values**
@@ -443,7 +443,7 @@ Checks whether a stream is active. This method uses a promise to return the quer
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| volumeType       | <a href="#section92261857172218">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
+| volumeType       | <a href="#audiovolumetype">AudioVolumeType</a>             | Yes        | Audio stream type.                                                       |
 
 **Return values**
 
@@ -468,7 +468,7 @@ Sets the ringer mode. This method uses an asynchronous callback to return the ex
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| mode       | <a href="#section14948916131018">AudioRingMode</a>             | Yes        | Ringer mode.                                                       |
+| mode       | <a href="#audioringmode">AudioRingMode</a>             | Yes        | Ringer mode.                                                       |
 | callback       | AsyncCallback<void\>              | Yes        | Callback used to return the execution result.                                                       |
 
 **Return values**
@@ -495,7 +495,7 @@ Sets the ringer mode. This method uses a promise to return the execution result.
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| mode       | <a href="#section14948916131018">AudioRingMode</a>             | Yes        | Ringer mode.                                                       |
+| mode       | <a href="#audioringmode">AudioRingMode</a>             | Yes        | Ringer mode.                                                       |
 
 
 **Return values**
@@ -520,7 +520,7 @@ Obtains the ringer mode. This method uses an asynchronous callback to return the
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| callback       | AsyncCallback&lt;<a href="#section14948916131018">AudioRingMode</a>&gt;              | Yes        | Callback used to return the ringer mode.                                                       |
+| callback       | AsyncCallback&lt;<a href="#audioringmode">AudioRingMode</a>&gt;              | Yes        | Callback used to return the ringer mode.                                                       |
 
 **Return values**
 
@@ -550,7 +550,7 @@ None
 
 | Name          | Description                                   | 
 | ------------- | -------------------------------------------------------- |
-| Promise&lt;<a href="#section14948916131018">AudioRingMode</a>&gt;       | Promise used to return the ringer mode.                                                       |
+| Promise&lt;<a href="#audioringmode">AudioRingMode</a>&gt;       | Promise used to return the ringer mode.                                                       |
 
 **Example**
 
@@ -672,8 +672,8 @@ Obtains the audio devices with a specific flag. This method uses an asynchronous
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| deviceFlag       | <a href="#section11285183164210">DeviceFlag</a>              | Yes        | Audio device flag.                                                       |
-| callback       | AsyncCallback&lt;<a href="#section5181155710523">AudioDeviceDescriptors</a>&gt;              | Yes        | Callback used to return the device list.                                                       |
+| deviceFlag       | <a href="#deviceflag">DeviceFlag</a>              | Yes        | Audio device flag.                                                       |
+| callback       | AsyncCallback&lt;<a href="#audiodevicedescriptors">AudioDeviceDescriptors</a>&gt;              | Yes        | Callback used to return the device list.                                                       |
 
 **Return values**
 
@@ -699,13 +699,13 @@ Obtains the audio devices with a specific flag. This method uses a promise to re
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| deviceFlag       | <a href="#section11285183164210">DeviceFlag</a>              | Yes        | Audio device flag.                                                       |
+| deviceFlag       | <a href="#deviceflag">DeviceFlag</a>              | Yes        | Audio device flag.                                                       |
 
 **Return values**
 
 | Name          | Description                                   | 
 | ------------- | -------------------------------------------------------- |
-| Promise&lt;<a href="#section5181155710523">AudioDeviceDescriptors</a>&gt;      | Promise used to return the device list.                                                       |
+| Promise&lt;<a href="#audiodevicedescriptors">AudioDeviceDescriptors</a>&gt;      | Promise used to return the device list.                                                       |
 
 **Example**
 
@@ -723,7 +723,7 @@ Sets a device to the active state. This method uses an asynchronous callback to 
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| deviceType       | <a href="#section11727420122710">ActiveDeviceType</a>              | Yes        | Audio device type.                                                       |
+| deviceType       | <a href="#activedevicetype">ActiveDeviceType</a>              | Yes        | Audio device type.                                                       |
 | active       | boolean              | Yes        | Active status to set. The value **true** means to set the device to the active status, and **false** means the opposite.                                                      |
 | callback       | AsyncCallback<void\>              | Yes        | Callback used to return the execution result.                                                       |
 
@@ -751,7 +751,7 @@ Sets a device to the active state. This method uses a promise to return the exec
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| deviceType       | <a href="#section11727420122710">ActiveDeviceType</a>              | Yes        | Audio device type.                                                       |
+| deviceType       | <a href="#activedevicetype">ActiveDeviceType</a>              | Yes        | Audio device type.                                                       |
 | active       | boolean              | Yes        | Active status to set. The value **true** means to set the device to the active status, and **false** means the opposite.                                                      |
 
 **Return values**
@@ -776,7 +776,7 @@ Checks whether a device is active. This method uses an asynchronous callback to 
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| deviceType       | <a href="#section11727420122710">ActiveDeviceType</a>              | Yes        | Audio device type.                                                       |
+| deviceType       | <a href="#activedevicetype">ActiveDeviceType</a>              | Yes        | Audio device type.                                                       |
 | callback       | AsyncCallback<boolean\>              | Yes        | Callback used to return the active status of the device.                                                       |
 
 **Return values**
@@ -803,7 +803,7 @@ Checks whether a device is active. This method uses a promise to return the quer
 
 | Name          | Type | Mandatory            | Description                                   | 
 | ------------- | ------------- | ---------------|------------------------------------------------------ |
-| deviceType       | <a href="#section11727420122710">ActiveDeviceType</a>              | Yes        | Audio device type.                                                       |
+| deviceType       | <a href="#activedevicetype">ActiveDeviceType</a>              | Yes        | Audio device type.                                                       |
 
 
 **Return values**
@@ -927,8 +927,8 @@ Describes an audio device.
 
 | Name          | Type | Readable            | Writable                                   | Description                                   |
 | ------------- | ------------- | ---------------|--------------------------------|------------------------ |
-| deviceRole       | <a href="#section380038142619">DeviceRole</a>              | Yes        | No                                                   | Audio device role.  | 
-| deviceType       | <a href="#section11727420122710">DeviceType</a>              | Yes        | No                                                   | Audio device type.  | 
+| deviceRole       | <a href="#devicerole">DeviceRole</a>              | Yes        | No                                                   | Audio device role.  | 
+| deviceType       | <a href="#devicetype">DeviceType</a>              | Yes        | No                                                   | Audio device type.  | 
 
 ## AudioDeviceDescriptors<a name="audiodevicedescriptors"></a>
 
