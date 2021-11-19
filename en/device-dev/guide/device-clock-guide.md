@@ -274,11 +274,7 @@ Before you install the app and run it on the development board, install the DevE
 2.  Open the  **cmd**  window, and run the following commands to push the HAP file to the device directory, and install it:
 
     ```
-    hdc smode
-    hdc target mount
-    hdc file send clock.hap /data/clock.hap
-    hdc shell chmod 666 /data/clock.hap
-    hdc shell bm install -p /data/clock.hap
+    hdc install clock.hap
     ```
 
 3.  Run the following command to start the app.  **ohos.samples.clock**  indicates the app package name, and  **MainAbility**  indicates the ability started by the app.

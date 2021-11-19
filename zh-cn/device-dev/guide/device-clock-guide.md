@@ -272,11 +272,7 @@
 2.  启动cmd命令窗口，执行以下命令，推送hap应用包到设备目录下并安装。
 
     ```
-    hdc smode
-    hdc target mount
-    hdc file send clock.hap /data/clock.hap
-    hdc shell chmod 666 /data/clock.hap
-    hdc shell bm install -p /data/clock.hap
+    hdc install clock.hap
     ```
 
 3.  启动应用。执行以下命令，其中ohos.samples.clock为应用包名，MainAbility为应用启动的Ability。
