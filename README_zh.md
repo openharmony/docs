@@ -6,6 +6,8 @@
 
 ## 文档目录结构
 
+[访问官网](https://www.openharmony.cn/)
+
 [中文文档](zh-cn/readme.md)
 
 [English Documentation](en/readme.md)

@@ -360,6 +360,8 @@ OpenHarmony归档组织地址：[https://gitee.com/openharmony-retired](https://
 
 ## 开发者文档<a name="section21031470109"></a>
 
+[访问官网](https://www.openharmony.cn/)
+
 简体中文：[OpenHarmony开发者文档](https://gitee.com/openharmony/docs/tree/master/zh-cn)
 
 [English Version](https://gitee.com/openharmony/docs/tree/master/en)
