@@ -388,7 +388,7 @@
 </tbody>
 </table>
 
-**表 6**  DragEvent对象属性列表\(继承BaseEvent\)<sup>7+</sup>\(Rich\)
+**表 6**  DragEvent对象属性列表\(继承BaseEvent\)<sup>7+</sup>
 
 <a name="table95551461358"></a>
 <table><thead align="left"><tr id="row0556746250"><th class="cellrowborder" valign="top" width="17%" id="mcps1.2.4.1.1"><p id="p1555617466516"><a name="p1555617466516"></a><a name="p1555617466516"></a>属性</p>

@@ -62,9 +62,12 @@ getInfo\(\): <[AppResponse](#t3e93239d9b134b80957bcdd4acb05291)\>
 -   示例
 
     ```
-    
-    var info = app.getInfo();
-    console.log(JSON.stringify(info));
+    export default {    
+      getInfo(){        
+        var info = app.getInfo();        
+          console.log(JSON.stringify(info));    
+      } 
+    }
     ```
 
 
@@ -77,8 +80,10 @@ terminate\(\): void
 -   示例
 
     ```
-    
-    app.terminate();
+    export default {    
+      terminate(){        
+        app.terminate();    
+      }}
     ```
 
 

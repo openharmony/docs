@@ -393,14 +393,14 @@
 // xxx.js 
 export default {
   data: {
-    progress: 5,
+    count: 5,
     downloadText: "Download"
   },
   progress(e) {
-    this.progress += 10;
-    this.downloadText = this.progress + "%";
-    this.$element('download-btn').setProgress({ progress: this.progress });
-    if (this.progress >= 100) {
+    this.count+= 10;
+    this.downloadText = this.count+ "%";
+    this.$element('download-btn').setProgress({ progress: this.count});
+    if (this.count>= 100) {
       this.downloadText = "Done";
     }
   }

@@ -193,10 +193,10 @@
 <!-- xxx.hml -->
 <div class="container">
   <badge class="badge" config="{{badgeconfig}}" visible="true" count="100" maxcount="99">
-    <text class="text1">huawei</text>
+    <text class="text1">example</text>
   </badge>
   <badge class="badge" visible="true" count="0">
-    <text class="text2">huawei</text>
+    <text class="text2">example</text>
   </badge>
 </div>
 ```
@@ -234,5 +234,5 @@ export default {
 }
 ```
 
-![](figures/zh-cn_image_0000001150368628.png)
+![](figures/捕获.png)
 

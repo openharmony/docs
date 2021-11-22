@@ -100,10 +100,20 @@
 
 ```
 <!-- xxx.hml-->
-<div>
-  <piece if="{{first}}" content="Huawei"></piece>
-  <piece if="{{second}}" content="Huawei" closable="true" onclose="closeSecond"></piece>
+<div class="container" >
+  <piece if="{{first}}" content="example"></piece>
+  <piece if="{{second}}" content="example" closable="true" onclose="closeSecond"></piece>
 </div>
+```
+
+```
+/* xxx.css */
+.container {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
 ```
 
 ```
@@ -119,5 +129,5 @@ export default {
 }
 ```
 
-![](figures/SVID_20210301_193525_1.gif)
+![](figures/11-1.gif)
 

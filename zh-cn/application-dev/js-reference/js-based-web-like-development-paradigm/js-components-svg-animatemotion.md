@@ -90,5 +90,5 @@
 </div>
 ```
 
-![](figures/2-2.gif)
+![](figures/2-4.gif)
 

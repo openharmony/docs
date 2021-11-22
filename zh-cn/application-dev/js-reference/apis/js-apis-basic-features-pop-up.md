@@ -66,11 +66,14 @@ showToast\(Object\): void
 -   示例
 
     ```
-    
-    prompt.showToast({
-      message: 'Message Info',
-      duration: 2000,
-    });
+    export default {    
+      showToast() {        
+        prompt.showToast({            
+          message: 'Message Info',            
+          duration: 2000,        
+        });    
+      }
+    }
     ```
 
 
@@ -174,23 +177,26 @@ showDialog\(\): void
 -   示例
 
     ```
-    
-    prompt.showDialog({
-      title: 'Title Info',
-      message: 'Message Info',
-      buttons: [
-        {
-          text: 'button',
-          color: '#666666',
-        },
-      ],
-      success: function(data) {
-        console.log('dialog success callback，click button : ' + data.index);
-      },
-      cancel: function() {
-        console.log('dialog cancel callback');
-      },
-    });
+    export default {    
+      showDialog() {       
+        prompt.showDialog({           
+          title: 'Title Info',            
+          message: 'Message Info',           
+          buttons: [                
+            {                    
+               text: 'button',                   
+               color: '#666666',                
+             },            
+           ],            
+           success: function(data) {                
+             console.log('dialog success callback，click button : ' + data.index);            
+           },            
+           cancel: function() {                
+             console.log('dialog cancel callback');            
+           },
+         });    
+      }
+    }
     ```
 
 
@@ -285,26 +291,29 @@ showActionMenu\(Object\): void
 -   示例
 
     ```
-    
-    prompt.showActionMenu({
-      title: 'Title Info',
-      buttons: [
-        {
-          text: 'item1',
-          color: '#666666',
-        },
-        {
-          text: 'item2',
-          color: '#000000',
-        },
-      ],
-      success: function(data) {
-        console.log('dialog success callback，click button : ' + data.tapIndex);
-      },
-      fail: function(data) {
-        console.log('dialog fail callback' + data.errMsg);
-      },
-    });
+    export default {    
+      showActionMenu() {        
+        prompt.showActionMenu({            
+          title: 'Title Info',            
+          buttons: [                
+            {                    
+              text: 'item1',                    
+              color: '#666666',                
+            },                
+            {                    
+               text: 'item2',                    
+               color: '#000000',                
+            },            
+          ],            
+          success: function(data) {                
+            console.log('dialog success callback，click button : ' + data.tapIndex);            
+          },            
+          fail: function(data) {                
+            console.log('dialog fail callback' + data.errMsg);            
+          },       
+        });    
+      }
+    }
     ```
 
 

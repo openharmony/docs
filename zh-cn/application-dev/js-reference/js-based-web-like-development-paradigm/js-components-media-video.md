@@ -205,31 +205,31 @@
 <a name="t0b0d71e0664f479d9fbcfe2cf45b34a0"></a>
 <table><thead align="left"><tr id="r80520812e64447b7a841590ba3d1ecf9"><th class="cellrowborder" valign="top" width="28.000000000000004%" id="mcps1.1.4.1.1"><p id="ab440f3031e7242d1a1ee00ba387b151f"><a name="ab440f3031e7242d1a1ee00ba387b151f"></a><a name="ab440f3031e7242d1a1ee00ba387b151f"></a>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="42%" id="mcps1.1.4.1.2"><p id="a1e28b7e4cdc84e9eacc51b8ce51590df"><a name="a1e28b7e4cdc84e9eacc51b8ce51590df"></a><a name="a1e28b7e4cdc84e9eacc51b8ce51590df"></a>参数</p>
+<th class="cellrowborder" valign="top" width="29.82%" id="mcps1.1.4.1.2"><p id="a1e28b7e4cdc84e9eacc51b8ce51590df"><a name="a1e28b7e4cdc84e9eacc51b8ce51590df"></a><a name="a1e28b7e4cdc84e9eacc51b8ce51590df"></a>参数</p>
 </th>
-<th class="cellrowborder" valign="top" width="30%" id="mcps1.1.4.1.3"><p id="ad91f1de026e24e60b0fe5078f4226f65"><a name="ad91f1de026e24e60b0fe5078f4226f65"></a><a name="ad91f1de026e24e60b0fe5078f4226f65"></a>描述</p>
+<th class="cellrowborder" valign="top" width="42.18%" id="mcps1.1.4.1.3"><p id="ad91f1de026e24e60b0fe5078f4226f65"><a name="ad91f1de026e24e60b0fe5078f4226f65"></a><a name="ad91f1de026e24e60b0fe5078f4226f65"></a>描述</p>
 </th>
 </tr>
 </thead>
 <tbody><tr id="rab3c226807734a8d874bf83c939d52ad"><td class="cellrowborder" valign="top" width="28.000000000000004%" headers="mcps1.1.4.1.1 "><p id="ac317a80879064915a1a09cef7e3070d2"><a name="ac317a80879064915a1a09cef7e3070d2"></a><a name="ac317a80879064915a1a09cef7e3070d2"></a>start</p>
 </td>
-<td class="cellrowborder" valign="top" width="42%" headers="mcps1.1.4.1.2 "><p id="a1589994065b74673b39ff67b72e3ec82"><a name="a1589994065b74673b39ff67b72e3ec82"></a><a name="a1589994065b74673b39ff67b72e3ec82"></a>-</p>
+<td class="cellrowborder" valign="top" width="29.82%" headers="mcps1.1.4.1.2 "><p id="a1589994065b74673b39ff67b72e3ec82"><a name="a1589994065b74673b39ff67b72e3ec82"></a><a name="a1589994065b74673b39ff67b72e3ec82"></a>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="30%" headers="mcps1.1.4.1.3 "><p id="ad610eacf0ae748a0bd0611c6bd10d49d"><a name="ad610eacf0ae748a0bd0611c6bd10d49d"></a><a name="ad610eacf0ae748a0bd0611c6bd10d49d"></a>请求播放视频。</p>
+<td class="cellrowborder" valign="top" width="42.18%" headers="mcps1.1.4.1.3 "><p id="ad610eacf0ae748a0bd0611c6bd10d49d"><a name="ad610eacf0ae748a0bd0611c6bd10d49d"></a><a name="ad610eacf0ae748a0bd0611c6bd10d49d"></a>请求播放视频。</p>
 </td>
 </tr>
 <tr id="r74d47c5360ae4f87936bde197795b0e5"><td class="cellrowborder" valign="top" width="28.000000000000004%" headers="mcps1.1.4.1.1 "><p id="a5488606f848644c1b250b35137b770f9"><a name="a5488606f848644c1b250b35137b770f9"></a><a name="a5488606f848644c1b250b35137b770f9"></a>pause</p>
 </td>
-<td class="cellrowborder" valign="top" width="42%" headers="mcps1.1.4.1.2 "><p id="a715471504ba24456b9c69a09898e8025"><a name="a715471504ba24456b9c69a09898e8025"></a><a name="a715471504ba24456b9c69a09898e8025"></a>-</p>
+<td class="cellrowborder" valign="top" width="29.82%" headers="mcps1.1.4.1.2 "><p id="a715471504ba24456b9c69a09898e8025"><a name="a715471504ba24456b9c69a09898e8025"></a><a name="a715471504ba24456b9c69a09898e8025"></a>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="30%" headers="mcps1.1.4.1.3 "><p id="a4d7fc26ada3c4c9b86818e40259494e6"><a name="a4d7fc26ada3c4c9b86818e40259494e6"></a><a name="a4d7fc26ada3c4c9b86818e40259494e6"></a>请求暂停播放视频。</p>
+<td class="cellrowborder" valign="top" width="42.18%" headers="mcps1.1.4.1.3 "><p id="a4d7fc26ada3c4c9b86818e40259494e6"><a name="a4d7fc26ada3c4c9b86818e40259494e6"></a><a name="a4d7fc26ada3c4c9b86818e40259494e6"></a>请求暂停播放视频。</p>
 </td>
 </tr>
 <tr id="rc1629488abde4974938cc5c17937dbc6"><td class="cellrowborder" valign="top" width="28.000000000000004%" headers="mcps1.1.4.1.1 "><p id="a74f637bafd5348bb96414961031ca01d"><a name="a74f637bafd5348bb96414961031ca01d"></a><a name="a74f637bafd5348bb96414961031ca01d"></a>setCurrentTime</p>
 </td>
-<td class="cellrowborder" valign="top" width="42%" headers="mcps1.1.4.1.2 "><p id="a65bc7bf0576a4e47bff523bd15ca560c"><a name="a65bc7bf0576a4e47bff523bd15ca560c"></a><a name="a65bc7bf0576a4e47bff523bd15ca560c"></a>{ currenttime: value }</p>
+<td class="cellrowborder" valign="top" width="29.82%" headers="mcps1.1.4.1.2 "><p id="a65bc7bf0576a4e47bff523bd15ca560c"><a name="a65bc7bf0576a4e47bff523bd15ca560c"></a><a name="a65bc7bf0576a4e47bff523bd15ca560c"></a>{ currenttime: value }</p>
 </td>
-<td class="cellrowborder" valign="top" width="30%" headers="mcps1.1.4.1.3 "><p id="a421ac9c67d5444338709bb7be34d06ec"><a name="a421ac9c67d5444338709bb7be34d06ec"></a><a name="a421ac9c67d5444338709bb7be34d06ec"></a>指定视频播放的进度位置，单位为s。</p>
+<td class="cellrowborder" valign="top" width="42.18%" headers="mcps1.1.4.1.3 "><p id="a421ac9c67d5444338709bb7be34d06ec"><a name="a421ac9c67d5444338709bb7be34d06ec"></a><a name="a421ac9c67d5444338709bb7be34d06ec"></a>指定视频播放的进度位置，单位为s。</p>
 </td>
 </tr>
 </tbody>

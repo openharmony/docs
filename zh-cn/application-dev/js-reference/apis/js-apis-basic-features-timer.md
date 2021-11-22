@@ -60,15 +60,15 @@ setTimeout\(handler\[,delay\[,…args\]\]\): number
 -   返回值
 
     <a name="table1430416594311"></a>
-    <table><thead align="left"><tr id="row230485973113"><th class="cellrowborder" valign="top" width="12.18%" id="mcps1.1.3.1.1"><p id="p430405913312"><a name="p430405913312"></a><a name="p430405913312"></a>类型</p>
+    <table><thead align="left"><tr id="row230485973113"><th class="cellrowborder" valign="top" width="15.97%" id="mcps1.1.3.1.1"><p id="p430405913312"><a name="p430405913312"></a><a name="p430405913312"></a>类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="87.82%" id="mcps1.1.3.1.2"><p id="p830413599312"><a name="p830413599312"></a><a name="p830413599312"></a>说明</p>
+    <th class="cellrowborder" valign="top" width="84.03%" id="mcps1.1.3.1.2"><p id="p830413599312"><a name="p830413599312"></a><a name="p830413599312"></a>说明</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row130435914317"><td class="cellrowborder" valign="top" width="12.18%" headers="mcps1.1.3.1.1 "><p id="p4305759143119"><a name="p4305759143119"></a><a name="p4305759143119"></a>number</p>
+    <tbody><tr id="row130435914317"><td class="cellrowborder" valign="top" width="15.97%" headers="mcps1.1.3.1.1 "><p id="p4305759143119"><a name="p4305759143119"></a><a name="p4305759143119"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="87.82%" headers="mcps1.1.3.1.2 "><p id="p130555923110"><a name="p130555923110"></a><a name="p130555923110"></a>timeout定时器的ID。</p>
+    <td class="cellrowborder" valign="top" width="84.03%" headers="mcps1.1.3.1.2 "><p id="p130555923110"><a name="p130555923110"></a><a name="p130555923110"></a>timeout定时器的ID。</p>
     </td>
     </tr>
     </tbody>
@@ -77,10 +77,13 @@ setTimeout\(handler\[,delay\[,…args\]\]\): number
 -   示例
 
     ```
-    
-    var timeoutID = setTimeout(function() {
-      console.log('delay 1s');
-    }, 1000);
+    export default {    
+      setTimeOut() {        
+        var timeoutID = setTimeout(function() {            
+          console.log('delay 1s');
+        }, 1000);    
+      }
+    }
     ```
 
 
@@ -118,12 +121,14 @@ clearTimeout\(timeoutID: number\): void
 -   示例
 
     ```
-    
-    var timeoutID = setTimeout(function() {
-      console.log('do after 1s delay.');
-    }, 1000);
-    
-    clearTimeout(timeoutID);
+    export default {    
+      clearTimeOut() {        
+        var timeoutID = setTimeout(function() {            
+          console.log('do after 1s delay.');        
+        }, 1000);        
+        clearTimeout(timeoutID);    
+      }
+    }
     ```
 
 
@@ -196,10 +201,13 @@ setInterval\(handler\[, delay\[, ...args\]\]\): number
 -   示例
 
     ```
-    
-    var intervalID = setInterval(function() {
-      console.log('do very 1s.');
-    }, 1000);
+    export default {    
+      setInterval() {        
+        var intervalID = setInterval(function() {            
+          console.log('do very 1s.');        
+        }, 1000);    
+      }
+    }
     ```
 
 
@@ -237,12 +245,14 @@ clearInterval\(intervalID: number\): void
 -   示例
 
     ```
-    
-    var intervalID = setInterval(function() {
-      console.log('do very 1s.');
-    }, 1000);
-    
-    clearInterval(intervalID);
+    export default {    
+      clearInterval() {        
+        var intervalID = setInterval(function() {
+          console.log('do very 1s.');
+        }, 1000);
+        clearInterval(intervalID);
+      }
+    }
     ```
 
 

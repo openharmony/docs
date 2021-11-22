@@ -80,7 +80,7 @@
 ```
 var ctx = this.$element('drawImage').getContext('2d');
 var img = new Image();
-img.src = 'common/images/huawei.jpg';
+img.src = 'common/images/example.jpg';
 img.onload = function() {
   console.log('Image load success');
   ctx.drawImage(img, 0, 0, 360, 250);
@@ -90,5 +90,5 @@ img.onerror = function() {
 };
 ```
 
-![](figures/zh-cn_image_0000001198530395.png)
+![](figures/1-2.png)
 

@@ -231,11 +231,11 @@
 </th>
 <th class="cellrowborder" valign="top" width="12.91%" id="mcps1.2.6.1.2"><p id="p2083515012555"><a name="p2083515012555"></a><a name="p2083515012555"></a>类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="8.870000000000001%" id="mcps1.2.6.1.3"><p id="p1283545016551"><a name="p1283545016551"></a><a name="p1283545016551"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="11.75%" id="mcps1.2.6.1.3"><p id="p1283545016551"><a name="p1283545016551"></a><a name="p1283545016551"></a>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="7.02%" id="mcps1.2.6.1.4"><p id="p18351650135519"><a name="p18351650135519"></a><a name="p18351650135519"></a>必填</p>
+<th class="cellrowborder" valign="top" width="10.059999999999999%" id="mcps1.2.6.1.4"><p id="p18351650135519"><a name="p18351650135519"></a><a name="p18351650135519"></a>必填</p>
 </th>
-<th class="cellrowborder" valign="top" width="61.019999999999996%" id="mcps1.2.6.1.5"><p id="p10835105017555"><a name="p10835105017555"></a><a name="p10835105017555"></a>描述</p>
+<th class="cellrowborder" valign="top" width="55.1%" id="mcps1.2.6.1.5"><p id="p10835105017555"><a name="p10835105017555"></a><a name="p10835105017555"></a>描述</p>
 </th>
 </tr>
 </thead>
@@ -243,11 +243,11 @@
 </td>
 <td class="cellrowborder" valign="top" width="12.91%" headers="mcps1.2.6.1.2 "><p id="p14313429185211"><a name="p14313429185211"></a><a name="p14313429185211"></a>number</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.870000000000001%" headers="mcps1.2.6.1.3 "><p id="p19313152995219"><a name="p19313152995219"></a><a name="p19313152995219"></a>0</p>
+<td class="cellrowborder" valign="top" width="11.75%" headers="mcps1.2.6.1.3 "><p id="p19313152995219"><a name="p19313152995219"></a><a name="p19313152995219"></a>0</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.02%" headers="mcps1.2.6.1.4 "><p id="p03131429165220"><a name="p03131429165220"></a><a name="p03131429165220"></a>否</p>
+<td class="cellrowborder" valign="top" width="10.059999999999999%" headers="mcps1.2.6.1.4 "><p id="p03131429165220"><a name="p03131429165220"></a><a name="p03131429165220"></a>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="61.019999999999996%" headers="mcps1.2.6.1.5 "><p id="p15313529165215"><a name="p15313529165215"></a><a name="p15313529165215"></a>轴的最小值。</p>
+<td class="cellrowborder" valign="top" width="55.1%" headers="mcps1.2.6.1.5 "><p id="p15313529165215"><a name="p15313529165215"></a><a name="p15313529165215"></a>轴的最小值。</p>
 <div class="note" id="note947711273197"><a name="note947711273197"></a><a name="note947711273197"></a><span class="notetitle"> 说明： </span><div class="notebody"><p id="p5477102781911"><a name="p5477102781911"></a><a name="p5477102781911"></a>仅线形图支持负数。</p>
 </div></div>
 </td>
@@ -256,11 +256,11 @@
 </td>
 <td class="cellrowborder" valign="top" width="12.91%" headers="mcps1.2.6.1.2 "><p id="p11771076557"><a name="p11771076557"></a><a name="p11771076557"></a>number</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.870000000000001%" headers="mcps1.2.6.1.3 "><p id="p13177127165511"><a name="p13177127165511"></a><a name="p13177127165511"></a>100</p>
+<td class="cellrowborder" valign="top" width="11.75%" headers="mcps1.2.6.1.3 "><p id="p13177127165511"><a name="p13177127165511"></a><a name="p13177127165511"></a>100</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.02%" headers="mcps1.2.6.1.4 "><p id="p171774715517"><a name="p171774715517"></a><a name="p171774715517"></a>否</p>
+<td class="cellrowborder" valign="top" width="10.059999999999999%" headers="mcps1.2.6.1.4 "><p id="p171774715517"><a name="p171774715517"></a><a name="p171774715517"></a>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="61.019999999999996%" headers="mcps1.2.6.1.5 "><p id="p111771705519"><a name="p111771705519"></a><a name="p111771705519"></a>轴的最大值。</p>
+<td class="cellrowborder" valign="top" width="55.1%" headers="mcps1.2.6.1.5 "><p id="p111771705519"><a name="p111771705519"></a><a name="p111771705519"></a>轴的最大值。</p>
 <div class="note" id="note1287217389195"><a name="note1287217389195"></a><a name="note1287217389195"></a><span class="notetitle"> 说明： </span><div class="notebody"><p id="p17872153817197"><a name="p17872153817197"></a><a name="p17872153817197"></a>仅线形图支持负数。</p>
 </div></div>
 </td>
@@ -269,11 +269,11 @@
 </td>
 <td class="cellrowborder" valign="top" width="12.91%" headers="mcps1.2.6.1.2 "><p id="p844011745512"><a name="p844011745512"></a><a name="p844011745512"></a>number</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.870000000000001%" headers="mcps1.2.6.1.3 "><p id="p9440277558"><a name="p9440277558"></a><a name="p9440277558"></a>10</p>
+<td class="cellrowborder" valign="top" width="11.75%" headers="mcps1.2.6.1.3 "><p id="p9440277558"><a name="p9440277558"></a><a name="p9440277558"></a>10</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.02%" headers="mcps1.2.6.1.4 "><p id="p194406755518"><a name="p194406755518"></a><a name="p194406755518"></a>否</p>
+<td class="cellrowborder" valign="top" width="10.059999999999999%" headers="mcps1.2.6.1.4 "><p id="p194406755518"><a name="p194406755518"></a><a name="p194406755518"></a>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="61.019999999999996%" headers="mcps1.2.6.1.5 "><p id="p1144027105511"><a name="p1144027105511"></a><a name="p1144027105511"></a>轴显示的刻度数量。</p>
+<td class="cellrowborder" valign="top" width="55.1%" headers="mcps1.2.6.1.5 "><p id="p1144027105511"><a name="p1144027105511"></a><a name="p1144027105511"></a>轴显示的刻度数量。</p>
 <div class="note" id="note18942121511202"><a name="note18942121511202"></a><a name="note18942121511202"></a><span class="notetitle"> 说明： </span><div class="notebody"><p id="p4709421681"><a name="p4709421681"></a><a name="p4709421681"></a>仅支持1~20，且具体显示的效果与如下计算值有关（图的宽度所占的像素/（max-min））。</p>
 <p id="p234142016205"><a name="p234142016205"></a><a name="p234142016205"></a>在柱状图中，每组数据显示的柱子数量与刻度数量一致，且柱子显示在刻度处。</p>
 </div></div>
@@ -283,22 +283,22 @@
 </td>
 <td class="cellrowborder" valign="top" width="12.91%" headers="mcps1.2.6.1.2 "><p id="p1755910815552"><a name="p1755910815552"></a><a name="p1755910815552"></a>boolean</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.870000000000001%" headers="mcps1.2.6.1.3 "><p id="p2559108195515"><a name="p2559108195515"></a><a name="p2559108195515"></a>false</p>
+<td class="cellrowborder" valign="top" width="11.75%" headers="mcps1.2.6.1.3 "><p id="p2559108195515"><a name="p2559108195515"></a><a name="p2559108195515"></a>false</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.02%" headers="mcps1.2.6.1.4 "><p id="p185597805514"><a name="p185597805514"></a><a name="p185597805514"></a>否</p>
+<td class="cellrowborder" valign="top" width="10.059999999999999%" headers="mcps1.2.6.1.4 "><p id="p185597805514"><a name="p185597805514"></a><a name="p185597805514"></a>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="61.019999999999996%" headers="mcps1.2.6.1.5 "><p id="p1655910815551"><a name="p1655910815551"></a><a name="p1655910815551"></a>是否显示轴。</p>
+<td class="cellrowborder" valign="top" width="55.1%" headers="mcps1.2.6.1.5 "><p id="p1655910815551"><a name="p1655910815551"></a><a name="p1655910815551"></a>是否显示轴。</p>
 </td>
 </tr>
 <tr id="row1382114065515"><td class="cellrowborder" valign="top" width="10.18%" headers="mcps1.2.6.1.1 "><p id="p188221209555"><a name="p188221209555"></a><a name="p188221209555"></a>color</p>
 </td>
 <td class="cellrowborder" valign="top" width="12.91%" headers="mcps1.2.6.1.2 "><p id="p1782214025517"><a name="p1782214025517"></a><a name="p1782214025517"></a>&lt;color&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.870000000000001%" headers="mcps1.2.6.1.3 "><p id="p482220185512"><a name="p482220185512"></a><a name="p482220185512"></a>#c0c0c0</p>
+<td class="cellrowborder" valign="top" width="11.75%" headers="mcps1.2.6.1.3 "><p id="p482220185512"><a name="p482220185512"></a><a name="p482220185512"></a>#c0c0c0</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.02%" headers="mcps1.2.6.1.4 "><p id="p782214015553"><a name="p782214015553"></a><a name="p782214015553"></a>否</p>
+<td class="cellrowborder" valign="top" width="10.059999999999999%" headers="mcps1.2.6.1.4 "><p id="p782214015553"><a name="p782214015553"></a><a name="p782214015553"></a>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="61.019999999999996%" headers="mcps1.2.6.1.5 "><p id="p4822202556"><a name="p4822202556"></a><a name="p4822202556"></a>轴颜色。</p>
+<td class="cellrowborder" valign="top" width="55.1%" headers="mcps1.2.6.1.5 "><p id="p4822202556"><a name="p4822202556"></a><a name="p4822202556"></a>轴颜色。</p>
 </td>
 </tr>
 </tbody>
@@ -937,17 +937,17 @@
 除支持[通用方法](js-components-common-methods.md)外，还支持如下方法：
 
 <a name="table7480052145013"></a>
-<table><thead align="left"><tr id="row64801152175016"><th class="cellrowborder" valign="top" width="8.630863086308631%" id="mcps1.1.4.1.1"><p id="p184801352105010"><a name="p184801352105010"></a><a name="p184801352105010"></a>方法</p>
+<table><thead align="left"><tr id="row64801152175016"><th class="cellrowborder" valign="top" width="13.881388138813882%" id="mcps1.1.4.1.1"><p id="p184801352105010"><a name="p184801352105010"></a><a name="p184801352105010"></a>方法</p>
 </th>
-<th class="cellrowborder" valign="top" width="58.035803580358035%" id="mcps1.1.4.1.2"><p id="p134801052175010"><a name="p134801052175010"></a><a name="p134801052175010"></a>参数</p>
+<th class="cellrowborder" valign="top" width="52.78527852785279%" id="mcps1.1.4.1.2"><p id="p134801052175010"><a name="p134801052175010"></a><a name="p134801052175010"></a>参数</p>
 </th>
 <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.3"><p id="p3480452115015"><a name="p3480452115015"></a><a name="p3480452115015"></a>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1148112528509"><td class="cellrowborder" valign="top" width="8.630863086308631%" headers="mcps1.1.4.1.1 "><p id="p548115219507"><a name="p548115219507"></a><a name="p548115219507"></a>append</p>
+<tbody><tr id="row1148112528509"><td class="cellrowborder" valign="top" width="13.881388138813882%" headers="mcps1.1.4.1.1 "><p id="p548115219507"><a name="p548115219507"></a><a name="p548115219507"></a>append</p>
 </td>
-<td class="cellrowborder" valign="top" width="58.035803580358035%" headers="mcps1.1.4.1.2 "><p id="p9481135295014"><a name="p9481135295014"></a><a name="p9481135295014"></a>{</p>
+<td class="cellrowborder" valign="top" width="52.78527852785279%" headers="mcps1.1.4.1.2 "><p id="p9481135295014"><a name="p9481135295014"></a><a name="p9481135295014"></a>{</p>
 <p id="p1348165210500"><a name="p1348165210500"></a><a name="p1348165210500"></a>serial: number, // 设置要更新的线形图数据下标</p>
 <p id="p15481175285010"><a name="p15481175285010"></a><a name="p15481175285010"></a>data: Array&lt;number&gt;, // 设置新增的数据</p>
 <p id="p948113523503"><a name="p948113523503"></a><a name="p948113523503"></a>}</p>
