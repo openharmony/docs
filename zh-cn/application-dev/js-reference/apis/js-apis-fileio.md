@@ -17,38 +17,13 @@ import fileio from '@ohos.fileio';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其绝对路径，获取方式及其接口用法请参考：[Context模块的接口getOrCreateLocalDir](js-apis-Context.md)。
 
-<a name="table859142263817"></a>
-<table><thead align="left"><tr id="row165922243812"><th class="cellrowborder" valign="top" width="21.6%" id="mcps1.1.4.1.1"><p id="p20593226383"><a name="p20593226383"></a><a name="p20593226383"></a>目录类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.57000000000001%" id="mcps1.1.4.1.2"><p id="p125911229389"><a name="p125911229389"></a><a name="p125911229389"></a>说明</p>
-</th>
-<th class="cellrowborder" valign="top" width="24.830000000000002%" id="mcps1.1.4.1.3"><p id="p1177425414331"><a name="p1177425414331"></a><a name="p1177425414331"></a>相关接口</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row14604221386"><td class="cellrowborder" valign="top" width="21.6%" headers="mcps1.1.4.1.1 "><p id="p0605228382"><a name="p0605228382"></a><a name="p0605228382"></a>内部存储的缓存目录</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.57000000000001%" headers="mcps1.1.4.1.2 "><p id="p76010229385"><a name="p76010229385"></a><a name="p76010229385"></a>可读写，随时可能清除，不保证持久性。一般用作下载临时目录或缓存目录。</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.830000000000002%" headers="mcps1.1.4.1.3 "><p id="p1677525420331"><a name="p1677525420331"></a><a name="p1677525420331"></a>getCacheDir</p>
-</td>
-</tr>
-<tr id="row20601622183813"><td class="cellrowborder" valign="top" width="21.6%" headers="mcps1.1.4.1.1 "><p id="p166062273813"><a name="p166062273813"></a><a name="p166062273813"></a>内部存储目录</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.57000000000001%" headers="mcps1.1.4.1.2 "><p id="p19601522103813"><a name="p19601522103813"></a><a name="p19601522103813"></a>随应用卸载删除。</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.830000000000002%" headers="mcps1.1.4.1.3 "><p id="p147753546339"><a name="p147753546339"></a><a name="p147753546339"></a>getFilesDir</p>
-</td>
-</tr>
-</tbody>
-</table>
 
 “文件/目录绝对路径”=“应用目录路径”+“文件/目录名”
 
 通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在绝对路径为：
 
 ```
-let path = dir + "xxx.txt"
+let path = dir + "/xxx.txt"
 ```
 
 文件描述符fd：
