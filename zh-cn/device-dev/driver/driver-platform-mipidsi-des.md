@@ -96,7 +96,7 @@
 使用MIPI-DSI的一般流程如[图2](#fig129103491241)所示。
 
 **图 2**  MIPI-DSI使用流程图<a name="fig129103491241"></a>  
-![](figures/MIPI-DSI使用流程图.png "MIPI-DSI使用流程图")
+![](figures/MIPI-DSI使用流程图.png)
 
 ### 获取MIPI-DSI操作句柄<a name="section5126155683811"></a>
 
@@ -213,7 +213,7 @@ cfg.timingInfo.vsaLines = 76;
 cfg.timingInfo.vfpLines = 120;
 cfg.timingInfo.xResPixels = 1342;
 /* 写入配置数据 */
-ret = MipiDsiSetCfg(g_handle, &cfg);
+ret = MipiDsiSetCfg(mipiDsiHandle, &cfg);
 if (ret != 0) {
     HDF_LOGE("%s: SetMipiCfg fail! ret=%d\n", __func__, ret);
     return -1;
@@ -265,7 +265,7 @@ int32\_t MipiDsiGetCfg\(DevHandle handle, struct MipiCfg \*cfg\);
 int32_t ret;
 struct MipiCfg cfg;
 memset(&cfg, 0, sizeof(struct MipiCfg));
-ret = MipiDsiGetCfg(g_handle, &cfg);
+ret = MipiDsiGetCfg(mipiDsiHandle, &cfg);
 if (ret != HDF_SUCCESS) {
     HDF_LOGE("%s: GetMipiCfg fail!\n", __func__);
     return HDF_FAILURE;
@@ -409,9 +409,9 @@ if (cmdRead->payload == NULL) {
     return HDF_FAILURE;
 }
 *(cmdRead->payload) = DDIC_REG_STATUS;
-MipiDsiSetLpMode(g_handle);
-ret = MipiDsiRx(g_handle, cmdRead, sizeof(readVal), &readVal);
-MipiDsiSetHsMode(g_handle);
+MipiDsiSetLpMode(mipiDsiHandle);
+ret = MipiDsiRx(mipiDsiHandle, cmdRead, sizeof(readVal), &readVal);
+MipiDsiSetHsMode(mipiDsiHandle);
 if (ret != HDF_SUCCESS) {
     HDF_LOGE("%s: MipiDsiRx fail! ret=%d\n", __func__, ret);
     HdfFree(cmdRead->payload);
@@ -463,13 +463,13 @@ void PalMipiDsiTestSample(void)
 {
     uint8_t chnId;
     int32_t ret;  
-    DevHandle handle = NULL;
+    DevHandle mipiDsiHandle = NULL;
     
     /* 设备通道编号 */
     chnId = 0; 
     /* 获取操作句柄 */
-    handle = MipiDsiOpen(chnId);
-    if (handle == NULL) {
+    mipiDsiHandle = MipiDsiOpen(chnId);
+    if (mipiDsiHandle == NULL) {
         HDF_LOGE("MipiDsiOpen: failed!\n");
         return;
     }
@@ -490,7 +490,7 @@ void PalMipiDsiTestSample(void)
     cfg.timingInfo.vfpLines = 120;
     cfg.timingInfo.xResPixels = 1342;
     /* 写入配置数据 */
-    ret = MipiDsiSetCfg(g_handle, &cfg);
+    ret = MipiDsiSetCfg(mipiDsiHandle, &cfg);
     if (ret != 0) {
         HDF_LOGE("%s: SetMipiCfg fail! ret=%d\n", __func__, ret);
         return;
@@ -533,9 +533,9 @@ void PalMipiDsiTestSample(void)
         return;
     }
     *(cmdRead->payload) = DDIC_REG_STATUS;
-    MipiDsiSetLpMode(g_handle);
-    ret = MipiDsiRx(g_handle, cmdRead, sizeof(readVal), &readVal);
-    MipiDsiSetHsMode(g_handle);
+    MipiDsiSetLpMode(mipiDsiHandle);
+    ret = MipiDsiRx(mipiDsiHandle, cmdRead, sizeof(readVal), &readVal);
+    MipiDsiSetHsMode(mipiDsiHandle);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: MipiDsiRx fail! ret=%d\n", __func__, ret);
         HdfFree(cmdRead->payload);
