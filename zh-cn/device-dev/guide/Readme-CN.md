@@ -2,8 +2,7 @@
 
 - [轻量和小型系统设备](device-lite.md)
   - [WLAN连接类产品](device-wlan.md)
-    - [LED外设控制](device-wlan-led.md)
-      - [LED外设控制](oem_wifi_sdk_des.md)
+    - [LED外设控制](oem_wifi_sdk_des.md)
     - [集成三方SDK](device-wlan-sdk.md)
   - [无屏摄像头类产品](device-iotcamera.md)
     - [摄像头控制](device-iotcamera-control.md)
