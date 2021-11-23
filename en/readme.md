@@ -17,7 +17,6 @@ This project stores OpenHarmony documentation, including the quick start guide, 
           - **Subsystems**:  [subsystems](device-dev/subsystems/Readme-EN.md)  \(such as compilation and building, graphics, DFX, and XTS\)
           - **Security**:  [privacy and security](device-dev/security/Readme-EN.md)
         - **guide**:  
-          - [OneHop](device-dev/guide/device-wlan-touch.md) 
           - [WLAN-connected products](device-dev/guide/device-wifi.md)  \(LED peripheral control and third-party SDK integration\)
           - [Screenless cameras](device-dev/guide/device-iotcamera-control.md)  \(camera control\)
           - [Cameras with a screen](device-dev/guide/device-camera.md)  \(screen and camera control, visual application development\)
