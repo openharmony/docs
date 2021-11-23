@@ -49,6 +49,7 @@ For best results, use the  [latest version of DevEco Studio](https://developer.h
 </tr>
 </tbody>
 </table>
+
 ## Before You Start<a name="section965173113911"></a>
 
 1.  Install DevEco Studio and configure the development environment. For details, see  [Configuring the OpenHarmony SDK](configuring-openharmony-sdk.md).
