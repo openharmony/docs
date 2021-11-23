@@ -17,7 +17,6 @@
             -   Security：[隐私与安全](device-dev/security/Readme-CN.md)
 
         -   guide：开发示例
-            -   [碰一碰](device-dev/guide/device-wlan-touch.md)
             -   [WLAN连接类产品](device-dev/guide/device-wlan.md)（LED外设控制、集成三方SDK）
             -   [无屏摄像头类产品](device-dev/guide/device-iotcamera-control.md)（摄像头控制）
             -   [带屏摄像头类产品](device-dev/guide/device-camera.md)（屏幕和摄像头控制、视觉应用开发）
