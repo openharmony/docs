@@ -1,6 +1,6 @@
  ### 0.0.5 (2021/10/28)
 
-Added the installation of tar, binutils, git-lfs, gnutls-bin, python3.8, python3-pip and cpio.
+Added the installation of tar, binutils, git-lfs, gnutls-bin, python3.8, python3-pip, and cpio.
 
  ### 0.0.4 (2021/09/18)
 
