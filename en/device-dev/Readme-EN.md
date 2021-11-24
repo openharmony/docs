@@ -76,7 +76,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p155782037201518"><a name="p155782037201518"></a><a name="p155782037201518"></a>Developing smart devices based on system capabilities</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-wlan-touch.md">OneHop</a></li><li><a href="guide/device-wifi.md">WLAN-connected Products</a></li><li><a href="guide/device-iotcamera-control.md">Cameras Without a Screen</a></li><li><a href="guide/device-camera.md">Cameras with a Screen</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-wifi.md">WLAN-connected Products</a></li><li><a href="guide/device-iotcamera-control.md">Cameras Without a Screen</a></li><li><a href="guide/device-camera.md">Cameras with a Screen</a></li></ul>
 </td>
 </tr>
 <tr id="row360273716155"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p12579163711513"><a name="p12579163711513"></a><a name="p12579163711513"></a>Porting and adaptation</p>
