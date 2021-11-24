@@ -13,15 +13,16 @@ dmesg命令用于控制内核dmesg缓存区。
 
 ## 命令格式<a name="section02"></a>
 
-dmesg
+- dmesg
 
-dmesg \[_-c/-C/-D/-E/-L/-U_\]
+- dmesg \[_-c/-C/-D/-E/-L/-U_\]
 
-dmesg -s \[_size_\]
+- dmesg -s \[_size_\]
 
-dmesg -l \[_level_\]
+- dmesg -l \[_level_\]
 
-dmesg \> \[_fileA_\]
+- dmesg \> \[_fileA_\]
+
 
 ## 参数说明<a name="section03"></a>
 
@@ -102,13 +103,11 @@ dmesg \> \[_fileA_\]
 
 ## 使用实例<a name="section05"></a>
 
-举例：
-
-输入dmesg \> dmesg.log。
+举例：输入dmesg \> dmesg.log。
 
 ## 输出说明<a name="section06"></a>
 
-**示例 1**  dmesg重定向到文件。
+**示例**  dmesg重定向到文件。
 
 ```shell
 OHOS # dmesg > dmesg.log

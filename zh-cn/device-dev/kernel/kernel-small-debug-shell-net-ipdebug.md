@@ -15,11 +15,11 @@ ipdebug
 
 ## 使用指南<a name="section171837113810"></a>
 
-输入命令ipdebug。
+举例：输入命令ipdebug。
 
 ## 输出说明<a name="section561416467104"></a>
 
-ipdebug打印信息如下：
+**示例** ipdebug打印信息如下：
 
 ```shell
 OHOS # ipdebug

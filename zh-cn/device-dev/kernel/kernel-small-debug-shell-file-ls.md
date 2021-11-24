@@ -286,7 +286,10 @@ ls \[_-ACHLSZacdfhiklmnopqrstux1_\] \[_--color_\[_=auto_\]\] \[_directory..._\]
 
 ## 使用实例<a name="section05"></a>
 
-举例：输入ls、ll
+举例：
+
+- ls
+- ll
 
 ## 输出说明<a name="section06"></a>
 

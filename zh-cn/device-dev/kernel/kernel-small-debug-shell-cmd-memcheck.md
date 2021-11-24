@@ -26,7 +26,10 @@ memcheck
 
 ## 使用实例<a name="section17373205314515"></a>
 
-举例：输入memcheck
+举例：
+
+- 输入memcheck
+- 输入memcheck出现内存越界
 
 ## 输出说明<a name="section13406205385413"></a>
 

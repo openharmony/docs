@@ -57,7 +57,10 @@ touch \[_filename_\]
 
 ## 使用实例<a name="section05"></a>
 
-举例：输入touch file.c 输出说明
+举例：
+
+- touch file.c
+- touch testfile1 testfile2 testfile3
 
 ## 输出说明<a name="section06"></a>
 

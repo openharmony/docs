@@ -66,11 +66,11 @@ log level \[_levelNum_\]
 
 ## 使用实例<a name="section176301333259"></a>
 
-举例：
-
-输入log level 3
+举例：输入log level 3
 
 ## 输出说明<a name="section14354765415"></a>
+
+**示例** 设置当前日志打印级别为3
 
 ```shell
 OHOS # log level 3

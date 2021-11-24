@@ -13,9 +13,10 @@ watch命令用于周期性的监视一个命令的运行结果。
 
 ## 命令格式<a name="section1075441721316"></a>
 
-watch
+- watch
 
-watch \[_-c/-n/-t/--count/--interval/-no-title/--over_\] \[_command_\]
+- watch \[_-c/-n/-t/--count/--interval/-no-title/--over_\] \[_command_\]
+
 
 ## 参数说明<a name="section1472810220135"></a>
 
@@ -86,13 +87,11 @@ watch运行过程中可以执行**watch --over**结束本次watch命令。
 
 ## 使用实例<a name="section4764192791314"></a>
 
-输入举例：
-
-watch  -n 2 -c 6 task
+举例：watch  -n 2 -c 6 task
 
 ## 输出说明<a name="section5791253155517"></a>
 
-**示例 1**  watch task 结果
+**示例**  watch task 结果
 
 ```shell
 OHOS # watch  -n 2 -c 6 task

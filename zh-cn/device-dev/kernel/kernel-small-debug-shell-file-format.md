@@ -63,7 +63,7 @@ format <_dev\_inodename_\> <_sectors_\> <_option_\> \[_label_\]
 
 ## 输出说明<a name="section06"></a>
 
-结果如下:
+**示例** 格式化mmc卡
 
 ```shell
 OHOS # format /dev/mmcblk1 128 2

@@ -91,9 +91,10 @@ mv \[_-fivn_\] _SOURCE... DEST_
 
 举例：
 
-mv -i test.txt testpath/
+- mv -i test.txt testpath/
 
-mv test?.txt testpath/ （移动 test3.txt  testA.txt  test_.txt）
+- mv test?.txt testpath/ （移动 test3.txt  testA.txt  test_.txt）
+
 
 ## 输出说明<a name="section06"></a>
 

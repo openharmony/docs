@@ -100,7 +100,7 @@ ping _\[-4\] \[-c cnt\] \[-f\] \[-i interval\] \[-q\] \[-s size\] <IP\>_
 
 ## 输出说明<a name="section06"></a>
 
-**示例 1**  ping tftp 服务器地址
+**示例**  ping tftp 服务器地址
 
 ```shell
 OHOS:/$ ping 192.168.1.3

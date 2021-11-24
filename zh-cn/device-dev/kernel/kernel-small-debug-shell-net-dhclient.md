@@ -13,9 +13,9 @@
 
 ## 命令格式<a name="section02"></a>
 
-dhclient <_netif name_\>
+- dhclient <_netif name_\>
 
-dhclient -x <_netif name_\>
+- dhclient -x <_netif name_\>
 
 ## 参数说明<a name="section03"></a>
 
@@ -56,11 +56,19 @@ dhclient -x <_netif name_\>
 
 ## 使用指南<a name="section04"></a>
 
-dhclient eth0
-
-dhclient -x eth0
+无。
 
 ## 使用实例<a name="section05"></a>
+
+举例：
+
+- dhclient eth0
+- dhclient -x eth0
+
+
+## 输出说明<a name="section06"></a>
+
+**示例 1** 启动网卡eth0的dhcp请求
 
 ```shell
 OHOS:/$ dhclient eth0
@@ -71,6 +79,11 @@ lo      ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
 eth0    ip:192.168.1.10 netmask:255.255.255.0 gateway:192.168.1.1
         HWaddr 42:da:81:bc:58:94 MTU:1500 Running Default Link UP
 OHOS:/$
+```
+
+**示例 2** 关闭网卡eth0的dhcp请求
+
+```shell
 OHOS:/$ dhclient -x eth0
 NetifStatusCallback(eth0): nsc event: 0xf0
 OHOS:/$ ifconfig
@@ -81,6 +94,3 @@ eth0    ip:0.0.0.0 netmask:0.0.0.0 gateway:0.0.0.0
         HWaddr 42:da:81:bc:58:94 MTU:1500 Running Default Link UP
 ```
 
-## 输出说明<a name="section06"></a>
-
-无。

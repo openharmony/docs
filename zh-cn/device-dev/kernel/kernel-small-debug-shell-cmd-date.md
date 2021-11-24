@@ -13,13 +13,14 @@ date命令用于查询系统日期和时间。
 
 ## 命令格式<a name="section16635112512316"></a>
 
-date
+- date
 
-date --help
+- date --help
 
-date +\[_Format_\]
+- date +\[_Format_\]
 
-date -u
+- date -u
+
 
 ## 参数说明<a name="section15896030039"></a>
 
@@ -67,13 +68,11 @@ date -u
 
 ## 使用实例<a name="section021711411237"></a>
 
-举例：
-
-输入 date +%Y--%m--%d
+举例：输入 date +%Y--%m--%d
 
 ## 输出说明<a name="section17950184414312"></a>
 
-**示例 1**  按指定格式打印系统日期
+**示例**  按指定格式打印系统日期
 
 ```shell
 OHOS:/$ date +%Y--%m--%d

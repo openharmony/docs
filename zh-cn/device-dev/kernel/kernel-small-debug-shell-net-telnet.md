@@ -60,7 +60,7 @@ telnet \[_on | off_\]
 
 ## 输出说明<a name="section11846624191310"></a>
 
-**示例 1**  输入 telnet on
+**示例**  输入 telnet on
 
 ```shell
 OHOS # telnet on

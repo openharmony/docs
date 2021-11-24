@@ -69,8 +69,8 @@ rm \[_-fv_\] _FILE or rm_ \[_-rv_\] \[_PATH_ | _filename_\]...
 
 举例：
 
-1.  输入rm testfile
-2.  输入rm -r testpath/
+- 输入rm testfile
+- 输入rm -r testpath/
 
 ## 输出说明<a name="section06"></a>
 
