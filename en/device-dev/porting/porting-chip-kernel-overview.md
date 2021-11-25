@@ -6,7 +6,7 @@
 
 ## Porting Scenario<a name="section93781277367"></a>
 
-The chip architecture adaptation process is optional. If the particular chip architecture is supported in the  **liteos\_m/kernel/arch**  directory, you can directly implement the board adaptation. Otherwise, chip architecture porting is required.
+The chip architecture adaptation process is optional. If the particular chip architecture is supported in the  **liteos\_m/arch**  directory, you can directly implement the board adaptation. Otherwise, chip architecture porting is required.
 
 ## Directory Specifications<a name="section18127744153119"></a>
 
@@ -27,22 +27,22 @@ The directory structure of the kernel is described as follows:
 
 ```
 .
+├── arch                    --- Code of the kernel instruction architecture layer
+│   ├── arm                 --- Code of the ARM32 architecture
+│   │   ├── cortex-m3       --- Code of the Cortex-M3 architecture
+│   │   │   ├── iar         --- Implementation of the IAR toolchain
+│   │   │   ├── keil        --- Implementation of the Keil toolchain
+│   │   │   └── xxx         --- Implementation of the particular toolchain
+│   │   └── cortex-m4       --- Code of the Cortex-M4 architecture
+│   │        ├── iar        --- Implementation of the IAR toolchain
+│   │        ├── keil       --- Implementation of the Keil toolchain
+│   │        └── xxx        --- Implementation of the particular toolchain
+│   ├── include             --- Header files that declare the APIs required, kernel-independent
+│   └── risc-v              --- RISK_V architecture
+│        └── gcc            --- Implementation of the GCC toolchain
 ├── components              --- Components available for porting and header files exposed externally
 ├── kal                     --- APIs exposed externally, including CMSIS APIs and part of POSIX APIs
 ├── kernel                  --- Code for defining the minimum kernel function set
-│   ├── arch                --- Code of the kernel instruction architecture layer
-│   │   ├── arm             --- Code of the ARM32 architecture
-│   │   │   ├── cortex-m3   --- Code of the Cortex-M3 architecture
-│   │   │   │   ├── iar     --- Implementation of the IAR toolchain
-│   │   │   │   ├── keil    --- Implementation of the Keil toolchain
-│   │   │   │   └── xxx     --- Implementation of the particular toolchain
-│   │   │   └── cortex-m4    --- Code of the Cortex-M4 architecture
-│   │   │        ├── iar    --- Implementation of the IAR toolchain
-│   │   │        ├── keil   --- Implementation of the Keil toolchain
-│   │   │        └── xxx    --- Implementation of the particular toolchain
-│   │   ├── include         --- Header files that declare the APIs required, kernel-independent
-│   │   └── risc-v          --- RISK_V architecture
-│   │        └── gcc        --- Implementation of the IAR toolchain
 │   ├── include             --- Code for defining the minimum kernel function set
 │   └── src                 --- Code for implementing the minimum kernel function set
 └──utils                    --- Basic code
