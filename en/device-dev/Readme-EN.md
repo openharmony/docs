@@ -69,14 +69,14 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p857711379158"><a name="p857711379158"></a><a name="p857711379158"></a>Using basic capabilities of <span id="text8928941123820"><a name="text8928941123820"></a><a name="text8928941123820"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul1577103716159"></a><a name="ul1577103716159"></a><ul id="ul1577103716159"><li><a href="kernel/kernel-lite-mini.md">HarmonyOS Kernel Development Guide (LiteOS-M)</a></li><li><a href="kernel/kernel-lite-small.md">HarmonyOS Kernel Development Guide (LiteOS-A)</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-guidelines-overall.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul1577103716159"></a><a name="ul1577103716159"></a><ul id="ul1577103716159"><li><a href="kernel/kernel-lite-mini.md">Kernel for Mini Systems</a></li><li><a href="kernel/kernel-lite-small.md">Kernel for Small Systems</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-guidelines-overall.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
 </td>
 </tr>
 <tr id="row10602193719152"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p857873713152"><a name="p857873713152"></a><a name="p857873713152"></a>Advanced development</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p155782037201518"><a name="p155782037201518"></a><a name="p155782037201518"></a>Developing smart devices based on system capabilities</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-wlan-touch.md">OneHop</a></li><li><a href="guide/device-wifi.md">WLAN-connected Products</a></li><li><a href="guide/device-iotcamera-control.md">Cameras Without a Screen</a></li><li><a href="guide/device-camera.md">Cameras with a Screen</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul257883731519"></a><a name="ul257883731519"></a><ul id="ul257883731519"><li><a href="guide/device-wifi.md">WLAN-connected Products</a></li><li><a href="guide/device-iotcamera-control.md">Cameras Without a Screen</a></li><li><a href="guide/device-camera.md">Cameras with a Screen</a></li></ul>
 </td>
 </tr>
 <tr id="row360273716155"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p12579163711513"><a name="p12579163711513"></a><a name="p12579163711513"></a>Porting and adaptation</p>
@@ -139,7 +139,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p136812535511"><a name="p136812535511"></a><a name="p136812535511"></a>Using basic capabilities of <span id="text1468659507"><a name="text1468659507"></a><a name="text1468659507"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel-standard.md">Kernel Development Guide</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-guidelines-overall.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul1954915235272"></a><a name="ul1954915235272"></a><ul id="ul1954915235272"><li><a href="kernel/kernel-standard.md">Kernel for Standard Systems</a></li><li><a href="driver/Readme-EN.md">HDF</a></li><li><a href="subsystems/Readme-EN.md">Subsystems</a></li><li><a href="security/security-guidelines-overall.md">Security Guidelines</a></li><li><a href="security/security-privacy-protection.md">Privacy Protection</a></li></ul>
 </td>
 </tr>
 <tr id="row10602193719152"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p857873713152"><a name="p857873713152"></a><a name="p857873713152"></a>Advanced development</p>
