@@ -29,9 +29,9 @@ CPU体系架构分为通用架构定义和特定架构定义两层，通用架�
 </thead>
 <tbody><tr id="row1577522103217"><td class="cellrowborder" valign="top" width="21.592159215921594%" headers="mcps1.2.4.1.1 "><p id="p378152243213"><a name="p378152243213"></a><a name="p378152243213"></a>头文件位置</p>
 </td>
-<td class="cellrowborder" valign="top" width="34.713471347134714%" headers="mcps1.2.4.1.2 "><p id="p37819227320"><a name="p37819227320"></a><a name="p37819227320"></a>kernel/arch/include</p>
+<td class="cellrowborder" valign="top" width="34.713471347134714%" headers="mcps1.2.4.1.2 "><p id="p37819227320"><a name="p37819227320"></a><a name="p37819227320"></a>arch/include</p>
 </td>
-<td class="cellrowborder" valign="top" width="43.694369436943695%" headers="mcps1.2.4.1.3 "><p id="p9783225321"><a name="p9783225321"></a><a name="p9783225321"></a>kernel/arch/&lt;arch&gt;/&lt;arch&gt;/&lt;toolchain&gt;/</p>
+<td class="cellrowborder" valign="top" width="43.694369436943695%" headers="mcps1.2.4.1.3 "><p id="p9783225321"><a name="p9783225321"></a><a name="p9783225321"></a>arch/&lt;arch&gt;/&lt;arch&gt;/&lt;toolchain&gt;/</p>
 </td>
 </tr>
 <tr id="row16781422193218"><td class="cellrowborder" valign="top" width="21.592159215921594%" headers="mcps1.2.4.1.1 "><p id="p978112283215"><a name="p978112283215"></a><a name="p978112283215"></a>头文件命名</p>
