@@ -249,11 +249,11 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
        ```
    2. 推送依赖库和测试用例到树莓派。
        ```
-       hdc_std file send XXX\out\ohos-arm-release\hdf\hdf\libhdf_test_common.z.so  /system/lib
-       hdc_std file send XXX\out\ohos-arm-release\tests\unittest\hdf\config\hdf_adapter_uhdf_test_config  /data/test
-       hdc_std file send XXX\out\ohos-arm-release\tests\unittest\hdf\devmgr\DevMgrTest  /data/test
-       hdc_std file send XXX\out\ohos-arm-release\tests\unittest\hdf\osal\OsalTest  /data/test
-       hdc_std file send XXX\out\ohos-arm-release\tests\unittest\hdf\sbuf\SbufTest  /data/test
+       hdc_std file send XXX\out\{device_name}\hdf\hdf\libhdf_test_common.z.so  /system/lib
+       hdc_std file send XXX\out\{device_name}\tests\unittest\hdf\config\hdf_adapter_uhdf_test_config  /data/test
+       hdc_std file send XXX\out\{device_name}\tests\unittest\hdf\devmgr\DevMgrTest  /data/test
+       hdc_std file send XXX\out\{device_name}\tests\unittest\hdf\osal\OsalTest  /data/test
+       hdc_std file send XXX\out\{device_name}\tests\unittest\hdf\sbuf\SbufTest  /data/test
        ```
    方法二：移动到储存卡内，启动树莓派之后装载。
 

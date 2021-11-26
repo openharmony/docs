@@ -81,7 +81,7 @@
 ./build.sh --product-name MyProduct 
 ```
 
-构建完成后，可以在“//out/ohos-arm-release/packages/phone/images”目录下看到构建出来的OpenHarmony镜像文件。
+构建完成后，可以在“//out/{device_name}/packages/phone/images”目录下看到构建出来的OpenHarmony镜像文件。
 
 ## 内核移植<a name="section171mcpsimp"></a>
 

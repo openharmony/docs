@@ -612,5 +612,5 @@ ohos_shared_library("ril_vendor") { // Modem vendor library
 ### Debugging and Verification<a name="section620mcpsimp"></a>
 
 1.  Compile the code.
-2.  Check whether  **libril\_vendor.z.so**  exists in the  **/out/ohos-arm-release/telephony/ril\_adapter**  directory. If yes, the integration is successful. Otherwise, correct the error and perform debugging and verification again.
+2.  Check whether  **libril\_vendor.z.so**  exists in the  **/out/{device_name}/telephony/ril\_adapter**  directory. If yes, the integration is successful. Otherwise, correct the error and perform debugging and verification again.
 

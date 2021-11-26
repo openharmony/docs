@@ -243,11 +243,11 @@ The procedure is as follows:
     2.  Push the dependencies and test cases to Raspberry Pi.
 
         ```
-        hdc file send XXX\out\ohos-arm-release\hdf\hdf\libhdf_test_common.z.so  /system/lib
-        hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\config\hdf_adapter_uhdf_test_config  /data/test
-        hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\devmgr\DevMgrTest  /data/test
-        hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\osal\OsalTest  /data/test
-        hdc file send XXX\out\ohos-arm-release\tests\unittest\hdf\sbuf\SbufTest  /data/test
+        hdc file send XXX\out\{device_name}\hdf\hdf\libhdf_test_common.z.so  /system/lib
+        hdc file send XXX\out\{device_name}\tests\unittest\hdf\config\hdf_adapter_uhdf_test_config  /data/test
+        hdc file send XXX\out\{device_name}\tests\unittest\hdf\devmgr\DevMgrTest  /data/test
+        hdc file send XXX\out\{device_name}\tests\unittest\hdf\osal\OsalTest  /data/test
+        hdc file send XXX\out\{device_name}\tests\unittest\hdf\sbuf\SbufTest  /data/test
         ```
 
     Method 2: Copy the test files to Raspberry Pi using its memory card.

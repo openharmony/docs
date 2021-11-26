@@ -222,7 +222,7 @@ Run the following script to start building for standard-system devices \(referen
 
 **product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300.
 
-Files generated during building are stored in the  **out/ohos-arm-release/**  directory, and the generated image is stored in the  **out/ohos-arm-release/packages/phone/images/**  directory.
+Files generated during building are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
