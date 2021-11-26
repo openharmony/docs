@@ -8,7 +8,7 @@
 
 ## 添加配置<a name="section27261067111"></a>
 
-在HDF框架的配置文件（例如vendor/hisilicon/xxx/config/device\_info）中添加该驱动的配置信息，如下所示：
+在HDF框架的配置文件（例如vendor/hisilicon/xxx/hdf_config/device\_info）中添加该驱动的配置信息，如下所示：
 
 ```
 root {
@@ -232,7 +232,7 @@ int main()
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >用户态应用程序使用了HDF框架中的消息发送接口，因此在编译用户态程序的过程中需要依赖HDF框架对外提供的hdf\_core和osal的动态库，在gn编译文件中添加如下依赖项：
 >deps = \[
->"//drivers/adapter/lite/uhdf/manager:hdf\_core",
->"//drivers/adapter/lite/uhdf/posix:hdf\_posix\_osal",
+>"//drivers/adapter/uhdf/manager:hdf\_core",
+>"//drivers/adapter/uhdf/posix:hdf\_posix\_osal",
 >\]
 
