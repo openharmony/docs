@@ -34,7 +34,7 @@
 | src:string | 音频播放的媒体URI。 | 
 | state:AudioState | 播放的状态属性。 | 
 | currentTime:number | 音频的当前播放位置。 | 
-| duration:number | 音频播放的时长(当数据源不支持Seek时返回为-1, 比如直播场景)。 | 
+| duration:number | 音频播放的时长(当数据源不支持改变播放位置时返回为-1, 比如实时流媒体场景)。 | 
 | loop:boolean | 音频的循环播放属性。 | 
 | on('play',&nbsp;function&nbsp;callback) | 订阅音频播放开始事件。 | 
 | on('pause',&nbsp;function&nbsp;callback) | 订阅音频播放暂停事件。 | 
