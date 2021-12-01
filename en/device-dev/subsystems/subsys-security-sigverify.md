@@ -3,60 +3,48 @@
 -   [When to Use](#section18502174174019)
 -   [Signature Verification Process](#section554632717226)
 -   [Available APIs](#section1633115419401)
--   [Development Procedure \(Scenario 1\)](#section4207112818418)
-    -   [Signature Verification](#section11470123816297)
-    -   [OpenHarmony Self-signed Application Generation](#section167151429133312)
-    -   [Development Examples](#section174318361353)
+-   [How to Develop](#section4207112818418)
+    -   [OpenHarmony Self-signed Application](#section167151429133312)
 
--   [Development Procedure \(Scenario 2\)](#section81272563427)
-    -   [Signature Verification](#section07028210442)
-    -   [Development Examples](#section1930711345445)
-
--   [Debugging and Verification](#section427316292411)
 
 ## When to Use<a name="section18502174174019"></a>
 
-You can call the APIs provided by the signature verification component to check integrity of a debugging, released, or OpenHarmony self-signed application. You can also call APIs of the signature verification component to obtain some information in the profile, for example,  **appid**. In addition, you can call APIs to check whether the UDID of a debugging application matches that of the device to ensure that the application is installed on the right device.
+To ensure the integrity and trustworthiness of the applications to be installed in OpenHarmony, the applications must be signed and their signatures must be verified.
+
+-   In application development: After developing an application, you need to sign its installation package to ensure that the installation package is not tampered with when it is released on devices. To sign the application package, you can use the signature tools and the public key certificates and follow the signing certificate generation specifications provided by the application integrity verification module. For your convenience, a public key certificate and a corresponding private key are preset in OpenHarmony. You need to replace the public key certificate and private key in your commercial version of OpenHarmony.
+-   In application installation: The Application Framework subsystem of OpenHarmony installs applications. Upon receiving an application installation package, the Application Framework subsystem parses the signature of the installation package, and verifies the signature using the application integrity verification APIs. The application can be installed only after the verification succeeds. During the verification, the application integrity verification module uses the preset public key certificate to verify the signature.
 
 ## Signature Verification Process<a name="section554632717226"></a>
 
 An unsigned HAP is in  **.zip**  format and consists of a file block, central directory, and end of central directory \(EOCD\).
 
-After the HAP is signed, a signature block is added between the file block and the central directory. The signature block consists of a file signature block, profile signature block, and signature header. The following figure shows the structure of a signed HAP.
+After the HAP is signed, a signature block is added between the file block and the central directory. The integrated signature block consists of a profile signature block, HAP signature block, and signature header. The following figure shows the structure of a signed HAP.
 
-**Figure  1**  Structure of a signed HAP<a name="fig699855043"></a>  
+**Figure  1**  Structure of a signed HAP<a name="fig157962397486"></a>  
+![](figure/structure-of-a-signed-hap.png "structure-of-a-signed-hap")
 
-
-![](figure/安全子系统.png)
-
-The signature verification process consists of three steps: HAP signature verification, signature verification for the profile signature block, and profile content verification.
+The signature verification process consists of three steps: HAP signature verification, profile signature verification, and profile content verification.
 
 **HAP signature verification**
 
-Use the preset root certificate of the device and the certificate chain to prove that the leaf certificate is trusted. Then use the digest obtained by decrypting the public key of the leaf certificate to prove that the HAP is not tampered with.
+The HAP signature block is a signed data block in PKCS7 format. The signature verification process includes PKSC7 signature verification, hash comparison, certificate chain verification, and matching between the certificate chain and the device's preset root certificate.
 
-The process is as follows:
+**Profile signature verification**
 
-1.  Use the preset root certificate of the device to verify the certificate chain in the file signature block and prove that the leaf certificate is trusted.
-2.  Use the public key in the leaf certificate to verify the file signature block and prove that this block is not tampered with.
-3.  Calculate and merge the digests of the file block, central directory, and EOCD. Merge the calculation result with the digest of the profile signature block in the signature block. Then compare the merge result with the digest of the file signature block. If they are the same, the HAP signature verification is successful.
-
-**Signature verification for the profile signature block**
-
-First of all, check who issued the signature of the profile signature block. If the signature was issued by the application market, the signature is trusted and does not need to be verified. Otherwise, the signature needs to be verified. Next, verify the certificate chain and then use the leaf certificate to verify the signature of the profile signature block to prove that it is not tampered with.
+The profile signature block is a signed data block in PKCS7 format. The profile content is stored in  **contentinfo**  of the PKCS7 signature block. The signature verification process includes PKCS7 signature verification, hash comparison, certificate chain verification, and profile certificate validity verification.
 
 **Profile content verification**
 
-Obtain the profile and check the validity of its content. If the HAP is a debugging application, check whether the UDID of the current device is contained in the UDID list in the profile. If yes, the verification is successful. Then compare the certificate in the profile with the leaf certificate used for HAP verification \(this is not required for a released or OpenHarmony self-signed application\). If they are the same, the entire signature verification process is complete.
+The signature verification module checks the validity of the profile content. If the profile is of the debugging type, the module checks whether the UDID of the current device is contained in the UDID list in the profile. If yes, the module compares the certificate in the profile with the certificate used for HAP signature verification. If they are the same, the entire verification process is complete.
 
 ## Available APIs<a name="section1633115419401"></a>
 
 The following table lists the innerkits APIs provided by the signature verification component. These APIs are available only for system applications.
 
-**Table  1**  APIs provided by the signature verification component
+**Table  1**  APIs provided by the signature verification component for mini systems
 
 <a name="table1731550155318"></a>
-<table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" valign="top" width="57.38999999999999%" id="mcps1.2.3.1.1"><p id="p54150165315"><a name="p54150165315"></a><a name="p54150165315"></a>Function</p>
+<table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" valign="top" width="57.38999999999999%" id="mcps1.2.3.1.1"><p id="p54150165315"><a name="p54150165315"></a><a name="p54150165315"></a>API</p>
 </th>
 <th class="cellrowborder" valign="top" width="42.61%" id="mcps1.2.3.1.2"><p id="p941150145313"><a name="p941150145313"></a><a name="p941150145313"></a>Description</p>
 </th>
@@ -81,192 +69,26 @@ The following table lists the innerkits APIs provided by the signature verificat
 </tbody>
 </table>
 
-## Development Procedure \(Scenario 1\)<a name="section4207112818418"></a>
+**Table  2**  APIs provided by the signature verification component for standard systems
 
-### Signature Verification<a name="section11470123816297"></a>
+<a name="table10383348161613"></a>
+<table><thead align="left"><tr id="row9384114813161"><th class="cellrowborder" valign="top" width="37.66%" id="mcps1.2.3.1.1"><p id="p038411483162"><a name="p038411483162"></a><a name="p038411483162"></a>API</p>
+</th>
+<th class="cellrowborder" valign="top" width="62.339999999999996%" id="mcps1.2.3.1.2"><p id="p9384124871618"><a name="p9384124871618"></a><a name="p9384124871618"></a>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row11384194871614"><td class="cellrowborder" valign="top" width="37.66%" headers="mcps1.2.3.1.1 "><p id="p138411487168"><a name="p138411487168"></a><a name="p138411487168"></a>nt HapVerify(const std::string&amp; filePath, HapVerifyResult&amp; hapVerifyResult)</p>
+</td>
+<td class="cellrowborder" valign="top" width="62.339999999999996%" headers="mcps1.2.3.1.2 "><p id="p0384184810169"><a name="p0384184810169"></a><a name="p0384184810169"></a>Verifies application integrity and identifies the application source.</p>
+</td>
+</tr>
+</tbody>
+</table>
 
-To verify applications released in the application market, debugging applications signed with debugging certificates of the application market, and OpenHarmony self-signed applications, perform the following steps:
+## How to Develop<a name="section4207112818418"></a>
 
-1.  Construct the VerifyResult structure.
+### OpenHarmony Self-signed Application<a name="section167151429133312"></a>
 
-    ```
-    VerifyResult verifyResult = {0};
-    ```
-
-2.  Call the APPVERI\_AppVerify function by specifying the file path and VerifyResult to verify the application signature.
-
-    ```
-    int32_t ret = APPVERI_AppVerify(hapFilepath.c_str(), &verifyResult);
-    ```
-
-3.  Check the returned result. If the verification is successful, obtain and process the data in VerifyResult.
-
-    ```
-    signatureInfo.appId = verifyResult.profile.appid;
-    signatureInfo.provisionBundleName = verifyResult.profile.bundleInfo.bundleName;
-    ```
-
-4.  Call the APPVERI\_FreeVerifyRst function to release memory in VerifyResult.
-
-    ```
-    APPVERI_FreeVerifyRst(&verifyResult);
-    ```
-
-
-### OpenHarmony Self-signed Application Generation<a name="section167151429133312"></a>
-
-The procedure is as follows:
-
-1.  Prepare required materials.
-
-    Prepare the signature tool, system application HAP, system application profile \(\*.p7b\), signing certificate \(\*.cer\), and signing public/private key pair \(\*.jks\).
-
-2.  Place all the materials in the same directory and start the shell.
-3.  Run the following command in the shell to sign the application:
-
-    ```
-    java -jar hapsigntoolv2.jar sign -mode localjks -privatekey "OpenHarmony Software Signature" -inputFile camera.hap -outputFile signed_camera.hap -signAlg SHA256withECDSA -keystore OpenHarmony.jks -keystorepasswd 123456 -keyaliaspasswd 123456 -profile camera_release.p7b -certpath OpenHarmony.cer -profileSigned 1
-    ```
-
-    Key fields:
-
-    **-jar**: signature tool, which is  **[hapsigntool](https://repo.huaweicloud.com/harmonyos/develop_tools/hapsigntoolv2.jar)**
-
-    **-mode**: local signature flag, which is fixed at  **localjks**
-
-    **-privatekey**: alias of the public/private key pair, which is  **OpenHarmony Software Signature**
-
-    **-inputFile**: application to be signed, which is generated through compilation
-
-    **-outputFile**: signed application
-
-    **-signAlg**: signing algorithm, which is fixed at  **SHA256withECDSA**
-
-    **-keystore**: public/private key pair, which is  [OpenHarmony.jks](https://gitee.com/openharmony/security_appverify/blob/master/interfaces/innerkits/appverify_lite/OpenHarmonyCer/OpenHarmony.jks)  in the  **OpenHarmonyCer**  directory of the  **security\_services\_app\_verify**  repository. The default password is  **123456**. You can use a tool \(such as keytool\) to change the password.
-
-    **-keystorepasswd**: password of the public/private key pair, which is  **123456**  by default
-
-    **-keyaliaspasswd**: password of the public/private key pair alias, which is  **123456**  by default
-
-    **-profile**: application profile, which is stored in the code directory
-
-    **-certpath**: signing certificate, which is  [OpenHarmony.cer](https://gitee.com/openharmony/security_appverify/blob/master/interfaces/innerkits/appverify_lite/OpenHarmonyCer/OpenHarmony.cer)  in the  **OpenHarmonyCer**  directory of the  **security\_services\_app\_verify**  repository.
-
-    **-profileSigned**: whether the signature block contains the profile. The value is fixed at  **1**, indicating that the signature block contains the profile.
-
-
-### Development Examples<a name="section174318361353"></a>
-
-The following example describes how the application management framework component verifies the signature of an application during its installation.
-
-```
-uint8_t HapSignVerify::VerifySignature(const std::string &hapFilepath, SignatureInfo &signatureInfo)
-{
-	bool mode = ManagerService::GetInstance().IsDebugMode();
-	HILOG_INFO(HILOG_MODULE_APP, "current mode is %d!", mode);
-        // Construct the VerifyResult structure.
-	VerifyResult verifyResult = {0};
-        // Verify the signature by specifying the file path.
-	int32_t ret = APPVERI_AppVerify(hapFilepath.c_str(), &verifyResult); 
-	uint8_t errorCode = SwitchErrorCode(ret);
-	if (errorCode != ERR_OK) {
-		return errorCode;
-	}
-        // Obtain appid from the VerifyResult structure.
-	signatureInfo.appId = verifyResult.profile.appid; 
-        // Obtain the application name written in the profile from the VerifyResult structure.
-	signatureInfo.provisionBundleName = verifyResult.profile.bundleInfo.bundleName; 
-	int32_t restricNum = verifyResult.profile.permission.restricNum;
-	for (int32_t i = 0; i < restricNum; i++) {
-		signatureInfo.restrictedPermissions.emplace_back((verifyResult.profile.permission.restricPermission)[i]);
-	}
-        // Release memory in VerifyResult.
-	APPVERI_FreeVerifyRst(&verifyResult); 
-	return ERR_OK;
-}
-```
-
-## Development Procedure \(Scenario 2\)<a name="section81272563427"></a>
-
-### Signature Verification<a name="section07028210442"></a>
-
-To verify applications signed with certificates that are based on debugging root keys, perform the following steps:
-
-1.  Call the APPVERI\_SetDebugMode\(true\) function to enable the debugging mode.
-
-    ```
-    	ManagerService::SetDebugMode(true);
-    ...
-    uint8_t ManagerService::SetDebugMode(bool enable)
-    {
-    	int32_t ret = APPVERI_SetDebugMode(enable);
-    	if (ret < 0) {
-    		HILOG_ERROR(HILOG_MODULE_APP, "set signature debug mode failed");
-    		return ERR_APPEXECFWK_SET_DEBUG_MODE_ERROR;
-    	}
-    	isDebugMode_ = enable;
-    	HILOG_INFO(HILOG_MODULE_APP, "current sign debug mode is %d", isDebugMode_);
-    	return ERR_OK;
-    }
-    ```
-
-2.  Construct the  **VerifyResult**  structure, verify the application signature, and release memory in  **VerifyResult**.
-3.  Call the APPVERI\_SetDebugMode\(false\) function to disable the debugging mode.
-
-    ```
-            ManagerService::SetDebugMode(false);
-    ```
-
-
-### Development Examples<a name="section1930711345445"></a>
-
-The following is the example code \(supplemented based on the example code for scenario 1\):
-
-```
-uint8_t ManagerService::SetDebugMode(bool enable)
-{
-	int32_t ret = APPVERI_SetDebugMode(enable);
-	if (ret < 0) {
-		HILOG_ERROR(HILOG_MODULE_APP, "set signature debug mode failed");
-		return ERR_APPEXECFWK_SET_DEBUG_MODE_ERROR;
-	}
-	isDebugMode_ = enable;
-	HILOG_INFO(HILOG_MODULE_APP, "current sign debug mode is %d", isDebugMode_);
-	return ERR_OK;
-}
-uint8_t HapSignVerify::VerifySignature(const std::string &hapFilepath, SignatureInfo &signatureInfo)
-{
-        // Enable debugging mode.
-        ManagerService::SetDebugMode(true); 
-	bool mode = ManagerService::GetInstance().IsDebugMode();
-	HILOG_INFO(HILOG_MODULE_APP, "current mode is %d!", mode);
-        // Construct the VerifyResult structure.
-	VerifyResult verifyResult = {0}; 
-        // Verify the signature by specifying the file path.
-	int32_t ret = APPVERI_AppVerify(hapFilepath.c_str(), &verifyResult); 
-	uint8_t errorCode = SwitchErrorCode(ret);
-	if (errorCode != ERR_OK) {
-		return errorCode;
-	}
-        // Obtain appid from the VerifyResult structure.
-	signatureInfo.appId = verifyResult.profile.appid; 
-        // Obtain the application name written in the profile from the VerifyResult structure.
-	signatureInfo.provisionBundleName = verifyResult.profile.bundleInfo.bundleName; 
-	int32_t restricNum = verifyResult.profile.permission.restricNum;
-	for (int32_t i = 0; i < restricNum; i++) {
-		signatureInfo.restrictedPermissions.emplace_back((verifyResult.profile.permission.restricPermission)[i]);
-	}
-        // Release memory in VerifyResult.
-        APPVERI_FreeVerifyRst(&verifyResult); 
-        // Disable debugging mode.
-        ManagerService::SetDebugMode(false); 
-	return ERR_OK;
-}
-```
-
-## Debugging and Verification<a name="section427316292411"></a>
-
-1.  Choose an application that can be properly installed on OpenHarmony.
-2.  Develop the application based on the development guidelines.
-3.  Use a self-developed program to verify the signature of the developed application. If the verification is successful and  **appid**  can be obtained, the development is successful.
+To develop an OpenHarmony self-signed application, follow instructions provided in the following guide: https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/configuring-the-openharmony-app-signature.md
 
