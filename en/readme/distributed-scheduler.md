@@ -1,17 +1,25 @@
 # Distributed Scheduler<a name="EN-US_TOPIC_0000001115719369"></a>
 
 -   [Introduction](#section11660541593)
+-   [System Architecture](#section13587185873516)
 -   [Directory Structure](#section161941989596)
 -   [Repositories Involved](#section1371113476307)
 
 ## Introduction<a name="section11660541593"></a>
 
-The Distributed Scheduler in OpenHarmony provides functions related to system abilities \(also called system services\), including system ability startup, registration, and query.
+Distributed Scheduler is used for cross-device component management. It allows the local device to access or control remote components, and enables app collaboration in distributed scenarios. Its main functions are as follows:
 
-**Figure  1**  Distributed Scheduler subsystem architecture<a name="fig4460722185514"></a>  
+-   Remote ability startup: Starts an ability on a remote device.
+-   Remote ability migration: Migrates an ability to a remote device.
+-   Remote ability binding: Binds an ability on a remote device.
+-   System service management: Provides system service startup, registration, and query on the local device as well as system service query on a remote device.
+
+## System Architecture<a name="section13587185873516"></a>
+
+**Figure 1**  Distributed Scheduler architecture<a name="fig4460722185514"></a>
 
 
-![](figures/en-us_image_0000001162500331.png)
+![](figures/dms-architecture.png)
 
 ## Directory Structure<a name="section161941989596"></a>
 
