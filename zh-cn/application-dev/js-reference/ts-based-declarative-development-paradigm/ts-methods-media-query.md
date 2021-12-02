@@ -35,7 +35,7 @@ matchMediaSync\(condition: string\): MediaQueryListener
     </td>
     <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p149671932919"><a name="p149671932919"></a><a name="p149671932919"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p19675312911"><a name="p19675312911"></a><a name="p19675312911"></a>媒体事件的匹配条件。条件字符串格式: 参考<a href="../../nottoctopics/zh-cn_topic_0000001173164741.md">媒体查询</a>。</p>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p19675312911"><a name="p19675312911"></a><a name="p19675312911"></a>媒体事件的匹配条件。</p>
     </td>
     </tr>
     </tbody>
@@ -143,7 +143,7 @@ on\(type: 'change', callback: Callback<MediaQueryResult\>\): void
     </td>
     <td class="cellrowborder" valign="top" width="10.79%" headers="mcps1.1.5.1.3 "><p id="p9229121319814"><a name="p9229121319814"></a><a name="p9229121319814"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="40.1%" headers="mcps1.1.5.1.4 "><p id="p1822921310817"><a name="p1822921310817"></a><a name="p1822921310817"></a>向媒体查询注册的回调</p>
+    <td class="cellrowborder" valign="top" width="40.1%" headers="mcps1.1.5.1.4 "><p id="p1822921310817"><a name="p1822921310817"></a><a name="p1822921310817"></a>向媒体查询注册的回调。</p>
     </td>
     </tr>
     </tbody>
