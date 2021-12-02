@@ -7,7 +7,7 @@
 
 ## How Application Permission Management Works<a name="section193961322175011"></a>
 
-OpenHarmony allows users to install third-party applications and controls calls made by third-party applications to sensitive permissions. When developing an application, you need to declare the sensitive permissions that the application may require in the  **profile.json**  file. The permissions include static and dynamic ones. Static permissions need to be registered during application installation, and dynamic permissions can be obtained only upon user authorization. Authorization modes include system settings, manual authorization by applications, and others. In addition, application signature control is used to ensure that the application installation package has been confirmed by the device vendor.
+OpenHarmony allows users to install third-party applications and controls calls made by third-party applications to sensitive permissions. When developing an application, you need to declare the sensitive permissions that the application may require in the  **profile.json**  file. The permissions can be static or dynamic. Static permissions need to be registered during application installation, and dynamic permissions can be obtained only upon user authorization. Authorization modes include system settings, manual authorization by applications, and others. In addition, application signature control is used to ensure that the application installation package has been confirmed by the device vendor.
 
 **Table  1**  OpenHarmony permissions
 
@@ -215,7 +215,7 @@ This section uses the BMS as an example to describe the application permission d
             HILOG_ERROR(HILOG_MODULE_APP, "BundleManager install failed due to nullptr parameters");
             return false;
         }
-        // Check whether the ohos.permission.INSTALL_BUNDLE permission has been granted.
+       // Check whether the ohos.permission.INSTALL_BUNDLE permission has been granted.
         if (CheckPermission(0, static_cast<const char *>(PERMISSION_INSTALL_BUNDLE)) != GRANTED) {
             HILOG_ERROR(HILOG_MODULE_APP, "BundleManager install failed due to permission denied");
             return false;  // Application installation fails.

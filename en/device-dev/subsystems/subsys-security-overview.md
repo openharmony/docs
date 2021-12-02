@@ -13,13 +13,9 @@ The OpenHarmony security subsystem provides security capabilities that make your
 
     Application permissions determine what system resources and capabilities an application can access. During application development, you need to declare the permissions that the application may require in the  **profile.json**  file. Static permissions need to be registered during application installation, while dynamic permissions usually involve sensitive information and need users' dynamic authorization.
 
--   Inter-process communication \(IPC\) authentication
-
-    APIs are provided for processes to access system services through IPC. Access policies are configured for these APIs. When a process requests to access an API, the IPC authentication mechanism is triggered to check whether the process has the required permission. If it is found that the process does not have the required permission, the access request will be denied.
-
 -   Trusted device group management
 
-    You can create and query a group of trusted devices that use the same HUAWEI ID or a peer-to-peer group created by scanning a QR code or using OneHop. With this capability, distributed applications can perform trusted authentication between devices and request from the distributed virtual bus for secure sessions between devices.
+    You can create and query a group of trusted devices that use the same ID or a peer-to-peer group created by scanning a QR code or using OneHop. With this capability, distributed applications can perform trusted authentication between devices and request from the distributed virtual bus for secure sessions between devices.
 
 
 ## Basic Concepts<a name="section175012297491"></a>
@@ -33,7 +29,7 @@ Before developing an application that depends on the signature verification comp
 
 -   BMS
 
-    Bundle Manager Service \(BMS\) manages application installation, uninstallation, and data.
+    Bundle Manager Service \(BMS\) manages application installation, uninstallation, and data on OpenHarmony.
 
 
 -   Profile
@@ -41,19 +37,9 @@ Before developing an application that depends on the signature verification comp
     The profile in this document refers to HarmonyAppProvision \(profile for short\). HarmonyAppProvision is in JSON format.
 
 
--   Leaf certificate
-
-    A leaf certificate is used to sign a bundle or profile. It is the last certificate in a digital certificate chain.
-
-
 -   Debugging application
 
-    A debugging application is a HarmonyOS Ability Package \(HAP\) that is signed with a debugging certificate and profile obtained from the application market.
-
-
--   Application for release
-
-    This application refers to a HAP that is signed with a distribution certificate and profile obtained from the application market, but has not been released in the application market.
+    A debugging application is a HAP that is signed with a debugging certificate and profile obtained from the application market.
 
 
 -   Released application
@@ -63,14 +49,11 @@ Before developing an application that depends on the signature verification comp
 
 -   OpenHarmony self-signed application
 
-    This application refers to a HAP that is signed with the profile of the OpenHarmony application you have compiled, and a public/private key pair and certificate of OpenHarmony.
+    A self-signed application is one that has been signed with the signing certificate and profile issued by OpenHarmony's open-source root CA, which is comprised of a certificate and a key.
 
 
 ## Limitations and Constraints<a name="section2029921310472"></a>
 
--   Only signatures of debugging, released, and self-signed applications can be verified.
+-   Only signatures of debugging, released, and OpenHarmony self-signed applications can be verified.
 -   To verify the signature of a debugging application, the UDID of the device on which the debugging application is installed must be in the UDID list contained in the profile.
--   Signatures of the applications for release cannot be verified.
--   APIs provided by the signature verification component are stored in the  [app\_verify\_pub.h](https://gitee.com/fork_ohos_wj/security_interfaces_innerkits_app_verify/blob/master/app_verify_pub.h)  file of the  **security\_interfaces\_innerkits\_app\_verify**  repository and can be called only by system application developers.
--   APIs for managing trusted device groups are only available for applications with the system signature permission.
 
