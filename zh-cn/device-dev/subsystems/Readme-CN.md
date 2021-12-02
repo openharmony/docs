@@ -43,7 +43,7 @@
   - [Sensor服务子系概述](subsys-sensor-overview.md)
   - [Sensor服务子系使用指导](subsys-sensor-guide.md)
   - [Sensor服务子系使用实例](subsys-sensor-demo.md)
-- [Usb子系统服务指南](subsys-usb-service.md)
+- [Usb服务子系统指南](subsys-usb-service.md)
 - [用户程序框架](subsys-application-framework.md)
   - [概述](subsys-application-framework-overview.md)
   - [搭建环境](subsys-application-framework-envbuild.md)
