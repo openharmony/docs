@@ -1,7 +1,7 @@
 # 传感器<a name="ZH-CN_TOPIC_0000001145015663"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version  7 开始支持。
+>从API Version 8 开始支持。
 
 ## 导入模块<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
