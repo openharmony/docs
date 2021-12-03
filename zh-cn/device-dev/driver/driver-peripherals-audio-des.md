@@ -1294,7 +1294,7 @@ vendor/hisilicon/hispark_taurus/
 
 ## HAL模块使用步骤<a name="section5100"></a>
 
-![](figures/HAL流程图.jpg)
+![](figures/HAL流程图.png)
 
 1. 使用入口函数GetAudioManagerFuncs()获取函数方法。
 
