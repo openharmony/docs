@@ -10,7 +10,7 @@
 
 -   **[Timer](timer.md)**  
 
--   **[Audio Management](audio-management.md)**  
+-   **[Audio Management](js-apis-audio.md)**  
 
 -   **[Audio Playback](audio-playback.md)**  
 
