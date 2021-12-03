@@ -1,19 +1,21 @@
 # AUDIO
 
-[Audio驱动概述](#section1000)
+- **[Audio驱动概述](#section1000)**
 
-[Audio驱动框架介绍](#section2000)
+- **[Audio驱动框架介绍](#section2000)**
 
-[Audio驱动开发步骤](#section3000)
+- **[Audio驱动开发步骤](#section3000)**
 
-- [Audio ADM模块框架介绍](#section3100)
-    - [ 启动流程](#section3111)
+- **[Audio ADM模块框架介绍](#section3100)**
+    - [启动流程](#section3111)
     - [播放流程](#section3112)
     - [控制流程](#section3113)
-- [Audio驱动开发步骤](#section3200)
+
+- **[Audio驱动开发步骤](#section3200)**
     - [已有平台开发](#section3221)
     - [新平台开发](#section3222)
-- [Audio驱动开发实例](#section4000)
+
+- **[Audio驱动开发实例](#section4000)**
     - [Codec驱动开发实例](#section4100)
         - [Codec数据结构填充](#section4111)
         - [codecDevice和codecDai设备初始化](#section4112)
@@ -32,8 +34,7 @@
         - [DMA操作函数集实现](#section4333)
         - [Platform注册绑定到HDF](#section4334)
         - [HCS配置流程](#section4335)
-    - [Dai数据结构填充](#section4441)
-        - [Dai驱动开发实例](#section4400)
+    - [Dai驱动开发实例](#section4400)
         - [Dai数据结构填充](#section4441)
         - [daiDevice设备初始化](#section4442)
         - [Dai操作函数集实现](#section4443)
@@ -41,11 +42,12 @@
         - [HCS配置流程](#section4445)
     - [Makefile中添加编译配置](#section4500)
     - [源码结构与目录](#section4600)
-- [使用HAL的开发步骤与实例](#section5000)
-- [HAL模块使用步骤](#section5100)
-- [HAL使用实例](#section5200)
 
-[总结](#section9999)
+- **[使用HAL的开发步骤与实例](#section5000)**
+    - [HAL模块使用步骤](#section5100)
+    - [HAL使用实例](#section5200)
+
+- **[总结](#section9999)**
 
 # Audio驱动概述<a name="section1000"></a>
 
