@@ -823,7 +823,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
 
 ### Accessory注册绑定到HDF<a name="section4224"></a>
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考harmony官方[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)。
 
 填充g_tfa9879DriverEntry结构体，moduleName与device_info.hcs中的moduleName匹配，实现Bind、Init、Release函数指针。 
 
@@ -944,7 +944,7 @@ int32_t Hi3516DmaPointer(struct PlatformData *data, uint32_t *pointer);
 
 ### Platform注册绑定到HDF<a name="section4334"></a>
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考harmony官方[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)。
 
 - 填充g_platformDriverEntry结构体
 - moduleName与device_info.hcs中的moduleName匹配
@@ -1108,7 +1108,7 @@ int32_t DaiStartup(const struct AudioCard *card, const struct DaiDevice *device)
 
 ### Dai注册绑定到HDF<a name="section4444"></a>
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考harmony官方[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)。
 
 - 填充g_daiDriverEntry结构体
 - moduleName与device_info.hcs中的moduleName匹配
