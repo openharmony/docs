@@ -153,5 +153,5 @@ wifi init success!
 
 ## Follow-up Learning<a name="section9712145420182"></a>
 
-Congratulations! You have finished all steps! You are advised to go on learning how to develop  [WLAN-connected products](../guide/device-wifi.md).
+Congratulations! You have finished all steps! You are advised to go on learning how to develop  [WLAN-connected products](../guide/device-wlan.md).
 
