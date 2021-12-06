@@ -1,0 +1,94 @@
+# Image对象<a name="ZH-CN_TOPIC_0000001164290722"></a>
+
+图片对象。
+
+## 属性<a name="zh-cn_topic_0000001173164737_section1968021961113"></a>
+
+<a name="zh-cn_topic_0000001173164737_table1025010619328"></a>
+<table><thead align="left"><tr id="zh-cn_topic_0000001173164737_row163667603219"><th class="cellrowborder" valign="top" width="21.8%" id="mcps1.1.6.1.1"><p id="zh-cn_topic_0000001173164737_p536646193210"><a name="zh-cn_topic_0000001173164737_p536646193210"></a><a name="zh-cn_topic_0000001173164737_p536646193210"></a>属性</p>
+</th>
+<th class="cellrowborder" valign="top" width="22.34%" id="mcps1.1.6.1.2"><p id="zh-cn_topic_0000001173164737_p7366166163213"><a name="zh-cn_topic_0000001173164737_p7366166163213"></a><a name="zh-cn_topic_0000001173164737_p7366166163213"></a>类型</p>
+</th>
+<th class="cellrowborder" valign="top" width="7.9799999999999995%" id="mcps1.1.6.1.3"><p id="zh-cn_topic_0000001173164737_p143661564327"><a name="zh-cn_topic_0000001173164737_p143661564327"></a><a name="zh-cn_topic_0000001173164737_p143661564327"></a>默认值</p>
+</th>
+<th class="cellrowborder" valign="top" width="11.73%" id="mcps1.1.6.1.4"><p id="zh-cn_topic_0000001173164737_p11366264324"><a name="zh-cn_topic_0000001173164737_p11366264324"></a><a name="zh-cn_topic_0000001173164737_p11366264324"></a>必填</p>
+</th>
+<th class="cellrowborder" valign="top" width="36.15%" id="mcps1.1.6.1.5"><p id="zh-cn_topic_0000001173164737_p636619618325"><a name="zh-cn_topic_0000001173164737_p636619618325"></a><a name="zh-cn_topic_0000001173164737_p636619618325"></a>描述</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="zh-cn_topic_0000001173164737_row936656193210"><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001173164737_p1436610643211"><a name="zh-cn_topic_0000001173164737_p1436610643211"></a><a name="zh-cn_topic_0000001173164737_p1436610643211"></a>src</p>
+</td>
+<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001173164737_p4366156183210"><a name="zh-cn_topic_0000001173164737_p4366156183210"></a><a name="zh-cn_topic_0000001173164737_p4366156183210"></a>string</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001173164737_p193667616322"><a name="zh-cn_topic_0000001173164737_p193667616322"></a><a name="zh-cn_topic_0000001173164737_p193667616322"></a>-</p>
+</td>
+<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001173164737_p636611610320"><a name="zh-cn_topic_0000001173164737_p636611610320"></a><a name="zh-cn_topic_0000001173164737_p636611610320"></a>是</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001173164737_p13366106173215"><a name="zh-cn_topic_0000001173164737_p13366106173215"></a><a name="zh-cn_topic_0000001173164737_p13366106173215"></a>图片资源的路径。</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001173164737_row13366969325"><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001173164737_p13366136183210"><a name="zh-cn_topic_0000001173164737_p13366136183210"></a><a name="zh-cn_topic_0000001173164737_p13366136183210"></a>width</p>
+</td>
+<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001173164737_p73668623216"><a name="zh-cn_topic_0000001173164737_p73668623216"></a><a name="zh-cn_topic_0000001173164737_p73668623216"></a>&lt;length&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001173164737_p8366206123215"><a name="zh-cn_topic_0000001173164737_p8366206123215"></a><a name="zh-cn_topic_0000001173164737_p8366206123215"></a>0px</p>
+</td>
+<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001173164737_p636617633210"><a name="zh-cn_topic_0000001173164737_p636617633210"></a><a name="zh-cn_topic_0000001173164737_p636617633210"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001173164737_p123661613324"><a name="zh-cn_topic_0000001173164737_p123661613324"></a><a name="zh-cn_topic_0000001173164737_p123661613324"></a>图片的宽度。</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001173164737_row103661365321"><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001173164737_p163663610321"><a name="zh-cn_topic_0000001173164737_p163663610321"></a><a name="zh-cn_topic_0000001173164737_p163663610321"></a>height</p>
+</td>
+<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001173164737_p03673613324"><a name="zh-cn_topic_0000001173164737_p03673613324"></a><a name="zh-cn_topic_0000001173164737_p03673613324"></a>&lt;length&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001173164737_p113674614326"><a name="zh-cn_topic_0000001173164737_p113674614326"></a><a name="zh-cn_topic_0000001173164737_p113674614326"></a>0px</p>
+</td>
+<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001173164737_p3367566327"><a name="zh-cn_topic_0000001173164737_p3367566327"></a><a name="zh-cn_topic_0000001173164737_p3367566327"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001173164737_p43671663322"><a name="zh-cn_topic_0000001173164737_p43671663322"></a><a name="zh-cn_topic_0000001173164737_p43671663322"></a>图片的高度。</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001173164737_row18346152013215"><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001173164737_p1033772416322"><a name="zh-cn_topic_0000001173164737_p1033772416322"></a><a name="zh-cn_topic_0000001173164737_p1033772416322"></a>onload</p>
+</td>
+<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001173164737_p1337202419320"><a name="zh-cn_topic_0000001173164737_p1337202419320"></a><a name="zh-cn_topic_0000001173164737_p1337202419320"></a>Function</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001173164737_p137953293211"><a name="zh-cn_topic_0000001173164737_p137953293211"></a><a name="zh-cn_topic_0000001173164737_p137953293211"></a>-</p>
+</td>
+<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001173164737_p153471320113217"><a name="zh-cn_topic_0000001173164737_p153471320113217"></a><a name="zh-cn_topic_0000001173164737_p153471320113217"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001173164737_p7337142443214"><a name="zh-cn_topic_0000001173164737_p7337142443214"></a><a name="zh-cn_topic_0000001173164737_p7337142443214"></a>图片加载成功后触发该事件，无参数。</p>
+</td>
+</tr>
+<tr id="zh-cn_topic_0000001173164737_row455917203329"><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p id="zh-cn_topic_0000001173164737_p107821651123213"><a name="zh-cn_topic_0000001173164737_p107821651123213"></a><a name="zh-cn_topic_0000001173164737_p107821651123213"></a>onerror</p>
+</td>
+<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p id="zh-cn_topic_0000001173164737_p147828514328"><a name="zh-cn_topic_0000001173164737_p147828514328"></a><a name="zh-cn_topic_0000001173164737_p147828514328"></a>Function</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p id="zh-cn_topic_0000001173164737_p19161175419328"><a name="zh-cn_topic_0000001173164737_p19161175419328"></a><a name="zh-cn_topic_0000001173164737_p19161175419328"></a>-</p>
+</td>
+<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p id="zh-cn_topic_0000001173164737_p0559142083215"><a name="zh-cn_topic_0000001173164737_p0559142083215"></a><a name="zh-cn_topic_0000001173164737_p0559142083215"></a>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="zh-cn_topic_0000001173164737_p1778212512329"><a name="zh-cn_topic_0000001173164737_p1778212512329"></a><a name="zh-cn_topic_0000001173164737_p1778212512329"></a>图片加载失败后触发该事件，无参数。</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+## 示例<a name="zh-cn_topic_0000001173164737_section13457717134912"></a>
+
+```
+var ctx = this.$element('drawImage').getContext('2d');
+var img = new Image();
+img.src = 'common/images/example.jpg';
+img.onload = function() {
+  console.log('Image load success');
+  ctx.drawImage(img, 0, 0, 360, 250);
+};
+img.onerror = function() {
+  console.log('Image load fail');
+};
+```
+
+![](figures/1-0.png)
+
