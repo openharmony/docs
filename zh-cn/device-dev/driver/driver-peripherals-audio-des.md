@@ -4,16 +4,16 @@
 
 - **[Audio驱动框架介绍](#section2000)**
 
-- **[Audio驱动开发步骤](#section3000)**
+- **[Audio驱动开发](#section3000)**
 
-- **[Audio ADM模块框架介绍](#section3100)**
-    - [启动流程](#section3111)
-    - [播放流程](#section3112)
-    - [控制流程](#section3113)
+    - **[Audio ADM模块框架介绍](#section3100)**
+        - [启动流程](#section3111)
+        - [播放流程](#section3112)
+        - [控制流程](#section3113)
 
-- **[Audio驱动开发步骤](#section3200)**
-    - [已有平台开发](#section3221)
-    - [新平台开发](#section3222)
+    - **[Audio驱动开发步骤](#section3200)**
+        - [已有平台开发](#section3221)
+        - [新平台开发](#section3222)
 
 - **[Audio驱动开发实例](#section4000)**
     - [Codec驱动开发实例](#section4100)
