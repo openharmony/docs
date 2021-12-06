@@ -15,4 +15,4 @@ LTS为长期支持版本，“长期支持”体现在对该版本内核的长�
 
 ## OpenHarmony内核版本选择<a name="section2716416191715"></a>
 
-OpenHarmony中Linux内核从LTS版本中选择合适的版本作为内核的基础版本，目前已完成对Linux-4.19及Linux-5.10完成适配及支持。
+OpenHarmony中Linux内核从LTS版本中选择合适的版本作为内核的基础版本，目前已完成对Linux-4.19及Linux-5.10的适配及支持。
