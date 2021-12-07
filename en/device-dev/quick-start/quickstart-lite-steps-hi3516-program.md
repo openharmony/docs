@@ -9,7 +9,7 @@ This section describes how to develop a driver on the board, including introduct
 
 ## Introduction to Driver<a name="s8efc1952ebfe4d1ea717182e108c29bb"></a>
 
-The following operations take a HDF-based UART driver as an example to show how to add configuration files, code the driver, and compile the code for interactions between the user-space applications and the driver. The driver source code is stored in the  **vendor/huawei/hdf/sample**  directory.
+The following operations take a HDF-based UART driver as an example to show how to add configuration files, code the driver, and compile the code for interactions between the user-space applications and the driver. The driver source code is stored in the **drivers/framework/sample** directory.
 
 1.  Add Configurations.
 
@@ -360,7 +360,7 @@ The following operations take a HDF-based UART driver as an example to show how 
 
     ```
     LITEOS_BASELIB += -lhdf_uart_sample
-    LIB_SUBDIRS    += $(LITEOS_SOURCE_ROOT)/vendor/huawei/hdf/sample/platform/uart
+    LIB_SUBDIRS    += $(LITEOS_SOURCE_ROOT)/drivers/framework/sample/platform/uart
     ```
 
 4.  Implement the code for interaction between the user-space applications and driver.
@@ -400,7 +400,7 @@ The following operations take a HDF-based UART driver as an example to show how 
     }
     ```
 
-    Add the  **hello\_uart\_sample**  component to  **targets**  of the  **hdf\_hi3516dv300\_liteos\_a**  component in the  **build/lite/components/drivers.json**  file.
+    Add the  **hello\_uart\_sample**  component to  **targets**  of the  **hdf\_hi3516dv300\_liteos\_a**  component in the  **build/lite/components/hdf.json**  file.
 
     ```
     {
@@ -409,7 +409,7 @@ The following operations take a HDF-based UART driver as an example to show how 
           "component": "hdf_hi3516dv300_liteos_a",
           ...
           "targets": [
-            "//vendor/huawei/hdf/sample/platform/uart:hello_uart_sample"
+            "//drivers/framework/sample/platform/uart:hello_uart_sample"
           ]
         }
       ]
@@ -417,7 +417,7 @@ The following operations take a HDF-based UART driver as an example to show how 
     ```
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >Preceding code snippets are for reference only. You can view the complete sample code in  **vendor/huawei/hdf/sample.**
+    >Preceding code snippets are for reference only. You can view the complete sample code in **drivers/framework/sample**.
     >The sample code is not automatically compiled by default. You can add it to the compilation script.
 
 
