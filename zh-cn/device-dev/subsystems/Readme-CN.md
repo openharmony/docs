@@ -3,6 +3,7 @@
 - [编译构建](subsys-build.md)
   - [轻量和小型系统编译构建指导](subsys-build-mini-lite.md)
   - [标准系统编译构建指导](subsys-build-standard-large.md)
+  - [构建系统编码规范和最佳实践指导](subsys-build-gn-coding-style-and-best-practice.md)
 - [分布式远程启动](subsys-remote-start.md)
 - [图形图像](subsys-graphics.md)
   - [图形图像概述](subsys-graphics-overview.md)
