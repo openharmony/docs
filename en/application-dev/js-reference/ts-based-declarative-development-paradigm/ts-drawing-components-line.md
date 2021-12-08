@@ -8,7 +8,7 @@ None
 
 ## APIs<a name="section29061037114413"></a>
 
-Line\(options?: \{width: Lenght, height: Length\}\)
+Line\(options?: \{width: Length, height: Length\}\)
 
 -   Parameters
 

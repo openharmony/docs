@@ -80,7 +80,7 @@ This topic describes the attributes used to set the component size.
 <p id="p11113203434615"><a name="p11113203434615"></a><a name="p11113203434615"></a>minWidth?: Length,</p>
 <p id="p149961241183520"><a name="p149961241183520"></a><a name="p149961241183520"></a>maxWidth?: Length,</p>
 <p id="p19940543173518"><a name="p19940543173518"></a><a name="p19940543173518"></a>minHeight?: Length,</p>
-<p id="p169561826154615"><a name="p169561826154615"></a><a name="p169561826154615"></a>maxHeight?: Lenght</p>
+<p id="p169561826154615"><a name="p169561826154615"></a><a name="p169561826154615"></a>maxHeight?: Length</p>
 <p id="p2315mcpsimp"><a name="p2315mcpsimp"></a><a name="p2315mcpsimp"></a>}</p>
 </td>
 <td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p id="p240035994617"><a name="p240035994617"></a><a name="p240035994617"></a>{</p>
