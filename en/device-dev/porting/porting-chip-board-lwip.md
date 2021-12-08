@@ -8,40 +8,57 @@ Lightweight IP (lwIP) is an open-source TCP/IP stack designed for embedded syste
 
 If you want to use the lwIP module, perform the following steps to complete adaptation:
 
-1. Create a folder, for example, **lwip_adapter**, in the product directory to store configuration files.
+1. Create a directory, for example, **lwip_adapter**, in the device directory to store its adaptation files.
 
-2. Copy **include** and **build.gn** in the **kernel/liteos\_m/components/net/lwip-2.1/porting** directory to the **lwip_adapter** folder.
+2. Create the **include** directory in the **lwip_adapter** directory to store the adaptation header files.
 
-3. Modify the configuration file if the default configuration cannot meet service requirements. For example, to disable the DHCP function, change the value of the macro **LWIP\_DHCP** in **lwip\_adapter/include/lwip/lwipopts.h** from **1** to **0**.
-
-    ```
-    //#define LWIP_DHCP                       1
-    #define LWIP_DHCP                       0
-    ```
-
-4. Change the value of **LWIP\_PORTING\_INCLUDE\_DIRS** in **lwip\_adapter/BUILD.gn** to the **include** directory in **lwip\_adapter**.
+3. Create the **lwip** directory in the **include** directory and then create the header file **lwipopts.h** in the **lwip** directory. The code is as follows. If the default configuration cannot meet service requirements, modify the configuration, for example, disable the DHCP function.
 
     ```
-    #include_dirs += LWIP_PORTING_INCLUDE_DIRS
-    include_dirs += "//xxx/lwip_adapter/include"
+    #ifndef _LWIP_ADAPTER_LWIPOPTS_H_
+    #define _LWIP_ADAPTER_LWIPOPTS_H_
+
+    #include_next "lwip/lwipopts.h"
+
+    #undef LWIP_DHCP
+    #define LWIP_DHCP                       0 // Disable the DHCP function.
+
+    #endif /* _LWIP_ADAPTER_LWIPOPTS_H_ */
     ```
 
-5. Set the lwIP switch and build path in the product configuration file, for example, **config.json**.
+4. Copy **BUILD.gn** in the **kernel/liteos_m/components/net/lwip-2.1/porting** directory to the **lwip_adapter** directory and modify the file as follows:
+
+    ```
+    import("//kernel/liteos_m/liteos.gni")
+    import("$LITEOSTHIRDPARTY/lwip/lwip.gni")
+    import("$LITEOSTOPDIR/components/net/lwip-2.1/lwip_porting.gni")
+
+    module_switch = defined(LOSCFG_NET_LWIP_SACK)
+    module_name = "lwip"
+    kernel_module(module_name) {
+      sources = LWIP_PORTING_FILES + LWIPNOAPPSFILES - [ "$LWIPDIR/api/sockets.c" ]
+      include_dirs = [ "//utils/native/lite/include" ]
+    }
+
+    # Add include, the directory of the new adaptation header file.
+    config("public") {
+      include_dirs = [ "include" ] + LWIP_PORTING_INCLUDE_DIRS + LWIP_INCLUDE_DIRS
+    }
+    ```
+
+5. In the device configuration file (for example, **config.json**), set the lwIP build path to the path of **BUILD.gn** in step 4.
 
     ```
     {
       "subsystem": "kernel",
       "components": [
-        { "component": "liteos_m", "features":["enable_ohos_kernel_liteos_m_lwip = true", "ohos_kernel_liteos_m_lwip_path = \"//xxx/lwip_adapter:lwip\"" ] }
+        { "component": "liteos_m", "features":["ohos_kernel_liteos_m_lwip_path = \"//xxx/lwip_adapter\"" ] }
       ]
     },
     ```
 
-6. If other modules need to reference the lwIP header file, ensure that the header file path contains the following two parts and the sequence cannot be changed:
+6. In the kernel build configuration file of the device, for example, **kernel_config/debug.config**, enable lwIP build.
 
     ```
-    include_dir = [
-      "//xxx/lwip_adapter/include", # Path in step 4
-      "//third_party/lwip/src/include",
-    ]
+    LOSCFG_NET_LWIP=y
     ```
