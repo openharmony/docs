@@ -46,4 +46,4 @@ Files generated during compilation are stored in the **out/{device_name}/** dire
 
 **Note**
 
- You can exit Docker by simply running the **exit** command.
+You can exit Docker by simply running the **exit** command.
