@@ -3,7 +3,6 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 请使用DevEco Studio V3.0.0.601 Beta1及更高版本。本文以使用**DevEco Studio 3.0.0.601 Beta1**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
 > 
-> 使用模拟器运行时请选择API7及以上的设备。
 
 
 ## 创建eTS工程
@@ -46,14 +45,16 @@
    }
    ```
 
-3. 使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)或[模拟器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/run_simulator-0000001053303709)运行项目，效果如下图所示：
-   ![zh-cn_image_0000001172123966](figures/zh-cn_image_0000001172123966.png)
+3. 使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行项目，效果如下图所示：
+   
+![zh-cn_image_0000001172123966](figures/zh-cn_image_0000001172123966.png)
 
 
 ## 创建第二个页面
 
 1. 在“Project“窗口，打开entry &gt; src &gt; main &gt; etsdefault，右键点击pages文件夹，选择New &gt; eTS Page，命名为details，单击回车键。创建完成后，可以看到pages文件夹下的文件目录结构如下：
-   ![zh-cn_image_0000001172442492](figures/zh-cn_image_0000001172442492.png)
+  
+ ![zh-cn_image_0000001172442492](figures/zh-cn_image_0000001172442492.png)
 
 2. 第二个页面由Flex容器组件、Text组件构成。在details.ets中编写并设置页面组件的属性和样式，示例代码如下所示：
    ```
@@ -108,7 +109,8 @@
    }
    ```
 
-2. 再次使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)或[模拟器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/run_simulator-0000001053303709)运行项目，效果如下图所示：
-   ![zh-cn_image_0000001217683805](figures/zh-cn_image_0000001217683805.png)
+2. 再次使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行项目，效果如下图所示：
+   
+![zh-cn_image_0000001217683805](figures/zh-cn_image_0000001217683805.png)
 
 恭喜你，至此已成功完成OpenHarmony快速入门-使用eTS语言开发。
