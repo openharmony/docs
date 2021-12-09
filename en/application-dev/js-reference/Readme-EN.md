@@ -305,7 +305,7 @@
     -   [Page Routing](apis/page-routing.md)
     -   [Pop-up Window](apis/pop-up-window.md)
     -   [Timer](apis/timer.md)
-    -   [Audio Management](apis/audio-management.md)
+    -   [Audio Management](apis/js-apis-audio.md)
     -   [Audio Playback](apis/audio-playback.md)
     -   [Device Information](apis/device-information.md)
     -   [System Attribute](apis/system-attribute.md)
