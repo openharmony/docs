@@ -44,7 +44,8 @@
    }
 	```
 
-3. 使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)或[模拟器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/run_simulator-0000001053303709)运行项目，效果如下图所示：
+3. 使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行项目，效果如下图所示：
+
    ![zh-cn_image_0000001217683803](figures/zh-cn_image_0000001217683803.png)
 
 
@@ -98,7 +99,8 @@
    }
    ```
 
-2. 再次使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)或[模拟器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/run_simulator-0000001053303709)运行项目，效果如下图所示：
-   ![zh-cn_image_0000001217402315](figures/zh-cn_image_0000001217402315.png)
+2. 再次使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行项目，效果如下图所示：
+   
+![zh-cn_image_0000001217402315](figures/zh-cn_image_0000001217402315.png)
 
 恭喜你，至此已成功完成OpenHarmony快速入门-使用JS语言开发。
