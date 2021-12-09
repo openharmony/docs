@@ -180,7 +180,7 @@ public:
         BulkTransferRead(const UsbDev &dev, const UsbPipe &pipe, int32_t timeout, std::vector<uint8_t> &data);
 
     /* *
-     * @brief 在给定端点上执行批量数据写入， 返回读取的数据和长度，端点方向必须为数据写入
+     * @brief 在给定端点上执行批量数据写入，返回读取的数据和长度，端点方向必须为数据写入
      *
      * @param dev usb设备地址信息
      * @param pipe usb设备pipe信息
@@ -194,8 +194,8 @@ public:
         BulkTransferWrite(const UsbDev &dev, const UsbPipe &pipe, int32_t timeout, const std::vector<uint8_t> &data);
 
     /* *
-     * @brief 对此设备执行端点零的控制事务，传输方向由请求类型决定。 如果requestType＆
-     * USB_ENDPOINT_DIR_MASK是USB_DIR_OUT ，则传输是写入，如果是USB_DIR_IN ，则传输是读取。
+     * @brief 对此设备执行端点零的控制事务，传输方向由请求类型决定。如果requestType＆
+     * USB_ENDPOINT_DIR_MASK是USB_DIR_OUT，则传输是写入，如果是USB_DIR_IN，则传输是读取。
      *
      * @param dev usb设备地址信息
      * @param ctrl usb设备控制数据包结构
@@ -207,7 +207,7 @@ public:
     static int32_t ControlTransfer(const UsbDev &dev, const UsbCtrlTransfer &ctrl, std::vector<uint8_t> &data);
 
     /* *
-     * @brief 在给定端点上执行中断数据读取， 返回读取的数据和长度，端点方向必须为数据读取
+     * @brief 在给定端点上执行中断数据读取，返回读取的数据和长度，端点方向必须为数据读取
      *
      * @param dev usb设备地址信息
      * @param pipe usb设备pipe信息
@@ -221,7 +221,7 @@ public:
         InterruptTransferRead(const UsbDev &dev, const UsbPipe &pipe, int32_t timeout, std::vector<uint8_t> &data);
 
     /* *
-     * @brief 在给定端点上执行中断数据写入， 返回读取的数据和长度，端点方向必须为数据写入
+     * @brief 在给定端点上执行中断数据写入，返回读取的数据和长度，端点方向必须为数据写入
      *
      * @param dev usb设备地址信息
      * @param pipe usb设备pipe信息
@@ -235,7 +235,7 @@ public:
         InterruptTransferWrite(const UsbDev &dev, const UsbPipe &pipe, int32_t timeout, std::vector<uint8_t> &data);
 
     /* *
-     * @brief 在给定端点上执行等时数据读取， 返回读取的数据和长度，端点方向必须为数据读取
+     * @brief 在给定端点上执行等时数据读取，返回读取的数据和长度，端点方向必须为数据读取
      *
      * @param dev usb设备地址信息
      * @param pipe usb设备pipe信息
@@ -248,7 +248,7 @@ public:
     static int32_t IsoTransferRead(const UsbDev &dev, const UsbPipe &pipe, int32_t timeout, std::vector<uint8_t> &data);
 
     /* *
-     * @brief 在给定端点上执行等时数据写入， 返回读取的数据和长度，端点方向必须为数据写入
+     * @brief 在给定端点上执行等时数据写入，返回读取的数据和长度，端点方向必须为数据写入
      *
      * @param dev usb设备地址信息
      * @param pipe usb设备pipe信息
@@ -364,6 +364,54 @@ public:
      * @since 3.0
      */
     static ErrCode UnbindUsbdSubscriber();
+
+    /* *
+     * @brief 异步批量读取数据，传输大量数据时使用
+     *
+     * @param dev usb设备地址信息
+     * @param pipe usb设备pipe信息
+     * @param length 打算以什么长度读取数据
+     *
+     * @return 0 表示成功，其他返回值表示失败
+     * @since 3.0
+     */
+    static int32_t BulkRequstDataSize(const UsbDev &dev, const UsbPipe &pipe, uint32_t &length);
+
+    /* *
+     * @brief 与BulkRequstDataSize配合使用，获取读取结果
+     *
+     * @param dev usb设备地址信息
+     * @param pipe usb设备pipe信息
+     * @param data 读取到的数据
+     *
+     * @return 0 表示成功，其他返回值表示失败
+     * @since 3.0
+     */
+    static int32_t BulkReadData(const UsbDev &dev, const UsbPipe &pipe, std::vector<uint8_t> &data);
+
+    /* *
+     * @brief 异步批量写数据，传输大量数据时使用
+     *
+     * @param dev usb设备地址信息
+     * @param pipe usb设备pipe信息
+     * @param data 要写入的数据
+     *
+     * @return 0 表示成功，其他返回值表示失败
+     * @since 3.0
+     */
+    static int32_t BulkWriteData(const UsbDev &dev, const UsbPipe &pipe, const std::vector<uint8_t> &data);
+
+    /* *
+     * @brief 与BulkWriteData配合使用，获取写入状态，由length描述
+     *
+     * @param dev usb设备地址信息
+     * @param pipe usb设备pipe信息
+     * @param length 已经写入的数据长度
+     *
+     * @return 0 表示成功，其他返回值表示失败
+     * @since 3.0
+     */
+    static int32_t BulkGetWriteCompleteLength(const UsbDev &dev, const UsbPipe &pipe, uint32_t &length);
 
 private:
     static void PrintBuffer(const char *title, const uint8_t *buffer, uint32_t length);

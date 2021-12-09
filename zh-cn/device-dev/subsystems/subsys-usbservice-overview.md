@@ -1,190 +1,22 @@
-# USB<a name="ZH-CN_TOPIC_0000001052857350"></a>
+# Sensor服务子系概述<a name="ZH-CN_TOPIC_0000001092893508"></a>
 
 -   [概述](#section175431838101617)
-
--   [USB服务架构](#section350923483241)
-    -   [架构说明](#section350923485516)
-    -   [生命周期](#section894546131154)
-
--   [主要功能介绍](#section951321854211)
-    -   [USB设备管理列表](#section951321855211)
-    -   [Function管理](#section951321856212)
-    -   [USB设备权限管理](#section951321857213)
-
 -   [接口说明](#section83365421647)
     -   [Host部分](#section83365421658)
     -   [Device部分](#section83365421669)
     -   [Port部分](#section83365421670)
 
--   [开发实例](#section54626568156)
-
-
 ## 概述<a name="section175431838101617"></a>
 
-  USB设备分为Host设备（主机设备）和Device设备（从设备）。用户可通过Port Service来根据实际业务把运行OpenHarmony的设备切换为Host设备或者Device设备。目前在Host模式下，支持获取USB设备列表，USB设备权限管理，控制\批量的同异步数据传输等，在Device模式下，支持HDC（调试）、ACM（串口）、ECM（网口）等Function功能的切换。
+  USB设备分为Host设备（主机设备）和Device设备（从设备）。用户可通过Port Service来根据实际业务把运行OpenHarmony的设备切换为Host设备或者Device设备。目前在Host模式下，支持获取USB设备列表，USB设备权限管理，控制传输、批量传输的同异步数据传输等，在Device模式下，支持HDC（调试）、ACM（串口）、ECM（网口）等功能的切换。
 
-## USB服务架构<a name="section350923483241"></a>
+**图1**  USB服务架构图
 
-  USB服务系统分为USB FWK/API、USB Service、USB HDI、USB HAL四个部分。
+![](figure/USB服务架构图.png)
 
-  USB服务架构如下图所示:
-
-  ![](figure/USB服务架构图.png "USB服务架构图")
-
-## 架构说明<a name="section350923485516"></a>
-
-### 架构原则
--   ### 结构性原则
-    1.  可伸缩性:
-    保证可维护性、灵活性，比如当需求发生变化时，只需要修改软件的一部分，不会影响到其他部分的代码，降低了层 与层之间的耦合度.
-    2.  可扩展性:
-    在对现有系统影响最小的情况下，同时能保持可持续扩展和稳定提升的能力.
-    按照可扩展性的定义，一个具备良好可扩展性的架构设计应当符合开闭原则：对扩展开发，对修改关闭.
-    3.  组件化:
-    把重复的代码提取出来合并成为一个个组件，方便调用和复用，减少代码量.
-    4.  模块化:
-    将Host、Device、Port的功能按模块进行设计和开发，可独立管理.
-    5.  配置化:
-    将每个模块放入配置文件中进行配置管理，通过配置文件的修改来实现模块的增删.
-
--   ### 结构性原则
-    1.  分层设计：
-    将将功能进行有序的分组：层间关系的形成要遵循一定的规则。通过分层，可以限制子系统间的依赖关系，使系统以更松散的方式耦合，从而更易于维护。
-
-### 外部接口描述
--   ### USBDevice:
-    此类表示连接 鸿蒙设备的USB设备.
--   ### USBInterface:
-    表示 USBDevice上的接口的类.
--   ### USBEndpoint:
-    表示 USBInterface上的端点的类.
--   ### USBConfig:
-    表示USBDevice的配置说明类，是对Device信息的补充.
--   ### UsbDevicePipe:
-    此类用于向 USB 设备发送和接收数据和控制消息.
--   ### UsbRequest:
-    此类用于生成一个USB请求包，用于同步或异步数据传输.
-
-### 用例场景
-
-USB设备建立连接之后，根据内核的识别判定调用USB Host Service或是USB Device Service。对应的用例场景分别如下
-
--   ### USB Host Service:
-    获取USB设备列表、判断设备的权限、设备连接、数据传输（包括同步、异步两种模式），如下图所示:
-
-![](figure/USB-Host_Service.png "USB Host Service")
-
--   ### USB Device Service:
-    获取functions、设置functions 等场景，如下图所示:
-
-![](figure/USB-Device_Service.png "USB Host Service")
-
-USB Port Service的关键用例包括：Port信息的获取、设置Port角色，如下图所示:
-
-![](figure/USB-Port_Service.png "USB Host Service")
-
-### 交互场景
-
--   ### USB Host Service交互场景
-1.  USB设备插拔:
-    
-    内核检测USB插入事件并通过Notify发出通知到HAL，HAL层通过回调处理通知消息，增加USB设备到USB设备列表.
-    内核检测USB插入事件并通过Notify发出通知到HAL，HAL层通过回调处理通知消息，从USB设备列表中删除USB设备.
-
-![](figure/USB插拔事件通知.png "USB插拔事件通知")
-
-2.  数据收发:
-
-    USB Device与Host端连接后，Host端获取Deivice信息，从DeviceList中找到对应的Device，执行OpenDevice并生成对应的Pipe，同步情况下调用Pipe的收发接口进行数据收发。异步的情况下通过Pipe生成一个Request对象，通过Request对象的queue方法进行异步数据收发.
-
--   ### USB Device Service交互场景
-1.  设置functions:
-
-    可以根据用户传递的function功能值将设备设置为acm(串口)、ecm(网口)、hdc(调试)功能，可以是单
-    function功能，也可以是复合function功能。
-
-2.  获取functions:
-
-    获取当前设备functions功能值.
-
--   ### USB Port Service交互场景
-1.  获取port列表:
-
-    获取当前设备支持的port列表，每一个port对应设备的usb接口，每个port的id唯一.
-
-2.  获取port支持的模式:
-
-    根据portId 获取当前port支持的mode。支持的mode：host、device.
-
-3.  设置port角色:
-
-    给指定的port 设置电源role和数据role。电源role支持：source、sink；数据role支持：host、device.
-
-4.  更新port信息:
-
-    系统开始时或者设置port角色完成时，usbd会发消息通知到usb service层当前的的port信息，并且执行更新操作.
-
-- ### USB FWK/API
-    基于USB Service服务，使用NAPI技术，向上提供JS接口。
-
-- ### USB Service
-    使用C++代码实现，包含Host、Device、Port三个模块。基于HDI的接口，主要实现USB设备的列表管理、Function 管理、Port管理、USB设备权限管理等功能。
-
-- ### USB HDI
-    基于HAL层，向上提供C++接口。
-
-- ### USB HAL
-    使用C代码实现，基于Host SDK和Device SDK，封装了对USB设备的基本操作，同时通过HDF框架接收内核上报的信息。
-
-## 生命周期<a name="section894546131154"></a>
-
-  USB Service作为系统服务随系统启动、停止。
-- ### OS INIT: 
-    操作系统初始化阶段
-
-- ### USB Service Start:
-    USB Service的初始化阶段，进行一些初始化操作，初始化之后将USB Service挂起，等待事件触发和调用
-
-- ### USB Service Active:
-    USB Service的执行和调用阶段，具体描述为USB的插入触发了USB通知，并进行USB设备连接，创建数据连接通道，进行数据传输等一系列操作
-
-- ### USB Service Background:
-    当所有的USB设备被拔出之后，USB Service不再处理USB业务，在后台挂起，等待下一次的USB插入之后触发USB Service Active，或者在操作系统关机的时候进行销毁处理
-
-- ### USB Service Stop:
-    操作系统关机的时候，销毁USB Service
-
-Service的生命周期如下图：
-
-![](figure/Service生命周期.png "Service生命周期")
-
-## 主要功能介绍<a name="section951321854211"></a>
-
-- ### USB设备列表管理<a name="sectiong951321855211"></a>
-
-  USB插拔事件通过订阅/发布的消息机制通知到Host Service，改变Device Map中的Device数量。应用层通过API接口调用从 Device Map中获取所有的Device设备列表。
-
-    USB设备管理如下图：
-
-![](figure/USB设备列表管理.png "USB设备列表管理")
-
-- ### Function管理<a name="section951321856212"></a>
-
-  Function Manager中定义好支持的function 列表。通过调用接口设置functions 和 获取当前functions，且能实现string和number的转换。
-  HDC是通过修改SystemParameter实现加载和卸载；ACM和ECM是通过给ACM服务和ECM服务（基于HDF框架）发消息来实现加载和卸载。
-
-    Function管理如下图:
-
-![](figure/Function管理.png "Function管理")
-
-- ### USB设备权限管理<a name="section951321857213"></a>
-
-  当APP调用USB设备操作接口时，Host Service 使用设备唯一标识，在管理的权限列表中查询该设备是否有访问权限，若有权限，会执行操作，否则将返回权限不足信息。
-  当APP无此设备的使用权限时，App可以调用权限申请接口（RequestRight），会在权限列表中加入App与设备对应的权限信息，后续进行USB操作时将正常执行。
-
-    USB设备权限管理如下图:
-
-![](figure/USB设备权限管理.png "USB设备权限管理")
+-   USB FWK/API：基于USB Service服务，使用NAPI技术，向上提供JS接口。
+-   USB Service：使用C++代码实现，包含Host、Device、Port三个模块。基于HDI的接口，主要实现USB设备的列表管理、Function 管理、Port管理、USB设备权限管理等功能。
+-   USB HAL：使用C代码实现，基于Host SDK和Device SDK，封装了对USB设备的基本操作，向上提供C++接口，同时通过HDF框架接收内核上报的信息。
 
 ## 接口说明<a name="section83365421647"></a>
 
@@ -294,6 +126,26 @@ Service的生命周期如下图：
 <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>将指定的端点进行异步数据发送或者接收请求，数据传输方向由端点方向决定</p>
 </td>
 </tr>
+<tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16290141681918"><a name="p16290141681918"></a><a name="p16290141681918"></a>int32_t BulkRequstDataSize(const UsbDev &dev, const UsbPipe &pipe, uint32_t &length);</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>异步批量读取数据，传输大量数据时使用</p>
+</td>
+</tr>
+<tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16290141681918"><a name="p16290141681918"></a><a name="p16290141681918"></a>int32_t BulkReadData(const UsbDev &dev, const UsbPipe &pipe, std::vector<uint8_t> &data);</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>与BulkReadData配合使用，获取读取结果</p>
+</td>
+</tr>
+<tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16290141681918"><a name="p16290141681918"></a><a name="p16290141681918"></a>int32_t BulkWriteData(const UsbDev &dev, const UsbPipe &pipe, const std::vector<uint8_t> &data);</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>异步批量写数据，传输大量数据时使用</p>
+</td>
+</tr>
+<tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16290141681918"><a name="p16290141681918"></a><a name="p16290141681918"></a>int32_t BulkGetWriteCompleteLength(const UsbDev &dev, const UsbPipe &pipe, uint32_t &length);</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>与BulkWriteData配合使用，获取写入状态，由length描述</p>
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -367,48 +219,3 @@ Service的生命周期如下图：
 </tr>
 </tbody>
 </table>
-
-## 开发实例<a name="section54626568156"></a>
-
-1.  获取usb service实例
-
-    ```
-    static UsbSrvClient &g_usbClient = UsbSrvClient::GetInstance();
-    ```
-
-2.  获取usb设备列表
-
-    ```
-    std::vector<UsbDevice> deviceList;
-    int32_t ret = g_usbClient.GetDevices(deviceList);
-    ```
-
-3.  打开设备
-
-    ```
-    USBDevicePipe pip;
-    int32_t ret = g_usbClient.OpenDevice(dev, pip);
-    ```
-
-4.  打开接口
-
-    ```
-    g_usbClient.ClaimInterface(pip, interface, force);
-    interface为deviceList中device的interface。
-    ```
-
-5.  数据传输
-
-    ```
-    g_usbClient.BulkTransfer(pipe, endpoint, vdata, timeout);
-    ```
-    pipe为打开设备后的数据传输通道，endpoint为device中数据传输的端点，vdata是需要传输或读取的二进制数据块，timeout为传输超时时长
-
-6.  关闭接口
-
-    关闭设备释放资源
-
-    ```
-    g_usbClient.ReleaseInterface(pipe, interface);
-    g_usbClient.Close(pipe);
-    ```
