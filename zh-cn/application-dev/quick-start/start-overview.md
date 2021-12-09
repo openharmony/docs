@@ -28,6 +28,6 @@
    - 使用JS语言开发，模板选择Empty Ability，Language选择JS。
    - 使用eTS语言开发，模板选择Empty Ability，Language选择eTS。
 
-3. 工程创建完成后，使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)或[模拟器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/run_simulator-0000001053303709)运行该工程。
+3. 工程创建完成后，使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行该工程。
 
 完成上述操作后，请参考[使用JS语言开发](../quick-start/start-with-js.md)、[使用eTS语言开发](../quick-start/start-with-ets.md)继续下一步的学习。
