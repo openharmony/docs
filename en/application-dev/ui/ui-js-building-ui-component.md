@@ -1,6 +1,6 @@
 # Component Overview<a name="EN-US_TOPIC_0000001063340551"></a>
 
-Components are the core of a UI page. Each component can provide visible and interactive functional units that are independent from each other. This is achieved by data and method encapsulation. You can use and reuse any component anywhere as needed. For details about how to use the components, see  [Components](../js-reference/js-based-web-like-development-paradigm/js-components-common-attributes.md).
+Components are the core of a UI page. Each component can provide visible and interactive functional units that are independent from each other. This is achieved by data and method encapsulation. You can use and reuse any component anywhere as needed. For details about how to use the components, see  [Components](../reference/arkui-js/js-components-common-attributes.md).
 
 You can also customize a new component through proper combination of components to make the development simple and easy. For details about how to customize components, see  [Custom Components](ui-js-custom-components.md).
 
@@ -47,4 +47,3 @@ Components can be classified into the following types based on their functions.
 </tr>
 </tbody>
 </table>
-

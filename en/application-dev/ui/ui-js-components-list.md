@@ -1,6 +1,6 @@
 # List<a name="EN-US_TOPIC_0000001156015762"></a>
 
-The  **<list\>**  component provides a list container that presents a series of list items arranged in a column with the same width. Lists can be used for presenting the same type of data in a multiple and coherent row style. For details, see  [list](../js-reference/js-based-web-like-development-paradigm/js-components-container-list.md).
+The  **<list\>**  component provides a list container that presents a series of list items arranged in a column with the same width. Lists can be used for presenting the same type of data in a multiple and coherent row style. For details, see  [list](../reference/arkui-js/js-components-container-list.md).
 
 ## Creating a <list\> Component<a name="section1994073214247"></a>
 

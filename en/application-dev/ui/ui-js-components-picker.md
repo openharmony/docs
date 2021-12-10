@@ -1,6 +1,6 @@
 # Picker<a name="EN-US_TOPIC_0000001155695748"></a>
 
-The  **<picker\>**  component supports common, date, time, data and time, and multi-column text selectors. For details, see  [picker](../js-reference/js-based-web-like-development-paradigm/js-components-basic-picker.md).
+The  **<picker\>**  component supports common, date, time, data and time, and multi-column text selectors. For details, see  [picker](../reference/arkui-js/js-components-basic-picker.md).
 
 ## Creating a <picker\> Component<a name="section19696122895318"></a>
 

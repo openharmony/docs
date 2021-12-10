@@ -11,6 +11,4 @@
 -   **[设备管理](js-apis-device-manager.md)**  
 -   **[显示设备属性](js-apis-display.md)**  
 -   **[升级](js-apis-libupdateclient.md)**  
--   **[启动恢复](js-apis-update.md)**
-
 

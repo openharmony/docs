@@ -4,7 +4,7 @@ Before customizing a component, get to know what the  [component and decorator](
 
 ## Components and Decorators<a name="section1094392618525"></a>
 
-In a declarative UI, all pages are composed of components. The data structure of the component is  **struct**, and the decorator  [@Component](../js-reference/ts-based-declarative-development-paradigm/ts-component-based-component.md)  is the component-based flag. The struct decorated by  **@Component**  indicates that the struct has the component capability.
+In a declarative UI, all pages are composed of components. The data structure of the component is  **struct**, and the decorator  [@Component](../reference/arkui-ts/ts-component-based-component.md)  is the component-based flag. The struct decorated by  **@Component**  indicates that the struct has the component capability.
 
 The method for declaring a custom component is as follows:
 
@@ -21,7 +21,7 @@ interface Builder {
 }
 ```
 
-The component decorated by  [@Entry](../js-reference/ts-based-declarative-development-paradigm/ts-component-based-entry.md)  indicates that the component is the main entry of the page and can also be considered as the root node of the page. Note that a page must have one and only one  **@Entry**. Only the  **@Entry**  decorated component and its child components are displayed on the page.
+The component decorated by  [@Entry](../reference/arkui-ts/ts-component-based-entry.md)  indicates that the component is the main entry of the page and can also be considered as the root node of the page. Note that a page must have one and only one  **@Entry**. Only the  **@Entry**  decorated component and its child components are displayed on the page.
 
 **@Component**  and  **@Entry**  are basic and important decorators. To put it simply, a decorator assigns a capability to an object to be decorated. For example,  **@Entry**  assigns the capability of the page entry, and  **@Component**  assigns the component capability.
 
@@ -75,5 +75,4 @@ When you create a system component, the default style is used. You can change th
     ```
 
     ![](figures/en-us_image_0000001168888224.png)
-
 

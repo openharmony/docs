@@ -1,6 +1,6 @@
 # Button
 
-Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按钮、弧形按钮、下载按钮。具体用法请参考[Button API](../js-reference/js-based-web-like-development-paradigm/js-components-basic-button.md)。
+Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按钮、弧形按钮、下载按钮。具体用法请参考[Button API](../reference/arkui-js/js-components-basic-button.md)。
 
 
 ## 创建Button组件

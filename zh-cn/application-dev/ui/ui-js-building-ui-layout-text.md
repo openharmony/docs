@@ -1,6 +1,6 @@
 # 添加标题行和文本区域
 
-实现标题和文本区域最常用的是基础组件text。text组件用于展示文本，可以设置不同的属性和样式，文本内容需要写在标签内容区，完整属性和样式信息请参考[text](../js-reference/js-based-web-like-development-paradigm/js-components-basic-text.md)。在页面中插入标题和文本区域的示例如下：
+实现标题和文本区域最常用的是基础组件text。text组件用于展示文本，可以设置不同的属性和样式，文本内容需要写在标签内容区，完整属性和样式信息请参考[text](../reference/arkui-js/js-components-basic-text.md)。在页面中插入标题和文本区域的示例如下：
 
 
 ```

@@ -10,7 +10,7 @@ The transform attributes are the core of the static animation. A static animatio
 -   **scale**: Scales a specified component horizontally or vertically to the required scale.
 -   **rotate**: Rotates a specified component by a specified angle along the horizontal axis, vertical axis, or center point.
 
-For more information, see  [Component Methods](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md). The following is an example:
+For more information, see  [Component Methods](../reference/arkui-js/js-components-common-methods.md). The following is an example:
 
 ```
 <!-- xxx.hml -->

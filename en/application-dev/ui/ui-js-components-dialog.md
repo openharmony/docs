@@ -1,6 +1,6 @@
 # Dialog<a name="EN-US_TOPIC_0000001201895755"></a>
 
-The  **<dialog\>**  component is custom pop-up container for showing critical information or calling for an action. For details, see  [dialog](../js-reference/js-based-web-like-development-paradigm/js-components-container-dialog.md).
+The  **<dialog\>**  component is custom pop-up container for showing critical information or calling for an action. For details, see  [dialog](../reference/arkui-js/js-components-container-dialog.md).
 
 ## Creating a <dialog\> Component<a name="section174764398569"></a>
 
@@ -134,7 +134,7 @@ export default {
 
 ## Example Scenario<a name="section54252520379"></a>
 
-Use the  **<dialog\>**  component to implement a schedule. When the dialog box is open, use the  [**<textarea\>**](../js-reference/js-based-web-like-development-paradigm/js-components-basic-textarea.md)  component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
+Use the  **<dialog\>**  component to implement a schedule. When the dialog box is open, use the  [**<textarea\>**](../reference/arkui-js/js-components-basic-textarea.md)  component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
 
 ```
 <!-- xxx.hml -->

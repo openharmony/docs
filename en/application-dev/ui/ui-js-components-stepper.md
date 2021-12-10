@@ -1,6 +1,6 @@
 # Stepper<a name="EN-US_TOPIC_0000001156894290"></a>
 
-When multiple steps are required to complete a task, you can use the  **<stepper\>**  component to navigate your users through the whole process. For details, see  [stepper](../js-reference/js-based-web-like-development-paradigm/js-components-container-stepper.md).
+When multiple steps are required to complete a task, you can use the  **<stepper\>**  component to navigate your users through the whole process. For details, see  [stepper](../reference/arkui-js/js-components-container-stepper.md).
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >This component is supported since API version 5.
@@ -278,7 +278,7 @@ export default {
 
 Select the options displayed on the page. Your selection will be shown in real time. Click the next button to dynamically change the font color and font size on the page.
 
-Use the  **<stepper\>**  component to navigate through the steps. Create a  [**<toggle\>**](../js-reference/js-based-web-like-development-paradigm/js-components-basic-toggle.md)  component to implement the functions of selection and displaying the selection result. Then use the  [**<select\>**](../js-reference/js-based-web-like-development-paradigm/js-components-basic-select.md)  component to dynamically change the font color or size of the selected options.
+Use the  **<stepper\>**  component to navigate through the steps. Create a  [**<toggle\>**](../reference/arkui-js/js-components-basic-toggle.md)  component to implement the functions of selection and displaying the selection result. Then use the  [**<select\>**](../reference/arkui-js/js-components-basic-select.md)  component to dynamically change the font color or size of the selected options.
 
 ```
 <div class="container">
