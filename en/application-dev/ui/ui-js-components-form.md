@@ -1,6 +1,6 @@
 # Form<a name="EN-US_TOPIC_0000001201655789"></a>
 
-The  **<form\>**  component allows the content in  [**<input\>**](../js-reference/js-based-web-like-development-paradigm/js-components-basic-input.md)  components to be submitted and reset. For details, see  [form](../js-reference/js-based-web-like-development-paradigm/js-components-container-form.md).
+The  **<form\>**  component allows the content in  [**<input\>**](../reference/arkui-js/js-components-basic-input.md)  components to be submitted and reset. For details, see  [form](../reference/arkui-js/js-components-container-form.md).
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >This component is supported since API version 6.
@@ -32,7 +32,7 @@ Create a  **<form\>**  component in the  **.hml**  file under  **pages/index**.
 
 ## Zooming In or Out on a Form<a name="section462755916266"></a>
 
-To implement the zoom effect after a form is clicked, add the  **click-effect**  attribute to the  **<form\>**  component. For values of  **click-effect**, see  [Universal Attributes](../js-reference/js-based-web-like-development-paradigm/js-components-common-attributes.md).
+To implement the zoom effect after a form is clicked, add the  **click-effect**  attribute to the  **<form\>**  component. For values of  **click-effect**, see  [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
 
 ```
 <!-- xxx.hml -->
@@ -111,7 +111,7 @@ export default{
 
 Select an option and submit or reset the form data.
 
-Create  [**<input\>**](../js-reference/js-based-web-like-development-paradigm/js-components-basic-input.md)  components, set their  **type**  attribute to  **checkbox**  and  **radio**, and use the  **onsubmit**  and  **onreset**  events of the  **<form\>**  component to submit and reset the form data.
+Create  [**<input\>**](../reference/arkui-js/js-components-basic-input.md)  components, set their  **type**  attribute to  **checkbox**  and  **radio**, and use the  **onsubmit**  and  **onreset**  events of the  **<form\>**  component to submit and reset the form data.
 
 ```
 <!-- xxx.hml -->

@@ -1,6 +1,6 @@
 # Text<a name="EN-US_TOPIC_0000001157214238"></a>
 
-The  **<text\>**  component is used to display a piece of textual information. For details, see  [text](../js-reference/js-based-web-like-development-paradigm/js-components-basic-text.md).
+The  **<text\>**  component is used to display a piece of textual information. For details, see  [text](../reference/arkui-js/js-components-basic-text.md).
 
 ## Creating a <text\> Component<a name="section1466515586539"></a>
 
@@ -46,7 +46,7 @@ Set the  **color**,  **font-size**, and  **allow-scale**  attributes.
 
 -   Adding a text modifier
 
-Set the  **text-decoration**  attribute to add an underline, overline, line-through, or a combination of lines to selected text. For values of  **text-decoration**, see  [Text Styles](../js-reference/js-based-web-like-development-paradigm/js-components-basic-text.md#section5775351116).
+Set the  **text-decoration**  attribute to add an underline, overline, line-through, or a combination of lines to selected text. For values of  **text-decoration**, see  [Text Styles](../reference/arkui-js/js-components-basic-text.md#section5775351116).
 
 ```
 <!-- xxx.hml -->
@@ -110,7 +110,7 @@ Set the  **text-overflow**  attribute to  **ellipsis**  so that overflowed text 
 
 -   Setting the text line breaking mode
 
-Set the  **word-break**  attribute to specify how to break lines of text. For values of  **word-break**, see  [Text Styles](../js-reference/js-based-web-like-development-paradigm/js-components-basic-text.md#section5775351116).
+Set the  **word-break**  attribute to specify how to break lines of text. For values of  **word-break**, see  [Text Styles](../reference/arkui-js/js-components-basic-text.md#section5775351116).
 
 ```
 <!-- xxx.hml -->
@@ -159,7 +159,7 @@ Set the  **word-break**  attribute to specify how to break lines of text. For va
 
 ![](figures/8.png)
 
--   Setting the  [**<span\>**](../js-reference/js-based-web-like-development-paradigm/js-components-basic-span.md)  child component
+-   Setting the  [**<span\>**](../reference/arkui-js/js-components-basic-span.md)  child component
 
 ```
 <!-- xxx.hml -->

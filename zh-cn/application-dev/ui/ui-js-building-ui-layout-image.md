@@ -1,9 +1,9 @@
 # 添加图片区域
 
-添加图片区域通常用[image](../js-reference/js-based-web-like-development-paradigm/js-components-basic-image.md)组件来实现，使用的方法和text组件类似。
+添加图片区域通常用[image](../reference/arkui-js/js-components-basic-image.md)组件来实现，使用的方法和text组件类似。
 
 
-图片资源建议放在jsdefaultcommon目录下，common目录需自行创建，详细的目录结构见[目录结构](../js-reference/js-based-web-like-development-paradigm/js-framework-file.md#目录结构)。代码示例如下：
+图片资源建议放在jsdefaultcommon目录下，common目录需自行创建，详细的目录结构见[目录结构](../reference/arkui-js/js-framework-file.md#目录结构)。代码示例如下：
 
 
 ```

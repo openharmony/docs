@@ -1,6 +1,6 @@
 # Tabs<a name="EN-US_TOPIC_0000001157214240"></a>
 
-The  **<tabs\>**  component is a common UI component for navigation. It allows quick access to different functions of an app. For details, see  [tabs](../js-reference/js-based-web-like-development-paradigm/js-components-container-tabs.md).
+The  **<tabs\>**  component is a common UI component for navigation. It allows quick access to different functions of an app. For details, see  [tabs](../reference/arkui-js/js-components-container-tabs.md).
 
 ## Creating Tabs<a name="section1820920264"></a>
 
@@ -187,7 +187,7 @@ export default {
 ![](figures/32.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   A  **<tabs\>**  can wrap at most one  [**<tab-bar\>**](../js-reference/js-based-web-like-development-paradigm/js-components-container-tab-bar.md)  and at most one  [**<tab-content\>**](../js-reference/js-based-web-like-development-paradigm/js-components-container-tab-content.md).
+>-   A  **<tabs\>**  can wrap at most one  [**<tab-bar\>**](../reference/arkui-js/js-components-container-tab-bar.md)  and at most one  [**<tab-content\>**](../reference/arkui-js/js-components-container-tab-content.md).
 
 ## Example Scenario<a name="section1117302718531"></a>
 

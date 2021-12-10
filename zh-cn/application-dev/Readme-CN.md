@@ -11,5 +11,5 @@
 - [音频](media/audio.md)
 - [IPC与RPC通信](connectivity/ipc-rpc.md)
 - [应用事件打点](application-event-logging/hiappevent.md)
-- [JS 开发参考](js-reference/Readme-CN.md)
+- [开发参考](reference/Readme-CN.md)
 

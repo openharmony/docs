@@ -1,6 +1,6 @@
 # Stepper
 
-当一个任务需要多个步骤时，可以使用stepper组件展示当前进展。具体用法请参考[Stepper API](../js-reference/js-based-web-like-development-paradigm/js-components-container-stepper.md)。
+当一个任务需要多个步骤时，可以使用stepper组件展示当前进展。具体用法请参考[Stepper API](../reference/arkui-js/js-components-container-stepper.md)。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -236,7 +236,7 @@ export default {
 
 在本场景中，开发者可以在界面上点击选择并实时显示选择结果，点击下一步按钮后可动态修改页面的字体颜色和字体大小。
 
-用Stepper组件实现分步，再创建[Toggle](../js-reference/js-based-web-like-development-paradigm/js-components-basic-toggle.md)组件实现选择显示功能，再使用[Select](../js-reference/js-based-web-like-development-paradigm/js-components-basic-select.md)组件实现改变选中值动态修改字体颜色或大小。
+用Stepper组件实现分步，再创建[Toggle](../reference/arkui-js/js-components-basic-toggle.md)组件实现选择显示功能，再使用[Select](../reference/arkui-js/js-components-basic-select.md)组件实现改变选中值动态修改字体颜色或大小。
 
 ```
 <div class="container">

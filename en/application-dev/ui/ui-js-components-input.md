@@ -1,6 +1,6 @@
 # Input<a name="EN-US_TOPIC_0000001202854309"></a>
 
-The  **<input\>**  component provides an interactive way to receive user input of various types, including  **date**,  **checkbox**, and  **button**. For details, see  [input](../js-reference/js-based-web-like-development-paradigm/js-components-basic-input.md).
+The  **<input\>**  component provides an interactive way to receive user input of various types, including  **date**,  **checkbox**, and  **button**. For details, see  [input](../reference/arkui-js/js-components-basic-input.md).
 
 ## Creating an <input\> Component<a name="section119721242413"></a>
 

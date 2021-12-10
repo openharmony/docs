@@ -1,6 +1,6 @@
 # 动画动效<a name="ZH-CN_TOPIC_0000001217007973"></a>
 
-通过设置插值器来实现动画效果。具体用法请参考[动画](../js-reference/apis/js-apis-basic-features-animator.md)。
+通过设置插值器来实现动画效果。具体用法请参考[动画](../reference/apis/js-apis-basic-features-animator.md)。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >从API Version 6 开始支持。

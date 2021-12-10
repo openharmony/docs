@@ -1,6 +1,6 @@
 # Component Animation<a name="EN-US_TOPIC_0000001171528146"></a>
 
-Create and run an animation shortcut on the component. For details, see  [Universal Methods](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md).
+Create and run an animation shortcut on the component. For details, see  [Universal Methods](../reference/arkui-js/js-components-common-methods.md).
 
 ## Obtaining an Animation Object<a name="section662542112713"></a>
 
@@ -60,12 +60,12 @@ export default {
 ![](figures/1-19.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   When using the  **animate**  method, you must pass the  [Keyframes](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md#table1491078445)  and  [Options](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md#table587915341817)  parameters.
+>-   When using the  **animate**  method, you must pass the  [Keyframes](../reference/arkui-js/js-components-common-methods.md#table1491078445)  and  [Options](../reference/arkui-js/js-components-common-methods.md#table587915341817)  parameters.
 >-   If  **animate**  is called for multiple times and the replace policy is used, parameters passed to the last call will take effect.
 
 ## Setting Animation Parameters<a name="section36079502817"></a>
 
-After obtaining an  **animation**  object, you can set its style working on the component with the  [Keyframes](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md#table1491078445)  parameter.
+After obtaining an  **animation**  object, you can set its style working on the component with the  [Keyframes](../reference/arkui-js/js-components-common-methods.md#table1491078445)  parameter.
 
 ```
 <!-- xxx.hml -->
@@ -140,7 +140,7 @@ export default {
 >-   The sequence of  **translate**,  **scale**, and  **rotate**  affects the animation effect.
 >-   **transformOrigin**  works only for  **scale**  and  **rotate**.
 
-Set the animation attributes with the  [Options](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md#table587915341817)  parameter.
+Set the animation attributes with the  [Options](../reference/arkui-js/js-components-common-methods.md#table587915341817)  parameter.
 
 ```
 <!-- xxx.hml -->

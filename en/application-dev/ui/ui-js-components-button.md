@@ -1,6 +1,6 @@
 # Button<a name="EN-US_TOPIC_0000001202654279"></a>
 
-The  **<button\>**  component can be used to set a capsule, circle, text, arc, or download button. For details, see  [button](../js-reference/js-based-web-like-development-paradigm/js-components-basic-button.md).
+The  **<button\>**  component can be used to set a capsule, circle, text, arc, or download button. For details, see  [button](../reference/arkui-js/js-components-basic-button.md).
 
 ## Creating a <button\> Component<a name="section1483585710237"></a>
 

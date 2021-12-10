@@ -1,6 +1,6 @@
 # Picker
 
-Picker是滑动选择器组件，类型支持普通选择器、日期选择器、时间选择器、时间日期选择器和多列文本选择器。具体用法请参考[Picker API](../js-reference/js-based-web-like-development-paradigm/js-components-basic-picker.md)。
+Picker是滑动选择器组件，类型支持普通选择器、日期选择器、时间选择器、时间日期选择器和多列文本选择器。具体用法请参考[Picker API](../reference/arkui-js/js-components-basic-picker.md)。
 
 
 ## 创建Picker组件

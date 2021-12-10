@@ -1,6 +1,6 @@
 # Adding Title and Paragraph Text<a name="EN-US_TOPIC_0000001063749052"></a>
 
-The  **<text\>**  component is most commonly used to display text in title and paragraph areas. You can set attributes and styles for a  **<text\>**  component and add the text to be displayed between the  **<text\>**  and  **</text\>**  tags. For details about the attributes and styles, see  [text](../js-reference/js-based-web-like-development-paradigm/js-components-basic-text.md). The following is an example of adding title and paragraph text on a page:
+The  **<text\>**  component is most commonly used to display text in title and paragraph areas. You can set attributes and styles for a  **<text\>**  component and add the text to be displayed between the  **<text\>**  and  **</text\>**  tags. For details about the attributes and styles, see  [text](../reference/arkui-js/js-components-basic-text.md). The following is an example of adding title and paragraph text on a page:
 
 ```
 <!-- xxx.hml -->

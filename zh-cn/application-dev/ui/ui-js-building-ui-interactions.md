@@ -77,4 +77,4 @@ export default {
 ```
 
 
-除此之外，还提供了很多表单组件，例如开关、标签、滑动选择器等，以便于开发者在页面布局时灵活使用和提高交互性，详见[容器组件](../js-reference/js-based-web-like-development-paradigm/js-components-container-badge.md)。
+除此之外，还提供了很多表单组件，例如开关、标签、滑动选择器等，以便于开发者在页面布局时灵活使用和提高交互性，详见[容器组件](../reference/arkui-js/js-components-container-badge.md)。

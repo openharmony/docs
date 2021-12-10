@@ -1,6 +1,6 @@
 # Image<a name="EN-US_TOPIC_0000001202854311"></a>
 
-The  **<image\>**  component is used to render and display images. For details, see  [image](../js-reference/js-based-web-like-development-paradigm/js-components-basic-image.md).
+The  **<image\>**  component is used to render and display images. For details, see  [image](../reference/arkui-js/js-components-basic-image.md).
 
 ## Creating an <image\> Component<a name="section1688401116367"></a>
 
@@ -59,7 +59,7 @@ image{
 
 ## Display Multiple Images<a name="section297282517378"></a>
 
-Define a  **for**  loop to display multiple images cyclically. Set  **option**  to specify the image scale style. For details about the scale styles, see the description of  [object-fit](../js-reference/js-based-web-like-development-paradigm/js-components-basic-image.md#table175851535113711).
+Define a  **for**  loop to display multiple images cyclically. Set  **option**  to specify the image scale style. For details about the scale styles, see the description of  [object-fit](../reference/arkui-js/js-components-basic-image.md#table175851535113711).
 
 ```
 <!-- index.hml -->

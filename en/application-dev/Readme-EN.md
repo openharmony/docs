@@ -11,7 +11,7 @@
 -   [Audio](media/audio.md)
 -   [IPC & RPC](connectivity/ipc-rpc.md)
 -   [Application Event Logging](application-event-logging/hiappevent.md)
--   [JavaScript Development References](js-reference/js-reference.md)
-    -   [JavaScript-based Web-like Development Paradigm](js-reference/js-based-web-like-development-paradigm/js-web-development-like.md)
-
-    -   [TypeScript-based Declarative Development Paradigm](js-reference/ts-based-declarative-development-paradigm/ts-declarative.md)
+-   [Development References](reference/Readme-EN.md)
+    -   [JavaScript-based Web-like Development Paradigm](reference/arkui-js/Readme-EN.md)
+    -   [TypeScript-based Declarative Development Paradigm](reference/arkui-ts/Readme-EN.md)
+    -   [APIs](reference/apis/Readme-EN.md)
