@@ -161,7 +161,7 @@ getDisplayCountry\(country: string, locale: string, sentenceCase?: boolean\): st
     ```
 
 
-## i18n.getSystemLanugage<a name="section25111622174311"></a>
+## i18n.getSystemLanguage<a name="section25111622174311"></a>
 
 getSystemLanguage\(\): string
 
