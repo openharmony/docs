@@ -9,34 +9,33 @@
 1.  获取usb service实例
 
 ```
-auto &srvClient = UsbSrvClient::GetInstance();
+static OHOS::USB::UsbSrvClient &g_usbClient = OHOS::USB::UsbSrvClient::GetInstance();
 ```
 
 2.  获取usb设备列表
 
 ```
-std::vector<UsbDevice> deviceList;
-int32_t ret = srvClient.GetDevices(deviceList);
+std::vector<OHOS::USB::UsbDevice> deviceList;
+int32_t ret = g_usbClient.GetDevices(deviceList);
 ```
 
 3.  申请设备权限
 
 ```
-UsbDevice device = deviceList.front();
-int32_t ret = UsbSrvClient.RequestRight(device.GetName());
+int32_t ret = g_usbClient.RequestRight(device.GetName());
 ```
 
 4.  打开设备
 
 ```
 USBDevicePipe pip;
-int32_t ret = srvClient.OpenDevice(dev, pip);
+int32_t et = g_usbClient.OpenDevice(device, pip);
 ```
 
 5.  配置设备接口
 
 ```
-srvClient.ClaimInterface(pip, interface, force);
+ret = g_usbClient.ClaimInterface(pip, interface, true);
 interface为deviceList中device的interface。
 ```
 
@@ -50,5 +49,5 @@ pipe为打开设备后的数据传输通道，endpoint为device中数据传输�
 7.  关闭设备
 
 ```
-srvClient.Close(pipe);
+ret = g_usbClient.Close(pip);
 ```
