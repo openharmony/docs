@@ -57,7 +57,7 @@ This project stores OpenHarmony documentation, including the quick start guide, 
     -   **ui**:  [UI](application-dev/ui/Readme-EN.md)
     -   **media**:  [media](application-dev/media/Readme-EN.md)
     -   **connectivity**:  [networks and connectivity](application-dev/connectivity/Readme-EN.md)
-    -   **js-reference**:  [JS reference](application-dev/js-reference/Readme-EN.md)
+    -   **reference**:  [Reference](application-dev/reference/Readme-EN.md)
 -   **glossary**:  [glossary](device-dev/glossary/glossary.md)
 
 ## Version Change History
