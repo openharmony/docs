@@ -11,7 +11,7 @@
 关系型数据库是在SQLite基础上实现的本地数据操作机制，提供给用户无需编写原生SQL语句就能进行数据增删改查的方法，同时也支持原生SQL语句操作。
 
 ## 接口说明
-数据库的创建和删除
+**数据库的创建和删除**
 
 关系型数据库提供了数据库创建方式，以及对应的删除接口，涉及的API如下所示。
 
@@ -19,23 +19,23 @@
 
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
-| RdbStoreConfig | RdbStoreConfig(const std::string &path, <br> StorageMode storageMode = StorageMode::MODE_DISK, <br> bool readOnly = false, <br> const std::vector<uint8_t> &encryptKey = std::vector<uint8_t>(), <br> const std::string &journalMode = "", <br> const std::string &syncMode = "", <br> const std::string &databaseFileType = "", <br> const std::string &databaseFileSecurityLevel = "") | 对数据库进行配置，包括设置数据库名、存储模式、日志模式、同步模式，是否为只读，及数据库加密。 <ul><li> path：数据库路径；</li><li> readOnly：是否只读；</li><li> storageMode：存储模式；</li><li> encryptKey：加密密钥; </li><li> journalMode：日志模式；</li><li> syncMode：同步模式；</li><li> databaseFileType：数据库类型； </li><li> databaseFileSecurityLevel：安全等级 </li></ul> |
+| RdbStoreConfig | RdbStoreConfig(const std::string &path, <br> StorageMode storageMode = StorageMode::MODE_DISK, <br> bool readOnly = false, <br> const std::vector<uint8_t> &encryptKey = std::vector<uint8_t>(), <br> const std::string &journalMode = "", <br> const std::string &syncMode = "", <br> const std::string &databaseFileType = "", <br> const std::string &databaseFileSecurityLevel = "") | 对数据库进行配置，包括设置数据库名、存储模式、日志模式、同步模式，是否为只读，及数据库加密。 <ul><li> path：数据库路径；</li><li> readOnly：是否只读；</li><li> storageMode：存储模式；</li><li> encryptKey：加密密钥; </li><li> journalMode：日志模式；</li><li> syncMode：同步模式；</li><li> databaseFileType：数据库类型（Normal、）； </li><li> databaseFileSecurityLevel：安全等级 </li></ul> |
 | RdbOpenCallback | int OnCreate(RdbStore &rdbStore) | 数据库创建时被回调，开发者可以在该方法中初始化表结构，并添加一些应用使用到的初始化数据。 |
 | RdbOpenCallback | int OnUpgrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | 数据库升级时被回调。 |
 | RdbOpenCallback | int OnDowngrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | 数据库降级时被回调。 |
 | RdbHelper | std::shared_ptr\<RdbStore\> GetRdbStore(const RdbStoreConfig &config, int version, RdbOpenCallback &openCallback, int &errCode) | 根据配置创建或打开数据库。 |
 | RdbHelper | int DeleteRdbStore(const std::string &path) | 删除指定的数据库。 |
 
-数据库的加密
+**数据库的加密**
 
-关系型数据库提供数据库加密的能力，在创建数据库时若指定了密钥，则会创建为加密数据库再次使用此数据库时，仍需要指定相同密钥，才能正确打开数据库。
+关系型数据库提供数据库加密的能力，在创建数据库时若指定了密钥，则会创建为加密数据库。再次使用此数据库时，需要指定该密钥，才能正确打开数据库。
 
-表2 数据库传入密钥接口
+表2 数据库修改密钥API
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
-| RdbStoreConfig | void SetEncryptKey(const std::vector<uint8_t> &encryptKey) | 为数据库设置数据库加密密钥的配置类，创建或打开数据库时传入包含数据库加密密钥的配置类，即可创建或打开加密数据库。 |
+| RdbStore | int ChangeEncryptKey(const std::vector<uint8_t> &newKey) | 为数据库设置新的加密密钥。注：仅支持加密数据库更换加密密钥。 |
 
-数据库的增删改查
+**数据库的增删改查**
 
 关系型数据库提供对本地数据增删改查操作的能力，相关API如下所示。
 
@@ -80,7 +80,7 @@
   | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | 查询数据。<ul><li> predicates：谓词，可以设置查询条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul> <li> columns：规定查询返回的列。</li></ul></li></ul> |
   | RdbStore | std::unique_ptr<AbsSharedResultSet> QuerySql(const std::string &sql, const std::vector\<std::string\> &selectionArgs = std::vector\<std::string\>()) | 执行原生的用于查询操作的SQL语句。<ul><li> sql：原生用于查询的sql语句。</li><li> selectionArgs：sql语句中占位符参数的值，若select语句中没有使用占位符，该参数可以设置为null。</li></ul> |
 
-数据库谓词的使用
+**数据库谓词的使用**
 
 关系型数据库提供了用于设置数据库操作条件的谓词AbsRdbPredicates，其中包括两个实现子类RdbPredicates和RawRdbPredicates：
 
@@ -98,7 +98,7 @@
   | RdbPredicates | void SetWhereClause(std::string whereClause) | 设置where条件子句。 |
   | RdbPredicates | void SetWhereArgs(std::vector\<std::string\> whereArgs) | 设置whereArgs参数，该值表示where子句中占位符的值。 |
 
-查询结果集的使用
+**查询结果集的使用**
 
 关系型数据库提供了查询返回的结果集ResultSet，其指向查询结果中的一行数据，供用户对查询结果进行遍历和访问。ResultSet对外API如下所示。
 
@@ -119,27 +119,6 @@
   | ResultSet | int GetBlob(int columnIndex, std::vector\<uint8_t\> &blob) | 获取当前行指定列的值，以字节数组形式返回。 |
   | ResultSet | int GetDouble(int columnIndex, double &value) | 获取当前行指定列的值，以double型返回。 |
 
-事务
-
-关系型数据库提供事务机制，来保证用户操作的原子性。对单条数据进行数据库操作时，无需开启事务；插入大量数据时，开启事务可以保证数据的准确性。如果中途操作出现失败，会自动执行回滚操作。
-
-表9 事务API
-  | 类名 | 接口名 | 描述 |
-  |  ----  |  ----  |  ----  |
-  | RdbStore | void beginTransaction() | 开启事务。 |
-  | RdbStore | void markAsCommit() | 设置事务的标记为成功。 |
-  | RdbStore | void endTransaction() | 结束事务。当调用此方法前若执行markAsCommit方法，事务会提交，否则事务会自动回滚。 |
-
-数据库的备份和恢复
-
-用户可以将当前数据库的数据进行保存备份，还可以在需要的时候进行数据恢复。
-
-表11 数据库备份和恢复API
-  | 类名 | 接口名 | 描述 |
-  |  ----  |  ----  |  ----  |
-  | RdbStore | int Attach(const std::string &alias, const std::string &pathName, const std::vector\<uint8_t\> destEncryptKey) | 数据库恢复接口，从指定的数据库文件（加密和非加密均可）中恢复数据。 |
-  | RdbStore | int Backup(const std::string databasePath, const std::vector<uint8_t> destEncryptKey) | 数据库备份接口，备份出的数据库文件是加密或非加密的。 |
-
 ## 约束与限制
 
 无。
@@ -157,36 +136,23 @@
     示例代码如下：
     ```
     const std::string DATABASE_NAME = RDB_TEST_PATH + "RdbStoreTest.db";
+    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, salary REAL, blobType BLOB)";
 
     class OpenCallback : public RdbOpenCallback {
     public:
         int OnCreate(RdbStore &rdbStore) override;
         int OnUpgrade(RdbStore &rdbStore, int oldVersion, int newVersion) override;
-
-        static std::string CreateTableSQL(const std::string &tableName);
-        static std::string DropTableSQL(const std::string &tableName);
     };
-
-    std::string OpenCallback::CreateTableSQL(const std::string &tableName)
-    {
-        return "CREATE TABLE IF NOT EXISTS " + tableName
-               + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, salary REAL, blobType BLOB)";
-    }
-
-    std::string OpenCallback::DropTableSQL(const std::string &tableName)
-    {
-        return "DROP TABLE IF EXISTS " + tableName + ";";
-    }
 
     int OpenCallback::OnCreate(RdbStore &store)
     {
-        return store.ExecuteSql(CreateTableSQL("test"));
+        return store.ExecuteSql(CREATE_TABLE_TEST);
     }
 
     RdbStoreConfig config(DATABASE_NAME);
-    OpenCallback helper;
+    OpenCallback callback;
 
-    std::shared_ptr<RdbStore> store = RdbHelper::GetRdbStore(config, 1, helper, 0); 
+    std::shared_ptr<RdbStore> store = RdbHelper::GetRdbStore(config, 1, callback, 0); 
     ```
 
 2. 插入数据。
