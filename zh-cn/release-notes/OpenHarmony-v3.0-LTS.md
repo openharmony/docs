@@ -96,7 +96,7 @@ repo forall -c 'git lfs pull'
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 | 
 | -------- | -------- | -------- |
-| 分布式任务调度 | -&nbsp;新增远程绑定ServiceAbility基本功能<br/>-&nbsp;新增FA跨设备迁移功能<br/>-&nbsp;新增组件visible属性权限校验功能 | 新增小型系统启动大型系统Ability的功能 | 
+| 分布式任务调度 | -&nbsp;新增远程绑定ServiceAbility基本功能<br/>-&nbsp;新增FA跨设备迁移功能<br/>-&nbsp;新增组件visible属性权限校验功能 | 新增小型系统启动HarmonyOS Ability的功能 | 
 | 图形 | 对于带有GPU模块的芯片平台，支持使用GPU进行渲染合成，以提升图形性能，降低CPU负载 | NA | 
 | 分布式硬件 | -&nbsp;支持基于分布式软总线认证通道的PIN码认证方案<br/>-&nbsp;支持PIN码认证授权提示弹窗<br/>-&nbsp;支持PIN码显示弹窗<br/>-&nbsp;支持PIN码输入弹窗 | NA | 
 | 事件通知 | -&nbsp;支持应用通知订阅&nbsp;&amp;&nbsp;取消订阅<br/>-&nbsp;支持应用侧发布&amp;取消本地文本、图片通知<br/>-&nbsp;支持应用通知消息跳转能力<br/>-&nbsp;支持应用侧增加&amp;删除slot<br/>-&nbsp;支持通知流控处理、死亡监听能力 | NA | 
