@@ -378,8 +378,8 @@ USB驱动是基于HDF框架、PLATFORM和OSAL基础接口进行开发，不区�
 1.  驱动匹配表配置。
 2.  初始化Host DDK。
 3.  待步骤2初始化完后获取UsbInterface接口对象。
-4.  打开步骤3获取到的UsbInterface接口对象，获取对应接口的UsbInterfaceHandle对象。
-5.  根据步骤4获取到的UsbInterfaceHandle对象，获取指定索引为pinpeIndex的pipeInfo信息。
+4.  打开步骤3获取到的UsbInterface接口对象，获取相应接口的UsbInterfaceHandle对象。
+5.  根据步骤4获取到的UsbInterfaceHandle对象，获取指定索引为pipeIndex的pipeInfo信息。
 6.  为步骤4获取到的UsbInterfaceHandle预先分配待发送的IO Request对象。
 7.  根据输入参数params填充步骤6预先分配的IO Request。
 8.  提交IO Request对象，可以选择同步或异步两种模式。
@@ -388,7 +388,7 @@ USB驱动是基于HDF框架、PLATFORM和OSAL基础接口进行开发，不区�
 
 1.  驱动匹配表配置。
 2.  初始化Host RAW，并打开USB设备，然后获取描述符，通过描述符获取接口、端点信息。
-3.  分配Request，并根据传输类型使用如下接口对Request进行填充。
+3.  分配Request，并根据传输类型使用相应接口对Request进行填充。
 4.  提交IO Request对象，可以选择同步或异步两种模式。
 
 ### Device DDK API驱动开发步骤<a name="section600mcpsimp"></a>
@@ -475,16 +475,16 @@ static int SerialCtrlMsg(struct AcmDevice *acm, uint8_t request,
 {
     int ret;
     uint16_t index = acm->intPipe->interfaceId;
-    struct UsbControlParams controlParams = {};
-    struct UsbRequestParams parmas = {};
+    struct UsbControlParams controlParams;
+    struct UsbRequestParams params;
     if (acm == NULL || buf == NULL) {
-        HDF_LOGE("%{public}s:invalid param", __func__);
+        HDF_LOGE("%s:invalid param", __func__);
         return HDF_ERR_IO;
     }
     if (acm->ctrlReq == NULL) {
         acm->ctrlReq = UsbAllocRequest(acm->ctrDevHandle, 0, len);
         if (acm->ctrlReq == NULL) {
-            HDF_LOGE("%{public}s: UsbAllocRequest faild", __func__);
+            HDF_LOGE("%s: UsbAllocRequest failed", __func__);
             return HDF_ERR_IO;
         }
     }
@@ -498,24 +498,24 @@ static int SerialCtrlMsg(struct AcmDevice *acm, uint8_t request,
     controlParams.data = buf;
     controlParams.size = len;
 
-    parmas.interfaceId = USB_CTRL_INTERFACE_ID;
-    parmas.pipeAddress = acm->ctrPipe->pipeAddress;
-    parmas.pipeId = acm->ctrPipe->pipeId;
-    parmas.requestType = USB_REQUEST_PARAMS_CTRL_TYPE;
-    parmas.timeout = USB_CTRL_SET_TIMEOUT;
-    parmas.ctrlReq = UsbControlSetUp(&controlParams);
-    ret = UsbFillRequest(acm->ctrlReq, acm->ctrDevHandle, &parmas);
+    params.interfaceId = USB_CTRL_INTERFACE_ID;
+    params.pipeAddress = acm->ctrPipe->pipeAddress;
+    params.pipeId = acm->ctrPipe->pipeId;
+    params.requestType = USB_REQUEST_PARAMS_CTRL_TYPE;
+    params.timeout = USB_CTRL_SET_TIMEOUT;
+    params.ctrlReq = UsbControlSetUp(&controlParams);
+    ret = UsbFillRequest(acm->ctrlReq, acm->ctrDevHandle, &params);
     if (HDF_SUCCESS != ret) {
-        HDF_LOGE("%{public}s: faile, ret=%{public}d ", __func__, ret);
+        HDF_LOGE("%s: failed, ret=%d ", __func__, ret);
         return ret;
     }
     ret = UsbSubmitRequestSync(acm->ctrlReq);    //发送同步IO Request
     if (HDF_SUCCESS != ret) {
-        HDF_LOGE("UsbSubmitRequestSync  faile, ret=%{public}d ", ret);
+        HDF_LOGE("UsbSubmitRequestSync failed, ret=%d ", ret);
         return ret;
     }
     if (!acm->ctrlReq->compInfo.status) {
-        HDF_LOGE("%{public}s  status=%{public}d ", __func__, acm->ctrlReq->compInfo.status);
+        HDF_LOGE("%s status=%d ", __func__, acm->ctrlReq->compInfo.status);
     }
     return HDF_SUCCESS;
 }
@@ -556,7 +556,7 @@ static struct UsbPipeInfo *EnumePipe(const struct AcmDevice *acm,
         if ((p.pipeDirection == pipeDirection) && (p.pipeType == pipeType)) {
             struct UsbPipeInfo *pi = OsalMemCalloc(sizeof(*pi));
             if (pi == NULL) {
-                HDF_LOGE("%{public}s: Alloc pipe failed", __func__);
+                HDF_LOGE("%s: Alloc pipe failed", __func__);
                 return NULL;
             }
             p.interfaceId = info->interfaceIndex;
@@ -572,7 +572,7 @@ static struct UsbPipeInfo *GetPipe(const struct AcmDevice *acm,
 {
     uint8_t i;
     if (acm == NULL) {
-        HDF_LOGE("%{public}s: invalid parmas", __func__);
+        HDF_LOGE("%s: invalid params", __func__);
         return NULL;
     }
     for (i = 0; i < acm->interfaceCnt; i++) {
@@ -605,7 +605,7 @@ static int32_t UsbSerialDriverBind(struct HdfDeviceObject *device)
         return HDF_FAILURE;
     }
     if (OsalMutexInit(&acm->lock) != HDF_SUCCESS) {
-        HDF_LOGE("%s:%d OsalMutexInit fail", __func__, __LINE__);
+        HDF_LOGE("%s:%d OsalMutexInit failed", __func__, __LINE__);
         goto error;
     }
     info = (struct UsbPnpNotifyServiceInfo *)device->priv;
@@ -618,7 +618,7 @@ static int32_t UsbSerialDriverBind(struct HdfDeviceObject *device)
         err = memcpy_s((void *)(acm->interfaceIndex), USB_MAX_INTERFACES,
               (const void*)info->interfaceNumber, info->interfaceLength);
         if (err != EOK) {
-            HDF_LOGE("%s:%d memcpy_s faile err=%d", 
+            HDF_LOGE("%s:%d memcpy_s failed err=%d",
                 __func__, __LINE__, err);
             goto lock_error;
         }
@@ -634,7 +634,7 @@ static int32_t UsbSerialDriverBind(struct HdfDeviceObject *device)
 
 lock_error:
     if (OsalMutexDestroy(&acm->lock)) {
-        HDF_LOGE("%s:%d OsalMutexDestroy fail", __func__, __LINE__);
+        HDF_LOGE("%s:%d OsalMutexDestroy failed", __func__, __LINE__);
     }
 error:
     OsalMemFree(acm);
@@ -645,26 +645,26 @@ error:
 static int AcmAllocReadRequests(struct AcmDevice *acm)
 {
     int ret;
-    struct UsbRequestParams readParmas = {};
+    struct UsbRequestParams readParams;
     for (int i = 0; i < ACM_NR; i++) {
         acm->readReq[i] = UsbAllocRequest(InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), 0, acm->readSize);    //分配待发送的readReq IO Request对象
         if (!acm->readReq[i]) {
-            HDF_LOGE("readReq request faildn");
+            HDF_LOGE("readReq request failed");
             goto error;
         }
-        readParmas.userData = (void *)acm;
-        readParmas.pipeAddress = acm->dataInPipe->pipeAddress;
-        readParmas.pipeId = acm->dataInPipe->pipeId;
-        readParmas.interfaceId = acm->dataInPipe->interfaceId;
-        readParmas.callback = AcmReadBulk;
-        readParmas.requestType = USB_REQUEST_PARAMS_DATA_TYPE;
-        readParmas.timeout = USB_CTRL_SET_TIMEOUT;
-        readParmas.dataReq.numIsoPackets = 0;
-        readParmas.dataReq.directon = (acm->dataInPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & 0x1;
-        readParmas.dataReq.length = acm->readSize;
-        ret = UsbFillRequest(acm->readReq[i], InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), &readParmas);    //填充待发送的readReq对象
+        readParams.userData = (void *)acm;
+        readParams.pipeAddress = acm->dataInPipe->pipeAddress;
+        readParams.pipeId = acm->dataInPipe->pipeId;
+        readParams.interfaceId = acm->dataInPipe->interfaceId;
+        readParams.callback = AcmReadBulk;
+        readParams.requestType = USB_REQUEST_PARAMS_DATA_TYPE;
+        readParams.timeout = USB_CTRL_SET_TIMEOUT;
+        readParams.dataReq.numIsoPackets = 0;
+        readParams.dataReq.directon = (acm->dataInPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & 0x1;
+        readParams.dataReq.length = acm->readSize;
+        ret = UsbFillRequest(acm->readReq[i], InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), &readParams);    //填充待发送的readReq对象
         if (HDF_SUCCESS != ret) {
-            HDF_LOGE("%{public}s: UsbFillRequest faile, ret=%{public}d n", __func__, ret);
+            HDF_LOGE("%s: UsbFillRequest failed, ret=%d n", __func__, ret);
             goto error;
         }
     }
@@ -678,25 +678,25 @@ error:
 static int AcmAllocNotifyRequest(struct AcmDevice *acm)
 {
     int ret;
-    struct UsbRequestParams intParmas = {};
+    struct UsbRequestParams intParams = {};
     acm->notifyReq = UsbAllocRequest(InterfaceIdToHandle(acm, acm->intPipe->interfaceId), 0, acm->intSize);    //分配待发送的中断IO Request对象
     if (!acm->notifyReq) {
-        HDF_LOGE("notifyReq request failn");
+        HDF_LOGE("notifyReq request failed");
         return HDF_ERR_MALLOC_FAIL;
     }
-    intParmas.userData = (void *)acm;
-    intParmas.pipeAddress = acm->intPipe->pipeAddress;
-    intParmas.pipeId = acm->intPipe->pipeId;
-    intParmas.interfaceId = acm->intPipe->interfaceId;
-    intParmas.callback = AcmCtrlIrq;
-    intParmas.requestType = USB_REQUEST_PARAMS_DATA_TYPE;
-    intParmas.timeout = USB_CTRL_SET_TIMEOUT;
-    intParmas.dataReq.numIsoPackets = 0;
-    intParmas.dataReq.directon = (acm->intPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & DIRECTION_MASK;
-    intParmas.dataReq.length = acm->intSize;
-    ret = UsbFillRequest(acm->notifyReq, InterfaceIdToHandle(acm, acm->intPipe->interfaceId), &intParmas);    //填充预先分配的中断IO Request
+    intParams.userData = (void *)acm;
+    intParams.pipeAddress = acm->intPipe->pipeAddress;
+    intParams.pipeId = acm->intPipe->pipeId;
+    intParams.interfaceId = acm->intPipe->interfaceId;
+    intParams.callback = AcmCtrlIrq;
+    intParams.requestType = USB_REQUEST_PARAMS_DATA_TYPE;
+    intParams.timeout = USB_CTRL_SET_TIMEOUT;
+    intParams.dataReq.numIsoPackets = 0;
+    intParams.dataReq.directon = (acm->intPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & DIRECTION_MASK;
+    intParams.dataReq.length = acm->intSize;
+    ret = UsbFillRequest(acm->notifyReq, InterfaceIdToHandle(acm, acm->intPipe->interfaceId), &intParams);    //填充预先分配的中断IO Request
     if (HDF_SUCCESS != ret) {
-        HDF_LOGE("%{public}s: UsbFillRequest faile, ret=%{public}d n", __func__, ret);
+        HDF_LOGE("%s: UsbFillRequest failed, ret=%d n", __func__, ret);
         goto error;
     }
     return HDF_SUCCESS;
@@ -725,14 +725,14 @@ static int32_t AcmClaimInterfaces(struct AcmDevice *acm)
     for (int i = 0; i < acm->interfaceCnt; i++) {
         acm->iface[i] = GetUsbInterfaceById((const struct AcmDevice *)acm, acm->interfaceIndex[i]);    //获取UsbInterface接口对象
         if (acm->iface[i] == NULL) {
-            HDF_LOGE("%{public}s: interface%{public}d is null", __func__, acm->interfaceIndex[i]);
+            HDF_LOGE("%s: interface%d is null", __func__, acm->interfaceIndex[i]);
             goto error;
         }
     }
 
     acm->ctrIface = GetUsbInterfaceById((const struct AcmDevice *)acm, USB_CTRL_INTERFACE_ID);    //获取控制接口对应的UsbInterface接口对象
     if (acm->ctrIface == NULL) {
-        HDF_LOGE("%{public}s: GetUsbInterfaceById null", __func__);
+        HDF_LOGE("%s: GetUsbInterfaceById null", __func__);
         goto error;
     }
 
@@ -763,14 +763,14 @@ static int32_t AcmOpenInterfaces(struct AcmDevice *acm)
         if (acm->iface[i]) {
             acm->devHandle[i] = UsbOpenInterface(acm->iface[i]);    //打开获取到的UsbInterface接口对象
             if (acm->devHandle[i] == NULL) {
-                HDF_LOGE("%{public}s: UsbOpenInterface null", __func__);
+                HDF_LOGE("%s: UsbOpenInterface null", __func__);
                 goto error;
             }
         }
     }
     acm->ctrDevHandle = UsbOpenInterface(acm->ctrIface);
     if (acm->ctrDevHandle == NULL) {
-        HDF_LOGE("%{public}s: ctrDevHandle UsbOpenInterface null", __func__);
+        HDF_LOGE("%s: ctrDevHandle UsbOpenInterface null", __func__);
         goto error;
     }
 
@@ -836,7 +836,7 @@ static int32_t AcmAllocRequests(struct AcmDevice *acm)
     int32_t ret;
 
     if (AcmWriteBufAlloc(acm) < 0) {
-        HDF_LOGE("%{public}s: AcmWriteBufAlloc failed", __func__);
+        HDF_LOGE("%s: AcmWriteBufAlloc failed", __func__);
         return HDF_ERR_MALLOC_FAIL;
     }
 
@@ -845,20 +845,20 @@ static int32_t AcmAllocRequests(struct AcmDevice *acm)
         snd->request = UsbAllocRequest(InterfaceIdToHandle(acm, acm->dataOutPipe->interfaceId), 0, acm->writeSize);    //分配待发送的IO Request对象
         snd->instance = acm;
         if (snd->request == NULL) {
-            HDF_LOGE("%{public}s:%{public}d snd request fail", __func__, __LINE__);
+            HDF_LOGE("%s:%d snd request failed", __func__, __LINE__);
             goto error_alloc_write_req;
         }
     }
 
     ret = AcmAllocNotifyRequest(acm);    //分配并填充中断IO Request对象
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s:%{public}d AcmAllocNotifyRequest fail", __func__, __LINE__);
+        HDF_LOGE("%s:%d AcmAllocNotifyRequest failed", __func__, __LINE__);
         goto error_alloc_int_req;
     }
 
     ret = AcmAllocReadRequests(acm);    //分配并填充readReq IO Request对象
     if (ret) {
-        HDF_LOGE("%{public}s:%{public}d AcmAllocReadRequests fail", __func__, __LINE__);
+        HDF_LOGE("%s:%d AcmAllocReadRequests failed", __func__, __LINE__);
         goto error_alloc_read_req;
     }
 
@@ -879,38 +879,38 @@ static int32_t AcmInit(struct AcmDevice *acm)
     struct UsbSession *session = NULL;
 
     if (acm->initFlag == true) {
-        HDF_LOGE("%{public}s:%{public}d: initFlag is true", __func__, __LINE__);
+        HDF_LOGE("%s:%d: initFlag is true", __func__, __LINE__);
         return HDF_SUCCESS;
     }
 
     ret = UsbInitHostSdk(NULL);    //初始化Host DDK
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s: UsbInitHostSdk faild", __func__);
+        HDF_LOGE("%s: UsbInitHostSdk failed", __func__);
         return HDF_ERR_IO;
     }
     acm->session = session;
 
     ret = AcmClaimInterfaces(acm);
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s: AcmClaimInterfaces faild", __func__);
+        HDF_LOGE("%s: AcmClaimInterfaces failed", __func__);
         goto error_claim_interfaces;
     }
 
     ret = AcmOpenInterfaces(acm);
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s: AcmOpenInterfaces faild", __func__);
+        HDF_LOGE("%s: AcmOpenInterfaces failed", __func__);
         goto error_open_interfaces;
     }
 
     ret = AcmGetPipes(acm);
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s: AcmGetPipes failed", __func__);
+        HDF_LOGE("%s: AcmGetPipes failed", __func__);
         goto error_get_pipes;
     }
 
     ret = AcmAllocRequests(acm);
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s: AcmAllocRequests failed", __func__);
+        HDF_LOGE("%s: AcmAllocRequests failed", __func__);
         goto error_alloc_reqs;
     }
 
@@ -920,7 +920,7 @@ static int32_t AcmInit(struct AcmDevice *acm)
     acm->lineCoding.bDataBits = USB_CDC_1_STOP_BITS;
     acm->initFlag = true;
 
-    HDF_LOGD("%{public}s:%{public}d========OK", __func__, __LINE__);
+    HDF_LOGD("%s:%d========OK", __func__, __LINE__);
     return HDF_SUCCESS;
 
 error_alloc_reqs:
@@ -938,7 +938,7 @@ error_claim_interfaces:
 static void AcmRelease(struct AcmDevice *acm)
 {
     if (acm->initFlag == false) {
-        HDF_LOGE("%{public}s:%{public}d: initFlag is false", __func__, __LINE__);
+        HDF_LOGE("%s:%d: initFlag is false", __func__, __LINE__);
         return;
     }
 
@@ -958,24 +958,24 @@ static int32_t UsbSerialDriverInit(struct HdfDeviceObject *device)
     struct AcmDevice *acm = NULL;
 
     if (device == NULL) {
-        HDF_LOGE("%{public}s: device is null", __func__);
+        HDF_LOGE("%s: device is null", __func__);
         return HDF_ERR_INVALID_OBJECT;
     }
     acm = (struct AcmDevice *)device->service;
     OsalMutexInit(&acm->readLock);
     OsalMutexInit(&acm->writeLock);
-    HDF_LOGD("%{public}s:%{public}d busNum=%{public}d,devAddr=%{public}d", 
+    HDF_LOGD("%s:%d busNum=%d,devAddr=%d",
         __func__, __LINE__, acm->busNum, acm->devAddr);
 
     ret = UsbSerialDeviceAlloc(acm);
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s: Serial Device alloc faild", __func__);
+        HDF_LOGE("%s: Serial Device alloc failed", __func__);
     }
 
     acm->initFlag = false;
     g_acmReleaseFlag = false;
 
-    HDF_LOGD("%{public}s:%{public}d init ok!", __func__, __LINE__);
+    HDF_LOGD("%s:%d init ok!", __func__, __LINE__);
 
     return ret;
 }
@@ -985,19 +985,19 @@ static void UsbSerialDriverRelease(struct HdfDeviceObject *device)
     struct AcmDevice *acm = NULL;
 
     if (device == NULL) {
-        HDF_LOGE("%{public}s: device is NULL", __func__);
+        HDF_LOGE("%s: device is NULL", __func__);
         return;
     }
     acm = (struct AcmDevice *)device->service;
     if (acm == NULL) {
-        HDF_LOGE("%{public}s: acm is null", __func__);
+        HDF_LOGE("%s: acm is null", __func__);
         return;
     }
 
     g_acmReleaseFlag = true;
 
     if (acm->initFlag == true) {
-        HDF_LOGE("%{public}s:%{public}d AcmRelease", __func__, __LINE__);
+        HDF_LOGE("%s:%d AcmRelease", __func__, __LINE__);
         AcmRelease(acm);
     }
     UsbSeriaDevicelFree(acm);
@@ -1006,7 +1006,7 @@ static void UsbSerialDriverRelease(struct HdfDeviceObject *device)
     OsalMutexDestroy(&acm->lock);
     OsalMemFree(acm);
     acm = NULL;
-    HDF_LOGD("%{public}s:%{public}d exit", __func__, __LINE__);
+    HDF_LOGD("%s:%d exit", __func__, __LINE__);
 }
 
 struct HdfDriverEntry g_usbSerialDriverEntry = {
@@ -1097,28 +1097,28 @@ static int UsbGetConfigDescriptor(UsbRawHandle *devHandle, struct UsbRawConfigDe
     int ret;
 
     if (devHandle == NULL) {
-        HDF_LOGE("%{public}s:%{public}d devHandle is NULL",
+        HDF_LOGE("%s:%d devHandle is NULL",
                  __func__, __LINE__);
         return HDF_ERR_INVALID_PARAM;
     }
 
     ret = UsbRawGetConfiguration(devHandle, &activeConfig);
     if (ret) {
-        HDF_LOGE("%{public}s:%{public}d UsbRawGetConfiguration failed, ret=%{public}d",
+        HDF_LOGE("%s:%d UsbRawGetConfiguration failed, ret=%d",
                  __func__, __LINE__, ret);
         return HDF_FAILURE;
     }
-    HDF_LOGE("%{public}s:%{public}d activeConfig=%{public}d", __func__, __LINE__, activeConfig);
+    HDF_LOGE("%s:%d activeConfig=%d", __func__, __LINE__, activeConfig);
     dev = UsbRawGetDevice(devHandle);
     if (dev == NULL) {
-        HDF_LOGE("%{public}s:%{public}d UsbRawGetDevice failed",
+        HDF_LOGE("%s:%d UsbRawGetDevice failed",
                  __func__, __LINE__);
         return HDF_FAILURE;
     }
 
     ret = UsbRawGetConfigDescriptor(dev, activeConfig, config);
     if (ret) {
-        HDF_LOGE("UsbRawGetConfigDescriptor failed, ret=%{public}dn", ret);
+        HDF_LOGE("UsbRawGetConfigDescriptor failed, ret=%dn", ret);
         return HDF_FAILURE;
     }
 
@@ -1134,7 +1134,7 @@ static int UsbAllocWriteRequests(struct AcmDevice *acm)
         snd->request = UsbRawAllocRequest(acm->devHandle, 0, acm->dataOutEp->maxPacketSize);
         snd->instance = acm;
         if (snd->request == NULL) {
-            HDF_LOGE("%{public}s: UsbRawAllocRequest faild", __func__);
+            HDF_LOGE("%s: UsbRawAllocRequest failed", __func__);
             return HDF_ERR_MALLOC_FAIL;
         }
     }
@@ -1160,7 +1160,7 @@ static int32_t UsbSerialDriverBind(struct HdfDeviceObject *device)
         return HDF_FAILURE;
     }
     if (OsalMutexInit(&acm->lock) != HDF_SUCCESS) {
-        HDF_LOGE("%s:%d OsalMutexInit fail", __func__, __LINE__);
+        HDF_LOGE("%s:%d OsalMutexInit failed", __func__, __LINE__);
         goto error;
     }
 
@@ -1172,7 +1172,7 @@ static int32_t UsbSerialDriverBind(struct HdfDeviceObject *device)
         err = memcpy_s((void *)(acm->interfaceIndex), USB_MAX_INTERFACES,
                        (const void*)info->interfaceNumber, info->interfaceLength);
         if (err != EOK) {
-            HDF_LOGE("%s:%d memcpy_s faile err=%d", 
+            HDF_LOGE("%s:%d memcpy_s failed err=%d",
                 __func__, __LINE__, err);
             goto lock_error;
         }
@@ -1189,7 +1189,7 @@ static int32_t UsbSerialDriverBind(struct HdfDeviceObject *device)
 
 lock_error:
     if (OsalMutexDestroy(&acm->lock)) {
-        HDF_LOGE("%s:%d OsalMutexDestroy fail", __func__, __LINE__);
+        HDF_LOGE("%s:%d OsalMutexDestroy failed", __func__, __LINE__);
     }
 error:
     OsalMemFree(acm);
@@ -1206,7 +1206,7 @@ static int UsbAllocReadRequests(struct AcmDevice *acm)
     for (int i = 0; i < ACM_NR; i++) {
         acm->readReq[i] = UsbRawAllocRequest(acm->devHandle, 0, size);
         if (!acm->readReq[i]) {
-            HDF_LOGE("readReq request faildn");
+            HDF_LOGE("readReq request failed");
             return HDF_ERR_MALLOC_FAIL;
         }
 
@@ -1219,7 +1219,7 @@ static int UsbAllocReadRequests(struct AcmDevice *acm)
 
         ret = UsbRawFillBulkRequest(acm->readReq[i], acm->devHandle, &reqData);
         if (ret) {
-            HDF_LOGE("%{public}s: FillBulkRequest faile, ret=%{public}d n",
+            HDF_LOGE("%s: FillBulkRequest failed, ret=%d n",
                      __func__, ret);
             return HDF_FAILURE;
         }
@@ -1236,7 +1236,7 @@ static int UsbAllocNotifyRequest(struct AcmDevice *acm)
 
     acm->notifyReq = UsbRawAllocRequest(acm->devHandle, 0, size);
     if (!acm->notifyReq) {
-        HDF_LOGE("notifyReq request failn");
+        HDF_LOGE("notifyReq request failed");
         return HDF_ERR_MALLOC_FAIL;
     }
 
@@ -1249,7 +1249,7 @@ static int UsbAllocNotifyRequest(struct AcmDevice *acm)
 
     ret = UsbRawFillInterruptRequest(acm->notifyReq, acm->devHandle, &fillRequestData);
     if (ret) {
-        HDF_LOGE("%{public}s: FillInterruptRequest faile, ret=%{public}d", __func__, ret);
+        HDF_LOGE("%s: FillInterruptRequest failed, ret=%d", __func__, ret);
         return HDF_FAILURE;
     }
 
@@ -1263,62 +1263,62 @@ static int32_t UsbSerialInit(struct AcmDevice *acm)
     int32_t ret;
 
     if (acm->initFlag == true) {
-        HDF_LOGE("%{public}s:%{public}d: initFlag is true", __func__, __LINE__);
+        HDF_LOGE("%s:%d: initFlag is true", __func__, __LINE__);
         return HDF_SUCCESS;
     }
 
     ret = UsbRawInit(NULL);
     if (ret) {
-        HDF_LOGE("%{public}s:%{public}d UsbRawInit faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbRawInit failed", __func__, __LINE__);
         return HDF_ERR_IO;
     }
     acm->session = session;
 
     devHandle = UsbRawOpenDevice(session, acm->busNum, acm->devAddr);
     if (devHandle == NULL) {
-        HDF_LOGE("%{public}s:%{public}d UsbRawOpenDevice faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbRawOpenDevice failed", __func__, __LINE__);
         ret =  HDF_FAILURE;
         goto err_open_device;
     }
     acm->devHandle = devHandle;
     ret = UsbGetConfigDescriptor(devHandle, &acm->config);
     if (ret) {
-        HDF_LOGE("%{public}s:%{public}d UsbGetConfigDescriptor faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbGetConfigDescriptor failed", __func__, __LINE__);
         ret =  HDF_FAILURE;
         goto err_get_desc;
     }
     ret = UsbParseConfigDescriptor(acm, acm->config);
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s:%{public}d UsbParseConfigDescriptor faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbParseConfigDescriptor failed", __func__, __LINE__);
         ret = HDF_FAILURE;
         goto err_parse_desc;
     }
 
     ret = AcmWriteBufAlloc(acm);
     if (ret < 0) {
-        HDF_LOGE("%{public}s:%{public}d AcmWriteBufAlloc faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d AcmWriteBufAlloc failed", __func__, __LINE__);
         ret = HDF_FAILURE;
         goto err_alloc_write_buf;
     }
     ret = UsbAllocWriteRequests(acm);
     if (ret < 0) {
-        HDF_LOGE("%{public}s:%{public}d UsbAllocWriteRequests faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbAllocWriteRequests failed", __func__, __LINE__);
         ret = HDF_FAILURE;
         goto err_alloc_write_reqs;
     }
     ret = UsbAllocNotifyRequest(acm);
     if (ret) {
-        HDF_LOGE("%{public}s:%{public}d UsbAllocNotifyRequests faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbAllocNotifyRequests failed", __func__, __LINE__);
         goto err_alloc_notify_req;
     }
     ret = UsbAllocReadRequests(acm);
     if (ret) {
-        HDF_LOGE("%{public}s:%{public}d UsbAllocReadRequests faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbAllocReadRequests failed", __func__, __LINE__);
         goto err_alloc_read_reqs;
     }
     ret = UsbStartIo(acm);
     if (ret) {
-        HDF_LOGE("%{public}s:%{public}d UsbAllocReadRequests faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbAllocReadRequests failed", __func__, __LINE__);
         goto err_start_io;
     }
 
@@ -1329,13 +1329,13 @@ static int32_t UsbSerialInit(struct AcmDevice *acm)
 
     ret = UsbRawSubmitRequest(acm->notifyReq);
     if (ret) {
-        HDF_LOGE("%{public}s:%{public}d UsbRawSubmitRequest failed", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbRawSubmitRequest failed", __func__, __LINE__);
         goto err_submit_req;
     }
 
     acm->initFlag = true;
 
-    HDF_LOGD("%{public}s:%{public}d=========================OK", __func__, __LINE__);
+    HDF_LOGD("%s:%d=========================OK", __func__, __LINE__);
 
     return HDF_SUCCESS;
 
@@ -1365,7 +1365,7 @@ err_open_device:
 static void UsbSerialRelease(struct AcmDevice *acm)
 {
     if (acm->initFlag == false) {
-        HDF_LOGE("%{public}s:%{public}d: initFlag is false", __func__, __LINE__);
+        HDF_LOGE("%s:%d: initFlag is false", __func__, __LINE__);
         return;
     }
 
@@ -1394,7 +1394,7 @@ static int32_t UsbSerialDriverInit(struct HdfDeviceObject *device)
     int32_t ret;
 
     if (device == NULL) {
-        HDF_LOGE("%{public}s:%{public}d device is null", __func__, __LINE__);
+        HDF_LOGE("%s:%d device is null", __func__, __LINE__);
         return HDF_ERR_INVALID_OBJECT;
     }
     acm = (struct AcmDevice *)device->service;
@@ -1403,13 +1403,13 @@ static int32_t UsbSerialDriverInit(struct HdfDeviceObject *device)
 
     ret = UsbSerialDeviceAlloc(acm);
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s:%{public}d UsbSerialDeviceAlloc faild", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbSerialDeviceAlloc failed", __func__, __LINE__);
     }
 
     acm->initFlag = false;
     g_rawAcmReleaseFlag = false;
 
-    HDF_LOGD("%{public}s:%{public}d init ok!", __func__, __LINE__);
+    HDF_LOGD("%s:%d init ok!", __func__, __LINE__);
 
     return ret;
 }
@@ -1418,20 +1418,20 @@ static void UsbSerialDriverRelease(struct HdfDeviceObject *device)
 {
     struct AcmDevice *acm = NULL;
     if (device == NULL) {
-        HDF_LOGE("%{public}s: device is NULL", __func__);
+        HDF_LOGE("%s: device is NULL", __func__);
         return;
     }
 
     acm = (struct AcmDevice *)device->service;
     if (acm == NULL) {
-        HDF_LOGE("%{public}s: acm is null", __func__);
+        HDF_LOGE("%s: acm is null", __func__);
         return;
     }
 
     g_rawAcmReleaseFlag = true;
 
     if (acm->initFlag == true) {
-        HDF_LOGE("%{public}s:%{public}d UsbSerialRelease", __func__, __LINE__);
+        HDF_LOGE("%s:%d UsbSerialRelease", __func__, __LINE__);
         UsbSerialRelease(acm);
     }
     UsbSeriaDevicelFree(acm);
@@ -1440,7 +1440,7 @@ static void UsbSerialDriverRelease(struct HdfDeviceObject *device)
     OsalMutexDestroy(&acm->lock);
     OsalMemFree(acm);
     acm = NULL;
-    HDF_LOGD("%{public}s:%{public}d exit", __func__, __LINE__);
+    HDF_LOGD("%s:%d exit", __func__, __LINE__);
 }
 
 struct HdfDriverEntry g_usbSerialRawDriverEntry = {
@@ -1476,7 +1476,7 @@ if (useHcs == 0) {
 /* 创建设备 */ 
     fnDev = (struct UsbFnDevice *)UsbFnDeviceCreate(acm->udcName, &descData);
     if (fnDev == NULL) {
-        HDF_LOGE("%{public}s: create usb function device failed", __func__);
+        HDF_LOGE("%s: create usb function device failed", __func__);
         return HDF_FAILURE;
     }
     ...
@@ -1543,7 +1543,7 @@ int32_t ret;
 /* 删除设备 */
     ret = UsbFnDeviceRemove(acm->fnDev);
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%{public}s: remove usb function device failed", __func__);
+        HDF_LOGE("%s: remove usb function device failed", __func__);
     }
     return ret;
 }
