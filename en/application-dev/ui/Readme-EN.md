@@ -1,11 +1,11 @@
 # UI
 
 - ArkUI
-    - [JavaScript-based Web-like Development Paradigm]
+    - JavaScript-based Web-like Development Paradigm
         - [Overview](ui-js-overview.md)
-        - [Building the UI]
+        - Building the UI
             - [Component Overview](ui-js-building-ui-component.md)
-            - [Building the Layout]
+            - Building the Layout
                 - [Layout Description](ui-js-building-ui-layout-intro.md)
                 - [Adding Title and Paragraph Text](ui-js-building-ui-layout-text.md)
                 - [Adding an Image](ui-js-building-ui-layout-image.md)
@@ -15,7 +15,7 @@
             - [Developing Animations](ui-js-building-ui-animation.md)
             - [Defining Events](ui-js-building-ui-event.md)
             - [Defining Page Routes](ui-js-building-ui-routes.md)
-        - [Common Component Development Guidelines]
+        - Common Component Development Guidelines
             - [Text](ui-js-components-text.md)
             - [Input](ui-js-components-input.md)
             - [Button](ui-js-components-button.md)
@@ -26,27 +26,27 @@
             - [Stepper](ui-js-components-stepper.md)
             - [Tabs](ui-js-component-tabs.md)
             - [Image](ui-js-components-images.md)
-        - [Animation Development Guidelines]
-            - [CSS Animation]
+        - Animation Development Guidelines
+            - CSS Animation
                 - [Attribute Style Animation](ui-js-animate-attribute-style.md)
                 - [Defining Animations with the transform Attribute](ui-js-animate-transform.md)
                 - [Defining Animations with the background-position Attribute](ui-js-animate-background-position-style.md)
-        -   [JS Animation]
+        -   JS Animation
             -   [Component Animation](ui-js-animate-component.md)
-            -   [Interpolator Animation]
+            -   Interpolator Animation
                 -   [Animation Effect](ui-js-animate-dynamic-effects.md)
                 -   [Animation Frame](ui-js-animate-frame.md)
 
         - [Custom Components](ui-js-custom-components.md)
 
-    -   [TypeScript-based Declarative Development Paradigm]
+    -   TypeScript-based Declarative Development Paradigm
         -   [Overview](ui-ts-overview.md)
         -   [Introduction](ui-ts-developing-intro.md)
-        -   [Experiencing the Declarative UI]
+        -   Experiencing the Declarative UI
             -   [Creating a Declarative UI Project](ui-ts-creating-project.md)
             -   [Getting to Know Components](ui-ts-components.md)
             -   [Creating a Simple Page](ui-ts-creating-simple-page.md)
-        -   [Defining Page Layout and Connection]
+        -   Defining Page Layout and Connection
             -   [Building a Food Data Model](ui-ts-building-data-model.md)
             -   [Building a Food Category List Layout](ui-ts-building-category-list-layout.md)
             -   [Building a Food Category Grid Layout](ui-ts-building-category-grid-layout.md)
