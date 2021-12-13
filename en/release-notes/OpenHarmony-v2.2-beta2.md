@@ -18,7 +18,7 @@ The feature updates for the standard system are as follows:
 
 The feature updates for the mini system and small system are as follows:
 
--   Added lightweight Linux version building.
+-   Added Linux version building for the small system.
 -   Enhanced the lightweight kernel capabilities, including enhancements to the file system and kernel debugging tool, and support for configurable kernel modules, third-party chip adaptation, and ARM9 architecture.
 -   Enhanced the lightweight graphics capabilities, including support for multi-language text alignment, component outline display, dot-matrix fonts, and multiple chip platforms for the unified backend framework.
 -   Enhanced the design for X \(DFX\) capabilities, including enhanced HiLog and HiEvent features, a lightweight tool to dump system information, and the maintenance and test framework upon system restart.
