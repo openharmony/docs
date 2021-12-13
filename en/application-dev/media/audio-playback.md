@@ -1,59 +1,59 @@
-# 音频播放开发指导
+# Development Guidelines on Audio Playback
 
-- [场景介绍](#场景介绍)
-- [接口说明](#接口说明)
+- [When to Use](#When-to-Use)
+- [Available APIs](#Available-APIs)
 
-## 场景介绍
+## When to Use
 
-音频播放的主要工作是将音频数据转码为可听见的音频模拟信号并通过输出设备进行播放，同时对播放任务进行管理。
+You use audio playback APIs to convert audio data into audible analog signals, play the audio signals using output devices, and manage playback tasks.
 
-**图1** 音频播放状态机
-![zh-cn_image_0000001182608857](figures/zh-cn_image_0000001182608857.png)
+**Figure 1** Playback status
+![](figures/playback-status.png "playback-status")
 
 
-## 接口说明
+## Available APIs
 
-**表1** media
+**Table 1** APIs for audio playback 
 
-| 接口名 | 描述 | 
+| API| Description| 
 | -------- | -------- |
-| media.createAudioPlayer() | 创建AudioPlayer实例。 | 
-| AudioPlayer | 提供音频播放相关功能，具体见表&nbsp;音频播放相关的interface&nbsp;AudioPlayer。 | 
+| media.createAudioPlayer() | Creates an **AudioPlayer** instance.| 
+| AudioPlayer | Provides audio playback features. For details, see the table below.| 
 
-**表2** 音频播放相关的interface  **AudioPlayer**
+**Table 2** AudioPlayer methods
 
-| 接口名 | 描述 | 
+| Method| Description| 
 | -------- | -------- |
-| release() | 释放音频资源。 | 
-| play() | 开始播放音频源。 | 
-| pause() | 暂停播放。 | 
-| stop() | 停止播放。 | 
-| reset()<sup>7+</sup> | 重置播放音频源。 | 
-| setVolume(vol:&nbsp;number) | 改变音频播放音量 | 
-| seek(timeMs:&nbsp;number) | 改变播放位置。 | 
-| src:string | 音频播放的媒体URI。 | 
-| state:AudioState | 播放的状态属性。 | 
-| currentTime:number | 音频的当前播放位置。 | 
-| duration:number | 音频播放的时长(当数据源不支持改变播放位置时返回-1, 比如实时流媒体场景)。 | 
-| loop:boolean | 音频的循环播放属性。 | 
-| on('play',&nbsp;function&nbsp;callback) | 订阅音频播放开始事件。 | 
-| on('pause',&nbsp;function&nbsp;callback) | 订阅音频播放暂停事件。 | 
-| on('stop',&nbsp;function&nbsp;callback) | 订阅音频播放停止事件。 | 
-| on('reset',&nbsp;function&nbsp;callback) | 订阅音频播放重置事件。 | 
-| on('finish',function&nbsp;callback) | 订阅音频播放结束事件。 | 
-| on('error',&nbsp;function&nbsp;callback) | 订阅音频播放错误事件。 | 
-| on('dataload',&nbsp;function&nbsp;callback) | 订阅音频播放加载数据事件。 | 
-| on('volumeChange',&nbsp;function&nbsp;callback) | 订阅音频播放音量变化事件。 | 
-| on('timeUpdate',&nbsp;function&nbsp;callback) | 订阅音频播放进度改变事件。 | 
+| release() | Releases audio resources.| 
+| play() | Starts audio playback.| 
+| pause() | Pauses playback.| 
+| stop() | Stops playback.| 
+| reset()<sup>7+</sup> | Resets the audio source to be played.| 
+| setVolume(vol:&nbsp;number) | Sets playback volume.| 
+| seek(timeMs:&nbsp;number) | Changes the playback position.| 
+| src:string | Defines the URI of an audio file to play.| 
+| state:AudioState | Defines the playback state.| 
+| currentTime:number | Defines the current playback position.| 
+| duration:number | Defines the playback duration. The value **-1** is returned if the data source does not support playback position change, for example, in the real-time streaming media scenario.| 
+| loop:boolean | Defines whether to loop audio playback.| 
+| on('play',&nbsp;function&nbsp;callback) | Subscribes to the playback start event.| 
+| on('pause',&nbsp;function&nbsp;callback) | Subscribes to the playback pause event.| 
+| on('stop',&nbsp;function&nbsp;callback) | Subscribes to the playback stop event.| 
+| on('reset',&nbsp;function&nbsp;callback) | Subscribes to the playback reset event.| 
+| on('finish',function&nbsp;callback) | Subscribes to the playback end event.| 
+| on('error',&nbsp;function&nbsp;callback) | Subscribes to the playback error event.| 
+| on('dataload',&nbsp;function&nbsp;callback) | Subscribes to the data loading event.| 
+| on('volumeChange',&nbsp;function&nbsp;callback) | Subscribes to the volume change event.| 
+| on('timeUpdate',&nbsp;function&nbsp;callback) | Subscribes to the progress change event.| 
 
 
-1. 创建音频播放器。
+1. Create an audio player.
    ```
    import media from '@ohos.multimedia.media';
    var player = media.createAudioPlayer();
    ```
 
-2. 设置消息订阅事件。
+2. Set the subscription events.
    ```
    player.on('play', (err, action) => {
        if (err) {
@@ -123,7 +123,7 @@
    });
    ```
 
-3. 启动播放。
+3. Start playback.
    ```
    var audioSourceMp3 = 'file://test.mp3';
    player.src = audioSourceMp3;
