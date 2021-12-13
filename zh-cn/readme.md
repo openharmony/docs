@@ -62,7 +62,7 @@
     -   ui：[UI](application-dev/ui/Readme-CN.md)
     -   media：[媒体](application-dev/media/Readme-CN.md)
     -   connectivity：[网络与连接](application-dev/connectivity/Readme-CN.md)
-    -   js-reference：[JS参考规范](application-dev/js-reference/Readme-CN.md)
+    -   reference：[开发](application-dev/reference/Readme-CN.md)
 -   许可证及版权信息检查工具：[开源合规审查工具](https://gitee.com/openharmony-sig/tools_oat)
 -   glossary：[术语](device-dev/glossary/glossary.md)
 
