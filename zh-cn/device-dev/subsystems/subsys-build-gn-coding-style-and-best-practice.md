@@ -6,9 +6,9 @@ gn是generate ninja的缩写，它是一个元编译系统（meta-build system�
 
 ### gn简介
 
-- 目前采用gn的大型软件系统有：Chromium，Fuchsia和OpenHarmony
-- gn语法自设计之初就自带局限性，比如不能求list的长度，不支持通配符等。这些局限性源于其 **有所为有所不为** 的设计哲学，见https://gn.googlesource.com/gn/+/main/docs/language.md#Design-philosophy。所以在使用gn的过程中，如果发现某件事情用gn实现起来很复杂，请先停下来思考这件事情是否真的需要做。
-- 关于gn的更多详情见gn官方文档，见https://gn.googlesource.com/gn/+/main/docs/
+- 目前采用gn的大型软件系统有：Chromium，Fuchsia和OpenHarmony。
+- gn语法自设计之初就自带局限性，比如不能求list的长度，不支持通配符等。这些局限性源于其 **有所为有所不为** 的设计哲学，见https://gn.googlesource.com/gn/+/main/docs/language.md#Design-philosophy。 所以在使用gn的过程中，如果发现某件事情用gn实现起来很复杂，请先停下来思考这件事情是否真的需要做。
+- 关于gn的更多详情见gn官方文档，见https://gn.googlesource.com/gn/+/main/docs/。
 
 ### 本文的目标读者和覆盖范围
 
@@ -28,7 +28,7 @@ gn是generate ninja的缩写，它是一个元编译系统（meta-build system�
 
 我们这里对局部变量的定义为：在某作用域内，且不向下传递的变量。
 
-为了更好的区别于全局变量，局部变量统一采用**下划线开头**
+为了更好的区别于全局变量，局部变量统一采用**下划线开头**。
 
 ```
 # 例1
@@ -51,7 +51,7 @@ action("some_action") {
 
 全局变量使用**小写字母**开头。
 
-如果变量值可以被gn args修改，则需要使用declare_args来声明，否则不要使用declare_args
+如果变量值可以被gn args修改，则需要使用declare_args来声明，否则不要使用declare_args。
 
 ```
 # 例2
@@ -63,13 +63,13 @@ declare_args() {
 
 #### 目标命名
 
-目标命名采用**小写字母+下划线**的命名方式
+目标命名采用**小写字母+下划线**的命名方式。
 
 模板中的**子目标**命名方式采用"${target_name}+双下划线+后缀"的命名方式。这样做有两点好处：
 
-- 加入"${target_name}"可以防止子目标重名
+- 加入"${target_name}"可以防止子目标重名。
 
-- 加入双下划线可以很方便地区分出子目标属于哪一个模块，方便在出现问题时快速定位
+- 加入双下划线可以很方便地区分出子目标属于哪一个模块，方便在出现问题时快速定位。
 
   ```
   # 例3
@@ -87,7 +87,7 @@ declare_args() {
 
 #### 自定义模板的命名
 
-推荐采用**动宾短语**的形式来命名
+推荐采用**动宾短语**的形式来命名。
 
 ```
 # 例4
@@ -122,7 +122,7 @@ import("//a.gni")
 import("//b.gni")
 ```
 
-如果想保证原有的import顺序，可以添加空注释行
+如果想保证原有的import顺序，可以添加空注释行。
 
 ```
 import("//b.gni")
@@ -173,7 +173,7 @@ import("//a.gni")
 
   还是上面的例子，如果我们指定ninja编译目标为images，由于images仅仅依赖b，所以a不会参与编译。由于b实质上依赖a, 这时b在链接时会出现必现错误。
 
-有一种不太常见的问题是**过多的依赖**。**过多的依赖会降低并发，导致编译变慢**。见下面的例子
+有一种不太常见的问题是**过多的依赖**。**过多的依赖会降低并发，导致编译变慢**。见下面的例子:
 
 _compile_js_target不需要依赖 _compile_resource_target，增加这层依赖，会导致 _compile_js_target在 _compile_resource_target编译完成之后才能开始编译。
 
@@ -258,13 +258,13 @@ write_file("a.out")
 
 不推荐使用原生模板的原因有二：
 
-- **原生模板是最小功能模板**，无法提供external_deps的解析，notice收集，安装信息生成等的额外功能，这些额外功能最好是随着模块编译时同时生成，所以必须对原生模板做额外的扩展才能满足实际的需求
+- **原生模板是最小功能模板**，无法提供external_deps的解析，notice收集，安装信息生成等的额外功能，这些额外功能最好是随着模块编译时同时生成，所以必须对原生模板做额外的扩展才能满足实际的需求。
 
 - 当输入文件依赖的文件发生变化时，gn原生的action模板不能自动感知不到这种编译，无法重新编译。见例8
   
   
   
-  原生模板和编译系统提供的模板之间的对应关系
+  原生模板和编译系统提供的模板之间的对应关系:
   
   | 编译系统提供的模板  | 原生模板       |
   | :------------------ | -------------- |
@@ -280,10 +280,10 @@ write_file("a.out")
 
 action中的script推荐使用python脚本，不推荐使用shell脚本。相比于shell脚本，python脚本：
 
-- python语法友好，不会因为少写一个空格就导致奇怪的错误
-- python脚本有很强的可读性
-- 可维护性强，可调试
-- OpenHarmony对python任务做了缓存，可以加快编译速度
+- python语法友好，不会因为少写一个空格就导致奇怪的错误。
+- python脚本有很强的可读性。
+- 可维护性强，可调试。
+- OpenHarmony对python任务做了缓存，可以加快编译速度。
 
 ### rebase_path
 
@@ -309,7 +309,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
   }
   ```
 
-- 同一变量做两次rebase_path会出现意想不到的结果
+- 同一变量做两次rebase_path会出现意想不到的结果。
 
   ```
   # 例11
@@ -361,7 +361,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 
 ### forward_variable_from
 
-- 自定义模板需要首先将testonly传递（forward）进来。因为该模板的target有可能被testonly的目标依赖
+- 自定义模板需要首先将testonly传递（forward）进来。因为该模板的target有可能被testonly的目标依赖。
 
   ```
   # 例13
@@ -396,7 +396,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 
 ### target_name
 
-target_name会随着作用域变化而变化，使用时需要注意
+target_name会随着作用域变化而变化，使用时需要注意。
 
 ```
 # 例15
@@ -422,7 +422,7 @@ template("foo") {
 
 ### public_configs
 
-如果模块需要向外export头文件，请使用public_configs
+如果模块需要向外export头文件，请使用public_configs。
 
 ```
 # 例16
@@ -443,7 +443,7 @@ executable("b") {
 
 ### template
 
-自定义模板中必须有一个子目标的名字是target_name。该子目标会作为template的主目标。其他子目标都应该被主目标依赖，否则子目标不会被编译
+自定义模板中必须有一个子目标的名字是target_name。该子目标会作为template的主目标。其他子目标都应该被主目标依赖，否则子目标不会被编译。
 
 ```
 # 例17
@@ -471,7 +471,7 @@ template("foo") {
 
 ### set_source_assignment_filter
 
-set_source_assignment_filter除了可以过滤sources，还可以用来过滤其他变量。过滤完成后记得将过滤器和sources置空
+set_source_assignment_filter除了可以过滤sources，还可以用来过滤其他变量。过滤完成后记得将过滤器和sources置空。
 
 ```
 # 例18
@@ -490,19 +490,19 @@ sources = []
 set_source_assignment_filter([])
 ```
 
-最新版本上set_source_assignment_filter被filter_include和filter_exclude取代
+最新版本上set_source_assignment_filter被filter_include和filter_exclude取代。
 
 ### 部件内依赖采用deps，跨部件依赖采用external_deps
 
 - 部件在OpenHarmony上指能提供某个能力的一组模块。
 - 在模块定义的时候可以声明part_name，用来表明当前模块属于哪个部件。
 
-- 每个部件会声明其inner-kit，供其他部件调用。部件innerkit的声明见源码中的ohos.build.
+- 每个部件会声明其inner-kit，供其他部件调用。部件innerkit的声明见源码中的ohos.build。
 - 部件间依赖只能依赖innerkit，不能依赖非innerkit的模块。
 
-- 如果a模块和b模块的part_name相同，那么a、b模块属于同一个部件，a，b模块之间的依赖关系可以用deps来声明
+- 如果a模块和b模块的part_name相同，那么a、b模块属于同一个部件，a，b模块之间的依赖关系可以用deps来声明。
 
-- 如果a、b模块的part_name不同，那么a、b模块不属于同一个部件，a、b模块之间的依赖关系需要通过external_deps来声明，依赖方式为"部件名:模块名"的方式。见例19
+- 如果a、b模块的part_name不同，那么a、b模块不属于同一个部件，a、b模块之间的依赖关系需要通过external_deps来声明，依赖方式为"部件名:模块名"的方式。见例19。
 
   ```
   # 例19
