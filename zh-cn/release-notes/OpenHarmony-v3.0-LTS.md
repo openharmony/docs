@@ -96,7 +96,7 @@ repo forall -c 'git lfs pull'
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 | 
 | -------- | -------- | -------- |
-| 分布式任务调度 | -&nbsp;新增远程绑定ServiceAbility基本功能<br/>-&nbsp;新增FA跨设备迁移功能<br/>-&nbsp;新增组件visible属性权限校验功能 | 支持从轻量级系统启动标准系统上的Ability | 
+| 分布式任务调度 | -&nbsp;新增远程绑定ServiceAbility基本功能<br/>-&nbsp;新增FA跨设备迁移功能<br/>-&nbsp;新增组件visible属性权限校验功能 | 新增小型系统启动HarmonyOS Ability的功能 | 
 | 图形 | 对于带有GPU模块的芯片平台，支持使用GPU进行渲染合成，以提升图形性能，降低CPU负载 | NA | 
 | 分布式硬件 | -&nbsp;支持基于分布式软总线认证通道的PIN码认证方案<br/>-&nbsp;支持PIN码认证授权提示弹窗<br/>-&nbsp;支持PIN码显示弹窗<br/>-&nbsp;支持PIN码输入弹窗 | NA | 
 | 事件通知 | -&nbsp;支持应用通知订阅&nbsp;&amp;&nbsp;取消订阅<br/>-&nbsp;支持应用侧发布&amp;取消本地文本、图片通知<br/>-&nbsp;支持应用通知消息跳转能力<br/>-&nbsp;支持应用侧增加&amp;删除slot<br/>-&nbsp;支持通知流控处理、死亡监听能力 | NA | 
@@ -170,7 +170,7 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
 | [I48IM7](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I48IM7) | 运行hilog压力测试，hilogd异常重启，且hilog命令一直无法使用 | 压力测试下，低概率出现日志输出异常，调测场景可正常使用。 | 10月30日 | 
-| [I48YPH](https://gitee.com/openharmony/communication_dsoftbus/issues/I48YPH) | 【软总线-组网】测试发现和组网性能(循环离网-发现-组网)110次组网失败3次 | 低概率3/110，失败后重新发起组网即可。 | 10月30日 | 
+| [I48YPH](https://gitee.com/openharmony/security_deviceauth/issues/I48YPH) | 【软总线-组网】测试发现和组网性能(循环离网-发现-组网)110次组网失败3次 | 低概率3/110，失败后重新发起组网即可。 | 10月30日 | 
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | 【软总线-组网】标准系统与手机开关网络自组网成功率97%失败3次需分析失败原因 | 低概率出现组网失败。 | 10月30日 | 
 | [I4BXWY](https://gitee.com/openharmony/multimedia_media_standard/issues/I4BXWY) | Hi3516音频录制后播放有杂音 | 仅在使用此开发板时，影响录制音频的播放体验效果。 | 10月30日 | 
 | [I4BXY1](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4BXY1) | 视频录制后前几秒没声音，播放声画不同步，在板子播放会卡顿，音源较远时，有杂音 | 仅在使用此开发板时，影响录制视频的播放体验效果。 | 10月30日 | 
