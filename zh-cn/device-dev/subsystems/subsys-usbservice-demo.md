@@ -1,4 +1,4 @@
-# USB服务子系统使用实例<a name="ZH-CN_TOPIC_0000001092792986"></a>
+# USB服务子系使用实例<a name="ZH-CN_TOPIC_0000001092792986"></a>
 
 
 ```
@@ -22,16 +22,17 @@
 #include "usb_server_proxy.h"
 #include "usb_srv_client.h"
 
-#define REQUESTYPE ((1 << 7) | (0 << 5) | (0 & 0x1f))
-#define REQUESTCMD 6
-#define VALUE (2 << 8) + 0
-#define TIMEOUT 5000
-#define ITFCLASS 10
-#define ITFPROTOCOL 2
+const int32_t REQUESTYPE = ((1 << 7) | (0 << 5) | (0 & 0x1f));
+const int32_t REQUESTCMD = 6;
+const int32_t VALUE = (2 << 8) + 0;
+const int32_t TIMEOUT = 5000;
+const int32_t ITFCLASS = 10;
+const int32_t PRAMATYPE = 2;
+const int32_t BUFFERLENGTH = 21;
 
-void GetType(OHOS::USB::USBEndpoint tep, OHOS::USB::USBEndpoint &outEp, bool &outEpFlg)
+void GetType(OHOS::USB::USBEndpoint &tep, OHOS::USB::USBEndpoint &outEp, bool &outEpFlg)
 {
-    if ((tep.GetType() == 2)) {
+    if ((tep.GetType() == PRAMATYPE)) {
         if (tep.GetDirection() == 0) {
             outEp = tep;
             outEpFlg = true;
@@ -39,7 +40,7 @@ void GetType(OHOS::USB::USBEndpoint tep, OHOS::USB::USBEndpoint &outEp, bool &ou
     }
 }
 
-bool selectEndpoint(OHOS::USB::USBConfig config,
+bool SelectEndpoint(OHOS::USB::USBConfig config,
                     std::vector<OHOS::USB::UsbInterface> interfaces,
                     OHOS::USB::UsbInterface &interface,
                     OHOS::USB::USBEndpoint &outEp,
@@ -50,7 +51,7 @@ bool selectEndpoint(OHOS::USB::USBConfig config,
         std::vector<OHOS::USB::USBEndpoint> mEndpoints = tif.GetEndpoints();
         for (int32_t j = 0; j < tif.GetEndpointCount(); ++j) {
             OHOS::USB::USBEndpoint tep = mEndpoints[j];
-            if ((tif.GetClass() == ITFCLASS) && (tif.GetSubClass() == 0) && (tif.GetProtocol() == ITFPROTOCOL)) {
+            if ((tif.GetClass() == ITFCLASS) && (tif.GetSubClass() == 0) && (tif.GetProtocol() == PRAMATYPE)) {
                 GetType(tep, outEp, outEpFlg);
             }
         }
@@ -91,7 +92,7 @@ int CtrTransferTest(OHOS::USB::UsbSrvClient &g_usbClient, OHOS::USB::USBDevicePi
 
 int ClaimTest(OHOS::USB::UsbSrvClient &g_usbClient,
               OHOS::USB::USBDevicePipe &pip,
-              OHOS::USB::UsbInterface interface,
+              OHOS::USB::UsbInterface &interface,
               bool interfaceFlg)
 {
     if (interfaceFlg) {
@@ -108,7 +109,7 @@ int ClaimTest(OHOS::USB::UsbSrvClient &g_usbClient,
 
 int BulkTransferTest(OHOS::USB::UsbSrvClient &g_usbClient,
                      OHOS::USB::USBDevicePipe &pip,
-                     OHOS::USB::USBEndpoint outEp,
+                     OHOS::USB::USBEndpoint &outEp,
                      bool interfaceFlg,
                      bool outEpFlg)
 {
@@ -116,8 +117,8 @@ int BulkTransferTest(OHOS::USB::UsbSrvClient &g_usbClient,
         std::cout << "usb_device_test : << Bulk transfer start >> " << std::endl;
         if (outEpFlg) {
             uint8_t buffer[50] = "hello world 123456789";
-            std::vector<uint8_t> vData(buffer, buffer + 21);
-            int ret = g_usbClient.BulkTransfer(pip, outEp, vData, 5000);
+            std::vector<uint8_t> vData(buffer, buffer + BUFFERLENGTH);
+            int ret = g_usbClient.BulkTransfer(pip, outEp, vData, TIMEOUT);
             if (ret != 0) {
                 std::cout << "Bulk transfer write failed width ret = " << ret << std::endl;
             } else {
@@ -131,6 +132,7 @@ int BulkTransferTest(OHOS::USB::UsbSrvClient &g_usbClient,
 
 int main(int argc, char **argv)
 {
+    std::cout << "usb_device_test " << std::endl;
     static OHOS::USB::UsbSrvClient &g_usbClient = OHOS::USB::UsbSrvClient::GetInstance();
     // GetDevices
     std::vector<OHOS::USB::UsbDevice> deviceList;
@@ -150,7 +152,7 @@ int main(int argc, char **argv)
     OHOS::USB::USBEndpoint outEp;
     bool interfaceFlg = false;
     bool outEpFlg = false;
-    interfaceFlg = selectEndpoint(config, interfaces, interface, outEp, outEpFlg);
+    interfaceFlg = SelectEndpoint(config, interfaces, interface, outEp, outEpFlg);
 
     // OpenDevice
     std::cout << "usb_device_test : << OpenDevice >> test begin -> " << std::endl;
@@ -176,7 +178,7 @@ int main(int argc, char **argv)
         std::cout << "Close device failed width ret = " << ret << std::endl;
         return OHOS::USB::UEC_SERVICE_INVALID_VALUE;
     } else {
-        std::cout << "Close device success" << std::endl;
+        std::cout << "Close Device success" << std::endl;
     }
     return 0;
 }
