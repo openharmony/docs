@@ -6,7 +6,7 @@
     - [数据库的创建和删除](#数据库的创建和删除)
     - [数据库的加密](#数据库的加密)
     - [数据库谓词的使用](#数据库谓词的使用)
-    - [数据库的增删改查](#数据库的增删改查)
+    - [数据表的增删改查](#数据表的增删改查)
     - [查询结果集的使用](#查询结果集的使用)
   - [约束与限制](#约束与限制)
   - [开发步骤](#开发步骤)
@@ -58,7 +58,7 @@
   | RdbPredicates | void SetWhereClause(std::string whereClause) | 设置where条件子句。 |
   | RdbPredicates | void SetWhereArgs(std::vector\<std::string\> whereArgs) | 设置whereArgs参数，该值表示where子句中占位符的值。 |
 
-### 数据库的增删改查
+### 数据表的增删改查
 
 关系型数据库提供对本地数据增删改查操作的能力，相关API如下所示。
 
@@ -66,7 +66,7 @@
 
   关系型数据库提供了插入数据的接口，通过ValuesBucket输入要存储的数据，通过返回值判断是否插入成功，插入成功时返回最新插入数据所在的行号，失败时则返回-1。
 
-  表3 数据库插入API
+  表3 数据表插入API
 
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
@@ -76,7 +76,7 @@
   
   调用删除接口，通过AbsRdbPredicates指定删除条件。该接口的返回值表示删除的数据行数，可根据此值判断是否删除成功。如果删除失败，则返回0。
 
-  表5 数据库删除API
+  表5 数据表删除API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
   | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | 删除数据。<ul><li> deletedRows：删除的记录条数。 </li><li> predicates：Rdb谓词，指定了删除操作的表名和条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul></li></ul> |
@@ -85,7 +85,7 @@
 
   调用更新接口，传入要更新的数据，并通过AbsRdbPredicates指定更新条件。该接口的返回值表示更新操作影响的行数。如果更新失败，则返回0。
 
-  表4 数据库更新API
+  表4 数据表更新API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
   | RdbStore | int Update(int &changedRows, const ValuesBucket &values, const AbsRdbPredicates &predicates) | 更新数据库表中符合谓词指定条件的数据。<ul><li> changedRows：更新的记录条数。 </li><li> values：以ValuesBucket存储的要更新的数据。 </li><li> predicates：指定了更新操作的表名和条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul></li></ul> |
@@ -97,7 +97,7 @@
   - 直接调用查询接口。使用该接口，会将包含查询条件的谓词自动拼接成完整的SQL语句进行查询操作，无需用户传入原生的SQL语句。
   - 执行原生的SQL语句进行查询操作。
 
-  表6 数据库查询API
+  表6 数据表查询API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
   | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | 查询数据。<ul><li> predicates：谓词，可以设置查询条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul> <li> columns：规定查询返回的列。</li></ul></li></ul> |
