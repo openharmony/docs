@@ -48,7 +48,7 @@ This project stores OpenHarmony documentation, including the quick start guide, 
           - [HPM Bundle Development Specifications](device-dev/bundles/bundles-standard-rules.md)
           - [HPM Bundle Development Guidelines](device-dev/bundles/bundles-guide.md)
           - [HPM User Guide](device-dev/bundles/bundles-demo.md)
-    - [FAQs](device-dev/faqs/Readme-EN)
+    - [FAQs](device-dev/faqs/Readme-EN.md)
 
 
 -   App development
