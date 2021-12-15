@@ -156,7 +156,7 @@ component
 -   宏定义规则：OHOS\_\{SUBSYSTEM\}\_\{COMPONENT\}\_\{FEATURE\}
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >组件的编译脚本语言为gn，gn的基本用法请见[gn快速入门](https://gn.googlesource.com/gn/+/master/docs/quick_start.md)。组件即为gn定义的编译目标，可以为静态库、动态库、可执行文件或group。
+    >组件的编译脚本语言为gn，gn的基本用法请见https://gn.googlesource.com/gn/+/master/docs/quick_start.md。 组件即为gn定义的编译目标，可以为静态库、动态库、可执行文件或group。
 
 
 以图形的UI组件为例，foundation/graphic/ui/BUILD.gn文件如下：
@@ -338,6 +338,8 @@ vendor
     ```
     {
     	"product_name": "ipcamera",                       # 产品名称
+        "version": "3.0",                                 # config.json的版本号, 固定"3.0"
+        "type": "small",                                  # 系统类型, 可选[mini, small, standard]
     	"ohos_version": "OpenHarmony 1.0",                # 选择的OS版本
     	"device_company": "hisilicon",                    # 芯片厂商
     	"board": "hispark_taurus",                        # 开发板名称
@@ -695,6 +697,8 @@ optional arguments:
     ```
     {
         "product_name": "wifiiot",                        # 产品名称
+        "version": "3.0",                                 # config.json的版本号, 固定"3.0"
+        "type": "small",                                  # 系统类型, 可选[mini, small, standard]
         "ohos_version": "OpenHarmony 1.0",                # 使用的OS版本
         "device_company": "realtek",                      # 芯片解决方案厂商名称
         "board": "rtl8720",                               # 开发板名称
