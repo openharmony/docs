@@ -619,10 +619,10 @@ hdc\_std hilog
 
 hdc_std shell "hilog -r"
 
-**shell \[_command_\]**
-
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >更多hilog操作命令请参考[hilog组件使用说明](https://gitee.com/openharmony/hiviewdfx_hilog/blob/master/README_zh.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
+
+**shell \[_command_\]**
 
 远程执行命令或进入交互命令环境。
 
