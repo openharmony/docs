@@ -27,13 +27,13 @@
             - [Tabs](ui-js-component-tabs.md)
             - [Image](ui-js-components-images.md)
         - 动效开发指导
-            - [CSS动画](ui-js-animate-css.md)
+            - CSS动画
                 - [属性样式动画](ui-js-animate-attribute-style.md)
                 - [transform样式动画](ui-js-animate-transform.md)
                 - [background-position样式动画](ui-js-animate-background-position-style.md)
-            - [JS动画](ui-js-animate-javascript.md)
+            - JS动画
                 -   [组件动画](ui-js-animate-component.md)
-                -   [插值器动画](ui-js-animate-interpolator.md)
+                -   插值器动画
                     -   [动画动效](ui-js-animate-dynamic-effects.md)
                     -   [动画帧](ui-js-animate-frame.md)
         
