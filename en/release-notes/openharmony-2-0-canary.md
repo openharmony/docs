@@ -52,16 +52,6 @@ On the basis of OpenHarmony 1.1.0, OpenHarmony 2.0 adds the version for the stan
 </tbody>
 </table>
 
-## Version Mapping
-
-**表1** Version mapping of software and tools
-
-| Software | Version | Remarks | 
-| -------- | -------- | -------- |
-| OpenHarmony | 2.0&nbsp;Canary | N/A | 
-| (Optional)&nbsp;HUAWEI&nbsp;DevEco&nbsp;Studio | DevEco&nbsp;Studio&nbsp;2.1&nbsp;Release | It&nbsp;is&nbsp;recommended&nbsp;for&nbsp;developing&nbsp;OpenHarmony&nbsp;apps. | 
-| (Optional)&nbsp;HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool | DevEco&nbsp;DeviceTool&nbsp;2.2&nbsp;Beta1 | It&nbsp;is&nbsp;recommended&nbsp;for&nbsp;OpenHarmony&nbsp;smart&nbsp;devices. | 
-
 
 ## Source Code Acquisition
 
@@ -87,7 +77,7 @@ repo forall -c'git lfs pull'
 
 ### Acquiring Source Code from Image Sites
 
-**表2** Sites for acquiring source code
+**Table  2** Sites for acquiring source code
 
 | Source&nbsp;Code | Version | Site | SHA-256&nbsp;Checksum | 
 | -------- | -------- | -------- | -------- |
