@@ -91,7 +91,7 @@ repo forall -c 'git lfs pull'
 
 本版本完全继承了OpenHarmony 1.1.0的所有特性，并在OpenHarmony 1.1.0版本的基础上，新增标准系统版本形态，详情请参考下表 。
 
-**表 2**  版本新增特性表
+**表 3**  版本新增特性表
 
 <a name="table1976311913503"></a>
 <table><thead align="left"><tr id="row127631916501"><th class="cellrowborder" valign="top" width="24.94%" id="mcps1.2.3.1.1"><p id="p6763997509"><a name="p6763997509"></a><a name="p6763997509"></a>子系统名称</p>
