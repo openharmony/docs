@@ -6,10 +6,10 @@
 
 ## 概述 <a name="section1_MIPI_CSIDevelop"></a>
 
-CSI（Camera Serial Interface）是由MIPI联盟下Camera工作组指定的接口标准。在HDF框架中，MIPI-CSI的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，MIPI-CSI的接口关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
+CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface ）联盟下Camera工作组指定的接口标准。在HDF框架中，MIPI-CSI的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，MIPI-CSI的接口关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
 图 1 无服务模式结构图
-![image1](figures/CSI无服务模式结构图.png)
+![image1](figures/无服务模式结构图.png)
 
 ## 开发步骤 <a name="section2_MIPI_CSIDevelop"></a>
 
