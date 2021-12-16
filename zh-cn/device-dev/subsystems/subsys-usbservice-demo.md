@@ -64,40 +64,40 @@ bool SelectEndpoint(OHOS::USB::USBConfig config,
     return false;
 }
 
-int OpenDeviceTest(OHOS::USB::UsbSrvClient &g_usbClient, OHOS::USB::UsbDevice device, OHOS::USB::USBDevicePipe &pip)
+int OpenDeviceTest(OHOS::USB::UsbSrvClient &Instran, OHOS::USB::UsbDevice device, OHOS::USB::USBDevicePipe &pip)
 {
-    int ret = g_usbClient.RequestRight(device.GetName());
-    std::cout << "设备请求权限结果 RequestRight = " << ret << std::endl;
+    int ret = Instran.RequestRight(device.GetName());
+    std::cout << "device RequestRight ret = " << ret << std::endl;
     if (0 != ret) {
-        std::cout << "设备请求权限失败 RequestRight = " << ret << std::endl;
+        std::cout << "device RequestRight failed = " << ret << std::endl;
     }
-    ret = g_usbClient.OpenDevice(device, pip);
+    ret = Instran.OpenDevice(device, pip);
     return ret;
 }
 
-int CtrTransferTest(OHOS::USB::UsbSrvClient &g_usbClient, OHOS::USB::USBDevicePipe &pip)
+int CtrTransferTest(OHOS::USB::UsbSrvClient &Instran, OHOS::USB::USBDevicePipe &pip)
 {
     std::cout << "usb_device_test : << Control Transfer >> " << std::endl;
     std::vector<uint8_t> vData;
     const OHOS::USB::UsbCtrlTransfer tctrl = {REQUESTYPE, REQUESTCMD, VALUE, 0, TIMEOUT};
-    int ret = g_usbClient.ControlTransfer(pip, tctrl, vData);
+    int ret = Instran.ControlTransfer(pip, tctrl, vData);
     if (ret != 0) {
         std::cout << "control message read failed width ret = " << ret << std::endl;
     } else {
-        std::cout << "control message read success" << std::endl;
     }
+        std::cout << "control message read success" << std::endl;
 
     return ret;
 }
 
-int ClaimTest(OHOS::USB::UsbSrvClient &g_usbClient,
+int ClaimTest(OHOS::USB::UsbSrvClient &Instran,
               OHOS::USB::USBDevicePipe &pip,
               OHOS::USB::UsbInterface &interface,
               bool interfaceFlg)
 {
     if (interfaceFlg) {
         std::cout << "ClaimInterface InterfaceInfo:" << interface.ToString() << std::endl;
-        int ret = g_usbClient.ClaimInterface(pip, interface, true);
+        int ret = Instran.ClaimInterface(pip, interface, true);
         if (ret != 0) {
             std::cout << "ClaimInterface failed width ret = " << ret << std::endl;
         } else {
@@ -107,7 +107,7 @@ int ClaimTest(OHOS::USB::UsbSrvClient &g_usbClient,
     return 0;
 }
 
-int BulkTransferTest(OHOS::USB::UsbSrvClient &g_usbClient,
+int BulkTransferTest(OHOS::USB::UsbSrvClient &Instran,
                      OHOS::USB::USBDevicePipe &pip,
                      OHOS::USB::USBEndpoint &outEp,
                      bool interfaceFlg,
@@ -118,7 +118,7 @@ int BulkTransferTest(OHOS::USB::UsbSrvClient &g_usbClient,
         if (outEpFlg) {
             uint8_t buffer[50] = "hello world 123456789";
             std::vector<uint8_t> vData(buffer, buffer + BUFFERLENGTH);
-            int ret = g_usbClient.BulkTransfer(pip, outEp, vData, TIMEOUT);
+            int ret = Instran.BulkTransfer(pip, outEp, vData, TIMEOUT);
             if (ret != 0) {
                 std::cout << "Bulk transfer write failed width ret = " << ret << std::endl;
             } else {
@@ -133,10 +133,10 @@ int BulkTransferTest(OHOS::USB::UsbSrvClient &g_usbClient,
 int main(int argc, char **argv)
 {
     std::cout << "usb_device_test " << std::endl;
-    static OHOS::USB::UsbSrvClient &g_usbClient = OHOS::USB::UsbSrvClient::GetInstance();
+    static OHOS::USB::UsbSrvClient &Instran = OHOS::USB::UsbSrvClient::GetInstance();
     // GetDevices
     std::vector<OHOS::USB::UsbDevice> deviceList;
-    int32_t ret = g_usbClient.GetDevices(deviceList);
+    int32_t ret = Instran.GetDevices(deviceList);
     if (ret != 0) {
         return OHOS::USB::UEC_SERVICE_INVALID_VALUE;
     }
@@ -157,23 +157,23 @@ int main(int argc, char **argv)
     // OpenDevice
     std::cout << "usb_device_test : << OpenDevice >> test begin -> " << std::endl;
     OHOS::USB::USBDevicePipe pip;
-    ret = OpenDeviceTest(g_usbClient, device, pip);
+    ret = OpenDeviceTest(Instran, device, pip);
     if (ret != 0) {
         return OHOS::USB::UEC_SERVICE_INVALID_VALUE;
     }
 
     // ControlTransfer
-    CtrTransferTest(g_usbClient, pip);
+    CtrTransferTest(Instran, pip);
 
     // ClaimInterface
-    ClaimTest(g_usbClient, pip, interface, interfaceFlg);
+    ClaimTest(Instran, pip, interface, interfaceFlg);
 
     // BulkTransferWrite
-    BulkTransferTest(g_usbClient, pip, outEp, interfaceFlg, outEpFlg);
+    BulkTransferTest(Instran, pip, outEp, interfaceFlg, outEpFlg);
 
     // CloseDevice
     std::cout << "usb_device_test : << Close Device >> " << std::endl;
-    ret = g_usbClient.Close(pip);
+    ret = Instran.Close(pip);
     if (ret == 0) {
         std::cout << "Close device failed width ret = " << ret << std::endl;
         return OHOS::USB::UEC_SERVICE_INVALID_VALUE;
