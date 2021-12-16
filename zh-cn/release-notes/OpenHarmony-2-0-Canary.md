@@ -55,25 +55,37 @@
 
 ## 源码获取<a name="源码获取"></a>
 
-### 方式一（推荐）
+
+### 通过repo下载
+
+ **方式一（推荐）** 
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
- ```sh
+ ```
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-2.0-Canary --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
  ```
 
-### 方式二
+ **方式二** 
 
 通过repo + https 下载。
 
-```sh
+```
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-2.0-Canary --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
+
+### 通过镜像站点获取
+
+**表2** 源码获取路径
+
+| 版本源码 | 版本信息 | 下载站点 | SHA256校验码 | 
+| -------- | -------- | -------- | -------- |
+| 全量代码 | 2.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz.sha256) | 
+| Release&nbsp;Notes | 2.0 | [站点](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-2-0-Canary.md) | - | 
 
 ## 更新说明<a name="section11256141314463"></a>
 
