@@ -106,7 +106,7 @@ repo forall -c 'git lfs pull'
 
 ### 特性变更
 
-**表 2**  版本新增特性表
+**表 3**  版本新增特性表
 
 <a name="table1976311913503"></a>
 <table><thead align="left"><tr id="row127631916501"><th class="cellrowborder" valign="top" width="23.04%" id="mcps1.2.4.1.1"><p id="p6763997509"><a name="p6763997509"></a><a name="p6763997509"></a>子系统名称</p>
@@ -277,7 +277,7 @@ API变更请参考：
 
 ## 修复缺陷列表<a name="section3442123281619"></a>
 
-**表 3** **解决的缺陷ISSUE列表**
+**表 4** **解决的缺陷ISSUE列表**
 
 <a name="table158451039191811"></a>
 
