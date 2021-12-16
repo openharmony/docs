@@ -89,7 +89,7 @@ repo forall -c'git lfs pull'
 
 This version inherits all the features of OpenHarmony 1.1.0 and adds the version form for the standard system. The following table describes the specific features added for the version form.
 
-**Table  2**  New features
+**Table  3**  New features
 
 <a name="table1976311913503"></a>
 <table><thead align="left"><tr id="row127631916501"><th class="cellrowborder" valign="top" width="24.94%" id="mcps1.2.3.1.1"><p id="p6763997509"><a name="p6763997509"></a><a name="p6763997509"></a>Subsystem</p>
