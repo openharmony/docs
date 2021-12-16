@@ -52,6 +52,49 @@ On the basis of OpenHarmony 1.1.0, OpenHarmony 2.0 adds the version for the stan
 </tbody>
 </table>
 
+## Version Mapping
+
+**表1** Version mapping of software and tools
+
+| Software | Version | Remarks | 
+| -------- | -------- | -------- |
+| OpenHarmony | 2.0&nbsp;Canary | N/A | 
+| (Optional)&nbsp;HUAWEI&nbsp;DevEco&nbsp;Studio | DevEco&nbsp;Studio&nbsp;2.1&nbsp;Release | It&nbsp;is&nbsp;recommended&nbsp;for&nbsp;developing&nbsp;OpenHarmony&nbsp;apps. | 
+| (Optional)&nbsp;HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool | DevEco&nbsp;DeviceTool&nbsp;2.2&nbsp;Beta1 | It&nbsp;is&nbsp;recommended&nbsp;for&nbsp;OpenHarmony&nbsp;smart&nbsp;devices. | 
+
+
+## Source Code Acquisition
+
+
+### Acquiring Source Code Using the repo Tool
+
+**Method 1 (recommended)**: Use the **repo** tool to download the source code over SSH. (You must have registered an SSH public key for access to Gitee.)
+
+```
+repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-2.0-Canary --no-repo-verify
+repo sync-c
+repo forall -c'git lfs pull'
+```
+
+**Method 2**: Use the **repo** tool to download the source code over HTTPS.
+
+```
+repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-2.0-Canary --no-repo-verify
+repo sync-c
+repo forall -c'git lfs pull'
+```
+
+
+### Acquiring Source Code from Image Sites
+
+**表2** Sites for acquiring source code
+
+| Source&nbsp;Code | Version | Site | SHA-256&nbsp;Checksum | 
+| -------- | -------- | -------- | -------- |
+| Full&nbsp;code&nbsp;base | 2.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz.sha256) | 
+| Release&nbsp;Notes | 2.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/openharmony-2-0-canary.md) | - | 
+
+
 ## What's New<a name="section11256141314463"></a>
 
 This version inherits all the features of OpenHarmony 1.1.0 and adds the version form for the standard system. The following table describes the specific features added for the version form.
