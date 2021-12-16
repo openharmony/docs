@@ -109,7 +109,7 @@ repo forall -c 'git lfs pull'
 
 ### 特性变更
 
-**表2** 版本新增特性表
+**表3** 版本新增特性表
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 | 
 | -------- | -------- | -------- |
@@ -147,7 +147,7 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 
 ## 修复缺陷列表
 
-**表3** 轻量和小型系统解决的缺陷ISSUE列表
+**表4** 轻量和小型系统解决的缺陷ISSUE列表
 
 | ISSUE单号 | 问题描述 | 
 | -------- | -------- |
@@ -167,7 +167,7 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 | [I490KZ](https://gitee.com/openharmony/kernel_liteos_a/issues/I490KZ) | FutexTest.testPthreadTimdOutRWlockWR用例执行失败 | 
 | [I44SFO](https://gitee.com/openharmony/third_party_toybox/issues/I44SFO) | 集成测试在某个目录下mv一个文件后，再在此目录下创建同名文件并二次mv该文件失败，提示此文件不存在 | 
 
-**表4** 标准系统解决的缺陷ISSUE列表
+**表5** 标准系统解决的缺陷ISSUE列表
 
 | ISSUE单号 | 问题描述 | 
 | -------- | -------- |
@@ -182,7 +182,7 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 
 ## 遗留缺陷列表
 
-**表5** 遗留缺陷列表
+**表6** 遗留缺陷列表
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
