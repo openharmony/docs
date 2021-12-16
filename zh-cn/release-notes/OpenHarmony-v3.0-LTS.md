@@ -64,11 +64,14 @@
 
 ## 源码获取
 
+
+### 通过repo获取
+
 **方式** **一（推荐）**
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-```undefined
+```
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -78,11 +81,25 @@ repo forall -c 'git lfs pull'
 
 通过repo + https 下载。
 
-```undefined
+```
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
+
+### 从镜像站点获取
+
+**表2** 获取源码路径
+
+| **LTS版本源码** | **版本信息** | **下载站点** | **SHA256校验码** | 
+| -------- | -------- | -------- | -------- |
+| 全量代码（标准、轻量和小型系统） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz.sha256) | 
+| 标准系统解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/wifiiot-3.0.tar.gz.sha256) | 
+| Hi3861解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz.sha256) | 
+| Hi3518解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz.sha256) | 
+| Hi3516解决方案-LiteOS（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz.sha256) | 
+| Hi3516解决方案-Linux（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 
+| Release&nbsp;Notes | 3.0 | [站点](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/OpenHarmony-v3.0-LTS.md) | - | 
 
 
 ## 更新说明
