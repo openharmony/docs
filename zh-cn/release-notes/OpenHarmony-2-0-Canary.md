@@ -55,31 +55,43 @@
 
 ## 源码获取<a name="源码获取"></a>
 
-### 方式一（推荐）
+
+### 通过repo下载
+
+ **方式一（推荐）** 
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
- ```sh
+ ```
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-2.0-Canary --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
  ```
 
-### 方式二
+ **方式二** 
 
 通过repo + https 下载。
 
-```sh
+```
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-2.0-Canary --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
+### 通过镜像站点获取
+
+**表2** 源码获取路径
+
+| 版本源码 | 版本信息 | 下载站点 | SHA256校验码 | 
+| -------- | -------- | -------- | -------- |
+| 全量代码 | 2.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz.sha256) | 
+| Release&nbsp;Notes | 2.0 | [站点](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-2-0-Canary.md) | - | 
+
 ## 更新说明<a name="section11256141314463"></a>
 
 本版本完全继承了OpenHarmony 1.1.0的所有特性，并在OpenHarmony 1.1.0版本的基础上，新增标准系统版本形态，详情请参考下表 。
 
-**表 2**  版本新增特性表
+**表 3**  版本新增特性表
 
 <a name="table1976311913503"></a>
 <table><thead align="left"><tr id="row127631916501"><th class="cellrowborder" valign="top" width="24.94%" id="mcps1.2.3.1.1"><p id="p6763997509"><a name="p6763997509"></a><a name="p6763997509"></a>子系统名称</p>
