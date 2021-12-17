@@ -22,13 +22,13 @@ hdc\_std（OpenHarmony Device Connector）是OpenHarmony为开发人员提供的
 
 **hdc\_std 工具获取方式：**
 
-从开源仓developtools\_hdc\_standard中获取，具体位置在该开源仓的prebuilt目录，开源仓链接请参考[hdc标准开发工具](https://gitee.com/openharmony/developtools_hdc_standard)。
+通过OpenHarmony sdk获取，hdc_std在sdk的toolchains目录下。
 
 **使用举例：**
 
 下面以windows侧使用方式举例：
 
-从prebuilt/windows侧获取可执行文件hdc\_std.exe，放到磁盘某个位置即可使用。
+获取windows的sdk，将hdc_std.exe放到磁盘某个位置即可使用。
 
 ## 注意事项<a name="section19543134915210"></a>
 
@@ -611,9 +611,16 @@ hdc\_std uninstall  _package_
 </tbody>
 </table>
 
-使用方法：
+抓取hilog日志：
 
 hdc\_std hilog
+
+清理hilog缓存日志：
+
+hdc_std shell "hilog -r"
+
+>![](../public_sys-resources/icon-note.gif) **说明：** 
+>更多hilog操作命令请参考[hilog组件使用说明](https://gitee.com/openharmony/hiviewdfx_hilog/blob/master/README_zh.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
 
 **shell \[_command_\]**
 
