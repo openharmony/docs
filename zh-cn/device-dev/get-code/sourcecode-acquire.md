@@ -204,7 +204,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 </td>
 <td class="cellrowborder" valign="top" width="25%"><p id="p1358555631"><a name="p1358555631"></a><a name="p1358555631"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%"><p id="p10581551639"><a name="p10581551639"></a><a name="p10581551639"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/wifiiot-3.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%"><p id="p10581551639"><a name="p10581551639"></a><a name="p10581551639"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row473612318396"><td class="cellrowborder" valign="top" width="25%"><p id="p511014369394"><a name="p511014369394"></a><a name="p511014369394"></a>Hi3861解决方案（二进制）</p>
