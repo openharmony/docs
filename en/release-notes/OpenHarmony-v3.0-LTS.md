@@ -64,40 +64,25 @@ The feature updates for the mini and small systems are as follows:
 
 ## Source Code Acquisition
 
+**Method 1 (recommended)**
 
-### Acquiring Source Code Using the repo Tool
+Use the **repo** tool to download the source code over SSH. (You must have registered an SSH public key for access to Gitee.)
 
-**Method 1 (recommended)**: Use the **repo** tool to download the source code over SSH. (You must have registered an SSH public key for access to Gitee.)
-
-```
+```undefined
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-**Method 2**: Use the **repo** tool to download the source code over HTTPS.
+**Method 2**
 
-```
+Use the **repo** tool to download the source code over HTTPS.
+
+```undefined
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
-
-
-### Acquiring Source Code from an Image Site
-
-**Table 2** Sites for acquiring source code
-
-| LTS&nbsp;Code | Version&nbsp;Information | Site | SHA-256&nbsp;Verification&nbsp;Code | 
-| -------- | -------- | -------- | -------- |
-| Full&nbsp;code&nbsp;(for&nbsp;mini,&nbsp;small,&nbsp;and&nbsp;standard&nbsp;systems) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz.sha256) | 
-| Standard&nbsp;system&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz.sha256) | 
-| Hi3861&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz.sha256) | 
-| Hi3518&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz.sha256) | 
-| Hi3516&nbsp;solution-LiteOS&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz.sha256) | 
-| Hi3516&nbsp;solution-Linux&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 
-| Release&nbsp;Notes | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-v3.0-LTS.md) | - | 
-
 
 
 ## What's New
@@ -107,11 +92,11 @@ This version has the following updates to OpenHarmony 2.2 Beta2.
 
 ### Feature Updates
 
-**Table 3** New and enhanced features
+**Table 2** New and enhanced features
 
 | Subsystem| Standard System| Mini and Small Systems| 
 | -------- | -------- | -------- |
-| Distributed Scheduler| -&nbsp;Remote Service ability binding is supported.<br/>-&nbsp;Cross-device FA migration is supported.<br/>-&nbsp;Permission verification is added for the visible attribute of a component. | The ability on a standard-system device can be started from a mini-system device.| 
+| Distributed Scheduler| -&nbsp;Remote Service ability binding is supported.<br/>-&nbsp;Cross-device FA migration is supported.<br/>-&nbsp;Permission verification is added for the visible attribute of a component. | The small system can now start HarmonyOS abilities.| 
 | Graphics| For chip platforms with GPU modules, GPUs can be used for rendering and composition to improve graphics performance and reduce CPU load.| N/A| 
 | Distributed Hardware| -&nbsp;The formal PIN authentication scheme based on DSoftBus authentication channels is supported.<br/>-&nbsp;A pop-up window is displayed for PIN authentication.<br/>-&nbsp;A pop-up window is displayed to show a PIN.<br/>-&nbsp;A pop-up window is displayed for the user to enter a PIN.| N/A| 
 | Event Notification| -&nbsp;Application notification subscription and unsubscription are supported.<br/>-&nbsp;Local text and picture-attached notifications can be published or canceled on the application side.<br/>-&nbsp;Application notification redirection is supported.<br/>-&nbsp;Notification slots can be added or removed on the application side.<br/>-&nbsp;Notification flow control and death monitor are supported.| N/A| 
@@ -145,7 +130,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 
 ## Resolved Issues
 
-**Table 4** Issues resolved for mini and small systems
+**Table 3** Issues resolved for mini and small systems
 
 | Issue No.| Description| 
 | -------- | -------- |
@@ -165,7 +150,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | [I490KZ](https://gitee.com/openharmony/kernel_liteos_a/issues/I490KZ) | The **FutexTest.testPthreadTimdOutRWlockWR** case fails to be executed.| 
 | [I44SFO](https://gitee.com/openharmony/third_party_toybox/issues/I44SFO) | During the integration test, a file in a directory is moved to another directory, and then a file with the same name is created in the first directory. When the user attempts to move the new file, a message is displayed, indicating that the file does not exist.| 
 
-Table 5 Issues resolved for the standard system
+Table 4 Issues resolved for the standard system
 
 | Issue No.| Description| 
 | -------- | -------- |
@@ -180,7 +165,7 @@ Table 5 Issues resolved for the standard system
 
 ## Known Issues
 
-**Table 6** Known issues
+**Table 5** Known issues
 
 | Issue| Description| Impact| To Be Resolved On| 
 | -------- | -------- | -------- | -------- |
