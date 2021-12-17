@@ -1,20 +1,22 @@
 # Layout Description<a name="EN-US_TOPIC_0000001063230905"></a>
 
-The basic element width on devices is 720 px \(logical pixels\). The actual display effect is scaled based on the ratio of the actual screen width to the basic width.
+The baseline width for page design is 720 logical px. The display width of a page element depends on the ratio of the screen width to the baseline width.
 
-The conversion is as follows:
+For example, when the width of a component is 100 px, its display width is converted as follows:
 
-If you set the component width to 100 px, the display width of the component is 100 physical px on the screen with the width of 720 physical px. On a screen with a width of 1440 physical px, the display width of the component is 200 physical px.
+-   On a screen with the width of 720 physical px, the display width is 100 physical px.
 
-Basic page elements include title, text, and image areas. Each basic element may contain multiple sub-elements. You can add components such as buttons, switches, and progress bars as required. When setting the layout, you need to consider the following for each basic element:
+-   On a screen with the width of 1440 physical px, the display width is 200 physical px.
+
+Basic elements on the page include title, text, and image areas. Each basic element may contain multiple sub-elements. You can add components, such as buttons, switches, and progress bars, to these elements and sub-elements as required. When setting the layout, you need to consider the following for each basic element:
 
 -   Size and arrangement
--   Overlapped with another element
+-   Overlapping with other elements
 -   Alignment, padding, and margin
 -   Sub-elements and their positions
 -   Container components and their types
 
-You can disassemble elements on the page first and then implement them in sequence. This reduces visual confusion and logical conflicts caused by element nesting and improves code readability for easier modification. The following figure is used as an example.
+You can disassemble elements on the page first and then implement them in sequence. This reduces visual confusion and logical conflicts caused by element nesting and improves code readability for easier modification. For example, as shown below, you disassemble the page elements and elements in the comment area.
 
 **Figure  1**  Page layout<a name="fig11335192315417"></a>  
 ![](figures/page-layout.png "page-layout")
