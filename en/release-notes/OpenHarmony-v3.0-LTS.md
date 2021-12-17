@@ -91,7 +91,7 @@ repo forall -c 'git lfs pull'
 | LTS&nbsp;Code | Version&nbsp;Information | Site | SHA-256&nbsp;Verification&nbsp;Code | 
 | -------- | -------- | -------- | -------- |
 | Full&nbsp;code&nbsp;(for&nbsp;mini,&nbsp;small,&nbsp;and&nbsp;standard&nbsp;systems) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz.sha256) | 
-| Standard&nbsp;system&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/wifiiot-3.0.tar.gz.sha256) | 
+| Standard&nbsp;system&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz.sha256) | 
 | Hi3861&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz.sha256) | 
 | Hi3518&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz.sha256) | 
 | Hi3516&nbsp;solution-LiteOS&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz.sha256) | 
