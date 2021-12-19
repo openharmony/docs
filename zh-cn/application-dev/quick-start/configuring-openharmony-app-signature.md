@@ -19,13 +19,13 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 
 1. 在主菜单栏点击**Build > Generate Key** **and CSR**。
 
-   > **说明**
+   > ![](public_sys-resources/icon-note.gif)**说明**
    >
    > 如果本地已有对应的密钥，无需新生成密钥，可以在**Generate Key**界面中点击下方的Skip跳过密钥生成过程，直接使用已有密钥生成证书请求文件。
 
 2. 在**Key Store File**中，可以点击**Choose Existing**选择已有的密钥库文件（存储有密钥的.p12文件）；如果没有密钥库文件，点击**New**进行创建。下面以新创建密钥库文件为例进行说明。
 
-   ![img](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20211201152424.89774632707248271916920165792878:50521130074337:2800:4B4D0C82D573C9C974EE33A5BC01E8EB1C16B44249D280B5F53C077CBE4506B4.png?needInitFileName=true?needInitFileName=true)
+   ![img](figures/zh-cn_image_0000002021121901.png)
 
 3. 在**Create Key Store**窗口中，填写密钥库信息后，点击**OK**。
 
@@ -33,7 +33,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
    - **Password**：设置密钥库密码，必须由大写字母、小写字母、数字和特殊符号中的两种以上字符的组合，长度至少为8位。请记住该密码，后续签名配置需要使用。
    - **Confirm Password**：再次输入密钥库密码。
 
-   ![img](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20211201152424.74758270109217071109239127120305:50521130074337:2800:A21BD287B7ECF5CBFEB3A259038A6A547002B6B3162038E5021742D4C70E637F.png?needInitFileName=true?needInitFileName=true)
+   ![img](figures/zh-cn_image_0000002021121902.png)
 
 4. 在**Generate Key**界面中，继续填写密钥信息后，点击**Next**。
 
@@ -42,15 +42,15 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
    - **Validity**：证书有效期，建议设置为25年及以上，覆盖应用的完整生命周期。
    - **Certificate**：输入证书基本信息，如组织、城市或地区、国家码等。
 
-   ![img](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20211201152424.53457875932104762449119803547265:50521130074337:2800:6415FE3B6AADA1208D895D0D03D3027690558658E141C04A60FBDE69A9276590.png?needInitFileName=true?needInitFileName=true)
+   ![img](figures/zh-cn_image_0000002021121903.png)
 
 5. 在**Generate CSR**界面，选择密钥和设置CSR文件存储路径。
 
-   ![img](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20211201152424.12552758373647728511894812694013:50521130074337:2800:C7980F211F7885E174B6EF2AB74F8733AF217FB07C448AA952B0E7BA5B287699.png?needInitFileName=true?needInitFileName=true)
+   ![img](figures/zh-cn_image_0000002021121904.png)
 
 6. 点击**OK**按钮，创建CSR文件成功，可以在存储路径下获取生成的密钥库文件（.p12）和证书请求文件（.csr）。
 
-   ![img](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20211201152424.43951501146020723529843147233906:50521130074337:2800:34CFC9DB94B3380E790EEC5BFA06D3EDD4E8F3B419E81F28D0C17688A552C15C.png?needInitFileName=true?needInitFileName=true)
+   ![img](figures/zh-cn_image_0000002021121905.png)
 
 ### 使用命令行工具生成证书请求文件
 
@@ -58,11 +58,11 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 
 1. 使用管理员身份运行命令行工具。
 
-   ![img](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20211201152425.81491974242935802955208878572019:50521130074337:2800:D4D570F005F05A9FE9D18EC6D115F439641247EC9F8E7681D8E5003A54C6AEE2.png?needInitFileName=true?needInitFileName=true)
+   ![img](figures/zh-cn_image_0000002021121906.png)
 
 2. 切换到keytool工具所在路径，实际路径请根据DevEco Studio安装目录进行修改。
 
-   ![img](https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20211201152425.69860946437213691853917757684153:50521130074337:2800:67074E4F9C1B0B8B39867E11CB4D78ECA3E7E9BC283138B0031578AF744525D6.png?needInitFileName=true?needInitFileName=true)
+   ![img](figures/zh-cn_image_0000002021121907.png)
 
 3. 执行如下命令，生成公私钥文件。例如，生成的密钥库名称为ide_demo_app.p12，以存储到D盘根目录下为例
 
@@ -72,6 +72,8 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 
    生成公私钥文件的参数说明如下：
 
+   > ![](public_sys-resources/icon-note.gif)说明
+   >
    > 请记录下**alias、storepass和keypass**的值，在后续[配置签名信息](#配置应用签名信息)操作会使用到。
 
    - **alias**：密钥的别名信息，用于标识密钥名称。
