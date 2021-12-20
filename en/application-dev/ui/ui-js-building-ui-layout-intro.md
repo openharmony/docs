@@ -24,5 +24,5 @@ You can disassemble elements on the page first and then implement them in sequen
 **Figure  2**  Layout of the comment area<a name="fig186911810182717"></a>  
 
 
-![](figures/图片3.png)
+![](figures/Figure3.png)
 
