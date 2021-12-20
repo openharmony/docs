@@ -38,3 +38,4 @@
   - [WLAN](driver-peripherals-external-des.md)
   - [AUDIO](driver-peripherals-audio-des.md)
   - [USB](driver-peripherals-usb-des.md)
+  - [CAMERA](driver-peripherals-camera-des.md)
