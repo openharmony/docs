@@ -13,7 +13,91 @@
 
 ## 生成密钥和证书请求文件
 
-OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件）来保证应用的完整性，需要通过DevEco Studio来生成密钥文件（.p12文件）和证书请求文件（.csr文件）。同时，也可以使用命令行工具的方式来生成密钥文件和证书请求文件。具体操作请参考[生成密钥和证书请求文件](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/publish_app-0000001053223745#section9752152162813)。
+OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件）来保证应用的完整性，需要通过DevEco Studio来生成密钥文件（.p12文件）和证书请求文件（.csr文件）。同时，也可以使用命令行工具的方式来生成密钥文件和证书请求文件。
+
+### 使用DevEco Studio生成密钥和证书请求文件
+
+1. 在主菜单栏点击**Build > Generate Key** **and CSR**。
+
+   > ![](public_sys-resources/icon-note.gif)**说明**
+   >
+   > 如果本地已有对应的密钥，无需新生成密钥，可以在**Generate Key**界面中点击下方的Skip跳过密钥生成过程，直接使用已有密钥生成证书请求文件。
+
+2. 在**Key Store File**中，可以点击**Choose Existing**选择已有的密钥库文件（存储有密钥的.p12文件）；如果没有密钥库文件，点击**New**进行创建。下面以新创建密钥库文件为例进行说明。
+
+   ![img](figures/zh-cn_image_0000002021121901.png)
+
+3. 在**Create Key Store**窗口中，填写密钥库信息后，点击**OK**。
+
+   - **Key Store File**：选择密钥库文件存储路径。
+   - **Password**：设置密钥库密码，必须由大写字母、小写字母、数字和特殊符号中的两种以上字符的组合，长度至少为8位。请记住该密码，后续签名配置需要使用。
+   - **Confirm Password**：再次输入密钥库密码。
+
+   ![img](figures/zh-cn_image_0000002021121902.png)
+
+4. 在**Generate Key**界面中，继续填写密钥信息后，点击**Next**。
+
+   - **Alias**：密钥的别名信息，用于标识密钥名称。请记住该别名，后续签名配置需要使用。
+   - **Password**：密钥对应的密码，与密钥库密码保持一致，无需手动输入。
+   - **Validity**：证书有效期，建议设置为25年及以上，覆盖应用的完整生命周期。
+   - **Certificate**：输入证书基本信息，如组织、城市或地区、国家码等。
+
+   ![img](figures/zh-cn_image_0000002021121903.png)
+
+5. 在**Generate CSR**界面，选择密钥和设置CSR文件存储路径。
+
+   ![img](figures/zh-cn_image_0000002021121904.png)
+
+6. 点击**OK**按钮，创建CSR文件成功，可以在存储路径下获取生成的密钥库文件（.p12）和证书请求文件（.csr）。
+
+   ![img](figures/zh-cn_image_0000002021121905.png)
+
+### 使用命令行工具生成证书请求文件
+
+使用Open JDK携带的Keytool工具生成证书请求文件。
+
+1. 使用管理员身份运行命令行工具。
+
+   ![img](figures/zh-cn_image_0000002021121906.png)
+
+2. 切换到keytool工具所在路径，实际路径请根据DevEco Studio安装目录进行修改。
+
+   ![img](figures/zh-cn_image_0000002021121907.png)
+
+3. 执行如下命令，生成公私钥文件。例如，生成的密钥库名称为ide_demo_app.p12，以存储到D盘根目录下为例
+
+   ```
+   keytool -genkeypair -alias "ide_demo_app" -keyalg EC -sigalg SHA256withECDSA -dname "C=CN,O=HUAWEI,OU=HUAWEI IDE,CN=ide_demo_app"  -keystore d:\\idedemokey.p12 -storetype pkcs12 -validity 9125 -storepass 123456Abc -keypass 123456Abc
+   ```
+
+   生成公私钥文件的参数说明如下：
+
+   > ![](public_sys-resources/icon-note.gif)说明
+   >
+   > 请记录下**alias、storepass和keypass**的值，在后续[配置签名信息](#配置应用签名信息)操作会使用到。
+
+   - **alias**：密钥的别名信息，用于标识密钥名称。
+
+   - **sigalg**：签名算法，固定为**SHA256withECDSA**。
+   - dname：按照操作界面提示进行输入。
+     - C：国家/地区代码，如CN。
+     - O：组织名称，如HUAWEI。
+     - OU：组织单位名称，如HUAWEI IDE。
+     - CN：名字与姓氏，建议与别名一致。
+   - **validity**：证书有效期，建议设置为9125（25年）。
+   - **storepass**：设置密钥库密码，必须由大写字母、小写字母、数字和特殊符号中的两种以上字符的组合，长度至少为8位。请记住该密码，后续签名配置需要使用。
+   - **keypass**：设置密钥的密码，请与**storepass**保持一致。
+
+4. 执行如下命令，执行后需要输入**storepass**密码，生成证书请求文件，后缀格式为.csr。
+
+   ```
+   keytool -certreq -alias "ide_demo_app" -keystore d:\\idedemokey.p12 -storetype pkcs12 -file d:\\idedemokey.csr
+   ```
+
+   生成证书请求文件的参数说明如下：
+
+   - **alias**：与[3](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/publish_app-0000001053223745#ZH-CN_TOPIC_0000001224804001__la996f2c8ce594df98eaadeacfafdea10)中输入的alias保持一致。
+   - **file**：生成的证书请求文件名称，后缀为.csr。
 
 
 ## 生成应用证书文件
@@ -91,6 +175,7 @@ java -jar provisionsigtool.jar sign --in UnsgnedReleasedProfileTemplate.json --o
 在真机设备上调试前，需要使用到制作的私钥（.p12）文件、证书（.cer）文件和Profile（.p7b）文件对调试的模块进行签名。
 
 打开 **File &gt; Project Structure**，点击 **Project &gt; Signing Configs &gt; debug**窗口中，去除勾选“Automatically generate signing”，然后配置指定模块的调试签名信息。
+
 - **Store File**：选择密钥库文件，文件后缀为.p12，该文件为[生成密钥和证书请求文件](#生成密钥和证书请求文件)中生成的.p12文件。
 
 - **Store Password**：输入密钥库密码，该密码为[生成密钥和证书请求文件](#生成密钥和证书请求文件)中填写的密钥库密码保持一致。
