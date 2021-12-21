@@ -8,7 +8,7 @@ None
 
 ## APIs<a name="section1870194144317"></a>
 
-ellipse\(options?: \{width: Lenght, height: Length\}\)
+ellipse\(options?: \{width: Length, height: Length\}\)
 
 -   Parameters
 

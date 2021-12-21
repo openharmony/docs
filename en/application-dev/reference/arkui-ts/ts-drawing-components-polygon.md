@@ -8,7 +8,7 @@ None
 
 ## APIs<a name="section19993104611483"></a>
 
-Polygon\(value:\{options?: \{width: Lenght, height: Length\}\}\)
+Polygon\(value:\{options?: \{width: Length, height: Length\}\}\)
 
 -   Parameters
 

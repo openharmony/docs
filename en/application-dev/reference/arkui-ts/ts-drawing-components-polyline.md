@@ -8,7 +8,7 @@ None
 
 ## APIs<a name="section19864224475"></a>
 
-Polyline\(options?: \{width: Lenght, height: Length\}\)
+Polyline\(options?: \{width: Length, height: Length\}\)
 
 -   Parameters
 

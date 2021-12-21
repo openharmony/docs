@@ -657,7 +657,7 @@ int c[][8] = {
 
 Note:
 
-- If the left brace is placed at the end of the line, the corresponding right brace shoud be placed into a new line.
+- If the left brace is placed at the end of the line, the corresponding right brace should be placed into a new line.
 - If the left brace is followed by the content, the corresponding right brace should also follow the content.
 
 ### <a name="r2-11"></a>Rule 2.11 When struct and union members are initialized, each member is initialized on a separate line.
