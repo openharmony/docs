@@ -235,4 +235,3 @@ int main()
 >"//drivers/adapter/uhdf/manager:hdf\_core",
 >"//drivers/adapter/uhdf/posix:hdf\_posix\_osal",
 >\]
-
