@@ -8,7 +8,7 @@ The following example shows how to add configurations, implement the driver code
 
 ## Adding Configurations<a name="section27261067111"></a>
 
-Add the driver configurations to the HDF configuration file \(for example,  **vendor/hisilicon/xxx/config/device\_info**\). Example:
+Add the driver configurations to the HDF configuration file \(for example,  **vendor/hisilicon/xxx/hdf_config/device\_info**\). Example:
 
 ```
 root {
@@ -232,7 +232,7 @@ int main()
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >The code compilation of user-level applications depends on the dynamic libraries  **hdf\_core**  and  **osal**  provided by the HDF because user-level applications use the message sending interface of the HDF. In the GN compilation file, add the following dependency relationships:
 >deps = \[
->"//drivers/adapter/lite/uhdf/manager:hdf\_core",
->"//drivers/adapter/lite/uhdf/posix:hdf\_posix\_osal",
+>"//drivers/adapter/uhdf/manager:hdf\_core",
+>"//drivers/adapter/uhdf/posix:hdf\_posix\_osal",
 >\]
 
