@@ -155,7 +155,6 @@
           - [Network Commands](kernel-small-debug-shell-net.md)
             - [arp](kernel-small-debug-shell-net-arp.md)
             - [dhclient](kernel-small-debug-shell-net-dhclient.md)
-            - [dns](kernel-small-debug-shell-net-dns.md)
             - [ifconfig](kernel-small-debug-shell-net-ifconfig.md)
             - [ipdebug](kernel-small-debug-shell-net-ipdebug.md)
             - [netstat](kernel-small-debug-shell-net-netstat.md)
