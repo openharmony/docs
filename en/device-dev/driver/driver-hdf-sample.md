@@ -1,14 +1,16 @@
 # HDF Development Example<a name="EN-US_TOPIC_0000001052451677"></a>
 
--   [Adding Configurations](#section27261067111)
+-   [Adding Configuration](#section27261067111)
 -   [Compiling the Driver Code](#section177988005)
 -   [Compiling the Code for Interaction](#section6205173816412)
 
-The following example shows how to add configurations, implement the driver code, and compile the code for interaction between the user-level applications and the driver.
+The following example shows how to add driver configuration, compile the driver code, and implement interaction between the user-state applications and the driver.
 
-## Adding Configurations<a name="section27261067111"></a>
+## Adding Configuration<a name="section27261067111"></a>
 
-Add the driver configurations to the HDF configuration file \(for example,  **vendor/hisilicon/xxx/hdf_config/device\_info**\). Example:
+Add the driver configuration to the HDF configuration file \(for example, **vendor/hisilicon/xxx/hdf_config/device\_info**\). 
+
+Example:
 
 ```
 root {
@@ -48,7 +50,7 @@ root {
 
 ## Compiling the Driver Code<a name="section177988005"></a>
 
-A sample of driver code compiled based on the HDF is as follows:
+The following is the sample driver code compiled based on HDF:
 
 ```
 #include <fcntl.h>
@@ -120,7 +122,7 @@ HDF_INIT(g_sampleDriverEntry);
 
 ## Compiling the Code for Interaction<a name="section6205173816412"></a>
 
-A sample code for interaction between the user-level application and driver compiled based on the HDF is as follows:
+The following is the sample code compiled based on HDF for interaction between the driver and user-state applications:
 
 ```
 #include <fcntl.h>
@@ -230,9 +232,8 @@ int main()
 ```
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The code compilation of user-level applications depends on the dynamic libraries  **hdf\_core**  and  **osal**  provided by the HDF because user-level applications use the message sending interface of the HDF. In the GN compilation file, add the following dependency relationships:
+>The code compilation of user-state applications depends on the dynamic libraries **hdf\_core** and **osal** provided by HDF because user-state applications use the message sending interface of HDF. In the GN file, add the following dependencies:
 >deps = \[
 >"//drivers/adapter/uhdf/manager:hdf\_core",
 >"//drivers/adapter/uhdf/posix:hdf\_posix\_osal",
 >\]
-
