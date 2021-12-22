@@ -947,7 +947,6 @@ async StartContinueAbility(deviceId) {
         console.info("[Demo] ContinueAbilityCallback, result data= " + JSON.stringify(data));
     }
     await featureAbility.continueAbility(continueAbilityOptions, ContinueAbilityCallback);
-    done();
     console.info('[Demo] featureAbility.StartContinueAbility end');
 }
 this.StartContinueAbility(remoteDeviceId); //remoteDeviceId is acquired from DeviceManager
