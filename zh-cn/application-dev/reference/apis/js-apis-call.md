@@ -2,9 +2,7 @@
 
 >**说明：** 
 >
->- 从 API Version 6 开始支持。
->
->- 标记<sup>7+</sup>的接口从API Version 7开始支持。
+>本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -23,10 +21,10 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 - 参数
   
-  | 参数 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | phoneNumber | string | 是 |电话号码。|
-  | callback |AsyncCallback&lt;boolean&gt;|是|回调函数：<br/>- true：成功。<br/>- false：失败。|
+  | 参数        | 类型                         | 必填 | 说明                                              |
+  | ----------- | ---------------------------- | ---- | ------------------------------------------------- |
+  | phoneNumber | string                       | 是   | 电话号码。                                        |
+  | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：成功。<br/>- false：失败。 |
   
 -   示例
 
@@ -410,30 +408,30 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 ## DialOptions<a name=DialOptions></a>
 
 拨打电话的可选参数。
-| 参数 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| extras | boolean | 否 |根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- fasle：语音通话。|
+| 参数   | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| extras | boolean | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- fasle：语音通话。 |
 
 ## CallState<a name=CallState></a>
 
 通话状态码。
-| 变量 | 值 | 说明 |
-| -------- | -------- | -------- |
-| CALL_STATE_UNKNOWN | -1 | 无效状态，当获取呼叫状态失败时返回。 |
-| CALL_STATE_IDLE | 0 | 表示没有正在进行的呼叫。 |
-| CALL_STATE_RINGING | 1 | 表示来电正在振铃或等待。 |
-| CALL_STATE_OFFHOOK | 2 | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。 |
+| 变量               | 值   | 说明                                                         |
+| ------------------ | ---- | ------------------------------------------------------------ |
+| CALL_STATE_UNKNOWN | -1   | 无效状态，当获取呼叫状态失败时返回。                         |
+| CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。                                     |
+| CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。                                     |
+| CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。 |
 
 ## EmergencyNumberOptions<sup>7+</sup><a name=EmergencyNumberOptions></a>
 
 判断是否是紧急电话号码的可选参数。
-| 参数 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| slotId | number | 否 |卡槽ID：<br/>- 0：卡槽1。<br/>- 1：卡槽2。|
+| 参数   | 类型   | 必填 | 说明                                       |
+| ------ | ------ | ---- | ------------------------------------------ |
+| slotId | number | 否   | 卡槽ID：<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 ## NumberFormatOptions<sup>7+</sup><a name=NumberFormatOptions></a>
 
 格式化号码的可选参数。
-| 参数 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| countryCode | string | 否 |国家码，支持所有国家的国家码，如：中国（CN）。默认为：CN。|
+| 参数        | 类型   | 必填 | 说明                                                       |
+| ----------- | ------ | ---- | ---------------------------------------------------------- |
+| countryCode | string | 否   | 国家码，支持所有国家的国家码，如：中国（CN）。默认为：CN。 |
