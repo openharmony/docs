@@ -111,7 +111,7 @@ This version has the following updates to OpenHarmony 2.2 Beta2.
 
 | Subsystem| Standard System| Mini and Small Systems| 
 | -------- | -------- | -------- |
-| Distributed Scheduler| -&nbsp;Remote Service ability binding is supported.<br/>-&nbsp;Cross-device FA migration is supported.<br/>-&nbsp;Permission verification is added for the visible attribute of a component. | The ability on a standard-system device can be started from a mini-system device.| 
+| Distributed Scheduler| -&nbsp;Remote Service ability binding is supported.<br/>-&nbsp;Cross-device FA migration is supported.<br/>-&nbsp;Permission verification is added for the visible attribute of a component. | The small system can now start HarmonyOS abilities.| 
 | Graphics| For chip platforms with GPU modules, GPUs can be used for rendering and composition to improve graphics performance and reduce CPU load.| N/A| 
 | Distributed Hardware| -&nbsp;The formal PIN authentication scheme based on DSoftBus authentication channels is supported.<br/>-&nbsp;A pop-up window is displayed for PIN authentication.<br/>-&nbsp;A pop-up window is displayed to show a PIN.<br/>-&nbsp;A pop-up window is displayed for the user to enter a PIN.| N/A| 
 | Event Notification| -&nbsp;Application notification subscription and unsubscription are supported.<br/>-&nbsp;Local text and picture-attached notifications can be published or canceled on the application side.<br/>-&nbsp;Application notification redirection is supported.<br/>-&nbsp;Notification slots can be added or removed on the application side.<br/>-&nbsp;Notification flow control and death monitor are supported.| N/A| 
