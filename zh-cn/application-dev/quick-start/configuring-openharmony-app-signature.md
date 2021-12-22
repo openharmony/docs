@@ -63,6 +63,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 2. 切换到keytool工具所在路径，实际路径请根据DevEco Studio安装目录进行修改。
 
    ![img](figures/zh-cn_image_0000002021121907.png)
+   <a name="label001"/>
 
 3. 执行如下命令，生成公私钥文件。例如，生成的密钥库名称为ide_demo_app.p12，以存储到D盘根目录下为例
 
@@ -79,7 +80,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
    - **alias**：密钥的别名信息，用于标识密钥名称。
 
    - **sigalg**：签名算法，固定为**SHA256withECDSA**。
-   - dname：按照操作界面提示进行输入。
+   - **dname**：按照操作界面提示进行输入。
      - C：国家/地区代码，如CN。
      - O：组织名称，如HUAWEI。
      - OU：组织单位名称，如HUAWEI IDE。
@@ -96,7 +97,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 
    生成证书请求文件的参数说明如下：
 
-   - **alias**：与[3](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/publish_app-0000001053223745#ZH-CN_TOPIC_0000001224804001__la996f2c8ce594df98eaadeacfafdea10)中输入的alias保持一致。
+   - **alias**：与[3](#label001)中输入的alias保持一致。
    - **file**：生成的证书请求文件名称，后缀为.csr。
 
 
