@@ -346,7 +346,7 @@ OpenHarmony支持如下几种系统类型：
 
 ## 快速入门<a name="section44681652104210"></a>
 
-入口：[https://gitee.com/openharmony/docs/tree/master/zh-cn/device-dev/quick-start/Readme-CN.md](https://gitee.com/openharmony/docs/tree/master/zh-cn/device-dev/quick-start/Readme-CN.md)
+入口：[device-dev/quick-start/Readme-CN.md](device-dev/quick-start/Readme-CN.md)
 
 ## 代码仓地址<a name="section107651249181914"></a>
 
