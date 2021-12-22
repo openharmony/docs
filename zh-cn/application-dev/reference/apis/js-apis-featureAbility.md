@@ -18,6 +18,7 @@
 | FeatureAbility.getContext()                                  | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
 | FeatureAbility.terminateSelf(callback: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
 | FeatureAbility.terminateSelf()                               | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| FeatureAbility.continueAbility(options: ContinueAbilityOptions, callback: AsyncCallback<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
 
 #### 权限列表
 
@@ -909,5 +910,45 @@ var connId = featureAbility.connectAbility(
     },
 );
 var result = await featureAbility.disconnectAbility(connId);
+```
+
+#### FeatureAbility.continueAbility(options: ContinueAbilityOptions, callback: AsyncCallback<void>);
+
+* 接口说明
+
+  迁移一个ability到目标设备，并返回执行结果(callback形式)
+
+* startAbility参数描述
+
+| 名称     | 读写属性 | 类型                   | 必填 | 描述                |
+| -------- | -------- | ---------------------- | ---- | ------------------- |
+| options  | 只读     | ContinueAbilityOptions | 是   | 表示被启动的Ability |
+| callback | 只读     | AsyncCallback\<void>   | 是   | 被指定的回调方法    |
+
+- ContinueAbilityOptions类型说明
+
+| 名称       | 读写属性 | 类型    | 必填 | 描述                                                        |
+| ---------- | -------- | ------- | ---- | ----------------------------------------------------------- |
+| deviceId   | 只读     | string  | 是   | 表示需要包含有关目标启动能力的信息                          |
+| reversible | 只读     | boolean | 是   | 是否支持回迁的标志，目前不支持该功能，为保留字段，可填false |
+
+* 示例
+
+```javascript
+import featureAbility from '@ohos.ability.featureAbility'
+
+async StartContinueAbility(deviceId) {
+    let continueAbilityOptions = {
+        reversible: false,
+        deviceId: deviceId,
+    }
+    function ContinueAbilityCallback(err, data) {
+        console.info("[Demo] ContinueAbilityCallback, result err = " + JSON.stringify(err));
+        console.info("[Demo] ContinueAbilityCallback, result data= " + JSON.stringify(data));
+    }
+    await featureAbility.continueAbility(continueAbilityOptions, ContinueAbilityCallback);
+    console.info('[Demo] featureAbility.StartContinueAbility end');
+}
+this.StartContinueAbility(remoteDeviceId); //remoteDeviceId is acquired from DeviceManager
 ```
 
