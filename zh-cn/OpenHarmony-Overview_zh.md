@@ -346,7 +346,7 @@ OpenHarmony支持如下几种系统类型：
 
 ## 快速入门<a name="section44681652104210"></a>
 
-入口：[https://gitee.com/openharmony/docs/tree/master/zh-cn/device-dev/quick-start/Readme-CN.md](https://gitee.com/openharmony/docs/tree/master/zh-cn/device-dev/quick-start/Readme-CN.md)
+入口：[device-dev/quick-start/Readme-CN.md](device-dev/quick-start/Readme-CN.md)
 
 ## 代码仓地址<a name="section107651249181914"></a>
 
@@ -359,6 +359,8 @@ OpenHarmony三方库组织地址：[https://gitee.com/openharmony-tpc](https://g
 OpenHarmony归档组织地址：[https://gitee.com/openharmony-retired](https://gitee.com/openharmony-retired)
 
 ## 开发者文档<a name="section21031470109"></a>
+
+[访问官网](https://www.openharmony.cn/)
 
 简体中文：[OpenHarmony开发者文档](https://gitee.com/openharmony/docs/tree/master/zh-cn)
 
