@@ -2,9 +2,7 @@
 
 >**说明：** 
 >
->- 从 API Version 6 开始支持。
->
->- 标记<sup>7+</sup>的接口从API Version 7开始支持。
+>本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -281,13 +279,13 @@ getSmscAddr\(slotId: number\): Promise<string\>
 | isSmsStatusReportMessage | boolean                                 | 当前消息是否为“短信状态报告”，默认为false。<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。 |
 | messageClass             | [ShortMessageClass](#ShortMessageClass) | 短信类型。                                                   |
 | pdu                      | Array&lt;number&gt;                     | SMS消息中的协议数据单元 （PDU）。                            |
-|protocolId|number|发送短信时使用的协议标识。|
-|scAddress|string|短消息服务中心（SMSC）地址。|
-|scTimestamp|number|SMSC时间戳。|
-|status|number|SMS-STATUS-REPORT消息中的短信状态指示短信服务中心（SMSC）发送的短信状态。|
-|userRawData|Array&lt;number&gt;|除数据头外的用户数据。|
-|visibleMessageBody|string|短信正文。|
-|visibleRawAddress|string|发送者地址。|
+| protocolId               | number                                  | 发送短信时使用的协议标识。                                   |
+| scAddress                | string                                  | 短消息服务中心（SMSC）地址。                                 |
+| scTimestamp              | number                                  | SMSC时间戳。                                                 |
+| status                   | number                                  | SMS-STATUS-REPORT消息中的短信状态指示短信服务中心（SMSC）发送的短信状态。 |
+| userRawData              | Array&lt;number&gt;                     | 除数据头外的用户数据。                                       |
+| visibleMessageBody       | string                                  | 短信正文。                                                   |
+| visibleRawAddress        | string                                  | 发送者地址。                                                 |
 
 
 ## ShortMessageClass<a name=ShortMessageClass></a>
@@ -350,4 +348,3 @@ getSmscAddr\(slotId: number\): Promise<string\>
 | SEND_SMS_FAILURE_UNKNOWN             | 1    | 发送短信失败，原因未知。                               |
 | SEND_SMS_FAILURE_RADIO_OFF           | 2    | 发送短信失败，原因为调制解调器关机。                   |
 | SEND_SMS_FAILURE_SERVICE_UNAVAILABLE | 3    | 发送短信失败，原因为网络不可用、不支持发送或接收短信。 |
-

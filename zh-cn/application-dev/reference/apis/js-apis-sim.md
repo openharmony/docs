@@ -2,8 +2,7 @@
 
 >**说明：** 
 >
->- 从 API Version 6 开始支持。
->- 标记<sup>7+</sup>的接口从API Version 7开始支持。
+>本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -275,10 +274,10 @@ getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
 - 参数
 
-  | 参数名   | 类型                                   | 必填 | 说明                                      |
-  | -------- | -------------------------------------- | ---- | ----------------------------------------- |
-  | slotId   | number                                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2    |
-  | callback | AsyncCallback\<[SimState](#SimState)\> | 是   | 回调函数。参考[SimState](#SimState)。 |
+  | 参数名   | 类型                                   | 必填 | 说明                                   |
+  | -------- | -------------------------------------- | ---- | -------------------------------------- |
+  | slotId   | number                                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+  | callback | AsyncCallback\<[SimState](#SimState)\> | 是   | 回调函数。参考[SimState](#SimState)。  |
 
 -   示例
 
