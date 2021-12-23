@@ -85,7 +85,7 @@ DEBUG: 比INFO级别更详细的流程记录，通过该级别的日志可以更
 
 - **【规则】代码运行成功的日志使用xxx successful的形式打印**
 
-- **【规则】代码运行失败的日志使用xxx failed, please xxx的形式打印，且需包含可能的解决方案，**
+- **【规则】代码运行失败的日志使用xxx failed, please xxx的形式打印，且需包含可能的解决方案**
 
   如："Connect to server failed, please check network configuration"。
 
