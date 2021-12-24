@@ -7,7 +7,7 @@ You can set the interpolator to implement the animation effect. For details, see
 
 ## Creating an Animation Object<a name="section2124172032912"></a>
 
-Use  **createAnimator**  to create an animation object and set the animation attributes with the  [options](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md#table587915341817)  parameter.
+Use  **createAnimator**  to create an animation object and set the animation attributes with the  [options](../reference/arkui-js/js-components-common-methods.md#table587915341817)  parameter.
 
 ```
 <!-- xxx.hml -->
