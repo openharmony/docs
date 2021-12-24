@@ -2,9 +2,7 @@
 
 >**Note:**
 >
->- The APIs of this module are supported since API version 6.
->
->- APIs marked with <sup>7+</sup> are supported since API version 7.
+>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
