@@ -184,5 +184,5 @@ export default {
 
 Switch to the  **HiLog**  window at the bottom of HUAWEI DevEco Studio. Specifically, select the current device and process, set the log level to  **Info**, and enter  **Hello World**  in the search box. Logs that meet the search criteria are displayed, as shown in the following figure.
 
-![](figures/打印日志.png)
+![](figures/log.png)
 
