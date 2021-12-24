@@ -34,7 +34,7 @@ Creates an  **AudioRecorder**  instance to control audio recording.
 
 **Return values**
 
-| 类型                            | 说明                                                         |
+| Type                            | Description                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
 | [AudioRecorder](#audiorecorder) | Returns the **AudioRecorder** instance if the operation is successful; returns **null** otherwise. |
 
