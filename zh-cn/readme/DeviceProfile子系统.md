@@ -1,4 +1,4 @@
-# 介绍<a name="ZH-CN_TOPIC_0000001128264105"></a>
+# DeviceProfile子系统<a name="ZH-CN_TOPIC_0000001128264105"></a>
 
 -   [简介](#section11660541593)
 -   [目录](#section1464106163817)
@@ -10,18 +10,18 @@
 
 DeviceProfile是设备硬件能力和系统软件特征的管理器，典型的Profile有设备类型、设备名称、设备OS类型、OS版本号等。DeviceProfile提供快速访问本地和远端设备Profile的能力，是发起分布式业务的基础。主要功能如下：
 
--   本地设备Profile的插入、删除、查询。
+-   本地设备Profile的查询、插入、删除。
 -   远程设备Profile的查询。
--   订阅远程Profile变化的通知。
 -   跨设备同步Profile。
+-   订阅远程Profile变化的通知。
 
 DeviceProfile模块组成如下图所示：
 
 ## 系统架构<a name="section13587185873516"></a>
 
-![](figures/dp-architecture_zh.png)
-
 **图 1**  DeviceProfile组件架构图<a name="fig4460722185514"></a> 
+
+![](figures/dp-architecture_zh.png)
 
 ## 目录<a name="section1464106163817"></a>
 
@@ -30,7 +30,7 @@ DeviceProfile主要代码目录结构如下：
 ```
 ├── interfaces
 │   └── innerkits
-│       └── distributeddeviceprofile            // innerkits接口
+│       └── distributeddeviceprofile            // 系统内部接口
 ├── ohos.build
 ├── sa_profile                                  // said声明文件
 │   ├── 6001.xml
@@ -67,7 +67,7 @@ DeviceProfile主要代码目录结构如下：
 | 名称      | 类型                          | 必填 | 描述                                |
 | --------- | ---------------------------- | ---- | ----------------------------------- |
 | deviceId  | std::string                  | 是   | 查询指定设备的profile,空值表示查询本地 |
-| serviceId | std::string                  | 是   | 查询的service id                     |
+| serviceId | std::string                  | 是   | 查询的service id(数据记录的ID标识)    |
 | profile   | ServiceCharacteristicProfile | 是   | 返回值                               |
 
 * 代码示例
@@ -192,4 +192,4 @@ DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEv
 
 **DeviceProfile子系统**
 
-device\_profile\_core
+[device\_profile\_core](https://gitee.com/openharmony/device_profile_core)
