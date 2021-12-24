@@ -18,7 +18,7 @@
 >
 > 0.6 - 文档标题为一级标题；namespace下的属性字段、function、class、interface、enum、type为二级标题；class下的属性、function为三级标题。
 >
-> 0.7 - **对已有模块的新增接口标记起始版本：使用<sup>标签，标记对应的版本号。**
+> 0.7 - **对已有模块的新增接口标记起始版本：使用\<sup>标签，标记对应的版本号。**
 >
 > ​	示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。
 >
