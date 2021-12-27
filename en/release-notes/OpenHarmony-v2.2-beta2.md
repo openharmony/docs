@@ -262,6 +262,14 @@ This release provides the following new and enhanced features based on OpenHarmo
 </tbody>
 </table>
 
+### API Updates
+
+For details, see:
+
+-   [JS API Differences](api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
+
+-   [Native API Differences](api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
+
 ## Resolved Issues<a name="section3442123281619"></a>
 
 **Table  4** **Resolved issues**
