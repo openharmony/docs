@@ -1163,6 +1163,46 @@ KVStore常量。
 </tbody>
 </table>
 
+## Schema ##
+
+表示数据库架构，可以创建 Schema 对象，并在创建或打开数据库时将其放置在 Option 中。
+
+### toJsonString ###
+
+toJsonString():string;
+
+获取 json 格式的 schema 。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>以 json 格式返回Schema。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let schema = new ddm.Schema();
+        const str = schema.toJsonString();
+        schema.root = new ddm.FieldNode();
+        const node = schema.root;
+        console.log("schema: " + str);
+    } catch (e) {}
+    ``` 
+
+
 ## FieldNode<a name="section33333333333"></a> ##
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
