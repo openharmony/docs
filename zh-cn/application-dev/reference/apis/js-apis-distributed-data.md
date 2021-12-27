@@ -1167,6 +1167,22 @@ KVStore常量。
 
 表示数据库架构，可以创建 Schema 对象，并在创建或打开数据库时将其放置在 Option 中。
 
+### constructor ###
+
+constructor();
+
+用于创建架构实例的构造函数。
+
+-   示例
+
+    ```
+    try {
+        let schema = new ddm.Schema();
+        schema.root = new ddm.FieldNode();
+        console.log("constructor: " + str);
+    } catch (e) {}
+    ``` 
+
 ### toJsonString ###
 
 toJsonString():string;
@@ -1206,6 +1222,45 @@ toJsonString():string;
 ## FieldNode<a name="section33333333333"></a> ##
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
+
+### constructor ###
+
+constructor\(name: string\);
+
+用于创建具有指定字段的 FieldNode 实例的构造函数。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>child</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a><a href="#section33333333333">string</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>指定字段。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let node = new ddm.FieldNode("name");
+        console.log("constructor: " + str);
+    } catch (e) {}
+    ``` 
+
 
 ### appendChild ###
 
@@ -1831,6 +1886,21 @@ getEntry(\): Entry;
 ## Query <a name="section22222222222"></a>##
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
+
+### constructor ###
+
+constructor();
+
+用于创建查询实例的构造函数。
+
+-   示例
+
+    ```
+    try {
+        let query= new ddm.Query()
+        console.log("constructor: " + str);
+    } catch (e) {}
+    ```
 
 ### reset ###
 
