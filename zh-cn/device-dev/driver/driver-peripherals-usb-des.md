@@ -1455,7 +1455,7 @@ HDF_INIT(g_usbSerialRawDriverEntry);
 
 ### Device DDK API驱动开发<a name="section615mcpsimp"></a>
 
-USB ACM设备核心代码路径为driversperipheralusbgadgetfunctionacmcdcacm.c，其使用示例如下所示，首先根据描述符创建设备，然后获取接口，打开接口，获取Pipe信息，接收Event事件，接着进行USB通信（读写等），设备卸载时候，关闭接口，停止Event接收，删除设备。
+USB ACM设备核心代码路径为drivers/peripheral/usb/gadget/function/acmcdcacm.c，其使用示例如下所示，首先根据描述符创建设备，然后获取接口，打开接口，获取Pipe信息，接收Event事件，接着进行USB通信（读写等），设备卸载时候，关闭接口，停止Event接收，删除设备。
 
 ```
 1、创建设备
