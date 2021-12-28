@@ -276,6 +276,8 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 检查指定应用帐号是否允许应用数据同步，使用callback回调异步返回结果。
 
+需要权限：ohos.permission.DISTRIBUTED_DATASYNC，系统应用可用。
+
 - 参数：
 
   | 参数名   | 类型                   | 必填 | 说明                                         |
@@ -298,6 +300,8 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;;
 
 检查指定应用帐号是否允许应用数据同步，使用Promise方式异步返回结果。
+
+需要权限：ohos.permission.DISTRIBUTED_DATASYNC，系统应用可用。
 
 - 参数：
 
@@ -436,6 +440,8 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 设置指定的应用程序帐号是否允许应用程序数据同步，使用callback回调异步返回结果。
 
+需要权限：ohos.permission.DISTRIBUTED_DATASYNC，系统应用可用。
+
 - 参数：
 
   | 参数名   | 类型                | 必填 | 说明                                               |
@@ -458,6 +464,8 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;;
 
 设置指定的应用程序帐号是否允许应用程序数据同步，使用Promise方式异步返回结果。
+
+需要权限：ohos.permission.DISTRIBUTED_DATASYNC，系统应用可用。
 
 - 参数：
 
