@@ -194,12 +194,26 @@ NotificationContent类型说明
 
 - NotificationActionButton类型说明
 
-| 名称      | 读写属性 | 类型           | 必填 | 描述                      |
-| --------- | -------- | -------------- | ---- | ------------------------- |
-| title     | 读、写   | string         | 是   | 按钮标题                  |
-| wantAgent | 读、写   | wantAgent      | 是   | 点击按钮时触发的WantAgent |
-| extras    | 读、写   | Array<String>  | 否   | 按钮扩展信息              |
-| icon      | 读、写   | image.PixelMap | 否   | 按钮图标                  |
+| 名称                   | 读写属性 | 类型                                            | 必填 | 描述                      |
+| ---------------------- | -------- | ----------------------------------------------- | ---- | ------------------------- |
+| title                  | 读、写   | string                                          | 是   | 按钮标题                  |
+| wantAgent              | 读、写   | wantAgent                                       | 是   | 点击按钮时触发的WantAgent |
+| extras                 | 读、写   | Array<String>                                   | 否   | 按钮扩展信息              |
+| icon                   | 读、写   | image.PixelMap                                  | 否   | 按钮图标                  |
+| userInput<sup>8+</sup> | 读、写   | [NotificationUserInput](#NotificationUserInput) | 否   | 用户输入对象实例          |
+
+## NotificationUserInput<sup>8+</sup>
+
+用户输入对象。
+
+
+### 属性
+
+| 名称     | 参数类型 | 可读 | 可写 | 说明                          |
+| -------- | -------- | ---- | ---- | ----------------------------- |
+| inputKey | string   | 是   | 是   | 用户输入时用于标识此输入的key |
+
+
 
 - 返回值
 
@@ -826,6 +840,203 @@ Notification.getActiveNotifications().then((data) => {
 	console.info("==========================>getActiveNotificationsCallback=======================>");
 });
 ```
+
+
+
+## notification.setDoNotDisturbDate<sup>8+</sup>
+
+setDoNotDisturbDate(date:DoNotDisturbDate,callback: AsyncCallback&lt;void&gt;): void
+
+设置免打扰时间。
+
+需要权限ohos.permission.NOTIFICATION_CONTROLLER
+
+- 参数：
+
+  | 参数名   | 类型                                  | 必填 | 说明                   |
+  | -------- | ------------------------------------- | ---- | ---------------------- |
+  | date     | [DoNotDisturbDate](#DoNotDisturbDate) | 是   | 免打扰时间选项         |
+  | callback | AsyncCallback&lt;void&gt;             | 是   | 设置免打扰时间回调函数 |
+
+- 示例：
+
+  ```
+  function setDoNotDisturbDateCallback(err) {
+     console.info("setDoNotDisturbDateCallback");
+  }
+  
+  var doNotDisturbDate = {
+      type : notification.DoNotDisturbType.TYPE_ONCE,
+      begin : new Date(),
+      end : new Date(2021, 11, 15, 18, 0)
+  }
+  
+  notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
+  ```
+
+## notification.setDoNotDisturbDate<sup>8+</sup>
+
+setDoNotDisturbDate(date:DoNotDisturbDate): Promise\<void\>
+
+设置免打扰时间。
+
+需要权限ohos.permission.NOTIFICATION_CONTROLLER
+
+- 参数：
+
+  | 参数名 | 类型                                  | 必填 | 说明           |
+  | ------ | ------------------------------------- | ---- | -------------- |
+  | date   | [DoNotDisturbDate](#DoNotDisturbDate) | 是   | 免打扰时间选项 |
+
+- 返回值：
+
+  | 类型            | 说明            |
+  | --------------- | --------------- |
+  | Promise\<void\> | Promise方式返回 |
+
+- 示例：
+
+  ```
+  var doNotDisturbDate = {
+      type : notification.DoNotDisturbType.TYPE_ONCE,
+      begin : new Date(),
+      end : new Date(2021, 11, 15, 18, 0)
+  }
+  
+  notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
+      console.info("setDoNotDisturbDatePromise");
+  });
+  ```
+
+
+
+## notification.getDoNotDisturbDate<sup>8+</sup>
+
+getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
+
+查询免打扰时间。
+
+需要权限ohos.permission.NOTIFICATION_CONTROLLER
+
+- 参数：
+
+  | 参数名   | 类型                                                       | 必填 | 说明                   |
+  | -------- | ---------------------------------------------------------- | ---- | ---------------------- |
+  | callback | AsyncCallback&lt;[DoNotDisturbDate](#DoNotDisturbDate)&gt; | 是   | 查询免打扰时间回调函数 |
+
+
+- 示例：
+
+  ```
+  function getDoNotDisturbDateCallback(err,data) {
+     console.info("getDoNotDisturbDateCallback");
+  }
+  
+  notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
+  ```
+
+
+
+## notification.getDoNotDisturbDate<sup>8+</sup>
+
+getDoNotDisturbDate(): Promise&lt;DoNotDisturbDate&gt;
+
+查询免打扰时间。
+
+需要权限ohos.permission.NOTIFICATION_CONTROLLER
+
+- 返回值：
+
+  | 类型                                                 | 说明                          |
+  | ---------------------------------------------------- | ----------------------------- |
+  | Promise&lt;[DoNotDisturbDate](#DoNotDisturbDate)&gt; | Promise方式返回的免打时间信息 |
+
+- 示例：
+
+  ```
+  notification.getDoNotDisturbDate().then((data) => {
+      console.info("getDoNotDisturbDatePromise");
+  });
+  ```
+
+
+
+## notification.supportDoNotDisturbMode<sup>8+</sup>
+
+supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
+
+查询是否支持勿扰模式功能。
+
+需要权限ohos.permission.NOTIFICATION_CONTROLLER
+
+- 参数：
+
+  | 参数名   | 类型                      | 必填 | 说明                             |
+  | -------- | ------------------------- | ---- | -------------------------------- |
+  | callback | AsyncCallback\<boolean\>; | 是   | 查询是否支持勿扰模式功能回调函数 |
+
+- 示例：
+
+  ```
+  function supportDoNotDisturbModeCallback(err,data) {
+     console.info("supportDoNotDisturbModeCallback");
+  }
+  
+  notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
+  ```
+
+
+
+## notification.supportDoNotDisturbMode<sup>8+</sup>
+
+supportDoNotDisturbMode(): Promise\<boolean\>
+
+查询是否支持勿扰模式功能。
+
+需要权限ohos.permission.NOTIFICATION_CONTROLLER
+
+- 返回值：
+
+  | 类型               | 说明                      |
+  | ------------------ | ------------------------- |
+  | Promise\<boolean\> | Promise方式返回的支持结果 |
+
+
+- 示例：
+
+  ```
+  notification.supportDoNotDisturbMode().then((data) => {
+      console.info("supportDoNotDisturbModePromise");
+  });
+  ```
+
+
+
+## DoNotDisturbType<sup>8+</sup>
+
+免打扰时间类型。
+
+| 名称         | 默认值 | 说明                                   |
+| ------------ | ------ | -------------------------------------- |
+| TYPE_NONE    | 0      | 非通知勿扰类型                         |
+| TYPE_ONCE    | 1      | 设置时间段内执行一次勿扰               |
+| TYPE_DAILY   | 2      | 设置时间段(只看小时和分钟)每天执行勿扰 |
+| TYPE_CLEARLY | 3      | 以设置时间段(明确年月日时分)执行勿扰   |
+
+
+
+## DoNotDisturbDate<sup>8+</sup>
+
+免打扰时间。
+
+
+### 属性
+
+| 名称  | 参数类型                              | 可读 | 可写 | 说明                     |
+| ----- | ------------------------------------- | ---- | ---- | ------------------------ |
+| type  | [DoNotDisturbType](#DoNotDisturbType) | 是   | 是   | 指定免打扰设置的时间类型 |
+| begin | Date                                  | 是   | 是   | 指定免打扰设置的起点时间 |
+| end   | Date                                  | 是   | 是   | 指定免打扰设置的结束时间 |
 
 
 
