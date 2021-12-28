@@ -75,7 +75,7 @@ The driver architecture consists of the following:
 
 # Audio Driver Development<a name="section3000"></a>
 
-The following uses the Hi3516D V300 as an example to describe how to develop drivers based on the audio driver framework.
+The following uses the Hi3516D V300 as an example to describe how to develop drivers based on the audio driver architecture.
 
 ## Audio ADM Architecture<a name="section3100"></a>
 The audio driver provides the **hdf\_audio\_render**, **hdf\_audio\_capture** and **hdf\_audio\_control** services for the HDI layer. The driver service nodes in the **dev** directory of the development board are as follows:
@@ -377,7 +377,7 @@ static void CodecDriverRelease(struct HdfDeviceObject *device)
 
 ### Configuring HCS<a name="section4115"></a>
 
-Configure the driver node, loading sequence, and service name in the .hcs file. For details about the HCS syntax, see [Driver Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md) in the HDF framework.
+Configure the driver node, loading sequence, and service name in the .hcs file. For details about the HCS syntax, see [Driver Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md) in the HDF.
 
 Path of the standard-system configuration file:
 
@@ -1406,4 +1406,4 @@ static void *hal_main()
 
 # Summary<a name="section9999"></a>
 
-This document provides all the key adaptations involved in the driver development based on the audio driver framework. It elaborates how to adapt the audio driver and use HDI APIs. You can easily develop your audio drivers based on the chip you use by referring to this document.
+This document provides all the key adaptations involved in the driver development based on the audio driver architecture. It elaborates how to adapt the audio driver and use HDI APIs. You can easily develop your audio drivers based on the chip you use by referring to this document.
