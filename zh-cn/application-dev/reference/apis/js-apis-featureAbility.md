@@ -774,6 +774,14 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 | request | 只读     | Want           | 是   | 表示被连接的ServiceAbility |
 | options | 只读     | ConnectOptions | 是   | 被指定的回调方法           |
 
+* Want参数描述
+
+| 名称         | 读写属性  | 类型     | 必填 | 描述                                                              |
+| ------------ | -------- | -------- | ---- | ----------------------------------                               |
+| deviceId     | 只读     | string   | 否   | 表示被连接的ServiceAbility的设备id，缺省表示连接本地的ServiceAbility |
+| bundleName   | 只读     | string   | 是   | 表示被连接的ServiceAbility的包名                                   |
+| abilityName  | 只读     | string   | 是   | 表示被连接的ServiceAbility的类名                                   |
+
 - ConnectOptions类型说明
 
 | 名称         | 读写属性 | 类型     | 必填 | 描述                               |
@@ -804,6 +812,7 @@ function onFailedCallback(code){
 }
 var connId = featureAbility.connectAbility(
     {
+        deviceId: deviceId,
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
     },
