@@ -121,5 +121,5 @@ struct Example {
 }
 ```
 
-![](figures/像素单位.gif)
+![](figures/pixel-units.gif)
 
