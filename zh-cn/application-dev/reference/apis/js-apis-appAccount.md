@@ -57,7 +57,7 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
 ### addAccount
 
-addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
+addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void;
 
 将此应用程序的帐号名和额外信息添加到帐号管理服务中，使用callback回调异步返回结果。
 
@@ -84,7 +84,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 ### addAccount
 
-addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
+addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;;
 
 将此应用的帐号名或额外信息添加到帐号管理服务中，使用Promise方式异步返回结果。
 
@@ -116,7 +116,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 ### deleteAccount
 
-deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
+deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
 从帐号管理服务中删除应用帐号，使用callback回调异步返回结果。
 
@@ -138,7 +138,7 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 ### deleteAccount
 
-deleteAccount(name: string): Promise&lt;void&gt;
+deleteAccount(name: string): Promise&lt;void&gt;;
 
 从帐号管理服务中删除应用帐号，使用Promise方式异步返回结果。
 
@@ -167,7 +167,7 @@ deleteAccount(name: string): Promise&lt;void&gt;
 
 ### disableAppAccess
 
-disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
+disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 
 禁止指定第三方应用帐户的名称访问指定包名称的第三方应用，使用callback回调异步返回结果。
 
@@ -190,7 +190,7 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
 ### disableAppAccess
 
-disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
+disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;;
 
 禁止指定第三方应用帐户的名称访问指定包名称的第三方应用，使用Promise方式异步返回结果。
 
@@ -220,7 +220,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 ### enableAppAccess
 
-enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
+enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 
 允许指定第三方应用帐户的名称访问指定包名称的第三方应用，使用callback回调异步返回结果。
 
@@ -243,7 +243,7 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
 ### enableAppAccess
 
-enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
+enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;;
 
 允许指定第三方应用帐户的名称访问指定包名称的第三方应用，使用Promise方式异步返回结果。
 
@@ -272,7 +272,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 ### checkAppAccountSyncEnable
 
-checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;): void
+checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;): void;
 
 检查指定应用帐号是否允许应用数据同步，使用callback回调异步返回结果。
 
@@ -295,7 +295,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 ### checkAppAccountSyncEnable
 
-checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
+checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;;
 
 检查指定应用帐号是否允许应用数据同步，使用Promise方式异步返回结果。
 
@@ -324,7 +324,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 ### setAccountCredential
 
-setAccountCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void
+setAccountCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void;
 
 设置此应用程序帐号的凭据，使用callback回调异步返回结果。
 
@@ -348,7 +348,7 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 
 ### setAccountCredential
 
-setAccountCredential(name: string, credentialType: string, credential: string): Promise&lt;void&gt;
+setAccountCredential(name: string, credentialType: string, credential: string): Promise&lt;void&gt;;
 
 设置此应用程序帐号的凭据，使用Promise方式异步返回结果。
 
@@ -379,7 +379,7 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 
 ### setAccountExtraInfo
 
-setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
+setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void;
 
 设置此应用程序帐号的额外信息，使用callback回调异步返回结果。
 
@@ -402,7 +402,7 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 
 ### setAccountExtraInfo
 
-setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
+setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;;
 
 设置此应用程序帐号的额外信息，使用Promise方式异步返回结果。
 
@@ -432,7 +432,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 ### setAppAccountSyncEnable
 
-setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
+setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 设置指定的应用程序帐号是否允许应用程序数据同步，使用callback回调异步返回结果。
 
@@ -455,7 +455,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 ### setAppAccountSyncEnable
 
-setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
+setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;;
 
 设置指定的应用程序帐号是否允许应用程序数据同步，使用Promise方式异步返回结果。
 
@@ -485,7 +485,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 ### setAssociatedData
 
-setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
+setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void;
 
 设置与此应用程序帐号关联的数据，使用callback回调异步返回结果。
 
@@ -508,7 +508,7 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 
 ### setAssociatedData
 
-setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
+setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;;
 
 设置与此应用程序帐号关联的数据，使用Promise方式异步返回结果。
 
@@ -539,7 +539,7 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 ### getAccountCredential
 
-getAccountCredential(name: string, credentialType: string, callback: AsyncCallback&lt;string&gt;): void
+getAccountCredential(name: string, credentialType: string, callback: AsyncCallback&lt;string&gt;): void;
 
 获取此应用帐号的凭据，使用callback回调异步返回结果。
 
@@ -563,7 +563,7 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 
 ### getAccountCredential
 
-getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt;
+getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt;;
 
 获取此应用程序帐号的凭据，使用Promise方式异步返回结果。
 
@@ -593,7 +593,7 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 
 ### getAccountExtraInfo
 
-getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
+getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void;
 
 获取此应用帐号的额外信息，使用callback回调异步返回结果。
 
@@ -616,7 +616,7 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 ### getAccountExtraInfo
 
-getAccountExtraInfo(name: string): Promise&lt;string&gt;
+getAccountExtraInfo(name: string): Promise&lt;string&gt;;
 
 获取此应用程序帐号的额外信息，使用Promise方式异步返回结果。
 
@@ -645,7 +645,7 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 ### getAssociatedData
 
-getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&gt;): void
+getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&gt;): void;
 
 获取与此应用程序帐号关联的数据，使用callback回调异步返回结果。
 
@@ -669,7 +669,7 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 
 ### getAssociatedData
 
-getAssociatedData(name: string, key: string): Promise&lt;string&gt;
+getAssociatedData(name: string, key: string): Promise&lt;string&gt;;
 
 获取与此应用程序帐号关联的数据，使用Promise方式异步返回结果。
 
