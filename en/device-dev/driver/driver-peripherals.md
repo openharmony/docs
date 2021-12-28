@@ -2,10 +2,12 @@
 
 -   **[LCD](driver-peripherals-lcd-des.md)**  
 
--   **[TOUCHSCREEN](driver-peripherals-touch-des.md)**  
+-   **[Touchscreen](driver-peripherals-touch-des.md)**  
 
 -   **[Sensor](driver-peripherals-sensor-des.md)**  
 
 -   **[WLAN](driver-peripherals-external-des.md)**  
+
+-   **[Audio](driver-peripherals-audio-des.md)**
 
 

@@ -34,4 +34,5 @@
   - [TOUCHSCREEN](driver-peripherals-touch-des.md)
   - [Sensor](driver-peripherals-sensor-des.md)
   - [WLAN](driver-peripherals-external-des.md)
+  - [AUDIO](driver-peripherals-audio-des.md)
   - [USB](driver-peripherals-usb-des.md)
