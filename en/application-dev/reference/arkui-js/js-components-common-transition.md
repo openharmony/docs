@@ -5,6 +5,7 @@
 **Table  1**  Transition of shared elements
 
 <a name="table74342031134012"></a>
+
 <table><thead align="left"><tr id="row16523131144020"><th class="cellrowborder" valign="top" width="30%" id="mcps1.2.5.1.1"><p id="p1752416310408"><a name="p1752416310408"></a><a name="p1752416310408"></a>Name</p>
 </th>
 <th class="cellrowborder" valign="top" width="16.150000000000002%" id="mcps1.2.5.1.2"><p id="p552423110408"><a name="p552423110408"></a><a name="p552423110408"></a>Type</p>
@@ -270,7 +271,7 @@ export default {
 }
 ```
 
-![](figures/卡片转场.gif)
+![](figures/transition.gif)
 
 ## Page Transition Styles<a name="section0565021620"></a>
 
