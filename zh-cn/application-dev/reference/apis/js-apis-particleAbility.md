@@ -1,84 +1,41 @@
-# ParticleAbility模块(JS端SDK接口)
+# particleAbility模块
 
-#### 支持设备
+## 支持设备
 
 | API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 智慧视觉设备 |
 | ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| ParticleAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| ParticleAbility.startAbility(parameter: StartAbilityParameter) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| ParticleAbility.terminateSelf(callback: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| ParticleAbility.terminateSelf()                              | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| ParticleAbility.acquireDataAbilityHelper(uri: string)        | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| particleAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| particleAbility.startAbility(parameter: StartAbilityParameter): Promise\<number> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| particleAbility.terminateSelf(callback: AsyncCallback\<void>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| particleAbility.terminateSelf(): Promise\<void>              | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| particleAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| particleAbility.connectAbility(request: Want, options:ConnectOptions): number | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| particleAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
+| particleAbility.disconnectAbility(connection: number): Promise\<void> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
 
-#### 权限列表
+## 使用限制
 
-ohos.permission.RUNNING_LOCK permission
+particleAbility模块用来对Data和Service类型的Ability进行操作
 
-#### 使用限制
+## 导入模块
 
-ParticleAbility模块的接口只能在Ability为Data和Service类型的时候进行调用
-
-#### 导入模块
-
+```js
+import particleAbility from '@ohos.ability.particleAbility'
 ```
-import featureAbility from '@ohos.ability.featureAbility'
-```
 
-#### ParticleAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>
+## particleAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void
 
 - 接口说明
 
-  服务ability使用此方法启动特定ability(callback形式)
+  使用此方法启动指定的particleAbility(callback形式)
 
 - startAbility参数描述
 
 
-| 名称      | 读写属性 | 类型                  | 必填 | 描述              |
-| --------- | -------- | --------------------- | ---- | ----------------- |
-| parameter | 只读     | StartAbilityParameter | 是   | 指示启动的ability |
-| callback  | 只读     | AsyncCallback\<void>  | 是   | 被指定的回调方法  |
-
-- StartAbilityParameter类型说明
-
-| 名称                | 读写属性 | 类型   | 必填 | 描述                               |
-| ------------------- | -------- | ------ | ---- | ---------------------------------- |
-| want                | 只读     | want   | 是   | 表示需要包含有关目标启动能力的信息 |
-| abilityStartSetting | 只读     | string | 否   | 指示启动能力中使用的特殊启动设置   |
-
-- want类型说明
-
-| 名称        | 读写属性 | 类型   | 必填 | 描述                       |
-| ----------- | -------- | ------ | ---- | -------------------------- |
-| deviceId    | 只读     | string | 否   | 设备id                     |
-| bundleName  | 只读     | string | 否   | 捆绑包名称                 |
-| abilityName | 只读     | string | 否   | ability 名字               |
-| uri         | 只读     | string | 否   | 请求中URI的描述            |
-| type        | 只读     | string | 否   | 此文件中类型的说明         |
-| flags       | 只读     | number | 否   | 此文件中标志的选项是必需的 |
-| action      | 只读     | string | 否   | 需求中对操作的描述         |
-| parameters  | 只读     | string | 否   | Want中WantParams对象的描述 |
-| entities    | 只读     | string | 否   | 对象中实体的描述           |
-
-- flags类型说明
-
-  | 名称                                 | 参数       | 描述                                                         |
-  | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-  | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权                                  |
-  | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权                                  |
-  | FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给源异能                                           |
-  | FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备                 |
-  | FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否不属于OHOS                                       |
-  | FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力                                         |
-  | FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权                                    |
-  | FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 将结果返回到源能力片                                         |
-  | FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动                             |
-  | FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能   |
-  | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示延续是可逆的。                                           |
-  | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能                           |
-  | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，请使用后台模式安装指定的DI功能。                 |
-  | FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给{@link ohos.app.Context#startAbility}的{@code Intent}设置此标志，并且必须与{@link flag_ABILITY_NEW_MISSION}一起使用 |
-  | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
-  | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
+| 名称      | 读写属性 | 类型                                                    | 必填 | 描述              |
+| --------- | -------- | ------------------------------------------------------- | ---- | ----------------- |
+| parameter | 只读     | [StartAbilityParameter](#StartAbilityParameter类型说明) | 是   | 指示启动的ability |
+| callback  | 只读     | AsyncCallback\<void>                                    | 是   | 被指定的回调方法  |
 
 - 返回值
 
@@ -98,107 +55,69 @@ particleAbility.startAbility(
             flags: FLAG_AUTH_READ_URI_PERMISSION;
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.jstest.startabilitytest5.MainAbility",
+            abilityName: "com.example.Data.MainAbility",
             uri:""
         },
+    },
+    (error, result) => {
+		console.log('particleAbility startAbility errCode:' + error + 'result:' + result)
     },
 )
 ```
 
 
 
-#### ParticleAbility.startAbility(parameter: StartAbilityParameter)  
+## particleAbility.startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 - 接口说明
-服务ability使用此方法启动特定ability((Promise形式)
+使用此方法启动指定的particleAbility(Promise形式)
+
 - startAbility参数描述
 
 
-| 名称      | 读写属性 | 类型                  | 必填 | 描述              |
-| --------- | -------- | --------------------- | ---- | ----------------- |
-| parameter | 只读     | StartAbilityParameter | 是   | 指示启动的ability |
-- StartAbilityParameter类型说明
-
-| 名称                | 读写属性 | 类型   | 必填 | 描述                               |
-| ------------------- | -------- | ------ | ---- | ---------------------------------- |
-| want                | 只读     | want   | 是   | 表示需要包含有关目标启动能力的信息 |
-| abilityStartSetting | 只读     | string | 否   | 指示启动能力中使用的特殊启动设置   |
-
-- want类型说明
-
-| 名称        | 读写属性 | 类型   | 必填 | 描述                       |
-| ----------- | -------- | ------ | ---- | -------------------------- |
-| deviceId    | 只读     | string | 否   | 设备id                     |
-| bundleName  | 只读     | string | 否   | 捆绑包名称                 |
-| abilityName | 只读     | string | 否   | ability 名字               |
-| uri         | 只读     | string | 否   | 请求中URI的描述            |
-| type        | 只读     | string | 否   | 此文件中类型的说明         |
-| flags       | 只读     | number | 否   | 此文件中标志的选项是必需的 |
-| action      | 只读     | string | 否   | 需求中对操作的描述         |
-| parameters  | 只读     | string | 否   | Want中WantParams对象的描述 |
-| entities    | 只读     | string | 否   | 对象中实体的描述           |
-
-- flags类型说明
-
-  | 名称                                 | 参数       | 描述                                                         |
-  | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-  | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权                                  |
-  | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权                                  |
-  | FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给源异能                                           |
-  | FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备                 |
-  | FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否不属于OHOS                                       |
-  | FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力                                         |
-  | FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权                                    |
-  | FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 将结果返回到源能力片                                         |
-  | FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动                             |
-  | FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能   |
-  | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示延续是可逆的。                                           |
-  | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能                           |
-  | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，请使用后台模式安装指定的DI功能。                 |
-  | FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给{@link ohos.app.Context#startAbility}的{@code Intent}设置此标志，并且必须与{@link flag_ABILITY_NEW_MISSION}一起使用 |
-  | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
-  | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
-
+| 名称      | 读写属性 | 类型                                                    | 必填 | 描述              |
+| --------- | -------- | ------------------------------------------------------- | ---- | ----------------- |
+| parameter | 只读     | [StartAbilityParameter](#StartAbilityParameter类型说明) | 是   | 指示启动的ability |
 - 返回值
 
-  void
+  Promise\<void>
 
 - 示例
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
 import particleAbility from '@ohos.ability.particleAbility'
-var windowMode = featureAbility.AbilityStartSetting.WINDOW_MODE_KEY;
 particleAbility.startAbility(
-      want:
-       {
-            bundleName: "com.jstest.featureabilitytest",
-            abilityName: "com.jstest.startabilitytest1.MainAbility",
-            },
-            abilityStartSetting:
+	{
+        want:
         {
-            windowMode: featureAbility.AbilityWindowConfiguration.WINDOW_MODE_FLOATING,
+            action: "action.system.home",
+            entities: ["entity.system.home"],
+            type: "MIMETYPE",
+            flags: FLAG_AUTH_READ_URI_PERMISSION;
+            deviceId: "",
+            bundleName: "com.example.Data",
+            abilityName: "com.example.Data.MainAbility",
+            uri:""
         },
-       }
-
-		).then((void) => {
-		console.info("==========================>startAbilityCallback=======================>");
+    },
+).then((void) => {
+    console.info("particleAbility startAbility");
 });
 ```
 
 
 
-#### ParticleAbility.terminateSelf(callback: AsyncCallback\<void>)  
+## particleAbility.terminateSelf(callback: AsyncCallback\<void>): void
 
 - 接口说明
 
-  摧毁服务ability(callback形式)
+  终止particleAbility(callback形式)
 
 - terminateSelf参数描述
 
-  | 名称     | 读写属性 | 类型                 | 必填 | 描述                 |
-  | -------- | -------- | -------------------- | ---- | -------------------- |
-  | callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| 名称     | 读写属性 | 类型                 | 必填 | 描述                 |
+| -------- | -------- | -------------------- | ---- | -------------------- |
+| callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
 
 - 返回值
 
@@ -208,33 +127,37 @@ particleAbility.startAbility(
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
-ParticleAbility.terminateSelf()
+particleAbility.terminateSelf(
+    (error, result) => {
+		console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result)
+    }
+)
 ```
 
 
 
-#### ParticleAbility.terminateSelf()
+## particleAbility.terminateSelf(): Promise\<void>
 
 - 接口说明
 
-  摧毁服务ability(Promise形式)
+  终止particleAbility(Promise形式)
 
 - 返回值
 
-  void
+  Promise\<void>
 
 - 示例
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
 particleAbility.terminateSelf().then((void) => {
-		console.info("==========================>terminateSelfCallback=======================>");
+	console.info("particleAbility terminateSelf");
 });
 ```
 
 
 
-#### ParticleAbility.acquireDataAbilityHelper(uri: string)  
+## particleAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 - 接口说明
 
@@ -242,23 +165,25 @@ particleAbility.terminateSelf().then((void) => {
 
 - acquireDataAbilityHelper参数描述
 
-  | 名称 | 读写属性 | 类型   | 必填 | 描述                   |
-  | :--- | -------- | ------ | ---- | ---------------------- |
-  | uri  | 只读     | string | 是   | 指示要打开的文件的路径 |
+| 名称 | 读写属性 | 类型   | 必填 | 描述                   |
+| :--- | -------- | ------ | ---- | ---------------------- |
+| uri  | 只读     | string | 是   | 指示要打开的文件的路径 |
 
 - 返回值
 
-  返回dataAbilityHelper
+| 类型              | 说明                                       |
+| ----------------- | ------------------------------------------ |
+| DataAbilityHelper | 用来协助其他Ability访问DataAbility的工具类 |
 
 - 示例
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'     
 var uri = "";
-ParticleAbility.acquireDataAbilityHelper(uri)
+particleAbility.acquireDataAbilityHelper(uri)
 ```
 
-#### ParticleAbility.connectAbility(*request*: Want, *options*:ConnectOptions): number
+## particleAbility.connectAbility(request: Want, options:ConnectOptions): number
 
 * 接口说明
 
@@ -276,21 +201,18 @@ ParticleAbility.acquireDataAbilityHelper(uri)
 | 名称         | 读写属性 | 类型     | 必填 | 描述                               |
 | ------------ | -------- | -------- | ---- | ---------------------------------- |
 | onConnect    | 只读     | function | 是   | 连接成功时的回调函数               |
-| onDisconnect | 只读     | function | 是   | 连接失败时的回调函数               |
+| onDisconnect | 只读     | function | 是   | 断开连接时的回调函数               |
 | onFailed     | 只读     | function | 是   | ConnectAbility调用失败时的回调函数 |
 
 * 返回值
 
-  连接的ServiceAbilityID。
+  标识一次连接。
 
 * 示例
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
-var mRemote;
-var connId;
 function onConnectCallback(element, remote){
-    mRemote = remote;
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
 function onDisconnectCallback(element){
@@ -302,7 +224,7 @@ function onFailedCallback(code){
 var connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
@@ -312,7 +234,7 @@ var connId = particleAbility.connectAbility(
 );
 ```
 
-#### ParticleAbility.disconnectAbility(connection: number, callback:AsyncCallback<void>): void
+## particleAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 * 接口说明
 
@@ -323,20 +245,17 @@ var connId = particleAbility.connectAbility(
 | 名称       | 读写属性 | 类型          | 必填 | 描述                           |
 | ---------- | -------- | ------------- | ---- | ------------------------------ |
 | connection | 只读     | number        | 是   | 指定断开连接的ServiceAbilityID |
-| callback   | 只读     | AsyncCallback | 是   | 被指定的回调方法               |
+| callback   | 只读     | AsyncCallback\<void> | 是   | 被指定的回调方法               |
 
 * 返回值
 
-  无
+  void
 
 * 示例
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
-var mRemote;
-var connId;
 function onConnectCallback(element, remote){
-    mRemote = remote;
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
 function onDisconnectCallback(element){
@@ -348,7 +267,7 @@ function onFailedCallback(code){
 var connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
@@ -358,12 +277,12 @@ var connId = particleAbility.connectAbility(
 );
 var result = particleAbility.disconnectAbility(connId,
     (error,data) => {
-    console.log('particleAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+        console.log('particleAbilityTest DisConnectAbility result errCode : ' + error.code + " data: " + data)
     },
 );
 ```
 
-#### ParticleAbility.disconnectAbility(connection: number): Promise<void>;
+## particleAbility.disconnectAbility(connection: number): Promise\<void>
 
 * 接口说明
 
@@ -377,16 +296,13 @@ var result = particleAbility.disconnectAbility(connId,
 
 * 返回值
 
-  无
+  Promise\<void>
 
 * 示例
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
-var mRemote;
-var connId;
 function onConnectCallback(element, remote){
-    mRemote = remote;
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
 function onDisconnectCallback(element){
@@ -398,7 +314,7 @@ function onFailedCallback(code){
 var connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
@@ -406,6 +322,73 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = await particleAbility.disconnectAbility(connId);
+var result = particleAbility.disconnectAbility(connId).then((void) => {
+	console.info("particleAbilityTest disconnectAbility");
+});
 ```
 
+## StartAbilityParameter类型说明
+
+| 名称                | 读写属性 | 类型                  | 必填 | 描述                                                         |
+| ------------------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| want                | 只读     | [Want](#Want类型说明) | 是   | 表示需要包含有关目标启动能力的信息。                         |
+| abilityStartSetting | 只读     | {[key: string]: any}  | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
+
+## Want类型说明
+
+| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
+| bundleName  | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| abilityName | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| uri         | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
+| type        | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
+| flags       | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
+| action      | 只读     | string               | 否   | 表示action选项描述。                                         |
+| parameters  | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                         |
+| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                       |
+
+## flags说明
+
+| 名称                                 | 参数       | 描述                                                         |
+| ------------------------------------ | ---------- | ------------------------------------------------------------ |
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权                                  |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权                                  |
+| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给源能力                                           |
+| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备                 |
+| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS                                         |
+| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力                                         |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权                                    |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 将结果返回到源能力                                         |
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动                             |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能   |
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                                         |
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能                           |
+| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                 |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给{@link ohos.app.Context#startAbility}的{@code Want}设置此标志，并且必须与{@link flag_ABILITY_NEW_MISSION}一起使用 |
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
+
+## AbilityStartSetting类型说明
+
+abilityStartSetting属性是一个定义为[key: string]: any的对象，key对应设定类型为：AbilityStartSetting枚举类型，value对应设定类型为：AbilityWindowConfiguration枚举类型。
+
+使用时通过featureAbility.AbilityStartSetting获取，示例：featureAbility.AbilityStartSetting.BOUNDS_KEY。 
+
+| 名称            | 参数            | 描述                       |
+| --------------- | --------------- | -------------------------- |
+| BOUNDS_KEY      | "abilityBounds" | 窗口显示大小属性的名称。   |
+| WINDOW_MODE_KEY | "windowMode"    | 窗口显示模式属性的名称。   |
+| DISPLAY_ID_KEY  | "displayId"     | 窗口显示设备ID属性的名称。 |
+
+## AbilityWindowConfiguration类型说明
+
+使用时通过featureAbility.AbilityWindowConfiguration获取，示例：featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED。 
+
+| 名称                        | 参数 | 描述       |
+| --------------------------- | ---- | ---------- |
+| WINDOW_MODE_UNDEFINED       | 0    | 未定义。   |
+| WINDOW_MODE_FULLSCREEN      | 1    | 全屏。     |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100  | 分屏主屏。 |
+| WINDOW_MODE_SPLIT_SECONDARY | 101  | 分屏次屏。 |
+| WINDOW_MODE_FLOATING        | 102  | 悬浮窗。   |

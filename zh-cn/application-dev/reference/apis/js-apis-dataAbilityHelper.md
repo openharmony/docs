@@ -29,10 +29,6 @@
 | DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
 | DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
 
-#### 权限列表
-
-ohos.permission.RUNNING_LOCK permission
-
 #### 导入模块
 
 ```
@@ -64,14 +60,16 @@ import ohos_data_rdb from '@ohos.data.rdb'
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var mode = "rwt";
 DAHelper.openFile(
     "dataability:///com.example.DataAbility",
     mode,
-)
+    (err) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.openFile(uri: string, mode: string)
@@ -95,7 +93,7 @@ DAHelper.openFile(
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var mode = "rwt";
@@ -128,12 +126,16 @@ DAHelper.openFile(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var helper = await featureAbility.getDataAbilityHelper(
+var helper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
+function onChangeNotify() {
+    console.info("==========================>onChangeNotify=======================>");
+};
 helper.on(
     "dataChange",
     "dataability:///com.example.DataAbility",
+    onChangeNotify
 )
 ```
 
@@ -159,12 +161,20 @@ helper.on(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var helper = await featureAbility.getDataAbilityHelper(
+var helper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
+function onChangeNotify() {
+    console.info("==========================>onChangeNotify=======================>");
+};
 helper.off(
     "dataChange",
     "dataability:///com.example.DataAbility",
+)
+helper.off(
+    "dataChange",
+    "dataability:///com.example.DataAbility",
+    onChangeNotify
 )
 ```
 
@@ -189,12 +199,14 @@ helper.off(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getType(
-    "dataability:///com.example.DataAbility"
-)
+    "dataability:///com.example.DataAbility",
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.getType(uri: string)
@@ -217,12 +229,12 @@ DAHelper.getType(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getType(
     "dataability:///com.example.DataAbility"
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>getTypeCallback=======================>");
 });
 ```
@@ -235,11 +247,11 @@ DAHelper.getType(
 
 - 参数描述
 
-  | 名称           | 读写属性 | 类型                   | 必填 | 描述                         |
-  | -------------- | -------- | ---------------------- | ---- | ---------------------------- |
-  | uri            | 只读     | string                 | 是   | 指示要获取的文件的路径。     |
-  | mimeTypeFilter | 只读     | string                 | 是   | 指示要获取的文件的MIME类型。 |
-  | callback       | 只读     | AsyncCallback\<string> | 是   | 回调方法                     |
+  | 名称           | 读写属性 | 类型                           | 必填 | 描述                         |
+  | -------------- | -------- | ------------------------------ | ---- | ---------------------------- |
+  | uri            | 只读     | string                         | 是   | 指示要获取的文件的路径。     |
+  | mimeTypeFilter | 只读     | string                         | 是   | 指示要获取的文件的MIME类型。 |
+  | callback       | 只读     | AsyncCallback\<Array\<string>> | 是   | 回调方法                     |
 
 - 返回值
 
@@ -249,13 +261,15 @@ DAHelper.getType(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getFileTypes(
     "dataability:///com.example.DataAbility",
-    "image/*"
-)
+    "image/*",
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string)
@@ -279,13 +293,13 @@ DAHelper.getFileTypes(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getFileTypes(
     "dataability:///com.example.DataAbility",
     "image/*"
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>getFileTypesCallback=======================>");
 });
 ```
@@ -311,12 +325,14 @@ DAHelper.getFileTypes(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.normalizeUri(
     "dataability:///com.example.DataAbility",
-)
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.normalizeUri(uri: string)
@@ -339,12 +355,12 @@ DAHelper.normalizeUri(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.normalizeUri(
     "dataability:///com.example.DataAbility",
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>normalizeUriCallback=======================>");
 });
 ```
@@ -370,12 +386,14 @@ DAHelper.normalizeUri(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.denormalizeUri(
-    "dataability:///com.example.DataAbility",
-)
+    "dataability:///com.example.DataAbility",,
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.denormalizeUri(uri: string)
@@ -398,12 +416,12 @@ DAHelper.denormalizeUri(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.denormalizeUri(
     "dataability:///com.example.DataAbility",
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>denormalizeUriCallback=======================>");
 });
 ```
@@ -429,12 +447,14 @@ DAHelper.denormalizeUri(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var helper = await featureAbility.getDataAbilityHelper(
+var helper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 helper.notifyChange(
-    "dataability:///com.example.DataAbility",
-)
+    "dataability:///com.example.DataAbility",,
+    (err) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.notifyChange(uri: string)
@@ -457,7 +477,7 @@ helper.notifyChange(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.notifyChange(
@@ -489,7 +509,7 @@ DAHelper.notifyChange(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 const valueBucket = {
@@ -500,8 +520,10 @@ const valueBucket = {
 }
 DAHelper.insert(
     "dataability:///com.example.DataAbility",
-    valueBucket
-)
+    valueBucket,
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket)
@@ -525,7 +547,7 @@ DAHelper.insert(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 const valueBucket = {
@@ -537,7 +559,7 @@ const valueBucket = {
 DAHelper.insert(
     "dataability:///com.example.DataAbility",
     valueBucket
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>insertCallback=======================>");
 });
 ```
@@ -564,7 +586,7 @@ DAHelper.insert(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
@@ -572,8 +594,10 @@ var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8
                      {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
 DAHelper.batchInsert(
     "dataability:///com.example.DataAbility",
-    cars
-)
+    cars,
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>)
@@ -597,7 +621,7 @@ DAHelper.batchInsert(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
@@ -606,7 +630,7 @@ var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8
 DAHelper.batchInsert(
     "dataability:///com.example.DataAbility",
     cars
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>batchInsertCallback=======================>");
 });
 ```
@@ -634,14 +658,16 @@ DAHelper.batchInsert(
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 import ohos_data_ability from '@ohos.data.dataability'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.delete(
     "dataability:///com.example.DataAbility",
-    da
-)
+    da,
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates)
@@ -665,14 +691,14 @@ DAHelper.delete(
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.delete(
     "dataability:///com.example.DataAbility",
     da
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>deleteCallback=======================>");
 });
 ```
@@ -701,7 +727,7 @@ DAHelper.delete(
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 import ohos_data_ability from '@ohos.data.dataability'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 const va = {
@@ -714,8 +740,10 @@ let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.update(
     "dataability:///com.example.DataAbility",
     va,
-    da
-)
+    da,
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 #### DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates)
@@ -741,7 +769,7 @@ DAHelper.update(
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 import ohos_data_ability from '@ohos.data.dataability'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 const va = {
@@ -755,7 +783,7 @@ DAHelper.update(
     "dataability:///com.example.DataAbility",
     va,
     da
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>updateCallback=======================>");
 });
 ```
@@ -784,7 +812,7 @@ DAHelper.update(
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 import ohos_data_ability from '@ohos.data.dataability'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars=new Array({"value1"}, {"value2"}, {"value3"}, {"value4"});
@@ -792,8 +820,10 @@ let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.query(
     "dataability:///com.example.DataAbility",
     cars,
-    da
-)
+    da,
+    (err, data) => {
+		console.info("==========================>Called=======================>");
+});
 ```
 
 
@@ -821,7 +851,7 @@ DAHelper.query(
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 import ohos_data_ability from '@ohos.data.dataability'
-var DAHelper = await featureAbility.getDataAbilityHelper(
+var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 var cars=new Array({"value1"}, {"value2"}, {"value3"}, {"value4"});
@@ -830,8 +860,7 @@ DAHelper.query(
     "dataability:///com.example.DataAbility",
     cars,
     da
-	).then((void) => {
+	).then((data) => {
 		console.info("==========================>queryCallback=======================>");
 });
 ```
-
