@@ -51,7 +51,7 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
 #### 1. 注册CameraHost
 
     定义Camera的HdfDriverEntry结构体，该结构体中定义了CameraHost初始化的方法。
-
+    ```c
     struct HdfDriverEntry g_cameraHostDriverEntry = {
         .moduleVersion = 1,
         .moduleName = "camera_service",
@@ -60,11 +60,12 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         .Release = HdfCameraHostDriverRelease,
     };
     HDF_INIT(g_cameraHostDriverEntry); // 将Camera的HdfDriverEntry结构体注册到HDF上
-
+    ```
 
 #### 2. CameraHost初始化
-    步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。这两个接口一个是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，另外一个是Camera设备的初始化，在开机时被调用。
 
+    步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。这两个接口一个是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，另外一个是Camera设备的初始化，在开机时被调用。
+    ```c
     int HdfCameraHostDriverBind(HdfDeviceObject *deviceObject)
     {
         HDF_LOGI("HdfCameraHostDriverBind enter!");
@@ -84,9 +85,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         deviceObject->service = &hdfCameraService->ioservice;
         return HDF_SUCCESS;
     }
-
+    ```
     下面的函数是远端CameraHost调用的方法：
-
+    ```c
     int32_t CameraHostStub::CameraHostServiceStubOnRemoteRequest(int cmdId, MessageParcel &data,
         MessageParcel &reply, MessageOption &option)
     {
@@ -113,12 +114,13 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
         return HDF_SUCCESS;
     }
-
+    ```
     CameraHostStubInstance()接口最终调用CameraHostImpl::Init()方法，该方法会获取物理Camera，并对DeviceManager和PipelineCore进行初始化。
 
 #### 3. 获取CamerHost
-    调用Get()接口从远端CameraService中获取CameraHost对象。get()方法如下：
 
+    调用Get()接口从远端CameraService中获取CameraHost对象。get()方法如下：
+    ```c
     sptr<ICameraHost> ICameraHost::Get(const char *serviceName)
     {
         do {
@@ -138,11 +140,12 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         HDF_LOGE("%s: get %s failed!", __func__, serviceName);
         return nullptr;
     }
-
+    ```
 #### 4. OpenCamera()接口
+
     获取CameraHost对象，该对象中有五个方法，分别是SetCallback、GetCameraIds、GetCameraAbility、OpenCamera和SetFlashlight。下面着重描述OpenCamera接口。
     CameraHostProxy的OpenCamera()接口通过CMD_CAMERA_HOST_OPEN_CAMERA调用远端CameraHostStubOpenCamera()接口并获取ICameraDevice对象。
-
+    ```c
     CamRetCode CameraHostProxy::OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &pDevice)
     {
         int32_t ret = Remote()->SendRequest(CMD_CAMERA_HOST_REMOTE_OPEN_CAMERA, data, reply, option);
@@ -161,10 +164,10 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
         return retCode;
     }
-
+    ```
     Remote()->SendRequest调用上文提到的CameraHostServiceStubOnRemoteRequest()，根据cmdId进入CameraHostStubOpenCamera()接口，最终调用CameraHostImpl::OpenCamera()，该接口获取了
     CameraDevice并对硬件进行上电等操作。
-
+    ```c
     CamRetCode CameraHostImpl::OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &device)
     {
         std::shared_ptr<CameraDeviceImpl> cameraDevice = std::static_pointer_cast<CameraDeviceImpl>(itr->second);
@@ -201,10 +204,11 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         cameraDevice->SetStatus(true);
         return NO_ERROR;
     }
-
+    ```
 #### 5. 获取GetStreamOperator对象
-    IStreamOperator定义了一系列对流控制和操作的接口，主要有CreateStreams、CommitStreams、Capture、CancelCapture等。
 
+    IStreamOperator定义了一系列对流控制和操作的接口，主要有CreateStreams、CommitStreams、Capture、CancelCapture等。
+    ```c
     CamRetCode CameraDeviceImpl::GetStreamOperator(const OHOS::sptr<IStreamOperatorCallback> &callback,
      OHOS::sptr<IStreamOperator> &streamOperator)
     {
@@ -228,10 +232,11 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
             cameraDeciceCallback_->OnError(REQUEST_TIMEOUT, 0);
         });
     }
-
+    ```
 #### 6. 创建流
-    调用CreateStreams创建流前需要填充StreamInfo结构体，具体内容如下：
 
+    调用CreateStreams创建流前需要填充StreamInfo结构体，具体内容如下：
+    ```c
     using StreamInfo = struct _StreamInfo {
         int streamId_; 
         int width_;  // 数据流宽
@@ -244,9 +249,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         int minFrameDuration_;
         EncodeType encodeType_;
     };
-
+    ```
     CreateStreams()接口是StreamOperatorImpl类中的方法，该接口的主要作用是创建一个StreamBase对象，通过StreamBase的Init方法初始化CreateBufferPool等操作。
-
+    ```c
     RetCode StreamOperatorImpl::CreateStream(const std::shared_ptr<StreamInfo>& streamInfo)
     {
         static std::map<StreamIntent, std::string> typeMap = {
@@ -266,10 +271,11 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         RetCode rc = stream->Init(streamInfo); // 调用StreamBase Init方法，CreateBufferPool
         return RC_OK;
     }
-
+    ```
 #### 7. 配置流
-    CommitStreams()是配置流的接口，必须在创建流之后调用，其主要作用是初始化Pipeline和创建Pipeline。
 
+    CommitStreams()是配置流的接口，必须在创建流之后调用，其主要作用是初始化Pipeline和创建Pipeline。
+    ```c
     CamRetCode StreamOperatorImpl::CommitStreams(OperationMode mode, const std::shared_ptr<CameraStandard::CameraMetadata>& modeSetting)
     {
         auto cameraDevice = cameraDevice_.lock();
@@ -302,18 +308,19 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
         return NO_ERROR;
     }
-
+    ```
 #### 8. 捕获图像
-    在调用Capture()接口前需要先填充CaptureInfo结构体，具体内容如下：
 
+    在调用Capture()接口前需要先填充CaptureInfo结构体，具体内容如下：
+    ```c
     using CaptureInfo = struct _CaptureInfo {
           std::vector<int> streamIds_; //需要Capture的streamIds
           std::shared_ptr<CameraStandard::CameraMetadata> captureSetting_; // 这里填充camera ability 可通过CameraHost 的GetCameraAbility()接口获取
          bool enableShutterCallback_;
     };
-
+    ```
     StreamOperatorImpl中的Capture方法主要调用CreateCapture()接口去捕获数据流：
-
+    ```c
     CamRetCode StreamOperatorImpl::Capture(int captureId, const std::shared_ptr<CaptureInfo>& captureInfo, bool isStreaming)
     {
          if (!ValidCaptureInfo(captureId, captureInfo)) {
@@ -339,10 +346,11 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
         return NO_ERROR;
     }  
-
+    ```
 #### 9. 取消捕获和释放离线流
+
     StreamOperatorImpl类中的CancelCapture()接口的主要作用是根据captureId取消数据流的捕获。
-    
+    ```c
     CamRetCode StreamOperatorImpl::CancelCapture(int captureId)
     {
           auto itr = camerCaptureMap_.find(captureId); //根据captureId 在Map中查找对应的CameraCapture对象
@@ -351,9 +359,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
           camerCaptureMap_.erase(itr); //擦除该CameraCapture对象
           return NO_ERROR;
     }
-
+    ```
     StreamOperatorImpl类中的ReleaseStreams接口的主要作用是释放之前通过CreateStream()和CommitStreams()接口创建的流，并销毁Pipeline。
-
+    ```c
     CamRetCode StreamOperatorImpl::ReleaseStreams(const std::vector<int>& streamIds)
     {
         RetCode rc = DestroyStreamPipeline(streamIds); //销毁该streamIds 的pipeline
@@ -361,8 +369,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         rc = DestroyStreams(streamIds); //销毁该streamIds 的 Stream
         return NO_ERROR;
     }
-
+    ```
 #### 10. 关闭Camera设备
+
     调用CameraDeviceImpl中的Close()来关闭CameraDevice，该接口调用deviceManager中的PowerDown()来给设备下电。
 
 
@@ -371,7 +380,7 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
 在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/system/bin下生成可执行文件ohos_camera_demo，该demo可以完成camera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例。
 
     1.在main函数中构造一个Hos3516Demo对象，该对象中有对camera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
-
+    ```c
     int main(int argc, char** argv)
     {
         RetCode rc = RC_OK;
@@ -398,9 +407,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
     
         return RC_OK;
     }
-
+    ```
     初始化CameraHost函数实现如下，这里调用了HDI接口ICameraHost::Get()去获取demoCameraHost，并对其设置回调函数。
-    
+    ```c
     RetCode Hos3516Demo::InitSensors()
     {
         demoCameraHost_ = ICameraHost::Get(DEMO_SERVICE_NAME);
@@ -413,9 +422,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         rc = demoCameraHost_->SetCallback(hostCallback_);
         return RC_OK;
     }
-
+    ```
     初始化CameraDevice函数实现如下，这里调用了GetCameraIds(cameraIds_)，GetCameraAbility(cameraId, ability_)，OpenCamera(cameraIds_.front(), callback, demoCameraDevice_)等接口实现了demoCameraHost的获取。
-
+    ```c
     RetCode Hos3516Demo::InitCameraDevice()
     {
         (void)demoCameraHost_->GetCameraIds(cameraIds_);
@@ -426,9 +435,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         rc = demoCameraHost_->OpenCamera(cameraIds_.front(), callback, demoCameraDevice_);
         return RC_OK;
     }   
-
+    ```
     2.PreviewOn()接口包含配置流、开启预览流和启动Capture动作。该接口执行完成后Camera预览通路已经开始运转并开启了两路流，一路流是preview，另外一路流是capture或者video，两路流中仅对preview流进行capture动作。
-
+    ```c
     static RetCode PreviewOn(int mode, const std::shared_ptr<Hos3516Demo>& mainDemo)
     {
          rc = mainDemo->StartPreviewStream(); // 配置preview流
@@ -441,9 +450,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         rc = mainDemo->CaptureON(STREAM_ID_PREVIEW, CAPTURE_ID_PREVIEW, CAPTURE_PREVIEW); // 将preview流capture
         return RC_OK;
     }           
-
+    ```
     StartCaptureStream()、StartVideoStream()和StartPreviewStream()接口都会调用CreatStream()接口，只是传入的参数不同。
-
+    ```c
     RetCode Hos3516Demo::StartVideoStream()
     {
         RetCode rc = RC_OK;
@@ -453,9 +462,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
         return RC_OK;
     }
-
+    ```
     CreatStream()方法调用HDI接口去配置和创建流，首先调用HDI接口去获取StreamOperation对象，然后创建一个StreamInfo。调用CreateStreams()和CommitStreams()实际创建流并配置流。
-
+    ```c
     RetCode Hos3516Demo::CreatStreams(const int streamIdSecond, StreamIntent intent)
     {
         std::vector<std::shared_ptr<StreamInfo>> streamInfos;
@@ -497,9 +506,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
         return RC_OK;
     }
-
+    ```
     CaptureON()接口调用streamOperator的Capture()方法获取camera数据并轮转buffer，拉起一个线程接收相应类型的数据。
-
+    ```c
     RetCode Hos3516Demo::CaptureON(const int streamId, const int captureId, CaptureMode mode)
     {
         std::shared_ptr<Camera::CaptureInfo> captureInfo = std::make_shared<Camera::CaptureInfo>(); // 创建并填充CaptureInfo
@@ -522,9 +531,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
         return RC_OK;
     }
-
+    ```
     3.ManuList()函数从控制台通过fgets()接口获取字符，不同字符所对应demo支持的功能不同，并打印出该demo所支持功能的菜单。
-    
+    ```c
     static void ManuList(const std::shared_ptr<Hos3516Demo>& mainDemo,
         const int argc, char** argv)
     {
@@ -579,9 +588,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
             }
         }
     }
-
+    ```
     PutMenuAndGetChr()接口打印了demo程序的菜单，并调用fgets()等待从控制台输入命令，内容如下：
-
+    ```c
     static int PutMenuAndGetChr(void)
     {
         constexpr uint32_t inputCount = 50;
@@ -599,9 +608,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
         return c;
     }
-
+    ```
     控制台输出菜单详情如下：
-
+    ```c
     "Options:\n"
     "-h | --help          Print this message\n"
     "-o | --offline       stream offline test\n"
@@ -611,7 +620,7 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
     "-a | --Set AE        Set Auto exposure\n"
     "-f | --Set Flashlight        Set flashlight ON 5s OFF\n"
     "-q | --quit          stop preview and quit this app\n");
-
+    ```
 
     demo中其他功能会调用不同的HDI接口去实现，与PreviewOn()接口类似，这里不再赘述，具体详情可以参见[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
 
