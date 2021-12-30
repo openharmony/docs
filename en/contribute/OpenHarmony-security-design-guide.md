@@ -46,9 +46,9 @@ The following are some examples of insecure cipher algorithms: MD5, DES, 3DES (D
 (3) **java.security.SecureRandom** of the JDK  
 (4) **/dev/random** file of Unix-like platforms
 
-3-4 By default, use secure cipher algorithms and disable/prohibit insecure cipher algorithms. Use cipher algorithm libraries that are certified by authoritative organizations, recognized by open-source communities in the industry, or assessed and approved by Huawei
+3-4 By default, use secure cipher algorithms and disable/prohibit insecure cipher algorithms. Use cipher algorithm libraries that are certified by authoritative organizations, recognized by open-source communities in the industry, or assessed and approved by OpenHarmony.
 
-**Description:** In the context of advances in cryptographic technologies and enhancement in computing capabilities, some cipher algorithms may become insecure. Using such algorithms may bring risks to user data. In addition, unknown flaws may exist in cipher algorithms that are developed by amateurs and not analyzed/verified by the industry. In this regard, use cipher algorithm libraries that are certified by authoritative organizations, recognized by open-source communities in the industry, or assessed and approved by Huawei.
+**Description:** In the context of advances in cryptographic technologies and enhancement in computing capabilities, some cipher algorithms may become insecure. Using such algorithms may bring risks to user data. In addition, unknown flaws may exist in cipher algorithms that are developed by amateurs and not analyzed/verified by the industry. In this regard, use cipher algorithm libraries that are certified by authoritative organizations, recognized by open-source communities in the industry, or assessed and approved by OpenHarmony.
 
 **Example:** For examples of cipher algorithms, see 3-1.
 
