@@ -140,7 +140,7 @@ featureAbility.startAbility(
 
 | 名称        | 读写属性 | 类型   | 必填 | 描述                       |
 | ----------- | -------- | ------ | ---- | -------------------------- |
-| deviceId    | 只读     | string | 否   | 设备id                     |
+| deviceId    | 只读     | string | 否   | 表示被启动的PageAbility的设备id，缺省表示启动本地的PageAbility                     |
 | bundleName  | 只读     | string | 否   | 捆绑包名称                 |
 | abilityName | 只读     | string | 否   | ability 名字               |
 | uri         | 只读     | string | 否   | 请求中URI的描述            |
@@ -187,7 +187,7 @@ featureAbility.startAbility(
             entities: ["entity.system.home"],
             type: "MIMETYPE",
 			flags: FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
+            deviceId: deviceId,
             bundleName: "com.example.startability",
             abilityName: "com.example.startability.MainAbility",
             uri: ""
