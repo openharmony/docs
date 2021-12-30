@@ -64,7 +64,7 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 - 示例：
 
   ```
-  statfs.getFreeBytes(path,function(err,number){
+  statfs.getFreeBytes(path, function(err, number){
       //do something
   });
   ```
@@ -109,7 +109,7 @@ getTotalBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 - 示例：
 
   ```
-  statfs.getTotalBytes(path,function(err, number){
+  statfs.getTotalBytes(path, function(err, number){
       //do something
   });
   ```
