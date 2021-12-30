@@ -2,9 +2,6 @@
 
 工具栏。放在界面底部，用于展示针对当前界面的操作选项。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 5 开始支持。
-
 ## 权限列表<a name="section11257113618419"></a>
 
 无
@@ -25,7 +22,7 @@
 支持[通用样式](js-components-common-styles.md)。
 
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
->-   不支持height样式，高度固定为56px。
+>不支持height样式，高度固定为56px。
 
 ## 事件<a name="section104349151916"></a>
 

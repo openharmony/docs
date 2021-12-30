@@ -1,33 +1,41 @@
-# 布局约束<a name="ZH-CN_TOPIC_0000001119929018"></a>
+# 布局约束<a name="ZH-CN_TOPIC_0000001192915124"></a>
 
-<a name="table2938mcpsimp"></a>
-<table><thead align="left"><tr id="row2946mcpsimp"><th class="cellrowborder" valign="top" width="19.781978197819782%" id="mcps1.1.5.1.1"><p id="p2948mcpsimp"><a name="p2948mcpsimp"></a><a name="p2948mcpsimp"></a>名称</p>
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 权限列表<a name="section781125411508"></a>
+
+无
+
+## 属性<a name="section6820191711316"></a>
+
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.781978197819782%" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="15.38153815381538%" id="mcps1.1.5.1.2"><p id="p2950mcpsimp"><a name="p2950mcpsimp"></a><a name="p2950mcpsimp"></a>参数说明</p>
+<th class="cellrowborder" valign="top" width="15.38153815381538%" id="mcps1.1.5.1.2"><p>参数说明</p>
 </th>
-<th class="cellrowborder" valign="top" width="8.720872087208722%" id="mcps1.1.5.1.3"><p id="p2952mcpsimp"><a name="p2952mcpsimp"></a><a name="p2952mcpsimp"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="8.720872087208722%" id="mcps1.1.5.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="56.11561156115612%" id="mcps1.1.5.1.4"><p id="p2956mcpsimp"><a name="p2956mcpsimp"></a><a name="p2956mcpsimp"></a>描述</p>
+<th class="cellrowborder" valign="top" width="56.11561156115612%" id="mcps1.1.5.1.4"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2968mcpsimp"><td class="cellrowborder" valign="top" width="19.781978197819782%" headers="mcps1.1.5.1.1 "><p id="p2970mcpsimp"><a name="p2970mcpsimp"></a><a name="p2970mcpsimp"></a>aspectRatio</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="19.781978197819782%" headers="mcps1.1.5.1.1 "><p>aspectRatio</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.38153815381538%" headers="mcps1.1.5.1.2 "><p id="p2972mcpsimp"><a name="p2972mcpsimp"></a><a name="p2972mcpsimp"></a>number</p>
+<td class="cellrowborder" valign="top" width="15.38153815381538%" headers="mcps1.1.5.1.2 "><p>number</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.5.1.3 "><p id="p2974mcpsimp"><a name="p2974mcpsimp"></a><a name="p2974mcpsimp"></a>-</p>
+<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.5.1.3 "><p>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="56.11561156115612%" headers="mcps1.1.5.1.4 "><p id="p2978mcpsimp"><a name="p2978mcpsimp"></a><a name="p2978mcpsimp"></a>指定当前组件的宽高比。</p>
+<td class="cellrowborder" valign="top" width="56.11561156115612%" headers="mcps1.1.5.1.4 "><p>指定当前组件的宽高比。</p>
 </td>
 </tr>
-<tr id="row2979mcpsimp"><td class="cellrowborder" valign="top" width="19.781978197819782%" headers="mcps1.1.5.1.1 "><p id="p2981mcpsimp"><a name="p2981mcpsimp"></a><a name="p2981mcpsimp"></a>displayPriority</p>
+<tr><td class="cellrowborder" valign="top" width="19.781978197819782%" headers="mcps1.1.5.1.1 "><p>displayPriority</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.38153815381538%" headers="mcps1.1.5.1.2 "><p id="p2983mcpsimp"><a name="p2983mcpsimp"></a><a name="p2983mcpsimp"></a>number</p>
+<td class="cellrowborder" valign="top" width="15.38153815381538%" headers="mcps1.1.5.1.2 "><p>number</p>
 </td>
-<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.5.1.3 "><p id="p2985mcpsimp"><a name="p2985mcpsimp"></a><a name="p2985mcpsimp"></a>-</p>
+<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.5.1.3 "><p>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="56.11561156115612%" headers="mcps1.1.5.1.4 "><p id="p76035219317"><a name="p76035219317"></a><a name="p76035219317"></a>设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。</p>
-<div class="note" id="note5552927146"><a name="note5552927146"></a><a name="note5552927146"></a><span class="notetitle"> 说明： </span><div class="notebody"><a name="ul1858934546"></a><a name="ul1858934546"></a><ul id="ul1858934546"><li>仅在Row/Column/Flex(单行)容器组件中生效。</li></ul>
+<td class="cellrowborder" valign="top" width="56.11561156115612%" headers="mcps1.1.5.1.4 "><p>设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。</p>
+<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>仅在Row/Column/Flex(单行)容器组件中生效。</p>
 </div></div>
 </td>
 </tr>
@@ -84,10 +92,10 @@ struct AspectRatioExample {
 }
 ```
 
-**图 1**  竖屏显示<a name="fig113193013010"></a>  
+**图 1**  竖屏显示  
 ![](figures/竖屏显示.gif "竖屏显示")
 
-**图 2**  横屏显示<a name="fig1245012267316"></a>  
+**图 2**  横屏显示  
 ![](figures/横屏显示.gif "横屏显示")
 
 ```

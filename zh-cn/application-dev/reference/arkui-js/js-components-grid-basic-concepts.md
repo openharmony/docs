@@ -11,9 +11,6 @@
 3.  给应用提供一种灵活的间距调整方法，满足特殊场景布局调整的可能性。
 
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 5 开始支持。
-
 ## 栅格系统的概念<a name="section1429110563714"></a>
 
 栅格系统有Margins、Gutters、Columns三个属性。

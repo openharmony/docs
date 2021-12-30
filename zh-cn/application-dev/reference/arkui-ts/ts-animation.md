@@ -1,4 +1,4 @@
-# 动画<a name="ZH-CN_TOPIC_0000001212188559"></a>
+# 动画<a name="ZH-CN_TOPIC_0000001237355053"></a>
 
 -   **[属性动画](ts-animatorproperty.md)**  
 

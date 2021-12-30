@@ -8,7 +8,14 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 在pages/index目录下的hml文件中创建一个List组件。
 
 ```
-<!-- index.hml --><div class="container"> <list>    <list-item class="listItem"></list-item>   <list-item class="listItem"></list-item>   <list-item class="listItem"></list-item>   <list-item class="listItem"></list-item> </list></div>
+<!-- index.hml -->
+<div class="container"> 
+ <list>    <list-item class="listItem"></list-item>
+   <list-item class="listItem"></list-item>
+   <list-item class="listItem"></list-item>
+   <list-item class="listItem"></list-item>
+ </list>
+</div>
 ```
 
 ```
@@ -38,7 +45,17 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 设置scrollbar属性为on即可在屏幕右侧生成滚动条，实现长列表或者屏幕滚动等效果。
 
 ```
-<!-- index.hml --><div class="container">  <list class="listCss" scrollbar="on" >    <list-item class="listItem"></list-item>    <list-item class="listItem"></list-item>    <list-item class="listItem"></list-item>    <list-item class="listItem"></list-item>    <list-item class="listItem"></list-item>    <list-item class="listItem"></list-item> </list></div>
+<!-- index.hml -->
+<div class="container">
+  <list class="listCss" scrollbar="on" >
+    <list-item class="listItem"></list-item>
+    <list-item class="listItem"></list-item>
+    <list-item class="listItem"></list-item>
+    <list-item class="listItem"></list-item>
+    <list-item class="listItem"></list-item>
+    <list-item class="listItem"></list-item>
+ </list>
+</div> 
 ```
 
 ```
@@ -67,13 +84,25 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 设置indexer属性为自定义索引时，索引栏会显示在列表右边界处，indexer属性设置为true,默认为字母索引表。
 
 ```
-<!-- index.hml --><div class="container">   <list class="listCss"  indexer="{{['#','1','2','3','4','5','6','7','8']}}" >      <list-item class="listItem"  section="#" ></list-item>     </list></div>
+<!-- index.hml -->
+<div class="container">   
+  <list class="listCss"  indexer="{{['#','1','2','3','4','5','6','7','8']}}" >  
+    <list-item class="listItem"  section="#" ></list-item>   
+  </list>
+</div>
 ```
 
 ```
-/* index.css */.container{  flex-direction: column;
+/* index.css */
+.container{
+  flex-direction: column;
   background-color: #F1F3F5;
- } .listCss{  height: 100%;      flex-direction: column;  columns: 1}
+ } 
+.listCss{
+  height: 100%;    
+  flex-direction: column;
+  columns: 1
+}
 ```
 
 ![zh-cn_image_0000001166432552](figures/zh-cn_image_0000001166432552.png)
@@ -167,16 +196,11 @@ export default {
 
 ## 场景示例
 
-
 在本场景中，开发者可以根据字母索引表查找对应联系人。
 
 
 ```
 <!-- index.hml -->
-```
-
-
-```
 <div class="doc-page"> 
   <text style="font-size: 35px; font-weight: 500; text-align: center; margin-top: 20px; margin-bottom: 20px;"> 
       <span>Contacts</span> 
@@ -276,4 +300,4 @@ export default {
 ```
 
 
-![zh-cn_image_0000001208693047](figures/zh-cn_image_0000001208693047.gif)
+![zh-cn_image_0000001234287779](figures/zh-cn_image_0000001234287779.gif)

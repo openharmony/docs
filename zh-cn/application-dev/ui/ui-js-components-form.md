@@ -110,7 +110,7 @@ export default{
 ```
 
 
-![zh-cn_image_0000001163691126](figures/zh-cn_image_0000001163691126.gif)
+![zh-cn_image_0000001234329539](figures/zh-cn_image_0000001234329539.gif)
 
 
 ## 场景示例
@@ -188,4 +188,4 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001163372646](figures/zh-cn_image_0000001163372646.gif)
+![zh-cn_image_0000001234289465](figures/zh-cn_image_0000001234289465.gif)

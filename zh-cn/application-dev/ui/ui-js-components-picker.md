@@ -48,7 +48,7 @@ Picker是滑动选择器组件，类型支持普通选择器、日期选择器�
   background-color: #F1F3F5;
 }
 .pickertext{
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 ```
 
@@ -63,7 +63,7 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001163515416](figures/zh-cn_image_0000001163515416.gif)
+![zh-cn_image_0000001189098638](figures/zh-cn_image_0000001189098638.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 普通选择器设置取值范围时，需要使用数据绑定的方式。
@@ -98,7 +98,7 @@ Picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 }
 ```
 
-![zh-cn_image_0000001163212630](figures/zh-cn_image_0000001163212630.gif)
+![zh-cn_image_0000001234327855](figures/zh-cn_image_0000001234327855.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - hours属性为12：按照12小时制显示，用上午和下午进行区分；
@@ -154,7 +154,7 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001163372620](figures/zh-cn_image_0000001163372620.gif)
+![zh-cn_image_0000001234009343](figures/zh-cn_image_0000001234009343.gif)
 
 
 ## 场景示例
@@ -188,7 +188,7 @@ export default {
     <picker class="pick" type="text" value="{{yorn2}}" range="{{yesno}}" selected="1" onchange="isTouch"></picker>
   </div>
   <div class="out-container">
-    <button value="Submit" style="margin-top:100px;width:50%;font-color:#0000ff;" onclick="showtoast"></button>
+    <button value="Submit" style="margin-top:100px;width:50%;font-color:#0000ff;height:80px" onclick="showtoast"></button>
   </div>
 </div>
 ```
@@ -272,11 +272,9 @@ export default {
     this.build = e.newValue
   },
   dateonchange(e) {
+    e.month=e.month+1;
     this.datevalue = e.year + "-" + e.month + "-" + e.day;
-    pmt.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day })  },
-  datetimeonchange(e) {
-    this.datetimevalue=e.year+"-"+e.month+"-"+e.day+" "+e.hour+":"+e.minute;
-    pmt.showToast({ message:"Time:"+e.month+"-"+e.day+" "+e.hour+":"+e.minute })
+    pmt.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day }) 
   },
   showtoast() {
     pmt.showToast({
@@ -289,4 +287,4 @@ export default {
 ```
 
 
-![zh-cn_image_0000001208703849](figures/zh-cn_image_0000001208703849.gif)
+![zh-cn_image_0000001234342189](figures/zh-cn_image_0000001234342189.gif)

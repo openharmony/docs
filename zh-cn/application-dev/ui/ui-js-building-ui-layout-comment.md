@@ -33,7 +33,7 @@
   color: #1a1a1a;
   font-weight: bold;
   margin-top: 40px;
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .comment {
   width: 550px;
