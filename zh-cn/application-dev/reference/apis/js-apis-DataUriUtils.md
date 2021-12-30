@@ -1,16 +1,12 @@
-### DataUriUtils模块(JS端SDK接口)
+# DataUriUtils模块
 
-#### 权限列表
-
-ohos.permission.RUNNING_LOCK permission
-
-#### 导入模块
+## 导入模块
 
 ```js
-import notify from '@ohos.ability.dataUriUtils';
+import dataUriUtils from '@ohos.ability.dataUriUtils';
 ```
 
-#### DataUriUtils.getId(uri: string)
+## DataUriUtils.getId
 
 - 接口说明
 
@@ -36,7 +32,7 @@ dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
 
 
 
-#### DataUriUtils.attachId(uri: string, id: number)  
+## DataUriUtils.attachId
 
 - 接口说明
 
@@ -67,7 +63,7 @@ dataUriUtils.attachId(
 
 
 
-#### DataUriUtils.deleteId(uri: string)
+## DataUriUtils.deleteId
 
 - 接口说明
 
@@ -92,7 +88,7 @@ dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 
 
 
-#### DataUriUtils.updateId(uri: string, id: number) 
+## DataUriUtils.updateId
 
 - 接口说明 
 
