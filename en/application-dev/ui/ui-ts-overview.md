@@ -1,10 +1,10 @@
 # Overview<a name="EN-US_TOPIC_0000001192705715"></a>
 
-The HUAWEI ArkUI that uses the TypeScript-based declarative development paradigm is a simplified, high-performance UI development framework for cross-device applications.
+The TypeScript-based declarative development paradigm of ArkUI is a simplified, high-performance UI development framework for cross-device applications.
 
 ## Basic Capabilities<a name="section10519124516264"></a>
 
-In the HUAWEI ArkUI that uses the TypeScript-based declarative development paradigm, the programming mode is closer to natural semantics. You can intuitively describe the UI without caring about how the framework implements UI drawing and rendering, leading to simplified and efficient development. The UI capabilities are provided from three dimensions: component, animation, and state management. It also provides system capability APIs to allow for effortless invocation of system capabilities.
+In ArkUI that uses the TypeScript-based declarative development paradigm, the programming mode is closer to natural semantics. You can intuitively describe the UI without caring about how the framework implements UI drawing and rendering, leading to simplified and efficient development. The UI capabilities are provided from three dimensions: component, animation, and state management. It also provides system capability APIs to allow for effortless invocation of system capabilities.
 
 -   **Out-of-the-box components**
 
