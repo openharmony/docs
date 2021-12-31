@@ -53,7 +53,7 @@ image{
   border-radius: 20px;
   object-fit: contain;
   match-text-direction:true;
-  object-position: center center;
+
 }
 ```
 
@@ -189,7 +189,7 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001210358571](figures/zh-cn_image_0000001210358571.gif)
+![zh-cn_image_0000001188931396](figures/zh-cn_image_0000001188931396.gif)
 
 
 ## 场景示例
@@ -216,6 +216,7 @@ export default {
   align-self: center;
   justify-content: center;
   background-color:#F1F3F5;
+  background-color: #F1F3F5;
 }
 .content{
   flex-direction:column;
@@ -264,4 +265,4 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001208892929](figures/zh-cn_image_0000001208892929.gif)
+![zh-cn_image_0000001188771430](figures/zh-cn_image_0000001188771430.gif)

@@ -1,4 +1,7 @@
-# Navigator<a name="ZH-CN_TOPIC_0000001111421442"></a>
+# Navigator<a name="ZH-CN_TOPIC_0000001192915106"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 路由容器组件，提供路由跳转能力。
 
@@ -18,39 +21,38 @@ Navigator\(value?: \{target: string, type?: NavigationType\}\)
 
 -   参数
 
-    <a name="table10281697251"></a>
-    <table><thead align="left"><tr id="row102818913255"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p id="p6281197258"><a name="p6281197258"></a><a name="p6281197258"></a>参数名</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="18%" id="mcps1.1.6.1.2"><p id="p132815942510"><a name="p132815942510"></a><a name="p132815942510"></a>参数类型</p>
+    <th class="cellrowborder" valign="top" width="18%" id="mcps1.1.6.1.2"><p>参数类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="8.25%" id="mcps1.1.6.1.3"><p id="p162839172514"><a name="p162839172514"></a><a name="p162839172514"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="8.25%" id="mcps1.1.6.1.3"><p>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="21.42%" id="mcps1.1.6.1.4"><p id="p182859162519"><a name="p182859162519"></a><a name="p182859162519"></a>默认值</p>
+    <th class="cellrowborder" valign="top" width="21.42%" id="mcps1.1.6.1.4"><p>默认值</p>
     </th>
-    <th class="cellrowborder" valign="top" width="36.22%" id="mcps1.1.6.1.5"><p id="p172879102514"><a name="p172879102514"></a><a name="p172879102514"></a>参数描述</p>
+    <th class="cellrowborder" valign="top" width="36.22%" id="mcps1.1.6.1.5"><p>参数描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row9282912251"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p112829172510"><a name="p112829172510"></a><a name="p112829172510"></a>target</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>target</p>
     </td>
-    <td class="cellrowborder" valign="top" width="18%" headers="mcps1.1.6.1.2 "><p id="p628397252"><a name="p628397252"></a><a name="p628397252"></a>string</p>
+    <td class="cellrowborder" valign="top" width="18%" headers="mcps1.1.6.1.2 "><p>string</p>
     </td>
-    <td class="cellrowborder" valign="top" width="8.25%" headers="mcps1.1.6.1.3 "><p id="p1429694254"><a name="p1429694254"></a><a name="p1429694254"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8.25%" headers="mcps1.1.6.1.3 "><p>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p id="p182914942513"><a name="p182914942513"></a><a name="p182914942513"></a>-</p>
+    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p>-</p>
     </td>
-    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p id="p12296913258"><a name="p12296913258"></a><a name="p12296913258"></a>指定跳转目标页面的路径。</p>
+    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p>指定跳转目标页面的路径。</p>
     </td>
     </tr>
-    <tr id="row18291497259"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p529119162516"><a name="p529119162516"></a><a name="p529119162516"></a>type</p>
+    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>type</p>
     </td>
-    <td class="cellrowborder" valign="top" width="18%" headers="mcps1.1.6.1.2 "><p id="p0299910251"><a name="p0299910251"></a><a name="p0299910251"></a><a href="#table3452114216394">NavigationType</a></p>
+    <td class="cellrowborder" valign="top" width="18%" headers="mcps1.1.6.1.2 "><p><a href="#table3452114216394">NavigationType</a></p>
     </td>
-    <td class="cellrowborder" valign="top" width="8.25%" headers="mcps1.1.6.1.3 "><p id="p32918962514"><a name="p32918962514"></a><a name="p32918962514"></a>否</p>
+    <td class="cellrowborder" valign="top" width="8.25%" headers="mcps1.1.6.1.3 "><p>否</p>
     </td>
-    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p id="p102969112514"><a name="p102969112514"></a><a name="p102969112514"></a>Push</p>
+    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p>Push</p>
     </td>
-    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p id="p132979132520"><a name="p132979132520"></a><a name="p132979132520"></a>指定路由方式。</p>
+    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p>指定路由方式。</p>
     </td>
     </tr>
     </tbody>
@@ -59,25 +61,25 @@ Navigator\(value?: \{target: string, type?: NavigationType\}\)
 -   NavigationType枚举说明
 
     <a name="table3452114216394"></a>
-    <table><thead align="left"><tr id="row245219426397"><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p id="p545244283914"><a name="p545244283914"></a><a name="p545244283914"></a>名称</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
     </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p id="p2452114203917"><a name="p2452114203917"></a><a name="p2452114203917"></a>描述</p>
+    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row6452144218390"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p34529427398"><a name="p34529427398"></a><a name="p34529427398"></a>Push</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Push</p>
     </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p1245211421393"><a name="p1245211421393"></a><a name="p1245211421393"></a>跳转到应用内的指定页面。</p>
-    </td>
-    </tr>
-    <tr id="row12452184217398"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p54523425398"><a name="p54523425398"></a><a name="p54523425398"></a>Replace</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p745215426391"><a name="p745215426391"></a><a name="p745215426391"></a>用应用内的某个页面替换当前页面，并销毁被替换的页面。</p>
+    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>跳转到应用内的指定页面。</p>
     </td>
     </tr>
-    <tr id="row9452134213392"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p510719111403"><a name="p510719111403"></a><a name="p510719111403"></a>Back</p>
+    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Replace</p>
     </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p154533425394"><a name="p154533425394"></a><a name="p154533425394"></a>返回上一页面或指定的页面。</p>
+    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>用应用内的某个页面替换当前页面，并销毁被替换的页面。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Back</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>返回上一页面或指定的页面。</p>
     </td>
     </tr>
     </tbody>
@@ -86,33 +88,32 @@ Navigator\(value?: \{target: string, type?: NavigationType\}\)
 
 ## 属性<a name="section187781816826"></a>
 
-<a name="table1979mcpsimp"></a>
-<table><thead align="left"><tr id="row1986mcpsimp"><th class="cellrowborder" valign="top" width="11.871187118711871%" id="mcps1.1.5.1.1"><p id="p1988mcpsimp"><a name="p1988mcpsimp"></a><a name="p1988mcpsimp"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="11.871187118711871%" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="16.291629162916294%" id="mcps1.1.5.1.2"><p id="p1990mcpsimp"><a name="p1990mcpsimp"></a><a name="p1990mcpsimp"></a>参数</p>
+<th class="cellrowborder" valign="top" width="16.291629162916294%" id="mcps1.1.5.1.2"><p>参数</p>
 </th>
-<th class="cellrowborder" valign="top" width="12.73127312731273%" id="mcps1.1.5.1.3"><p id="p1992mcpsimp"><a name="p1992mcpsimp"></a><a name="p1992mcpsimp"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="12.73127312731273%" id="mcps1.1.5.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="59.10591059105911%" id="mcps1.1.5.1.4"><p id="p1994mcpsimp"><a name="p1994mcpsimp"></a><a name="p1994mcpsimp"></a>描述</p>
+<th class="cellrowborder" valign="top" width="59.10591059105911%" id="mcps1.1.5.1.4"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2013mcpsimp"><td class="cellrowborder" valign="top" width="11.871187118711871%" headers="mcps1.1.5.1.1 "><p id="p2015mcpsimp"><a name="p2015mcpsimp"></a><a name="p2015mcpsimp"></a>active</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="11.871187118711871%" headers="mcps1.1.5.1.1 "><p>active</p>
 </td>
-<td class="cellrowborder" valign="top" width="16.291629162916294%" headers="mcps1.1.5.1.2 "><p id="p2017mcpsimp"><a name="p2017mcpsimp"></a><a name="p2017mcpsimp"></a>boolean</p>
+<td class="cellrowborder" valign="top" width="16.291629162916294%" headers="mcps1.1.5.1.2 "><p>boolean</p>
 </td>
-<td class="cellrowborder" valign="top" width="12.73127312731273%" headers="mcps1.1.5.1.3 "><p id="p2019mcpsimp"><a name="p2019mcpsimp"></a><a name="p2019mcpsimp"></a>-</p>
+<td class="cellrowborder" valign="top" width="12.73127312731273%" headers="mcps1.1.5.1.3 "><p>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.10591059105911%" headers="mcps1.1.5.1.4 "><p id="p2021mcpsimp"><a name="p2021mcpsimp"></a><a name="p2021mcpsimp"></a>当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。</p>
+<td class="cellrowborder" valign="top" width="59.10591059105911%" headers="mcps1.1.5.1.4 "><p>当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。</p>
 </td>
 </tr>
-<tr id="row572015119533"><td class="cellrowborder" valign="top" width="11.871187118711871%" headers="mcps1.1.5.1.1 "><p id="p18721161185314"><a name="p18721161185314"></a><a name="p18721161185314"></a>params</p>
+<tr><td class="cellrowborder" valign="top" width="11.871187118711871%" headers="mcps1.1.5.1.1 "><p>params</p>
 </td>
-<td class="cellrowborder" valign="top" width="16.291629162916294%" headers="mcps1.1.5.1.2 "><p id="p107210118536"><a name="p107210118536"></a><a name="p107210118536"></a>Object</p>
+<td class="cellrowborder" valign="top" width="16.291629162916294%" headers="mcps1.1.5.1.2 "><p>Object</p>
 </td>
-<td class="cellrowborder" valign="top" width="12.73127312731273%" headers="mcps1.1.5.1.3 "><p id="p187211917531"><a name="p187211917531"></a><a name="p187211917531"></a>undefined</p>
+<td class="cellrowborder" valign="top" width="12.73127312731273%" headers="mcps1.1.5.1.3 "><p>undefined</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.10591059105911%" headers="mcps1.1.5.1.4 "><p id="p47216118539"><a name="p47216118539"></a><a name="p47216118539"></a>跳转时要同时传递到目标页面的数据，可在目标页面使用router.getParams()获得。</p>
+<td class="cellrowborder" valign="top" width="59.10591059105911%" headers="mcps1.1.5.1.4 "><p>跳转时要同时传递到目标页面的数据，可在目标页面使用router.getParams()获得。</p>
 </td>
 </tr>
 </tbody>

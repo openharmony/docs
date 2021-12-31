@@ -20,13 +20,14 @@ import process from '@ohos.process';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| egid | number | 是 | 否 | 获取进程的有效组标识。 |
-| euid | number | 是 | 否 | 获取进程的有效用户身份。 |
-| gid | number | 是 | 否 | 获取进程的组标识。 |
-| uid | number | 是 | 否 | 获取进程的用户标识。 |
-| groups | number[] | 是 | 否 | 获取一个带有补充组id的数组。 |
-| pid | number | 是 | 否 | 获取当前进程的pid。 |
-| ppid | number | 是 | 否 | 获取当前进程的父进程的pid。 |
+| egid | number | 是 | 否 | 进程的有效组标识。 |
+| euid | number | 是 | 否 | 进程的有效用户身份。 |
+| gid | number | 是 | 否 | 进程的组标识。 |
+| uid | number | 是 | 否 | 进程的用户标识。 |
+| groups | number[] | 是 | 否 | 带有补充组id的数组。 |
+| pid | number | 是 | 否 | 当前进程的pid。 |
+| ppid | number | 是 | 否 | 当前进程的父进程的pid。 |
+| tid<sup>8+</sup> | number | 是 | 否 | 当前进程的tid。 |
 
 
 ## ChildProcess
@@ -140,6 +141,213 @@ kill函数用来发送信号给子进程，结束指定进程。
   import process from '@ohos.process';
   var child = process.runCmd('sleep 5; ls');
   child.kill(9);
+  ```
+
+
+## process.isIsolatedProcess<sup>8+</sup>
+
+isIsolatedProcess(): boolean
+
+检查进程是否被隔离。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 进程是否隔离 |
+
+- 示例：
+  ```
+  import process from '@ohos.process';
+  var result = process.isIsolatedProcess();
+  ```
+
+
+## process.isAppUid<sup>8+</sup>
+
+isAppUid(v:number): boolean
+
+判断是否特定程序的uid。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | v | number | 是 | 进程的id。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 是否是当前app的uid |
+
+- 示例：
+  ```
+  import process from '@ohos.process';
+  var result = process.isAppUid(688);
+  ```
+
+
+## process.is64Bit<sup>8+</sup>
+
+is64Bit(): boolean
+
+判断运行环境是不是64位。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 是不是64位环境 |
+
+- 示例：
+  ```
+  import process from '@ohos.process';
+  var ressult = process.is64Bit();
+  ```
+
+
+## process.getUidForName<sup>8+</sup>
+
+getUidForName(v:string): number
+
+通过进程名获取进程uid。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | v | string | 是 | 进程name |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 进程的uid |
+
+- 示例：
+  ```
+  import process from '@ohos.process'
+  var pres = process.getUidForName("tool")
+  ```
+
+
+## process.getThreadPriority<sup>8+</sup>
+
+getThreadPriority(v:number): number
+
+根据指定的 TID 获取线程优先级。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | v | number | 是 | 进程的id |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 进程的优先级 |
+
+- 示例：
+  ```
+  import process from '@ohos.process'
+  var tid = process。getTid();
+  var pres = process.getThreadPriority(tid);
+  ```
+
+
+## process.getStartRealtime<sup>8+</sup>
+
+getStartRealtime() :number
+
+获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 时间 |
+
+- 示例：
+  ```
+  import process from '@ohos.process';
+  var realtime = process.getStartRealtime();
+  ```
+
+
+## process.getAvailableCores<sup>8+</sup>
+
+getAvailableCores() :number[]
+
+获取多核设备上当前进程可用的 CPU 内核。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number[] | 可用内核数 |
+
+- 示例：
+  ```
+  import process from '@ohos.process';
+  var result = getAvailableCores();
+  ```
+
+
+## process.getPastCputime<sup>8+</sup>
+
+getPastCputime() :number
+
+获取进程启动到当前时间的CPU时间（以毫秒为单位）。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 时间 |
+
+- 示例：
+  ```
+  import process from '@ohos.process';
+  var result = process.getPastCputime() ;
+  ```
+
+
+## process.getSystemConfig<sup>8+</sup>
+
+getSystemConfig(name:number): number
+
+用该方法发送signal到指定的进程。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | name | number | 是 | 系统配置参数名 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 配置信息 |
+
+- 示例：
+  ```
+  import process from '@ohos.process'
+  var _SC_ARG_MAX = 0
+  var pres = process.getSystemConfig(_SC_ARG_MAX)
+  ```
+
+
+## process.getEnvironmentVar<sup>8+</sup>
+
+getEnvironmentVar(name:string): string
+
+用该方法获取环境变量对应的值。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | name | string | 是 | 环境名 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 环境名对应的value |
+
+- 示例：
+  ```
+  import process from '@ohos.process'
+  var pres = process.getEnvironmentVar("PATH")
   ```
 
 

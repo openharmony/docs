@@ -32,7 +32,7 @@ getRdbStore(config: StoreConfig, version: number, callback: AsyncCallback&lt;Rdb
 - 示例：
   ```
   import dataRdb from '@ohos.data.rdb'
-  const STORE_CONFIG = { name: "RdbTest.db" }
+  const STORE_CONFIG = { name: "RdbTest.db", encryptKey: new Uint8Array([1, 2])}
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
   dataRdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
       rdbStore.executeSql(SQL_CREATE_TABLE)
@@ -1043,7 +1043,7 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: Asyn
   | -------- | -------- | -------- | -------- |
   | rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示rdbPredicates的实例对象指定的查询条件。 |
   | columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-  | callback | AsyncCallback&lt;[ResultSet](../reference/apis/js-apis-data-resultset.md#resultset)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+  | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 - 示例：
   ```
@@ -1070,7 +1070,7 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;):Promise&lt;Res
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[ResultSet](../reference/apis/js-apis-data-resultset.md#resultset)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+  | Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
 - 示例：
   ```
@@ -1127,6 +1127,54 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;):Promise&lt;void&gt;
       console.info(TAG + 'delete done.')})
   ```
 
+### changeEncryptKey<sup>8+</sup>
+
+changeEncryptKey(newEncryptKey:Uint8Array, callback: AsyncCallback&lt;number&gt;):void
+
+修改数据库原有秘钥，结果以callbck形式返回。
+
+- 参数：
+
+  | 参数名        | 类型                        | 必填 | 说明                           |
+  | ------------- | --------------------------- | ---- | ------------------------------ |
+  | newEncryptKey | Uint8Array                  | 是   | 要变更的数据库秘钥，不能为空。 |
+  | callback      | AsyncCallback&lt;number&gt; | 是   | 指定callback回调函数。         |
+
+- 示例：
+
+  ```
+  var newKey = new Uint8Array([1, 2])
+  rdbStore.changeEncryptKey(newKey, function (ret) {
+      console.info(TAG + "result is " + ret)})
+  ```
+
+
+### changeEncryptKey<sup>8+</sup>
+
+changeEncryptKey(newEncryptKey:Uint8Array): Promise&lt;number&gt;
+
+修改数据库原有秘钥，结果以Promise形式返回。
+
+- 参数：
+
+  | 参数名        | 类型       | 必填 | 说明                           |
+  | ------------- | ---------- | ---- | ------------------------------ |
+  | newEncryptKey | Uint8Array | 是   | 要变更的数据库秘钥，不能为空。 |
+
+- 返回值：
+
+  | 类型                  | 说明                  |
+  | --------------------- | --------------------- |
+  | Promise&lt;number&gt; | 指定Promise回调函数。 |
+
+- 示例：
+
+  ```
+  var newKey = new Uint8Array([1, 2])
+  let promise = rdbStore.changeEncryptKey(newKey)
+  promise.then((ret) => {
+      console.info(TAG + "result is " + ret)})
+  ```
 
 ## StoreConfig
 
@@ -1135,6 +1183,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 数据库文件名。 |
+| encryptKey<sup>8+</sup> | Uint8Array | 否 | 对数据库加密的秘钥。在创建时加入，则为初始化秘钥。后续打开时，需要保证其一致性。 |
 
 
 ## ValueType

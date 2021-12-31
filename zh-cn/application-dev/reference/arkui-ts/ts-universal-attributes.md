@@ -1,4 +1,4 @@
-# 通用属性<a name="ZH-CN_TOPIC_0000001111421390"></a>
+# 通用属性<a name="ZH-CN_TOPIC_0000001237355049"></a>
 
 -   **[尺寸设置](ts-universal-attributes-size.md)**  
 
@@ -37,5 +37,9 @@
 -   **[Popup控制](ts-universal-attributes-popup.md)**  
 
 -   **[Menu控制](ts-universal-attributes-menu.md)**  
+
+-   **[点击控制](ts-universal-attributes-touchable.md)**  
+
+-   **[触摸热区设置](ts-universal-attributes-response-region.md)**  
 
 

@@ -17,14 +17,17 @@
     - [音频管理](js-apis-audio.md)
     - [音频播放和录制](js-apis-media.md)
 - 数据管理
-    - [文件管理](js-apis-fileio.md)
     - [轻量级存储](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
     - [关系型数据库](js-apis-data-rdb.md)
     - [结果集](js-apis-data-resultset.md)
     - [DataAbility 谓词](js-apis-data-ability.md)
+- 文件管理
+    - [文件管理](js-apis-fileio.md)
+    - [Statfs管理](js-apis-statfs.md)
 - 账号管理
     - [分布式帐号管理](js-apis-distributed-account.md)
+    - [应用帐号管理](js-apis-appAccount.md)
 - 电话服务
     -   [拨打电话](js-apis-call.md)
     -   [短信服务](js-apis-sms.md)
@@ -35,6 +38,7 @@
 - 设备管理
     - [传感器](js-apis-sensor.md)
     - [振动](js-apis-vibrator.md)
+    - [位置服务](js-apis-geolocation.md)
     - [屏幕亮度](js-apis-brightness.md)
     - [电量信息](js-apis-battery-info.md)
     - [系统电源管理](js-apis-power.md)
@@ -45,6 +49,7 @@
     - [窗口](js-apis-window.md)
     - [显示设备属性](js-apis-display.md)
     - [升级](js-apis-update.md) 
+    - [USB管理](js-apis-usb.md)
 - 基本功能
     - [应用上下文](js-apis-basic-features-app-context.md)
     - [日志打印](js-apis-basic-features-logs.md)
@@ -56,8 +61,11 @@
     - [动画](js-apis-basic-features-animator.md)
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-bytrace.md)
+    -[设置](js-apis-settings.md)
 - 语言基础类库
     - [获取进程相关的信息](js-apis-process.md)
     - [URL字符串解析](js-apis-url.md)
-    - [字符串编解码](js-apis-util.md)
+    - [URI字符串解析](js-apis-uri.md)
+    - [util工具函数](js-apis-util.md)
+    - [xml文本转换](js-apis-xml.md)
     - [启动一个worker](js-apis-worker.md)

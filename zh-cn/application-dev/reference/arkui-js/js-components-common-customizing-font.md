@@ -2,10 +2,7 @@
 
 font-face用于定义字体样式。应用可以在style中定义font-face来指定相应的字体名和字体资源，然后在font-family样式中引用该字体。
 
-自定义字体可以是从项目中的字体文件中加载的字体。
-
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->字体格式支持ttf和otf。
+自定义字体可以是从项目中的字体文件中加载的字体，字体格式支持ttf和otf。
 
 ## 定义font-face<a name="section185107316712"></a>
 
@@ -24,7 +21,7 @@ font-face用于定义字体样式。应用可以在style中定义font-face来指
 
 自定义字体的来源，支持如下类别：
 
--   项目中的字体文件：通过url指定项目中的字体文件路径\(只支持绝对路径，详见[资源和文件访问规则](js-framework-file.md#section6620355202117)章节\)。
+-   项目中的字体文件：通过url指定项目中的字体文件路径\(只支持绝对路径，详见[资源和文件访问规则](../../ui/js-framework-file.md)章节\)。
 
 -   不支持设置多个src。
 

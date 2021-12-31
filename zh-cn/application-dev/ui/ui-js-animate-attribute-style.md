@@ -1,6 +1,9 @@
-# 属性样式动画<a name="ZH-CN_TOPIC_0000001172005058"></a>
+# 属性样式动画
+
+
 
 在关键帧（Keyframes）中动态设置父组件的width和height，实现组件变大缩小。子组件设置scale属性使父子组件同时缩放，再设置opacity实现父子组件的显示与隐藏。
+
 
 ```
 <!-- xxx.hml -->
@@ -13,6 +16,7 @@
   </div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -78,9 +82,11 @@ text{
 }
 ```
 
-![](figures/d1.gif)
+
+![zh-cn_image_0000001217168141](figures/zh-cn_image_0000001217168141.gif)
+
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->1.  animation取值不区分先后，duration （动画执行时间）/ delay （动画延迟执行时间）按照出现的先后顺序解析。
->2.  必须设置animation-duration样式，否则时长为0则不会有动画效果。当设置animation-fill-mode属性为forwards时，组件直接展示最后一帧的样式。
-
+> 1. animation取值不区分先后，duration （动画执行时间）/ delay （动画延迟执行时间）按照出现的先后顺序解析。
+> 
+> 2. 必须设置animation-duration样式，否则时长为0则不会有动画效果。当设置animation-fill-mode属性为forwards时，组件直接展示最后一帧的样式。

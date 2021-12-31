@@ -12,7 +12,16 @@
 在pages/index目录下的hml文件中创建一个Stepper组件。
 
 ```
-<!-- index.hml --><div class="container"> <stepper>    <stepper-item>          <text>Step 1</text>   </stepper-item>    <stepper-item>          <text>Step 2</text>   </stepper-item>  </stepper> </div>
+<!-- index.hml -->
+<div class="container"> 
+ <stepper>    <stepper-item>     
+     <text>Step 1</text>
+   </stepper-item> 
+   <stepper-item>     
+     <text>Step 2</text>
+   </stepper-item> 
+ </stepper> 
+</div>
 ```
 
 ```
@@ -30,7 +39,7 @@ text{
 }
 ```
 
-![zh-cn_image_0000001210951235](figures/zh-cn_image_0000001210951235.gif)
+![zh-cn_image_0000001234289455](figures/zh-cn_image_0000001234289455.gif)
 
 
 ## 设置index属性
@@ -38,7 +47,20 @@ text{
 页面默认显示索引值为index的步骤。
 
 ```
-<!-- index.hml --><div class="container">  <stepper index="2">       <stepper-item>          <text>stepper-item1</text>   </stepper-item>    <stepper-item>          <text>stepper-item2</text>   </stepper-item>    <stepper-item>          <text>stepper-item3</text>   </stepper-item>   </stepper> </div>
+<!-- index.hml -->
+<div class="container"> 
+ <stepper index="2">    
+   <stepper-item>     
+     <text>stepper-item1</text>
+   </stepper-item> 
+   <stepper-item>     
+     <text>stepper-item2</text>
+   </stepper-item> 
+   <stepper-item>     
+     <text>stepper-item3</text>
+   </stepper-item> 
+  </stepper> 
+</div>
 ```
 
 ```
@@ -54,12 +76,28 @@ text{
 }
 ```
 
-![zh-cn_image_0000001208892613](figures/zh-cn_image_0000001208892613.gif)
+![zh-cn_image_0000001234011019](figures/zh-cn_image_0000001234011019.gif)
 
 通过设置label属性，自定义stepper-item的提示按钮。
 
 ```
-<!-- index.hml --><div class="container" style="background-color:#F1F3F5;">  <stepper index="1">       <stepper-item label="{{label_1}}">          <text>stepper-item1</text>   </stepper-item>    <stepper-item label="{{label_2}}">          <text>stepper-item2</text>   </stepper-item>    <stepper-item label="{{label_3}}">          <text>stepper-item3</text>   </stepper-item>   <stepper-item>          <text>stepper-item4</text>   </stepper-item>  </stepper> </div>
+<!-- index.hml -->
+<div class="container" style="background-color:#F1F3F5;"> 
+ <stepper index="1">    
+   <stepper-item label="{{label_1}}">     
+     <text>stepper-item1</text>
+   </stepper-item> 
+   <stepper-item label="{{label_2}}">     
+     <text>stepper-item2</text>
+   </stepper-item> 
+   <stepper-item label="{{label_3}}">     
+     <text>stepper-item3</text>
+   </stepper-item>
+   <stepper-item>     
+     <text>stepper-item4</text>
+   </stepper-item> 
+ </stepper> 
+</div>
 ```
 
 ```
@@ -101,9 +139,14 @@ export default {
 
 Stepper组件默认填充父容器，通过border和background-color设置边框、背景色。
 ```
-<!-- index.hml --><div class="container" > 
+<!-- index.hml -->
+<div class="container" > 
   <div class="stepperContent">
-    <stepper class="stepperClass">          <stepper-item>             <text>stepper-item1</text>      </stepper-item>     </stepper> 
+    <stepper class="stepperClass">    
+      <stepper-item>     
+        <text>stepper-item1</text>
+      </stepper-item> 
+    </stepper> 
   </div>
 </div>
 ```
@@ -130,7 +173,7 @@ text{
 }
 ```
 
-![zh-cn_image_0000001163691154](figures/zh-cn_image_0000001163691154.png)
+![zh-cn_image_0000001234130975](figures/zh-cn_image_0000001234130975.png)
 
 
 ## 添加事件
@@ -229,7 +272,7 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001163547244](figures/zh-cn_image_0000001163547244.gif)
+![zh-cn_image_0000001189089950](figures/zh-cn_image_0000001189089950.gif)
 
 
 ## 场景示例
@@ -340,4 +383,4 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001163214740](figures/zh-cn_image_0000001163214740.gif)
+![zh-cn_image_0000001189249862](figures/zh-cn_image_0000001189249862.gif)

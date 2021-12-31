@@ -1,5 +1,7 @@
 # 构建食物分类Grid布局
 
+
+
 健康饮食应用在主页提供给用户两种食物显示方式：列表显示和网格显示。开发者将实现通过页签切换不同食物分类的网格布局。
 
 
@@ -279,7 +281,7 @@
    ```
 
 11. 设置不同食物分类的Grid的行数和高度。因为不同分类的食物数量不同，所以不能用'1fr 1fr 1fr 1fr 1fr 1fr '常量来统一设置成6行。
-   创建gridRowTemplate和HeightValue成员变量，通过成员变量设置Grid行数和高度。
+      创建gridRowTemplate和HeightValue成员变量，通过成员变量设置Grid行数和高度。
 
    ```
    @Component

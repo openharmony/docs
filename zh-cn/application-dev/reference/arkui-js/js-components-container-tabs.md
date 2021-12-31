@@ -14,40 +14,39 @@ tab页签容器。
 
 除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
-<a name="table20633101642315"></a>
-<table><thead align="left"><tr id="row663331618238"><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p id="aa872998ac2d84843a3c5161889afffef"><a name="aa872998ac2d84843a3c5161889afffef"></a><a name="aa872998ac2d84843a3c5161889afffef"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p id="ab2111648ee0e4f6d881be8954e7acaab"><a name="ab2111648ee0e4f6d881be8954e7acaab"></a><a name="ab2111648ee0e4f6d881be8954e7acaab"></a>类型</p>
+<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p>类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p id="ab377d1c90900478ea4ecab51e9a058af"><a name="ab377d1c90900478ea4ecab51e9a058af"></a><a name="ab377d1c90900478ea4ecab51e9a058af"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p id="p824610360217"><a name="p824610360217"></a><a name="p824610360217"></a>必填</p>
+<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p>必填</p>
 </th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p id="a1d574a0044ed42ec8a2603bc82734232"><a name="a1d574a0044ed42ec8a2603bc82734232"></a><a name="a1d574a0044ed42ec8a2603bc82734232"></a>描述</p>
+<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row188481425182510"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p1123011311254"><a name="p1123011311254"></a><a name="p1123011311254"></a>index</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>index</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p1223193122517"><a name="p1223193122517"></a><a name="p1223193122517"></a>number</p>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p1523183172515"><a name="p1523183172515"></a><a name="p1523183172515"></a>0</p>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>0</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p623183182516"><a name="p623183182516"></a><a name="p623183182516"></a>否</p>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p13231103192517"><a name="p13231103192517"></a><a name="p13231103192517"></a>当前处于激活态的tab索引。</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>当前处于激活态的tab索引。</p>
 </td>
 </tr>
-<tr id="row0461622112513"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p12311131122516"><a name="p12311131122516"></a><a name="p12311131122516"></a>vertical</p>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>vertical</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p423110319253"><a name="p423110319253"></a><a name="p423110319253"></a>boolean</p>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p1023118318252"><a name="p1023118318252"></a><a name="p1023118318252"></a>false</p>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>false</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p42311331102516"><a name="p42311331102516"></a><a name="p42311331102516"></a>否</p>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p10231123114251"><a name="p10231123114251"></a><a name="p10231123114251"></a>是否为纵向的tab，默认为false，可选值为：</p>
-<a name="ul8231123114251"></a><a name="ul8231123114251"></a><ul id="ul8231123114251"><li>false：tabbar和tabcontent上下排列。</li><li>true：tabbar和tabcontent左右排列。</li></ul>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>是否为纵向的tab，默认为false，可选值为：</p>
+<ul><li>false：tabbar和tabcontent上下排列。</li><li>true：tabbar和tabcontent左右排列。</li></ul>
 </td>
 </tr>
 </tbody>
@@ -61,21 +60,20 @@ tab页签容器。
 
 除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
 
-<a name="table836435619510"></a>
-<table><thead align="left"><tr id="row153658563517"><th class="cellrowborder" valign="top" width="24.852485248524854%" id="mcps1.1.4.1.1"><p id="a426b8903842d48fa8012a24ff3c997eb"><a name="a426b8903842d48fa8012a24ff3c997eb"></a><a name="a426b8903842d48fa8012a24ff3c997eb"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.852485248524854%" id="mcps1.1.4.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="29.552955295529554%" id="mcps1.1.4.1.2"><p id="a53448ba47e5e4ae9bf7774c90820e970"><a name="a53448ba47e5e4ae9bf7774c90820e970"></a><a name="a53448ba47e5e4ae9bf7774c90820e970"></a>参数</p>
+<th class="cellrowborder" valign="top" width="29.552955295529554%" id="mcps1.1.4.1.2"><p>参数</p>
 </th>
-<th class="cellrowborder" valign="top" width="45.5945594559456%" id="mcps1.1.4.1.3"><p id="add489ff50c444f24b759162c7f4bad9a"><a name="add489ff50c444f24b759162c7f4bad9a"></a><a name="add489ff50c444f24b759162c7f4bad9a"></a>描述</p>
+<th class="cellrowborder" valign="top" width="45.5945594559456%" id="mcps1.1.4.1.3"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row4918151132616"><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p id="p661018582267"><a name="p661018582267"></a><a name="p661018582267"></a>change</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>change</p>
 </td>
-<td class="cellrowborder" valign="top" width="29.552955295529554%" headers="mcps1.1.4.1.2 "><p id="p15610135815262"><a name="p15610135815262"></a><a name="p15610135815262"></a>{ index: indexValue }</p>
+<td class="cellrowborder" valign="top" width="29.552955295529554%" headers="mcps1.1.4.1.2 "><p>{ index: indexValue }</p>
 </td>
-<td class="cellrowborder" valign="top" width="45.5945594559456%" headers="mcps1.1.4.1.3 "><p id="p161015852613"><a name="p161015852613"></a><a name="p161015852613"></a>tab页签切换后触发。</p>
-<div class="note" id="note1551155885118"><a name="note1551155885118"></a><a name="note1551155885118"></a><span class="notetitle"> 说明： </span><div class="notebody"><p id="p1251125818519"><a name="p1251125818519"></a><a name="p1251125818519"></a>动态修改index值不会触发该回调。</p>
+<td class="cellrowborder" valign="top" width="45.5945594559456%" headers="mcps1.1.4.1.3 "><p>tab页签切换后触发。</p>
+<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>动态修改index值不会触发该回调。</p>
 </div></div>
 </td>
 </tr>
