@@ -53,7 +53,7 @@
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
 ```
-repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Beta --no-repo-verify
+repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.1-Beta --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
@@ -63,7 +63,7 @@ repo forall -c 'git lfs pull'
 通过repo + https 下载。
 
 ```
-repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.1-Beta --no-repo-verify
+repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v3.1-Beta --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
@@ -81,7 +81,7 @@ repo forall -c 'git lfs pull'
 | Hi3516解决方案-LiteOS（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus.tar.gz.sha256) |
 | Hi3516解决方案-Linux（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz.sha256) |
 | 标准系统包（Mac） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-mac.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-mac.tar.gz.sha256) |
-| 标准系统包（Windows\Linux） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-tar.gz.sha256) |
+| 标准系统包（Windows\Linux） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk.tar.gz.sha256) |
 | 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/harmonyos/os/2.0/tool_chain/) |      |
 
 
