@@ -388,7 +388,7 @@ struct ImageExample2 {
 }
 ```
 
-![](figures/Image2.gif)
+![](figures/Image2.png)
 
 ```
 // Image3
@@ -450,3 +450,4 @@ struct ImageExample3 {
 }
 ```
 
+![](figures/Image3.gif)

@@ -22,6 +22,7 @@
     - [关系型数据库](js-apis-data-rdb.md)
     - [结果集](js-apis-data-resultset.md)
     - [DataAbility 谓词](js-apis-data-ability.md)
+    - [设置数据项名称](js-apis-settings.md)
 - 文件管理
     - [文件管理](js-apis-fileio.md)
     - [Statfs管理](js-apis-statfs.md)
@@ -61,7 +62,6 @@
     - [动画](js-apis-basic-features-animator.md)
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-bytrace.md)
-    -[设置](js-apis-settings.md)
 - 语言基础类库
     - [获取进程相关的信息](js-apis-process.md)
     - [URL字符串解析](js-apis-url.md)
