@@ -4,6 +4,7 @@
 -   **[分布式远程启动](subsys-remote-start.md)**  
 -   **[图形图像](subsys-graphics.md)**  
 -   **[媒体](subsys-multimedia.md)**  
+-   **[数据管理](subsys-data.md)**  
 -   **[公共基础](subsys-utils.md)**  
 -   **[AI框架](subsys-aiframework.md)**  
 -   **[Sensor服务](subsys-sensor.md)**  

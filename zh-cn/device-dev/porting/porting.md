@@ -6,6 +6,6 @@
 
 -   **[小型系统芯片移植指导](porting-smallchip.md)**  
 
--   **[标准系统移植指南](standard-system-porting-guide.md)**  
+-   **[标准系统移植指导](standard-system-porting-guide.md)**  
 
 

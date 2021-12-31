@@ -335,25 +335,25 @@ Input模型由三层驱动组成，开发者适配一款全新触摸屏驱动只
 
     其中touch\_gt911.o为本示例中追加的内容。
 
-2.  具体编译及烧录操作请参考[标准系统快速入门编译及烧录章节](../quick-start/quickstart-standard-burn.md)。
+2.  具体编译及烧录操作请参考[标准系统快速入门编译及烧录章节](../quick-start/quickstart-standard-overview.md)。
 
 ## 调试验证<a name="section62577313482"></a>
 
 如下所示为开机启动日志部分截取
 
 ```
-[I/HDF_INPUT_DRV] HdfInputManagerInit: enter                            // 管理驱动层初始化
-[I/HDF_INPUT_DRV] HdfInputManagerInit: exit succ                        // 初始化成功
-[I/osal_cdev] add cdev hdf_input_host success
-[I/HDF_LOG_TAG] HdfTouchDriverProbe: enter                              // 公共驱动层初始化
-[I/HDF_LOG_TAG] HdfTouchDriverProbe: main_touch exit succ               // 初始化成功
-[I/osal_cdev] add cdev hdf_input_event1 success
-[I/HDF_INPUT_DRV] HdfGoodixChipInit: enter                              // 器件驱动层初始化
-[I/HDF_INPUT_DRV] ChipDetect: IC FW version is 0x1060
-[I/HDF_INPUT_DRV] Product_ID: 911_1060, x_sol = 960, y_sol = 480
-[I/HDF_LOG_TAG] ChipDriverInit: chipDetect succ, ret = 0
-[I/HDF_LOG_TAG] InputDeviceInstance: inputDev->devName = main_touch
-[I/HDF_INPUT_DRV] HdfGoodixChipInit: exit succ, chipName = gt911        // 初始化成功
+[I/HDF_INPUT_DRV] HdfInputManagerInit: enter                            // 管理驱动层初始化                    
+[I/HDF_INPUT_DRV] HdfInputManagerInit: exit succ                        // 初始化成功                    
+[I/osal_cdev] add cdev hdf_input_host success                                                                                                                   
+[I/HDF_LOG_TAG] HdfTouchDriverProbe: enter                              // 公共驱动层初始化                    
+[I/HDF_LOG_TAG] HdfTouchDriverProbe: main_touch exit succ               // 初始化成功                     
+[I/osal_cdev] add cdev hdf_input_event1 success                                                                                                                 
+[I/HDF_INPUT_DRV] HdfGoodixChipInit: enter                              // 器件驱动层初始化                                        
+[I/HDF_INPUT_DRV] ChipDetect: IC FW version is 0x1060                           
+[I/HDF_INPUT_DRV] Product_ID: 911_1060, x_sol = 960, y_sol = 480                
+[I/HDF_LOG_TAG] ChipDriverInit: chipDetect succ, ret = 0                                                        
+[I/HDF_LOG_TAG] InputDeviceInstance: inputDev->devName = main_touch                      
+[I/HDF_INPUT_DRV] HdfGoodixChipInit: exit succ, chipName = gt911        // 初始化成功 
 ```
 
 ## Input模型工作流程解析<a name="section1578569154917"></a>

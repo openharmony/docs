@@ -48,7 +48,7 @@ root {
 
 ## 编写驱动代码<a name="section177988005"></a>
 
-基于HDF框架编写的sample驱动代码如下：
+基于HDF框架编写的sample驱动代码如下(编译参考 [驱动开发](driver-hdf-development.md))：
 
 ```
 #include <fcntl.h>
@@ -120,7 +120,7 @@ HDF_INIT(g_sampleDriverEntry);
 
 ## 编写用户程序和驱动交互代码<a name="section6205173816412"></a>
 
-基于HDF框架编写的用户态程序和驱动交互的代码如下：
+基于HDF框架编写的用户态程序和驱动交互的代码如下(代码可以放在目录drivers/adapter/uhdf下面编译，build.gn可以参考drivers/framework/sample/platform/uart/dev/build.gn)：
 
 ```
 #include <fcntl.h>
