@@ -1,4 +1,4 @@
-# HiLog\_Lite开发指导<a name="ZH-CN_TOPIC_0000001089263241"></a>
+# HiLog\_Lite开发指导<a name="ZH-CN_TOPIC_0000001185815838"></a>
 
 -   [概述](#section775017517390)
 -   [接口说明](#section114412157402)
