@@ -77,11 +77,11 @@ repo forall -c 'git lfs pull'
 | 全量代码（标准、轻量和小型系统） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/code-v3.1-Beta.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/code-v3.1-Beta.tar.gz.sha256) |
 | Hi3516标准系统解决方案（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/standard_hi3516.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/standard_hi3516.tar.gz.sha256) |
 | RK3568标准系统解决方案（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/standard_rk3568.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/standard_rk3568.tar.gz.sha256) |
-| Hi3861解决方案（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_pegasus.tar.gz.sha256) |
-| Hi3516解决方案-LiteOS（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus.tar.gz.sha256) |
-| Hi3516解决方案-Linux（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz.sha256) |
-| 标准系统包（Mac） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-mac.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-mac.tar.gz.sha256) |
-| 标准系统包（Windows\Linux） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk.tar.gz.sha256) |
+| Hi3861轻量系统解决方案（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_pegasus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-LiteOS（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-Linux（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz.sha256) |
+| 标准系统SDK包（Mac） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-mac.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-mac.tar.gz.sha256) |
+| 标准系统SDK包（Windows\Linux） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk.tar.gz.sha256) |
 | 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/harmonyos/os/2.0/tool_chain/) |      |
 
 
