@@ -1,4 +1,4 @@
-# 安装开发板环境<a name="ZH-CN_TOPIC_0000001174270691"></a>
+# 安装开发板环境<a name="ZH-CN_TOPIC_0000001216935343"></a>
 
 -   [Hi3861工具要求](#section466851916410)
     -   [硬件要求](#section19202111020215)
@@ -10,95 +10,55 @@
     -   [安装python模块](#section88701892341)
     -   [安装gcc\_riscv32（WLAN模组类编译工具链）](#section34435451256)
 
--   [安装USB转串口驱动](#section1027732411513)
 
 ## Hi3861工具要求<a name="section466851916410"></a>
 
 ### 硬件要求<a name="section19202111020215"></a>
 
--   Linux服务器
--   Windows工作台（主机电脑）
--   Hi3861 WLAN模组
--   USB Type-C线（Windows工作台通过USB与Hi3861 WLAN模组连接）
-
-各硬件连接关系如下图所示。
-
-**图 1**  Hi3861开发硬件连线图<a name="fig285519359396"></a>  
-![](figures/Hi3861开发硬件连线图.png "Hi3861开发硬件连线图")
+-   Linux工作台
+-   Hi3861开发板
+-   USB Type-C线（Linux工作台通过USB与Hi3861开发板连接）
 
 ### 软件要求<a name="section727451210318"></a>
 
 >![](../public_sys-resources/icon-notice.gif) **须知：** 
->本节描述采用安装包方式安装相关工具的操作步骤。如果是Docker方式安装，无需安装[表1](#table6299192712513)中的Linux服务器相关工具，只需安装Windows工作台工具即可。
+>本节描述采用安装包方式安装相关工具的操作步骤。如果使用Docker方式安装，无需安装[表1](#table6299192712513)中的相关工具，请直接从[新建应用程序](quickstart-lite-steps-hi3861-application-framework.md)开始操作。
 
 Hi3861开发板需要的工具如下表所示。
 
-**表 1**  Hi3861开发板需要的工具
+**表 1**  Hi3861开发板需要安装的工具
 
 <a name="table6299192712513"></a>
-<table><thead align="left"><tr id="row122993276512"><th class="cellrowborder" valign="top" width="17.54%" id="mcps1.2.5.1.1"><p id="p162491657102110"><a name="p162491657102110"></a><a name="p162491657102110"></a>平台类型</p>
+<table><thead align="left"><tr id="row122993276512"><th class="cellrowborder" valign="top" width="51.15%" id="mcps1.2.3.1.1"><p id="p1829914271858"><a name="p1829914271858"></a><a name="p1829914271858"></a>开发工具</p>
 </th>
-<th class="cellrowborder" valign="top" width="23.59%" id="mcps1.2.5.1.2"><p id="p1829914271858"><a name="p1829914271858"></a><a name="p1829914271858"></a>开发工具</p>
-</th>
-<th class="cellrowborder" valign="top" width="22.58%" id="mcps1.2.5.1.3"><p id="p429918274517"><a name="p429918274517"></a><a name="p429918274517"></a>用途</p>
-</th>
-<th class="cellrowborder" valign="top" width="36.29%" id="mcps1.2.5.1.4"><p id="p12997271757"><a name="p12997271757"></a><a name="p12997271757"></a>获取途径</p>
+<th class="cellrowborder" valign="top" width="48.85%" id="mcps1.2.3.1.2"><p id="p429918274517"><a name="p429918274517"></a><a name="p429918274517"></a>用途</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row935218593572"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p105554418586"><a name="p105554418586"></a><a name="p105554418586"></a>Linux服务器</p>
+<tbody><tr id="row935218593572"><td class="cellrowborder" valign="top" width="51.15%" headers="mcps1.2.3.1.1 "><p id="p45551740589"><a name="p45551740589"></a><a name="p45551740589"></a>编译基础软件包(仅ubuntu 20+需要)</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p45551740589"><a name="p45551740589"></a><a name="p45551740589"></a>编译基础软件包(仅ubuntu 20+需要)</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p655594115814"><a name="p655594115814"></a><a name="p655594115814"></a>编译依赖的基础软件包</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p165558415589"><a name="p165558415589"></a><a name="p165558415589"></a>通过互联网获取</p>
+<td class="cellrowborder" valign="top" width="48.85%" headers="mcps1.2.3.1.2 "><p id="p655594115814"><a name="p655594115814"></a><a name="p655594115814"></a>编译依赖的基础软件包</p>
 </td>
 </tr>
-<tr id="row1397335913612"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p3711468218"><a name="p3711468218"></a><a name="p3711468218"></a>Linux服务器</p>
+<tr id="row1397335913612"><td class="cellrowborder" valign="top" width="51.15%" headers="mcps1.2.3.1.1 "><p id="p097355911620"><a name="p097355911620"></a><a name="p097355911620"></a>SCons3.0.4+</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p097355911620"><a name="p097355911620"></a><a name="p097355911620"></a>SCons3.0.4+</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p1973195917619"><a name="p1973195917619"></a><a name="p1973195917619"></a>编译构建工具</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p1722663441514"><a name="p1722663441514"></a><a name="p1722663441514"></a>通过互联网获取</p>
+<td class="cellrowborder" valign="top" width="48.85%" headers="mcps1.2.3.1.2 "><p id="p1973195917619"><a name="p1973195917619"></a><a name="p1973195917619"></a>编译构建工具</p>
 </td>
 </tr>
-<tr id="row1968013216717"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p2681632977"><a name="p2681632977"></a><a name="p2681632977"></a>Linux服务器</p>
+<tr id="row1968013216717"><td class="cellrowborder" valign="top" width="51.15%" headers="mcps1.2.3.1.1 "><p id="p1991501391312"><a name="p1991501391312"></a><a name="p1991501391312"></a>python模块：setuptools、kconfiglib、pycryptodome、six、ecdsa</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p1991501391312"><a name="p1991501391312"></a><a name="p1991501391312"></a>python模块：setuptools、kconfiglib、pycryptodome、six、ecdsa</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p968120325715"><a name="p968120325715"></a><a name="p968120325715"></a>编译构建工具</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p268116326711"><a name="p268116326711"></a><a name="p268116326711"></a>通过互联网获取</p>
+<td class="cellrowborder" valign="top" width="48.85%" headers="mcps1.2.3.1.2 "><p id="p968120325715"><a name="p968120325715"></a><a name="p968120325715"></a>编译构建工具</p>
 </td>
 </tr>
-<tr id="row020914491313"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p20209749103116"><a name="p20209749103116"></a><a name="p20209749103116"></a>Linux服务器</p>
+<tr id="row020914491313"><td class="cellrowborder" valign="top" width="51.15%" headers="mcps1.2.3.1.1 "><p id="p7209104910317"><a name="p7209104910317"></a><a name="p7209104910317"></a>gcc riscv32</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p7209104910317"><a name="p7209104910317"></a><a name="p7209104910317"></a>gcc riscv32</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p102093498311"><a name="p102093498311"></a><a name="p102093498311"></a>编译构建工具</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p321054953116"><a name="p321054953116"></a><a name="p321054953116"></a>通过互联网获取</p>
-</td>
-</tr>
-<tr id="row1596703610215"><td class="cellrowborder" valign="top" width="17.54%" headers="mcps1.2.5.1.1 "><p id="p071946112113"><a name="p071946112113"></a><a name="p071946112113"></a>Windows工作台</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.59%" headers="mcps1.2.5.1.2 "><p id="p1044974291416"><a name="p1044974291416"></a><a name="p1044974291416"></a>CH341SER.EXE</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.58%" headers="mcps1.2.5.1.3 "><p id="p94491342131413"><a name="p94491342131413"></a><a name="p94491342131413"></a>USB转串口驱动</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.29%" headers="mcps1.2.5.1.4 "><p id="p6449184214148"><a name="p6449184214148"></a><a name="p6449184214148"></a><a href="http://www.wch.cn/search?q=ch340g&amp;t=downloads" target="_blank" rel="noopener noreferrer">http://www.wch.cn/search?q=ch340g&amp;t=downloads</a></p>
+<td class="cellrowborder" valign="top" width="48.85%" headers="mcps1.2.3.1.2 "><p id="p102093498311"><a name="p102093498311"></a><a name="p102093498311"></a>编译构建工具</p>
 </td>
 </tr>
 </tbody>
 </table>
 
 ## 安装Linux编译工具<a name="section497484245614"></a>
-
->![](../public_sys-resources/icon-notice.gif) **须知：** 
->-   如果通过“HPM组件方式”或“HPM包管理器命令行工具方式”获取源码，不需要安装gcc\_riscv32编译工具。
->-   （推荐）如果通过“镜像站点方式”或“代码仓库方式”获取源码，需要安装gcc\_riscv32编译工具。安装gcc\_riscv32编译工具时，请确保编译工具的环境变量路径唯一。
 
 ### 安装编译依赖基础软件（仅Ubuntu 20+需要）<a name="section45512412251"></a>
 
@@ -110,20 +70,19 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 
 ### 安装Scons<a name="section7438245172514"></a>
 
-1.  打开Linux编译服务器终端。
-2.  运行如下命令，安装SCons安装包。
+1.  运行如下命令，安装SCons安装包。
 
     ```
     python3 -m pip install scons
     ```
 
-3.  运行如下命令，查看是否安装成功。如果安装成功，查询结果下图所示。
+2.  运行如下命令，查看是否安装成功。如果安装成功，查询结果下图所示。
 
     ```
     scons -v
     ```
 
-    **图 2**  SCons安装成功界面，版本要求3.0.4以上<a name="fig151441613316"></a>  
+    **图 1**  SCons安装成功界面，版本要求3.0.4以上<a name="fig922558123418"></a>  
     ![](figures/SCons安装成功界面-版本要求3-0-4以上.png "SCons安装成功界面-版本要求3-0-4以上")
 
 
@@ -219,14 +178,14 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 ### 安装gcc\_riscv32（WLAN模组类编译工具链）<a name="section34435451256"></a>
 
 >![](../public_sys-resources/icon-notice.gif) **须知：** 
->-   Hi3861平台仅支持使用libgcc运行时库的静态链接，不建议开发者使用libgcc运行时库的动态链接，以免产品需遵从GPLV3许可证。
->-   通过下述步骤2-15，我们编译好了gcc\_riscv32镜像，提供给开发者[直接下载](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz)使用。直接下载gcc\_riscv32镜像的开发者可省略下述2-15步。
+>-   Hi3861开发板平台仅支持使用libgcc运行时库的静态链接，不建议开发者使用libgcc运行时库的动态链接，以免产品需遵从GPLV3许可证。
+>-   通过下述步骤2-15，我们编译好了gcc\_riscv32 镜像，提供给开发者[直接下载](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz)使用。直接下载 gcc\_riscv32 镜像的开发者可省略下述2-15步。
 
 1.  打开Linux编译服务器终端。
 2.  环境准备，请安装"gcc, g++, bison, flex, makeinfo"软件，确保工具链能正确编译。
 
     ```
-    sudo apt-get install gcc g++  flex bison  texinfo
+    sudo apt-get install gcc && sudo apt-get install g++ && sudo apt-get install flex bison && sudo apt-get install texinfo
     ```
 
 3.  下载riscv-gnu-toolchain交叉编译工具链。
@@ -308,19 +267,10 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
 16. 设置环境变量。
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >如果直接采用编译好的riscv32 gcc包，请参照如下步骤设置环境变量：
-    >1.  将压缩包解压到根目录
-    >    ```
-    >    tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C ~
-    >    ```
-    >2.  设置环境变量。
-    >    ```
-    >    vim ~/.bashrc
-    >    ```
-    >3.  将以下命令拷贝到.bashrc文件的最后一行，保存并退出。
-    >    ```
-    >    export PATH=~/gcc_riscv32/bin:$PATH
-    >    ```
+    >如果直接采用编译好的riscv32 gcc包，请先执行以下命令将压缩包解压到根目录：
+    >```
+    >tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C ~
+    >```
 
     ```
     vim ~/.bashrc
@@ -343,16 +293,5 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev
     ```
     riscv32-unknown-elf-gcc -v
     ```
-
-
-## 安装USB转串口驱动<a name="section1027732411513"></a>
-
-相关步骤在Windows工作台操作。
-
-1.  点击链接[下载CH341SER USB转串口](http://www.hihope.org/download/download.aspx?mtt=8)驱动程序。
-2.  点击安装包，安装驱动程序。
-3.  驱动安装完成后，重新插拔USB接口，串口信息显示如下图所示。
-
-    ![](figures/serial-port-entry.png)
 
 

@@ -1,6 +1,6 @@
 # 应用实例<a name="ZH-CN_TOPIC_0000001055686082"></a>
 
--   开发板介绍、编译烧录、运行镜像等操作请参考[Hi3518快速入门](../quick-start/oem_minitinier_des_3518.md#section14815247616)，编译结果包含示例，结果文件为out/ipcamera\_hi3518ev300/dev\_tools/bin/camera\_sample，可将文件通过读卡器复制至TF卡中，或者修改camera\_sample的编译脚本将结果文件复制至rootfs.img中。
+-   开发板介绍、编译烧录、运行镜像等操作请参考[Hi3518快速入门](../quick-start/quickstart-lite-overview.md)，编译结果包含示例，结果文件为out/ipcamera\_hi3518ev300/dev\_tools/bin/camera\_sample，可将文件通过读卡器复制至TF卡中，或者修改camera\_sample的编译脚本将结果文件复制至rootfs.img中。
 
     修改applications/sample/camera/media/BUILD.gn中的output\_dir。
 
