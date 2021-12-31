@@ -1,23 +1,31 @@
-# 禁用控制<a name="ZH-CN_TOPIC_0000001119928238"></a>
+# 禁用控制<a name="ZH-CN_TOPIC_0000001192595162"></a>
 
-<a name="table3897mcpsimp"></a>
-<table><thead align="left"><tr id="row3904mcpsimp"><th class="cellrowborder" valign="top" width="12.24%" id="mcps1.1.5.1.1"><p id="p3906mcpsimp"><a name="p3906mcpsimp"></a><a name="p3906mcpsimp"></a>名称</p>
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 权限列表<a name="section781125411508"></a>
+
+无
+
+## 属性<a name="section6820191711316"></a>
+
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="12.24%" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="12.1%" id="mcps1.1.5.1.2"><p id="p3908mcpsimp"><a name="p3908mcpsimp"></a><a name="p3908mcpsimp"></a>参数类型</p>
+<th class="cellrowborder" valign="top" width="12.08%" id="mcps1.1.5.1.2"><p>参数类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="10.85%" id="mcps1.1.5.1.3"><p id="p3910mcpsimp"><a name="p3910mcpsimp"></a><a name="p3910mcpsimp"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="10.870000000000001%" id="mcps1.1.5.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="64.81%" id="mcps1.1.5.1.4"><p id="p3912mcpsimp"><a name="p3912mcpsimp"></a><a name="p3912mcpsimp"></a>描述</p>
+<th class="cellrowborder" valign="top" width="64.81%" id="mcps1.1.5.1.4"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row3913mcpsimp"><td class="cellrowborder" valign="top" width="12.24%" headers="mcps1.1.5.1.1 "><p id="p3915mcpsimp"><a name="p3915mcpsimp"></a><a name="p3915mcpsimp"></a>enabled</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="12.24%" headers="mcps1.1.5.1.1 "><p>enabled</p>
 </td>
-<td class="cellrowborder" valign="top" width="12.1%" headers="mcps1.1.5.1.2 "><p id="p3917mcpsimp"><a name="p3917mcpsimp"></a><a name="p3917mcpsimp"></a>boolean</p>
+<td class="cellrowborder" valign="top" width="12.08%" headers="mcps1.1.5.1.2 "><p>boolean</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.85%" headers="mcps1.1.5.1.3 "><p id="p3919mcpsimp"><a name="p3919mcpsimp"></a><a name="p3919mcpsimp"></a>true</p>
+<td class="cellrowborder" valign="top" width="10.870000000000001%" headers="mcps1.1.5.1.3 "><p>true</p>
 </td>
-<td class="cellrowborder" valign="top" width="64.81%" headers="mcps1.1.5.1.4 "><p id="p3921mcpsimp"><a name="p3921mcpsimp"></a><a name="p3921mcpsimp"></a>值为true表示组件可用，可响应点击等操作；值为false时，不响应点击等操作。</p>
+<td class="cellrowborder" valign="top" width="64.81%" headers="mcps1.1.5.1.4 "><p>值为true表示组件可用，可响应点击等操作；值为false时，不响应点击等操作。</p>
 </td>
 </tr>
 </tbody>

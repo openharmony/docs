@@ -17,6 +17,8 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -32,7 +34,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 - 添加文本样式
 
 
-设置color、font-size、allow-scale、word-spacing、text-valign属性分别为文本添加颜色、大小、和缩放、文本之间的间距和文本在垂直方向的对齐方式。
+设置color、font-size、allow-scale、word-spacing、text-valign属性分别为文本添加颜色、大小、缩放、文本之间的间距和文本在垂直方向的对齐方式。
 
 
 ```
@@ -41,15 +43,27 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
   <text style="color: blueviolet; font-size: 40px; allow-scale:true"> 
     This is a passage
   </text>
-  <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;" >    This is a passage  </text>
+  <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;" >
+    This is a passage
+  </text>
 </div>
 ```
 
 
-![zh-cn_image_0000001163489068](figures/zh-cn_image_0000001163489068.png)
+```
+/* xxx.css */
+.container {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F1F3F5;
+}
+```
 
 
-![zh-cn_image_0000001173950938](figures/zh-cn_image_0000001173950938.png)
+![zh-cn_image_0000001220778205](figures/zh-cn_image_0000001220778205.png)
 
 
 - 添加划线
@@ -74,20 +88,19 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 text{
-font-size: 50px;
+  font-size: 50px;
 }
 ```
 
 
-![zh-cn_image_0000001208975737](figures/zh-cn_image_0000001208975737.png)
-
-
-![zh-cn_image_0000001219237131](figures/zh-cn_image_0000001219237131.png)
+![zh-cn_image_0000001220856725](figures/zh-cn_image_0000001220856725.png)
 
 
 - 隐藏文本内容
@@ -109,6 +122,8 @@ font-size: 50px;
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   background-color: #F1F3F5;

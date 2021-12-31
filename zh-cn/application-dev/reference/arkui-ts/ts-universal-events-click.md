@@ -1,19 +1,27 @@
-# 点击事件<a name="ZH-CN_TOPIC_0000001111581270"></a>
+# 点击事件<a name="ZH-CN_TOPIC_0000001192915110"></a>
 
-<a name="table268mcpsimp"></a>
-<table><thead align="left"><tr id="row274mcpsimp"><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.5.1.1"><p id="p278mcpsimp"><a name="p278mcpsimp"></a><a name="p278mcpsimp"></a>名称</p>
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 权限列表<a name="section781125411508"></a>
+
+无
+
+## 事件<a name="section1823713918564"></a>
+
+<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.2"><p id="p240018113020"><a name="p240018113020"></a><a name="p240018113020"></a>支持冒泡</p>
+<th class="cellrowborder" valign="top" id="mcps1.1.5.1.2"><p>支持冒泡</p>
 </th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.3"><p id="p280mcpsimp"><a name="p280mcpsimp"></a><a name="p280mcpsimp"></a>功能描述</p>
+<th class="cellrowborder" valign="top" id="mcps1.1.5.1.3"><p>功能描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row281mcpsimp"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p id="p283mcpsimp"><a name="p283mcpsimp"></a><a name="p283mcpsimp"></a>onClick(callback: (event?: ClickEvent) =&gt; void)</p>
+<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p>onClick(callback: (event?: ClickEvent) =&gt; void)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p id="p240119143012"><a name="p240119143012"></a><a name="p240119143012"></a>否</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p id="p287mcpsimp"><a name="p287mcpsimp"></a><a name="p287mcpsimp"></a>点击动作触发该方法调用，event参数见<a href="#li155675712535">ClickEvent</a>介绍。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p>点击动作触发该方法调用，event参数见<a href="#li155675712535">ClickEvent</a>介绍。</p>
 </td>
 </tr>
 </tbody>
@@ -21,48 +29,142 @@
 
 -   <a name="li155675712535"></a>ClickEvent对象说明
 
-    <a name="table150414419378"></a>
-    <table><thead align="left"><tr id="row250434411379"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p id="p17251053163714"><a name="p17251053163714"></a><a name="p17251053163714"></a>属性名称</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p>属性名称</p>
     </th>
-    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.2"><p id="p125175313377"><a name="p125175313377"></a><a name="p125175313377"></a>属性类型</p>
+    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.2"><p>类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.3"><p id="p152518539379"><a name="p152518539379"></a><a name="p152518539379"></a>描述</p>
+    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.3"><p>描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row25047446377"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p625120539377"><a name="p625120539377"></a><a name="p625120539377"></a>screenX</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>screenX</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p id="p7251105311371"><a name="p7251105311371"></a><a name="p7251105311371"></a>number</p>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p62511553103710"><a name="p62511553103710"></a><a name="p62511553103710"></a>点击点相对于设备屏幕左边沿的X坐标。</p>
-    </td>
-    </tr>
-    <tr id="row16504744143718"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p3251353193710"><a name="p3251353193710"></a><a name="p3251353193710"></a>screenY</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p id="p14252175323715"><a name="p14252175323715"></a><a name="p14252175323715"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p225275353713"><a name="p225275353713"></a><a name="p225275353713"></a>点击点相对于设备屏幕上边沿的Y坐标。</p>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>点击点相对于设备屏幕左边沿的X坐标。</p>
     </td>
     </tr>
-    <tr id="row750454419376"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p11252195317371"><a name="p11252195317371"></a><a name="p11252195317371"></a>x</p>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>screenY</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p id="p025215313716"><a name="p025215313716"></a><a name="p025215313716"></a>number</p>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p10252195316373"><a name="p10252195316373"></a><a name="p10252195316373"></a>点击点相对于被点击元素左边沿的X坐标。</p>
-    </td>
-    </tr>
-    <tr id="row19505244163715"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p6252195312377"><a name="p6252195312377"></a><a name="p6252195312377"></a>y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p id="p92521553113719"><a name="p92521553113719"></a><a name="p92521553113719"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p1925216537376"><a name="p1925216537376"></a><a name="p1925216537376"></a>点击点相对于被点击元素上边沿的Y坐标。</p>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>点击点相对于设备屏幕上边沿的Y坐标。</p>
     </td>
     </tr>
-    <tr id="row7505194418373"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p3252155316378"><a name="p3252155316378"></a><a name="p3252155316378"></a>timestamp</p>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>x</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p id="p16252453163717"><a name="p16252453163717"></a><a name="p16252453163717"></a>number</p>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p13252115333711"><a name="p13252115333711"></a><a name="p13252115333711"></a>事件时间戳。</p>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>点击点相对于被点击元素左边沿的X坐标。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>y</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>点击点相对于被点击元素上边沿的Y坐标。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>target<sup><span>8+</span></sup></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p><a href="#li552912253714">EventTarget</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>被点击元素对象。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>timestamp</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>事件时间戳。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   <a name="li552912253714"></a>EventTarget对象说明<sup>8+</sup>
+
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p>名称</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.2"><p>参数类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.3"><p>描述</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>area</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p><a href="#li3196948121214">Area</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>目标元素的区域信息。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   <a name="li3196948121214"></a>Area对象说明<sup>8+</sup>
+
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p>属性名称</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.2"><p>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.3"><p>描述</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>width</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>Length</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>目标元素的宽度。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>height</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>Length</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>目标元素的高度。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>pos</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p><a href="#li7111244165">Position</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>目标元素左上角相对父元素左上角的位置。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>globalPos</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p><a href="#li7111244165">Position</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>目标元素左上角相对页面左上角的位置。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   <a name="li7111244165"></a>Position对象说明<sup>8+</sup>
+
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p>属性名称</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.2"><p>参数类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.3"><p>描述</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>x</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>Length</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>x轴坐标。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p>y</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p>Length</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p>y轴坐标。</p>
     </td>
     </tr>
     </tbody>
@@ -79,15 +181,18 @@ struct ClickExample {
 
   build() {
     Column() {
-      Button('Click').backgroundColor(0x2788D9)
+      Button('Click').backgroundColor(0x2788D9).width(100).height(40)
         .onClick((event: ClickEvent) => {
-          console.info(this.text = 'Button clicked!\n X:' + event.x + '\n' + ' Y:' + event.y)
+          console.info(this.text = 'Click Point:' + '\n  screenX:' + event.screenX + '\n  screenY:' + event.screenY
+          + '\n  x :' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos：（'
+          + event.target.area.globalPos.x + ',' + event.target.area.globalPos.y + '）\n  width:'
+          + event.target.area.width + '\n  height：' + event.target.area.height)
         })
       Text(this.text).padding(15)
-    }.height(300).width('100%').padding(35)
+    }.height(350).width('100%').padding(10)
   }
 }
 ```
 
-![](figures/Click.gif)
+![](figures/zh-cn_image_0000001237355087.gif)
 

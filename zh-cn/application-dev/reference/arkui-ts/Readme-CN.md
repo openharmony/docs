@@ -1,74 +1,4 @@
-# 基于TS扩展的声明式开发范式
-
--   [框架说明](ts-framework-framework.md)
-    -   [文件组织](ts-framework-file.md)
-        -   [目录结构](ts-framework-directory.md)
-        -   [应用代码文件访问规则](ts-framework-file-access-rules.md)
-
-    -   [js标签配置](ts-framework-js-tag.md)
-    -   [资源访问](ts-resource-access.md)
-        -   [媒体资源类型说明](ts-media-resource-type.md)
-
-    -   [像素单位](ts-pixel-units.md)
-    -   [类型定义](ts-types.md)
-
--   [声明式语法](ts-declarative-syntax.md)
-    -   [描述规范使用说明](ts-syntax-intro.md)
-    -   [通用UI描述规范](ts-general-ui-description-specifications.md)
-        -   [基本概念](ts-general-ui-concepts.md)
-        -   [声明式UI描述规范](ts-declarative-ui-description-specifications.md)
-            -   [无构造参数配置](ts-parameterless-configuration.md)
-            -   [必选参数构造配置](ts-configuration-with-mandatory-parameters.md)
-            -   [属性配置](ts-attribution-configuration.md)
-            -   [事件配置](ts-event-configuration.md)
-            -   [子组件配置](ts-child-component-configuration.md)
-
-        -   [组件化](ts-component-based.md)
-            -   [@Component](ts-component-based-component.md)
-            -   [@Entry](ts-component-based-entry.md)
-            -   [@Preview](ts-component-based-preview.md)
-            -   [@Builder](ts-component-based-builder.md)
-            -   [@Extend](ts-component-based-extend.md)
-            -   [@CustomDialog](ts-component-based-customdialog.md)
-
-    -   [UI状态管理](ts-ui-state-management.md)
-        -   [基本概念](ts-ui-state-mgmt-concepts.md)
-        -   [管理组件拥有的状态](ts-managing-component-states.md)
-            -   [@State](ts-component-states-state.md)
-            -   [@Prop](ts-component-states-prop.md)
-            -   [@Link](ts-component-states-link.md)
-
-        -   [管理应用程序的状态](ts-managing-application-states.md)
-            -   [接口](ts-managing-application-states-apis.md)
-                -   [应用程序的数据存储](ts-application-states-appstorage.md)
-                -   [持久化数据管理](ts-application-states-apis-persistentstorage.md)
-                -   [环境变量](ts-application-states-apis-environment.md)
-
-            -   [AppStorage与组件同步](ts-application-states-storagelink-storageprop.md)
-
-        -   [其他类目的状态管理](ts-managing-other-states.md)
-            -   [Observed和ObjectLink数据管理](ts-other-states-observed-objectlink.md)
-            -   [@Consume和@Provide数据管理](ts-other-states-consume-provide.md)
-            -   [@Watch](ts-other-states-watch.md)
-
-    -   [渲染控制语法](ts-rending-control-syntax.md)
-        -   [条件渲染](ts-rending-control-syntax-if-else.md)
-        -   [循环渲染](ts-rending-control-syntax-foreach.md)
-        -   [数据懒加载](ts-rending-control-syntax-lazyforeach.md)
-
-    -   [深入理解组件化](ts-a-deep-dive-into-component.md)
-        -   [build函数](ts-function-build.md)
-        -   [自定义组件初始化](ts-custom-component-initialization.md)
-        -   [自定义组件生命周期回调函数](ts-custom-component-lifecycle-callbacks.md)
-        -   [组件创建和重新初始化示例](ts-component-creation-re-initialization.md)
-
-    -   [语法糖](ts-syntactic-sugar.md)
-        -   [装饰器](ts-syntactic-sugar-decorator.md)
-        -   [链式调用](ts-syntactic-sugar-chaining.md)
-        -   [struct对象](ts-syntactic-sugar-struct.md)
-        -   [在实例化过程中省略"new"](ts-instantiating-a-struct-without-new-keyword.md)
-        -   [组件创建使用独立一行](ts-using-a-separate-line-for-new-component.md)
-        -   [生成器函数内使用TS语言的限制](ts-restrictions-for-generators.md)
+#  基于TS扩展的声明式开发范式
 
 -   [组件](ts-components.md)
     -   [通用](ts-universal-components.md)
@@ -77,6 +7,7 @@
             -   [触摸事件](ts-universal-events-touch.md)
             -   [挂载卸载事件](ts-universal-events-show-hide.md)
             -   [按键事件](ts-universal-events-key.md)
+            -   [组件区域变化事件](ts-universal-events-component-area-change.md)
 
         -   [通用属性](ts-universal-attributes.md)
             -   [尺寸设置](ts-universal-attributes-size.md)
@@ -98,6 +29,8 @@
             -   [颜色渐变](ts-universal-attributes-gradient-color.md)
             -   [Popup控制](ts-universal-attributes-popup.md)
             -   [Menu控制](ts-universal-attributes-menu.md)
+            -   [点击控制](ts-universal-attributes-touchable.md)
+            -   [触摸热区设置](ts-universal-attributes-response-region.md)
 
         -   [手势处理](ts-gesture-processing.md)
             -   [绑定手势方法](ts-gesture-settings.md)
@@ -107,6 +40,7 @@
                 -   [PanGesture](ts-basic-gestures-pangesture.md)
                 -   [PinchGesture](ts-basic-gestures-pinchgesture.md)
                 -   [RotationGesture](ts-basic-gestures-rotationgesture.md)
+                -   [SwipeGesture](ts-basic-gestures-swipegesture.md)
 
             -   [组合手势](ts-combined-gestures.md)
 
@@ -115,14 +49,19 @@
         -   [Button](ts-basic-components-button.md)
         -   [DataPanel](ts-basic-components-datapanel.md)
         -   [Divider](ts-basic-components-divider.md)
+        -   [Gauge](ts-basic-components-gauge.md)
         -   [Image](ts-basic-components-image.md)
         -   [ImageAnimator](ts-basic-components-imageanimator.md)
+        -   [Marquee](ts-basic-components-marquee.md)
         -   [Progress](ts-basic-components-progress.md)
         -   [QRCode](ts-basic-components-qrcode.md)
         -   [Rating](ts-basic-components-rating.md)
         -   [Span](ts-basic-components-span.md)
         -   [Slider](ts-basic-components-slider.md)
         -   [Text](ts-basic-components-text.md)
+        -   [TextArea](ts-basic-components-textarea.md)
+        -   [TextInput](ts-basic-components-textinput.md)
+        -   [Toggle](ts-basic-components-toggle.md)
 
     -   [容器组件](ts-components-container.md)
         -   [AlphabetIndexer](ts-container-alphabet-indexer.md)
@@ -137,14 +76,18 @@
         -   [List](ts-container-list.md)
         -   [ListItem](ts-container-listitem.md)
         -   [Navigator](ts-container-navigator.md)
+        -   [Navigation](ts-container-navigation.md)
         -   [Panel](ts-container-panel.md)
         -   [Row](ts-container-row.md)
         -   [RowSplit](ts-container-rowsplit.md)
         -   [Scroll](ts-container-scroll.md)
+        -   [ScrollBar](ts-container-scrollbar.md)
         -   [Stack](ts-container-stack.md)
         -   [Swiper](ts-container-swiper.md)
         -   [Tabs](ts-container-tabs.md)
         -   [TabContent](ts-container-tabcontent.md)
+        -   [Stepper](ts-container-stepper.md)
+        -   [StepperItem](ts-container-stepperitem.md)
 
     -   [绘制组件](ts-drawing-components.md)
         -   [Circle](ts-drawing-components-circle.md)
@@ -155,6 +98,16 @@
         -   [Path](ts-drawing-components-path.md)
         -   [Rect](ts-drawing-components-rect.md)
         -   [Shape](ts-drawing-components-shape.md)
+
+    -   [画布组件](ts-components-canvas.md)
+        -   [Canvas](ts-components-canvas-canvas.md)
+        -   [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
+        -   [OffscreenCanvasRenderingConxt2D对象](ts-offscreencanvasrenderingcontext2d.md)
+        -   [Lottie](ts-components-canvas-lottie.md)
+        -   [Path2D对象](ts-components-canvas-path2d.md)
+        -   [CanvasGradient对象](ts-components-canvas-canvasgradient.md)
+        -   [ImageBitmap对象](ts-components-canvas-imagebitmap.md)
+        -   [ImageData对象](ts-components-canvas-imagedata.md)
 
 -   [动画](ts-animation.md)
     -   [属性动画](ts-animatorproperty.md)
@@ -173,6 +126,8 @@
     -   [自定义弹窗](ts-methods-custom-dialog-box.md)
     -   [图片缓存](ts-methods-image-cache.md)
     -   [媒体查询](ts-methods-media-query.md)
+    -   [列表选择弹窗](ts-methods-custom-actionsheet.md)
 
 -   [附录](ts-appendix.md)
     -   [文档中涉及到的内置枚举值](ts-appendix-enums.md)
+

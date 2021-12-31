@@ -1,4 +1,7 @@
-# Span<a name="ZH-CN_TOPIC_0000001112938338"></a>
+# Span<a name="ZH-CN_TOPIC_0000001237475051"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 文本段落，只能作为Text子组件，呈现一段文本信息。
 
@@ -16,28 +19,27 @@ Span\(content: string\)
 
 -   参数
 
-    <a name="table1392916196212"></a>
-    <table><thead align="left"><tr id="row19306191218"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p id="p199307193217"><a name="p199307193217"></a><a name="p199307193217"></a>参数名</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p id="p119302191128"><a name="p119302191128"></a><a name="p119302191128"></a>参数类型</p>
+    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="13%" id="mcps1.1.6.1.3"><p id="p7930141911211"><a name="p7930141911211"></a><a name="p7930141911211"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="13%" id="mcps1.1.6.1.3"><p>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="16.869999999999997%" id="mcps1.1.6.1.4"><p id="p1393020194219"><a name="p1393020194219"></a><a name="p1393020194219"></a>默认值</p>
+    <th class="cellrowborder" valign="top" width="16.869999999999997%" id="mcps1.1.6.1.4"><p>默认值</p>
     </th>
-    <th class="cellrowborder" valign="top" width="40.01%" id="mcps1.1.6.1.5"><p id="p693061912210"><a name="p693061912210"></a><a name="p693061912210"></a>参数描述</p>
+    <th class="cellrowborder" valign="top" width="40.01%" id="mcps1.1.6.1.5"><p>参数描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row1093021911217"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p119307198218"><a name="p119307198218"></a><a name="p119307198218"></a>content</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>content</p>
     </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p id="p129301719828"><a name="p129301719828"></a><a name="p129301719828"></a>string</p>
+    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>string</p>
     </td>
-    <td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.6.1.3 "><p id="p893091913213"><a name="p893091913213"></a><a name="p893091913213"></a>是</p>
+    <td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.6.1.3 "><p>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p id="p421641117507"><a name="p421641117507"></a><a name="p421641117507"></a>-</p>
+    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p>-</p>
     </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p id="p693016198212"><a name="p693016198212"></a><a name="p693016198212"></a>文本内容。</p>
+    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p>文本内容。</p>
     </td>
     </tr>
     </tbody>
@@ -46,40 +48,39 @@ Span\(content: string\)
 
 ## 属性<a name="section11378635172316"></a>
 
-通用属性方法仅支持通用文本样式。
+通用属性方法仅支持通用文本样式，不支持触摸热区设置。
 
-<a name="table952mcpsimp"></a>
-<table><thead align="left"><tr id="row959mcpsimp"><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p id="p961mcpsimp"><a name="p961mcpsimp"></a><a name="p961mcpsimp"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="26.009999999999998%" id="mcps1.1.5.1.2"><p id="p963mcpsimp"><a name="p963mcpsimp"></a><a name="p963mcpsimp"></a>参数类型</p>
+<th class="cellrowborder" valign="top" width="26.009999999999998%" id="mcps1.1.5.1.2"><p>参数类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="21.790000000000003%" id="mcps1.1.5.1.3"><p id="p965mcpsimp"><a name="p965mcpsimp"></a><a name="p965mcpsimp"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="21.790000000000003%" id="mcps1.1.5.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="36.199999999999996%" id="mcps1.1.5.1.4"><p id="p967mcpsimp"><a name="p967mcpsimp"></a><a name="p967mcpsimp"></a>描述</p>
+<th class="cellrowborder" valign="top" width="36.199999999999996%" id="mcps1.1.5.1.4"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row163041291058"><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p id="p63041596511"><a name="p63041596511"></a><a name="p63041596511"></a>decoration</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>decoration</p>
 </td>
-<td class="cellrowborder" valign="top" width="26.009999999999998%" headers="mcps1.1.5.1.2 "><p id="p531151195414"><a name="p531151195414"></a><a name="p531151195414"></a>{</p>
-<p id="p790212415415"><a name="p790212415415"></a><a name="p790212415415"></a>type: <a href="ts-appendix-enums.md#section81063305178">TextDecorationType</a>,</p>
-<p id="p7196189541"><a name="p7196189541"></a><a name="p7196189541"></a>color?: Color</p>
-<p id="p4225174410519"><a name="p4225174410519"></a><a name="p4225174410519"></a>}</p>
+<td class="cellrowborder" valign="top" width="26.009999999999998%" headers="mcps1.1.5.1.2 "><p>{</p>
+<p>type: <a href="ts-appendix-enums.md#section81063305178">TextDecorationType</a>,</p>
+<p>color?: Color</p>
+<p>}</p>
 </td>
-<td class="cellrowborder" valign="top" width="21.790000000000003%" headers="mcps1.1.5.1.3 "><p id="p128501411541"><a name="p128501411541"></a><a name="p128501411541"></a>{</p>
-<p id="p186271915542"><a name="p186271915542"></a><a name="p186271915542"></a>type: TextDecorationType.None</p>
-<p id="p23053910513"><a name="p23053910513"></a><a name="p23053910513"></a>}</p>
+<td class="cellrowborder" valign="top" width="21.790000000000003%" headers="mcps1.1.5.1.3 "><p>{</p>
+<p>type: TextDecorationType.None</p>
+<p>}</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.199999999999996%" headers="mcps1.1.5.1.4 "><p id="p12726144512611"><a name="p12726144512611"></a><a name="p12726144512611"></a>设置文本装饰线样式及其颜色。</p>
+<td class="cellrowborder" valign="top" width="36.199999999999996%" headers="mcps1.1.5.1.4 "><p>设置文本装饰线样式及其颜色。</p>
 </td>
 </tr>
-<tr id="row2542164915718"><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p id="p1542849972"><a name="p1542849972"></a><a name="p1542849972"></a>textCase</p>
+<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>textCase</p>
 </td>
-<td class="cellrowborder" valign="top" width="26.009999999999998%" headers="mcps1.1.5.1.2 "><p id="p1454214498717"><a name="p1454214498717"></a><a name="p1454214498717"></a><a href="ts-appendix-enums.md#section1276124151715">TextCase</a></p>
+<td class="cellrowborder" valign="top" width="26.009999999999998%" headers="mcps1.1.5.1.2 "><p><a href="ts-appendix-enums.md#section1276124151715">TextCase</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="21.790000000000003%" headers="mcps1.1.5.1.3 "><p id="p85421449872"><a name="p85421449872"></a><a name="p85421449872"></a>Normal</p>
+<td class="cellrowborder" valign="top" width="21.790000000000003%" headers="mcps1.1.5.1.3 "><p>Normal</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.199999999999996%" headers="mcps1.1.5.1.4 "><p id="p75429492719"><a name="p75429492719"></a><a name="p75429492719"></a>设置文本大小写。</p>
+<td class="cellrowborder" valign="top" width="36.199999999999996%" headers="mcps1.1.5.1.4 "><p>设置文本大小写。</p>
 </td>
 </tr>
 </tbody>
@@ -88,6 +89,9 @@ Span\(content: string\)
 ## 事件<a name="section1093554116361"></a>
 
 通用事件仅支持点击事件。
+
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。
 
 ## 示例<a name="section21711157202411"></a>
 

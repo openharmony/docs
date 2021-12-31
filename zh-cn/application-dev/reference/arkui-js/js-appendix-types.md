@@ -1,8 +1,7 @@
-# 类型说明<a name="ZH-CN_TOPIC_0000001127125074"></a>
+# 类型说明
 
-## 长度类型<a name="section15406175012255"></a>
+## 长度类型
 
-<a name="table726mcpsimp"></a>
 <table><thead align="left"><tr id="row732mcpsimp"><th class="cellrowborder" valign="top" width="13.309999999999999%" id="mcps1.1.4.1.1"><p id="p734mcpsimp"><a name="p734mcpsimp"></a><a name="p734mcpsimp"></a>名称</p>
 </th>
 <th class="cellrowborder" valign="top" width="26.35%" id="mcps1.1.4.1.2"><p id="p736mcpsimp"><a name="p736mcpsimp"></a><a name="p736mcpsimp"></a>类型定义</p>
@@ -29,9 +28,8 @@
 </tbody>
 </table>
 
-## 颜色类型<a name="section1326744510818"></a>
+## 颜色类型
 
-<a name="table112670450819"></a>
 <table><thead align="left"><tr id="row11267545288"><th class="cellrowborder" valign="top" width="13.309999999999999%" id="mcps1.1.4.1.1"><p id="p326754519814"><a name="p326754519814"></a><a name="p326754519814"></a>名称</p>
 </th>
 <th class="cellrowborder" valign="top" width="26.35%" id="mcps1.1.4.1.2"><p id="p1267045184"><a name="p1267045184"></a><a name="p1267045184"></a>类型定义</p>
@@ -56,7 +54,6 @@
 
 **表 1**  当前支持的颜色枚举
 
-<a name="table16879155017425"></a>
 <table><thead align="left"><tr id="row2879185094217"><th class="cellrowborder" valign="top" width="32.71%" id="mcps1.2.4.1.1"><p id="p1388011504420"><a name="p1388011504420"></a><a name="p1388011504420"></a>枚举名称</p>
 </th>
 <th class="cellrowborder" valign="top" width="36.44%" id="mcps1.2.4.1.2"><p id="p1288065019429"><a name="p1288065019429"></a><a name="p1288065019429"></a>对应颜色</p>
@@ -118,7 +115,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="36.44%" headers="mcps1.2.4.1.2 "><p id="p19954173420433"><a name="p19954173420433"></a><a name="p19954173420433"></a>#000000</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.85%" headers="mcps1.2.4.1.3 "><p id="p1782641372612"><a name="p1782641372612"></a><a name="p1782641372612"></a><a name="image1826213162617"></a><a name="image1826213162617"></a><span><img id="image1826213162617" src="figures/000000-5.png"></span></p>
+<td class="cellrowborder" valign="top" width="30.85%" headers="mcps1.2.4.1.3 "><p id="p1782641372612"><a name="p1782641372612"></a><a name="p1782641372612"></a><a name="image1826213162617"></a><a name="image1826213162617"></a><span><img id="image1826213162617" src="figures/000000.png"></span></p>
 </td>
 </tr>
 <tr id="row17880250144216"><td class="cellrowborder" valign="top" width="32.71%" headers="mcps1.2.4.1.1 "><p id="p119544349431"><a name="p119544349431"></a><a name="p119544349431"></a>blanchedalmond</p>
@@ -993,7 +990,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="36.44%" headers="mcps1.2.4.1.2 "><p id="p139671234134310"><a name="p139671234134310"></a><a name="p139671234134310"></a>#708090</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.85%" headers="mcps1.2.4.1.3 "><p id="p74881432316"><a name="p74881432316"></a><a name="p74881432316"></a><a name="image7301503270"></a><a name="image7301503270"></a><span><img id="image7301503270" src="figures/slategray-6.png"></span></p>
+<td class="cellrowborder" valign="top" width="30.85%" headers="mcps1.2.4.1.3 "><p id="p74881432316"><a name="p74881432316"></a><a name="p74881432316"></a><a name="image7301503270"></a><a name="image7301503270"></a><span><img id="image7301503270" src="figures/slategray-0.png"></span></p>
 </td>
 </tr>
 <tr id="row138922050154211"><td class="cellrowborder" valign="top" width="32.71%" headers="mcps1.2.4.1.1 "><p id="p796733464316"><a name="p796733464316"></a><a name="p796733464316"></a>snow</p>
@@ -1096,4 +1093,3 @@
 </tr>
 </tbody>
 </table>
-

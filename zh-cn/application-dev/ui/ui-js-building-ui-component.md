@@ -10,11 +10,11 @@
 
 根据组件的功能，可以分为以下六大类：
 
-| 组件类型 | 主要组件 | 
+| 组件类型 | 主要组件 |
 | -------- | -------- |
-| 容器组件 | badge、dialog、div、form、list、list-item、list-item-group、panel、popup、refresh、stack、stepper、stepper-item、swiper、tabs、tab-bar、tab-content | 
-| 基础组件 | button、chart、divider、image、image-animator、input、label、marquee、menu、option、picker、picker-view、piece、progress、qrcode、rating、richtext、search、select、slider、span、switch、text、textarea、toolbar、toolbar-item、toggle | 
-| 媒体组件 | video | 
-| 画布组件 | canvas | 
-| 栅格组件 | grid-container、grid-row、grid-col | 
+| 容器组件 | badge、dialog、div、form、list、list-item、list-item-group、panel、popup、refresh、stack、stepper、stepper-item、swiper、tabs、tab-bar、tab-content |
+| 基础组件 | button、chart、divider、image、image-animator、input、label、marquee、menu、option、picker、picker-view、piece、progress、qrcode、rating、richtext、search、select、slider、span、switch、text、textarea、toolbar、toolbar-item、toggle |
+| 媒体组件 | video |
+| 画布组件 | canvas |
+| 栅格组件 | grid-container、grid-row、grid-col |
 | svg组件 | svg、rect、circle、ellipse、path、line、polyline、polygon、text、tspan、textPath、animate、animateMotion、animateTransform |

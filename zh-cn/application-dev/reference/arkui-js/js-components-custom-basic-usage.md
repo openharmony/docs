@@ -27,37 +27,36 @@
     >子组件中使用驼峰命名法命名的事件，在父组件中绑定时需要使用短横线分隔命名形式，例如：@children-event表示绑定子组件的childrenEvent事件，如 @children-event="bindParentVmMethod"。
 
 
-## 对象<a name="section7681164881014"></a>
+**表 1**  对象
 
-<a name="table67211828124016"></a>
-<table><thead align="left"><tr id="row108577289405"><th class="cellrowborder" valign="top" width="11.091109110911091%" id="mcps1.1.4.1.1"><p id="p385742814403"><a name="p385742814403"></a><a name="p385742814403"></a>属性</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="11.091109110911091%" id="mcps1.2.4.1.1"><p>属性</p>
 </th>
-<th class="cellrowborder" valign="top" width="12.96129612961296%" id="mcps1.1.4.1.2"><p id="p19857192816408"><a name="p19857192816408"></a><a name="p19857192816408"></a>类型</p>
+<th class="cellrowborder" valign="top" width="18.02180218021802%" id="mcps1.2.4.1.2"><p>类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="75.94759475947595%" id="mcps1.1.4.1.3"><p id="p18573288402"><a name="p18573288402"></a><a name="p18573288402"></a>描述</p>
+<th class="cellrowborder" valign="top" width="70.88708870887088%" id="mcps1.2.4.1.3"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1085792824019"><td class="cellrowborder" valign="top" width="11.091109110911091%" headers="mcps1.1.4.1.1 "><p id="p115421323762"><a name="p115421323762"></a><a name="p115421323762"></a>data</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="11.091109110911091%" headers="mcps1.2.4.1.1 "><p>data</p>
 </td>
-<td class="cellrowborder" valign="top" width="12.96129612961296%" headers="mcps1.1.4.1.2 "><p id="p05120283516"><a name="p05120283516"></a><a name="p05120283516"></a>Object/Function</p>
+<td class="cellrowborder" valign="top" width="18.02180218021802%" headers="mcps1.2.4.1.2 "><p>Object/Function</p>
 </td>
-<td class="cellrowborder" valign="top" width="75.94759475947595%" headers="mcps1.1.4.1.3 "><p id="p105644412409"><a name="p105644412409"></a><a name="p105644412409"></a>页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以$或_开头，不要使用保留字for, if, show, tid。</p>
-<p id="p356184410403"><a name="p356184410403"></a><a name="p356184410403"></a>data与private和public不能重合使用。</p>
-</td>
-</tr>
-<tr id="row3857132812406"><td class="cellrowborder" valign="top" width="11.091109110911091%" headers="mcps1.1.4.1.1 "><p id="p88572283404"><a name="p88572283404"></a><a name="p88572283404"></a>props</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.96129612961296%" headers="mcps1.1.4.1.2 "><p id="p198571828114017"><a name="p198571828114017"></a><a name="p198571828114017"></a>Array/Object</p>
-</td>
-<td class="cellrowborder" valign="top" width="75.94759475947595%" headers="mcps1.1.4.1.3 "><p id="p3857192844012"><a name="p3857192844012"></a><a name="p3857192844012"></a>props用于组件之间的通信，可以通过&lt;tag xxxx='value'&gt;方式传递给组件；props名称必须用小写，不能以$或_开头，不要使用保留字for, if, show, tid。目前props的数据类型不支持Function。</p>
+<td class="cellrowborder" valign="top" width="70.88708870887088%" headers="mcps1.2.4.1.3 "><p>页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以$或_开头，不要使用保留字for, if, show, tid。</p>
+<p>data与private和public不能重合使用。(Rich)</p>
 </td>
 </tr>
-<tr id="row8842155461510"><td class="cellrowborder" valign="top" width="11.091109110911091%" headers="mcps1.1.4.1.1 "><p id="p17843155411153"><a name="p17843155411153"></a><a name="p17843155411153"></a>computed</p>
+<tr><td class="cellrowborder" valign="top" width="11.091109110911091%" headers="mcps1.2.4.1.1 "><p>props</p>
 </td>
-<td class="cellrowborder" valign="top" width="12.96129612961296%" headers="mcps1.1.4.1.2 "><p id="p1884365421515"><a name="p1884365421515"></a><a name="p1884365421515"></a>Object</p>
+<td class="cellrowborder" valign="top" width="18.02180218021802%" headers="mcps1.2.4.1.2 "><p>Array/Object</p>
 </td>
-<td class="cellrowborder" valign="top" width="75.94759475947595%" headers="mcps1.1.4.1.3 "><p id="p6422712153413"><a name="p6422712153413"></a><a name="p6422712153413"></a>用于在读取或设置进行预先处理，计算属性的结果会被缓存。计算属性名不能以$或_开头，不要使用保留字。</p>
+<td class="cellrowborder" valign="top" width="70.88708870887088%" headers="mcps1.2.4.1.3 "><p>props用于组件之间的通信，可以通过&lt;tag xxxx='value'&gt;方式传递给组件；props名称必须用小写，不能以$或_开头，不要使用保留字for, if, show, tid。目前props的数据类型不支持Function。</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="11.091109110911091%" headers="mcps1.2.4.1.1 "><p>computed</p>
+</td>
+<td class="cellrowborder" valign="top" width="18.02180218021802%" headers="mcps1.2.4.1.2 "><p>Object</p>
+</td>
+<td class="cellrowborder" valign="top" width="70.88708870887088%" headers="mcps1.2.4.1.3 "><p>计算属性，用于在读取或设置时，进行预先处理，其结果会被缓存。计算属性名不能以$或_开头，不要使用保留字。</p>
 </td>
 </tr>
 </tbody>

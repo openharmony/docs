@@ -1,7 +1,7 @@
 # slot插槽<a name="ZH-CN_TOPIC_0000001127284840"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7 开始支持。
+>从API Version 7 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 默认插槽<a name="section68133181214"></a>
 

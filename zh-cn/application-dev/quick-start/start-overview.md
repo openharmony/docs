@@ -4,9 +4,9 @@
 
 本文档适用于OpenHarmony应用开发的初学者。通过构建一个简单的具有页面跳转功能的应用（如下图[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行效果所示），熟悉OpenHarmony应用开发流程。
 
-为确保运行效果，本文以使用**DevEco Studio 3.0.0.601 Beta1**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
+为确保运行效果，本文以使用**DevEco Studio 3.0 Beta2**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
 
-![zh-cn_image_0000001172442490](figures/zh-cn_image_0000001172442490.png)
+![zh-cn_image_0000001089359413](figures/zh-cn_image_0000001089359413.png)
 
 **表1** 方舟开发框架的对比
 
@@ -26,8 +26,10 @@
 
 2. 开发环境配置完成后，请参考[创建OpenHarmony工程](../quick-start/use-wizard-to-create-project.md)创建工程。
    - 使用JS语言开发，模板选择Empty Ability，Language选择JS。
+
    - 使用eTS语言开发，模板选择Empty Ability，Language选择eTS。
 
 3. 工程创建完成后，使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行该工程。
 
 完成上述操作后，请参考[使用JS语言开发](../quick-start/start-with-js.md)、[使用eTS语言开发](../quick-start/start-with-ets.md)继续下一步的学习。
+

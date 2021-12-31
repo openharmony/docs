@@ -1,7 +1,7 @@
 # 窗口
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -40,7 +40,7 @@ ohos.permission.SYSTEM_FLOAT_WINDOW
 | height | number | 是 | 是 | 矩形区域的高度。 |
 
 
-## AvoidArea<sup>7+</sup>
+## AvoidArea<sup>7+</sup><a name="avoidarea"></a>
 
 表示窗口内容规避区域。
 
@@ -52,7 +52,7 @@ ohos.permission.SYSTEM_FLOAT_WINDOW
 | bottomRect | [Rect](#rect) | 是 | 是 | 屏幕底部的矩形区。 |
 
 
-## Size<sup>7+</sup>
+## Size<sup>7+</sup><a name="size"></a>
 
 窗口大小。
 
@@ -93,7 +93,7 @@ ohos.permission.SYSTEM_FLOAT_WINDOW
 | secondaryBounds | [Rect](#rect) | 表示次要边界信息，返回Rect类实例。 |
 
 
-## window.getTopWindow
+## window.getTopWindow<a name="window-gettopwindow"></a>
 
 getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
@@ -127,7 +127,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 窗口id。 |
-  | type | [WindowType](#windowtype7-) | 是 | 窗口类型。 |
+  | type | [WindowType](#windowtype) | 是 | 窗口类型。 |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调返回当前窗口对象。 |
 
 - 示例
@@ -283,7 +283,7 @@ setSplitBarVisibility(isVisibility: boolean, callback: AsyncCallback&lt;void&gt;
 | TYPE_SYSTEM_ALERT | 1 | 表示系统弹窗。 |
 
 
-## AvoidAreaType<sup>7+</sup>
+## AvoidAreaType<sup>7+</sup><a name="avoidareatype"></a>
 
 窗口内容需要规避区域的类型。
 
@@ -439,6 +439,30 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
           return;
       }
       console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### setWindowType<sup>7+</sup>
+
+setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口类型。
+
+- 参数
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | [WindowType](#windowType7) | 是 |窗口类型。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+- 示例
+  ```
+  var type = window.TYPE_APP;
+  windowClass.setWindowType(type, (err, data) => {
+    if (err) {
+        console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in setting the window type. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -648,8 +672,8 @@ getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): voi
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | [AvoidAreaType](#avoidareatype7-) | 是 | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
-  | callback | AsyncCallback&lt;[AvoidArea](#avoidarea7-)&gt; | 是 | 回调返回窗口内容规避区域。 |
+  | type | [AvoidAreaType](#avoidareatype) | 是 | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
+  | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | 是 | 回调返回窗口内容规避区域。 |
 
 - 示例
   ```
@@ -904,7 +928,7 @@ on(type: string, callback: Callback&lt;AvoidArea | Size | number&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听；<br/>-&nbsp;type为'windowSizeChange'7+时表示监听类型为窗口尺寸变化监听；<br/>-&nbsp;type为'systemAvoidAreaChange'7+时表示监听类型为系统窗口规避区变化监听。 |
-  | callback | Callback&lt;[AvoidArea](#avoidarea7-)&nbsp;\|&nbsp;Size&nbsp;\|&nbsp;number&gt; | 是 | 回调返回监听到的信息。 |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&nbsp;\|&nbsp;[Size](#size)&nbsp;\|&nbsp;number&gt; | 是 | 回调返回监听到的信息。 |
 
 - 示例
   ```
@@ -924,7 +948,7 @@ off(type: string, callback?: Callback&lt;AvoidArea | Size | number&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听；<br/>-&nbsp;type为'windowSizeChange'7+时表示监听类型为窗口尺寸变化监听；<br/>-&nbsp;type为'systemAvoidAreaChange'7+时表示监听类型为系统窗口规避区变化监听。 |
-  | callback | Callback&lt;[AvoidArea](#avoidarea7-)&nbsp;\|&nbsp;Size&nbsp;\|&nbsp;number&gt; | 否 | 回调返回监听到的信息。 |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&nbsp;\|&nbsp;[Size](#size)&nbsp;\|&nbsp;number&gt; | 否 | 回调返回监听到的信息。 |
 
 - 示例
   ```

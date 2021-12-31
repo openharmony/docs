@@ -1,0 +1,561 @@
+# xml文本转换
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+
+## 导入模块
+
+```
+import convertXml from '@ohos.convertxml'
+```
+
+
+## 权限
+
+无
+
+
+## ConvertXML
+
+
+### convert
+
+convert(xml: string, options?: ConvertOptions) : Object
+
+转化xml文本为JavaScript对象。
+
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | xml | string | 是 | 传入的xml文本, |
+  | options | [ConvertOptions](#convertoptions) | 否 | 用户可进行的选项 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 处理后返回的JavaScript对象。 |
+
+- 示例：
+  ```
+  import convertXml from '@ohos.convertxml'
+  var xml =
+      '<?xml version="1.0" encoding="utf-8"?>' +
+      '<note importance="high" logged="true">' +
+      '    <title>Happy</title>' +
+      '    <todo>Work</todo>' +
+      '    <todo>Play</todo>' +
+      '</note>';
+  var convertxml = new convertXml.ConvertXML();
+  var result1 = convertxml.convert(xml, {compact: false, spaces: 0});
+  console.log(result1)
+  ```
+
+
+## ConvertOptions
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| trim | boolean | 否 | 是否修剪位于文本前后的空白字符，默认false。 |
+| ignoreDeclaration | boolean | 否 | 是否忽略xml写入声明指示，默认false。 |
+| ignoreInstruction | boolean | 否 | 是否忽略xml的写入处理指令，默认false。 |
+| ignoreAttributes | boolean | 否 | 是否跨多行打印属性并缩进属性，默认false。 |
+| ignoreComment | boolean | 否 | 是否忽略元素的注释信息，默认false。 |
+| ignoreCdata | boolean | 否 | 是否忽略元素的CData信息，默认false。 |
+| ignoreDoctype | boolean | 否 | 是否忽略元素的Doctype信息，默认false。 |
+| ignoreText | boolean | 否 | 是否忽略元素的文本信息，默认false。 |
+| declarationKey | string | 否 | 用于输出对象中declaration的属性键的名称，默认_declaration。 |
+| instructionKey | string | 否 | 用于输出对象中instruction的属性键的名称，默认_instruction。 |
+| attributesKey | string | 否 | 用于输出对象中attributes的属性键的名称，默认_attributes。 |
+| textKey | string | 否 | 用于输出对象中text的属性键的名称，默认_text。 |
+| cdataKey | string | 否 | 用于输出对象中cdata的属性键的名称，默认_cdata。 |
+| doctypeKey | string | 否 | 用于输出对象中doctype的属性键的名称，默认_doctype。 |
+| commentKey | string | 否 | 用于输出对象中comment的属性键的名称，默认_comment。 |
+| parentKey | string | 否 | 用于输出对象中parent的属性键的名称，默认_parent。 |
+| typeKey | string | 否 | 用于输出对象中type的属性键的名称，默认_type。 |
+| nameKey | string | 否 | 用于输出对象中name的属性键的名称，默认_name。 |
+| elementsKey | string | 否 | 用于输出对象中elements的属性键的名称，默认_elements。 |
+
+
+## XmlSerializer
+
+
+### constructor
+
+constructor(buffer: ArrayBuffer | DataView, encoding?: string)
+
+XmlSerializer的构造函数。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | 是 | 用于接收写入xml信息的ArrayBuffer&nbsp;\|&nbsp;DataView内存。 |
+  | encoding | string | 否 | 编码格式。 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  new XmlSerializer(buffer: ArrayBuffer | DataView, encoding?: string)
+ 
+  var arrayBuffer = new ArrayBuffer(1024);
+  var bufView = new DataView(arrayBuffer);
+  var thatSer = new xml.XmlSerializer(bufView);
+  ```
+
+
+### setAttributes
+
+setAttributes(name: string, value: string)：void
+
+设置Attributes方法。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | name | string | 是 | 属性的key值 |
+  | value | string | 是 | 属性的value值 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  setAttributes(name: string, value: string)
+ 
+  var thatSer = new xml.XmlSerializer(bufView);
+  thatSer.setAttributes("importance", "high");  
+  ```
+
+
+### addEmptyElement
+
+addEmptyElement(name: string): void
+
+写入一个空元素。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | name | string | 是 | 该空元素的元素名 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  addEmptyElement(name: string): void
+ 
+  var thatSer = new xml.XmlSerializer(bufView);
+  thatSer.addEmptyElement("b"); // => <b/>
+  ```
+
+
+### setDeclaration
+
+setDeclaration(): void
+
+设置Declaration方法。
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  setDeclaration()：void
+ 
+  var thatSer = new xml.XmlSerializer(bufView);
+  thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
+  ```
+
+
+### startElement
+
+startElement(name: string): void
+
+XmlSerializer的构造函数。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | name | string | 是 | 当前元素的元素名 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  startElement(name:string):void
+ 
+  var arrayBuffer = new ArrayBuffer(1024);
+  var thatSer = new xml.XmlSerializer(arrayBuffer);
+  thatSer.startElement("notel");
+  thatSer.endElement();// => '<notel/>';
+  ```
+
+
+### endElement
+
+endElement(): void
+
+设置结束元素方法。
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  endElement()
+ 
+  var thatSer = new xml.XmlSerializer(bufView);
+  thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+  thatSer.startElement("table");
+  thatSer.setAttributes("importance", "high");
+  thatSer.setText("Happy");
+  endElement(); // => <h:table importance="high" xmlns:h="http://www.w3.org/TR/html4/">Happy</h:table>
+  ```
+
+
+### setNamespace
+
+setNamespace(prefix: string, namespace: string): void
+
+写入当前元素标记的命名空间。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | prefix | string | 是 | 当前元素及其子元素的前缀 |
+  | namespace | string | 是 | 当前元素及其子元素的命名空间 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  setNamespace(prefix:string,namespace:string):void
+ 
+  var arrayBuffer = new ArrayBuffer(1024);
+  var thatSer = new xml.XmlSerializer(arrayBuffer);
+  thatSer.setDeclaration();
+  thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+  thatSer.startElement("note");
+  thatSer.endElement();// = >'<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
+  ```
+
+### setCommnet
+
+setCommnet(text: string): void
+
+写入comment属性。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | text | string | 是 | 当前元素的注释内容 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  setCommnet(text: string):void
+
+  var arrayBuffer = new ArrayBuffer(1024);
+  var thatSer = new xml.XmlSerializer(arrayBuffer);
+  thatSer.startElement("note");
+  thatSer.setCommnet("Hi!");
+  thatSer.endElement(); // => '<note>\r\n  <!--Hi!-->\r\n</note>';
+  ```
+
+
+### setCData
+
+setCData(text: string): void
+
+写入CData属性。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | text | string | 是 | CDate属性的内容 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  setCData(text: string) :void
+
+  var arrayBuffer = new ArrayBuffer(1028);
+  var thatSer = new xml.XmlSerializer(arrayBuffer);
+  thatSer.setCData('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
+  ```
+
+
+### setText
+
+setText(text: string): void
+
+设置Text方法。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | text | string | 是 | text属性的内容 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  setText(text: string): void
+
+  var arrayBuffer = new ArrayBuffer(1024);
+  var thatSer = new xml.XmlSerializer(arrayBuffer);
+  thatSer.startElement("note");
+  thatSer.setAttributes("importance", "high");
+  thatSer.setText("Happy1");
+  thatSer.endElement(); // => '<note importance="high">Happy1</note>';
+  ```
+
+
+### setDocType
+
+setDocType(text: string): void
+
+写入DocType属性。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | text | string | 是 | DocType属性的内容 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  setDocType(text: string):void
+
+  var arrayBuffer = new ArrayBuffer(1024);
+  var thatSer = new xml.XmlSerializer(arrayBuffer);
+  thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
+  ```
+
+
+## XmlPullParser
+
+
+### XmlPullParser
+
+constructor(buffer: ArrayBuffer | DataView, encoding?: string)
+
+创建并返回一个XmlPullParser对象，该XmlPullParser对象传参两个, 第一参数是ArrayBuffer或DataView类型的一段内存，第二个参数为文件格式（默认为UTF-8）
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | 是 | 含有xml文本信息的ArrayBuffer&nbsp;或者DataView |
+  | encoding | string | 否 | 编码格式（仅支持utf-8） |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  new (buffer: ArrayBuffer | DataView, encoding?: string)
+
+  var strXml =
+              '<?xml version="1.0" encoding="utf-8"?>' +
+              '<note importance="high" logged="true">' +
+              '    <title>Happy</title>' +
+              '    <todo>Work</todo>' +
+              '    <todo>Play</todo>' +
+              '</note>';
+  var arrayBuffer = new ArrayBuffer(strXml.length*2);
+  var bufView = new Uint8Array(arrayBuffer);
+  var strLen = strXml.length;
+  for (var i = 0; i < strLen; ++i) {
+      bufView[i] = strXml.charCodeAt(i);//设置arraybuffer方式
+  }
+  var that = new xml.XmlPullParser(arrayBuffer);
+  ```
+
+
+### parse
+
+parse(option: ParseOptions): void
+
+该接口用于解析xml。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | option | [ParseOptions](#parseoptions) | 是 | 用户控制以及获取解析信息的选项。 |
+
+- 示例：
+  ```
+  import xml form '@ohos.xml'
+  parse(option: ParseOptions): void
+
+  var strXml =
+              '<?xml version="1.0" encoding="utf-8"?>' +
+              '<note importance="high" logged="true">' +
+              '    <title>Happy</title>' +
+              '    <todo>Work</todo>' +
+              '    <todo>Play</todo>' +
+              '</note>';
+  var arrayBuffer = new ArrayBuffer(strXml.length*2);
+  var bufView = new Uint8Array(arrayBuffer);
+  var strLen = strXml.length;
+  for (var i = 0; i < strLen; ++i) {
+      bufView[i] = strXml.charCodeAt(i);
+  }
+  var that = new xml.XmlPullParser(arrayBuffer);
+  var arrTag = {};
+  arrTag[0] = '132';
+  var i = 1;
+  function func(key, value){
+      arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
+      i++;
+      return true;
+  }
+  var options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+  that.parse(options);
+  ```
+
+
+## ParseOptions
+
+xml解析选项。
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| supportDoctype | boolean | 否 | 是否忽略Doctype&nbsp;,&nbsp;默认false。 |
+| ignoreNameSpace | boolean | 否 | 是否忽略NameSpace，默认false。 |
+| tagValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | 否 | 获取tagValue回调函数。 |
+| attributeValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | 否 | 获取attributeValue回调函数。 |
+| tokenValueCallbackFunction | (eventType:&nbsp;[EventType](#eventtype),&nbsp;value:&nbsp;[ParseInfo](#parseinfo))=&gt;&nbsp;boolean | 否 | 获取tokenValue回调函数。 |
+
+
+## ParseInfo
+
+当前xml解析信息。
+
+
+### getColumnNumber
+
+getColumnNumber(): number
+
+获取当前行号，从1开始。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 返回当前行号。 |
+
+
+### getDepth
+
+getDepth(): number
+
+获取元素的当前深度。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 返回元素的当前深度。 |
+
+
+### getLineNumber
+
+getLineNumber(): number
+
+获取当前列号，从1开始。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 返回当前列号。 |
+
+
+### getName
+
+getName(): string
+
+获取当前元素名称。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 返回当前元素名称。 |
+
+
+### getNamespace
+
+getNamespace(): string
+
+获取当前元素的命名空间。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 返回当前元素的命名空间。 |
+
+
+### getPrefix
+
+getPrefix(): string
+
+获取当前元素前缀。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 返回当前元素前缀。 |
+
+
+### getText
+
+getText(): string
+
+获取当前事件的文本内容。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 返回当前事件的文本内容。 |
+
+
+### isEmptyElementTag
+
+isEmptyElementTag(): boolean
+
+判断当前元素是否为空元素。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，当前元素为空元素。 |
+
+
+### isWhitespace
+
+isWhitespace(): boolean
+
+判断当前文本事件是否仅包含空格字符。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，当前文本事件仅包含空格字符。 |
+
+
+### getAttributeCount
+
+getAttributeCount(): number
+
+获取当前开始标记的属性数。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 当前开始标记的属性数。 |
+
+
+## EventType
+
+事件枚举。
+
+| 名称 | 枚举值 | 说明 |
+| -------- | -------- | -------- |
+| START_DOCUMENT | 0 | 启动文件事件。 |
+| END_DOCUMENT | 1 | 结束文件事件。 |
+| START_TAG | 2 | 启动标签事件。 |
+| END_TAG | 3 | 结束标签事件。 |
+| TEXT | 4 | 文本事件。 |
+| CDSECT | 5 | CDATA事件。 |
+| COMMENT | 6 | XML注释事件。 |
+| DOCDECL | 7 | XML文档类型声明事件。 |
+| INSTRUCTION | 8 | XML处理指令声明事件。 |
+| ENTITY_REFERENCE | 9 | 实体引用事件。 |
+| WHITESPACE | 10 | 空白事件。 |

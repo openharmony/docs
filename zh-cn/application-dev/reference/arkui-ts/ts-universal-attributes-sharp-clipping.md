@@ -1,32 +1,40 @@
-# 形状裁剪<a name="ZH-CN_TOPIC_0000001128996148"></a>
+# 形状裁剪<a name="ZH-CN_TOPIC_0000001237555111"></a>
 
-<a name="table146051414275"></a>
-<table><thead align="left"><tr id="row668017152712"><th class="cellrowborder" valign="top" width="14.19%" id="mcps1.1.5.1.1"><p id="p668014113277"><a name="p668014113277"></a><a name="p668014113277"></a>名称</p>
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 权限列表<a name="section781125411508"></a>
+
+无
+
+## 属性<a name="section6820191711316"></a>
+
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="14.19%" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="19.52%" id="mcps1.1.5.1.2"><p id="p1568031172711"><a name="p1568031172711"></a><a name="p1568031172711"></a>参数类型</p>
+<th class="cellrowborder" valign="top" width="19.52%" id="mcps1.1.5.1.2"><p>参数类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="15.07%" id="mcps1.1.5.1.3"><p id="p1068081122712"><a name="p1068081122712"></a><a name="p1068081122712"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="15.07%" id="mcps1.1.5.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="51.22%" id="mcps1.1.5.1.4"><p id="p186806116274"><a name="p186806116274"></a><a name="p186806116274"></a>描述</p>
+<th class="cellrowborder" valign="top" width="51.22%" id="mcps1.1.5.1.4"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1068015110273"><td class="cellrowborder" valign="top" width="14.19%" headers="mcps1.1.5.1.1 "><p id="p156804114277"><a name="p156804114277"></a><a name="p156804114277"></a>clip</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="14.19%" headers="mcps1.1.5.1.1 "><p>clip</p>
 </td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p1668071182718"><a name="p1668071182718"></a><a name="p1668071182718"></a>Shape | boolean</p>
+<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p>Shape | boolean</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.07%" headers="mcps1.1.5.1.3 "><p id="p368017172715"><a name="p368017172715"></a><a name="p368017172715"></a>false</p>
+<td class="cellrowborder" valign="top" width="15.07%" headers="mcps1.1.5.1.3 "><p>false</p>
 </td>
-<td class="cellrowborder" valign="top" width="51.22%" headers="mcps1.1.5.1.4 "><p id="p10680151172719"><a name="p10680151172719"></a><a name="p10680151172719"></a>参数为Shape类型时，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照边缘轮廓进行裁剪。</p>
+<td class="cellrowborder" valign="top" width="51.22%" headers="mcps1.1.5.1.4 "><p>参数为Shape类型时，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照边缘轮廓进行裁剪。</p>
 </td>
 </tr>
-<tr id="row2068091122714"><td class="cellrowborder" valign="top" width="14.19%" headers="mcps1.1.5.1.1 "><p id="p12680817272"><a name="p12680817272"></a><a name="p12680817272"></a>mask</p>
+<tr><td class="cellrowborder" valign="top" width="14.19%" headers="mcps1.1.5.1.1 "><p>mask</p>
 </td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p668010119272"><a name="p668010119272"></a><a name="p668010119272"></a>Shape</p>
+<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p>Shape</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.07%" headers="mcps1.1.5.1.3 "><p id="p196818116273"><a name="p196818116273"></a><a name="p196818116273"></a>-</p>
+<td class="cellrowborder" valign="top" width="15.07%" headers="mcps1.1.5.1.3 "><p>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="51.22%" headers="mcps1.1.5.1.4 "><p id="p168115111272"><a name="p168115111272"></a><a name="p168115111272"></a>在当前组件上加上指定形状的遮罩。</p>
+<td class="cellrowborder" valign="top" width="51.22%" headers="mcps1.1.5.1.4 "><p>在当前组件上加上指定形状的遮罩。</p>
 </td>
 </tr>
 </tbody>

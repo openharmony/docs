@@ -156,7 +156,7 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001208787965](figures/zh-cn_image_0000001208787965.gif)
+![zh-cn_image_0000001189088264](figures/zh-cn_image_0000001189088264.gif)
 
 
 ## 设置输入提示
@@ -219,7 +219,7 @@ import prompt from '@system.prompt'
  }
 ```
 
-![zh-cn_image_0000001208691071](figures/zh-cn_image_0000001208691071.gif)
+![zh-cn_image_0000001189248178](figures/zh-cn_image_0000001189248178.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 该方法在Input类型为text、email、date、time、number和password时生效。
@@ -306,4 +306,4 @@ export default {
 ```
 
 
-![zh-cn_image_0000001162586456](figures/zh-cn_image_0000001162586456.gif)
+![zh-cn_image_0000001188771358](figures/zh-cn_image_0000001188771358.gif)

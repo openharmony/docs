@@ -160,8 +160,6 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 表示当前设备的状态。
 
 
-### 属性
-
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | direction | [Direction](#direction) | 是 | 否 | 当前设备屏幕方向 |
@@ -172,8 +170,6 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 表示设备支持的能力。
 
-
-### 属性
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -554,6 +550,58 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
           console.log(value);
       }).catch(error => {
           console.log("getstring promise " + error);
+      });
+  });
+  ```
+
+### getRawFile<sup>8+</sup>
+
+getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定路径对应的rawfile文件内容，使用callback形式返回字节数组。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | rawfile文件路径 |
+  | callback | AsyncCallback&lt;Array&lt;Uint8Array&gt;&gt; | 是 | 异步回调，用于返回获取的rawfile文件内容 |
+
+- 示例：
+  ```
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getRawFile("test.xml", (error, value) => {
+          if (error != null) {
+              console.log(value);
+          } else {
+              console.log(value);
+          }
+      });
+  });
+  ```
+
+### getRawFile<sup>8+</sup>
+
+getRawFile(path: string): Promise&lt;Uint8Array&gt;
+
+用户获取指定路径对应的rawfile文件内容，使用Promise形式返回字节数组。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | rawfile文件路径 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Array&lt;Uint8Array&gt;&gt; | rawfile文件内容 |
+
+- 示例：
+  ```
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getRawFile("test.xml").then(value => {
+          console.log(value);
+      }).catch(error => {
+          console.log("getrawfile promise " + error);
       });
   });
   ```

@@ -1,10 +1,11 @@
-# transform样式动画<a name="ZH-CN_TOPIC_0000001171687726"></a>
+# transform样式动画
 
 设置transform属性对组件进行旋转、缩放、移动和倾斜。
 
-## 设置静态动画<a name="section82321901242"></a>
 
-创建一个正方形并旋转90°变成菱形，并用下方的长方形把菱形下半部分遮盖形成屋顶，设置长方形translate属性值为\(150px,-150px\)确定坐标位置形成门，再使用position属性使横纵线跟随父组件（正方形）移动到指定坐标位置，接着设置scale属性使父子组件一起变大形成窗户大小，最后使用skewX属性使组件倾斜后设置坐标translate\(200px,-830px\)得到烟囱。
+## 设置静态动画
+
+创建一个正方形并旋转90°变成菱形，并用下方的长方形把菱形下半部分遮盖形成屋顶，设置长方形translate属性值为(150px,-150px)确定坐标位置形成门，再使用position属性使横纵线跟随父组件（正方形）移动到指定坐标位置，接着设置scale属性使父子组件一起变大形成窗户大小，最后使用skewX属性使组件倾斜后设置坐标translate(200px,-830px)得到烟囱。
 
 ```
 <!-- xxx.hml -->
@@ -86,9 +87,10 @@
 }
 ```
 
-![](figures/111.png)
+![zh-cn_image_0000001220634677](figures/zh-cn_image_0000001220634677.png)
 
-## 设置平移动画<a name="section1212234417247"></a>
+
+## 设置平移动画
 
 小球下降动画，改变小球的Y轴坐标实现小球下落，在下一段是时间内减小Y轴坐标实现小球回弹，让每次回弹的高度逐次减小直至回弹高度为0，就模拟出了小球下降的动画。
 
@@ -162,9 +164,10 @@
 }
 ```
 
-![](figures/q2.gif)
+![zh-cn_image_0000001174756438](figures/zh-cn_image_0000001174756438.gif)
 
-## 设置旋转动画<a name="section74101411112517"></a>
+
+## 设置旋转动画
 
 设置不同的原点位置（transform-origin）改变元素所围绕的旋转中心。rotate3d属性前三个参数值分别为X轴、Y轴、Z轴的旋转向量，第四个值为旋转角度，旋转向角度可为负值，负值则代表旋转方向为逆时针方向。
 
@@ -212,7 +215,7 @@
 }
 .rect3{
   background-color: #6081f7;
-  /*  改变原定点置*/
+  /*  改变原点位置*/
   transform-origin: right bottom;
 }
 @keyframes rotate {
@@ -292,12 +295,13 @@
 }
 ```
 
-![](figures/d2.gif)
+![zh-cn_image_0000001220316305](figures/zh-cn_image_0000001220316305.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->transform-origin变换对象的原点位置，如果仅设置一个值，另一个值为50%，若设置两个值第一个值表示X轴的位置，第二个值表示Y轴的位置。
+> transform-origin变换对象的原点位置，如果仅设置一个值，另一个值为50%，若设置两个值第一个值表示X轴的位置，第二个值表示Y轴的位置。
 
-## 设置缩放动画<a name="section137551633132519"></a>
+
+## 设置缩放动画
 
 设置scale样式属性实现涟漪动画，先使用定位确定元素的位置，确定坐标后创建多个组件实现重合效果，再设置opacity属性改变组件不透明度实现组件隐藏与显示，同时设置scale值使组件可以一边放大一边隐藏，最后设置两个组件不同的动画执行时间，实现扩散的效果。
 
@@ -333,14 +337,12 @@
   height: 100px;
   border-radius: 50px;
   background:linear-gradient(#dcaec1, #d3a8e3);
-  z-index: 1;
-  position: absolute;
+  z-index: 1;  position: absolute;
 }
 .ripple{
   margin-top: 400px;
   margin-left: 40%;
-  position: absolute;
-  z-index: 0;
+  position: absolute;  z-index: 0;
   width: 100px;
   height: 100px;
   border-radius: 50px;
@@ -406,14 +408,15 @@ text{
 }
 ```
 
-![](figures/d3.gif)
+![zh-cn_image_0000001220396251](figures/zh-cn_image_0000001220396251.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->设置transform属性值后，子元素会跟着父元素一起改变，若只改变父元素其他属性值时（如：height，width)，子元素不会改变。
+> 设置transform属性值后，子元素会跟着父元素一起改变，若只改变父元素其他属性值时（如：height，width），子元素不会改变。
 
-## 设置matrix属性<a name="section114961910132614"></a>
 
-matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY, skewX, scaleY, translateX, translateY。下面示例中设置 了matrix属性为matrix\(1,0,0,1,0,200\)使组件移动和倾斜。
+## 设置matrix属性
+
+matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY, skewX, scaleY, translateX, translateY。下面示例中设置 了matrix属性为matrix(1,0,0,1,0,200)使组件移动和倾斜。
 
 ```
 <!-- xxx.hml -->
@@ -451,9 +454,10 @@ matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY
 }
 ```
 
-![](figures/q3.gif)
+![zh-cn_image_0000001174756580](figures/zh-cn_image_0000001174756580.gif)
 
-## 整合transform属性<a name="section20503152610"></a>
+
+## 整合transform属性
 
 transform可以设置多个值并且多个值可同时设置，下面案例中展示同时设置缩放（scale），平移（translate），旋转（rotate）属性时的动画效果。
 
@@ -514,8 +518,7 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 /* change1 change2 对比 */
 @keyframes change1{
   0%{
-    transform: translate(0,0);
-    transform: rotate(0deg)
+    transform: translate(0,0);    transform: rotate(0deg)
   }
   100%{
     transform: translate(0,500px);
@@ -559,10 +562,11 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 }
 ```
 
-![](figures/d4.gif)
+![zh-cn_image_0000001220554911](figures/zh-cn_image_0000001220554911.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->1.  当设置多个transform时，后续的transform值会把前面的覆盖掉。若想同时使用多个动画样式可用复合写法，例：transform: scale\(1\) rotate\(0\) translate\(0,0\)。
->2.  transform进行复合写法时，变化样式内多个样式值顺序的不同会呈现不一样的动画效果。
->3.  transform属性设置的样式值要一一对应，若前后不对应，则该动画不生效。若设置多个样式值则只会呈现出已对应值的动画效果。
-
+> 1. 当设置多个transform时，后续的transform值会把前面的覆盖掉。若想同时使用多个动画样式可用复合写法，例：transform: scale(1) rotate(0) translate(0,0)。
+> 
+> 2. transform进行复合写法时，变化样式内多个样式值顺序的不同会呈现不一样的动画效果。
+> 
+> 3. transform属性设置的样式值要一一对应，若前后不对应，则该动画不生效。若设置多个样式值则只会呈现出已对应值的动画效果。
