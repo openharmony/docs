@@ -1,6 +1,6 @@
-# Notification模块(JS端SDK接口)
+# Notification模块
 
-#### 支持设备
+## 支持设备
 
 | API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 |
 | ------------------------------------------------------------ | ---- | ---- | ------ | -------- |
@@ -83,19 +83,19 @@
 | WantAgent.equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>) | 支持 | 支持 | 支持   | 支持     |
 | WantAgent.equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\> | 支持 | 支持 | 支持   | 支持     |
 
-#### 权限列表
+## 权限列表
 
 无
 
-#### 通知接口
+## 通知接口
 
-#### 导入模块
+## 导入模块
 
 ```js
-import notify from '@ohos.notification';
+import Notification from '@ohos.notification';
 ```
 
-#### Notification.publish(request: NotificationRequest, callback: AsyncCallback\<void\>)
+## Notification.publish(request: NotificationRequest, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -144,12 +144,13 @@ import notify from '@ohos.notification';
 
 NotificationContent类型说明
 
-| 名称        | 读写属性 | 类型                         | 必填 | 描述           |
-| ----------- | -------- | ---------------------------- | ---- | -------------- |
-| contentType | 读、写   | ContentType                  | 是   | 通知内容类型   |
-| normal      | 读、写   | NotificationBasicContent     | 否   | 通知基本内容   |
-| longText    | 读、写   | NotificationLongTextContent  | 否   | 通知长文本内容 |
-| multiLine   | 读、写   | NotificationMultiLineContent | 否   | 通知多行内容   |
+| 名称        | 读写属性 | 类型                         | 必填 | 描述               |
+| ----------- | -------- | ---------------------------- | ---- | ------------------ |
+| contentType | 读、写   | ContentType                  | 是   | 通知内容类型       |
+| normal      | 读、写   | NotificationBasicContent     | 否   | 基本类型通知内容   |
+| longText    | 读、写   | NotificationLongTextContent  | 否   | 长文本类型通知内容 |
+| multiLine   | 读、写   | NotificationMultiLineContent | 否   | 多行类型通知内容   |
+| picture     | 读、写   | NotificationPictureContent   | 否   | 图片类型通知内容   |
 
 - ContentType类型说明
 
@@ -202,6 +203,15 @@ NotificationContent类型说明
 | expandedTitle  | 读、写   | string         | 是   | 通知展开时的标题                 |
 | picture        | 读、写   | image.PixelMap | 是   | 通知的图片内容                   |
 
+- SlotType类型说明
+
+| 名称                 | 读写属性 | 类型     | 必填 | 描述     |
+| -------------------- | -------- | -------- | ---- | -------- |
+| SOCIAL_COMMUNICATION | 只读     | SlotType | 否   | 社交类型 |
+| SERVICE_INFORMATION  | 只读     | SlotType | 否   | 服务类型 |
+| CONTENT_INFORMATION  | 只读     | SlotType | 否   | 内容类型 |
+| OTHER_TYPES          | 只读     | SlotType | 否   | 其他类型 |
+
 - NotificationActionButton类型说明
 
 | 名称      | 读写属性 | 类型                  | 必填 | 描述                      |
@@ -247,7 +257,7 @@ Notification.publish(notificationRequest, publishCallback)
 
 
 
-#### Notification.publish(request: NotificationRequest)
+## Notification.publish(request: NotificationRequest)
 
 - 接口说明
 
@@ -280,7 +290,7 @@ Notification.publish(notificationRequest).then((void) => {
 
 
 
-#### Notification.cancel(id: number, label: string, callback: AsyncCallback\<void\>)
+## Notification.cancel(id: number, label: string, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -291,7 +301,7 @@ Notification.publish(notificationRequest).then((void) => {
 | 名称     | 读写属性 | 类型                  | 必填 | 描述                 |
 | -------- | -------- | --------------------- | ---- | -------------------- |
 | id       | 只读     | number                | 是   | 通知ID               |
-| lable    | 只读     | string                | 是   | 通知标签             |
+| label    | 只读     | string                | 是   | 通知标签             |
 | callback | 只读     | AsyncCallback\<void\> | 是   | 表示被指定的回调方法 |
 
 - 返回值
@@ -310,7 +320,7 @@ Notification.cancel(0, "label", cancelCallback)
 
 
 
-#### Notification.cancel(id：number, label？：string）
+## Notification.cancel(id：number, label？：string）
 
 - 接口说明
 
@@ -321,7 +331,7 @@ Notification.cancel(0, "label", cancelCallback)
 | 名称  | 读写属性 | 类型   | 必填 | 描述     |
 | ----- | -------- | ------ | ---- | -------- |
 | id    | 只读     | number | 是   | 通知ID   |
-| lable | 只读     | string | 是   | 通知标签 |
+| label | 只读     | string | 否   | 通知标签 |
 
 - 返回值
 
@@ -337,7 +347,7 @@ Notification.cancel(0).then((void) => {
 
 
 
-#### Notification.cancel(id: number, callback: AsyncCallback\<void\>)
+## Notification.cancel(id: number, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -366,7 +376,7 @@ Notification.cancel(0, cancelCallback)
 
 
 
-#### Notification.cancelAll(callback: AsyncCallback\<void\>)
+## Notification.cancelAll(callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -394,11 +404,11 @@ Notification.cancelAll(cancelCallback)
 
 
 
-#### Notification.cancelAll()
+## Notification.cancelAll()
 
 - 接口说明
 
-  取消所有已发布的通知（callback形式)
+  取消所有已发布的通知（Promise形式)
 
 - 参数描述
 
@@ -406,7 +416,7 @@ Notification.cancelAll(cancelCallback)
 
 - 返回值
 
-  void
+  Promise\<void\>
 
 - 示例
 
@@ -418,7 +428,7 @@ Notification.cancelAll().then((void) => {
 
 
 
-#### Notification.addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>)
+## Notification.addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -426,10 +436,10 @@ Notification.cancelAll().then((void) => {
 
 - addSlot参数描述
 
-| 名称     | 读写属性 | 类型                  | 必填 | 描述                                       |
-| -------- | -------- | --------------------- | ---- | ------------------------------------------ |
-| slot     | 只读     | NotificationSlot      | 是   | 要创建的通知通道，由{NotificationSlot}设置 |
-| callback | 只读     | AsyncCallback\<void\> | 是   | 表示被指定的回调方法                       |
+| 名称     | 读写属性 | 类型                  | 必填 | 描述                 |
+| -------- | -------- | --------------------- | ---- | -------------------- |
+| slot     | 只读     | NotificationSlot      | 是   | 要创建的通知通道对象 |
+| callback | 只读     | AsyncCallback\<void\> | 是   | 表示被指定的回调方法 |
 
 - NotificationSlot类型说明
 
@@ -460,14 +470,14 @@ function addSlotCallBack(err) {
 }
 //通知slot对象
 var notificationSlot = {
-    type:SOCIAL_COMMUNICATION
+    type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 Notification.addSlot(notificationSlot, addSlotCallBack)
 ```
 
 
 
-#### Notification.addSlot(slot: NotificationSlot)
+## Notification.addSlot(slot: NotificationSlot)
 
 - 接口说明
 
@@ -475,9 +485,9 @@ Notification.addSlot(notificationSlot, addSlotCallBack)
 
 - addSlot参数描述
 
-| 名称 | 读写属性 | 类型             | 必填 | 描述                                       |
-| ---- | -------- | ---------------- | ---- | ------------------------------------------ |
-| slot | 只读     | NotificationSlot | 是   | 要创建的通知通道，由{NotificationSlot}设置 |
+| 名称 | 读写属性 | 类型             | 必填 | 描述                 |
+| ---- | -------- | ---------------- | ---- | -------------------- |
+| slot | 只读     | NotificationSlot | 是   | 要创建的通知通道对象 |
 
 - 返回值
 
@@ -487,10 +497,9 @@ Notification.addSlot(notificationSlot, addSlotCallBack)
 
 ```js
 //通知slot对象
-        var notificationSlot = {
-            notificationId: 0,
-            type:SOCIAL_COMMUNICATION
-        }
+var notificationSlot = {
+    type: Notification.SlotType.SOCIAL_COMMUNICATION
+}
 Notification.addSlot(notificationSlot).then((void) => {
 	console.info("==========================>addSlotCallback=======================>");
 });
@@ -498,7 +507,7 @@ Notification.addSlot(notificationSlot).then((void) => {
 
 
 
-#### Notification.addSlot(type: SlotType, callback: AsyncCallback\<void\>)
+## Notification.addSlot(type: SlotType, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -511,15 +520,6 @@ Notification.addSlot(notificationSlot).then((void) => {
 | type     | 只读     | SlotType              | 是   | 要创建的通知通道的类型 |
 | callback | 只读     | AsyncCallback\<void\> | 是   | 表示被指定的回调方法   |
 
-- SlotType类型说明
-
-| 名称                 | 读写属性 | 类型     | 必填 | 描述     |
-| -------------------- | -------- | -------- | ---- | -------- |
-| SOCIAL_COMMUNICATION | 只读     | SlotType | 否   | 社交类型 |
-| SERVICE_INFORMATION  | 只读     | SlotType | 否   | 服务类型 |
-| CONTENT_INFORMATION  | 只读     | SlotType | 否   | 内容类型 |
-| OTHER_TYPES          | 只读     | SlotType | 否   | 其他类型 |
-
 - 返回值
 
   void
@@ -531,12 +531,12 @@ Notification.addSlot(notificationSlot).then((void) => {
 function addSlotCallBack(err) {
 	console.info("==========================>addSlotCallBack=======================>");
 }
-Notification.addSlot(SOCIAL_COMMUNICATION, addSlotCallBack)
+Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack)
 ```
 
 
 
-#### Notification.addSlot(type: SlotType)
+## Notification.addSlot(type: SlotType)
 
 - 接口说明
 
@@ -555,14 +555,14 @@ Notification.addSlot(SOCIAL_COMMUNICATION, addSlotCallBack)
 - 示例
 
 ```js
-Notification.addSlot(SOCIAL_COMMUNICATION).then((void) => {
+Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then((void) => {
 	console.info("==========================>addSlotCallback=======================>");
 });
 ```
 
 
 
-#### Notification.addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>)
+## Notification.addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -570,10 +570,10 @@ Notification.addSlot(SOCIAL_COMMUNICATION).then((void) => {
 
 - addSlots数描述
 
-| 名称     | 读写属性 | 类型                      | 必填 | 描述                                       |
-| -------- | -------- | ------------------------- | ---- | ------------------------------------------ |
-| slots    | 只读     | Array\<NotificationSlot\> | 是   | 要创建的通知通道，由{NotificationSlot}设置 |
-| callback | 只读     | AsyncCallback\<void\>     | 是   | 表示被指定的回调方法                       |
+| 名称     | 读写属性 | 类型                      | 必填 | 描述                     |
+| -------- | -------- | ------------------------- | ---- | ------------------------ |
+| slots    | 只读     | Array\<NotificationSlot\> | 是   | 要创建的通知通道对象数组 |
+| callback | 只读     | AsyncCallback\<void\>     | 是   | 表示被指定的回调方法     |
 
 - 返回值
 
@@ -588,8 +588,7 @@ function addSlotsCallBack(err) {
 }
 //通知slot对象
 var notificationSlot = {
-    notificationId: 0,
-    type:SOCIAL_COMMUNICATION
+    type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 //通知slot array 对象
 var notificationSlotArray = new Array(); 
@@ -600,7 +599,7 @@ Notification.addSlots(notificationSlotArray, addSlotsCallBack)
 
 
 
-#### Notification.addSlots(slots: Array\<NotificationSlot\>)
+## Notification.addSlots(slots: Array\<NotificationSlot\>)
 
 - 接口说明
 
@@ -608,9 +607,9 @@ Notification.addSlots(notificationSlotArray, addSlotsCallBack)
 
 - addSlots数描述
 
-| 名称  | 读写属性 | 类型                      | 必填 | 描述                                       |
-| ----- | -------- | ------------------------- | ---- | ------------------------------------------ |
-| slots | 只读     | Array\<NotificationSlot\> | 是   | 要创建的通知通道，由{NotificationSlot}设置 |
+| 名称  | 读写属性 | 类型                      | 必填 | 描述                     |
+| ----- | -------- | ------------------------- | ---- | ------------------------ |
+| slots | 只读     | Array\<NotificationSlot\> | 是   | 要创建的通知通道对象数组 |
 
 - 返回值
 
@@ -621,8 +620,7 @@ Notification.addSlots(notificationSlotArray, addSlotsCallBack)
 ```js
 //通知slot对象
 var notificationSlot = {
-    notificationId: 0,
-    type:SOCIAL_COMMUNICATION
+    type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 //通知slot array 对象
 var notificationSlotArray = new Array(); 
@@ -635,7 +633,7 @@ Notification.addSlots(notificationSlotArray).then((void) => {
 
 
 
-#### Notification.getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>)
+## Notification.getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>)
 
 - 接口说明
 
@@ -659,13 +657,13 @@ Notification.addSlots(notificationSlotArray).then((void) => {
 function getSlotCallback(err,data) {
 	console.info("==========================>getSlotCallback=======================>");
 }
-var slotType = SOCIAL_COMMUNICATION;
+var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType, getSlotCallback)
 ```
 
 
 
-#### Notification.getSlot(slotType)
+## Notification.getSlot(slotType)
 
 - 接口说明
 
@@ -684,14 +682,15 @@ Notification.getSlot(slotType, getSlotCallback)
 - 示例
 
 ```js
-var slotType = SOCIAL_COMMUNICATION;
+var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType).then((data) => {
 	console.info("==========================>getSlotCallback=======================>");
+});
 ```
 
 
 
-#### Notification.getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>)
+## Notification.getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>)
 
 - 接口说明
 
@@ -719,7 +718,7 @@ Notification.getSlots(getSlotsCallback)
 
 
 
-#### Notification.getSlots()
+## Notification.getSlots()
 
 - 接口说明
 
@@ -738,11 +737,12 @@ Notification.getSlots(getSlotsCallback)
 ```js
 Notification.getSlots().then((data) => {
 	console.info("==========================>getSlotsCallback=======================>");
+});
 ```
 
 
 
-#### Notification.removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>)
+## Notification.removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -766,13 +766,13 @@ Notification.getSlots().then((data) => {
 function removeSlotCallback(err) {
 	console.info("==========================>removeSlotCallback=======================>");
 }
-var slotType = SOCIAL_COMMUNICATION;
+var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType,removeSlotCallback)
 ```
 
 
 
-#### Notification.removeSlot(slotType: SlotType)
+## Notification.removeSlot(slotType: SlotType)
 
 - 接口说明
 
@@ -791,14 +791,15 @@ Notification.removeSlot(slotType,removeSlotCallback)
 - 示例
 
 ```js
-var slotType = SOCIAL_COMMUNICATION;
+var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType).then((void) => {
 	console.info("==========================>removeSlotCallback=======================>");
+});
 ```
 
 
 
-#### Notification.removeAllSlots(callback: AsyncCallback\<void\>)
+## Notification.removeAllSlots(callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -825,7 +826,7 @@ Notification.removeAllSlots(removeAllCallBack)
 
 
 
-#### Notification.removeAllSlots()
+## Notification.removeAllSlots()
 
 - 接口说明
 
@@ -849,7 +850,7 @@ Notification.removeAllSlots().then((void) => {
 
 
 
-#### Notification.subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>)
+## Notification.subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -873,7 +874,6 @@ Notification.removeAllSlots().then((void) => {
 | onConnect?:()                                                | 读、写   | function | 否   | 注册订阅回调函数           |
 | onDisconnect?:()                                             | 读、写   | function | 否   | 取消订阅回调函数           |
 | onDestroy?:()                                                | 读、写   | function | 否   | 服务失联回调函数           |
-| onDisturbModeChange?:(mode: notification.DoNotDisturbMode)   | 读、写   | function | 否   | 免打扰模式变更回调函数     |
 | onDoNotDisturbDateChange?:(mode: notification.DoNotDisturbDate) | 读、写   | function | 否   | 免打扰时间选项变更回调函数 |
 
 - SubscribeCallbackData 类型说明
@@ -900,15 +900,6 @@ Notification.removeAllSlots().then((void) => {
 | slot     | 只读     | NotificationSlot | 是   | 通知通道内容 |
 | hashCode | 只读     | string           | 是   | 通知唯一标识 |
 | ranking  | 只读     | number           | 是   | 通知排序序号 |
-
-- DoNotDisturbMode类型说明
-
-| 名称           | 读写属性 | 类型             | 必填 | 描述                         |
-| -------------- | -------- | ---------------- | ---- | ---------------------------- |
-| ALLOW_ALL      | 只读     | DoNotDisturbMode | 否   | 全部绕过免打扰               |
-| ALLOW_PRIORITY | 只读     | DoNotDisturbMode | 否   | 指定优先级通知可以绕过免打扰 |
-| ALLOW_NONE     | 只读     | DoNotDisturbMode | 否   | 全部免打扰                   |
-| ALLOW_ALARMS   | 只读     | DoNotDisturbMode | 否   | 闹钟类型通知可以绕过免打扰   |
 
 - DoNotDisturbType类型说明
 
@@ -950,17 +941,17 @@ function onConsumeCallback(err, data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
-    onConsume:onConsumeCallback;
+    onConsume: onConsumeCallback
 }
 var info = {
-    bundleNames:["bundleName1","bundleName2"]
+    bundleNames: ["bundleName1","bundleName2"]
 }
 Notification.subscribe(subscriber, info, subscribeCallback);
 ```
 
 
 
-#### Notification.subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
+## Notification.subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -987,14 +978,14 @@ function onConsumeCallback(err, data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
-    onConsume:onConsumeCallback;
+    onConsume: onConsumeCallback
 }
 Notification.subscribe(subscriber, subscribeCallback);
 ```
 
 
 
-#### Notification.subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo)
+## Notification.subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo)
 
 - 接口说明
 
@@ -1018,7 +1009,7 @@ function onConsumeCallback(err, data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
-    onConsume:onConsumeCallback;
+    onConsume: onConsumeCallback
 };
 Notification.subscribe(subscriber).then((void) => {
 	console.info("==========================>subscribeCallback=======================>");
@@ -1027,7 +1018,7 @@ Notification.subscribe(subscriber).then((void) => {
 
 
 
-#### Notification.unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
+## Notification.unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1054,14 +1045,14 @@ function onConsumeCallback(err, data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
-    onConsume:onConsumeCallback;
+    onConsume: onConsumeCallback
 }
 Notification.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
 
 
-#### Notification.unsubscribe(subscriber: NotificationSubscriber)
+## Notification.unsubscribe(subscriber: NotificationSubscriber)
 
 - 接口说明
 
@@ -1084,7 +1075,7 @@ function onConsumeCallback(err, data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
-    onConsume:onConsumeCallback;
+    onConsume: onConsumeCallback
 };
 Notification.unsubscribe(subscriber).then((void) => {
 	console.info("==========================>unsubscribeCallback=======================>");
@@ -1093,7 +1084,7 @@ Notification.unsubscribe(subscriber).then((void) => {
 
 
 
-#### Notification.enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>)
+## Notification.enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1124,14 +1115,14 @@ function enableNotificationCallback(err) {
 	console.info("==========================>enableNotificationCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.enableNotification(bundle, false, enableNotificationCallback);
 ```
 
 
 
-#### Notification.enableNotification(bundle: BundleOption, enable: boolean)
+## Notification.enableNotification(bundle: BundleOption, enable: boolean)
 
 - 接口说明
 
@@ -1152,7 +1143,7 @@ Notification.enableNotification(bundle, false, enableNotificationCallback);
 
 ```js
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.enableNotification(bundle, false).then((void) => {
 	console.info("==========================>enableNotificationCallback=======================>");
@@ -1161,7 +1152,7 @@ Notification.enableNotification(bundle, false).then((void) => {
 
 
 
-#### Notification.isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>)
+## Notification.isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>)
 
 - 接口说明
 
@@ -1185,14 +1176,14 @@ function isNotificationEnabledCallback(err, data) {
 	console.info("==========================>isNotificationEnabledCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
 
 
-#### Notification.isNotificationEnabled(bundle: BundleOption)
+## Notification.isNotificationEnabled(bundle: BundleOption)
 
 - 接口说明
 
@@ -1212,7 +1203,7 @@ Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 
 ```js
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.isNotificationEnabled(bundle).then((data) => {
 	console.info("==========================>isNotificationEnabledCallback=======================>");
@@ -1221,7 +1212,7 @@ Notification.isNotificationEnabled(bundle).then((data) => {
 
 
 
-#### Notification.isNotificationEnabled(callback: AsyncCallback\<boolean\>)
+## Notification.isNotificationEnabled(callback: AsyncCallback\<boolean\>)
 
 - 接口说明
 
@@ -1249,7 +1240,7 @@ Notification.isNotificationEnabled(isNotificationEnabledCallback);
 
 
 
-#### Notification.isNotificationEnabled()
+## Notification.isNotificationEnabled()
 
 - 接口说明
 
@@ -1275,7 +1266,7 @@ Notification.isNotificationEnabled().then((data) => {
 
 
 
-#### Notification.displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>)
+## Notification.displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1300,14 +1291,14 @@ function displayBadgeCallback(err) {
 	console.info("==========================>displayBadgeCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.displayBadge(bundle, false, displayBadgeCallback);
 ```
 
 
 
-#### Notification.displayBadge(bundle: BundleOption, enable: boolean)
+## Notification.displayBadge(bundle: BundleOption, enable: boolean)
 
 - 接口说明
 
@@ -1328,7 +1319,7 @@ Notification.displayBadge(bundle, false, displayBadgeCallback);
 
 ```js
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.displayBadge(bundle, false).then((void) => {
 	console.info("==========================>displayBadgeCallback=======================>");
@@ -1337,7 +1328,7 @@ Notification.displayBadge(bundle, false).then((void) => {
 
 
 
-#### Notification.isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>)
+## Notification.isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>)
 
 - 接口说明
 
@@ -1361,14 +1352,14 @@ function isBadgeDisplayedCallback(err, data) {
 	console.info("==========================>isBadgeDisplayedCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 ```
 
 
 
-#### Notification.isBadgeDisplayed(bundle: BundleOption)
+## Notification.isBadgeDisplayed(bundle: BundleOption)
 
 - 接口说明
 
@@ -1388,7 +1379,7 @@ Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 
 ```js
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.isBadgeDisplayed(bundle).then((data) => {
 	console.info("==========================>isBadgeDisplayedCallback=======================>");
@@ -1397,7 +1388,7 @@ Notification.isBadgeDisplayed(bundle).then((data) => {
 
 
 
-#### Notification.setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>)
+## Notification.setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1422,17 +1413,17 @@ function setSlotByBundleCallback(err) {
 	console.info("==========================>setSlotByBundleCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 var notificationSlot = {
-    type:SOCIAL_COMMUNICATION
+    type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
 
 
 
-#### Notification.setSlotByBundle(bundle: BundleOption, slot: NotificationSlot)
+## Notification.setSlotByBundle(bundle: BundleOption, slot: NotificationSlot)
 
 - 接口说明
 
@@ -1453,10 +1444,10 @@ Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 
 ```js
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 var notificationSlot = {
-    type:SOCIAL_COMMUNICATION
+    type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
 Notification.displayBadge(bundle, notificationSlot).then((void) => {
 	console.info("==========================>setSlotByBundleCallback=======================>");
@@ -1465,7 +1456,7 @@ Notification.displayBadge(bundle, notificationSlot).then((void) => {
 
 
 
-#### Notification.getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>)
+## Notification.getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>)
 
 - 接口说明
 
@@ -1489,14 +1480,14 @@ function getSlotsByBundleCallback(err, data) {
 	console.info("==========================>getSlotsByBundleCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 ```
 
 
 
-#### Notification.getSlotsByBundle(bundle: BundleOption)
+## Notification.getSlotsByBundle(bundle: BundleOption)
 
 - 接口说明
 
@@ -1516,7 +1507,7 @@ Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 
 ```js
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.getSlotsByBundle(bundle).then((data) => {
 	console.info("==========================>getSlotsByBundleCallback=======================>");
@@ -1525,7 +1516,7 @@ Notification.getSlotsByBundle(bundle).then((data) => {
 
 
 
-#### Notification.getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>)
+## Notification.getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>)
 
 - 接口说明
 
@@ -1549,14 +1540,14 @@ function getSlotNumByBundle(err, data) {
 	console.info("==========================>getSlotNumByBundleCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
 
 
-#### Notification.getSlotNumByBundle(bundle: BundleOption)
+## Notification.getSlotNumByBundle(bundle: BundleOption)
 
 - 接口说明
 
@@ -1576,7 +1567,7 @@ Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 
 ```js
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.getSlotNumByBundle(bundle).then((data) => {
 	console.info("==========================>getSlotNumByBundleCallback=======================>");
@@ -1585,7 +1576,7 @@ Notification.getSlotNumByBundle(bundle).then((data) => {
 
 
 
-#### Notification.remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCallback\<void\>)
+## Notification.remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1617,18 +1608,18 @@ function removeCallback(err) {
 	console.info("==========================>removeCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 var notificationKey = {
-    id:0;
-    label:"label";
+    id: 0;
+    label: "label";
 }
 Notification.remove(bundle, notificationKey, removeCallback);
 ```
 
 
 
-#### Notification.remove(bundle: BundleOption, notificationKey: NotificationKey)
+## Notification.remove(bundle: BundleOption, notificationKey: NotificationKey)
 
 - 接口说明
 
@@ -1649,11 +1640,11 @@ Notification.remove(bundle, notificationKey, removeCallback);
 
 ```js
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 var notificationKey = {
-    id:0;
-    label:"label";
+    id: 0;
+    label: "label";
 }
 Notification.remove(bundle, notificationKey).then((void) => {
 	console.info("==========================>removeCallback=======================>");
@@ -1662,7 +1653,7 @@ Notification.remove(bundle, notificationKey).then((void) => {
 
 
 
-#### Notification.remove(hashCode: string, callback: AsyncCallback\<void\>)
+## Notification.remove(hashCode: string, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1691,7 +1682,7 @@ Notification.remove(hashCode, removeCallback);
 
 
 
-#### Notification.remove(hashCode: string)
+## Notification.remove(hashCode: string)
 
 - 接口说明
 
@@ -1717,7 +1708,7 @@ Notification.remove(hashCode).then((void) => {
 
 
 
-#### Notification.removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>)
+## Notification.removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1741,14 +1732,14 @@ function removeAllCallback(err) {
 	console.info("==========================>removeAllCallback=======================>");
 }
 var bundle = {
-    bundle:"bundleName1";
+    bundle: "bundleName1";
 }
 Notification.removeAll(bundle, removeAllCallback);
 ```
 
 
 
-#### Notification.removeAll(callback: AsyncCallback\<void\>)
+## Notification.removeAll(callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1776,7 +1767,7 @@ Notification.removeAll(removeAllCallback);
 
 
 
-#### Notification.removeAll(bundle?: BundleOption)
+## Notification.removeAll(bundle?: BundleOption)
 
 - 接口说明
 
@@ -1802,7 +1793,7 @@ Notification.removeAll().then((void) => {
 
 
 
-#### Notification.getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
+## Notification.getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 - 接口说明
 
@@ -1830,7 +1821,7 @@ Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
 
 
 
-#### Notification.getAllActiveNotifications()
+## Notification.getAllActiveNotifications()
 
 - 接口说明
 
@@ -1854,7 +1845,7 @@ Notification.getAllActiveNotifications().then((data) => {
 
 
 
-#### Notification.getActiveNotificationCount(callback: AsyncCallback\<number\>)
+## Notification.getActiveNotificationCount(callback: AsyncCallback\<number\>)
 
 - 接口说明
 
@@ -1882,7 +1873,7 @@ Notification.getActiveNotificationCount(getActiveNotificationCountCallback);
 
 
 
-#### Notification.getActiveNotificationCount()
+## Notification.getActiveNotificationCount()
 
 - 接口说明
 
@@ -1906,7 +1897,7 @@ Notification.getActiveNotificationCount().then((data) => {
 
 
 
-#### Notification.getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
+## Notification.getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 - 接口说明
 
@@ -1934,7 +1925,7 @@ Notification.getActiveNotifications(getActiveNotificationsCallback);
 
 
 
-#### Notification.getActiveNotifications()
+## Notification.getActiveNotifications()
 
 - 接口说明
 
@@ -1958,7 +1949,7 @@ Notification.getActiveNotifications().then((data) => {
 
 
 
-#### Notification.cancelGroup(groupName: string, callback: AsyncCallback\<void\>)
+## Notification.cancelGroup(groupName: string, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -1989,7 +1980,7 @@ Notification.cancelGroup(groupName, cancelGroupCallback);
 
 
 
-#### Notification.cancelGroup(groupName: string)
+## Notification.cancelGroup(groupName: string)
 
 - 接口说明
 
@@ -2016,7 +2007,7 @@ Notification.cancelGroup(groupName).then(() => {
 
 
 
-#### Notification.removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>)
+## Notification.removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -2041,7 +2032,7 @@ function removeGroupByBundleCallback(err) {
    console.info("==========================>removeGroupByBundleCallback=======================>");
 }
 
-var bundleOption = {bundle:"Bundle"};
+var bundleOption = {bundle: "Bundle"};
 var groupName = "GroupName";
 
 Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
@@ -2049,7 +2040,7 @@ Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCal
 
 
 
-#### Notification.removeGroupByBundle(bundle: BundleOption, groupName: string)
+## Notification.removeGroupByBundle(bundle: BundleOption, groupName: string)
 
 - 接口说明
 
@@ -2069,7 +2060,7 @@ Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCal
 - 示例
 
 ```js
-var bundleOption = {bundle:"Bundle"};
+var bundleOption = {bundle: "Bundle"};
 var groupName = "GroupName";
 Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("==========================>removeGroupByBundlePromise=======================>");
@@ -2078,7 +2069,7 @@ Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
 
 
 
-#### Notification.setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>)
+## Notification.setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -2103,9 +2094,9 @@ function setDoNotDisturbDateCallback(err) {
 }
 
 var doNotDisturbDate = {
-    type : notification.DoNotDisturbType.TYPE_ONCE,
-    begin : new Date(),
-    end : new Date(2021, 11, 15, 18, 0)
+    type: notification.DoNotDisturbType.TYPE_ONCE,
+    begin: new Date(),
+    end: new Date(2021, 11, 15, 18, 0)
 }
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
@@ -2113,7 +2104,7 @@ Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 
 
 
-#### Notification.setDoNotDisturbDate(date: DoNotDisturbDate)
+## Notification.setDoNotDisturbDate(date: DoNotDisturbDate)
 
 - 接口说明
 
@@ -2133,9 +2124,9 @@ Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 
 ```js
 var doNotDisturbDate = {
-    type : notification.DoNotDisturbType.TYPE_ONCE,
-    begin : new Date(),
-    end : new Date(2021, 11, 15, 18, 0)
+    type: notification.DoNotDisturbType.TYPE_ONCE,
+    begin: new Date(),
+    end: new Date(2021, 11, 15, 18, 0)
 }
 Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("==========================>setDoNotDisturbDatePromise=======================>");
@@ -2144,7 +2135,7 @@ Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 
 
 
-#### Notification.getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>)
+## Notification.getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>)
 
 - 接口说明
 
@@ -2172,7 +2163,7 @@ Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 
 
 
-#### Notification.getDoNotDisturbDate()
+## Notification.getDoNotDisturbDate()
 
 - 接口说明
 
@@ -2196,7 +2187,7 @@ Notification.getDoNotDisturbDate().then((data) => {
 
 
 
-#### Notification.supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>)
+## Notification.supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>)
 
 - 接口说明
 
@@ -2224,7 +2215,7 @@ Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
 
 
 
-#### Notification.supportDoNotDisturbMode()
+## Notification.supportDoNotDisturbMode()
 
 - 接口说明
 
@@ -2248,15 +2239,15 @@ Notification.supportDoNotDisturbMode().then((data) => {
 
 
 
-#### WantAgent接口
+## WantAgent接口
 
-#### 导入模块
+## 导入模块
 
 ```js
 import WantAgent from '@ohos.wantAgent';
 ```
 
-#### WantAgent.getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>)
+## WantAgent.getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>)
 
 - 接口说明
 
@@ -2291,11 +2282,6 @@ import WantAgent from '@ohos.wantAgent';
 | CANCEL_PRESENT_FLAG | 只读     | enum | 否   | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象   |
 | UPDATE_PRESENT_FLAG | 只读     | enum | 否   | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据 |
 | CONSTANT_FLAG       | 只读     | enum | 否   | WantAgent是不可变的                                          |
-| REPLACE_ELEMENT     | 只读     | enum | 否   | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
-| REPLACE_ACTION      | 只读     | enum | 否   | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
-| REPLACE_URI         | 只读     | enum | 否   | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
-| REPLACE_ENTITIES    | 只读     | enum | 否   | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
-| REPLACE_BUNDLE      | 只读     | enum | 否   | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
 
 - OperationType类型说明
 
@@ -2314,8 +2300,8 @@ import WantAgent from '@ohos.wantAgent';
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -2349,12 +2335,12 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 ```
 
 
 
-#### WantAgent.getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
+## WantAgent.getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 - 接口说明
 
@@ -2374,8 +2360,8 @@ wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -2405,14 +2391,14 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info("==========================>getWantAgentCallback=======================>");
 });
 ```
 
 
 
-#### WantAgent.getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>)
+## WantAgent.getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>)
 
 - 接口说明
 
@@ -2433,17 +2419,17 @@ wantAgent.getWantAgent(wantAgentInfo).then((data) => {
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
 	console.info("==========================>getWantAgentCallback=======================>");
     if (err.code == 0) {
-    	WantAgent = data;
+    	wantAgent = data;
     } else {
         console.info('----getWantAgent failed!----');
     }
@@ -2476,18 +2462,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
 //getBundleName回调
 function getBundleNameCallback(err, data) {
 	console.info("==========================>getBundleNameCallback=======================>");
 }
-wantAgent.getBundleName(WantAgent, getBundleNameCallback)
+WantAgent.getBundleName(wantAgent, getBundleNameCallback)
 ```
 
 
 
-#### WantAgent.getBundleName(agent: WantAgent): Promise\<string\>
+## WantAgent.getBundleName(agent: WantAgent): Promise\<string\>
 
 - 接口说明
 
@@ -2507,11 +2493,11 @@ wantAgent.getBundleName(WantAgent, getBundleNameCallback)
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -2541,19 +2527,19 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info("==========================>getWantAgentCallback=======================>");
-    WantAgent = data;
+    wantAgent = data;
 });
 
-wantAgent.getBundleName(WantAgent).then((data) => {
+WantAgent.getBundleName(wantAgent).then((data) => {
 	console.info("==========================>getBundleNameCallback=======================>");
 });
 ```
 
 
 
-#### WantAgent.getUid(agent: WantAgent, callback: AsyncCallback\<number\>)
+## WantAgent.getUid(agent: WantAgent, callback: AsyncCallback\<number\>)
 
 - 接口说明
 
@@ -2574,17 +2560,17 @@ wantAgent.getBundleName(WantAgent).then((data) => {
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
 	console.info("==========================>getWantAgentCallback=======================>");
     if (err.code == 0) {
-    	WantAgent = data;
+    	wantAgent = data;
     } else {
         console.info('----getWantAgent failed!----');
     }
@@ -2617,18 +2603,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
 //getUid回调
 function getUidCallback(err, data) {
 	console.info("==========================>getUidCallback=======================>");
 }
-wantAgent.getUid(WantAgent, getUidCallback)
+WantAgent.getUid(wantAgent, getUidCallback)
 ```
 
 
 
-#### WantAgent.getUid(agent: WantAgent): Promise\<number\>
+## WantAgent.getUid(agent: WantAgent): Promise\<number\>
 
 - 接口说明
 
@@ -2648,11 +2634,11 @@ wantAgent.getUid(WantAgent, getUidCallback)
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -2682,19 +2668,19 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info("==========================>getWantAgentCallback=======================>");
-    WantAgent = data;
+    wantAgent = data;
 });
 
-wantAgent.getUid(WantAgent).then((data) => {
+WantAgent.getUid(wantAgent).then((data) => {
 	console.info("==========================>getUidCallback=======================>");
 });
 ```
 
 
 
-#### WantAgent.getWant(agent: WantAgent, callback: AsyncCallback\<Want\>)
+## WantAgent.getWant(agent: WantAgent, callback: AsyncCallback\<Want\>)
 
 - 接口说明
 
@@ -2715,17 +2701,17 @@ wantAgent.getUid(WantAgent).then((data) => {
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
 	console.info("==========================>getWantAgentCallback=======================>");
     if (err.code == 0) {
-    	WantAgent = data;
+    	wantAgent = data;
     } else {
         console.info('----getWantAgent failed!----');
     }
@@ -2758,22 +2744,22 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentWantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
 //getWant回调
 function getWantCallback(err, data) {
 	console.info("==========================>getWantCallback=======================>");
 }
-wantAgent.getWant(WantAgent, getWantCallback)
+WantAgent.getWant(wantAgent, getWantCallback)
 ```
 
 
 
-#### WantAgent.getWant(agent: WantAgent): Promise\<Want\>
+## WantAgent.getWant(agent: WantAgent): Promise\<Want\>
 
 - 接口说明
 
-  获取WantAgent对象的Uid（Promise形式）
+  获取WantAgent对象的want（Promise形式）
 
 - getWant参数描述
 
@@ -2789,11 +2775,11 @@ wantAgent.getWant(WantAgent, getWantCallback)
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -2823,19 +2809,19 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info("==========================>getWantAgentCallback=======================>");
-    WantAgent = data;
+    wantAgent = data;
 });
 
-wantAgent.getWant(WantAgent).then((data) => {
+WantAgent.getWant(wantAgent).then((data) => {
 	console.info("==========================>getWantCallback=======================>");
 });
 ```
 
 
 
-#### WantAgent.cancel(agent: WantAgent, callback: AsyncCallback\<void\>)
+## WantAgent.cancel(agent: WantAgent, callback: AsyncCallback\<void\>)
 
 - 接口说明
 
@@ -2856,17 +2842,17 @@ wantAgent.getWant(WantAgent).then((data) => {
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
 	console.info("==========================>getWantAgentCallback=======================>");
     if (err.code == 0) {
-    	WantAgent = data;
+    	wantAgent = data;
     } else {
         console.info('----getWantAgent failed!----');
     }
@@ -2899,18 +2885,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
 //cancel回调
 function cancelCallback(err, data) {
 	console.info("==========================>cancelCallback=======================>");
 }
-wantAgent.cancel(WantAgent, cancelCallback)
+WantAgent.cancel(wantAgent, cancelCallback)
 ```
 
 
 
-#### WantAgent.cancel(agent: WantAgent): Promise\<void\>
+## WantAgent.cancel(agent: WantAgent): Promise\<void\>
 
 - 接口说明
 
@@ -2930,11 +2916,11 @@ wantAgent.cancel(WantAgent, cancelCallback)
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -2964,19 +2950,19 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info("==========================>getWantAgentCallback=======================>");
-    WantAgent = data;
+    wantAgent = data;
 });
 
-wantAgent.cancel(WantAgent).then((data) => {
+WantAgent.cancel(wantAgent).then((data) => {
 	console.info("==========================>cancelCallback=======================>");
 });
 ```
 
 
 
-#### WantAgent.trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>)
+## WantAgent.trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>)
 
 - 接口说明
 
@@ -3007,17 +2993,17 @@ wantAgent.cancel(WantAgent).then((data) => {
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent;
+var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
 	console.info("==========================>getWantAgentCallback=======================>");
     if (err.code == 0) {
-    	WantAgent = data;
+    	wantAgent = data;
     } else {
         console.info('----getWantAgent failed!----');
     }
@@ -3050,7 +3036,7 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
 //trigger回调
 function triggerCallback(err, data) {
@@ -3060,12 +3046,12 @@ function triggerCallback(err, data) {
 var triggerInfo = {
     code:0
 }
-wantAgent.trigger(WantAgent, triggerInfo, triggerCallback)
+WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 ```
 
 
 
-#### WantAgent.equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>)
+## WantAgent.equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>)
 
 - 接口说明
 
@@ -3087,19 +3073,19 @@ wantAgent.trigger(WantAgent, triggerInfo, triggerCallback)
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent1;
-var WantAgent2;
+var wantAgent1;
+var wantAgent2;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
 	console.info("==========================>getWantAgentCallback=======================>");
     if (err.code == 0) {
-    	WantAgent1 = data;
-        WantAgent2 = data;
+    	wantAgent1 = data;
+        wantAgent2 = data;
     } else {
         console.info('----getWantAgent failed!----');
     }
@@ -3132,18 +3118,18 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
 //equal回调
 function equalCallback(err, data) {
 	console.info("==========================>equalCallback=======================>");
 }
-wantAgent.equal(WantAgent1, WantAgent1, equalCallback)
+WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 ```
 
 
 
-#### WantAgent.equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
+## WantAgent.equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 - 接口说明
 
@@ -3164,12 +3150,12 @@ wantAgent.equal(WantAgent1, WantAgent1, equalCallback)
 - 示例
 
 ```js
-import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //wantAgent对象
-var WantAgent1;
-var WantAgent2;
+var wantAgent1;
+var wantAgent2;
 
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -3199,12 +3185,13 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info("==========================>getWantAgentCallback=======================>");
-    WantAgent = data;
+    wantAgent1 = data;
+    wantAgent2 = data;
 });
 
-wantAgent.equal(WantAgent1, WantAgent2).then((data) => {
+WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 	console.info("==========================>equalCallback=======================>");
 });
 ```
