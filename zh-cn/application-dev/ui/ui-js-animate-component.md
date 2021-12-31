@@ -1,8 +1,9 @@
-# 组件动画<a name="ZH-CN_TOPIC_0000001171528146"></a>
+# 组件动画
 
 在组件上创建和运行动画的快捷方式。具体用法请参考[通用方法](../reference/arkui-js/js-components-common-methods.md)。
 
-## 获取动画对象<a name="section662542112713"></a>
+
+## 获取动画对象
 
 通过调用animate方法获得animation对象，animation对象支持动画属性、动画方法和动画事件。
 
@@ -57,13 +58,14 @@ export default {
 }
 ```
 
-![](figures/1.gif)
+![zh-cn_image_0000001175235138](figures/zh-cn_image_0000001175235138.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >-   使用animate方法时必须传入Keyframes和Options参数。
 >-   多次调用animate方法时，采用replace策略，即最后一次调用时传入的参数生效。
 
-## 设置动画参数<a name="section36079502817"></a>
+
+## 设置动画参数
 
 在获取动画对象后，通过设置参数Keyframes设置动画在组件上的样式。
 
@@ -102,30 +104,7 @@ export default {
     this.options = {
       duration: 4000,
     };
-    this.keyframes = [
-      {
-        transform: {
-          translate: '-120px -0px',
-          scale: 1,
-          rotate: 0
-        },
-        transformOrigin: '100px 100px',
-        offset: 0.0,
-        width: 200,
-        height: 200
-      },
-      {
-        transform: {
-          translate: '120px 0px',
-          scale: 1.5,
-          rotate: 90
-        },
-        transformOrigin: '100px 100px',
-        offset: 1.0,
-        width: 300,
-        height: 300
-      }
-    ];
+    this.keyframes = [      {        transform: {          translate: '-120px -0px',          scale: 1,          rotate: 0        },        transformOrigin: '100px 100px',        offset: 0.0,        width: 200,        height: 200      },      {        transform: {          translate: '120px 0px',          scale: 1.5,          rotate: 90        },        transformOrigin: '100px 100px',        offset: 1.0,        width: 300,        height: 300      }    ];
   },
   Show() {
     this.animation = this.$element('content').animate(this.keyframes, this.options);
@@ -134,11 +113,12 @@ export default {
 }
 ```
 
-![](figures/1-0.gif)
+![zh-cn_image_0000001174916742](figures/zh-cn_image_0000001174916742.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->-   translate、scale和totate的先后顺序会影响动画效果。
->-   transformOrigin只对scale和totate起作用。
+> - translate、scale和rtotate的先后顺序会影响动画效果。
+> 
+> - transformOrigin只对scale和rtotate起作用。
 
 在获取动画对象后，通过设置参数Options来设置动画的属性。
 
@@ -174,12 +154,12 @@ export default {
   onInit() {
   },
   onShow() {
-    var options = {
-      duration: 1500,
-      easing: 'ease-in',
-      delay: 5,
-      iterations: 2,
-      direction: 'normal',
+    var options = {      
+        duration: 1500,      
+        easing: 'ease-in',      
+        delay: 5,      
+        iterations: 2,      
+        direction: 'normal',    
     };
     var frames = [
       {
@@ -201,16 +181,21 @@ export default {
 }
 ```
 
-![](figures/3.gif)
+![zh-cn_image_0000001220396499](figures/zh-cn_image_0000001220396499.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->direction：指定动画的播放模式。
->normal： 动画正向循环播放。
->reverse： 动画反向循环播放。
->alternate：动画交替循环播放，奇数次正向播放，偶数次反向播放。
->alternate-reverse：动画反向交替循环播放，奇数次反向播放，偶数次正向播放。
+> direction：指定动画的播放模式。
+> 
+> normal： 动画正向循环播放。
+> 
+> reverse： 动画反向循环播放。
+> 
+> alternate：动画交替循环播放，奇数次正向播放，偶数次反向播放。
+> 
+> alternate-reverse：动画反向交替循环播放，奇数次反向播放，偶数次正向播放。
 
-## 添加事件和调用方法<a name="section950105162810"></a>
+
+## 添加事件和调用方法
 
 animation对象支持动画事件和动画方法。可以通过添加开始和取消事件，调用播放、暂停、倒放和结束方法实现预期动画。
 
@@ -336,7 +321,7 @@ export default {
 }
 ```
 
-![](figures/111-1.gif)
+![zh-cn_image_0000001220635011](figures/zh-cn_image_0000001220635011.gif)
 
 通过改变playStat的属性实现动画状态的改变。
 
@@ -463,5 +448,4 @@ export default {
 }
 ```
 
-![](figures/1111.gif)
-
+![zh-cn_image_0000001175075286](figures/zh-cn_image_0000001175075286.gif)

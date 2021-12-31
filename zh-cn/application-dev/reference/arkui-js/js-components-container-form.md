@@ -2,9 +2,6 @@
 
 表单容器，支持容器内input元素的内容提交和重置。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从 API Version 6 开始支持。
-
 ## 权限列表<a name="section11257113618419"></a>
 
 无
@@ -25,27 +22,26 @@
 
 处支持[通用事件](js-components-common-events.md)外，还支持如下事件：
 
-<a name="table1180610218398"></a>
-<table><thead align="left"><tr id="row8806162153917"><th class="cellrowborder" valign="top" width="22.7022702270227%" id="mcps1.1.4.1.1"><p id="p0807112143914"><a name="p0807112143914"></a><a name="p0807112143914"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="22.7022702270227%" id="mcps1.1.4.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="16.881688168816883%" id="mcps1.1.4.1.2"><p id="p380752110397"><a name="p380752110397"></a><a name="p380752110397"></a>参数</p>
+<th class="cellrowborder" valign="top" width="16.881688168816883%" id="mcps1.1.4.1.2"><p>参数</p>
 </th>
-<th class="cellrowborder" valign="top" width="60.41604160416041%" id="mcps1.1.4.1.3"><p id="p118071121183910"><a name="p118071121183910"></a><a name="p118071121183910"></a>描述</p>
+<th class="cellrowborder" valign="top" width="60.41604160416041%" id="mcps1.1.4.1.3"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row380713217397"><td class="cellrowborder" valign="top" width="22.7022702270227%" headers="mcps1.1.4.1.1 "><p id="p19132135593918"><a name="p19132135593918"></a><a name="p19132135593918"></a>submit</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="22.7022702270227%" headers="mcps1.1.4.1.1 "><p>submit</p>
 </td>
-<td class="cellrowborder" valign="top" width="16.881688168816883%" headers="mcps1.1.4.1.2 "><p id="p17807152183918"><a name="p17807152183918"></a><a name="p17807152183918"></a><a href="#table195257111418">FormResult</a></p>
+<td class="cellrowborder" valign="top" width="16.881688168816883%" headers="mcps1.1.4.1.2 "><p><a href="#table195257111418">FormResult</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="60.41604160416041%" headers="mcps1.1.4.1.3 "><p id="p8807102116392"><a name="p8807102116392"></a><a name="p8807102116392"></a>点击提交按钮，进行表单提交时，触发该事件。</p>
+<td class="cellrowborder" valign="top" width="60.41604160416041%" headers="mcps1.1.4.1.3 "><p>点击提交按钮，进行表单提交时，触发该事件。</p>
 </td>
 </tr>
-<tr id="row38502504218"><td class="cellrowborder" valign="top" width="22.7022702270227%" headers="mcps1.1.4.1.1 "><p id="p1085019519428"><a name="p1085019519428"></a><a name="p1085019519428"></a>reset</p>
+<tr><td class="cellrowborder" valign="top" width="22.7022702270227%" headers="mcps1.1.4.1.1 "><p>reset</p>
 </td>
-<td class="cellrowborder" valign="top" width="16.881688168816883%" headers="mcps1.1.4.1.2 "><p id="p108501958427"><a name="p108501958427"></a><a name="p108501958427"></a>-</p>
+<td class="cellrowborder" valign="top" width="16.881688168816883%" headers="mcps1.1.4.1.2 "><p>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="60.41604160416041%" headers="mcps1.1.4.1.3 "><p id="p2850758423"><a name="p2850758423"></a><a name="p2850758423"></a>点击重置按钮后，触发该事件。</p>
+<td class="cellrowborder" valign="top" width="60.41604160416041%" headers="mcps1.1.4.1.3 "><p>点击重置按钮后，触发该事件。</p>
 </td>
 </tr>
 </tbody>
@@ -54,19 +50,19 @@
 **表 1**  FormResult
 
 <a name="table195257111418"></a>
-<table><thead align="left"><tr id="row55251211114111"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p2052551119411"><a name="p2052551119411"></a><a name="p2052551119411"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p2525141116412"><a name="p2525141116412"></a><a name="p2525141116412"></a>类型</p>
+<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p>类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p55251011134114"><a name="p55251011134114"></a><a name="p55251011134114"></a>描述</p>
+<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row352501115412"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p15525191113412"><a name="p15525191113412"></a><a name="p15525191113412"></a>value</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p>value</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p145256112413"><a name="p145256112413"></a><a name="p145256112413"></a>Object</p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p>Object</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1852512118411"><a name="p1852512118411"></a><a name="p1852512118411"></a>input元素的name和value的值。</p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p>input元素的name和value的值。</p>
 </td>
 </tr>
 </tbody>
@@ -81,14 +77,18 @@
 ```
 <!-- xxx.hml -->
 <form onsubmit='onSubmit' onreset='onReset'>
-  <label>选项一</label>
-  <input type='radio' name='radioGroup' value='radio1'></input>
-  <label>选项二</label>
-  <input type='radio' name='radioGroup' value='radio2'></input>
-  <text>输入文本</text>
+  <div style="width: 600px;height: 150px;flex-direction: row;justify-content: space-around;">
+    <label>选项一</label>
+    <input type='radio' name='radioGroup' value='radio1'></input>
+    <label>选项二</label>
+    <input type='radio' name='radioGroup' value='radio2'></input>
+  </div>
+  <text style="margin-left: 50px;margin-bottom: 50px;">输入文本</text>
   <input type='text' name='user'></input>
-  <input type='submit'>Submit</input>
-  <input type='reset'>Reset</input>
+  <div style="width: 600px;height: 150px;margin-top: 50px;flex-direction: row;justify-content: space-around;">
+    <input type='submit'>Submit</input>
+    <input type='reset'>Reset</input>
+  </div>
 </form>
 ```
 
@@ -104,4 +104,6 @@ export default{
   }
 }
 ```
+
+![](figures/001.gif)
 

@@ -1,4 +1,7 @@
-# Button<a name="ZH-CN_TOPIC_0000001158141265"></a>
+# Button<a name="ZH-CN_TOPIC_0000001192755124"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 提供按钮组件。
 
@@ -17,38 +20,38 @@
     **表 1**  options参数说明
 
     <a name="table712610266288"></a>
-    <table><thead align="left"><tr id="row14126132602813"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.2.6.1.1"><p id="p12126162672817"><a name="p12126162672817"></a><a name="p12126162672817"></a>参数名</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.2.6.1.1"><p>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="15.47%" id="mcps1.2.6.1.2"><p id="p612662615285"><a name="p612662615285"></a><a name="p612662615285"></a>参数类型</p>
+    <th class="cellrowborder" valign="top" width="15.47%" id="mcps1.2.6.1.2"><p>参数类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="13.03%" id="mcps1.2.6.1.3"><p id="p171261526112810"><a name="p171261526112810"></a><a name="p171261526112810"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="13.03%" id="mcps1.2.6.1.3"><p>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="13.18%" id="mcps1.2.6.1.4"><p id="p16126122652819"><a name="p16126122652819"></a><a name="p16126122652819"></a>默认值</p>
+    <th class="cellrowborder" valign="top" width="13.18%" id="mcps1.2.6.1.4"><p>默认值</p>
     </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.2.6.1.5"><p id="p1612622618286"><a name="p1612622618286"></a><a name="p1612622618286"></a>参数描述</p>
+    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.2.6.1.5"><p>参数描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row1512619268285"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.2.6.1.1 "><p id="p912612612814"><a name="p912612612814"></a><a name="p912612612814"></a>type</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.2.6.1.1 "><p>type</p>
     </td>
-    <td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.2.6.1.2 "><p id="p5126926132817"><a name="p5126926132817"></a><a name="p5126926132817"></a>ButtonType</p>
+    <td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.2.6.1.2 "><p>ButtonType</p>
     </td>
-    <td class="cellrowborder" valign="top" width="13.03%" headers="mcps1.2.6.1.3 "><p id="p91262026102811"><a name="p91262026102811"></a><a name="p91262026102811"></a>否</p>
+    <td class="cellrowborder" valign="top" width="13.03%" headers="mcps1.2.6.1.3 "><p>否</p>
     </td>
-    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.2.6.1.4 "><p id="p912616260283"><a name="p912616260283"></a><a name="p912616260283"></a>Capsule</p>
+    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.2.6.1.4 "><p>Capsule</p>
     </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.2.6.1.5 "><p id="p5126192617281"><a name="p5126192617281"></a><a name="p5126192617281"></a>描述按钮风格。</p>
+    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.2.6.1.5 "><p>描述按钮风格。</p>
     </td>
     </tr>
-    <tr id="row1412632622819"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.2.6.1.1 "><p id="p0126202632815"><a name="p0126202632815"></a><a name="p0126202632815"></a>stateEffect</p>
+    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.2.6.1.1 "><p>stateEffect</p>
     </td>
-    <td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.2.6.1.2 "><p id="p11126142615280"><a name="p11126142615280"></a><a name="p11126142615280"></a>boolean</p>
+    <td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.2.6.1.2 "><p>boolean</p>
     </td>
-    <td class="cellrowborder" valign="top" width="13.03%" headers="mcps1.2.6.1.3 "><p id="p5126326122820"><a name="p5126326122820"></a><a name="p5126326122820"></a>否</p>
+    <td class="cellrowborder" valign="top" width="13.03%" headers="mcps1.2.6.1.3 "><p>否</p>
     </td>
-    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.2.6.1.4 "><p id="p71264261281"><a name="p71264261281"></a><a name="p71264261281"></a>true</p>
+    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.2.6.1.4 "><p>true</p>
     </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.2.6.1.5 "><p id="p5126162618289"><a name="p5126162618289"></a><a name="p5126162618289"></a>按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。</p>
+    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.2.6.1.5 "><p>按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。</p>
     </td>
     </tr>
     </tbody>
@@ -61,39 +64,38 @@
 
     **表 2**  value参数说明
 
-    <a name="table244753515284"></a>
-    <table><thead align="left"><tr id="row3447113522811"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.2.6.1.1"><p id="p1144753517284"><a name="p1144753517284"></a><a name="p1144753517284"></a>参数名</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.2.6.1.1"><p>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.2.6.1.2"><p id="p54471535192817"><a name="p54471535192817"></a><a name="p54471535192817"></a>参数类型</p>
+    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.2.6.1.2"><p>参数类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="14.49%" id="mcps1.2.6.1.3"><p id="p4447173516281"><a name="p4447173516281"></a><a name="p4447173516281"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="14.49%" id="mcps1.2.6.1.3"><p>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="13.18%" id="mcps1.2.6.1.4"><p id="p18447835162816"><a name="p18447835162816"></a><a name="p18447835162816"></a>默认值</p>
+    <th class="cellrowborder" valign="top" width="13.18%" id="mcps1.2.6.1.4"><p>默认值</p>
     </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.2.6.1.5"><p id="p744723519280"><a name="p744723519280"></a><a name="p744723519280"></a>参数描述</p>
+    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.2.6.1.5"><p>参数描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row134475355286"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.2.6.1.1 "><p id="p104487359288"><a name="p104487359288"></a><a name="p104487359288"></a>label</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.2.6.1.1 "><p>label</p>
     </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.2.6.1.2 "><p id="p94480357284"><a name="p94480357284"></a><a name="p94480357284"></a>string</p>
+    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.2.6.1.2 "><p>string</p>
     </td>
-    <td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.2.6.1.3 "><p id="p10448935142819"><a name="p10448935142819"></a><a name="p10448935142819"></a>否</p>
+    <td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.2.6.1.3 "><p>否</p>
     </td>
-    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.2.6.1.4 "><p id="p15448123542819"><a name="p15448123542819"></a><a name="p15448123542819"></a>-</p>
+    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.2.6.1.4 "><p>-</p>
     </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.2.6.1.5 "><p id="p10448835182820"><a name="p10448835182820"></a><a name="p10448835182820"></a>按钮文本内容。</p>
+    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.2.6.1.5 "><p>按钮文本内容。</p>
     </td>
     </tr>
-    <tr id="row18448133582812"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.2.6.1.1 "><p id="p044823519281"><a name="p044823519281"></a><a name="p044823519281"></a>options</p>
+    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.2.6.1.1 "><p>options</p>
     </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.2.6.1.2 "><p id="p044873511289"><a name="p044873511289"></a><a name="p044873511289"></a>Object</p>
+    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.2.6.1.2 "><p>Object</p>
     </td>
-    <td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.2.6.1.3 "><p id="p4448153510281"><a name="p4448153510281"></a><a name="p4448153510281"></a>否</p>
+    <td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.2.6.1.3 "><p>否</p>
     </td>
-    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.2.6.1.4 "><p id="p1444820359284"><a name="p1444820359284"></a><a name="p1444820359284"></a>-</p>
+    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.2.6.1.4 "><p>-</p>
     </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.2.6.1.5 "><p id="p16448163513282"><a name="p16448163513282"></a><a name="p16448163513282"></a>见<a href="#table712610266288">options参数说明</a>。</p>
+    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.2.6.1.5 "><p>见<a href="#table712610266288">options参数说明</a>。</p>
     </td>
     </tr>
     </tbody>
@@ -102,33 +104,32 @@
 
 ## 属性<a name="section94181084473"></a>
 
-<a name="table1088mcpsimp"></a>
-<table><thead align="left"><tr id="row1095mcpsimp"><th class="cellrowborder" valign="top" width="13.389999999999999%" id="mcps1.1.5.1.1"><p id="p1097mcpsimp"><a name="p1097mcpsimp"></a><a name="p1097mcpsimp"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="13.389999999999999%" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="14.430000000000001%" id="mcps1.1.5.1.2"><p id="p1099mcpsimp"><a name="p1099mcpsimp"></a><a name="p1099mcpsimp"></a>参数类型</p>
+<th class="cellrowborder" valign="top" width="14.430000000000001%" id="mcps1.1.5.1.2"><p>参数类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="11.87%" id="mcps1.1.5.1.3"><p id="p1101mcpsimp"><a name="p1101mcpsimp"></a><a name="p1101mcpsimp"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="11.87%" id="mcps1.1.5.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="60.309999999999995%" id="mcps1.1.5.1.4"><p id="p1103mcpsimp"><a name="p1103mcpsimp"></a><a name="p1103mcpsimp"></a>描述</p>
+<th class="cellrowborder" valign="top" width="60.309999999999995%" id="mcps1.1.5.1.4"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1104mcpsimp"><td class="cellrowborder" valign="top" width="13.389999999999999%" headers="mcps1.1.5.1.1 "><p id="p1106mcpsimp"><a name="p1106mcpsimp"></a><a name="p1106mcpsimp"></a>type</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="13.389999999999999%" headers="mcps1.1.5.1.1 "><p>type</p>
 </td>
-<td class="cellrowborder" valign="top" width="14.430000000000001%" headers="mcps1.1.5.1.2 "><p id="p1108mcpsimp"><a name="p1108mcpsimp"></a><a name="p1108mcpsimp"></a><a href="#li93236107910">ButtonType</a></p>
+<td class="cellrowborder" valign="top" width="14.430000000000001%" headers="mcps1.1.5.1.2 "><p><a href="#li93236107910">ButtonType</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="11.87%" headers="mcps1.1.5.1.3 "><p id="p1110mcpsimp"><a name="p1110mcpsimp"></a><a name="p1110mcpsimp"></a>Capsule</p>
+<td class="cellrowborder" valign="top" width="11.87%" headers="mcps1.1.5.1.3 "><p>Capsule</p>
 </td>
-<td class="cellrowborder" valign="top" width="60.309999999999995%" headers="mcps1.1.5.1.4 "><p id="p1112mcpsimp"><a name="p1112mcpsimp"></a><a name="p1112mcpsimp"></a>设置Button样式。</p>
+<td class="cellrowborder" valign="top" width="60.309999999999995%" headers="mcps1.1.5.1.4 "><p>设置Button样式。</p>
 </td>
 </tr>
-<tr id="row1561916101034"><td class="cellrowborder" valign="top" width="13.389999999999999%" headers="mcps1.1.5.1.1 "><p id="p1161918103312"><a name="p1161918103312"></a><a name="p1161918103312"></a>stateEffect</p>
+<tr><td class="cellrowborder" valign="top" width="13.389999999999999%" headers="mcps1.1.5.1.1 "><p>stateEffect</p>
 </td>
-<td class="cellrowborder" valign="top" width="14.430000000000001%" headers="mcps1.1.5.1.2 "><p id="p961941017310"><a name="p961941017310"></a><a name="p961941017310"></a>boolean</p>
+<td class="cellrowborder" valign="top" width="14.430000000000001%" headers="mcps1.1.5.1.2 "><p>boolean</p>
 </td>
-<td class="cellrowborder" valign="top" width="11.87%" headers="mcps1.1.5.1.3 "><p id="p2619610432"><a name="p2619610432"></a><a name="p2619610432"></a>true</p>
+<td class="cellrowborder" valign="top" width="11.87%" headers="mcps1.1.5.1.3 "><p>true</p>
 </td>
-<td class="cellrowborder" valign="top" width="60.309999999999995%" headers="mcps1.1.5.1.4 "><p id="p186192101435"><a name="p186192101435"></a><a name="p186192101435"></a>状态切换时是否开启切换效果，当状态置为false时，点击效果关闭。</p>
+<td class="cellrowborder" valign="top" width="60.309999999999995%" headers="mcps1.1.5.1.4 "><p>状态切换时是否开启切换效果，当状态置为false时，点击效果关闭。</p>
 </td>
 </tr>
 </tbody>
@@ -136,26 +137,25 @@
 
 -   <a name="li93236107910"></a>ButtonType枚举说明
 
-    <a name="table18600037183510"></a>
-    <table><thead align="left"><tr id="row196013379350"><th class="cellrowborder" valign="top" width="25.3%" id="mcps1.1.3.1.1"><p id="p2601837143511"><a name="p2601837143511"></a><a name="p2601837143511"></a>名称</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.3%" id="mcps1.1.3.1.1"><p>名称</p>
     </th>
-    <th class="cellrowborder" valign="top" width="74.7%" id="mcps1.1.3.1.2"><p id="p16601203719358"><a name="p16601203719358"></a><a name="p16601203719358"></a>描述</p>
+    <th class="cellrowborder" valign="top" width="74.7%" id="mcps1.1.3.1.2"><p>描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row176011137123513"><td class="cellrowborder" valign="top" width="25.3%" headers="mcps1.1.3.1.1 "><p id="p1760153713511"><a name="p1760153713511"></a><a name="p1760153713511"></a>Capsule</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="25.3%" headers="mcps1.1.3.1.1 "><p>Capsule</p>
     </td>
-    <td class="cellrowborder" valign="top" width="74.7%" headers="mcps1.1.3.1.2 "><p id="p1601133783516"><a name="p1601133783516"></a><a name="p1601133783516"></a>胶囊型按钮（圆角默认为高度的一半）。</p>
-    </td>
-    </tr>
-    <tr id="row5601133715357"><td class="cellrowborder" valign="top" width="25.3%" headers="mcps1.1.3.1.1 "><p id="p156011037133513"><a name="p156011037133513"></a><a name="p156011037133513"></a>Circle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.7%" headers="mcps1.1.3.1.2 "><p id="p1360123717359"><a name="p1360123717359"></a><a name="p1360123717359"></a>圆形按钮。</p>
+    <td class="cellrowborder" valign="top" width="74.7%" headers="mcps1.1.3.1.2 "><p>胶囊型按钮（圆角默认为高度的一半）。</p>
     </td>
     </tr>
-    <tr id="row8601103713511"><td class="cellrowborder" valign="top" width="25.3%" headers="mcps1.1.3.1.1 "><p id="p1360133716358"><a name="p1360133716358"></a><a name="p1360133716358"></a>Normal</p>
+    <tr><td class="cellrowborder" valign="top" width="25.3%" headers="mcps1.1.3.1.1 "><p>Circle</p>
     </td>
-    <td class="cellrowborder" valign="top" width="74.7%" headers="mcps1.1.3.1.2 "><p id="p5601837143516"><a name="p5601837143516"></a><a name="p5601837143516"></a>普通按钮（默认不带圆角）。</p>
+    <td class="cellrowborder" valign="top" width="74.7%" headers="mcps1.1.3.1.2 "><p>圆形按钮。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="25.3%" headers="mcps1.1.3.1.1 "><p>Normal</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="74.7%" headers="mcps1.1.3.1.2 "><p>普通按钮（默认不带圆角）。</p>
     </td>
     </tr>
     </tbody>

@@ -1,11 +1,13 @@
-# 动画动效<a name="ZH-CN_TOPIC_0000001217007973"></a>
+# 动画动效
+
 
 通过设置插值器来实现动画效果。具体用法请参考[动画](../reference/apis/js-apis-basic-features-animator.md)。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->从API Version 6 开始支持。
+> 从API Version 6 开始支持。
 
-## 创建动画对象<a name="section2124172032912"></a>
+
+## 创建动画对象
 
 通过createAnimator创建一个动画对象，通过设置参数options来设置动画的属性。
 
@@ -72,16 +74,19 @@ export default {
 }
 ```
 
-![](figures/22.gif)
+![zh-cn_image_0000001174756776](figures/zh-cn_image_0000001174756776.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->-   使用createAnimator创建动画对象时必须传入options参数。
->-   begin插值起点，不设置时默认为0。
->-   end插值终点，不设置时默认为1。
+> - 使用createAnimator创建动画对象时必须传入options参数。
+> 
+> - begin插值起点，不设置时默认为0。
+> 
+> - end插值终点，不设置时默认为1。
 
-## 添加动画事件和调用接口<a name="section123951438112912"></a>
 
-animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见animator支持的事件和animator支持的接口。
+## 添加动画事件和调用接口
+
+animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见[动画中的createAnimator](../reference/apis/js-apis-basic-features-animator.md)。
 
 ```
 <!-- xxx.hml -->
@@ -230,8 +235,7 @@ export default {
 }
 ```
 
-![](figures/1-2.gif)
+![zh-cn_image_0000001220635059](figures/zh-cn_image_0000001220635059.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->在调用update接口的过程中可以使用这个接口更新动画参数，入参与createAnimator一致。
-
+> 在调用update接口的过程中可以使用这个接口更新动画参数，入参与createAnimator一致。

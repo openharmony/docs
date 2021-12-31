@@ -1,4 +1,7 @@
-# Row<a name="ZH-CN_TOPIC_0000001158141273"></a>
+# Row<a name="ZH-CN_TOPIC_0000001237355047"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 沿水平方向布局容器。
 
@@ -12,32 +15,31 @@
 
 ## 接口<a name="section11682122941119"></a>
 
-Row\(options?: \{ space?: Length \}\)
+Row\(value:\{space?: Length\}\)
 
 -   参数
 
-    <a name="table10719114169"></a>
-    <table><thead align="left"><tr id="row1571913410610"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p id="p87202043618"><a name="p87202043618"></a><a name="p87202043618"></a>参数名</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="16.580000000000002%" id="mcps1.1.6.1.2"><p id="p5720441466"><a name="p5720441466"></a><a name="p5720441466"></a>参数类型</p>
+    <th class="cellrowborder" valign="top" width="16.580000000000002%" id="mcps1.1.6.1.2"><p>参数类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="9.67%" id="mcps1.1.6.1.3"><p id="p147201241662"><a name="p147201241662"></a><a name="p147201241662"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="9.67%" id="mcps1.1.6.1.3"><p>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="21.42%" id="mcps1.1.6.1.4"><p id="p187201141967"><a name="p187201141967"></a><a name="p187201141967"></a>默认值</p>
+    <th class="cellrowborder" valign="top" width="21.42%" id="mcps1.1.6.1.4"><p>默认值</p>
     </th>
-    <th class="cellrowborder" valign="top" width="36.22%" id="mcps1.1.6.1.5"><p id="p127201740612"><a name="p127201740612"></a><a name="p127201740612"></a>参数描述</p>
+    <th class="cellrowborder" valign="top" width="36.22%" id="mcps1.1.6.1.5"><p>参数描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row97201341367"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p2072011415617"><a name="p2072011415617"></a><a name="p2072011415617"></a>space</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>space</p>
     </td>
-    <td class="cellrowborder" valign="top" width="16.580000000000002%" headers="mcps1.1.6.1.2 "><p id="p19720541461"><a name="p19720541461"></a><a name="p19720541461"></a>Length</p>
+    <td class="cellrowborder" valign="top" width="16.580000000000002%" headers="mcps1.1.6.1.2 "><p>Length</p>
     </td>
-    <td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.3 "><p id="p1272074565"><a name="p1272074565"></a><a name="p1272074565"></a>否</p>
+    <td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.3 "><p>否</p>
     </td>
-    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p id="p197206416614"><a name="p197206416614"></a><a name="p197206416614"></a>0</p>
+    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p>0</p>
     </td>
-    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p id="p156891651141710"><a name="p156891651141710"></a><a name="p156891651141710"></a>横向布局元素间距。</p>
+    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p>横向布局元素间距。</p>
     </td>
     </tr>
     </tbody>
@@ -46,24 +48,23 @@ Row\(options?: \{ space?: Length \}\)
 
 ## 属性<a name="section87414715116"></a>
 
-<a name="table1277mcpsimp"></a>
-<table><thead align="left"><tr id="row1284mcpsimp"><th class="cellrowborder" valign="top" width="13%" id="mcps1.1.5.1.1"><p id="p1286mcpsimp"><a name="p1286mcpsimp"></a><a name="p1286mcpsimp"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="13%" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="17%" id="mcps1.1.5.1.2"><p id="p1288mcpsimp"><a name="p1288mcpsimp"></a><a name="p1288mcpsimp"></a>参数类型</p>
+<th class="cellrowborder" valign="top" width="17%" id="mcps1.1.5.1.2"><p>参数类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="9%" id="mcps1.1.5.1.3"><p id="p1290mcpsimp"><a name="p1290mcpsimp"></a><a name="p1290mcpsimp"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="9%" id="mcps1.1.5.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="61%" id="mcps1.1.5.1.4"><p id="p1292mcpsimp"><a name="p1292mcpsimp"></a><a name="p1292mcpsimp"></a>描述</p>
+<th class="cellrowborder" valign="top" width="61%" id="mcps1.1.5.1.4"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1293mcpsimp"><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p id="p1295mcpsimp"><a name="p1295mcpsimp"></a><a name="p1295mcpsimp"></a>alignItems</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>alignItems</p>
 </td>
-<td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.5.1.2 "><p id="p1297mcpsimp"><a name="p1297mcpsimp"></a><a name="p1297mcpsimp"></a><a href="#table12144170154116">VerticalAlign</a></p>
+<td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.5.1.2 "><p><a href="#table12144170154116">VerticalAlign</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p id="p1299mcpsimp"><a name="p1299mcpsimp"></a><a name="p1299mcpsimp"></a>Center</p>
+<td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p>Center</p>
 </td>
-<td class="cellrowborder" valign="top" width="61%" headers="mcps1.1.5.1.4 "><p id="p1301mcpsimp"><a name="p1301mcpsimp"></a><a name="p1301mcpsimp"></a>在垂直方向上子组件的对齐格式。</p>
+<td class="cellrowborder" valign="top" width="61%" headers="mcps1.1.5.1.4 "><p>在垂直方向上子组件的对齐格式。</p>
 </td>
 </tr>
 </tbody>
@@ -72,25 +73,25 @@ Row\(options?: \{ space?: Length \}\)
 -   VerticalAlign枚举说明
 
     <a name="table12144170154116"></a>
-    <table><thead align="left"><tr id="row1314430184118"><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p id="p1614414014416"><a name="p1614414014416"></a><a name="p1614414014416"></a>名称</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
     </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p id="p1314415074113"><a name="p1314415074113"></a><a name="p1314415074113"></a>描述</p>
+    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row61441505417"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p191443034117"><a name="p191443034117"></a><a name="p191443034117"></a>Top</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Top</p>
     </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p121447017412"><a name="p121447017412"></a><a name="p121447017412"></a>顶部对齐。</p>
-    </td>
-    </tr>
-    <tr id="row20144801418"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p17145110194110"><a name="p17145110194110"></a><a name="p17145110194110"></a>Center</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p171454015415"><a name="p171454015415"></a><a name="p171454015415"></a>居中对齐，默认对齐方式。</p>
+    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>顶部对齐。</p>
     </td>
     </tr>
-    <tr id="row914570194112"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p714511012418"><a name="p714511012418"></a><a name="p714511012418"></a>Bottom</p>
+    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Center</p>
     </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p101451704415"><a name="p101451704415"></a><a name="p101451704415"></a>底部对齐。</p>
+    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>居中对齐，默认对齐方式。</p>
+    </td>
+    </tr>
+    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Bottom</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>底部对齐。</p>
     </td>
     </tr>
     </tbody>

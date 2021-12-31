@@ -44,7 +44,6 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;Acc
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);    
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -74,7 +73,6 @@ on(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&lt;
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -104,11 +102,9 @@ on(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallb
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-      //打印data在x,y,z轴坐标的偏移量
       console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
@@ -138,7 +134,6 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityRe
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x); 
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -168,7 +163,6 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;Gyrosco
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x); 
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -198,11 +192,9 @@ on(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);  
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-      //打印data的x,y,z轴坐标的偏移量
       console.info('X-coordinate bias: ' + data.biasX); 
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
@@ -216,12 +208,12 @@ on(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&
 
 on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: AsyncCallback&lt;SignificantMotionResponse&gt;, options?: Options): void
 
-监听有效运动传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
+监听大幅动作传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | [SensorType](#sensortype) | 是 | 要订阅的有效运动传感器类型为SENSOR_TYPE_ID_SIGNIFICANT_MOTION。 |
+  | type | [SensorType](#sensortype) | 是 | 要订阅的大幅动作传感器类型为SENSOR_TYPE_ID_SIGNIFICANT_MOTION。 |
   | callback | AsyncCallback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是 | 注册有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
   | options | [Options](#options) | 否 | 可选参数列表，设置上报频率，默认值为200000000ns。 |
 
@@ -286,7 +278,6 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;Pedomet
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的步数
       console.info('Steps: ' + data.steps);
     }
     {interval: 10000000}
@@ -314,7 +305,6 @@ on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&lt;
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的温度值
       console.info('Temperature: ' + data.temperature);
     }
     {interval: 10000000}
@@ -342,7 +332,6 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;Ma
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -372,11 +361,9 @@ on(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCall
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);    
       console.info('Y-coordinate component: ' + data.y);    
       console.info('Z-coordinate component: ' + data.z);    
-      //打印data的x,y,z轴坐标的偏移量
       console.info('X-coordinate bias: ' + data.biasX);    
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
@@ -406,7 +393,6 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;Proximi
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的距离值
       console.info('Distance: ' + data.distance);
     }
     {interval: 10000000}
@@ -434,7 +420,6 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;Humidity
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的湿度值
       console.info('Humidity: ' + data.humidity);
     }
     {interval: 10000000}
@@ -462,7 +447,6 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;Baromet
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的压强值
       console.info('Atmospheric pressure: ' + data.pressure);
     }
     {interval: 10000000}
@@ -490,7 +474,6 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: AsyncCallback&lt;HallResponse
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的状态值
       console.info('Status: ' + data.status);
     }
     {interval: 10000000}
@@ -518,7 +501,6 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;Lig
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的光强值
       console.info(''Illumination: ' + data.intensity);
     }
     {interval: 10000000}
@@ -546,7 +528,6 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;Orien
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -576,7 +557,6 @@ on(type:SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback:AsyncCallback&lt;Rota
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -606,7 +586,6 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;We
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的佩戴状态
       console.info('Wear status: ' + data.value);
     }
     {interval: 10000000}
@@ -633,7 +612,6 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;A
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -661,7 +639,6 @@ once(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&l
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -689,11 +666,9 @@ once(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCal
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-      //打印data的x,y,z轴坐标的偏移量
       console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
@@ -721,7 +696,6 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;Gravity
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -749,7 +723,6 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;Gyros
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -777,11 +750,9 @@ once(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallbac
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-      //打印data的x,y,z轴坐标的偏移量
       console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
@@ -859,7 +830,6 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;Pedom
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的步数
       console.info('Steps: ' + data.steps);
     }
   );
@@ -885,7 +855,6 @@ once(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&l
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的温度值
       console.info('Temperature: ' + data.temperature);
     }
   );
@@ -911,7 +880,6 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -939,11 +907,9 @@ once(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCa
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-      //打印data的x,y,z轴坐标的偏移量
       console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
@@ -971,7 +937,6 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;Proxi
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的距离值
       console.info('Distance: ' + data.distance);
     }
   );
@@ -997,7 +962,6 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;Humidi
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的湿度值
       console.info('Humidity: ' + data.humidity);
     }
   );
@@ -1023,7 +987,6 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;Barom
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的压强值
       console.info('Atmospheric pressure: ' + data.pressure);
     }
   );
@@ -1049,7 +1012,6 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback:   AsyncCallback&lt;HallResp
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的状态值
       console.info('Status: ' + data.status);
     }
   );
@@ -1075,7 +1037,6 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;L
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的光强值
       console.info(''Illumination: ' + data.intensity);
     }
   );
@@ -1101,7 +1062,6 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;Ori
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -1129,7 +1089,6 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: AsyncCallback&lt
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的x,y,z轴坐标的分量
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -1157,7 +1116,6 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&lt;Hear
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      //打印data的心率值
       console.info("Heart rate: " + data.heartRate);
     }
   );
@@ -1183,7 +1141,6 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;
           console.error("Failed to register data, error code is" + error.code + ", message: " + error.message);
           return;
       }
-      //打印data的佩戴状态
       console.info("Wear status: "+ data.value);
     }
   );
@@ -1216,34 +1173,62 @@ off(type: SensorType, callback?: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## sensor.createRotationMatrix
+## sensor.getGeomagneticField
 
-createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
 
-将旋转矢量转换为旋转矩阵,返回值为数组。
+获取地球上特定位置的地磁场。
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | rotationVector | Array&lt;number&gt; | 是 | 旋转矢量指示旋转矢量。 |
+  | locationOptions | [LocationOptions](#locationoptions) | 是 | 地理位置。 |
+  | timeMillis | number | 是 | 表示获取磁偏角的时间，单位为毫秒。 |
+  | callback | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是 | 返回磁场信息。 |
+
+- 示例
+  ```
+  sensor.getGeomagneticField([80, 0, 0], {'timeMillis':1580486400000}, function(err, data)  {
+      if (err) {
+          console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
+          return;
+      }
+      console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+  	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
+  		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
+  });
+  ```
+
+
+## sensor.getGeomagneticField
+
+getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
+
+获取地球上特定位置的地磁场。
+
+- 参数
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | locationOptions | [LocationOptions](#locationoptions) | 是 | 地理位置。 |
+  | timeMillis | number | 是 | 表示获取磁偏角的时间，单位为毫秒。 |
 
 - 返回值
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;number&gt;&gt; | 返回角度变化的数字（z、x和y）数组。 |
+  | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 返回磁场信息。 |
 
 - 示例
   ```
-  const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+  const promise = sensor.getGeomagneticField([80, 0, 0], {'timeMillis':1580486400000});
       promise.then((data) => {
-          console.info(LABEL + 'createRotationMatrix_promise success');
-          for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
-          }
+          console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+  	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
+  		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
       }).catch((reason) => {
-          console.info(LABEL + "promise::catch", reason);
-  });	
+          console.info('Operation failed.');
+  })
   ```
+
 
 ## SensorType
 
@@ -1275,111 +1260,120 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 | SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | 281 | 未校准加速度计传感器。 |
 
 
+## Response
+
+传感器数据的时间戳。
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| timestamp | number | 是 | 是 | 传感器数据上报的时间戳。 |
+
+
 ## AccelerometerResponse
 
-加速度传感器数据。
+加速度传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
+| x | number | 是 | 是 | 施加在设备x轴的加速度，单位 : m/s2。 |
+| y | number | 是 | 是 | 施加在设备y轴的加速度，单位 : m/s2。 |
+| z | number | 是 | 是 | 施加在设备z轴的加速度，单位 : m/s2。 |
 
 
 ## LinearAccelerometerResponse
 
-线性加速度传感器数据。
+线性加速度传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
+| x | number | 是 | 是 | 施加在设备x轴的线性加速度，单位 : m/s2。 |
+| y | number | 是 | 是 | 施加在设备y轴的线性加速度，单位 : m/s2。 |
+| z | number | 是 | 是 | 施加在设备z轴的线性加速度，单位 : m/s2。 |
 
 
 ## AccelerometerUncalibratedResponse
 
-未校准加速度计传感器数据。
+未校准加速度计传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
-| biasX | number | 是 | 是 | x轴坐标偏移量。 |
-| biasY | number | 是 | 是 | y轴坐标偏移量。 |
-| biasZ | number | 是 | 是 | z轴坐标偏移量。 |
+| x | number | 是 | 是 | 施加在设备x轴未校准的加速度，单位 : m/s2。 |
+| y | number | 是 | 是 | 施加在设备y轴未校准的加速度，单位 : m/s2。 |
+| z | number | 是 | 是 | 施加在设备z轴未校准的加速度，单位 : m/s2。 |
+| biasX | number | 是 | 是 | 施加在设备x轴未校准的加速度偏量，单位 : m/s2。 |
+| biasY | number | 是 | 是 | 施加在设备上y轴未校准的加速度偏量，单位 : m/s2。 |
+| biasZ | number | 是 | 是 | 施加在设备z轴未校准的加速度偏量，单位 : m/s2。 |
 
 
 ## GravityResponse
 
-重力传感器数据。
+重力传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
+| x | number | 是 | 是 | 施加在设备x轴的重力加速度，单位 : m/s2。 |
+| y | number | 是 | 是 | 施加在设备y轴的重力加速度，单位 : m/s2。 |
+| z | number | 是 | 是 | 施加在设备z轴的重力加速度，单位 : m/s2。 |
 
 
 ## OrientationResponse
 
-方向传感器数据。
+方向传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
+| x | number | 是 | 是 | 设备围绕x轴的旋转角度，单位 : rad。 |
+| y | number | 是 | 是 | 设备围绕y轴的旋转角度，单位 : rad。 |
+| z | number | 是 | 是 | 设备围绕z轴的旋转角度，单位 : rad。 |
 
 
 ## RotationVectorResponse
 
-旋转矢量传感器数据。
+旋转矢量传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
+| x | number | 是 | 是 | 旋转矢量x轴分量。 |
+| y | number | 是 | 是 | 旋转矢量y轴分量。 |
+| z | number | 是 | 是 | 旋转矢量z轴分量。 |
 
 
 ## GyroscopeResponse
 
-陀螺仪传感器数据。
+陀螺仪传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
+| x | number | 是 | 是 | 设备x轴的旋转角速度，单位rad/s。 |
+| y | number | 是 | 是 | 设备y轴的旋转角速度，单位rad/s。 |
+| z | number | 是 | 是 | 设备z轴的旋转角速度，单位rad/s。 |
 
 
 ## GyroscopeUncalibratedResponse
 
-未校准陀螺仪传感器数据。
+未校准陀螺仪传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
-| biasX | number | 是 | 是 | x轴坐标偏移量。 |
-| biasY | number | 是 | 是 | y轴坐标偏移量。 |
-| biasZ | number | 是 | 是 | z轴坐标偏移量。 |
+| x | number | 是 | 是 | 设备x轴未校准的旋转角速度，单位rad/s。 |
+| y | number | 是 | 是 | 设备y轴未校准的旋转角速度，单位rad/s。 |
+| z | number | 是 | 是 | 设备z轴未校准的旋转角速度，单位rad/s。 |
+| biasX | number | 是 | 是 | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasY | number | 是 | 是 | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasZ | number | 是 | 是 | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
 
 
 ## SignificantMotionResponse
 
-有效运动传感器数据。
+有效运动传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1389,7 +1383,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 ## ProximityResponse
 
-接近光传感器数据。
+接近光传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1399,7 +1393,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 ## LightResponse
 
-环境光传感器数据。
+环境光传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1409,7 +1403,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 ## HallResponse
 
-霍尔传感器数据。
+霍尔传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1419,44 +1413,44 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 ## MagneticFieldResponse
 
-磁场传感器数据。
+磁场传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
+| x | number | 是 | 是 | x轴环境磁场强度，单位 : μT。 |
+| y | number | 是 | 是 | y轴环境磁场强度，单位 : μT。 |
+| z | number | 是 | 是 | z轴环境磁场强度，单位 : μT。。 |
 
 
 ## MagneticFieldUncalibratedResponse
 
-未校准磁场传感器数据。
+未校准磁场传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
-| biasX | number | 是 | 是 | x轴坐标偏移量。 |
-| biasY | number | 是 | 是 | y轴坐标偏移量。 |
-| biasZ | number | 是 | 是 | z轴坐标偏移量。 |
+| x | number | 是 | 是 | x轴未校准环境磁场强度，单位 : μT。 |
+| y | number | 是 | 是 | y轴未校准环境磁场强度，单位 : μT。 |
+| z | number | 是 | 是 | z轴未校准环境磁场强度，单位 : μT。 |
+| biasX | number | 是 | 是 | x轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasY | number | 是 | 是 | y轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasZ | number | 是 | 是 | z轴未校准环境磁场强度偏量，单位 : μT。 |
 
 
 ## PedometerResponse
 
-计步传感器数据。
+计步传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| steps | number | 是 | 是 | 计数的步骤数。每次设备重新启动时，该值将从0重新计算。 |
+| steps | number | 是 | 是 | 用户的行走步数。 |
 
 
 ## HumidityResponse
 
-湿度传感器数据。
+湿度传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1466,7 +1460,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 ## PedometerDetectResponse
 
-计步检测传感器数据。
+计步检测传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1476,7 +1470,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 ## AmbientTemperatureResponse
 
-温度传感器数据。
+温度传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1486,7 +1480,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 ## BarometerResponse
 
-气压计传感器数据。
+气压计传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1496,66 +1490,46 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 
 ## HeartRateResponse
 
-心率传感器数据。
+心率传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| heartRate | number | 是 | 是 | 心率值。测量用户的心率数值，单位是次/分。 |
+| heartRate | number | 是 | 是 | 心率值。测量用户的心率数值，单位：bpm。 |
 
 
 ## WearDetectionResponse
 
-佩戴检测传感器数据。
+佩戴检测传感器数据，继承于[Response](#response)。
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| value | boolean | 是 | 是 | 表示设备是否被穿戴（true&nbsp;表示已穿戴，false表示未穿戴）。 |
+| value | number | 是 | 是 | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
 
 
 ## Options
 
-设置传感器上报频率
+设置传感器上报频率。
 
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
 | interval | number | 表示传感器的上报频率，默认值为200000000ns。 |
 
 
-## RotationMatrixResponse
-
-设置旋转矩阵响应对象
-
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| rotation | Array&lt;number&gt; | 是 | 是 | 旋转矩阵。 |
-| inclination | Array&lt;number&gt; | 是 | 是 | 倾斜矩阵。 |
-
-
-## CoordinatesOptions
-
-设置坐标选项对象
-
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x坐标偏移量。 |
-| y | number | 是 | 是 | y坐标偏移量。 |
-
-
 ## GeomagneticResponse
 
-设置地磁响应对象
+设置地磁响应对象，继承于[Response](#response)。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | x轴坐标分量。 |
-| y | number | 是 | 是 | y轴坐标分量。 |
-| z | number | 是 | 是 | z轴坐标分量。 |
-| geomagneticDip | number | 是 | 是 | 地磁倾角。 |
-| deflectionAngle | number | 是 | 是 | 偏转角。 |
-| levelIntensity | number | 是 | 是 | 水平强度。 |
-| totalIntensity | number | 是 | 是 | 总强度。 |
+| x | number | 是 | 是 | 地磁场的北分量。 |
+| y | number | 是 | 是 | 地磁场的东分量。 |
+| z | number | 是 | 是 | 地磁场的垂直分量。 |
+| geomagneticDip | number | 是 | 是 | 地磁倾角，即地球磁场线与水平面的夹角。 |
+| deflectionAngle | number | 是 | 是 | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
+| levelIntensity | number | 是 | 是 | 地磁场的水平强度。 |
+| totalIntensity | number | 是 | 是 | 地磁场的总强度。 |
 
 
 ## LocationOptions
@@ -1564,4 +1538,4 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 | -------- | -------- | -------- | -------- | -------- |
 | latitude | number | 是 | 是 | 纬度。 |
 | longitude | number | 是 | 是 | 经度。 |
-| altitude | number | 是 | 是 | 海拔。 |
+| altitude | number | 是 | 是 | 海拔高度。 |

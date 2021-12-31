@@ -1,4 +1,4 @@
-# 通用<a name="ZH-CN_TOPIC_0000001111421388"></a>
+# 通用<a name="ZH-CN_TOPIC_0000001192595160"></a>
 
 -   **[通用事件](ts-universal-events.md)**  
 

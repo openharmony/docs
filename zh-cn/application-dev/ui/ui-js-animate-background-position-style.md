@@ -1,6 +1,9 @@
-# background-position样式动画<a name="ZH-CN_TOPIC_0000001172006248"></a>
+# background-position样式动画
+
+
 
 通过改变background-position属性（第一个值为X轴的位置，第二个值为Y轴的位置）移动背景图片位置，若背景图位置超出组件则超出部分的背景图不显示。
+
 
 ```
 <!-- xxx.hml -->
@@ -9,6 +12,7 @@
   <div class="content1"></div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -74,8 +78,9 @@
 }
 ```
 
-![](figures/q8.gif)
+
+![zh-cn_image_0000001217008255](figures/zh-cn_image_0000001217008255.gif)
+
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->background-position仅支持背景图片的移动，不支持背景颜色（background-color)。
-
+> background-position仅支持背景图片的移动，不支持背景颜色（background-color）。

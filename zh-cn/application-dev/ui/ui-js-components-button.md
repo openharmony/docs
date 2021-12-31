@@ -278,4 +278,4 @@ export default {
 ```
 
 
-![zh-cn_image_0000001163212628](figures/zh-cn_image_0000001163212628.gif)
+![zh-cn_image_0000001234129289](figures/zh-cn_image_0000001234129289.gif)

@@ -1,12 +1,11 @@
-# 使用JS语言开发
+# 使用JS语言开发（传统代码方式）
 
-为确保运行效果，本文以使用**DevEco Studio 3.0.0.601 Beta1**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
+为确保运行效果，本文以使用**DevEco Studio 3.0 Beta2**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
 
 ## 编写第一个页面
 
 1. 第一个页面内有一个文本和一个按钮，通过text和button组件来实现。
-   在“Project“窗口，选择entry &gt; src &gt; main &gt; js &gt; default &gt; pages &gt; index，打开index.hml文件，添加一个文本和一个按钮，示例代码如下：
-   
+   在"Project"窗口，选择entry &gt; src &gt; main &gt; js &gt; default &gt; pages &gt; index，打开index.hml文件，添加一个文本和一个按钮，示例代码如下：
    ```
    <!-- index.hml -->
    <div class="container">
@@ -18,9 +17,9 @@
        <button class="button" type="capsule" value="Next" onclick="launch"></button>
    </div>
    ```
-   
+
 2. 打开index.css文件，设置文本和按钮的样式，示例代码如下：
-	```
+   ```
    /* index.css */
    .container {
        flex-direction: column; /* 设置容器内的项目纵向排列 */
@@ -42,19 +41,19 @@
        text-color: white;
        margin-top: 20px;
    }
-	```
+   ```
 
 3. 使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行项目，效果如下图所示：
 
-   ![zh-cn_image_0000001217683803](figures/zh-cn_image_0000001217683803.png)
+   ![zh-cn_image_0000001167690688](figures/zh-cn_image_0000001167690688.png)
 
 
 ## 创建另一个页面
 
-1. 在“Project“窗口，打开entry &gt; src &gt; main &gt; js &gt; default，右键点击pages文件夹，选择New &gt; JS Page，命名为details，单击回车键。
+1. 在"Project"窗口，打开entry &gt; src &gt; main &gt; js &gt; default，右键点击pages文件夹，选择NewJS Page，命名为details，单击回车键。
    创建完成后，可以看到pages文件夹下的文件目录结构如下：
 
-   ![zh-cn_image_0000001217523751](figures/zh-cn_image_0000001217523751.png)
+   ![zh-cn_image_0000001167850660](figures/zh-cn_image_0000001167850660.png)
 
 2. 打开details.hml文件，添加一个文本，示例代码如下：
    ```
@@ -89,7 +88,7 @@
    ```
    // index.js
    import router from '@system.router';
-
+   
    export default {
      launch() {
        router.push ({
@@ -100,7 +99,7 @@
    ```
 
 2. 再次使用[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行项目，效果如下图所示：
-   
-![zh-cn_image_0000001217402315](figures/zh-cn_image_0000001217402315.png)
+
+   ![zh-cn_image_0000001213130527](figures/zh-cn_image_0000001213130527.png)
 
 恭喜你，至此已成功完成OpenHarmony快速入门-使用JS语言开发。

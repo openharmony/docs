@@ -1,6 +1,13 @@
-# ColumnSplit<a name="ZH-CN_TOPIC_0000001121464544"></a>
+# ColumnSplit<a name="ZH-CN_TOPIC_0000001237475057"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 将子组件纵向布局，并在每个子组件之间插入一根横向的分割线。
+
+## 权限列表<a name="section53281531154915"></a>
+
+无
 
 ## 子组件<a name="section5989144051714"></a>
 
@@ -12,20 +19,19 @@ ColumnSplit\(\)
 
 ## 属性<a name="section945991855410"></a>
 
-<a name="table252174055416"></a>
-<table><thead align="left"><tr id="row353940135411"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p175318403545"><a name="p175318403545"></a><a name="p175318403545"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.29332933293329%" id="mcps1.1.4.1.2"><p id="p453194014548"><a name="p453194014548"></a><a name="p453194014548"></a>参数类型</p>
+<th class="cellrowborder" valign="top" width="33.29332933293329%" id="mcps1.1.4.1.2"><p>参数类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="33.373337333733375%" id="mcps1.1.4.1.3"><p id="p19531240145412"><a name="p19531240145412"></a><a name="p19531240145412"></a>描述</p>
+<th class="cellrowborder" valign="top" width="33.373337333733375%" id="mcps1.1.4.1.3"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row125384035411"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1753134065413"><a name="p1753134065413"></a><a name="p1753134065413"></a>resizeable</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>resizeable</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p85364012541"><a name="p85364012541"></a><a name="p85364012541"></a>boolean</p>
+<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>boolean</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p85314400547"><a name="p85314400547"></a><a name="p85314400547"></a>分割线是否可拖拽，默认为false。</p>
+<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>分割线是否可拖拽，默认为false。</p>
 </td>
 </tr>
 </tbody>
