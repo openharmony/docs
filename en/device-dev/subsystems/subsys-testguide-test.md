@@ -766,8 +766,8 @@ After the build is complete, the test cases are automatically saved in **out/hi3
 	-t [TESTTYPE]: specifies the test case type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
 	-tp [TESTPART]: specifies the part to test. This parameter can be used independently.
 	-tm [TESTMODULE]: specifies the module to test. This parameter must be specified together with -tp.
-	-ts [TESTSUITE]: specifies a test suite. This parameter can be used independently.
-	-tc [TESTCASE]: specifies a test case. This parameter must be specified together with -ts.
+	-ts [TESTSUITE]: specifies the test suite. This parameter can be used independently.
+	-tc [TESTCASE]: specifies the test case. This parameter must be specified together with -ts.
 	-You can run h to display help information.
 	```
 ### Executing Test Cases on Linux
@@ -806,8 +806,8 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	-t [TESTTYPE]: specifies the test case type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
 	-tp [TESTPART]: specifies the part to test. This parameter can be used independently.
 	-tm [TESTMODULE]: specifies the module to test. This parameter must be specified together with -tp.
-	-ts [TESTSUITE]: specifies a test suite. This parameter can be used independently.
-	-tc [TESTCASE]: specifies a test case. This parameter must be specified together with -ts.
+	-ts [TESTSUITE]: specifies the test suite. This parameter can be used independently.
+	-tc [TESTCASE]: specifies the test case. This parameter must be specified together with -ts.
 	-You can run h to display help information.
 	```
 
