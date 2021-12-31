@@ -21,6 +21,8 @@
     -   [SMS](js-apis-sms.md)
     -   [SIM Management](js-apis-sim.md)
     -   [Radio](js-apis-radio.md)
+-   Network and Connectivity
+    -   [WLAN](js-apis-wifi.md)  
 -   Device Management
     -   [Sensors](js-apis-sensor.md)
     -   [Vibration](js-apis-vibrator.md)
@@ -33,6 +35,7 @@
     -   [Device Management](js-apis-device-manager.md)
     -   [Window](js-apis-window.md)
     -   [Display](js-apis-display.md)
+    -   [Update](js-apis-update.md) 
 -   Basic Features
     -   [Application Context](js-apis-basic-features-app-context.md)
     -   [Console Logs](js-apis-basic-features-logs.md)
