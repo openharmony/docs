@@ -105,4 +105,7 @@
     -   [事件参数](js-components-custom-event-parameter.md)
     -   [slot插槽](js-components-custom-slot.md)
     -   [生命周期定义](js-components-custom-lifecycle.md)
+    
+-   [附录](js-appendix.md)
+    -   [类型说明](js-appendix-types.md)
 
