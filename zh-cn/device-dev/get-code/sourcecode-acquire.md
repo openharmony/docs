@@ -314,24 +314,6 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p14441122810188"><a name="p14441122810188"></a><a name="p14441122810188"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
-<tr id="row21051465512"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p11105116105112"><a name="p11105116105112"></a><a name="p11105116105112"></a>标准系统包（Mac）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p4294113595317"><a name="p4294113595317"></a><a name="p4294113595317"></a>3.1 Beta</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p111053665115"><a name="p111053665115"></a><a name="p111053665115"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos -sdk-mac.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p10106662517"><a name="p10106662517"></a><a name="p10106662517"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos -sdk-mac.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
-</td>
-</tr>
-<tr id="row7241392536"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p14957549155319"><a name="p14957549155319"></a><a name="p14957549155319"></a>标准系统包（Windows\Linux）</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p52418397533"><a name="p52418397533"></a><a name="p52418397533"></a>3.1 Beta</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p424539135319"><a name="p424539135319"></a><a name="p424539135319"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos -sdk-tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p3309465414"><a name="p3309465414"></a><a name="p3309465414"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos -sdk-tar.gz .sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
-</td>
-</tr>
 <tr id="row1663285502319"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1961810962416"><a name="p1961810962416"></a><a name="p1961810962416"></a>RELEASE-NOTES</p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p146331255172318"><a name="p146331255172318"></a><a name="p146331255172318"></a>3.1 Beta</p>
