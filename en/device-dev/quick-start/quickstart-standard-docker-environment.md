@@ -74,13 +74,13 @@ By default, the downloaded prebuilts binary file is stored in  **OpenHarmony\_2.
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.6
     ```
 
 2.  Go to the root directory of source code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.6
     ```
 
 
@@ -102,7 +102,7 @@ By default, the downloaded prebuilts binary file is stored in  **OpenHarmony\_2.
 3.  Go to the root directory of source code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.5
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.6
     ```
 
 
