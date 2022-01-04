@@ -136,10 +136,7 @@ Design APIs from the perspective of their users rather than providers.
 
 ### Compatibility
 
-1. The API compatibility requirements in descending order are as follows: contract compatibility > binary-code compatibility > source-code compatibility.
-   1. Source-code compatibility: After version evolution, the developer’s existing source code can be compiled properly.
-   2. Binary-code compatibility: After version evolution, the developer’s existing programs can be linked to and run properly without recompilation.
-   3. Contract compatibility: It is also called semantic compatibility. After version evolution, the developer’s original program behaviors remain unchanged.
+1. 
 2. OpenHarmony API backward compatibility must meet binary-code compatibility requirements. Exceptions must be reviewed by the API SIG and approved by the PMC. Common API changes that break binary-code compatibility include:
    1. Delete any API elements.
    2. Reduce the visibility of a method. For example, change from protected to private or from public to protected.
