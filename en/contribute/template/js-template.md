@@ -4,7 +4,7 @@
 >
 > 0.1 - Delete all writing instructions after you finish the writing.
 >
-> 0.2 - Upload JS API reference documents in Chinese to **docs/en/application-dev/reference/apis**. If these documents contain figures, upload the figures to the **figures** folder.上传后可通过提issue的方式，触发翻译。
+> 0.2 - Upload JS API reference documents to **docs/en/application-dev/reference/apis**. If these documents contain figures, upload the figures to the **figures** folder.
 >
 > 0.3 - Use a .d.ts file for a JS API reference document. **The file name must be in the following format: js-apis-<moduleName>.md**. Examples:
 >
@@ -14,7 +14,7 @@
 >
 > 0.4 - After uploading a JS API reference document, update the **Readme-EN.md** file in **docs/en/application-dev/reference/apis**.
 >
-> 0.5 - **Document Title**: Use phrases that summarize the module functionalities.但如果部分概念使用英文更便于开发者理解，不必强求，比方说，Ability、SIM卡等概念可以直接使用。
+> 0.5 - **Document Title**: Use phrases that summarize the module functionalities.
 >
 > 0.6 - Use the document title as the level-1 heading. Use the attributes, functions, classes, interfaces, enums, and types under the namespace as level-2 headings. Use the attributes and functions under classes as level-3 headings.
 >
@@ -40,8 +40,7 @@
 > 1.2 - A module has only one initial version.
 >
 > 1.3 - Use the following sentence: "The initial APIs of this module are supported since API version ***x***. Newly added APIs will be marked with a superscript to indicate their earliest API version." Change ***x*** to the actual version.
->
-> 1.4 - 如果涉及新版本的接口，需要在新增接口中进行说明。在版本说明这里，要加上第二句，不必做任何改动。
+
 
 > **Note**
 >
