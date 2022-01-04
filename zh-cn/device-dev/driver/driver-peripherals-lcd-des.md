@@ -14,11 +14,11 @@ LCD（Liquid Crystal Display）液晶显示驱动，对LCD进行上电，并通�
 
 **Display驱动模型介绍**
 
-Display驱动模型主要由平台驱动层、芯片平台适配层、LCD器件驱动层三部分组成。驱动模型基于HDF驱动框架开发，通过Platform层和OSAL层提供的接口，屏蔽内核形态的差异，使得器件驱动可以便利的迁移到不同OS及芯片平台。模型向上对接Display公共hal层，支撑HDI接口的实现，通过Display-HDI（Hardware Display Interface）对图形服务提供各类驱动能力接口。
+Display驱动模型主要由平台驱动层、芯片平台适配层、LCD器件驱动层三部分组成。驱动模型基于HDF驱动框架开发，通过Platform层和OSAL层提供的接口，屏蔽内核形态的差异，使得器件驱动可以便利的迁移到不同OS及芯片平台。模型向上对接Display公共hal层，支撑HDI（Hardware Display Interface）接口的实现，通过Display-HDI对图形服务提供各类驱动能力接口。
 
--   （1）Display平台驱动层：通过HDF提供的IOService数据通道，与公共Hal层对接，集中接收并处理各类上层调用指令；
--   （2）SOC平台驱动适配层：借助此SOC适配层，实现Display驱动和SOC侧驱动解耦，主要完成芯片平台相关的参数配置，并传递平台驱动层的调用到器件驱动层；
--   （3）LCD器件驱动层：在器件驱动层中，主要实现和器件自身强相关的驱动适配接口，例如发送初始化序列、上下电、背光设置等。
+-   Display平台驱动层：通过HDF提供的IOService数据通道，与公共Hal层对接，集中接收并处理各类上层调用指令。
+-   SOC平台驱动适配层：借助此SOC适配层，实现Display驱动和SOC侧驱动解耦，主要完成芯片平台相关的参数配置，并传递平台驱动层的调用到器件驱动层。
+-   LCD器件驱动层：在器件驱动层中，主要实现和器件自身强相关的驱动适配接口，例如发送初始化序列、上下电、背光设置等。
 
 基于Display驱动模型开发LCD驱动，可以借助平台提供的各种能力及接口，较大程度的降低器件驱动的开发周期和难度，提升开发效率。
 
@@ -31,7 +31,7 @@ LCD接口通常可分为MIPI DSI接口、TTL接口和LVDS接口，常用的是MI
     **图 2**  MIPI DSI接口<a name="fig6936451331"></a>  
     ![](figures/MIPI-DSI接口.png "MIPI-DSI接口")
 
-    MIPI DSI接口是MIPI（移动行业处理器接口）联盟定义的显示接口，主要用于移动终端显示屏接口，接口数据传输遵循MIPI协议，MIPI DSI接口为数据接口，传输图像数据，通常情况下MIPI DSI接口的控制信息以MIPI包形式通过MIPI DSI接口发送到对端IC，不需要额外的外设接口。
+    MIPI DSI接口是MIPI（Mobile Industry Processor Interface）联盟定义的显示接口，主要用于移动终端显示屏接口，接口数据传输遵循MIPI协议，MIPI DSI接口为数据接口，传输图像数据，通常情况下MIPI DSI接口的控制信息以MIPI包形式通过MIPI DSI接口发送到对端IC，不需要额外的外设接口。
 
 -   TTL接口
 
