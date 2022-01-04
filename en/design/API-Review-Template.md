@@ -29,9 +29,9 @@
 
 ## Review Conclusion
 
-### Review conclusion from committers:
+### Review Conclusion from Committers
 
-### Review conclusion from domain SIGs:
+### Review Conclusion from Domain SIGs
 
 ## Self-Check Table
 
