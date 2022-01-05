@@ -455,12 +455,12 @@ glob(field: string, value: string): RdbPredicates
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
-  | value | string | 是 | 指示要与谓词匹配的值。 |
+  | value | string | 是 | 指示要与谓词匹配的值。<br>支持通配符，*表示0个、1个或多个数字或字符，?表示1个数字或字符。 |
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | 返回指定的Rdb谓词。 |
+  | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 - 示例：
   ```
