@@ -11,9 +11,8 @@ IPC（Inter-Process Communication）与RPC（Remote Procedure Call）机制用�
 
 ## 约束与限制
 
-目前暂不支持的场景：
-
-跨设备RPC
+单个设备上跨进程通信时，传输的数据量最大约为1MB，过大的数据量请使用匿名共享内存。
+不支持把跨设备的Proxy对象传递回该Proxy对象所指向的Stub对象所在的设备。
 
 
 ## 相关模块
