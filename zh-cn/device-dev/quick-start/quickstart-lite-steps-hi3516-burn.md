@@ -7,7 +7,7 @@
 
 DevEco Device Tool以插件方式运行，基于Visual Studio Code进行扩展，用户可点击Visual Studio Code左侧栏的![](figures/2021-01-27_170334.png)图标打开DevEco Device Tool。
 
-Hi3516开发板的代码烧录支持USB烧录、网口烧录和串口烧录三种方式。此处仅以网口烧录为例进行说明，其它方式请参考[Hi3516DV300开发板烧录](../toctopics/ide-hi3516-upload.md)。
+Hi3516开发板的代码烧录支持USB烧录、网口烧录和串口烧录三种方式。此处仅以网口烧录为例进行说明，其它方式请参考[Hi3516DV300开发板烧录](https://device.harmonyos.com/cn/docs/documentation/guide/ide-hi3516-upload-0000001052148681#section1760842019292)。
 
 ## 前提条件<a name="section762111572589"></a>
 
