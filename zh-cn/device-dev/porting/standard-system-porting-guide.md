@@ -505,7 +505,7 @@ HDF_DEVICE_ROOT := $(HDF_DIR_PREFIX)/../device
 obj-$(CONFIG_DRIVERS_WLAN_XXX) += $(HDF_DEVICE_ROOT)/MySoCVendor/peripheral/build/standard/
 ```
 
-当在内核中开启DRIVERS\_WLAN\_XXX开关时，会调用//device/MySoCVendor/peripheral/build/standard/中的makefile。更多详细的开发手册，请参考[WLAN开发](../guide/device-wlan-led.md)。
+当在内核中开启DRIVERS\_WLAN\_XXX开关时，会调用//device/MySoCVendor/peripheral/build/standard/中的makefile。更多详细的开发手册，请参考[WLAN开发](../guide/device-wlan-led-control.md)。
 
 ### 4. 开发移植示例<a name="section11253153018415"></a>
 
