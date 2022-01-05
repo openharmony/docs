@@ -62,7 +62,7 @@ createKVManager\(config: KVManagerConfig, callback: AsyncCallback<KVManager\>\):
             bundleName : 'com.example.datamanagertest',
             userInfo : {
                 userId : '0',
-                userType : SAME_USER_ID
+                userType : 0
             }
         }
         distributedData.createKVManager(kvManagerConfig, function (err, manager) {
@@ -136,7 +136,7 @@ createKVManager\(config: KVManagerConfig\): Promise<KVManager\>
             bundleName : 'com.example.datamanagertest',
             userInfo : {
                 userId : '0',
-                userType : SAME_USER_ID
+                userType : 0
             }
         }
         distributedData.createKVManager(kvManagerConfig).then((manager) => {
@@ -310,8 +310,8 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options, callback: Asy
             encrypt : false,
             backup : false,
             autoSync : true,
-            kvStoreType : SINGLE_VERSION,
-            securityLevel : S2,
+            kvStoreType : 1,
+            securityLevel : 3,
         };
         kvManager.getKVStore('storeId', options, function (err, store) {
             if (err) {
@@ -395,8 +395,8 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options\): Promise<T\>
             encrypt : false,
             backup : false,
             autoSync : true,
-            kvStoreType : SINGLE_VERSION,
-            securityLevel : S2,
+            kvStoreType : 1,
+            securityLevel : 3,
         };
         kvManager.getKVStore('storeId', options).then((store) => {
             console.log("getKVStore success");
@@ -409,7 +409,7 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options\): Promise<T\>
     }
     ```
 
-### closeKVStore ###
+### closeKVStore<sup>8+</sup> ###
 
 closeKVStore\(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback<void\>\): void;
 
@@ -483,7 +483,7 @@ closeKVStore\(appId: string, storeId: string, kvStore: KVStore, callback: AsyncC
     }
     ```  
 
-### closeKVStore ###
+### closeKVStore<sup>8+</sup> ###
 
 closeKVStore\(appId: string, storeId: string, kvStore: KVStore\): Promise<void\>;
 
@@ -554,7 +554,7 @@ closeKVStore\(appId: string, storeId: string, kvStore: KVStore\): Promise<void\>
     ```
     let KvStore;
     try {
-        kvManager.closeKVStore('appId', 'storId', KvStore).then(() => {
+        kvManager.closeKVStore('appId', 'storId', kvStore).then(() => {
             console.log('CloseKVStore success');
         }).catch((err) => {
             console.log('CloseKVStore err ' + JSON.stringify(err));
@@ -565,7 +565,7 @@ closeKVStore\(appId: string, storeId: string, kvStore: KVStore\): Promise<void\>
     ```  
 
 
-### deleteKVStore ###
+### deleteKVStore<sup>8+</sup> ###
 
 deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): void;
 
@@ -631,7 +631,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): vo
     }
     ```  
 
-### deleteKVStore ###
+### deleteKVStore<sup>8+</sup> ###
 
 deleteKVStore\(appId: string, storeId: string\): Promise<void\>;
 
@@ -693,7 +693,7 @@ deleteKVStore\(appId: string, storeId: string\): Promise<void\>;
     ```
     let KvStore;
     try {
-        kvManager.deleteKVStore('appId', 'storId', KvStore).then(() => {
+        kvManager.deleteKVStore('appId', 'storId', kvStore).then(() => {
             console.log('deleteKVStore success');
         }).catch((err) => {
             console.log('deleteKVStore err ' + JSON.stringify(err));
@@ -704,7 +704,7 @@ deleteKVStore\(appId: string, storeId: string\): Promise<void\>;
     ``` 
 
 
-### getAllKVStoreId ###
+### getAllKVStoreId<sup>8+</sup> ###
 
 getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;
 
@@ -758,7 +758,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;
     ```  
 
 
-### getAllKVStoreId ###
+### getAllKVStoreId<sup>8+</sup> ###
 
 getAllKVStoreId\(appId: string\): Promise<string[\]\>;
 
@@ -828,7 +828,7 @@ getAllKVStoreId\(appId: string\): Promise<string[\]\>;
     ``` 
 
 
-### on ###
+### on<sup>8+</sup> ###
 
 on\(event: 'distributedDataServiceDie', deathCallback: Callback<void\>\): void;
 
@@ -884,7 +884,7 @@ on\(event: 'distributedDataServiceDie', deathCallback: Callback<void\>\): void;
     ``` 
 
 
-### off ###
+### off<sup>8+</sup> ###
 
 off\(event: 'distributedDataServiceDie', deathCallback: Callback<void\>\): void;
 
@@ -1163,11 +1163,11 @@ KVStore常量。
 </tbody>
 </table>
 
-## Schema ##
+## Schema<sup>8+</sup> ##
 
 表示数据库架构，可以创建 Schema 对象，并在创建或打开数据库时将其放置在 Option 中。
 
-### constructor ###
+### constructor ###<sup>8+</sup>
 
 constructor();
 
@@ -1179,11 +1179,12 @@ constructor();
     try {
         let schema = new ddm.Schema();
         schema.root = new ddm.FieldNode();
+        const str = schema.constructor();
         console.log("constructor: " + str);
     } catch (e) {}
     ``` 
 
-### toJsonString ###
+### toJsonString<sup>8+</sup> ###
 
 toJsonString():string;
 
@@ -1219,11 +1220,11 @@ toJsonString():string;
     ``` 
 
 
-## FieldNode<a name="section33333333333"></a> ##
+## FieldNode<a name="section33333333333"></a><sup>8+</sup> ##
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
 
-### constructor ###
+### constructor<sup>8+</sup> ###
 
 constructor\(name: string\);
 
@@ -1257,12 +1258,13 @@ constructor\(name: string\);
     ```
     try {
         let node = new ddm.FieldNode("name");
+        const str = node.constructor();
         console.log("constructor: " + str);
     } catch (e) {}
     ``` 
 
 
-### appendChild ###
+### appendChild<sup>8+</sup> ###
 
 appendChild\(child: FieldNode\): boolean;
 
@@ -1330,7 +1332,7 @@ appendChild\(child: FieldNode\): boolean;
     ``` 
 
 
-### toJson ###
+### toJson<sup>8+</sup> ###
 
 toJson(\): string;
 
@@ -1366,11 +1368,11 @@ toJson(\): string;
     ``` 
 
 
-## KvStoreResultSet<a name="section111111111"></a> ##
+## KvStoreResultSet<a name="section111111111"></a><sup>8+</sup> ##
 
 提供获取KvStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过DeviceKvStore 构建一个DeviceKvStore 实例。
 
-### getCount ###
+### getCount<sup>8+</sup> ###
 
 getCount(\): number;
 
@@ -1398,15 +1400,15 @@ getCount(\): number;
     ```
     let KvStoreResultSet;
     try {
-        count = resultSet.getCount();
-        console.log("getCount " + count);
+        const count = resultSet.getCount();
+        console.log("GetCount " + count);
     } catch (e) {
-        console.log("GetCount001 fail " + e);
+        console.log("GetCount fail " + e);
     }
     ``` 
 
 
-### getPosition ###
+### getPosition<sup>8+</sup> ###
 
 getPosition(\): number;
 
@@ -1442,7 +1444,7 @@ getPosition(\): number;
     ```
 
 
-### moveToFirst ###
+### moveToFirst<sup>8+</sup> ###
 
 moveToFirst(\): boolean;
 
@@ -1478,7 +1480,7 @@ moveToFirst(\): boolean;
     ```
 
 
-### moveToLast ###
+### moveToLast<sup>8+</sup> ###
 
 moveToLast(\): boolean;
 
@@ -1514,7 +1516,7 @@ moveToLast(\): boolean;
     ```
 
 
-### moveToNext ###
+### moveToNext<sup>8+</sup> ###
 
 moveToNext(\): boolean;
 
@@ -1550,7 +1552,7 @@ moveToNext(\): boolean;
     ```
 
 
-### moveToPrevious ###
+### moveToPrevious<sup>8+</sup> ###
 
 moveToPrevious(\): boolean;
 
@@ -1586,7 +1588,7 @@ moveToPrevious(\): boolean;
     ```
 
 
-### move ###
+### move<sup>8+</sup> ###
 
 move\(offset: number\): boolean;
 
@@ -1644,7 +1646,7 @@ move\(offset: number\): boolean;
     ```
 
 
-### moveToPosition ###
+### moveToPosition<sup>8+</sup> ###
 
 moveToPosition\(position: number\): boolean;
 
@@ -1702,7 +1704,7 @@ moveToPosition\(position: number\): boolean;
     ```
 
 
-### isFirst ###
+### isFirst<sup>8+</sup> ###
 
 isFirst(\): boolean;
 
@@ -1738,7 +1740,7 @@ isFirst(\): boolean;
     ```
 
 
-### isLast ###
+### isLast<sup>8+</sup> ###
 
 isLast(\): boolean;
 
@@ -1774,7 +1776,7 @@ isLast(\): boolean;
     ```
 
 
-### isBeforeFirst ###
+### isBeforeFirst<sup>8+</sup> ###
 
 isBeforeFirst(\): boolean;
 
@@ -1810,7 +1812,7 @@ isBeforeFirst(\): boolean;
     ```
 
 
-### isAfterLast ###
+### isAfterLast<sup>8+</sup> ###
 
 isAfterLast(\): boolean;
 
@@ -1846,7 +1848,7 @@ isAfterLast(\): boolean;
     ```
 
 
-### getEntry ###
+### getEntry<sup>8+</sup> ###
 
 getEntry(\): Entry;
 
@@ -1883,11 +1885,11 @@ getEntry(\): Entry;
     ```
 
 
-## Query <a name="section22222222222"></a>##
+## Query <a name="section22222222222"></a><sup>8+</sup>##
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
 
-### constructor ###
+### constructor<sup>8+</sup> ###
 
 constructor();
 
@@ -1898,11 +1900,12 @@ constructor();
     ```
     try {
         let query= new ddm.Query()
+        const str = query.constructor();
         console.log("constructor: " + str);
     } catch (e) {}
     ```
 
-### reset ###
+### reset<sup>8+</sup> ###
 
 reset(\): Query;
 
@@ -1942,7 +1945,7 @@ reset(\): Query;
     ```
 
 
-### equalTo ###
+### equalTo<sup>8+</sup> ###
 
 equalTo\(field: string, value: number|string|boolean\): Query;
 
@@ -2011,7 +2014,7 @@ equalTo\(field: string, value: number|string|boolean\): Query;
     ```
 
 
-### notEqualTo ###
+### notEqualTo<sup>8+</sup> ###
 
 notEqualTo\(field: string, value: number|string|boolean\): Query;
 
@@ -2080,7 +2083,7 @@ notEqualTo\(field: string, value: number|string|boolean\): Query;
     ```
 
 
-### greaterThan ###
+### greaterThan<sup>8+</sup> ###
 
 greaterThan\(field: string, value: number|string|boolean\): Query;
 
@@ -2149,7 +2152,7 @@ greaterThan\(field: string, value: number|string|boolean\): Query;
     ```
 
 
-### lessThan ###
+### lessThan<sup>8+</sup> ###
 
 lessThan\(field: string, value: number|string\): Query;
 
@@ -2218,7 +2221,7 @@ lessThan\(field: string, value: number|string\): Query;
     ```
 
 
-### greaterThanOrEqualTo ###
+### greaterThanOrEqualTo<sup>8+</sup> ###
 
 greaterThanOrEqualTo\(field: string, value: number|string\): Query;
 
@@ -2287,7 +2290,7 @@ greaterThanOrEqualTo\(field: string, value: number|string\): Query;
     ```
 
 
-### lessThanOrEqualTo ###
+### lessThanOrEqualTo<sup>8+</sup> ###
 
 lessThanOrEqualTo\(field: string, value: number|string\): Query;
 
@@ -2356,7 +2359,7 @@ lessThanOrEqualTo\(field: string, value: number|string\): Query;
     ```
 
 
-### isNull ###
+### isNull<sup>8+</sup> ###
 
 isNull\(field: string\): Query;
 
@@ -2417,7 +2420,7 @@ isNull\(field: string\): Query;
     ```
 
 
-### inNumber ###
+### inNumber<sup>8+</sup> ###
 
 inNumber\(field: string, valueList: number[\]\): Query;
 
@@ -2486,7 +2489,7 @@ inNumber\(field: string, valueList: number[\]\): Query;
     ```
 
 
-### inString ###
+### inString<sup>8+</sup> ###
 
 inString\(field: string, valueList: string[\]\): Query;
 
@@ -2555,7 +2558,7 @@ inString\(field: string, valueList: string[\]\): Query;
     ```
 
 
-### notInNumber ###
+### notInNumber<sup>8+</sup> ###
 
 notInNumber\(field: string, valueList: number[\]\): Query;
 
@@ -2624,7 +2627,7 @@ notInNumber\(field: string, valueList: number[\]\): Query;
     ```
 
 
-### notInString ###
+### notInString<sup>8+</sup> ###
 
 notInString\(field: string, valueList: string[\]\): Query;
 
@@ -2693,7 +2696,7 @@ notInString\(field: string, valueList: string[\]\): Query;
     ```
 
 
-### like ###
+### like<sup>8+</sup> ###
 
 like\(field: string, value: string\): Query;
 
@@ -2762,7 +2765,7 @@ like\(field: string, value: string\): Query;
     ```
 
 
-### unlike ###
+### unlike<sup>8+</sup> ###
 
 unlike\(field: string, value: string\): Query;
 
@@ -2831,7 +2834,7 @@ unlike\(field: string, value: string\): Query;
     ```
 
 
-### and ###
+### and<sup>8+</sup> ###
 
 and(\): Query;
 
@@ -2871,7 +2874,7 @@ and(\): Query;
     ```
 
 
-### or ###
+### or<sup>8+</sup> ###
 
 or(\): Query;
 
@@ -2911,7 +2914,7 @@ or(\): Query;
     ```
 
 
-### orderByAsc ###
+### orderByAsc<sup>8+</sup> ###
 
 orderByAsc\(field: string\): Query;
 
@@ -2974,7 +2977,7 @@ orderByAsc\(field: string\): Query;
     ```
 
 
-### orderByDesc ###
+### orderByDesc<sup>8+</sup> ###
 
 orderByDesc\(field: string\): Query;
 
@@ -3036,7 +3039,7 @@ orderByDesc\(field: string\): Query;
     ```
 
 
-### limit ###
+### limit<sup>8+</sup> ###
 
 limit\(total: number, offset: number\): Query;
 
@@ -3106,7 +3109,7 @@ limit\(total: number, offset: number\): Query;
     ```
 
 
-### isNotNull ###
+### isNotNull<sup>8+</sup> ###
 
 isNotNull\(field: string\): Query;
 
@@ -3167,7 +3170,7 @@ isNotNull\(field: string\): Query;
     ```
 
 
-### beginGroup ###
+### beginGroup<sup>8+</sup> ###
 
 beginGroup\(\): Query;
 
@@ -3207,7 +3210,7 @@ beginGroup\(\): Query;
     ```
 
 
-### endGroup ###
+### endGroup<sup>8+</sup> ###
 
 endGroup\(\): Query;
 
@@ -3247,7 +3250,7 @@ endGroup\(\): Query;
     ```
 
 
-### prefixKey ###
+### prefixKey<sup>8+</sup> ###
 
 prefixKey\(prefix: string\): Query;
 
@@ -3308,7 +3311,7 @@ prefixKey\(prefix: string\): Query;
     ```
 
 
-### setSuggestIndex ###
+### setSuggestIndex<sup>8+</sup> ###
 
 setSuggestIndex\(index: string\): Query;
 
@@ -3746,7 +3749,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
     });
     ```
 
-### off ###
+### off<sup>8+</sup> ###
 
 off\(event:'dataChange', observer: Callback<ChangeNotification\>\): void;
 
@@ -3780,7 +3783,7 @@ off\(event:'dataChange', observer: Callback<ChangeNotification\>\): void;
     </tbody>
     </table>
 
-### putBatch ###
+### putBatch<sup>8+</sup> ###
 
 putBatch\(entries: Entry[], callback: AsyncCallback<void\>\): void;
 
@@ -3817,7 +3820,7 @@ putBatch\(entries: Entry[], callback: AsyncCallback<void\>\): void;
     </tbody>
     </table>
 
-### putBatch ###
+### putBatch<sup>8+</sup> ###
 
 putBatch\(entries: Entry[\]\): Promise<void\>;
 
@@ -3863,7 +3866,7 @@ putBatch\(entries: Entry[\]\): Promise<void\>;
     </tbody>
     </table>
 
-### deleteBatch ###
+### deleteBatch<sup>8+</sup> ###
 
 deleteBatch(keys: string[], callback: AsyncCallback<void>): void;
 
@@ -3900,7 +3903,7 @@ deleteBatch(keys: string[], callback: AsyncCallback<void>): void;
     </tbody>
     </table>
 
-### deleteBatch ###
+### deleteBatch<sup>8+</sup> ###
 
 deleteBatch\(keys: string[\]\): Promise<void\>;
 
@@ -3946,7 +3949,7 @@ deleteBatch\(keys: string[\]\): Promise<void\>;
     </tbody>
     </table>
 
-### startTransaction ###
+### startTransaction<sup>8+</sup> ###
 
 startTransaction\(callback: AsyncCallback<void\>\): void;
 
@@ -3975,7 +3978,7 @@ startTransaction\(callback: AsyncCallback<void\>\): void;
     </tbody>
     </table>
 
-### startTransaction ###
+### startTransaction<sup>8+</sup> ###
 
 startTransaction\(\): Promise<void\>;
 
@@ -3998,7 +4001,7 @@ startTransaction\(\): Promise<void\>;
     </tbody>
     </table>
 
-### commit ###
+### commit<sup>8+</sup> ###
 
 commit\(callback: AsyncCallback<void\>\): void;
 
@@ -4027,7 +4030,7 @@ commit\(callback: AsyncCallback<void\>\): void;
     </tbody>
     </table>
 
-### commit ###
+### commit<sup>8+</sup> ###
 
 commit(\): Promise<void\>;
 
@@ -4050,7 +4053,7 @@ commit(\): Promise<void\>;
     </tbody>
     </table>
 
-### rollback ###
+### rollback<sup>8+</sup> ###
 
 rollback\(callback: AsyncCallback<void\>\): void;
 
@@ -4079,7 +4082,7 @@ rollback\(callback: AsyncCallback<void\>\): void;
     </tbody>
     </table>
 
-### rollback ###
+### rollback<sup>8+</sup> ###
 
 rollback(\): Promise<void\>;
 
@@ -4102,7 +4105,7 @@ rollback(\): Promise<void\>;
     </tbody>
     </table>
 
-### enableSync ###
+### enableSync<sup>8+</sup> ###
 
 enableSync\(enabled: boolean, callback: AsyncCallback<void\>\): void;
 
@@ -4142,7 +4145,7 @@ enableSync\(enabled: boolean, callback: AsyncCallback<void\>\): void;
     </tbody>
     </table>
 
-### enableSync ###
+### enableSync<sup>8+</sup> ###
 
 enableSync\(enabled: boolean\): Promise<void\>;
 
@@ -4190,7 +4193,7 @@ enableSync\(enabled: boolean\): Promise<void\>;
     </tbody>
     </table>
 
-### setSyncRange ###
+### setSyncRange<sup>8+</sup> ###
 
 setSyncRange\(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback<void\>\): void;
 
@@ -4239,7 +4242,7 @@ setSyncRange\(localLabels: string[], remoteSupportLabels: string[], callback: As
     </tbody>
     </table>
 
-### setSyncRange ###
+### setSyncRange<sup>8+</sup> ###
 
 setSyncRange\(localLabels: string[], remoteSupportLabels: string[\]\): Promise<void\>;
 
@@ -4677,7 +4680,7 @@ get\(key: string\): Promise<Uint8Array | string | boolean | number\>
     }
     ```
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(keyPrefix: string, callback: AsyncCallback<Entry[\]\>\): void;
 
@@ -4747,7 +4750,7 @@ getEntries\(keyPrefix: string, callback: AsyncCallback<Entry[\]\>\): void;
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(keyPrefix: string\): Promise<Entry[\]\>;
 
@@ -4832,7 +4835,7 @@ getEntries\(keyPrefix: string\): Promise<Entry[\]\>;
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(query: Query, callback: AsyncCallback<Entry[\]\>\): void;
 
@@ -4903,7 +4906,7 @@ getEntries\(query: Query, callback: AsyncCallback<Entry[\]\>\): void;
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(query: Query\): Promise<Entry[\]\>;
 
@@ -4988,7 +4991,7 @@ getEntries\(query: Query\): Promise<Entry[\]\>;
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet\>\): void;
 
@@ -5061,7 +5064,7 @@ getResultSet\(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet\>\): v
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(keyPrefix: string\): Promise<KvStoreResultSet\>;
 
@@ -5149,7 +5152,7 @@ getResultSet\(keyPrefix: string\): Promise<KvStoreResultSet\>;
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(query: Query, callback: AsyncCallback<KvStoreResultSet\>\): void;
 
@@ -5221,7 +5224,7 @@ getResultSet\(query: Query, callback: AsyncCallback<KvStoreResultSet\>\): void;
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(query: Query\): Promise<KvStoreResultSet\>;
 
@@ -5307,7 +5310,7 @@ getResultSet\(query: Query\): Promise<KvStoreResultSet\>;
     }
     ```
 
-### closeResultSet ###
+### closeResultSet<sup>8+</sup> ###
 
 closeResultSet\(resultSet: KvStoreResultSet, callback: AsyncCallback<void\>\): void;
 
@@ -5366,7 +5369,7 @@ closeResultSet\(resultSet: KvStoreResultSet, callback: AsyncCallback<void\>\): v
     ```
 
 
-### closeResultSet ###
+### closeResultSet<sup>8+</sup> ###
 
 closeResultSet\(resultSet: KvStoreResultSet\): Promise<void\>;
 
@@ -5431,7 +5434,7 @@ closeResultSet\(resultSet: KvStoreResultSet\): Promise<void\>;
     ```
 
 
-### getResultSize ###
+### getResultSize<sup>8+</sup> ###
 
 getResultSize\(query: Query, callback: AsyncCallback<number\>\): void;
 
@@ -5483,7 +5486,7 @@ getResultSize\(query: Query, callback: AsyncCallback<number\>\): void;
     ```
 
 
-### getResultSize ###
+### getResultSize<sup>8+</sup> ###
 
 getResultSize\(query: Query\): Promise<number\>;
 
@@ -5543,7 +5546,7 @@ getResultSize\(query: Query\): Promise<number\>;
     ```
 
 
-### removeDeviceData ###
+### removeDeviceData<sup>8+</sup> ###
 
 removeDeviceData\(deviceId: string, callback: AsyncCallback<void\>\): void;
 
@@ -5595,7 +5598,6 @@ removeDeviceData\(deviceId: string, callback: AsyncCallback<void\>\): void;
             kvStore.removeDeviceData(deviceid, async function (err,data) {
                 if (err == undefined) {
                     console.log('removeDeviceData success');
-                    done();
                 } else {
                     console.log('removeDeviceData fail');
                     kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
@@ -5610,7 +5612,7 @@ removeDeviceData\(deviceId: string, callback: AsyncCallback<void\>\): void;
     ```
 
 
-### removeDeviceData ###
+### removeDeviceData<sup>8+</sup> ###
 
 removeDeviceData\(deviceId: string\): Promise<void\>;
 
@@ -5686,7 +5688,7 @@ removeDeviceData\(deviceId: string\): Promise<void\>;
     ```
 
 
-### on ###
+### on<sup>8+</sup> ###
 
 on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): void;
 
@@ -5746,7 +5748,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): vo
     ```
 
 
-### off ###
+### off<sup>8+</sup> ###
 
 off\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): void;
 
@@ -5853,10 +5855,10 @@ sync\(deviceIdList: string\[\], mode: SyncMode, allowedDelayMs?: number\): void
 -   示例：
 
     ```
-    kvStore.sync(deviceIds, 1, 1000);
+    kvStore.sync('deviceIds', 1, 1000);
     ```
 
-### setSyncParam ###
+### setSyncParam<sup>8+</sup> ###
 
 setSyncParam\(defaultAllowedDelayMs: number, callback: AsyncCallback<void\>\): void;
 
@@ -5910,7 +5912,7 @@ setSyncParam\(defaultAllowedDelayMs: number, callback: AsyncCallback<void\>\): v
     ```
 
 
-### setSyncParam ###
+### setSyncParam<sup>8+</sup> ###
 
 setSyncParam\(defaultAllowedDelayMs: number\): Promise<void\>;
 
@@ -5974,7 +5976,7 @@ setSyncParam\(defaultAllowedDelayMs: number\): Promise<void\>;
     ```
 
 
-### getSecurityLevel ###
+### getSecurityLevel<sup>8+</sup> ###
 
 getSecurityLevel\(callback: AsyncCallback<SecurityLevel\>\): void;
 
@@ -6018,7 +6020,7 @@ getSecurityLevel\(callback: AsyncCallback<SecurityLevel\>\): void;
     ```
 
 
-### getSecurityLevel ###
+### getSecurityLevel<sup>8+</sup> ###
 
 getSecurityLevel(\): Promise<SecurityLevel\>;
 
@@ -6056,11 +6058,11 @@ getSecurityLevel(\): Promise<SecurityLevel\>;
     ```
 
 
-## DeviceKVStore ##
+## DeviceKVStore<sup>8+</sup> ##
 
 在分布式系统中通过设备管理分布式数据，继承自KvStore，提供查询数据和同步数据的方法。在调用DeviceKVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
 
-### get ###
+### get<sup>8+</sup> ###
 
 get\(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number|Uint8Array\>\): void;
 
@@ -6117,7 +6119,7 @@ get\(deviceId: string, key: string, callback: AsyncCallback<boolean|string|numbe
     try{
         kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
             console.log('put success');
-            kvStore.get(localDeviceId, KEY_TEST_STRING_ELEMENT, function (err,data) {
+            kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, function (err,data) {
                 console.log('get success');
             });
         })
@@ -6127,7 +6129,7 @@ get\(deviceId: string, key: string, callback: AsyncCallback<boolean|string|numbe
     ```
 
 
-### get ###
+### get<sup>8+</sup> ###
 
 get\(deviceId: string, key: string\): Promise<boolean|string|number|Uint8Array\>;
 
@@ -6192,7 +6194,7 @@ get\(deviceId: string, key: string\): Promise<boolean|string|number|Uint8Array\>
     try {
         kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async (data) => {
             console.log(' put success');
-            kvStore.get(localDeviceId, KEY_TEST_STRING_ELEMENT).then((data) => {
+            kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
                 console.log('get success');
             }).catch((err) => {
                 console.log('get fail ' + JSON.stringify(err));
@@ -6206,7 +6208,7 @@ get\(deviceId: string, key: string\): Promise<boolean|string|number|Uint8Array\>
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[\]\>\): void;
 
@@ -6274,7 +6276,7 @@ getEntries\(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[\
         console.log('entries: ' + entries);
         kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
-            kvStore.getEntries(localDeviceId, 'batch_test_string_key', function (err,entrys) {
+            kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
                 console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -6286,7 +6288,7 @@ getEntries\(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[\
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(deviceId: string, keyPrefix: string\): Promise<Entry[\]\>;
 
@@ -6362,7 +6364,7 @@ getEntries\(deviceId: string, keyPrefix: string\): Promise<Entry[\]\>;
         console.log('entries: ' + entries);
          kvStore.putBatch(entries).then(async (err) => {
             console.log('putBatch success');
-            kvStore.getEntries(localDeviceId, 'batch_test_string_key').then((entrys) => {
+            kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
                 console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -6380,7 +6382,7 @@ getEntries\(deviceId: string, keyPrefix: string\): Promise<Entry[\]\>;
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(query: Query, callback: AsyncCallback<Entry[\]\>\): void;
 
@@ -6440,7 +6442,7 @@ getEntries\(query: Query, callback: AsyncCallback<Entry[\]\>\): void;
         console.log('entries: ' + entries);
         kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
-            kvStore.getEntries(localDeviceId, 'batch_test_bool_key', function (err,entrys) {
+            kvStore.getEntries('localDeviceId', 'batch_test_bool_key', function (err,entrys) {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
             });
@@ -6451,7 +6453,7 @@ getEntries\(query: Query, callback: AsyncCallback<Entry[\]\>\): void;
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(query: Query\): Promise<Entry[\]\>;
 
@@ -6519,7 +6521,7 @@ getEntries\(query: Query\): Promise<Entry[\]\>;
         console.log('entries: ' + entries);
         kvStore.putBatch(entries).then(async (err) => {
             console.log('putBatch success');
-            kvStore.getEntries(localDeviceId, 'batch_test_bool_key').then((entrys) => {
+            kvStore.getEntries('localDeviceId', 'batch_test_bool_key').then((entrys) => {
                 console.log('getEntries success');
             }).catch((err) => {
                 console.log('getEntries fail ' + JSON.stringify(err));
@@ -6533,7 +6535,7 @@ getEntries\(query: Query\): Promise<Entry[\]\>;
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(deviceId: string, query: Query, callback: AsyncCallback<Entry[\]\>\): void;
 
@@ -6602,7 +6604,7 @@ getEntries\(deviceId: string, query: Query, callback: AsyncCallback<Entry[\]\>\)
         console.log('entries: ' + entries);
         kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
-            kvStore.getEntries(localDeviceId, 'batch_test_bool_key', function (err,entrys) {
+            kvStore.getEntries('localDeviceId', 'batch_test_bool_key', function (err,entrys) {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
             });
@@ -6613,7 +6615,7 @@ getEntries\(deviceId: string, query: Query, callback: AsyncCallback<Entry[\]\>\)
     ```
 
 
-### getEntries ###
+### getEntries<sup>8+</sup> ###
 
 getEntries\(deviceId: string, query: Query\): Promise<Entry[\]\>;
 
@@ -6690,7 +6692,7 @@ getEntries\(deviceId: string, query: Query\): Promise<Entry[\]\>;
         console.log('entries: ' + entries);
         kvStore.putBatch(entries).then(async (err) => {
             console.log('putBatch success');
-            kvStore.getEntries(localDeviceId, 'batch_test_bool_key').then((entrys) => {
+            kvStore.getEntries('localDeviceId', 'batch_test_bool_key').then((entrys) => {
                 console.log('getEntries success');
             }).catch((err) => {
                 console.log('getEntries fail ' + JSON.stringify(err));
@@ -6704,7 +6706,7 @@ getEntries\(deviceId: string, query: Query\): Promise<Entry[\]\>;
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStoreResultSet\>\): void;
 
@@ -6758,7 +6760,7 @@ getResultSet\(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvSto
     ```
     try {
         let resultSet;
-        kvStore.getResultSet(localDeviceId, 'batch_test_string_key', async function (err, result) {
+        kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
             console.log('getResultSet success');
             resultSet = result;
             kvStore.closeResultSet(resultSet, function (err, data) {
@@ -6771,7 +6773,7 @@ getResultSet\(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvSto
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(deviceId: string, keyPrefix: string\): Promise<KvStoreResultSet\>;
 
@@ -6833,7 +6835,7 @@ getResultSet\(deviceId: string, keyPrefix: string\): Promise<KvStoreResultSet\>;
     ```
     try {
         let resultSet;
-        kvStore.getResultSet(localDeviceId, 'batch_test_string_key').then((result) => {
+        kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
             console.log('getResultSet success');
             resultSet = result;
         }).catch((err) => {
@@ -6850,7 +6852,7 @@ getResultSet\(deviceId: string, keyPrefix: string\): Promise<KvStoreResultSet\>;
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(query: Query, callback: AsyncCallback<KvStoreResultSet\>\): void;
 
@@ -6904,7 +6906,7 @@ getResultSet\(query: Query, callback: AsyncCallback<KvStoreResultSet\>\): void;
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(query: Query\): Promise<KvStoreResultSet\>;
 
@@ -6975,7 +6977,7 @@ getResultSet\(query: Query\): Promise<KvStoreResultSet\>;
             console.log('PutBatch putBatch fail ' + JSON.stringify(err));
         });
         const query = new factory.Query();
-        query.deviceId(localDeviceId);
+        query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
         console.log("GetResultSet " + query.getSqlLike());
         kvStore.getResultSet(query).then((result) => {
@@ -6995,7 +6997,7 @@ getResultSet\(query: Query\): Promise<KvStoreResultSet\>;
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResultSet\>\): void;
 
@@ -7058,7 +7060,7 @@ getResultSet\(deviceId: string, query: Query, callback: AsyncCallback<KvStoreRes
     ```
 
 
-### getResultSet ###
+### getResultSet<sup>8+</sup> ###
 
 getResultSet\(deviceId: string, query: Query\): Promise<KvStoreResultSet\>;
 
@@ -7138,14 +7140,14 @@ getResultSet\(deviceId: string, query: Query\): Promise<KvStoreResultSet\>;
             console.log('PutBatch putBatch fail ' + JSON.stringify(err));
         });
         const query = new factory.Query();
-        prefixKey("batch_test");
-        kvStore.getResultSet(localDeviceId, query).then((result) => {
+        query.prefixKey("batch_test");
+        kvStore.getResultSet('localDeviceId', query).then((result) => {
             console.log('GetResultSet getResultSet success');
             resultSet = result;
         }).catch((err) => {
             console.log('GetResultSet getResultSet fail ' + JSON.stringify(err));
         });
-        query.deviceId(localDeviceId);
+        query.deviceId('localDeviceId');
         console.log("GetResultSet " + query.getSqlLike());
         kvStore.closeResultSet(resultSet).then((err) => {
             console.log('GetResultSet closeResultSet success');
@@ -7159,7 +7161,7 @@ getResultSet\(deviceId: string, query: Query\): Promise<KvStoreResultSet\>;
     ```
 
 
-### closeResultSet ###
+### closeResultSet<sup>8+</sup> ###
 
 closeResultSet\(resultSet: KvStoreResultSet, callback: AsyncCallback<void\>\): void;
 
@@ -7218,7 +7220,7 @@ closeResultSet\(resultSet: KvStoreResultSet, callback: AsyncCallback<void\>\): v
     ```
 
 
-### closeResultSet ###
+### closeResultSet<sup>8+</sup> ###
 
 closeResultSet\(resultSet: KvStoreResultSet\): Promise<void>;
 
@@ -7283,7 +7285,7 @@ closeResultSet\(resultSet: KvStoreResultSet\): Promise<void>;
     ```
 
 
-### getResultSize ###
+### getResultSize<sup>8+</sup> ###
 
 getResultSize\(query: Query, callback: AsyncCallback<number\>\): void;
 
@@ -7335,7 +7337,7 @@ getResultSize\(query: Query, callback: AsyncCallback<number\>\): void;
     ```
 
 
-### getResultSize ###
+### getResultSize<sup>8+</sup> ###
 
 getResultSize\(query: Query\): Promise<number\>;
 
@@ -7395,7 +7397,7 @@ getResultSize\(query: Query\): Promise<number\>;
     ```
 
 
-### getResultSize ###
+### getResultSize<sup>8+</sup> ###
 
 getResultSize\(deviceId: string, query: Query, callback: AsyncCallback<number\>\): void;
 
@@ -7456,7 +7458,7 @@ getResultSize\(deviceId: string, query: Query, callback: AsyncCallback<number\>\
     ```
 
 
-### getResultSize ###
+### getResultSize<sup>8+</sup> ###
 
 getResultSize\(deviceId: string, query: Query\): Promise<number\>;
 
@@ -7525,7 +7527,7 @@ getResultSize\(deviceId: string, query: Query\): Promise<number\>;
     ```
 
 
-### removeDeviceData ###
+### removeDeviceData<sup>8+</sup> ###
 
 removeDeviceData\(deviceId: string, callback: AsyncCallback<void\>\): void;
 
@@ -7579,7 +7581,7 @@ removeDeviceData\(deviceId: string, callback: AsyncCallback<void\>\): void;
                     console.log('removeDeviceData success');
                 } else {
                     console.log('testDeviceKvStoreRemoveDeviceData101 removeDeviceData fail');
-                    kvStore.get(localDeviceId, KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                    kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
                         console.log('RemoveDeviceData get success');
                     });
                 }
@@ -7591,7 +7593,7 @@ removeDeviceData\(deviceId: string, callback: AsyncCallback<void\>\): void;
     ```
 
 
-### removeDeviceData ###
+### removeDeviceData<sup>8+</sup> ###
 
 removeDeviceData\(deviceId: string\): Promise<void\>;
 
@@ -7658,7 +7660,7 @@ removeDeviceData\(deviceId: string\): Promise<void\>;
             console.log('RemoveDeviceData removeDeviceData fail ' + JSON.stringify(err));
         });
 
-        kvStore.get(localDeviceId, KEY_TEST_STRING_ELEMENT).then((data) => {
+        kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
             console.log('RemoveDeviceData get success data:' + data);
         }).catch((err) => {
             console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
@@ -7670,7 +7672,7 @@ removeDeviceData\(deviceId: string\): Promise<void\>;
     ```
 
 
-### sync ###
+### sync<sup>8+</sup> ###
 
 sync\(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number\): void;
 
@@ -7739,7 +7741,7 @@ sync\(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number\): void;
     }
     ```
 
-### on ###
+### on<sup>8+</sup> ###
 
 on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>\>): void;
 
@@ -7799,7 +7801,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>\>): vo
     ```
 
 
-### off ###
+### off<sup>8+</sup> ###
 
 off\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): void;
 
