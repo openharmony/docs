@@ -1,6 +1,6 @@
-# FeatureAbility模块
+# FeatureAbility模块(JS端SDK接口)
 
-## 支持设备
+#### 支持设备
 
 | API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 智慧视觉设备 |
 | ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
@@ -22,17 +22,17 @@
 | FeatureAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
 | FeatureAbility.disconnectAbility(connection: number): Promise\<void> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
 
-## 使用限制
+#### 使用限制
 
 FeatureAbility模块的接口只能在Page类型的Ability调用
 
-## 导入模块
+#### 导入模块
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
 ```
 
-## FeatureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
+#### FeatureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
 * 接口说明
 
@@ -71,7 +71,7 @@ featureAbility.startAbility(
 
 
 
-## FeatureAbility.startAbility(parameter: StartAbilityParameter): Promise\<number>
+#### FeatureAbility.startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 * 接口说明
 
@@ -93,6 +93,7 @@ featureAbility.startAbility(
     {
         want:
         {
+            action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
 			flags: FLAG_AUTH_READ_URI_PERMISSION,
@@ -109,7 +110,7 @@ featureAbility.startAbility(
 
 
 
-## FeatureAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper
+#### FeatureAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 * 接口说明
 
@@ -138,7 +139,7 @@ featureAbility.acquireDataAbilityHelper(
 
 
 
-## FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
+#### FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
 * 接口说明
 
@@ -178,7 +179,7 @@ featureAbility.startAbilityForResult(
 
 
 
-## FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
+#### FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 * 接口说明
 
@@ -231,7 +232,7 @@ featureAbility.startAbilityForResult(
 
 
 
-## FeatureAbility.terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
+#### FeatureAbility.terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
 * 接口说明
 
@@ -281,7 +282,7 @@ featureAbility.terminateSelfWithResult(
 
 
 
-## FeatureAbility.terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
+#### FeatureAbility.terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 * 接口说明
 
@@ -331,7 +332,7 @@ featureAbility.terminateSelfWithResult(
 
 
 
-## FeatureAbility.hasWindowFocus(callback: AsyncCallback\<boolean>): void
+#### FeatureAbility.hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 * 接口说明
 
@@ -356,7 +357,7 @@ featureAbility.hasWindowFocus()
 
 
 
-## FeatureAbility.hasWindowFocus(): Promise\<boolean>
+#### FeatureAbility.hasWindowFocus(): Promise\<boolean>
 
 * 接口说明
 
@@ -381,7 +382,7 @@ featureAbility.hasWindowFocus().then((void) => {
 
 
 
-## FeatureAbility.getWant(callback: AsyncCallback\<Want>)
+#### FeatureAbility.getWant(callback: AsyncCallback\<Want>)
 
 * 接口说明
 
@@ -404,7 +405,7 @@ featureAbility.getWant()
 
 
 
-## FeatureAbility.getWant(): void
+#### FeatureAbility.getWant(): void
 
 * 接口说明
 
@@ -427,7 +428,7 @@ featureAbility.getWant().then((void) => {
 
 
 
-## FeatureAbility.getContext(): Context
+#### FeatureAbility.getContext(): Context
 
 * 接口说明
 
@@ -447,7 +448,7 @@ context.getBundleName()
 
 
 
-## FeatureAbility.terminateSelf(callback: AsyncCallback\<void>): void
+#### FeatureAbility.terminateSelf(callback: AsyncCallback\<void>): void
 
 * 接口说明
 
@@ -470,7 +471,7 @@ featureAbility.terminateSelf()
 
 
 
-## FeatureAbility.terminateSelf(): Promise\<void>
+#### FeatureAbility.terminateSelf(): Promise\<void>
 
 * 接口说明
 
@@ -490,7 +491,7 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 });
 ```
 
-## FeatureAbility.connectAbility(request: Want, options:ConnectOptions): number
+#### FeatureAbility.connectAbility(request: Want, options:ConnectOptions): number
 
 * 接口说明
 
@@ -502,6 +503,14 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 | ------- | -------- | -------------- | ---- | -------------------------- |
 | request | 只读     | Want           | 是   | 表示被连接的ServiceAbility |
 | options | 只读     | ConnectOptions | 是   | 被指定的回调方法           |
+
+* Want参数描述
+
+| 名称         | 读写属性  | 类型     | 必填 | 描述                                                              |
+| ------------ | -------- | -------- | ---- | ----------------------------------                               |
+| deviceId     | 只读     | string   | 否   | 表示被连接的ServiceAbility的设备id，缺省表示连接本地的ServiceAbility |
+| bundleName   | 只读     | string   | 是   | 表示被连接的ServiceAbility的包名                                   |
+| abilityName  | 只读     | string   | 是   | 表示被连接的ServiceAbility的类名                                   |
 
 - ConnectOptions类型说明
 
@@ -530,6 +539,7 @@ function onFailedCallback(code){
 }
 var connId = featureAbility.connectAbility(
     {
+        deviceId: deviceId,
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
     },
@@ -541,7 +551,7 @@ var connId = featureAbility.connectAbility(
 );
 ```
 
-## FeatureAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
+#### FeatureAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 * 接口说明
 
@@ -587,7 +597,7 @@ var result = featureAbility.disconnectAbility(connId,
 );
 ```
 
-## FeatureAbility.disconnectAbility(connection: number): Promise\<void>
+#### FeatureAbility.disconnectAbility(connection: number): Promise\<void>
 
 * 接口说明
 
@@ -628,21 +638,62 @@ var connId = featureAbility.connectAbility(
 var result = await featureAbility.disconnectAbility(connId);
 ```
 
-## AbilityResult类型说明
+
+#### FeatureAbility.continueAbility(options: ContinueAbilityOptions, callback: AsyncCallback\<void>): void;
+
+* 接口说明
+
+  迁移一个ability到目标设备，并返回执行结果(callback形式)
+
+* startAbility参数描述
+
+| 名称     | 读写属性 | 类型                   | 必填 | 描述                |
+| -------- | -------- | ---------------------- | ---- | ------------------- |
+| options  | 只读     | ContinueAbilityOptions | 是   | 表示被启动的Ability |
+| callback | 只读     | AsyncCallback\<void>   | 是   | 被指定的回调方法    |
+
+- ContinueAbilityOptions类型说明
+
+| 名称       | 读写属性 | 类型    | 必填 | 描述                                                        |
+| ---------- | -------- | ------- | ---- | ----------------------------------------------------------- |
+| deviceId   | 只读     | string  | 是   | 表示需要包含有关目标启动能力的信息                          |
+| reversible | 只读     | boolean | 是   | 是否支持回迁的标志，目前不支持该功能，为保留字段，可填false |
+
+* 示例
+
+```javascript
+import featureAbility from '@ohos.ability.featureAbility'
+
+async StartContinueAbility(deviceId) {
+    let continueAbilityOptions = {
+        reversible: false,
+        deviceId: deviceId,
+    }
+    function ContinueAbilityCallback(err, data) {
+        console.info("[Demo] ContinueAbilityCallback, result err = " + JSON.stringify(err));
+        console.info("[Demo] ContinueAbilityCallback, result data= " + JSON.stringify(data));
+    }
+    await featureAbility.continueAbility(continueAbilityOptions, ContinueAbilityCallback);
+    console.info('[Demo] featureAbility.StartContinueAbility end');
+}
+this.StartContinueAbility(remoteDeviceId); //remoteDeviceId is acquired from DeviceManager
+```
+
+#### AbilityResult类型说明
 
 | 名称       | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ---------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | resultCode | 只读     | number                | 是   | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持） |
 | want       | 只读     | [Want](#Want类型说明) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。 |
 
-## StartAbilityParameter类型说明
+#### StartAbilityParameter类型说明
 
 | 名称                | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ------------------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | want                | 只读     | [Want](#Want类型说明) | 是   | 表示需要包含有关目标启动能力的信息。                         |
 | abilityStartSetting | 只读     | {[key: string]: any}  | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
 
-## Want类型说明
+#### Want类型说明
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
@@ -677,26 +728,3 @@ var result = await featureAbility.disconnectAbility(connId);
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
 
-## AbilityStartSetting类型说明
-
-abilityStartSetting属性是一个定义为[key: string]: any的对象，key对应设定类型为：AbilityStartSetting枚举类型，value对应设定类型为：AbilityWindowConfiguration枚举类型。
-
-使用时通过featureAbility.AbilityStartSetting获取，示例：featureAbility.AbilityStartSetting.BOUNDS_KEY。 
-
-| 名称            | 参数            | 描述                       |
-| --------------- | --------------- | -------------------------- |
-| BOUNDS_KEY      | "abilityBounds" | 窗口显示大小属性的名称。   |
-| WINDOW_MODE_KEY | "windowMode"    | 窗口显示模式属性的名称。   |
-| DISPLAY_ID_KEY  | "displayId"     | 窗口显示设备ID属性的名称。 |
-
-## AbilityWindowConfiguration类型说明
-
-使用时通过featureAbility.AbilityWindowConfiguration获取，示例：featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED。 
-
-| 名称                        | 参数 | 描述       |
-| --------------------------- | ---- | ---------- |
-| WINDOW_MODE_UNDEFINED       | 0    | 未定义。   |
-| WINDOW_MODE_FULLSCREEN      | 1    | 全屏。     |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100  | 分屏主屏。 |
-| WINDOW_MODE_SPLIT_SECONDARY | 101  | 分屏次屏。 |
-| WINDOW_MODE_FLOATING        | 102  | 悬浮窗。   |
