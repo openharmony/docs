@@ -1,3 +1,7 @@
+ ### 0.0.6（2022/01/04）
+
+新增安装hb。
+
  ### 0.0.5（2021/10/28）
 
 新增安装tar、binutils、git-lfs、gnutls-bin、python3.8、python3-pip、cpio。
