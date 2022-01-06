@@ -1057,7 +1057,7 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: Asyn
 
 ### query
 
-query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 根据指定条件查询数据库中的数据，结果以Promise形式返回。
 
@@ -1065,7 +1065,7 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;):Promise&lt;Res
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示rdbPredicates的实例对象指定的查询条件。 |
-  | columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+  | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -1077,6 +1077,53 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;):Promise&lt;Res
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
   let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promise.then((resultSet) => {
+      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
+      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+  ```
+
+
+### querySql<sup>8+</sup>
+
+querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+根据指定SQL语句查询数据库中的数据，结果以callback形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | sql | string | 是 | 指定要执行的SQL语句。 |
+  | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是 | SQL语句中参数的值。 |
+  | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+- 示例：
+  ```
+  rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
+      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
+      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+  ```
+
+
+### querySql<sup>8+</sup>
+
+querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
+
+根据指定SQL语句查询数据库中的数据，结果以Promise形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | sql | string | 是 | 指定要执行的SQL语句。 |
+  | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否 | SQL语句中参数的值。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+
+- 示例：
+  ```
+  let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
   promise.then((resultSet) => {
       console.log(TAG + "resultSet column names:" + resultSet.columnNames)
       console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
@@ -1098,14 +1145,14 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 - 示例：
   ```
-  rdbStore.executeSql("DELETE FROM EMPLOYEE", function () {
+  rdbStore.executeSql("DELETE FROM EMPLOYEE", null, function () {
       console.info(TAG + 'delete done.')})
   ```
 
 
 ### executeSql
 
-executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;):Promise&lt;void&gt;
+executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 执行包含指定参数但不返回值的SQL语句，结果以Promise形式返回。
 
@@ -1113,7 +1160,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;):Promise&lt;void&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | sql | string | 是 | 指定要执行的SQL语句。 |
-  | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是 | SQL语句中参数的值。 |
+  | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否 | SQL语句中参数的值。 |
 
 - 返回值：
   | 类型 | 说明 |
