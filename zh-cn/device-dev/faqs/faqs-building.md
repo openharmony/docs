@@ -187,7 +187,6 @@
     ~/gcc_riscv32/bin:/data/toolchain/
     ```
 
-
 ### 编译构建过程中，提示找不到“python”<a name="section51781202415"></a>
 
 -   **现象描述**
@@ -205,15 +204,19 @@
 
 -   **解决办法**
 
-    请按照[安装Python环境](../quick-start/quickstart-lite-env-setup-linux.md)
+    请使用如下命令安装Python，下方以Python3.8为例。
+    ```
+    sudo apt-get install python3.8
+    ```
 
 -   **可能原因2**
+    usr/bin目录下没有python软链接
 
     ![](figures/reason-no-python-soft-link.png)
 
 -   **解决办法**
 
-    usr/bin目录下没有python软链接，请运行以下命令添加软链接：
+    请运行以下命令添加软链接：
 
     ```
     # cd /usr/bin/
@@ -231,15 +234,18 @@
 
 -   **现象描述**
 
-    ![](figures/11.png)
-
+    安装python3过程中出现以下错误：
+    ```
+    configure: error: no acceptable C compiler found in $PATH. See 'config.log' for more details
+    ```
 
 -   **可能原因**
 
-    没有装python3。
+    环境中未安装“gcc”。
 
 -   **解决办法**
 
     请按照[安装python](../quick-start/quickstart-lite-env-setup-linux.md)。
-
+    1.  通过命令“apt-get install gcc”在线安装。
+    2.  完成后，重新安装python3。
 
