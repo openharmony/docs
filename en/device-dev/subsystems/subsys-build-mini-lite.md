@@ -338,8 +338,8 @@ The key directories and files are described as follows:
     ```
     {
     	"product_name": "ipcamera",                       # Product name
-	"version": "3.0",                                 # config.json version, which is 3.0
-        "type": "small",                                  # System type, which can be mini, small, or standard
+	    "version": "3.0",                                 # config.json version, which is 3.0
+      "type": "small",                                  # System type, which can be mini, small, or standard
     	"ohos_version": "OpenHarmony 1.0",                # OS version
     	"device_company": "hisilicon",                    # Chipset vendor
     	"board": "hispark_taurus",                        # Name of the development board
@@ -697,7 +697,7 @@ You can use the Compilation and Building subsystem to customize product solution
     ```
     {
         "product_name": "wifiiot",                        # Product name
-	"version": "3.0",                                 # config.json version, which is 3.0
+	      "version": "3.0",                                 # config.json version, which is 3.0
         "type": "small",                                  # System type, which can be mini, small, or standard
         "ohos_version": "OpenHarmony 1.0",                # OS version
         "device_company": "realtek",                      # Name of the chipset solution vendor
