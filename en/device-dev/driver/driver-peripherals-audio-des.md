@@ -18,25 +18,25 @@
 - **[Audio Driver Development Examples](#section4000)**
     - [Codec Driver Development Example](#section4100)
         - [Filling in Codec Data Structures](#section4111)
-        - [Initializing codecDevice and codecDaiDevice](#section4112)
+        - [Initializing the Codec Device and Codec DAI Device](#section4112)
         - [Implementing the Codec Operation Function Set](#section4113)
         - [Registering and Binding Codec to HDF](#section4114)
         - [Configuring HCS](#section4115)
     - [Accessory Driver Development Example](#section4200)
         - [Filling in Accessory Data Structures](#section4221)
-        - [Initializing accessoryDevice and accessoryDaiDevice](#section4222)
+        - [Initializing the Accessory Device and Accessory DAI Device](#section4222)
         - [Implementing the Accessory Operation Function Set](#section4223)
         - [Registering and Binding Accessory to HDF](#section4224)
         - [Configuring HCS](#section4225)
     - [Platform Driver Development Example](#section4300)
         - [Filling in Platform Data Structures](#section4331)
-        - [Initializing dmaDevice](#section4332)
+        - [Initializing the DMA Device](#section4332)
         - [Implementing the DMA Operation Function Set](#section4333)
-        - [Registering and Binding Platform to HDF](#sectionsection4334)
+        - [Registering and Binding Platform to HDF](#section4334)
         - [Configuring HCS](#section4335)
     - [DAI Driver Development Example](#section4400)
         - [Filling in DAI Data Structures](#section4441)
-        - [Initializing daiDevice](#section4442)
+        - [Initializing the DAI Device](#section4442)
         - [Implementing the DAI Operation Function Set](#section4443)
         - [Registering and Binding DAI to HDF](#section4444)
         - [Configuring HCS](#section4445)
@@ -53,7 +53,7 @@
 
 A multimedia system is an indispensable part in Internet of Things (IoT) devices. Audio is an important module of the multimedia system, and building an audio driver model is particularly important in device development.
 
-This document describes the audio driver architecture and functional modules and how to develop audio drivers based on the Hardware Driver Foundation (HDF). Chip vendors can develop their own drivers and invocation of Hardware Abstraction Layer (HAL) APIs  based on the driver architecture.
+This document describes the audio driver architecture and functional modules and how to develop audio drivers based on the Hardware Driver Foundation (HDF). Chip vendors can develop their own drivers and invocation of Hardware Abstraction Layer (HAL) APIs based on the driver architecture.
 
 
 
@@ -148,12 +148,11 @@ The following figure shows the process for developing the codec or accessory (Sm
 
 ![](figures/development_flowchart_1.png)
 
-- Add register information to the private HDF configuration source (HCS) of the codec or SmartPA based on the chip description.
+1. Add register information to the private HDF configuration source (HCS) of the codec or SmartPA based on the chip description.
 
-- If the workflow of the newly added codec or SmartPA is the same as that of the existing codec or SmartPA, you do not need to implement the operation function set or configure the compilation file for the newly added codec or SmartPA.
+   If the workflow of the newly added codec or SmartPA is the same as that of the existing codec or SmartPA, you do not need to implement the operation function set or configure the compilation file for the newly added codec or SmartPA.
 
-
-- Perform build, debugging, and testing.
+2. Perform build, debugging, and testing.
 
 ### Development on a New Platform<a name="section3222"></a>
 
@@ -163,13 +162,13 @@ The following figure shows the driver development process if the ADM has not ada
 
 The codec (optional), DAI, DMA, DSP (optional), and SmartPA (optional) modules of the audio adapter need to be adapted to the new platform.
 
-- Add register information of each module driver to the private configuration file of the respective module according to the chip description.
+1. Add register information of each module driver to the private configuration file of the respective module according to the chip description.
 
-- Implement the operation function set of each module.
+2. Implement the operation function set of each module.
 
-- Modify the compilation file of the audio module.
+3. Modify the compilation file of the audio module.
 
-- Perform build, debugging, and testing.
+4. Perform build, debugging, and testing.
 
 
 
@@ -177,7 +176,7 @@ The codec (optional), DAI, DMA, DSP (optional), and SmartPA (optional) modules o
 
 Code path: **drivers/peripheral/audio**
 
-The following uses Hi3516D V300 as an example to describe how to develop the audio Codec driver, Accessory driver, DAI driver, and Platform driver.
+The following uses Hi3516D V300 as an example to describe how to develop the audio codec driver, accessory driver, DAI driver, and platform driver.
 
 ## Codec Driver Development Example<a name="section4100"></a>
 Code path: **drivers/peripheral/audio/chipsets/hi3516dv300/codec**
@@ -194,7 +193,7 @@ Fill in the following data structures for the codec module:
 
 - **g_codecData**: operation function set and private data set of the codec device.
 
-- **g_codecDaiDeviceOps**: codecDai operation function set, including APIs for starting transmission and setting parameters.
+- **g_codecDaiDeviceOps**: codec DAI device operation function set, including APIs for starting transmission and setting parameters.
 
 - **g_codecDaiData**: operation function set and private data set of the digital audio interface of the codec.
 
@@ -211,12 +210,12 @@ struct AudioDaiOps g_codecDaiDeviceOps = {
 };
 
 struct DaiData g_codecDaiData = {
-  .DaiInit = CodecDaiDeviceInit,  // Initialize the codecDai device (need to be implemented for a new platform).
-  .ops = &g_codecDaiDeviceOps,  // codecDai operation function set.
+  .DaiInit = CodecDaiDeviceInit,  // Initialize the codec DAI device (need to be implemented for a new platform).
+  .ops = &g_codecDaiDeviceOps,  // codec DAI device operation function set.
 };
 ```
 
-### Initializing codecDevice and codecDaiDevice<a name="section4112"></a>
+### Initializing the Codec Device and Codec DAI Device<a name="section4112"></a>
 
 **CODECDeviceInit** sets audio input/audio output (AIAO), initializes registers, inserts **g_audioControls** into the controller linked list, initializes the power management, and selects a path.
 
@@ -251,7 +250,7 @@ int32_t CodecDeviceInit(struct AudioCard *audioCard, struct CodecDevice *codec)
 }
 ```
 
-**CodecDaiDeviceInit** initializes codecDai. This API is not used on the Hi3516 and is reserved.
+**CodecDaiDeviceInit** initializes the codec DAI device. This API is not used on the Hi3516 and is reserved.
 
 ```c
 int32_t CodecDaiDeviceInit(struct AudioCard *card, const struct DaiDevice *device)
@@ -695,7 +694,7 @@ struct DaiData g_tfa9879DaiData = {
 };
 ```
 
-### Initializing accessoryDevice and accessoryDaiDevice<a name="section4222"></a>
+### Initializing the Accessory Device and Accessory DAI Device<a name="section4222"></a>
 
 As the entry function for device initialization, **Tfa9879DeviceInit** sets the address of the SmartPA I2C device, obtains configuration data, initializes (including resets) the device registers, and adds the control functionality to the controller linked list. The current demo also includes the initialization of the registers related to the Hi3516D V300 device, such as initialization of GPIO pins.
 
@@ -907,7 +906,7 @@ struct PlatformData g_platformData = {
 };
 ```
 
-### Initializing dmaDevice<a name="section4332"></a>
+### Initializing the DMA Device<a name="section4332"></a>
 
 **AudioDmaDeviceInit** initializes the DMA device, including setting the Hi3516 AIAO module.
 
@@ -1026,7 +1025,7 @@ struct DaiData g_daiData = {
 };
 ```
 
-### Initializing daiDevice<a name="section4442"></a>
+### Initializing the DAI Device<a name="section4442"></a>
 
 **DaiDeviceInit** initializes DAI configuration and adds the information to the controller linked list.
 
