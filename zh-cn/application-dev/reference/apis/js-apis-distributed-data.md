@@ -15,7 +15,7 @@ import distributedData from '@ohos.data.distributedData';
 
 ## distributedData.createKVManager<a name="section2771164881119"></a>
 
-createKVManager\(config: KVManagerConfig, callback: AsyncCallback<KVManager>\): void
+createKVManager(config: KVManagerConfig, callback: AsyncCallback<KVManager>): void
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过callback方式返回，此方法为异步方法。
 
@@ -81,7 +81,7 @@ createKVManager\(config: KVManagerConfig, callback: AsyncCallback<KVManager>\): 
 
 ## distributedData.createKVManager<a name="section15751121117223"></a>
 
-createKVManager\(config: KVManagerConfig\): Promise<KVManager>
+createKVManager(config: KVManagerConfig): Promise<KVManager>
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -252,7 +252,7 @@ createKVManager\(config: KVManagerConfig\): Promise<KVManager>
 
 ### getKVStore<a name="section163838594447"></a>
 
-getKVStore<T extends KVStore>\(storeId: string, options: Options, callback: AsyncCallback<T>\): void
+getKVStore<T extends KVStore>(storeId: string, options: Options, callback: AsyncCallback<T>): void
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -329,7 +329,7 @@ getKVStore<T extends KVStore>\(storeId: string, options: Options, callback: Asyn
 
 ### getKVStore<a name="section1614918420469"></a>
 
-getKVStore<T extends KVStore>\(storeId: string, options: Options\): Promise<T>
+getKVStore<T extends KVStore>(storeId: string, options: Options): Promise<T>
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -411,7 +411,7 @@ getKVStore<T extends KVStore>\(storeId: string, options: Options\): Promise<T>
 
 ### closeKVStore<sup>8+</sup> ###
 
-closeKVStore\(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback<void>\): void;
+closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback<void>): void;
 
 通过storId的值关闭指定的kvStore数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -485,7 +485,7 @@ closeKVStore\(appId: string, storeId: string, kvStore: KVStore, callback: AsyncC
 
 ### closeKVStore<sup>8+</sup> ###
 
-closeKVStore\(appId: string, storeId: string, kvStore: KVStore\): Promise<void>;
+closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise<void>;
 
 通过kvStore的值关闭指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -633,7 +633,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): vo
 
 ### deleteKVStore<sup>8+</sup> ###
 
-deleteKVStore\(appId: string, storeId: string\): Promise<void>;
+deleteKVStore(appId: string, storeId: string): Promise<void>;
 
 通过storeId的值删除指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -760,7 +760,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;
 
 ### getAllKVStoreId<sup>8+</sup> ###
 
-getAllKVStoreId\(appId: string\): Promise<string[\]>;
+getAllKVStoreId(appId: string): Promise<string[]>;
 
 获取所有通过getKvStore方法创建的且没有调用deleteKvStore方法删除的KvStore数据库的storeId，并通过Promise方式返回，此方法为异步方法。
 
@@ -830,7 +830,7 @@ getAllKVStoreId\(appId: string\): Promise<string[\]>;
 
 ### on<sup>8+</sup> ###
 
-on\(event: 'distributedDataServiceDie', deathCallback: Callback<void>\): void;
+on(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
 
 订阅设备状态变更通知，并通过callback方式返回，此方法为异步方法。
 
@@ -886,7 +886,7 @@ on\(event: 'distributedDataServiceDie', deathCallback: Callback<void>\): void;
 
 ### off<sup>8+</sup> ###
 
-off\(event: 'distributedDataServiceDie', deathCallback: Callback<void>\): void;
+off(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
 
 取消订阅设备状态变更通知，并通过callback方式返回，此方法为异步方法。
 
@@ -1226,7 +1226,7 @@ toJsonString():string;
 
 ### constructor<sup>8+</sup> ###
 
-constructor\(name: string\);
+constructor(name: string);
 
 用于创建具有指定字段的 FieldNode 实例的构造函数。
 
@@ -1266,7 +1266,7 @@ constructor\(name: string\);
 
 ### appendChild<sup>8+</sup> ###
 
-appendChild\(child: FieldNode\): boolean;
+appendChild(child: FieldNode): boolean;
 
 向这个 FieldNode 添加一个子节点。
 
@@ -1334,7 +1334,7 @@ appendChild\(child: FieldNode\): boolean;
 
 ### toJson<sup>8+</sup> ###
 
-toJson(\): string;
+toJson(): string;
 
 获取字段名称。
 
@@ -1374,7 +1374,7 @@ toJson(\): string;
 
 ### getCount<sup>8+</sup> ###
 
-getCount(\): number;
+getCount(): number;
 
 获取结果集中的行数。
 
@@ -1410,7 +1410,7 @@ getCount(\): number;
 
 ### getPosition<sup>8+</sup> ###
 
-getPosition(\): number;
+getPosition(): number;
 
 获取结果集中当前的读取位置。
 
@@ -1446,7 +1446,7 @@ getPosition(\): number;
 
 ### moveToFirst<sup>8+</sup> ###
 
-moveToFirst(\): boolean;
+moveToFirst(): boolean;
 
 将读取位置移动到第一行。
 
@@ -1482,7 +1482,7 @@ moveToFirst(\): boolean;
 
 ### moveToLast<sup>8+</sup> ###
 
-moveToLast(\): boolean;
+moveToLast(): boolean;
 
 将读取位置移动到最后一行。
 
@@ -1518,7 +1518,7 @@ moveToLast(\): boolean;
 
 ### moveToNext<sup>8+</sup> ###
 
-moveToNext(\): boolean;
+moveToNext(): boolean;
 
 将读取位置移动到下一行。
 
@@ -1554,7 +1554,7 @@ moveToNext(\): boolean;
 
 ### moveToPrevious<sup>8+</sup> ###
 
-moveToPrevious(\): boolean;
+moveToPrevious(): boolean;
 
 将读取位置移动到上一行。
 
@@ -1590,7 +1590,7 @@ moveToPrevious(\): boolean;
 
 ### move<sup>8+</sup> ###
 
-move\(offset: number\): boolean;
+move(offset: number): boolean;
 
 将读取位置移动到当前位置的相对偏移量。
 
@@ -1648,7 +1648,7 @@ move\(offset: number\): boolean;
 
 ### moveToPosition<sup>8+</sup> ###
 
-moveToPosition\(position: number\): boolean;
+moveToPosition(position: number): boolean;
 
 将读取位置从 0 移动到绝对位置。
 
@@ -1706,7 +1706,7 @@ moveToPosition\(position: number\): boolean;
 
 ### isFirst<sup>8+</sup> ###
 
-isFirst(\): boolean;
+isFirst(): boolean;
 
 检查读取位置是否为第一行。
 
@@ -1742,7 +1742,7 @@ isFirst(\): boolean;
 
 ### isLast<sup>8+</sup> ###
 
-isLast(\): boolean;
+isLast(): boolean;
 
 检查读取位置是否为最后一行。
 
@@ -1778,7 +1778,7 @@ isLast(\): boolean;
 
 ### isBeforeFirst<sup>8+</sup> ###
 
-isBeforeFirst(\): boolean;
+isBeforeFirst(): boolean;
 
 检查读取位置是否在第一行之前。
 
@@ -1814,7 +1814,7 @@ isBeforeFirst(\): boolean;
 
 ### isAfterLast<sup>8+</sup> ###
 
-isAfterLast(\): boolean;
+isAfterLast(): boolean;
 
 检查读取位置是否在最后一行之后。
 
@@ -1850,7 +1850,7 @@ isAfterLast(\): boolean;
 
 ### getEntry<sup>8+</sup> ###
 
-getEntry(\): Entry;
+getEntry(): Entry;
 
 获取键值对
 
@@ -1907,7 +1907,7 @@ constructor();
 
 ### reset<sup>8+</sup> ###
 
-reset(\): Query;
+reset(): Query;
 
 公共查询重置。
 
@@ -1947,7 +1947,7 @@ reset(\): Query;
 
 ### equalTo<sup>8+</sup> ###
 
-equalTo\(field: string, value: number|string|boolean\): Query;
+equalTo(field: string, value: number|string|boolean): Query;
 
 构造一个Query对象来查询具有指定字段的条目，其值等于指定的值。
 
@@ -2016,7 +2016,7 @@ equalTo\(field: string, value: number|string|boolean\): Query;
 
 ### notEqualTo<sup>8+</sup> ###
 
-notEqualTo\(field: string, value: number|string|boolean\): Query;
+notEqualTo(field: string, value: number|string|boolean): Query;
 
 构造一个Query对象以查询具有指定字段且值不等于指定值的条目。
 
@@ -2085,7 +2085,7 @@ notEqualTo\(field: string, value: number|string|boolean\): Query;
 
 ### greaterThan<sup>8+</sup> ###
 
-greaterThan\(field: string, value: number|string|boolean\): Query;
+greaterThan(field: string, value: number|string|boolean): Query;
 
 构造一个Query对象以查询具有大于指定值的指定字段的条目。
 
@@ -2154,7 +2154,7 @@ greaterThan\(field: string, value: number|string|boolean\): Query;
 
 ### lessThan<sup>8+</sup> ###
 
-lessThan\(field: string, value: number|string\): Query;
+lessThan(field: string, value: number|string): Query;
 
 构造一个Query对象以查询具有小于指定值的指定字段的条目。
 
@@ -2223,7 +2223,7 @@ lessThan\(field: string, value: number|string\): Query;
 
 ### greaterThanOrEqualTo<sup>8+</sup> ###
 
-greaterThanOrEqualTo\(field: string, value: number|string\): Query;
+greaterThanOrEqualTo(field: string, value: number|string): Query;
 
 构造一个Query对象以查询具有指定字段且值大于或等于指定值的条目。
 
@@ -2292,7 +2292,7 @@ greaterThanOrEqualTo\(field: string, value: number|string\): Query;
 
 ### lessThanOrEqualTo<sup>8+</sup> ###
 
-lessThanOrEqualTo\(field: string, value: number|string\): Query;
+lessThanOrEqualTo(field: string, value: number|string): Query;
 
 构造一个Query对象以查询具有指定字段且值小于或等于指定值的条目。
 
@@ -2361,7 +2361,7 @@ lessThanOrEqualTo\(field: string, value: number|string\): Query;
 
 ### isNull<sup>8+</sup> ###
 
-isNull\(field: string\): Query;
+isNull(field: string): Query;
 
 构造一个Query对象以查询具有值为null的指定字段的条目。
 
@@ -2422,7 +2422,7 @@ isNull\(field: string\): Query;
 
 ### inNumber<sup>8+</sup> ###
 
-inNumber\(field: string, valueList: number[\]\): Query;
+inNumber(field: string, valueList: number[]): Query;
 
 构造一个Query对象以查询具有指定字段的条目，其值在指定的值列表中。
 
@@ -2491,7 +2491,7 @@ inNumber\(field: string, valueList: number[\]\): Query;
 
 ### inString<sup>8+</sup> ###
 
-inString\(field: string, valueList: string[\]\): Query;
+inString(field: string, valueList: string[]): Query;
 
 构造一个Query对象以查询具有指定字段的条目，其值在指定的字符串值列表中。
 
@@ -2560,7 +2560,7 @@ inString\(field: string, valueList: string[\]\): Query;
 
 ### notInNumber<sup>8+</sup> ###
 
-notInNumber\(field: string, valueList: number[\]\): Query;
+notInNumber(field: string, valueList: number[]): Query;
 
 构造一个Query对象以查询具有指定字段的条目，该字段的值不在指定的值列表中。
 
@@ -2629,7 +2629,7 @@ notInNumber\(field: string, valueList: number[\]\): Query;
 
 ### notInString<sup>8+</sup> ###
 
-notInString\(field: string, valueList: string[\]\): Query;
+notInString(field: string, valueList: string[]): Query;
 
 构造一个Query对象以查询具有指定字段且值不在指定字符串值列表中的条目。
 
@@ -2698,7 +2698,7 @@ notInString\(field: string, valueList: string[\]\): Query;
 
 ### like<sup>8+</sup> ###
 
-like\(field: string, value: string\): Query;
+like(field: string, value: string): Query;
 
 构造一个Query对象以查询具有与指定字符串值相似的指定字段的条目。
 
@@ -2767,7 +2767,7 @@ like\(field: string, value: string\): Query;
 
 ### unlike<sup>8+</sup> ###
 
-unlike\(field: string, value: string\): Query;
+unlike(field: string, value: string): Query;
 
 构造一个Query对象以查询具有与指定字符串值不相似的指定字段的条目。
 
@@ -2836,7 +2836,7 @@ unlike\(field: string, value: string\): Query;
 
 ### and<sup>8+</sup> ###
 
-and(\): Query;
+and(): Query;
 
 构造一个带有与条件的查询对象。
 
@@ -2876,7 +2876,7 @@ and(\): Query;
 
 ### or<sup>8+</sup> ###
 
-or(\): Query;
+or(): Query;
 
 构造一个带有或条件的Query对象。
 
@@ -2916,7 +2916,7 @@ or(\): Query;
 
 ### orderByAsc<sup>8+</sup> ###
 
-orderByAsc\(field: string\): Query;
+orderByAsc(field: string): Query;
 
 构造一个Query对象，将查询结果按升序排序。
 
@@ -2979,7 +2979,7 @@ orderByAsc\(field: string\): Query;
 
 ### orderByDesc<sup>8+</sup> ###
 
-orderByDesc\(field: string\): Query;
+orderByDesc(field: string): Query;
 
 构造一个Query对象，将查询结果按降序排序。
 
@@ -3041,7 +3041,7 @@ orderByDesc\(field: string\): Query;
 
 ### limit<sup>8+</sup> ###
 
-limit\(total: number, offset: number\): Query;
+limit(total: number, offset: number): Query;
 
 构造一个Query对象来指定结果的数量和开始位置。
 
@@ -3111,7 +3111,7 @@ limit\(total: number, offset: number\): Query;
 
 ### isNotNull<sup>8+</sup> ###
 
-isNotNull\(field: string\): Query;
+isNotNull(field: string): Query;
 
 使用不为空的指定字段创建查询条件。
 
@@ -3172,7 +3172,7 @@ isNotNull\(field: string\): Query;
 
 ### beginGroup<sup>8+</sup> ###
 
-beginGroup\(\): Query;
+beginGroup(): Query;
 
 创建一个带有左括号的查询条件组。
 
@@ -3212,7 +3212,7 @@ beginGroup\(\): Query;
 
 ### endGroup<sup>8+</sup> ###
 
-endGroup\(\): Query;
+endGroup(): Query;
 
 创建一个带有右括号的查询条件组。
 
@@ -3252,7 +3252,7 @@ endGroup\(\): Query;
 
 ### prefixKey<sup>8+</sup> ###
 
-prefixKey\(prefix: string\): Query;
+prefixKey(prefix: string): Query;
 
 创建具有指定键前缀的查询条件。
 
@@ -3313,7 +3313,7 @@ prefixKey\(prefix: string\): Query;
 
 ### setSuggestIndex<sup>8+</sup> ###
 
-setSuggestIndex\(index: string\): Query;
+setSuggestIndex(index: string): Query;
 
 设置一个指定的索引，将优先用于查询。
 
@@ -3378,7 +3378,7 @@ KVStore数据库实例，提供增加数据、删除数据和订阅数据变更�
 
 ### put<a name="section1942221513"></a>
 
-put\(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback<void>\): void
+put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback<void>): void
 
 添加指定类型键值对到数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -3447,7 +3447,7 @@ put\(key: string, value: Uint8Array | string | number | boolean, callback: Async
 
 ### put<a name="section43065440019"></a>
 
-put\(key: string, value: Uint8Array | string | number | boolean\): Promise<void>
+put(key: string, value: Uint8Array | string | number | boolean): Promise<void>
 
 添加指定类型键值对到数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -3523,7 +3523,7 @@ put\(key: string, value: Uint8Array | string | number | boolean\): Promise<void>
 
 ### delete<a name="section15564125555713"></a>
 
-delete\(key: string, callback: AsyncCallback<void>\): void
+delete(key: string, callback: AsyncCallback<void>): void
 
 从数据库中删除指定键值的数据，并通过callback方式返回，此方法为异步方法。
 
@@ -3589,7 +3589,7 @@ delete\(key: string, callback: AsyncCallback<void>\): void
 
 ### delete<a name="section1298265189"></a>
 
-delete\(key: string\): Promise<void>
+delete(key: string): Promise<void>
 
 从数据库中删除指定键值的数据，并通过Promise方式返回，此方法为异步方法。
 
@@ -3659,7 +3659,7 @@ delete\(key: string\): Promise<void>
 
 ### on<a name="section9748071812"></a>
 
-on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotification>\): void
+on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotification>): void
 
 订阅指定类型的数据变更通知，此方法为同步方法。
 
@@ -3709,7 +3709,7 @@ on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificat
 
 ### on<a name="section06419235582"></a>
 
-on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]>>\): void
+on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
 
 订阅数据同步完成通知，此方法为同步方法。
 
@@ -3733,7 +3733,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]>>\): 
     </tr>
     <tr id="row629323499"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p629393496"><a name="p629393496"></a><a name="p629393496"></a>syncCallback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Callback&lt;Array&lt;[string, number]&gt;&gt;</p>
+    <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
     </td>
     <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数。</p>
     </td>
@@ -3751,7 +3751,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]>>\): 
 
 ### off<sup>8+</sup> ###
 
-off\(event:'dataChange', observer: Callback<ChangeNotification>\): void;
+off(event:'dataChange', observer: Callback<ChangeNotification>): void;
 
 取消订阅数据同步完成通知，此方法为同步方法。
 
@@ -3785,7 +3785,7 @@ off\(event:'dataChange', observer: Callback<ChangeNotification>\): void;
 
 ### putBatch<sup>8+</sup> ###
 
-putBatch\(entries: Entry[], callback: AsyncCallback<void>\): void;
+putBatch(entries: Entry[], callback: AsyncCallback<void>): void;
 
 批量插入键值对到KvStore数据库中，并通过callback方式返回，此方法为异步方法。
 
@@ -3822,7 +3822,7 @@ putBatch\(entries: Entry[], callback: AsyncCallback<void>\): void;
 
 ### putBatch<sup>8+</sup> ###
 
-putBatch\(entries: Entry[\]\): Promise<void>;
+putBatch(entries: Entry[]): Promise<void>;
 
 批量插入键值对到KvStore数据库中，并通过Promise方式返回，此方法为异步方法。
 
@@ -3905,7 +3905,7 @@ deleteBatch(keys: string[], callback: AsyncCallback<void>): void;
 
 ### deleteBatch<sup>8+</sup> ###
 
-deleteBatch\(keys: string[\]\): Promise<void>;
+deleteBatch(keys: string[]): Promise<void>;
 
 批量删除键值对到KvStore数据库中，并通过Promise方式返回，此方法为异步方法。
 
@@ -3951,7 +3951,7 @@ deleteBatch\(keys: string[\]\): Promise<void>;
 
 ### startTransaction<sup>8+</sup> ###
 
-startTransaction\(callback: AsyncCallback<void>\): void;
+startTransaction(callback: AsyncCallback<void>): void;
 
 启动KvStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
@@ -3980,7 +3980,7 @@ startTransaction\(callback: AsyncCallback<void>\): void;
 
 ### startTransaction<sup>8+</sup> ###
 
-startTransaction\(\): Promise<void>;
+startTransaction(): Promise<void>;
 
 启动KvStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
@@ -4003,7 +4003,7 @@ startTransaction\(\): Promise<void>;
 
 ### commit<sup>8+</sup> ###
 
-commit\(callback: AsyncCallback<void>\): void;
+commit(callback: AsyncCallback<void>): void;
 
 提交KvStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
@@ -4032,7 +4032,7 @@ commit\(callback: AsyncCallback<void>\): void;
 
 ### commit<sup>8+</sup> ###
 
-commit(\): Promise<void>;
+commit(): Promise<void>;
 
 提交KvStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
@@ -4055,7 +4055,7 @@ commit(\): Promise<void>;
 
 ### rollback<sup>8+</sup> ###
 
-rollback\(callback: AsyncCallback<void>\): void;
+rollback(callback: AsyncCallback<void>): void;
 
 在KvStore数据库中回滚事务，并通过callback方式返回，此方法为异步方法。
 
@@ -4084,7 +4084,7 @@ rollback\(callback: AsyncCallback<void>\): void;
 
 ### rollback<sup>8+</sup> ###
 
-rollback(\): Promise<void>;
+rollback(): Promise<void>;
 
 在KvStore数据库中回滚事务，并通过Promise方式返回，此方法为异步方法。
 
@@ -4107,7 +4107,7 @@ rollback(\): Promise<void>;
 
 ### enableSync<sup>8+</sup> ###
 
-enableSync\(enabled: boolean, callback: AsyncCallback<void>\): void;
+enableSync(enabled: boolean, callback: AsyncCallback<void>): void;
 
 设定是否开启同步，并通过callback方式返回，此方法为异步方法。
 
@@ -4147,7 +4147,7 @@ enableSync\(enabled: boolean, callback: AsyncCallback<void>\): void;
 
 ### enableSync<sup>8+</sup> ###
 
-enableSync\(enabled: boolean\): Promise<void>;
+enableSync(enabled: boolean): Promise<void>;
 
 设定是否开启同步，并通过Promise方式返回，此方法为异步方法。
 
@@ -4195,7 +4195,7 @@ enableSync\(enabled: boolean\): Promise<void>;
 
 ### setSyncRange<sup>8+</sup> ###
 
-setSyncRange\(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback<void>\): void;
+setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback<void>): void;
 
 设置同步范围标签，并通过callback方式返回，此方法为异步方法。
 
@@ -4244,7 +4244,7 @@ setSyncRange\(localLabels: string[], remoteSupportLabels: string[], callback: As
 
 ### setSyncRange<sup>8+</sup> ###
 
-setSyncRange\(localLabels: string[], remoteSupportLabels: string[\]\): Promise<void>;
+setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise<void>;
 
 设置同步范围标签，并通过Promise方式返回，此方法为异步方法。
 
@@ -4550,7 +4550,7 @@ setSyncRange\(localLabels: string[], remoteSupportLabels: string[\]\): Promise<v
 
 ### get<a name="section107972383294"></a>
 
-get\(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number>\): void
+get(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number>): void
 
 获取指定键的值，并通过callback方式返回，此方法为异步方法。
 
@@ -4612,7 +4612,7 @@ get\(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number
 
 ### get<a name="section1326485818382"></a>
 
-get\(key: string\): Promise<Uint8Array | string | boolean | number>
+get(key: string): Promise<Uint8Array | string | boolean | number>
 
 获取指定键的值，并通过Promise方式返回，此方法为异步方法。
 
@@ -4682,7 +4682,7 @@ get\(key: string\): Promise<Uint8Array | string | boolean | number>
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(keyPrefix: string, callback: AsyncCallback<Entry[\]>\): void;
+getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
 
 获取匹配指定键前缀的所有键值对，并通过callback方式返回，此方法为异步方法。
 
@@ -4752,7 +4752,7 @@ getEntries\(keyPrefix: string, callback: AsyncCallback<Entry[\]>\): void;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(keyPrefix: string\): Promise<Entry[\]>;
+getEntries(keyPrefix: string): Promise<Entry[]>;
 
 获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
@@ -4837,7 +4837,7 @@ getEntries\(keyPrefix: string\): Promise<Entry[\]>;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(query: Query, callback: AsyncCallback<Entry[\]>\): void;
+getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
 
 获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
@@ -4908,7 +4908,7 @@ getEntries\(query: Query, callback: AsyncCallback<Entry[\]>\): void;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(query: Query\): Promise<Entry[\]>;
+getEntries(query: Query): Promise<Entry[]>;
 
 获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
@@ -4993,7 +4993,7 @@ getEntries\(query: Query\): Promise<Entry[\]>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>\): void;
+getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;
 
 从 KvStore 数据库中获取具有指定前缀的结果集，并通过callback方式返回，此方法为异步方法。
 
@@ -5066,7 +5066,7 @@ getResultSet\(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>\): vo
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(keyPrefix: string\): Promise<KvStoreResultSet>;
+getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;
 
 从 KvStore 数据库中获取具有指定前缀的结果集，并通过Promise方式返回，此方法为异步方法。
 
@@ -5154,7 +5154,7 @@ getResultSet\(keyPrefix: string\): Promise<KvStoreResultSet>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(query: Query, callback: AsyncCallback<KvStoreResultSet>\): void;
+getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -5226,7 +5226,7 @@ getResultSet\(query: Query, callback: AsyncCallback<KvStoreResultSet>\): void;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(query: Query\): Promise<KvStoreResultSet>;
+getResultSet(query: Query): Promise<KvStoreResultSet>;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -5312,7 +5312,7 @@ getResultSet\(query: Query\): Promise<KvStoreResultSet>;
 
 ### closeResultSet<sup>8+</sup> ###
 
-closeResultSet\(resultSet: KvStoreResultSet, callback: AsyncCallback<void>\): void;
+closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -5371,7 +5371,7 @@ closeResultSet\(resultSet: KvStoreResultSet, callback: AsyncCallback<void>\): vo
 
 ### closeResultSet<sup>8+</sup> ###
 
-closeResultSet\(resultSet: KvStoreResultSet\): Promise<void>;
+closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -5436,7 +5436,7 @@ closeResultSet\(resultSet: KvStoreResultSet\): Promise<void>;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize\(query: Query, callback: AsyncCallback<number>\): void;
+getResultSize(query: Query, callback: AsyncCallback<number>): void;
 
 获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
@@ -5488,7 +5488,7 @@ getResultSize\(query: Query, callback: AsyncCallback<number>\): void;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize\(query: Query\): Promise<number>;
+getResultSize(query: Query): Promise<number>;
 
 获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
@@ -5548,7 +5548,7 @@ getResultSize\(query: Query\): Promise<number>;
 
 ### removeDeviceData<sup>8+</sup> ###
 
-removeDeviceData\(deviceId: string, callback: AsyncCallback<void>\): void;
+removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
 
 删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
 
@@ -5614,7 +5614,7 @@ removeDeviceData\(deviceId: string, callback: AsyncCallback<void>\): void;
 
 ### removeDeviceData<sup>8+</sup> ###
 
-removeDeviceData\(deviceId: string\): Promise<void>;
+removeDeviceData(deviceId: string): Promise<void>;
 
 删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
 
@@ -5690,7 +5690,7 @@ removeDeviceData\(deviceId: string\): Promise<void>;
 
 ### on<sup>8+</sup> ###
 
-on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>\): void;
+on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
 
 注册同步 SingleKvStore 数据库回调，并通过异步方式返回。
 
@@ -5718,7 +5718,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>\): voi
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;&gt;></p>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
@@ -5750,7 +5750,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>\): voi
 
 ### off<sup>8+</sup> ###
 
-off\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): void;
+off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
 
 取消注册同步 SingleKvStore 数据库回调，并通过异步方式返回。
 
@@ -5778,7 +5778,7 @@ off\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): v
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;&gt;></p>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
@@ -5805,7 +5805,7 @@ off\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): v
 
 ### sync<a name="section619117584517"></a>
 
-sync\(deviceIdList: string\[\], mode: SyncMode, allowedDelayMs?: number\): void
+sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 在手动同步模式下，触发数据库同步，此方法为同步方法。
 
@@ -5860,7 +5860,7 @@ sync\(deviceIdList: string\[\], mode: SyncMode, allowedDelayMs?: number\): void
 
 ### setSyncParam<sup>8+</sup> ###
 
-setSyncParam\(defaultAllowedDelayMs: number, callback: AsyncCallback<void>\): void;
+setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback<void>): void;
 
 设置允许数据库同步的默认延迟,并通过callback方式返回，此方法为异步方法。
 
@@ -5914,7 +5914,7 @@ setSyncParam\(defaultAllowedDelayMs: number, callback: AsyncCallback<void>\): vo
 
 ### setSyncParam<sup>8+</sup> ###
 
-setSyncParam\(defaultAllowedDelayMs: number\): Promise<void>;
+setSyncParam(defaultAllowedDelayMs: number): Promise<void>;
 
 设置允许数据库同步的默认延迟,并通过Promise方式返回，此方法为异步方法。
 
@@ -5978,7 +5978,7 @@ setSyncParam\(defaultAllowedDelayMs: number\): Promise<void>;
 
 ### getSecurityLevel<sup>8+</sup> ###
 
-getSecurityLevel\(callback: AsyncCallback<SecurityLevel>\): void;
+getSecurityLevel(callback: AsyncCallback<SecurityLevel>): void;
 
 获取数据库的安全级别，并通过callback方式返回，此方法为异步方法。
 
@@ -6022,7 +6022,7 @@ getSecurityLevel\(callback: AsyncCallback<SecurityLevel>\): void;
 
 ### getSecurityLevel<sup>8+</sup> ###
 
-getSecurityLevel(\): Promise<SecurityLevel>;
+getSecurityLevel(): Promise<SecurityLevel>;
 
 获取数据库的安全级别，并通过Promise方式返回，此方法为异步方法。
 
@@ -6064,7 +6064,7 @@ getSecurityLevel(\): Promise<SecurityLevel>;
 
 ### get<sup>8+</sup> ###
 
-get\(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number|Uint8Array>\): void;
+get(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number|Uint8Array>): void;
 
 获取与指定设备 ID 和密钥匹配的 String 值，并通过callback方式返回，此方法为异步方法。
 
@@ -6131,7 +6131,7 @@ get\(deviceId: string, key: string, callback: AsyncCallback<boolean|string|numbe
 
 ### get<sup>8+</sup> ###
 
-get\(deviceId: string, key: string\): Promise<boolean|string|number|Uint8Array>;
+get(deviceId: string, key: string): Promise<boolean|string|number|Uint8Array>;
 
 获取与指定设备 ID 和密钥匹配的 String 值，并通过Promise方式返回，此方法为异步方法。
 
@@ -6210,7 +6210,7 @@ get\(deviceId: string, key: string\): Promise<boolean|string|number|Uint8Array>;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[\]>\): void;
+getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
 
 获取与指定设备 ID 和密钥前缀匹配的所有键值对，并通过callback方式返回，此方法为异步方法。
 
@@ -6290,7 +6290,7 @@ getEntries\(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[\
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(deviceId: string, keyPrefix: string\): Promise<Entry[\]>;
+getEntries(deviceId: string, keyPrefix: string): Promise<Entry[]>;
 
 获取与指定设备 ID 和密钥前缀匹配的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
@@ -6384,7 +6384,7 @@ getEntries\(deviceId: string, keyPrefix: string\): Promise<Entry[\]>;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(query: Query, callback: AsyncCallback<Entry[\]>\): void;
+getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
 
 获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
@@ -6455,7 +6455,7 @@ getEntries\(query: Query, callback: AsyncCallback<Entry[\]>\): void;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(query: Query\): Promise<Entry[\]>;
+getEntries(query: Query): Promise<Entry[]>;
 
 获取与指定 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
 
@@ -6537,7 +6537,7 @@ getEntries\(query: Query\): Promise<Entry[\]>;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(deviceId: string, query: Query, callback: AsyncCallback<Entry[\]>\): void;
+getEntries(deviceId: string, query: Query, callback: AsyncCallback<Entry[]>): void;
 
 获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
@@ -6617,7 +6617,7 @@ getEntries\(deviceId: string, query: Query, callback: AsyncCallback<Entry[\]>\):
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries\(deviceId: string, query: Query\): Promise<Entry[\]>;
+getEntries(deviceId: string, query: Query): Promise<Entry[]>;
 
 获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
 
@@ -6708,7 +6708,7 @@ getEntries\(deviceId: string, query: Query\): Promise<Entry[\]>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>\): void;
+getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;
 
 获取与指定设备 ID 和密钥前缀匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -6775,7 +6775,7 @@ getResultSet\(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvSto
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(deviceId: string, keyPrefix: string\): Promise<KvStoreResultSet>;
+getResultSet(deviceId: string, keyPrefix: string): Promise<KvStoreResultSet>;
 
 获取与指定设备 ID 和密钥前缀匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -6854,7 +6854,7 @@ getResultSet\(deviceId: string, keyPrefix: string\): Promise<KvStoreResultSet>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(query: Query, callback: AsyncCallback<KvStoreResultSet>\): void;
+getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -6908,7 +6908,7 @@ getResultSet\(query: Query, callback: AsyncCallback<KvStoreResultSet>\): void;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(query: Query\): Promise<KvStoreResultSet>;
+getResultSet(query: Query): Promise<KvStoreResultSet>;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -6999,7 +6999,7 @@ getResultSet\(query: Query\): Promise<KvStoreResultSet>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResultSet>\): void;
+getResultSet(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
@@ -7062,7 +7062,7 @@ getResultSet\(deviceId: string, query: Query, callback: AsyncCallback<KvStoreRes
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet\(deviceId: string, query: Query\): Promise<KvStoreResultSet>;
+getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -7163,7 +7163,7 @@ getResultSet\(deviceId: string, query: Query\): Promise<KvStoreResultSet>;
 
 ### closeResultSet<sup>8+</sup> ###
 
-closeResultSet\(resultSet: KvStoreResultSet, callback: AsyncCallback<void>\): void;
+closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -7222,7 +7222,7 @@ closeResultSet\(resultSet: KvStoreResultSet, callback: AsyncCallback<void>\): vo
 
 ### closeResultSet<sup>8+</sup> ###
 
-closeResultSet\(resultSet: KvStoreResultSet\): Promise<void>;
+closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -7287,7 +7287,7 @@ closeResultSet\(resultSet: KvStoreResultSet\): Promise<void>;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize\(query: Query, callback: AsyncCallback<number>\): void;
+getResultSize(query: Query, callback: AsyncCallback<number>): void;
 
 获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
@@ -7339,7 +7339,7 @@ getResultSize\(query: Query, callback: AsyncCallback<number>\): void;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize\(query: Query\): Promise<number>;
+getResultSize(query: Query): Promise<number>;
 
 获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
@@ -7399,7 +7399,7 @@ getResultSize\(query: Query\): Promise<number>;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize\(deviceId: string, query: Query, callback: AsyncCallback<number>\): void;
+getResultSize(deviceId: string, query: Query, callback: AsyncCallback<number>): void;
 
 获取与指定设备 ID 和 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
@@ -7460,7 +7460,7 @@ getResultSize\(deviceId: string, query: Query, callback: AsyncCallback<number>\)
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize\(deviceId: string, query: Query\): Promise<number>;
+getResultSize(deviceId: string, query: Query): Promise<number>;
 
 获取与指定设备 ID 和 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
@@ -7529,7 +7529,7 @@ getResultSize\(deviceId: string, query: Query\): Promise<number>;
 
 ### removeDeviceData<sup>8+</sup> ###
 
-removeDeviceData\(deviceId: string, callback: AsyncCallback<void>\): void;
+removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
 
 从当前数据库中删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
 
@@ -7595,7 +7595,7 @@ removeDeviceData\(deviceId: string, callback: AsyncCallback<void>\): void;
 
 ### removeDeviceData<sup>8+</sup> ###
 
-removeDeviceData\(deviceId: string\): Promise<void>;
+removeDeviceData(deviceId: string): Promise<void>;
 
 从当前数据库中删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
 
@@ -7674,7 +7674,7 @@ removeDeviceData\(deviceId: string\): Promise<void>;
 
 ### sync<sup>8+</sup> ###
 
-sync\(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number\): void;
+sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
 
 同步 DeviceKvStore 数据库，该方法为异步方法。
 
@@ -7743,7 +7743,7 @@ sync\(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number\): void;
 
 ### on<sup>8+</sup> ###
 
-on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;
+on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
 
 注册同步 DeviceKvStore 数据库回调，通过异步回调返回。
 
@@ -7771,7 +7771,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): voi
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;&gt;></p>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
@@ -7803,7 +7803,7 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): voi
 
 ### off<sup>8+</sup> ###
 
-off\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): void;
+off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
 
 取消注册同步 DeviceKvStore 数据库回调，通过异步回调返回。
 
@@ -7831,7 +7831,7 @@ off\(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>\): v
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;&gt;></p>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
