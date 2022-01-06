@@ -18,8 +18,8 @@ DevEco Studio 3.0 Beta2版本兼容性配套关系如下表所示。
 | JDK | 11.0.x | DevEco&nbsp;Studio已自带了JDK&nbsp;11版本，开发者无需单独安装。 | 
 | OpenHarmony&nbsp;SDK | 3.1.0.0（API&nbsp;Version&nbsp;8&nbsp;Beta） | 兼容历史版本SDK。 | 
 | Toolchinas | 3.1.0.0 | 建议更新至最新版本。 | 
-| hap插件 | 3.0.5.2 | 
-| decctest插件 | 1.2.7.2 | 
+| hap插件 | 3.0.5.2 | 建议更新至最新版本。 |
+| decctest插件 | 1.2.7.2 | 建议更新至最新版本。 |
 
 
 ### 版本变更说明
