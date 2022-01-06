@@ -246,7 +246,6 @@
 
 -   **解决办法**
 
-    请按照[安装python](../quick-start/quickstart-lite-env-setup-linux.md)。
     1.  通过命令“apt-get install gcc”在线安装。
     2.  完成后，重新安装python3。
 
