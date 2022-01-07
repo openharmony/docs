@@ -43,7 +43,7 @@
     - [Adding Compilation Configuration to Makefile](#section4500)
     - [Source Code Structure and Directory](#section4600)
 
-- **[Development Procedure and Example Using HAL](#section5000)**
+- **[HAL-based Development Procedure and Example](#section5000)**
     - [Development Procedure](#section5100)
     - [Development Example](#section5200)
 
