@@ -1455,7 +1455,7 @@ HDF_INIT(g_usbSerialRawDriverEntry);
 
 ### Developing Driver Using Device DDK APIs<a name="section615mcpsimp"></a>
 
-The core code of the USB Abstract Control Model (ACM) device is available in **drivers\peripheral\usb\gadget\function\acm\cdcacm.c**. The following is an example:
+The core code of the USB Abstract Control Model (ACM) device is available in **drivers/peripheral/usb/gadget/function/acm/cdcacm.c**. The following is an example:
 
 ```
 1. Create a device.
