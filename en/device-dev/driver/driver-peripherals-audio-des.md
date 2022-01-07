@@ -474,7 +474,7 @@ iface
 6: AIAO device
 ```
 
-**ctrlParamsSeqConfig**: control function register configuration. The **item** sequence corresponds to the **item** sequence in **controlsConfig**, indicating the register configuration corresponding to a function.
+**ctrlParamsSeqConfig**: control functionality register configuration. The sequence of the configuration items is the same as that in **controlsConfig**, indicating the register configuration corresponding to a functionality.
 
 ```c
  root {
@@ -671,7 +671,7 @@ Fill in the following data structures for the accessory module:
 
 - **g_tfa9879Data**: operation function set of the accessory device. It contains the configuration in the .hcs file, and defines and maps the functions for initializing the accessory device and reading and writing registers.
 
-- **g_tfa9879DaiDeviceOps**: data set of the DAI of the accessory device. It defines and maps the driver name, initialization, and operation set of the data access interface of the accessory device.
+- **g_tfa9879DaiDeviceOps**: data set of the accessory device DAI. It defines and maps the operation set of the accessory device DAI.
 
 - **g_tfa9879DaiData**: data set of the DAI of the accessory device. It defines and maps the driver name, initialization, and operation set of the data access interface of the accessory device.
 
@@ -1290,7 +1290,7 @@ vendor/hisilicon/hispark_taurus/
 
 
 
-# Development Procedure and Example Using HAL<a name="section5000"></a>
+# HAL-based Development Procedure and Example<a name="section5000"></a>
 Code path: **drivers/peripheral/audio/hal**
 
 ## Development Procedure<a name="section5100"></a>
@@ -1384,7 +1384,7 @@ static void *hal_main()
     WavHeadAnalysis(g_file, &attrs);  // Parse the audio file to set attributes.
     adapter->CreateRender(adapter, &devDesc, &attrs, &render);
 
-    /* Deliver the number of the audio to be played. */
+    /* Deliver the audio data to play. */
     render->control.Start((AudioHandle)render);   // Dispatch the start instruction and prepare for the action.
     pthread_create(&g_tids, NULL, (void *)(&FrameStart), &g_str); // Start the thread to play the audio clip. 
 
