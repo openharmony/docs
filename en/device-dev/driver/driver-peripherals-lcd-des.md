@@ -12,7 +12,7 @@ The Liquid Crystal Display \(LCD\) driver powers on the LCD and initializes inte
 **Figure  1**  Architecture of the display driver model<a name="fig69138814229"></a>  
 ![](figures/architecture-of-the-display-driver-model.png "architecture-of-the-display-driver-model")
 
-**Display driver model**
+**Display Driver Model**
 
 The display driver model consists of the display common driver layer, SoC adapter layer, and third-party chip driver layer. The display driver model is developed based on the HDF and hides the differences between kernel forms through platform and OSAL APIs so the LCD driver can be migrated between different OSs and chip platforms. The display driver connects to the display common HAL, supports the implementation of Hardware Driver Interfaces \(HDIs\), and provides various driver interfaces for the graphics service through the display HDI.
 
@@ -105,7 +105,7 @@ display :: host {
 }
 ```
 
-The following example shows how to adapt to the MIPI device to the Hi35xx series chips at the SoC adapter layer:
+The following example shows how to adapt the MIPI device to the Hi35xx series chips at the SoC adapter layer:
 
 ```
 static int32_t MipiDsiInit(struct PanelInfo *info)
