@@ -1247,7 +1247,9 @@ toJsonString():string;
         let schema = new ddm.Schema();
         const str = schema.toJsonString();
         console.log("schema: " + str);
-    } catch (e) {}
+    } catch (e) {
+       console.log("toJsonString " + e);
+    }
     ``` 
 
 
@@ -4162,7 +4164,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;;
                 console.log('deleteBatch fail ' + JSON.stringify(err));
             });
         }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));;
+            console.log('putBatch fail ' + JSON.stringify(err));
         });
     }catch(e) {
         console.log('DeleteBatch e ' + e);
@@ -4500,7 +4502,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void;
     try {
         kvStore.enableSync(true, function (err,data) {
             if (err == undefined) {
-                console.log('enableSync success');;
+                console.log('enableSync success');
             } else {
                 console.log('enableSync fail');
             }
