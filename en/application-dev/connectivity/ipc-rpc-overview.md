@@ -6,8 +6,9 @@ The inter-process communication \(IPC\) and remote procedure call \(RPC\) mechan
 
 ## Limitations and Constraints<a name="section2029921310472"></a>
 
-The data transmitted for cross-process communication on a device cannot exceed 1 MB. If more data needs to be transmitted, use the anonymous shared memory.
-The cross-device proxy object cannot be passed to the device hosting the stub object pointed by this proxy object.
+
+- The data transmitted for cross-process communication on a device cannot exceed 1 MB. If more data needs to be transmitted, use the anonymous shared memory.
+- The cross-device proxy object cannot be passed to the device hosting the stub object pointed by this proxy object. 
 
 ## Related Modules<a name="section1189019299446"></a>
 
