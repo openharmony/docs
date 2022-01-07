@@ -972,7 +972,7 @@ Sets the  **RdbPredicates**  to match the specified string.
     </td>
     <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p1682444643518"><a name="p1682444643518"></a><a name="p1682444643518"></a>Yes</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p4824134683515"><a name="p4824134683515"></a><a name="p4824134683515"></a>Value to match the <strong id="b13232516914"><a name="b13232516914"></a><a name="b13232516914"></a>RdbPredicates</strong>.<br>Wildcards are supported. The asterisk (*) indicates zero, one, or more digits or characters. The question mark (?) indicates one digit or character. </p>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p4824134683515"><a name="p4824134683515"></a><a name="p4824134683515"></a>Value to match the <strong id="b13232516914"><a name="b13232516914"></a><a name="b13232516914"></a>RdbPredicates</strong>.<br>Wildcards are supported. The asterisk (*) represents zero, one, or more numbers or characters. The question mark (?) represents a single number or character. </p>
     </td>
     </tr>
     </tbody>
