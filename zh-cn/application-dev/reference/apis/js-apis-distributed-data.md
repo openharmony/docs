@@ -3421,6 +3421,101 @@ setSuggestIndex(index: string): Query;
     ```
 
 
+### deviceId<sup>8+</sup> ###
+
+deviceId(deviceId:string):Query;
+
+添加设备ID作为key的前缀。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>指示查询的设备 ID。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.deviceId("deviceId");
+        console.log("query is " + query.getSqlLike());
+    } catch (e) {
+        console.log("should be ok on Method Chaining : " + e);
+    }
+    ```
+
+
+### getSqlLike<sup>8+</sup> ###
+
+getSqlLike():string;
+
+获取指定Query对象的查询语句。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回指定Query对象的查询语句。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        let sql1 = query.getSqlLike();
+        console.log("GetSqlLike sql=" + sql1);
+    } catch (e) {
+        console.log("dumplicated calls should be ok : " + e);
+    }
+    ```
+
+
 ## KVStore<a name="section12882825611"></a>
 
 KVStore数据库实例，提供增加数据、删除数据和订阅数据变更、订阅同步完成的方法。在调用KVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
