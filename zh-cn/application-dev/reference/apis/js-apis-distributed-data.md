@@ -15,7 +15,7 @@ import distributedData from '@ohos.data.distributedData';
 
 ## distributedData.createKVManager<a name="section2771164881119"></a>
 
-createKVManager(config: KVManagerConfig, callback: AsyncCallback<KVManager>): void
+createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过callback方式返回，此方法为异步方法。
 
@@ -62,7 +62,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback<KVManager>): vo
             bundleName : 'com.example.datamanagertest',
             userInfo : {
                 userId : '0',
-                userType : 0
+                userType : distributedData.UserType.SAME_USER_ID
             }
         }
         distributedData.createKVManager(kvManagerConfig, function (err, manager) {
@@ -81,7 +81,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback<KVManager>): vo
 
 ## distributedData.createKVManager<a name="section15751121117223"></a>
 
-createKVManager(config: KVManagerConfig): Promise<KVManager>
+createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -136,7 +136,7 @@ createKVManager(config: KVManagerConfig): Promise<KVManager>
             bundleName : 'com.example.datamanagertest',
             userInfo : {
                 userId : '0',
-                userType : 0
+                userType : distributedData.UserType.SAME_USER_ID
             }
         }
         distributedData.createKVManager(kvManagerConfig).then((manager) => {
@@ -252,7 +252,7 @@ createKVManager(config: KVManagerConfig): Promise<KVManager>
 
 ### getKVStore<a name="section163838594447"></a>
 
-getKVStore<T extends KVStore>(storeId: string, options: Options, callback: AsyncCallback<T>): void
+getKVStore<T extends KVStore>(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -304,14 +304,15 @@ getKVStore<T extends KVStore>(storeId: string, options: Options, callback: Async
 
     ```
     let kvStore;
+    let kvManager;
     try {
         const options = {
             createIfMissing : true,
             encrypt : false,
             backup : false,
             autoSync : true,
-            kvStoreType : 1,
-            securityLevel : 3,
+            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+            securityLevel : distributedData.SecurityLevel.S2,
         };
         kvManager.getKVStore('storeId', options, function (err, store) {
             if (err) {
@@ -329,7 +330,7 @@ getKVStore<T extends KVStore>(storeId: string, options: Options, callback: Async
 
 ### getKVStore<a name="section1614918420469"></a>
 
-getKVStore<T extends KVStore>(storeId: string, options: Options): Promise<T>
+getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -389,14 +390,15 @@ getKVStore<T extends KVStore>(storeId: string, options: Options): Promise<T>
 
     ```
     let kvStore;
+    let kvManager;
     try {
         const options = {
             createIfMissing : true,
             encrypt : false,
             backup : false,
             autoSync : true,
-            kvStoreType : 1,
-            securityLevel : 3,
+            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+            securityLevel : distributedData.SecurityLevel.S2,
         };
         kvManager.getKVStore('storeId', options).then((store) => {
             console.log("getKVStore success");
@@ -411,7 +413,7 @@ getKVStore<T extends KVStore>(storeId: string, options: Options): Promise<T>
 
 ### closeKVStore<sup>8+</sup> ###
 
-closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback<void>): void;
+closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback&lt;void&gt;): void;
 
 通过storId的值关闭指定的kvStore数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -470,22 +472,33 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 -   示例：
 
     ```
+    let kvStore;
+    let kvManager;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
     try {
         kvManager.getKVStore('storeId', options, async function (err, store) {
             console.log('getKVStore success');
             kvStore = store;
-            kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+            await kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
                 console.log('closeKVStore success');
             });
         });
     } catch (e) {
-        console.log('CloseKVStore e ' + e);
+        console.log('closeKVStore e ' + e);
     }
     ```  
 
 ### closeKVStore<sup>8+</sup> ###
 
-closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise<void>;
+closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&gt;;
 
 通过kvStore的值关闭指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -552,22 +565,38 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise<void>;
 -   示例：
 
     ```
-    let KvStore;
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
     try {
-        kvManager.closeKVStore('appId', 'storId', kvStore).then(() => {
-            console.log('CloseKVStore success');
+        kvManager.getKVStore('storeId', options).then(async (store) => {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+                console.log('closeKVStore success');
+            }).catch((err) => {
+                console.log('closeKVStore err ' + JSON.stringify(err));
+            });
         }).catch((err) => {
-            console.log('CloseKVStore err ' + JSON.stringify(err));
+            console.log('CloseKVStore getKVStore err ' + JSON.stringify(err));
         });
     } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
+        console.log('closeKVStore e ' + e);
     }
     ```  
 
 
 ### deleteKVStore<sup>8+</sup> ###
 
-deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): void;
+deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 通过storeId的值删除指定的kvStore数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -617,23 +646,33 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): vo
 -   示例：
 
     ```
-    let KvStore;
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
     try {
-        kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
-            if (err){
+        kvManager.getKVStore('store', options, async function (err, store) {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
                 console.log('deleteKVStore success');
-                return;
-            }
-            console.log("deleteKVStore success");
+            });
         });
     } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
+        console.log('DeleteKVStore e ' + e);
     }
     ```  
 
 ### deleteKVStore<sup>8+</sup> ###
 
-deleteKVStore(appId: string, storeId: string): Promise<void>;
+deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;;
 
 通过storeId的值删除指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -691,22 +730,38 @@ deleteKVStore(appId: string, storeId: string): Promise<void>;
 -   示例：
 
     ```
-    let KvStore;
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
     try {
-        kvManager.deleteKVStore('appId', 'storId', kvStore).then(() => {
-            console.log('deleteKVStore success');
+        kvManager.getKVStore('storId', options).then(async (store) => {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.deleteKVStore('appId', 'storeId').then(() => {
+                console.log('deleteKVStore success');
+            }).catch((err) => {
+                console.log('deleteKVStore err ' + JSON.stringify(err));
+            });
         }).catch((err) => {
-            console.log('deleteKVStore err ' + JSON.stringify(err));
+            console.log('getKVStore err ' + JSON.stringify(err));
         });
     } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
+        console.log('deleteKVStore e ' + e);
     }
     ``` 
 
 
 ### getAllKVStoreId<sup>8+</sup> ###
 
-getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;
+getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void;
 
 获取所有通过getKvStore方法创建的且没有调用deleteKvStore方法删除的KvStore数据库的storeId，并通过callback方式返回，此方法为异步方法。
 
@@ -747,9 +802,10 @@ getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;
 -   示例：
 
     ```
+    let kvManager;
     try {
         kvManager.getAllKVStoreId('appId', function (err, data) {
-            console.log('GetAllKVStoreId getAllKVStoreId success');
+            console.log('GetAllKVStoreId success');
             console.log('GetAllKVStoreId size = ' + data.length);
         });
     } catch (e) {
@@ -760,7 +816,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;
 
 ### getAllKVStoreId<sup>8+</sup> ###
 
-getAllKVStoreId(appId: string): Promise<string[]>;
+getAllKVStoreId(appId: string): Promise&lt;string[]&gt;;
 
 获取所有通过getKvStore方法创建的且没有调用deleteKvStore方法删除的KvStore数据库的storeId，并通过Promise方式返回，此方法为异步方法。
 
@@ -809,30 +865,26 @@ getAllKVStoreId(appId: string): Promise<string[]>;
 -   示例：
 
     ```
-    let KvStore;
+    let kvManager;
     try {
-        kvManager.getKVStore('storId', options).then(async (store) => {
-            console.log('getKVStore success');
-            kvStore = store;
-            kvManager.getAllKVStoreId('appId').then((data) => {
-                console.log('getAllKVStoreId success');
-                console.log('GetAllKVStoreId size = ' + data.length);
-                console.log('GetAllKVStoreId data[0] = ' + data[0]);
-            });
+        console.log('GetAllKVStoreId');
+        kvManager.getAllKVStoreId('apppId').then((data) => {
+            console.log('getAllKVStoreId success');
+            console.log('size = ' + data.length);
         }).catch((err) => {
-            console.log('getKVStore err ' + JSON.stringify(err));
+            console.log('getAllKVStoreId err ' + JSON.stringify(err));
         });
-    } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
+    } catch(e) {
+        console.log('getAllKVStoreId e ' + e);
     }
     ``` 
 
 
 ### on<sup>8+</sup> ###
 
-on(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
+on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void;
 
-订阅设备状态变更通知，并通过callback方式返回，此方法为异步方法。
+订阅服务状态变更通知，并通过callback方式返回，此方法为同步方法。
 
 -   参数：
 
@@ -851,7 +903,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
     <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>'distributedDataServiceDie'</p>
     </td>
     <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
-    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>设备状态改变时触发的事件名。</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>服务状态改变时触发的事件名。</p>
     </td>
     </tr>
     <tr id="row476140141813"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p16768011189"><a name="p16768011189"></a><a name="p16768011189"></a>deathCallback</p>
@@ -868,16 +920,14 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
 -   示例
 
     ```
-    let KvStore;
+    let kvManager;
     try {
-        it('KVManagerOn', 0, function (done) {
-            console.log('KVManagerOn');
-            const deathCallback = function () {
-                console.log('death callback call');
-            }
-            kvManager.on('distributedDataServiceDie', deathCallback);
-            kvManager.off('distributedDataServiceDie', deathCallback);
-        });
+        
+        console.log('KVManagerOn');
+        const deathCallback = function () {
+            console.log('death callback call');
+        }
+        kvManager.on('distributedDataServiceDie', deathCallback);
     } catch (e) {
         console.log("An unexpected error occurred. Error:" + e);
     }
@@ -886,9 +936,9 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
 
 ### off<sup>8+</sup> ###
 
-off(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
+off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void;
 
-取消订阅设备状态变更通知，并通过callback方式返回，此方法为异步方法。
+取消订阅服务状态变更通知，并通过callback方式返回，此方法为同步方法。
 
 -   参数：
 
@@ -907,14 +957,14 @@ off(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
     <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>'distributedDataServiceDie'</p>
     </td>
     <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
-    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>设备状态改变时触发的事件名。</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>服务状态改变时触发的事件名。</p>
     </td>
     </tr>
     <tr id="row476140141813"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p16768011189"><a name="p16768011189"></a><a name="p16768011189"></a>deathCallback</p>
     </td>
     <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p107614014186"><a name="p107614014186"></a><a name="p107614014186"></a>Callback&lt;void</a>&gt;</p>
     </td>
-    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>否</p>
     <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p576180111819"><a name="p576180111819"></a><a name="p576180111819"></a>回调函数，取消设备状态改变时获取通知。</p>
     </td>
     </tr>
@@ -924,18 +974,17 @@ off(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
 -   示例
 
     ```
-    let KvStore;
+    let kvManager;
     try {
-        it('KVManagerOff', 0, function (done) {
-            console.log('KVManagerOff');
-            const deathCallback = function () {
-                console.log('death callback call');
-            }
-            kvManager.off('distributedDataServiceDie', deathCallback);
-        });
+        console.log('KVManagerOff');
+        const deathCallback = function () {
+            console.log('death callback call');
+        }
+        kvManager.off('distributedDataServiceDie', deathCallback);
     } catch (e) {
         console.log("An unexpected error occurred. Error:" + e);
     }
+
     ``` 
 
 ## Options<a name="section20151177103716"></a>
@@ -1165,24 +1214,7 @@ KVStore常量。
 
 ## Schema<sup>8+</sup> ##
 
-表示数据库架构，可以创建 Schema 对象，并在创建或打开数据库时将其放置在 Option 中。
-
-### constructor ###<sup>8+</sup>
-
-constructor();
-
-用于创建架构实例的构造函数。
-
--   示例
-
-    ```
-    try {
-        let schema = new ddm.Schema();
-        schema.root = new ddm.FieldNode();
-        const str = schema.constructor();
-        console.log("constructor: " + str);
-    } catch (e) {}
-    ``` 
+表示数据库模式，可以在创建或打开数据库时创建 Schema 对象并将它们放入 Options 中。
 
 ### toJsonString<sup>8+</sup> ###
 
@@ -1210,59 +1242,20 @@ toJsonString():string;
 -   示例
 
     ```
+    import ddm from '@ohos.data.distributedData';
     try {
         let schema = new ddm.Schema();
         const str = schema.toJsonString();
-        schema.root = new ddm.FieldNode();
-        const node = schema.root;
         console.log("schema: " + str);
-    } catch (e) {}
+    } catch (e) {
+       console.log("toJsonString " + e);
+    }
     ``` 
 
 
 ## FieldNode<a name="section33333333333"></a><sup>8+</sup> ##
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
-
-### constructor<sup>8+</sup> ###
-
-constructor(name: string);
-
-用于创建具有指定字段的 FieldNode 实例的构造函数。
-
--   参数：
-
-    <a name="table074609186"></a>
-    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
-    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>child</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a><a href="#section33333333333">string</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
-    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>指定字段。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   示例
-
-    ```
-    try {
-        let node = new ddm.FieldNode("name");
-        const str = node.constructor();
-        console.log("constructor: " + str);
-    } catch (e) {}
-    ``` 
-
 
 ### appendChild<sup>8+</sup> ###
 
@@ -1313,6 +1306,7 @@ appendChild(child: FieldNode): boolean;
 -   示例
 
     ```
+    import ddm from '@ohos.data.distributedData';
     try {
         let node = new ddm.FieldNode("root");
         let child1 = new ddm.FieldNode("child1");
@@ -1358,10 +1352,12 @@ toJson(): string;
 -   示例
 
     ```
+	import ddm from '@ohos.data.distributedData';
     try {
         let node = new ddm.FieldNode("root");
         let child = new ddm.FieldNode("child");
         node.appendChild(child);
+        console.log("appendNode " + node.toJson());
     } catch (e) {
        console.log("ToJson " + e);
     }
@@ -1370,7 +1366,7 @@ toJson(): string;
 
 ## KvStoreResultSet<a name="section111111111"></a><sup>8+</sup> ##
 
-提供获取KvStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过DeviceKvStore 构建一个DeviceKvStore 实例。
+提供获取KvStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过KvStore 构建一个KvStore 实例。
 
 ### getCount<sup>8+</sup> ###
 
@@ -1398,8 +1394,15 @@ getCount(): number;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const count = resultSet.getCount();
         console.log("GetCount " + count);
     } catch (e) {
@@ -1434,12 +1437,19 @@ getPosition(): number;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const positon = resultSet.getPosition();
         console.log("getPosition " + positon);
     } catch (e) {
-        console.log("GetPosition001 fail " + e);
+        console.log("GetPosition fail " + e);
     }
     ```
 
@@ -1470,8 +1480,15 @@ moveToFirst(): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.moveToFirst();
         console.log("moveToFirst " + moved);
     } catch (e) {
@@ -1506,8 +1523,15 @@ moveToLast(): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.moveToLast();
         console.log("moveToLast " + moved);
     } catch (e) {
@@ -1542,8 +1566,15 @@ moveToNext(): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.moveToNext();
         console.log("moveToNext " + moved);
     } catch (e) {
@@ -1578,8 +1609,15 @@ moveToPrevious(): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.moveToPrevious();
         console.log("moveToPrevious " + moved);
     } catch (e) {
@@ -1636,8 +1674,15 @@ move(offset: number): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.move();
         console.log("move " + moved);
     } catch (e) {
@@ -1694,8 +1739,15 @@ moveToPosition(position: number): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.moveToPosition();
         console.log("moveToPosition " + moved);
     } catch (e) {
@@ -1730,8 +1782,15 @@ isFirst(): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.isFirst();
         console.log("isFirst " + moved);
     } catch (e) {
@@ -1766,8 +1825,15 @@ isLast(): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.isLast();
         console.log("isLast " + moved);
     } catch (e) {
@@ -1802,8 +1868,15 @@ isBeforeFirst(): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.isBeforeFirst();
         console.log("isBeforeFirst " + moved);
     } catch (e) {
@@ -1838,8 +1911,15 @@ isAfterLast(): boolean;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.isAfterLast();
         console.log("isAfterLast " + moved);
     } catch (e) {
@@ -1874,11 +1954,18 @@ getEntry(): Entry;
 -   示例
 
     ```
-    let KvStoreResultSet;
+    let kvStore;
     try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
         const moved = resultSet.moveToNext();
         const entry  = resultSet.getEntry();
-        console.log("getEntry " + entry);
+        console.log("getEntry " + JSON.stringify(entry));
     } catch (e) {
         console.log("getEntry fail " + e);
     }
@@ -1888,22 +1975,6 @@ getEntry(): Entry;
 ## Query <a name="section22222222222"></a><sup>8+</sup>##
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
-
-### constructor<sup>8+</sup> ###
-
-constructor();
-
-用于创建查询实例的构造函数。
-
--   示例
-
-    ```
-    try {
-        let query= new ddm.Query()
-        const str = query.constructor();
-        console.log("constructor: " + str);
-    } catch (e) {}
-    ```
 
 ### reset<sup>8+</sup> ###
 
@@ -1931,9 +2002,8 @@ reset(): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.equalTo("key", "value");
         console.log("query is " + query.getSqlLike());
         query.reset();
@@ -2002,9 +2072,8 @@ equalTo(field: string, value: number|string|boolean): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.equalTo("field", "value");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2071,9 +2140,8 @@ notEqualTo(field: string, value: number|string|boolean): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.notEqualTo("field", "value");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2140,9 +2208,8 @@ greaterThan(field: string, value: number|string|boolean): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.greaterThan("field", "value");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2209,9 +2276,8 @@ lessThan(field: string, value: number|string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.lessThan("field", "value");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2278,9 +2344,8 @@ greaterThanOrEqualTo(field: string, value: number|string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.greaterThanOrEqualTo("field", "value");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2347,9 +2412,8 @@ lessThanOrEqualTo(field: string, value: number|string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.lessThanOrEqualTo("field", "value");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2408,9 +2472,8 @@ isNull(field: string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.isNull("field");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2477,10 +2540,9 @@ inNumber(field: string, valueList: number[]): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
-        query.inNumber("field", "valueList");
+        let query = new distributedData.Query();
+        query.inNumber("field", [0, 1]);
         console.log("query is " + query.getSqlLike());
         query = null;
     } catch (e) {
@@ -2546,10 +2608,9 @@ inString(field: string, valueList: string[]): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
-        query.inString("field", "valueList");
+        let query = new distributedData.Query();
+        query.inString("field", ['test1', 'test2']);
         console.log("query is " + query.getSqlLike());
         query = null;
     } catch (e) {
@@ -2615,10 +2676,9 @@ notInNumber(field: string, valueList: number[]): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
-        query.notInNumber("field", "valueList");
+        let query = new distributedData.Query();
+        query.notInNumber("field", [0, 1]);
         console.log("query is " + query.getSqlLike());
         query = null;
     } catch (e) {
@@ -2684,10 +2744,9 @@ notInString(field: string, valueList: string[]): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
-        query.notInString("field", "valueList");
+        let query = new distributedData.Query();
+        query.notInString("field", ['test1', 'test2']);
         console.log("query is " + query.getSqlLike());
         query = null;
     } catch (e) {
@@ -2753,9 +2812,8 @@ like(field: string, value: string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.like("field", "value");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2822,9 +2880,8 @@ unlike(field: string, value: string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.unlike("field", "value");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -2860,9 +2917,8 @@ and(): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.notEqualTo("field", "value1");
         query.and();
         query.notEqualTo("field", "value2");
@@ -2900,9 +2956,8 @@ or(): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.notEqualTo("field", "value1");
         query.or();
         query.notEqualTo("field", "value2");
@@ -2964,9 +3019,8 @@ orderByAsc(field: string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.notEqualTo("field", "value");
         query.orderByAsc("field");
         console.log("query is " + query.getSqlLike());
@@ -3026,9 +3080,8 @@ orderByDesc(field: string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.notEqualTo("field", "value");
         query.orderByDesc("field");
         console.log("query is " + query.getSqlLike());
@@ -3096,9 +3149,8 @@ limit(total: number, offset: number): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.notEqualTo("field", "value");
         query.limit("total", "offset");
         console.log("query is " + query.getSqlLike());
@@ -3158,9 +3210,8 @@ isNotNull(field: string): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.isNotNull("field");
         console.log("query is " + query.getSqlLike());
         query = null;
@@ -3196,9 +3247,8 @@ beginGroup(): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.beginGroup();
         query.isNotNull("field");
         query.endGroup();
@@ -3236,9 +3286,8 @@ endGroup(): Query;
 -   示例
 
     ```
-    let Query;
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.beginGroup();
         query.isNotNull("field");
         query.endGroup();
@@ -3300,7 +3349,7 @@ prefixKey(prefix: string): Query;
 
     ```
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.prefixKey("$.name");
         query.prefixKey("0");
         console.log("query is " + query.getSqlLike());
@@ -3361,7 +3410,7 @@ setSuggestIndex(index: string): Query;
 
     ```
     try {
-        let query = new ddm.Query();
+        let query = new distributedData.Query();
         query.setSuggestIndex("$.name");
         query.setSuggestIndex("0");
         console.log("query is " + query.getSqlLike());
@@ -3372,13 +3421,108 @@ setSuggestIndex(index: string): Query;
     ```
 
 
+### deviceId<sup>8+</sup> ###
+
+deviceId(deviceId:string):Query;
+
+添加设备ID作为key的前缀。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>指示查询的设备 ID。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.deviceId("deviceId");
+        console.log("query is " + query.getSqlLike());
+    } catch (e) {
+        console.log("should be ok on Method Chaining : " + e);
+    }
+    ```
+
+
+### getSqlLike<sup>8+</sup> ###
+
+getSqlLike():string;
+
+获取指定Query对象的查询语句。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回指定Query对象的查询语句。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        let sql1 = query.getSqlLike();
+        console.log("GetSqlLike sql=" + sql1);
+    } catch (e) {
+        console.log("dumplicated calls should be ok : " + e);
+    }
+    ```
+
+
 ## KVStore<a name="section12882825611"></a>
 
 KVStore数据库实例，提供增加数据、删除数据和订阅数据变更、订阅同步完成的方法。在调用KVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
 
 ### put<a name="section1942221513"></a>
 
-put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback<void>): void
+put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback&lt;void&gt;): void
 
 添加指定类型键值对到数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -3429,6 +3573,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -3447,7 +3592,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 ### put<a name="section43065440019"></a>
 
-put(key: string, value: Uint8Array | string | number | boolean): Promise<void>
+put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void&gt;
 
 添加指定类型键值对到数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -3507,6 +3652,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise<void>
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -3523,7 +3669,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise<void>
 
 ### delete<a name="section15564125555713"></a>
 
-delete(key: string, callback: AsyncCallback<void>): void
+delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从数据库中删除指定键值的数据，并通过callback方式返回，此方法为异步方法。
 
@@ -3564,6 +3710,7 @@ delete(key: string, callback: AsyncCallback<void>): void
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -3589,7 +3736,7 @@ delete(key: string, callback: AsyncCallback<void>): void
 
 ### delete<a name="section1298265189"></a>
 
-delete(key: string): Promise<void>
+delete(key: string): Promise&lt;void&gt;
 
 从数据库中删除指定键值的数据，并通过Promise方式返回，此方法为异步方法。
 
@@ -3638,6 +3785,7 @@ delete(key: string): Promise<void>
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -3659,7 +3807,7 @@ delete(key: string): Promise<void>
 
 ### on<a name="section9748071812"></a>
 
-on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotification>): void
+on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
 
 订阅指定类型的数据变更通知，此方法为同步方法。
 
@@ -3670,6 +3818,8 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificati
     </th>
     <th class="cellrowborder" valign="top" width="35.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
     </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>必填</p>
+    </th>
     <th class="cellrowborder" valign="top" width="48.32%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
     </th>
     </tr>
@@ -3678,6 +3828,8 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificati
     </td>
     <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>'dataChange'</p>
     </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
+    </td>
     <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>回调函数名称。</p>
     </td>
     </tr>
@@ -3685,12 +3837,16 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificati
     </td>
     <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p137613011189"><a name="p137613011189"></a><a name="p137613011189"></a><a href="#section099619567453">SubscribeType</a></p>
     </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
+    </td>
     <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p117616061817"><a name="p117616061817"></a><a name="p117616061817"></a>表示订阅的类型。</p>
     </td>
     </tr>
     <tr id="row476140141813"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p16768011189"><a name="p16768011189"></a><a name="p16768011189"></a>observer</p>
     </td>
     <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p107614014186"><a name="p107614014186"></a><a name="p107614014186"></a>Callback&lt;<a href="#section5607141204713">ChangeNotification</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
     </td>
     <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p576180111819"><a name="p576180111819"></a><a name="p576180111819"></a>回调函数。</p>
     </td>
@@ -3701,7 +3857,8 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificati
 -   示例
 
     ```
-    kvStore.on('dataChange', 2, function (data) {
+    let kvStore;
+    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
         console.log("dataChange callback call data: " + JSON.stringify(data));
     });
     ```
@@ -3709,9 +3866,9 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificati
 
 ### on<a name="section06419235582"></a>
 
-on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
+on(event: 'syncComplete', syncCallback: Callback<Array&lt;[string, number]&gt;): void
 
-订阅数据同步完成通知，此方法为同步方法。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 -   参数：
 
@@ -3719,6 +3876,8 @@ on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
     <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
     </th>
     <th class="cellrowborder" valign="top" width="40.160000000000004%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>必填</p>
     </th>
     <th class="cellrowborder" valign="top" width="43.3%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
     </th>
@@ -3728,12 +3887,16 @@ on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
     </td>
     <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>'syncComplete'</p>
     </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
+    </td>
     <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>回调函数名称。</p>
     </td>
     </tr>
     <tr id="row629323499"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p629393496"><a name="p629393496"></a><a name="p629393496"></a>syncCallback</p>
     </td>
     <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
     </td>
     <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数。</p>
     </td>
@@ -3744,6 +3907,7 @@ on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
 -   示例
 
     ```
+    let kvStore;
     kvStore.on('syncComplete', function (data) {
         console.log("syncComplete callback call data: " + data);
     });
@@ -3751,9 +3915,9 @@ on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
 
 ### off<sup>8+</sup> ###
 
-off(event:'dataChange', observer: Callback<ChangeNotification>): void;
+off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void;
 
-取消订阅数据同步完成通知，此方法为同步方法。
+取消订阅数据变更通知，此方法为同步方法。
 
 -   参数：
 
@@ -3761,6 +3925,8 @@ off(event:'dataChange', observer: Callback<ChangeNotification>): void;
     <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
     </th>
     <th class="cellrowborder" valign="top" width="40.160000000000004%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>必填</p>
     </th>
     <th class="cellrowborder" valign="top" width="43.3%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
     </th>
@@ -3770,12 +3936,15 @@ off(event:'dataChange', observer: Callback<ChangeNotification>): void;
     </td>
     <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>'datachange'</p>
     </td>
-    <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>回调函数名称。</p>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
     </td>
+    <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数名称。</p>
     </tr>
     <tr id="row629323499"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p629393496"><a name="p629393496"></a><a name="p629393496"></a>observer</p>
     </td>
     <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Callback&lt;<a href="#section5607141204713">ChangeNotification</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>否</p>
     </td>
     <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数。</p>
     </td>
@@ -3783,9 +3952,22 @@ off(event:'dataChange', observer: Callback<ChangeNotification>): void;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    kvStore.on('dataChange', function (data) {
+        console.log("syncComplete callback call data: " + data);
+    });
+    kvStore.off('dataChange', function (data) {
+        console.log("syncComplete callback call data: " + data);
+    });
+    ```
+
+
 ### putBatch<sup>8+</sup> ###
 
-putBatch(entries: Entry[], callback: AsyncCallback<void>): void;
+putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void;
 
 批量插入键值对到KvStore数据库中，并通过callback方式返回，此方法为异步方法。
 
@@ -3820,9 +4002,42 @@ putBatch(entries: Entry[], callback: AsyncCallback<void>): void;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+
+    ```
+
+
 ### putBatch<sup>8+</sup> ###
 
-putBatch(entries: Entry[]): Promise<void>;
+putBatch(entries: Entry[]): Promise&lt;void&gt;;
 
 批量插入键值对到KvStore数据库中，并通过Promise方式返回，此方法为异步方法。
 
@@ -3866,9 +4081,44 @@ putBatch(entries: Entry[]): Promise<void>;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+                console.log('getEntries success');
+                console.log('PutBatch ' + JSON.stringify(entries));
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
 ### deleteBatch<sup>8+</sup> ###
 
-deleteBatch(keys: string[], callback: AsyncCallback<void>): void;
+deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void;
 
 批量删除KvStore数据库中的键值对，并通过callback方式返回，此方法为异步方法。
 
@@ -3903,9 +4153,41 @@ deleteBatch(keys: string[], callback: AsyncCallback<void>): void;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        let keys = [];
+        for (var i = 0; i < 5; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+            keys.push(key + i);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.deleteBatch(keys, async function (err,data) {
+                console.log('deleteBatch success');
+            });
+        });
+    }catch(e) {
+        console.log('DeleteBatch e ' + e);
+    }
+    ```
+
+
 ### deleteBatch<sup>8+</sup> ###
 
-deleteBatch(keys: string[]): Promise<void>;
+deleteBatch(keys: string[]): Promise&lt;void&gt;;
 
 批量删除键值对到KvStore数据库中，并通过Promise方式返回，此方法为异步方法。
 
@@ -3949,9 +4231,45 @@ deleteBatch(keys: string[]): Promise<void>;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        let keys = [];
+        for (var i = 0; i < 5; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+            keys.push(key + i);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.deleteBatch(keys).then((err) => {
+                console.log('deleteBatch success');
+            }).catch((err) => {
+                console.log('deleteBatch fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('DeleteBatch e ' + e);
+    }
+    ```
+
+
 ### startTransaction<sup>8+</sup> ###
 
-startTransaction(callback: AsyncCallback<void>): void;
+startTransaction(callback: AsyncCallback&lt;void&gt;): void;
 
 启动KvStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
@@ -3978,9 +4296,47 @@ startTransaction(callback: AsyncCallback<void>): void;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    function putBatchString(len, prefix) {
+        let entries = [];
+        for (var i = 0; i < len; i++) {
+            var entry = {
+                key : prefix + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        return entries;
+    }
+    try {
+        var count = 0;
+        kvStore.on('dataChange', 0, function (data) {
+            console.log('startTransaction 0' + data)
+            count++;
+        });
+        kvStore.startTransaction(async function (err,data) {
+            console.log('startTransaction success');
+            let entries = putBatchString(10, 'batch_test_string_key');
+            console.log('entries: ' + JSON.stringify(entries));
+            await kvStore.putBatch(entries, async function (err,data) {
+                console.log('putBatch success');
+            });
+        });
+    }catch(e) {
+        console.log('startTransaction e ' + e);
+    }
+    ```
+
+
 ### startTransaction<sup>8+</sup> ###
 
-startTransaction(): Promise<void>;
+startTransaction(): Promise&lt;void&gt;;
 
 启动KvStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
@@ -4001,9 +4357,30 @@ startTransaction(): Promise<void>;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        var count = 0;
+        kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
+            console.log('startTransaction ' + JSON.stringify(data));
+            count++;
+        });
+        kvStore.startTransaction().then(async (err) => {
+            console.log('startTransaction success');
+        }).catch((err) => {
+            console.log('startTransaction fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('startTransaction e ' + e);
+    }
+    ```
+
+
 ### commit<sup>8+</sup> ###
 
-commit(callback: AsyncCallback<void>): void;
+commit(callback: AsyncCallback&lt;void&gt;): void;
 
 提交KvStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
@@ -4030,9 +4407,27 @@ commit(callback: AsyncCallback<void>): void;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.commit(function (err,data) {
+            if (err == undefined) {
+                console.log('commit success');
+            } else {
+                console.log('commit fail');
+            }
+        });
+    }catch(e) {
+        console.log('Commit e ' + e);
+    }
+    ```
+
+
 ### commit<sup>8+</sup> ###
 
-commit(): Promise<void>;
+commit(): Promise&lt;void&gt;;
 
 提交KvStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
@@ -4053,9 +4448,25 @@ commit(): Promise<void>;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.commit().then(async (err) => {
+            console.log('commit success');
+        }).catch((err) => {
+            console.log('commit fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('Commit e ' + e);
+    }
+    ```
+
+
 ### rollback<sup>8+</sup> ###
 
-rollback(callback: AsyncCallback<void>): void;
+rollback(callback: AsyncCallback&lt;void&gt;): void;
 
 在KvStore数据库中回滚事务，并通过callback方式返回，此方法为异步方法。
 
@@ -4082,9 +4493,27 @@ rollback(callback: AsyncCallback<void>): void;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.rollback(function (err,data) {
+            if (err == undefined) {
+                console.log('commit success');
+            } else {
+                console.log('commit fail');
+            }
+        });
+    }catch(e) {
+        console.log('Rollback e ' + e);
+    }
+    ```
+
+
 ### rollback<sup>8+</sup> ###
 
-rollback(): Promise<void>;
+rollback(): Promise&lt;void&gt;;
 
 在KvStore数据库中回滚事务，并通过Promise方式返回，此方法为异步方法。
 
@@ -4105,9 +4534,25 @@ rollback(): Promise<void>;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.rollback().then(async (err) => {
+            console.log('rollback success');
+        }).catch((err) => {
+            console.log('rollback fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('Rollback e ' + e);
+    }
+    ```
+
+
 ### enableSync<sup>8+</sup> ###
 
-enableSync(enabled: boolean, callback: AsyncCallback<void>): void;
+enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 设定是否开启同步，并通过callback方式返回，此方法为异步方法。
 
@@ -4145,9 +4590,27 @@ enableSync(enabled: boolean, callback: AsyncCallback<void>): void;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.enableSync(true, function (err,data) {
+            if (err == undefined) {
+                console.log('enableSync success');
+            } else {
+                console.log('enableSync fail');
+            }
+        });
+    }catch(e) {
+        console.log('EnableSync e ' + e);
+    }
+    ```
+
+
 ### enableSync<sup>8+</sup> ###
 
-enableSync(enabled: boolean): Promise<void>;
+enableSync(enabled: boolean): Promise&lt;void&gt;;
 
 设定是否开启同步，并通过Promise方式返回，此方法为异步方法。
 
@@ -4193,9 +4656,25 @@ enableSync(enabled: boolean): Promise<void>;
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.enableSync(true).then((err) => {
+            console.log('enableSync success');
+        }).catch((err) => {
+            console.log('enableSync fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('EnableSync e ' + e);
+    }
+    ```
+
+
 ### setSyncRange<sup>8+</sup> ###
 
-setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback<void>): void;
+setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback&lt;void&gt;): void;
 
 设置同步范围标签，并通过callback方式返回，此方法为异步方法。
 
@@ -4242,9 +4721,25 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
     </tbody>
     </table>
 
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        const localLabels = ['A', 'B'];
+        const remoteSupportLabels = ['C', 'D'];
+        kvStore.setSyncRange(localLabels, remoteSupportLabels, function (err,data) {
+            console.log('SetSyncRange put success');
+        });
+    }catch(e) {
+        console.log('SetSyncRange e ' + e);
+    }
+    ```
+
+
 ### setSyncRange<sup>8+</sup> ###
 
-setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise<void>;
+setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;void&gt;;
 
 设置同步范围标签，并通过Promise方式返回，此方法为异步方法。
 
@@ -4298,6 +4793,24 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise<void
     </tr>
     </tbody>
     </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        const localLabels = ['A', 'B'];
+        const remoteSupportLabels = ['C', 'D'];
+        kvStore.setSyncRange(localLabels, remoteSupportLabels).then((err) => {
+            console.log('setSyncRange success');
+        }).catch((err) => {
+            console.log('delete fail ' + err);
+        });
+    }catch(e) {
+        console.log('SetSyncRange e ' + e);
+    }
+    ```
+
 
 ## SubscribeType<a name="section099619567453"></a>
 
@@ -4546,11 +5059,11 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise<void
 
 ## SingleKVStore<a name="section87965384295"></a>
 
-单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用SingleKVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
+单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用 SingleKVStore 的方法前，需要先通过 getKVStore 构建一个 SingleKVStore 实例。
 
 ### get<a name="section107972383294"></a>
 
-get(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number>): void
+get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | number&gt;): void
 
 获取指定键的值，并通过callback方式返回，此方法为异步方法。
 
@@ -4591,6 +5104,7 @@ get(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number>
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -4612,7 +5126,7 @@ get(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number>
 
 ### get<a name="section1326485818382"></a>
 
-get(key: string): Promise<Uint8Array | string | boolean | number>
+get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 获取指定键的值，并通过Promise方式返回，此方法为异步方法。
 
@@ -4662,6 +5176,7 @@ get(key: string): Promise<Uint8Array | string | boolean | number>
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -4682,7 +5197,7 @@ get(key: string): Promise<Uint8Array | string | boolean | number>
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
+getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
 获取匹配指定键前缀的所有键值对，并通过callback方式返回，此方法为异步方法。
 
@@ -4723,6 +5238,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
 -   示例
 
     ```
+    let kvStore;
     try {
         let entries = [];
         for (var i = 0; i < 10; i++) {
@@ -4730,7 +5246,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.INTEGER,
+                    type : distributedData.ValueType.INTEGER,
                     value : 222
                 }
             }
@@ -4738,11 +5254,11 @@ getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
         }
         kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
-            kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+            await kvStore.getEntries('batch_test_number_key', function (err,entrys) {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
                 console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-           });
+            });
         });
     }catch(e) {
         console.log('PutBatch e ' + e);
@@ -4752,7 +5268,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(keyPrefix: string): Promise<Entry[]>;
+getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;;
 
 获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
@@ -4801,6 +5317,7 @@ getEntries(keyPrefix: string): Promise<Entry[]>;
 -   示例
 
     ```
+    let kvStore;
     try {
         let entries = [];
         for (var i = 0; i < 10; i++) {
@@ -4808,7 +5325,7 @@ getEntries(keyPrefix: string): Promise<Entry[]>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
@@ -4817,7 +5334,7 @@ getEntries(keyPrefix: string): Promise<Entry[]>;
         console.log('entries: ' + entries);
         kvStore.putBatch(entries).then(async (err) => {
             console.log('putBatch success');
-            kvStore.getEntries('batch_test_string_key').then((entrys) => {
+            await kvStore.getEntries('batch_test_string_key').then((entrys) => {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
                 console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4830,14 +5347,14 @@ getEntries(keyPrefix: string): Promise<Entry[]>;
             console.log('putBatch fail ' + JSON.stringify(err));
         });
     }catch(e) {
-        console.log('PutBatch001 e ' + e);
+        console.log('PutBatch e ' + e);
     }
     ```
 
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
+getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
 获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
@@ -4878,6 +5395,7 @@ getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
 -   示例
 
     ```
+    let kvStore;
     try {
         var arr = new Uint8Array([21,31]);
         let entries = [];
@@ -4886,29 +5404,33 @@ getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.BYTE_ARRAY,
+                    type : distributedData.ValueType.BYTE_ARRAY,
                     value : arr
                 }
             }
             entries.push(entry);
         }
-        console.log('entries: ' + entries);
+        console.log('entries: ' + JSON.stringify(entries));
         kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
-            kvStore.getEntries('batch_test_bool_key', function (err,entrys) {
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getEntries(query, function (err,entrys) {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
             });
         });
+        console.log('GetEntries success');
     }catch(e) {
-        console.log('PutBatch e ' + e);
+        console.log('GetEntries e ' + e);
     }
     ```
 
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(query: Query): Promise<Entry[]>;
+getEntries(query: Query): Promise&lt;Entry[]&gt;;
 
 获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
@@ -4965,24 +5487,24 @@ getEntries(query: Query): Promise<Entry[]>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.BYTE_ARRAY,
+                    type : distributedData.ValueType.BYTE_ARRAY,
                     value : arr
                 }
             }
             entries.push(entry);
         }
-        console.log('GetEntries entries: ' + entries);
+        console.log('entries: ' + JSON.stringify(entries));
         kvStore.putBatch(entries).then(async (err) => {
-            console.log('GetEntries putBatch success');
-            const query = new factory.Query();
+            console.log('putBatch success');
+            const query = new distributedData.Query();
             query.prefixKey("batch_test");
-            kvStore.getEntries(query).then((entrys) => {
-                console.log('GetEntries getEntries success');
+            await kvStore.getEntries(query).then((entrys) => {
+                console.log('getEntries success');
             }).catch((err) => {
-                console.log('GetEntries getEntries fail ' + JSON.stringify(err));
+                console.log('getEntries fail ' + JSON.stringify(err));
             });
         }).catch((err) => {
-            console.log('GetEntries putBatch fail ' + JSON.stringify(err));
+            console.log('GetEntries putBatch fail ' + JSON.stringify(err))
         });
         console.log('GetEntries success');
     }catch(e) {
@@ -4993,7 +5515,7 @@ getEntries(query: Query): Promise<Entry[]>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;
+getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
 
 从 KvStore 数据库中获取具有指定前缀的结果集，并通过callback方式返回，此方法为异步方法。
 
@@ -5034,6 +5556,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
         let entries = [];
@@ -5042,7 +5565,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
@@ -5050,7 +5573,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void
         }
         kvStore.putBatch(entries, async function (err, data) {
             console.log('GetResultSet putBatch success');
-            kvStore.getResultSet('batch_test_string_key', async function (err, result) {
+            await kvStore.getResultSet('batch_test_string_key', async function (err, result) {
                 console.log('GetResultSet getResultSet success');
                 resultSet = result;
                 kvStore.closeResultSet(resultSet, function (err, data) {
@@ -5066,7 +5589,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;
+getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;;
 
 从 KvStore 数据库中获取具有指定前缀的结果集，并通过Promise方式返回，此方法为异步方法。
 
@@ -5115,6 +5638,7 @@ getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
         let entries = [];
@@ -5123,14 +5647,14 @@ getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
             entries.push(entry);
         }
         kvStore.putBatch(entries).then(async (err) => {
-            console.log('GetResult putBatch success');
+            console.log('putBatch success');
         }).catch((err) => {
             console.log('PutBatch putBatch fail ' + JSON.stringify(err));
         });
@@ -5138,14 +5662,13 @@ getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;
             console.log('GetResult getResultSet success');
             resultSet = result;
         }).catch((err) => {
-            console.log('GetResult getResultSet fail ' + JSON.stringify(err));
+            console.log('getResultSet fail ' + JSON.stringify(err));
         });
         kvStore.closeResultSet(resultSet).then((err) => {
             console.log('GetResult closeResultSet success');
         }).catch((err) => {
-            console.log('GetResult closeResultSet fail ' + JSON.stringify(err));
+            console.log('closeResultSet fail ' + JSON.stringify(err));
         });
-
     }catch(e) {
         console.log('GetResult e ' + e);
     }
@@ -5154,7 +5677,7 @@ getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -5195,6 +5718,7 @@ getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
         let entries = [];
@@ -5203,7 +5727,7 @@ getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
@@ -5211,14 +5735,14 @@ getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
         }
         kvStore.putBatch(entries, async function (err, data) {
             console.log('putBatch success');
-            kvStore.getResultSet('batch_test_string_key', async function (err, result) {
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSet(query, async function (err, result) {
                 console.log('getResultSet success');
                 resultSet = result;
-                kvStore.closeResultSet(resultSet, function (err, data) {
-                })
             });
         });
-    }catch(e) {
+    } catch(e) {
         console.log('GetResultSet e ' + e);
     }
     ```
@@ -5226,7 +5750,7 @@ getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(query: Query): Promise<KvStoreResultSet>;
+getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -5275,6 +5799,7 @@ getResultSet(query: Query): Promise<KvStoreResultSet>;
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
         let entries = [];
@@ -5283,7 +5808,7 @@ getResultSet(query: Query): Promise<KvStoreResultSet>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
@@ -5292,27 +5817,24 @@ getResultSet(query: Query): Promise<KvStoreResultSet>;
         kvStore.putBatch(entries).then(async (err) => {
             console.log('putBatch success');
         }).catch((err) => {
-            console.log('putBatch fail ' + err);
+            console.log('putBatch fail ' + JSON.stringify(err));
         });
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSet(query).then((result) => {
+            console.log(' getResultSet success');
             resultSet = result;
         }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        kvStore.closeResultSet(resultSet).then((err) => {
-            console.log('closeResultSet success');
-        }).catch((err) => {
-            console.log('closeResultSet fail ' + err);
+            console.log('getResultSet fail ' + JSON.stringify(err));
         });
     }catch(e) {
-        console.log('ResultSet e ' + e);
+        console.log('GetResultSet e ' + e);
     }
     ```
 
 ### closeResultSet<sup>8+</sup> ###
 
-closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;
+closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -5353,8 +5875,8 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void
 -   示例
 
     ```
+    let kvStore;
     try {
-        console.log('CloseResultSet success');
         let resultSet = null;
         kvStore.closeResultSet(resultSet, function (err, data) {
             if (err == undefined) {
@@ -5371,7 +5893,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void
 
 ### closeResultSet<sup>8+</sup> ###
 
-closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
+closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -5420,8 +5942,8 @@ closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
 -   示例
 
     ```
+    let kvStore;
     try {
-        console.log('CloseResultSet success');
         let resultSet = null;
         kvStore.closeResultSet(resultSet).then(() => {
             console.log('closeResultSet success');
@@ -5436,7 +5958,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize(query: Query, callback: AsyncCallback<number>): void;
+getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
@@ -5477,10 +5999,29 @@ getResultSize(query: Query, callback: AsyncCallback<number>): void;
 -   示例
 
     ```
+    let kvStore;
     try {
-        // pass query
-        console.log('GetResultSize success');
-    }catch(e) {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSize(query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
         console.log('GetResultSize e ' + e);
     }
     ```
@@ -5488,7 +6029,7 @@ getResultSize(query: Query, callback: AsyncCallback<number>): void;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize(query: Query): Promise<number>;
+getResultSize(query: Query): Promise&lt;number&gt;;
 
 获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
@@ -5537,9 +6078,32 @@ getResultSize(query: Query): Promise<number>;
 -   示例
 
     ```
+    let kvStore;
     try {
-        // pass query
-        console.log('GetResultSize success');
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSize(query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
     }catch(e) {
         console.log('GetResultSize e ' + e);
     }
@@ -5548,7 +6112,7 @@ getResultSize(query: Query): Promise<number>;
 
 ### removeDeviceData<sup>8+</sup> ###
 
-removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
+removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
 
@@ -5589,18 +6153,19 @@ removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
 -   示例
 
     ```
-    const KEY_TEST_FLOAT_ELEMENT = 'key_test_float_2';
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
     try {
         kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
             console.log('put success');
             const deviceid = 'no_exist_device_id';
-            kvStore.removeDeviceData(deviceid, async function (err,data) {
+            await kvStore.removeDeviceData(deviceid, async function (err,data) {
                 if (err == undefined) {
                     console.log('removeDeviceData success');
                 } else {
                     console.log('removeDeviceData fail');
-                    kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                    await kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
                         console.log('RemoveDeviceData get success');
                     });
                 }
@@ -5614,7 +6179,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
 
 ### removeDeviceData<sup>8+</sup> ###
 
-removeDeviceData(deviceId: string): Promise<void>;
+removeDeviceData(deviceId: string): Promise&lt;void&gt;;
 
 删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
 
@@ -5663,6 +6228,7 @@ removeDeviceData(deviceId: string): Promise<void>;
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
     const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
     try {
@@ -5690,9 +6256,9 @@ removeDeviceData(deviceId: string): Promise<void>;
 
 ### on<sup>8+</sup> ###
 
-on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
+on(event: 'syncComplete', syncCallback: Callback<Array&lt;[string, number]&gt;): void;
 
-注册同步 SingleKvStore 数据库回调，并通过异步方式返回。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 -   参数：
 
@@ -5713,7 +6279,7 @@ on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>设备状态改变时触发的事件名。</p>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>同步完成时触发的事件名。</p>
     </td>
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
@@ -5731,28 +6297,29 @@ on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
     const VALUE_TEST_FLOAT_ELEMENT = 321.12;
     try {
-        kvStore.on('dataChange', 0, function (data) {
-            console.log('OnChange 0' + data)
+        kvStore.on('syncComplete', function (data) {
+            console.log('syncComplete ' + data)
         });
         kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
-            console.log('OnChange put success');
+            console.log('syncComplete put success');
         }).catch((error) => {
-            console.log('OnChange put fail ' + error);
+            console.log('syncComplete put fail ' + error);
         });
     }catch(e) {
-        console.log('OnChange put e ' + e);
+        console.log('syncComplete put e ' + e);
     }
     ```
 
 
 ### off<sup>8+</sup> ###
 
-off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
+off(event: 'syncComplete', syncCallback?: Callback<Array&lt;[string, number]&gt;): void;
 
-取消注册同步 SingleKvStore 数据库回调，并通过异步方式返回。
+取消订阅同步完成事件回调通知，此方法为同步方法。
 
 -   参数：
 
@@ -5773,14 +6340,14 @@ off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>设备状态改变时触发的事件名。</p>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>同步完成时触发的事件名。</p>
     </td>
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
     </td>
     <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
     </td>
-    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>否</p>
     </td>
     <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>用于向调用方发送同步结果的回调。</p>
     </td>
@@ -5791,14 +6358,15 @@ off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
 -   示例
 
     ```
+    let kvStore;
     try {
         const func = function (data) {
-            console.log('OffChange 0' + data)
+            console.log('syncComplete ' + data)
         };
-        kvStore.on('dataChange', 0, func);
-        kvStore.off('dataChange', func);
+        kvStore.on('syncComplete', func);
+        kvStore.off('syncComplete', func);
     }catch(e) {
-        console.log('OffChange e ' + e);
+        console.log('syncComplete e ' + e);
     }
     ```
 
@@ -5807,7 +6375,7 @@ off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
 
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
-在手动同步模式下，触发数据库同步，此方法为同步方法。
+在手动模式下，触发数据库同步，此方法为同步方法。
 
 -   参数：
 
@@ -5855,14 +6423,15 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 -   示例：
 
     ```
-    kvStore.sync('deviceIds', 1, 1000);
+    let kvStore;
+    kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
     ```
 
 ### setSyncParam<sup>8+</sup> ###
 
-setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback<void>): void;
+setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void;
 
-设置允许数据库同步的默认延迟,并通过callback方式返回，此方法为异步方法。
+设置允许数据库同步的默认延迟，并通过callback方式返回，此方法为异步方法。
 
 -   参数：
 
@@ -5901,22 +6470,23 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback<void>): void
 -   示例
 
     ```
+    let kvStore;
     try {
         const defaultAllowedDelayMs = 500;
         kvStore.setSyncParam(defaultAllowedDelayMs, function (err,data) {
             console.log('SetSyncParam put success');
         });
     }catch(e) {
-        console.log('testSingleKvStoreSetSyncParam101 e ' + e);
+        console.log('testSingleKvStoreSetSyncParam e ' + e);
     }
     ```
 
 
 ### setSyncParam<sup>8+</sup> ###
 
-setSyncParam(defaultAllowedDelayMs: number): Promise<void>;
+setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;;
 
-设置允许数据库同步的默认延迟,并通过Promise方式返回，此方法为异步方法。
+设置允许数据库同步的默认延迟，并通过Promise方式返回，此方法为异步方法。
 
 -   参数：
 
@@ -5963,6 +6533,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise<void>;
 -   示例
 
     ```
+    let kvStore;
     try {
         const defaultAllowedDelayMs = 500;
         kvStore.setSyncParam(defaultAllowedDelayMs).then((err) => {
@@ -5978,7 +6549,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise<void>;
 
 ### getSecurityLevel<sup>8+</sup> ###
 
-getSecurityLevel(callback: AsyncCallback<SecurityLevel>): void;
+getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void;
 
 获取数据库的安全级别，并通过callback方式返回，此方法为异步方法。
 
@@ -6010,6 +6581,7 @@ getSecurityLevel(callback: AsyncCallback<SecurityLevel>): void;
 -   示例
 
     ```
+    let kvStore;
     try {
         kvStore.getSecurityLevel(function (err,data) {
             console.log('getSecurityLevel success');
@@ -6022,7 +6594,7 @@ getSecurityLevel(callback: AsyncCallback<SecurityLevel>): void;
 
 ### getSecurityLevel<sup>8+</sup> ###
 
-getSecurityLevel(): Promise<SecurityLevel>;
+getSecurityLevel(): Promise&lt;SecurityLevel&gt;;
 
 获取数据库的安全级别，并通过Promise方式返回，此方法为异步方法。
 
@@ -6046,6 +6618,7 @@ getSecurityLevel(): Promise<SecurityLevel>;
 -   示例
 
     ```
+    let kvStore;
     try {
         kvStore.getSecurityLevel().then((data) => {
             console.log(' getSecurityLevel success');
@@ -6060,13 +6633,13 @@ getSecurityLevel(): Promise<SecurityLevel>;
 
 ## DeviceKVStore<sup>8+</sup> ##
 
-在分布式系统中通过设备管理分布式数据，继承自KvStore，提供查询数据和同步数据的方法。在调用DeviceKVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
+在分布式系统中按设备管理分布式数据，继承自KvStore，提供查询数据和同步数据的方法。在调用DeviceKVStore的方法前，需要先通过getKVStore构建一个DeviceKVStore实例。
 
 ### get<sup>8+</sup> ###
 
-get(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number|Uint8Array>): void;
+get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void;
 
-获取与指定设备 ID 和密钥匹配的 String 值，并通过callback方式返回，此方法为异步方法。
+获取与指定设备 ID 和 key 匹配的 String 值，并通过callback方式返回，此方法为异步方法。
 
 -   参数：
 
@@ -6096,7 +6669,7 @@ get(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要查询的String值的键。</p>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要查询 key 值的键。</p>
     </td>
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
@@ -6114,6 +6687,7 @@ get(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
     const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
     try{
@@ -6131,9 +6705,9 @@ get(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number
 
 ### get<sup>8+</sup> ###
 
-get(deviceId: string, key: string): Promise<boolean|string|number|Uint8Array>;
+get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;;
 
-获取与指定设备 ID 和密钥匹配的 String 值，并通过Promise方式返回，此方法为异步方法。
+获取与指定设备 ID 和 key 匹配的 String 值，并通过Promise方式返回，此方法为异步方法。
 
 -   参数：
 
@@ -6163,7 +6737,7 @@ get(deviceId: string, key: string): Promise<boolean|string|number|Uint8Array>;
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要查询的String值的键。</p>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要查询的 key 值的键。</p>
     </td>
     </tr>
     </tbody>
@@ -6189,6 +6763,7 @@ get(deviceId: string, key: string): Promise<boolean|string|number|Uint8Array>;
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
     const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
     try {
@@ -6210,9 +6785,9 @@ get(deviceId: string, key: string): Promise<boolean|string|number|Uint8Array>;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
+getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
-获取与指定设备 ID 和密钥前缀匹配的所有键值对，并通过callback方式返回，此方法为异步方法。
+获取与指定设备 ID 和 key 前缀匹配的所有键值对，并通过callback方式返回，此方法为异步方法。
 
 -   参数：
 
@@ -6260,6 +6835,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>
 -   示例
 
     ```
+    let kvStore;
     try {
         let entries = [];
         for (var i = 0; i < 10; i++) {
@@ -6267,7 +6843,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
@@ -6276,7 +6852,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>
         console.log('entries: ' + entries);
         kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
-            kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+            await kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
                 console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -6290,9 +6866,9 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(deviceId: string, keyPrefix: string): Promise<Entry[]>;
+getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;;
 
-获取与指定设备 ID 和密钥前缀匹配的所有键值对，并通过Promise方式返回，此方法为异步方法。
+获取与指定设备 ID 和 key 前缀匹配的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
 -   参数：
 
@@ -6348,6 +6924,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise<Entry[]>;
 -   示例
 
     ```
+    let kvStore;
     try {
         let entries = [];
         for (var i = 0; i < 10; i++) {
@@ -6355,16 +6932,16 @@ getEntries(deviceId: string, keyPrefix: string): Promise<Entry[]>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
             entries.push(entry);
         }
         console.log('entries: ' + entries);
-         kvStore.putBatch(entries).then(async (err) => {
+        kvStore.putBatch(entries).then(async (err) => {
             console.log('putBatch success');
-            kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+            await kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
                 console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -6384,7 +6961,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise<Entry[]>;
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
+getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
 获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
@@ -6425,6 +7002,7 @@ getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
 -   示例
 
     ```
+    let kvStore;
     try {
         var arr = new Uint8Array([21,31]);
         let entries = [];
@@ -6433,29 +7011,35 @@ getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.BYTE_ARRAY,
+                    type : distributedData.ValueType.BYTE_ARRAY,
                     value : arr
                 }
             }
             entries.push(entry);
         }
-        console.log('entries: ' + entries);
+        console.log('entries: ' + JSON.stringify(entries));
         kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
-            kvStore.getEntries('localDeviceId', 'batch_test_bool_key', function (err,entrys) {
+            expect(err == undefined).assertTrue();
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getEntries(query, function (err,entrys) {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
             });
         });
+        console.log('GetEntries success');
     }catch(e) {
-        console.log('PutBatch e ' + e);
+        console.log('GetEntries e ' + e);
     }
     ```
 
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(query: Query): Promise<Entry[]>;
+getEntries(query: Query): Promise&lt;Entry[]&gt;;
 
 获取与指定 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
 
@@ -6504,6 +7088,7 @@ getEntries(query: Query): Promise<Entry[]>;
 -   示例
 
     ```
+    let kvStore;
     try {
         var arr = new Uint8Array([21,31]);
         let entries = [];
@@ -6512,32 +7097,35 @@ getEntries(query: Query): Promise<Entry[]>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.BYTE_ARRAY,
+                    type : distributedData.ValueType.BYTE_ARRAY,
                     value : arr
                 }
             }
             entries.push(entry);
         }
-        console.log('entries: ' + entries);
+        console.log('entries: ' + JSON.stringify(entries));
         kvStore.putBatch(entries).then(async (err) => {
             console.log('putBatch success');
-            kvStore.getEntries('localDeviceId', 'batch_test_bool_key').then((entrys) => {
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getEntries(query).then((entrys) => {
                 console.log('getEntries success');
             }).catch((err) => {
                 console.log('getEntries fail ' + JSON.stringify(err));
             });
         }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
+            console.log('GetEntries putBatch fail ' + JSON.stringify(err))
         });
+        console.log('GetEntries success');
     }catch(e) {
-        console.log('PutBatch e ' + e);
+        console.log('GetEntries e ' + e);
     }
     ```
 
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(deviceId: string, query: Query, callback: AsyncCallback<Entry[]>): void;
+getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
 获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
@@ -6587,6 +7175,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback<Entry[]>): vo
 -   示例
 
     ```
+    let kvStore;
     try {
         var arr = new Uint8Array([21,31]);
         let entries = [];
@@ -6595,29 +7184,35 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback<Entry[]>): vo
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.BYTE_ARRAY,
+                    type : distributedData.ValueType.BYTE_ARRAY,
                     value : arr
                 }
             }
             entries.push(entry);
         }
-        console.log('entries: ' + entries);
+        console.log('entries: ' + JSON.stringify(entries));
         kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
-            kvStore.getEntries('localDeviceId', 'batch_test_bool_key', function (err,entrys) {
+            expect(err == undefined).assertTrue();
+            var query = new distributedData.Query();
+            query.deviceId('localDeviceId');
+            query.prefixKey("batch_test");
+            await kvStore.getEntries('localDeviceId', query, function (err,entrys) {
                 console.log('getEntries success');
                 console.log('entrys.length: ' + entrys.length);
-            });
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            })
         });
+        console.log('GetEntries success');
     }catch(e) {
-        console.log('PutBatch e ' + e);
+        console.log('GetEntries e ' + e);
     }
     ```
 
 
 ### getEntries<sup>8+</sup> ###
 
-getEntries(deviceId: string, query: Query): Promise<Entry[]>;
+getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;;
 
 获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
 
@@ -6675,6 +7270,7 @@ getEntries(deviceId: string, query: Query): Promise<Entry[]>;
 -   示例
 
     ```
+    let kvStore;
     try {
         var arr = new Uint8Array([21,31]);
         let entries = [];
@@ -6683,16 +7279,19 @@ getEntries(deviceId: string, query: Query): Promise<Entry[]>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.BYTE_ARRAY,
+                    type : distributedData.ValueType.BYTE_ARRAY,
                     value : arr
                 }
             }
             entries.push(entry);
         }
-        console.log('entries: ' + entries);
+        console.log('entries: ' + JSON.stringify(entries));
         kvStore.putBatch(entries).then(async (err) => {
             console.log('putBatch success');
-            kvStore.getEntries('localDeviceId', 'batch_test_bool_key').then((entrys) => {
+            var query = new distributedData.Query();
+            query.deviceId('localDeviceId');
+            query.prefixKey("batch_test");
+            await kvStore.getEntries('localDeviceId', query).then((entrys) => {
                 console.log('getEntries success');
             }).catch((err) => {
                 console.log('getEntries fail ' + JSON.stringify(err));
@@ -6700,17 +7299,18 @@ getEntries(deviceId: string, query: Query): Promise<Entry[]>;
         }).catch((err) => {
             console.log('putBatch fail ' + JSON.stringify(err));
         });
+        console.log('GetEntries success');
     }catch(e) {
-        console.log('PutBatch e ' + e);
+        console.log('GetEntries e ' + e);
     }
     ```
 
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;
+getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
 
-获取与指定设备 ID 和密钥前缀匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+获取与指定设备 ID 和　key 前缀匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
 -   参数：
 
@@ -6758,12 +7358,13 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStor
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
         kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
             console.log('getResultSet success');
             resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err, data) {
+            await kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('closeResultSet success');
             })
         });
@@ -6775,9 +7376,9 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStor
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(deviceId: string, keyPrefix: string): Promise<KvStoreResultSet>;
+getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;;
 
-获取与指定设备 ID 和密钥前缀匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+获取与指定设备 ID 和 key 前缀匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
 -   参数：
 
@@ -6833,6 +7434,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise<KvStoreResultSet>;
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
         kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
@@ -6854,7 +7456,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise<KvStoreResultSet>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -6895,12 +7497,35 @@ getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
-        kvStore.getResultSet(function (err, result) {
-            console.log('getResultSet success');
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getResultSet(query, async function (err, result) {
+                console.log('getResultSet success');
+                resultSet = result;
+                await kvStore.closeResultSet(resultSet, function (err, data) {
+                    console.log('closeResultSet success');
+                })
+            });
         });
-    }catch(e) {
+    } catch(e) {
         console.log('GetResultSet e ' + e);
     }
     ```
@@ -6908,7 +7533,7 @@ getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(query: Query): Promise<KvStoreResultSet>;
+getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -6957,6 +7582,7 @@ getResultSet(query: Query): Promise<KvStoreResultSet>;
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
         let entries = [];
@@ -6965,31 +7591,31 @@ getResultSet(query: Query): Promise<KvStoreResultSet>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
             entries.push(entry);
         }
         kvStore.putBatch(entries).then(async (err) => {
-            console.log('GetResultSet putBatch success');
+            console.log('putBatch success');
         }).catch((err) => {
-            console.log('PutBatch putBatch fail ' + JSON.stringify(err));
+            console.log('putBatch fail ' + err);
         });
-        const query = new factory.Query();
+        const query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
         console.log("GetResultSet " + query.getSqlLike());
         kvStore.getResultSet(query).then((result) => {
-            console.log('GetResultSet getResultSet success');
+            console.log('getResultSet success');
             resultSet = result;
         }).catch((err) => {
-            console.log('GetResultSet getResultSet fail ' + JSON.stringify(err));
+            console.log('getResultSet fail ' + JSON.stringify(err));
         });
         kvStore.closeResultSet(resultSet).then((err) => {
-            console.log('GetResultSet closeResultSet success');
+            console.log('closeResultSet success');
         }).catch((err) => {
-            console.log('GetResultSet closeResultSet fail ' + JSON.stringify(err));
+            console.log('closeResultSet fail ' + JSON.stringify(err));
         });
     }catch(e) {
         console.log('GetResultSet e ' + e);
@@ -6999,7 +7625,7 @@ getResultSet(query: Query): Promise<KvStoreResultSet>;
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
@@ -7049,12 +7675,34 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResu
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
-        kvStore.getResultSet('test_key_string', 123, function (err, result) {
-            console.log('getResultSet success');
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSet('localDeviceId', query, async function (err, result) {
+                console.log('getResultSet success');
+                resultSet = result;
+                await kvStore.closeResultSet(resultSet, function (err, data) {
+                    console.log('closeResultSet success');
+                })
+            });
         });
-    }catch(e) {
+    } catch(e) {
         console.log('GetResultSet e ' + e);
     }
     ```
@@ -7062,7 +7710,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResu
 
 ### getResultSet<sup>8+</sup> ###
 
-getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;
+getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;;
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -7120,6 +7768,7 @@ getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;
 -   示例
 
     ```
+    let kvStore;
     try {
         let resultSet;
         let entries = [];
@@ -7128,7 +7777,7 @@ getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;
             var entry = {
                 key : key + i,
                 value : {
-                    type : factory.ValueType.STRING,
+                    type : distributedData.ValueType.STRING,
                     value : 'batch_test_string_value'
                 }
             }
@@ -7139,7 +7788,7 @@ getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;
         }).catch((err) => {
             console.log('PutBatch putBatch fail ' + JSON.stringify(err));
         });
-        const query = new factory.Query();
+        const query = new distributedData.Query();
         query.prefixKey("batch_test");
         kvStore.getResultSet('localDeviceId', query).then((result) => {
             console.log('GetResultSet getResultSet success');
@@ -7163,7 +7812,7 @@ getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;
 
 ### closeResultSet<sup>8+</sup> ###
 
-closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;
+closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
@@ -7204,6 +7853,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void
 -   示例
 
     ```
+    let kvStore;
     try {
         console.log('CloseResultSet success');
         let resultSet = null;
@@ -7222,7 +7872,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void
 
 ### closeResultSet<sup>8+</sup> ###
 
-closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
+closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -7271,6 +7921,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
 -   示例
 
     ```
+    let kvStore;
     try {
         console.log('CloseResultSet success');
         let resultSet = null;
@@ -7287,7 +7938,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize(query: Query, callback: AsyncCallback<number>): void;
+getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
@@ -7328,10 +7979,30 @@ getResultSize(query: Query, callback: AsyncCallback<number>): void;
 -   示例
 
     ```
+    let kvStore;
     try {
-        // pass query
-        console.log('GetResultSize success');
-    }catch(e) {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getResultSize(query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
         console.log('GetResultSize e ' + e);
     }
     ```
@@ -7339,7 +8010,7 @@ getResultSize(query: Query, callback: AsyncCallback<number>): void;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize(query: Query): Promise<number>;
+getResultSize(query: Query): Promise&lt;number&gt;;
 
 获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
@@ -7388,9 +8059,33 @@ getResultSize(query: Query): Promise<number>;
 -   示例
 
     ```
+    let kvStore;
     try {
-        // pass query
-        console.log('GetResultSize success');
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        query.deviceId('localDeviceId');
+        kvStore.getResultSize(query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
     }catch(e) {
         console.log('GetResultSize e ' + e);
     }
@@ -7399,7 +8094,7 @@ getResultSize(query: Query): Promise<number>;
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize(deviceId: string, query: Query, callback: AsyncCallback<number>): void;
+getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 获取与指定设备 ID 和 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
@@ -7449,10 +8144,29 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback<number>): 
 -   示例
 
     ```
+    let kvStore;
     try {
-        // pass query
-        console.log('GetResultSize success');
-    }catch(e) {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
         console.log('GetResultSize e ' + e);
     }
     ```
@@ -7460,7 +8174,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback<number>): 
 
 ### getResultSize<sup>8+</sup> ###
 
-getResultSize(deviceId: string, query: Query): Promise<number>;
+getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;;
 
 获取与指定设备 ID 和 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
@@ -7518,9 +8232,32 @@ getResultSize(deviceId: string, query: Query): Promise<number>;
 -   示例
 
     ```
+    let kvStore;
     try {
-        // pass query
-        console.log('GetResultSize success');
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        var query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
     }catch(e) {
         console.log('GetResultSize e ' + e);
     }
@@ -7529,7 +8266,7 @@ getResultSize(deviceId: string, query: Query): Promise<number>;
 
 ### removeDeviceData<sup>8+</sup> ###
 
-removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
+removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 从当前数据库中删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
 
@@ -7570,32 +8307,33 @@ removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
     try {
         kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
             console.log('RemoveDeviceData  put success');
             const deviceid = 'no_exist_device_id';
-            kvStore.removeDeviceData(deviceid, async function (err,data) {
+            await kvStore.removeDeviceData(deviceid, async function (err,data) {
                 if (err == undefined) {
                     console.log('removeDeviceData success');
                 } else {
-                    console.log('testDeviceKvStoreRemoveDeviceData101 removeDeviceData fail');
-                    kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                    console.log('removeDeviceData fail');
+                    await kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
                         console.log('RemoveDeviceData get success');
                     });
                 }
             });
         });
     }catch(e) {
-        console.log('testDeviceKvStoreRemoveDeviceData101 e ' + e);
+        console.log('RemoveDeviceData e ' + e);
     }
     ```
 
 
 ### removeDeviceData<sup>8+</sup> ###
 
-removeDeviceData(deviceId: string): Promise<void>;
+removeDeviceData(deviceId: string): Promise&lt;void&gt;;
 
 从当前数据库中删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
 
@@ -7644,6 +8382,7 @@ removeDeviceData(deviceId: string): Promise<void>;
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
     try {
@@ -7652,20 +8391,17 @@ removeDeviceData(deviceId: string): Promise<void>;
         }).catch((err) => {
             console.log('RemoveDeviceData put fail ' + JSON.stringify(err));
         });
-        
         const deviceid = 'no_exist_device_id';
         kvStore.removeDeviceData(deviceid).then((err) => {
-            console.log('RemoveDeviceData removeDeviceData success');
+            console.log('removeDeviceData success');
         }).catch((err) => {
-            console.log('RemoveDeviceData removeDeviceData fail ' + JSON.stringify(err));
+            console.log('removeDeviceData fail ' + JSON.stringify(err));
         });
-
         kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
             console.log('RemoveDeviceData get success data:' + data);
         }).catch((err) => {
             console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
         });
-
     }catch(e) {
         console.log('RemoveDeviceData e ' + e);
     }
@@ -7676,7 +8412,7 @@ removeDeviceData(deviceId: string): Promise<void>;
 
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
 
-同步 DeviceKvStore 数据库，该方法为异步方法。
+在手动模式下，触发数据库同步，此方法为同步方法。
 
 -   参数：
 
@@ -7724,6 +8460,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
     const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
     try {
@@ -7732,8 +8469,8 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
         });
         kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
             console.log('Sync put success');
-            const devices = ['A12C1F9261528B21F95778D2FDC0B2E33943E6251AC5487F4473D005758905DB'];
-            const mode = factory.SyncMode.PULL_ONLY;
+            const devices = ['deviceList'];
+            const mode = distributedData.SyncMode.PULL_ONLY;
             kvStore.sync(devices, mode);
         });
     }catch(e) {
@@ -7743,9 +8480,9 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
 
 ### on<sup>8+</sup> ###
 
-on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
+on(event: 'syncComplete', syncCallback: Callback<Arrary&lt;<[string, number]&gt;): void;
 
-注册同步 DeviceKvStore 数据库回调，通过异步回调返回。
+订阅同步完成事件回调通知，该方法为同步方法。
 
 -   参数：
 
@@ -7766,7 +8503,7 @@ on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>设备状态改变时触发的事件名。</p>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>同步完成时触发的事件名。</p>
     </td>
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
@@ -7782,30 +8519,29 @@ on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
     </table>
 
 -   示例
-
     ```
     const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
     const VALUE_TEST_FLOAT_ELEMENT = 321.12;
     try {
-        kvStore.on('dataChange', 0, function (data) {
-            console.log('OnChange 0' + data)
+        kvStore.on('syncComplete', function (data) {
+            console.log('syncComplete ' + data)
         });
         kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
-            console.log('OnChange put success');
+            console.log('syncComplete put success');
         }).catch((error) => {
-            console.log('OnChange put fail ' + error);
+            console.log('syncComplete put fail ' + error);
         });
     }catch(e) {
-        console.log('OnChange put e ' + e);
+        console.log('syncComplete put e ' + e);
     }
     ```
 
 
 ### off<sup>8+</sup> ###
 
-off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void;
+off(event: 'syncComplete', syncCallback?: Callback<Array&lt;[string, number]&gt;): void;
 
-取消注册同步 DeviceKvStore 数据库回调，通过异步回调返回。
+取消订阅同步完成事件回调通知，该方法为同步方法。
 
 -   参数：
 
@@ -7826,14 +8562,14 @@ off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
     </td>
     <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>设备状态改变时触发的事件名。</p>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>同步完成时触发的事件名。</p>
     </td>
     </tr>
     <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
     </td>
     <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
     </td>
-    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>否</p>
     </td>
     <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>用于向调用方发送同步结果的回调。</p>
     </td>
@@ -7844,14 +8580,15 @@ off(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>): void
 -   示例
 
     ```
+    let kvStore;
     try {
         const func = function (data) {
-            console.log('OffChange 0' + data)
+            console.log('syncComplete ' + data)
         };
-        kvStore.on('dataChange', 0, func);
-        kvStore.off('dataChange', func);
+        kvStore.on('syncComplete', func);
+        kvStore.off('syncComplete', func);
     }catch(e) {
-        console.log('OffChange001 e ' + e);
+        console.log('syncComplete e ' + e);
     }
     ```
 
