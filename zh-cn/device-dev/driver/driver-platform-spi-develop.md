@@ -41,7 +41,7 @@ struct SpiCntlrMethod {
 </thead>
 <tbody><tr id="row816883693214"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p11683369329"><a name="p11683369329"></a><a name="p11683369329"></a>Transfer</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p6168736173213"><a name="p6168736173213"></a><a name="p6168736173213"></a>cntlr: 结构体指针,核心层spi控制器;msg: 结构体指针,Spi消息;count: uint32_t,消息个数</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p6168736173213"><a name="p6168736173213"></a><a name="p6168736173213"></a>cntlr：结构体指针，核心层spi控制器；</br>msg：结构体指针，Spi消息；</br>count：uint32_t，消息个数；</p>
 </td>
 <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.2.5.1.3 "><p id="p19168736113216"><a name="p19168736113216"></a><a name="p19168736113216"></a>HDF_STATUS相关状态</p>
 </td>
@@ -50,7 +50,7 @@ struct SpiCntlrMethod {
 </tr>
 <tr id="row3168113633211"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p4168636193212"><a name="p4168636193212"></a><a name="p4168636193212"></a>SetCfg</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p11168163643217"><a name="p11168163643217"></a><a name="p11168163643217"></a>cntlr: 结构体指针,核心层spi控制器;cfg: 结构体指针,Spi属性</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p11168163643217"><a name="p11168163643217"></a><a name="p11168163643217"></a>cntlr；结构体指针，核心层spi控制器；</br>cfg：结构体指针，Spi属性；</p>
 </td>
 <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.2.5.1.3 "><p id="p101683367325"><a name="p101683367325"></a><a name="p101683367325"></a>HDF_STATUS相关状态</p>
 </td>
@@ -59,7 +59,7 @@ struct SpiCntlrMethod {
 </tr>
 <tr id="row13168183683215"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p11168436123220"><a name="p11168436123220"></a><a name="p11168436123220"></a>GetCfg</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p3168936133218"><a name="p3168936133218"></a><a name="p3168936133218"></a>cntlr: 结构体指针,核心层spi控制器;cfg: 结构体指针,Spi属性</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p3168936133218"><a name="p3168936133218"></a><a name="p3168936133218"></a>cntlr：结构体指针，核心层spi控制器；</br>cfg：结构体指针，Spi属性；</p>
 </td>
 <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.2.5.1.3 "><p id="p18169036193219"><a name="p18169036193219"></a><a name="p18169036193219"></a>HDF_STATUS相关状态</p>
 </td>
@@ -68,7 +68,7 @@ struct SpiCntlrMethod {
 </tr>
 <tr id="row9169133643218"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p13169163615320"><a name="p13169163615320"></a><a name="p13169163615320"></a>Open</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p181697365327"><a name="p181697365327"></a><a name="p181697365327"></a>cntlr: 结构体指针,核心层spi控制器;</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p181697365327"><a name="p181697365327"></a><a name="p181697365327"></a>cntlr：结构体指针，核心层spi控制器；</p>
 </td>
 <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.2.5.1.3 "><p id="p1169163693216"><a name="p1169163693216"></a><a name="p1169163693216"></a>HDF_STATUS相关状态</p>
 </td>
@@ -77,7 +77,7 @@ struct SpiCntlrMethod {
 </tr>
 <tr id="row11169436153214"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p0169736153219"><a name="p0169736153219"></a><a name="p0169736153219"></a>Close</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p31691936193210"><a name="p31691936193210"></a><a name="p31691936193210"></a>cntlr: 结构体指针,核心层spi控制器;</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p31691936193210"><a name="p31691936193210"></a><a name="p31691936193210"></a>cntlr：结构体指针，核心层spi控制器；</p>
 </td>
 <td class="cellrowborder" valign="top" width="24.98%" headers="mcps1.2.5.1.3 "><p id="p2169123617322"><a name="p2169123617322"></a><a name="p2169123617322"></a>HDF_STATUS相关状态</p>
 </td>
@@ -285,11 +285,11 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
         HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
 
-        返回值**：**
+        返回值：
 
         HDF\_STATUS相关状态。
 
-        函数说明**：**
+        函数说明：
 
         将 SpiCntlr 对象同 HdfDeviceObject 进行了关联。
 
@@ -321,9 +321,9 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
         HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
 
-        返回值**：**
+        返回值：
 
-        HDF\_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
+        HDF\_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见/drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
 
         **表 2**  init函数入参和返回值
 
@@ -367,7 +367,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
         </tbody>
         </table>
 
-        函数说明**：**
+        函数说明：
 
         初始化自定义结构体对象，初始化SpiCntlr成员。
 
@@ -418,7 +418,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
     -   Release函数参考
 
-        入参**：**
+        入参：
 
         HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
 
