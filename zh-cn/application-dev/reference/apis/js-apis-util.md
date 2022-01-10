@@ -1539,7 +1539,7 @@ isArrayBufferView(value: Object):boolean
 
 检查输入的value是否是内置ArrayBufferView辅助类型。
 
-ArrayBufferView辅助类型包括：Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Int16Array、Int32Array、Uint32Array、Float32Array、Float64Array、DataView。
+ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint32Array、Float32Array、Float64Array、DataView。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1588,7 +1588,7 @@ isArgumentsObject(value: Object):boolean
 
 isArrayBuffer(value: Object):boolean
 
-检查输入的value是否是一个ArrayBuffer对象类型。
+检查输入的value是否是ArrayBuffer对象类型。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2174,7 +2174,7 @@ isTypedArray(value: Object):boolean
 
 检查输入的value是否是TypedArray类型的辅助类型。
 
-TypedArray类型的辅助类型，包括Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Uint16Array、Int32Array、Uint32Array、Float32Array、Float64Array、DataView。
+TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、DataView。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
