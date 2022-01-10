@@ -38,7 +38,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 - **示例**：
   ```
   let myReason = 'test requestSuspendDelay';
-  let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, (val) => {
+  let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info("Request suspend delay will time out.");
   })
   ```

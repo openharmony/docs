@@ -33,7 +33,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
    ```
    import backgroundTaskManager from '@ohos.backgroundTaskManager';
    let myReason = 'test requestSuspendDelay';
-   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, (val) => {
+   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
        console.info("Request suspend delay will time out.");
    });
    var id = delayInfo.requestId;console.info("requestId is: " + id);
@@ -60,7 +60,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 let myReason = 'test requestSuspendDelay';
 // 申请延迟挂起
-let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, (val) => {
+let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
     console.info("Request suspend delay will time out.");
 });
 // 打印延迟挂起信息
