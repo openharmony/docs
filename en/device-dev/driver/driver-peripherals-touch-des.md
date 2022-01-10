@@ -1,11 +1,11 @@
-# TOUCHSCREEN<a name="EN-US_TOPIC_0000001052857350"></a>
+# Touchscreen<a name="EN-US_TOPIC_0000001052857350"></a>
 
 -   [Overview](#section175431838101617)
 -   [Available APIs](#section105459441659)
 -   [How to Develop](#section65745222184)
 -   [Development Example](#section263714411191)
-    -   [Add the touchscreen driver-related descriptions.](#section18249155619195)
-    -   [Board-level Hardware Configuration and Private Data Configuration](#section3571192072014)
+    -   [Adding the Touchscreen Driver-related Description](#section18249155619195)
+    -   [Adding Board Configuration and Touchscreen Private Configuration](#section3571192072014)
     -   [Adding the Touchscreen Driver](#section6356758162015)
 
 
@@ -13,7 +13,7 @@
 
 -   **Functions of the Touchscreen driver**
 
-    The Touchscreen driver is used to power on its integrated circuit \(IC\), configure and initialize hardware pins, register interrupts, configure Inter-Integrated Circuit \(I2C\) or SPI APIs, set input-related configurations, and download and update firmware.
+    The touchscreen driver is used to power on its integrated circuit \(IC\), configure and initialize hardware pins, register interrupts, configure Inter-Integrated Circuit \(I2C\) or SPI APIs, set input-related configurations, and download and update firmware.
 
 
 -   **Layers of the Touchscreen driver**
@@ -80,17 +80,18 @@ Regardless of the OS and system on a chip \(SoC\), the input driver is developed
 
 The following uses the touchscreen driver as an example to describe the loading process of the input driver model:
 
-\(1\) Complete the device description configuration, such as the loading priority, board-level hardware information, and private data, by referring to the existing template.
+1. Complete the device description configuration, such as the loading priority, board-level hardware information, and private data, by referring to the existing template.
 
-\(2\) Load the input device management driver. The input management driver is loaded automatically by the HDF to create and initialize the device manager.
+2. Load the input device management driver. The input management driver is loaded automatically by the HDF to create and initialize the device manager.
 
-\(3\) Load the platform driver. The platform driver is loaded automatically by the HDF to parse the board-level configuration, initialize the hardware, and provide the API for registering the touchscreen.
+3. Load the platform driver. The platform driver is loaded automatically by the HDF to parse the board-level configuration, initialize the hardware, and provide the API for registering the touchscreen.
 
-\(4\) Load the touchscreen driver. The touchscreen driver is loaded automatically by the HDF to instantiate the touchscreen device, parse the private data, and implement differentiated APIs provided by the platform.
+4. Load the touchscreen driver. The touchscreen driver is loaded automatically by the HDF to instantiate the touchscreen device, parse the private data, and implement differentiated APIs provided by the platform.
 
-\(5\) Register the instantiated touchscreen device with the platform driver. Then bind this device to the platform driver, and complete touchscreen initialization such as interrupt registration and power-on and power-off.
+5. Register the instantiated touchscreen device with the platform driver. Then bind this device to the platform driver, and complete touchscreen initialization such as interrupt registration and power-on and power-off.
 
-\(6\) Instantiate the input device and register it with the input manager after the touchscreen is initialized.
+6. Instantiate the input device and register it with the input manager after the touchscreen is initialized.
+
 
 Perform the following steps:
 
@@ -111,7 +112,7 @@ Perform the following steps:
 
 This example describes how to develop the touchscreen driver.
 
-### Add the touchscreen driver-related descriptions.<a name="section18249155619195"></a>
+### Adding the Touchscreen Driver-related Description<a name="section18249155619195"></a>
 
 The information about modules of the input driver model is shown as follows and enables the HDF to load the modules in sequence. For details, see  [Driver Development](driver-hdf-development.md).
 
@@ -156,7 +157,7 @@ input :: host {
 }
 ```
 
-### Board-level Hardware Configuration and Private Data Configuration<a name="section3571192072014"></a>
+### Adding Board Configuration and Touchscreen Private Configuration<a name="section3571192072014"></a>
 
 The following describes the configuration of the board-level hardware and private data of the touchscreen. You can modify the configuration based on service requirements.
 
