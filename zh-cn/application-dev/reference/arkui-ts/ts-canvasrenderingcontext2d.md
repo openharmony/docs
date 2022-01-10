@@ -2827,7 +2827,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
     @Component
     struct Transform {
       private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
-      private context: RenderingContext = new RenderingContext(this.settings)
+      private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     
       build() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
