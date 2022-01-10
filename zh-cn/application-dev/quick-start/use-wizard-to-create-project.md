@@ -17,7 +17,7 @@
    - 如果当前未打开任何工程，可以在DevEco Studio的欢迎页，选择**Create Project**开始创建一个新工程。
    - 如果已经打开了工程，可以在菜单栏选择**File &gt; New &gt; New Project**来创建一个新工程。
 
-2. 根据工程创建向导，选择**[Standard]Empty Ability**模板，点击**Next**。
+2. 根据工程创建向导，选择“[Standard]Empty Ability”模板，点击**Next**。
    ![zh-cn_image_0000001162463400](figures/zh-cn_image_0000001162463400.png)
 
 3. 点击**Next**，进入到工程配置阶段，需要根据向导配置工程的基本信息。
@@ -33,10 +33,10 @@
       > - 如果entry模块的**installationFree**字段为true，则其相关的所有hap模块的**installationFree**字段都默认为true；如果entry模块的**installationFree**字段为false，则其相关的所有hap模块可以配置为true或false。
       > 
       > - 编译构建App时，每个hap包大小不能超过10MB。
-   - **Bundle name**：软件包名称，默认情况下，应用ID也会使用该名称，应用发布时，应用ID需要唯一。如果“Project Type”选择了Atomic Service，则Bundle Name的后缀名必须是**.hmservice**。
+   - **Bundle name**：软件包名称，默认情况下，应用ID也会使用该名称，应用发布时，应用ID需要唯一。如果“Project Type”选择了Atomic Service，则Bundle Name的后缀名必须是.hmservice。
    - **Save Location**：工程文件本地存储路径。
    - **Development mode**：选择开发模式，部分模板支持低代码开发，可选择Super Visual。
-   - **Language：**支持的开发语言。
+   - **Language**：支持的开发语言。
    - **Compatible API Version**：兼容的SDK最低版本。
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
       > OpenHarmony工程如果配置了compileSdkVersion 7以上，对应模块默认使用方舟编译器进行编译，如果要修改编译方式为非方舟编译，在模块级build.gradle的**ohos**闭包中添加**arkEnable false**字段。
