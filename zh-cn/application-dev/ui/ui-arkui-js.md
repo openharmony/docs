@@ -6,8 +6,6 @@
 
 - **[框架说明](js-framework.md)**
 
-- **[初步体验JS FA应用](ui-js-fa.md)**
-
 - **[构建用户界面](ui-js-building-ui.md)**
 
 - **[常见组件开发指导](ui-js-common-components.md)**
