@@ -1,4 +1,4 @@
-# xml文本转换
+# xml解析与生成
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -7,75 +7,13 @@
 ## 导入模块
 
 ```
-import convertXml from '@ohos.convertxml'
+import xml from '@ohos.xml';
 ```
 
 
 ## 权限
 
 无
-
-
-## ConvertXML
-
-
-### convert
-
-convert(xml: string, options?: ConvertOptions) : Object
-
-转化xml文本为JavaScript对象。
-
-
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | xml | string | 是 | 传入的xml文本, |
-  | options | [ConvertOptions](#convertoptions) | 否 | 用户可进行的选项 |
-
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 处理后返回的JavaScript对象。 |
-
-- 示例：
-  ```
-  import convertXml from '@ohos.convertxml'
-  var xml =
-      '<?xml version="1.0" encoding="utf-8"?>' +
-      '<note importance="high" logged="true">' +
-      '    <title>Happy</title>' +
-      '    <todo>Work</todo>' +
-      '    <todo>Play</todo>' +
-      '</note>';
-  var convertxml = new convertXml.ConvertXML();
-  var result1 = convertxml.convert(xml, {compact: false, spaces: 0});
-  console.log(result1)
-  ```
-
-
-## ConvertOptions
-
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| trim | boolean | 否 | 是否修剪位于文本前后的空白字符，默认false。 |
-| ignoreDeclaration | boolean | 否 | 是否忽略xml写入声明指示，默认false。 |
-| ignoreInstruction | boolean | 否 | 是否忽略xml的写入处理指令，默认false。 |
-| ignoreAttributes | boolean | 否 | 是否跨多行打印属性并缩进属性，默认false。 |
-| ignoreComment | boolean | 否 | 是否忽略元素的注释信息，默认false。 |
-| ignoreCdata | boolean | 否 | 是否忽略元素的CData信息，默认false。 |
-| ignoreDoctype | boolean | 否 | 是否忽略元素的Doctype信息，默认false。 |
-| ignoreText | boolean | 否 | 是否忽略元素的文本信息，默认false。 |
-| declarationKey | string | 否 | 用于输出对象中declaration的属性键的名称，默认_declaration。 |
-| instructionKey | string | 否 | 用于输出对象中instruction的属性键的名称，默认_instruction。 |
-| attributesKey | string | 否 | 用于输出对象中attributes的属性键的名称，默认_attributes。 |
-| textKey | string | 否 | 用于输出对象中text的属性键的名称，默认_text。 |
-| cdataKey | string | 否 | 用于输出对象中cdata的属性键的名称，默认_cdata。 |
-| doctypeKey | string | 否 | 用于输出对象中doctype的属性键的名称，默认_doctype。 |
-| commentKey | string | 否 | 用于输出对象中comment的属性键的名称，默认_comment。 |
-| parentKey | string | 否 | 用于输出对象中parent的属性键的名称，默认_parent。 |
-| typeKey | string | 否 | 用于输出对象中type的属性键的名称，默认_type。 |
-| nameKey | string | 否 | 用于输出对象中name的属性键的名称，默认_name。 |
-| elementsKey | string | 否 | 用于输出对象中elements的属性键的名称，默认_elements。 |
 
 
 ## XmlSerializer
@@ -97,7 +35,7 @@ XmlSerializer的构造函数。
   ```
   import xml form '@ohos.xml'
   new XmlSerializer(buffer: ArrayBuffer | DataView, encoding?: string)
- 
+   
   var arrayBuffer = new ArrayBuffer(1024);
   var bufView = new DataView(arrayBuffer);
   var thatSer = new xml.XmlSerializer(bufView);
@@ -120,7 +58,7 @@ setAttributes(name: string, value: string)：void
   ```
   import xml form '@ohos.xml'
   setAttributes(name: string, value: string)
- 
+   
   var thatSer = new xml.XmlSerializer(bufView);
   thatSer.setAttributes("importance", "high");  
   ```
@@ -141,7 +79,7 @@ addEmptyElement(name: string): void
   ```
   import xml form '@ohos.xml'
   addEmptyElement(name: string): void
- 
+   
   var thatSer = new xml.XmlSerializer(bufView);
   thatSer.addEmptyElement("b"); // => <b/>
   ```
@@ -157,7 +95,7 @@ setDeclaration(): void
   ```
   import xml form '@ohos.xml'
   setDeclaration()：void
- 
+   
   var thatSer = new xml.XmlSerializer(bufView);
   thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
   ```
@@ -178,7 +116,7 @@ XmlSerializer的构造函数。
   ```
   import xml form '@ohos.xml'
   startElement(name:string):void
- 
+   
   var arrayBuffer = new ArrayBuffer(1024);
   var thatSer = new xml.XmlSerializer(arrayBuffer);
   thatSer.startElement("notel");
@@ -196,7 +134,7 @@ endElement(): void
   ```
   import xml form '@ohos.xml'
   endElement()
- 
+   
   var thatSer = new xml.XmlSerializer(bufView);
   thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
   thatSer.startElement("table");
@@ -222,7 +160,7 @@ setNamespace(prefix: string, namespace: string): void
   ```
   import xml form '@ohos.xml'
   setNamespace(prefix:string,namespace:string):void
- 
+   
   var arrayBuffer = new ArrayBuffer(1024);
   var thatSer = new xml.XmlSerializer(arrayBuffer);
   thatSer.setDeclaration();
@@ -246,7 +184,7 @@ setCommnet(text: string): void
   ```
   import xml form '@ohos.xml'
   setCommnet(text: string):void
-
+  
   var arrayBuffer = new ArrayBuffer(1024);
   var thatSer = new xml.XmlSerializer(arrayBuffer);
   thatSer.startElement("note");
@@ -270,7 +208,7 @@ setCData(text: string): void
   ```
   import xml form '@ohos.xml'
   setCData(text: string) :void
-
+  
   var arrayBuffer = new ArrayBuffer(1028);
   var thatSer = new xml.XmlSerializer(arrayBuffer);
   thatSer.setCData('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
@@ -292,7 +230,7 @@ setText(text: string): void
   ```
   import xml form '@ohos.xml'
   setText(text: string): void
-
+  
   var arrayBuffer = new ArrayBuffer(1024);
   var thatSer = new xml.XmlSerializer(arrayBuffer);
   thatSer.startElement("note");
@@ -317,7 +255,7 @@ setDocType(text: string): void
   ```
   import xml form '@ohos.xml'
   setDocType(text: string):void
-
+  
   var arrayBuffer = new ArrayBuffer(1024);
   var thatSer = new xml.XmlSerializer(arrayBuffer);
   thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
@@ -343,7 +281,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
   ```
   import xml form '@ohos.xml'
   new (buffer: ArrayBuffer | DataView, encoding?: string)
-
+  
   var strXml =
               '<?xml version="1.0" encoding="utf-8"?>' +
               '<note importance="high" logged="true">' +
@@ -376,7 +314,7 @@ parse(option: ParseOptions): void
   ```
   import xml form '@ohos.xml'
   parse(option: ParseOptions): void
-
+  
   var strXml =
               '<?xml version="1.0" encoding="utf-8"?>' +
               '<note importance="high" logged="true">' +

@@ -38,9 +38,10 @@
    - **Development mode**：选择开发模式，部分模板支持低代码开发，可选择Super Visual。
    - **Language：**支持的开发语言。
    - **Compatible API Version**：兼容的SDK最低版本。
+     
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
       > OpenHarmony工程如果配置了compileSdkVersion 7以上，对应模块默认使用方舟编译器进行编译，如果要修改编译方式为非方舟编译，在模块级build.gradle的**ohos**闭包中添加**arkEnable false**字段。
    - **Device Type**：该工程模板支持的设备类型。
       ![zh-cn_image_0000001196050928](figures/zh-cn_image_0000001196050928.png)
-
+   
 4. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
