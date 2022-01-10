@@ -39,11 +39,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
   ```
   let myReason = 'test requestSuspendDelay';
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, (val) => {
-      if(val.code === 0) {
-          console.info("Operation time out: " + val.data);
-      } else {
-          console.info("Operation failed: " + val.data);
-      }
+      console.info("Request suspend delay will time out.");
   })
   ```
 
@@ -64,7 +60,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
   ```
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
-      if(err) {
+      if(err.data === 0) {
           console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
       } else {
           console.log('promise => Operation failed. Cause: ' + err.data);
