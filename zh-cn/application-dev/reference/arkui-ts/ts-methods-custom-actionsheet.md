@@ -204,9 +204,9 @@ struct ActionSheetExapmle {
             },
             sheets: [
               {
-                title: 'Apples',
+                title: 'apples',
                 action: () => {
-                  console.error('Apples')
+                  console.error('apples')
                 }
               },
               {
@@ -230,5 +230,5 @@ struct ActionSheetExapmle {
 }
 ```
 
-![](figures/actionsheet.gif)
+<img src="figures/actionsheet.gif" style="zoom: 50%;" />
 

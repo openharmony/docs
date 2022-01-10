@@ -67,5 +67,7 @@
     - [URL字符串解析](js-apis-url.md)
     - [URI字符串解析](js-apis-uri.md)
     - [util工具函数](js-apis-util.md)
-    - [xml文本转换](js-apis-xml.md)
+    - [xml解析与生成](js-apis-xml.md)
+    - [xml转换JavaScript](js-apis-convertxml.md)
     - [启动一个worker](js-apis-worker.md)
+

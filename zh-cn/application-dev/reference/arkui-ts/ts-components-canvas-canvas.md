@@ -79,7 +79,7 @@ Canvas\(context: CanvasRenderingContext2D\)
 @Component
 struct CanvasExample {
   private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
-  private context: RenderingContext = new RenderingContext(this.settings)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
