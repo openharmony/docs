@@ -34,12 +34,11 @@
     -   [短信服务](js-apis-sms.md)
     -   [SIM卡管理](js-apis-sim.md)
     -   [网络搜索](js-apis-radio.md)
--   网络与连接
+- 网络与连接
     -   [WLAN](js-apis-wifi.md)  
 - 设备管理
     - [传感器](js-apis-sensor.md)
     - [振动](js-apis-vibrator.md)
-    - [位置服务](js-apis-geolocation.md)
     - [屏幕亮度](js-apis-brightness.md)
     - [电量信息](js-apis-battery-info.md)
     - [系统电源管理](js-apis-power.md)
