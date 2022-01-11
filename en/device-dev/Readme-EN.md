@@ -153,7 +153,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p185185615284"><a name="p185185615284"></a><a name="p185185615284"></a>Porting and adapting the <span id="text1434016533511"><a name="text1434016533511"></a><a name="text1434016533511"></a>OpenHarmony</span> to a third-party library</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul14724164204819"></a><a name="ul14724164204819"></a><ul id="ul14724164204819"><li><a href="porting/standard-system-porting-guide.md">Standard System Porting Guide</a></li><li><a href="porting/porting-linux-kernel-overview.md">A Method for Rapidly Porting the OpenHarmony Linux Kernel </a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul14724164204819"></a><a name="ul14724164204819"></a><ul id="ul14724164204819"><li><a href="porting/standard-system-porting-guide.md">Standard System Porting Guide</a></li><li><a href="porting/porting-linux-kernel.md">A Method for Rapidly Porting the OpenHarmony Linux Kernel </a></li></ul>
 </td>
 </tr>
 <tr id="row869853125119"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p3691530511"><a name="p3691530511"></a><a name="p3691530511"></a>Contributing components</p>
