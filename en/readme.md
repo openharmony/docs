@@ -43,7 +43,7 @@ This project stores OpenHarmony documentation, including the quick start guide, 
           - [Peripheral drivers](device-dev/guide/device-outerdriver-demo.md)
         - **porting**:  
           - [Standard  System SoC Porting Guide](device-dev/porting/standard-system-porting-guide.md)
-          - [A Method for Rapidly Porting the OpenHarmony Linux Kernel ](device-dev/porting/porting-linux-kernel-overview.md)
+          - [A Method for Rapidly Porting the OpenHarmony Linux Kernel ](device-dev/porting/porting-linux-kernel.md)
         - **bundles**: 
           - [HPM Bundle Development Specifications](device-dev/bundles/bundles-standard-rules.md)
           - [HPM Bundle Development Guidelines](device-dev/bundles/bundles-guide.md)
