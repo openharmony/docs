@@ -74,13 +74,13 @@ By default, the downloaded prebuilts binary file is stored in  **OpenHarmony\_2.
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.6
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
     ```
 
 2.  Go to the root directory of source code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.6
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
     ```
 
 
@@ -102,7 +102,7 @@ By default, the downloaded prebuilts binary file is stored in  **OpenHarmony\_2.
 3.  Go to the root directory of source code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.6
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
     ```
 
 
@@ -111,10 +111,10 @@ By default, the downloaded prebuilts binary file is stored in  **OpenHarmony\_2.
 1.  Run the following script to start building for standard-system devices \(reference memory ≥ 128 MB\).
 
     ```
-    ./build.sh --product-name {product_name}
+    ./build.sh --product-name {product_name} --ccache
     ```
 
-    **product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300.
+    **product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300, rk3568.
 
     Files generated during building are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 

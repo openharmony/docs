@@ -10,11 +10,11 @@ The Docker image of OpenHarmony is hosted on [HUAWEI Cloud SWR](https://auth.hua
 
 1. Obtain the Docker image.
 ```
-docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.6
+docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
 ```
 2. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 ```
-docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.6
+docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
 ```
 
 ##### **Method 2: Using the Dockerfile to Build a Local Docker Image**
@@ -30,16 +30,16 @@ cd docs/docker/standard
 ```
 3. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 ```
-docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.6
+docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
 ```
 
 ### Building for Standard-System Devices (reference memory ≥ 128 MB)
 Run the following script to start building for Standard-System Devices (reference memory ≥ 128 MB)
 
 ```
-./build.sh --product-name {product_name}
+./build.sh --product-name {product_name} --ccache
 ```
-**{product_name}** indicates the platform supported by the current distribution, for example, Hi3516DV300.
+**{product_name}** indicates the platform supported by the current distribution, for example, Hi3516DV300, rk3568.
 Files generated during compilation are stored in the **out/{device_name}/** directory, and the generated image is stored in the **out/{device_name}/packages/phone/images/** directory.
 
 

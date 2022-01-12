@@ -52,7 +52,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.6.1.3 "><p id="p552616549297"><a name="p552616549297"></a><a name="p552616549297"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.6</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.7</p>
 </td>
 </tr>
 <tr id="row5986201731214"><td class="cellrowborder" align="center" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p136981216143"><a name="p136981216143"></a><a name="p136981216143"></a>HPM Docker环境</p>
@@ -68,6 +68,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </tr>
 </tbody>
 </table>
+
 
 
 
@@ -181,13 +182,13 @@ hb set
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.6
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.6
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
     ```
 
 
@@ -209,7 +210,7 @@ hb set
 3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.6
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
     ```
 
 
@@ -218,10 +219,10 @@ hb set
 通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
 
 ```
-./build.sh --product-name {product_name}
+./build.sh --product-name {product_name} --ccache
 ```
 
-\{product\_name\}为当前版本支持的平台。比如：Hi3516DV300等。
+\{product\_name\}为当前版本支持的平台。比如：Hi3516DV300和rk3568等。
 
 编译所生成的文件都归档在out/{device_name}/目录下，结果镜像输出在 out/{device_name}/packages/phone/images/ 目录下。
 
