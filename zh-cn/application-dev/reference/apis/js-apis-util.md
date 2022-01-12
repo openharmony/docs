@@ -116,7 +116,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 - 示例：
   ```
   function aysnFun(str1, str2, callback) {
-      if (typeof str1 === 'string' && typeof str1 === 'string') {
+      if (typeof str1 === 'string' && typeof str2 === 'string') {
           callback(null, str1 + str2);
       } else {
           callback('type err');
