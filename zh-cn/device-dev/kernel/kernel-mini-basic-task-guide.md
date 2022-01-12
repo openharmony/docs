@@ -40,7 +40,7 @@ OpenHarmony LiteOS-M内核的任务管理模块提供下面几种功能，接口
 <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p106058831812"><a name="p106058831812"></a><a name="p106058831812"></a>删除指定的任务。</p>
 </td>
 </tr>
-<tr id="row1141513373562"><td class="cellrowborder" rowspan="5" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p9438545181812"><a name="p9438545181812"></a><a name="p9438545181812"></a>控制任务状态</p>
+<tr id="row1141513373562"><td class="cellrowborder" rowspan="7" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p9438545181812"><a name="p9438545181812"></a><a name="p9438545181812"></a>控制任务状态</p>
 </td>
 <td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p2871432206"><a name="p2871432206"></a><a name="p2871432206"></a>LOS_TaskResume</p>
 </td>
@@ -49,7 +49,17 @@ OpenHarmony LiteOS-M内核的任务管理模块提供下面几种功能，接口
 </tr>
 <tr id="row1541513745611"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p99679299202"><a name="p99679299202"></a><a name="p99679299202"></a>LOS_TaskSuspend</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p596712910200"><a name="p596712910200"></a><a name="p596712910200"></a>挂起指定的任务，然后切换任务</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p596712910200"><a name="p596712910200"></a><a name="p596712910200"></a>挂起指定的任务，然后切换任务。</p>
+</td>
+</tr>
+<tr id="row1541513745621"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p99679299202"><a name="p99679299202"></a><a name="p99679299202"></a>LOS_TaskJoin</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p596712910200"><a name="p596712910200"></a><a name="p596712910200"></a>挂起当前任务，等待指定任务运行结束并回收其任务控制块资源。</p>
+</td>
+</tr>
+<tr id="row1541513745341"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p99679299202"><a name="p99679299202"></a><a name="p99679299202"></a>LOS_TaskDetach</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p596712910200"><a name="p596712910200"></a><a name="p596712910200"></a>修改任务的joinable属性为detach属性，detach属性的任务运行结束会自动回收任务控制块资源。</p>
 </td>
 </tr>
 <tr id="row14167379561"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1596722915207"><a name="p1596722915207"></a><a name="p1596722915207"></a>LOS_TaskDelay</p>
@@ -244,7 +254,7 @@ UINT32 Example_TaskLo(VOID)
 UINT32 Example_TskCaseEntry(VOID)
 {
     UINT32 ret;
-    TSK_INIT_PARAM_S initParam;
+    TSK_INIT_PARAM_S initParam = { 0 };
 
     /* 锁任务调度，防止新创建的任务比本任务高而发生调度 */
     LOS_TaskLock();
@@ -255,7 +265,7 @@ UINT32 Example_TskCaseEntry(VOID)
     initParam.usTaskPrio = TSK_PRIOR_HI;
     initParam.pcName = "TaskHi";
     initParam.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
-
+    initParam.uwResved = LOS_TASK_ATTR_JOINABLE;
     /* 创建高优先级任务，由于锁任务调度，任务创建成功后不会马上执行 */
     ret = LOS_TaskCreate(&g_taskHiId, &initParam);
     if (ret != LOS_OK) {
@@ -271,6 +281,7 @@ UINT32 Example_TskCaseEntry(VOID)
     initParam.usTaskPrio = TSK_PRIOR_LO;
     initParam.pcName = "TaskLo";
     initParam.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    initParam.uwResved = 0; /* detach 属性 */
 
     /* 创建低优先级任务，由于锁任务调度，任务创建成功后不会马上执行 */
     ret = LOS_TaskCreate(&g_taskLoId, &initParam);
@@ -285,6 +296,12 @@ UINT32 Example_TskCaseEntry(VOID)
     /* 解锁任务调度，此时会发生任务调度，执行就绪队列中最高优先级任务 */
     LOS_TaskUnlock();
 
+    ret = LOS_TaskJoin(g_taskHiId, NULL);
+    if (ret != LOS_OK) {
+        printf("Join Example_TaskHi Failed!\n");
+    } else {
+        printf("Join Example_TaskHi Success!\n");
+    }
     return LOS_OK;
 }
 ```
@@ -302,5 +319,6 @@ Enter TaskLo Handler.
 TaskHi LOS_TaskDelay Done.
 TaskHi LOS_TaskSuspend Success.
 TaskHi LOS_TaskResume Success.
+Join Example_TaskHi Success!
 ```
 

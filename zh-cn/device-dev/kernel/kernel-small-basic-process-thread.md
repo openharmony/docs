@@ -101,7 +101,7 @@ OpenHarmony 任务管理模块提供任务创建、任务延时、任务挂起�
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p11130122910387"><a name="p11130122910387"></a><a name="p11130122910387"></a>删除指定的任务</p>
 </td>
 </tr>
-<tr id="row1513118292383"><td class="cellrowborder" rowspan="4" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p1813114299384"><a name="p1813114299384"></a><a name="p1813114299384"></a>任务状态控制</p>
+<tr id="row1513118292383"><td class="cellrowborder" rowspan="6" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p1813114299384"><a name="p1813114299384"></a><a name="p1813114299384"></a>任务状态控制</p>
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.2 "><p id="p1713113291382"><a name="p1713113291382"></a><a name="p1713113291382"></a>LOS_TaskResume</p>
 </td>
@@ -111,6 +111,16 @@ OpenHarmony 任务管理模块提供任务创建、任务延时、任务挂起�
 <tr id="row9131729173817"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p131311929123810"><a name="p131311929123810"></a><a name="p131311929123810"></a>LOS_TaskSuspend</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1813192919384"><a name="p1813192919384"></a><a name="p1813192919384"></a>挂起指定的任务</p>
+</td>
+</tr>
+<tr id="row1541513745621"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p99679299202"><a name="p99679299202"></a><a name="p99679299202"></a>LOS_TaskJoin</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p596712910200"><a name="p596712910200"></a><a name="p596712910200"></a>挂起当前任务，等待指定任务运行结束并回收其任务控制块资源</p>
+</td>
+</tr>
+<tr id="row1541513745341"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p99679299202"><a name="p99679299202"></a><a name="p99679299202"></a>LOS_TaskDetach</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p596712910200"><a name="p596712910200"></a><a name="p596712910200"></a>修改任务的joinable属性为detach属性，detach属性的任务运行结束会自动回收任务控制块资源</p>
 </td>
 </tr>
 <tr id="row151311929193818"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p213114299387"><a name="p213114299387"></a><a name="p213114299387"></a>LOS_TaskDelay</p>
@@ -208,11 +218,11 @@ OpenHarmony 任务管理模块提供任务创建、任务延时、任务挂起�
     -   指定任务名
     -   指定任务的栈大小
     -   指定任务的优先级
-    -   指定任务的属性，是否支持LOS\_TASK\_STATUS\_DETACHED属性
+    -   指定任务的属性，LOS\_TASK\_ATTR\_JOINABLE和LOS\_TASK\_STATUS\_DETACHED属性
     -   多核运行时，可以选择设置任务的绑核属性
 
 2.  任务参与调度运行，执行用户指定的业务代码。
-3.  任务执行结束，如果任务设置了LOS\_TASK\_STATUS\_DETACHED属性，则任务运行结束后自动回收任务资源，如果未设置LOS\_TASK\_STATUS\_DETACHED属性，则需要调用LOS\_TaskDelete接口回收任务资源。
+3.  任务执行结束，如果设置了LOS\_TASK\_STATUS\_DETACHED属性，则自动回收任务资源，如果任务设置了LOS\_TASK\_ATTR\_JOINABLE属性，则需要调用LOS_TaskJoin回收任务资源，默认为LOS\_TASK\_STATUS\_DETACHED属性。
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >-   内核态具有最高权限，可以操作任意进程内的任务。
@@ -283,7 +293,7 @@ UINT32 ExampleTaskCaseEntry(VOID)
     initParam.usTaskPrio = TSK_PRIOR_HI; 
     initParam.pcName = "HIGH_NAME";
     initParam.uwStackSize = LOS_TASK_MIN_STACK_SIZE;
-    initParam.uwResved   = LOS_TASK_STATUS_DETACHED;
+    initParam.uwResved   = LOS_TASK_ATTR_JOINABLE;
 
     /* 创建高优先级任务，由于锁任务调度，任务创建成功后不会马上执行 */
     ret = LOS_TaskCreate(&g_taskHiID, &initParam);
@@ -312,6 +322,13 @@ UINT32 ExampleTaskCaseEntry(VOID)
     /* 解锁任务调度，此时会发生任务调度，执行就绪列表中最高优先级任务 */
     LOS_TaskUnlock();
 
+    ret = LOS_TaskJoin(g_taskHiID, NULL);
+    if (ret != LOS_OK) {
+        PRINTK("Join ExampleTaskHi Failed!\n");
+    } else {
+        PRINTK("Join ExampleTaskHi Success!\n");
+    }
+
     while(1){};
     return LOS_OK;
 }  
@@ -329,5 +346,6 @@ TaskHi LOS_TaskDelay Done.
 TaskHi LOS_TaskSuspend Success.
 TaskHi LOS_TaskResume Success.
 TaskHi LOS_TaskDelete Success.
+Join ExampleTaskHi Success!
 ```
 
