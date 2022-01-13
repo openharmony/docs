@@ -47,7 +47,7 @@ LOS\_DoExecveFile
 
 INT32 LOS\_DoExecveFile\(const CHAR \*fileName, CHAR \* const \*argv, CHAR \* const \*envp\);
 
-**函数功能：**根据fileName执行一个新的用户程序。
+**函数功能**：根据fileName执行一个新的用户程序。
 
 **参数说明：**
 
