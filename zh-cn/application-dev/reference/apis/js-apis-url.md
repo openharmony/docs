@@ -417,5 +417,5 @@ toJSON(): string
 - 示例：
   ```
   const url = new URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-  url.toString()
+  url.toJSON()
   ```
