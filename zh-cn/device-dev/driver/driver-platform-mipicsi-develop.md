@@ -1,8 +1,9 @@
 # MIPI-CSI<a name="title_MIPI_CSIDevelop"></a>
 
 - [概述](#section1_MIPI_CSIDevelop)
-- [开发步骤](#section2_MIPI_CSIDevelop)
-- [开发实例](#section3_MIPI_CSIDevelop)
+- [接口说明](#section2_MIPI_CSIDevelop)
+- [开发步骤](#section3_MIPI_CSIDevelop)
+- [开发实例](#section4_MIPI_CSIDevelop)
 
 ## 概述 <a name="section1_MIPI_CSIDevelop"></a>
 
@@ -62,7 +63,9 @@ MIPI-CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 
 3. **实例化MIPICSI控制器对象：**   
    - 初始化MipiCsiCntlr成员。
-   - 实例化MipiCsiCntlr成员MipiCsiCntlrMethod，其定义和成员**说明**见下
+   - 实例化MipiCsiCntlr成员MipiCsiCntlrMethod。
+     >![](../public_sys-resources/icon-note.gif) **说明：** 
+     >实例化MipiCsiCntlr成员MipiCsiCntlrMethod，其定义和成员说明见[接口说明](#section2_MIPI_CSIDevelop)。
    
 4. **驱动调试：**
    - 【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，数据传输的成功与否等。
