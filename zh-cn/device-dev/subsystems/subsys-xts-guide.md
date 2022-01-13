@@ -660,7 +660,7 @@ hap包编译请参考[标准系统js应用开发指导](https://developer.harmon
 
     **测试用例输出目录**：out/release/suites/acts/testcases
 
-    **测试框架&用例整体输出目录：**out/release/suites/acts（编译用例时会同步编译测试套执行框架）
+    **测试框架&用例整体输出目录**：out/release/suites/acts（编译用例时会同步编译测试套执行框架）
 
 
 ## 全量用例执行指导（适用于小型系统、标准系统）<a name="section118149111426"></a>

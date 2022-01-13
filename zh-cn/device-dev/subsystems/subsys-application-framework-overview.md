@@ -73,7 +73,7 @@ Ability子系统是管理OpenHarmony应用运行状态的开发框架。
 -   **AbilityKit**：Ability框架提供给开发者的开发包，开发者基于该开发包可以开发出基于Ability组件的应用。基于Ability组件开发的应用有两种类型：基于Javascript语言开发的Ability（JS Ability）和基于C/C++语言开发的Ability（Native Ability）。JS应用开发框架是开发者开发JS Ability所用到框架，是在AbilityKit基础封装的包含js UI组件的一套方便开发者能够迅速开发Ability应用的框架。
 -   **AbilityLoader**：负责注册和加载开发者Ability的模块。开发者开发的Ability先要调用AbilityLoader的注册接口注册到框架中，接着Ability启动时会被实例化。
 
--   **AbilityManager：**负责AbilityKit和Ability管理服务进行IPC的通信。
+-   **AbilityManager**：负责AbilityKit和Ability管理服务进行IPC的通信。
 
 -   **EventHandler**：AbilityKit提供给开发者的用于在Ability中实现线程间通信的一个模块。
 
