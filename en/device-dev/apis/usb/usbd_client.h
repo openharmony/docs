@@ -27,7 +27,7 @@
 /**
  * @file usbd_client.h
  *
- * @brief Defines the usbd Interface.
+ * @brief Defines the usbd interface.
  *
  * @since 3.0
  * @version 1.0
