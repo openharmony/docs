@@ -57,7 +57,7 @@
 </tr>
 <tr id="row71857914585"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1318619155811"><a name="p1318619155811"></a><a name="p1318619155811"></a>int32_t ClaimInterface(USBDevicePipe &pip, const UsbInterface &interface, bool force);</p>
 </td>
-The <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1186597589"><a name="p1186597589"></a><a name="p1186597589"></a>Claims a USB interface exclusively. This must be done before data transfer.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1186597589"><a name="p1186597589"></a><a name="p1186597589"></a>Claims a USB interface exclusively. This must be done before data transfer.</p>
 </td>
 </tr>
 <tr id="row18831119115815"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p48323975814"><a name="p48323975814"></a><a name="p48323975814"></a>int32_t ReleaseInterface(USBDevicePipe &pip, const UsbInterface &interface);</p>
@@ -67,12 +67,12 @@ The <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1186
 </tr>
 <tr id="row71857914585"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1318619155811"><a name="p1318619155811"></a><a name="p1318619155811"></a>int32_t BulkTransfer(USBDevicePipe &pip, const USBEndpoint &endpoint, std::vector<uint8_t> &vdata, int32_t timeout);</p>
 </td>
-The <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1186597589"><a name="p1186597589"></a><a name="p1186597589"></a>Performs a bulk transfer on a specified endpoint. The data transfer direction is determined by the endpoint direction.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1186597589"><a name="p1186597589"></a><a name="p1186597589"></a>Performs a bulk transfer on a specified endpoint. The data transfer direction is determined by the endpoint direction.</p>
 </td>
 </tr>
 <tr id="row18831119115815"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p48323975814"><a name="p48323975814"></a><a name="p48323975814"></a>int32_t ControlTransfer(USBDevicePipe &pip, const UsbCtrlTransfer &ctrl, std::vector<uint8_t> &vdata);</p>
 </td>
-The <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p15832129135813"><a name="p15832129135813"></a><a name="p15832129135813"></a>Performs control transaction for endpoint 0 of the device. The transmission direction is determined by the request type.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p15832129135813"><a name="p15832129135813"></a><a name="p15832129135813"></a>Performs control transaction for endpoint 0 of the device. The transmission direction is determined by the request type.</p>
 </td>
 </tr>
 <tr id="row71857914585"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1318619155811"><a name="p1318619155811"></a><a name="p1318619155811"></a>int32_t SetConfiguration(USBDevicePipe &pip, const USBConfig &config);</p>
@@ -123,7 +123,7 @@ The <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1583
 </tr>
 <tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16290141681918"><a name="p16290141681918"></a><a name="p16290141681918"></a>int32_t RequestQueue(UsbRequest &request);</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>Sends or receives isochronous data requests on a specified endpoint. The data transfer direction is determined by the endpoint direction.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>Sends or receives isochronous transfer requests on a specified endpoint. The data transfer direction is determined by the endpoint direction.</p>
 </td>
 </tr>
 <tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16290141681918"><a name="p16290141681918"></a><a name="p16290141681918"></a>int32_t BulkRequstDataSize(const UsbDev &dev, const UsbPipe &pipe, uint32_t &length);</p>
@@ -133,7 +133,7 @@ The <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1583
 </tr>
 <tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16290141681918"><a name="p16290141681918"></a><a name="p16290141681918"></a>int32_t BulkReadData(const UsbDev &dev, const UsbPipe &pipe, std::vector<uint8_t> &data);</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>Obtains the data reading result. Use this method together with <b>BulkReadData</b>.
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1929141611198"><a name="p1929141611198"></a><a name="p1929141611198"></a>Obtains the data reading result. Use this method together with <b>BulkReadData</b>.</p>
 </td>
 </tr>
 <tr id="row172902161193"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16290141681918"><a name="p16290141681918"></a><a name="p16290141681918"></a>int32_t BulkWriteData(const UsbDev &dev, const UsbPipe &pipe, const std::vector<uint8_t> &data);</p>
