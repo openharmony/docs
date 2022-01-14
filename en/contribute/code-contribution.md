@@ -2,7 +2,13 @@
 
 ## Start Contributions<a name="en-us_topic_0000001051566732_section123657169441"></a>
 
-**Code Style**
+### Design Specifications
+
+[OpenHarmony API Governance Charter](../design/OpenHarmony-API-governance.md)
+
+[OpenHarmony Security Design Specifications](OpenHarmony-security-design-guide.md)
+
+### Code Style
 
 Develop, review, and test code following the OpenHarmony coding standards. Make sure code is written in the same style.
 
