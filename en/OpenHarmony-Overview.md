@@ -364,7 +364,7 @@ OpenHarmony archived projects:  [https://gitee.com/openharmony-retired](https://
 
 ## Source Code Downloading<a name="section39011923144212"></a>
 
-For details about how to obtain the source code of OpenHarmony, see  [Source Code Acquisition](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-code/source-code-acquisition.md).
+For details about how to obtain the source code of OpenHarmony, see  [Source Code Acquisition](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-code/sourcecode-acquisition.md).
 
 ## How to Participate<a name="section19611528174215"></a>
 
