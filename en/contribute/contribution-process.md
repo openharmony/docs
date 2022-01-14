@@ -242,7 +242,7 @@ Visit [CI portal](http://ci.openharmony.cn/#/pipeLine).
 
 ## Reviewing Code<a name="section17823849145014"></a>
 
-For details, visit  [https://gitee.com/help/articles/4304](https://gitee.com/help/articles/4304).
+For details, visit [https://gitee.com/help/articles/4304](https://gitee.com/help/articles/4304).
 
-Related topic:  [FAQs](faqs.md)
+Related topic: [FAQs](faqs.md)
 

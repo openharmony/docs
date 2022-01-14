@@ -344,7 +344,7 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 ## Getting Started<a name="section44681652104210"></a>
 
-For details, see  [https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/Readme-EN.md](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/Readme-EN.md).
+For details, see  [device-dev/quick-start/Readme-EN.md](device-dev/quick-start/Readme-EN.md).
 
 ## Code Repository Addresses<a name="section107651249181914"></a>
 

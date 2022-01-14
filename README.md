@@ -26,4 +26,4 @@ OpenHarmony 2.0 Canary. [Learn more](en/release-notes/openharmony-2-0-canary.md)
 
 OpenHarmony_v1.x_release: OpenHarmony v1.1.2 LTS. [Learn more](en/release-notes/OpenHarmony-v1.1.2-LTS.md)
 
-[More versions](https://gitee.com/openharmony/docs/blob/master/en/release-notes/)
+[More versions](en/release-notes/)
