@@ -6,6 +6,14 @@
 
 -   **[HiLog\_Lite开发指导](subsys-dfx-hilog-lite.md)**  
 
--   **[HiSysEvent开发指导](subsys-dfx-hisysevent.md)**  
+-   **[HiSysEvent开发指导](subsys-dfx-hisysevent.md)** 
+
+      - [HiSysEvent打点指导](subsys-dfx-hisysevent-write.md)
+
+      - [HiSysEvent订阅指导](subsys-dfx-hisysevent-read.md)
+
+      - [HiSysEvent查询指导](subsys-dfx-hisysevent-select.md)
+
+      - [HiSysEvent工具使用指导](subsys-dfx-hisysevent-tool.md) 
 
 
