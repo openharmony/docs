@@ -238,7 +238,7 @@ LOS_TraceHwiFilterHookReg(Example_HwiNumFilter);
 | LOSCFG_RECORDER_MODE_ONLINE    | Trace work mode ->Online mode                                | Trace工作模式为在线模式                                      | YES/NO |
 | LOSCFG_TRACE_CLIENT_INTERACT   | Enable Trace Client Visualization and Control                | 使能与Trace IDE （dev tools）的交互，包括数据可视化和流程控制 | YES/NO |
 | LOSCFG_TRACE_FRAME_CORE_MSG    | Enable Record more extended content ->Record cpuid, hardware interrupt status, task lock status | 记录CPUID、中断状态、锁任务状态                              | YES/NO |
-| LOSCFG_TRACE_FRAME_EVENT_COUNT | Enable Record more extended content ->Record event count, which indicate the sequence of happend events | 记录事件的次序编号                                           | YES/NO |
+| LOSCFG_TRACE_FRAME_EVENT_COUNT | Enable Record more extended content ->Record event count, which indicate the sequence of happened events | 记录事件的次序编号                                           | YES/NO |
 | LOSCFG_TRACE_FRAME_MAX_PARAMS  | Record max params                                            | 配置记录事件的最大参数个数                                   | INT    |
 | LOSCFG_TRACE_BUFFER_SIZE       | Trace record buffer size                                     | 配置Trace的缓冲区大小                                        | INT    |
 

@@ -8,16 +8,16 @@
 
 ## 概述<a name="section3634112111"></a>
 
-Sensor（传感器）驱动模块为上层Sensor服务系统提供稳定的Sensor基础能力API，包括Sensor列表查询、Sensor启停、Sensor订阅及去订阅，Sensor参数配置等功能；基于HDF（**H**ardware  **D**river  **F**oundation）驱动框架开发的Sensor驱动模型，实现跨操作系统迁移，器件差异配置等功能。Sensor驱动模型如下图1所示：
+Sensor（传感器）驱动模块为上层Sensor服务系统提供稳定的Sensor基础能力API，包括Sensor列表查询、Sensor启停、Sensor订阅及去订阅，Sensor参数配置等功能；基于HDF（Hardware Driver Foundation）驱动框架开发的Sensor驱动模型，实现跨操作系统迁移，器件差异配置等功能。Sensor驱动模型如下图1所示：
 
 **图 1**  Sensor驱动模型图<a name="fig10451455446"></a>  
 ![](figures/Sensor驱动模型图.png "Sensor驱动模型图")
 
 Sensor驱动模型对外开放的API接口能力如下：
 
--   提供Sensor HDI（**H**ardware  **D**river  **I**nterface）能力接口，简化服务开发。
--   提供Sensor驱动模型能力接口：依赖HDF驱动框架实现Sensor器件驱动的注册，加载，去注册，器件探测等能力，提供同一类型Sensor器件驱动归一接口, 寄存器配置解析操作接口，总线访问抽象接口，平台抽象接口。
--   提供开发者实现的能力接口：依赖HDF驱动框架的HCS\(**H**DF  **C**onfiguration  **S**ource\)配置管理，根据同类型Sensor差异化配置，实现Sensor器件参数序列化配置和器件部分操作接口，简化Sensor器件驱动开发。
+-   提供Sensor HDI（Hardware Driver Interface）能力接口，简化服务开发。
+-   提供Sensor驱动模型能力接口：依赖HDF驱动框架实现Sensor器件驱动的注册、加载、去注册、器件探测等能力，提供同一类型Sensor器件驱动归一接口, 寄存器配置解析操作接口，总线访问抽象接口，平台抽象接口。
+-   提供开发者实现的能力接口：依赖HDF驱动框架的HCS（HDF Configuration Source）配置管理，根据同类型Sensor差异化配置，实现Sensor器件参数序列化配置和器件部分操作接口，简化Sensor器件驱动开发。
 
 ## 接口说明<a name="section20930112117478"></a>
 
@@ -247,7 +247,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考表3。
 
 ## 开发步骤<a name="section1140943382"></a>
 
-Sensor驱动是基于HDF框架、PLATFORM和OSAL基础接口进行开发，不区分操作系统和芯片平台，为不同Sensor器件提供统一的驱动模型。本篇开发指导以加速度计传感器为例，介绍传感器驱动开发。
+Sensor驱动是基于HDF框架、Platform和OSAL基础接口进行开发，不区分操作系统和芯片平台，为不同Sensor器件提供统一的驱动模型。本篇开发指导以加速度计传感器为例，介绍传感器驱动开发。
 
 1.  加速度计传感器驱动注册。HDF驱动框架会提供统一的驱动管理模型，通过加速计传感器模块配置信息，识别并加载对应模块驱动。
 2.  加速度计传感器驱动初始化和去初始化。HDF驱动框架通过init入口函数，依次启动传感器设备驱动加载和分配传感器设备数据配置资源。HDF驱动框架通过release函数，释放驱动加载的资源和配置。
@@ -259,7 +259,7 @@ Sensor驱动是基于HDF框架、PLATFORM和OSAL基础接口进行开发，不�
 
 ## 开发实例<a name="section257750691"></a>
 
-基于HDF驱动模型，加载启动加速度计传感器驱动，代码形式如下，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)。加速度传感器选择通讯接口方式为I2C，厂家选择博世BMI160加速度传感器。
+基于HDF驱动模型，加载启动加速度计传感器驱动，代码形式如下，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)。加速度计传感器选择通讯接口方式为I2C，厂家选择博世BMI160加速度计传感器。
 
 1.  加速度计传感器驱动入口注册
 
@@ -281,7 +281,7 @@ HDF_INIT(g_sensorAccelDevEntry);
 
 -   加速度计传感器设备配置描述
 
-加速度传感器模型使用HCS作为配置描述源码，HCS配置字段详细介绍参考[配置管理](driver-hdf-manage.md)介绍。
+加速度计传感器模型使用HCS作为配置描述源码，HCS配置字段详细介绍参考[配置管理](driver-hdf-manage.md)介绍。
 
 ```
 /* 加速度计传感器设备HCS配置 */
@@ -491,7 +491,7 @@ void ReleaseAccelDriver(struct HdfDeviceObject *device)
 加速度计传感器数据配置只需要按照模板配置即可，基于模板配置的解析功能已经在**InitSensorConfigData**函数完成，只需初始化时调用即可。如果有新增配置项，需要同步修改此函数。
 
 ```
-加速度传感器数据配置模板(accel_config.hcs)
+加速度计传感器数据配置模板(accel_config.hcs)
 root {
     sensorAccelConfig {
         accelChipConfig {
@@ -529,7 +529,7 @@ root {
 root {
     sensorAccelConfig {
         accel_bmi160_chip_config : accelChipConfig {
-            match_attr = "hdf_sensor_accel_driver"; /* 需要和加速度传感器设备配置match_attr字段保持一致 */
+            match_attr = "hdf_sensor_accel_driver"; /* 需要和加速度计传感器设备配置match_attr字段保持一致 */
             accelInfo :: sensorInfo {
                 vendorName = "borsh_bmi160";
                 sensorTypeId = 1;
@@ -885,7 +885,7 @@ HWTEST_F(HdfSensorTest,TestAccelDriver_001, TestSize.Level0)
 {
     int32_t sensorInterval = 1000000000; /* 数据采样率单位纳秒 */
     int32_t pollTime = 5; /* 数据采样时间单位秒 */
-    int32_t accelSensorId = 1; /* 加速度传感器类型标识为1 */
+    int32_t accelSensorId = 1; /* 加速度计传感器类型标识为1 */
     int32_t count = 0;
     int ret;
     struct SensorInformation *sensorInfo = nullptr;

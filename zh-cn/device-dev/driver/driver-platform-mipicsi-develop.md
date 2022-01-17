@@ -1,8 +1,9 @@
 # MIPI-CSI<a name="title_MIPI_CSIDevelop"></a>
 
 - [概述](#section1_MIPI_CSIDevelop)
-- [开发步骤](#section2_MIPI_CSIDevelop)
-- [开发实例](#section3_MIPI_CSIDevelop)
+- [接口说明](#section2_MIPI_CSIDevelop)
+- [开发步骤](#section3_MIPI_CSIDevelop)
+- [开发实例](#section4_MIPI_CSIDevelop)
 
 ## 概述 <a name="section1_MIPI_CSIDevelop"></a>
 
@@ -11,7 +12,43 @@ CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface
 图 1 无服务模式结构图
 ![image1](figures/无服务模式结构图.png)
 
-## 开发步骤 <a name="section2_MIPI_CSIDevelop"></a>
+## 接口说明 <a name="section2_MIPI_CSIDevelop"></a>
+
+MipiCsiCntlrMethod定义
+
+```c
+struct MipiCsiCntlrMethod {
+    int32_t (*setComboDevAttr)(struct MipiCsiCntlr *cntlr, ComboDevAttr *pAttr);
+    int32_t (*setPhyCmvmode)(struct MipiCsiCntlr *cntlr, uint8_t devno, PhyCmvMode cmvMode);
+    int32_t (*setExtDataType)(struct MipiCsiCntlr *cntlr, ExtDataType* dataType);
+    int32_t (*setHsMode)(struct MipiCsiCntlr *cntlr, LaneDivideMode laneDivideMode);
+    int32_t (*enableClock)(struct MipiCsiCntlr *cntlr, uint8_t comboDev);
+    int32_t (*disableClock)(struct MipiCsiCntlr *cntlr, uint8_t comboDev);
+    int32_t (*resetRx)(struct MipiCsiCntlr *cntlr, uint8_t comboDev);
+    int32_t (*unresetRx)(struct MipiCsiCntlr *cntlr, uint8_t comboDev);
+    int32_t (*enableSensorClock)(struct MipiCsiCntlr *cntlr, uint8_t snsClkSource);
+    int32_t (*disableSensorClock)(struct MipiCsiCntlr *cntlr, uint8_t snsClkSource);
+    int32_t (*resetSensor)(struct MipiCsiCntlr *cntlr, uint8_t snsResetSource);
+    int32_t (*unresetSensor)(struct MipiCsiCntlr *cntlr, uint8_t snsResetSource);
+};
+```
+表1 MipiCsiCntlrMethod成员的回调函数功能说明
+| 成员函数           | 入参                                                         | 出参 | 返回状态           | 功能                       |
+| ------------------ | ------------------------------------------------------------ | ---- | ------------------ | -------------------------- |
+| setComboDevAttr    | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**pAttr**：结构体指针，MIPI-CSI相应配置结构体指针 | 无   | HDF_STATUS相关状态 | 写入MIPI-CSI配置           |
+| setPhyCmvmode      | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**devno**：uint8_t，设备编号;<br>**cmvMode**：枚举类型，共模电压模式参数 | 无   | HDF_STATUS相关状态 | 设置共模电压模式           |
+| setExtDataType     | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**dataType**：结构体指针，定义YUV和原始数据格式以及位深度 | 无   | HDF_STATUS相关状态 | 设置YUV和RAW数据格式和位深 |
+| setHsMode          | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**laneDivideMode**：枚举类型，lane模式参数 | 无   | HDF_STATUS相关状态 | 设置MIPI RX的Lane分布     |
+| enableClock        | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 使能mipi的时钟             |
+| disableClock       | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 关闭mipi的时钟             |
+| resetRx            | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 复位MIPI RX                |
+| unresetRx          | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 撤销复位MIPI RX            |
+| enableSensorClock  | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 使能mipi上的Sensor时钟     |
+| disableSensorClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 关闭mipi上的Sensor时钟     |
+| resetSensor        | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 复位Sensor                 |
+| unresetSensor      | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 撤销复位Sensor      |   
+
+## 开发步骤 <a name="section3_MIPI_CSIDevelop"></a>
 
 MIPI-CSI模块适配的三个环节是配置属性文件、实例化驱动入、以及实例化核心层接口函数。
 
@@ -26,50 +63,15 @@ MIPI-CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 
 3. **实例化MIPICSI控制器对象：**   
    - 初始化MipiCsiCntlr成员。
-   - 实例化MipiCsiCntlr成员MipiCsiCntlrMethod，其定义和成员**说明**见下
+   - 实例化MipiCsiCntlr成员MipiCsiCntlrMethod。
+     >![](../public_sys-resources/icon-note.gif) **说明：** 
+     >实例化MipiCsiCntlr成员MipiCsiCntlrMethod，其定义和成员说明见[接口说明](#section2_MIPI_CSIDevelop)。
    
 4. **驱动调试：**
    - 【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，数据传输的成功与否等。
 
-> ![](W:\doc\docs\zh-cn\device-dev\public_sys-resources\icon-note.gif) **说明：** 
->
-> MipiCsiCntlrMethod定义
->
-> ```c
-> struct MipiCsiCntlrMethod {
->     int32_t (*setComboDevAttr)(struct MipiCsiCntlr *cntlr, ComboDevAttr *pAttr);
->     int32_t (*setPhyCmvmode)(struct MipiCsiCntlr *cntlr, uint8_t devno, PhyCmvMode cmvMode);
->     int32_t (*setExtDataType)(struct MipiCsiCntlr *cntlr, ExtDataType* dataType);
->     int32_t (*setHsMode)(struct MipiCsiCntlr *cntlr, LaneDivideMode laneDivideMode);
->     int32_t (*enableClock)(struct MipiCsiCntlr *cntlr, uint8_t comboDev);
->     int32_t (*disableClock)(struct MipiCsiCntlr *cntlr, uint8_t comboDev);
->     int32_t (*resetRx)(struct MipiCsiCntlr *cntlr, uint8_t comboDev);
->     int32_t (*unresetRx)(struct MipiCsiCntlr *cntlr, uint8_t comboDev);
->     int32_t (*enableSensorClock)(struct MipiCsiCntlr *cntlr, uint8_t snsClkSource);
->     int32_t (*disableSensorClock)(struct MipiCsiCntlr *cntlr, uint8_t snsClkSource);
->     int32_t (*resetSensor)(struct MipiCsiCntlr *cntlr, uint8_t snsResetSource);
->     int32_t (*unresetSensor)(struct MipiCsiCntlr *cntlr, uint8_t snsResetSource);
-> };
-> ```
->
-> 表1 MipiCsiCntlrMethod成员的回调函数功能说明
->
-> | 成员函数           | 入参                                                         | 出参 | 返回状态           | 功能                       |
-> | ------------------ | ------------------------------------------------------------ | ---- | ------------------ | -------------------------- |
-> | setComboDevAttr    | **cntlr**: 结构体指针，MipiCsi控制器 ;<br>**pAttr**: 结构体指针，MIPI-CSI相应配置结构体指针 | 无   | HDF_STATUS相关状态 | 写入MIPI-CSI配置           |
-> | setPhyCmvmode      | **cntlr**: 结构体指针，MipiCsi控制器 ;<br>**devno**: uint8_t，设备编号;<br>**cmvMode**: 枚举类型，共模电压模式参数 | 无   | HDF_STATUS相关状态 | 设置共模电压模式           |
-> | setExtDataType     | **cntlr**: 结构体指针，MipiCsi控制器 ;<br>**dataType**: 结构体指针，定义YUV和原始数据格式以及位深度 | 无   | HDF_STATUS相关状态 | 设置YUV和RAW数据格式和位深 |
-> | setHsMode          | **cntlr**: 结构体指针，MipiCsi控制器 ;<br>**laneDivideMode**: 枚举类型，lane模式参数 | 无   | HDF_STATUS相关状态 | 设置MIPI RX的 Lane分布     |
-> | enableClock        | **cntlr**: 结构体指针，MipiCsi控制器 ;<br>**comboDev**: uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 使能mipi的时钟             |
-> | disableClock       | **cntlr**: 结构体指针，MipiCsi控制器 ;<br/>**comboDev**: uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 关闭mipi的时钟             |
-> | resetRx            | **cntlr**: 结构体指针，MipiCsi控制器 ;<br/>**comboDev**: uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 复位MIPI RX                |
-> | unresetRx          | **cntlr**: 结构体指针，MipiCsi控制器 ;<br/>**comboDev**: uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 撤销复位MIPI RX            |
-> | enableSensorClock  | **cntlr**: 结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**: uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 使能mipi上的sensor时钟     |
-> | disableSensorClock | **cntlr**: 结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**: uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 关闭mipi上的sensor时钟     |
-> | resetSensor        | **cntlr**: 结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**: uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 复位sensor                 |
-> | unresetSensor      | **cntlr**: 结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**: uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 撤销复位sensor             |
 
-## 开发实例 <a name="section3_MIPI_CSIDevelop"></a>
+## 开发实例 <a name="section4_MIPI_CSIDevelop"></a>
 
 下方将以mipi_rx_hi35xx.c为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 

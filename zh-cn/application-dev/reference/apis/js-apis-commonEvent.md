@@ -1,22 +1,24 @@
-# CommonEvent模块(JS端SDK接口)
+# 公共事件模块
 
-#### 支持设备
+**说明：**
+本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+## 支持设备
 
 | API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 |
 | ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- |
-| CommonEvent.publish(event: string, callback: AsyncCallback<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback<CommonEventSubscriber>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
+| CommonEvent.publish(event: string, callback: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
+| CommonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
+| CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
 | CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
+| CommonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
+| CommonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
 
-#### 权限列表
+## 权限列表
 
 | 系统公共事件宏                                               | 系统公共事件名称                                            | 订阅者所需权限                                               |
 | ------------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | COMMON_EVENT_BOOT_COMPLETED                                  | usual.event.BOOT_COMPLETED                                  | ohos.permission.RECEIVER_STARTUP_COMPLETED                   |
-| COMMON_EVENT_LOCKED_BOOT_COMPLETED                           | usual.event.LOCKED_BOOT_COMPLETED                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   |
 | COMMON_EVENT_SHUTDOWN                                        | usual.event.SHUTDOWN                                        | 无                                                           |
 | COMMON_EVENT_BATTERY_CHANGED                                 | usual.event.BATTERY_CHANGED                                 | 无                                                           |
 | COMMON_EVENT_BATTERY_LOW                                     | usual.event.BATTERY_LOW                                     | 无                                                           |
@@ -59,9 +61,7 @@
 | COMMON_EVENT_USER_BACKGROUND                                 | usual.event.USER_BACKGROUND                                 | 无                                                           |
 | COMMON_EVENT_USER_FOREGROUND                                 | usual.event.USER_FOREGROUND                                 | 无                                                           |
 | COMMON_EVENT_USER_SWITCHED                                   | usual.event.USER_SWITCHED                                   | ohos.permission.MANAGE_USERS                                 |
-| COMMON_EVENT_USER_STARTING                                   | usual.event.USER_STARTING                                   | ohos.permission.INTERACT_ACROSS_USERS                        |
 | COMMON_EVENT_USER_UNLOCKED                                   | usual.event.USER_UNLOCKED                                   | 无                                                           |
-| COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_USERS                        |
 | COMMON_EVENT_USER_STOPPED                                    | usual.event.USER_STOPPED                                    | 无                                                           |
 | COMMON_EVENT_HWID_LOGIN                                      | common.event.HWID_LOGIN                                     | 无                                                           |
 | COMMON_EVENT_HWID_LOGOUT                                     | common.event.HWID_LOGOUT                                    | 无                                                           |
@@ -74,31 +74,14 @@
 | COMMON_EVENT_WIFI_HOTSPOT_STATE                              | usual.event.wifi.HOTSPOT_STATE                              | 无                                                           |
 | COMMON_EVENT_WIFI_AP_STA_JOIN                                | usual.event.wifi.WIFI_HS_STA_JOIN                           | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_AP_STA_LEAVE                               | usual.event.wifi.WIFI_HS_STA_LEAVE                          | ohos.permission.GET_WIFI_INFO                                |
-| COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE                        | usual.event.wifi.mplink.STATE_CHANGE                        | ohos.permission.MPLINK_CHANGE_STATE                          |
 | COMMON_EVENT_WIFI_P2P_CONN_STATE                             | usual.event.wifi.p2p.CONN_STATE_CHANGE                      | ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION   |
 | COMMON_EVENT_WIFI_P2P_STATE_CHANGED                          | usual.event.wifi.p2p.STATE_CHANGE                           | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED                    | usual.event.wifi.p2p.DEVICES_CHANGE                         | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED          | usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE            | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED           | usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE                  | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED                    | usual.event.wifi.p2p.GROUP_STATE_CHANGED                    | ohos.permission.GET_WIFI_INFO                                |
-| COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE     | usual.event.bluetooth.handsfree.ag.CONNECT_STATE_UPDATE     | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE    | usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE    | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE       | usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE       | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE       | usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE       | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE      | usual.event.bluetooth.a2dpsource.CURRENT_DEVICE_UPDATE      | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE       | usual.event.bluetooth.a2dpsource.PLAYING_STATE_UPDATE"      | ohos.permission.USE_BLUETOOTH                                |
 | COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE | usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_UPDATE | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE         | usual.event.bluetooth.a2dpsource.CODEC_VALUE_UPDATE         | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED               | usual.event.bluetooth.remotedevice.DISCOVERED               | ohos.permission.USE_BLUETOOTH and ohos.permission.LOCATION   |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE       | usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE       | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED            | usual.event.bluetooth.remotedevice.ACL_CONNECTED            | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED         | usual.event.bluetooth.remotedevice.ACL_DISCONNECTED         | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE              | usual.event.bluetooth.remotedevice.NAME_UPDATE              | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE               | usual.event.bluetooth.remotedevice.PAIR_STATE               | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE     | usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE     | ohos.permission.USE_BLUETOOTH                                |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT               | usual.event.bluetooth.remotedevice.SDP_RESULT               | 无                                                           |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE               | usual.event.bluetooth.remotedevice.UUID_VALUE               | ohos.permission.DISCOVER_BLUETOOTH                           |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ              | usual.event.bluetooth.remotedevice.PAIRING_REQ              | ohos.permission.DISCOVER_BLUETOOTH                           |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL           | usual.event.bluetooth.remotedevice.PAIRING_CANCEL           | 无                                                           |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ              | usual.event.bluetooth.remotedevice.CONNECT_REQ              | 无                                                           |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY            | usual.event.bluetooth.remotedevice.CONNECT_REPLY            | 无                                                           |
@@ -107,29 +90,14 @@
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE      | usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE      | 无                                                           |
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT         | usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT         | 无                                                           |
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE    | usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE    | 无                                                           |
-| COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE                     | usual.event.bluetooth.host.STATE_UPDATE                     | 无                                                           |
 | COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE                 | usual.event.bluetooth.host.REQ_DISCOVERABLE                 | 无                                                           |
-| COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE                       | usual.event.bluetooth.host.REQ_ENABLE                       | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE                      | usual.event.bluetooth.host.REQ_DISABLE                      | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE                 | usual.event.bluetooth.host.SCAN_MODE_UPDATE                 | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED                | usual.event.bluetooth.host.DISCOVERY_STARTED                | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED               | usual.event.bluetooth.host.DISCOVERY_FINISHED               | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE                      | usual.event.bluetooth.host.NAME_UPDATE                      | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE         | usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE         | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE         | usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE         | ohos.permission.USE_BLUETOOTH                                |
-| COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE           | usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE           | ohos.permission.USE_BLUETOOTH                                |
 | COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED                | usual.event.nfc.action.ADAPTER_STATE_CHANGED                | 无                                                           |
-| COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED                 | usual.event.nfc.action.RF_FIELD_ON_DETECTED                 | ohos.permission.MANAGE_SECURE_SETTINGS                       |
-| COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED                | usual.event.nfc.action.RF_FIELD_OFF_DETECTED                | ohos.permission.MANAGE_SECURE_SETTINGS                       |
 | COMMON_EVENT_DISCHARGING                                     | usual.event.DISCHARGING                                     | 无                                                           |
 | COMMON_EVENT_CHARGING                                        | usual.event.CHARGING                                        | 无                                                           |
 | COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED                        | usual.event.DEVICE_IDLE_MODE_CHANGED                        | 无                                                           |
 | COMMON_EVENT_POWER_SAVE_MODE_CHANGED                         | usual.event.POWER_SAVE_MODE_CHANGED                         | 无                                                           |
 | COMMON_EVENT_USER_ADDED                                      | usual.event.USER_ADDED                                      | ohos.permission.MANAGE_USERS                                 |
 | COMMON_EVENT_USER_REMOVED                                    | usual.event.USER_REMOVED                                    | ohos.permission.MANAGE_USERS                                 |
-| COMMON_EVENT_ABILITY_ADDED                                   | common.event.ABILITY_ADDED                                  | ohos.permission.LISTEN_BUNDLE_CHANGE                         |
-| COMMON_EVENT_ABILITY_REMOVED                                 | common.event.ABILITY_REMOVED                                | ohos.permission.LISTEN_BUNDLE_CHANGE                         |
-| COMMON_EVENT_ABILITY_UPDATED                                 | common.event.ABILITY_UPDATED                                | ohos.permission.LISTEN_BUNDLE_CHANGE                         |
 | COMMON_EVENT_LOCATION_MODE_STATE_CHANGED                     | usual.event.location.MODE_STATE_CHANGED                     | 无                                                           |
 | COMMON_EVENT_IVI_SLEEP                                       | common.event.IVI_SLEEP                                      | 无                                                           |
 | COMMON_EVENT_IVI_PAUSE                                       | common.event.IVI_PAUSE                                      | 无                                                           |
@@ -150,14 +118,10 @@
 | COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_UNMOUNTABLE                                | usual.event.data.DISK_UNMOUNTABLE                           | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED                        | usual.event.data.VISIBLE_ACCOUNTS_UPDATED                   | ohos.permission.GET_APP_ACCOUNTS                             |
-| COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               |
-| COMMON_EVENT_FOUNDATION_READY                                | common.event.FOUNDATION_READY                               | ohos.permission.RECEIVER_STARTUP_COMPLETED                   |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | 无                                                           |
 
-#### 导入模块
+## 导入模块
 
 ```js
 import CommonEvent from '@ohos.commonevent';
@@ -165,7 +129,7 @@ import CommonEvent from '@ohos.commonevent';
 
 
 
-#### CommonEvent.publish(event: string, callback: AsyncCallback<void>)
+## CommonEvent.publish(event: string, callback: AsyncCallback\<void>): void
 
 - 接口说明
 
@@ -173,15 +137,11 @@ import CommonEvent from '@ohos.commonevent';
 
 * publish参数描述
 
-  | 名称     | 读写属性 | 类型                | 必填 | 描述                 |
-  | -------- | -------- | ------------------- | ---- | -------------------- |
-  | event    | 只读     | string              | 是   | 表示要发送的公共事件 |
-  | callback | 只读     | AsyncCallback<void> | 是   | 表示被指定的回调方法 |
+  | 名称     | 读写属性 | 类型                 | 必填 | 描述                 |
+  | -------- | -------- | -------------------- | ---- | -------------------- |
+  | event    | 只读     | string               | 是   | 表示要发送的公共事件 |
+  | callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
 
-* 返回值
-
-  void
-  
 * 示例
 
 ```js
@@ -196,7 +156,7 @@ CommonEvent.publish("publish_event", PublishCallBack);
 
 
 
-#### CommonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<void>)
+## CommonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
 - 接口说明
 
@@ -207,32 +167,18 @@ CommonEvent.publish("publish_event", PublishCallBack);
   | 名称     | 读写属性 | 类型                   | 必填 | 描述                   |
   | -------- | -------- | ---------------------- | ---- | ---------------------- |
   | event    | 只读     | string                 | 是   | 表示要发布的公共事件   |
-  | options  | 只读     | CommonEventPublishData | 是   | 表示发布公共事件的属性 |
-  | callback | 只读     | AsyncCallback<void>    | 是   | 表示被指定的回调方法   |
-
-- CommonEventPublishData类型说明
-
-  | 名称                  | 读写属性 | 类型                 | 必填 | 描述                         |
-  | --------------------- | -------- | -------------------- | ---- | ---------------------------- |
-  | bundleName            | 只读     | string               | 否   | 表示包名称                   |
-  | code                  | 只读     | int                  | 否   | 表示公共事件的结果代码       |
-  | data                  | 只读     | string               | 否   | 表示公共事件的自定义结果数据 |
-  | subscriberPermissions | 只读     | Array<string>        | 否   | 表示订阅者的权限             |
-  | isOrdered             | 只读     | bool                 | 否   | 表示是否是有序事件           |
-  | parameters            | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息       |
-  
-- 返回值
-
-  void
+  | options  | 只读     | [CommonEventPublishData](#publishData) | 是   | 表示发布公共事件的属性 |
+  | callback | 只读     | AsyncCallback\<void>   | 是   | 表示被指定的回调方法   |
 
 - 示例
+
 
 ```js
 //公共事件相关信息
 var options = {
-	code: 0;			//公共事件的初始代码
+	code: 0;			 //公共事件的初始代码
 	data: "initial data";//公共事件的初始数据
-	isOrdered: true;	//有序公共事件
+	isOrdered: true;	 //有序公共事件
 }
 //发布公共事件回调
 function PublishCallBack(err) {
@@ -244,7 +190,7 @@ CommonEvent.publish("publish_event", options, PublishCallBack);
 
 
 
-#### CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback<CommonEventSubscriber>)
+## CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
 - 接口说明
 
@@ -252,51 +198,13 @@ CommonEvent.publish("publish_event", options, PublishCallBack);
 
 - createSubscriber参数描述
 
-  | 名称          | 读写属性 | 类型                                 | 必填 | 描述                     |
-  | ------------- | -------- | ------------------------------------ | ---- | ------------------------ |
-  | subscribeInfo | 只读     | CommonEventSubscribeInfo             | 是   | 表示订阅信息             |
-  | callback      | 只读     | AsyncCallback<CommonEventSubscriber> | 是   | 表示创建订阅者的回调方法 |
-
-- CommonEventSubscriber 类说明
-
-  | 名称                  | 参数                                                      | 返回值                            | 描述                                                         |
-  | --------------------- | --------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------ |
-  | getCode               | callback: AsyncCallback<number>                           | void                              | 获取公共事件的结果代码（callback形式）                       |
-  | getCode               | void                                                      | Promise<number>                   | 获取公共事件的结果代码（Promise形式）                        |
-  | setCode               | code: number, callback: AsyncCallback<void>               | void                              | 设置公共事件的结果代码（callback形式）                       |
-  | setCode               | code: number                                              | Promise<void>                     | 设置公共事件的结果代码（Promise形式）                        |
-  | getData               | callback: AsyncCallback<string>                           | void                              | 获取公共事件的结果数据（callback形式）                       |
-  | getData               | void                                                      | Promise<string>                   | 获取公共事件的结果数据（Promise形式）                        |
-  | setData               | data: string, callback: AsyncCallback<void>               | void                              | 设置公共事件的结果数据（callback形式）                       |
-  | setData               | data: string                                              | Promise<void>                     | 设置公共事件的结果数据（Promise形式）                        |
-  | setCodeAndData        | code: number, data: string, callback: AsyncCallback<void> | void                              | 设置公共事件的结果代码和结果数据（callback形式）             |
-  | setCodeAndData        | code: number, data: string                                | Promise<void>                     | 设置公共事件的结果代码和结果数据（Promise形式）              |
-  | isOrderedCommonEvent  | callback: AsyncCallback<boolean>                          | void                              | 查询当前公共事件的是否为有序公共事件，返回true代表是有序公共事件，false代表不是有序公共事件（callback形式） |
-  | isOrderedCommonEvent  | void                                                      | Promise<bool>                     | 查询当前公共事件的是否为有序公共事件，返回true代表是有序公共事件，false代表不是有序公共事件（Promise形式） |
-  | abortCommonEvent      | callback: AsyncCallback<void>                             | void                              | 取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（callback形式） |
-  | abortCommonEvent      | void                                                      | Promise<void>                     | 取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（Promise形式） |
-  | clearAbortCommonEvent | callback: AsyncCallback<void>                             | void                              | 清除当前有序公共事件abort状态（callback形式）                |
-  | clearAbortCommonEvent | void                                                      | Promise<void>                     | 清除当前有序公共事件abort状态（Promise形式）                 |
-  | getAbortCommonEvent   | callback: AsyncCallback<boolean>                          | void                              | 获取当前有序公共事件是否取消的状态（callback形式）           |
-  | getAbortCommonEvent   | void                                                      | Promise<boolean>                  | 获取当前有序公共事件是否取消的状态Promise形式）              |
-  | getSubscribeInfo      | callback: AsyncCallback<CommonEventSubscribeInfo>         | void                              | 获取订阅者的订阅信息（callback形式）                         |
-  | getSubscribeInfo      | void                                                      | Promise<CommonEventSubscribeInfo> | 获取订阅者的订阅信息（Promise形式）                          |
-
-- CommonEventSubscribeInfo类型说明
-
-  | 名称                | 读写属性 | 类型          | 必填 | 描述                                                         |
-  | ------------------- | -------- | ------------- | ---- | ------------------------------------------------------------ |
-  | events              | 只读     | Array<string> | 是   | 表示要订阅的公共事件                                         |
-  | publisherPermission | 只读     | string        | 否   | 表示发布者的权限                                             |
-  | publisherDeviceId   | 只读     | int           | 否   | 表示设备ID，该值必须是同一ohos网络上的现有设备ID             |
-  | userId              | 只读     | int           | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
-  | priority            | 只读     | int           | 否   | 表示订阅者的优先级，范围为-100~1000。                        |
-
-- 返回值
-
-  void
+  | 名称          | 读写属性 | 类型                                                 | 必填 | 描述                     |
+  | ------------- | -------- | ---------------------------------------------------- | ---- | ------------------------ |
+  | subscribeInfo | 只读     | [CommonEventSubscribeInfo](#SubscribeInfo)           | 是   | 表示订阅信息             |
+  | callback      | 只读     | AsyncCallback\<[CommonEventSubscriber](#Subscriber)> | 是   | 表示创建订阅者的回调方法 |
 
 - 示例
+
 
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
@@ -315,7 +223,7 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 
 
 
-#### CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo)
+## CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
 - 接口说明
 
@@ -323,24 +231,16 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 
 - createSubscriber参数描述
 
-  | 名称          | 读写属性 | 类型                     | 必填 | 描述         |
-  | ------------- | -------- | ------------------------ | ---- | ------------ |
-  | subscribeInfo | 只读     | CommonEventSubscribeInfo | 是   | 表示订阅信息 |
-
-- CommonEventSubscribeInfo类型说明
-
-  | 名称                | 读写属性 | 类型          | 必填 | 描述                                                         |
-  | ------------------- | -------- | ------------- | ---- | ------------------------------------------------------------ |
-  | events              | 只读     | Array<string> | 是   | 表示要发送的公共事件                                         |
-  | publisherPermission | 只读     | string        | 否   | 表示发布者的权限                                             |
-  | publisherDeviceId   | 只读     | int           | 否   | 表示设备ID，该值必须是同一ohos网络上的现有设备ID             |
-  | userId              | 只读     | int           | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
-  | priority            | 只读     | int           | 否   | 表示订阅者的优先级。值的范围是-100到1000                     |
+  | 名称          | 读写属性 | 类型                                       | 必填 | 描述         |
+  | ------------- | -------- | ------------------------------------------ | ---- | ------------ |
+  | subscribeInfo | 只读     | [CommonEventSubscribeInfo](#SubscribeInfo) | 是   | 表示订阅信息 |
 
 - 返回值
 
-  Promise<CommonEventSubscriber>
-
+  Promise\<[CommonEventSubscriber](#Subscriber)>
+  
+  订阅者对象
+  
 - 示例
 
 ```js
@@ -358,7 +258,7 @@ CommonEvent.createSubscriber(subscribeInfo).then((data) => {
 
 
 
-#### CommonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>)
+## CommonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
 - 接口说明
 
@@ -366,97 +266,84 @@ CommonEvent.createSubscriber(subscribeInfo).then((data) => {
 
 - subscribe参数描述
 
-  | 名称       | 读写属性 | 类型                           | 必填 | 描述                           |
-  | ---------- | -------- | ------------------------------ | ---- | ------------------------------ |
-  | subscriber | 只读     | CommonEventSubscriber          | 是   | 表示订阅者对象                 |
-  | callback   | 只读     | AsyncCallback<CommonEventData> | 是   | 表示接收公共事件数据的回调函数 |
-
-- CommonEventData类型说明
-
-  | 名称       | 读写属性 | 类型                 | 必填 | 描述                                                    |
-  | ---------- | -------- | -------------------- | ---- | ------------------------------------------------------- |
-  | event      | 只读     | string               | 是   | 表示当前接收的公共事件名称                              |
-  | bundleName | 只读     | string               | 否   | 表示包名称                                              |
-  | code       | 只读     | int                  | 否   | 表示公共事件的结果代码，用于传递int类型的数据           |
-  | data       | 只读     | string               | 否   | 表示公共事件的自定义结果数据，用于传递string 类型的数据 |
-  | parameters | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息                                  |
-
-- 返回值
-
-  void
+  | 名称       | 读写属性 | 类型                                                | 必填 | 描述                           |
+  | ---------- | -------- | --------------------------------------------------- | ---- | ------------------------------ |
+  | subscriber | 只读     | [CommonEventSubscriber](#Subscriber)                | 是   | 表示订阅者对象                 |
+  | callback   | 只读     | AsyncCallback\<[CommonEventData](#CommonEventData)> | 是   | 表示接收公共事件数据的回调函数 |
 
 - 示例
 
-  * 无序事件：
-
-    ```js
-    var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-    //订阅者信息
-    var subscribeInfo = {
-    	events: ["event"]
-    };
-    //订阅公共事件回调
-    function SubscribeCallBack(err, data) {
-        console.info("==========================>SubscribeCallBack=======================>");
-    }
-    //创建订阅者回调
-    function CreateSubscriberCallBack(err, data) {
-    	console.info("==========================>CreateSubscriberCallBack=======================>");
-    	subscriber = data;
-    	//订阅公共事件
-    	CommonEvent.subscribe(subscriber, SubscribeCallBack);
-    }
-    //创建订阅者
-    CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
-    ```
-    
-  * 有序事件
+  无序事件：
   
-    ```js
-  var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-    //订阅者信息
-  var subscribeInfo = {
-    	events: ["event"]
-    };
-    
-    //设置有序公共事件的结果代码回调
-    function SetCodeCallBack(err) {
-        console.info("==========================>SetCodeCallBack=======================>");
-    }
-    //设置有序公共事件的结果数据回调
-    function SetDataCallBack(err) {
-        console.info("==========================>SetDataCallBack=======================>");
-    }
-    //完成本次有序公共事件处理回调
-    function FinishCommonEventCallBack(err) {
-    	console.info("==========================>FinishCommonEventCallBack=======================>");
-    }
-    //订阅公共事件回调
-    function SubscribeCallBack(err, data) {
-        console.info("==========================>SubscribeCallBack=======================>");
-        //设置有序公共事件的结果代码
-        subscriber.setCode(0, SetCodeCallBack);
-        //设置有序公共事件的结果数据
-        subscriber.setData("publish_data_changed", SetDataCallBack);
-        //完成本次有序公共事件处理
-        subscriber.finishCommonEvent(FinishCommonEventCallBack)
-    }
-    
-    //创建订阅者回调
-    function CreateSubscriberCallBack(err, data) {
-    	console.info("==========================>CreateSubscriberCallBack=======================>");
-    	subscriber = data;
-        //订阅公共事件
-    	CommonEvent.subscribe(subscriber, SubscribeCallBack);
-    }
-    
-    //创建订阅者
-    CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
-    ```
-    
-    
 
-#### CommonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>)
+```js
+var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//订阅者信息
+var subscribeInfo = {
+    events: ["event"]
+};
+//订阅公共事件回调
+function SubscribeCallBack(err, data) {
+    console.info("==========================>SubscribeCallBack=======================>");
+}
+//创建订阅者回调
+function CreateSubscriberCallBack(err, data) {
+    console.info("==========================>CreateSubscriberCallBack=======================>");
+    subscriber = data;
+    //订阅公共事件
+    CommonEvent.subscribe(subscriber, SubscribeCallBack);
+}
+//创建订阅者
+CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+```
+
+​    有序事件：
+
+```js
+var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//订阅者信息
+var subscribeInfo = {
+    events: ["event"]
+};
+
+//设置有序公共事件的结果代码回调
+function SetCodeCallBack(err) {
+    console.info("==========================>SetCodeCallBack=======================>");
+}
+//设置有序公共事件的结果数据回调
+function SetDataCallBack(err) {
+    console.info("==========================>SetDataCallBack=======================>");
+}
+//完成本次有序公共事件处理回调
+function FinishCommonEventCallBack(err) {
+    console.info("==========================>FinishCommonEventCallBack=======================>");
+}
+//订阅公共事件回调
+function SubscribeCallBack(err, data) {
+    console.info("==========================>SubscribeCallBack=======================>");
+    //设置有序公共事件的结果代码
+    subscriber.setCode(0, SetCodeCallBack);
+    //设置有序公共事件的结果数据
+    subscriber.setData("publish_data_changed", SetDataCallBack);
+    //完成本次有序公共事件处理
+    subscriber.finishCommonEvent(FinishCommonEventCallBack)
+}
+
+//创建订阅者回调
+function CreateSubscriberCallBack(err, data) {
+    console.info("==========================>CreateSubscriberCallBack=======================>");
+    subscriber = data;
+    //订阅公共事件
+    CommonEvent.subscribe(subscriber, SubscribeCallBack);
+}
+
+//创建订阅者
+CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+```
+
+​    
+
+## CommonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
 - 接口说明
 
@@ -467,11 +354,7 @@ CommonEvent.createSubscriber(subscribeInfo).then((data) => {
   | 名称       | 读写属性 | 类型                  | 必填 | 描述                   |
   | ---------- | -------- | --------------------- | ---- | ---------------------- |
   | subscriber | 只读     | CommonEventSubscriber | 是   | 表示订阅者对象         |
-  | callback   | 只读     | AsyncCallback<void>   | 是   | 表示取消订阅的回调方法 |
-
-- 返回值
-
-  void
+  | callback   | 只读     | AsyncCallback\<void>  | 是   | 表示取消订阅的回调方法 |
 
 - 示例
 
@@ -502,7 +385,487 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 ```
 
+## <span id = "publishData">CommonEventPublishData</span>
 
+| 名称                  | 读写属性 | 类型                 | 必填 | 描述                         |
+| --------------------- | -------- | -------------------- | ---- | ---------------------------- |
+| bundleName            | 只读     | string               | 否   | 表示包名称                   |
+| code                  | 只读     | number               | 否   | 表示公共事件的结果代码       |
+| data                  | 只读     | string               | 否   | 表示公共事件的自定义结果数据 |
+| subscriberPermissions | 只读     | Array\<string>       | 否   | 表示订阅者的权限             |
+| isOrdered             | 只读     | boolean              | 否   | 表示是否是有序事件           |
+| parameters            | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息       |
 
+## <span id = "SubscribeInfo">CommonEventSubscribeInfo</span>
 
+| 名称                | 读写属性 | 类型           | 必填 | 描述                                                         |
+| ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
+| events              | 只读     | Array\<string> | 是   | 表示要发送的公共事件                                         |
+| publisherPermission | 只读     | string         | 否   | 表示发布者的权限                                             |
+| publisherDeviceId   | 只读     | string         | 否   | 表示设备ID，该值必须是同一ohos网络上的现有设备ID             |
+| userId              | 只读     | number         | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+| priority            | 只读     | number         | 否   | 表示订阅者的优先级。值的范围是-100到1000                     |
 
+## <span id = "CommonEventData">CommonEventData</span>
+
+| 名称       | 读写属性 | 类型                 | 必填 | 描述                                                   |
+| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------ |
+| event      | 只读     | string               | 是   | 表示当前接收的公共事件名称                             |
+| bundleName | 只读     | string               | 否   | 表示包名称                                             |
+| code       | 只读     | number               | 否   | 表示公共事件的结果代码，用于传递int类型的数据          |
+| data       | 只读     | string               | 否   | 表示公共事件的自定义结果数据，用于传递string类型的数据 |
+| parameters | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息                                 |
+
+## <span id = "Subscriber">CommonEventSubscriber</span>
+
+### getCode（callback形式）
+
+- 方法说明
+
+  获取公共事件的结果代码（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                   | 必填 | 描述               |
+  | -------- | ---------------------- | ---- | ------------------ |
+  | callback | AsyncCallback\<number> | 是   | 公共事件的结果代码 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function getCodeCallback(err, data) {
+      console.info("==========================>getCodeCallback=======================>");
+      console.info("==========================>err:=======================>", err.code);
+      console.info("==========================>code:=======================>", data);
+  }
+  subscriber.getCode(getCodeCallback);
+  ```
+
+### getCode（Promise形式）
+
+- 方法说明
+
+  获取公共事件的结果代码（Promise形式）
+
+- 返回值
+
+  | 类型             | 说明               |
+  | ---------------- | ------------------ |
+  | Promise\<number> | 公共事件的结果代码 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.getCode().then((data) => {
+  	console.info("==========================>getCodePromise=======================>");
+      console.info("==========================>code:=======================>", data);
+  });
+  ```
+
+### setCode（callback形式）
+
+- 方法说明
+
+  设置公共事件的结果代码（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                 | 必填 | 描述                 |
+  | -------- | -------------------- | ---- | -------------------- |
+  | code     | number               | 是   | 公共事件的结果代码   |
+  | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function setCodeCallback(err) {
+      console.info("==========================>setCodeCallback=======================>");
+      console.info("==========================>err:=======================>", err.code);
+  }
+  subscriber.setCode(1, setCodeCallback);
+  ```
+
+### setCode（Promise形式）
+
+- 方法说明
+
+  设置公共事件的结果代码（Promise形式）
+
+- 参数
+
+  | 参数名 | 类型   | 必填 | 描述               |
+  | ------ | ------ | ---- | ------------------ |
+  | code   | number | 是   | 公共事件的结果代码 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.setCode(1).then(() => {
+  	console.info("==========================>setCodePromise=======================>");
+  });
+  ```
+
+### getData（callback形式）
+
+- 方法说明
+
+  获取公共事件的结果数据（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                   | 必填 | 描述               |
+  | -------- | ---------------------- | ---- | ------------------ |
+  | callback | AsyncCallback\<string> | 是   | 公共事件的结果数据 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function getDataCallback(err, data) {
+      console.info("==========================>getDataCallback=======================>");
+      console.info("==========================>err:=======================>", err.code);
+      console.info("==========================>data:=======================>", data);
+  }
+  subscriber.getData(getDataCallback);
+  ```
+
+### getData（Promise形式）
+
+- 方法说明
+
+  获取公共事件的结果数据（Promise形式）
+
+- 返回值
+
+  | 类型             | 说明               |
+  | ---------------- | ------------------ |
+  | Promise\<string> | 公共事件的结果数据 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.getData().then((data) => {
+  	console.info("==========================>getDataPromise=======================>");
+      console.info("==========================>data:=======================>", data);
+  });
+  ```
+
+### setData（callback形式）
+
+- 方法说明
+
+  设置公共事件的结果数据（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                 | 必填 | 描述                 |
+  | -------- | -------------------- | ---- | -------------------- |
+  | data     | string               | 是   | 公共事件的结果数据   |
+  | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function setDataCallback(err) {
+      console.info("==========================>setDataCallback=======================>");
+      console.info("==========================>err:=======================>", err.code);
+  }
+  subscriber.setData("publish_data_changed", setDataCallback);
+  ```
+
+### setData（Promise形式）
+
+- 方法说明
+
+  设置公共事件的结果数据（Promise形式）
+
+- 参数
+
+  | 参数名 | 类型   | 必填 | 描述               |
+  | ------ | ------ | ---- | ------------------ |
+  | data   | string | 是   | 公共事件的结果数据 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.setData("publish_data_changed").then(() => {
+  	console.info("==========================>setDataPromise=======================>");
+  });
+  ```
+
+### setCodeAndData（callback形式）
+
+- 方法说明
+
+  设置公共事件的结果代码和结果数据（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                 | 必填 | 描述                 |
+  | -------- | -------------------- | ---- | -------------------- |
+  | code     | number               | 是   | 公共事件的结果代码   |
+  | data     | string               | 是   | 公共事件的结果数据   |
+  | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function setCodeDataCallback(err) {
+      console.info("==========================>setCodeDataCallback=======================>");
+      console.info("==========================>err:=======================>", err.code);
+  }
+  subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
+  ```
+
+### setCodeAndData（Promise形式）
+
+- 方法说明
+
+  设置公共事件的结果代码和结果数据（Promise形式）
+
+- 参数
+
+  | 参数名 | 类型   | 必填 | 描述               |
+  | ------ | ------ | ---- | ------------------ |
+  | code   | number | 是   | 公共事件的结果代码 |
+  | data   | string | 是   | 公共事件的结果数据 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
+  	console.info("==========================>setCodeAndData=======================>");
+  });
+  ```
+
+### isOrderedCommonEvent（callback形式）
+
+- 方法说明
+
+  查询当前公共事件的是否为有序公共事件，返回true代表是有序公共事件，false代表不是有序公共事件（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                    | 必填 | 描述                             |
+  | -------- | ----------------------- | ---- | -------------------------------- |
+  | callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为有序公共事件 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function isOrderedCallback(err, data) {
+      console.info("==========================>isOrderedCallback=======================>");
+      console.info("==========================>err:=======================>", err.code);
+      console.info("==========================>isOrdered:=======================>", data);
+  }
+  subscriber.isOrderedCommonEvent(isOrderedCallback);
+  ```
+
+### isOrderedCommonEvent（Promise形式）
+
+- 方法说明
+
+  查询当前公共事件的是否为有序公共事件，返回true代表是有序公共事件，false代表不是有序公共事件（Promise形式）
+
+- 返回值
+
+  | 类型              | 说明                             |
+  | ----------------- | -------------------------------- |
+  | Promise\<boolean> | 当前公共事件的是否为有序公共事件 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.isOrderedCommonEvent().then((data) => {
+  	console.info("==========================>isOrdered:=======================>", data);
+  });
+  ```
+
+### abortCommonEvent（callback形式）
+
+- 方法说明
+
+  取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                    | 必填 | 描述               |
+  | -------- | ----------------------- | ---- | ------------------ |
+  | callback | AsyncCallback\<boolean> | 是   | 取消当前的公共事件 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function abortCallback(err) {
+      console.info("==========================>abortCallback=======================>");
+   	console.info("==========================>err:=======================>", err.code);
+  }
+  subscriber.abortCommonEvent(abortCallback);
+  ```
+
+### abortCommonEvent（Promise形式）
+
+- 方法说明
+
+  取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（Promise形式）
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.abortCommonEvent().then(() => {
+  	console.info("==========================>abortCommonEvent:=======================>");
+  });
+  ```
+
+### clearAbortCommonEvent（callback形式）
+
+- 方法说明
+
+  取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                 | 必填 | 描述                 |
+  | -------- | -------------------- | ---- | -------------------- |
+  | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function clearAbortCallback(err) {
+      console.info("==========================>clearAbortCallback=======================>");
+   	console.info("==========================>err:=======================>", err.code);
+  }
+  subscriber.clearAbortCommonEvent(clearAbortCallback);
+  ```
+
+### clearAbortCommonEvent（Promise形式）
+
+- 方法说明
+
+  取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（Promise形式）
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.clearAbortCommonEvent().then(() => {
+  	console.info("==========================>clearAbortCommonEvent:=======================>");
+  });
+  ```
+
+### getAbortCommonEvent（callback形式）
+
+- 方法说明
+
+  获取当前有序公共事件是否取消的状态（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                    | 必填 | 描述                               |
+  | -------- | ----------------------- | ---- | ---------------------------------- |
+  | callback | AsyncCallback\<boolean> | 是   | 表示当前有序公共事件是否取消的状态 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function getAbortCallback(err, data) {
+      console.info("==========================>getAbortCallback=======================>");
+   	console.info("==========================>err:=======================>", err.code);
+      console.info("==========================>abort:=======================>", data);
+  }
+  subscriber.getAbortCommonEvent(getAbortCallback);
+  ```
+
+### getAbortCommonEvent（Promise形式）
+
+- 方法说明
+
+  获取当前有序公共事件是否取消的状态（Promise形式）
+
+- 返回值
+
+  | 类型              | 说明                               |
+  | ----------------- | ---------------------------------- |
+  | Promise\<boolean> | 表示当前有序公共事件是否取消的状态 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.getAbortCommonEvent().then((data) => {
+  	console.info("==========================>getAbortCommonEvent:=======================>");
+      console.info("==========================>abort:=======================>", data);
+  });
+  ```
+
+### getSubscribeInfo（callback形式）
+
+- 方法说明
+
+  获取订阅者的订阅信息（callback形式）
+
+- 参数
+
+  | 参数名   | 类型                                     | 必填 | 描述                 |
+  | -------- | ---------------------------------------- | ---- | -------------------- |
+  | callback | AsyncCallback\<CommonEventSubscribeInfo> | 是   | 表示订阅者的订阅信息 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  //设置有序公共事件的结果数据回调
+  function getSubscribeInfoCallback(err, data) {
+      console.info("==========================>getSubscribeInfoCallback=======================>");
+   	console.info("==========================>err:=======================>", err.code);
+      console.info("==========================>priority:=======================>", data.priority);
+  }
+  subscriber.getSubscribeInfo(getSubscribeInfoCallback);
+  ```
+
+### getSubscribeInfo（Promise形式）
+
+- 方法说明
+
+  获取订阅者的订阅信息（Promise形式）
+
+- 返回值
+
+  | 类型                               | 说明                 |
+  | ---------------------------------- | -------------------- |
+  | Promise\<CommonEventSubscribeInfo> | 表示订阅者的订阅信息 |
+
+- 示例
+
+  ```js
+  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  subscriber.getSubscribeInfo().then((data) => {
+  	console.info("==========================>getSubscribeInfo:=======================>");
+      console.info("==========================>priority:=======================>", data.priority);
+  });
+  ```

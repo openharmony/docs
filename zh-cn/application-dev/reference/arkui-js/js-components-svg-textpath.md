@@ -3,7 +3,7 @@
 沿路径绘制文本。
 
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
->-   从API Version 7 开始支持。
+>-   该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >-   按指定的路径绘制文本，可嵌套子标签tspan分段。
 >-   只支持被父元素标签text嵌套。
 
@@ -19,129 +19,139 @@ tspan。
 
 支持以下表格中的属性。
 
-<a name="table20633101642315"></a>
-<table><thead align="left"><tr id="row663331618238"><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p id="aaf1247770b244944bbcc9f28d9a6f00b"><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a>名称</p>
+<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p id="a6efc3502761f4faf9630e484280f75b6"><a name="a6efc3502761f4faf9630e484280f75b6"></a><a name="a6efc3502761f4faf9630e484280f75b6"></a>类型</p>
+<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p>类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p id="a27a37273d9ad47569ddbcb8db985d302"><a name="a27a37273d9ad47569ddbcb8db985d302"></a><a name="a27a37273d9ad47569ddbcb8db985d302"></a>默认值</p>
+<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p>默认值</p>
 </th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p id="p824610360217"><a name="p824610360217"></a><a name="p824610360217"></a>必填</p>
+<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p>必填</p>
 </th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p id="a2ff3361bfd3b420ba4967452d2ddd098"><a name="a2ff3361bfd3b420ba4967452d2ddd098"></a><a name="a2ff3361bfd3b420ba4967452d2ddd098"></a>描述</p>
+<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row36332165231"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="a83b6dd280109466fb015e64de1ef4df3"><a name="a83b6dd280109466fb015e64de1ef4df3"></a><a name="a83b6dd280109466fb015e64de1ef4df3"></a>id</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>id</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="abc38fa2b85854bc687af75eb17a00a4d"><a name="abc38fa2b85854bc687af75eb17a00a4d"></a><a name="abc38fa2b85854bc687af75eb17a00a4d"></a>string</p>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="a8d12e4af905d4743a5ec9cd6018d2972"><a name="a8d12e4af905d4743a5ec9cd6018d2972"></a><a name="a8d12e4af905d4743a5ec9cd6018d2972"></a>-</p>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p42461736102118"><a name="p42461736102118"></a><a name="p42461736102118"></a>否</p>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="a1a1731af05554f119fa365748f276bb2"><a name="a1a1731af05554f119fa365748f276bb2"></a><a name="a1a1731af05554f119fa365748f276bb2"></a>组件的唯一标识。</p>
-</td>
-</tr>
-<tr id="row1634171618236"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="a3cf785e2a2a043268d168f58d59207c8"><a name="a3cf785e2a2a043268d168f58d59207c8"></a><a name="a3cf785e2a2a043268d168f58d59207c8"></a>path</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="aa9b258d23e1e425dbc2ffe8edbc91a42"><a name="aa9b258d23e1e425dbc2ffe8edbc91a42"></a><a name="aa9b258d23e1e425dbc2ffe8edbc91a42"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="ac312df4f14444c98955ed055456848a7"><a name="ac312df4f14444c98955ed055456848a7"></a><a name="ac312df4f14444c98955ed055456848a7"></a>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p1624612362219"><a name="p1624612362219"></a><a name="p1624612362219"></a>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="adbe7ecbee96b4f938b04a4b8d62791bf"><a name="adbe7ecbee96b4f938b04a4b8d62791bf"></a><a name="adbe7ecbee96b4f938b04a4b8d62791bf"></a>设置路径的形状。</p>
-<p id="p46751932620"><a name="p46751932620"></a><a name="p46751932620"></a>字母指令表示的意义如下：</p>
-<a name="ul146753321226"></a><a name="ul146753321226"></a><ul id="ul146753321226"><li>M = moveto</li><li>L = lineto</li><li>H = horizontal lineto</li><li>V = vertical lineto</li><li>C = curveto</li><li>S = smooth curveto</li><li>Q = quadratic Belzier curve</li><li>T = smooth quadratic Belzier curveto</li><li>A = elliptical Arc</li><li>Z = closepath</li></ul>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>组件的唯一标识。</p>
 </td>
 </tr>
-<tr id="row1259531661611"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p1359601671613"><a name="p1359601671613"></a><a name="p1359601671613"></a>startOffset</p>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>path</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p65967163165"><a name="p65967163165"></a><a name="p65967163165"></a>&lt;length&gt;|&lt;percentage&gt;</p>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p10596151671610"><a name="p10596151671610"></a><a name="p10596151671610"></a>0</p>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>0</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p1059610169169"><a name="p1059610169169"></a><a name="p1059610169169"></a>否</p>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p125961416161611"><a name="p125961416161611"></a><a name="p125961416161611"></a>设置文本沿path绘制的起始偏移。</p>
-</td>
-</tr>
-<tr id="row1539273652316"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p136018399235"><a name="p136018399235"></a><a name="p136018399235"></a>font-size</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p2360123910236"><a name="p2360123910236"></a><a name="p2360123910236"></a>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p1536023952313"><a name="p1536023952313"></a><a name="p1536023952313"></a>30px</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p123607393234"><a name="p123607393234"></a><a name="p123607393234"></a>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1736083914232"><a name="p1736083914232"></a><a name="p1736083914232"></a>设置文本的尺寸。</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置路径的形状。</p>
+<p>字母指令表示的意义如下：</p>
+<ul><li>M = moveto</li><li>L = lineto</li><li>H = horizontal lineto</li><li>V = vertical lineto</li><li>C = curveto</li><li>S = smooth curveto</li><li>Q = quadratic Belzier curve</li><li>T = smooth quadratic Belzier curveto</li><li>A = elliptical Arc</li><li>Z = closepath</li></ul>
 </td>
 </tr>
-<tr id="row1530844982318"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p1161816329244"><a name="p1161816329244"></a><a name="p1161816329244"></a>fill</p>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>startOffset</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p46187324247"><a name="p46187324247"></a><a name="p46187324247"></a>&lt;color&gt;</p>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;|&lt;percentage&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p19618123262419"><a name="p19618123262419"></a><a name="p19618123262419"></a>black</p>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>0</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p861833282418"><a name="p861833282418"></a><a name="p861833282418"></a>否</p>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1661813321247"><a name="p1661813321247"></a><a name="p1661813321247"></a>字体填充颜色</p>
-</td>
-</tr>
-<tr id="row818611518331"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="a4a0bae0e1bb946d6bc7bf30e0a535343"><a name="a4a0bae0e1bb946d6bc7bf30e0a535343"></a><a name="a4a0bae0e1bb946d6bc7bf30e0a535343"></a>opacity</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="a2679e4565dbc4370b40d1be831a6148d"><a name="a2679e4565dbc4370b40d1be831a6148d"></a><a name="a2679e4565dbc4370b40d1be831a6148d"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="a0b0d56a245e14779a5561f99cd1ce9f6"><a name="a0b0d56a245e14779a5561f99cd1ce9f6"></a><a name="a0b0d56a245e14779a5561f99cd1ce9f6"></a>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p324614367213"><a name="p324614367213"></a><a name="p324614367213"></a>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置文本沿path绘制的起始偏移。</p>
 </td>
 </tr>
-<tr id="row2924118202412"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p196181832182412"><a name="p196181832182412"></a><a name="p196181832182412"></a>fill-opacity</p>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>font-size</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p86181832172411"><a name="p86181832172411"></a><a name="p86181832172411"></a>number</p>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p196181432132411"><a name="p196181432132411"></a><a name="p196181432132411"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>30px</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p11618632132414"><a name="p11618632132414"></a><a name="p11618632132414"></a>否</p>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p8618113232414"><a name="p8618113232414"></a><a name="p8618113232414"></a>字体填充透明度</p>
-</td>
-</tr>
-<tr id="row2173171232411"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p10618143213244"><a name="p10618143213244"></a><a name="p10618143213244"></a>stroke</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p8618432172410"><a name="p8618432172410"></a><a name="p8618432172410"></a>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p11618113218244"><a name="p11618113218244"></a><a name="p11618113218244"></a>black</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p17618143212415"><a name="p17618143212415"></a><a name="p17618143212415"></a>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p11619183202419"><a name="p11619183202419"></a><a name="p11619183202419"></a>绘制字体边框并指定颜色</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置文本的尺寸。</p>
 </td>
 </tr>
-<tr id="row2291916102415"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p206197323248"><a name="p206197323248"></a><a name="p206197323248"></a>stroke-width</p>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>fill</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p46191932112412"><a name="p46191932112412"></a><a name="p46191932112412"></a>number</p>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p18619632182413"><a name="p18619632182413"></a><a name="p18619632182413"></a>1px</p>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>black</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p126191432162418"><a name="p126191432162418"></a><a name="p126191432162418"></a>否</p>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1061943252417"><a name="p1061943252417"></a><a name="p1061943252417"></a>字体边框宽度</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>字体填充颜色</p>
 </td>
 </tr>
-<tr id="row20141131962416"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p11619173282415"><a name="p11619173282415"></a><a name="p11619173282415"></a>stroke-opacity</p>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>by</p>
 </td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p761918327249"><a name="p761918327249"></a><a name="p761918327249"></a>number</p>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p8619193222410"><a name="p8619193222410"></a><a name="p8619193222410"></a>1.0</p>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p56194325241"><a name="p56194325241"></a><a name="p56194325241"></a>否</p>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1461983272420"><a name="p1461983272420"></a><a name="p1461983272420"></a>字体边框透明度</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>相对被指定动画的属性偏移值，from默认为原属性值。</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>opacity</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>1</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>fill-opacity</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>1.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>字体填充透明度</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>stroke</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>black</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>绘制字体边框并指定颜色</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>stroke-width</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>1px</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>字体边框宽度</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>stroke-opacity</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>1.0</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>字体边框透明度</p>
 </td>
 </tr>
 </tbody>
@@ -149,7 +159,7 @@ tspan。
 
 ## 示例<a name="section360556124815"></a>
 
-textspan属性示例，textpath文本内容沿着属性path中的路径绘制文本，起点偏移20%的path长度。（绘制的元素<path\>曲线仅做参照）。
+textspan属性示例，textpath文本内容沿着属性path中的路径绘制文本，起点偏移20%的path长度。（绘制的元素<path\>曲线仅做参照）
 
 ```
 /* xxx.css */

@@ -1,8 +1,8 @@
-﻿# C Coding Style Guide
+# C Coding Style Guide
 
 ## <a name="c0-1"></a>Purpose
 
-Rules are not perfect. Disabling useful features in specific situations may affect code implementation. However, the rules are formulated "to help most programmers to get more benefits". If a rule is found unhelpful or difficult to follow in team coding, please send your feedback to us so we can improve the rule accordingly. Before referring to this guide, you are expected to have the following basic capabilities for C rather than being a beginner who wants to learn about C.
+Rules are not perfect. They might disable useful features in specific situations and therefore affect code implementation. However, the purpose of developing rules is to get more benefits for most programmers. If a rule cannot be followed in your team operation, we can improve the rule together. Before referring to this coding style guide, you are expected to have the following basic capabilities of the C programming language:
 
 1. Understand the ISO standard of C.
 2. Be familiar with the basic features of C.
@@ -15,65 +15,72 @@ Code must meet the requirements for **readability**, **maintainability**, **secu
 ## <a name="c0-3"></a>Conventions
 
 **Rule**: Conventions that must be followed during programming.  
-**Suggestion**: Conventions that must be considered during programming.
+**Rec**: Conventions that must be considered during programming.
 
-It is necessary to understand the reason for these conventions and to try and comply with them, no matter if they are rules or recommendations.
+It is necessary to understand the reason for these conventions and try to comply with them, no matter if they are rules or recommendations.
 
 ## <a name="c0-4"></a>Exceptions
 
 The only acceptable exceptions are those that do not violate the general principles and provide appropriate reasons for their existence.   
-Exceptions destroy code consistency. Try to avoid them. Exceptions to 'Rules' should be very rare.
+Try to avoid exceptions because they affect the code consistency. Exceptions to 'Rules' should be very rare.
 
 The style consistency principle is preferred in the following case:   
-**When you modify open source or third-party code. The existing code specifications prevail.**
+**When you modify open-source or third-party code, comply with their respective code specifications.**
 
 # <a name="c1"></a>1 Naming
 
 Names include file, function, variable, type, and macro names.
 
 Naming is considered the most difficult and important thing in software development.   
-The name of an identifier must be clear, well defined, and easy to understand, adapting to reading habit.
+The name of an identifier must be clear, well defined, easy to understand, and accounting for reading habits.
 
 The unified naming style is the most direct expression of the consistency principle.
 
 ## <a name="c1-1"></a>General Conventions
 
 **CamelCase**  
-Camel case is the practice of writing compound words or phrases so that each word or abbreviation in the phrase begins with a capital letter, and with no intervening spaces or punctuation.   
-This style has two alternatives depending on the case of the first letter: **UpperCamelCase and lowerCamelCase**
+CamelCase is the practice of writing compound words or phrases so that each word or abbreviation in the phrase begins with a capital letter, and with no intervening spaces or punctuation.
+There are two conventions: **UpperCamelCase and lowerCamelCase**.
 
-### <a name="r1-1"></a>Rule 1.1 Name identifiers in camel case style.
+**Unix\_like**  
+Unix\_like is also known as the snake style. In the Unix\_like style, words contain only lowercase letters and are separated by underscores (\_).
+Example: 'test_result'
+
+### <a name="r1-1"></a>Rule 1.1 Name identifiers in the CamelCase style.
 
 | Type| Naming Style
 |----------|----------
-| Function, struct, enumeration, union| UpperCamelCase
+| Function, struct, enum, union| UpperCamelCase
 | Variable, function parameter, macro parameter, struct body, union member| lowerCamelCase
-| Macro, constant, enumerated value, goto tag| All capitalized, separated with underscores (\_)
+| Macro, constant, enumerated value, goto tag| All capitalized, separated by underscores (\_)
 
 Note:   
-The `constant` in the above table refers to the variable of the basic data type, enumeration, and string type of the const modifier under the global scope, excluding array, struct and union.   
-The `variable` in the above table refers to variables other than the constant definition, all using lowercase.
+**Constant** in the above table refers to the variable that is of the basic data type, enum type, and string type and modified by **const** under the global scope, excluding arrays, structs, and unions.
+**Variable** indicates the variables excluding those defined in **Constant**. These variables use the lowerCamelCase style.
+Unix\_like can be used for Linux or Unix friendly code.
+For code that is using the Unix\_like style, you can continue using this style.
+The same naming style must be used for the same function, struct, or union.
 
-### <a name="a1-1"></a>Rec 1.1 The larger the scope, the more accurate the name should be.
+### <a name="a1-1"></a>Rec 1.1 Use more accurate names for identifiers with a large scope.
 
-C is different from C++. There is no namespace or class. Therefore, the names of identifiers in the global scope must not conflict with each other.   
-Names of global functions, global variables, macros, types, and enumerations must be accurately described and unique in the global scope.
+Different from C++, C does not have namespace or class.Therefore, the names of identifiers in the global scope must not conflict with each other.   
+Names of global functions, global variables, macros, types, and enums must be accurately described and unique in the global scope.
 
 Example:
 
 ```c
-int GetCount(void);                 // Bad: inaccurate description.
+int GetCount(void);                 // Bad: inaccurate description
 int GetActiveConnectCount(void);    // Good
 ```
 
-For accurate naming, a module prefix can be added if necessary.   
+For purposes of accurate naming, a module prefix can be added if necessary.
 The module prefix and the naming body can be connected by following the CamelCase style.   
 Example:
 
 ```c
-int PrefixFuncName(void);   // OK: CamelCase, with no prefix in the format, but prefix in the content.
+int PrefixFuncName(void);   // OK: CamelCase, a prefix in the content, but not in the format
 
-enum XxxMyEnum {            // OK.
+enum XxxMyEnum {            // OK
     ...
 };
 ```
@@ -82,24 +89,24 @@ enum XxxMyEnum {            // OK.
 
 ### <a name="a1-2"></a>Rec 1.2 Use lowercase file names.
 
-File names naming are allowed only with lowercase letters, numbers, and underscores (\_).   
+Only lowercase letters, numbers, and underscores (\_) are allowed in file names.
 File names should be as short, accurate, and unambiguous as possible.   
-The reason for using lowercase file names is that different systems process file names in different ways (for example, Microsoft DOS and Windows OS are not case sensitive, but Unix/Linux and Mac systems are by default).
+The reason for using lowercase file names is that different systems process file names in different ways. (For example, file names in MS-DOS and Windows are not case sensitive, but those in Unix/Linux and macOS are case sensitive by default).
 
 Good example:  
 `dhcp_user_log.c`
 
 Bad examples:   
-`dhcp_user-log.c`: It is not recommended you separate names with '-'.  
+`dhcp_user-log.c`: It is not recommended that you separate words with the hyphen (-).
 `dhcpuserlog.c`: The words are not separated, causing poor readability.
 
 ## <a name="c1-3"></a>Function Naming
 
-Functions are named in UpperCamelCase style.
+Functions are named in the UpperCamelCase style.
 
-### <a name="a1-3"></a>Rec 1.3 Name functions that comply with reading habits.
+### <a name="a1-3"></a>Rec 1.3 Name functions to comply with reading habits.
 
-The "verb + object" structure can be used for action related function names. For example:
+The "verb + object" structure can be used for action related function names. Example:
 
 ```c
 AddTableEntry() // OK 
@@ -107,7 +114,7 @@ DeleteUser()    // OK
 GetUserInfo()   // OK
 ```
 
-An adjective or a prefix "is" can be used in a function returning a Boolean value. For example:
+An adjective or a prefix "is" can be used in a function returning a Boolean value. Example:
 
 ```c
 DataReady()     // OK
@@ -126,10 +133,10 @@ GetTotalCount() // OK
 
 Variables are named in the lowerCamelCase style. This includes global variables, local variables, parameters in the function declaration or definition as well as parameters in function-like macro.
 
-### <a name="r1-2"></a> Rule 1.2 Add the 'g\_' prefix to global variables. Do not add this prefix to static variables in a function.
+### <a name="r1-2"></a>Rule 1.2 Add the 'g_' prefix to global variables, but not to static variables in a function.
 
-Global variables should be used as little as possible, and special attention should be paid to their use. Prefixes are used for visual prominence, prompting developers to be more careful about using global variables.   
-The naming rule of global static variables is the same as that of global variables. The name of a static variable in a function is the same as that of a common local variable.
+Global variables should be used as little as possible, and special attention should be paid to their use. This prefix highlights global variables so that developers can be more careful when handling them.
+Global static variables and global variables are named in the same way. Static variables in functions and common local variables are named in the same way.
 
 ```c
 int g_activeConnectCount;
@@ -141,18 +148,18 @@ void Func(void)
 }
 ```
 
-Notes: The nature of a constant is also a global variable, but it does not apply to current rule if the naming style is all uppercase and connected by underline.
+Notes: Constants are also global variables in essence. However, if constants are named using uppercase letters separated by underscores (\_), the current rule does not apply.
 
 ### <a name="a1-4"></a>Rec 1.4 Keep local variables short and to the point.
 
 The name of a local variable should be short on the premise that meanings can be expressed through context.
 
-The following is an example:
+Example:
 
 ```c
 int Func(...)
 {
-    enum PowerBoardStatus powerBoardStatusOfSlot; // Not good: Long redundant local variable.
+    enum PowerBoardStatus powerBoardStatusOfSlot; // Not good: Long redundant local variable
     powerBoardStatusOfSlot = GetPowerBoardStatus(slot);
     if (powerBoardStatusOfSlot == POWER_OFF) {
         ...
@@ -176,7 +183,7 @@ int Func(...)
 ```
 
 Similarly, "tmp" can be used to address any type of temporary variable.   
-A short variable name should be used with caution, but sometimes a single character variable is allowed, for example, a counter variable in a loop statement.
+A short variable name should be used with caution, but sometimes a single-character variable is allowed, for example, a counter variable in a loop statement.
 
 ```c
 int i; 
@@ -198,7 +205,7 @@ int Mul(int a, int b)
 ## <a name="c1-5"></a>Type Naming
 
 Types are named in the UpperCamelCase style.   
-The type can be a structure, a union, or an enumeration.
+The type can be a struct, a union, or an enum.
 
 Example:
 
@@ -215,7 +222,7 @@ union Packet {
 };
 
 enum BaseColor {
-    RED,    // Note: The enumeration is in UpperCamelCase style while the enumerated values adopt the macro naming style.
+    RED,    // Note: The enum is in the UpperCamelCase style whereas the enumerated values adopt the macro naming style.
     GREEN,
     BLUE
 };
@@ -223,14 +230,14 @@ enum BaseColor {
 typedef int (*NodeCmpFunc)(struct Node *a, struct Node *b);
 ```
 
-When you use typedef to set an alias for a struct, a union or an enum type, try to use anonymous type.   
+When you use `typedef` to set an alias for a struct, a union, or an enum, try to use the anonymous type.
 If you need self-nesting pointers, you can add a 'tag' prefix or an underscore suffix.
 
 ```c
 typedef struct {    // Good: The anonymous struct is used because self-nesting is not required.
     int a;
     int b;
-} MyType;           // Struct alias with UpperCamelCase.
+} MyType;           // The struct alias uses the UpperCamelCase style.
 
 ​```c
 typedef struct tagNode {    // Good: Add the 'tag' prefix or use 'Node_'.
@@ -239,14 +246,18 @@ typedef struct tagNode {    // Good: Add the 'tag' prefix or use 'Node_'.
 } Node;             // UpperCamelCase.
 ```
 
-## <a name="c1-6"></a>Macros, Constants, and Enumeration Naming
+## <a name="c1-6"></a>Macro, Constant, and Enum Naming
 
-Macros and enumerated values are capitalized and are separated with underscores (\_).   
-Constants are recommended to be capitalized and be separated with underscores (\_). Also, as global const variables, they can be named with global variable style.   
-The constants here are defined as global const variables of basic data type, enumeration, and string type.
+Use uppercase letters separated by underscores (\_) for macro names and enumerated values.
+You are advised to use uppercase letters separated with underscores (\_) for constant names. Global const variables can be named with the same style of global variables.
+The constants here are defined as global const variables of the basic data type, enum type, or string type.
 
-Function-like macros, can be named the same way as functions, using the UpperCamelCase naming style.   
-However, this approach makes the macros look the same as functions. It is confusing and needs special attention.
+Use uppercase letters separated by underscores (\_) for function-like macros.
+Exceptions:
+1. Functions that use macros to implement generic functions, for example, macros that implement functions such as list and map, can be named in the same way as functions, using the UpperCamelCase style.
+2. A function-like macro that is used to replace a function in the earlier version can be named in the same way as functions, using the UpperCamelCase style.
+3. Macros for printing logs can be named in the same way as functions, using the UpperCamelCase style.
+Note: Function-like macros named in the UpperCamelCase style must be marked as macros in the API description.
 
 Macro example:
 
@@ -258,7 +269,7 @@ Macro example:
 ```c
 #ifdef SOME_DEFINE
 void Bar(int);
-#define Foo(a) Bar(a)   // The function-like macro is named as a function style.
+#define Foo(a) Bar(a)   // The function-like macro is named in the same way as a function.
 #else
 void Foo(int);
 #endif
@@ -269,34 +280,34 @@ Constant example:
 ```c
 const int VERSION = 200;    // OK.
 
-const enum Color DEFAULT_COLOR = BLUE; // OK.
+const enum Color DEFAULT_COLOR = BLUE; // OK
 
-const char PATH_SEP = '/';  // OK.
+const char PATH_SEP = '/';  // OK
 
-const char * const GREETINGS = "Hello, World!"; // OK.
+const char * const GREETINGS = "Hello, World!"; // OK
 ```
 
 Non-constant example:
 
 ```c
-// Structure type does not meet the definition of constant.
+// A struct that does not meet the definition of constants
 const struct MyType g_myData = { ... };     // OK: Name it in lowerCamelCase style.
 
-// Array type does not meet the definition of constant.
+// An array that does not meet the definition of constants
 const int g_xxxBaseValue[4] = { 1, 2, 4, 8 };   // OK: Name it in lowerCamelCase style.
 
 int Foo(...)
 {
-    // The scope does not meet the definition of constant.
+    // A local const variable that does not meet the definition of constants
     const int bufSize = 100;    // OK: Name it in lowerCamelCase style.
     ...
 }
 ```
 
-Enumeration example:
+Enum example:
 
 ```c
-// Note: The enumeration type name is in the UpperCamelCase style, while enumerated values are all capitalized and separated with underscores (_).
+// Note: The enum type name is in the UpperCamelCase style, whereas the enumerated value is in uppercase letters separated by underscores (\_).
 enum BaseColor {
     RED,
     GREEN,
@@ -304,19 +315,16 @@ enum BaseColor {
 };
 ```
 
-### <a name="a1-5"></a>Rec 1.5 Do not name temporary variables in function-like macros and pollute the external scope.
+### <a name="a1-6"></a>Rec 1.5 Avoid temporary variables in function-like macros from polluting external scopes.
 
-First, **use function-like macros as little as possible.**
+**If possible, use a function instead of a function-like macro. Define a function-like macro only when necessary.**
 
-When a function-like macro needs to define local variables, to avoid naming conflicts with local variables in external functions,
-
-an underline is a good solution. Example:
-
+When defining local variables for a function-like macro, use double underscores at the end to avoid name conflicts with local variables in external functions. Example:
 ```c
 #define SWAP_INT(a, b) do { \
-    int tmp_ = a; \
+    int tmp__ = a; \
     a = b; \
-    b = tmp_; \
+    b = tmp__; \
 } while (0)
 ```
 
@@ -324,17 +332,17 @@ an underline is a good solution. Example:
 
 ## <a name="c2-1"></a>Line Length
 
-### <a name="a2-1"></a>Rec 2.1 Ensure that each line is no more than 120 characters in length.
+### <a name="r2-1"></a>Rule 2.1 Include 120 characters or less in each line.
 
-The line width of the code should not be too long, otherwise it is not conducive to reading.   
-The line length requirement indirectly guides developers in shortening function and variable names, reducing nesting, and improving readability.   
-It is strongly recommended that the number of characters per line do not exceed **120** unless readability is significantly improved as a result and no information is hidden.   
-While the resolution of modern monitors is very high, long lines will increase the difficulty of reading comprehension, which is against the principles of "clear" and "concise" defined in this document.
+A longer line makes it more difficult for reading.
+To meet the line length requirement, you can shorten the names of functions and variables and reduce the number of nesting layers. This improves code readability.
+Unless a long line is necessary to maintain readability and present complete information, steer your document clear of long lines.
+Even on a high-resolution monitor, a long line increases the difficulty of reading. Strive for clearness and conciseness.
 
-The following scenarios should not be wrapped, and can be treated as exceptions:
+Exceptions:
 
-- Line breaks can cause strings truncated and hard to retrieved (grep), such as command lines or URLs. Codes or comments that contain these can be treated as exceptions appropriately.
-- '#include', '#error' statements are allowed to exceed the line width requirement, but you should try to avoid this.
+- For code lines or comments, the use of the line feed causes content truncation and increases the search difficulty (grep).
+- The #include and #error statements are allowed to exceed the line length requirement. However, you should try to avoid this.
 
 Example:
 
@@ -346,23 +354,23 @@ Example:
 
 ## <a name="c2-2"></a>Indentation
 
-### <a name="r2-1"></a>Rule 2.1 Use spaces to indent and indent four spaces at a time.
+### <a name="r2-2"></a>Rule 2.2 Use spaces to indent and indent four spaces at a time.
 
-Only spaces can be used for indentation. **4** spaces are indented each time. Do not use the Tab character to indent.   
-Currently, almost all integrated development environments (IDEs) and code editors support automatically converting a Tab input to **4** spaces. Please set your code editor to support indentation with spaces, if it is not the default.
+Only spaces can be used for indentation. Four spaces are indented each time. Do not use the Tab character to indent.   
+Currently, almost all integrated development environments (IDEs) and code editors support automatic conversion of a Tab input to fours spaces. Configure your code editor to support indentation with spaces.
 
 ## <a name="c2-3"></a>Braces
 
-### <a name="r2-2"></a>Rule 2.2 Use the K\&R indentation style.
+### <a name="r2-3"></a>Rule 2.3 Use the K\&R indentation style.
 
 **K\&R style**  
 While wrapping a line, the left brace of the function starts a new line and takes a single line. Other left braces are placed at the end of the line along with the statement.   
-The right brace takes a single line, unless it is followed by the rest of the same statement, such as 'while' in the 'do' statement, or 'else'/'else if' of the 'if' statement, or a comma or semicolon.
+The right brace takes a single line, unless it is followed by the rest of the same statement, such as `while` in the `do` statement, `else` or `else if` in the `if` statement, a comma, or a semicolon.
 
-For example:
+Example:
 
 ```c
-struct MyType {     // Good: Follow the statement to the end, and indent one space.
+struct MyType {     // Good: The left brace is placed at the end of the line along with the statement, and one space is used for indentation.
     ...
 };                  // Good: The right brace is followed by the semicolon.
 
@@ -370,7 +378,7 @@ int Foo(int a)
 {                   // Good: The left brace of the function starts a new line, and nothing else is placed on the line.
     if (...) {
         ...
-    } else {        // Good: The 'else' statement follows the right brace.
+    } else {        // Good: The right brace is followed by the `else` statement.
         ...
     }               // Good: The right brace takes a single line.
 }
@@ -378,36 +386,36 @@ int Foo(int a)
 
 ## <a name="c2-4"></a>Function Declaration and Definition
 
-### <a name="r2-3"></a>Rule 2.3 The return type and function name of the function declaration and definition must be on the same line. The function parameter list must be aligned appropriately if it needs to be wrapped.
+### <a name="r2-4"></a>Rule 2.4 Keep the return type and function name of the function declaration or definition in the same line, and align the function parameter list appropriately if it needs to be wrapped.
 
 When a function is declared and defined, the return value type of the function should be in the same line as the function name.
 
 When the function parameter list is wrapped, it should be aligned appropriately.   
 The left parenthesis of a parameter list is always in the same line as the function name. The right parenthesis always follows the last parameter.
 
-The following is an example of line breaks:
+Example:
 
 ```c
-ReturnType FunctionName(ArgType paramName1, ArgType paramName2)   // Good：All in one line
+ReturnType FunctionName(ArgType paramName1, ArgType paramName2)   // Good: All in one line
 {
     ...
 }
 
-ReturnType VeryVeryVeryLongFunctionName(ArgType paramName1,     // The line length cannot accommodate all parameters and thus a line break is required.
-                                        ArgType paramName2,     // Good：Aligned with the previous line.
+ReturnType VeryVeryVeryLongFunctionName(ArgType paramName1,     // Each added parameter starts on a new line because the line length limit is exceeded.
+                                        ArgType paramName2,     // Good: Aligned with the previous line
                                         ArgType paramName3)
 {
     ...
 }
 
-ReturnType LongFunctionName(ArgType paramName1, ArgType paramName2, // Subject to line length, a line break is required.
-    ArgType paramName3, ArgType paramName4, ArgType paramName5)     // Good: After the line break, 4 spaces are used for indentation.
+ReturnType LongFunctionName(ArgType paramName1, ArgType paramName2, // Parameters are wrapped because the line length limit is exceeded.
+    ArgType paramName3, ArgType paramName4, ArgType paramName5)     // Good: 4 spaces are used for indentation.
 {
     ...
 }
 
-ReturnType ReallyReallyReallyReallyLongFunctionName(            // The line length cannot accommodate the first parameter, and thus a line break is required.
-    ArgType paramName1, ArgType paramName2, ArgType paramName3) // Good: After the line break, 4 spaces are used for indentation.
+ReturnType ReallyReallyReallyReallyLongFunctionName(            // The line length cannot accommodate even the first parameter, and a line break is required.
+    ArgType paramName1, ArgType paramName2, ArgType paramName3) // Good: 4 spaces are used for indentation.
 {
     ...
 }
@@ -415,40 +423,40 @@ ReturnType ReallyReallyReallyReallyLongFunctionName(            // The line leng
 
 ## <a name="c2-5"></a>Function Calls
 
-### <a name="r2-4"></a>Rule 2.4 The parameter list should be aligned appropriately when the parameter list requires a line break.
+### <a name="r2-5"></a>Rule 2.5 Align the parameter list appropriately if it needs to be wrapped.
 
-When the function is called, if the function parameter list is wrapped, it should be aligned appropriately.   
+In a function call, if the function parameter list is wrapped, it should be aligned appropriately.
 The left parenthesis is always followed by a function name, and the right parenthesis always follows the last parameter.
 
-The following is an example of line breaks:
+Example:
 
 ```c
-ReturnType result = FunctionName(paramName1, paramName2);   // Good：Function parameters are placed in one line.
+ReturnType result = FunctionName(paramName1, paramName2);   // Good: Function parameters are placed in one line.
 
 ReturnType result = FunctionName(paramName1,
-                                 paramName2,                // Good：Aligned with the above parameters.
+                                 paramName2,                // Good: Aligned with the above parameters
                                  paramName3);
 
 ReturnType result = FunctionName(paramName1, paramName2, 
-    paramName3, paramName4, paramName5);                    // Good：After the line break, 4 spaces are used for indentation.
+    paramName3, paramName4, paramName5);                    // Good: 4 spaces are used for indentation.
 
-ReturnType result = VeryVeryVeryLongFunctionName(           // The line length cannot accommodate the first parameter, and thus a line break is required.
-    paramName1, paramName2, paramName3);                    // After the line break, 4 spaces are used for indentation.
+ReturnType result = VeryVeryVeryLongFunctionName(           // The line length cannot accommodate the first parameter, and therefore line feed is used.
+    paramName1, paramName2, paramName3);                    // 4 spaces are used for indentation.
 ```
 
-If the parameters in a function call are associated with each other, the parameters are grouped for better understanding, rather than strictly adhering to formatting requirements.
+If the parameters in a function call are associated with each other, you can group the parameters for better understanding, rather than strictly adhering to the formatting requirements.
 
 ```c
-// Good：The parameters in each line represent a group of data structures with a strong correlation. They are placed on one line for ease of understanding.
+// Good: The parameters in each line represent a group of data structures with a strong correlation.They are placed on one line for ease of understanding.
 int result = DealWithStructureLikeParams(left.x, left.y,     // Indicates a group of parameters.
                                          right.x, right.y);  // Indicates another group of related parameters.
 ```
 
 ## <a name="c2-6"></a>Conditional Statements
 
-### <a name="r2-5"></a>Rule 2.5 Conditional statements must use braces.
+### <a name="r2-6"></a>Rule 2.6 Use braces for conditional statements.
 
-We require that all conditional statements use braces, even if there is only one statement.   
+Use braces to enclose conditional statements, even if there is only one statement.
 Reason:
 
 - Logic is intuitive and easy to read.
@@ -461,21 +469,21 @@ if (objectIsNotExist) {         // Good: Braces are added to a single-line condi
 }
 ```
 
-### <a name="r2-6"></a>Rule 2.6 Do not place 'if', 'else' and 'else if' in the same line.
+### <a name="r2-7"></a>Rule 2.7 Do not place `if`, `else`, and `else if` in the same line.
 
-In a conditional statement, if there are multiple branches, they should be written in different lines.
+In a conditional statement, branches, if any, should be written in different lines.
 
-The correct format:
+Good example:
 
 ```c
 if (someConditions) {
     ...
-} else {    // Good: The 'else' is in a different line of 'if'.
+} else {    // Good: The `else` statement is in a different line of `if`.
     ...
 }
 ```
 
-The following is a case that does not comply with the specifications:
+Bad example:
 
 ```c
 if (someConditions) { ... } else { ... } // Bad: They are in the same line.
@@ -483,9 +491,9 @@ if (someConditions) { ... } else { ... } // Bad: They are in the same line.
 
 ## <a name="c2-7"></a>Loops
 
-### <a name="r2-7"></a>Rule 2.7 Use braces in loop statements.
+### <a name="r2-8"></a>Rule 2.8 Use braces for loop statements.
 
-Similar to the condition expression, we require that the for and while loop conditional statements contain braces, even if there is only one loop.
+Use braces to enclose the `for` and `while` statements, even if there is only one loop.
 
 ```c
 for (int i = 0; i < someRange; i++) {   // Good: Braces are used.
@@ -494,7 +502,7 @@ for (int i = 0; i < someRange; i++) {   // Good: Braces are used.
 ```
 
 ```c
-while (condition) { }   // Good: The while loop body is empty. And braces are used.
+while (condition) { }   // Good: The entire loop body is empty. And braces are used.
 ```
 
 ```c
@@ -511,14 +519,14 @@ for (int i = 0; i < someRange; i++)
 ```
 
 ```c
-while (condition);      // Bad: Using semicolons will make people misunderstand which code is a part of the while statement.
+while (condition);      // Bad: The semicolon may be treated as part of the `while` statement.
 ```
 
-## <a name="c2-8"></a>Switch Statements
+## <a name="c2-8"></a>`switch` Statements
 
-### <a name="r2-8"></a>Rule 2.8 Indent the case or default statement in a switch statement block.
+### <a name="r2-9"></a>Rule 2.9 Indent the `case` or `default` statement in a `switch` statement block.
 
-The indentation style of the switch statement is as follows:
+Use the following indentation style for the `switch` statement:
 
 ```c
 switch (var) {
@@ -546,16 +554,15 @@ default:                // Bad: 'default' not indented
 
 ## <a name="c2-9"></a>Expressions
 
-### <a name="a2-2"></a>Rec 2.2 Keep a consistent expression line break style and ensure that operators are placed at the end of the line.
+### <a name="a2-1"></a>Rec 2.1 Keep a consistent line break style for expressions and ensure that operators are placed at the end of the line.
 
-A long expression that does not meet the line length requirement must be wrapped appropriately. Generally, the expression is wrapped at an operator of a lower priority or a hyphen, and the operator or hyphen is placed at the end of the line.   
-The operator and hyphen are placed at the end of the line, indicating that the operation is to be continued.
+A long expression that does not meet the line length requirement must be wrapped appropriately. Generally, the expression is wrapped after a lower-priority operator or a hyphen, and the operator or hyphen is placed at the end of the line, indicating that the operation is to be continued.
 
 Example:
 
 ```c
-// Pretend that the following first line does not meet the line length requirement.
-if ((currentValue > MIN) &&  // Good: After the line break, the Boolean operator is placed at the end of the line.
+// Assume that the first line does not meet the line length requirement.
+if ((currentValue > MIN) &&  // Good: The Boolean operator is placed at the end of the line.
     (currentValue < MAX)) {    
     DoSomething();
     ...
@@ -565,7 +572,7 @@ int result = reallyReallyLongVariableName1 +    // Good: The plus sign is placed
              reallyReallyLongVariableName2;
 ```
 
-After an expression is wrapped, ensure that the lines are properly aligned or indented by 4 spaces. See the following example.
+After an expression is wrapped, ensure that the lines are properly aligned or indented by 4 spaces. Example:
 
 ```c
 int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
@@ -577,32 +584,32 @@ int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
 
 ## <a name="c2-10"></a>Variable Assignment
 
-### <a name="r2-9"></a> Rule 2.9 Multiple variable definitions and assignment statements cannot be written on one line.
+### <a name="r2-10"></a> Rule 2.10 Do not write multiple variable definitions or assignment statements in one line.
 
-It is best to have only one variable initialization statement on each line. It is easier to read and understand.
+It is recommended that each line contain only one variable initialization statement, which is easier to read and understand.
 
 ```c
 int maxCount = 10;
 bool isCompleted = false;
 ```
 
-The following is an example that does not comply with the specifications:
+Bad example:
 
 ```c
-int maxCount = 10; bool isCompleted = false; // Bad: Multiple initialization statements are placed on the same line.
-int x, y = 0;  // Bad: Variable definitions need to be placed on different lines. Each definition occupies one line.
+int maxCount = 10; bool isCompleted = false; // Bad: Multiple initialization statements are placed in one line.
+int x, y = 0;  // Bad: Multiple variable definitions are placed in one line.Each definition occupies one line.
 
 int pointX;
 int pointY;
 ...
-pointX = 1; pointY = 2;  // Bad: Multiple variable assignment statements are placed on the same line.
+pointX = 1; pointY = 2;  // Bad: Multiple variable assignment statements are placed in one line.
 ```
 
-Exception:   
-If multiple variables with strong correlation are defined and do not need to be initialized, you can define the variables in a line to reduce repeated information so that the code is more compact.
+Exceptions:
+If multiple variable definitions have strong correlation and do not need to be initialized, you can define the variables in a line for code compactness.
 
 ```c
-int i, j;  // Good: Multiple variables that are defined and do not need to be initialized immediately can be written in one line.
+int i, j;  // Good: Multiple variable definitions that do not need to be initialized are written in one line.
 for (i = 0; i < row; i++) {
     for (j = 0; j < col; j++) {
         ...
@@ -614,16 +621,16 @@ for (i = 0; i < row; i++) {
 
 Initialization is applicable to structs, unions, and arrays.
 
-### <a name="r2-10"></a>Rule 2.10 Indent when initiating a new line, or make a reasonable alignment.
+### <a name="r2-11"></a>Rule 2.11 Use indentation or make a reasonable alignment for a new line.
 
-When a structure or array is initialized, if a line break is made, ensure that the line is indented with 4 spaces.   
-From the readability point of view, make a reasonable alignment.
+For the struct or array initialization, use 4 spaces for indentation if a line break is made.
+From better readability, make a reasonable alignment.
 
 ```c
 // Good: No line break for a short line.
 int arr[4] = { 1, 2, 3, 4 };
 
-// Good: A line break here makes the readability better.
+// Good: A line break makes better readability.
 const int rank[] = { 
     16, 16, 16, 16, 32, 32, 32, 32,
     64, 64, 64, 64, 32, 32, 32, 32
@@ -635,12 +642,12 @@ Refer to the following format:
 
 ```c
 int a[][4] = {
-    { 1, 2, 3, 4 }, { 2, 2, 3, 4 }, // OK.
+    { 1, 2, 3, 4 }, { 2, 2, 3, 4 }, // OK
     { 3, 2, 3, 4 }, { 4, 2, 3, 4 }
 };
 
 int b[][8] = {
-    { 1, 2, 3, 4, 5, 6, 7, 8 },     // OK.
+    { 1, 2, 3, 4, 5, 6, 7, 8 },     // OK
     { 2, 2, 3, 4, 5, 6, 7, 8 }
 };
 ```
@@ -648,7 +655,7 @@ int b[][8] = {
 ```c
 int c[][8] = {
     {
-        1, 2, 3, 4, 5, 6, 7, 8      // OK.
+        1, 2, 3, 4, 5, 6, 7, 8      // OK
     }, {
         2, 2, 3, 4, 5, 6, 7, 8
     }
@@ -660,9 +667,9 @@ Note:
 - If the left brace is placed at the end of the line, the corresponding right brace shoud be placed into a new line.
 - If the left brace is followed by the content, the corresponding right brace should also follow the content.
 
-### <a name="r2-11"></a>Rule 2.11 When struct and union members are initialized, each member is initialized on a separate line.
+### <a name="r2-12"></a>Rule 2.12 Initialize each member in a separate line during struct and union member initialization.
 
-The C99 standard supports the initialization of the struct and union members in their definition. This is called the designated initializer. If initialization is performed in this way, each member is initialized in a separate line.
+The C99 standard supports the initialization of the struct and union members in their definition. This is called the designated initializer. In such a way, each member should be initialized in a separate line.
 
 ```c
 struct Date {
@@ -671,7 +678,7 @@ struct Date {
     int day;
 };
 
-struct Date date = {    // Good: When the designated initializer is used, each member is initialized on a separate line.
+struct Date date = {    // Good: When the designated initializer is used, each member is initialized in a separate line.
     .year   = 2000,
     .month  = 1,
     .day    = 1 
@@ -680,104 +687,75 @@ struct Date date = {    // Good: When the designated initializer is used, each m
 
 ## <a name="c2-12"></a>Pointers
 
-### <a name="a2-3"></a>Rec 2.3 The pointer type asterisk "\*" follows the variable name or the type. Do not leave spaces on both sides and always use at least one space.
+### <a name="a2-2"></a>Rec 2.2 Ensure that the asterisk (\*) in the pointer type is followed by the variable name or follows the type. There must be a space before or after the asterisk.
 
-When you declare or define a pointer variable or return a pointer type function, "\*" can be placed on the left or right, adhering to the type or name. Do not leave spaces on both sides. And do not leave out spaces altogether.
+When you declare or define a pointer variable or return a pointer type function, the asterisk can be placed on the left (following the type) or right (followed by the variable name). There must be only one space before or after the asterisk.  
 
 ```c
-int *p1;    // OK.
-int* p2;    // OK.
+int *p1;    // OK
+int* p2;    // OK
 
-int*p3;     // Bad: No spaces.
-int * p4;   // Bad: Spaces on both sides.
+int*p3;     // Bad: No space
+int * p4;   // Bad: Space on both sides
 ```
 
 Choose a style and stay consistent.
 
-When using style that "\*" follows type, avoid declaring multiple variables with pointer in a line.
+If you use the asterisk to follow the type, do not declare multiple variables with pointers in a line.
 
 ```c
-int* a, b;  // Bad: It is easy to misinterpret b as a pointer.
+int* a, b;  // Bad: b may be treated as a pointer.
 ```
 
-When using style that "\*" follows variable, there may be situations that cannot be followed.   
-Do not follow when it cannot. Style consistency first.
+Do not use the asterisk followed by the variable name if this style is not suitable in all cases.
+Keep style consistency first.
 
 ```c
-char * const VERSION = "V100";      // OK.
-int Foo(const char * restrict p);   // OK.
+char * const VERSION = "V100";      // OK
+int Foo(const char * restrict p);   // OK
 ```
 
-"\*" never follows 'const' or 'restrict' keywords anytime.
+Do not use the asterisk to follow the `const` or `restrict` keywords.
 
 ## <a name="c2-13"></a>Compilation Preprocessing
 
-### <a name="r2-12"></a>Rule 2.12 The number sign (#) must be placed at the beginning of a line for compilation preprocessing and can be indented in nested compilation preprocessing.
+### <a name="r2-13"></a>Rule 2.13 Place the number sign (#) at the beginning of a line for compilation preprocessing. In nested compilation preprocessing, the number sign (#) can be indented.
 
 The number sign (#) must be placed at the beginning of a line for compilation preprocessing, even if the code is embedded in the function body.
-
-```c
-#if defined(__x86_64__) && defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_16) // Good: "#" is at the beginning of the line.
-#define ATOMIC_X86_HAS_CMPXCHG16B 1  // Good: "#" is at the beginning of the line.
-#else
-#define ATOMIC_X86_HAS_CMPXCHG16B 0
-#endif
-
-int FunctionName(void)
-{
-    if (someThingError) {
-        ...
-#ifdef HAS_SYSLOG        // Good: "#" is at the beginning of the line even though it's in a function body.
-        WriteToSysLog();
-#else
-        WriteToFileLog();
-#endif
-    }
-}
-```
-
-Nested preprocessing statements starting with "#" can be indented and aligned based on indentation requirements to different layers.
-
-```c
-#if defined(__x86_64__) && defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_16)
-    #define ATOMIC_X86_HAS_CMPXCHG16B 1  // Good: Statements are layered, facilitating reading.
-#else
-    #define ATOMIC_X86_HAS_CMPXCHG16B 0
-#endif
-```
+Try your best not to use compilation preprocessing macros. If they are needed in deed, they should be managed by dedicated personnel in a unified manner.
 
 ## <a name="c2-14"></a>Whitespace
 
-### <a name="r2-13"></a>Rule 2.13 Ensure that horizontal whitespace is used to highlight keywords, important information and avoid unnecessary whitespace.
+### <a name="r2-14"></a>Rule 2.14 Use horizontal whitespaces to highlight keywords and important information, and avoid unnecessary whitespaces.
 
 Horizontal spaces should be used to highlight keywords and important information. Do not add spaces at the end of each line of code. The general rules are as follows:
 
-- Add spaces after keywords such as if, switch, case, do, while, and for.
+- Add spaces after keywords such as `if`, `switch`, `case`, `do`, `while`, and `for`.
 - Do not add spaces after the left parenthesis or before the right parenthesis.
 - Add a space before and after each binary operator (= + - \< > \* / % \| \& \^ \<= >= == !=).
 - Do not add a space after any unary operator (\& \* + - ~!).
-- A space is required before and after each ternary operator (? :).
+- Add a space before and after each ternary operator (? :).
 - Add spaces before and after the colon of bit field description.
-- There is no space between ++/-- and variables.
-- There is no space before and after the struct member operator (. ->).
+- Do not add spaces between ++/-- and variables.
+- Do not add spaces before and after the struct member operator (. ->).
 - Adding or not adding spaces inside the brace must be consistent.
-- Do not add spaces before commas, semicolons, colons (without the colon in the ternary operator or the bit field description); Add spaces after them.
-- There is no space between the parentheses of the function parameter list and the function name.
-- There is no space between the parenthesis of the type cast and the object being converted.
-- There is no space between the square bracket of the array and the array name.
+- Do not add spaces before commas, semicolons, or colons (excluding the colon in the ternary operator or the bit field description). Add spaces after them.
+- Do not add spaces between the parentheses of the function parameter list and the function name.
+- Do not add spaces between the parenthesis of the type cast and the object being converted.
+- Do not add spaces between the square bracket of the array and the array name.
 - Spaces at the end of the line can be omitted.
 
-For spaces inside the braces, the following are **recommended**:
+For spaces inside the braces, the following **recommendations** are available:
 
-- In general, spaces should be added after the left brace or before the right brace.
-- For empty, or a single identifier, or a single literal constant, spaces are not required. Such as: '{}', '{0}', '{NULL}', '{"hi"}'.
-- Spaces between consecutively nested multiple parentheses, spaces are not required. Such as: '{{0}}', '{{ 1, 2 }}'. Bad example: '{ 0, {1}}'. It is not a continuous nested scene, and the spaces inside the outermost braces are inconsistent.
+- It is recommended that spaces be added after the left brace and before the right brace.
+- For an empty constant or a constant with a single identifier or a single word, spaces are not required, for example, '{}', '{0}', '{NULL}', '{"hi"}'.
+- Spaces between consecutively nested multiple parentheses are not required, for example, '{{0}}', '{{ 1, 2 }}'. '{ 0, {1}}' is a bad example, since it is not a consecutively nested scene and the spaces inside the outermost braces are inconsistent.
 
 In normal cases:
 
 ```c
 int i = 0;                  // Good: When the variable is initialized, there should be spaces before and after the =. Do not leave a space before the semicolon.
-int buf[BUF_SIZE] = {0};    // Good: During array initialization, spaces in curly braces are optional.
+int buf[BUF_SIZE] = {0};    // Good: For array initialization, spaces in curly braces are optional.
 int arr[] = { 10, 20 };     // Good: A space is added before and after the brace.
 ```
 
@@ -785,7 +763,7 @@ Function definition and call:
 
 ```c
 int result = Foo(arg1,arg2); 
-                      ^         // Bad: There should be a space after the comma.
+                      ^         // Bad: There is no space after the comma.
 
 int result = Foo( arg1, arg2 );
                  ^          ^   // Bad: No space should be added to either side in the parentheses.
@@ -794,42 +772,42 @@ int result = Foo( arg1, arg2 );
 Pointer and address-of operator:
 
 ```c
-x = *p;     // Good: There is no space between the operator * and the pointer p.
-p = &x;     // Good: There is no space between the operator & and the variable x.
+x = *p;     // Good: There is no space between the operator (*) and the pointer p.
+p = &x;     // Good: There is no space between the operator (&) and the variable x.
 x = r.y;    // Good: When a member variable is accessed through the operator (.), no space is added.
-x = r->y;   // Good: When a member variable is accessed through the operator (.), no space is added.
+x = r->y;   // Good: When a member variable is accessed through the operator (->), no space is added.
 ```
 
 Operator:
 
 ```c
-x = 0;    // Good: A space must be added before and after the assignment operator (=).
-x = -5;   // Good: Do not add spaces before the minus sign (-) and the number.
-++x;      // Good: Do not add spaces before the minus sign (-) and the number.
+x = 0;    // Good: There is a space before and after the assignment operator (=).
+x = -5;   // Good: There is no space between the minus sign (-) and the number.
+++++x; // Good: There is no space between ++/-- and the variable.
 x--;
     
-if (x && !y)        // Good: A space must be added before and after the Boolean operator. Do not leave spaces between the ! operator and variables.
-v = w * x + y / z;  // Good: A space must be added before and after binary operators.
-v = w * (x + z);    // Good: No space is required before and after the expression in the parentheses.
+if (x && !y)        // Good: There is a space before and after the Boolean operator, and there is no space between the operator (!) and variable.
+v = w * x + y / z;  // Good: There is a space before and after binary operators.
+v = w * (x + z);    // Good: There is no space before and after the expression in the parentheses.
 ```
 
 Loops and conditional statements:
 
 ```c
-if (condition) {    // Good: A space is added between the if keyword and the parenthesis and no space is added before or after the conditional statement inside the parentheses.
+if (condition) {    // Good: A space is added between the `if` keyword and the parenthesis, and no space is added before or after the conditional statement inside the parentheses.
     ...
-} else {            // Good: A space is added between the else keyword and the curly brace.
-    ...
-}
-
-while (condition) {}    // Good: A space is added between the while keyword and the parenthesis. No space is added before or after the conditional statement inside the parentheses.
-
-for (int i = 0; i < someRange; ++i) {  // Good: A space is added between the for keyword and the parenthesis, and after the semicolons (;).
+} else {            // Good: A space is added between the `else` keyword and the curly brace.
     ...
 }
 
-switch (var) {  // Good: A space is added after the switch keyword.
-    case 0:     // Good: No space is added between the case conditional statement and the colon.
+while (condition) {}    // Good: A space is added between the `while` keyword and the parenthesis, and no space is added before or after the conditional statement inside the parentheses.
+
+for (int i = 0; i < someRange; ++i) {  // Good: A space is added between the `for` keyword and the parenthesis, and after the semicolons (;).
+    ...
+}
+
+switch (var) {  // Good: A space is added after the `switch` keyword.
+    case 0:     // Good: No space is added between the `case` conditional statement and the colon (:).
         ...
         break;
     ...
@@ -839,9 +817,9 @@ switch (var) {  // Good: A space is added after the switch keyword.
 }
 ```
 
-Note: Current integrated development environments (IDEs) and code editors can be set to automatically delete spaces at the end of a line. Please configure your editor as such.
+Note: The current IDE and code editor can be set to delete spaces at the end of a line. Configure your editor correctly.
 
-### <a name="a2-4"></a>Rec 2.4 Arrange blank lines reasonably keep the code compact.
+### <a name="a2-3"></a>Rec 2.3 Arrange blank lines reasonably to keep the code compact.
 
 Reduce unnecessary blank lines so that more code can be displayed for easy reading. The following rules are recommended:
 
@@ -890,22 +868,28 @@ Comments help readers quickly understand code. Therefore, **comments should be p
 The comments must be concise, clear, and unambiguous, ensuring that the information is complete and not redundant.
 
 **Comments are as important as code.**   
-When writing a comment, you need to step into the reader's shoes and use comments to express what the reader really needs. Comments are used to express the function and intention of code, rather than repeating code.   
-When modifying the code, ensure that the comments are consistent. It is impolite to only modify code and not update the comments. It destroys the consistency between code and comments, and may confuse or even mislead readers.
+When writing a comment, you need to step into the reader's shoes and use comments to express what the reader really needs. Comments are used to express the code functionality and intention, rather than repeating code.
+When modifying the code, ensure that the comments are consistent. It is impolite to only modify code and not update the comments. This destroys the consistency between code and comments, and may cause confusion or even misleading.
 
-Comment code in fluent English.
+Comment code in fluent **English**.
+
+Comments must be added in the following scenarios (including but not limited to the listed scenarios):
+1. Functions in the external interface header file provided by the module
+2. Global variables being defined
+3. Core algorithms
+4. A function that contains more than 50 lines
 
 ## <a name="c3-1"></a>Comment Style
 
 In C code, both `/*` `*/` and `//` can be used.   
-Comments can be classified into different types depending on purpose and position, such as file header comments, function header comments, and general comments.  
+Comments can be classified into different types depending on the purpose and position, such as file header comments, function header comments, and general comments.
 Comments of the same type must keep a consistent style.
 
-Note: The sample code used in this article sees extensive use of the '//' post-comment. This is only to aid understanding, and does not mean that this comment style is better.
+Note: The sample code used in this article sees extensive use of the '//' post-comment. This is only for better understanding, and does not mean that this comment style is better.
 
 ## <a name="c3-2"></a>File Header Comments
 
-### <a name="r3-1"></a>Rule 3.1 File header comments must contain the copyright license.
+### <a name="r3-1"></a>Rule 3.1 Include the copyright license in the file header comments.
 
 /\*
 
@@ -924,7 +908,7 @@ Note: The sample code used in this article sees extensive use of the '//' post-c
 
 ## <a name="c3-3"></a>Function Header Comments
 
-### <a name="r3-2"></a>Rule 3.2 Empty function header comments with no content are forbidden.
+### <a name="r3-2"></a>Rule 3.2 Do not use empty function header comments with no content.
 
 Not all functions need function header comments.  
 Function header comments must be added for any information that cannot be expressed just with function prototype.
@@ -958,7 +942,7 @@ int Func2(void);
 Use function names to describe functions, and only add function header comments if necessary.   
 Do not write useless or redundant function headers. Do not write empty function headers with no content.
 
-The function header comment content is **optional** any may include the following: function description, return value, performance constraint, usage, memory convention, algorithm implementation, and reentering requirements.   
+The following content is **optional** in the function header comment: function description, return value, performance constraint, usage, memory convention, algorithm implementation, and reentering requirement.
 In the function interface declaration in the external header file of the module, the function header comment should clearly describe important and useful information.
 
 Example:
@@ -966,7 +950,7 @@ Example:
 ```c
 /*
  * The number of written bytes is returned. If -1 is returned, the write operation fails.
- * Note that, the memory buffer is released by the caller.
+ * Note that the memory buffer is released by the caller.
  */
 int WriteString(char *buf, int len);
 ```
@@ -987,13 +971,13 @@ Problems in the preceding example are as follows:
 
 - The 'Parameter' and 'Return value' headings have no content.
 - The function name has redundant information.
-- The most important thing, the notice to release the buffer, is not clearly stated.
+- It does not clearly state the party that should release the buffer.
 
 ## <a name="c3-4"></a>Code Comments
 
-### <a name="r3-3"></a>Rule 3.3 Code comments are placed above or to the right of the corresponding code.
+### <a name="r3-3"></a>Rule 3.3 Place code comments above or to the right of the code.
 
-### <a name="r3-4"></a>Rule 3.4 There must be a space between the comment character and the comment content. At least one space is required between the comment and code if the comment is placed to the right of code.
+### <a name="r3-4"></a>Rule 3.4 Add a space between the comment character and the comment content, and one space between the comment and code if the comment is placed to the right of the code.
 
 Comments placed above code should be indented to the same level as the code.   
 Select and use one of the following styles:   
@@ -1011,7 +995,7 @@ DoSomething();
 **Use '/\*' '\*/' to start the comment.**
 
 ```c
-/*Single-line comment */
+/* Single-line comment */
 DoSomething();
 
 /*
@@ -1049,25 +1033,12 @@ The correct method is to delete unnecessary code. If necessary, consider porting
 
 Here, commenting out refers to the removal of code from compilation without actually deleting it. This is done by using /\* \*/, //, #if 0, #ifdef NEVER\_DEFINED, and so on.
 
-### <a name="a3-1"></a>Rec 3.1 No TODO, TBD, or FIXME comment is allowed in code delivered to a customer.
+### <a name="a3-1"></a>Rec 3.1 Provide comments if `break` or `return` is not added to the end of the `case` statement block (fall-through).
 
-TODO and TBD comments are used to describe required improvements and supplements.  
-FIXME comments are used to describe defects that need fixing.  
-They should have a standardized style, which facilitates text search. For example:
+Sometimes, the same thing is needed for multiple `case` tags. When a `case` statement ends without `break` or `return`, the statement in the next `case` tag will be executed.This is called "fall-through".   
+In this case, add comments for the "fall-through" to clearly express your intention, or at least explicitly specify the "fall-through".
 
-```c
-// TODO(<author-name>): Supplement to XX 
-// FIXME: XX defect
-```
-
-During version development, this type of comments can be used for highlighting, and must be processed and deleted before delivery.
-
-### <a name="a3-2"></a>Rec 3.2 If 'break' or 'return' is not added to the end of the case statement block (fall-through), comments must be provided.
-
-Sometimes, the same thing is needed for multiple case tags. When a case statement ends without 'break' or 'return', the statement in the next case tag will be executed. This is called "fall-through".   
-In this case, you need to add comments for the "fall-through" to clearly describe your intention.
-
-For example, explicitly specify the "fall-through”:
+For example, to explicitly specify the "fall-through":
 
 ```c
 switch (var) {
@@ -1084,7 +1055,7 @@ switch (var) {
 }
 ```
 
-If the case statement is empty, the comment explaining the "fall-through" can be omitted.
+If the `case` statement is empty, no comment is required to explain the "fall-through".
 
 ```c
 switch (var) {
@@ -1100,26 +1071,26 @@ switch (var) {
 
 # <a name="c4"></a>4 Header Files
 
-**For the C language, the design of the header file reflects most of the system design.**   
+**For the C programming language, the design of the header file reflects most of the system design.**   
 The correct use of the header file makes code more readable, reduces file size, and speeds up compilation and build performance.
 
-This chapter summarizes some methods from the perspective of programming specifications to help you properly plan header files.
+The following programming specifications aim to help you properly plan header files.
 
 ## <a name="c4-1"></a>Header File Responsibility
 
 A header file is an external interface of a module or file.   
-The interface declaration for most functions (except inline functions), is more suitable in the header file, than as interface implementations.   
-Header responsibility should be simple. A complex header file will make dependencies complex and cause long compilation times.
+The interface declaration for most functions (except inline functions) is suitable in the header file. Interface implementations are not allowed in the header file.   
+Header responsibility should be simple. A complex header file will make dependencies complex and cause a long compilation time.
 
-### <a name="a4-1"></a>Rec 4.1 Each .c file must have a corresponding .h file, which is used to declare the interfaces that need to be disclosed externally.
+### <a name="a4-1"></a>Rec 4.1 For each .c file, provide a corresponding .h file, which is used to declare the interfaces that need to be provided externally.
 
-Generally, each .c file has a corresponding .h file (Not necessarily the same name.), which is used to store the function declarations, macro definitions, and type definitions that are to be exposed externally.   
+Generally, each .c file has a corresponding .h file (not necessarily with the same name), which is used to store the function declarations, macro definitions, and type definitions that are to be exposed externally.
 If a .c file does not need to open any interface externally, it should not exist.
 
-Exception: the entry point of the program (for example, the file where the main function is located), unit test code, and dynamic library code.
+Exceptions: the entry point of the program (for example, the file where the main function is located), unit test code, and dynamic library code.
 
 Example:   
-foo.h content
+Content of **foo.h**:
 
 ```c
 #ifndef FOO_H
@@ -1130,7 +1101,7 @@ int Foo(void);  // Good: Declare an external interface in the header file.
 #endif
 ```
 
-foo.c content
+Content of **foo.c**:
 
 ```c
 static void Bar(void);  // Good: The declaration of the internal function is placed in the header of the .c file, declaring its static scope.
@@ -1146,19 +1117,19 @@ static void Bar(void)
 }
 ```
 
-Internally used functions declarations, macros, enumerations, structures, and others should not be placed in header ﬁles.
+Internally used functions declarations, macros, enums, structs, and others should not be placed in header ﬁles.
 
 In some products, one .c file corresponds to two .h files. One is used to store external public interfaces, and the other is used to store definitions and declarations among others for internal use to limit the number of code lines in the .c file.   
-This style is not recommended. It is used only because the .c file is too large. It should be split into another file instead.   
+This style is not recommended. It is used only because the .c file is too large. You should consider splitting the .c file first.
 In addition, if private definitions and declarations are placed in independent header files, they technically cannot avoid inclusion.
 
-This rule, in turn, is not necessarily correct. For example:   
+This rule, in turn, is not necessarily correct. Example:
 Some simple header files, such as the command ID definition header file, do not need to have the corresponding .c file.   
 If a set of interface protocols has multiple instances and the interface is fixed, one .h file can have multiple .c files.
 
 ### <a name="a4-2"></a>Rec 4.2 Use .h as the extension of the header file, rather than other unconventional extensions, for example, .inc.
 
-Some products use .inc as the header file name extension, which does not comply with the C language. A header ﬁle using .inc as the ﬁle name extension usually indicates a private header ﬁle. However, in practice, this recommendation is not followed properly. An .inc ﬁle is generally contained in multiple .c ﬁles. This document does not recommend that private definitions be stored in header files. For details, see [Rec 4.1](#a4-1).
+Some products use .inc as the header file name extension, which does not comply with the C programming language.A header ﬁle using .inc as the ﬁle name extension usually indicates a private header ﬁle. However, in practice, this recommendation is not followed properly. An .inc ﬁle is generally contained in multiple .c ﬁles. It is not recommended that private definitions be stored in header files. For details, see [Rec 4.1](#a4-1).
 
 ## <a name="c4-2"></a>Header File Dependency
 
@@ -1168,7 +1139,7 @@ Generally, an unstable module depends on a stable module. When the unstable modu
 Dependency direction is as follows: Products depend on the platform, and the platform depends on the standard library.
 
 In addition to unstable modules depending on stable modules, each module depends on the interface. In this way, in case of any internal implementation changes to one module, users do not need to recompile another module.   
-This assumes that the interface itself is the most stable.
+It is assumed that the interface is the most stable.
 
 ### <a name="r4-1"></a>Rule 4.1 Forbid cyclic dependency of header files.
 
@@ -1177,34 +1148,33 @@ For a unidirectional dependency: a.h contains b.h, b.h contains c.h, and c.h doe
 
 The cyclic dependency of header files reflects an obviously unreasonable architecture design, which can be avoided through optimization.
 
-### <a name="r4-2"></a>Rule 4.2 The header file must have the internal #include protection character (#define protection).
+### <a name="r4-4"></a>Rule 4.2 Include the internal #include protection character (#define protection) in the header file.
 
 To prevent header files from being included multiple times, all header files should be protected by #define. Do not use #pragma once.
 
 When defining a protection character, comply with the following rules:
 
-- The protection character uses a unique name. It is recommended to consider the file path and name below the top layer of the project code tree.
+- Use a unique name for the protection character in the format of subsystem\_component\_file.
 - Do not place code or comments before or after the protected part, except for file header comments.
 
-Assume that the path to timer.h of the timer module is `timer/include/timer.h`. If the protection character resembles 'TIME\_H', it is not unique. Add a path, for example:
-
+Assume that the **timer.h** file of the timer component of the util subsystem is stored in the **timer/include/timer.h** directory. If `TIME_H` is used as the protection character, name conflicts may occur. Use the following protection characters instead:
 ```c
-#ifndef TIMER_INCLUDE_TIMER_H
-#define TIMER_INCLUDE_TIMER_H
+#ifndef UTIL_TIMER_TIMER_H
+#define UTIL_TIMER_TIMER_H
 
 ...
 
-#endif
+#endif // UTIL_TIMER_TIMER_H
 ```
 
-### <a name="r4-3"></a>Rule 4.3 Do not reference external function interfaces and variables by using declaration.
+### <a name="r4-5"></a>Rule 4.3 Do not reference external function interfaces and variables by using declaration.
 
 You can use the interfaces provided by other modules or files only by using header files.   
 Using external function interfaces and variables with an extern declaration may cause inconsistency between declarations and definitions when external interfaces are changed.   
 In addition, this kind of implicit dependency may cause architecture corruption.
 
 Cases that do not comply with specifications:   
-a.c content
+Content of **a.c**:
 
 ```c
 extern int Foo(void);   // Bad: Reference external functions by using the extern declaration.
@@ -1216,10 +1186,10 @@ void Bar(void)
 ```
 
 It should be changed to:   
-a.c content
+Content of **a.c**:
 
 ```c
-#include "b.h"      // Good: Use the interface providing the interface.
+#include "b.h"      // Good: Use the interfaces provided by another .c file by including the header file.
 void Bar(void)
 {
     int i = Foo();
@@ -1227,13 +1197,13 @@ void Bar(void)
 }
 ```
 
-b.h content
+Content of **b.h**:
 
 ```c
 int Foo(void);
 ```
 
-b.c content
+Content of **b.c**:
 
 ```c
 int Foo(void)
@@ -1243,18 +1213,18 @@ int Foo(void)
 ```
 
 In some scenarios, if internal functions need to be referenced with no intrusion to the code, the extern declaration mode can be used.   
-For example:   
+Example:
 When performing unit testing on an internal function, you can use the extern declaration to reference the tested function.  
 When a function needs to be stubbed or patched, the function can be declared using extern.
 
-### <a name="r4-4"></a>Rule 4.4 Do not include header files in extern "C".
+### <a name="r4-6"></a>Rule 4.4 Do not include header files in extern "C".
 
-If a header file is included in extern "C", extern "C" may be nested. Some compilers restrict the nesting of extern "C". If there are too many nested layers, compilation errors may occur.
+If a header file is included in extern "C", extern "C" may be nested. Some compilers restrict the number of nesting layers of extern "C". Too many nesting layers may cause compilation errors.
 
-extern "C" usually occurs in mixed programming using both C and C++. If the extern "C" includes a header file, the original intent behind the header file may be hindered. For example, when the linkage specifications are modified incorrectly.
+extern "C" usually occurs in mixed programming using both C and C++. If extern "C" includes a header file, the original intent behind the header file may be hindered, for example, when linkage specifications are changed incorrectly.
 
-For example, assume that there are two header files a.h and b.h.   
-a.h content
+Assume that there are two header files: **a.h** and **b.h**.
+Content of **a.h**:
 
 ```c
 ...
@@ -1266,7 +1236,7 @@ void A(int)
 #endif
 ```
 
-b.h content
+Content of **b.h**:
 
 ```c
 ...
@@ -1282,7 +1252,7 @@ void B(void);
 #endif
 ```
 
-Using the C++ preprocessor to expand b.h, the following information is displayed:
+When you use the C++ preprocessor to expand **b.h**, the following information is displayed:
 
 ```c
 extern "C" {
@@ -1291,42 +1261,42 @@ extern "C" {
 }
 ```
 
-In the a.h file, the function Foo is intended to be a C++ free function following the C++ specifications. However, in the b.h file, because `#include "a.h"` is placed inside `extern "C"`, the linking specification of function Foo is changed incorrectly.
+In the **a.h** file, the **Foo** function is intended to be a C++ free function following the C++ specifications. However, in the **b.h** file, because `#include "a.h"` is placed inside `extern "C"`, the linking specification of the **Foo** function is changed incorrectly.
 
-Exception: In the C++ compilation environment, if you want to reference a header file written in pure C, a non-intrusive approach is to exclude the C header file from `extern "C"`.
+Exceptions: In the C++ compilation environment, if you want to reference a header file written in pure C, a non-intrusive approach is to exclude the C header file from `extern "C"`.
 
 # <a name="c5"></a>5 Functions
 
-Functions help avoid repeated code and increase reusability. In addition, functions act to layer code and reduce code complexity, hiding implementation details, making programs more modular, and facilitating reading and maintenance.
+Functions help avoid repeated code and increase reusability. Functions are layered to reduce complexity and hide implementation details, making programs more modular and facilitating code reading and maintenance.
 
-The function should be concise and short.   
+Functions should be concise and short.
 One function completes only one thing.
 
 ## <a name="c5-1"></a>Function Design
 
-Writing clean functions and organizing code effectively is the essence of good function design. The code should be simple and not conceal the designer's intention, using clean abstractions and straightforward control statements to organize the function naturally.
+The essence of function design is to write clean functions and organize code effectively.The code should be simple and not conceal the designer's intention, using clean abstractions and straightforward control statements to organize the function naturally.
 
-### <a name="r5-1"></a>Rule 5.1 Avoid long functions and ensure that functions contain no more than 50 lines (not including blank lines and comments).
+### <a name="r5-1"></a>Rule 5.1 Avoid long functions and ensure that functions contain no more than 50 lines (excluding blank lines and comments).
 
-A function should fit on one screen, (be no longer than 50 lines), do only one thing, and do it well.
+A function should be able to be displayed on one screen (fewer than 50 lines). It does only one thing and does it well.
 
-Large functions are often caused by the fulfillment of more than one purpose by the function, or over complication when parts could be abstracted.
+A long function usually means that it aims to implement complex functionalities or contains excess details.
 
-Exception:   
+Exceptions:
 Considering the code's aggregation and functionality, some functions may exceed 50 lines, but only if the code is readable and concise.   
 These exceptions should be minimal, such as specific algorithm processing.
 
 Even if a large function works well in the moment, once someone modifies it, new problems may occur. It may even cause bugs that are difficult to discover.   
-It is recommended that you split it into several simpler and easier to manage functions, facilitating reading and modification of code.
+It is recommended that you split the code into several functions that are simpler and easier to manage so that others can easily read and modify the code.
 
 ### <a name="r5-2"></a>Rule 5.2 Avoid nesting a code block more than four times within a function.
 
-The nested code block depth of a function refers to the layered depth of a code control block (created by statements such as: if, for, while, and switch).   
-Each layer of nesting increases the brain power required to read the code, because you need to maintain a "stack" in your mind comprised of each conditional statement, loop, and so on.   
-Code should be broken down functionally to prevent the reader from remembering too much context at a time.
+The nested code block depth of a function refers to the layered depth of a code control block (created by statements such as `if`, `for`, `while`, and `switch`).
+Each layer of nesting increases the difficulty in reading the code.
+Further functional decomposition should be done for better understanding.
 
-Using `guardian statements`, (a short conditional return), can effectively reduce the nesting layers of if statements. For example:   
-The original code nesting level is 3:
+Using `guard clauses` can effectively reduce the nesting layers of the `if` statements. Example:
+Three nesting layers are used originally:
 
 ```c
 int Foo(...)
@@ -1341,7 +1311,7 @@ int Foo(...)
 }
 ```
 
-Refactored code using the `guardian statement`, the nesting level is 2:
+Two nesting layers after code reconstruction using `guard clauses`:
 
 ```c
 int Foo(...)
@@ -1359,8 +1329,8 @@ int Foo(...)
 }
 ```
 
-Exception:   
-Considering the code's aggregation and functionality, some functions may exceed 4 times nested, but only if the code is readable and concise.   
+Exceptions:
+Considering the code's aggregation and functionality, some functions may contain 4 or more nesting layers, but only if the code is readable and concise.
 These exceptions should be rare.
 
 ### <a name="a5-1"></a>Rec 5.1 Process all returned error codes.
@@ -1371,7 +1341,7 @@ Example:
 
 ```c
 char fileHead[128];
-ReadFileHead(fileName, fileHead, sizeof(fileHead)); // Bad: The returned value is not checked.
+ReadFileHead(fileName, fileHead, sizeof(fileHead)); // Bad: The return value is not checked.
 
 DealWithFileHead(fileHead, sizeof(fileHead));       // The 'fileHead' is possibly invalid.
 ```
@@ -1388,7 +1358,7 @@ if (ret != OK) {                // Good: Ensure that the 'fileHead' is written.
 DealWithFileHead(fileHead, sizeof(fileHead));       // Process the file header.
 ```
 
-Note that when the return value of a function is ignored and instead void is returned frequently, consider whether the return value of the function is designed reasonably.   
+If the return value of a function is ignored and `void` is returned frequently, check whether the return value of the function is designed properly.
 Only if the caller of a function really doesn't need a return value, should you design the function to return `void`.
 
 ## <a name="c5-2"></a>Function Parameters
@@ -1397,14 +1367,26 @@ Only if the caller of a function really doesn't need a return value, should you 
 
 Using return values rather than output parameters improves readability and usually provides the same or better performance.
 
-Readability can be improved by naming functions such as GetXxx, FindXxx, or directly using a single noun, to directly return the corresponding object.
+Readability can be improved by naming functions such as GetXxx, FindXxx, IsXxx, OnXxx, or directly using a single noun, to directly return the corresponding object.
 
-### <a name="a5-3"></a>Rec 5.3 Use strongly typed parameters and avoid using void\*
+Exceptions:
+1. When multiple values are returned, you can design an output parameter for the function.
+2. If memory allocation is involved, you can design an output parameter. The caller passes the allocated memory as an output parameter, and memory allocation is not performed in the function.
+
+### <a name="a5-3"></a>Rec 5.3 Define function parameters in the sequence of input, output, and input/output parameters.
+
+You are advised to define function parameters in the sequence of input, output, and input/output parameters.
+
+### <a name="r5-3"></a>Rule 5.3 Provide a release function if allocation of resources, such as memory, locks, and queues, is involved.
+
+Resources should be released from where they are applied for. If a function applies for resources, the module must provide resource functions.
+
+### <a name="a5-4"></a>Rec 5.4 Use strongly typed parameters. Do not use void\*.
 
 While different languages have their own views on strong typing and weak typing, it is generally believed that C/C++ is a strongly typed language. Since we use such a strongly typed language, we should keep this style.   
 The advantage of this strongly typed style is to prevent evasive errors by catching errors at the compilation stage.
 
-Strong types help the compiler find more errors for us. Pay attention to the usage of the `FooListAddNode` function in the following code:
+Strong types help the compiler find more errors.Pay attention to the usage of the `FooListAddNode` function in the following code:
 
 ```c
 struct FooNode {
@@ -1429,7 +1411,7 @@ void MakeTheList(...)
     BarNode *bar;
     ...
 
-    FooListAddNode(bar);        // Wrong: In this example, the foo parameter was supposed to be passed, but the bar parameter is incorrectly passed instead. No error is reported immediately and issues may occur as a result.
+    FooListAddNode(bar);        // Wrong: In this example, the bar parameter rather than the foo parameter is passed.No error is reported immediately and issues may occur as a result.
 }
 
 ```
@@ -1444,14 +1426,14 @@ void FooListAddNode(FooNode *foo)
 }
 ```
 
-Exception: For some generic interfaces, you can use the input parameter `void *` to pass different types of pointers.
+Exceptions: For some generic interfaces, you can use the input parameter `void *` to pass different types of pointers.
 
-### <a name="a5-4"></a>It is the caller's responsibility to check the validity of internal function parameters of a module.
+### <a name="a5-5"></a>Rec 5.5 It is the caller's responsibility to check the validity of internal function parameters of a module.
 
-Validity checks must be performed on data received from external modules to protect programs against illegal input.   
+Validity check must be performed on parameters passed from external modules to protect programs from being damaged by invalid input data.
 When calling internal functions, by default, the caller is responsible for ensuring the validity of any returned data. If the callee takes responsibility for checking data validity, checks may be performed multiple times and redundant code is generated. This is not concise.
 
-The caller ensures the validity of any received data. This type of contractual programming can make logic simpler and code more readable.   
+When the caller ensures the validity of any received data, this contractual programming makes logic simpler and code more readable.
 Example:
 
 ```c
@@ -1460,7 +1442,7 @@ int SomeProc(...)
     int data;
     
     bool dataOK = GetData(&data);       // Get data.
-    if (!dataOK) {                      // Check the result of the previous step ensuring data validity.
+    if (!dataOK) {                      // Check the result of the previous step to ensure data validity.
         return -1;
     }
 
@@ -1470,7 +1452,7 @@ int SomeProc(...)
 
 void DealWithData(int data)
 {
-    if (data < MIN || data > MAX) {     // Bad: The caller has already ensured the validity of the data.
+    if (data < MIN || data > MAX) {     // Bad: The caller has already ensured data validity.
         return;
     }
 
@@ -1478,7 +1460,7 @@ void DealWithData(int data)
 }
 ```
 
-### <a name="a5-5"></a>Rec 5.5 The pointer argument of a function should be declared as 'const' if it is not used to modify the pointed object.
+### <a name="a5-5"></a>Rec 5.5 Declare the pointer argument of a function as 'const' if it is not used to modify the pointed object.
 
 The const pointer argument, which restricts the function from modifying the object through the pointer, makes code stronger and safer.
 
@@ -1488,9 +1470,9 @@ Example: In the example of the strncmp in the 7.21.4.4 of the C99 standard, the 
 int strncmp(const char *s1, const char *s2, size_t n); // Good: The invariant parameter is declared as const.
 ```
 
-Note: Whether or not the pointer parameter is to be declared as 'const' depends on the function design, not on whether there is a "modify object" action in the function entity.
+Note: Whether to declare the pointer parameter as `const` depends on the function design, but not on whether there is a "modify object" action in the function entity.
 
-### <a name="a5-6"></a>Rec 5.6 Ensure that the number of parameters in a function is less than or equal to 5.
+### <a name="a5-6"></a>Rec 5.6 Include no more than 5 parameters in a function.
 
 If a function has too many parameters, the function is easy to be affected by changes in external code, hindering maintenance. Too many function parameters will also increases the workload for testing.
 
@@ -1503,18 +1485,18 @@ The number of parameters in a function must not exceed 5. If the number of param
 
 An inline function is a function optimization method introduced by C99. Function inlining can eliminate the overhead of function calls; thanks to inlining, combination with the called code is implemented, so that the compiler can achieve further code optimization from a larger perspective. The inline function is similar to a function-like macro. For details, see [Rec 6.1](#a6-1).
 
-### <a name="a5-7"></a>Rec 5.7 Ensure that the inline function contains no more than 10 lines (non-blank and non-comment).
+### <a name="a5-7"></a>Rec 5.7 Include no more than 10 lines in an inline function (excluding blank lines and comments).
 
-Defining a function as an inline function generally aims to improve performance, but it does not always improve performance. If the function body is short, function inlining can effectively reduce the size of the target code and improve the function execution efficiency.   
+Defining a function as an inline function generally aims to improve performance, though it may fail to do so.If the function body is short, function inlining can effectively reduce the size of the target code and improve the function execution efficiency.   
 Vice versa, if the function body is large, inlining will cause expansion of the target code, especially when there are many call points.   
 It is recommended that inline functions be controlled to within **10** lines.
 
-Do not abuse inline functions to improve performance. Avoid premature optimization. In general, a function can be defined as an inline function only when actual test data proves that the inlining achieves higher performance. Functions such as setter and getter functions, that are short and called frequently can be defined as inline functions.
+Do not abuse inline functions to improve performance. Avoid premature optimization. In general, a function can be defined as an inline function only when actual test data proves that the inlining achieves higher performance. Functions such as setter and getter functions, which are short and called frequently, can be defined as inline functions.
 
 ### <a name="r5-3"></a>Rule 5.3 Define inline functions that will be called by multiple source files in the header file.
 
 Inline functions are unfolded in compilation. Therefore, the inline function definition must be visible in each source file that calls this function.   
-As shown in the following code, inline.h has only the declaration of the `SomeInlineFunc` function but no definition. The other.c file includes inline.h. As a result, inlining fails when `SomeInlineFunc` is called.
+As shown in the following code, **inline.h** contains the declaration of the `SomeInlineFunc` function but not the definition. The **other.c** file includes **inline.h**. As a result, inlining fails when `SomeInlineFunc` is called.
 
 inline.h
 
@@ -1541,7 +1523,7 @@ int OtherFunc(void)
 }
 ```
 
-Due to this restriction, if multiple source files need to call the same inline function, the definition of the inline function needs to be placed in the header file.   
+Due to this restriction, if multiple source files need to call the same inline function, the definition of the inline function must be placed in the header file.
 The inline function implementation in **gnu89** differs from that in the **C99** standard. For compatibility, you can declare the function as **static inline**.
 
 # <a name="c6"></a>6 Macros
@@ -1560,17 +1542,17 @@ A function-like macro is a macro (as shown in the following example) similar to 
 } while (0)
 ```
 
-### <a name="a6-1"></a>Use functions instead of function-like macros.
+### <a name="a6-1"></a>Rec 6.1 Use functions instead of function-like macros.
 
-Before defining a function-like macro, consider whether it can be replaced with a function. If so, you are advised to replace macros with functions.   
+Before defining a function-like macro, consider whether it can be replaced with a function. If yes, you are advised to use a function for replacement.   
 The disadvantages of the function-like macro are as follows:
 
 - Function-like macros haves no type check, which is not as strict as the function call check. For the example code, see [Below](#macro_lack_of_type_check__example).
 - If macro parameters are not calculated during macro expansion, unexpected results may be generated. For details, see [Rule 6.1](#r6-1) and [Rule 6.3](#r6-3).
-- The macro has no independent scope. When it is used together with control flow statements, unexpected results described in [Rule 6.2](#r6-2) may be generated.
-- There are high skill requirements on the proper use of macros (see the following rules), for example, the usage of `#` and parentheses affects readability.
+- A macro has no independent scope. When it is used together with control flow statements, unexpected results described in [Rule 6.2](#r6-2) may be generated.
+- There are high skill requirements on the proper use of macros (for example, the usage of `#` and wide use of parentheses), which reduces readability.
 - Extensions of some macros can only be implemented by specific compilers in specific scenarios, such as `statement expression` of `gcc`, reducing the portability.
-- After the macro is expanded at the pre-compilation stage, it is invisible during subsequent compilation, linking, and debugging. Macros that contain multiple lines are expanded into a line. Function-like macros are difficult to debug, interrupt, and locate in the case of bugs.
+- After the macro is expanded during precompilation, it is invisible during subsequent compilation, linking, and debugging. Besides, macros that contain multiple lines are expanded into a line.
 - Macros containing a large number of statements must be expanded at each call point. If there are many call points, the code will be expanded.
 
 <a name="macro_lack_of_type_check__example"></a>Example code of a function-like macro lacking type check:
@@ -1601,19 +1583,19 @@ MACRO: max of a(1) and b(-1) is -1
 FUNC : max of a(1) and b(-1) is 1
 ```
 
-The function does not have the preceding macro disadvantages. However, compared with macros, the biggest disadvantage is that the execution efficiency is not as high (increasing the overhead of function calls and the difficulty of compiler optimization).   
+The function does not have the preceding macro disadvantages. However, compared with macros, the biggest disadvantage of functions is its low execution efficiency (increasing the overhead of function calls and the difficulty of compiler optimization).
 Therefore, the C99 standard introduces inline functions (gcc introduces inline functions ahead of this standard).
 
 The inline function is similar to the macro, as it is also expanded at the call point. The difference is that inline functions are expanded during compilation.   
 Inline functions have the advantages of both functions and macros:
 
 - Strict type checking is performed for inline functions and functions.
-- The parameter of an inline function/function is calculated only once.
+- Each input parameter of an inline function or function is calculated only once.
 - Inline functions are unfolded in place and there is no overhead for function calls.
 - Inline functions are better optimized than standard functions.
 
 For performance-sensitive code, consider using inline functions instead of function-like macros.   
-Functions and inline functions cannot completely replace function-like macros, because function-like macros are more suitable for certain scenarios.   
+Functions and inline functions cannot completely replace function-like macros, since function-like macros are more suitable for certain scenarios.
 For example, in a log scenario, using a function-like macro with variable parameters and default parameters is more convenient.
 
 ```c
@@ -1621,7 +1603,7 @@ int ErrLog(const char *file, unsigned long line, const char *fmt, ...);
 #define ERR_LOG(fmt, ...) ErrLog(__FILE__, __LINE__, fmt, ##__VA_ARGS__)
 ```
 
-### <a name="r6-1"></a>Rule 6.1 When a macro is defined, macro parameters must use complete parentheses.
+### <a name="r6-1"></a>Rule 6.1 Use complete parentheses for macro parameters when defining a macro.
 
 The macro parameter is replaced by text only when the macro is expanded. The value is calculated when the macro is compiled. After the text replacement, the statements contained in the macro are combined with called code.   
 The expression after combination may result in a different result than expected, especially when the macro parameter is in an expression.
@@ -1629,7 +1611,7 @@ The expression after combination may result in a different result than expected,
 The following is an incorrect format:
 
 ```c
-#define SUM(a, b) a + b         // Bad.
+#define SUM(a, b) a + b         // Bad
 ```
 
 When the macro is used, the execution result is inconsistent with the expected result.   
@@ -1637,7 +1619,7 @@ When the macro is used, the execution result is inconsistent with the expected r
 This problem can be solved by adding parentheses to the entire expression, as shown in the following:
 
 ```c
-#define SUM(a, b) (a + b)       // Bad.
+#define SUM(a, b) (a + b)       // Bad
 ```
 
 However, this method has the following problems:   
@@ -1646,7 +1628,7 @@ However, this method has the following problems:
 To solve this problem, add parentheses to each macro parameter, as shown in the following:
 
 ```c
-#define SUM(a, b) (a) + (b)     // Bad.
+#define SUM(a, b) (a) + (b)     // Bad
 ```
 
 The third scenario is as follows: `SUM(2, 8) * 10` . The result after the extension is `(2) + ((8) * 10)`, which is inconsistent with the expected result `(2 + 8) * 10`.
@@ -1657,7 +1639,7 @@ In conclusion, the correct format is as follows:
 #define SUM(a, b) ((a) + (b))   // Good.
 ```
 
-But avoid abusing parentheses. As shown in the following, adding parentheses to a single identifier or a positive number is meaningless.
+Avoid abusing parentheses. As shown in the following, adding parentheses to a single identifier or a positive number is meaningless.
 
 ```c
 #define SOME_CONST      100     // Good: No parentheses needed for a single positive number.
@@ -1668,8 +1650,8 @@ But avoid abusing parentheses. As shown in the following, adding parentheses to 
 
 Notes:
 
-- Macro parameters in '#', '##' operation do not need parentheses.
-- Macro parameters which participating in string splicing do not need parentheses.
+- Do not add parentheses to macro parameters when they are involved in the '#' or '##' operation.
+- Do not add parentheses to macro parameters when they are used for string concatenation.
 - If a macro parameter is used as a separate part in one side of an assignment expression (including +=, -=, etc.), parentheses are not required.
 - If a macro parameter is used as a separate part in comma expressions, functions or macro call lists, parentheses are not required.
 
@@ -1680,25 +1662,25 @@ Example:
 
 #define HELLO_STR(obj) "Hello, " obj    // No parentheses for 'obj'
 
-#define ADD_3(sum, a, b, c) (sum = (a) + (b) + (c)) // 'a', 'b', and 'c' need parentheses, while 'sum' does not.
+#define ADD_3(sum, a, b, c) (sum = (a) + (b) + (c)) // 'a', 'b', and 'c' need parentheses, whereas 'sum' does not.
 
-#define FOO(a, b) Bar((a) + 1, b)       // 'a' needs parentheses, while 'b' does not.
+#define FOO(a, b) Bar((a) + 1, b)       // 'a' needs parentheses, whereas 'b' does not.
 ```
 
-### <a name="r6-2"></a>Rule 6.2 Implementation statements of function-like macros that contain multiple statements must be placed in a do-while(0).
+### <a name="r6-2"></a>Rule 6.2 Place implementation statements of function-like macros that contain multiple statements in a `do-while(0)`.
 
-Macros do not have code blocks. Macros do not have code blocks. When a macro is expanded at the call point, the expressions and variables defined in the macro are integrated into the calling code. As a result, variable name conflict and segmentation of macro statements may occur. Use do-while(0) to add a boundary to the macro so that the macro has an independent scope. In addition, a single statement can be formed by combining the macro with a semicolon (;) to avoid this problem.
+Macros do not have code blocks. When a macro is expanded at the call point, the expressions and variables defined in the macro are integrated into the calling code. As a result, variable name conflict and segmentation of macro statements may occur. Use `do-while(0)` to add a boundary to the macro so that the macro has an independent scope. In addition, a single statement can be formed by combining the macro with a semicolon (;) to avoid this problem.
 
-The following macro is incorrect:
+Incorrect example:
 
 ```c
-// Not Good.
+// Not Good
 #define FOO(x) \
     (void)printf("arg is %d\n", (x)); \
     DoSomething((x));
 ```
 
-When the macro is called as shown in the following example code, the for loop only executes the first statement of the macro, and the next statement of the macro is executed only after the loop ends.
+When the macro is called as shown in the following example code, the `for` loop only executes the first statement of the macro, and the next statement of the macro is executed only after the loop ends.
 
 ```c
 for (i = 1; i < 10; i++)
@@ -1724,21 +1706,21 @@ else
     FOO(20);
 ```
 
-The correct format is to wrap the executed body using a do-while(0), as shown in the following:
+The correct format is to wrap the executed body using a `do-while(0)`, as shown in the following:
 
 ```c
-// Good.
+// Good
 #define FOO(x) do { \
     (void)printf("arg is %d\n", (x)); \
     DoSomething((x)); \
 } while (0)
 ```
 
-Exception:
+Exceptions:
 
 - Macros that contain 'break' or 'continue' statements can be treated as exceptions. Do use these macros carefully.
-- An exception can be made when the macro contains an incomplete statement. For example, use a macro to encapsulate the conditional part of the for loop.
-- An exception can be a non-multiple statement, or a single if/for/while/switch statement.
+- An exception can be made when the macro contains an incomplete statement. For example, use a macro to encapsulate the conditional part of the `for` loop.
+- An exception can be a non-multiple statement, or a single `if`, `for`, `while`, or `switch` statement.
 
 ### <a name="r6-3"></a>Rule 6.3 Do not pass expressions with side effects to a function-like macro.
 
@@ -1765,11 +1747,11 @@ a++; // Result: a = 6, which is added only once.
 In addition, if the macro parameter contains a function call, the function may be called repeatedly after the macro is expanded.   
 If the function execution results are the same, it is a waste; if the results are different, the execution result may not meet the expected value.
 
-### <a name="a6-2"></a>Rec 6.2 Exercise caution when you use the statements such as return, goto, continue, and break in a function-like macro definition.
+### <a name="a6-2"></a>Rec 6.2 Exercise caution when you use the statements such as `return`, `goto`, `continue`, and `break` in a function-like macro definition.
 
-In a macro, the process changing statements, such as return, goto, continue, and break. While they can simplify the code, they hide the real process, which hinders understanding and causes resource leakage.
+Although process changing statements, such as `return`, `goto`, `continue`, and `break`, in a macro can simplify the code, they hide the real process, which hinders understanding and easily causes resource leakage.
 
-First, the macro encapsulation of the statement 'return' can easily lead to excessive encapsulation and use.   
+First, the macro encapsulation of the `return` statement can easily lead to excessive encapsulation and use.
 As shown in the following code, the judgment of `status` is a part of the main process. After being encapsulated in macros, the purpose is not intuitive. The `RETURN_IF` macro is ignored, causing a confused understanding.
 
 ```c
@@ -1787,15 +1769,15 @@ As shown in the following code, the judgment of `status` is a part of the main p
 } while (0)
 
 ret = InitModuleA(a, b, &status);
-LOG_AND_RETURN_IF_FAIL(ret, "Init module A failed!"); // OK.
+LOG_AND_RETURN_IF_FAIL(ret, "Init module A failed!"); // OK
 
 RETURN_IF(status != READY, ERR_NOT_READY);  // Bad: The most important logic is not obvious.
 
 ret = InitModuleB(c);
-LOG_AND_RETURN_IF_FAIL(ret, "Init module B failed!"); // OK.
+LOG_AND_RETURN_IF_FAIL(ret, "Init module B failed!"); // OK
 ```
 
-Second, if return is encapsulated in a macro, it may also cause a memory leak. Example is as follows:
+Second, if `return` is encapsulated in a macro, it may also cause a memory leak. Example:
 
 ```c
 #define CHECK_PTR(ptr, ret) do { \
@@ -1813,17 +1795,17 @@ mem2 = MemAlloc(...);
 CHECK_PTR(mem2, ERR_CODE_XXX);  // Wrong: Memory leak.
 ```
 
-If `mem2` fails to apply for memory, the `CHECK_PTR` will return a message instead of releasing `mem1`.   
+If `mem2` fails to apply for memory, `CHECK_PTR` will return a message instead of releasing `mem1`.
 Besides, the name of the `CHECK_PTR` macro is not good. The macro name only reflects the check action and does not specify the result. Readers can see that a failure is returned when the pointer is null only after viewing the macro implementation. It's not inherently obvious.
 
-In summary: It is not recommended to encapsulate statements that change control flow, such as return, goto, continue, and break in macro definitions.  
-However, these macros can be used such as return value judgment as an exception.
+In summary, it is not recommended to encapsulate process changing statements, such as `return`, `goto`, `continue`, and `break`, in macro definitions.
+However, these macros can be used in special scenarios, such as return value judgment.
 
-Note: **Macro names must contain descriptive keywords if statements that will change control flow such as return, goto, continue, and break are used.**
+Note: **Macro names must contain descriptive keywords if process changing statements, such as `return`, `goto`, `continue`, and `break`, are used.**
 
-### <a name="a6-3"></a>Rec 6.3 Ensure that function-like macros contain no more than 10 lines (not including blank lines and comments).
+### <a name="a6-3"></a>Rec 6.3 Include no more than 10 lines in a function-like macro (excluding blank lines and comments).
 
-A big problem of the function-like macro is that it is more difficult to debug and locate than the function, especially when the macro is too long.   
+A function-like macro is more difficult to debug and locate than a function, especially when the macro is too long.
 Macro expansion will also lead to more compiled code. It is recommended that function-like macros contain no more than 10 lines.
 
 # <a name="c7"></a>7 Variables
@@ -1887,7 +1869,7 @@ For example, the PCLint tool reports a warning for the following two examples.
 
 ### <a name="r7-3"></a>Rule 7.3 Forbid invalid and redundant variable initialization.
 
-If the initial value is not determined before initialization is performed, it is not concise but not secure, which may introduce problems that are more difficult to discover.
+If the initial value is not determined before initialization is performed, it is not concise or secure and may cause problems that are more difficult to discover.
 
 Common redundant initialization:
 
@@ -1940,7 +1922,7 @@ The C99 does not limit the definition position of local variables to before the 
 This concise approach not only limits the scope of the variable scope, but also solves the problem of how to initialize the variable when it is defined.   
 If this compilation environment is supported, you are advised to define local variables in this way.
 
-**Exception:**   
+**Exceptions:**
 **As 'Secure Coding Standard' required, pointers, resource variables, and boolean variables can be treated as exceptions of this rule.**
 
 ### <a name="r7-4"></a>Rule 7.4 Do not use magic numbers.
@@ -1978,9 +1960,9 @@ There are special cases: for example, the expression `if (MIN < v && v < MAX)` i
 
 You do not need to worry about accidentally writing '==' as '=' because a compilation alarm will be generated for `if (v = MAX)` and an error will be reported by other static check tools. Use these tools to solve such writing errors and ensure that that code is readable.
 
-### <a name="r8-1"></a>A full expression containing an increment (++) or decrement (--) operator should have no other using of the variable.
+### <a name="r8-1"></a>Do not reference a variable again in an expression containing an increment (++) or decrement (--) operator.
 
-In an expression containing a variable increment or decrement operation, if the variable is referenced again, the result is not explicitly defined in the C standard, which may vary between compilers or different versions of the same compiler.   
+In an expression containing a variable increment or decrement operator, if the variable is referenced again, the result is not explicitly defined in the C standard, which may vary between compilers or different compiler versions. 
 For better portability, you should not make any assumptions about the operation sequence not defined in any standards.
 
 Note that this problem cannot be solved by using parentheses because it is not a problem of priority.
@@ -2024,12 +2006,12 @@ c = (a & 0xFF) + b;     /* Parentheses are required while using bit operators. *
 
 ## <a name="c8-2"></a>Statements
 
-### <a name="r8-2"></a>Rule 8.2 The switch statement must have a 'default' branch.
+### <a name="r8-2"></a>Rule 8.2 Provide a 'default' branch for the `switch` statement.
 
 In most cases, the 'default' branch exists in the switch statement to ensure that there is a default processing action when the case tag is missing.
 
-Exception:   
-If the switch condition variable is of the enumeration type and the case branches cover all values, then the default branch is redundant.   
+Exceptions:
+If the switch condition variable is of the enum type and the case branches cover all values, then the default branch is redundant.   
 A modern compiler can check whether the case branch of some enumerated values is missing in the switch statement. A warning will be displayed.
 
 ```c
@@ -2050,11 +2032,11 @@ switch (color) {
 }
 ```
 
-### <a name="a8-3"></a>Rec 8.3 Exercise caution when using the goto statement.
+### <a name="a8-3"></a>Rec 8.3 Exercise caution when using the `goto` statement.
 
-The goto statement destroys the structure of the program, so you'd better not use the goto statement unless you really need it. You can only jump to statements following the goto statement, and only within the one function.
+The `goto` statement destroys the program. Avoid using it if possible. You can only jump to statements following the `goto` statement, and only within the one function.
 
-The goto statement is used to implement function return to a single point within a function.   
+The `goto` statement is used to implement function return to a single point within a function.
 If a function has a large number of identical logics that cannot be encapsulated, for example, repeated file execution, the processed part of code after the file operation failure (for example, closing the file handle and releasing memory that is dynamically applied for) is usually placed in the last part of the function body. And the goto statement is placed right before these. In this way, the code becomes clear and concise. It can also be encapsulated in functions or macros, but doing so makes code less straightforward.
 
 Example:

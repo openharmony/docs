@@ -6,6 +6,8 @@
 
 ## 文档目录结构
 
+[访问官网](https://www.openharmony.cn/)
+
 [中文文档](zh-cn/readme.md)
 
 [English Documentation](en/readme.md)
@@ -26,7 +28,7 @@ master：最新开发版本。
 
 OpenHarmony_v1.x_release：OpenHarmony 1.1.2 LTS稳定版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v1.1.2-LTS.md)。
 
-[了解更多版本详情](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/)。
+[了解更多版本详情](zh-cn/release-notes/)。
 
 
 

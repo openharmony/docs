@@ -1,4 +1,4 @@
-# Development Board Porting
+# Introduction
 OpenHarmony has organized a Special Interest Group (SIG) [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md) to provide support for third-party development boards.
 
 Before learning about how to port the code of a development board, take a look at the device classification on OpenHarmony. The porting methods vary according to the device type.
@@ -9,7 +9,7 @@ Before learning about how to port the code of a development board, take a look a
 | Small-system devices| Memory > 1 MB, with MMU| LiteOS-A and Linux|
 | Standard-system devices| Memory > 128 MB|  Linux       |
 
-## Code Preparation
+# Code Preparation
 
 OpenHarmony has created repositories for vendors in openharmony-sig. To participate in the repository development, you need to use the following method to initialize and download the code.
 
@@ -19,7 +19,7 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 
 The download steps for other resources are the same as those in the mainline version.
 
-## Porting Procedure
+# Porting Procedure
 
 - [Mini System SoC Porting Guide](porting-minichip.md)
   - [Porting Preparations](porting-chip-prepare.md)
@@ -34,6 +34,7 @@ The download steps for other resources are the same as those in the mainline ver
     - [Board-Level Driver Adaptation](porting-chip-board-driver.md)
     - [Implementation of APIs at the HAL](porting-chip-board-hal.md)
     - [System Modules](porting-chip-board-component.md)
+    - [lwIP Module Adaptation](porting-chip-board-lwip.md)
     - [Third-party Module Adaptation](porting-chip-board-bundle.md)
     - [XTS](porting-chip-board-xts.md)
   - [FAQ](porting-chip-faqs.md)
@@ -48,11 +49,10 @@ The download steps for other resources are the same as those in the mainline ver
     - [Overview](porting-smallchip-driver-overview.md)
     - [Platform Driver Porting](porting-smallchip-driver-plat.md)
     - [Device Driver Porting](porting-smallchip-driver-oom.md)
-- [Standard System Porting Guide](standard-system-porting-guide.md)
-- [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting-linux-kernel-overview.md)
-
-# Third-Party Library Porting Guide
-
-- [Overview](porting-thirdparty-overview.md)
-- [Porting a Library Built Using CMake](porting-thirdparty-cmake.md)
-- [Porting a Library Built Using Makefile](porting-thirdparty-makefile.md)
+- Standard System SoC Porting Guide
+    - [Standard System Porting Guide](standard-system-porting-guide.md)
+    - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting-linux-kernel.md)
+- [Third-Party Library Porting Guide for Mini and Small Systems](porting-thirdparty.md)
+    - [Overview](porting-thirdparty-overview.md)
+    - [Porting a Library Built Using CMake](porting-thirdparty-cmake.md)
+    - [Porting a Library Built Using Makefile](porting-thirdparty-makefile.md)

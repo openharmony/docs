@@ -1,3 +1,11 @@
+ ### 0.0.7 (2022/01/11)
+
+Added the installation of genext2fs and liblz4-tool.
+
+ ### 0.0.6 (2022/01/04)
+
+Added the installation of hb.
+
  ### 0.0.5 (2021/10/28)
 
 Added the installation of tar, binutils, git-lfs, gnutls-bin, python3.8, python3-pip, and cpio.

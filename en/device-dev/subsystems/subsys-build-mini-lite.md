@@ -156,7 +156,7 @@ Observe the following rules when building the  **BUILD.gn**  module:
 -   Define macros in the  **OHOS\_**\{_SUBSYSTEM_\}**\_**\{_MODULE_\}**\_**\{_FEATURE_\} format.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >GN is used as the build script language for modules. For details about how to use GN, see the  [GN Quick Start Guide](https://gn.googlesource.com/gn/+/master/docs/quick_start.md). In GN, a module is a build target, which can be a static library, a dynamic library, an executable file, or a group.
+    >GN is used as the build script language for modules. For details about how to use GN, see https://gn.googlesource.com/gn/+/master/docs/quick_start.md. In GN, a module is a build target, which can be a static library, a dynamic library, an executable file, or a group.	
 
 
 The following example shows how to build the  **foundation/graphic/ui/BUILD.gn**  file for a graphics UI module:
@@ -338,6 +338,8 @@ The key directories and files are described as follows:
     ```
     {
     	"product_name": "ipcamera",                       # Product name
+		"version": "3.0",                                 # config.json version, which is 3.0
+        "type": "small",                                  # System type, which can be mini, small, or standard
     	"ohos_version": "OpenHarmony 1.0",                # OS version
     	"device_company": "hisilicon",                    # Chipset vendor
     	"board": "hispark_taurus",                        # Name of the development board
@@ -695,6 +697,8 @@ You can use the Compilation and Building subsystem to customize product solution
     ```
     {
         "product_name": "wifiiot",                        # Product name
+        "version": "3.0",                                 # config.json version, which is 3.0
+        "type": "small",                                  # System type, which can be mini, small, or standard
         "ohos_version": "OpenHarmony 1.0",                # OS version
         "device_company": "realtek",                      # Name of the chipset solution vendor
         "board": "rtl8720",                               # Name of the development board
@@ -925,7 +929,7 @@ You can use the Compilation and Building subsystem to customize product solution
 -   **Solution**
 
     ```
-    ​sudo apt-get install dosfstools mtools
+    sudo apt-get install dosfstools mtools
     ```
 
 
@@ -993,5 +997,4 @@ You can use the Compilation and Building subsystem to customize product solution
     sudo rm -rf /bin/sh
     sudo ln -s /bin/bash /bin/sh
     ```
-
 

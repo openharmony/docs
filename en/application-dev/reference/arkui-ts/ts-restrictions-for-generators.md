@@ -17,7 +17,7 @@ build() {
     console.log(`a: ${a}`) // invalid: console.log only allowed in first line of build
     Column() {
         Text('Hello ${this.myName.toUpperCase()}') // ok.
-        ForEach(this.arr.reverse(), ..., ...) // invalid: Array.reverse modifies the @State array varible in place
+        ForEach(this.arr.reverse(), ..., ...) // invalid: Array.reverse modifies the @State array variable in place
     }
     buildSpecial()  // invalid: no function calls
     Text(this.calcTextValue()) // this function call is ok.

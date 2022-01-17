@@ -124,5 +124,5 @@ resources/res-defaults.json:
 ```
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The resource qualifer file does not support color enumeration.
+>The resource qualifier file does not support color enumeration.
 

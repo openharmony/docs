@@ -10,11 +10,11 @@ OpenHarmony的Docker镜像托管在HuaweiCloud SWR上。开发者可以通过该
 
 1. 获取Docker镜像。
 ```
-docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
+docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
 ```
 2. 进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 ```
-docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
+docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
 ```
 
 ##### 方式二：通过Dockerfile 构建本地Docker镜像进行构建
@@ -30,16 +30,16 @@ cd docs/docker/standard
 ```
 3. 进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 ```
-docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.5
+docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
 ```
 
 ### 编译源码-标准系统类设备（参考内存≥128MB）
 通过如下编译脚本启动标准系统类设备（参考内存≥128MB）的编译。
 
 ```
-./build.sh --product-name {product_name}
+./build.sh --product-name {product_name} --ccache
 ```
-{product_name}为当前版本支持的平台。比如：Hi3516DV300等。
+{product_name}为当前版本支持的平台。比如：Hi3516DV300、rk3568等。
 编译所生成的文件都归档在out/{device_name}/目录下，结果镜像输出在 out/{device_name}/packages/phone/images/ 目录下。
 
 

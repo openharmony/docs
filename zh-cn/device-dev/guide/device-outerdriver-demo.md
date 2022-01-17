@@ -335,7 +335,7 @@ Input模型由三层驱动组成，开发者适配一款全新触摸屏驱动只
 
     其中touch\_gt911.o为本示例中追加的内容。
 
-2.  具体编译及烧录操作请参考[标准系统快速入门编译及烧录章节](../quick-start/quickstart-standard-burn.md)。
+2.  具体编译及烧录操作请参考[标准系统快速入门编译及烧录章节](../quick-start/quickstart-standard-overview.md)。
 
 ## 调试验证<a name="section62577313482"></a>
 

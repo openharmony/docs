@@ -1,4 +1,4 @@
-# 基础手势<a name="ZH-CN_TOPIC_0000001112953120"></a>
+# 基础手势<a name="ZH-CN_TOPIC_0000001192915098"></a>
 
 -   **[TapGesture](ts-basic-gestures-tapgesture.md)**  
 
@@ -9,5 +9,7 @@
 -   **[PinchGesture](ts-basic-gestures-pinchgesture.md)**  
 
 -   **[RotationGesture](ts-basic-gestures-rotationgesture.md)**  
+
+-   **[SwipeGesture](ts-basic-gestures-swipegesture.md)**  
 
 

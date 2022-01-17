@@ -1,4 +1,7 @@
-# Stack<a name="ZH-CN_TOPIC_0000001158261249"></a>
+# Stack<a name="ZH-CN_TOPIC_0000001237555083"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 堆叠容器，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。
 
@@ -12,32 +15,31 @@
 
 ## 接口<a name="section13412231148"></a>
 
-Stack\(options?: \{ alignContent?: Alignment \}\)
+Stack\(value:\{alignContent?: Alignment\}\)
 
 -   参数
 
-    <a name="table4921710102813"></a>
-    <table><thead align="left"><tr id="row16921106280"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p id="p189271012814"><a name="p189271012814"></a><a name="p189271012814"></a>参数名</p>
+    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="16.580000000000002%" id="mcps1.1.6.1.2"><p id="p10925103287"><a name="p10925103287"></a><a name="p10925103287"></a>参数类型</p>
+    <th class="cellrowborder" valign="top" width="16.580000000000002%" id="mcps1.1.6.1.2"><p>参数类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="9.67%" id="mcps1.1.6.1.3"><p id="p1592141092815"><a name="p1592141092815"></a><a name="p1592141092815"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="9.67%" id="mcps1.1.6.1.3"><p>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="21.42%" id="mcps1.1.6.1.4"><p id="p392141012813"><a name="p392141012813"></a><a name="p392141012813"></a>默认值</p>
+    <th class="cellrowborder" valign="top" width="21.42%" id="mcps1.1.6.1.4"><p>默认值</p>
     </th>
-    <th class="cellrowborder" valign="top" width="36.22%" id="mcps1.1.6.1.5"><p id="p1092710192810"><a name="p1092710192810"></a><a name="p1092710192810"></a>参数描述</p>
+    <th class="cellrowborder" valign="top" width="36.22%" id="mcps1.1.6.1.5"><p>参数描述</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row119261002816"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p39218100280"><a name="p39218100280"></a><a name="p39218100280"></a>alignContent</p>
+    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>alignContent</p>
     </td>
-    <td class="cellrowborder" valign="top" width="16.580000000000002%" headers="mcps1.1.6.1.2 "><p id="p692141011284"><a name="p692141011284"></a><a name="p692141011284"></a><a href="ts-appendix-enums.md#section1145418513159">Alignment</a></p>
+    <td class="cellrowborder" valign="top" width="16.580000000000002%" headers="mcps1.1.6.1.2 "><p><a href="ts-appendix-enums.md#section1145418513159">Alignment</a></p>
     </td>
-    <td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.3 "><p id="p392141018289"><a name="p392141018289"></a><a name="p392141018289"></a>否</p>
+    <td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.3 "><p>否</p>
     </td>
-    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p id="p092141092820"><a name="p092141092820"></a><a name="p092141092820"></a>Center</p>
+    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p>Center</p>
     </td>
-    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p id="p11923108283"><a name="p11923108283"></a><a name="p11923108283"></a>设置子组件在容器内的对齐方式。</p>
+    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p>设置子组件在容器内的对齐方式。</p>
     </td>
     </tr>
     </tbody>

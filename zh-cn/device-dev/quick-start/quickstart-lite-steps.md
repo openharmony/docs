@@ -1,4 +1,4 @@
-# 开发步骤<a name="ZH-CN_TOPIC_0000001128470860"></a>
+# 运行“Hello World”<a name="ZH-CN_TOPIC_0000001171934018"></a>
 
 -   **[Hi3861开发板](quickstart-lite-steps-hi3861.md)**  
 

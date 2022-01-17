@@ -32,7 +32,7 @@ struct ParentComponent {
 
             // when creatng ChildComponent, the initial value of its @Prop variable must be supplied
             // in a named constructor parameter
-            // also regular costOfOneAttempt (non-Prop) variable is initialied
+            // also regular costOfOneAttempt (non-Prop) variable is initialized
             CountDownComponent({ count: this.countDownStartValue, costOfOneAttempt: 2})
         }
     }

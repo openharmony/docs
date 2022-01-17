@@ -3,11 +3,11 @@
 本示例将运行源码中的camera示例代码，通过本示例可以实现使用开发板进行拍照、录像及预览等功能。
 
 -   本示例源码路径为“applications/sample/camera/media/camera\_sample.cpp”。
--   在运行本示例前需先完成编译烧录、运行镜像等步骤，相关操作请参考[Hi3516快速入门](../quick-start/oem_minitinier_des_3516.md#section26131214194212)。
+-   在运行本示例前需先完成编译烧录、运行镜像等步骤，相关操作请参考[Hi3516快速入门](../quick-start/quickstart-lite-overview.md)。
 
     >![](../public_sys-resources/icon-note.gif) **说明：** 
     >开发板启动后默认会加载launcher应用，应用的图形界面默认显示在媒体图层上方，会影响camera\_sample的演示结果，因此需要在编译或是打包时去掉launcher应用。
-    >**修改方法：**将“build/lite/components/applications.json”中camera\_sample\_app组件的targets中"//applications/sample/camera/launcher:launcher\_hap"整行注释或删除。
+    >**修改方法**：将“build/lite/components/applications.json”中camera\_sample\_app组件的targets中"//applications/sample/camera/launcher:launcher\_hap"整行注释或删除。
 
 -   本示例编译结果路径为“out/hi3516dv300/ipcamera\_hi3516dv300\_liteos/dev\_tools/bin”，为让文件能在单板中执行，可将示例文件通过读卡器复制至TF卡中，或者修改camera\_sample的编译脚本将结果文件复制至rootfs.img中。
 

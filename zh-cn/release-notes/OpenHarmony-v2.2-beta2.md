@@ -63,6 +63,8 @@
 
 ## 源码获取<a name="section1350215462116"></a>
 
+### 通过repo下载
+
 **方式一（推荐）**
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
@@ -83,13 +85,28 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
+### 通过镜像站点下载
+
+**表2** 源码获取路径
+
+| 版本源码 | 版本信息 | 下载站点 | SHA256校验码 | 
+| -------- | -------- | -------- | -------- |
+| 全量代码（标准、轻量和小型系统） | 2.2 | [站点](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz.sha256) | 
+| 标准系统解决方案（二进制） | 2.2 | [站点](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/standard-2.2-Beta2.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/standard-2.2-Beta2.tar.gz.sha256) | 
+| Hi3861解决方案（二进制） | 2.2 | [站点](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_pegasus-2.2-Beta2.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_pegasus-2.2-Beta2.tar.gz.sha256) | 
+| Hi3518解决方案（二进制） | 2.2 | [站点](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_aries-2.2-Beta2.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_aries-2.2-Beta2.tar.gz.sha256) | 
+| Hi3516解决方案-LiteOS（二进制） | 2.2 | [站点](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_taurus-2.2-Beta2.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_taurus-2.2-Beta2.tar.gz.sha256) | 
+| Hi3516解决方案-Linux（二进制） | 2.2 | [站点](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_taurus_linux-2.2-Beta2.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_taurus_linux-2.2-Beta2.tar.gz.sha256) | 
+| Release&nbsp;Notes | 2.2 | [站点](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v2.2-beta2.md) | - | 
+
+
 ## 更新说明<a name="section11256141314463"></a>
 
 本版本在继承了OpenHarmony 2.0 Canary的基础上有如下变更。
 
 ### 特性变更
 
-**表 2**  版本新增特性表
+**表 3**  版本新增特性表
 
 <a name="table1976311913503"></a>
 <table><thead align="left"><tr id="row127631916501"><th class="cellrowborder" valign="top" width="23.04%" id="mcps1.2.4.1.1"><p id="p6763997509"><a name="p6763997509"></a><a name="p6763997509"></a>子系统名称</p>
@@ -260,7 +277,7 @@ API变更请参考：
 
 ## 修复缺陷列表<a name="section3442123281619"></a>
 
-**表 3** **解决的缺陷ISSUE列表**
+**表 4** **解决的缺陷ISSUE列表**
 
 <a name="table158451039191811"></a>
 

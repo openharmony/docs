@@ -1,6 +1,6 @@
-# 动画帧<a name="ZH-CN_TOPIC_0000001217286541"></a>
+# 动画帧
 
-## 请求动画帧<a name="section1280411399304"></a>
+## 请求动画帧
 
 请求动画帧时通过requestAnimationFrame函数逐帧回调，在调用该函数时传入一个回调函数。
 
@@ -93,12 +93,13 @@ export default {
 }
 ```
 
-![](figures/3333.gif)
+![zh-cn_image_0000001174756860](figures/zh-cn_image_0000001174756860.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->requestAnimationFrame函数在调用回调函数时在第一个参数位置传入timestamp时间戳，表示requestAnimationFrame开始去执行回调函数的时刻。
+> requestAnimationFrame函数在调用回调函数时在第一个参数位置传入timestamp时间戳，表示requestAnimationFrame开始去执行回调函数的时刻。
 
-## 取消动画帧<a name="section13657493110"></a>
+
+## 取消动画帧
 
 通过cancelAnimationFrame函数取消逐帧回调，在调用cancelAnimationFrame函数时取消requestAnimationFrame函数的请求。
 
@@ -181,8 +182,7 @@ export default {
 }
 ```
 
-![](figures/4444.gif)
+![zh-cn_image_0000001220316655](figures/zh-cn_image_0000001220316655.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->在调用该函数时需传入一个具有标识id的参数。
-
+> 在调用该函数时需传入一个具有标识id的参数。

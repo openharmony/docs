@@ -1,295 +1,472 @@
-# WLAN<a name="ZH-CN_TOPIC_0000001198455181"></a>
+# WLAN
 
->**说明：** 
->从 API Version 6 开始支持。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-## 导入模块<a name="s56d19203690d4782bfc74069abb6bd71"></a>
+## 导入模块
 
 ```
-import wifi from '@ohos.wifi_native_js';
+import wifi from '@ohos.wifi';
 ```
 
 
-## wifi.isWifiActive<a name="section18961103371615"></a>
+## wifi.isWifiActive
 
-isWifiActive\(\): boolean
+isWifiActive(): boolean
 
 查询WLAN是否已激活。
 
--   返回值：
-
-    <a name="table103651813144111"></a>
-    <table><thead align="left"><tr id="row924121416413"><th class="cellrowborder" valign="top" width="26.26%" id="mcps1.1.3.1.1"><p id="p172411514114111"><a name="p172411514114111"></a><a name="p172411514114111"></a><strong id="b12411614164118"><a name="b12411614164118"></a><a name="b12411614164118"></a>类型</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="73.74000000000001%" id="mcps1.1.3.1.2"><p id="p10241714204114"><a name="p10241714204114"></a><a name="p10241714204114"></a><strong id="b524171484117"><a name="b524171484117"></a><a name="b524171484117"></a>说明</strong></p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1024191414110"><td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.1.3.1.1 "><p id="p1724121412418"><a name="p1724121412418"></a><a name="p1724121412418"></a>boolean</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.74000000000001%" headers="mcps1.1.3.1.2 "><p id="p132411514194116"><a name="p132411514194116"></a><a name="p132411514194116"></a>true:已激活， false:未激活。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 返回值：
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:已激活，&nbsp;false:未激活。 |
 
 
-## wifi.getSignalLevel<a name="section04714574165"></a>
+## wifi.scan
 
-getSignalLevel\(rssi: number, band: number\): number
-
-查询WLAN信号强度。
-
--   参数：
-
-    <a name="table123664139419"></a>
-    <table><thead align="left"><tr id="row224131444117"><th class="cellrowborder" valign="top" width="23.47%" id="mcps1.1.5.1.1"><p id="p162411414194112"><a name="p162411414194112"></a><a name="p162411414194112"></a><strong id="b1241714154110"><a name="b1241714154110"></a><a name="b1241714154110"></a>参数名</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="18.37%" id="mcps1.1.5.1.2"><p id="p112419148419"><a name="p112419148419"></a><a name="p112419148419"></a><strong id="b13241614164119"><a name="b13241614164119"></a><a name="b13241614164119"></a>类型</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.180000000000001%" id="mcps1.1.5.1.3"><p id="p124111444112"><a name="p124111444112"></a><a name="p124111444112"></a><strong id="b1524118144415"><a name="b1524118144415"></a><a name="b1524118144415"></a>必填</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="48.980000000000004%" id="mcps1.1.5.1.4"><p id="p10241201404111"><a name="p10241201404111"></a><a name="p10241201404111"></a><strong id="b324151484120"><a name="b324151484120"></a><a name="b324151484120"></a>说明</strong></p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row162411314184113"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p52411514124117"><a name="p52411514124117"></a><a name="p52411514124117"></a>rssi</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p7241414144116"><a name="p7241414144116"></a><a name="p7241414144116"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p524112141412"><a name="p524112141412"></a><a name="p524112141412"></a>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p13241114144112"><a name="p13241114144112"></a><a name="p13241114144112"></a>热点的信号强度(dBm)。</p>
-    </td>
-    </tr>
-    <tr id="row224141444119"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p124191434119"><a name="p124191434119"></a><a name="p124191434119"></a>band</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p162411514164116"><a name="p162411514164116"></a><a name="p162411514164116"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p11241141414115"><a name="p11241141414115"></a><a name="p11241141414115"></a>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p92411214204119"><a name="p92411214204119"></a><a name="p92411214204119"></a>WLAN接入点的频段。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
--   返回值：
-
-    <a name="table12369141364112"></a>
-    <table><thead align="left"><tr id="row924121464110"><th class="cellrowborder" valign="top" width="26.26%" id="mcps1.1.3.1.1"><p id="p1724121412419"><a name="p1724121412419"></a><a name="p1724121412419"></a><strong id="b62413143414"><a name="b62413143414"></a><a name="b62413143414"></a>类型</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="73.74000000000001%" id="mcps1.1.3.1.2"><p id="p324114144414"><a name="p324114144414"></a><a name="p324114144414"></a><strong id="b1224111415412"><a name="b1224111415412"></a><a name="b1224111415412"></a>说明</strong></p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row124191414415"><td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.1.3.1.1 "><p id="p182421014184112"><a name="p182421014184112"></a><a name="p182421014184112"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.74000000000001%" headers="mcps1.1.3.1.2 "><p id="p142423146417"><a name="p142423146417"></a><a name="p142423146417"></a>信号强度，取值范围为[0, 4]。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
-## wifi.scan<a name="section1289134478"></a>
-
-scan\(\): boolean
+scan(): boolean
 
 启动WLAN扫描。
 
--   返回值：
-
-    <a name="table4426131312411"></a>
-    <table><thead align="left"><tr id="row16254131415416"><th class="cellrowborder" valign="top" width="26.26%" id="mcps1.1.3.1.1"><p id="p42540148412"><a name="p42540148412"></a><a name="p42540148412"></a><strong id="b6254181414112"><a name="b6254181414112"></a><a name="b6254181414112"></a>类型</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="73.74000000000001%" id="mcps1.1.3.1.2"><p id="p725461404118"><a name="p725461404118"></a><a name="p725461404118"></a><strong id="b8254161414415"><a name="b8254161414415"></a><a name="b8254161414415"></a>说明</strong></p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1825451415411"><td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.1.3.1.1 "><p id="p92545149412"><a name="p92545149412"></a><a name="p92545149412"></a>boolean</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.74000000000001%" headers="mcps1.1.3.1.2 "><p id="p925481474110"><a name="p925481474110"></a><a name="p925481474110"></a>true:扫描操作成功， false:扫描操作执行失败。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 返回值：
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:扫描操作成功，&nbsp;false:扫描操作执行失败。 |
 
 
-## wifi.getScanInfos<a name="section20747137419"></a>
+## wifi.getScanInfos
 
-getScanInfos\(\): Promise<Array<WifiScanInfo\>\>
+getScanInfos(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 获取扫描结果，使用promise方式作为异步方法。
 
--   返回值：
-
-    <a name="table042741320417"></a>
-    <table><thead align="left"><tr id="row1825451419414"><th class="cellrowborder" valign="top" width="26.26%" id="mcps1.1.3.1.1"><p id="p102541146416"><a name="p102541146416"></a><a name="p102541146416"></a><strong id="b8254514164113"><a name="b8254514164113"></a><a name="b8254514164113"></a>类型</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="73.74000000000001%" id="mcps1.1.3.1.2"><p id="p225419141411"><a name="p225419141411"></a><a name="p225419141411"></a><strong id="b22541149418"><a name="b22541149418"></a><a name="b22541149418"></a>说明</strong></p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row5254214194111"><td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.1.3.1.1 "><p id="p8254614154113"><a name="p8254614154113"></a><a name="p8254614154113"></a>Promise&lt; Array&lt;<a href="#section138641312414">WifiScanInfo</a>&gt; &gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.74000000000001%" headers="mcps1.1.3.1.2 "><p id="p02548143416"><a name="p02548143416"></a><a name="p02548143416"></a>返回扫描到的热点列表。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 返回值：
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | 返回扫描到的热点列表。 |
 
 
-## wifi.getScanInfos<a name="section1781133414"></a>
+## wifi.getScanInfos
 
-getScanInfos\(callback: AsyncCallback<Array<WifiScanInfo\>\>\): void
+getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 获取扫描结果，使用callback方式作为异步方法。
 
--   参数
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | 是 | 扫描到的热点列表结果回调函数。 |
 
-    <a name="table742911314110"></a>
-    
-    <table><thead align="left"><tr id="row18254111454118"><th class="cellrowborder" valign="top" width="13.270000000000001%" id="mcps1.1.5.1.1"><p id="p10254151474111"><a name="p10254151474111"></a><a name="p10254151474111"></a><strong id="b7254161410412"><a name="b7254161410412"></a><a name="b7254161410412"></a>参数名</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="29.59%" id="mcps1.1.5.1.2"><p id="p3254201417411"><a name="p3254201417411"></a><a name="p3254201417411"></a><strong id="b4255171412411"><a name="b4255171412411"></a><a name="b4255171412411"></a>类型</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="7.140000000000001%" id="mcps1.1.5.1.3"><p id="p1255151413415"><a name="p1255151413415"></a><a name="p1255151413415"></a><strong id="b182551214124115"><a name="b182551214124115"></a><a name="b182551214124115"></a>必填</strong></p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50%" id="mcps1.1.5.1.4"><p id="p17255131416411"><a name="p17255131416411"></a><a name="p17255131416411"></a><strong id="b0255121454116"><a name="b0255121454116"></a><a name="b0255121454116"></a>说明</strong></p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1255181444110"><td class="cellrowborder" valign="top" width="13.270000000000001%" headers="mcps1.1.5.1.1 "><p id="p10255614204115"><a name="p10255614204115"></a><a name="p10255614204115"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="29.59%" headers="mcps1.1.5.1.2 "><p id="p525516143417"><a name="p525516143417"></a><a name="p525516143417"></a>AsyncCallback&lt; Array&lt;WifiScanInfo&gt;&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.140000000000001%" headers="mcps1.1.5.1.3 "><p id="p7255214174113"><a name="p7255214174113"></a><a name="p7255214174113"></a>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.5.1.4 "><p id="p142551714104114"><a name="p142551714104114"></a><a name="p142551714104114"></a>扫描到的热点列表结果回调函数。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
--   示例
-
-    ```
-    import wifi from '@ohos.wifi_native_js';
-    
-    
-    wifi.getScanInfos(result => {
-        var len = Object.keys(result).length;
-        console.log("received scan info size: " + len);
-        for (var i = 0; i < len; ++j) {
-            console.info("ssid: " + result[i].ssid);
-            console.info("bssid: " + result[i].bssid);
-            console.info("securityType: " + result[i].securityType);
-            console.info("rssi: " + result[i].rssi);
-            console.info("band: " + result[i].band);
-            console.info("frequency: " + result[i].frequency);
-            console.info("timestamp: " + result[i].timestamp);
-        }
-    });
-    
-    wifi.getScanInfos().then(result => {
-        var len = Object.keys(result).length;
-        console.log("received scan info size: " + len);
-        for (var i = 0; i < len; ++i) {
-            console.info("ssid: " + result[i].ssid);
-            console.info("bssid: " + result[i].bssid);
-            console.info("securityType: " + result[i].securityType);
-            console.info("rssi: " + result[i].rssi);
-            console.info("band: " + result[i].band);
-            console.info("frequency: " + result[i].frequency);
-            console.info("timestamp: " + result[i].timestamp);
-        }
-    });
-    ```
+- 示例
+  ```
+  import wifi from '@ohos.wifi';
+  
+  wifi.getScanInfos(result => {
+      var len = Object.keys(result).length;
+      console.log("wifi received scan info call back: " + len);
+      for (var i = 0; i < len; ++i) {
+          console.info("ssid: " + result[i].ssid);
+          console.info("bssid: " + result[i].bssid);
+          console.info("securityType: " + result[i].securityType);
+          console.info("rssi: " + result[i].rssi);
+          console.info("band: " + result[i].band);
+          console.info("frequency: " + result[i].frequency);
+          console.info("timestamp: " + result[i].timestamp);
+      }
+  });
+  
+  wifi.getScanInfos().then(result => {
+      var len = Object.keys(result).length;
+      console.log("wifi received scan info promise: " + len);
+      for (var i = 0; i < len; ++i) {
+          console.info("ssid: " + result[i].ssid);
+          console.info("bssid: " + result[i].bssid);
+          console.info("securityType: " + result[i].securityType);
+          console.info("rssi: " + result[i].rssi);
+          console.info("band: " + result[i].band);
+          console.info("frequency: " + result[i].frequency);
+          console.info("timestamp: " + result[i].timestamp);
+      }
+  });
+  ```
 
 
-## WifiScanInfo<a name="section138641312414"></a>
+## WifiScanInfo
 
 WLAN热点信息。
 
-<a name="table1443151310414"></a>
-<table><thead align="left"><tr id="row3255101434118"><th class="cellrowborder" valign="top" width="23.47%" id="mcps1.1.5.1.1"><p id="p12255201444112"><a name="p12255201444112"></a><a name="p12255201444112"></a><strong id="b82552145417"><a name="b82552145417"></a><a name="b82552145417"></a>参数名</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="18.37%" id="mcps1.1.5.1.2"><p id="p17255914204111"><a name="p17255914204111"></a><a name="p17255914204111"></a><strong id="b7255161415417"><a name="b7255161415417"></a><a name="b7255161415417"></a>类型</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="9.180000000000001%" id="mcps1.1.5.1.3"><p id="p62551914144114"><a name="p62551914144114"></a><a name="p62551914144114"></a><strong id="b925514143416"><a name="b925514143416"></a><a name="b925514143416"></a>读写属性</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="48.980000000000004%" id="mcps1.1.5.1.4"><p id="p7255151410419"><a name="p7255151410419"></a><a name="p7255151410419"></a><strong id="b7255101414118"><a name="b7255101414118"></a><a name="b7255101414118"></a>说明</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row525581484110"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p1925551434111"><a name="p1925551434111"></a><a name="p1925551434111"></a>ssid</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p925561474115"><a name="p925561474115"></a><a name="p925561474115"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p192551814174118"><a name="p192551814174118"></a><a name="p192551814174118"></a>只读</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p825591416410"><a name="p825591416410"></a><a name="p825591416410"></a>热点的SSID，编码格式为UTF-8。</p>
-</td>
-</tr>
-<tr id="row225521416415"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p13255514134118"><a name="p13255514134118"></a><a name="p13255514134118"></a>bssid</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p2255161444110"><a name="p2255161444110"></a><a name="p2255161444110"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p925614141414"><a name="p925614141414"></a><a name="p925614141414"></a>只读</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p12256121419419"><a name="p12256121419419"></a><a name="p12256121419419"></a>热点的BSSID。</p>
-</td>
-</tr>
-<tr id="row525621413414"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p1625651417419"><a name="p1625651417419"></a><a name="p1625651417419"></a>securityType</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p1025651484113"><a name="p1025651484113"></a><a name="p1025651484113"></a>WifiSecurityType</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p202567143410"><a name="p202567143410"></a><a name="p202567143410"></a>只读</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p12256714184116"><a name="p12256714184116"></a><a name="p12256714184116"></a>WLAN加密类型。</p>
-</td>
-</tr>
-<tr id="row16256161404114"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p12256151420418"><a name="p12256151420418"></a><a name="p12256151420418"></a>rssi</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p11256161419416"><a name="p11256161419416"></a><a name="p11256161419416"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p92565145414"><a name="p92565145414"></a><a name="p92565145414"></a>只读</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p1425621424114"><a name="p1425621424114"></a><a name="p1425621424114"></a>热点的信号强度(dBm)。</p>
-</td>
-</tr>
-<tr id="row14256181415411"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p12256101415419"><a name="p12256101415419"></a><a name="p12256101415419"></a>band</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p9256161412415"><a name="p9256161412415"></a><a name="p9256161412415"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p425691464112"><a name="p425691464112"></a><a name="p425691464112"></a>只读</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p12257111454112"><a name="p12257111454112"></a><a name="p12257111454112"></a>WLAN接入点的频段。</p>
-</td>
-</tr>
-<tr id="row1125751434117"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p122571514114120"><a name="p122571514114120"></a><a name="p122571514114120"></a>frequency</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p72575148416"><a name="p72575148416"></a><a name="p72575148416"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p825711413415"><a name="p825711413415"></a><a name="p825711413415"></a>只读</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p52571514134116"><a name="p52571514134116"></a><a name="p52571514134116"></a>WLAN接入点的频率。</p>
-</td>
-</tr>
-<tr id="row425701454119"><td class="cellrowborder" valign="top" width="23.47%" headers="mcps1.1.5.1.1 "><p id="p3257914104118"><a name="p3257914104118"></a><a name="p3257914104118"></a>timestamp</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.37%" headers="mcps1.1.5.1.2 "><p id="p4257514104118"><a name="p4257514104118"></a><a name="p4257514104118"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.180000000000001%" headers="mcps1.1.5.1.3 "><p id="p3257151434119"><a name="p3257151434119"></a><a name="p3257151434119"></a>只读</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.980000000000004%" headers="mcps1.1.5.1.4 "><p id="p192579145417"><a name="p192579145417"></a><a name="p192579145417"></a>时间戳。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| **参数名** | **类型** | **读写属性** | **说明** |
+| -------- | -------- | -------- | -------- |
+| ssid | string | 只读 | 热点的SSID，编码格式为UTF-8。 |
+| bssid | string | 只读 | 热点的BSSID。 |
+| securityType | [WifiSecurityType](#wifisecuritytype) | 只读 | WLAN加密类型。 |
+| rssi | number | 只读 | 热点的信号强度(dBm)。 |
+| band | number | 只读 | WLAN接入点的频段。 |
+| frequency | number | 只读 | WLAN接入点的频率。 |
+| timestamp | number | 只读 | 时间戳。 |
 
 
+## WifiSecurityType
+
+表示加密类型的枚举。
+
+| **名称** | **默认值** | **说明** |
+| -------- | -------- | -------- |
+| WIFI_SEC_TYPE_INVALID | 0 | 无效加密类型。 |
+| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。 |
+| WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。 |
+| WIFI_SEC_TYPE_PSK | 3 | Pre-shared&nbsp;key&nbsp;(PSK)加密类型。 |
+| WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
+
+
+## wifi.getSignalLevel
+
+getSignalLevel(rssi: number, band: number): number
+
+查询WLAN信号强度。
+
+- 参数：
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | rssi | number | 是 | 热点的信号强度(dBm)。 |
+  | band | number | 是 | WLAN接入点的频段。 |
+
+- 返回值：
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | number | 信号强度，取值范围为[0,&nbsp;4]。 |
+
+
+## wifi.getIpInfo<sup>7+</sup>
+
+getIpInfo(): IpInfo
+
+获取IP信息。
+
+- 返回值：
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | [IpInfo](#ipinfo) | 返回IP信息。 |
+
+
+## IpInfo
+
+IP信息。
+
+| **参数名** | **类型** | **读写属性** | **说明** |
+| -------- | -------- | -------- | -------- |
+| ipAddress | number | 只读 | IP地址。 |
+| gateway | number | 只读 | 网关。 |
+| netmask | number | 只读 | 掩码。 |
+| primaryDns | number | 只读 | 主DNS服务器IP地址。 |
+| secondDns | number | 只读 | 备DNS服务器IP地址。 |
+| serverIp | number | 只读 | DHCP服务端IP地址。 |
+| leaseDuration | number | 只读 | IP地址租用时长。 |
+
+
+## wifi.isConnected<sup>7+</sup>
+
+isConnected(): boolean
+
+查询WLAN是否已连接。
+
+- 返回值：
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:已连接，&nbsp;false:未连接。 |
+
+
+## wifi.getLinkedInfo<sup>7+</sup>
+
+getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
+
+获取WLAN连接信息，使用promise方式作为异步方法。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | 返回WLAN连接的相关信息。 |
+
+
+## wifi.getLinkedInfo<sup>7+</sup>
+
+getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
+
+获取WLAN连接信息，使用callback方式作为异步方法。
+
+- 参数
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | 是 | 获取WLAN连接信息结果回调函数。 |
+
+- 示例
+  ```
+  import wifi from '@ohos.wifi';
+  
+  wifi.getLinkedInfo(data => {
+      console.info("get wifi linked info [callback]: " + JSON.stringify(data));
+  });
+  
+  wifi.getLinkedInfo().then(data => {
+      console.info("get wifi linked info [promise]: " + JSON.stringify(data));
+  }).catch(error => {
+      console.info("linked info promise then error");
+  });
+  ```
+
+
+## WifiLinkedInfo
+
+提供WLAN连接的相关信息。
+
+| 参数名 | 类型 | 读写属性 | 说明 |
+| -------- | -------- | -------- | -------- |
+| ssid | string | 只读 | 热点的SSID，编码格式为UTF-8。 |
+| bssid | string | 只读 | 热点的BSSID。 |
+| rssi | number | 只读 | 热点的信号强度(dBm)。 |
+| band | number | 只读 | WLAN接入点的频段。 |
+| linkSpeed | number | 只读 | WLAN接入点的速度。 |
+| frequency | number | 只读 | WLAN接入点的频率。 |
+| isHidden | boolean | 只读 | WLAN接入点是否是隐藏网络。 |
+| isRestricted | boolean | 只读 | WLAN接入点是否限制数据量。 |
+| macAddress | string | 只读 | 设备的MAC地址。 |
+| ipAddress | number | 只读 | WLAN连接的IP地址。 |
+| connState | ConnState | 只读 | WLAN连接状态。 |
+
+
+## ConnState
+
+表示WLAN连接状态的枚举。
+
+| 名称 | 默认值 | 说明 |
+| -------- | -------- | -------- |
+| SCANNING | 0 | 设备正在搜索可用的AP。 |
+| CONNECTING | 1 | 正在建立WLAN连接。 |
+| AUTHENTICATING | 2 | WLAN连接正在认证中。 |
+| OBTAINING_IPADDR | 3 | 正在获取WLAN连接的IP地址。 |
+| CONNECTED | 4 | WLAN连接已建立。 |
+| DISCONNECTING | 5 | WLAN连接正在断开。 |
+| DISCONNECTED | 6 | WLAN连接已断开。 |
+| UNKNOWN | 7 | WLAN连接建立失败。 |
+
+
+## wifi.getCountryCode<sup>7+</sup>
+
+getCountryCode(): string
+
+获取国家码信息。
+
+- 返回值：
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | string | 国家码。 |
+
+
+## wifi.isFeatureSupported<sup>7+</sup>
+
+isFeatureSupported(featureId: number): boolean
+
+判断设备是否支持相关WLAN特性。
+
+- 参数：
+  | **参数名** | **类型** | 必填 | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | featureId | number | 是 | 特性ID值。 |
+
+- 返回值：
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:支持，&nbsp;false:不支持。 |
+
+- 特性ID值枚举。
+  | 枚举值 | 说明 |
+  | -------- | -------- |
+  | 0x0001 | 基础结构模式特性。 |
+  | 0x0002 | 5&nbsp;GHz带宽特性。 |
+  | 0x0004 | GAS/ANQP特性。 |
+  | 0x0008 | Wifi-Direct特性。 |
+  | 0x0010 | Soft&nbsp;AP特性。 |
+  | 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
+  | 0x8000 | AP&nbsp;STA共存特性。 |
+  | 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
+  | 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
+  | 0x20000000 | 增强开放特性。 |
+
+
+## wifi.on('wifiStateChange')<sup>7+</sup>
+
+on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
+
+注册WLAN状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"wifiStateChange"字符串 |
+  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
+
+- 状态改变事件的枚举。
+  | **枚举值** | **说明** |
+  | -------- | -------- |
+  | 0 | 未激活。 |
+  | 1 | 已激活。 |
+  | 2 | 激活中。 |
+  | 3 | 去激活中。 |
+
+
+## wifi.off('wifiStateChange')<sup>7+</sup>
+
+off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
+
+取消注册WLAN状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"wifiStateChange"字符串 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+
+- 示例
+  ```
+  import wifi from '@ohos.wifi';
+  import { EventListener } from '@ohos.wifi';
+  
+  var WIFI_POWER_STATE = "wifiStateChange";
+  var listener = new EventListener();
+  
+  var recvPowerNotifyFunc = result => {
+      console.info("power state receive event: " + result);
+  }
+  
+  // Register event
+  listener.on(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  
+  // Unregister event
+  listener.off(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  ```
+
+
+## wifi.on('wifiConnectionChange')<sup>7+</sup>
+
+on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
+
+注册WLAN连接状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"wifiConnectionChange"字符串 |
+  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
+
+- 连接状态改变事件的枚举。
+  | **枚举值** | **说明** |
+  | -------- | -------- |
+  | 0 | 已断开。 |
+  | 1 | 已连接。 |
+
+
+## wifi.off('wifiConnectionChange')<sup>7+</sup>
+
+off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
+
+取消注册WLAN连接状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"wifiConnectionChange"字符串 |
+  | callback | Callback&lt;number&gt; | 否 | 连接状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+
+
+## wifi.on('wifiScanStateChange')<sup>7+</sup>
+
+on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
+
+注册扫描状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"wifiScanStateChange"字符串 |
+  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
+
+- 扫描状态改变事件的枚举。
+  | **枚举值** | **说明** |
+  | -------- | -------- |
+  | 0 | 扫描失败。 |
+  | 1 | 扫描成功。 |
+
+
+## wifi.off('wifiScanStateChange')<sup>7+</sup>
+
+off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
+
+取消注册扫描状态改变事件。
+
+- 参数
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"wifiScanStateChange"字符串 |
+| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+
+
+## wifi.on('wifiRssiChange')<sup>7+</sup>
+
+on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
+
+注册RSSI状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"wifiRssiChange"字符串 |
+  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回以dBm为单位的RSSI值。 |
+
+
+## wifi.off('wifiRssiChange')<sup>7+</sup>
+
+off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
+
+取消注册RSSI状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"wifiRssiChange"字符串 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+
+
+## wifi.on('hotspotStateChange')<sup>7+</sup>
+
+on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
+
+注册热点状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStateChange"字符串 |
+  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
+
+- 热点状态改变事件的枚举。
+  | **枚举值** | **说明** |
+  | -------- | -------- |
+  | 0 | 未激活。 |
+  | 1 | 已激活。 |
+  | 2 | 激活中。 |
+  | 3 | 去激活中。 |
+
+
+## wifi.off('hotspotStateChange')<sup>7+</sup>
+
+off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
+
+取消注册热点状态改变事件。
+
+- 参数
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStateChange"字符串 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |

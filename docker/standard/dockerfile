@@ -90,8 +90,13 @@ RUN apt-get update \
 	python3.8 \
 	python3-pip \
 	cpio \
-	&& rm -rf /bin/sh \
+	genext2fs \
+	liblz4-tool \
+	&& rm -rf /bin/sh /usr/bin/python /usr/bin/python3 \
 	&& ln -s /bin/bash /bin/sh \
+	&& ln -s /usr/bin/python3.8 /usr/bin/python3 \
+	&& ln -s /usr/bin/python3.8 /usr/bin/python \
+	&& python3 -m pip install --user ohos-build \
 	&& mkdir -p $PREBUILTS_DIR/prebuilts $HOME_TOOLS
 
 RUN wget -P $HOME_TOOLS https://mirrors.huaweicloud.com/nodejs/v12.18.4/node-v12.18.4-linux-x64.tar.gz \

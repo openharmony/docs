@@ -85,8 +85,7 @@
  <tr class="xl68" height="114" style="height:85.5pt">
   <td rowspan="4" height="228" class="xl67" style="height:171.0pt">MIPI-CSI相应配置</td>
   <td class="xl68">MipiCsiSetComboDevAttr</td>
-  <td class="xl70" width="306" style="width:230pt">设置MIPI，CMOS 或者
-  LVDS相机的参数给控制器，参数包括工作模式，图像区域，图像深度，数据速率和物理通道等</td>
+  <td class="xl70" width="306" style="width:230pt">设置MIPI，CMOS或者LVDS相机的参数给控制器，参数包括工作模式，图像区域，图像深度，数据速率和物理通道等</td>
  </tr>
  <tr class="xl68" height="38" style="height:28.5pt">
   <td height="38" class="xl68" style="height:28.5pt">MipiCsiSetExtDataType(可选)</td>
@@ -94,58 +93,48 @@
  </tr>
  <tr class="xl68" height="57" style="height:42.75pt">
   <td height="57" class="xl68" style="height:42.75pt">MipiCsiSetHsMode</td>
-  <td class="xl70" width="306" style="width:230pt">设置MIPI RX的 Lane
-  分布。根据硬件连接的形式选择具体的mode</td>
+  <td class="xl70" width="306" style="width:230pt">设置MIPI RX的Lane分布。根据硬件连接的形式选择具体的mode</td>
  </tr>
  <tr class="xl68" height="19" style="height:14.25pt">
   <td height="19" class="xl68" style="height:14.25pt">MipiCsiSetPhyCmvmode</td>
   <td class="xl70" width="306" style="width:230pt">设置共模电压模式</td>
  </tr>
  <tr class="xl68" height="19" style="height:14.25pt">
-  <td rowspan="2" height="38" class="xl67" style="height:28.5pt">复位/撤销复位 sensor</td>
+  <td rowspan="2" height="38" class="xl67" style="height:28.5pt">复位/撤销复位Sensor</td>
   <td class="xl68">MipiCsiResetSensor</td>
-  <td class="xl70" width="306" style="width:230pt">复位 sensor</td>
+  <td class="xl70" width="306" style="width:230pt">复位Sensor</td>
  </tr>
  <tr class="xl68" height="19" style="height:14.25pt">
   <td height="19" class="xl68" style="height:14.25pt">MipiCsiUnresetSensor</td>
-  <td class="xl70" width="306" style="width:230pt">撤销复位 sensor</td>
+  <td class="xl70" width="306" style="width:230pt">撤销复位Sensor</td>
  </tr>
  <tr class="xl68" height="57" style="height:42.75pt">
-  <td rowspan="2" height="76" class="xl67" style="height:57.0pt">复位/撤销复位 MIPI RX</td>
+  <td rowspan="2" height="76" class="xl67" style="height:57.0pt">复位/撤销复位MIPI RX</td>
   <td class="xl68">MipiCsiResetRx</td>
-  <td class="xl70" width="306" style="width:230pt">复位 MIPI
-  RX。不同的s32WorkingViNum有不同的enSnsType</td>
+  <td class="xl70" width="306" style="width:230pt">复位MIPI RX。不同的s32WorkingViNum有不同的enSnsType</td>
  </tr>
  <tr class="xl68" height="19" style="height:14.25pt">
   <td height="19" class="xl68" style="height:14.25pt">MipiCsiUnresetRx</td>
-  <td class="xl70" width="306" style="width:230pt">撤销复位 MIPI RX</td>
+  <td class="xl70" width="306" style="width:230pt">撤销复位MIPI RX</td>
  </tr>
  <tr class="xl68" height="76" style="height:57.0pt">
   <td rowspan="2" height="95" class="xl67" style="height:71.25pt">使能/关闭MIPI的时钟</td>
   <td class="xl68">MipiCsiEnableClock</td>
-  <td class="xl70" width="306" style="width:230pt">使能MIPI的时钟。根据上层函数电泳传递的enSnsType参数决定是用
-  MIPI 还是LVDS</td>
+  <td class="xl70" width="306" style="width:230pt">使能MIPI的时钟。根据上层函数电泳传递的enSnsType参数决定是用MIPI还是LVDS</td>
  </tr>
  <tr class="xl68" height="19" style="height:14.25pt">
   <td height="19" class="xl68" style="height:14.25pt">MipiCsiDisableClock</td>
   <td class="xl70" width="306" style="width:230pt">关闭MIPI设备的时钟</td>
  </tr>
  <tr class="xl68" height="19" style="height:14.25pt">
-  <td rowspan="2" height="38" class="xl67" style="height:28.5pt">使能/禁用MIPI上的sensor时钟</td>
+  <td rowspan="2" height="38" class="xl67" style="height:28.5pt">使能/禁用MIPI上的Sensor时钟</td>
   <td class="xl68">MipiCsiEnableSensorClock</td>
-  <td class="xl70" width="306" style="width:230pt">使能MIPI上的sensor时钟</td>
+  <td class="xl70" width="306" style="width:230pt">使能MIPI上的Sensor时钟</td>
  </tr>
  <tr class="xl68" height="19" style="height:14.25pt">
   <td height="19" class="xl68" style="height:14.25pt">MipiCsiDisableSensorClock</td>
-  <td class="xl70" width="306" style="width:230pt">关闭 sensor 的时钟</td>
+  <td class="xl70" width="306" style="width:230pt">关闭Sensor的时钟</td>
  </tr>
- <!--[if supportMisalignedColumns]-->
- <tr height="0" style="display:none">
-  <td width="221" style="width:166pt"></td>
-  <td width="275" style="width:206pt"></td>
-  <td width="306" style="width:230pt"></td>
- </tr>
- <!--[endif]-->
 </tbody></table>
 
 
@@ -199,414 +188,414 @@ if (MipiCsiHandle == NULL) {
 
 -   写入MIPI-CSI配置
 
-```c
-int32_t MipiCsiSetComboDevAttr(DevHandle handle, ComboDevAttr *pAttr);
-```
+    ```c
+    int32_t MipiCsiSetComboDevAttr(DevHandle handle, ComboDevAttr *pAttr);
+    ```
 
-**表 5**  MipiCsiSetComboDevAttr的参数和返回值描述
+    **表 5**  MipiCsiSetComboDevAttr的参数和返回值描述
 
-<a name="table5_MIPI_CSIDes"></a>
+    <a name="table5_MIPI_CSIDes"></a>
 
-| 参数       | 参数描述                   |
-| ---------- | -------------------------- |
-| handle     | 控制器操作句柄             |
-| pAttr      | MIPI-CSI相应配置结构体指针 |
-| **返回值** | **返回值描述**             |
-| 0          | 设置成功                   |
-| 负数       | 设置失败                   |
+    | 参数       | 参数描述                   |
+    | ---------- | -------------------------- |
+    | handle     | 控制器操作句柄             |
+    | pAttr      | MIPI-CSI相应配置结构体指针 |
+    | **返回值** | **返回值描述**             |
+    | 0          | 设置成功                   |
+    | 负数       | 设置失败                   |
 
-```c
-int32_t ret;
-struct ComboDevAttr attr;
+    ```c
+    int32_t ret;
+    struct ComboDevAttr attr;
 
-/* 当前配置如下 */
-(void)memset_s(&attr, sizeof(ComboDevAttr), 0, sizeof(ComboDevAttr));
-attr.devno = 0; /* 设备0 */
-attr.inputMode = INPUT_MODE_MIPI; /* 输入模式为MIPI */
-attr.dataRate = MIPI_DATA_RATE_X1; /* 每时钟输出1像素 */
-attr.imgRect.x = 0; /* 0: 图像传感器左上位置 */
-attr.imgRect.y = 0; /* 0: 图像传感器右上位置 */
-attr.imgRect.width = 2592; /* 2592: 图像传感器宽度大小 */
-attr.imgRect.height = 1944; /* 1944: 图像传感器高度尺寸 */
-/* 写入配置数据 */
-ret = MipiCsiSetComboDevAttr(MipiCsiHandle, &attr);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiSetComboDevAttr fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 当前配置如下 */
+    (void)memset_s(&attr, sizeof(ComboDevAttr), 0, sizeof(ComboDevAttr));
+    attr.devno = 0; /* 设备0 */
+    attr.inputMode = INPUT_MODE_MIPI; /* 输入模式为MIPI */
+    attr.dataRate = MIPI_DATA_RATE_X1; /* 每时钟输出1像素 */
+    attr.imgRect.x = 0; /* 0: 图像传感器左上位置 */
+    attr.imgRect.y = 0; /* 0: 图像传感器右上位置 */
+    attr.imgRect.width = 2592; /* 2592: 图像传感器宽度大小 */
+    attr.imgRect.height = 1944; /* 1944: 图像传感器高度尺寸 */
+    /* 写入配置数据 */
+    ret = MipiCsiSetComboDevAttr(MipiCsiHandle, &attr);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiSetComboDevAttr fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
 -   设置YUV和RAW数据格式和位深
 
-```c
-int32_t MipiCsiSetExtDataType(DevHandle handle, ExtDataType* dataType);
-```
+    ```c
+    int32_t MipiCsiSetExtDataType(DevHandle handle, ExtDataType* dataType);
+    ```
 
-**表 6**  MipiCsiSetExtDataType的参数和返回值描述
+    **表 6**  MipiCsiSetExtDataType的参数和返回值描述
 
-<a name="table6_MIPI_CSIDes"></a>
+    <a name="table6_MIPI_CSIDes"></a>
 
-| 参数       | 参数描述                        |
-| ---------- | ------------------------------- |
-| handle     | 控制器操作句柄                  |
-| dataType   | 定义YUV和原始数据格式以及位深度 |
-| **返回值** | **返回值描述**                  |
-| 0          | 设置成功                        |
-| 负数       | 设置失败                        |
+    | 参数       | 参数描述                        |
+    | ---------- | ------------------------------- |
+    | handle     | 控制器操作句柄                  |
+    | dataType   | 定义YUV和原始数据格式以及位深度 |
+    | **返回值** | **返回值描述**                  |
+    | 0          | 设置成功                        |
+    | 负数       | 设置失败                        |
 
-```c
-int32_t ret;
-struct ExtDataType dataType;
+    ```c
+    int32_t ret;
+    struct ExtDataType dataType;
 
-/* 配置YUV和RAW数据格式和位深参数 */
-dataType.devno = 0; /* 设备0 */
-dataType.num = 0;   /* sensor 0 */
-dataType.extDataBitWidth[0] = 12; /* 位深数组元素0 */
-dataType.extDataBitWidth[1] = 12; /* 位深数组元素1 */
-dataType.extDataBitWidth[2] = 12; /* 位深数组元素2 */
+    /* 配置YUV和RAW数据格式和位深参数 */
+    dataType.devno = 0; /* 设备0 */
+    dataType.num = 0;   /* sensor 0 */
+    dataType.extDataBitWidth[0] = 12; /* 位深数组元素0 */
+    dataType.extDataBitWidth[1] = 12; /* 位深数组元素1 */
+    dataType.extDataBitWidth[2] = 12; /* 位深数组元素2 */
 
-dataType.extDataType[0] = 0x39; /* 定义YUV和原始数据格式以及位深度元素0 */
-dataType.extDataType[1] = 0x39; /* 定义YUV和原始数据格式以及位深度元素1 */
-dataType.extDataType[2] = 0x39; /* 定义YUV和原始数据格式以及位深度元素2 */
-/* 设置YUV和RAW数据格式和位深 */
-ret = MipiCsiSetExtDataType(MipiCsiHandle, &dataType);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiSetExtDataType fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    dataType.extDataType[0] = 0x39; /* 定义YUV和原始数据格式以及位深度元素0 */
+    dataType.extDataType[1] = 0x39; /* 定义YUV和原始数据格式以及位深度元素1 */
+    dataType.extDataType[2] = 0x39; /* 定义YUV和原始数据格式以及位深度元素2 */
+    /* 设置YUV和RAW数据格式和位深 */
+    ret = MipiCsiSetExtDataType(MipiCsiHandle, &dataType);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiSetExtDataType fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
--   设置MIPI RX的 Lane分布
+-   设置MIPI RX的Lane分布
 
-```c
-int32_t MipiCsiSetHsMode(DevHandle handle, LaneDivideMode laneDivideMode);
-```
+    ```c
+    int32_t MipiCsiSetHsMode(DevHandle handle, LaneDivideMode laneDivideMode);
+    ```
 
-**表 7**  MipiCsiSetHsMode的参数和返回值描述
+    **表 7**  MipiCsiSetHsMode的参数和返回值描述
 
-<a name="table7_MIPI_CSIDes"></a>
+    <a name="table7_MIPI_CSIDes"></a>
 
-| 参数           | 参数描述       |
-| -------------- | -------------- |
-| handle         | 控制器操作句柄 |
-| laneDivideMode | lane模式参数   |
-| **返回值**     | **返回值描述** |
-| 0              | 设置成功       |
-| 负数           | 设置失败       |
+    | 参数           | 参数描述       |
+    | -------------- | -------------- |
+    | handle         | 控制器操作句柄 |
+    | laneDivideMode | lane模式参数   |
+    | **返回值**     | **返回值描述** |
+    | 0              | 设置成功       |
+    | 负数           | 设置失败       |
 
-```c
-int32_t ret;
-enum LaneDivideMode mode;
+    ```c
+    int32_t ret;
+    enum LaneDivideMode mode;
 
-/* lane模式参数为0 */
-mode = LANE_DIVIDE_MODE_0;
-/* 设置MIPI RX的 Lane分布 */
-ret = MipiCsiSetHsMode(MipiCsiHandle, mode);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiSetHsMode fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* lane模式参数为0 */
+    mode = LANE_DIVIDE_MODE_0;
+    /* 设置MIPI RX的 Lane分布 */
+    ret = MipiCsiSetHsMode(MipiCsiHandle, mode);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiSetHsMode fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
 -   设置共模电压模式
 
-```c
-int32_t MipiCsiSetPhyCmvmode(DevHandle handle, uint8_t devno, PhyCmvMode cmvMode);
-```
+    ```c
+    int32_t MipiCsiSetPhyCmvmode(DevHandle handle, uint8_t devno, PhyCmvMode cmvMode);
+    ```
 
-**表 8**  MipiCsiSetPhyCmvmode的参数和返回值描述
+    **表 8**  MipiCsiSetPhyCmvmode的参数和返回值描述
 
-<a name="table8_MIPI_CSIDes"></a>
+    <a name="table8_MIPI_CSIDes"></a>
 
-| 参数       | 参数描述         |
-| ---------- | ---------------- |
-| handle     | 控制器操作句柄   |
-| cmvMode    | 共模电压模式参数 |
-| devno      | 设备编号         |
-| **返回值** | **返回值描述**   |
-| 0          | 设置成功         |
-| 负数       | 设置失败         |
+    | 参数       | 参数描述         |
+    | ---------- | ---------------- |
+    | handle     | 控制器操作句柄   |
+    | cmvMode    | 共模电压模式参数 |
+    | devno      | 设备编号         |
+    | **返回值** | **返回值描述**   |
+    | 0          | 设置成功         |
+    | 负数       | 设置失败         |
 
-```c
-int32_t ret;
-enum PhyCmvMode mode;
-uint8_t devno;
+    ```c
+    int32_t ret;
+    enum PhyCmvMode mode;
+    uint8_t devno;
     
-/* 共模电压模式参数为0 */
-mode = PHY_CMV_GE1200MV;
-/* 设备编号为0 */
-devno = 0;
-/* 设置共模电压模式 */
-ret = MipiCsiSetPhyCmvmode(MipiCsiHandle, devno, mode);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiSetPhyCmvmode fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 共模电压模式参数为0 */
+    mode = PHY_CMV_GE1200MV;
+    /* 设备编号为0 */
+    devno = 0;
+    /* 设置共模电压模式 */
+    ret = MipiCsiSetPhyCmvmode(MipiCsiHandle, devno, mode);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiSetPhyCmvmode fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
-### 复位/撤销复位sensor<a name="section2.4_MIPI_CSIDes"></a>
+### 复位/撤销复位Sensor<a name="section2.4_MIPI_CSIDes"></a>
 
--   复位sensor
+-   复位Sensor
 
-```c
-int32_t MipiCsiResetSensor(DevHandle handle, uint8_t snsResetSource);
-```
+    ```c
+    int32_t MipiCsiResetSensor(DevHandle handle, uint8_t snsResetSource);
+    ```
 
-**表 9**  MipiCsiResetSensor的参数和返回值描述
+    **表 9**  MipiCsiResetSensor的参数和返回值描述
 
-<a name="table9_MIPI_CSIDes"></a>
+    <a name="table9_MIPI_CSIDes"></a>
 
-| 参数           | 参数描述                                         |
-| -------------- | ------------------------------------------------ |
-| handle         | 控制器操作句柄                                   |
-| snsResetSource | 传感器的复位信号线号，在软件中称为传感器的复位源 |
-| **返回值**     | **返回值描述**                                   |
-| 0              | 复位成功                                         |
-| 负数           | 复位失败                                         |
+    | 参数           | 参数描述                                         |
+    | -------------- | ------------------------------------------------ |
+    | handle         | 控制器操作句柄                                   |
+    | snsResetSource | 传感器的复位信号线号，在软件中称为传感器的复位源 |
+    | **返回值**     | **返回值描述**                                   |
+    | 0              | 复位成功                                         |
+    | 负数           | 复位失败                                         |
 
-```c
-int32_t ret;
-uint8_t snsResetSource;
+    ```c
+    int32_t ret;
+    uint8_t snsResetSource;
 
-/* 传感器复位信号线号为0 */
-snsResetSource = 0;
-/* 复位sensor */
-ret = MipiCsiResetSensor(MipiCsiHandle, snsResetSource);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiResetSensor fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 传感器复位信号线号为0 */
+    snsResetSource = 0;
+    /* 复位sensor */
+    ret = MipiCsiResetSensor(MipiCsiHandle, snsResetSource);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiResetSensor fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
--   撤销复位sensor
+-   撤销复位Sensor
 
-```c
-int32_t MipiCsiUnresetSensor(DevHandle handle, uint8_t snsResetSource);
-```
+    ```c
+    int32_t MipiCsiUnresetSensor(DevHandle handle, uint8_t snsResetSource);
+    ```
 
-**表 10**  MipiCsiUnresetSensor的参数和返回值描述
+    **表 10**  MipiCsiUnresetSensor的参数和返回值描述
 
-<a name="table10_MIPI_CSIDes"></a>
+    <a name="table10_MIPI_CSIDes"></a>
 
-| 参数           | 参数描述                                         |
-| -------------- | ------------------------------------------------ |
-| handle         | 控制器操作句柄                                   |
-| snsResetSource | 传感器的复位信号线号，在软件中称为传感器的复位源 |
-| **返回值**     | **返回值描述**                                   |
-| 0              | 撤销复位成功                                     |
-| 负数           | 撤销复位失败                                     |
+    | 参数           | 参数描述                                         |
+    | -------------- | ------------------------------------------------ |
+    | handle         | 控制器操作句柄                                   |
+    | snsResetSource | 传感器的复位信号线号，在软件中称为传感器的复位源 |
+    | **返回值**     | **返回值描述**                                   |
+    | 0              | 撤销复位成功                                     |
+    | 负数           | 撤销复位失败                                     |
 
-```c
-int32_t ret;
-uint8_t snsResetSource;
+    ```c
+    int32_t ret;
+    uint8_t snsResetSource;
 
-/* 传感器撤销复位信号线号为0 */
-snsResetSource = 0;
-/* 撤销复位sensor */
-ret = MipiCsiUnresetSensor(MipiCsiHandle, snsResetSource);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiUnresetSensor fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 传感器撤销复位信号线号为0 */
+    snsResetSource = 0;
+    /* 撤销复位sensor */
+    ret = MipiCsiUnresetSensor(MipiCsiHandle, snsResetSource);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiUnresetSensor fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
 ### 复位/撤销复位MIPI RX<a name="section2.5_MIPI_CSIDes"></a>
 
 -   复位MIPI RX
 
-```c
-int32_t MipiCsiResetRx(DevHandle handle, uint8_t comboDev);
-```
+    ```c
+    int32_t MipiCsiResetRx(DevHandle handle, uint8_t comboDev);
+    ```
 
-**表 11**  MipiCsiResetRx的参数和返回值描述
+    **表 11**  MipiCsiResetRx的参数和返回值描述
 
-<a name="table11_MIPI_CSIDes"></a>
+    <a name="table11_MIPI_CSIDes"></a>
 
-| 参数       | 参数描述              |
-| ---------- | --------------------- |
-| handle     | 控制器操作句柄        |
-| comboDev   | MIPI RX或LVDS通路序号 |
-| **返回值** | **返回值描述**        |
-| 0          | 复位成功              |
-| 负数       | 复位失败              |
+    | 参数       | 参数描述              |
+    | ---------- | --------------------- |
+    | handle     | 控制器操作句柄        |
+    | comboDev   | MIPI RX或LVDS通路序号 |
+    | **返回值** | **返回值描述**        |
+    | 0          | 复位成功              |
+    | 负数       | 复位失败              |
 
-```c
-int32_t ret;
-uint8_t comboDev;
+    ```c
+    int32_t ret;
+    uint8_t comboDev;
 
-/* 通路序号为0 */
-comboDev = 0;
-/* 复位MIPI RX */
-ret = MipiCsiResetRx(MipiCsiHandle, comboDev);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiResetRx fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 通路序号为0 */
+    comboDev = 0;
+    /* 复位MIPI RX */
+    ret = MipiCsiResetRx(MipiCsiHandle, comboDev);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiResetRx fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
 -   撤销复位MIPI RX
 
-```c
-int32_t MipiCsiUnresetRx(DevHandle handle, uint8_t comboDev);
-```
+    ```c
+    int32_t MipiCsiUnresetRx(DevHandle handle, uint8_t comboDev);
+    ```
 
-**表 12**  MipiCsiUnresetRx的参数和返回值描述
+    **表 12**  MipiCsiUnresetRx的参数和返回值描述
 
-<a name="table12_MIPI_CSIDes"></a>
+    <a name="table12_MIPI_CSIDes"></a>
 
-| 参数       | 参数描述              |
-| ---------- | --------------------- |
-| handle     | 控制器操作句柄        |
-| comboDev   | MIPI RX或LVDS通路序号 |
-| **返回值** | **返回值描述**        |
-| 0          | 撤销复位成功          |
-| 负数       | 撤销复位失败          |
+    | 参数       | 参数描述              |
+    | ---------- | --------------------- |
+    | handle     | 控制器操作句柄        |
+    | comboDev   | MIPI RX或LVDS通路序号 |
+    | **返回值** | **返回值描述**        |
+    | 0          | 撤销复位成功          |
+    | 负数       | 撤销复位失败          |
 
-```c
-int32_t ret;
-uint8_t comboDev;
+    ```c
+    int32_t ret;
+    uint8_t comboDev;
 
-/* 通路序号为0 */
-comboDev = 0;
-/* 撤销复位MIPI RX */
-ret = MipiCsiUnresetRx(MipiCsiHandle, comboDev);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiUnresetRx fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 通路序号为0 */
+    comboDev = 0;
+    /* 撤销复位MIPI RX */
+    ret = MipiCsiUnresetRx(MipiCsiHandle, comboDev);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiUnresetRx fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
 ### 使能/关闭MIPI的时钟<a name="section2.6_MIPI_CSIDes"></a>
 
 -   使能MIPI的时钟
 
-```c
-int32_t MipiCsiEnableClock(DevHandle handle, uint8_t comboDev);
-```
+    ```c
+    int32_t MipiCsiEnableClock(DevHandle handle, uint8_t comboDev);
+    ```
 
-**表 13**  MipiCsiEnableClock的参数和返回值描述
+    **表 13**  MipiCsiEnableClock的参数和返回值描述
 
-<a name="table13_MIPI_CSIDes"></a>
+    <a name="table13_MIPI_CSIDes"></a>
 
-| 参数       | 参数描述       |
-| ---------- | -------------- |
-| handle     | 控制器操作句柄 |
-| comboDev   | 通路序号       |
-| **返回值** | **返回值描述** |
-| 0          | 使能成功       |
-| 负数       | 使能失败       |
+    | 参数       | 参数描述       |
+    | ---------- | -------------- |
+    | handle     | 控制器操作句柄 |
+    | comboDev   | 通路序号       |
+    | **返回值** | **返回值描述** |
+    | 0          | 使能成功       |
+    | 负数       | 使能失败       |
 
-```c
-int32_t ret;
-uint8_t comboDev;
+    ```c
+    int32_t ret;
+    uint8_t comboDev;
 
-/* 通路序号为0 */
-comboDev = 0;
-/* 使能MIPI的时钟 */
-ret = MipiCsiEnableClock(MipiCsiHandle, comboDev);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiEnableClock fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 通路序号为0 */
+    comboDev = 0;
+    /* 使能MIPI的时钟 */
+    ret = MipiCsiEnableClock(MipiCsiHandle, comboDev);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiEnableClock fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
 -   关闭MIPI的时钟
 
-```c
-int32_t MipiCsiDisableClock(DevHandle handle, uint8_t comboDev);
-```
+    ```c
+    int32_t MipiCsiDisableClock(DevHandle handle, uint8_t comboDev);
+    ```
 
-**表 14**  MipiCsiDisableClock的参数和返回值描述
+    **表 14**  MipiCsiDisableClock的参数和返回值描述
 
-<a name="table14_MIPI_CSIDes"></a>
+    <a name="table14_MIPI_CSIDes"></a>
 
-| 参数       | 参数描述       |
-| ---------- | -------------- |
-| handle     | 控制器操作句柄 |
-| comboDev   | 通路序号       |
-| **返回值** | **返回值描述** |
-| 0          | 关闭成功       |
-| 负数       | 关闭失败       |
+    | 参数       | 参数描述       |
+    | ---------- | -------------- |
+    | handle     | 控制器操作句柄 |
+    | comboDev   | 通路序号       |
+    | **返回值** | **返回值描述** |
+    | 0          | 关闭成功       |
+    | 负数       | 关闭失败       |
 
-```c
-int32_t ret;
-uint8_t comboDev;
+    ```c
+    int32_t ret;
+    uint8_t comboDev;
 
-/* 通路序号为0 */
-comboDev = 0;
-/* 关闭MIPI的时钟 */
-ret = MipiCsiDisableClock(MipiCsiHandle, comboDev);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiDisableClock fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 通路序号为0 */
+    comboDev = 0;
+    /* 关闭MIPI的时钟 */
+    ret = MipiCsiDisableClock(MipiCsiHandle, comboDev);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiDisableClock fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
-### 使能/关闭MIPI上的sensor时钟<a name="section2.7_MIPI_CSIDes"></a>
+### 使能/关闭MIPI上的Sensor时钟<a name="section2.7_MIPI_CSIDes"></a>
 
--   使能MIPI上的sensor时钟
+-   使能MIPI上的Sensor时钟
 
-```c
-int32_t MipiCsiEnableSensorClock(DevHandle handle, uint8_t snsClkSource);
-```
+    ```c
+    int32_t MipiCsiEnableSensorClock(DevHandle handle, uint8_t snsClkSource);
+    ```
 
-**表 15**  MipiCsiEnableSensorClock的参数和返回值描述
+    **表 15**  MipiCsiEnableSensorClock的参数和返回值描述
 
-<a name="table15_MIPI_CSIDes"></a>
+    <a name="table15_MIPI_CSIDes"></a>
 
-| 参数         | 参数描述                                         |
-| ------------ | ------------------------------------------------ |
-| handle       | 控制器操作句柄                                   |
-| snsClkSource | 传感器的时钟信号线号，在软件中称为传感器的时钟源 |
-| **返回值**   | **返回值描述**                                   |
-| 0            | 使能成功                                         |
-| 负数         | 使能失败                                         |
+    | 参数         | 参数描述                                         |
+    | ------------ | ------------------------------------------------ |
+    | handle       | 控制器操作句柄                                   |
+    | snsClkSource | 传感器的时钟信号线号，在软件中称为传感器的时钟源 |
+    | **返回值**   | **返回值描述**                                   |
+    | 0            | 使能成功                                         |
+    | 负数         | 使能失败                                         |
 
-```c
-int32_t ret;
-uint8_t snsClkSource;
+    ```c
+    int32_t ret;
+    uint8_t snsClkSource;
 
-/* 传感器的时钟信号线号为0 */
-snsClkSource = 0;
-/* 使能MIPI上的sensor时钟 */
-ret = MipiCsiEnableSensorClock(MipiCsiHandle, snsClkSource);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiEnableSensorClock fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 传感器的时钟信号线号为0 */
+    snsClkSource = 0;
+    /* 使能MIPI上的sensor时钟 */
+    ret = MipiCsiEnableSensorClock(MipiCsiHandle, snsClkSource);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiEnableSensorClock fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
--   关闭MIPI上的sensor时钟
+-   关闭MIPI上的Sensor时钟
 
-```c
-int32_t MipiCsiDisableSensorClock(DevHandle handle, uint8_t snsClkSource);
-```
+    ```c
+    int32_t MipiCsiDisableSensorClock(DevHandle handle, uint8_t snsClkSource);
+    ```
 
-**表 16**  MipiCsiDisableSensorClock的参数和返回值描述
+    **表 16**  MipiCsiDisableSensorClock的参数和返回值描述
 
-<a name="table16_MIPI_CSIDes"></a>
+    <a name="table16_MIPI_CSIDes"></a>
 
-| 参数         | 参数描述                                         |
-| ------------ | ------------------------------------------------ |
-| handle       | 控制器操作句柄                                   |
-| snsClkSource | 传感器的时钟信号线号，在软件中称为传感器的时钟源 |
-| **返回值**   | **返回值描述**                                   |
-| 0            | 关闭成功                                         |
-| 负数         | 关闭失败                                         |
+    | 参数         | 参数描述                                         |
+    | ------------ | ------------------------------------------------ |
+    | handle       | 控制器操作句柄                                   |
+    | snsClkSource | 传感器的时钟信号线号，在软件中称为传感器的时钟源 |
+    | **返回值**   | **返回值描述**                                   |
+    | 0            | 关闭成功                                         |
+    | 负数         | 关闭失败                                         |
 
-```c
-int32_t ret;
-uint8_t snsClkSource;
+    ```c
+    int32_t ret;
+    uint8_t snsClkSource;
 
-/* 传感器的时钟信号线号为0 */
-snsClkSource = 0;
-/* 关闭MIPI上的sensor时钟 */
-ret = MipiCsiDisableSensorClock(MipiCsiHandle, snsClkSource);
-if (ret != 0) {
-    HDF_LOGE("%s: MipiCsiDisableSensorClock fail! ret=%d\n", __func__, ret);
-    return -1;
-}
-```
+    /* 传感器的时钟信号线号为0 */
+    snsClkSource = 0;
+    /* 关闭MIPI上的Sensor时钟 */
+    ret = MipiCsiDisableSensorClock(MipiCsiHandle, snsClkSource);
+    if (ret != 0) {
+        HDF_LOGE("%s: MipiCsiDisableSensorClock fail! ret=%d\n", __func__, ret);
+        return -1;
+    }
+    ```
 
 ### 释放MIPI-CSI控制器操作句柄<a name="section2.8_MIPI_CSIDes"></a>
 

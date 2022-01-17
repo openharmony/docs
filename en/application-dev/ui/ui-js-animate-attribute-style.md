@@ -1,6 +1,6 @@
 # Attribute Style Animation<a name="EN-US_TOPIC_0000001172005058"></a>
 
-In  [Keyframes](../js-reference/js-based-web-like-development-paradigm/js-components-common-methods.md#table1491078445), dynamically set the width and height of the parent component to scale the component. Set the  **scale**  attribute for child components to scale the parent and child components at the same time. Then, set the  **opacity**  attribute to display or hide parent and child components.
+In  [Keyframes](../reference/arkui-js/js-components-common-methods.md#table1491078445), dynamically set the width and height of the parent component to scale the component. Set the  **scale**  attribute for child components to scale the parent and child components at the same time. Then, set the  **opacity**  attribute to display or hide parent and child components.
 
 ```
 <!-- xxx.hml -->

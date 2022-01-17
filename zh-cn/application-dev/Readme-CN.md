@@ -10,6 +10,8 @@
     -  [基于TS扩展的声明式开发范式](ui/ui-arkui-ts.md)
 - [音频](media/audio.md)
 - [IPC与RPC通信](connectivity/ipc-rpc.md)
+- [分布式数据服务](database/Readme-CN.md)
+- [USB服务](usb/Readme-CN.md)
 - [应用事件打点](application-event-logging/hiappevent.md)
 - [开发参考](reference/Readme-CN.md)
 

@@ -18,13 +18,13 @@ GpioMethod定义：
 
 ```
 struct GpioMethod {
-  int32_t (*request)(struct GpioCntlr *cntlr, uint16_t local);// 【可选】
-  int32_t (*release)(struct GpioCntlr *cntlr, uint16_t local);// 【可选】
+  int32_t (*request)(struct GpioCntlr *cntlr, uint16_t local);// 【预留】
+  int32_t (*release)(struct GpioCntlr *cntlr, uint16_t local);// 【预留】
   int32_t (*write)(struct GpioCntlr *cntlr, uint16_t local, uint16_t val);
   int32_t (*read)(struct GpioCntlr *cntlr, uint16_t local, uint16_t *val);
   int32_t (*setDir)(struct GpioCntlr *cntlr, uint16_t local, uint16_t dir);
   int32_t (*getDir)(struct GpioCntlr *cntlr, uint16_t local, uint16_t *dir);
-  int32_t (*toIrq)(struct GpioCntlr *cntlr, uint16_t local, uint16_t *irq);// 【可选】
+  int32_t (*toIrq)(struct GpioCntlr *cntlr, uint16_t local, uint16_t *irq);// 【预留】
   int32_t (*setIrq)(struct GpioCntlr *cntlr, uint16_t local, uint16_t mode, GpioIrqFunc func, void *arg);
   int32_t (*unsetIrq)(struct GpioCntlr *cntlr, uint16_t local);
   int32_t (*enableIrq)(struct GpioCntlr *cntlr, uint16_t local);
@@ -49,7 +49,7 @@ struct GpioMethod {
 </thead>
 <tbody><tr id="row950310439569"><td class="cellrowborder" align="center" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p1550310436563"><a name="p1550310436563"></a><a name="p1550310436563"></a>write</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p2503194315613"><a name="p2503194315613"></a><a name="p2503194315613"></a>cntlr：结构体指针，核心层GPIO控制器;local：uint16_t，GPIO端口标识号 ;val：uint16_t，电平传入值;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p2503194315613"><a name="p2503194315613"></a><a name="p2503194315613"></a>cntlr：结构体指针，核心层GPIO控制器；</br>local：uint16_t，GPIO端口标识号；</br>val：uint16_t，电平传入值；</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p105031443205616"><a name="p105031443205616"></a><a name="p105031443205616"></a>无</p>
 </td>
@@ -60,9 +60,9 @@ struct GpioMethod {
 </tr>
 <tr id="row115036433568"><td class="cellrowborder" align="center" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p155031843135611"><a name="p155031843135611"></a><a name="p155031843135611"></a>read</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p45033436562"><a name="p45033436562"></a><a name="p45033436562"></a>cntlr：结构体指针，核心层GPIO控制器;local：uint16_t，GPIO端口标识;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p45033436562"><a name="p45033436562"></a><a name="p45033436562"></a>cntlr：结构体指针，核心层GPIO控制器；</br>local：uint16_t，GPIO端口标识；</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p9503943165614"><a name="p9503943165614"></a><a name="p9503943165614"></a>val：uint16_t 指针，用于传出电平值 ;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p9503943165614"><a name="p9503943165614"></a><a name="p9503943165614"></a>val：uint16_t 指针，用于传出电平值；</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.4 "><p id="p12504194305619"><a name="p12504194305619"></a><a name="p12504194305619"></a>HDF_STATUS相关状态</p>
 </td>
@@ -71,7 +71,7 @@ struct GpioMethod {
 </tr>
 <tr id="row4504174312563"><td class="cellrowborder" align="center" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p0504174395612"><a name="p0504174395612"></a><a name="p0504174395612"></a>setDir</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p65041043125616"><a name="p65041043125616"></a><a name="p65041043125616"></a>cntlr：结构体指针，核心层GPIO控制器;local：uint16_t，GPIO端口标识号 ;dir：uint16_t，管脚方向传入值;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p65041043125616"><a name="p65041043125616"></a><a name="p65041043125616"></a>cntlr：结构体指针，核心层GPIO控制器；</br>local：uint16_t，GPIO端口标识号；</br>dir：uint16_t，管脚方向传入值；</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p45044436563"><a name="p45044436563"></a><a name="p45044436563"></a>无</p>
 </td>
@@ -82,9 +82,9 @@ struct GpioMethod {
 </tr>
 <tr id="row6504174385620"><td class="cellrowborder" align="center" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p10504114325614"><a name="p10504114325614"></a><a name="p10504114325614"></a>getDir</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p15504184375619"><a name="p15504184375619"></a><a name="p15504184375619"></a>cntlr：结构体指针，核心层GPIO控制器;local：uint16_t，GPIO端口标识号 ;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p15504184375619"><a name="p15504184375619"></a><a name="p15504184375619"></a>cntlr：结构体指针，核心层GPIO控制器；</br>local：uint16_t，GPIO端口标识号；</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p5504343135617"><a name="p5504343135617"></a><a name="p5504343135617"></a>dir：uint16_t 指针，用于传出管脚方向值 ;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p5504343135617"><a name="p5504343135617"></a><a name="p5504343135617"></a>dir：uint16_t 指针，用于传出管脚方向值；</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.4 "><p id="p1450464314563"><a name="p1450464314563"></a><a name="p1450464314563"></a>HDF_STATUS相关状态</p>
 </td>
@@ -93,7 +93,7 @@ struct GpioMethod {
 </tr>
 <tr id="row750419431561"><td class="cellrowborder" align="center" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p1950414335619"><a name="p1950414335619"></a><a name="p1950414335619"></a>setIrq</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p115049434567"><a name="p115049434567"></a><a name="p115049434567"></a>cntlr：结构体指针，核心层GPIO控制器;local：uint16_t，GPIO端口标识号;mode：uint16_t，表示触发模式（边沿或电平）;func：函数指针，中断服务程序 ;arg：void指针，中断服务程序入参;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p115049434567"><a name="p115049434567"></a><a name="p115049434567"></a>cntlr：结构体指针，核心层GPIO控制器；</br>local：uint16_t，GPIO端口标识号；</br>mode：uint16_t，表示触发模式（边沿或电平）；</br>func：函数指针，中断服务程序；</br>arg：void指针，中断服务程序入参；</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p1350414345615"><a name="p1350414345615"></a><a name="p1350414345615"></a>无</p>
 </td>
@@ -104,7 +104,7 @@ struct GpioMethod {
 </tr>
 <tr id="row35041243125616"><td class="cellrowborder" align="center" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p1650413438568"><a name="p1650413438568"></a><a name="p1650413438568"></a>unsetIrq</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p1550484310568"><a name="p1550484310568"></a><a name="p1550484310568"></a>cntlr：结构体指针，核心层GPIO控制器;local：uint16_t，GPIO端口标识号 ;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p1550484310568"><a name="p1550484310568"></a><a name="p1550484310568"></a>cntlr：结构体指针，核心层GPIO控制器；</br>local：uint16_t，GPIO端口标识号；</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p1850494310566"><a name="p1850494310566"></a><a name="p1850494310566"></a>无</p>
 </td>
@@ -115,7 +115,7 @@ struct GpioMethod {
 </tr>
 <tr id="row5504124335615"><td class="cellrowborder" align="center" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p1350464365618"><a name="p1350464365618"></a><a name="p1350464365618"></a>enableIrq</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p1750414316563"><a name="p1750414316563"></a><a name="p1750414316563"></a>cntlr：结构体指针，核心层GPIO控制器;local：uint16_t，GPIO端口标识号;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p1750414316563"><a name="p1750414316563"></a><a name="p1750414316563"></a>cntlr：结构体指针，核心层GPIO控制器；</br>local：uint16_t，GPIO端口标识号；</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p8505104315612"><a name="p8505104315612"></a><a name="p8505104315612"></a>无</p>
 </td>
@@ -126,7 +126,7 @@ struct GpioMethod {
 </tr>
 <tr id="row1250517432566"><td class="cellrowborder" align="center" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p115052430563"><a name="p115052430563"></a><a name="p115052430563"></a>disableIrq</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p165051435567"><a name="p165051435567"></a><a name="p165051435567"></a>cntlr：结构体指针，核心层GPIO控制器;local：uint16_t，GPIO端口标识号;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p165051435567"><a name="p165051435567"></a><a name="p165051435567"></a>cntlr：结构体指针，核心层GPIO控制器；</br>local：uint16_t，GPIO端口标识号；</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p750514438565"><a name="p750514438565"></a><a name="p750514438565"></a>无</p>
 </td>

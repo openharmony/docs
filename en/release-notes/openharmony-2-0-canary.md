@@ -52,11 +52,44 @@ On the basis of OpenHarmony 1.1.0, OpenHarmony 2.0 adds the version for the stan
 </tbody>
 </table>
 
+
+## Source Code Acquisition
+
+
+### Acquiring Source Code Using the repo Tool
+
+**Method 1 (recommended)**: Use the **repo** tool to download the source code over SSH. (You must have registered an SSH public key for access to Gitee.)
+
+```
+repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-2.0-Canary --no-repo-verify
+repo sync-c
+repo forall -c'git lfs pull'
+```
+
+**Method 2**: Use the **repo** tool to download the source code over HTTPS.
+
+```
+repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-2.0-Canary --no-repo-verify
+repo sync-c
+repo forall -c'git lfs pull'
+```
+
+
+### Acquiring Source Code from Image Sites
+
+**Table  2** Sites for acquiring source code
+
+| Source&nbsp;Code | Version | Site | SHA-256&nbsp;Checksum | 
+| -------- | -------- | -------- | -------- |
+| Full&nbsp;code&nbsp;base | 2.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz.sha256) | 
+| Release&nbsp;Notes | 2.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/openharmony-2-0-canary.md) | - | 
+
+
 ## What's New<a name="section11256141314463"></a>
 
 This version inherits all the features of OpenHarmony 1.1.0 and adds the version form for the standard system. The following table describes the specific features added for the version form.
 
-**Table  2**  New features
+**Table  3**  New features
 
 <a name="table1976311913503"></a>
 <table><thead align="left"><tr id="row127631916501"><th class="cellrowborder" valign="top" width="24.94%" id="mcps1.2.3.1.1"><p id="p6763997509"><a name="p6763997509"></a><a name="p6763997509"></a>Subsystem</p>

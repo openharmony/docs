@@ -1,4 +1,4 @@
-# 开发板移植
+## 概述
 目前OpenHarmony已经成立了SIG组[sig-devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)。该SIG组以支持更多第三方开发板为目标，提供开发板移植的支撑。
 
 在了解开发板移植前，需要先了解一下OpenHarmony对设备的分类。不同设备类型的移植方法会有较大差异。
@@ -19,7 +19,7 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 
 其他下载步骤与主线相同。
 
-## 开始移植你的开发板
+## 芯片移植指导
 
 - [轻量系统芯片移植指导](porting-minichip.md)
   - [移植准备](porting-chip-prepare.md)
@@ -49,11 +49,16 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [移植概述](porting-smallchip-driver-overview.md)
     - [平台驱动移植](porting-smallchip-driver-plat.md)
     - [器件驱动移植](porting-smallchip-driver-oom.md)
-- [标准系统移植指南](standard-system-porting-guide.md)
-- [一种快速移植OpenHarmony Linux内核的方法](porting-linux-kernel.md)
+- [标准系统芯片移植指导](standard-system-porting-guide.md)
+    - [标准系统移植指南](standard-system-porting-guide.md)
+    - [一种快速移植OpenHarmony Linux内核的方法](porting-linux-kernel.md)
+- [轻量和小型系统三方库移植指导]( porting-thirdparty.md)
+    - [概述](porting-thirdparty-overview.md)
+    - [CMake方式组织编译的库移植](porting-thirdparty-cmake.md)
+    - [Makefile方式组织编译的库移植](porting-thirdparty-makefile.md)
 
-# 三方库移植
+## 芯片移植案例
 
-- [概述](porting-thirdparty-overview.md)
-- [CMake方式组织编译的库移植](porting-thirdparty-cmake.md)
-- [Makefile方式组织编译的库移植](porting-thirdparty-makefile.md)
+- [轻量系统芯片移植案例](porting-minichip-cases.md)
+    - [带屏解决方案之恒玄芯片移植案例](porting-bes2600w-on-minisystem-display-demo.md)
+

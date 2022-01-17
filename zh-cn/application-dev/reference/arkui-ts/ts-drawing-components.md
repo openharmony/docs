@@ -1,4 +1,4 @@
-# 绘制组件<a name="ZH-CN_TOPIC_0000001166647443"></a>
+# 绘制组件<a name="ZH-CN_TOPIC_0000001192915088"></a>
 
 -   **[Circle](ts-drawing-components-circle.md)**  
 

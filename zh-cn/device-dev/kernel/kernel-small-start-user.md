@@ -57,7 +57,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
     clang --target=arm-liteos --sysroot=prebuilts/lite/sysroot -o helloworld helloworld.c
     ```
 
-    **clang**：参考[LLVM安装指导](../quick-start/quickstart-lite-env-setup-linux.md)安装LLVM编译器。
+    **clang**：参考[LLVM安装指导](../quick-start/quickstart-lite-package-environment.md)安装LLVM编译器。
 
     **--target**：--target=arm-liteos，指定编译平台为arm-liteos。
 

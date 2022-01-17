@@ -1,8 +1,12 @@
-# 常见问题<a name="ZH-CN_TOPIC_0000001166804465"></a>
+# 常见问题<a name="ZH-CN_TOPIC_0000001188205126"></a>
+
+-   [编译构建过程中，提示"ImportError: No module named apt\_pkg"](#section1864714601214)
+
+## 编译构建过程中，提示"ImportError: No module named apt\_pkg"<a name="section1864714601214"></a>
 
 -   **现象描述**
 
-    Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt\_pkg"
+    Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt\_pkg"。
 
 -   **可能原因**
 

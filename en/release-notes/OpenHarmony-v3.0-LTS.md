@@ -64,25 +64,40 @@ The feature updates for the mini and small systems are as follows:
 
 ## Source Code Acquisition
 
-**Method 1 (recommended)**
 
-Use the **repo** tool to download the source code over SSH. (You must have registered an SSH public key for access to Gitee.)
+### Acquiring Source Code Using the repo Tool
 
-```undefined
+**Method 1 (recommended)**: Use the **repo** tool to download the source code over SSH. (You must have registered an SSH public key for access to Gitee.)
+
+```
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-**Method 2**
+**Method 2**: Use the **repo** tool to download the source code over HTTPS.
 
-Use the **repo** tool to download the source code over HTTPS.
-
-```undefined
+```
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
+
+
+### Acquiring Source Code from an Image Site
+
+**Table 2** Sites for acquiring source code
+
+| LTS&nbsp;Code | Version&nbsp;Information | Site | SHA-256&nbsp;Verification&nbsp;Code | 
+| -------- | -------- | -------- | -------- |
+| Full&nbsp;code&nbsp;(for&nbsp;mini,&nbsp;small,&nbsp;and&nbsp;standard&nbsp;systems) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz.sha256) | 
+| Standard&nbsp;system&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz.sha256) | 
+| Hi3861&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz.sha256) | 
+| Hi3518&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz.sha256) | 
+| Hi3516&nbsp;solution-LiteOS&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz.sha256) | 
+| Hi3516&nbsp;solution-Linux&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 
+| Release&nbsp;Notes | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-v3.0-LTS.md) | - | 
+
 
 
 ## What's New
@@ -92,11 +107,11 @@ This version has the following updates to OpenHarmony 2.2 Beta2.
 
 ### Feature Updates
 
-**Table 2** New and enhanced features
+**Table 3** New and enhanced features
 
 | Subsystem| Standard System| Mini and Small Systems| 
 | -------- | -------- | -------- |
-| Distributed Scheduler| -&nbsp;Remote Service ability binding is supported.<br/>-&nbsp;Cross-device FA migration is supported.<br/>-&nbsp;Permission verification is added for the visible attribute of a component. | The ability on a standard-system device can be started from a mini-system device.| 
+| Distributed Scheduler| -&nbsp;Remote Service ability binding is supported.<br/>-&nbsp;Cross-device FA migration is supported.<br/>-&nbsp;Permission verification is added for the visible attribute of a component. | The small system can now start HarmonyOS abilities.| 
 | Graphics| For chip platforms with GPU modules, GPUs can be used for rendering and composition to improve graphics performance and reduce CPU load.| N/A| 
 | Distributed Hardware| -&nbsp;The formal PIN authentication scheme based on DSoftBus authentication channels is supported.<br/>-&nbsp;A pop-up window is displayed for PIN authentication.<br/>-&nbsp;A pop-up window is displayed to show a PIN.<br/>-&nbsp;A pop-up window is displayed for the user to enter a PIN.| N/A| 
 | Event Notification| -&nbsp;Application notification subscription and unsubscription are supported.<br/>-&nbsp;Local text and picture-attached notifications can be published or canceled on the application side.<br/>-&nbsp;Application notification redirection is supported.<br/>-&nbsp;Notification slots can be added or removed on the application side.<br/>-&nbsp;Notification flow control and death monitor are supported.| N/A| 
@@ -130,7 +145,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 
 ## Resolved Issues
 
-**Table 3** Issues resolved for mini and small systems
+**Table 4** Issues resolved for mini and small systems
 
 | Issue No.| Description| 
 | -------- | -------- |
@@ -150,7 +165,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | [I490KZ](https://gitee.com/openharmony/kernel_liteos_a/issues/I490KZ) | The **FutexTest.testPthreadTimdOutRWlockWR** case fails to be executed.| 
 | [I44SFO](https://gitee.com/openharmony/third_party_toybox/issues/I44SFO) | During the integration test, a file in a directory is moved to another directory, and then a file with the same name is created in the first directory. When the user attempts to move the new file, a message is displayed, indicating that the file does not exist.| 
 
-Table 4 Issues resolved for the standard system
+Table 5 Issues resolved for the standard system
 
 | Issue No.| Description| 
 | -------- | -------- |
@@ -165,12 +180,12 @@ Table 4 Issues resolved for the standard system
 
 ## Known Issues
 
-**Table 5** Known issues
+**Table 6** Known issues
 
 | Issue| Description| Impact| To Be Resolved On| 
 | -------- | -------- | -------- | -------- |
 | [I48IM7](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I48IM7) | During the hilog pressure test, **hilogd** restarts unexpectedly, and the **hilog** command cannot be used.| In the pressure test, there is a low probability that the log output is abnormal. The log output is normal in the commissioning scenario.| October 30| 
-| [I48YPH](https://gitee.com/openharmony/communication_dsoftbus/issues/I48YPH) | [DSoftBus - Networking] During the testing of the getting-offline - discovery - networking cycle, there are 3 failures among all the 110 attempts.| There is a low probability that this issue occurs. If a networking failure occurs, initiate the networking again.| October 30| 
+| [I48YPH](https://gitee.com/openharmony/security_deviceauth/issues/I48YPH) | [DSoftBus - Networking] During the testing of the getting-offline - discovery - networking cycle, there are 3 failures among all the 110 attempts.| There is a low probability that this issue occurs. If a networking failure occurs, initiate the networking again.| October 30| 
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | [DSoftBus - Networking] The success rate of self-networking between a standard-system device and mobile phone is 97%.| There is a low probability that the networking fails.| October 30| 
 | [I4BXWY](https://gitee.com/openharmony/multimedia_media_standard/issues/I4BXWY) | For Hi3516, noises occur during playback of an audio recording.| This issue occurs only when this development board is used.| October 30| 
 | [I4BXY1](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4BXY1) | There is no sound in the first few seconds of a video recording, the sound and image are out of sync, frame freezing occurs, and noises occur when the audio source was far away during recording.| This issue occurs only when this development board is used.| October 30| 

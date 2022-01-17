@@ -13,37 +13,37 @@
 
 -   **Touchscreen驱动主要任务**
 
-    Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定input相关配置、下载及更新固件等操作。
+    Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
 
 
 -   **Touchscreen驱动层次说明**
 
-    本节主要介绍基于input驱动模型开发touchscreen器件驱动，input模型整体的框架如[图1](#fig6251184817261)。
+    本节主要介绍基于Input驱动模型开发touchscreen器件驱动，Input模型整体的框架如[图1](#fig6251184817261)。
 
-    Input驱动模型基于HDF驱动框架、PLATFORM接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Driver Interface）层，通过Input-HDI层对外提供硬件能力，即上层input service可以通过HDI接口层获取相应的驱动能力，进而操控touchscreen等输入设备。
+    Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Driver Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input service可以通过HDI接口层获取相应的驱动能力，进而操控touchscreen等输入设备。
 
 
-**图 1**  基于HDF驱动框架的input驱动模型<a name="fig6251184817261"></a>  
+**图 1**  基于HDF驱动框架的Input驱动模型<a name="fig6251184817261"></a>  
 ![](figures/基于HDF驱动框架的input驱动模型.png "基于HDF驱动框架的input驱动模型")
 
 -   **Input驱动模型介绍**
 
     Input驱动模型核心部分由设备管理层、公共驱动层、器件驱动层组成。器件产生的数据借助平台数据通道能力从内核传递到用户态，驱动模型通过配置文件适配不同器件及硬件平台，提高开发者的器件驱动开发效率。如下部分为模型各部分的说明：
 
-    （1）input设备管理：为各类输入设备驱动提供input设备的注册、注销接口，同时统一管理input设备列表；
+    - Input设备管理：为各类输入设备驱动提供Input设备的注册、注销接口，同时统一管理Input设备列表。
 
-    （2）input平台驱动：指各类input设备的公共抽象驱动（例如触摸屏的公共驱动），负责对板级硬件进行初始化、硬件中断处理、向manager注册input设备等；
+    - Input平台驱动：指各类Input设备的公共抽象驱动（例如触摸屏的公共驱动），负责对板级硬件进行初始化、硬件中断处理、向manager注册Input设备等。
 
-    （3）input器件驱动：指各器件厂家的差异化驱动，通过适配平台驱动预留的差异化接口，实现器件驱动开发量最小化；
+    - Input器件驱动：指各器件厂家的差异化驱动，通过适配平台驱动预留的差异化接口，实现器件驱动开发量最小化。
 
-    （4）input数据通道：提供一套通用的数据上报通道，各类别的input设备驱动均可用此通道上报input事件；
+    - Input数据通道：提供一套通用的数据上报通道，各类别的Input设备驱动均可用此通道上报Input事件。
 
-    （5）input配置解析：负责对input设备的板级配置及器件私有配置进行解析及管理。
+    - Input配置解析：负责对Input设备的板级配置及器件私有配置进行解析及管理。
 
 
 -   **基于HDF驱动框架开发器件驱动的优势**
 
-    在HDF（Hardware Driver Foundation）[驱动管理框架](driver-hdf-development.md)的基础上，input驱动模型调用OSAL接口层和Platfom接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于input驱动模型实现的touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
+    在HDF（Hardware Driver Foundation）[驱动管理框架](driver-hdf-development.md)的基础上，Input驱动模型调用OSAL接口层和Platfom接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于Input驱动模型实现的touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
 
 
 ## 接口说明<a name="section105459441659"></a>
@@ -60,10 +60,10 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 如上图所示的三类接口，分别做简要说明如下：
 
 1.  **电源接口**
-    -   LDO\_1P8：1.8v数字电路
-    -   LDO\_3P3：3.3v模拟电路
+    -   LDO\_1P8：1.8V数字电路
+    -   LDO\_3P3：3.3V模拟电路
 
-        通常情况下，touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，touchscreen驱动IC一般同时需要1.8v和3.3v两路供电。随着芯片演进，业内已有touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对touchscreen而言，只需要关注1.8v供电即可，其内部需要的3.3v电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
+        通常情况下，touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片演进，业内已有touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
 
 2.  **IO控制接口**
     -   Reset：reset管脚，用于在系统休眠、唤醒时，由主机侧对驱动IC进行复位操作。
@@ -78,11 +78,11 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 
 Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区分操作系统和芯片平台，为touchscreen等输入器件提供统一的驱动开发架构。
 
-如下以touchscreen器件驱动为例，说明input驱动模型的完整加载流程：
+如下以touchscreen器件驱动为例，说明Input驱动模型的完整加载流程：
 
 （1）设备描述配置：由开发者参考已有模板进行设备描述配置，包括驱动加载顺序、板级硬件信息、器件私有数据信息等。
 
-（2）加载input设备管理驱动：input设备管理驱动由HDF驱动加载，完成设备manager的创建并对其初始化。
+（2）加载Input设备管理驱动：Input设备管理驱动由HDF驱动加载，完成设备manager的创建并对其初始化。
 
 （3）加载平台驱动：平台驱动由HDF框架加载，主要完成板级配置解析及硬件初始化，并提供器件注册接口。
 
@@ -90,7 +90,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 （5）器件设备向平台驱动注册：将实例化的器件设备向平台驱动注册，实现设备和驱动的绑定，并完成中断注册、上下电等器件初始化工作。
 
-（6）input设备注册：在器件初始化完成后，实例化input设备，并将其注册到input manager进行管理。
+（6）Input设备注册：在器件初始化完成后，实例化Input设备，并将其注册到Input manager进行管理。
 
 请参考如下相关步骤：
 
@@ -113,7 +113,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 ### 设备描述配置<a name="section18249155619195"></a>
 
-如下配置主要包含input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
+如下配置主要包含Input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
 
 ```
 input :: host {

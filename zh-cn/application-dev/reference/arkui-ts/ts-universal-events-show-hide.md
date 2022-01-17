@@ -1,26 +1,34 @@
-# 挂载卸载事件<a name="ZH-CN_TOPIC_0000001112981806"></a>
+# 挂载卸载事件<a name="ZH-CN_TOPIC_0000001192595164"></a>
 
-<a name="table2154mcpsimp"></a>
-<table><thead align="left"><tr id="row2160mcpsimp"><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.5.1.1"><p id="p2164mcpsimp"><a name="p2164mcpsimp"></a><a name="p2164mcpsimp"></a>名称</p>
+>![](../../public_sys-resources/icon-note.gif) **说明：** 
+>从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 权限列表<a name="section781125411508"></a>
+
+无
+
+## 事件<a name="section12538399584"></a>
+
+<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.5.1.1"><p>名称</p>
 </th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.2"><p id="p1037419419496"><a name="p1037419419496"></a><a name="p1037419419496"></a>支持冒泡</p>
+<th class="cellrowborder" valign="top" id="mcps1.1.5.1.2"><p>支持冒泡</p>
 </th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.3"><p id="p2166mcpsimp"><a name="p2166mcpsimp"></a><a name="p2166mcpsimp"></a>功能描述</p>
+<th class="cellrowborder" valign="top" id="mcps1.1.5.1.3"><p>功能描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2167mcpsimp"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p id="p2169mcpsimp"><a name="p2169mcpsimp"></a><a name="p2169mcpsimp"></a>onAppear(callback: () =&gt; void)</p>
+<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p>onAppear(callback: () =&gt; void)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p id="p1437415424917"><a name="p1437415424917"></a><a name="p1437415424917"></a>否</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p id="p2173mcpsimp"><a name="p2173mcpsimp"></a><a name="p2173mcpsimp"></a>组件挂载显示时触发此回调。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p>组件挂载显示时触发此回调。</p>
 </td>
 </tr>
-<tr id="row1357111982818"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p id="p3571101917283"><a name="p3571101917283"></a><a name="p3571101917283"></a>onDisappear(callback: () =&gt; void)</p>
+<tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p>onDisappear(callback: () =&gt; void)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p id="p1937434144915"><a name="p1937434144915"></a><a name="p1937434144915"></a>否</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p>否</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p id="p5571319112811"><a name="p5571319112811"></a><a name="p5571319112811"></a>组件卸载消失时触发此回调。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p>组件卸载消失时触发此回调。</p>
 </td>
 </tr>
 </tbody>

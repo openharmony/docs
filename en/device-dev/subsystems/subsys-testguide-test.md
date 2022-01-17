@@ -39,21 +39,23 @@ subsystem # Subsystem
 │   │       ├── unittest  # Unit test
 │   │       │   ├── common  # Common test cases
 │   │       │   │   ├── BUILD.gn  # Build file of test cases
-│   │       │   │   ├── testA_test.cpp  # Source code of unit test cases
+│   │       │   │   └── testA_test.cpp  # Source code of unit test cases
 │   │       │   ├── phone  # Test cases for mobile phones
 │   │       │   ├── ivi  # Test cases for head units
 │   │       │   └── liteos-a  # Test cases for the IP cameras that use the LiteOS kernel
-│   │       └── resource  # Dependency resources
-│   │           └── ohos_test.xml   
+│   │       ├── moduletest  # Module test
+│   │       ...
+│   │            
 │   ├── moduleB  # Module B
 │   ├── test               
-│   │   └── moduletest  # Module test
-│   │       ├── common     
-│   │       ├── phone                  
-│   │       ├── ivi                
-│   │       └── liteos-a                  
-│   │   ...
-│   └── ohos_build  # Build entry configuration
+│   │   └── resource  # Dependency resources
+│   │       ├── moduleA  # Module A
+│   │       │   ├── ohos_test.xml # Resource configuration file
+│   │       ... └── 1.txt  # Resources
+│   │            
+│   ├── ohos_build  # Build entry configuration
+│   ...
+│
 ...
 ```
 > **Note:** Test cases are classified into common test cases and device-specific test cases. You are advised to place common test cases in the **common** directory and device-specific test cases in the directories of the related devices.
@@ -131,7 +133,7 @@ Example:
     {
         // Step 1 Call the function to obtain the result.
         int actual = Sub(4, 0);
-
+    
         // Step 2 Use an assertion to compare the obtained result with the expected result.
         EXPECT_EQ(4, actual);
     }
@@ -157,7 +159,7 @@ Example:
     2. Add the test framework header file and namespace.
 	    ```
     	#include <gtest/gtest.h>
-    
+    	
     	using namespace testing::ext;
     	```
     3. Add the header file of the test class.
@@ -173,22 +175,22 @@ Example:
     	    void SetUp();
     	    void TearDown();
     	};
-    
+        
     	void CalculatorSubTest::SetUpTestCase(void)
     	{
     	    // Set a setup function, which will be called before all test cases.
     	}
-    
+        
     	void CalculatorSubTest::TearDownTestCase(void)
     	{
     	    // Set a teardown function, which will be called after all test cases.
     	}
-    
+        
     	void CalculatorSubTest::SetUp(void)
     	{
     	    // Set a setup function, which will be called before each test case.
     	}
-    
+        
     	void CalculatorSubTest::TearDown(void)
     	{
     	    // Set a teardown function, which will be called after each test case.
@@ -200,7 +202,7 @@ Example:
 	    ```
     	/**
     	 * @tc.name: integer_sub_001
-    	 * @tc.desc: Verify the sub function.
+    	 * @tc.desc: Verify the sub-function.
     	 * @tc.type: FUNC
     	 * @tc.require: Issue Number
     	 */
@@ -208,14 +210,14 @@ Example:
     	{
     	    // Step 1 Call the function to obtain the test result.
     	    int actual = Sub(4, 0);
-
+        
     	    // Step 2 Use an assertion to compare the obtained result with the expected result.
     	    EXPECT_EQ(4, actual);
     	}
     	```
 	    The following test case templates are provided for your reference.
 	
-	    |      Template|    Description|
+	    |      Type|    Description|
     	| ------------| ------------|
     	| HWTEST(A,B,C)| Use this template if the test case execution does not depend on setup or teardown.|
     	| HWTEST_F(A,B,C)| Use this template if the test case execution (excluding parameters) depends on setup and teardown.|
@@ -230,11 +232,15 @@ Example:
 	- The expected result of each test case must have an assertion.
 	- The test case level must be specified.
 	- It is recommended that the test be implemented step by step according to the template.
-	- The comment must contain the test case name, description, type, and requirement number, which are in the @tc.xxx: value format. The test case type @tc.type can be any of the following:
+	- The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case type @**tc.type** can be any of the following:
 
-	    | Test Case Type|Function test|Performance test|Reliability test|Security test|Fuzz test|
-    	| ------------|------------|------------|------------|------------|------------|
-    	| Code|FUNC|PERF|RELI|SECU|FUZZ|
+	    | Test Case Type|Code|
+    	| ------------|------------|
+    	|Function test|FUNC|
+        |Performance test|PERF|
+        |Reliability test|RELI|
+        |Security test|SECU|
+        |Fuzz test|FUZZ|
     
 
 **JavaScript Test Case Example**
@@ -297,7 +303,7 @@ Example:
         it("appInfoTest001", 0, function () {
             // Step 1 Call the function to obtain the test result.
             var info = app.getInfo()
-
+    
             // Step 2 Use an assertion to compare the obtained result with the expected result.
             expect(info != null).assertEqual(true)
         })
@@ -324,7 +330,7 @@ Example:
     2. Import the APIs and JSUnit test library to test.
 	    ```
     	import app from '@system.app'
-    
+    	
     	import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
     	```
     3. Define the test suite (test class).
@@ -361,7 +367,7 @@ Example:
     	 it("appInfoTest001", 0, function () {
     	    // Step 1 Call the function to obtain the test result.
             var info = app.getInfo()
-
+    	
             // Step 2 Use an assertion to compare the obtained result with the expected result.
             expect(info != null).assertEqual(true)
     	 })
@@ -407,7 +413,7 @@ The following provides templates for different languages for your reference.
       deps = [":CalculatorSubTest"]
     }
     ```
-    The build file is configured as follows:
+    The procedure is as follows:
 
     1. Add comment information for the file header.
 	    ```
@@ -535,7 +541,7 @@ The following provides templates for different languages for your reference.
     	  certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
     	}
     	```
-    	 **config.json** is the configuration file required for HAP build. You need to set **target** based on the tested SDK version. Default values can be retained for other items. The following is an example:
+    	**config.json** is the configuration file required for HAP build. You need to set **target** based on the tested SDK version. Default values can be retained for other items. The following is an example:
     
     	```
     	{
@@ -606,9 +612,9 @@ The following provides templates for different languages for your reference.
     	}
     	```
     	> **Note**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
-      
-#### Configuring ohos.build
     
+#### Configuring ohos.build
+
 Configure the part build file to associate with specific test cases.
 ```
 "partA": {
@@ -632,9 +638,9 @@ Configure the part build file to associate with specific test cases.
 Test case resources include external file resources, such as image files, video files, and third-party libraries, required for test case execution.
 
 Perform the following steps:
-1. Under the **test** directory of a part or module, create the **resource** directory to store resource files.
+1. Create the **resource** directory in the **test** directory of the part, and create a directory for the module in the **resource** directory to store resource files of the module.
 
-2. In the **resource** directory, create the **ohos_test.xml** file in the following format:
+2. In the module directory under **resource**, create the **ohos_test.xml** file in the following format:
 	```
 	<?xml version="1.0" encoding="UTF-8"?>
 	<configuration ver="2.0">
@@ -649,14 +655,13 @@ Perform the following steps:
 3. In the build file of the test cases, configure **resource\_config\_file** to point to the resource file **ohos\_test.xml**.
 	```
 	ohos_unittest("CalculatorSubTest") {
-	  resource_config_file = "//system/subsystem/partA/calculator/test/resource/ohos_test.xml"
+	  resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
 	}
 	```
 	>**Note:**
-	>- **target_name** indicates the test suite name defined in the **BUILD.gn** file in the **test** directory.
-	>- **preparer** indicates the action to perform before the test suite is executed.
-	>- **src="res"** indicates that the test resources are in the **resource** directory under the **test** directory.
-	>- **src="out"** indicates that the test resources are in the **out/release/$(part)** directory.
+	>- **target_name** indicates the test suite name defined in the **BUILD.gn** file in the **test** directory.**preparer** indicates the action to perform before the test suite is executed.
+	>- **src="res"** indicates that the test resources are in the **resource** directory under the **test** directory. **src="out"** indicates that the test resources are in the **out/release/$(*part*)** directory.
+
 ## Executing Test Cases
 Before executing test cases, you need to modify the configuration based on the device used.
 
@@ -715,18 +720,19 @@ Test cases cannot be built on Windows. You need to run the following command to 
 ```
 ./build.sh --product-name Hi3516DV300 --build-target make_test
 ```
->**Note:**
-> -  --**product-name**: specifies the name of the product to build, for example, **Hi3516DV300**.
-> - --**build-target**: specifies the target to build. It is optional. **make_test** indicates all test cases. You can set the build options based on requirements.
+>Note:
+>- **product-name**: specifies the name of the product to build, for example, **Hi3516DV300**.
+>- **build-target**: specifies the test case to build. **make_test** indicates all test cases. You can specify the test cases based on requirements.
 
-When the build is complete, the test cases are automatically saved in the **out/hi3516dv300/packages/phone/tests** directory.
+After the build is complete, the test cases are automatically saved in **out/hi3516dv300/packages/phone/tests**.
 
 #### Setting Up the Execution Environment
 1. On Windows, create the **Test** directory in the test framework and then create the **testcase** directory in the **Test** directory.
 
 2. Copy **developertest** and **xdevice** from the Linux environment to the **Test** directory on Windows, and copy the test cases to the **testcase** directory.
+	
 	>**Note**: Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
-
+	
 3. Modify the **user_config.xml** file.
 	```
 	<build>
@@ -757,15 +763,15 @@ When the build is complete, the test cases are automatically saved in the **out/
 	```
 	In the command:
 	```
-	-t [TESTTYPE]: specifies the test type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
+	-t [TESTTYPE]: specifies the test case type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
 	-tp [TESTPART]: specifies the part to test. This parameter can be used independently.
 	-tm [TESTMODULE]: specifies the module to test. This parameter must be specified together with -tp.
 	-ts [TESTSUITE]: specifies the test suite. This parameter can be used independently.
 	-tc [TESTCASE]: specifies the test case. This parameter must be specified together with -ts.
-	You can run -h to display help information.
+	-You can run h to display help information.
 	```
 ### Executing Test Cases on Linux
-#### Mapping Remote Port
+#### Mapping the Remote Port
 To enable test cases to be executed on a remote Linux server or a Linux VM, map the port to enable communication between the device and the remote server or VM. Configure port mapping as follows:
 1. On the HDC server, run the following commands:
 	```
@@ -797,12 +803,12 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	```
 	In the command:
 	```
-	-t [TESTTYPE]: specifies the test type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
+	-t [TESTTYPE]: specifies the test case type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
 	-tp [TESTPART]: specifies the part to test. This parameter can be used independently.
 	-tm [TESTMODULE]: specifies the module to test. This parameter must be specified together with -tp.
 	-ts [TESTSUITE]: specifies the test suite. This parameter can be used independently.
 	-tc [TESTCASE]: specifies the test case. This parameter must be specified together with -ts.
-	You can run -h to display help information.
+	-You can run h to display help information.
 	```
 
 ## Viewing the Test Report
@@ -832,4 +838,3 @@ reports/platform_log_xxxx_xx_xx_xx_xx_xx.log
 ```
 reports/latest
 ```
-

@@ -23,7 +23,7 @@
      margin-top: 100px; 
    }
    .text-style {
-  width: 100%;
+     width: 100%;
      text-align: center;
      font-weight: 500;
      font-family: Courier;
@@ -83,7 +83,7 @@
    export default { 
      data: {
        text: '开始',
-    isShow: false,
+       isShow: false,
      },
      textClicked (e) {
        this.text = e.detail.text;

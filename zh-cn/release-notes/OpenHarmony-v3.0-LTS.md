@@ -64,11 +64,14 @@
 
 ## 源码获取
 
+
+### 通过repo获取
+
 **方式** **一（推荐）**
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-```undefined
+```
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -78,11 +81,25 @@ repo forall -c 'git lfs pull'
 
 通过repo + https 下载。
 
-```undefined
+```
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
 ```
+
+### 从镜像站点获取
+
+**表2** 获取源码路径
+
+| **LTS版本源码** | **版本信息** | **下载站点** | **SHA256校验码** | 
+| -------- | -------- | -------- | -------- |
+| 全量代码（标准、轻量和小型系统） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz.sha256) | 
+| 标准系统解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz.sha256) | 
+| Hi3861解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz.sha256) | 
+| Hi3518解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz.sha256) | 
+| Hi3516解决方案-LiteOS（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz.sha256) | 
+| Hi3516解决方案-Linux（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 
+| Release&nbsp;Notes | 3.0 | [站点](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/OpenHarmony-v3.0-LTS.md) | - | 
 
 
 ## 更新说明
@@ -92,7 +109,7 @@ repo forall -c 'git lfs pull'
 
 ### 特性变更
 
-**表2** 版本新增特性表
+**表3** 版本新增特性表
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 | 
 | -------- | -------- | -------- |
@@ -130,7 +147,7 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 
 ## 修复缺陷列表
 
-**表3** 轻量和小型系统解决的缺陷ISSUE列表
+**表4** 轻量和小型系统解决的缺陷ISSUE列表
 
 | ISSUE单号 | 问题描述 | 
 | -------- | -------- |
@@ -150,7 +167,7 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 | [I490KZ](https://gitee.com/openharmony/kernel_liteos_a/issues/I490KZ) | FutexTest.testPthreadTimdOutRWlockWR用例执行失败 | 
 | [I44SFO](https://gitee.com/openharmony/third_party_toybox/issues/I44SFO) | 集成测试在某个目录下mv一个文件后，再在此目录下创建同名文件并二次mv该文件失败，提示此文件不存在 | 
 
-**表4** 标准系统解决的缺陷ISSUE列表
+**表5** 标准系统解决的缺陷ISSUE列表
 
 | ISSUE单号 | 问题描述 | 
 | -------- | -------- |
@@ -165,7 +182,7 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 
 ## 遗留缺陷列表
 
-**表5** 遗留缺陷列表
+**表6** 遗留缺陷列表
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |

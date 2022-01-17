@@ -1,7 +1,7 @@
 # 分布式数据管理<a name="ZH-CN_TOPIC_0000001200444541"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
->从 API Version 7 开始支持。
+>本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
@@ -15,7 +15,7 @@ import distributedData from '@ohos.data.distributedData';
 
 ## distributedData.createKVManager<a name="section2771164881119"></a>
 
-createKVManager\(config: KVManagerConfig, callback: AsyncCallback<KVManager\>\): void
+createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过callback方式返回，此方法为异步方法。
 
@@ -24,30 +24,30 @@ createKVManager\(config: KVManagerConfig, callback: AsyncCallback<KVManager\>\):
     <a name="table69661135912"></a>
     <table><thead align="left"><tr id="row149668318915"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p7966738914"><a name="p7966738914"></a><a name="p7966738914"></a>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="28.349999999999998%" id="mcps1.1.5.1.2"><p id="p296713699"><a name="p296713699"></a><a name="p296713699"></a>类型</p>
+    <th class="cellrowborder" valign="top" width="15.349999999999998%" id="mcps1.1.5.1.2"><p id="p296713699"><a name="p296713699"></a><a name="p296713699"></a>类型</p>
     </th>
     <th class="cellrowborder" valign="top" width="8.38%" id="mcps1.1.5.1.3"><p id="p196718315911"><a name="p196718315911"></a><a name="p196718315911"></a>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="48.449999999999996%" id="mcps1.1.5.1.4"><p id="p9967231197"><a name="p9967231197"></a><a name="p9967231197"></a>说明</p>
+    <th class="cellrowborder" valign="top" width="61.449999999999996%" id="mcps1.1.5.1.4"><p id="p9967231197"><a name="p9967231197"></a><a name="p9967231197"></a>说明</p>
     </th>
     </tr>
     </thead>
     <tbody><tr id="row99671533914"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1759964375212"><a name="p1759964375212"></a><a name="p1759964375212"></a>config</p>
     </td>
-    <td class="cellrowborder" valign="top" width="28.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p1238416585528"><a name="p1238416585528"></a><a name="p1238416585528"></a><a href="#section15135528163015">KVManagerConfig</a></p>
+    <td class="cellrowborder" valign="top" width="15.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p1238416585528"><a name="p1238416585528"></a><a name="p1238416585528"></a><a href="#section15135528163015">KVManagerConfig</a></p>
     </td>
     <td class="cellrowborder" valign="top" width="8.38%" headers="mcps1.1.5.1.3 "><p id="p19671336916"><a name="p19671336916"></a><a name="p19671336916"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="48.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p69671631796"><a name="p69671631796"></a><a name="p69671631796"></a>提供KVManager实例的配置信息，包括调用方的包名和用户信息。</p>
+    <td class="cellrowborder" valign="top" width="61.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p69671631796"><a name="p69671631796"></a><a name="p69671631796"></a>提供KVManager实例的配置信息，包括调用方的包名和用户信息。</p>
     </td>
     </tr>
     <tr id="row18967831393"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p39671131590"><a name="p39671131590"></a><a name="p39671131590"></a>callback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="28.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p36441515115320"><a name="p36441515115320"></a><a name="p36441515115320"></a>AsyncCallback&lt;<a href="#section10510185414111">KVManager</a>&gt;</p>
+    <td class="cellrowborder" valign="top" width="15.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p36441515115320"><a name="p36441515115320"></a><a name="p36441515115320"></a>AsyncCallback&lt;<a href="#section10510185414111">KVManager</a>&gt;</p>
     </td>
     <td class="cellrowborder" valign="top" width="8.38%" headers="mcps1.1.5.1.3 "><p id="p149671932919"><a name="p149671932919"></a><a name="p149671932919"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="48.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p19675312911"><a name="p19675312911"></a><a name="p19675312911"></a>KVManager实例创建时调用的回调，返回KVManager对象实例。</p>
+    <td class="cellrowborder" valign="top" width="61.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p19675312911"><a name="p19675312911"></a><a name="p19675312911"></a>KVManager实例创建时调用的回调，返回KVManager对象实例。</p>
     </td>
     </tr>
     </tbody>
@@ -62,7 +62,7 @@ createKVManager\(config: KVManagerConfig, callback: AsyncCallback<KVManager\>\):
             bundleName : 'com.example.datamanagertest',
             userInfo : {
                 userId : '0',
-                userType : 0
+                userType : distributedData.UserType.SAME_USER_ID
             }
         }
         distributedData.createKVManager(kvManagerConfig, function (err, manager) {
@@ -81,7 +81,7 @@ createKVManager\(config: KVManagerConfig, callback: AsyncCallback<KVManager\>\):
 
 ## distributedData.createKVManager<a name="section15751121117223"></a>
 
-createKVManager\(config: KVManagerConfig\): Promise<KVManager\>
+createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -90,21 +90,21 @@ createKVManager\(config: KVManagerConfig\): Promise<KVManager\>
     <a name="table2751161162210"></a>
     <table><thead align="left"><tr id="row9752311102214"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p147524114228"><a name="p147524114228"></a><a name="p147524114228"></a>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="28.349999999999998%" id="mcps1.1.5.1.2"><p id="p87521111223"><a name="p87521111223"></a><a name="p87521111223"></a>类型</p>
+    <th class="cellrowborder" valign="top" width="15.349999999999998%" id="mcps1.1.5.1.2"><p id="p87521111223"><a name="p87521111223"></a><a name="p87521111223"></a>类型</p>
     </th>
     <th class="cellrowborder" valign="top" width="8.38%" id="mcps1.1.5.1.3"><p id="p7752181112223"><a name="p7752181112223"></a><a name="p7752181112223"></a>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="48.449999999999996%" id="mcps1.1.5.1.4"><p id="p14752141162212"><a name="p14752141162212"></a><a name="p14752141162212"></a>说明</p>
+    <th class="cellrowborder" valign="top" width="61.449999999999996%" id="mcps1.1.5.1.4"><p id="p14752141162212"><a name="p14752141162212"></a><a name="p14752141162212"></a>说明</p>
     </th>
     </tr>
     </thead>
     <tbody><tr id="row127524118221"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p17531911202216"><a name="p17531911202216"></a><a name="p17531911202216"></a>config</p>
     </td>
-    <td class="cellrowborder" valign="top" width="28.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p17534113223"><a name="p17534113223"></a><a name="p17534113223"></a><a href="#section15135528163015">KVManagerConfig</a></p>
+    <td class="cellrowborder" valign="top" width="15.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p17534113223"><a name="p17534113223"></a><a name="p17534113223"></a><a href="#section15135528163015">KVManagerConfig</a></p>
     </td>
     <td class="cellrowborder" valign="top" width="8.38%" headers="mcps1.1.5.1.3 "><p id="p1175371142211"><a name="p1175371142211"></a><a name="p1175371142211"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="48.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p475315118226"><a name="p475315118226"></a><a name="p475315118226"></a>提供KVManager实例的配置信息，包括调用方的包名和用户信息。</p>
+    <td class="cellrowborder" valign="top" width="61.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p475315118226"><a name="p475315118226"></a><a name="p475315118226"></a>提供KVManager实例的配置信息，包括调用方的包名和用户信息。</p>
     </td>
     </tr>
     </tbody>
@@ -136,7 +136,7 @@ createKVManager\(config: KVManagerConfig\): Promise<KVManager\>
             bundleName : 'com.example.datamanagertest',
             userInfo : {
                 userId : '0',
-                userType : 0
+                userType : distributedData.UserType.SAME_USER_ID
             }
         }
         distributedData.createKVManager(kvManagerConfig).then((manager) => {
@@ -156,32 +156,32 @@ createKVManager\(config: KVManagerConfig\): Promise<KVManager\>
 提供KVManager实例的配置信息，包括调用方的包名和用户信息。
 
 <a name="table104081425154213"></a>
-<table><thead align="left"><tr id="row15409122514217"><th class="cellrowborder" valign="top" width="17.378262173782623%" id="mcps1.1.5.1.1"><p id="p1340952594210"><a name="p1340952594210"></a><a name="p1340952594210"></a>名称</p>
+<table><thead align="left"><tr id="row15409122514217"><th class="cellrowborder" valign="top" width="17%" id="mcps1.1.5.1.1"><p id="p1340952594210"><a name="p1340952594210"></a><a name="p1340952594210"></a>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="21.547845215478453%" id="mcps1.1.5.1.2"><p id="p15409525144213"><a name="p15409525144213"></a><a name="p15409525144213"></a>类型</p>
+<th class="cellrowborder" valign="top" width="20%" id="mcps1.1.5.1.2"><p id="p15409525144213"><a name="p15409525144213"></a><a name="p15409525144213"></a>类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="7.519248075192481%" id="mcps1.1.5.1.3"><p id="p104096254423"><a name="p104096254423"></a><a name="p104096254423"></a>必填</p>
+<th class="cellrowborder" valign="top" width="13%" id="mcps1.1.5.1.3"><p id="p104096254423"><a name="p104096254423"></a><a name="p104096254423"></a>必填</p>
 </th>
-<th class="cellrowborder" valign="top" width="53.554644535546444%" id="mcps1.1.5.1.4"><p id="p840962515424"><a name="p840962515424"></a><a name="p840962515424"></a>描述</p>
+<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.5.1.4"><p id="p840962515424"><a name="p840962515424"></a><a name="p840962515424"></a>描述</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row12409172544213"><td class="cellrowborder" valign="top" width="17.378262173782623%" headers="mcps1.1.5.1.1 "><p id="p184101525184212"><a name="p184101525184212"></a><a name="p184101525184212"></a>userInfo</p>
+<tbody><tr id="row12409172544213"><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.5.1.1 "><p id="p184101525184212"><a name="p184101525184212"></a><a name="p184101525184212"></a>userInfo</p>
 </td>
-<td class="cellrowborder" valign="top" width="21.547845215478453%" headers="mcps1.1.5.1.2 "><p id="p7410152519420"><a name="p7410152519420"></a><a name="p7410152519420"></a><a href="#section859346103617">UserInfo</a></p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.5.1.2 "><p id="p7410152519420"><a name="p7410152519420"></a><a name="p7410152519420"></a><a href="#section859346103617">UserInfo</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.5.1.3 "><p id="p9410825194216"><a name="p9410825194216"></a><a name="p9410825194216"></a>是</p>
+<td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.3 "><p id="p9410825194216"><a name="p9410825194216"></a><a name="p9410825194216"></a>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.554644535546444%" headers="mcps1.1.5.1.4 "><p id="p1559785083517"><a name="p1559785083517"></a><a name="p1559785083517"></a>调用方的用户信息。</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.5.1.4 "><p id="p1559785083517"><a name="p1559785083517"></a><a name="p1559785083517"></a>调用方的用户信息。</p>
 </td>
 </tr>
-<tr id="row1841142594215"><td class="cellrowborder" valign="top" width="17.378262173782623%" headers="mcps1.1.5.1.1 "><p id="p44121225174218"><a name="p44121225174218"></a><a name="p44121225174218"></a>bundleName</p>
+<tr id="row1841142594215"><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.5.1.1 "><p id="p44121225174218"><a name="p44121225174218"></a><a name="p44121225174218"></a>bundleName</p>
 </td>
-<td class="cellrowborder" valign="top" width="21.547845215478453%" headers="mcps1.1.5.1.2 "><p id="p1541314251427"><a name="p1541314251427"></a><a name="p1541314251427"></a>string</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.5.1.2 "><p id="p1541314251427"><a name="p1541314251427"></a><a name="p1541314251427"></a>string</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.5.1.3 "><p id="p141317253428"><a name="p141317253428"></a><a name="p141317253428"></a>是</p>
+<td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.3 "><p id="p141317253428"><a name="p141317253428"></a><a name="p141317253428"></a>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.554644535546444%" headers="mcps1.1.5.1.4 "><p id="p74131525104217"><a name="p74131525104217"></a><a name="p74131525104217"></a>调用方的包名。</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.5.1.4 "><p id="p74131525104217"><a name="p74131525104217"></a><a name="p74131525104217"></a>调用方的包名。</p>
 </td>
 </tr>
 </tbody>
@@ -252,7 +252,7 @@ createKVManager\(config: KVManagerConfig\): Promise<KVManager\>
 
 ### getKVStore<a name="section163838594447"></a>
 
-getKVStore<T extends KVStore\>\(storeId: string, options: Options, callback: AsyncCallback<T\>\): void
+getKVStore<T extends KVStore>(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -263,9 +263,9 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options, callback: Asy
     </th>
     <th class="cellrowborder" valign="top" width="21.47%" id="mcps1.1.5.1.2"><p id="p161521716375"><a name="p161521716375"></a><a name="p161521716375"></a>类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="5.16%" id="mcps1.1.5.1.3"><p id="p215318763718"><a name="p215318763718"></a><a name="p215318763718"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="8%" id="mcps1.1.5.1.3"><p id="p215318763718"><a name="p215318763718"></a><a name="p215318763718"></a>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="58.550000000000004%" id="mcps1.1.5.1.4"><p id="p11531713374"><a name="p11531713374"></a><a name="p11531713374"></a>说明</p>
+    <th class="cellrowborder" valign="top" width="55.71%" id="mcps1.1.5.1.4"><p id="p11531713374"><a name="p11531713374"></a><a name="p11531713374"></a>说明</p>
     </th>
     </tr>
     </thead>
@@ -273,18 +273,18 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options, callback: Asy
     </td>
     <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p124431057193915"><a name="p124431057193915"></a><a name="p124431057193915"></a>string</p>
     </td>
-    <td class="cellrowborder" valign="top" width="5.16%" headers="mcps1.1.5.1.3 "><p id="p1444311572398"><a name="p1444311572398"></a><a name="p1444311572398"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8%" headers="mcps1.1.5.1.3 "><p id="p1444311572398"><a name="p1444311572398"></a><a name="p1444311572398"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="58.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p244311575391"><a name="p244311575391"></a><a name="p244311575391"></a>数据库唯一标识符，长度不大于<a href="#p1370641813465">MAX_STORE_ID_LENGTH</a>。</p>
+    <td class="cellrowborder" valign="top" width="55.71%" headers="mcps1.1.5.1.4 "><p id="p244311575391"><a name="p244311575391"></a><a name="p244311575391"></a>数据库唯一标识符，长度不大于<a href="#p1370641813465">MAX_STORE_ID_LENGTH</a>。</p>
     </td>
     </tr>
     <tr id="row815319713379"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9153167113712"><a name="p9153167113712"></a><a name="p9153167113712"></a>options</p>
     </td>
     <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p41531872379"><a name="p41531872379"></a><a name="p41531872379"></a><a href="#section20151177103716">Options</a></p>
     </td>
-    <td class="cellrowborder" valign="top" width="5.16%" headers="mcps1.1.5.1.3 "><p id="p31534710378"><a name="p31534710378"></a><a name="p31534710378"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8%" headers="mcps1.1.5.1.3 "><p id="p31534710378"><a name="p31534710378"></a><a name="p31534710378"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="58.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p1015318713717"><a name="p1015318713717"></a><a name="p1015318713717"></a>创建KVStore实例的配置信息。</p>
+    <td class="cellrowborder" valign="top" width="55.71%" headers="mcps1.1.5.1.4 "><p id="p1015318713717"><a name="p1015318713717"></a><a name="p1015318713717"></a>创建KVStore实例的配置信息。</p>
     </td>
     </tr>
     <tr id="row11531713372"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p14153176376"><a name="p14153176376"></a><a name="p14153176376"></a>callback</p>
@@ -292,9 +292,9 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options, callback: Asy
     <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p194274693318"><a name="p194274693318"></a><a name="p194274693318"></a>AsyncCallback&lt;T&gt;，</p>
     <p id="p915487143715"><a name="p915487143715"></a><a name="p915487143715"></a>&lt;T extends KVStore&gt;</p>
     </td>
-    <td class="cellrowborder" valign="top" width="5.16%" headers="mcps1.1.5.1.3 "><p id="p4154272372"><a name="p4154272372"></a><a name="p4154272372"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8%" headers="mcps1.1.5.1.3 "><p id="p4154272372"><a name="p4154272372"></a><a name="p4154272372"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="58.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p1015487153711"><a name="p1015487153711"></a><a name="p1015487153711"></a>创建KVStore实例的回调，返回KVStore对象实例。</p>
+    <td class="cellrowborder" valign="top" width="55.71%" headers="mcps1.1.5.1.4 "><p id="p1015487153711"><a name="p1015487153711"></a><a name="p1015487153711"></a>创建KVStore实例的回调，返回KVStore对象实例。</p>
     </td>
     </tr>
     </tbody>
@@ -304,14 +304,15 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options, callback: Asy
 
     ```
     let kvStore;
+    let kvManager;
     try {
         const options = {
             createIfMissing : true,
             encrypt : false,
             backup : false,
             autoSync : true,
-            kvStoreType : 1,
-            securityLevel : 3,
+            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+            securityLevel : distributedData.SecurityLevel.S2,
         };
         kvManager.getKVStore('storeId', options, function (err, store) {
             if (err) {
@@ -329,7 +330,7 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options, callback: Asy
 
 ### getKVStore<a name="section1614918420469"></a>
 
-getKVStore<T extends KVStore\>\(storeId: string, options: Options\): Promise<T\>
+getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -338,30 +339,30 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options\): Promise<T\>
     <a name="table12128750203"></a>
     <table><thead align="left"><tr id="row131281159201"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p3129452205"><a name="p3129452205"></a><a name="p3129452205"></a>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p31291454205"><a name="p31291454205"></a><a name="p31291454205"></a>类型</p>
+    <th class="cellrowborder" valign="top" width="12.44%" id="mcps1.1.5.1.2"><p id="p31291454205"><a name="p31291454205"></a><a name="p31291454205"></a>类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p191291515203"><a name="p191291515203"></a><a name="p191291515203"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p191291515203"><a name="p191291515203"></a><a name="p191291515203"></a>必填</p>
     </th>
-    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p1613085202012"><a name="p1613085202012"></a><a name="p1613085202012"></a>说明</p>
+    <th class="cellrowborder" valign="top" width="62.16%" id="mcps1.1.5.1.4"><p id="p1613085202012"><a name="p1613085202012"></a><a name="p1613085202012"></a>说明</p>
     </th>
     </tr>
     </thead>
     <tbody><tr id="row1613012514207"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1113012511203"><a name="p1113012511203"></a><a name="p1113012511203"></a>storeId</p>
     </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p3130858207"><a name="p3130858207"></a><a name="p3130858207"></a>string</p>
+    <td class="cellrowborder" valign="top" width="12.44%" headers="mcps1.1.5.1.2 "><p id="p3130858207"><a name="p3130858207"></a><a name="p3130858207"></a>string</p>
     </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p8131145102014"><a name="p8131145102014"></a><a name="p8131145102014"></a>是</p>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p8131145102014"><a name="p8131145102014"></a><a name="p8131145102014"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>数据库唯一标识符，长度不大于<a href="#p1370641813465">MAX_STORE_ID_LENGTH</a>。</p>
+    <td class="cellrowborder" valign="top" width="62.16%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>数据库唯一标识符，长度不大于<a href="#p1370641813465">MAX_STORE_ID_LENGTH</a>。</p>
     </td>
     </tr>
     <tr id="row151312522012"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p513119515209"><a name="p513119515209"></a><a name="p513119515209"></a>options</p>
     </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p91312514209"><a name="p91312514209"></a><a name="p91312514209"></a><a href="#section20151177103716">Options</a></p>
+    <td class="cellrowborder" valign="top" width="12.44%" headers="mcps1.1.5.1.2 "><p id="p91312514209"><a name="p91312514209"></a><a name="p91312514209"></a><a href="#section20151177103716">Options</a></p>
     </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0132551205"><a name="p0132551205"></a><a name="p0132551205"></a>是</p>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p0132551205"><a name="p0132551205"></a><a name="p0132551205"></a>是</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1132105172011"><a name="p1132105172011"></a><a name="p1132105172011"></a>创建KVStore实例的配置信息。</p>
+    <td class="cellrowborder" valign="top" width="62.16%" headers="mcps1.1.5.1.4 "><p id="p1132105172011"><a name="p1132105172011"></a><a name="p1132105172011"></a>创建KVStore实例的配置信息。</p>
     </td>
     </tr>
     </tbody>
@@ -389,14 +390,15 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options\): Promise<T\>
 
     ```
     let kvStore;
+    let kvManager;
     try {
         const options = {
             createIfMissing : true,
             encrypt : false,
             backup : false,
             autoSync : true,
-            kvStoreType : 1,
-            securityLevel : 3,
+            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+            securityLevel : distributedData.SecurityLevel.S2,
         };
         kvManager.getKVStore('storeId', options).then((store) => {
             console.log("getKVStore success");
@@ -409,6 +411,581 @@ getKVStore<T extends KVStore\>\(storeId: string, options: Options\): Promise<T\>
     }
     ```
 
+### closeKVStore<sup>8+</sup> ###
+
+closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback&lt;void&gt;): void;
+
+通过storId的值关闭指定的kvStore数据库，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table1815218719376"></a>
+    <table><thead align="left"><tr id="row1515237113720"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p171523743712"><a name="p171523743712"></a><a name="p171523743712"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.47%" id="mcps1.1.5.1.2"><p id="p161521716375"><a name="p161521716375"></a><a name="p161521716375"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.16%" id="mcps1.1.5.1.3"><p id="p215318763718"><a name="p215318763718"></a><a name="p215318763718"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.550000000000004%" id="mcps1.1.5.1.4"><p id="p11531713374"><a name="p11531713374"></a><a name="p11531713374"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row4442165763919"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9442757113913"><a name="p9442757113913"></a><a name="p9442757113913"></a>appId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.1.5.1.2 "><p id="p124431057193915"><a name="p124431057193915"></a><a name="p124431057193915"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p1444311572398"><a name="p1444311572398"></a><a name="p1444311572398"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p244311575391"><a name="p244311575391"></a><a name="p244311575391"></a>所调用数据库方的包名。</p>
+    </td>
+    </tr>
+    <tr id="row4442165763919"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9442757113913"><a name="p9442757113913"></a><a name="p9442757113913"></a>storeId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.1.5.1.2 "><p id="p124431057193915"><a name="p124431057193915"></a><a name="p124431057193915"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p1444311572398"><a name="p1444311572398"></a><a name="p1444311572398"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>要关闭的数据库唯一标识符，长度不大于<a href="#p1370641813465">MAX_STORE_ID_LENGTH</a>。</p>
+    </td>
+    </tr>
+    <tr id="row815319713379"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9153167113712"><a name="p9153167113712"></a><a name="p9153167113712"></a>kvStore</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.1.5.1.2 "><p id="p41531872379"><a name="p41531872379"></a><a name="p41531872379"></a><a href="#section12882825611">KVStore</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p31534710378"><a name="p31534710378"></a><a name="p31534710378"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p1015318713717"><a name="p1015318713717"></a><a name="p1015318713717"></a>要关闭的KvStore数据库。</p>
+    </td>
+    </tr>
+    <tr id="row11531713372"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p14153176376"><a name="p14153176376"></a><a name="p14153176376"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.1.5.1.2 "><p id="p194274693318"><a name="p194274693318"></a><a name="p194274693318"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p4154272372"><a name="p4154272372"></a><a name="p4154272372"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p1015487153711"><a name="p1015487153711"></a><a name="p1015487153711"></a>回调函数，如果数据库关闭成功则返回true，否则返回false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例：
+
+    ```
+    let kvStore;
+    let kvManager;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
+    try {
+        kvManager.getKVStore('storeId', options, async function (err, store) {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+                console.log('closeKVStore success');
+            });
+        });
+    } catch (e) {
+        console.log('closeKVStore e ' + e);
+    }
+    ```  
+
+### closeKVStore<sup>8+</sup> ###
+
+closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&gt;;
+
+通过kvStore的值关闭指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table12128750203"></a>
+    <table><thead align="left"><tr id="row131281159201"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p3129452205"><a name="p3129452205"></a><a name="p3129452205"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p31291454205"><a name="p31291454205"></a><a name="p31291454205"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p191291515203"><a name="p191291515203"></a><a name="p191291515203"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="64.260000000000005%" id="mcps1.1.5.1.4"><p id="p1613085202012"><a name="p1613085202012"></a><a name="p1613085202012"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1613012514207"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1113012511203"><a name="p1113012511203"></a><a name="p1113012511203"></a>appId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p3130858207"><a name="p3130858207"></a><a name="p3130858207"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p8131145102014"><a name="p8131145102014"></a><a name="p8131145102014"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="64.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>所调用数据库方的包名。</p>
+    </td>
+    </tr>
+    <tr id="row1613012514207"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1113012511203"><a name="p1113012511203"></a><a name="p1113012511203"></a>storeId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p3130858207"><a name="p3130858207"></a><a name="p3130858207"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p8131145102014"><a name="p8131145102014"></a><a name="p8131145102014"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="64.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>要关闭的数据库唯一标识符，长度不大于<a href="#p1370641813465">MAX_STORE_ID_LENGTH</a>。</p>
+    </td>
+    </tr>
+    <tr id="row815319713379"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9153167113712"><a name="p9153167113712"></a><a name="p9153167113712"></a>kvStore</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p41531872379"><a name="p41531872379"></a><a name="p41531872379"></a><a href="#section12882825611">KVStore</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p31534710378"><a name="p31534710378"></a><a name="p31534710378"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="64.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1015318713717"><a name="p1015318713717"></a><a name="p1015318713717"></a>要关闭的数据库。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>Promise实例，如果数据库关闭成功则返回true，否则返回false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例：
+
+    ```
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
+    try {
+        kvManager.getKVStore('storeId', options).then(async (store) => {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+                console.log('closeKVStore success');
+            }).catch((err) => {
+                console.log('closeKVStore err ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('CloseKVStore getKVStore err ' + JSON.stringify(err));
+        });
+    } catch (e) {
+        console.log('closeKVStore e ' + e);
+    }
+    ```  
+
+
+### deleteKVStore<sup>8+</sup> ###
+
+deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void;
+
+通过storeId的值删除指定的kvStore数据库，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table1815218719376"></a>
+    <table><thead align="left"><tr id="row1515237113720"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p171523743712"><a name="p171523743712"></a><a name="p171523743712"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="21.47%" id="mcps1.1.5.1.2"><p id="p161521716375"><a name="p161521716375"></a><a name="p161521716375"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.16%" id="mcps1.1.5.1.3"><p id="p215318763718"><a name="p215318763718"></a><a name="p215318763718"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="55.550000000000004%" id="mcps1.1.5.1.4"><p id="p11531713374"><a name="p11531713374"></a><a name="p11531713374"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row4442165763919"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9442757113913"><a name="p9442757113913"></a><a name="p9442757113913"></a>appId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p124431057193915"><a name="p124431057193915"></a><a name="p124431057193915"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p1444311572398"><a name="p1444311572398"></a><a name="p1444311572398"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="55.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p244311575391"><a name="p244311575391"></a><a name="p244311575391"></a>所调用数据库方的包名。</p>
+    </td>
+    </tr>
+    <tr id="row4442165763919"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9442757113913"><a name="p9442757113913"></a><a name="p9442757113913"></a>storeId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p124431057193915"><a name="p124431057193915"></a><a name="p124431057193915"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p1444311572398"><a name="p1444311572398"></a><a name="p1444311572398"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="58.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>要删除的数据库唯一标识符，长度不大于<a href="#p1370641813465">MAX_STORE_ID_LENGTH</a>。</p>
+    </td>
+    </tr>
+    <tr id="row11531713372"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p14153176376"><a name="p14153176376"></a><a name="p14153176376"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p194274693318"><a name="p194274693318"></a><a name="p194274693318"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p4154272372"><a name="p4154272372"></a><a name="p4154272372"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="55.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p1015487153711"><a name="p1015487153711"></a><a name="p1015487153711"></a>回调函数，如果成功返回true，否则返回false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例：
+
+    ```
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
+    try {
+        kvManager.getKVStore('store', options, async function (err, store) {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
+                console.log('deleteKVStore success');
+            });
+        });
+    } catch (e) {
+        console.log('DeleteKVStore e ' + e);
+    }
+    ```  
+
+### deleteKVStore<sup>8+</sup> ###
+
+deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;;
+
+通过storeId的值删除指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table12128750203"></a>
+    <table><thead align="left"><tr id="row131281159201"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p3129452205"><a name="p3129452205"></a><a name="p3129452205"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p31291454205"><a name="p31291454205"></a><a name="p31291454205"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p191291515203"><a name="p191291515203"></a><a name="p191291515203"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p1613085202012"><a name="p1613085202012"></a><a name="p1613085202012"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1613012514207"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1113012511203"><a name="p1113012511203"></a><a name="p1113012511203"></a>appId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p3130858207"><a name="p3130858207"></a><a name="p3130858207"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p8131145102014"><a name="p8131145102014"></a><a name="p8131145102014"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>所调用数据库方的包名。</p>
+    </td>
+    </tr>
+    <tr id="row1613012514207"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1113012511203"><a name="p1113012511203"></a><a name="p1113012511203"></a>storeId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p3130858207"><a name="p3130858207"></a><a name="p3130858207"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p8131145102014"><a name="p8131145102014"></a><a name="p8131145102014"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>要删除数据库的唯一标识符，长度不大于<a href="#p1370641813465">MAX_STORE_ID_LENGTH</a>。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>Promise实例，如果成功返回true，否则返回false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例：
+
+    ```
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
+    try {
+        kvManager.getKVStore('storId', options).then(async (store) => {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.deleteKVStore('appId', 'storeId').then(() => {
+                console.log('deleteKVStore success');
+            }).catch((err) => {
+                console.log('deleteKVStore err ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('getKVStore err ' + JSON.stringify(err));
+        });
+    } catch (e) {
+        console.log('deleteKVStore e ' + e);
+    }
+    ``` 
+
+
+### getAllKVStoreId<sup>8+</sup> ###
+
+getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void;
+
+获取所有通过getKvStore方法创建的且没有调用deleteKvStore方法删除的KvStore数据库的storeId，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table1815218719376"></a>
+    <table><thead align="left"><tr id="row1515237113720"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p171523743712"><a name="p171523743712"></a><a name="p171523743712"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="18.47%" id="mcps1.1.5.1.2"><p id="p161521716375"><a name="p161521716375"></a><a name="p161521716375"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.16%" id="mcps1.1.5.1.3"><p id="p215318763718"><a name="p215318763718"></a><a name="p215318763718"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="58.55%" id="mcps1.1.5.1.4"><p id="p11531713374"><a name="p11531713374"></a><a name="p11531713374"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row4442165763919"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9442757113913"><a name="p9442757113913"></a><a name="p9442757113913"></a>appId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.47%" headers="mcps1.1.5.1.2 "><p id="p124431057193915"><a name="p124431057193915"></a><a name="p124431057193915"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p1444311572398"><a name="p1444311572398"></a><a name="p1444311572398"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="58.55%" headers="mcps1.1.5.1.4 "><p id="p244311575391"><a name="p244311575391"></a><a name="p244311575391"></a>所调用数据库方的包名。</p>
+    </td>
+    </tr>
+    <tr id="row11531713372"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p14153176376"><a name="p14153176376"></a><a name="p14153176376"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.47%" headers="mcps1.1.5.1.2 "><p id="p194274693318"><a name="p194274693318"></a><a name="p194274693318"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.16%" headers="mcps1.1.5.1.3 "><p id="p4154272372"><a name="p4154272372"></a><a name="p4154272372"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="58.55%" headers="mcps1.1.5.1.4 "><p id="p1015487153711"><a name="p1015487153711"></a><a name="p1015487153711"></a>回调函数，返回所有创建的 KvStore 数据库的 storeId。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例：
+
+    ```
+    let kvManager;
+    try {
+        kvManager.getAllKVStoreId('appId', function (err, data) {
+            console.log('GetAllKVStoreId success');
+            console.log('GetAllKVStoreId size = ' + data.length);
+        });
+    } catch (e) {
+        console.log('GetAllKVStoreId e ' + e);
+    }
+    ```  
+
+
+### getAllKVStoreId<sup>8+</sup> ###
+
+getAllKVStoreId(appId: string): Promise&lt;string[]&gt;;
+
+获取所有通过getKvStore方法创建的且没有调用deleteKvStore方法删除的KvStore数据库的storeId，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table12128750203"></a>
+    <table><thead align="left"><tr id="row131281159201"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p3129452205"><a name="p3129452205"></a><a name="p3129452205"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="13.44%" id="mcps1.1.5.1.2"><p id="p31291454205"><a name="p31291454205"></a><a name="p31291454205"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.58%" id="mcps1.1.5.1.3"><p id="p191291515203"><a name="p191291515203"></a><a name="p191291515203"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="59.16%" id="mcps1.1.5.1.4"><p id="p1613085202012"><a name="p1613085202012"></a><a name="p1613085202012"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1613012514207"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1113012511203"><a name="p1113012511203"></a><a name="p1113012511203"></a>appId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="13.44%" headers="mcps1.1.5.1.2 "><p id="p3130858207"><a name="p3130858207"></a><a name="p3130858207"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.58%" headers="mcps1.1.5.1.3 "><p id="p8131145102014"><a name="p8131145102014"></a><a name="p8131145102014"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.16%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>所调用数据库方的包名。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>Promise&lt;string[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>Promise实例，返回所有创建的 KvStore 数据库的 storeId。。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例：
+
+    ```
+    let kvManager;
+    try {
+        console.log('GetAllKVStoreId');
+        kvManager.getAllKVStoreId('apppId').then((data) => {
+            console.log('getAllKVStoreId success');
+            console.log('size = ' + data.length);
+        }).catch((err) => {
+            console.log('getAllKVStoreId err ' + JSON.stringify(err));
+        });
+    } catch(e) {
+        console.log('getAllKVStoreId e ' + e);
+    }
+    ``` 
+
+
+### on<sup>8+</sup> ###
+
+on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void;
+
+订阅服务状态变更通知，并通过callback方式返回，此方法为同步方法。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="22.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.16%" id="mcps1.1.5.1.3"><p id="p215318763718"><a name="p215318763718"></a><a name="p215318763718"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>event</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>'distributedDataServiceDie'</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>服务状态改变时触发的事件名。</p>
+    </td>
+    </tr>
+    <tr id="row476140141813"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p16768011189"><a name="p16768011189"></a><a name="p16768011189"></a>deathCallback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p107614014186"><a name="p107614014186"></a><a name="p107614014186"></a>Callback&lt;void</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p576180111819"><a name="p576180111819"></a><a name="p576180111819"></a>回调函数，在设备状态改变时获取通知。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvManager;
+    try {
+        
+        console.log('KVManagerOn');
+        const deathCallback = function () {
+            console.log('death callback call');
+        }
+        kvManager.on('distributedDataServiceDie', deathCallback);
+    } catch (e) {
+        console.log("An unexpected error occurred. Error:" + e);
+    }
+    ``` 
+
+
+### off<sup>8+</sup> ###
+
+off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void;
+
+取消订阅服务状态变更通知，并通过callback方式返回，此方法为同步方法。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="22.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>event</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>'distributedDataServiceDie'</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>服务状态改变时触发的事件名。</p>
+    </td>
+    </tr>
+    <tr id="row476140141813"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p16768011189"><a name="p16768011189"></a><a name="p16768011189"></a>deathCallback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p107614014186"><a name="p107614014186"></a><a name="p107614014186"></a>Callback&lt;void</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>否</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p576180111819"><a name="p576180111819"></a><a name="p576180111819"></a>回调函数，取消设备状态改变时获取通知。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvManager;
+    try {
+        console.log('KVManagerOff');
+        const deathCallback = function () {
+            console.log('death callback call');
+        }
+        kvManager.off('distributedDataServiceDie', deathCallback);
+    } catch (e) {
+        console.log("An unexpected error occurred. Error:" + e);
+    }
+
+    ``` 
 
 ## Options<a name="section20151177103716"></a>
 
@@ -635,13 +1212,2317 @@ KVStore常量。
 </tbody>
 </table>
 
+## Schema<sup>8+</sup> ##
+
+表示数据库模式，可以在创建或打开数据库时创建 Schema 对象并将它们放入 Options 中。
+
+### toJsonString<sup>8+</sup> ###
+
+toJsonString():string;
+
+获取 json 格式的 schema 。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>以 json 格式返回Schema。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    import ddm from '@ohos.data.distributedData';
+    try {
+        let schema = new ddm.Schema();
+        const str = schema.toJsonString();
+        console.log("schema: " + str);
+    } catch (e) {
+       console.log("toJsonString " + e);
+    }
+    ``` 
+
+
+## FieldNode<a name="section33333333333"></a><sup>8+</sup> ##
+
+表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
+
+### appendChild<sup>8+</sup> ###
+
+appendChild(child: FieldNode): boolean;
+
+向这个 FieldNode 添加一个子节点。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>child</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a><a href="#section33333333333">FieldNode</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>要附加的域节点。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果子节点成功添加到这个FieldNode，则返回 true；否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    import ddm from '@ohos.data.distributedData';
+    try {
+        let node = new ddm.FieldNode("root");
+        let child1 = new ddm.FieldNode("child1");
+        let child2 = new ddm.FieldNode("child2");
+        let child3 = new ddm.FieldNode("child3");
+        node.appendChild(child1);
+        node.appendChild(child2);
+        node.appendChild(child3);
+        console.log("appendNode " + node.toJson());
+        child1 = null;
+        child2 = null;
+        child3 = null;
+        node = null;
+    } catch (e) {
+        console.log("AppendChild " + e);
+    }
+    ``` 
+
+
+### toJson<sup>8+</sup> ###
+
+toJson(): string;
+
+获取字段名称。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回节点的字段名称。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+	import ddm from '@ohos.data.distributedData';
+    try {
+        let node = new ddm.FieldNode("root");
+        let child = new ddm.FieldNode("child");
+        node.appendChild(child);
+        console.log("appendNode " + node.toJson());
+    } catch (e) {
+       console.log("ToJson " + e);
+    }
+    ``` 
+
+
+## KvStoreResultSet<a name="section111111111"></a><sup>8+</sup> ##
+
+提供获取KvStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过KvStore 构建一个KvStore 实例。
+
+### getCount<sup>8+</sup> ###
+
+getCount(): number;
+
+获取结果集中的行数。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回行数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const count = resultSet.getCount();
+        console.log("GetCount " + count);
+    } catch (e) {
+        console.log("GetCount fail " + e);
+    }
+    ``` 
+
+
+### getPosition<sup>8+</sup> ###
+
+getPosition(): number;
+
+获取结果集中当前的读取位置。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回当前读取位置。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const positon = resultSet.getPosition();
+        console.log("getPosition " + positon);
+    } catch (e) {
+        console.log("GetPosition fail " + e);
+    }
+    ```
+
+
+### moveToFirst<sup>8+</sup> ###
+
+moveToFirst(): boolean;
+
+将读取位置移动到第一行。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果操作成功则返回true，否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToFirst();
+        console.log("moveToFirst " + moved);
+    } catch (e) {
+        console.log("MoveToFirst fail " + e);
+    }
+    ```
+
+
+### moveToLast<sup>8+</sup> ###
+
+moveToLast(): boolean;
+
+将读取位置移动到最后一行。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果操作成功则返回true，否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToLast();
+        console.log("moveToLast " + moved);
+    } catch (e) {
+        console.log("moveToLast fail " + e);
+    }
+    ```
+
+
+### moveToNext<sup>8+</sup> ###
+
+moveToNext(): boolean;
+
+将读取位置移动到下一行。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果操作成功则返回true，否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToNext();
+        console.log("moveToNext " + moved);
+    } catch (e) {
+        console.log("moveToNext fail " + e);
+    }
+    ```
+
+
+### moveToPrevious<sup>8+</sup> ###
+
+moveToPrevious(): boolean;
+
+将读取位置移动到上一行。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果操作成功则返回true，否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToPrevious();
+        console.log("moveToPrevious " + moved);
+    } catch (e) {
+        console.log("moveToPrevious fail " + e);
+    }
+    ```
+
+
+### move<sup>8+</sup> ###
+
+move(offset: number): boolean;
+
+将读取位置移动到当前位置的相对偏移量。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="68.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12	.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>offset</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="68.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示与当前位置的相对偏移量，负偏移表示向后移动，正偏移表示向前移动。</p>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果操作成功则返回true，否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.move();
+        console.log("move " + moved);
+    } catch (e) {
+        console.log("move fail " + e);
+    }
+    ```
+
+
+### moveToPosition<sup>8+</sup> ###
+
+moveToPosition(position: number): boolean;
+
+将读取位置从 0 移动到绝对位置。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>position</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示绝对位置。</p>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果操作成功则返回true，否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToPosition();
+        console.log("moveToPosition " + moved);
+    } catch (e) {
+        console.log("moveToPosition fail " + e);
+    }
+    ```
+
+
+### isFirst<sup>8+</sup> ###
+
+isFirst(): boolean;
+
+检查读取位置是否为第一行。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果读取位置是第一行，则返回 true；否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.isFirst();
+        console.log("isFirst " + moved);
+    } catch (e) {
+        console.log("isFirst fail " + e);
+    }
+    ```
+
+
+### isLast<sup>8+</sup> ###
+
+isLast(): boolean;
+
+检查读取位置是否为最后一行。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果读取位置是最后一行，则返回 true；否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.isLast();
+        console.log("isLast " + moved);
+    } catch (e) {
+        console.log("isLast fail " + e);
+    }
+    ```
+
+
+### isBeforeFirst<sup>8+</sup> ###
+
+isBeforeFirst(): boolean;
+
+检查读取位置是否在第一行之前。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果读取位置在第一行之前，则返回 true；否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.isBeforeFirst();
+        console.log("isBeforeFirst " + moved);
+    } catch (e) {
+        console.log("isBeforeFirst fail " + e);
+    }
+    ```
+
+
+### isAfterLast<sup>8+</sup> ###
+
+isAfterLast(): boolean;
+
+检查读取位置是否在最后一行之后。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>如果读取位置在最后一行之后，则返回 true；否则返回 false。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.isAfterLast();
+        console.log("isAfterLast " + moved);
+    } catch (e) {
+        console.log("isAfterLast fail " + e);
+    }
+    ```
+
+
+### getEntry<sup>8+</sup> ###
+
+getEntry(): Entry;
+
+获取键值对
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>Entry</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回键值对。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToNext();
+        const entry  = resultSet.getEntry();
+        console.log("getEntry " + JSON.stringify(entry));
+    } catch (e) {
+        console.log("getEntry fail " + e);
+    }
+    ```
+
+
+## Query <a name="section22222222222"></a><sup>8+</sup>##
+
+使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
+
+### reset<sup>8+</sup> ###
+
+reset(): Query;
+
+公共查询重置。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回重置的 Query 对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.equalTo("key", "value");
+        console.log("query is " + query.getSqlLike());
+        query.reset();
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("simply calls should be ok :" + e);
+    }
+    ```
+
+
+### equalTo<sup>8+</sup> ###
+
+equalTo(field: string, value: number|string|boolean): Query;
+
+构造一个Query对象来查询具有指定字段的条目，其值等于指定的值。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="22.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>value</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number | string | boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.equalTo("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### notEqualTo<sup>8+</sup> ###
+
+notEqualTo(field: string, value: number|string|boolean): Query;
+
+构造一个Query对象以查询具有指定字段且值不等于指定值的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="22.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>value</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number|string|boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### greaterThan<sup>8+</sup> ###
+
+greaterThan(field: string, value: number|string|boolean): Query;
+
+构造一个Query对象以查询具有大于指定值的指定字段的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="22.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>value</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number|string|boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.greaterThan("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### lessThan<sup>8+</sup> ###
+
+lessThan(field: string, value: number|string): Query;
+
+构造一个Query对象以查询具有小于指定值的指定字段的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="57.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="57.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>value</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number|string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="57.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.lessThan("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### greaterThanOrEqualTo<sup>8+</sup> ###
+
+greaterThanOrEqualTo(field: string, value: number|string): Query;
+
+构造一个Query对象以查询具有指定字段且值大于或等于指定值的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="57.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="57.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>value</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number|string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="57.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.greaterThanOrEqualTo("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### lessThanOrEqualTo<sup>8+</sup> ###
+
+lessThanOrEqualTo(field: string, value: number|string): Query;
+
+构造一个Query对象以查询具有指定字段且值小于或等于指定值的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="57.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="57.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>value</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number|string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="57.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.lessThanOrEqualTo("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### isNull<sup>8+</sup> ###
+
+isNull(field: string): Query;
+
+构造一个Query对象以查询具有值为null的指定字段的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.isNull("field");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### inNumber<sup>8+</sup> ###
+
+inNumber(field: string, valueList: number[]): Query;
+
+构造一个Query对象以查询具有指定字段的条目，其值在指定的值列表中。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>valueList</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的值列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.inNumber("field", [0, 1]);
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### inString<sup>8+</sup> ###
+
+inString(field: string, valueList: string[]): Query;
+
+构造一个Query对象以查询具有指定字段的条目，其值在指定的字符串值列表中。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>valueList</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的字符串值列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.inString("field", ['test1', 'test2']);
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### notInNumber<sup>8+</sup> ###
+
+notInNumber(field: string, valueList: number[]): Query;
+
+构造一个Query对象以查询具有指定字段的条目，该字段的值不在指定的值列表中。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>valueList</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的值列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notInNumber("field", [0, 1]);
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### notInString<sup>8+</sup> ###
+
+notInString(field: string, valueList: string[]): Query;
+
+构造一个Query对象以查询具有指定字段且值不在指定字符串值列表中的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>valueList</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的字符串值列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notInString("field", ['test1', 'test2']);
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### like<sup>8+</sup> ###
+
+like(field: string, value: string): Query;
+
+构造一个Query对象以查询具有与指定字符串值相似的指定字段的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>value</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的字符串值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.like("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### unlike<sup>8+</sup> ###
+
+unlike(field: string, value: string): Query;
+
+构造一个Query对象以查询具有与指定字符串值不相似的指定字段的条目。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.32%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>value</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的字符串值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.unlike("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### and<sup>8+</sup> ###
+
+and(): Query;
+
+构造一个带有与条件的查询对象。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value1");
+        query.and();
+        query.notEqualTo("field", "value2");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### or<sup>8+</sup> ###
+
+or(): Query;
+
+构造一个带有或条件的Query对象。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value1");
+        query.or();
+        query.notEqualTo("field", "value2");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### orderByAsc<sup>8+</sup> ###
+
+orderByAsc(field: string): Query;
+
+构造一个Query对象，将查询结果按升序排序。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value");
+        query.orderByAsc("field");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### orderByDesc<sup>8+</sup> ###
+
+orderByDesc(field: string): Query;
+
+构造一个Query对象，将查询结果按降序排序。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="12.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="12.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="64.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="12.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="12.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="64.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段，必须以$开头， 并且不能包含' ^ '。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value");
+        query.orderByDesc("field");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### limit<sup>8+</sup> ###
+
+limit(total: number, offset: number): Query;
+
+构造一个Query对象来指定结果的数量和开始位置。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>total</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的结果数。</p>
+    </td>
+    </tr>
+    <tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>offset</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示起始位置。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value");
+        query.limit("total", "offset");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### isNotNull<sup>8+</sup> ###
+
+isNotNull(field: string): Query;
+
+使用不为空的指定字段创建查询条件。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>fieId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定字段。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.isNotNull("field");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### beginGroup<sup>8+</sup> ###
+
+beginGroup(): Query;
+
+创建一个带有左括号的查询条件组。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.beginGroup();
+        query.isNotNull("field");
+        query.endGroup();
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### endGroup<sup>8+</sup> ###
+
+endGroup(): Query;
+
+创建一个带有右括号的查询条件组。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.beginGroup();
+        query.isNotNull("field");
+        query.endGroup();
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### prefixKey<sup>8+</sup> ###
+
+prefixKey(prefix: string): Query;
+
+创建具有指定键前缀的查询条件。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>prefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>表示指定的键前缀。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.prefixKey("$.name");
+        query.prefixKey("0");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### setSuggestIndex<sup>8+</sup> ###
+
+setSuggestIndex(index: string): Query;
+
+设置一个指定的索引，将优先用于查询。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>index</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>指示要设置的索引。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.setSuggestIndex("$.name");
+        query.setSuggestIndex("0");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+       console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### deviceId<sup>8+</sup> ###
+
+deviceId(deviceId:string):Query;
+
+添加设备ID作为key的前缀。
+
+-   参数：
+
+    <a name="table074609186"></a>
+    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="10.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="52.74%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="52.74%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>指示查询的设备 ID。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.deviceId("deviceId");
+        console.log("query is " + query.getSqlLike());
+    } catch (e) {
+        console.log("should be ok on Method Chaining : " + e);
+    }
+    ```
+
+
+### getSqlLike<sup>8+</sup> ###
+
+getSqlLike():string;
+
+获取指定Query对象的查询语句。
+
+-   返回值：
+
+    <a name="table1527413113225"></a>
+    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>返回指定Query对象的查询语句。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        let sql1 = query.getSqlLike();
+        console.log("GetSqlLike sql=" + sql1);
+    } catch (e) {
+        console.log("dumplicated calls should be ok : " + e);
+    }
+    ```
+
+
 ## KVStore<a name="section12882825611"></a>
 
 KVStore数据库实例，提供增加数据、删除数据和订阅数据变更、订阅同步完成的方法。在调用KVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
 
 ### put<a name="section1942221513"></a>
 
-put\(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback<void\>\): void
+put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback&lt;void&gt;): void
 
 添加指定类型键值对到数据库，并通过callback方式返回，此方法为异步方法。
 
@@ -692,6 +3573,7 @@ put\(key: string, value: Uint8Array | string | number | boolean, callback: Async
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -710,7 +3592,7 @@ put\(key: string, value: Uint8Array | string | number | boolean, callback: Async
 
 ### put<a name="section43065440019"></a>
 
-put\(key: string, value: Uint8Array | string | number | boolean\): Promise<void\>
+put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void&gt;
 
 添加指定类型键值对到数据库，并通过Promise方式返回，此方法为异步方法。
 
@@ -770,6 +3652,7 @@ put\(key: string, value: Uint8Array | string | number | boolean\): Promise<void\
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -786,7 +3669,7 @@ put\(key: string, value: Uint8Array | string | number | boolean\): Promise<void\
 
 ### delete<a name="section15564125555713"></a>
 
-delete\(key: string, callback: AsyncCallback<void\>\): void
+delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从数据库中删除指定键值的数据，并通过callback方式返回，此方法为异步方法。
 
@@ -795,9 +3678,9 @@ delete\(key: string, callback: AsyncCallback<void\>\): void
     <a name="table588435711415"></a>
     <table><thead align="left"><tr id="row1688513572414"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p78857576420"><a name="p78857576420"></a><a name="p78857576420"></a>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="21.529999999999998%" id="mcps1.1.5.1.2"><p id="p178851571417"><a name="p178851571417"></a><a name="p178851571417"></a>类型</p>
+    <th class="cellrowborder" valign="top" width="19.53%" id="mcps1.1.5.1.2"><p id="p178851571417"><a name="p178851571417"></a><a name="p178851571417"></a>类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="6.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
     </th>
     <th class="cellrowborder" valign="top" width="57.07%" id="mcps1.1.5.1.4"><p id="p1688510571649"><a name="p1688510571649"></a><a name="p1688510571649"></a>说明</p>
     </th>
@@ -805,18 +3688,18 @@ delete\(key: string, callback: AsyncCallback<void\>\): void
     </thead>
     <tbody><tr id="row188855571749"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p14886457340"><a name="p14886457340"></a><a name="p14886457340"></a>key</p>
     </td>
-    <td class="cellrowborder" valign="top" width="21.529999999999998%" headers="mcps1.1.5.1.2 "><p id="p20886175717412"><a name="p20886175717412"></a><a name="p20886175717412"></a>string</p>
+    <td class="cellrowborder" valign="top" width="19.53%" headers="mcps1.1.5.1.2 "><p id="p20886175717412"><a name="p20886175717412"></a><a name="p20886175717412"></a>string</p>
     </td>
-    <td class="cellrowborder" valign="top" width="6.58%" headers="mcps1.1.5.1.3 "><p id="p138866579416"><a name="p138866579416"></a><a name="p138866579416"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p138866579416"><a name="p138866579416"></a><a name="p138866579416"></a>是</p>
     </td>
     <td class="cellrowborder" valign="top" width="57.07%" headers="mcps1.1.5.1.4 "><p id="p18868572411"><a name="p18868572411"></a><a name="p18868572411"></a>要删除数据的key，不能为空且长度不大于<a href="#p10198639174218">MAX_KEY_LENGTH</a>。</p>
     </td>
     </tr>
     <tr id="row9887165719417"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p188717571048"><a name="p188717571048"></a><a name="p188717571048"></a>callback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="21.529999999999998%" headers="mcps1.1.5.1.2 "><p id="p158871157242"><a name="p158871157242"></a><a name="p158871157242"></a>AsyncCallback&lt;void&gt;</p>
+    <td class="cellrowborder" valign="top" width="19.53%" headers="mcps1.1.5.1.2 "><p id="p158871157242"><a name="p158871157242"></a><a name="p158871157242"></a>AsyncCallback&lt;void&gt;</p>
     </td>
-    <td class="cellrowborder" valign="top" width="6.58%" headers="mcps1.1.5.1.3 "><p id="p1588719571148"><a name="p1588719571148"></a><a name="p1588719571148"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1588719571148"><a name="p1588719571148"></a><a name="p1588719571148"></a>是</p>
     </td>
     <td class="cellrowborder" valign="top" width="57.07%" headers="mcps1.1.5.1.4 "><p id="p688714574414"><a name="p688714574414"></a><a name="p688714574414"></a>回调函数。</p>
     </td>
@@ -827,6 +3710,7 @@ delete\(key: string, callback: AsyncCallback<void\>\): void
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -852,7 +3736,7 @@ delete\(key: string, callback: AsyncCallback<void\>\): void
 
 ### delete<a name="section1298265189"></a>
 
-delete\(key: string\): Promise<void\>
+delete(key: string): Promise&lt;void&gt;
 
 从数据库中删除指定键值的数据，并通过Promise方式返回，此方法为异步方法。
 
@@ -861,9 +3745,9 @@ delete\(key: string\): Promise<void\>
     <a name="table4202936063"></a>
     <table><thead align="left"><tr id="row6202536565"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p152029362618"><a name="p152029362618"></a><a name="p152029362618"></a>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p9203123619614"><a name="p9203123619614"></a><a name="p9203123619614"></a>类型</p>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p9203123619614"><a name="p9203123619614"></a><a name="p9203123619614"></a>类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>必填</p>
     </th>
     <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p62037369618"><a name="p62037369618"></a><a name="p62037369618"></a>说明</p>
     </th>
@@ -871,9 +3755,9 @@ delete\(key: string\): Promise<void\>
     </thead>
     <tbody><tr id="row220323617610"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p120343619611"><a name="p120343619611"></a><a name="p120343619611"></a>key</p>
     </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p17203236167"><a name="p17203236167"></a><a name="p17203236167"></a>string</p>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p17203236167"><a name="p17203236167"></a><a name="p17203236167"></a>string</p>
     </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
     </td>
     <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p120313364610"><a name="p120313364610"></a><a name="p120313364610"></a>要删除数据的key，不能为空且长度不大于<a href="#p10198639174218">MAX_KEY_LENGTH</a>。</p>
     </td>
@@ -901,6 +3785,7 @@ delete\(key: string\): Promise<void\>
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -922,7 +3807,7 @@ delete\(key: string\): Promise<void\>
 
 ### on<a name="section9748071812"></a>
 
-on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotification\>\): void
+on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
 
 订阅指定类型的数据变更通知，此方法为同步方法。
 
@@ -933,6 +3818,8 @@ on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificat
     </th>
     <th class="cellrowborder" valign="top" width="35.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>类型</p>
     </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>必填</p>
+    </th>
     <th class="cellrowborder" valign="top" width="48.32%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>说明</p>
     </th>
     </tr>
@@ -941,6 +3828,8 @@ on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificat
     </td>
     <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>'dataChange'</p>
     </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
+    </td>
     <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>回调函数名称。</p>
     </td>
     </tr>
@@ -948,12 +3837,16 @@ on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificat
     </td>
     <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p137613011189"><a name="p137613011189"></a><a name="p137613011189"></a><a href="#section099619567453">SubscribeType</a></p>
     </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
+    </td>
     <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p117616061817"><a name="p117616061817"></a><a name="p117616061817"></a>表示订阅的类型。</p>
     </td>
     </tr>
     <tr id="row476140141813"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p16768011189"><a name="p16768011189"></a><a name="p16768011189"></a>observer</p>
     </td>
     <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p107614014186"><a name="p107614014186"></a><a name="p107614014186"></a>Callback&lt;<a href="#section5607141204713">ChangeNotification</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
     </td>
     <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p576180111819"><a name="p576180111819"></a><a name="p576180111819"></a>回调函数。</p>
     </td>
@@ -964,7 +3857,8 @@ on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificat
 -   示例
 
     ```
-    kvStore.on('dataChange', 2, function (data) {
+    let kvStore;
+    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
         console.log("dataChange callback call data: " + JSON.stringify(data));
     });
     ```
@@ -972,9 +3866,9 @@ on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotificat
 
 ### on<a name="section06419235582"></a>
 
-on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\): void
+on(event: 'syncComplete', syncCallback: Callback<Array&lt;[string, number]&gt;): void
 
-订阅数据同步完成通知，此方法为同步方法。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 -   参数：
 
@@ -982,6 +3876,8 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
     <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
     </th>
     <th class="cellrowborder" valign="top" width="40.160000000000004%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>必填</p>
     </th>
     <th class="cellrowborder" valign="top" width="43.3%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
     </th>
@@ -991,12 +3887,16 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
     </td>
     <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>'syncComplete'</p>
     </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
+    </td>
     <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>回调函数名称。</p>
     </td>
     </tr>
     <tr id="row629323499"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p629393496"><a name="p629393496"></a><a name="p629393496"></a>syncCallback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Callback&lt;Array&lt;[string, number]&gt;&gt;</p>
+    <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
     </td>
     <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数。</p>
     </td>
@@ -1007,9 +3907,908 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
 -   示例
 
     ```
+    let kvStore;
     kvStore.on('syncComplete', function (data) {
         console.log("syncComplete callback call data: " + data);
     });
+    ```
+
+### off<sup>8+</sup> ###
+
+off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void;
+
+取消订阅数据变更通知，此方法为同步方法。
+
+-   参数：
+
+    <a name="table16642172313584"></a>
+    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="40.160000000000004%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="43.3%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>event</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>'datachange'</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数名称。</p>
+    </tr>
+    <tr id="row629323499"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p629393496"><a name="p629393496"></a><a name="p629393496"></a>observer</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Callback&lt;<a href="#section5607141204713">ChangeNotification</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>否</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    kvStore.on('dataChange', function (data) {
+        console.log("syncComplete callback call data: " + data);
+    });
+    kvStore.off('dataChange', function (data) {
+        console.log("syncComplete callback call data: " + data);
+    });
+    ```
+
+
+### putBatch<sup>8+</sup> ###
+
+putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void;
+
+批量插入键值对到KvStore数据库中，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table16642172313584"></a>
+    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="23.16%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="51.72%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>entries</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.16%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a><a href="#section15495151319483">Entry</a>[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="51.72%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>表示要批量插入的键值对。</p>
+    </td>
+    </tr>
+    <tr id="row629323499"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p629393496"><a name="p629393496"></a><a name="p629393496"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.16%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Asyncallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="51.72%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+
+    ```
+
+
+### putBatch<sup>8+</sup> ###
+
+putBatch(entries: Entry[]): Promise&lt;void&gt;;
+
+批量插入键值对到KvStore数据库中，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table16642172313584"></a>
+    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="23.16%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="51.72%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>entries</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.16%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a><a href="#section15495151319483">Entry</a>[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="51.72%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>表示要批量插入的键值对。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table898511515811"></a>
+    <table><thead align="left"><tr id="row1398616518817"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p19860516812"><a name="p19860516812"></a><a name="p19860516812"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p17986115489"><a name="p17986115489"></a><a name="p17986115489"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row898611514813"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p39861451811"><a name="p39861451811"></a><a name="p39861451811"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p69870519814"><a name="p69870519814"></a><a name="p69870519814"></a>Promise实例，用于异步处理。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+                console.log('getEntries success');
+                console.log('PutBatch ' + JSON.stringify(entries));
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### deleteBatch<sup>8+</sup> ###
+
+deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void;
+
+批量删除KvStore数据库中的键值对，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table16642172313584"></a>
+    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="23.16%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="51.72%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>keys</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.16%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="51.72%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>表示要批量删除的键值对。</p>
+    </td>
+    </tr>
+    <tr id="row629323499"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p629393496"><a name="p629393496"></a><a name="p629393496"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.16%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Asyncallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="51.72%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        let keys = [];
+        for (var i = 0; i < 5; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+            keys.push(key + i);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.deleteBatch(keys, async function (err,data) {
+                console.log('deleteBatch success');
+            });
+        });
+    }catch(e) {
+        console.log('DeleteBatch e ' + e);
+    }
+    ```
+
+
+### deleteBatch<sup>8+</sup> ###
+
+deleteBatch(keys: string[]): Promise&lt;void&gt;;
+
+批量删除键值对到KvStore数据库中，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table16642172313584"></a>
+    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="23.16%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="51.72%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>keys</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.16%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.58%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="51.72%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>表示要批量删除的键值对。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table898511515811"></a>
+    <table><thead align="left"><tr id="row1398616518817"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p19860516812"><a name="p19860516812"></a><a name="p19860516812"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p17986115489"><a name="p17986115489"></a><a name="p17986115489"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row898611514813"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p39861451811"><a name="p39861451811"></a><a name="p39861451811"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p69870519814"><a name="p69870519814"></a><a name="p69870519814"></a>Promise实例，用于异步处理。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        let keys = [];
+        for (var i = 0; i < 5; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+            keys.push(key + i);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.deleteBatch(keys).then((err) => {
+                console.log('deleteBatch success');
+            }).catch((err) => {
+                console.log('deleteBatch fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('DeleteBatch e ' + e);
+    }
+    ```
+
+
+### startTransaction<sup>8+</sup> ###
+
+startTransaction(callback: AsyncCallback&lt;void&gt;): void;
+
+启动KvStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table16642172313584"></a>
+    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="23.160000000000004%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="58.3%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="58.3%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    function putBatchString(len, prefix) {
+        let entries = [];
+        for (var i = 0; i < len; i++) {
+            var entry = {
+                key : prefix + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        return entries;
+    }
+    try {
+        var count = 0;
+        kvStore.on('dataChange', 0, function (data) {
+            console.log('startTransaction 0' + data)
+            count++;
+        });
+        kvStore.startTransaction(async function (err,data) {
+            console.log('startTransaction success');
+            let entries = putBatchString(10, 'batch_test_string_key');
+            console.log('entries: ' + JSON.stringify(entries));
+            await kvStore.putBatch(entries, async function (err,data) {
+                console.log('putBatch success');
+            });
+        });
+    }catch(e) {
+        console.log('startTransaction e ' + e);
+    }
+    ```
+
+
+### startTransaction<sup>8+</sup> ###
+
+startTransaction(): Promise&lt;void&gt;;
+
+启动KvStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
+
+-   返回值：
+
+    <a name="table898511515811"></a>
+    <table><thead align="left"><tr id="row1398616518817"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p19860516812"><a name="p19860516812"></a><a name="p19860516812"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p17986115489"><a name="p17986115489"></a><a name="p17986115489"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row898611514813"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p39861451811"><a name="p39861451811"></a><a name="p39861451811"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p69870519814"><a name="p69870519814"></a><a name="p69870519814"></a>Promise实例，用于异步处理。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        var count = 0;
+        kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
+            console.log('startTransaction ' + JSON.stringify(data));
+            count++;
+        });
+        kvStore.startTransaction().then(async (err) => {
+            console.log('startTransaction success');
+        }).catch((err) => {
+            console.log('startTransaction fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('startTransaction e ' + e);
+    }
+    ```
+
+
+### commit<sup>8+</sup> ###
+
+commit(callback: AsyncCallback&lt;void&gt;): void;
+
+提交KvStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table16642172313584"></a>
+    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="23.160000000000004%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="58.3%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="58.3%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.commit(function (err,data) {
+            if (err == undefined) {
+                console.log('commit success');
+            } else {
+                console.log('commit fail');
+            }
+        });
+    }catch(e) {
+        console.log('Commit e ' + e);
+    }
+    ```
+
+
+### commit<sup>8+</sup> ###
+
+commit(): Promise&lt;void&gt;;
+
+提交KvStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
+
+-   返回值：
+
+    <a name="table898511515811"></a>
+    <table><thead align="left"><tr id="row1398616518817"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p19860516812"><a name="p19860516812"></a><a name="p19860516812"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p17986115489"><a name="p17986115489"></a><a name="p17986115489"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row898611514813"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p39861451811"><a name="p39861451811"></a><a name="p39861451811"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p69870519814"><a name="p69870519814"></a><a name="p69870519814"></a>Promise实例，用于异步处理。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.commit().then(async (err) => {
+            console.log('commit success');
+        }).catch((err) => {
+            console.log('commit fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('Commit e ' + e);
+    }
+    ```
+
+
+### rollback<sup>8+</sup> ###
+
+rollback(callback: AsyncCallback&lt;void&gt;): void;
+
+在KvStore数据库中回滚事务，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table16642172313584"></a>
+    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="23.160000000000004%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="58.3%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="23.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    <td class="cellrowborder" valign="top" width="58.3%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.rollback(function (err,data) {
+            if (err == undefined) {
+                console.log('commit success');
+            } else {
+                console.log('commit fail');
+            }
+        });
+    }catch(e) {
+        console.log('Rollback e ' + e);
+    }
+    ```
+
+
+### rollback<sup>8+</sup> ###
+
+rollback(): Promise&lt;void&gt;;
+
+在KvStore数据库中回滚事务，并通过Promise方式返回，此方法为异步方法。
+
+-   返回值：
+
+    <a name="table898511515811"></a>
+    <table><thead align="left"><tr id="row1398616518817"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p19860516812"><a name="p19860516812"></a><a name="p19860516812"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p17986115489"><a name="p17986115489"></a><a name="p17986115489"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row898611514813"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p39861451811"><a name="p39861451811"></a><a name="p39861451811"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p69870519814"><a name="p69870519814"></a><a name="p69870519814"></a>Promise实例，用于异步处理。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.rollback().then(async (err) => {
+            console.log('rollback success');
+        }).catch((err) => {
+            console.log('rollback fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('Rollback e ' + e);
+    }
+    ```
+
+
+### enableSync<sup>8+</sup> ###
+
+enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+设定是否开启同步，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table174118324413"></a>
+    <table><thead align="left"><tr id="row164211354413"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p17426384419"><a name="p17426384419"></a><a name="p17426384419"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p8421238446"><a name="p8421238446"></a><a name="p8421238446"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p1642103124416"><a name="p1642103124416"></a><a name="p1642103124416"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p154263204411"><a name="p154263204411"></a><a name="p154263204411"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row124314315442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p54315374420"><a name="p54315374420"></a><a name="p54315374420"></a>enabled</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p134303144416"><a name="p134303144416"></a><a name="p134303144416"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p285519208464"><a name="p285519208464"></a><a name="p285519208464"></a>指定是否开启同步，ture表示开启同步，false表示不启用同步。</p>
+    </td>
+    </tr>
+    <tr id="row16388151513442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p16389151524410"><a name="p16389151524410"></a><a name="p16389151524410"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1738911594418"><a name="p1738911594418"></a><a name="p1738911594418"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p13389101564417"><a name="p13389101564417"></a><a name="p13389101564417"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p583654210476"><a name="p583654210476"></a><a name="p583654210476"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.enableSync(true, function (err,data) {
+            if (err == undefined) {
+                console.log('enableSync success');
+            } else {
+                console.log('enableSync fail');
+            }
+        });
+    }catch(e) {
+        console.log('EnableSync e ' + e);
+    }
+    ```
+
+
+### enableSync<sup>8+</sup> ###
+
+enableSync(enabled: boolean): Promise&lt;void&gt;;
+
+设定是否开启同步，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table174118324413"></a>
+    <table><thead align="left"><tr id="row164211354413"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p17426384419"><a name="p17426384419"></a><a name="p17426384419"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p8421238446"><a name="p8421238446"></a><a name="p8421238446"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p1642103124416"><a name="p1642103124416"></a><a name="p1642103124416"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p154263204411"><a name="p154263204411"></a><a name="p154263204411"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row124314315442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p54315374420"><a name="p54315374420"></a><a name="p54315374420"></a>enabled</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p134303144416"><a name="p134303144416"></a><a name="p134303144416"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p285519208464"><a name="p285519208464"></a><a name="p285519208464"></a>指定是否开启同步，ture表示开启同步，false表示不启用同步。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table898511515811"></a>
+    <table><thead align="left"><tr id="row1398616518817"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p19860516812"><a name="p19860516812"></a><a name="p19860516812"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p17986115489"><a name="p17986115489"></a><a name="p17986115489"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row898611514813"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p39861451811"><a name="p39861451811"></a><a name="p39861451811"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p69870519814"><a name="p69870519814"></a><a name="p69870519814"></a>Promise实例，用于异步处理。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.enableSync(true).then((err) => {
+            console.log('enableSync success');
+        }).catch((err) => {
+            console.log('enableSync fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('EnableSync e ' + e);
+    }
+    ```
+
+
+### setSyncRange<sup>8+</sup> ###
+
+setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback&lt;void&gt;): void;
+
+设置同步范围标签，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table174118324413"></a>
+    <table><thead align="left"><tr id="row164211354413"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p17426384419"><a name="p17426384419"></a><a name="p17426384419"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p8421238446"><a name="p8421238446"></a><a name="p8421238446"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p1642103124416"><a name="p1642103124416"></a><a name="p1642103124416"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p154263204411"><a name="p154263204411"></a><a name="p154263204411"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row124314315442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p54315374420"><a name="p54315374420"></a><a name="p54315374420"></a>localLabels</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p134303144416"><a name="p134303144416"></a><a name="p134303144416"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p285519208464"><a name="p285519208464"></a><a name="p285519208464"></a>表示本地设备的同步标签。</p>
+    </td>
+    </tr>
+    <tr id="row124314315442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p54315374420"><a name="p54315374420"></a><a name="p54315374420"></a>remoteSupportLabels</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p134303144416"><a name="p134303144416"></a><a name="p134303144416"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p285519208464"><a name="p285519208464"></a><a name="p285519208464"></a>表示要同步数据的设备的同步标签。</p>
+    </td>
+    </tr>
+    <tr id="row16388151513442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p16389151524410"><a name="p16389151524410"></a><a name="p16389151524410"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1738911594418"><a name="p1738911594418"></a><a name="p1738911594418"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p13389101564417"><a name="p13389101564417"></a><a name="p13389101564417"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p583654210476"><a name="p583654210476"></a><a name="p583654210476"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        const localLabels = ['A', 'B'];
+        const remoteSupportLabels = ['C', 'D'];
+        kvStore.setSyncRange(localLabels, remoteSupportLabels, function (err,data) {
+            console.log('SetSyncRange put success');
+        });
+    }catch(e) {
+        console.log('SetSyncRange e ' + e);
+    }
+    ```
+
+
+### setSyncRange<sup>8+</sup> ###
+
+setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;void&gt;;
+
+设置同步范围标签，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table174118324413"></a>
+    <table><thead align="left"><tr id="row164211354413"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p17426384419"><a name="p17426384419"></a><a name="p17426384419"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p8421238446"><a name="p8421238446"></a><a name="p8421238446"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p1642103124416"><a name="p1642103124416"></a><a name="p1642103124416"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p154263204411"><a name="p154263204411"></a><a name="p154263204411"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row124314315442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p54315374420"><a name="p54315374420"></a><a name="p54315374420"></a>localLabels</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p134303144416"><a name="p134303144416"></a><a name="p134303144416"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p285519208464"><a name="p285519208464"></a><a name="p285519208464"></a>表示本地设备的同步标签。</p>
+    </td>
+    </tr>
+    <tr id="row124314315442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p54315374420"><a name="p54315374420"></a><a name="p54315374420"></a>remoteSupportLabels</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p134303144416"><a name="p134303144416"></a><a name="p134303144416"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p285519208464"><a name="p285519208464"></a><a name="p285519208464"></a>表示要同步数据的设备的同步标签。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table898511515811"></a>
+    <table><thead align="left"><tr id="row1398616518817"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p19860516812"><a name="p19860516812"></a><a name="p19860516812"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p17986115489"><a name="p17986115489"></a><a name="p17986115489"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row898611514813"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p39861451811"><a name="p39861451811"></a><a name="p39861451811"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p69870519814"><a name="p69870519814"></a><a name="p69870519814"></a>Promise实例，用于异步处理。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        const localLabels = ['A', 'B'];
+        const remoteSupportLabels = ['C', 'D'];
+        kvStore.setSyncRange(localLabels, remoteSupportLabels).then((err) => {
+            console.log('setSyncRange success');
+        }).catch((err) => {
+            console.log('delete fail ' + err);
+        });
+    }catch(e) {
+        console.log('SetSyncRange e ' + e);
+    }
     ```
 
 
@@ -1121,11 +4920,11 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
 <a name="table1678101205113"></a>
 <table><thead align="left"><tr id="row11678161175117"><th class="cellrowborder" valign="top" width="15.870000000000001%" id="mcps1.1.6.1.1"><p id="p106785111512"><a name="p106785111512"></a><a name="p106785111512"></a>名称</p>
 </th>
-<th class="cellrowborder" valign="top" width="27.029999999999998%" id="mcps1.1.6.1.2"><p id="p1567817115512"><a name="p1567817115512"></a><a name="p1567817115512"></a>参数类型</p>
+<th class="cellrowborder" valign="top" width="24.029999999999998%" id="mcps1.1.6.1.2"><p id="p1567817115512"><a name="p1567817115512"></a><a name="p1567817115512"></a>参数类型</p>
 </th>
-<th class="cellrowborder" valign="top" width="7.85%" id="mcps1.1.6.1.3"><p id="p1678101125110"><a name="p1678101125110"></a><a name="p1678101125110"></a>可读</p>
+<th class="cellrowborder" valign="top" width="9.85%" id="mcps1.1.6.1.3"><p id="p1678101125110"><a name="p1678101125110"></a><a name="p1678101125110"></a>可读</p>
 </th>
-<th class="cellrowborder" valign="top" width="9.67%" id="mcps1.1.6.1.4"><p id="p1767831195117"><a name="p1767831195117"></a><a name="p1767831195117"></a>可写</p>
+<th class="cellrowborder" valign="top" width="10.67%" id="mcps1.1.6.1.4"><p id="p1767831195117"><a name="p1767831195117"></a><a name="p1767831195117"></a>可写</p>
 </th>
 <th class="cellrowborder" valign="top" width="39.58%" id="mcps1.1.6.1.5"><p id="p196786118515"><a name="p196786118515"></a><a name="p196786118515"></a>说明</p>
 </th>
@@ -1133,22 +4932,22 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
 </thead>
 <tbody><tr id="row1667919113510"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p1632904315112"><a name="p1632904315112"></a><a name="p1632904315112"></a>key</p>
 </td>
-<td class="cellrowborder" valign="top" width="27.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p7679111185111"><a name="p7679111185111"></a><a name="p7679111185111"></a>string</p>
+<td class="cellrowborder" valign="top" width="24.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p7679111185111"><a name="p7679111185111"></a><a name="p7679111185111"></a>string</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.85%" headers="mcps1.1.6.1.3 "><p id="p136792135115"><a name="p136792135115"></a><a name="p136792135115"></a>是</p>
+<td class="cellrowborder" valign="top" width="9.85%" headers="mcps1.1.6.1.3 "><p id="p136792135115"><a name="p136792135115"></a><a name="p136792135115"></a>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.4 "><p id="p186799120516"><a name="p186799120516"></a><a name="p186799120516"></a>是</p>
+<td class="cellrowborder" valign="top" width="10.67%" headers="mcps1.1.6.1.4 "><p id="p186799120516"><a name="p186799120516"></a><a name="p186799120516"></a>是</p>
 </td>
 <td class="cellrowborder" valign="top" width="39.58%" headers="mcps1.1.6.1.5 "><p id="p26792013514"><a name="p26792013514"></a><a name="p26792013514"></a>键值。</p>
 </td>
 </tr>
 <tr id="row267931185113"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p867951145114"><a name="p867951145114"></a><a name="p867951145114"></a>value</p>
 </td>
-<td class="cellrowborder" valign="top" width="27.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p86791318519"><a name="p86791318519"></a><a name="p86791318519"></a><a href="#section12882825611">Value</a></p>
+<td class="cellrowborder" valign="top" width="24.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p86791318519"><a name="p86791318519"></a><a name="p86791318519"></a><a href="#section12882825611">Value</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="7.85%" headers="mcps1.1.6.1.3 "><p id="p14679181175114"><a name="p14679181175114"></a><a name="p14679181175114"></a>是</p>
+<td class="cellrowborder" valign="top" width="9.85%" headers="mcps1.1.6.1.3 "><p id="p14679181175114"><a name="p14679181175114"></a><a name="p14679181175114"></a>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.4 "><p id="p16797195110"><a name="p16797195110"></a><a name="p16797195110"></a>是</p>
+<td class="cellrowborder" valign="top" width="10.67%" headers="mcps1.1.6.1.4 "><p id="p16797195110"><a name="p16797195110"></a><a name="p16797195110"></a>是</p>
 </td>
 <td class="cellrowborder" valign="top" width="39.58%" headers="mcps1.1.6.1.5 "><p id="p166791011516"><a name="p166791011516"></a><a name="p166791011516"></a>值对象。</p>
 </td>
@@ -1167,9 +4966,9 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
 </th>
 <th class="cellrowborder" valign="top" width="7.850000000000001%" id="mcps1.1.6.1.3"><p id="p15971343131"><a name="p15971343131"></a><a name="p15971343131"></a>可读</p>
 </th>
-<th class="cellrowborder" valign="top" width="5.98%" id="mcps1.1.6.1.4"><p id="p1459715436311"><a name="p1459715436311"></a><a name="p1459715436311"></a>可写</p>
+<th class="cellrowborder" valign="top" width="7.98%" id="mcps1.1.6.1.4"><p id="p1459715436311"><a name="p1459715436311"></a><a name="p1459715436311"></a>可写</p>
 </th>
-<th class="cellrowborder" valign="top" width="43.27%" id="mcps1.1.6.1.5"><p id="p75975439316"><a name="p75975439316"></a><a name="p75975439316"></a>说明</p>
+<th class="cellrowborder" valign="top" width="41.27%" id="mcps1.1.6.1.5"><p id="p75975439316"><a name="p75975439316"></a><a name="p75975439316"></a>说明</p>
 </th>
 </tr>
 </thead>
@@ -1179,9 +4978,9 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
 </td>
 <td class="cellrowborder" valign="top" width="7.850000000000001%" headers="mcps1.1.6.1.3 "><p id="p1059711439317"><a name="p1059711439317"></a><a name="p1059711439317"></a>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="5.98%" headers="mcps1.1.6.1.4 "><p id="p659715430317"><a name="p659715430317"></a><a name="p659715430317"></a>是</p>
+<td class="cellrowborder" valign="top" width="7.98%" headers="mcps1.1.6.1.4 "><p id="p659715430317"><a name="p659715430317"></a><a name="p659715430317"></a>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="43.27%" headers="mcps1.1.6.1.5 "><p id="p2059719436313"><a name="p2059719436313"></a><a name="p2059719436313"></a>值类型。</p>
+<td class="cellrowborder" valign="top" width="41.27%" headers="mcps1.1.6.1.5 "><p id="p2059719436313"><a name="p2059719436313"></a><a name="p2059719436313"></a>值类型。</p>
 </td>
 </tr>
 <tr id="row185973435316"><td class="cellrowborder" valign="top" width="15.870000000000003%" headers="mcps1.1.6.1.1 "><p id="p1559710432310"><a name="p1559710432310"></a><a name="p1559710432310"></a>value</p>
@@ -1190,9 +4989,9 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
 </td>
 <td class="cellrowborder" valign="top" width="7.850000000000001%" headers="mcps1.1.6.1.3 "><p id="p12597194313317"><a name="p12597194313317"></a><a name="p12597194313317"></a>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="5.98%" headers="mcps1.1.6.1.4 "><p id="p1259710431236"><a name="p1259710431236"></a><a name="p1259710431236"></a>是</p>
+<td class="cellrowborder" valign="top" width="7.98%" headers="mcps1.1.6.1.4 "><p id="p1259710431236"><a name="p1259710431236"></a><a name="p1259710431236"></a>是</p>
 </td>
-<td class="cellrowborder" valign="top" width="43.27%" headers="mcps1.1.6.1.5 "><p id="p10597843034"><a name="p10597843034"></a><a name="p10597843034"></a>值，Uint8Array、string 的长度不大于<a href="#p9253605466">MAX_VALUE_LENGTH</a>。</p>
+<td class="cellrowborder" valign="top" width="41.27%" headers="mcps1.1.6.1.5 "><p id="p10597843034"><a name="p10597843034"></a><a name="p10597843034"></a>值，Uint8Array、string 的长度不大于<a href="#p9253605466">MAX_VALUE_LENGTH</a>。</p>
 </td>
 </tr>
 </tbody>
@@ -1260,11 +5059,11 @@ on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\)
 
 ## SingleKVStore<a name="section87965384295"></a>
 
-单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用SingleKVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
+单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用 SingleKVStore 的方法前，需要先通过 getKVStore 构建一个 SingleKVStore 实例。
 
 ### get<a name="section107972383294"></a>
 
-get\(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number\>\): void
+get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | number&gt;): void
 
 获取指定键的值，并通过callback方式返回，此方法为异步方法。
 
@@ -1305,6 +5104,7 @@ get\(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -1326,7 +5126,7 @@ get\(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number
 
 ### get<a name="section1326485818382"></a>
 
-get\(key: string\): Promise<Uint8Array | string | boolean | number\>
+get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 获取指定键的值，并通过Promise方式返回，此方法为异步方法。
 
@@ -1335,9 +5135,9 @@ get\(key: string\): Promise<Uint8Array | string | boolean | number\>
     <a name="table5264458143812"></a>
     <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    <th class="cellrowborder" valign="top" width="5.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
     </th>
     <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
     </th>
@@ -1345,9 +5145,9 @@ get\(key: string\): Promise<Uint8Array | string | boolean | number\>
     </thead>
     <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>key</p>
     </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
     </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
     </td>
     <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>要查询数据的key，不能为空且长度不大于<a href="#p10198639174218">MAX_KEY_LENGTH</a>。</p>
     </td>
@@ -1358,15 +5158,15 @@ get\(key: string\): Promise<Uint8Array | string | boolean | number\>
 -   返回值：
 
     <a name="table3268158153812"></a>
-    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="53.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
     </th>
-    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    <th class="cellrowborder" valign="top" width="46.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;Uint8Array | string | boolean | number&gt;</p>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="53.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;Uint8Array | string | boolean | number&gt;</p>
     </td>
-    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    <td class="cellrowborder" valign="top" width="46.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
     </td>
     </tr>
     </tbody>
@@ -1376,6 +5176,7 @@ get\(key: string\): Promise<Uint8Array | string | boolean | number\>
 -   示例
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -1394,12 +5195,1187 @@ get\(key: string\): Promise<Uint8Array | string | boolean | number\>
     }
     ```
 
+### getEntries<sup>8+</sup> ###
+
+getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+获取匹配指定键前缀的所有键值对，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>keyPrefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示要匹配的键前缀。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section15495151319483">Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，获取指定前缀的键值对列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_number_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.INTEGER,
+                    value : 222
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;;
+
+获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>keyPrefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示要匹配的键前缀。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section15495151319483">Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + entries);
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+                console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
+                console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section15495151319483">Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，获取指定前缀的键值对列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getEntries(query, function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(query: Query): Promise&lt;Entry[]&gt;;
+
+获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section15495151319483">Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getEntries(query).then((entrys) => {
+                console.log('getEntries success');
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('GetEntries putBatch fail ' + JSON.stringify(err))
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+从 KvStore 数据库中获取具有指定前缀的结果集，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>keyPrefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示要匹配的键前缀。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section111111111">KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，获取具有指定前缀的结果集。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('GetResultSet putBatch success');
+            await kvStore.getResultSet('batch_test_string_key', async function (err, result) {
+                console.log('GetResultSet getResultSet success');
+                resultSet = result;
+                kvStore.closeResultSet(resultSet, function (err, data) {
+                    console.log('GetResultSet closeResultSet success');
+                })
+            });
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;;
+
+从 KvStore 数据库中获取具有指定前缀的结果集，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>keyPrefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示要匹配的键前缀。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section111111111">KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('PutBatch putBatch fail ' + JSON.stringify(err));
+        });
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('GetResult getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+        kvStore.closeResultSet(resultSet).then((err) => {
+            console.log('GetResult closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResult e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section111111111">KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，获取与指定 Query 对象匹配的 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSet(query, async function (err, result) {
+                console.log('getResultSet success');
+                resultSet = result;
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;;
+
+获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section111111111">KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSet(query).then((result) => {
+            console.log(' getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+### closeResultSet<sup>8+</sup> ###
+
+closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void;
+
+关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>resultSet</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a><a href="#section111111111">KvStoreResultSet</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示要关闭的 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    <tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>回调函数，获取由 getResultSet 返回的 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet = null;
+        kvStore.closeResultSet(resultSet, function (err, data) {
+            if (err == undefined) {
+                console.log('closeResultSet success');
+            } else {
+                console.log('closeResultSet fail');
+            }
+        });
+    }catch(e) {
+        console.log('CloseResultSet e ' + e);
+    }
+    ```
+
+
+### closeResultSet<sup>8+</sup> ###
+
+closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;;
+
+关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>resultSet</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a><a href="#section111111111">KvStoreResultSet</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示要关闭的 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet = null;
+        kvStore.closeResultSet(resultSet).then(() => {
+            console.log('closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('CloseResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void;
+
+获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;number&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，获取与指定 Query 对象匹配的结果数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSize(query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(query: Query): Promise&lt;number&gt;;
+
+获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;number&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSize(query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### removeDeviceData<sup>8+</sup> ###
+
+removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
+
+删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示要删除设备的名称。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+            console.log('put success');
+            const deviceid = 'no_exist_device_id';
+            await kvStore.removeDeviceData(deviceid, async function (err,data) {
+                if (err == undefined) {
+                    console.log('removeDeviceData success');
+                } else {
+                    console.log('removeDeviceData fail');
+                    await kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                        console.log('RemoveDeviceData get success');
+                    });
+                }
+            });
+        });
+    }catch(e) {
+        console.log('RemoveDeviceData e ' + e);
+    }
+    ```
+
+
+### removeDeviceData<sup>8+</sup> ###
+
+removeDeviceData(deviceId: string): Promise&lt;void&gt;;
+
+删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示要删除设备的名称。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
+            console.log('removeDeviceData put success');
+        }).catch((err) => {
+            console.log('put fail ' + JSON.stringify(err));
+        });
+        const deviceid = 'no_exist_device_id';
+        kvStore.removeDeviceData(deviceid).then((err) => {
+            console.log('removeDeviceData success');
+        }).catch((err) => {
+            console.log('removeDeviceData fail ' + JSON.stringify(err));
+        });
+        kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+            console.log('get success data:' + data);
+        }).catch((err) => {
+            console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('RemoveDeviceData e ' + e);
+    }
+    ```
+
+
+### on<sup>8+</sup> ###
+
+on(event: 'syncComplete', syncCallback: Callback<Array&lt;[string, number]&gt;): void;
+
+订阅同步完成事件回调通知，此方法为同步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>event</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>'syncComplete'</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>同步完成时触发的事件名。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>用于向调用方发送同步结果的回调。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
+    const VALUE_TEST_FLOAT_ELEMENT = 321.12;
+    try {
+        kvStore.on('syncComplete', function (data) {
+            console.log('syncComplete ' + data)
+        });
+        kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
+            console.log('syncComplete put success');
+        }).catch((error) => {
+            console.log('syncComplete put fail ' + error);
+        });
+    }catch(e) {
+        console.log('syncComplete put e ' + e);
+    }
+    ```
+
+
+### off<sup>8+</sup> ###
+
+off(event: 'syncComplete', syncCallback?: Callback<Array&lt;[string, number]&gt;): void;
+
+取消订阅同步完成事件回调通知，此方法为同步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>event</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>'syncComplete'</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>同步完成时触发的事件名。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>否</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>用于向调用方发送同步结果的回调。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        const func = function (data) {
+            console.log('syncComplete ' + data)
+        };
+        kvStore.on('syncComplete', func);
+        kvStore.off('syncComplete', func);
+    }catch(e) {
+        console.log('syncComplete e ' + e);
+    }
+    ```
+
 
 ### sync<a name="section619117584517"></a>
 
-sync\(deviceIdList: string\[\], mode: SyncMode, allowedDelayMs?: number\): void
+sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
-在手动同步模式下，触发数据库同步，此方法为同步方法。
+在手动模式下，触发数据库同步，此方法为同步方法。
 
 -   参数：
 
@@ -1447,7 +6423,2173 @@ sync\(deviceIdList: string\[\], mode: SyncMode, allowedDelayMs?: number\): void
 -   示例：
 
     ```
-    kvStore.sync(deviceIds, 1, 1000);
+    let kvStore;
+    kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
+    ```
+
+### setSyncParam<sup>8+</sup> ###
+
+setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void;
+
+设置允许数据库同步的默认延迟，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>defaultAllowedDelayMs</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示数据库同步允许的默认延迟，以毫秒为单位。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        const defaultAllowedDelayMs = 500;
+        kvStore.setSyncParam(defaultAllowedDelayMs, function (err,data) {
+            console.log('SetSyncParam put success');
+        });
+    }catch(e) {
+        console.log('testSingleKvStoreSetSyncParam e ' + e);
+    }
+    ```
+
+
+### setSyncParam<sup>8+</sup> ###
+
+setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;;
+
+设置允许数据库同步的默认延迟，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>defaultAllowedDelayMs</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>表示数据库同步允许的默认延迟，以毫秒为单位。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        const defaultAllowedDelayMs = 500;
+        kvStore.setSyncParam(defaultAllowedDelayMs).then((err) => {
+            console.log('SetSyncParam put success');
+        }).catch((err) => {
+            console.log('SetSyncParam put fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('SetSyncParam e ' + e);
+    }
+    ```
+
+
+### getSecurityLevel<sup>8+</sup> ###
+
+getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void;
+
+获取数据库的安全级别，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section205876465372">SecurityLevel</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.getSecurityLevel(function (err,data) {
+            console.log('getSecurityLevel success');
+        });
+    }catch(e) {
+        console.log('GetSecurityLeve e ' + e);
+    }
+    ```
+
+
+### getSecurityLevel<sup>8+</sup> ###
+
+getSecurityLevel(): Promise&lt;SecurityLevel&gt;;
+
+获取数据库的安全级别，并通过Promise方式返回，此方法为异步方法。
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href= "#section205876465372">SecurityLevel</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        kvStore.getSecurityLevel().then((data) => {
+            console.log(' getSecurityLevel success');
+        }).catch((err) => {
+            console.log('getSecurityLevel fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetSecurityLeve e ' + e);
+    }
+    ```
+
+
+## DeviceKVStore<sup>8+</sup> ##
+
+在分布式系统中按设备管理分布式数据，继承自KvStore，提供查询数据和同步数据的方法。在调用DeviceKVStore的方法前，需要先通过getKVStore构建一个DeviceKVStore实例。
+
+### get<sup>8+</sup> ###
+
+get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void;
+
+获取与指定设备 ID 和 key 匹配的 String 值，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>标识要查询其数据的设备。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>key</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要查询 key 值的键。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;boolean|string|number|Uint8Array&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回匹配给定条件的字符串值。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+    try{
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+            console.log('put success');
+            kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, function (err,data) {
+                console.log('get success');
+            });
+        })
+    }catch(e) {
+        console.log('get e' + e);
+    }
+    ```
+
+
+### get<sup>8+</sup> ###
+
+get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;;
+
+获取与指定设备 ID 和 key 匹配的 String 值，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>标识要查询其数据的设备。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>key</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要查询的 key 值的键。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;boolean|string|number|Uint8Array&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async (data) => {
+            console.log(' put success');
+            kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+                console.log('get success');
+            }).catch((err) => {
+                console.log('get fail ' + JSON.stringify(err));
+            });
+        }).catch((error) => {
+            console.log('put error' + error);
+        });
+    } catch (e) {
+        console.log('Get e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+获取与指定设备 ID 和 key 前缀匹配的所有键值对，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>标识要查询其数据的设备。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>keyPrefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要匹配的键前缀。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section15495151319483" >Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回满足给定条件的所有键值对的列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + entries);
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;;
+
+获取与指定设备 ID 和 key 前缀匹配的所有键值对，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>标识要查询其数据的设备。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>keyPrefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要匹配的键前缀。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section15495151319483">Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + entries);
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+                console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
+                console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section15495151319483" >Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回与指定 Query 对象匹配的键值对列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            expect(err == undefined).assertTrue();
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getEntries(query, function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(query: Query): Promise&lt;Entry[]&gt;;
+
+获取与指定 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section15495151319483">Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getEntries(query).then((entrys) => {
+                console.log('getEntries success');
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('GetEntries putBatch fail ' + JSON.stringify(err))
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>键值对所属的设备ID。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section15495151319483" >Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回与指定 Query 对象匹配的键值对列表。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            expect(err == undefined).assertTrue();
+            var query = new distributedData.Query();
+            query.deviceId('localDeviceId');
+            query.prefixKey("batch_test");
+            await kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            })
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;;
+
+获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>键值对所属的设备ID。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section15495151319483">Entry</a>[]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            var query = new distributedData.Query();
+            query.deviceId('localDeviceId');
+            query.prefixKey("batch_test");
+            await kvStore.getEntries('localDeviceId', query).then((entrys) => {
+                console.log('getEntries success');
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+获取与指定设备 ID 和　key 前缀匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>标识要查询其数据的设备。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>keyPrefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要匹配的键前缀。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section111111111" >KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
+            console.log('getResultSet success');
+            resultSet = result;
+            await kvStore.closeResultSet(resultSet, function (err, data) {
+                console.log('closeResultSet success');
+            })
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;;
+
+获取与指定设备 ID 和 key 前缀匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>标识要查询其数据的设备。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>keyPrefix</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示要匹配的键前缀。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section111111111">KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+        kvStore.closeResultSet(resultSet).then((err) => {
+            console.log('closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section111111111" >KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回与指定 Query 对象匹配的 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getResultSet(query, async function (err, result) {
+                console.log('getResultSet success');
+                resultSet = result;
+                await kvStore.closeResultSet(resultSet, function (err, data) {
+                    console.log('closeResultSet success');
+                })
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;;
+
+获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section111111111">KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + err);
+        });
+        const query = new distributedData.Query();
+        query.deviceId('localDeviceId');
+        query.prefixKey("batch_test");
+        console.log("GetResultSet " + query.getSqlLike());
+        kvStore.getResultSet(query).then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+        kvStore.closeResultSet(resultSet).then((err) => {
+            console.log('closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>KvStoreResultSet对象所属的设备ID。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222">Query</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;<a href="#section111111111" >KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回与指定 Query 对象匹配的 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSet('localDeviceId', query, async function (err, result) {
+                console.log('getResultSet success');
+                resultSet = result;
+                await kvStore.closeResultSet(resultSet, function (err, data) {
+                    console.log('closeResultSet success');
+                })
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;;
+
+获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.47%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.27%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.47%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.27%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>KvStoreResultSet对象所属的设备ID。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222"><a href="#section22222222222">Query</a></a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.47%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.27%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;<a href="#section111111111">KvStoreResultSet</a>&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('GetResultSet putBatch success');
+        }).catch((err) => {
+            console.log('PutBatch putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSet('localDeviceId', query).then((result) => {
+            console.log('GetResultSet getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('GetResultSet getResultSet fail ' + JSON.stringify(err));
+        });
+        query.deviceId('localDeviceId');
+        console.log("GetResultSet " + query.getSqlLike());
+        kvStore.closeResultSet(resultSet).then((err) => {
+            console.log('GetResultSet closeResultSet success');
+        }).catch((err) => {
+            console.log('GetResultSet closeResultSet fail ' + JSON.stringify(err));
+        });
+
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### closeResultSet<sup>8+</sup> ###
+
+closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void;
+
+关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>resultSet</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section111111111">KvStoreResultSet</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>指示要关闭的 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        console.log('CloseResultSet success');
+        let resultSet = null;
+        kvStore.closeResultSet(resultSet, function (err, data) {
+            if (err == undefined) {
+                console.log('closeResultSet success');
+            } else {
+                console.log('closeResultSet fail');
+            }
+        });
+    }catch(e) {
+        console.log('CloseResultSet e ' + e);
+    }
+    ```
+
+
+### closeResultSet<sup>8+</sup> ###
+
+closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;;
+
+关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>resultSet</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section111111111">KvStoreResultSet</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>指示要关闭的 KvStoreResultSet 对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        console.log('CloseResultSet success');
+        let resultSet = null;
+        kvStore.closeResultSet(resultSet).then(() => {
+            console.log('closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('CloseResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void;
+
+获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222"><a href="#section22222222222">Query</a></a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;number&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回与指定 Query 对象匹配的结果数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getResultSize(query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(query: Query): Promise&lt;number&gt;;
+
+获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222"><a href="#section22222222222">Query</a></a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;number&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        query.deviceId('localDeviceId');
+        kvStore.getResultSize(query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
+
+获取与指定设备 ID 和 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示结果所属的设备ID。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222"><a href="#section22222222222">Query</a></a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;number&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数，返回与指定 Query 对象匹配的结果数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;;
+
+获取与指定设备 ID 和 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示结果所属的设备ID。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>query</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section22222222222"><a href="#section22222222222">Query</a></a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示查询对象。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;number&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        var query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### removeDeviceData<sup>8+</sup> ###
+
+removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
+
+从当前数据库中删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>标识要删除其数据的设备。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>回调函数。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+            console.log('RemoveDeviceData  put success');
+            const deviceid = 'no_exist_device_id';
+            await kvStore.removeDeviceData(deviceid, async function (err,data) {
+                if (err == undefined) {
+                    console.log('removeDeviceData success');
+                } else {
+                    console.log('removeDeviceData fail');
+                    await kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                        console.log('RemoveDeviceData get success');
+                    });
+                }
+            });
+        });
+    }catch(e) {
+        console.log('RemoveDeviceData e ' + e);
+    }
+    ```
+
+
+### removeDeviceData<sup>8+</sup> ###
+
+removeDeviceData(deviceId: string): Promise&lt;void&gt;;
+
+从当前数据库中删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceId</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>标识要删除其数据的设备。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   返回值：
+
+    <a name="table3268158153812"></a>
+    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;void&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise实例，用于获取异步返回结果。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
+            console.log('RemoveDeviceData put success');
+        }).catch((err) => {
+            console.log('RemoveDeviceData put fail ' + JSON.stringify(err));
+        });
+        const deviceid = 'no_exist_device_id';
+        kvStore.removeDeviceData(deviceid).then((err) => {
+            console.log('removeDeviceData success');
+        }).catch((err) => {
+            console.log('removeDeviceData fail ' + JSON.stringify(err));
+        });
+        kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+            console.log('RemoveDeviceData get success data:' + data);
+        }).catch((err) => {
+            console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('RemoveDeviceData e ' + e);
+    }
+    ```
+
+
+### sync<sup>8+</sup> ###
+
+sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
+
+在手动模式下，触发数据库同步，此方法为同步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>deviceIdList</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>string[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>需要同步DeviceKvStore数据库的设备ID列表。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>mode</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a href="#section1226994713484">SyncMode</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>表示同步方式，PUSH、PULL或PUSH_PULL。</p>
+    </td>
+    </tr>
+    <tr id="row7797191217527"><td class="cellrowborder" valign="top" width="17.91%" headers="mcps1.1.5.1.1 "><p id="p11797512195211"><a name="p11797512195211"></a><a name="p11797512195211"></a>allowedDelayMs</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="10.58%" headers="mcps1.1.5.1.2 "><p id="p15797181210529"><a name="p15797181210529"></a><a name="p15797181210529"></a>
+    number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.290000000000001%" headers="mcps1.1.5.1.3 "><p id="p10797712145215"><a name="p10797712145215"></a><a name="p10797712145215"></a>否</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="63.22%" headers="mcps1.1.5.1.4 "><p id="p20797912145218"><a name="p20797912145218"></a><a name="p20797912145218"></a>可选参数，允许延时时间，单位：ms（毫秒）。</p>
+    </td>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
+    const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
+    try {
+        kvStore.on('syncComplete', function (data) {
+            console.log('Sync dataChange');
+        });
+        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
+            console.log('Sync put success');
+            const devices = ['deviceList'];
+            const mode = distributedData.SyncMode.PULL_ONLY;
+            kvStore.sync(devices, mode);
+        });
+    }catch(e) {
+        console.log('Sync e' + e);
+    }
+    ```
+
+### on<sup>8+</sup> ###
+
+on(event: 'syncComplete', syncCallback: Callback<Arrary&lt;<[string, number]&gt;): void;
+
+订阅同步完成事件回调通知，该方法为同步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>event</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>'syncComplete'</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>同步完成时触发的事件名。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>用于向调用方发送同步结果的回调。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+    ```
+    const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
+    const VALUE_TEST_FLOAT_ELEMENT = 321.12;
+    try {
+        kvStore.on('syncComplete', function (data) {
+            console.log('syncComplete ' + data)
+        });
+        kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
+            console.log('syncComplete put success');
+        }).catch((error) => {
+            console.log('syncComplete put fail ' + error);
+        });
+    }catch(e) {
+        console.log('syncComplete put e ' + e);
+    }
+    ```
+
+
+### off<sup>8+</sup> ###
+
+off(event: 'syncComplete', syncCallback?: Callback<Array&lt;[string, number]&gt;): void;
+
+取消订阅同步完成事件回调通知，该方法为同步方法。
+
+-   参数：
+
+    <a name="table5264458143812"></a>
+    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>参数名</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="15.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>类型</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="8.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>必填</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>说明</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>event</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>'syncComplete'</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>是</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>同步完成时触发的事件名。</p>
+    </td>
+    </tr>
+    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>syncCallback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="15.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a>Callback&lt;Array&lt;[string, number]&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="8.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>否</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>用于向调用方发送同步结果的回调。</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   示例
+
+    ```
+    let kvStore;
+    try {
+        const func = function (data) {
+            console.log('syncComplete ' + data)
+        };
+        kvStore.on('syncComplete', func);
+        kvStore.off('syncComplete', func);
+    }catch(e) {
+        console.log('syncComplete e ' + e);
+    }
     ```
 
 
@@ -1487,4 +8629,3 @@ sync\(deviceIdList: string\[\], mode: SyncMode, allowedDelayMs?: number\): void
 </tr>
 </tbody>
 </table>
-

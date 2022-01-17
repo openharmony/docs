@@ -14,7 +14,7 @@
 
    - onConnect()
 
-     在Ability和Service连接时调用，该方法返回IRemoteObject对象，开发者可以在该回调函数中生成对应Service的IPC通信通道，以便Ability与Service交互。Ability可以多次连接同一个Service，系统会缓存该Service的IPC通信对象，只有第一个客户端连接Service时，系统才会调用Service的onConnect方法来生成IRemoteObject对象，而后系统会将同一个RemoteObject对象传递至其他连接同一个Service的所有客户端，而无需再次调用onConnect方法。
+     在Ability和Service连接时调用，该方法返回IRemoteObject对象，开发者可以在该回调函数中生成对应Service的IPC通信通道，以便Ability与Service交互。Ability可以多次连接同一个Service，系统会缓存该Service的IPC通信对象，只有第一个客户端连接Service时，系统才会调用Service的onConnect方法来生成IRemoteObject对象，而后系统会将同一个IRemoteObject对象传递至其他连接同一个Service的所有客户端，而无需再次调用onConnect方法。
 
    - onDisconnect()
 
@@ -104,13 +104,13 @@ var promise = await featureAbility.startAbility(
 
   
 
-## 连接Service<a name="section126857614018"></a>
+## 连接本地Service<a name="section126857614018"></a>
 
 如果Service需要与Page Ability或其他应用的Service Ability进行交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行连接。
 
 在使用connectAbility()处理回调时，需要传入目标Service的Want与IAbilityConnection的实例。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常死亡的回调，onFailed()是用来处理连接Service失败的回调。
 
-创建连接Service回调实例的代码示例如下：
+创建连接本地Service回调实例的代码示例如下：
 
 ```javascript
 var mRemote;
@@ -128,7 +128,7 @@ function onFailedCallback(code){
 }
 ```
 
-连接Service的代码示例如下：
+连接本地Service的代码示例如下：
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -158,7 +158,7 @@ export default {
         class MyStub extends rpc.RemoteObject{
             constructor(des) {
                 if (typeof des === 'string') {
-                    super(des, des.length);
+                    super(des);
                 }
                 return null;
             }
@@ -183,3 +183,84 @@ export default {
 }
 ```
 
+## 连接远程Service<a name="section126857614019"></a>
+
+如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
+
+在使用connectAbility()处理回调时，需要传入目标Service的Want与IAbilityConnection的实例。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常死亡的回调，onFailed()是用来处理连接Service失败的回调。
+
+创建连接远程Service回调实例的代码示例如下：
+
+```javascript
+var mRemote;
+function onConnectCallback(element, remote){
+    console.log('ConnectRemoteAbility onConnect Callback')
+    mRemote = remote;
+}
+
+function onDisconnectCallback(element){
+    console.log('ConnectRemoteAbility onDisconnect Callback')
+}
+
+function onFailedCallback(code){
+    console.log('ConnectRemoteAbility onFailed Callback')
+}
+```
+
+目标Service的Want需要包含远程deviceId，该远程deviceId可通过deviceManager获取。
+
+连接远程Service的代码示例如下：
+
+```javascript
+import featureAbility from '@ohos.ability.featureability';
+var connId = featureAbility.connectAbility(
+    {
+        deviceId: deviceId,
+        bundleName: "com.jstest.serviceability",
+        abilityName: "com.jstest.serviceability.MainAbility",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+```
+
+同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象，OpenHarmony提供了IRemoteObject的默认实现，用户可以通过继承rpc.RemoteObject来创建自定义的实现类。
+
+Service侧把自身的实例返回给调用侧的代码示例如下：
+
+```javascript
+import rpc from "@ohos.rpc";
+
+var mMyStub;
+export default {
+    onStart(want) {
+        class MyStub extends rpc.RemoteObject{
+            constructor(des) {
+                if (typeof des === 'string') {
+                    super(des);
+                }
+                return null;
+            }
+            onRemoteRequest(code, message, reply, option) {
+            }
+        }
+        mMyStub = new MyStub("ServiceAbility-test");
+    },
+    onCommand(want, restart, startId) {
+        console.log('SerivceAbility onCommand');
+    },
+    onConnect(want) {
+        console.log('SerivceAbility OnConnect');
+        return mMyStub;
+    },
+    onDisconnect() {
+        console.log('SerivceAbility OnDisConnect');
+    },
+    onStop() {
+        console.log('SerivceAbility onStop');
+    },
+}
+```

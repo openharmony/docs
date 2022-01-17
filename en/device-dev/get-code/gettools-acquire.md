@@ -52,7 +52,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.6.1.3 "><p id="p552616549297"><a name="p552616549297"></a><a name="p552616549297"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.5</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.7</p>
 </td>
 </tr>
 <tr id="row5986201731214"><td class="cellrowborder" align="center" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p136981216143"><a name="p136981216143"></a><a name="p136981216143"></a>HPM-based Docker environment</p>
@@ -68,6 +68,8 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </tr>
 </tbody>
 </table>
+
+
 
 
 
@@ -180,13 +182,13 @@ hb set
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.5
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
     ```
 
 
@@ -208,7 +210,7 @@ hb set
 3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.5
+    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
     ```
 
 
@@ -217,10 +219,10 @@ hb set
 Run the following script to start building for standard-system devices \(reference memory ≥ 128 MB\).
 
 ```
-./build.sh --product-name {product_name}
+./build.sh --product-name {product_name} --ccache
 ```
 
-**product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300.
+**product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300, rk3568.
 
 Files generated during building are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 

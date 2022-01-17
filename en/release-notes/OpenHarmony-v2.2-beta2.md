@@ -61,11 +61,12 @@ The feature updates for the mini system and small system are as follows:
 </tbody>
 </table>
 
-## Source Code Acquisition<a name="section1350215462116"></a>
+## Source Code Acquisition
 
-**Method 1 \(recommended\)**
 
-Use the  **repo**  tool to download the source code over SSH. \(You must have registered an SSH public key for access to Gitee.\)
+### Acquiring Source Code Using the repo Tool
+
+**Method 1 (recommended)**: Use the **repo** tool to download the source code over SSH. (You must have registered an SSH public key for access to Gitee.)
 
 ```
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v2.2-Beta2 --no-repo-verify
@@ -73,9 +74,7 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-**Method 2**
-
-Use the  **repo**  tool to download the source code over HTTPS.
+**Method 2**: Use the **repo** tool to download the source code over HTTPS.
 
 ```
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v2.2-Beta2 --no-repo-verify
@@ -83,11 +82,26 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
+
+### Acquiring Source Code from Image Sites
+
+**Table  2** Sites for acquiring source code
+
+| Source&nbsp;Code | Version | Site | SHA-256&nbsp;Checksum | 
+| -------- | -------- | -------- | -------- |
+| Full&nbsp;code&nbsp;(for&nbsp;mini,&nbsp;small,&nbsp;and&nbsp;standard&nbsp;systems) | 2.2 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz.sha256) | 
+| Standard&nbsp;system&nbsp;solution&nbsp;(binary) | 2.2 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/standard-2.2-Beta2.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/standard-2.2-Beta2.tar.gz.sha256) | 
+| Hi3861&nbsp;solution&nbsp;(binary) | 2.2 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_pegasus-2.2-Beta2.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_pegasus-2.2-Beta2.tar.gz.sha256) | 
+| Hi3518&nbsp;solution&nbsp;(binary) | 2.2 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_aries-2.2-Beta2.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_aries-2.2-Beta2.tar.gz.sha256) | 
+| Hi3516&nbsp;solution-LiteOS&nbsp;(binary) | 2.2 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_taurus-2.2-Beta2.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_taurus-2.2-Beta2.tar.gz.sha256) | 
+| Hi3516&nbsp;solution-Linux&nbsp;(binary) | 2.2 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_taurus_linux-2.2-Beta2.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/hispark_taurus_linux-2.2-Beta2.tar.gz.sha256) | 
+| Release&nbsp;Notes | 2.2 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-v2.2-beta2.md) | - | 
+
 ## What's New<a name="section11256141314463"></a>
 
 This release provides the following new and enhanced features based on OpenHarmony 2.0 Canary.
 
-**Table  2**  New and enhanced features
+**Table  3**  New and enhanced features
 
 <a name="table1976311913503"></a>
 <table><thead align="left"><tr id="row127631916501"><th class="cellrowborder" valign="top" width="23.04%" id="mcps1.2.4.1.1"><p id="p6763997509"><a name="p6763997509"></a><a name="p6763997509"></a>Subsystem</p>
@@ -248,9 +262,17 @@ This release provides the following new and enhanced features based on OpenHarmo
 </tbody>
 </table>
 
+### API Updates
+
+For details, see:
+
+-   [JS API Differences](api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
+
+-   [Native API Differences](api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
+
 ## Resolved Issues<a name="section3442123281619"></a>
 
-**Table  3** **Resolved issues**
+**Table  4** **Resolved issues**
 
 <a name="table158451039191811"></a>
 <table><thead align="left"><tr id="row178461539111814"><th class="cellrowborder" valign="top" width="13.15%" id="mcps1.2.3.1.1"><p id="p4846113915184"><a name="p4846113915184"></a><a name="p4846113915184"></a>Issue No.</p>

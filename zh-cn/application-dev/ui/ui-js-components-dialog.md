@@ -5,11 +5,11 @@ Dialog组件用于创建自定义弹窗，通常用来展示用户当前需要�
 
 ## 创建Dialog组件
 
-在pages/index目录下的hml文件中创建一个Dialog组件，并添加Button组件来触发Dialog，当dragable为true时Dialog组件可进行拖拽。。Dialog组件仅支持width、height、margin、margin-[left|top|right|bottom]、margin-[start|end]样式。。
+在pages/index目录下的hml文件中创建一个Dialog组件，并添加Button组件来触发Dialog。Dialog组件仅支持width、height、margin、margin-[left|top|right|bottom]、margin-[start|end]样式。
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId"dragable="true"><div class="content">
+  <dialog class="dialogClass" id="dialogId"><div class="content">
       <text>this is a dialog</text>
     </div>
   </dialog>
@@ -58,18 +58,18 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001211246571](figures/zh-cn_image_0000001211246571.gif)![zh-cn_image_0000001211246571](figures/zh-cn_image_0000001211246571.gif)
+![zh-cn_image_0000001211246571](figures/zh-cn_image_0000001211246571.gif)
 
 
 ## 设置弹窗响应
 
-开发者点击页面上非Dialog的区域时，将触发cancel事件而关闭弹窗，。同时也可以通过对Dialog添加show和close方法来显示和关闭弹窗，当弹窗显示时触发show事件，关闭则触发close事件。。
+开发者点击页面上非Dialog的区域时，将触发cancel事件而关闭弹窗。同时也可以通过对Dialog添加show和close方法来显示和关闭弹窗。
 
 
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId"onshow="show" onclose="close" on:cancel="cancel">
+  <dialog class="dialogClass" id="dialogId">
     <div class="dialogDiv">
       <text>dialog</text>
       <button value="confirm" onclick="confirmClick"></button>
@@ -120,12 +120,16 @@ export default {
     this.$element('dialogId').show()
   },
   confirmClick(e) {
-    this.$element('dialogId').close()    prompt.showToast({      message: 'Confirmed.'    })},  },  show(){    prompt.showToast({duration:2000,message:'dialogShow'})  },  close(){    prompt.showToast({duration:2000,message:'dialogClose'})  },  cancel(){    prompt.showToast({duration:2000,message:'dialogCancel'})  },
+    this.$element('dialogId').close()
+    prompt.showToast({
+      message: 'Confirmed.'
+    })
+  },
 }
 ```
 
 
-![zh-cn_image_0000001163229150](figures/zh-cn_image_0000001163229150.gif)![zh-cn_image_0000001163229150](figures/zh-cn_image_0000001163229150.gif)
+![zh-cn_image_0000001163229150](figures/zh-cn_image_0000001163229150.gif)
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -301,4 +305,4 @@ export default {
 ```
 
 
-![zh-cn_image_0000001163531184](figures/zh-cn_image_0000001163531184.gif)
+![zh-cn_image_0000001234329527](figures/zh-cn_image_0000001234329527.gif)

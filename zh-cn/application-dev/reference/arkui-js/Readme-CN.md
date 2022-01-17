@@ -1,17 +1,4 @@
-# 基于JS扩展的类Web开发范式
-
--   [框架说明](js-framework.md)
-    -   [文件组织](js-framework-file.md)
-    -   [js标签配置](js-framework-js-tag.md)
-    -   [app.js](js-framework-js-file.md)
-    -   [语法](js-framework-syntax.md)
-        -   [HML语法参考](js-framework-syntax-hml.md)
-        -   [CSS语法参考](js-framework-syntax-css.md)
-        -   [JS语法参考](js-framework-syntax-js.md)
-
-    -   [生命周期](js-framework-lifecycle.md)
-    -   [资源限定与访问](js-framework-resource-restriction.md)
-    -   [多语言支持](js-framework-multiple-languages.md)
+#  基于JS扩展的类Web开发范式
 
 -   [组件](js-components.md)
     -   [通用](js-components-common.md)
@@ -118,6 +105,7 @@
     -   [事件参数](js-components-custom-event-parameter.md)
     -   [slot插槽](js-components-custom-slot.md)
     -   [生命周期定义](js-components-custom-lifecycle.md)
-
+    
 -   [附录](js-appendix.md)
     -   [类型说明](js-appendix-types.md)
+
