@@ -63,7 +63,7 @@ subsystem # Subsystem
 ###  Writing Test Cases
 This test framework supports test cases written in multiple programming languages and provides different templates for different languages.
 
-**C++ Test Case Example**
+#### C++ Test Case Example
 
 - Naming rules for source files
 
@@ -243,7 +243,7 @@ Example:
         |Fuzz test      |FUZZ|	   
     
 
-**JavaScript Test Case Example**
+#### JavaScript Test Case Example
 
 - Naming rules for source files
 
@@ -612,7 +612,7 @@ The following provides templates for different languages for your reference.
     	}
     	```
     	> **Note**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
-      
+
 #### Configuring ohos.build
     
 Configure the part build file to associate with specific test cases.
@@ -731,7 +731,7 @@ When the build is complete, the test cases are automatically saved in the **out/
 1. On Windows, create the **Test** directory in the test framework and then create the **testcase** directory in the **Test** directory.
 
 2. Copy **developertest** and **xdevice** from the Linux environment to the **Test** directory on Windows, and copy the test cases to the **testcase** directory.
-	>**Note**: Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
+>**Note**: Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
 
 3. Modify the **user_config.xml** file.
 	```

@@ -22,6 +22,10 @@ For details about how to participate in Special Interest Group (SIG), see **SIG 
 
 For details about how to contribute to code, see  [Code Contributing ](code-contribution.md).
 
+## Auto-Test
+
+For details about how to develop test cases based on test requirements, see [Test Subsystem](../readme/test_subsystem.md).
+
 ## Contributing Documents<a name="en-us_topic_0000001053868136_section11234185012131"></a>
 
 For details, see  [Documentation Contribution](documentation-contribution.md).
