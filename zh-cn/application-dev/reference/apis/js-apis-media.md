@@ -1,34 +1,95 @@
-# 音频播放和录制
+# 媒体服务
+
+媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
+
+媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
+
+- 音频播放（[AudioPlayer](#audioplayer)）
+- 音频录制（[AudioRecorder](#audiorecorder)）
+
+后续将提供以下功能：视频播放、视频录制、DataSource音视频播放、音视频编解码、容器封装解封装、媒体能力查询等功能。
 
 ## 导入模块
 
-```
+```js
 import media from '@ohos.multimedia.media';
 ```
 
+##  media.createAudioPlayer
 
-## 权限
+createAudioPlayer(): [AudioPlayer](#audioplayer)
 
-无
-
-
-## media.createAudioPlayer
-
-createAudioPlayer(): AudioPlayer
-
-创建音频播放的实例。
+同步方式创建音频播放实例。
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| [AudioPlayer](#audioplayer) | 返回AudioPlayer类实例，失败时返回null。 |
+| 类型                        | 说明                                                         |
+| --------------------------- | ------------------------------------------------------------ |
+| [AudioPlayer](#audioplayer) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
 
 **示例：**
 
+```js
+var audioPlayer = media.createAudioPlayer();
 ```
-var audioplayer = media.createAudioPlayer(); 
+
+## media.createAudioPlayerAsync<sup>8+</sup>
+
+createAudioPlayerAsync(callback: AsyncCallback\<[AudioPlayer](#audioplayer)>): void
+
+异步方式创建音频播放实例。通过注册回调函数获取返回值。
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                           |
+| -------- | ------------------------------------------ | ---- | ------------------------------ |
+| callback | AsyncCallback<[AudioPlayer](#audioplayer)> | 是   | 异步创建音频播放实例回调方法。 |
+
+**示例：**
+
+```js
+media.createAudioPlayerAsync((error, audio) => {
+   if (typeof(audio) != 'undefined') {
+       audioPlayer = audio;
+       console.info('audio createAudioPlayerAsync success');
+   } else {
+       console.info(`audio createAudioPlayerAsync fail, error:${error.message}`);
+   }
+});
 ```
+
+## media.createAudioPlayerAsync<sup>8+</sup>
+
+createAudioPlayerAsync: Promise<[AudioPlayer](#audioplayer)>
+
+异步方式创建音频播放实例。通过Promise获取返回值。
+
+**返回值：**
+
+| 类型                                 | 说明                                |
+| ------------------------------------ | ----------------------------------- |
+| Promise<[AudioPlayer](#audioplayer)> | 异步创建音频播放实例Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`audio failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`audio catchCallback, error:${error.message}`);
+}
+
+await media.createAudioPlayerAsync.then((audio) => {
+    if (typeof(audio) != 'undefined') {
+       audioPlayer = audio;
+       console.info('audio createAudioPlayerAsync success');
+   } else {
+       console.info('audio createAudioPlayerAsync fail');
+   }
+}, failureCallback).catch(catchCallback);
+```
+
 ## media.createAudioRecorder
 createAudioRecorder(): AudioRecorder
 
@@ -41,42 +102,109 @@ createAudioRecorder(): AudioRecorder
 | [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。 |
 
 **示例：**
+
 ```
 var audiorecorder = media.createAudioRecorder(); 
 ```
 
+## MediaErrorCode<sup>8+</sup>
+
+媒体服务错误类型枚举
+
+| 名称                       | 值   | 说明                                   |
+| -------------------------- | ---- | -------------------------------------- |
+| MSERR_OK                   | 0    | 表示操作成功。                         |
+| MSERR_NO_MEMORY            | 1    | 表示申请内存失败，系统可能无可用内存。 |
+| MSERR_OPERATION_NOT_PERMIT | 2    | 表示无权限执行此操作。                 |
+| MSERR_INVALID_VAL          | 3    | 表示传入入参无效。                     |
+| MSERR_IO                   | 4    | 表示发生IO错误。                       |
+| MSERR_TIMEOUT              | 5    | 表示操作超时。                         |
+| MSERR_UNKNOWN              | 6    | 表示未知错误。                         |
+| MSERR_SERVICE_DIED         | 7    | 表示服务端失效。                       |
+| MSERR_INVALID_STATE        | 8    | 表示在当前状态下，不允许执行此操作。   |
+| MSERR_UNSUPPORTED          | 9    | 表示在当前版本下，不支持此操作。       |
+
+## MediaType<sup>8+</sup>
+
+媒体类型枚举
+
+| 名称                | 值   | 说明               |
+| ------------------- | ---- | ------------------ |
+| MEDIA_TYPE_AUD      | 0    | 表示音频。         |
+| MEDIA_TYPE_VID      | 1    | 表示视频。         |
+| MEDIA_TYPE_SUBTITLE | 2    | 表示字幕：开发中。 |
+
+## CodecMimeType<sup>8+</sup>
+
+Codec MIME类型枚举
+
+| 名称         | 值                | 说明                     |
+| ------------ | ----------------- | ------------------------ |
+| AUDIO_MPEG   | "audio/mpeg"      | 表示音频/mpeg类型。      |
+| AUDIO_AAC    | "audio/mp4a-latm" | 表示音频/mp4a-latm类型。 |
+| AUDIO_VORBIS | "audio/vorbis"    | 表示音频/vorbis类型。    |
+| AUDIO_FLAC   | "audio/flac"      | 表示音频/flac类型。      |
+
+## MediaDescriptionKey<sup>8+</sup>
+
+媒体信息描述枚举
+
+| 名称                     | 值              | 说明                                                         |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| MD_KEY_TRACK_INDEX       | "track_index"   | 表示轨道序号，其对应键值类型为number。                       |
+| MD_KEY_TRACK_TYPE        | "track_type"    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
+| MD_KEY_CODEC_MIME        | "codec_mime"    | 表示codec_mime类型，其对应键值类型为string。                 |
+| MD_KEY_DURATION          | "duration"      | 表示媒体时长，其对应键值类型为number，单位为ms。             |
+| MD_KEY_BITRATE           | "bitrate"       | 表示比特率，其对应键值类型为number，单位为bps。              |
+| MD_KEY_WIDTH             | "width"         | 表示视频宽度，其对应键值类型为number，单位为像素。           |
+| MD_KEY_HEIGHT            | "height"        | 表示视频高度，其对应键值类型为number，单位为像素。           |
+| MD_KEY_FRAME_RATE        | "frame_rate"    | 表示视频帧率，其对应键值类型为number，单位为100fps。         |
+| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | 表示声道数，其对应键值类型为number。                         |
+| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | 表示采样率，其对应键值类型为number，单位为HZ。               |
+
+## BufferingInfoType<sup>8+</sup>
+
+缓存事件类型枚举
+
+| 名称              | 值   | 说明                       |
+| ----------------- | ---- | -------------------------- |
+| BUFFERING_START   | 1    | 表示开始缓存。             |
+| BUFFERING_END     | 2    | 表示结束缓存。             |
+| BUFFERING_PERCENT | 3    | 表示缓存百分比。           |
+| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒。 |
+
 ## AudioPlayer
 
-音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#createaudioplayer-)构建一个AudioPlayer实例。
+音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#media.createaudioplayer)或[createAudioPlayerAsync()](#media.createaudioplayerasync8)构建一个[AudioPlayer](#audioplayer)实例。
 
+音频播放demo可参考：[音频播放开发指导](../../media/audio-playback.md)
 
-### 属性
+### 属性<a name=audioplayer_属性></a>
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| src | string | 是 | 是 | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)，支持本地绝对路径（file://) |
-| loop | boolean | 是 | 是 | 音频循环播放属性，设置为'true'表示循环播放。 |
-| currentTime | number | 是 | 否 | 音频的当前播放阶段。 |
-| duration | number | 是 | 否 | 音频时长。 |
-| state | [AudioState](#audiostate) | 是 | 否 | 音频播放的状态。 |
+| 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
+| ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)。<br>**支持路径示例**：<br>1、本地绝对路径：file:///data/data/ohos.xxx.xxx/files/test.mp4<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br>2、http网络播放路径：开发中<br>3、hls网络播放路径：开发中<br>4、fd类型播放：开发中<br>**注意事项**：<br>媒体素材需至少赋予读权限后，才可正常播放 |
+| loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
+| currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
+| duration    | number                    | 是   | 否   | 音频时长。                                                   |
+| state       | [AudioState](#audiostate) | 是   | 否   | 音频播放的状态。                                             |
 
-### play
+### play<a name=audioplayer_play></a>
 
 play(): void
 
-开始播放音频资源。
+开始播放音频资源，需在[dataLoad](#on('play' | 'pause' | 'stop' | 'reset' | 'dataload' | 'finish' | 'volumechange'))事件成功触发后，才能调用play方法。
 
 **示例：**
 
-```
-audioplayer.src = 'file:///data/media/sounds.mp4';
-audioplayer.on('play', () => {
-  console.log('Playback starts.');
+```js
+audioPlayer.on('play', () => {    //设置'play'事件回调
+    console.log('audio play success');
 });
-audioplayer.play();
+audioPlayer.play();
 ```
 
-### pause
+### pause<a name=audioplayer_pause></a>
 
 pause(): void
 
@@ -84,15 +212,14 @@ pause(): void
 
 **示例：**
 
-```
-audioplayer.src = 'file:///data/media/sounds.mp4';
-audioplayer.on('pause', () => {
-  console.log('Playback paused.');
+```js
+audioPlayer.on('pause', () => {    //设置'pause'事件回调
+    console.log('audio pause success');
 });
-audioplayer.pause();
+audioPlayer.pause();
 ```
 
-### stop
+### stop<a name=audioplayer_stop></a>
 
 stop(): void
 
@@ -100,64 +227,14 @@ stop(): void
 
 **示例：**
 
-```
-audioplayer.src = 'file:///data/media/sounds.mp4';
-audioplayer.on('stop',() => {
-  console.log('Playback stopped.');
+```js
+audioPlayer.on('stop', () => {    //设置'stop'事件回调
+    console.log('audio stop success');
 });
-audioplayer.stop();
+audioPlayer.stop();
 ```
 
-### seek
-
-seek(timeMs: number): void
-
-跳转到指定播放位置。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| timeMs | number | 是 | 指定的跳转时间节点。 |
-
-**示例：**
-
-```
-audioplayer.src = 'file:///data/media/sounds.mp4';
-audioplayer.on('timeupdate', (action) => {
-  var newTime = audioplayer.currenTime;
-  if(newTime >= 30000) {
-    console.info('Seek succeeded. New time: ' + newTime);
-  } else {
-    console.info('Seek failed.');
-  }
-});
-audioplayer.seek(30000);
-```
-
-### setVolume
-
-setVolume(vol: number): void
-
-设置音量。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| vol | number | 是 | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
-
-**示例：**
-
-```
-audioplayer.src = 'file:///data/media/sounds.mp4';
-audioplayer.on('volumeChange', () => {
-  console.log('Playback volume changed.');
-});
-audioplayer.setVolume(1);
-```
-
-### reset<sup>7+</sup>
+### reset<sup>7+</sup><a name=audioplayer_reset></a>
 
 reset(): void
 
@@ -165,11 +242,60 @@ reset(): void
 
 **示例：**
 
-```
-audioplay.reset();
+```js
+audioPlayer.on('reset', () => {    //设置'reset'事件回调
+    console.log('audio reset success');
+});
+audioPlayer.reset();
 ```
 
-### release<sup>7+</sup>
+### seek<a name=audioplayer_seek></a>
+
+seek(timeMs: number): void
+
+跳转到指定播放位置。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                           |
+| ------ | ------ | ---- | ------------------------------ |
+| timeMs | number | 是   | 指定的跳转时间节点，单位毫秒。 |
+
+**示例：**
+
+```js
+audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
+    if (typeof (seekDoneTime) == 'undefined') {
+        console.info('audio seek fail');
+        return;
+    }
+    console.log('audio seek success. seekDoneTime: ' + seekDoneTime);
+});
+audioPlayer.seek(30000);    //seek到30000ms的位置
+```
+
+### setVolume<a name=audioplayer_setvolume></a>
+
+setVolume(vol: number): void
+
+设置音量。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| vol    | number | 是   | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
+
+**示例：**
+
+```js
+audioPlayer.on('volumeChange', () => {    //设置'volumeChange'事件回调
+    console.log('audio volumeChange success');
+});
+audioPlayer.setVolume(1);    //设置音量到100%
+```
+
+### release<a name=audioplayer_release></a>
 
 release(): void
 
@@ -177,94 +303,258 @@ release(): void
 
 **示例：**
 
+```js
+audioPlayer.release();
+audioPlayer = undefined;
 ```
-audioplay.release();
-```
 
-### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')
+### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription1></a>
 
-on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void)
+getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
 
-开始监听音频播放事件。
+通过回调方式获取音频轨道信息。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play' ：完成play方法调用，音频开始播放，触发该事件。<br>- 'pause'：完成pause方法调用，音频暂停播放，触发该事件。<br>-  'stop'：完成stop方法调用，音频停止播放，触发该事件。<br>-  'reset'：完成reset方法调用，播放器重置，触发该事件。<br>-  'dataLoad'：完成音频数据加载后触发该事件。<br>-  'finish'：完成音频播放后触发该事件。<br>-  'volumeChange'：播放音量改变后触发该事件。播放事件回调方法。 |
-| callback | function | 是 | 播放事件回调方法。 |
+| 参数名   | 类型                                                         | 必填 | 说明                       |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 获取音频轨道信息回调方法。 |
 
 **示例：**
 
-```
-audioplayer.src = 'file://xxx/sounds.mp4';
-audioplayer.on('play', () => {
-  console.log('Playback starts.');
+```js
+function printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('audio key is ' + item);
+        console.info('audio value is ' + property);
+    }
+}
+
+audioPlayer.getTrackDescription((error, arrlist) => {
+    if (typeof (arrlist) != 'undefined') {
+        for (let i = 0; i < arrlist.length; i++) {
+            printfDescription(arrlist[i]);
+        }
+    } else {
+        console.log(`audio getTrackDescription fail, error:${error.message}`);
+    }
 });
-audioplayer.play();
+```
+
+### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription2></a>
+
+getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
+
+通过Promise方式获取音频轨道信息。
+
+**返回值：**
+
+| 类型                                                   | 说明                            |
+| ------------------------------------------------------ | ------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | 获取音频轨道信息Promise返回值。 |
+
+**示例：**
+
+```js
+function printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('audio key is ' + item);
+        console.info('audio value is ' + property);
+    }
+}
+function failureCallback(error) {
+    console.info(`audio failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`audio catchCallback, error:${error.message}`);
+}
+
+await audioPlayer.getTrackDescription.then((arrlist) => {
+    if (typeof (arrlist) != 'undefined') {
+        arrayDescription = arrlist;
+    } else {
+        console.log('audio getTrackDescription fail');
+    }
+}, failureCallback).catch(catchCallback);
+for (let i = 0; i < arrayDescription.length; i++) {
+    printfDescription(arrayDescription[i]);
+}
+```
+
+### on('bufferingUpdate')<sup>8+</sup>
+
+on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void): void
+
+开始订阅音频缓存更新事件。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 音频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
+| callback | (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void | 是   | 音频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
+
+**示例：**
+
+```js
+audioPlayer.on('bufferingUpdate', (infoType, value) => {
+    console.log('audio bufferingInfo type: ' + infoType);
+    console.log('audio bufferingInfo value: ' + value);
+});
+```
+
+ ### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')
+
+on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void
+
+开始订阅音频播放事件。
+
+**参数：**
+
+| 参数名   | 类型       | 必填 | 说明                                                         |
+| -------- | ---------- | ---- | ------------------------------------------------------------ |
+| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成[play()](#audioplayer_play)调用，音频开始播放，触发该事件。<br>- 'pause'：完成[pause()](#audioplayer_pause)调用，音频暂停播放，触发该事件。<br>- 'stop'：完成[stop()](#audioplayer_stop)调用，音频停止播放，触发该事件。<br>- 'reset'：完成[reset()](#audioplayer_reset)调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成[setVolume()](#audioplayer_setvolume)调用，播放音量改变后触发该事件。 |
+| callback | () => void | 是   | 播放事件回调方法。                                           |
+
+**示例：**
+
+```js
+let audioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
+audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
+	console.info('audio set source success');
+    audioPlayer.play();                       //开始播放，并触发'play'事件回调
+});
+audioPlayer.on('play', () => {                //设置'play'事件回调
+	console.info('audio play success');
+    audioPlayer.seek(30000);                  //调用seek方法，并触发'timeUpdate'事件回调
+});
+audioPlayer.on('pause', () => {               //设置'pause'事件回调
+	console.info('audio pause success');
+    audioPlayer.stop();                       //停止播放，并触发'stop'事件回调
+});
+audioPlayer.on('reset', () => {               //设置'reset'事件回调
+	console.info('audio reset success');
+    audioPlayer.release();                    //释放播放实例资源
+    audioPlayer = undefined;
+});
+audioPlayer.on('timeUpdate', (seekDoneTime) => {  //设置'timeUpdate'事件回调
+	if (typeof(seekDoneTime) == "undefined") {
+        console.info('audio seek fail');
+        return;
+    }
+    console.info('audio seek success, and seek time is ' + seekDoneTime);
+    audioPlayer.setVolume(0.5);                //设置音量为50%，并触发'volumeChange'事件回调
+});
+audioPlayer.on('volumeChange', () => {         //设置'volumeChange'事件回调
+	console.info('audio volumeChange success');
+    audioPlayer.pause();                       //暂停播放，并触发'pause'事件回调
+});
+audioPlayer.on('finish', () => {               //设置'finish'事件回调
+	console.info('audio play finish');
+    audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
+});
+audioPlayer.on('error', (error) => {           //设置'error'事件回调
+	console.info(`audio error called, errName is ${error.name}`);
+    console.info(`audio error called, errCode is ${error.code}`);
+    console.info(`audio error called, errMessage is ${error.message}`);
+});
+audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';  //设置src属性，并触发'dataLoad'事件回调
 ```
 
 ### on('timeUpdate')
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-开始监听音频播放时间戳更新事件。
+开始订阅音频播放[seek()](#audioplayer_seek)时间更新事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 播放事件回调类型，支持的事件为：'timeUpdate'。<br>'timeUpdate'：音频播放时间戳更新，触发该事件。seek方法调用时也会触发该事件。 |
-| callback | Callback&lt;number&gt; | 是 | 播放事件回调方法。 |
+| 参数名   | 类型              | 必填 | 说明                                                         |
+| -------- | ----------------- | ---- | ------------------------------------------------------------ |
+| type     | string            | 是   | 播放事件回调类型，支持的事件包括：'timeUpdate'。<br>- 'timeUpdate'：[seek()](#audioplayer_seek)调用完成，触发该事件。 |
+| callback | Callback\<number> | 是   | 播放事件回调方法。回调方法入参为成功seek的时间。             |
 
 **示例：**
 
-```
-audioplayer.src = 'file://xxx/sounds.mp4';
-audioplayer.on('timeupdate', (newTime ) => {
-  if(newTime >= 30000) {
-    console.info('Seek succeeded. New time: ' + newTime);
-  } else {
-    console.info('Seek failed.');
-  }
+```js
+audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
+    if (typeof (seekDoneTime) == 'undefined') {
+        console.info('audio seek fail');
+        return;
+    }
+    console.log('audio seek success. seekDoneTime: ' + seekDoneTime);
 });
-audioplayer.seek(30000);
+audioPlayer.seek(30000);    //seek到30000ms的位置
 ```
 
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
-开始监听音频播放错误事件。
+开始订阅音频播放错误事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 播放错误事件回调类型'error'。<br>'error'：音频播放中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是 | 播放错误事件回调方法。 |
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：音频播放中发生错误，触发该事件。 |
+| callback | ErrorCallback | 是   | 播放错误事件回调方法。                                       |
 
 **示例：**
 
-```
-audioplayer.src = 'file:///data/sounds.mp4';
-audioplayer.on('error', (err) => {
-   console.info('error callback info: ' + err);
+```js
+audioPlayer.on('error', (error) => {      //设置'error'事件回调
+	console.info(`audio error called, errName is ${error.name}`);      //打印错误类型名称
+    console.info(`audio error called, errCode is ${error.code}`);      //打印错误码
+    console.info(`audio error called, errMessage is ${error.message}`);//打印错误类型详细描述
 });
-audioplayer.setVolume(30000);
+audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
-
 
 ## AudioState
 
-音频播放的状态机。
+音频播放的状态机。可通过state属性获取当前状态。
 
-| 名称 | 描述 |
-| -------- | -------- |
-| idle | 音频播放空闲。 |
-| playing | 音频正在播放。 |
-| paused | 音频暂停播放。 |
-| stopped | 音频播放停止。 |
+| 名称               | 类型   | 描述           |
+| ------------------ | ------ | -------------- |
+| idle               | string | 音频播放空闲。 |
+| playing            | string | 音频正在播放。 |
+| paused             | string | 音频暂停播放。 |
+| stopped            | string | 音频播放停止。 |
+| error<sup>8+</sup> | string | 错误状态。     |
+
+## MediaDescription<sup>8+</sup>
+
+### [key : string] : any
+
+通过key-value方式获取媒体信息
+
+| 名称  | 类型   | 说明                                                         |
+| ----- | ------ | ------------------------------------------------------------ |
+| key   | string | 通过key值获取对应的value。key值具体可见[MediaDescriptionKey](#mediadescriptionkey8)。 |
+| value | any    | 对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey](#mediadescriptionkey8)的描述信息。 |
+
+**示例：**
+
+```js
+function printfItemDescription(obj, key) {
+    let property = obj[key];
+    console.info('audio key is ' + key);
+    console.info('audio value is ' + property);
+}
+
+audioPlayer.getTrackDescription((error, arrlist) => {
+    if (typeof (arrlist) != 'undefined') {
+        for (let i = 0; i < arrlist.length; i++) {
+            printfItemDescription(arrlist[i], MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
+        }
+    } else {
+        console.log(`audio getTrackDescription fail, error:${error.message}`);
+    }
+});
+```
 
 ## AudioRecorder
 
