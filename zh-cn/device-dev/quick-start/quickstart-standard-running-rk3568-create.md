@@ -9,13 +9,12 @@
 ```
 applications/standard/hello
 ├── helloworld
+│   ├── BUILD.gn
 │   ├── include
 │   │   └── helloworld.h
 │   └── src
 │       └── helloworld.c
-├── BUILD.gn
 ├── ohos.build
-│
 │
 productdefine/common
 └── products
@@ -68,7 +67,7 @@ productdefine/common
     ```
 
 2.  新建编译组织文件。
-    1.  新建applications/standard/hello/BUILD.gn文件，内容如下所示。
+    1.  新建applications/standard/hello/helloworld/BUILD.gn文件，内容如下所示：
 
         ```
         import("//build/ohos.gni")  # 导入编译模板
@@ -104,7 +103,7 @@ productdefine/common
                 "phone"
               ],
               "module_list": [ # 部件包含模块的gn目标
-                "//applications/standard/hello:helloworld"
+                "//applications/standard/hello/helloworld:helloworld"
               ],
                "inner_kits": [ # 提供给其他部件的接口
               ],
@@ -119,7 +118,7 @@ productdefine/common
 
 3.  修改产品配置文件。
 
-    在productdefine\\common\\products\\rk3568.json中添加对应的部件，直接添加到原有部件后即可（如下代码加粗部分）。
+    在productdefine\\common\\products\\rk3568.json中添加对应的hello部件，直接添加到原有部件后即可。
 
     ```
     "usb:usb_manager_native":{},
