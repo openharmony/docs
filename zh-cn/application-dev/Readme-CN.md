@@ -9,6 +9,7 @@
     -  [基于JS扩展的类Web开发范式](ui/ui-arkui-js.md)
     -  [基于TS扩展的声明式开发范式](ui/ui-arkui-ts.md)
 - [音频](media/audio.md)
+- [用户认证](security/Readme-CN.md)
 - [IPC与RPC通信](connectivity/ipc-rpc.md)
 - [分布式数据服务](database/Readme-CN.md)
 - [USB服务](usb/Readme-CN.md)
