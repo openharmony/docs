@@ -5,7 +5,7 @@
 ## 导入模块
 
 ```javascript
-import emitter from '@ohos.emitter'
+import emitter from '@ohos.events.emitter'
 ```
 
 ## 权限列表
