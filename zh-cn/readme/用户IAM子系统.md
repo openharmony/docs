@@ -53,16 +53,12 @@
 
 ## 相关仓
 
+[useriam_coauth](https://gitee.com/openharmony-sig/useriam_coauth)
 
-[useriam_coauth](https://gitee.com/openharmonys/useriam_coauth)
+[useriam_useridm](https://gitee.com/openharmony-sig/useriam_useridm)
 
-[useriam_useridm](https://gitee.com/openharmony/useriam_useridm)
+[useriam_userauth](https://gitee.com/openharmony-sig/useriam_userauth)
 
-[useriam_userauth](https://gitee.com/openharmony/useriam_userauth)
-
-[useriam_pinauth](https://gitee.com/openharmony/useriam_pinauth)
+[useriam_pinauth](https://gitee.com/openharmony-sig/useriam_pinauth)
 
 [useriam_faceauth](https://gitee.com/openharmony/useriam_faceauth)
-
-
-
