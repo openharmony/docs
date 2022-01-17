@@ -95,6 +95,7 @@ OpenHarmony参考机械装配领域的零部件的概念将系统能力抽象为
 部件的新增、合并、删除需经架构SIG（Special Interest Group）和[相关领域的SIG leader](https://gitee.com/openharmony/community/blob/master/sig/sigs_subsystem_list.md)评审，流程如下：
 
 1、准备如下的部件属性列表：
+表1. 部件属性评审表
 
 | 部件属性     | 说明                                                         |
 | ------------ | ------------------------------------------------------------ |
@@ -109,7 +110,6 @@ OpenHarmony参考机械装配领域的零部件的概念将系统能力抽象为
 | RAM          | 部件设计的RAM基线值。                                        |
 | 依赖         | 部件依赖的其他部件和开源软件。                               |
 
-​                                                                                             表1. 部件属性评审表
 
 2、发邮件给架构SIG(dev@openharmony.io)和[相关领域的SIG leader](https://gitee.com/openharmony/community/blob/master/sig/sigs_subsystem_list.md)进行邮件评审，邮件标题【OpenHarmony部件新增/合并/删除评审申请】，邮件正文中按部件实际情况填写“表1.部件属性评审表" 。
 
