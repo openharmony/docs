@@ -4,7 +4,13 @@
 
 -   **[GPIO](driver-platform-gpio-develop.md)**  
 
+-   **[HDMI](driver-platform-hdmi-develop.md)**  
+
 -   **[I2C](driver-platform-i2c-develop.md)**  
+
+-   **[I3C](driver-platform-i3c-develop.md)**  
+
+-   **[MIPI-CSI](driver-platform-mipicsi-develop.md)**  
 
 -   **[MIPI-DSI](driver-platform-mipidsi-develop.md)**  
 
@@ -21,5 +27,3 @@
 -   **[UART](driver-platform-uart-develop.md)**  
 
 -   **[WatchDog](driver-platform-watchdog-develop.md)**  
-
-

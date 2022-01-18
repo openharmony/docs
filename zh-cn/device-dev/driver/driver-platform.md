@@ -1,8 +1,20 @@
 # 平台驱动使用<a name="ZH-CN_TOPIC_0000001111199424"></a>
 
+-   **[ADC](driver-platform-adc-des.md)**  
+
 -   **[GPIO](driver-platform-gpio-des.md)**  
 
+-   **[HDMI](driver-platform-hdmi-des.md)**  
+
 -   **[I2C](driver-platform-i2c-des.md)**  
+
+-   **[I3C](driver-platform-i3c-des.md)**  
+
+-   **[MIPI-CSI](driver-platform-mipicsi-des.md)**  
+
+-   **[MIPI-DSI](driver-platform-mipidsi-des.md)**  
+
+-   **[PWM](driver-platform-pwm-des.md)**  
 
 -   **[RTC](driver-platform-rtc-des.md)**  
 
@@ -13,9 +25,3 @@
 -   **[UART](driver-platform-uart-des.md)**  
 
 -   **[WATCHDOG](driver-platform-watchdog-des.md)**  
-
--   **[MIPI DSI](driver-platform-mipidsi-des.md)**  
-
--   **[PWM](driver-platform-pwm-des.md)**  
-
-

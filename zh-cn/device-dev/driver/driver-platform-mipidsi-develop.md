@@ -10,7 +10,7 @@
 DSI（Display Serial Interface）是由移动行业处理器接口联盟（Mobile Industry Processor Interface \(MIPI\) Alliance）制定的规范。在HDF框架中，MIPI-DSI的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
 **图 1**  DSI无服务模式结构图<a name="fig207610236189"></a>  
-![](figures/DSI无服务模式结构图.png "DSI无服务模式结构图")
+![](figures/无服务模式结构图.png "DSI无服务模式结构图")
 
 ## 接口说明<a name="section752964871810"></a>
 

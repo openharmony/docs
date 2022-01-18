@@ -10,7 +10,7 @@
 UART是通用异步收发传输器（Universal Asynchronous Receiver/Transmitter）的缩写，在HDF框架中，UART的接口适配模式采用独立服务模式。在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
 
 **图 1**  UART独立服务模式结构图<a name="fig1474518243468"></a>  
-![](figures/UART独立服务模式结构图.png "UART独立服务模式结构图")
+![](figures/独立服务模式结构图.png "UART独立服务模式结构图")
 
 ## 接口说明<a name="section752964871810"></a>
 
