@@ -38,6 +38,29 @@ block\_count 可以被擦除的块数量，这取决于块设备的容量及擦�
 代码实现如下：
 
 ```
+#include "lfs.h"
+#include "stdio.h"
+
+lfs_t lfs;
+lfs_file_t file;
+
+const struct lfs_config cfg = {
+    // block device operations
+    .read  = user_provided_block_device_read,
+    .prog  = user_provided_block_device_prog,
+    .erase = user_provided_block_device_erase,
+    .sync  = user_provided_block_device_sync,
+
+    // block device configuration
+    .read_size = 16,
+    .prog_size = 16,
+    .block_size = 4096,
+    .block_count = 128,
+    .cache_size = 16,
+    .lookahead_size = 16,
+    .block_cycles = 500,
+};
+
 int main(void) {
     // mount the filesystem
     int err = lfs_mount(&lfs, &cfg);
