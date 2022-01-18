@@ -119,19 +119,19 @@ hdf_audio_codec_dev1
 
 ### 播放流程<a name="section3112"></a>
 ![=](figures/ADM播放流程图.png)
-1. 播放音频时，Interface Lib层通过播放流服务下发Render Open指令，Render Stream Dispatch服务收到指令后分别调用各模块的函数接口对指令进行下发。
+1. 播放音频时，Interface Lib层通过播放流服务下发Render Open指令，Audio Stream Dispatch服务收到指令后分别调用各模块的函数接口对指令进行下发。
 
 2. Interface Lib层通过控制服务下发通路选择指令，Control Dispatch控制服务收到指令后调用Dai模块接口设置通路。
 
-3. Interface Lib层通过播放流服务下发硬件参数，Render Stream Dispatch服务收到参数后分别调用各模块参数设置接口，对硬件参数进行设置。
+3. Interface Lib层通过播放流服务下发硬件参数，Audio Stream Dispatch服务收到参数后分别调用各模块参数设置接口，对硬件参数进行设置。
 
-4. Interface Lib层通过播放流服务下发播放启动指令，Render Stream Dispatch服务收到指令后分别调用各模块启动接口，对各模块进行启动设置。
+4. Interface Lib层通过播放流服务下发播放启动指令，Audio Stream Dispatch服务收到指令后分别调用各模块启动接口，对各模块进行启动设置。
 
-5. Interface Lib层通过播放流服务下发音频数据，Render Stream Dispatch服务收到数据后调用Platform AudioPcmWrite接口将音频数据传给Dma。
+5. Interface Lib层通过播放流服务下发音频数据，Audio Stream Dispatch服务收到数据后调用Platform AudioPcmWrite接口将音频数据传给Dma。
 
-6. Interface Lib层通过播放流服务下发播放停止指令，Render Stream Dispatch服务收到指令后分别调用各模块停止接口，对各模块进行停止设置。
+6. Interface Lib层通过播放流服务下发播放停止指令，Audio Stream Dispatch服务收到指令后分别调用各模块停止接口，对各模块进行停止设置。
 
-7. Interface Lib层通过播放流服务下发Render Close指令，Render Stream Dispatch服务收到指令后调用Platform AudioRenderClose对已申请资源进行释放。
+7. Interface Lib层通过播放流服务下发Render Close指令，Audio Stream Dispatch服务收到指令后调用Platform AudioRenderClose对已申请资源进行释放。
 
 ### 控制流程<a name="section3113"></a>
 
@@ -464,9 +464,9 @@ array index
 6：External Codec Enable
 7：Internally Codec Enable
 8：Render Channel Mode
-9：Captrue Channel Mode
+9：Capture Channel Mode
 iface
-0：virtual dac devic
+0：virtual dac device
 1：virtual adc device
 2：virtual adc device
 3：virtual mixer device
@@ -546,7 +546,7 @@ ctrlParamsSeqConfig：控制功能寄存器配置组，其中item与controlsConf
                     0x20, 0x20, 16, 16, 0x0, 0xF, 0x1F, 0, 0,     //"Mic Left Gain"
                     0x20, 0x20, 24, 24, 0x0, 0xF, 0x1F, 0, 0,     //"Mic Right Gain"
                     0x2000, 0x2000, 16, 16, 0x0, 0x7, 0x7, 0, 0,  //"Render Channel Mode"
-                    0x1000, 0x1000, 16, 16, 0x0, 0x7, 0x7, 0, 0  //"Captrue Channel Mode"
+                    0x1000, 0x1000, 16, 16, 0x0, 0x7, 0x7, 0, 0  //"Capture Channel Mode"
                 ];
 
                 /* 上层下发参数后，写入音频相关信息的寄存器 
@@ -661,8 +661,8 @@ int32_t CodecDeviceInit(struct AudioCard *audioCard, struct CodecDevice *codec)
 代码路径：drivers/peripheral/audio/chipsets/tfa9879/accessory
 
 SmartPA归属于Accessory驱动的一种，开发步骤类似于codec：
-1. 定义填充一个具体的accesory
-2. 实现accesory回调函数
+1. 定义填充一个具体的accessory
+2. 实现accessory回调函数
 3. 注册绑定到HDF框架
 4. 配置HCS和Makefile。
 
@@ -672,7 +672,7 @@ Accessory模块需要填充如下3个结构体：
 
 - g_tfa9879Data ：accessory设备操作函数集，其中包含HCS文件中的配置信息，且定义与映射了accessory设备的初始化、读写寄存器的方法函数。
 
-- g_tfa9879DaiDeviceOps ：accessory设备DAI的数据集，其中定义与映射了accessory设备的数据访问接口的驱动名、初始化和操作集。
+- g_tfa9879DaiDeviceOps ：accessory设备DAI的数据集，其中定义与映射了accessory设备DAI的操作集。
 
 - g_tfa9879DaiData ：accessory设备DAI的数据集，其中定义与映射了accessory设备的数据访问接口的驱动名、初始化和操作集。
 
@@ -1406,4 +1406,4 @@ static void *hal_main()
 
 # 总结<a name="section9999"></a>
 
-以上就是基于Audo驱动框架进行移植开发过程中，所涉及的所有关键适配点。重点介绍了 Audio驱动适配方法、HDI层接口使用方法。开发者可以根据不同芯片进行适配，方便简单。希望通过本次的文档，您能初步掌握基于HDF框架的Audio驱动开发。
+以上就是基于Audio驱动框架进行移植开发过程中，所涉及的所有关键适配点。重点介绍了 Audio驱动适配方法、HDI层接口使用方法。开发者可以根据不同芯片进行适配，方便简单。希望通过本次的文档，您能初步掌握基于HDF框架的Audio驱动开发。
