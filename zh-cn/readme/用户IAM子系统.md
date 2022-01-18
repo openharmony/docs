@@ -55,10 +55,10 @@
 
 [useriam_auth_executor_mgr](https://gitee.com/openharmony-sig/useriam_coauth)
 
-[useriam_useridm](https://gitee.com/openharmony-sig/useriam_useridm)
+[useriam_user_idm](https://gitee.com/openharmony-sig/useriam_useridm)
 
-[useriam_userauth](https://gitee.com/openharmony-sig/useriam_userauth)
+[useriam_user_auth](https://gitee.com/openharmony-sig/useriam_userauth)
 
-[useriam_pinauth](https://gitee.com/openharmony-sig/useriam_pinauth)
+[useriam_pin_auth](https://gitee.com/openharmony-sig/useriam_pinauth)
 
 [useriam_faceauth](https://gitee.com/openharmony/useriam_faceauth)
