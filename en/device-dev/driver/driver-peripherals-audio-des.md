@@ -747,7 +747,7 @@ int32_t AccessoryI2cReadWrite(struct AudioAddrConfig *regAttr, uint16_t rwFlag)
 
 ### Implementing the Accessory Operation Function Set<a name="section4223"></a>
 
-The callbacks **AccessoryDeviceRegRead** and **AccessoryDeviceRegWrite** invokes **AccessoryI2cReadWrite** to read and write the control register values.
+The callbacks **AccessoryDeviceRegRead** and **AccessoryDeviceRegWrite** invoke **AccessoryI2cReadWrite** to read and write the control register values.
 
 ```c
 int32_t AccessoryDeviceRegRead(const struct AccessoryDevice *codec, uint32_t reg, uint32_t *val)
