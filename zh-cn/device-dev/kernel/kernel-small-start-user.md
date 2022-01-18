@@ -48,7 +48,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 
 用户态程序常见编译方式有如下两种：
 
-1.  [利用框架编译用户态进程](../quick-start/quickstart-lite-steps-hi3516-running.md)。
+1.  [利用框架编译用户态进程](../quick-start/quickstart-standard-running-hi3516-create.md)。
 2.  手动编译
 
     实例：
