@@ -53,7 +53,7 @@
 
 ## 相关仓
 
-[useriam_authexecutormgr](https://gitee.com/openharmony-sig/useriam_coauth)
+[useriam_auth_executor_mgr](https://gitee.com/openharmony-sig/useriam_coauth)
 
 [useriam_useridm](https://gitee.com/openharmony-sig/useriam_useridm)
 
