@@ -625,7 +625,7 @@ optional arguments:
 
 2.  创建内核适配目录，并编写开发板编译配置config.gni文件。
 
-    以realtek的“rtl8720“开发板的liteos\_m适配为例，device/realtek/rtl8720/liteos\_a/config.gni的内容如下：
+    以realtek的“rtl8720“开发板的liteos\_a适配为例，device/realtek/rtl8720/liteos\_a/config.gni的内容如下：
 
     ```
     # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
