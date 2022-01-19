@@ -108,7 +108,7 @@ context.getOrCreateLocalDir().then((void) => {
 | 名称       | 读写属性 | 类型                                            | 必填 | 描述                                |
 | ---------- | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | permission | 只读     | string                                          | 是   | 指定权限的名称                      |
-| options    | 只读     | [PermissionOptions](#PermissionOptions类型说明) | 是   | 进程id                              |
+| options    | 只读     | [PermissionOptions](#PermissionOptions类型说明) | 是   | 权限选项                              |
 | callback   | 只读     | AsyncCallback\<number>                          | 是   | 返回权限验证结果，0有权限，-1无权限 |
 
 - 返回值
@@ -132,7 +132,7 @@ context.verifyPermission("com.example.permission",datainfo.uid)
 
 - 接口说明
 
-  验证系统中运行的特定pid和uid是否具有指定的权限(callback形式)
+  验证系统中运行的当前pid和uid是否具有指定的权限(callback形式)
 
 - 参数描述
 
@@ -167,13 +167,13 @@ context.verifyPermission("com.example.permission")
 | 名称       | 读写属性 | 类型                                            | 必填 | 描述           |
 | ---------- | -------- | ----------------------------------------------- | ---- | -------------- |
 | permission | 只读     | string                                          | 是   | 指定权限的名称 |
-| options    | 只读     | [PermissionOptions](#PermissionOptions类型说明) | 否   | 进程id         |
+| options    | 只读     | [PermissionOptions](#PermissionOptions类型说明) | 否   | 权限选项         |
 
 - 返回值
 
   | 类型            | 说明                                                         |
   | --------------- | ------------------------------------------------------------ |
-  | Promise<number> | 如果pid和uid具有权限，则使用{@code 0}进行异步回调；否则使用{@code-1}回调。 |
+  | Promise<number> | 如果pid和uid具有权限，则使用**0**进行异步回调；否则使用**-1**回调。 |
 
 - 示例
 
@@ -503,13 +503,13 @@ context.getProcessName().then((void) => {
 
 - 接口说明
 
-  获取调用当前ability捆绑包名称(callback形式）
+  获取调用ability的包名称(callback形式）
 
 - 参数描述
 
   | 名称     | 读写属性 | 类型                   | 必填 | 描述                      |
   | -------- | -------- | ---------------------- | ---- | ------------------------- |
-  | callback | 只读     | AsyncCallback\<string> | 是   | 返回当前ability捆绑包名称 |
+  | callback | 只读     | AsyncCallback\<string> | 是   | 返回调用ability的包名称 |
 
 - 返回值
 
@@ -529,7 +529,7 @@ context.getCallingBundle()
 
 - 接口说明
 
-  获取调用当前ability捆绑包名称(Promise形式)
+  获取调用ability的包名称(Promise形式)
 
 - 参数描述
 
@@ -539,7 +539,7 @@ context.getCallingBundle()
 
   | 类型            | 说明                      |
   | --------------- | ------------------------- |
-  | Promise<string> | 调用当前ability捆绑包名称 |
+  | Promise<string> | 调用ability的包名称 |
 
   
 
