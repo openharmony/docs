@@ -16,6 +16,8 @@
 - 媒体
     - [音频管理](js-apis-audio.md)
     - [音频播放和录制](js-apis-media.md)
+- 安全
+    - [用户认证](js-apis-useriam-userauth.md)
 - 数据管理
     - [轻量级存储](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
