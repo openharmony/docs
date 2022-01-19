@@ -1,31 +1,33 @@
 # APIs<a name="EN-US_TOPIC_0000001162494631"></a>
 
--   **[Console Logs](console-logs.md)**  
+-   [Console Logs](console-logs.md)  
 
--   **[HiAppEvent](hiappevent.md)**  
+-   [HiAppEvent](hiappevent.md)  
 
--   **[Page Routing](page-routing.md)**  
+-   [Page Routing](page-routing.md)  
 
--   **[Pop-up Window](pop-up-window.md)**  
+-   [Pop-up Window](pop-up-window.md)  
 
--   **[Timer](timer.md)**  
+-   [Timer](timer.md)  
 
--   **[Audio Management](js-apis-audio.md)**  
+-   [Audio Management](js-apis-audio.md)  
 
--   **[Audio Playback](audio-playback.md)**  
+-   [Audio Playback](audio-playback.md)  
 
--   **[Device Information](device-information.md)**  
+-   [Device Information](device-information.md)  
 
--   **[System Attribute](system-attribute.md)**  
+-   [System Attribute](system-attribute.md)  
 
--   **[Battery and Charging](battery-and-charging.md)**  
+-   [Battery and Charging](battery-and-charging.md)  
 
--   **[Screen Brightness](screen-brightness.md)**  
+-   [Screen Brightness](screen-brightness.md)  
 
--   **[Globalization](globalization.md)**  
+-   [Globalization](globalization.md)  
 
--   **[Resource Management](resource-management.md)**  
+-   [Resource Management](resource-management.md)  
 
--   **[Updater](updater.md)**  
+-   [Updater](updater.md)  
+
+-   [URL String Parsing](js-apis-uri.md)
 
 

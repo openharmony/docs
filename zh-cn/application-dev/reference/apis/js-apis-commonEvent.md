@@ -780,7 +780,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 
 - 方法说明
 
-  取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（callback形式）
+  清除当前公共事件的取消状态，仅对有序公共事件有效（callback形式）
 
 - 参数
 
@@ -804,7 +804,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 
 - 方法说明
 
-  取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（Promise形式）
+  清除当前公共事件的取消状态，仅对有序公共事件有效（Promise形式）
 
 - 示例
 
