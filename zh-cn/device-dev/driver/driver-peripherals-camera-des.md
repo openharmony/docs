@@ -28,9 +28,9 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
    
 3. Service通过底层的CameraDevice配置流、创建Stream类。StreamPipelineStrategy模块通过上层下发的模式和查询配置表创建对应流的Node连接方式，StreamPipelineBuilder模块创建Node实例并且连接返回该Pipline给StreamPipelineDispatcher。StreamPipelineDispatcher提供统一的Pipline调用管理。
 
-4. Service通过Stream控制整个流的操作，AttachBufferQueue将从显示模块申请的BufferQueue下发到底层，由CameraDeviceDriverModel自行管理buffer，Capture接口下发命令，底层开始向上传递buffer。Pipeline的IspNode依次从BufferQueue获取指定数量buffer，然后下发到底层ISP（Image Signal Processor，图像信号处理器）硬件，ISP填充完之后将buffer传递给CameraDeviceDriverModel，CameraDeviceDriverModel通过循环线程将buffer填充到已经创建好的Pipeline中，各个Node处理后通过回调传递给上层，同时buffer返回BufferQueue等待下一次下发。
+4. Service通过Stream控制整个流的操作，AttachBufferQueue接口将从显示模块申请的BufferQueue下发到底层，由CameraDeviceDriverModel自行管理buffer，当Capture接口下发命令后，底层开始向上传递buffer。Pipeline的IspNode依次从BufferQueue获取指定数量buffer，然后下发到底层ISP（Image Signal Processor，图像信号处理器）硬件，ISP填充完之后将buffer传递给CameraDeviceDriverModel，CameraDeviceDriverModel通过循环线程将buffer填充到已经创建好的Pipeline中，各个Node处理后通过回调传递给上层，同时buffer返回BufferQueue等待下一次下发。
 
-5. Service通过Capture接口下发拍照命令。ChangeToOfflineStream查询拍照buffer位置，如果ISP已经出图，并且图像数据已经送到IPP node，可以将普通拍照流转换为离线流，否则直接走关闭流程。通过传递StreamInfo使离线流获取到普通流的流信息，并且通过配置表确认离线流的具体Node连接方式，创建离线流的Node连接（如果已创建则通过CloseCamera释放非离线流所需的Node），等待buffer从底层Pipeline回传到上层再释放持有的Pipeline相关资源。
+5. Service通过Capture接口下发拍照命令。ChangeToOfflineStream接口查询拍照buffer位置，如果ISP已经出图，并且图像数据已经送到IPP node，可以将普通拍照流转换为离线流，否则直接走关闭流程。ChangeToOfflineStream接口通过传递StreamInfo使离线流获取到普通流的流信息，并且通过配置表确认离线流的具体Node连接方式，创建离线流的Node连接（如果已创建则通过CloseCamera释放非离线流所需的Node），等待buffer从底层Pipeline回传到上层再释放持有的Pipeline相关资源。
 
 6. Service通过CameraDevice的UpdateSettings接口向下发送CaptureSetting参数，CameraDeviceDriverModel通过StreamPipelineDispatcher模块向各个Node转发，StartStreamingCapture和Capture接口携带的CaptureSetting通过StreamPipelineDispatcher模块向该流所属的Node转发。
 
@@ -151,7 +151,7 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
 
 4. OpenCamera()接口
 
-    获取CameraHost对象，该对象中有五个方法，分别是SetCallback、GetCameraIds、GetCameraAbility、OpenCamera和SetFlashlight。下面着重描述OpenCamera接口。
+    CameraHostProxy对象中有五个方法，分别是SetCallback、GetCameraIds、GetCameraAbility、OpenCamera和SetFlashlight。下面着重描述OpenCamera接口。
     CameraHostProxy的OpenCamera()接口通过CMD_CAMERA_HOST_OPEN_CAMERA调用远端CameraHostStubOpenCamera()接口并获取ICameraDevice对象。
 
     ```
@@ -210,15 +210,15 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         if (sptrDevice == deviceBackup_.end()) {
             deviceBackup_[cameraId] = cameraDevice.get();
         }
-        device = deviceBackup_[cameraId]; // 将ICameraDevice带出。
+        device = deviceBackup_[cameraId];
         cameraDevice->SetStatus(true);
         return NO_ERROR;
     }
     ```
 
-5. 获取GetStreamOperator对象
+5. GetStreamOperator()接口
 
-    IStreamOperator定义了一系列对流控制和操作的接口，主要有CreateStreams、CommitStreams、Capture、CancelCapture等。
+    CameraDeviceImpl定义了GetStreamOperator、UpdateSettings、SetResultMode和GetEnabledResult等方法，获取流操作方法如下：
 
     ```
     CamRetCode CameraDeviceImpl::GetStreamOperator(const OHOS::sptr<IStreamOperatorCallback> &callback,
@@ -284,7 +284,7 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
             return RC_ERROR;
         }
         std::shared_ptr<StreamBase> stream = StreamFactory::Instance().CreateShared(itr->second); // 创建StreamBase实例
-        RetCode rc = stream->Init(streamInfo); // 调用StreamBase Init方法，CreateBufferPool
+        RetCode rc = stream->Init(streamInfo); 
         return RC_OK;
     }
     ```
@@ -486,7 +486,7 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
     }           
     ```
 
-    StartCaptureStream()、StartVideoStream()和StartPreviewStream()接口都会调用CreatStream()接口，只是传入的参数不同。
+    StartCaptureStream()、StartVideoStream()和StartPreviewStream()接口都会调用CreateStream()接口，只是传入的参数不同。
 
     ```
     RetCode Hos3516Demo::StartVideoStream()
@@ -494,16 +494,16 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         RetCode rc = RC_OK;
         if (isVideoOn_ == 0) {
             isVideoOn_ = 1;
-            rc = CreatStream(STREAM_ID_VIDEO, streamCustomerVideo_, VIDEO); // 如需启preview或者capture流更改该接口参数即可。
+            rc = CreateStream(STREAM_ID_VIDEO, streamCustomerVideo_, VIDEO); // 如需启preview或者capture流更改该接口参数即可。
         }
         return RC_OK;
     }
     ```
 
-    CreatStream()方法调用HDI接口去配置和创建流，首先调用HDI接口去获取StreamOperation对象，然后创建一个StreamInfo。调用CreateStreams()和CommitStreams()实际创建流并配置流。
+    CreateStream()方法调用HDI接口去配置和创建流，首先调用HDI接口去获取StreamOperation对象，然后创建一个StreamInfo。调用CreateStreams()和CommitStreams()实际创建流并配置流。
 
     ```
-    RetCode Hos3516Demo::CreatStreams(const int streamIdSecond, StreamIntent intent)
+    RetCode Hos3516Demo::CreateStreams(const int streamIdSecond, StreamIntent intent)
     {
         std::vector<std::shared_ptr<StreamInfo>> streamInfos;
         std::vector<std::shared_ptr<StreamInfo>>().swap(streamInfos);
@@ -511,7 +511,7 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         std::shared_ptr<StreamInfo> previewStreamInfo = std::make_shared<StreamInfo>();
         SetStreamInfo(previewStreamInfo, streamCustomerPreview_, STREAM_ID_PREVIEW, PREVIEW); // 填充StreamInfo
         if (previewStreamInfo->bufferQueue_ == nullptr) {
-            CAMERA_LOGE("demo test: CreatStream CreateProducer(); is nullptr\n");
+            CAMERA_LOGE("demo test: CreateStream CreateProducer(); is nullptr\n");
             return RC_ERROR;
         }
         streamInfos.push_back(previewStreamInfo);
@@ -524,20 +524,20 @@ OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Inter
         }
     
         if (secondStreamInfo->bufferQueue_ == nullptr) {
-            CAMERA_LOGE("demo test: CreatStreams CreateProducer() secondStreamInfo is nullptr\n");
+            CAMERA_LOGE("demo test: CreateStreams CreateProducer() secondStreamInfo is nullptr\n");
             return RC_ERROR;
         }
         streamInfos.push_back(secondStreamInfo);
     
         rc = streamOperator_->CreateStreams(streamInfos); // 创建流
         if (rc != Camera::NO_ERROR) {
-            CAMERA_LOGE("demo test: CreatStream CreateStreams error\n");
+            CAMERA_LOGE("demo test: CreateStream CreateStreams error\n");
             return RC_ERROR;
         }
     
-        rc = streamOperator_->CommitStreams(Camera::NORMAL, ability_); // commit配置流
+        rc = streamOperator_->CommitStreams(Camera::NORMAL, ability_);
         if (rc != Camera::NO_ERROR) {
-            CAMERA_LOGE("demo test: CreatStream CommitStreams error\n");
+            CAMERA_LOGE("demo test: CreateStream CommitStreams error\n");
             std::vector<int> streamIds = {STREAM_ID_PREVIEW, streamIdSecond};
             streamOperator_->ReleaseStreams(streamIds);
             return RC_ERROR;
