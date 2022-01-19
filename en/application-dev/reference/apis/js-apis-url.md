@@ -227,7 +227,7 @@ Sets the value for a key. If key-value pairs matching the specified key exist, t
 sort(): void
 
 
-Sorts all key-value pairs contained in this object based on the Unicode code points of the keys and returns undefined.排序顺序是根据键的Unicode代码点。This method uses a stable sorting algorithm, that is, the relative order between key-value pairs with equal keys is retained.
+Sorts all key-value pairs contained in this object based on the Unicode code points of the keys and returns undefined. This method uses a stable sorting algorithm, that is, the relative order between key-value pairs with equal keys is retained.
 
 
 - Example
