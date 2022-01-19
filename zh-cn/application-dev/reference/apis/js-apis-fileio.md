@@ -3,7 +3,6 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```
@@ -25,7 +24,7 @@ import fileio from '@ohos.fileio';
 通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在绝对路径为：
 
 ```
-let path = dir + "xxx.txt"
+let path = dir + "/xxx.txt";
 ```
 
 
@@ -35,6 +34,49 @@ let path = dir + "xxx.txt"
 ```
 let fd = fileio.openSync(path);
 ```
+
+
+## fileio.stat
+
+stat(path: string): Promise&lt;Stat&gt;
+
+以异步方法获取文件信息，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待获取文件的绝对路径。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Stat](#stat)&gt; | 表示文件的具体信息。 |
+
+- 示例：
+  ```
+  let stat = await fileio.stat(path);
+  // example code in Stat
+  ```
+
+
+## fileio.stat
+
+stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
+
+以异步方法获取文件信息，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待获取文件的绝对路径。 |
+  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是 | 异步获取文件的信息之后的回调。 |
+
+- 示例：
+  ```
+  fileio.stat(path, function (err, stat) {
+  // example code in Stat
+  });
+  ```
 
 
 ## fileio.statSync
@@ -57,6 +99,51 @@ statSync(path:string): Stat
 - 示例：
   ```
   let stat = fileio.statSync(path);
+  // example code in Stat
+  ```
+
+
+## fileio.opendir
+
+opendir(path: string): Promise&lt;Dir&gt;
+
+以异步方法打开文件目录，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件目录的绝对路径。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Dir](#dir)&gt; | 返回Dir对象。 |
+
+- 示例：
+  ```
+  let dir = fileio.opendir(path);
+  // example code in Dir
+  ```
+
+
+## fileio.opendir
+
+opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
+
+以异步方法打开文件目录，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件目录的绝对路径。 |
+  | callback | AsyncCallback&lt;[Dir](#dir)&gt; | 是 | 异步打开文件目录之后的回调。 |
+
+- 示例：
+  ```
+  fileio.opendir(path, function (err, dir) { 
+  // example code in Dir struct
+  // use read/readSync/close
+  });
   ```
 
 
@@ -80,6 +167,56 @@ opendirSync(path: string): Dir
 - 示例：
   ```
   let dir = fileio.opendirSync(path);
+  // example code in Dir struct
+  // use read/readSync/close
+  ```
+
+
+## fileio.access
+
+access(path: string, mode?: number): Promise&lt;void&gt;
+
+以异步方法检查当前进程是否可访问某文件，使用promise形式返回结果。
+
+- 参数：.
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待访问文件的绝对路径。 |
+  | mode | number | 否 | 访问文件时的选项，可给定如下选项，以按位或的方式使用多个选项，默认给定0。<br/>确认当前进程是否具有对应权限：<br/>-&nbsp;0：确认文件是否存在。<br/>-&nbsp;1：确认当前进程是否具有可执行权限。<br/>-&nbsp;2：确认当前进程是否具有写权限。<br/>-&nbsp;4：确认当前进程是否具有读权限。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  fileio.access(path)    
+      .then(function(err) {
+          // 文件存在,do something
+      }).catch(function(e) {
+          //若不符合条件则进入
+  });
+  ```
+
+
+## fileio.access
+
+access(path: String, mode?: number, callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法检查当前进程是否可访问某文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待访问文件的绝对路径。 |
+  | mode | number | 否 | 访问文件时的选项，可给定如下选项，以按位或的方式使用多个选项，默认给定0。<br/>确认当前进程是否具有对应权限：<br/>-&nbsp;0：确认文件是否存在。<br/>-&nbsp;1：确认当前进程是否具有可执行权限。<br/>-&nbsp;2：确认当前进程是否具有写权限。<br/>-&nbsp;4：确认当前进程是否具有读权限。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步检查当前进程是否可访问某文件之后的回调。 |
+
+- 示例：
+  ```
+  fileio.access(path, function (err) {
+  });
   ```
 
 
@@ -98,7 +235,54 @@ accessSync(path: string, mode?: number): void
 
 - 示例：
   ```
-  fileio.accessSync(path);
+  try {
+      fileio.accessSync(path);
+  } catch(e) {
+      //不符合条件则进入
+  }
+  ```
+
+
+## fileio.close<sup>7+</sup>
+
+close(fd: number):Promise&lt;void&gt;
+
+以异步方法关闭文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待关闭文件的文件描述符。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  let fd = fileio.openSync(path);
+  await fileio.close(fd);
+  ```
+
+
+## fileio.close<sup>7+</sup>
+
+close(fd: number, callback:AsyncCallback&lt;void&gt;): void
+
+以异步方法关闭文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待关闭文件的文件描述符。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步关闭文件之后的回调。 |
+
+- 示例：
+  ```
+  let fd = fileio.openSync(path);
+  await fileio.close(fd, function (err) {
+  });
   ```
 
 
@@ -119,22 +303,153 @@ closeSync(fd: number): void
   ```
 
 
+## fileio.close<sup>7+</sup>
+
+close(): Promise&lt;void&gt;
+
+以异步方法关闭文件流，使用promise形式返回结果。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  fileio.close();
+  ```
+
+
+## fileio.close<sup>7+</sup>
+
+close(callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法关闭文件流，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步关闭文件流之后的回调。 |
+
+- 示例：
+  ```
+  await fileio.close(function(err){
+  });
+  ```
+
+
+## fileio.copyFile
+
+copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;void&gt;
+
+以异步方法复制文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | src | string&nbsp;\|&nbsp;number | 是 | 待复制文件的路径或待复制文件的描述符。 |
+  | dest | string&nbsp;\|&nbsp;number | 是 | 目标文件路径或目标文件描述符。 |
+  | mode | number | 否 | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  await fileio.copyFile(src, dest);
+  ```
+
+
+## fileio.copyFile
+
+copyFile(src:string | number, dest:string | number, mode?: number, callback: AsyncCallbak&lt;void&gt;): void
+
+以异步方法复制文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | src | string&nbsp;\|&nbsp;number | 是 | 待复制文件的路径或待复制文件的描述符。 |
+  | dest | string&nbsp;\|&nbsp;number | 是 | 目标文件路径或目标文件描述符。 |
+  | mode | number | 否 | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步复制文件之后的回调。 |
+
+- 示例：
+  ```
+  await fileio.copyFile(src, dest, function (err) { 
+  });
+  ```
+
+
 ## fileio.copyFileSync
 
-fileio.copyFileSync(src: string, dest: string, mode?:number): void
+fileio.copyFileSync(src:string | number, dest:string | number, mode?:number): void
 
 以同步方法复制文件。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | src | string | 是 | 待复制文件的路径。 |
-  | dest | string | 是 | 目标文件路径。 |
+  | src | string&nbsp;\|&nbsp;number | 是 | 待复制文件的路径或待复制文件的描述符。 |
+  | dest | string&nbsp;\|&nbsp;number | 是 | 目标文件路径或目标文件描述符。 |
   | mode | number | 否 | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 - 示例：
   ```
   fileio.copyFileSync(src, dest);
+  ```
+
+
+## fileio.mkdir
+
+mkdir(path:string, mode?: number): Promise&lt;void&gt;
+
+以异步方法创建目录，使用promise形式返回结果。
+
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待创建目录的绝对路径。 |
+  | mode | number | 否 | 创建目录的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o775。<br/>-&nbsp;0o775：所有者具有读、写及可执行权限，其余用户具有读及可执行权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  await fileio.mkdir(path)
+     .then(function(err) {
+      // 目录创建成功，do something
+     }).catch(function (e){
+     });
+  ```
+
+
+## fileio.mkdir
+
+mkdir(path:string, mode?:number, callback:AsyncCallbak&lt;void&gt;): void
+
+以异步方法创建目录，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待创建目录的绝对路径。 |
+  | mode | number | 否 | 创建目录的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o775。<br/>-&nbsp;0o775：所有者具有读、写及可执行权限，其余用户具有读及可执行权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步创建目录操作完成之后的回调。 |
+
+- 示例：
+  ```
+  await fileio.mkdir(path, function(err) {
+      if (!err) {
+          // do something
+      }
+  });
   ```
 
 
@@ -156,9 +471,54 @@ fileio.mkdirSync(path: string, mode?: number): void
   ```
 
 
+## fileio.open<sup>7+</sup>
+
+open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
+
+以异步的方法打开文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件的绝对路径。 |
+  | flags | number | 否 | 打开文件的选项，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;0o0：只读打开。<br/>-&nbsp;0o1：只写打开。<br/>-&nbsp;0o2：读写打开。<br/>同时，也可给定如下选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;0o100：若文件不存在，则创建文件。使用该选项时必须指定第三个参数&nbsp;mode。<br/>-&nbsp;0o200：如果追加了0o100选项，且文件已经存在，则出错。<br/>-&nbsp;0o1000：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;0o2000：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;0o4000：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;0o200000：如果path指向目录，则出错。<br/>-&nbsp;0o400000：如果path指向符号链接，则出错。<br/>-&nbsp;0o4010000：以同步IO的方式打开文件。 |
+  | mode | number | 否 | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | 打开文件的文件描述符。 |
+
+- 示例：
+  ```
+  let fd = await fileio.open(path, 0o1, 0o0200);
+  ```
+
+
+## fileio.open<sup>7+</sup>
+
+open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;number&gt;): void
+
+以异步的方法打开文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件的绝对路径。 |
+  | flags | number | 是 | 打开文件的选项，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;0o0：只读打开。<br/>-&nbsp;0o1：只写打开。<br/>-&nbsp;0o2：读写打开。<br/>同时，也可给定如下选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;0o100：若文件不存在，则创建文件。使用该选项时必须指定第三个参数&nbsp;mode。<br/>-&nbsp;0o200：如果追加了0o100选项，且文件已经存在，则出错。<br/>-&nbsp;0o1000：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;0o2000：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;0o4000：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;0o200000：如果path指向目录，则出错。<br/>-&nbsp;0o400000：如果path指向符号链接，则出错。<br/>-&nbsp;0o4010000：以同步IO的方式打开文件。 |
+  | mode | number | 是 | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是 | 异步打开文件之后的回调。 |
+
+- 示例：
+  ```
+  await fileio.open(path, 0, function(err, fd) {
+  });
+  ```
+
+
 ## fileio.openSync
 
-openSync(path: string, flags?: number, mode?: number): number
+openSync(path:string, flags?:number, mode?:number): number
 
 以同步方法打开文件。
 
@@ -176,7 +536,59 @@ openSync(path: string, flags?: number, mode?: number): number
 
 - 示例：
   ```
-  fileio.openSync(path);
+  let fd = fileio.openSync(path);
+  ```
+
+
+## fileio.read
+
+read(fd: number, buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
+
+以异步方法从文件读取数据，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待读取文件的文件描述符。 |
+  | buffer | ArrayBuffer | 是 | 用于保存读取到的文件数据的缓冲区。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Readout](#readout)&gt; | 读取的结果。 |
+
+- 示例：
+  ```
+  let fd = fileio.openSync(path, 0o2);
+  let buf = new ArrayBuffer(4096);
+  let res = await fileio.read(fd, buf);
+  ```
+
+
+## fileio.read
+
+read(fd: number, buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
+
+以异步方法从文件读取数据，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待读取文件的文件描述符。 |
+  | buffer | ArrayBuffer | 是 | 用于保存读取到的文件数据的缓冲区。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
+  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | 是 | 异步读取数据之后的回调。 |
+
+- 示例：
+  ```
+  let fd = fileio.openSync(path, 0o2);
+  let buf = new ArrayBuffer(4096);
+  await fileio.read(fd, buf, function (err, readOut) {
+      if (!err) {
+          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)))
+      }
+  });
   ```
 
 
@@ -190,8 +602,8 @@ readSync(fd: number, buffer: ArrayBuffer, options?: Object): number
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | fd | number | 是 | 待读取文件的文件描述符。 |
-  | buffer | ArrayBuffer | 是 | 用于读取文件的缓冲区。 |
-  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number&nbsp;类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number&nbsp;类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number&nbsp;类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
+  | buffer | ArrayBuffer | 是 | 用于保存读取到的文件数据的缓冲区。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -202,14 +614,58 @@ readSync(fd: number, buffer: ArrayBuffer, options?: Object): number
   ```
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
-  fileio.readSync(fd, buf);
-  console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+  let num = fileio.readSync(fd, buf);
+  ```
+
+
+## fileio.rmdir<sup>7+</sup>
+
+rmdir(path: string): Promise&lt;void&gt;
+
+以异步方法删除目录，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待删除目录的绝对路径。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  fileio.rmdir(path)  
+      .then(function(err) {   
+          // 删除目录成功，do something 
+      }).catch(function(e){ 
+  });
+  ```
+
+
+## fileio.rmdir<sup>7+</sup>
+
+rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
+
+以异步方法删除目录，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待删除目录的绝对路径。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步删除目录之后的回调。 |
+
+- 示例：
+  ```
+  fileio.rmdir(path, function(err){ 
+  });
   ```
 
 
 ## fileio.rmdirSync
 
-rmdirSync(path: string): void
+rmdirSync(path:string)
 
 以同步方法删除目录。
 
@@ -221,6 +677,50 @@ rmdirSync(path: string): void
 - 示例：
   ```
   fileio.rmdirSync(path);
+  ```
+
+
+## fileio.unlink
+
+unlink(path:string): Promise&lt;void&gt;
+
+以异步方法删除文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待删除文件的绝对路径。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  await fileio.unlink(path);
+  ```
+
+
+## fileio.unlink
+
+unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
+
+以异步方法删除文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待删除文件的绝对路径。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步删除文件之后的回调。 |
+
+- 示例：
+  ```
+  await fileio.unlink(path, function(err) {
+      if (!err) {
+          // do something
+      }
+  });
   ```
 
 
@@ -241,6 +741,56 @@ unlinkSync(path: string): void
   ```
 
 
+## fileio.write
+
+write(fd: number, buffer: ArrayBuffer | string, options?: Object): Promise&lt;number&gt;
+
+以异步方法将数据写入文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待写入文件的文件描述符。 |
+  | buffer | ArrayBuffer&nbsp;\|&nbsp;string | 是 | 待写入文件的数据，可来自缓冲区或字符串。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | 实际写入的长度。 |
+
+- 示例：
+  ```
+  let fd = fileio.openSync(fpath, 0o100 | 0o2, 0o666);
+  let num = await fileio.write(fd, "hello, world");
+  ```
+
+
+## fileio.write
+
+write(fd:number, buffer:ArrayBuffer | string,options?:Object, callback:AsyncCallback&lt;number&gt;): void
+
+以异步方法将数据写入文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待写入文件的文件描述符。 |
+  | buffer | ArrayBuffer&nbsp;\|&nbsp;string | 是 | 待写入文件的数据，可来自缓冲区或字符串。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 异步将数据写入完成后执行的回调函数。 |
+
+- 示例：
+  ```
+  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+  fileio.write(fd, "hello, world", function (err, bytesWritten) {
+      if (!err) {
+         console.log(bytesWritten)
+      }
+  });
+  ```
+
+
 ## fileio.writeSync
 
 writeSync(fd: number, buffer: ArrayBuffer | string, options?:Object): number
@@ -252,7 +802,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?:Object): number
   | -------- | -------- | -------- | -------- |
   | fd | number | 是 | 待写入文件的文件描述符。 |
   | buffer | ArrayBuffer&nbsp;\|&nbsp;string | 是 | 待写入文件的数据，可来自缓冲区或字符串。 |
-  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -261,8 +811,101 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?:Object): number
 
 - 示例：
   ```
-  let fd = fileio.openSync(path, 0o102, 0o666);
-  fileio.writeSync(fd, "hello, world");
+  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+  let num = fileio.writeSync(fd, "hello, world");
+  ```
+
+
+## fileio.hash
+
+hash(path: string, algorithm: string): Promise&lt;string&gt;
+
+以异步方法计算文件的哈希值，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待计算哈希值文件的绝对路径。 |
+  | algorithm | string | 是 | 哈希计算采用的算法。可选&nbsp;"md5"、"sha1"&nbsp;或&nbsp;"sha256"。建议采用安全强度更高的&nbsp;"sha256"。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;string&gt; | 文件的哈希值。表示为十六进制数字串，所有字母均大写。 |
+
+- 示例：
+  ```
+  let hashStr = await fileio.hash(path, "sha256");
+  ```
+
+
+## fileio.hash
+
+hash(psth:string, algorithm:string, callback:AsyncCallback&lt;string&gt;): void
+
+以异步方法计算文件的哈希值，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待计算哈希值文件的绝对路径。 |
+  | algorithm | string | 是 | 哈希计算采用的算法。可选&nbsp;"md5"、"sha1"&nbsp;或&nbsp;"sha256"。建议采用安全强度更高的&nbsp;"sha256"。 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 异步计算文件哈希操之后的回调函数（其中给定文件哈希值表示为十六进制数字串，所有字母均大写）。 |
+
+- 示例：
+  ```
+  fileio.hash(fpath, "sha256", function(err, hashStr) {
+      if (!err) {
+          console.log(hashStr)
+      }
+  });
+  ```
+
+
+## fileio.chmod<sup>7+</sup>
+
+chmod(path: string, mode: number):Promise&lt;void&gt;
+
+以异步方法基于文件路径改变文件权限，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待改变文件权限的绝对路径。 |
+  | mode | number | 是 | 改变文件权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  fileio.chmod(path, mode)  
+      .then(function(err) {    
+         // 改变文件权限成功,do something
+      }).catch(function(e){
+  });
+  ```
+
+
+## fileio.chmod<sup>7+</sup>
+
+chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法基于文件路径改变文件权限，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待改变文件权限的绝对路径。 |
+  | mode | number | 是 | 改变文件权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步改变文件权限之后的回调。 |
+
+- 示例：
+  ```
+  fileio.chmod(path, mode, function (err) {     
+  });
   ```
 
 
@@ -284,6 +927,48 @@ chmodSync(path: string, mode: number): void
   ```
 
 
+## fileio.fstat<sup>7+</sup>
+
+fstat(fd: number): Promise&lt;Stat&gt;
+
+以异步方法基于文件描述符获取文件状态信息，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待获取文件的文件描述符。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Stat](#stat)&gt; | 表示文件的具体信息。 |
+
+- 示例：
+  ```
+  let stat = await fileio.fstat(fd);
+  ```
+
+
+## fileio.fstat<sup>7+</sup>
+
+fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
+
+以异步方法基于文件描述符获取文件状态信息，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待获取文件的文件描述符。 |
+  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是 | 异步获取文件状态信息之后的回调。 |
+
+- 示例：
+  ```
+  let fd = fileio.openSync(path);
+  fileio.fstat(fd, function (err) {    
+  });
+  ```
+
+
 ## fileio.fstatSync<sup>7+</sup>
 
 fstatSync(fd: number): Stat
@@ -298,12 +983,60 @@ fstatSync(fd: number): Stat
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Stat&gt; | 表示文件的具体信息。 |
+  | [Stat](#stat) | 表示文件的具体信息。 |
 
 - 示例：
   ```
   let fd = fileio.openSync(path);
   let stat = fileio.fstatSync(fd);
+  ```
+
+
+## fileio.ftruncate<sup>7+</sup>
+
+ftruncate(fd: number, len: number): Promise&lt;void&gt;
+
+以异步方法基于文件描述符截断文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待截断文件的文件描述符。 |
+  | len | number | 是 | 文件截断后的长度，以字节为单位。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  let fd = fileio.openSync(path);
+  fileio.ftruncate(fd, 5)
+      .then(function(err) {    
+         // 截断文件成功, do something
+      }).catch(function(e){
+  });
+  ```
+
+
+## fileio.ftruncate<sup>7+</sup>
+
+ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
+
+以异步方法基于文件描述符截断文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待截断文件的文件描述符。 |
+  | len | number | 是 | 文件截断后的长度，以字节为单位。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步截断文件的信息之后的回调。 |
+
+- 示例：
+  ```
+  fileio.ftruncate(fd, len, function(err){ 
+  });
   ```
 
 
@@ -325,21 +1058,50 @@ ftruncateSync(fd: number, len?: number): void
   ```
 
 
-## fileio.fchmodSync<sup>7+</sup>
+## fileio.truncate<sup>7+</sup>
 
-fchmodSync(existingPath: string, newPath: string): void
+truncate(path: string, len: number): Promise&lt;void&gt;
 
-以同步方法基于文件描述符改变文件权限。
+以异步方法基于文件路径截断文件，使用promise形式返回结果。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | fd | number | 是 | 待改变文件的文件描述符。 |
-  | mode | number | 是 | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+  | path | string | 是 | 待截断文件的绝对路径。 |
+  | len | number | 是 | 文件截断后的长度，以字节为单位。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
 
 - 示例：
   ```
-   fileio.fchmodSync(fd, mode);
+  fileio.truncate(path, len)  
+      .then(function(err) {    
+          // 截断文件成功，do something 
+      }).catch(function(e){ 
+  });
+  ```
+
+
+## fileio.truncate<sup>7+</sup>
+
+truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
+
+以异步方法基于文件路径截断文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待截断文件的绝对路径。 |
+  | len | number | 是 | 文件截断后的长度，以字节为单位。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步截断文件的信息之后的回调。 |
+
+- 示例：
+  ```
+  fileio.truncate(path, len, function(err){ 
+  });
   ```
 
 
@@ -361,6 +1123,234 @@ truncateSync(fpath: string, len?: number): void
   ```
 
 
+## fileio.readText<sup>7+</sup>
+
+readText(filePath: string, options?:Object): Promise&lt;string&gt;
+
+以异步方法基于文本方式读取文件（即直接读取文件的文本内容），使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | filePath | string | 是 | 待读取文件的绝对路径。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;string&gt; | 返回读取文件的内容。 |
+
+- 示例：
+  ```
+  fileio.readText(path)
+      .then(function(str) {
+         // 读取文件成功，do something
+      }).catch(function(e){
+  });
+  ```
+
+
+## fileio.readText<sup>7+</sup>
+
+readText(filePath: string, options?:Object, callback:AsyncCallback&lt;string&gt;): void
+
+以异步方法基于文本方式读取文件（即直接读取文件的文本内容），使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | filePath | string | 是 | 待读取文件的绝对路径。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 异步通过文本方式读取文件之后的回调。 |
+
+- 示例：
+  ```
+  fileio.readText(path, function(err, str){
+  });
+  ```
+
+
+## fileio.readTextSync<sup>7+</sup>
+
+readTextSync(filePath: string, options?:Object): string
+
+以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | filePath | string | 是 | 待读取文件的绝对路径。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;string&gt; | 返回读取文件的内容。 |
+
+- 示例：
+  ```
+  let str = fileio.readTextSync(path, {position: pos, length: len});
+  ```
+
+
+## fileio.lstat<sup>7+</sup>
+
+lstat(path: string): Promise&lt;Stat&gt;
+
+以异步方法获取链接状态信息，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 目标文件的绝对路径，指向链接状态。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Stat](#stat)&gt; | 表示文件的具体信息。 |
+
+- 示例：
+  ```
+  let stat = await fileio.lstat(path);
+  ```
+
+
+## fileio.lstat<sup>7+</sup>
+
+lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
+
+以异步方法获取链接状态信息，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 目标文件的绝对路径，指向链接状态。 |
+  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是 | 异步获取链接状态信息之后的回调。 |
+
+- 示例：
+  ```
+  fileio.lstat(path, function (err, stat) {    
+  ));
+  ```
+
+
+## fileio.lstatSync<sup>7+</sup>
+
+lstatSync(path:string): Stat
+
+以同步方法获取链接状态信息。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 目标文件的绝对路径，指向链接状态。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [Stat](#stat) | 表示文件的具体信息。 |
+
+- 示例：
+  ```
+  let stat = fileio.lstatSync(path);
+  ```
+
+
+## fileio.read<sup>7+</sup>
+
+read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
+
+以异步方法从文件读取数据，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | buffer | ArrayBuffer | 是 | 用于保存读取到的文件数据的缓冲区。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Readout](#readout)&gt; | 读取的结果。 |
+
+- 示例：
+  ```
+  let readout = await fileio.read(new ArrayBuffer(4096));
+  ```
+
+
+## fileio.read<sup>7+</sup>
+
+read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
+
+异步方法从文件读取数据，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | buffer | ArrayBuffer | 是 | 用于保存读取到的文件数据的缓冲区。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。 |
+  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | 是 | 异步从文件读取数据之后的回调。 |
+
+- 示例
+  ```
+  let buf = new ArrayBuffer(4096);
+  fileio.read(buf, function (err, readOut) {
+      if (!err) {
+          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)))
+      }
+  });
+  ```
+
+
+## fileio.rename<sup>7+</sup>
+
+rename(oldPath: string, newPath: string): Promise&lt;void&gt;
+
+以异步方法重命名文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | oldPath | string | 是 | 目标文件的当前绝对路径。 |
+  | Newpath | String | 是 | 目标文件的新绝对路径。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  fileio.rename(oldPath, Newpath)  
+        .then(function(err) {    
+          // 重命名文件成功，do something 
+        }).catch(function(e){ 
+  
+  });
+  ```
+
+
+## fileio.rename<sup>7+</sup>
+
+rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法重命名文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | oldpath | string | 是 | 目标文件的当前绝对路径。 |
+  | Newpath | String | 是 | 目标文件的新绝对路径。 |
+  | Callback | AsyncCallback&lt;void&gt; | 是 | 异步重命名文件之后的回调。 |
+
+- 示例：
+  ```
+  fileio.rename(oldpath, Newpath, function(err){
+  });
+  ```
+
+
 ## fileio.renameSync<sup>7+</sup>
 
 renameSync(oldPath: string, newPath: string): void
@@ -379,6 +1369,47 @@ renameSync(oldPath: string, newPath: string): void
   ```
 
 
+## fileio.fsync<sup>7+</sup>
+
+fsync(fd: number): Promise&lt;void&gt;
+
+以异步方法同步文件数据，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待同步文件的文件描述符。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  await fileio.fsync(fd);
+  ```
+
+
+## fileio.fsync<sup>7+</sup>
+
+fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法同步文件数据，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待同步文件的文件描述符。 |
+  | Callback | AsyncCallback&lt;void&gt; | 是 | 异步将文件数据同步之后的回调。 |
+
+- 示例：
+  ```
+  fileio.fsync(fd, function(err){
+  });
+  ```
+
+
 ## fileio.fsyncSync<sup>7+</sup>
 
 fsyncSync(fd: number): void
@@ -392,7 +1423,182 @@ fsyncSync(fd: number): void
 
 - 示例：
   ```
-  fileio.fyncsSync)(fd);
+  fileio.fyncsSync(fd);
+  ```
+
+
+## fileio.fdatasync<sup>7+</sup>
+
+fdatasync(fd: number): Promise&lt;void&gt;
+
+以异步方法实现文件内容数据同步，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待同步文件的文件描述符。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果，本调用将返回空值。 |
+
+- 示例：
+  ```
+  fileio.fdatasync(fd)
+       .then(function(err) {
+          // 数据同步成功，do something
+       }).catch(function(e){
+  });
+  ```
+
+
+## fileio.fdatasync<sup>7+</sup>
+
+fdatasync(fd: number, callback:AsyncCallback&lt;void&gt;): void
+
+以异步方法实现文件内容数据同步，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待同步文件的文件描述符。 |
+  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是 | 异步将文件内容数据同步之后的回调。 |
+
+- 示例：
+  ```
+  fileio.fdatasync (fd, function (err) {
+  });
+  ```
+
+
+## fileio.fdatasyncSync<sup>7+</sup>
+
+fdatasyncSync(fd: number): void
+
+以同步方法实现文件内容数据同步。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待同步文件的文件描述符。 |
+
+- 示例：
+  ```
+  let stat = fileio.fdatasyncSync(fd);
+  ```
+
+
+## fileio.symlink<sup>7+</sup>
+
+symlink(target: string, srcPath: string): Promise&lt;void&gt;
+
+以异步方法基于文件路径创建符号链接，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | target | string | 是 | 目标文件的绝对路径。 |
+  | srcPath | string | 是 | 符号链接文件的绝对路径。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例,用于异步获取结果,本调用将返回空值。 |
+
+- 示例：
+  ```
+  fileio.symlink(target, srcPath)
+       .then(function(err) {
+           // 创建符号链接成功，do something
+       }).catch(function(e){
+  
+  });
+  ```
+
+
+## fileio.symlink<sup>7+</sup>
+
+symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法基于文件路径创建符号链接，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | target | string | 是 | 目标文件的绝对路径。 |
+  | srcPath | string | 是 | 符号链接文件的绝对路径。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步创建符号链接信息之后的回调。 |
+
+- 示例：
+  ```
+  fileio.symlink(target, srcPath, function (err) {     
+  });
+  ```
+
+
+## fileio.symlinkSync<sup>7+</sup>
+
+symlinkSync(target: string, srcPath: string): void
+
+以同步的方法基于文件路径创建符号链接。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | target | string | 是 | 目标文件的绝对路径。 |
+  | srcPath | string | 是 | 符号链接文件的绝对路径。 |
+
+- 示例：
+  ```
+  fileio.symlinkSync(target, srcPath);
+  ```
+
+
+## fileio.chown<sup>7+</sup>
+
+chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
+
+以异步的方法基于文件路径改变文件所有者，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待改变文件的绝对路径。 |
+  | uid | number | 是 | 新的UID（UserID）。 |
+  | gid | number | 是 | 新的GID（GroupID）。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例,用于异步获取结果,本调用将返回空值。 |
+
+- 示例：
+  ```
+  let stat = fileio.statSync(path);
+  await fileio.chown(path, stat.uid, stat.gid));
+  ```
+
+
+## fileio.chown<sup>7+</sup>
+
+chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
+
+以异步的方法基于文件路径改变文件所有者，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待改变文件的绝对路径。 |
+  | uid | number | 是 | 新的UID。 |
+  | gid | number | 是 | 新的GID。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步改变文件所有者之后的回调。 |
+
+- 示例：
+  ```
+  let stat = fileio.statSync(fpath)
+  fileio.chown(path, stat.uid, stat.gid, function (err){
+  });
   ```
 
 
@@ -416,7 +1622,179 @@ chownSync(path: string, uid: number, gid: number): void
   ```
 
 
-## fileio.createStreamSync<sup>7+</sup><a name="fileio.createstreamsync"></a>
+## fileio.mkdtemp<sup>7+</sup>
+
+mkdtemp(prefix: string): Promise&lt;string&gt;
+
+以异步的方法创建临时目录，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | prefix | string | 是 | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
+
+- 返回值：
+  | 参数名 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;string&gt; | 生成的唯一目录路径。 |
+
+- 示例：
+  ```
+  let res = await fileio.mkdtempSync(path + "XXXX");
+  ```
+
+
+## fileio.mkdtemp<sup>7+</sup>
+
+mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
+
+以异步的方法创建临时目录，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | prefix | string | 是 | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 异步创建临时目录之后的回调。 |
+
+- 示例：
+  ```
+  fileio.mkdtemp(path + "XXXX", function (err, res) {
+  });
+  ```
+
+
+## fileio.mkdtempSync<sup>7+</sup>
+
+mkdtempSync(prefix: string): string
+
+以同步的方法创建临时目录。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | prefix | string | 是 | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
+
+- 返回值：
+  | 参数名 | 说明 |
+  | -------- | -------- |
+  | string | 产生的唯一目录路径。 |
+
+- 示例：
+  ```
+  let res = fileio.mkdtempSync(path + "XXXX");
+  ```
+
+
+## fileio.fchmod<sup>7+</sup>
+
+fchmod(fd: number, mode: number): Promise&lt;void&gt;
+
+以异步方法基于文件描述符改变文件权限，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待改变文件的文件描述符。 |
+  | mode | number | 是 | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+
+- 返回值：
+  | 参数名 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例,用于异步获取结果,本调用将返回空值。 |
+
+- 示例：
+  ```
+  fileio.fchmod(fd, mode)
+           .then(function(err) {
+              // 改变文件权限成功，do something
+           }).catch(function(e){
+  
+  });
+  ```
+
+
+## fileio.fchmod<sup>7+</sup>
+
+fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法基于文件描述符改变文件权限，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待改变文件的文件描述符。 |
+  | mode | number | 是 | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是 | 异步改变文件权限之后的回调。 |
+
+- 示例：
+  ```
+  fileio.fchmod(fd, mode, function (err) {
+  });
+  ```
+
+
+## fileio.fchmodSync<sup>7+</sup>
+
+fchmodSync(existingPath: string, newPath: string): void
+
+以同步方法基于文件描述符改变文件权限。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待改变文件的文件描述符。 |
+  | mode | number | 是 | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+
+- 示例：
+  ```
+   fileio.fchmodSync(fd, mode);
+  ```
+
+
+## fileio.createStream<sup>7+</sup>
+
+createStream(path: string, mode: string): Promise&lt;Stream&gt;
+
+以异步方法基于文件路径打开文件流，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件的绝对路径。 |
+  | mode | string | 是 | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Stream](#stream7)&gt; | 返回文件流的结果。 |
+
+- 示例：
+  ```
+  let ss = filrio.createStream(path, "r+");
+  ```
+
+
+## fileio.createStream<sup>7+</sup>
+
+createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
+
+以异步方法基于文件路径打开文件流，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件的绝对路径。 |
+  | mode | string | 是 | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
+  | callback | AsyncCallback&lt;[Stream](#stream7)&gt; | 是 | 异步打开文件流之后的回调。 |
+
+- 示例：
+  ```
+  fileio.createStream(path, mode, function(err, stream){ 
+  });
+  ```
+
+
+## fileio.createStreamSync<sup>7+</sup>
 
 createStreamSync(path: string, mode: string): Stream
 
@@ -431,11 +1809,54 @@ createStreamSync(path: string, mode: string): Stream
 - 返回值：
   | 参数名 | 说明 |
   | -------- | -------- |
-  | [Stream](#stream7-) | 返回文件流的结果。 |
+  | [Stream](#stream7) | 返回文件流的结果。 |
 
 - 示例：
   ```
-  let ss = fileio.createStream(path, "r+");
+  let ss = fileio.createStreamSync(path, "r+");
+  ```
+
+
+## fileio.fdopenStream<sup>7+</sup>
+
+fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
+
+以异步方法基于文件描述符打开文件流，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待打开文件的文件描述符。 |
+  | mode | string | 是 | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
+
+- 返回值：
+  | 参数名 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Stream](#stream7)&gt; | 返回文件流的结果。 |
+
+- 示例：
+  ```
+  let fp = await fileio.fdopenStream(fd, mode);
+  ```
+
+
+## fileio.fdopenStream<sup>7+</sup>
+
+fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
+
+以异步方法基于文件描述符打开文件流，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待打开文件的文件描述符。 |
+  | mode | string | 是 | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
+  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt; | 是 | 异步打开文件流之后的回调。 |
+
+- 示例：
+  ```
+  fileio.fdopenStream(fd, mode, function (err, fp) { 
+  });
   ```
 
 
@@ -454,11 +1875,63 @@ fdopenStreamSync(fd: number, mode: string): Stream
 - 返回值：
   | 参数名 | 说明 |
   | -------- | -------- |
-  | [Stream](#stream7-) | 返回文件流的结果。 |
+  | [Stream](#stream7) | 返回文件流的结果。 |
 
 - 示例：
   ```
   let ss = fileio.fdopenStreamSync(fd, "r+");
+  ```
+
+
+## fileio.fchown<sup>7+</sup>
+
+fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
+
+以异步方法基于文件描述符改变文件所有者，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待改变文件的文件描述符。 |
+  | uid | number | 是 | 文件所有者的UID。 |
+  | gid | number | 是 | 文件所有组的GID。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  let stat = fileio.statSync(path);
+  fileio.fchown(fd, stat.uid, stat.gid)
+       .then(function(err) {
+          // 改变文件所有者成功，do something
+       }).catch(function(e){
+  
+  });
+  ```
+
+
+## fileio.fchown<sup>7+</sup>
+
+fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法基于文件描述符改变文件所有者，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fd | number | 是 | 待改变文件的文件描述符。 |
+  | uid | number | 是 | 文件所有者的UID。 |
+  | gid | number | 是 | 文件所有组的GID。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步改变文件所有者之后的回调。 |
+
+- 示例：
+  ```
+  let stat = fileio.statSync(fpath);
+  fileio.fchown(fd, stat.uid, stat.gid, function (err){
+  });
   ```
 
 
@@ -482,9 +1955,117 @@ fchownSync(fd: number, uid: number, gid: number): void
   ```
 
 
+## fileio.lchown<sup>7+</sup>
+
+lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
+
+以异步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是符号链接所指向的实际文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件的绝对路径。 |
+  | uid | number | 是 | 新的UID。 |
+  | gid | number | 是 | 新的GID。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+
+- 示例：
+  ```
+  let stat = fileio.statSync(path);
+  fileio.lchown(path, stat.uid, stat.gid)
+        .then(function(err) {
+           // 改变文件所有者，do something
+        }).catch(function(e){
+  
+   });
+  ```
+
+
+## fileio.lchown<sup>7+</sup>
+
+lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
+
+以异步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是更改符号链接所指向的实际文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件的绝对路径。 |
+  | uid | number | 是 | 新的UID。 |
+  | gid | number | 是 | 新的GID。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步改变文件所有者之后的回调。 |
+
+- 示例：
+  ```
+  let stat = fileio.statSync(path);
+  fileio.lchown(path, stat.uid, stat.gid, function (err){
+  });
+  ```
+
+
+## fileio.lchownSync<sup>7+</sup>
+
+lchownSync(path: string, uid: number, gid: number): void
+
+以同步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是更改符号链接所指向的实际文件。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | 待打开文件的绝对路径。 |
+  | uid | number | 是 | 新的UID。 |
+  | gid | number | 是 | 新的GID。 |
+
+- 示例：
+  ```
+  let stat = fileio.statSync(path);
+  fileio.lchownSync(path, stat.uid, stat.gid);
+  ```
+
+
+## fileio.createWatcher<sup>7+</sup>
+
+createWatcher(filename: string, events: number, callback: AsyncCallback&lt;number&gt;): Watcher
+
+以异步方法监控文件或者目录的变化，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | filename | string | 是 | 待监视文件的绝对路径。 |
+  | events | Number | 是 | -&nbsp;1:&nbsp;监控文件或者目录是否发生重命名。<br/>-&nbsp;2：监控文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
+  | callback | AsyncCallback&lt;number&nbsp;&gt; | 是 | 每监控发生变化一次，调用一次此函数。 |
+
+- 返回值：
+  | 参数名 | 说明 |
+  | -------- | -------- |
+  | [Watcher](#watcher7) | 文件变化监听的实例。 |
+
+- 示例：
+  ```
+  let ob = await fileio.createWatcher(filename, events, function(event){
+  });
+  ```
+
+
+## Readout
+
+仅用于read方法，获取文件的读取结果。
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| bytesRead | number | 是 | 是 | 实际读取长度。 |
+| offset | number | 是 | 是 | 读取数据相对于缓冲区首地址的偏移。 |
+| buffer | ArrayBufer | 是 | 是 | 保存读取数据的缓冲区。 |
+
+
 ## Stat
 
-文件具体信息，在调用Stat的方法前，需要先通过[fileio.statSync](#fileio.statsync)来构建一个Stat实例。
+文件具体信息，在调用Stat的方法前，需要先通过[stat()](#fileiostat)方法（同步或异步）来构建一个Stat实例。
 
 
 ### 属性
@@ -552,7 +2133,7 @@ isDirectory(): boolean
 
 - 示例：
   ```
-  let isDirectory= fileio.statSync(path).isDirectory(); 
+  let isDirectory = fileio.statSync(path).isDirectory(); 
   ```
 
 
@@ -569,7 +2150,7 @@ isFIFO(): boolean
 
 - 示例：
   ```
-  let isFIFO= fileio.statSync(path).isFIFO(); 
+  let isFIFO = fileio.statSync(path).isFIFO(); 
   ```
 
 
@@ -586,7 +2167,7 @@ isFile(): boolean
 
 - 示例：
   ```
-  let isFile= fileio.statSync(fpath).isFile();
+  let isFile = fileio.statSync(fpath).isFile();
   ```
 
 
@@ -624,9 +2205,81 @@ isSymbolicLink(): boolean
   ```
 
 
+## Watcher<sup>7+</sup>
+
+Watcher是文件变化监听的实例，调用Watcher.stop()方法（同步或异步）来停止文件监听。
+
+
+### stop<sup>7+</sup>
+
+stop(): void
+
+以异步方法关闭watcher监听，使用promise形式返回结果。
+
+- 示例：
+  ```
+  fileio.stop();
+  ```
+
+
+### stop<sup>7+</sup>
+
+stop(callback: AsyncCallback): void
+
+以异步方法关闭watcher监听，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 以异步方法关闭watcher监听之后的回调。 |
+
+- 示例：
+  ```
+  fileio.stop(function(err){
+  });
+  ```
+
+
 ## Stream<sup>7+</sup>
 
-文件流，在调用Stream的方法前，需要先通过[fileio.createStreamSync](#fileio.createstreamsync)方法来构建一个Stream实例。
+文件流，在调用Stream的方法前，需要先通过createStream()方法（同步或异步）来构建一个Stream实例。
+
+
+### close<sup>7+</sup>
+
+close(): Promise&lt;void&gt;
+
+异步关闭文件流，使用promise形式返回结果。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 表示异步关闭文件流的结果。 |
+
+- 示例：
+  ```
+  let ss= fileio.createStreamSync(path);
+  await ss.close();
+  ```
+
+
+### close<sup>7+</sup>
+
+close(callback: AsyncCallback&lt;void&gt;): void
+
+异步关闭文件流，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步关闭文件流之后的回调。 |
+
+- 示例：
+  ```
+  let ss= fileio.createStreamSync(path);
+  ss.close(function (err) {
+  });
+  ```
 
 
 ### closeSync<sup>7+</sup>
@@ -639,6 +2292,44 @@ closeSync(): void
   ```
   let ss= fileio.createStreamSync(path);
   ss.closeSync();
+  ```
+
+
+### flush<sup>7+</sup>
+
+flush(): Promise&lt;void&gt;
+
+异步刷新文件流，使用promise形式返回结果。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 表示异步刷新文件流的结果。 |
+
+- 示例：
+  ```
+  let ss= fileio.createStreamSync(path);
+  await ss.flush();
+  ```
+
+
+### flush<sup>7+</sup>
+
+flush(callback: AsyncCallback&lt;void&gt;): void
+
+异步刷新文件流，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步刷新文件流后的回调函数。 |
+
+- 示例：
+  ```
+  let ss= fileio.createStreamSync(path);
+  ss.flush(function (err) {
+      expect(fileio.unlinkSync(fpath)).assertNull();
+  });
   ```
 
 
@@ -655,6 +2346,54 @@ flushSync(): void
   ```
 
 
+### write<sup>7+</sup>
+
+write(buffer: ArrayBuffer | string, options?: Object): Promise&lt;number&gt;
+
+以异步方法将数据写入流文件，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | buffer | ArrayBuffer&nbsp;\|&nbsp;string | 是 | 待写入文件的数据，可来自缓冲区或字符串。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | 实际写入的长度。 |
+
+- 示例：
+  ```
+  let ss= fileio.createStreamSync(fpath, "r+");
+  let num = await ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'});
+  ```
+
+
+### write<sup>7+</sup>
+
+write(buffer:ArrayBuffer | string,options?:Object, callback:AsyncCallback&lt;number&gt;): void
+
+以异步方法将数据写入流文件，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | buffer | ArrayBuffer&nbsp;\|&nbsp;string | 是 | 待写入文件的数据，可来自缓冲区或字符串。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 异步写入完成后执行的回调函数。 |
+
+- 示例：
+  ```
+  let ss= fileio.createStreamSync(fpath, "r+");
+  ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
+      if (!err) {
+         console.log(bytesWritten)
+      }
+  });
+  ```
+
+
 ### writeSync<sup>7+</sup>
 
 writeSync(buffer: ArrayBuffer | string, options?:Object): number
@@ -665,7 +2404,7 @@ writeSync(buffer: ArrayBuffer | string, options?:Object): number
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | buffer | ArrayBuffer&nbsp;\|&nbsp;string | 是 | 待写入文件的数据，可来自缓冲区或字符串。 |
-  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -675,7 +2414,55 @@ writeSync(buffer: ArrayBuffer | string, options?:Object): number
 - 示例：
   ```
   let ss= fileio.createStreamSync(fpath,"r+");
-  ss.writeSync("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'});
+  let num = ss.writeSync("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'});
+  ```
+
+
+### read<sup>7+</sup>
+
+read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
+
+以异步方法从流文件读取数据，使用promise形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | buffer | ArrayBuffer | 是 | 用于读取文件的缓冲区。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Readout](#readout)&gt; | 读取的结果。 |
+
+- 示例：
+  ```
+  let ss = fileio.createStreamSync(fpath, "r+");
+  let readOut = await ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
+  ```
+
+
+### read<sup>7+</sup>
+
+read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
+
+以异步方法从流文件读取数据，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | buffer | ArrayBuffer | 是 | 用于读取文件的缓冲区。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
+  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | 是 | 异步从流文件读取数据之后的回调。 |
+
+- 示例：
+  ```
+  let ss = fileio.createStreamSync(fpath, "r+");
+  ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
+      if (!err) {
+         console.log(readOut)
+      }
+  });
   ```
 
 
@@ -689,7 +2476,7 @@ readSync(buffer: ArrayBuffer, options?: Object): number
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | buffer | ArrayBuffer | 是 | 用于读取文件的缓冲区。 |
-  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number&nbsp;类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number&nbsp;类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number&nbsp;类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -699,13 +2486,53 @@ readSync(buffer: ArrayBuffer, options?: Object): number
 - 示例：
   ```
   let ss = fileio.createStreamSync(fpath, "r+");
-  ss.readSync(new ArrayBuffer(4096),{offset: 1,length: FILE_CONTENT.length,position: 5});
+  let num = ss.readSync(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
   ```
 
 
 ## Dir
 
-管理目录，在调用Dir的方法前，需要先通过[fileio.opendirSync](#fileio.opendirsync)方法来构建一个Dir实例。
+管理目录，在调用Dir的方法前，需要先通过[opendir()](#fileioopendir)方法（同步或异步）来构建一个Dir实例。
+
+
+### read
+
+read(): Promise&lt;Dirent&gt;
+
+异步读取下一个目录项，使用promise形式返回结果。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[Dirent](#dirent)&gt; | 表示异步读取目录项的结果。 |
+
+- 示例：
+  ```
+  let dir = fileio.opendirSync(dpath);
+  let dirent = await dir.read();
+  ```
+
+
+### read
+
+read(callback: AsyncCallback&lt;Dirent&gt;): void
+
+异步读取下一个目录项，使用callback形式返回结果。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[Dirent](#dirent)&gt; | 是 | 异步读取下一个目录项之后的回调。 |
+
+- 示例：
+  ```
+  let dir = fileio.opendirSync(dpath);
+  dir.read(function (err, dirent) {
+      if (!err) {
+          console.log(dirent.name)
+      }
+  });
+  ```
 
 
 ### readSync
@@ -723,7 +2550,6 @@ readSync(): Dirent
   ```
   let dir = fileio.opendirSync(dpath);
   let dirent = dir.readSync();
-  console.log(dirent.name);
   ```
 
 
@@ -742,7 +2568,7 @@ closeSync(): void
 
 ## Dirent
 
-在调用Dirent的方法前，需要先通过[readSync](#readsync)方法来构建一个Dirent实例。
+在调用Dirent的方法前，需要先通过[dir.read()](#read)方法（同步或异步）来构建一个Dirent实例。
 
 
 ### 属性
