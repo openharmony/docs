@@ -972,7 +972,7 @@ Sets the  **RdbPredicates**  to match the specified string.
     </td>
     <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p1682444643518"><a name="p1682444643518"></a><a name="p1682444643518"></a>Yes</p>
     </td>
-    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p4824134683515"><a name="p4824134683515"></a><a name="p4824134683515"></a>Value to match the <strong id="b13232516914"><a name="b13232516914"></a><a name="b13232516914"></a>RdbPredicates</strong>.</p>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p4824134683515"><a name="p4824134683515"></a><a name="p4824134683515"></a>Value to match the <strong id="b13232516914"><a name="b13232516914"></a><a name="b13232516914"></a>RdbPredicates</strong>.<br>Wildcards are supported. The asterisk (*) represents zero, one, or more numbers or characters. The question mark (?) represents a single number or character. </p>
     </td>
     </tr>
     </tbody>
@@ -989,7 +989,7 @@ Sets the  **RdbPredicates**  to match the specified string.
     </thead>
     <tbody><tr id="row2825104633512"><td class="cellrowborder" valign="top" width="30.44%" headers="mcps1.1.3.1.1 "><p id="p982611460351"><a name="p982611460351"></a><a name="p982611460351"></a><a href="#section3101161234310">RdbPredicates</a></p>
     </td>
-    <td class="cellrowborder" valign="top" width="69.56%" headers="mcps1.1.3.1.2 "><p id="p0826164693513"><a name="p0826164693513"></a><a name="p0826164693513"></a><strong id="b139131129225"><a name="b139131129225"></a><a name="b139131129225"></a>RdbPredicates</strong> object that matches the specified field.</p>
+    <td class="cellrowborder" valign="top" width="69.56%" headers="mcps1.1.3.1.2 "><p id="p0826164693513"><a name="p0826164693513"></a><a name="p0826164693513"></a><strong id="b139131129225"><a name="b139131129225"></a><a name="b139131129225"></a>RdbPredicates</strong> object that matches the specified string.</p>
     </td>
     </tr>
     </tbody>
@@ -2639,4 +2639,3 @@ Defines a bucket to store key-value pairs.
 </tr>
 </tbody>
 </table>
-
