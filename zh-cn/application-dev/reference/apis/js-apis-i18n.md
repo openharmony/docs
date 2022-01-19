@@ -527,14 +527,14 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
   ```
 
 
-## i18n.getInstance<sup>8+</sup>
+## IndexUtil<sup>8+</sup>
 
 
-getInstance(locale?: string): IndexUtil
+### getInstance<sup>8+</sup>
 
+getInstance(): IndexUtil
 
 创建并返回IndexUtil对象。
-
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -546,14 +546,10 @@ getInstance(locale?: string): IndexUtil
   | -------- | -------- |
   | [IndexUtil](#indexutil8) | locale对应的IndexUtil对象。 |
 
-
 - 示例：
   ```
-  var indexUtil= i18n.getInstance("zh-CN");
+  var indexUtil= i18n.IndexUtil.getInstance("zh-CN");
   ```
-
-
-## IndexUtil<sup>8+</sup>
 
 
 ### getIndexList<sup>8+</sup>
@@ -1030,4 +1026,128 @@ isBoundary(offset: number): boolean
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.isBoundary(0); // true;
   iterator.isBoundary(5); // false;
+  ```
+
+
+## i18n.is24HourClock
+
+is24HourClock(): boolean
+
+判断系统时间是否为24小时制。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
+
+- 示例：
+  ```
+  var is24HourClock = i18n.is24HourClock();
+  ```
+
+
+## i18n.set24HourClock
+
+set24HourClock(option: boolean): boolean
+
+修改系统时间的24小时制设置。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | option | boolean | 是 | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，表示修改成功；返回false，表示修改失败。 |
+
+- 示例：
+  ```
+  // 将系统时间设置为24小时制
+  var success = I18n.set24HourClock(true);
+  ```
+
+
+## i18n.addPreferredLanguage
+
+addPreferredLanguage(language: string, index?: number): boolean
+
+在系统偏好语言列表中的指定位置添加偏好语言。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | language | string | 是 | 待添加的偏好语言。 |
+  | index | number | 否 | 偏好语言的添加位置。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，表示添加成功；返回false，表示添加失败。 |
+
+- 示例：
+  ```
+  // 将语言zh-CN添加到系统偏好语言列表中
+  var language = 'zh-CN';
+  var index = 0;
+  var success = i18n.addPreferredLanguage(language, index);
+  ```
+
+
+## i18n.removeDisplayLanguage
+
+removeDisplayLanguage(index: number): boolean
+
+删除系统偏好语言列表中指定位置的偏好语言。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | index | number | 是 | 待删除偏好语言在系统偏好语言列表中的位置。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，表示删除成功；返回false，表示删除失败。 |
+
+- 示例：
+  ```
+  // 删除系统偏好语言列表中的第一个偏好语言
+  var index = 0;
+  var success = i18n.removePreferredLanguage(index);
+  ```
+
+
+## i18n.getPreferredLanguageList
+
+getPreferredLanguageList(): Array<string>
+
+获取系统偏好语言列表。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array<string> | 系统偏好语言列表。 |
+
+- 示例：
+  ```
+  var preferredLanguageList = i18n.getPreferredLanguageList();
+  ```
+
+
+## i18n.getFirstPreferredLanguage
+
+getFirstPreferredLanguage(): string
+
+获取与Hap资源最佳匹配的偏好语言。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | Hap资源最佳匹配的偏好语言。 |
+
+- 示例：
+  ```
+  var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
   ```
