@@ -1276,7 +1276,7 @@ function OnReceiveEvent(err, data) {
 
 * 功能说明
 
-  获取指定最大记录数的Usage信息
+  校验应用是否具有指定权限
 
 * checkPermission参数描述
 
@@ -1303,7 +1303,7 @@ bundle.getModuleUsageRecords('com.example.actsbmscheckpermissiontest', 'com.perm
 
 * 功能说明
 
-  获取指定最大记录数的Usage信息
+  校验应用是否具有指定权限
 
 * checkPermission参数描述
 
