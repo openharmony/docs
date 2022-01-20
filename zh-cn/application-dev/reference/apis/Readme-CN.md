@@ -15,7 +15,7 @@
     - [国际化-I18n](js-apis-i18n.md)
 - 媒体
     - [音频管理](js-apis-audio.md)
-    - [音频播放和录制](js-apis-media.md)
+    - [媒体服务](js-apis-media.md)
 - 安全
     - [用户认证](js-apis-useriam-userauth.md)
 - 数据管理
