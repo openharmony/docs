@@ -145,7 +145,7 @@ repo forall -c 'git lfs pull'
 | [I4DMFV](https://gitee.com/openharmony/ark_js_runtime/issues/I4DMFV) | 修复utf16到utf8的转换 |
 | [I4HGVM](https://gitee.com/openharmony/communication_dsoftbus/issues/I4HGVM) | 增加标准系统对mbedtls的依赖 |
 | [I4DLV2](https://gitee.com/openharmony/drivers_framework/issues/I4DLV2) | 修复HidInfo\*类型导致非法内存访问错误的问题 |
-| [I4CIJJ](https://gitee.com/openharmony/third_party_flutter/issues/I4CIJJ) | ACE支持GPU渲染 |
+| [I4CIJJ](https://gitee.com/openharmony/third_party_flutter/issues/I4CIJJ) | ArkUI支持GPU渲染 |
 | [I4G31Z](https://gitee.com/openharmony/third_party_freetype/issues/I4G31Z) | 字体引擎版本从2.10.1升级到2.10.4 |
 | [I4H06M](https://gitee.com/openharmony/third_party_harfbuzz/issues/I4H06M) | OpenType&nbsp;文本整形引擎版本从2.6.1升级到2.8.1 |
 | [I4FS7V](https://gitee.com/openharmony/third_party_lwip/issues/I4FS7V) | 使用LWIP_NETCONN_FULLDUPLEX宏来管控conn-&gt;mbox_threads_waiting的初始化 |
