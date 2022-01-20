@@ -59,7 +59,7 @@ vendor
 }
 ```
 
-2. 在`vendor/bestechnic/display_demo`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
+2. 在`device/board/fnlink/v200zr/liteos_m`目录下新增`config.gni`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
 ```
 # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
@@ -896,7 +896,7 @@ ethernetif_init(struct netif *netif)
 | SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口 |
 | SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口 |
 | APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口   |
-| SYS_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
+| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
 
 ![](../public_sys-resources/icon-note.gif) **说明：** 
 	通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
@@ -915,7 +915,7 @@ ethernetif_init(struct netif *netif)
     },
 ```
 
-​	`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有函数显示调用它，所以需要将它强制链接到最终的镜像。如下：
+​	`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显示调用它，所以需要将它强制链接到最终的镜像。如下：
 
 ```
 static void Init(void)
@@ -1238,7 +1238,11 @@ APP_FEATURE_INIT(AppEntry);
     },
 ```
 
-## PCS兼容性认证
+## 兼容性认证
+
+### 产品兼容性规范
+
+产品兼容性规范文档请参考[产品兼容性SIG介绍](https://gitee.com/openharmony-sig/compatibility/tree/master)
 
 ### XTS用例
 
@@ -1287,9 +1291,6 @@ APP_FEATURE_INIT(AppEntry);
 
  - 其中`API Level`填写报告中的`"sdkApiLevel"`字段
  - `OS`版本号填写报告中的`"OS Version"`字段。
-
-步骤4：点击`个人空间`-`我的兼容性测试`看到查看审核状态。
-![审核状态](figure/bes2600_xts_state.png)
 
 ## todo
 
