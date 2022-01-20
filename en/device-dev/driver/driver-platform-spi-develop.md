@@ -1,43 +1,21 @@
 # SPI<a name="EN-US_TOPIC_0000001199690327"></a>
 
 -   [Overview](#section84922229152909)
+-   [Available APIs](#section752964871810)
 -   [How to Develop](#section799667984152909)
-    -   [SpiCntlrMethod](#section715682993110)
-
 -   [Development Example](#section956157227152909)
+
 
 ## Overview<a name="section84922229152909"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the Serial Peripheral Interface \(SPI\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
 
 **Figure  1**  Independent service mode<a name="fig666465313303"></a>  
-![](figures/independent-service-mode-13.png "independent-service-mode-13")
+![](figures/independent-service-mode.png "SPI-independent-service-mode")
 
-## How to Develop<a name="section799667984152909"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The SPI module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **spi\_config.hcs**  file.
-
-3.  Instantiate the SPI controller object.
-    -   Initialize  **SpiCntlr**.
-    -   Instantiate  **SpiCntlrMethod**  in the  **SpiCntlr**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [SpiCntlrMethod](#section715682993110)  and  [Table 1](#table7167123615321).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the SPI control status and response to interrupts.
-
-
-### SpiCntlrMethod<a name="section715682993110"></a>
+SpiCntlrMethod:
 
 ```
 struct SpiCntlrMethod {
@@ -48,7 +26,6 @@ struct SpiCntlrMethod {
   int32_t (*Close)(struct SpiCntlr *cntlr);
 };
 ```
-
 **Table  1**  Callbacks for the members in the SpiCntlrMethod structure
 
 <a name="table7167123615321"></a>
@@ -113,6 +90,29 @@ struct SpiCntlrMethod {
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section799667984152909"></a>
+
+The SPI module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **spi\_config.hcs**  file.
+
+3.  Instantiate the SPI controller object.
+    -   Initialize  **SpiCntlr**.
+    -   Instantiate  **SpiCntlrMethod**  in the  **SpiCntlr**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see [Available APIs](#section752964871810).
+		
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify the basic functions, such as the SPI control status and response to interrupts.
+
 
 ## Development Example<a name="section956157227152909"></a>
 
@@ -222,7 +222,7 @@ The following uses  **spi\_hi35xx.c**  as an example to present the contents tha
         }
         ```
 
-3.  Initialize the  **SpiCntlr**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **SpiCntlrMethod**  \(used to call underlying functions of the driver\) in  **SpiCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the  **SpiCntlr**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **SpiCntlrMethod** \(used to call underlying functions of the driver\) in  **SpiCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
     -   Custom structure reference
 
         To the driver, the custom structure carries parameters and data. The values in the  **spi\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the device number and bus number, are also passed to the object at the core layer.
@@ -325,7 +325,7 @@ The following uses  **spi\_hi35xx.c**  as an example to present the contents tha
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **/drivers/framework/include/utils/hdf\_base.h**  file.\)
 
         **Table  2**  Input parameters and return values of the init function
 
@@ -404,20 +404,20 @@ The following uses  **spi\_hi35xx.c**  as an example to present the contents tha
         pl022->maxSpeedHz = (pl022->clkRate) / ((SCR_MIN + 1) * CPSDVSR_MIN);
         pl022->minSpeedHz = (pl022->clkRate) / ((SCR_MAX + 1) * CPSDVSR_MAX);
         DListHeadInit(&pl022->deviceList);// Initialize the DList linked list.
-        pl022->cntlr = cntlr; // Enable conversion between Pl022 and SpiCntlr.
-        cntlr->priv = pl022; // Enable conversion between Pl022 and SpiCntlr.
-        cntlr->busNum = pl022->busNum; // Assign a value to busNum in SpiCntlr.
-        cntlr->method = &g_method; // Connect to the SpiCntlrMethod instance.
+        pl022->cntlr = cntlr;                // Enable conversion between Pl022 and SpiCntlr.
+        cntlr->priv = pl022;              // Enable conversion between Pl022 and SpiCntlr.
+        cntlr->busNum = pl022->busNum;    // Assign a value to busNum in SpiCntlr.
+        cntlr->method = &g_method;        // Connect to the SpiCntlrMethod instance.
         ...
         ret = Pl022CreatAndInitDevice(pl022);
         if (ret != 0) {
-            Pl022Release(pl022); // Release the Pl022 object if the initialization fails.
+            Pl022Release(pl022);             // Release the Pl022 object if the initialization fails.
             return ret;
         }
         return 0;
         }
         ```
-
+		
     -   Release function
 
         Input parameters:
@@ -441,11 +441,12 @@ The following uses  **spi\_hi35xx.c**  as an example to present the contents tha
                                             // return (device==NULL) ?NULL:(struct SpiCntlr *)device->service;
             ...
             if (cntlr->priv != NULL) {
-                Pl022Remove((struct Pl022 *)cntlr->priv);// A forced conversion from SpiCntlr to Pl022 is involved.
+                Pl022Remove((struct Pl022 *)cntlr->priv);// A forced conversion from SpiCntlr to Pl022 is involved. 
             }
-            SpiCntlrDestroy(cntlr); // Release the Pl022 object.
+            SpiCntlrDestroy(cntlr);                         // Release the Pl022 object.
         }
         ```
+		
 
 
 
