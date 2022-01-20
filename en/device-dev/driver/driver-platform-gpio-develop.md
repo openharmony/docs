@@ -1,11 +1,10 @@
 # GPIO<a name="EN-US_TOPIC_0000001153555758"></a>
 
 -   [Overview](#section1826197354103451)
+-   [Available APIs](#section752964871810)
 -   [How to Develop](#section731175315103451)
-    -   [GpioMethod](#section20369125172319)
-
 -   [Development Example](#section800425816103451)
-    -   [\#section83834353114](#section83834353114)
+
 
 
 ## Overview<a name="section1826197354103451"></a>
@@ -15,50 +14,25 @@ In the Hardware Driver Foundation \(HDF\) framework, the general-purpose input/o
 **Figure  1**  Service-free mode<a name="fig5511033193814"></a>  
 ![](figures/service-free-mode.png "service-free-mode")
 
-## How to Develop<a name="section731175315103451"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The GPIO controller manages all pins by group. The related parameters are described in the attribute file. Instantiating the driver entry and API functions is the core for the vendor driver to access the HDF.
-
-The GPIO module adaptation involves the following steps: 
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **gpio\_config.hcs**  file.
-
-3.  Instantiate the GPIO controller object.
-    -   Initialize  **GpioCntlr**.
-    -   Instantiate  **GpioMethod**  in the  **GpioCntlr**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [GpioMethod](#section20369125172319)  and  [Table 1](#table151341544111).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the GPIO control status and response to interrupts.
-
-
-### GpioMethod<a name="section20369125172319"></a>
+GpioMethod
 
 ```
 struct GpioMethod {
-    int32_t (*request)(struct GpioCntlr *cntlr, uint16_t local);// (Optional)
-   int32_t (*release)(struct GpioCntlr *cntlr, uint16_t local);// (Optional)
+  int32_t (*request)(struct GpioCntlr *cntlr, uint16_t local);// Reserved
+  int32_t (*release)(struct GpioCntlr *cntlr, uint16_t local);// Reserved
   int32_t (*write)(struct GpioCntlr *cntlr, uint16_t local, uint16_t val);
   int32_t (*read)(struct GpioCntlr *cntlr, uint16_t local, uint16_t *val);
   int32_t (*setDir)(struct GpioCntlr *cntlr, uint16_t local, uint16_t dir);
   int32_t (*getDir)(struct GpioCntlr *cntlr, uint16_t local, uint16_t *dir);
-   int32_t (*toIrq)(struct GpioCntlr *cntlr, uint16_t local, uint16_t *irq);// (Optional)
+  int32_t (*toIrq)(struct GpioCntlr *cntlr, uint16_t local, uint16_t *irq);// Reserved
   int32_t (*setIrq)(struct GpioCntlr *cntlr, uint16_t local, uint16_t mode, GpioIrqFunc func, void *arg);
   int32_t (*unsetIrq)(struct GpioCntlr *cntlr, uint16_t local);
   int32_t (*enableIrq)(struct GpioCntlr *cntlr, uint16_t local);
   int32_t (*disableIrq)(struct GpioCntlr *cntlr, uint16_t local);
 }
 ```
-
 **Table  1**  Callbacks for the members in the GpioMethod structure
 
 <a name="table151341544111"></a>
@@ -177,6 +151,32 @@ struct GpioMethod {
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section731175315103451"></a>
+
+The GPIO controller manages all pins by group. The related parameters are described in the attribute file. Instantiating the driver entry and API functions is the core for the vendor driver to access the HDF.
+
+The GPIO module adaptation involves the following steps: 
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **gpio\_config.hcs**  file.
+
+3.  Instantiate the GPIO controller object.
+    -   Initialize  **GpioCntlr**.
+    -   Instantiate  **GpioMethod**  in the  **GpioCntlr**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see [Available APIs](#section752964871810).
+		
+	
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify the basic functions, such as the GPIO control status and response to interrupts.
+
 
 ## Development Example<a name="section800425816103451"></a>
 
@@ -409,24 +409,27 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
 
     Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
 
-    ```
-    static void Pl061GpioRelease(struct HdfDeviceObject *device)
-    {
-       struct GpioCntlr *cntlr = NULL;
-       struct Pl061GpioCntlr *pl061 = NULL;
-       ...
-       cntlr = GpioCntlrFromDevice(device);// (Mandatory) Obtain the control object of the core layer through forced conversion.
-                                           //return (device == NULL) ? NULL : (struct GpioCntlr *)device->service;
-       ...
-       #ifdef PL061_GPIO_USER_SUPPORT
-       GpioRemoveVfs();// Perform operations reverse to GpioAddVfs in Init.
-       #endif
-       GpioCntlrRemove(cntlr); // (Mandatory) Remove the device information and services from the core layer.
-       pl061 = ToPl061GpioCntlr(cntlr);    //return (struct Pl061GpioCntlr *)cntlr;
-       Pl061GpioRleaseCntlrMem(pl061); // (Mandatory) Release the lock and memory.
-       OsalIoUnmap((void *)pl061->regBase);// (Mandatory) Remove the address mapping.
-       pl061->regBase = NULL;
-    }
-    ```
+    
+	```
+        static void Pl061GpioRelease(struct HdfDeviceObject *device)
+        {
+           struct GpioCntlr *cntlr = NULL;
+           struct Pl061GpioCntlr *pl061 = NULL;
+           ...
+           cntlr = GpioCntlrFromDevice(device);// (Mandatory) Obtain the control object of the core layer through forced conversion.
+                                               //return (device == NULL) ? NULL : (struct GpioCntlr *)device->service;
+           ...
+           #ifdef PL061_GPIO_USER_SUPPORT
+           GpioRemoveVfs();// Perform operations reverse to GpioAddVfs in Init.
+           #endif
+           GpioCntlrRemove(cntlr);             // (Mandatory) Remove the device information and services from the core layer.
+           pl061 = ToPl061GpioCntlr(cntlr);    //return (struct Pl061GpioCntlr *)cntlr;
+           Pl061GpioRleaseCntlrMem(pl061);     // (Mandatory) Release the lock and memory.
+           OsalIoUnmap((void *)pl061->regBase);// (Mandatory) Remove the address mapping.
+           pl061->regBase = NULL;
+        }
+        ```
+	
+	
 
 
