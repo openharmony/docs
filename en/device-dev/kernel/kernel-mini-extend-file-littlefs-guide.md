@@ -2,7 +2,7 @@
 
 -   [Sample Code](#section1034515054620)
 
-When porting LittleFS to a new hardware device, you need to declare  **lfs\_config**:
+Before porting LittleFS to a new hardware device, declare  **lfs\_config**:
 
 ```
 const struct lfs_config cfg = {
@@ -23,15 +23,15 @@ const struct lfs_config cfg = {
 };
 ```
 
-**.read**,  **.prog**,  **.erase**, and  **.sync**  correspond to the read, write, erase, and synchronization APIs at the bottom layer of the hardware platform, respectively.
+**.read**,  **.prog**,  **.erase**, and  **.sync**  correspond to the underlying read, write, erase, and synchronization APIs of the hardware platform, respectively.
 
-**read\_size**  indicates the number of bytes read each time. You can set it to a value greater than the physical read unit to improve performance. This value determines the size of the read cache. However, if the value is too large, more memory is consumed.
+**read\_size** indicates the number of bytes read each time. You can set it to a value greater than the physical read unit to improve performance. This value determines the size of the read cache. However, if the value is too large, more memory is consumed.
 
-**prog\_size**  indicates the number of bytes written each time. You can set it to a value greater than the physical write unit to improve performance. This value determines the size of the write cache and must be an integral multiple of  **read\_size**. However, if the value is too large, more memory is consumed.
+**prog\_size** indicates the number of bytes written each time. You can set it to a value greater than the physical write unit to improve performance. This value determines the size of the write cache and must be an integral multiple of **read\_size**. However, if the value is too large, more memory is consumed.
 
-**block\_size**: indicates the number of bytes in each erase block. The value can be greater than that of the physical erase unit. However, a smaller value is recommended because each file occupies at least one block. The value must be an integral multiple of  **prog\_size**.
+**block\_size** indicates the number of bytes in each erase block. The value can be greater than that of the physical erase unit. However, a smaller value is recommended because each file occupies at least one block. The value must be an integral multiple of **prog\_size**.
 
-**block\_count**  indicates the number of blocks that can be erased, which depends on the capacity of the block device and the size of the block to be erased \(**block\_size**\).
+**block\_count** indicates the number of blocks that can be erased, which depends on the capacity of the block device and the size of the block to be erased \(**block\_size**\).
 
 ## Sample Code<a name="section1034515054620"></a>
 
