@@ -111,36 +111,37 @@ import Notification from '@ohos.notification';
 
 - NotificationRequest类型说明
 
-| 名称              | 读写属性 | 类型                              | 必填 | 描述                       |
-| ----------------- | -------- | --------------------------------- | ---- | -------------------------- |
-| content           | 读、写   | NotificationContent               | 是   | 通知内容                   |
-| id                | 读、写   | number                            | 否   | 通知ID                     |
-| slotType          | 读、写   | SlotType                          | 否   | 通道类型                   |
-| isOngoing         | 读、写   | boolean                           | 否   | 是否进行时通知             |
-| isUnremovable     | 读、写   | boolean                           | 否   | 是否可移除                 |
-| deliveryTime      | 读、写   | number                            | 否   | 通知发送时间               |
-| tapDismissed      | 读、写   | boolean                           | 否   | 通知是否自动清除           |
-| autoDeletedTime   | 读、写   | number                            | 否   | 自动清除的时间             |
-| wantAgent         | 读、写   | WantAgent                         | 否   | 点击跳转的WantAgent        |
-| extraInfo         | 读、写   | {[key: string]: any}              | 否   | 扩展参数                   |
-| color             | 读、写   | number                            | 否   | 通知背景颜色               |
-| colorEnabled      | 读、写   | boolean                           | 否   | 通知背景颜色是否使能       |
-| isAlertOnce       | 读、写   | boolean                           | 否   | 设置是否仅有一次此通知警报 |
-| isStopwatch       | 读、写   | boolean                           | 否   | 是否显示已用时间           |
-| isCountDown       | 读、写   | boolean                           | 否   | 是否显示倒计时时间         |
-| isFloatingIcon    | 读、写   | boolean                           | 否   | 是否显示状态栏图标         |
-| label             | 读、写   | string                            | 否   | 通知标签                   |
-| badgeIconStyle    | 读、写   | number                            | 否   | 通知角标类型               |
-| showDeliveryTime  | 读、写   | boolean                           | 否   | 是否显示分发时间           |
-| actionButtons     | 读、写   | Array\<NotificationActionButton\> | 否   | 通知按钮，最多两个按钮     |
-| smallIcon         | 读、写   | PixelMap                          | 否   | 通知小图标                 |
-| largeIcon         | 读、写   | PixelMap                          | 否   | 通知大图标                 |
-| creatorBundleName | 只读     | string                            | 否   | 创建通知的包名             |
-| creatorUid        | 只读     | number                            | 否   | 创建通知的UID              |
-| creatorPid        | 只读     | number                            | 否   | 创建通知的PID              |
-| hashCode          | 只读     | string                            | 否   | 通知唯一标识               |
-| classification    | 读、写   | string                            | 否   | 通知分类                   |
-| groupName         | 读、写   | string                            | 否   | 组通知名称                 |
+| 名称                  | 读写属性 | 类型                                          | 必填 | 描述                       |
+| --------------------- | -------- | --------------------------------------------- | ---- | -------------------------- |
+| content               | 读、写   | NotificationContent                           | 是   | 通知内容                   |
+| id                    | 读、写   | number                                        | 否   | 通知ID                     |
+| slotType              | 读、写   | SlotType                                      | 否   | 通道类型                   |
+| isOngoing             | 读、写   | boolean                                       | 否   | 是否进行时通知             |
+| isUnremovable         | 读、写   | boolean                                       | 否   | 是否可移除                 |
+| deliveryTime          | 读、写   | number                                        | 否   | 通知发送时间               |
+| tapDismissed          | 读、写   | boolean                                       | 否   | 通知是否自动清除           |
+| autoDeletedTime       | 读、写   | number                                        | 否   | 自动清除的时间             |
+| wantAgent             | 读、写   | WantAgent                                     | 否   | 点击跳转的WantAgent        |
+| extraInfo             | 读、写   | {[key: string]: any}                          | 否   | 扩展参数                   |
+| color                 | 读、写   | number                                        | 否   | 通知背景颜色               |
+| colorEnabled          | 读、写   | boolean                                       | 否   | 通知背景颜色是否使能       |
+| isAlertOnce           | 读、写   | boolean                                       | 否   | 设置是否仅有一次此通知警报 |
+| isStopwatch           | 读、写   | boolean                                       | 否   | 是否显示已用时间           |
+| isCountDown           | 读、写   | boolean                                       | 否   | 是否显示倒计时时间         |
+| isFloatingIcon        | 读、写   | boolean                                       | 否   | 是否显示状态栏图标         |
+| label                 | 读、写   | string                                        | 否   | 通知标签                   |
+| badgeIconStyle        | 读、写   | number                                        | 否   | 通知角标类型               |
+| showDeliveryTime      | 读、写   | boolean                                       | 否   | 是否显示分发时间           |
+| actionButtons         | 读、写   | Array\<NotificationActionButton\>             | 否   | 通知按钮，最多两个按钮     |
+| smallIcon             | 读、写   | PixelMap                                      | 否   | 通知小图标                 |
+| largeIcon             | 读、写   | PixelMap                                      | 否   | 通知大图标                 |
+| creatorBundleName     | 只读     | string                                        | 否   | 创建通知的包名             |
+| creatorUid            | 只读     | number                                        | 否   | 创建通知的UID              |
+| creatorPid            | 只读     | number                                        | 否   | 创建通知的PID              |
+| hashCode              | 只读     | string                                        | 否   | 通知唯一标识               |
+| classification        | 读、写   | string                                        | 否   | 通知分类                   |
+| groupName             | 读、写   | string                                        | 否   | 组通知名称                 |
+| template<sup>8+</sup> | 读、写   | [NotificationTemplate](#notificationtemplate) | 否   | 通知模板                   |
 
 NotificationContent类型说明
 
@@ -2239,6 +2240,73 @@ Notification.supportDoNotDisturbMode().then((data) => {
 
 
 
+## Notification.isSupportTemplate
+
+isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
+
+查询模板是否存在。
+
+- 参数
+
+| 参数名       | 类型                     | 必填 | 说明                       |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| templateName | string                   | 是   | 模板名称                   |
+| callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数 |
+
+- 示例
+
+```javascript
+var templateName = 'process';
+function isSupportTemplateCallback(err, data) {
+    console.info("isSupportTemplateCallback");
+}
+
+Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
+```
+
+
+
+## Notification.isSupportTemplate
+
+isSupportTemplate(templateName: string): Promise\<boolean\>
+
+查询模板是否存在。
+
+- 参数
+
+| 参数名       | 类型   | 必填 | 说明     |
+| ------------ | ------ | ---- | -------- |
+| templateName | string | 是   | 模板名称 |
+
+- 返回值
+
+| 类型               | 说明            |
+| ------------------ | --------------- |
+| Promise\<boolean\> | Promise方式返回 |
+
+- 示例
+
+```javascript
+var templateName = 'process';
+
+Notification.isSupportTemplate(templateName).then((data) => {
+    console.info("isSupportTemplateCallback");
+});
+```
+
+
+
+## NotificationTemplate
+
+模板信息
+
+| 名称 | 参数类型               | 可读 | 可写 | 说明     |
+| ---- | ---------------------- | ---- | ---- | -------- |
+| name | string                 | 是   | 是   | 模板名称 |
+| data | {[key:string]: Object} | 是   | 是   | 模板数据 |
+
+
+
 ## WantAgent接口
 
 ## 导入模块
@@ -3199,7 +3267,6 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 
 
 #### 
-
 
 
 
