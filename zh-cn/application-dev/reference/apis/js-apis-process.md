@@ -245,7 +245,7 @@ getThreadPriority(v:number): number
 - 示例：
   ```
   import process from '@ohos.process'
-  var tid = process。getTid();
+  var tid = process.getTid();
   var pres = process.getThreadPriority(tid);
   ```
 
