@@ -27,7 +27,8 @@
     - [设置数据项名称](js-apis-settings.md)
 - 文件管理
     - [文件管理](js-apis-fileio.md)
-    - [Statfs管理](js-apis-statfs.md)
+    - [Statfs](js-apis-statfs.md)
+    - [目录环境](js-apis-environment.md)
 - 账号管理
     - [分布式帐号管理](js-apis-distributed-account.md)
     - [应用帐号管理](js-apis-appAccount.md)
