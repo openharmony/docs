@@ -2,14 +2,6 @@
 
 
 
-## 支持设备
-
-| 手机 | 平板 | 智慧屏 | 智能穿戴 |
-| ---- | ---- | ------ | -------- |
-| 支持 | 支持 | 支持   | 支持     |
-
-
-
 ## 导入模块
 
 ```
@@ -26,7 +18,7 @@ import environment from '@ohos.environment';
 
 getStorageDataDir():Promise&lt;string&gt;
 
-异步方法获取内存存储根目录，以Promise形式返回结果。
+异步方法获取内存存储根目录，以promise形式返回结果。
 
 - 返回值：
 
@@ -68,7 +60,7 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 
 getUserDataDir():Promise&lt;string&gt;
 
-异步方法获取公共文件根目录，以Promise形式返回结果。
+异步方法获取公共文件根目录，以promise形式返回结果。
 
 - 返回值：
 
