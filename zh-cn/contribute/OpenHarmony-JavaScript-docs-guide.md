@@ -168,7 +168,7 @@ JS API 文档模板路径：[https://](https://gitee.com/openharmony/docs/blob/m
 
 概述模板链接：[https](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/concept-overview-template.md)[://gitee.com/openharmony/docs/blob/master/](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/concept-overview-template.md)[zh-cn](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/concept-overview-template.md)[/contribute/template/concept-overview-template.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/concept-overview-template.md)
 
-开发指导模板链接：[https://](https://gitee.com/openharmony/docs/blob/master/zhcn/contribute/template/guide-template.md)[gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/guide-template.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/guide-template.md)
+开发指导模板链接：[https://](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/guide-template.md)[gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/guide-template.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/guide-template.md)
 
 **每一个文档必须包含的内容：**
 
