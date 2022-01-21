@@ -1972,7 +1972,7 @@ getEntry(): Entry;
     ```
 
 
-## Query <a name="section22222222222"></a><sup>8+</sup>##
+## Query <a name="section22222222222"></a><sup>8+</sup> ##
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
 
