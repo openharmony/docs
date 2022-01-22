@@ -21,7 +21,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 </th>
 </tr>
 </thead>
-<tbody><tr id="row16441155818499"><td class="cellrowborder" valign="top" width="48.120000000000005%" headers="mcps1.2.3.1.1 "><p id="p877916438211"><a name="p877916438211"></a><a name="p877916438211"></a>int HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBackBase&gt; listener, std::vector&lt;struct ListenerRule&gt;&amp; rules)</p>
+<tbody><tr id="row16441155818499"><td class="cellrowborder" valign="top" width="48.120000000000005%" headers="mcps1.2.3.1.1 "><p id="p877916438211"><a name="p877916438211"></a><a name="p877916438211"></a>int HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBackBase&gt; listener, std::vector&lt;ListenerRule&gt;&amp; rules)</p>
 </td>
 <td class="cellrowborder" valign="top" width="51.88%" headers="mcps1.2.3.1.2 "><p id="p14727325133216"><a name="p14727325133216"></a><a name="p14727325133216"></a>接口功能：注册订阅HiSysEvent系统事件侦听对象，可设置规则订阅某些事件。</p>
 <p id="p167271525203213"><a name="p167271525203213"></a><a name="p167271525203213"></a>输入参数：</p>
@@ -43,31 +43,26 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 **表 2**  ListenerRule订阅规则对象
 
-<a name="table1144011610564"></a>
-<table><thead align="left"><tr id="row124411716175611"><th class="cellrowborder" valign="top" width="48.11%" id="mcps1.2.3.1.1"><p id="p19441151675610"><a name="p19441151675610"></a><a name="p19441151675610"></a>属性名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="51.89%" id="mcps1.2.3.1.2"><p id="p16441171616563"><a name="p16441171616563"></a><a name="p16441171616563"></a>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row174411216105615"><td class="cellrowborder" valign="top" width="48.11%" headers="mcps1.2.3.1.1 "><p id="p496413536613"><a name="p496413536613"></a><a name="p496413536613"></a><span>uint32_t</span> ruleType</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.89%" headers="mcps1.2.3.1.2 "><p id="p94416160565"><a name="p94416160565"></a><a name="p94416160565"></a>规则类型（匹配范围包括domain以及eventName）：</p>
-<a name="ul1652866141814"></a><a name="ul1652866141814"></a><ul id="ul1652866141814"><li>1：全字符匹配。</li><li>2：前缀匹配。</li><li>3：正则表达式匹配。</li><li>其他值：无效的匹配方式。</li></ul>
-</td>
-</tr>
-<tr id="row64411816125614"><td class="cellrowborder" valign="top" width="48.11%" headers="mcps1.2.3.1.1 "><p id="p1258135313712"><a name="p1258135313712"></a><a name="p1258135313712"></a>std::string domain</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.89%" headers="mcps1.2.3.1.2 "><a name="ul14905926102311"></a><a name="ul14905926102311"></a><ul id="ul14905926102311"><li>domain：事件所属领域，如果传入的是空字符串，则默认事件领域字段匹配成功。</li></ul>
-</td>
-</tr>
-<tr id="row244161615619"><td class="cellrowborder" valign="top" width="48.11%" headers="mcps1.2.3.1.1 "><p id="p227913101887"><a name="p227913101887"></a><a name="p227913101887"></a>std::string eventName</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.89%" headers="mcps1.2.3.1.2 "><a name="ul248063132319"></a><a name="ul248063132319"></a><ul id="ul248063132319"><li>eventName：事件的名称，如果传入的是空字符串，则默认事件名称字段匹配成功。</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
+  | 接口名称                                                                                                                                | 返回值                                   | 描述                                         |
+  | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------- |
+  | ListenerRule(const std::string& tag, RuleType ruleType = RuleType::WHOLE_WORD)                                                          | 事件标签订阅规则对象                     | 创建事件标签订阅规则对象                     |
+  | ListenerRule(const std::string& domain, const std::string& eventName, RuleType ruleType = RuleType::WHOLE_WORD)                         | 事件领域与事件名称订阅规则对象           | 创建事件领域与事件名称订阅规则对象           |
+  | ListenerRule(const std::string& domain, const std::string& eventName, const std::string& tag, RuleType ruleType = RuleType::WHOLE_WORD) | 事件领域、事件名称，事件标签订阅规则对象 | 创建事件领域、事件名称，事件标签订阅规则对象 |
+
+- 参数tag：开发者自定义订阅规则的HisysEvent事件标签。事件标签字符串最大长度16个字符（含），有效字符包含大小写字母及数字。
+
+- 参数domain：开发者自定义订阅规则的HisysEvent事件领域。事件领域字符串最大长度16个字符（含），有效字符包含大写字母、数字及下划线。
+
+- 参数eventName：开发者自定义订阅规则的HisysEvent事件名称。事件名称字符串最大长度32个字符（含），有效字符包含大写字母、数字及下划线。
+
+- 参数ruleType：开发者自定义订阅规则的规则类型。取值为枚举RuleType，具体值如下表。
+
+  | 类型       | 描述          |
+  | ---------- | ------------- |
+  | INVALID    | 无效匹配类型  |
+  | WHOLE_WORD | 全词匹配类型  |
+  | PREFIX     | 前缀匹配类型  |
+  | REGULAR    | 正则匹配类型  |
 
 **表 3**  HiSysEventSubscribeCallBackBase订阅对象
 
@@ -107,11 +102,11 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
     -   注册回调对象：
 
-        HiSysEventManager::AddEventListener\(std::shared\_ptr<HiSysEventSubscribeCallBackBase\> listener, std::vector<struct ListenerRule\>& rules\)。
+        HiSysEventManager::AddEventListener\(std::shared\_ptr<HiSysEventSubscribeCallBackBase\> listener, std::vector<ListenerRule\>& rules\)。
 
 
     ```
-    // 以下是订阅domain=HIVIEWDFX的所有系统事件的应用例子
+    // 以下是订阅系统事件的示例
     #include "hisysevent_manager.h"
     #include <iostream>
     namespace OHOS {
@@ -133,11 +128,13 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
     
     // 调用订阅接口注册开发实现的订阅对象
     auto toolListener = std::make_shared<HiSysEventToolListener>();
-    struct ListenerRule rule;
-    rule.ruleType = 1; // 1: default type
-    rule.domain = "HIVIEWDFX";
-    std::vector<struct ListenerRule> sysRules;
-    sysRules.push_back(rule);
+    ListenerRule tagRule("dfx"); // 事件标签规则订阅，规则类型默认的全词匹配类型
+    ListenerRule regRule("dfx.*", RuleType::REGULAR); // 事件标签规则订阅，规则类型为正则匹配类型
+    ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX); // 事件领域及事件名称规则订阅，规则类型前缀匹配类型
+    std::vector<ListenerRule> sysRules;
+    sysRules.push_back(tagRule);
+    sysRules.push_back(regRule);
+    sysRules.push_back(domainNameRule);
     HiSysEventManager::AddEventListener(toolListener, sysRules);
     ```
 
