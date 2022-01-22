@@ -130,7 +130,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
     auto toolListener = std::make_shared<HiSysEventToolListener>();
     ListenerRule tagRule("dfx"); // 事件标签规则订阅，规则类型默认的全词匹配类型
     ListenerRule regRule("dfx.*", RuleType::REGULAR); // 事件标签规则订阅，规则类型为正则匹配类型
-    ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX); // 事件领域及事件名称规则订阅，规则类型前缀匹配类型
+    ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX); // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
     std::vector<ListenerRule> sysRules;
     sysRules.push_back(tagRule);
     sysRules.push_back(regRule);
