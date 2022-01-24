@@ -19,7 +19,7 @@
 用户IAM子系统分为统一用户认证框架和认证执行器两个部分，其中**统一用户认证框架**部分包含：
 
 - **统一用户认证：** 对外提供统一用户身份认证功能，并且开放生物特征认证相关功能给三方应用调用。
-- **用户身份凭据管理：** 向上提供系统内统一的用户身份凭据信息管理接口，向下通过协同认证模块，调用系统内的认证资源，完成用户身份凭据的生命周期管理和安全存储。
+- **用户身份凭据管理：** 向上提供系统内统一的用户身份凭据信息管理接口，向下通过认证执行器管理模块，调用系统内的认证资源，完成用户身份凭据的生命周期管理和安全存储。
 - **认证执行器管理：** 提供认证资源管理和认证会话管理功能，支持系统内身份认证相关**执行器**<sup>注</sup>统一管理和协同调度，支持不同类型的身份认证执行器灵活对接。
 
 基于统一用户认证框架，系统可以扩展支持多种认证能力。OpenHarmony框架当前已经支持的**认证执行器**包含口令认证和人脸认证，持开发者如果想实现新的认证执行器，只需要在新的部件内实现认证相关功能，并且按照执行器管理模块定义的接口与统一用户认证框架对接即可。
@@ -32,8 +32,8 @@
 ```undefined
 //base/user_iam
 ├── auth_executor_mgr	# 认证执行器管理部件，支持系统内统一的认证资源管理和调度
-├── face_auth			# 人脸认证部件，与协同认证对接，支持人脸录入、删除和人脸认证功能
-├── pin_auth 			# 口令认证部件，与口令认证对接，支持口令录入、删除和口令认证功能
+├── face_auth			# 人脸认证部件，与认证执行器管理对接，支持人脸录入、删除和人脸认证功能
+├── pin_auth 			# 口令认证部件，与认证执行器管理对接，支持口令录入、删除和口令认证功能
 ├── user_auth			# 统一用户认证部件，提供统一用户身份认证功能
 └── user_idm 			# 用户身份凭据管理部件，提供系统内统一的用户身份凭据信息管理功能
 
@@ -41,24 +41,24 @@
 
 ## 约束
 
-1. 用户身份凭据信息管理是系统内的关键操作，只支持系统基础应用调用。
-2. 用户身份认证执行器内真正完成用户身份认证凭据信息的处理，只支持系统服务实现对应能力。
+1. 用户身份凭据信息管理类操作，是系统内的关键操作，相关接口只支持系统基础应用调用。
+2. 用户身份认证执行器内真正完成用户身份认证凭据信息的处理，因此只支持系统服务实现执行器的功能，与认证执行器管理模块对接。
 
 ## 说明
 
 ### 使用说明
 
-1. 用户IAM子系统基础框架必须配合一个认证执行器才可以使用。
+1. 统一用户认证框架必须配合一个认证执行器才可以使用。
 2. 系统内默认存在的第一个认证执行器应该是口令认证。
 
 ## 相关仓
 
-[useriam_auth_executor_mgr](https://gitee.com/openharmony-sig/useriam_coauth)
+[useriam_auth_executor_mgr](https://gitee.com/openharmony/useriam_auth_executor_mgr)
 
-[useriam_user_idm](https://gitee.com/openharmony-sig/useriam_useridm)
+[useriam_user_idm](https://gitee.com/openharmony/useriam_user_idm)
 
-[useriam_user_auth](https://gitee.com/openharmony-sig/useriam_userauth)
+[useriam_user_auth](https://gitee.com/openharmony/useriam_user_auth)
 
-[useriam_pin_auth](https://gitee.com/openharmony-sig/useriam_pinauth)
+[useriam_pin_auth](https://gitee.com/openharmony/useriam_pin_auth)
 
 [useriam_faceauth](https://gitee.com/openharmony/useriam_faceauth)
