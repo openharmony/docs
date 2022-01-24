@@ -108,7 +108,7 @@ DAHelper.openFile(
 
 - 接口说明
 
-  注册观察者以观察给定uri指定的数据(callback形式)
+  注册观察者以观察给定uri指定的数据callback通知
 
 - 参数描述
 
@@ -143,7 +143,7 @@ helper.on(
 
 - 接口说明
 
-  注册观察者以观察给定uri指定的数据(callback形式)
+  注消观察者以停止观察给定uri指定的数据callback通知
 
 - 参数描述
 
@@ -182,7 +182,7 @@ helper.off(
 
 - 接口说明
 
-  获取给定URI指定的日期的MIME类型(callback形式)
+  获取给定URI指定数据的MIME类型(callback形式)
 
 - 参数描述
 
@@ -213,7 +213,7 @@ DAHelper.getType(
 
 - 接口说明
 
-  获取给定URI指定的日期的MIME类型(Promise形式)
+  获取给定URI指定数据的MIME类型(Promise形式)
 
 - 参数描述
 
