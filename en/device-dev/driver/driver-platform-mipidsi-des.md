@@ -4,7 +4,7 @@
 -   [Available APIs](#section12720125432316)
 -   [Usage Guidelines](#section037231715335)
     -   [How to Use](#section49299119344)
-    -   [Obtains a MIPI DSI device handle.](#section5126155683811)
+    -   [Obtaining a MIPI DSI Device Handle](#section5126155683811)
     -   [Setting MIPI DSI Configuration Parameters](#section201164274344)
     -   [Sending/Receiving the Pointer to a Command](#section199401342173415)
     -   [Releasing the MIPI DSI Device Handle](#section161011610357)
@@ -96,9 +96,9 @@
 [Figure 2](#fig129103491241)  shows the process of using a MIPI DSI device.
 
 **Figure  2**  Process of using a MIPI DSI device<a name="fig129103491241"></a>  
-![](figures/process-of-using-a-mipi-dsi-device.png "process-of-using-a-mipi-dsi-device")
+![](figures/process-of-using-a-mipi-dsi-device.png)
 
-### Obtains a MIPI DSI device handle.<a name="section5126155683811"></a>
+### Obtaining a MIPI DSI Device Handle<a name="section5126155683811"></a>
 
 Before performing MIPI DSI communication, obtain a MIPI DSI device handle by calling  **MipiDsiOpen**. This function returns a MIPI DSI device handle with a specified channel ID.
 
@@ -213,7 +213,7 @@ cfg.timingInfo.vsaLines = 76;
 cfg.timingInfo.vfpLines = 120;
 cfg.timingInfo.xResPixels = 1342;
 /* Set MIPI DSI configuration parameters. */
-ret = MipiDsiSetCfg(g_handle, &cfg);
+ret = MipiDsiSetCfg(mipiDsiHandle, &cfg);
 if (ret != 0) {
     HDF_LOGE("%s: SetMipiCfg fail! ret=%d\n", __func__, ret);
     return -1;
@@ -265,7 +265,7 @@ int32\_t MipiDsiGetCfg\(DevHandle handle, struct MipiCfg \*cfg\);
 int32_t ret;
 struct MipiCfg cfg;
 memset(&cfg, 0, sizeof(struct MipiCfg));
-ret = MipiDsiGetCfg(g_handle, &cfg);
+ret = MipiDsiGetCfg(mipiDsiHandle, &cfg);
 if (ret != HDF_SUCCESS) {
     HDF_LOGE("%s: GetMipiCfg fail!\n", __func__);
     return HDF_FAILURE;
@@ -409,9 +409,9 @@ if (cmdRead->payload == NULL) {
     return HDF_FAILURE;
 }
 *(cmdRead->payload) = DDIC_REG_STATUS;
-MipiDsiSetLpMode(g_handle);
-ret = MipiDsiRx(g_handle, cmdRead, sizeof(readVal), &readVal);
-MipiDsiSetHsMode(g_handle);
+MipiDsiSetLpMode(mipiDsiHandle);
+ret = MipiDsiRx(mipiDsiHandle, cmdRead, sizeof(readVal), &readVal);
+MipiDsiSetHsMode(mipiDsiHandle);
 if (ret != HDF_SUCCESS) {
     HDF_LOGE("%s: MipiDsiRx fail! ret=%d\n", __func__, ret);
     HdfFree(cmdRead->payload);
@@ -463,13 +463,13 @@ void PalMipiDsiTestSample(void)
 {
     uint8_t chnId;
     int32_t ret;  
-    DevHandle handle = NULL;
+    DevHandle mipiDsiHandle = NULL;
     
     /* Device channel ID */
     chnId = 0; 
     /* Obtain the MIPI DSI device handle based on a specified channel ID. */
-    handle = MipiDsiOpen(chnId);
-    if (handle == NULL) {
+    mipiDsiHandle = MipiDsiOpen(chnId);
+    if (mipiDsiHandle == NULL) {
         HDF_LOGE("MipiDsiOpen: failed!\n");
         return;
     }
@@ -490,7 +490,7 @@ void PalMipiDsiTestSample(void)
     cfg.timingInfo.vfpLines = 120;
     cfg.timingInfo.xResPixels = 1342;
     /* Set MIPI DSI configuration parameters. */
-    ret = MipiDsiSetCfg(g_handle, &cfg);
+    ret = MipiDsiSetCfg(mipiDsiHandle, &cfg);
     if (ret != 0) {
         HDF_LOGE("%s: SetMipiCfg fail! ret=%d\n", __func__, ret);
         return;
@@ -533,9 +533,9 @@ void PalMipiDsiTestSample(void)
         return;
     }
     *(cmdRead->payload) = DDIC_REG_STATUS;
-    MipiDsiSetLpMode(g_handle);
-    ret = MipiDsiRx(g_handle, cmdRead, sizeof(readVal), &readVal);
-    MipiDsiSetHsMode(g_handle);
+    MipiDsiSetLpMode(mipiDsiHandle);
+    ret = MipiDsiRx(mipiDsiHandle, cmdRead, sizeof(readVal), &readVal);
+    MipiDsiSetHsMode(mipiDsiHandle);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: MipiDsiRx fail! ret=%d\n", __func__, ret);
         HdfFree(cmdRead->payload);
