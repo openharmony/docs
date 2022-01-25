@@ -1,6 +1,6 @@
 # Row<a name="ZH-CN_TOPIC_0000001237355047"></a>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![](../../public_sys-resources/icon-note.gif) **说明：**
 >该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 沿水平方向布局容器。
@@ -68,6 +68,16 @@ Row\(value:\{space?: Length\}\)
 </td>
 </tr>
 </tbody>
+<tbody><tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>justifyContent</p>
+</td>
+<td class="cellrowborder" valign="top" width="19%" headers="mcps1.1.5.1.2 "><p><a href="#li1540916112452">FlexAlign</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p>Start</p>
+</td>
+<td class="cellrowborder" valign="top" width="59%" headers="mcps1.1.5.1.4 "><p>设置子组件在主轴方向上的对齐格式。</p>
+</td>
+</tr>
+</tbody>
 </table>
 
 -   VerticalAlign枚举说明
@@ -107,26 +117,38 @@ struct RowExample {
   build() {
     Column({ space: 5 }) {
       Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Row({ space: 20 }) {
-        Row().width(150).height(50).backgroundColor(0xAFEEEE)
-        Row().width(150).height(50).backgroundColor(0x00FFFF)
-      }.width(321).height(52).border({ width: 1 })
+        Row({ space: 5 }) {
+          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+          Row().width('30%').height(50).backgroundColor(0x00FFFF)
+        }.width('90%').height(107).border({ width: 1 })
 
-      Text('alignItems(Bottom)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Row() {
-        Row().width('50%').height(50).backgroundColor(0xAFEEEE)
-        Row().width('50%').height(50).backgroundColor(0x00FFFF)
-      }.alignItems(VerticalAlign.Bottom).width('90%').height(100).border({ width: 1 })
+        Text('alignItems(Top)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Row() {
+          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+          Row().width('30%').height(50).backgroundColor(0x00FFFF)
+        }.alignItems(VerticalAlign.Top).height('15%').border({ width: 1 })
 
-      Text('alignItems(Top)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Row() {
-        Row().width('50%').height(50).backgroundColor(0xAFEEEE)
-        Row().width('50%').height(50).backgroundColor(0x00FFFF)
-      }.alignItems(VerticalAlign.Top).width('90%').height(100).border({ width: 1 })
+        Text('alignItems(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Row() {
+          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+          Row().width('30%').height(50).backgroundColor(0x00FFFF)
+        }.alignItems(VerticalAlign.Center).height('15%').border({ width: 1 })
+
+        Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Row() {
+          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+          Row().width('30%').height(50).backgroundColor(0x00FFFF)
+        }.width('90%').border({ width: 1 }).justifyContent(FlexAlign.End)
+
+        Text('justifyContent(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Row() {
+          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+          Row().width('30%').height(50).backgroundColor(0x00FFFF)
+        }.width('90%').border({ width: 1 }).justifyContent(FlexAlign.Center)
     }.width('100%')
   }
 }
 ```
 
-![](figures/row.png)
+![](figures/Row.png)
 

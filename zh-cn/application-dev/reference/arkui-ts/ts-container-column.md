@@ -1,6 +1,6 @@
 # Column<a name="ZH-CN_TOPIC_0000001192915096"></a>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![](../../public_sys-resources/icon-note.gif) **说明：**
 >该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 沿垂直方向布局的容器。
@@ -46,6 +46,7 @@ Column\(value:\{space?: Length\}\)
     </table>
 
 
+
 ## 属性<a name="section358284262918"></a>
 
 <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="13%" id="mcps1.1.5.1.1"><p>名称</p>
@@ -65,6 +66,16 @@ Column\(value:\{space?: Length\}\)
 <td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p>Center</p>
 </td>
 <td class="cellrowborder" valign="top" width="59%" headers="mcps1.1.5.1.4 "><p>设置子组件在水平方向上的对齐格式。</p>
+</td>
+</tr>
+</tbody>
+<tbody><tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>justifyContent</p>
+</td>
+<td class="cellrowborder" valign="top" width="19%" headers="mcps1.1.5.1.2 "><p><a href="#li1540916112452">FlexAlign</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p>Start</p>
+</td>
+<td class="cellrowborder" valign="top" width="59%" headers="mcps1.1.5.1.4 "><p>设置子组件在主轴方向上的对齐格式。</p>
 </td>
 </tr>
 </tbody>
@@ -104,28 +115,39 @@ Column\(value:\{space?: Length\}\)
 @Component
 struct ColumnExample {
   build() {
-    Column({ space: 5 }) {
-      Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Column({ space: 5 }) {
-        Column().width('100%').height(50).backgroundColor(0xAFEEEE)
-        Column().width('100%').height(50).backgroundColor(0x00FFFF)
-      }.width('90%').height(107).border({ width: 1 })
+    Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Column({ space: 5 }) {
+          Column().width('100%').height(30).backgroundColor(0xAFEEEE)
+          Column().width('100%').height(30).backgroundColor(0x00FFFF)
+        }.width('90%').height(100).border({ width: 1 })
 
-      Text('alignItems(Start)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Column() {
-        Column().width('50%').height(50).backgroundColor(0xAFEEEE)
-        Column().width('50%').height(50).backgroundColor(0x00FFFF)
-      }.alignItems(HorizontalAlign.Start).width('90%').border({ width: 1 })
+        Text('alignItems(Start)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Column() {
+          Column().width('50%').height(30).backgroundColor(0xAFEEEE)
+          Column().width('50%').height(30).backgroundColor(0x00FFFF)
+        }.alignItems(HorizontalAlign.Start).width('90%').border({ width: 1 })
 
-      Text('alignItems(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Column() {
-        Column().width('50%').height(50).backgroundColor(0xAFEEEE)
-        Column().width('50%').height(50).backgroundColor(0x00FFFF)
-      }.alignItems(HorizontalAlign.End).width('90%').border({ width: 1 })
+        Text('alignItems(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Column() {
+          Column().width('50%').height(30).backgroundColor(0xAFEEEE)
+          Column().width('50%').height(30).backgroundColor(0x00FFFF)
+        }.alignItems(HorizontalAlign.End).width('90%').border({ width: 1 })
+
+        Text('justifyContent(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Column() {
+          Column().width('30%').height(30).backgroundColor(0xAFEEEE)
+          Column().width('30%').height(30).backgroundColor(0x00FFFF)
+        }.height('15%').border({ width: 1 }).justifyContent(FlexAlign.Center)
+
+        Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Column() {
+          Column().width('30%').height(30).backgroundColor(0xAFEEEE)
+          Column().width('30%').height(30).backgroundColor(0x00FFFF)
+        }.height('15%').border({ width: 1 }).justifyContent(FlexAlign.End)
     }.width('100%').padding({ top: 5 })
   }
 }
 ```
 
-![](figures/column.gif)
+![](figures/Column.png)
 
