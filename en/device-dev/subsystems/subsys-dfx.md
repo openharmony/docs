@@ -2,7 +2,7 @@
 
 -   [DFX Overview](subsys-dfx-overview.md)
 -   [HiLog Development](subsys-dfx-hilog-rich.md)
--   [Development Guidelines on HiLog\_Lite](subsys-dfx-hilog-lite.md)
+-   [HiLog_Lite Development](subsys-dfx-hilog-lite.md)
 -   [HiTrace Development](subsys-dfx-hitrace-development.md)
 -   [HiCollie Development](subsys-dfx-hicollie-development.md)
 -   [HiSysEvent Development](subsys-dfx-hisysevent.md)
