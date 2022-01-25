@@ -96,7 +96,7 @@
 [Figure 2](#fig129103491241)  shows the process of using a MIPI DSI device.
 
 **Figure  2**  Process of using a MIPI DSI device<a name="fig129103491241"></a>  
-![](figures/process-of-using-a-mipi-dsi-device.png)
+![](figures/MIPI-DSI_flowchart.png)
 
 ### Obtaining a MIPI DSI Device Handle<a name="section5126155683811"></a>
 
