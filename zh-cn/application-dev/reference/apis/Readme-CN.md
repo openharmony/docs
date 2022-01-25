@@ -6,9 +6,11 @@
     -   [DataAbilityHelper模块](js-apis-dataAbilityHelper.md)
     -   [DataUriUtils模块](js-apis-DataUriUtils.md)
     -   [Bundle模块](js-apis-Bundle.md)
+    -   [Context模块](js-apis-Context.md)
+- 事件与通知
     -   [CommonEvent模块](js-apis-commonEvent.md)
     -   [Notification模块](js-apis-notification.md)
-    -   [Context模块](js-apis-Context.md)
+    -   [后台代理提醒](js-apis-reminderAgent.md)
 - 资源管理
     - [资源管理](js-apis-resource-manager.md)
     - [国际化-Intl](js-apis-intl.md)
