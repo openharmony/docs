@@ -1,4 +1,4 @@
-# DFX<a name="EN-US_TOPIC_0000001075771948"></a>
+# DFX<a name="EN-US_TOPIC_0000001185974398"></a>
 
 -   [Basic Concepts](#section5635178134811)
 
@@ -6,9 +6,11 @@
 
 The DFX subsystem provides the following functions:
 
--   HiLog: Implements the logging function. It is applicable to Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\) as well as Standard-System Devices \(reference memory ≥ 128 MB\).
+-   HiLog: implements the logging function. It is applicable to Mini-System Devices \(reference memory ≥ 128 KiB\), Small-System Devices \(reference memory ≥ 1 MiB\), and Standard-System Devices \(reference memory ≥ 128 MB\).
 
--   HiSysEvent: Implements system event logging. It is applicable to Standard-System Devices \(reference memory ≥ 128 MB\).
+-   HiTrace: implements distributed call chain tracing. It is applicable to Standard-System Devices \(reference memory ≥ 128 MB\).
+-   HiCollie: implements thread suspension detection. It is applicable to Standard-System Devices \(reference memory ≥ 128 MB\).
+-   HiSysEvent: implements system event logging. It is applicable to Standard-System Devices \(reference memory ≥ 128 MB\).
 
 ## Basic Concepts<a name="section5635178134811"></a>
 

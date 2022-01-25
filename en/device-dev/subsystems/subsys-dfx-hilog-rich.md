@@ -1,4 +1,4 @@
-# Development Guidelines on HiLog <a name="EN-US_TOPIC_0000001081129329"></a>
+# HiLog Development<a name="EN-US_TOPIC_0000001185655870"></a>
 
 -   [Overview](#section8154107175019)
 -   [Available APIs](#section6748124155012)
@@ -18,61 +18,68 @@ This development guide is applicable to Standard-System Devices \(reference memo
 **Table  1**  Description of C++ and C APIs
 
 <a name="table94501354193619"></a>
-<table><thead align="left"><tr id="row954285483614"><th class="cellrowborder" colspan="2" valign="top" id="mcps1.2.4.1.1"><p id="p16542254203611"><a name="p16542254203611"></a><a name="p16542254203611"></a><strong id="b17542185414366"><a name="b17542185414366"></a><a name="b17542185414366"></a>C++</strong></p>
+<table><thead align="left"><tr id="row954285483614"><th class="cellrowborder" valign="top" width="18.258174182581744%" id="mcps1.2.4.1.1"><p id="p16542254203611"><a name="p16542254203611"></a><a name="p16542254203611"></a><strong id="b17542185414366"><a name="b17542185414366"></a><a name="b17542185414366"></a>C++</strong></p>
 </th>
-<th class="cellrowborder" valign="top" id="mcps1.2.4.1.2"><p id="p185431554163619"><a name="p185431554163619"></a><a name="p185431554163619"></a><strong id="b175431054123617"><a name="b175431054123617"></a><a name="b175431054123617"></a>C</strong></p>
+<th class="cellrowborder" valign="top" width="43.39566043395661%" id="mcps1.2.4.1.2">&nbsp;&nbsp;</th>
+<th class="cellrowborder" valign="top" width="38.34616538346165%" id="mcps1.2.4.1.3"><p id="p185431554163619"><a name="p185431554163619"></a><a name="p185431554163619"></a><strong id="b175431054123617"><a name="b175431054123617"></a><a name="b175431054123617"></a>C</strong></p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row954305418361"><td class="cellrowborder" valign="top" width="18.388161183881614%" headers="mcps1.2.4.1.1 "><p id="p3543754183618"><a name="p3543754183618"></a><a name="p3543754183618"></a><strong id="b2050619101839"><a name="b2050619101839"></a><a name="b2050619101839"></a>Class</strong></p>
+<tbody><tr id="row954305418361"><td class="cellrowborder" valign="top" width="18.258174182581744%" headers="mcps1.2.4.1.1 "><p id="p3543754183618"><a name="p3543754183618"></a><a name="p3543754183618"></a><strong id="b2050619101839"><a name="b2050619101839"></a><a name="b2050619101839"></a>Class</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="43.53564643535647%" headers="mcps1.2.4.1.1 "><p id="p10544105453610"><a name="p10544105453610"></a><a name="p10544105453610"></a><strong id="b185619133317"><a name="b185619133317"></a><a name="b185619133317"></a>API</strong></p>
+<td class="cellrowborder" valign="top" width="43.39566043395661%" headers="mcps1.2.4.1.2 "><p id="p10544105453610"><a name="p10544105453610"></a><a name="p10544105453610"></a><strong id="b185619133317"><a name="b185619133317"></a><a name="b185619133317"></a>API</strong></p>
 </td>
-<td class="cellrowborder" valign="top" width="38.076192380761924%" headers="mcps1.2.4.1.2 "><p id="p17969916192614"><a name="p17969916192614"></a><a name="p17969916192614"></a><strong id="b1316016214312"><a name="b1316016214312"></a><a name="b1316016214312"></a>API/Macro</strong></p>
+<td class="cellrowborder" valign="top" width="38.34616538346165%" headers="mcps1.2.4.1.3 "><p id="p17969916192614"><a name="p17969916192614"></a><a name="p17969916192614"></a><strong id="b1316016214312"><a name="b1316016214312"></a><a name="b1316016214312"></a>API/Macro</strong></p>
 </td>
 </tr>
-<tr id="row8544115410361"><td class="cellrowborder" rowspan="7" valign="top" width="18.388161183881614%" headers="mcps1.2.4.1.1 "><p id="p16544154183615"><a name="p16544154183615"></a><a name="p16544154183615"></a>HiLog</p>
+<tr id="row8544115410361"><td class="cellrowborder" rowspan="7" valign="top" width="18.258174182581744%" headers="mcps1.2.4.1.1 "><p id="p16544154183615"><a name="p16544154183615"></a><a name="p16544154183615"></a>HiLog</p>
+<p id="p956013011212"><a name="p956013011212"></a><a name="p956013011212"></a></p>
+<p id="p1356013309127"><a name="p1356013309127"></a><a name="p1356013309127"></a></p>
+<p id="p756011303129"><a name="p756011303129"></a><a name="p756011303129"></a></p>
+<p id="p135601330191211"><a name="p135601330191211"></a><a name="p135601330191211"></a></p>
+<p id="p756183091215"><a name="p756183091215"></a><a name="p756183091215"></a></p>
+<p id="p1956115302128"><a name="p1956115302128"></a><a name="p1956115302128"></a></p>
 </td>
-<td class="cellrowborder" valign="top" width="43.53564643535647%" headers="mcps1.2.4.1.1 "><p id="p1326662513016"><a name="p1326662513016"></a><a name="p1326662513016"></a>int Debug(const HiLogLabel &amp;label, const char *fmt, ...)</p>
+<td class="cellrowborder" valign="top" width="43.39566043395661%" headers="mcps1.2.4.1.2 "><p id="p1326662513016"><a name="p1326662513016"></a><a name="p1326662513016"></a>int Debug(const HiLogLabel &amp;label, const char *fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" width="38.076192380761924%" headers="mcps1.2.4.1.2 "><p id="p18697644105619"><a name="p18697644105619"></a><a name="p18697644105619"></a>HILOG_DEBUG(type, ...)</p>
+<td class="cellrowborder" valign="top" width="38.34616538346165%" headers="mcps1.2.4.1.3 "><p id="p18697644105619"><a name="p18697644105619"></a><a name="p18697644105619"></a>HILOG_DEBUG(type, ...)</p>
 </td>
 </tr>
 <tr id="row754495418366"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p86951544155610"><a name="p86951544155610"></a><a name="p86951544155610"></a>int Info(const HiLogLabel &amp;label, const char *fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p96931344145615"><a name="p96931344145615"></a><a name="p96931344145615"></a>HILOG_INFO(type, ...)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p96931344145615"><a name="p96931344145615"></a><a name="p96931344145615"></a>HILOG_INFO(type, ...)</p>
 </td>
 </tr>
 <tr id="row95441954113614"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1769224485619"><a name="p1769224485619"></a><a name="p1769224485619"></a>int Warn(const HiLogLabel &amp;label, const char *fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1969194465613"><a name="p1969194465613"></a><a name="p1969194465613"></a>HILOG_WARN(type, ...)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1969194465613"><a name="p1969194465613"></a><a name="p1969194465613"></a>HILOG_WARN(type, ...)</p>
 </td>
 </tr>
 <tr id="row45448547369"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p4748102365615"><a name="p4748102365615"></a><a name="p4748102365615"></a>int Error(const HiLogLabel &amp;label, const char *fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p15747142375613"><a name="p15747142375613"></a><a name="p15747142375613"></a>HILOG_ERROR(type, ...)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p15747142375613"><a name="p15747142375613"></a><a name="p15747142375613"></a>HILOG_ERROR(type, ...)</p>
 </td>
 </tr>
 <tr id="row12545125453610"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p5745132318560"><a name="p5745132318560"></a><a name="p5745132318560"></a>int Fatal(const HiLogLabel &amp;label, const char *fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p107441123175615"><a name="p107441123175615"></a><a name="p107441123175615"></a>HILOG_FATAL(type, ...)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p107441123175615"><a name="p107441123175615"></a><a name="p107441123175615"></a>HILOG_FATAL(type, ...)</p>
 </td>
 </tr>
 <tr id="row1454565433611"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1574242345618"><a name="p1574242345618"></a><a name="p1574242345618"></a>NA</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p197416239562"><a name="p197416239562"></a><a name="p197416239562"></a>int HiLogPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, ...)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p197416239562"><a name="p197416239562"></a><a name="p197416239562"></a>int HiLogPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, ...)</p>
 </td>
 </tr>
 <tr id="row165451854193617"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p64411913343"><a name="p64411913343"></a><a name="p64411913343"></a>boolean IsLoggable(unsigned int domain, const char *tag, LogLevel level)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p107388238561"><a name="p107388238561"></a><a name="p107388238561"></a>bool HiLogIsLoggable(unsigned int domain, const char *tag, LogLevel level)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p107388238561"><a name="p107388238561"></a><a name="p107388238561"></a>bool HiLogIsLoggable(unsigned int domain, const char *tag, LogLevel level)</p>
 </td>
 </tr>
-<tr id="row154535415367"><td class="cellrowborder" valign="top" width="18.388161183881614%" headers="mcps1.2.4.1.1 "><p id="p795821952317"><a name="p795821952317"></a><a name="p795821952317"></a>HiLogLabel</p>
+<tr id="row154535415367"><td class="cellrowborder" valign="top" width="18.258174182581744%" headers="mcps1.2.4.1.1 "><p id="p795821952317"><a name="p795821952317"></a><a name="p795821952317"></a>HiLogLabel</p>
 </td>
-<td class="cellrowborder" valign="top" width="43.53564643535647%" headers="mcps1.2.4.1.1 "><p id="p20464133712224"><a name="p20464133712224"></a><a name="p20464133712224"></a>struct HiLogLabel</p>
+<td class="cellrowborder" valign="top" width="43.39566043395661%" headers="mcps1.2.4.1.2 "><p id="p20464133712224"><a name="p20464133712224"></a><a name="p20464133712224"></a>struct HiLogLabel</p>
 </td>
-<td class="cellrowborder" valign="top" width="38.076192380761924%" headers="mcps1.2.4.1.2 "><p id="p1360616314276"><a name="p1360616314276"></a><a name="p1360616314276"></a>LOG_DOMAIN</p>
+<td class="cellrowborder" valign="top" width="38.34616538346165%" headers="mcps1.2.4.1.3 "><p id="p1360616314276"><a name="p1360616314276"></a><a name="p1360616314276"></a>LOG_DOMAIN</p>
 <p id="p4698145992513"><a name="p4698145992513"></a><a name="p4698145992513"></a>LOG_TAG</p>
 </td>
 </tr>
@@ -91,6 +98,11 @@ This development guide is applicable to Standard-System Devices \(reference memo
 </tr>
 </thead>
 <tbody><tr id="row383911183378"><td class="cellrowborder" rowspan="6" valign="top" width="8.27%" headers="mcps1.2.4.1.1 "><p id="p10839318133713"><a name="p10839318133713"></a><a name="p10839318133713"></a>HiLog</p>
+<p id="p58561944151216"><a name="p58561944151216"></a><a name="p58561944151216"></a></p>
+<p id="p5856744201215"><a name="p5856744201215"></a><a name="p5856744201215"></a></p>
+<p id="p1985664413120"><a name="p1985664413120"></a><a name="p1985664413120"></a></p>
+<p id="p138562442123"><a name="p138562442123"></a><a name="p138562442123"></a></p>
+<p id="p485612447125"><a name="p485612447125"></a><a name="p485612447125"></a></p>
 </td>
 <td class="cellrowborder" valign="top" width="31.41%" headers="mcps1.2.4.1.2 "><p id="p12483951497"><a name="p12483951497"></a><a name="p12483951497"></a>int Debug(const HiLogLabel &amp;label, const char *fmt, ...)</p>
 </td>

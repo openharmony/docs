@@ -1,4 +1,4 @@
-# Development Guidelines on HiLog\_Lite<a name="EN-US_TOPIC_0000001089263241"></a>
+# Development Guidelines on HiLog\_Lite<a name="EN-US_TOPIC_0000001185815838"></a>
 
 -   [Overview](#section775017517390)
 -   [Available APIs](#section114412157402)
@@ -6,7 +6,7 @@
 
 ## Overview<a name="section775017517390"></a>
 
-HiLog\_Lite is the HiLog framework for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\). It implements functions such as log printing, log output, and flow control.
+HiLog\_Lite is the HiLog framework for Mini-System Devices \(reference memory ≥ 128 KiB\) and Small-System Devices \(reference memory ≥ 1 MiB\). It implements functions such as log printing, log output, and flow control.
 
 ## Available APIs<a name="section114412157402"></a>
 
