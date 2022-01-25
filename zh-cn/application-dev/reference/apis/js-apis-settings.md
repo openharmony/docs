@@ -28,7 +28,7 @@ getUri(name: string): string
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | name | string | 是 | 数据项的名称。 |
+  | name | string | 是 | 数据项的名称。数据项名称分为以下两种：<br> <ul><li>数据库中已存在的数据项，包括：<br></li> <ul><li>亮度：'settings.screen.brightness' <br> </li>  <li> 时间格式：'settings.time.format' <br> </li></ul> <li>开发者自行添加的数据项。</li></ul>|
 
 - 返回值：
   | 类型 | 说明 |
@@ -38,7 +38,7 @@ getUri(name: string): string
 - 示例：
   ```
    // 获取数据项的URI
-   let urivar = settings.getUri(this.dataName);  
+   let urivar = settings.getUri('settings.screen.brightness');  
   ```
 
 
@@ -52,8 +52,8 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是 | 数据管理辅助类。 |
-  | name | string | 是 | 数据项的名称。 |
-  | defValue | string | 是 | 默认值。 |
+  | name | string | 是 | 数据项的名称。数据项名称分为以下两种：<br> <ul><li>数据库中已存在的数据项，包括：<br></li> <ul><li>亮度：'settings.screen.brightness' <br> </li>  <li> 时间格式：'settings.time.format' <br> </li></ul> <li>开发者自行添加的数据项。</li></ul>|
+  | defValue | string | 是 | 默认值。由开发者设置，当未从数据库中查询到该数据时，则返回该默认值。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -62,17 +62,13 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): 
 
 - 示例：
   ```
-  Button(`register and unregister an observer`)
-      .onClick(()=>{
-          // 获取数据项的URI
-          let urivar = settings.getUri(this.dataName);
-          // 获取DataAbilityHelper对象
-          let helper = featureAbility.acquireDataAbilityHelper(urivar);
-          // 注册观察者，on方法第一个参数写"dataChange"，第二个参数为URI，第三个参数为当该URI指向的数据发生改变时触发的回调函数
-          helper.on("dataChange", urivar, (err) => {
-          console.log('observer reveive notifychange on success data : ' + JSON.stringify(err))
-          this.value = settings.getValue(helper, this.dataName, 'this is default value')
-      })
+  import featureAbility from '@ohos.featureAbility';
+
+  //获取数据项亮度的值（该数据项在数据库中已存在）
+  let brightness = 'settings.screen.brightness';
+  let uri = settings.getUri(brightness);
+  let helper = featureAbility.acquireDataAbilityHelper(uri);
+  let value = settings.getValue(helper, brightness, '10');
   ```
 
 
@@ -81,6 +77,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): 
 setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
 
 设置数据项的值。
+如果数据库中已经存在该数据项，则setValue方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValue方法将向数据库中插入该数据项。
 
 使用此方法需获取ohos.permission.WRITE_SYSTEM_SETTING权限。
 
@@ -88,7 +85,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boo
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是 | 数据管理辅助类。 |
-  | name | string | 是 | 数据项的名称。 |
+  | name | string | 是 | 数据项的名称。数据项名称分为以下两种：<br> <ul><li>数据库中已存在的数据项，包括：<br></li> <ul><li>亮度：'settings.screen.brightness' <br> </li>  <li> 时间格式：'settings.time.format' <br> </li></ul> <li>开发者自行添加的数据项。</li></ul>|
   | value | string | 是 | 数据项的具体数值。 |
 
 - 返回值：
@@ -98,14 +95,11 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boo
 
 - 示例：
   ```
-  Button(`setValue`)
-      .onClick(()=>{
-          // 获取数据项的URI
-          let urivar = settings.getUri(this.dataName);
-          // 获取DataAbilityHelper对象
-          let helper = featureAbility.acquireDataAbilityHelper(urivar);
-          let valueTest = 'valueTest';
-          // 更新数据库中的值
-          settings.setValue(helper, this.dataName, valueTest)
-      })
+  import featureAbility from '@ohos.featureAbility';
+
+  //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+  let brightness = 'settings.screen.brightness';
+  let uri = settings.getUri(brightness);
+  let helper = featureAbility.acquireDataAbilityHelper(uri);
+  let ret = settings.setValue(helper, brightness, '100');
   ```
