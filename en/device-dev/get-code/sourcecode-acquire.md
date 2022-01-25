@@ -71,7 +71,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
 
 **Obtaining the Source Code for Mini/Small/Standard Systems**
 
->![](public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
 
 -   **Obtaining OpenHarmony master code**
