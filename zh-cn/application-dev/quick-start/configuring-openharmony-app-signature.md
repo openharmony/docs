@@ -54,6 +54,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 使用Open JDK携带的Keytool工具生成证书请求文件。
 
 1. 使用管理员身份运行命令行工具。
+
    ![zh-cn_image_0000001248045243](figures/zh-cn_image_0000001248045243.png)
 
 2. 切换到keytool工具所在路径，实际路径请根据安装目录进行修改。
@@ -87,7 +88,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 
    生成证书请求文件的参数说明如下：
 
-   - **alias**：与[ERROR:Invalid link:zh-cn_topic_0000001159890371.xml#zh-cn_topic_0000001058015911_x5d8d02c834db444d9a38c660ad593a2c,link:#la996f2c8ce594df98eaadeacfafdea10](#la996f2c8ce594df98eaadeacfafdea10)中输入的alias保持一致。
+   - **alias**：与3中输入的alias保持一致。
    - **file**：生成的证书请求文件名称，后缀为.csr。
 
 
