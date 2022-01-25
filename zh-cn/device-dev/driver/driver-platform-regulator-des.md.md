@@ -9,9 +9,9 @@
     -   [使能](#section3.4_REGULATOR_des)
     -   [禁用](#section3.5_REGULATOR_des)
     -   [强制禁用](#section3.6_REGULATOR_des)
-    -   [设置REGULATOR设备电压](#section3.7_REGULATOR_des)
+    -   [设置REGULATOR电压输出电压范围](#section3.7_REGULATOR_des)
     -   [获取REGULATOR设备电压](#section3.8_REGULATOR_des)
-    -   [设置REGULATOR设备电流](#section3.9_REGULATOR_des)
+    -   [设置REGULATOR设备输出电流范围](#section3.9_REGULATOR_des)
     -   [获取REGULATOR设备电流](#section3.10_REGULATOR_des)
     -   [获取REGULATOR设备状态](#section3.11_REGULATOR_des)
 -   [使用实例](#section4_REGULATOR_des)
@@ -22,13 +22,13 @@
 
 - REGULATOR接口定义了操作REGULATOR设备的通用方法集合，包括：
   - REGULATOR设备句柄获取和销毁。
-  - REGULATOR电压、电流的设置。
-  - REGULATOR使能和关闭。
-  - REGULATOR电压、电流和状态的获取
+  - REGULATOR设备电压、电流的设置。
+  - REGULATOR设备使能和关闭。
+  - REGULATOR设备电压、电流和状态的获取
 
 ## 接口说明<a name="section2_REGULATOR_des"></a>
 
-**表1**  REGULATOR设备API接口功能介绍
+**表1**  REGULATOR设备API功能介绍
 
 <a name="table1_REGULATOR_des"></a>
 
@@ -65,22 +65,22 @@
   <td>强制禁用REGULATOR</td>
  </tr>
  <tr height="19" style="height:14.25pt">
-  <td rowspan="2" height="38" class="xl65" style="height:28.5pt">设置/获取REGULATOR电压</td>
+  <td rowspan="2" height="38" class="xl65" style="height:28.5pt">设置/获取REGULATOR输出电压</td>
   <td>RegulatorSetVoltage</td>
-  <td>设置REGULATOR电压</td>
+  <td>设置REGULATOR输出电压</td>
  </tr>
  <tr height="19" style="height:14.25pt">
   <td height="19" style="height:14.25pt">RegulatorGetVoltage</td>
-  <td>获取REGULATOR电压</td>
+  <td>获取REGULATOR输出电压</td>
  </tr>
  <tr height="19" style="height:14.25pt">
-  <td rowspan="2" height="38" class="xl65" style="height:28.5pt">设置/获取REGULATOR电流</td>
+  <td rowspan="2" height="38" class="xl65" style="height:28.5pt">设置/获取REGULATOR输出电流</td>
   <td>RegulatorSetCurrent</td>
-  <td>设置REGULATOR电流</td>
+  <td>设置REGULATOR输出电流</td>
  </tr>
  <tr height="19" style="height:14.25pt">
   <td height="19" style="height:14.25pt">RegulatorGetCurrent</td>
-  <td>获取REGULATOR电流</td>
+  <td>获取REGULATOR输出电流</td>
  </tr>
  <tr height="19" style="height:14.25pt">
   <td height="19" class="xl66" style="height:14.25pt">获取REGULATOR状态</td>
@@ -95,7 +95,6 @@
  </tr>
  <!--[endif]-->
 </tbody></table>
-
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >REGULATOR当前仅限内核态使用，不支持在用户态使用。
@@ -115,7 +114,7 @@
 
 ### 获取REGULATOR设备句柄<a name="section3.2_REGULATOR_des"></a>
 
-在操作REGULATOR设备时，首先要调用RegulatorOpen获取REGULATOR设备句柄，该函数会返回指定设备号的REGULATOR设备句柄。
+在操作REGULATOR设备时，首先要调用RegulatorOpen获取REGULATOR设备句柄，该函数会返回指定设备名称的REGULATOR设备句柄。
 
 ```c
 DevHandle RegulatorOpen(const char *name);
@@ -218,7 +217,7 @@ int32_t RegulatorDisable(DevHandle handle);
 ```c
 int32_t ret;
 
-/*禁用REGULATOR设备*/
+/*禁用REGULATOR设备，如果REGULATOR设备状态为常开，或存在REGULATOR设备子节点未禁用，则禁用失败*/
 ret = RegulatorDisable(handle);
 if (ret != 0) {
 	/*错误处理*/
@@ -247,15 +246,15 @@ int32_t RegulatorForceDisable(DevHandle handle);
 ```c
 int32_t ret;
 
-/*强制禁用REGULATOR设备*/
+/*强制禁用REGULATOR设备，无论REGULATOR设备的状态是常开还是子节点已使能，REGULATOR设备都会被禁用*/
 ret = RegulatorForceDisable(handle);
 if (ret != 0) {
 	/*错误处理*/
 }
 ```
-### 设置REGULATOR电压<a name="section3.7_REGULATOR_des"></a>
+### 设置REGULATOR输出电压范围<a name="section3.7_REGULATOR_des"></a>
 
-设置REGULATOR电压。
+设置REGULATOR电压输出电压范围。
 
 ```c
 int32_t RegulatorSetVoltage(DevHandle handle, uint32_t minUv, uint32_t maxUv);
@@ -279,7 +278,7 @@ int32_t ret;
 int32_t minUv = 0;		//最小电压为0Uv
 int32_t maxUv = 20000;  //最大电压为20000Uv
 
-/*设置REGULATOR电压*/
+/*设置REGULATOR电压输出电压范围*/
 ret = RegulatorSetVoltage(handle, minUv, maxUv);
 if (ret != 0) {
 	/*错误处理*/
@@ -317,9 +316,9 @@ if (ret != 0) {
 ```
 
 
-### 设置REGULATOR电流<a name="section3.9_REGULATOR_des"></a>
+### 设置REGULATOR输出电流范围<a name="section3.9_REGULATOR_des"></a>
 
-设置REGULATOR电流。
+设置REGULATOR输出电流范围。
 
 ```c
 int32_t RegulatorSetCurrent(DevHandle handle, uint32_t minUa, uint32_t maxUa);
@@ -340,10 +339,10 @@ int32_t RegulatorSetCurrent(DevHandle handle, uint32_t minUa, uint32_t maxUa);
 
 ```c
 int32_t ret;
-int32_t minUa = 0;		//最小电压为0Ua
-int32_t maxUa = 200;  //最大电压为200Ua
+int32_t minUa = 0;		//最小电流为0Ua
+int32_t maxUa = 200;  //最大电流为200Ua
 
-/*设置REGULATOR电流*/
+/*设置REGULATOR输出电流范围*/
 ret = RegulatorSetCurrent(handle, minUa, maxUa);
 if (ret != 0) {
 	/*错误处理*/
@@ -413,7 +412,7 @@ if (ret != 0) {
 
 ## 使用实例<a name="section4_REGULATOR_des"></a>
 
-REGULATOR设备完整的使用示例如下所示，首先获取REGULATOR设备句柄，然后使能，设置电压、电流，获取电压、电流、状态，禁用，最后销毁REGULATOR设备句柄。
+REGULATOR设备完整的使用示例如下所示，首先获取REGULATOR设备句柄，然后使能，设置电压，获取电压、状态，禁用，最后销毁REGULATOR设备句柄。
 
 ```c
 void RegulatorTestSample(void)
@@ -441,7 +440,7 @@ void RegulatorTestSample(void)
     int32_t minUv = 0;		//最小电压为0Uv
 	int32_t maxUv = 20000;  //最大电压为20000Uv
 
-	/*设置REGULATOR电压*/
+	/*设置REGULATOR输出电压范围*/
 	ret = RegulatorSetVoltage(handle, minUv, maxUv);
 	if (ret != 0) {
 		HDF_LOGE("RegulatorSetVoltage: failed, ret %d\n", ret);
@@ -456,25 +455,6 @@ void RegulatorTestSample(void)
         HDF_LOGE("RegulatorGetVoltage: failed, ret %d\n", ret);
         goto _ERR;
     }
-    
-    int32_t minUa = 0;		//最小电压为0Ua
-    int32_t maxUa = 200;  //最大电压为200Ua
-
-    /*设置REGULATOR电流*/
-    ret = RegulatorSetCurrent(handle, minUa, maxUa);
-    if (ret != 0) {
-        HDF_LOGE("RegulatorSetCurrent: failed, ret %d\n", ret);
-        goto _ERR;
-    }
-    
-    uint32_t regCurrent;
-
-	/*获取REGULATOR电流*/
-	ret = RegulatorGetCurrent(handle, &regCurrent);
-	if (ret != 0) {
-		HDF_LOGE("RegulatorGetCurrent: failed, ret %d\n", ret);
-        goto _ERR;
-	}
     
     uint32_t status;
 
