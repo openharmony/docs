@@ -318,6 +318,13 @@
 <td class="cellrowborder" valign="top" width="63%" headers="mcps1.2.4.1.3 "><p>接触力信息。</p>
 </td>
 </tr>
+<tr><td class="cellrowborder" valign="top" width="21.060000000000002%" headers="mcps1.2.4.1.1 "><p>identifier<sup>8+</sup></p>
+</td>
+<td class="cellrowborder" valign="top" width="15.939999999999998%" headers="mcps1.2.4.1.2 "><p>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="63%" headers="mcps1.2.4.1.3 "><p>接触点标识信息，表示接触表面与触摸点的唯一标识值，手指在屏幕表面上移动触发的每个事件中该值不变。</p>
+</td>
+</tr>
 </tbody>
 </table>
 
