@@ -13,6 +13,6 @@
 - [IPC与RPC通信](connectivity/ipc-rpc.md)
 - [分布式数据服务](database/Readme-CN.md)
 - [USB服务](usb/Readme-CN.md)
-- [应用事件打点](application-event-logging/hiappevent.md)
+- [应用事件打点](application-event-logging/Readme-CN.md)
 - [开发参考](reference/Readme-CN.md)
 
