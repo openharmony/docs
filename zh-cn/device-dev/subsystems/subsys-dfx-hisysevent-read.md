@@ -55,8 +55,8 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 "><p id="p14727325133218"><a name="p14727325133218"></a><a name="p14727325133218"></a>接口功能：<br>&emsp;&emsp;订阅规则构造函数，创建事件标签订阅规则对象。</p>
 <p id="p167271525203215"><a name="p167271525203215"></a><a name="p167271525203215"></a>输入参数：</p>
 <a name="ul6717142214921"></a><a name="ul6717142214921"></a><ul id="ul6717142214921">
-<li>tag：开发者自定义订阅规则的HisysEvent事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。</li>
-<li>ruleType：开发者自定义订阅规则的规则类型，RuleType枚举类型(参考表3)。</li></ul>
+<li>tag：订阅规则的HisysEvent事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。</li>
+<li>ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。</li></ul>
 </td>
 </tr>
 <tr id="row910319443244"><td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 "><p id="p15104154411250"><a name="p15104154411250"></a><a name="p15104154411250"></a>ListenerRule(const std::string&amp; domain, const std::string&amp; eventName, RuleType ruleType = RuleType::WHOLE_WORD)</p>
@@ -64,9 +64,9 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 "><p id="p15104154411250"><a name="p15104154411250"></a><a name="p15104154411250"></a>接口功能：<br>&emsp;&emsp;订阅规则构造函数，创建事件领域与事件名称订阅规则对象。</p>
 <p id="p7943171095413"><a name="p7943171095413"></a><a name="p7943171095413"></a>输入参数：</p>
 <a name="ul894321075413"></a><a name="ul894321075413"></a><ul id="ul894321075413">
-<li>domain：开发者自定义订阅规则的HisysEvent事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。</li>
-<li>eventName：开发者自定义订阅规则的HisysEvent事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。</li>
-<li>ruleType：开发者自定义订阅规则的规则类型，RuleType枚举类型(参考表3)。</li></ul>
+<li>domain：订阅规则的HisysEvent事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。</li>
+<li>eventName：订阅规则的HisysEvent事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。</li>
+<li>ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。</li></ul>
 </td>
 </tr>
 <tr id="row910319443246"><td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 "><p id="p15104154411252"><a name="p15104154411252"></a><a name="p15104154411252"></a>ListenerRule(const std::string&amp; domain, const std::string& eventName, const std::string&amp; tag, RuleType ruleType = RuleType::WHOLE_WORD)</p>
@@ -74,10 +74,10 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 "><p id="p15104154411252"><a name="p15104154411252"></a><a name="p15104154411252"></a>接口功能：<br>&emsp;&emsp;订阅规则构造函数，创建事件领域、事件名称，事件标签订阅规则对象。</p>
 <p id="p7943171095415"><a name="p7943171095415"></a><a name="p7943171095415"></a>输入参数：</p>
 <a name="ul894321075415"></a><a name="ul894321075415"></a><ul id="ul894321075415">
-<li>tag：开发者自定义订阅规则的HisysEvent事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。</li>
-<li>domain：开发者自定义订阅规则的HisysEvent事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。</li>
-<li>eventName：开发者自定义订阅规则的HisysEvent事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。</li>
-<li>ruleType：开发者自定义订阅规则的规则类型，RuleType枚举类型(参考表3)。</li></ul></ul>
+<li>tag：订阅规则的HisysEvent事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。</li>
+<li>domain：订阅规则的HisysEvent事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。</li>
+<li>eventName：订阅规则的HisysEvent事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。</li>
+<li>ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。</li></ul></ul>
 </td>
 </tr>
 </tbody>
