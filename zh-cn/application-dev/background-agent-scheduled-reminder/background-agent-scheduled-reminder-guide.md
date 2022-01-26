@@ -17,8 +17,8 @@ reminderAgent：封装了发布、取消提醒类通知的方法
 | function&nbsp;cancelReminder(reminderId:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;cancelReminder(reminderId:&nbsp;number):&nbsp;Promise&lt;void&gt;; | 取消一个指定的提醒类通知。(reminderId从publishReminder的返回值获取) |
 | function&nbsp;getValidReminders(callback:&nbsp;AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;):&nbsp;void;<br/>function&nbsp;getValidReminders():&nbsp;Promise&lt;Array&lt;ReminderRequest&gt;&gt;; | 获取当前应用设置的所有有效的提醒。 |
 | function&nbsp;cancelAllReminders(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;cancelAllReminders():&nbsp;Promise&lt;void&gt;; | 取消当前应用设置的所有提醒 |
-| function&nbsp;addNotificationSlot(slot:&nbsp;NotificationSlot,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;addNotificationSlot(slot:&nbsp;NotificationSlot):&nbsp;Promise&lt;void&gt;; | 注册一个提醒类需要使用的[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref16794355104117,link:zh-cn_topic_0000001180018813.xml#section1382174172015](zh-cn_topic_0000001180018813.xml#section1382174172015) |
-| function&nbsp;removeNotificationSlot(slotType:&nbsp;notification.SlotType,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;removeNotificationSlot(slotType:&nbsp;notification.SlotType):&nbsp;Promise&lt;void&gt;; | 删除指定类型的[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref1925235384215,link:zh-cn_topic_0000001180018813.xml#section1382174172015](zh-cn_topic_0000001180018813.xml#section1382174172015) |
+| function&nbsp;addNotificationSlot(slot:&nbsp;NotificationSlot,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;addNotificationSlot(slot:&nbsp;NotificationSlot):&nbsp;Promise&lt;void&gt;; | 注册一个提醒类需要使用的NotificationSlot |
+| function&nbsp;removeNotificationSlot(slotType:&nbsp;notification.SlotType,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;removeNotificationSlot(slotType:&nbsp;notification.SlotType):&nbsp;Promise&lt;void&gt;; | 删除指定类型的NotificationSlot |
 
 enum ActionButtonType: 在提醒弹出的通知界面上的按钮的类型。
 
@@ -45,7 +45,7 @@ interface ActionButton：在提醒弹出的通知界面上的按钮实例
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | title | string | 是 | 按钮上显示的名称 |
-| type | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref1265195613399,link:#table8534712161513](#table8534712161513) | 是 | 按钮的类型 |
+| type | ActionButtonType | 是 | 按钮的类型 |
 
 interface WantAgent: 设置点击通知后需要跳转的目标ability信息
 
@@ -71,10 +71,10 @@ interface ReminderRequest: 需要发布的提醒实例的信息
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| reminderType | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref512611316417,link:#table486010552014](#table486010552014) | 是 | 提醒的类型 |
-| actionButton | [[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref8263115334317,link:#table880311117225](#table880311117225)?,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref2069311554413,link:#table880311117225](#table880311117225)?] | 否 | 弹出的提醒通知栏中显示的按钮 |
-| wantAgent | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref1577918262463,link:#table9490856350](#table9490856350) | 否 | 点击通知后需要跳转的目标ability信息 |
-| maxScreenWantAgent | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref1069043844613,link:#table191319843714](#table191319843714) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框 |
+| reminderType | ReminderType | 是 | 提醒的类型 |
+| actionButton | [ActionButton?,ActionButton?] | 否 | 弹出的提醒通知栏中显示的按钮 |
+| wantAgent | WantAgent | 否 | 点击通知后需要跳转的目标ability信息 |
+| maxScreenWantAgent | MaxScreenWantAgent | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框 |
 | ringDuration | number | 否 | 响铃时长 |
 | snoozeTimes | number | 否 | 延迟提醒次数 |
 | timeInterval | number | 否 | 延迟提醒间隔 |
@@ -83,7 +83,7 @@ interface ReminderRequest: 需要发布的提醒实例的信息
 | expiredContent | string | 否 | 提醒“过期”时显示的扩展内容 |
 | snoozeContent | string | 否 | 提醒“再响”时显示的扩展内容 |
 | notificationId | number | 否 | 提醒使用的notificationRequest的id，参见NotificationRequest.setNotificationId(int&nbsp;id) |
-| slotType | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref1837619084820,link:zh-cn_topic_0000001180018813.xml#section072355105110](zh-cn_topic_0000001180018813.xml#section072355105110) | 否 | 提醒使用的slot类型 |
+| slotType | SlotType | 否 | 提醒使用的slot类型 |
 
 interface ReminderRequestCalendar extends ReminderRequest: 日历类提醒实例。
 
@@ -93,7 +93,7 @@ interface ReminderRequestCalendar extends ReminderRequest: 日历类提醒实例
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| dateTime | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001185364575.xml#xref97387065711,link:#table16133167515](#table16133167515) | 是 | 设置目标时间 |
+| dateTime | LocalDataTime | 是 | 设置目标时间 |
 | repeatMonths | Array&lt;number&gt; | 否 | 设置重复提醒的月份 |
 | repeatDays | Array&lt;number&gt; | 否 | 设置重复提醒的日期 |
 
