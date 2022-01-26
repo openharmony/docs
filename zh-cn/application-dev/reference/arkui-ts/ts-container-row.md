@@ -74,7 +74,7 @@ Row\(value:\{space?: Length\}\)
 </td>
 <td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p>Start</p>
 </td>
-<td class="cellrowborder" valign="top" width="59%" headers="mcps1.1.5.1.4 "><p>设置子组件在主轴方向上的对齐格式。</p>
+<td class="cellrowborder" valign="top" width="59%" headers="mcps1.1.5.1.4 "><p>设置子组件在水平方向上的对齐格式。</p>
 </td>
 </tr>
 </tbody>
