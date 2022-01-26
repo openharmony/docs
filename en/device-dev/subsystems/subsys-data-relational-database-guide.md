@@ -1,133 +1,133 @@
-# 关系型数据库开发指导
+# RDB Development
 
-## 场景介绍
+## When to Use
 
-关系型数据库是在SQLite基础上实现的本地数据操作机制，提供给用户无需编写原生SQL语句就能进行数据增删改查的方法，同时也支持原生SQL语句操作。
+On the basis of the SQLite database, the RDB allows you to operate data with or without native SQL statements. In OpenHarmony, an RDB is also called RDB store.
 
-## 接口说明
-### 数据库的创建和删除
+## Available APIs
+### Creating and Deleting an RDB Store
 
-关系型数据库提供了数据库创建方式，以及对应的删除接口，涉及的API如下所示。
+The following table describes APIs available for creating and deleting an RDB store.
 
-表1 数据库创建和删除API
+Table 1 APIs for creating and deleting an RDB store
 
-| 类名 | 接口名 | 描述 |
+| Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStoreConfig | RdbStoreConfig(const std::string &path, <br> StorageMode storageMode = StorageMode::MODE_DISK, <br> bool readOnly = false, <br> const std::vector<uint8_t> &encryptKey = std::vector<uint8_t>(), <br> const std::string &journalMode = "", <br> const std::string &syncMode = "", <br> const std::string &databaseFileType = "", <br> const std::string &databaseFileSecurityLevel = "") | 对数据库进行配置，包括设置数据库名、存储模式、日志模式、同步模式，是否为只读，及数据库加密。 <ul><li> path：数据库路径；</li><li> readOnly：是否只读；</li><li> storageMode：存储模式；</li><li> encryptKey：加密密钥; </li><li> journalMode：日志模式；</li><li> syncMode：同步模式；</li><li> databaseFileType：数据库类型； </li><li> databaseFileSecurityLevel：安全等级 </li></ul> |
-| RdbOpenCallback | int OnCreate(RdbStore &rdbStore) | 数据库创建时被回调，开发者可以在该方法中初始化表结构，并添加一些应用使用到的初始化数据。 |
-| RdbOpenCallback | int OnUpgrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | 数据库升级时被回调。 |
-| RdbOpenCallback | int OnDowngrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | 数据库降级时被回调。 |
-| RdbHelper | std::shared_ptr\<RdbStore\> GetRdbStore(const RdbStoreConfig &config, int version, RdbOpenCallback &openCallback, int &errCode) | 根据配置创建或打开数据库。 |
-| RdbHelper | int DeleteRdbStore(const std::string &path) | 删除指定的数据库。 |
+| RdbStoreConfig | RdbStoreConfig(const std::string &path, <br> StorageMode storageMode = StorageMode::MODE_DISK, <br> bool readOnly = false, <br> const std::vector<uint8_t> &encryptKey = std::vector<uint8_t>(), <br> const std::string &journalMode = "", <br> const std::string &syncMode = "", <br> const std::string &databaseFileType = "", <br> const std::string &databaseFileSecurityLevel = "") | Configures an RDB store, including setting the name, storage mode, log mode, synchronization mode, and read-only mode, and encrypting the database. <ul><li> **path**: path of the database. </li> <li> **readOnly**: whether the database is read-only. </li> <li> **storageMode**: storage mode. </li> <li> **encryptKey**: key used for database encryption. </li> <li> **journalMode**: database logging mode. </li> <li> **syncMode**: data synchronization mode. </li> <li> **databaseFileType**: database type. </li> <li> **databaseFileSecurityLevel**: security level. </li></ul>|
+| RdbOpenCallback | int OnCreate(RdbStore &rdbStore) | Called when an RDB store is created. You can add the method for initializing the table structure and add initialization data used by your application in the callback.|
+| RdbOpenCallback | int OnUpgrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | Called when the RDB store is upgraded.|
+| RdbOpenCallback | int OnDowngrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | Called when the RDB store is downgraded.|
+| RdbHelper | std::shared_ptr\<RdbStore\> GetRdbStore(const RdbStoreConfig &config, int version, RdbOpenCallback &openCallback, int &errCode) | Creates or obtains an RDB store.|
+| RdbHelper | int DeleteRdbStore(const std::string &path) | Deletes the specified RDB store.|
 
-### 数据库的加密
+### Encrypting an RDB Store
 
-关系型数据库提供数据库加密的能力，在创建数据库时若指定了密钥，则会创建为加密数据库。再次使用此数据库时，需要指定该密钥，才能正确打开数据库。
+The RDB provides the database encryption capability. When creating an RDB store , you can add a key for security purposes. After that, the RDB store can be accessed only with the correct key.
 
-表2 数据库修改密钥API
-| 类名 | 接口名 | 描述 |
+Table 2 API for changing the key
+| Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | int ChangeEncryptKey(const std::vector<uint8_t> &newKey) | 为数据库设置新的加密密钥。注：仅支持加密数据库更换加密密钥。 |
+| RdbStore | int ChangeEncryptKey(const std::vector<uint8_t> &newKey) | Changes the encryption key for an RDB store. <br>Note: The encryption key can be changed only for an encrypted database.|
 
-### 数据库谓词的使用
+### Using Predicates
 
-关系型数据库提供了用于设置数据库操作条件的谓词AbsRdbPredicates，其中包括两个实现子类RdbPredicates和RawRdbPredicates：
+The RDB provides **AbsRdbPredicates** for you to set database operation conditions. The **AbsRdbPredicates** has the following child classes:
 
-- RdbPredicates：开发者无需编写复杂的SQL语句，仅通过调用该类中条件相关的方法，如equalTo、notEqualTo、groupBy、orderByAsc、beginsWith等，就可自动完成SQL语句拼接，方便用户聚焦业务操作。
-- RawRdbPredicates：可满足复杂SQL语句的场景，支持开发者自己设置where条件子句和whereArgs参数。不支持equalTo等条件接口的使用。
+- **RdbPredicates**: With this class, you do not need to write complex SQL statements. Instead, you can combine SQL statements simply by calling methods in this class, such as **equalTo**, **notEqualTo**, **groupBy**, **orderByAsc**, and **beginsWith**.
+- **RawRdbPredicates**: With this class, you can set **whereClause** and **whereArgs**, but cannot call methods such as **equalTo**.
 
-  表7 数据库谓词API
-  | 类名 | 接口名 | 描述 |
+  Table 7 APIs for RDB predicates
+  | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbPredicates | AbsPredicates *EqualTo(std::string field, std::string value) | 设置谓词条件，满足field字段与value值相等。 |
-  | RdbPredicates | AbsPredicates *NotEqualTo(std::string field, std::string value) | 设置谓词条件，满足field字段与value值不相等。 |
-  | RdbPredicates | AbsPredicates *BeginsWith(std::string field, std::string value) | 设置谓词条件，满足field字段以value值开头。 |
-  | RdbPredicates | AbsPredicates *Between(std::string field, std::string low, std::string high) | 设置谓词条件，满足field字段在最小值low和最大值high之间。 |
-  | RdbPredicates | AbsPredicates *OrderByAsc(std::string field) | 设置谓词条件，根据field字段升序排列。 |
-  | RdbPredicates | void SetWhereClause(std::string whereClause) | 设置where条件子句。 |
-  | RdbPredicates | void SetWhereArgs(std::vector\<std::string\> whereArgs) | 设置whereArgs参数，该值表示where子句中占位符的值。 |
+  | RdbPredicates | AbsPredicates *EqualTo(std::string field, std::string value) | Sets the **AbsPredicates** to match the field that is equal to the specified value.|
+  | RdbPredicates | AbsPredicates *NotEqualTo(std::string field, std::string value) | Sets the **AbsPredicates** to match the field that is not equal to the specified value.|
+  | RdbPredicates | AbsPredicates *BeginsWith(std::string field, std::string value) | Sets the **AbsPredicates** to match the field that starts with the specified value.|
+  | RdbPredicates | AbsPredicates *Between(std::string field, std::string low, std::string high) | Sets the **AbsPredicates** to match the field that is within the range specified by **low** and **high**.|
+  | RdbPredicates | AbsPredicates *OrderByAsc(std::string field) | Sets the **AbsPredicates** to match the column with values sorted in ascending order.|
+  | RdbPredicates | void SetWhereClause(std::string whereClause) | Sets **whereClause**.|
+  | RdbPredicates | void SetWhereArgs(std::vector\<std::string\> whereArgs) | Sets **whereArgs**, which indicates the value of the placeholder in **whereClause**.|
 
-### 数据表的增删改查
+### Managing Data in an RDB Store
 
-关系型数据库提供对本地数据增删改查操作的能力，相关API如下所示。
+The RDB provides APIs for inserting, deleting, updating, and querying data in the local RDB store.
 
-- 新增
+- Inserting data
 
-  关系型数据库提供了插入数据的接口，通过ValuesBucket输入要存储的数据，通过返回值判断是否插入成功，插入成功时返回最新插入数据所在的行号，失败时则返回-1。
+  The RDB provides an API for inserting data through **ValuesBucket** in a data table. If the data is added, the row number of the data inserted is returned; otherwise, **-1** is returned.
 
-  表3 数据表插入API
+  Table 3 API for inserting data to a data table
 
-  | 类名 | 接口名 | 描述 |
+  | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Insert(int64_t &outRowId, const std::string &table, const ValuesBucket &initialValues) | 向数据库插入数据。<ul><li>table：待添加数据的表名。 </li><li> initialValues：以ValuesBucket存储的待插入的数据。它提供一系列put方法，如PutString(const std::string &columnName, const std::string &value)，PutDouble(const std::string &columnName, double value)，用于向ValuesBucket中添加数据。</li></ul> |
+  | RdbStore | int Insert(int64_t &outRowId, const std::string &table, const ValuesBucket &initialValues) | Inserts data based on the passed table name and data in **ValuesBucket**. <ul><li>**table**: specifies the name of the target table. </li><li> **initialValues**: specifies the data, stored in **ValuesBucket**, to insert. A series of **put()** methods, such as **PutString(const std::string &columnName, const std::string &value)** and **PutDouble(const std::string &columnName, double value)**, are provided to add data to **ValuesBucket**.</li></ul> |
 
-- 删除
+- Deleting data
   
-  调用删除接口，通过AbsRdbPredicates指定删除条件。该接口的返回值表示删除的数据行数，可根据此值判断是否删除成功。如果删除失败，则返回0。
+  Call the **delete()** method to delete data meeting the conditions specified by **AbsRdbPredicates**. If the data is deleted, the row number of the deleted data is returned; otherwise, **0** is returned.
 
-  表5 数据表删除API
-  | 类名 | 接口名 | 描述 |
+  Table 5 API for deleting data
+  | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | 删除数据。<ul><li> deletedRows：删除的记录条数。 </li><li> predicates：Rdb谓词，指定了删除操作的表名和条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul></li></ul> |
+  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | Deletes data. <ul><li> **deletedRows**: specifies the number of rows to delete. </li><li> **predicates**: specifies the table name and conditions for deleting the data.  **AbsRdbPredicates** has the following classes: <ul><li> **RdbPredicates**: specifies update conditions by calling its methods, such as **equalTo**. </li><li> **RawRdbPredicates**: specifies the table name, **whereClause** and **whereArgs** only. </li></ul></li></ul> |
 
-- 更新
+- Updating data
 
-  调用更新接口，传入要更新的数据，并通过AbsRdbPredicates指定更新条件。该接口的返回值表示更新操作影响的行数。如果更新失败，则返回0。
+  Call the **update()** method to modify data based on the passed data and the conditions specified by **AbsRdbPredicates**. If the data is updated, the row number of the updated data is returned; otherwise, **0** is returned.
 
-  表4 数据表更新API
-  | 类名 | 接口名 | 描述 |
+  Table 4 API for updating data
+  | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Update(int &changedRows, const ValuesBucket &values, const AbsRdbPredicates &predicates) | 更新数据库表中符合谓词指定条件的数据。<ul><li> changedRows：更新的记录条数。 </li><li> values：以ValuesBucket存储的要更新的数据。 </li><li> predicates：指定了更新操作的表名和条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul></li></ul> |
+  | RdbStore | int Update(int &changedRows, const ValuesBucket &values, const AbsRdbPredicates &predicates) | Updates the data that meets the conditions specified by predicates. <ul><li> **changedRows**: specifies the number of rows to update. </li><li> **values**: specifies the new data stored in **ValuesBucket**. </li><li> **predicates**: specifies the table name and conditions for the update operation.  **AbsRdbPredicates** has the following classes: <ul><li> **RdbPredicates**: specifies update conditions by calling its methods, such as **equalTo**. </li><li> **RawRdbPredicates**: specifies the table name, **whereClause** and **whereArgs** only. </li></ul></li></ul> |
 
-- 查询
+- Querying data
 
-  关系型数据库提供了两种查询数据的方式：
+  You can query data in an RDB store in either of the following ways:
 
-  - 直接调用查询接口。使用该接口，会将包含查询条件的谓词自动拼接成完整的SQL语句进行查询操作，无需用户传入原生的SQL语句。
-  - 执行原生的SQL语句进行查询操作。
+  - Call the **query()** method to query data based on the predicates, without passing any SQL statement.
+  - Run the native SQL statement.
 
-  表6 数据表查询API
-  | 类名 | 接口名 | 描述 |
+  Table 6 APIs for querying data
+  | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | 查询数据。<ul><li> predicates：谓词，可以设置查询条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul> <li> columns：规定查询返回的列。</li></ul></li></ul> |
-  | RdbStore | std::unique_ptr<AbsSharedResultSet> QuerySql(const std::string &sql, const std::vector\<std::string\> &selectionArgs = std::vector\<std::string\>()) | 执行原生的用于查询操作的SQL语句。<ul><li> sql：原生用于查询的sql语句。</li><li> selectionArgs：sql语句中占位符参数的值，若select语句中没有使用占位符，该参数可以设置为null。</li></ul> |
+  | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | Queries data. <ul><li> **predicates**: specifies the query conditions.  **AbsRdbPredicates** has the following classes: <ul><li> **RdbPredicates**: specifies the query conditions by calling its methods, such as **equalTo**. </li><li> **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only. </li></ul> <li> **columns**: specifies the number of columns returned.</li></ul></li></ul> |
+  | RdbStore | std::unique_ptr<AbsSharedResultSet> QuerySql(const std::string &sql, const std::vector\<std::string\> &selectionArgs = std::vector\<std::string\>()) | Executes the native SQL statements to query data. <ul><li> **sql**: specifies the native SQL statement. </li><li> **selectionArgs**: specifies the parameter values corresponding to the placeholders in the SQL statements. Set it to **null** if the **select** statement has no placeholder.</li></ul> |
 
-### 查询结果集的使用
+### Using the Result Set
 
-关系型数据库提供了查询返回的结果集ResultSet，其指向查询结果中的一行数据，供用户对查询结果进行遍历和访问。ResultSet对外API如下所示。
+A result set can be regarded as rows of data in the queried results. It allows you to traverse and access the data you have queried. The following table describes the external APIs of **ResultSet**.
 
-  表8 结果集API
-  | 类名 | 接口名 | 描述 |
+  Table 8 APIs for using the result set
+  | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | ResultSet | int GoTo(int offset) | 从结果集当前位置移动指定偏移量。 |
-  | ResultSet | int GoToRow(int position) | 将结果集移动到指定位置。 |
-  | ResultSet | int GoToNextRow() | 将结果集向后移动一行。 |
-  | ResultSet | int GoToPreviousRow() | 将结果集向前移动一行。 |
-  | ResultSet | int IsStarted(bool &result) | 判断结果集是否被移动过。 |
-  | ResultSet | int IsEnded(bool &result) | 判断结果集是否被移动到最后一行之后。 | 
-  | ResultSet | int IsAtFirstRow(bool &result) | 判断结果集当前位置是否在第一行。 |
-  | ResultSet | int IsAtLastRow(bool &result) | 判断结果集当前位置是否在最后一行。 |
-  | ResultSet | int GetRowCount(int &count) | 获取当前结果集中的记录条数。 |
-  | ResultSet | int GetColumnCount(int &count) | 获取结果集中的列数。 |
-  | ResultSet | int GetString(int columnIndex, std::string &value) | 获取当前行指定列的值，以String类型返回。 |
-  | ResultSet | int GetBlob(int columnIndex, std::vector\<uint8_t\> &blob) | 获取当前行指定列的值，以字节数组形式返回。 |
-  | ResultSet | int GetDouble(int columnIndex, double &value) | 获取当前行指定列的值，以double型返回。 |
+  | ResultSet | int GoTo(int offset) | Moves the result set forwards or backwards by the specified offset relative to its current position.|
+  | ResultSet | int GoToRow(int position) | Moves the result set to the specified row.|
+  | ResultSet | int GoToNextRow() | Moves the result set to the next row.|
+  | ResultSet | int GoToPreviousRow() | Moves the result set to the previous row.|
+  | ResultSet | int IsStarted(bool &result) | Checks whether the result set has been moved.|
+  | ResultSet | int IsEnded(bool &result) | Checks whether the result set is moved after the last line.| 
+  | ResultSet | int IsAtFirstRow(bool &result) | Checks whether the result set is located in the first row.|
+  | ResultSet | int IsAtLastRow(bool &result) | Checks whether the result set is located in the last row.|
+  | ResultSet | int GetRowCount(int &count) | Obtains the number of rows in the result set.|
+  | ResultSet | int GetColumnCount(int &count) | Obtains the number of columns in the result set.|
+  | ResultSet | int GetString(int columnIndex, std::string &value) | Obtains the values in the specified column of the current row, in strings.|
+  | ResultSet | int GetBlob(int columnIndex, std::vector\<uint8_t\> &blob) | Obtains the values in the specified column of the current row, in a byte array.|
+  | ResultSet | int GetDouble(int columnIndex, double &value) | Obtains the values in the specified column of the current row, in double.|
 
-## 约束与限制
+## Constraints
 
-无。
+None.
 
-## 开发步骤
+## How to Develop
 
-1. 创建数据库。
+1. Create an RDB store.
 
-    a. 配置数据库相关信息，包括数据库的名称、存储模式、是否为只读模式等。
+    a. Configure the RDB store attributes, including the database name, storage mode, and read-only mode.
 
-    b. 初始化数据库表结构和相关数据。
+    b. Initialize the table structure and related data in the RDB store.
 
-    c. 创建数据库。
+    c. Create an RDB store.
 
-    示例代码如下：
+    The sample code is as follows:
     ```
     const std::string DATABASE_NAME = RDB_TEST_PATH + "RdbStoreTest.db";
     const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, salary REAL, blobType BLOB)";
@@ -149,15 +149,13 @@
     std::shared_ptr<RdbStore> store = RdbHelper::GetRdbStore(config, 1, callback, 0); 
     ```
 
-2. 插入数据。
+2. Insert data.
 
-    a. 构造要插入的数据，以ValuesBucket形式存储。
+    a. Create a **ValuesBucket** to store the data you need to insert.
 
-    b. 调用关系型数据库提供的插入接口。
+    b. Call the **insert()** method to insert data into the RDB store.
 
-    c. 创建数据库。
-
-    示例代码如下：
+    The sample code is as follows:
     ```
     ValuesBucket values;
 
@@ -169,17 +167,17 @@
     store->Insert(id, "test", values);
     ```
 
-3. 查询数据。
+3. Query data.
 
-    a. 构造用于查询的谓词对象，设置查询条件。
+    a. Create a predicate that specifies query conditions.
 
-    b. 指定查询返回的数据列。
+    b. Specify the data columns to return in the result set.
 
-    c. 调用查询接口查询数据。
+    c. Call the **query()** method to query data.
 
-    d. 调用结果集接口，遍历返回结果。
+    d. Call the **ResultSet** APIs to traverse data in the result set.
 
-    示例代码如下：
+    The sample code is as follows:
     ```
     std::vector<std::string> columns = {"id", "name", "age", "salary"};
 
@@ -188,4 +186,3 @@
     std::unique_ptr<ResultSet> resultSet  = store->Query(predicates, columns)
     resultSet.goToNextRow();
     ```
-
