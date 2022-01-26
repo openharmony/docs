@@ -1,13 +1,13 @@
 # xml转换JavaScript
 
-> ![icon-note.gif](D:\gitee\docs\zh-cn\application-dev\reference\apis\public_sys-resources\icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
 ```
-import convertXml from '@ohos.convertxml'
+import convertxml from '@ohos.convertxml'
 ```
 
 
@@ -41,7 +41,6 @@ convert(xml: string, options?: ConvertOptions) : Object
 - 示例：
 
   ```
-  import convertXml from '@ohos.convertxml'
   var xml =
       '<?xml version="1.0" encoding="utf-8"?>' +
       '<note importance="high" logged="true">' +
@@ -49,8 +48,8 @@ convert(xml: string, options?: ConvertOptions) : Object
       '    <todo>Work</todo>' +
       '    <todo>Play</todo>' +
       '</note>';
-  var convertxml = new convertXml.ConvertXML();
-  var result1 = convertxml.convert(xml, {compact: false, spaces: 0});
+  var conv= new convertxml.ConvertXML();
+  var result1 = conv.convert(xml, {trim: false, ignoreDeclaration: false});
   console.log(result1)
   ```
 

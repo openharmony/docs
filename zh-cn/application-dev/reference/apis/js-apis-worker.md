@@ -57,8 +57,7 @@ worker构造函数。
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js", {name:"first worker"});
+  const workerInstance = new worker.Worker("workers/worker.js", {name:"first worker"});
   ```
 
 
@@ -76,13 +75,13 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js");
-  worker.postMessage("hello world");
-  
-  const worker = new worker.Worker("workers/worker.js");
+  const workerInstance = new worker.Worker("workers/worker.js");
+  workerInstance.postMessage("hello world");
+  ```
+  ```
+  const workerInstance= new worker.Worker("workers/worker.js");
   var buffer = new ArrayBuffer(8);
-  worker.postMessage(buffer, [buffer]);
+  workerInstance.postMessage(buffer, [buffer]);
   ```
 
 
@@ -100,9 +99,8 @@ on(type: string, listener: EventListener): void
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.on("alert", (e)=>{
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.on("alert", (e)=>{
       console.log("alert listener callback");
   })
   ```
@@ -122,9 +120,8 @@ once(type: string, listener: EventListener): void
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js");
-  worker.once("alert", (e)=>{
+  const workerInstance = new worker.Worker("workers/worker.js");
+  workerInstance.once("alert", (e)=>{
       console.log("alert listener callback");
   })
   ```
@@ -144,9 +141,8 @@ off(type: string, listener?: EventListener): void
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js");
-  worker.off("alert");
+  const workerInstance = new worker.Worker("workers/worker.js");
+  workerInstance.off("alert");
   ```
 
 
@@ -158,9 +154,8 @@ terminate(): void
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.terminate()
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.terminate()
   ```
 
 
@@ -177,9 +172,8 @@ Worker对象的onexit属性表示worker退出时被调用的事件处理程序�
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.onexit = function(e) {
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.onexit = function(e) {
       console.log("onexit")
   }
   ```
@@ -198,9 +192,8 @@ Worker对象的onerror属性表示worker在执行过程中发生异常被调用�
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.onerror = function(e) {
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.onerror = function(e) {
       console.log("onerror")
   }
   ```
@@ -219,9 +212,8 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的worke
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.onmessage = function(e) {
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.onmessage = function(e) {
       console.log("onerror")
   }
   ```
@@ -240,9 +232,8 @@ Worker对象的onmessageerror属性表示当 Worker 对象接收到一条无法�
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.onmessageerror= function(e) {
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.onmessageerror= function(e) {
       console.log("onmessageerror")
   }
   ```
@@ -265,9 +256,8 @@ addEventListener(type: string, listener: EventListener): void
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.addEventListener("alert", (e)=>{
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.addEventListener("alert", (e)=>{
       console.log("alert listener callback");
   })
   ```
@@ -287,9 +277,8 @@ removeEventListener(type: string, callback?: EventListener): void
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.removeEventListener("alert")
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.removeEventListener("alert")
   ```
 
 
@@ -311,9 +300,8 @@ dispatchEvent(event: Event): boolean
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.dispatchEvent({type:"alert"})
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.dispatchEvent({type:"alert"})
   ```
 
 
@@ -325,9 +313,8 @@ removeAllListener(): void
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.removeAllListener({type:"alert"})
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.removeAllListener({type:"alert"})
   ```
 
 
@@ -352,12 +339,13 @@ worker向宿主线程发送消息。
   ```
   // main.js
   import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.postMessage("hello world")
-  worker.onmessage = function(e) {
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.postMessage("hello world")
+  workerInstance.onmessage = function(e) {
       console.log("receive data from worker.js")
   }
-  
+  ```
+  ```
   // worker.js
   import worker from "@ohos.worker";
   const parentPort = worker.parentPort;
@@ -377,8 +365,9 @@ close(): void
   ```
   // main.js
   import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  
+  const workerInstance = new worker.Worker("workers/worker.js")
+  ```
+  ```
   // worker.js
   import worker from "@ohos.worker";
   const parentPort = worker.parentPort;
@@ -403,9 +392,10 @@ DedicatedWorkerGlobalScope的onmessage属性表示worker线程收到来自其宿
   ```
   // main.js
   import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  worker.postMessage("hello world")
-  
+  const workerInstance = new worker.Worker("workers/worker.js")
+  workerInstance.postMessage("hello world")
+  ```
+  ```
   // worker.js
   import worker from "@ohos.worker";
   const parentPort = worker.parentPort;
@@ -430,8 +420,9 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当 Worker 对象接收�
   ```
   // main.js
   import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  
+  const workerInstance = new worker.Worker("workers/worker.js")
+  ```
+  ```
   // worker.js
   import worker from "@ohos.worker";
   const parentPort = worker.parentPort;
@@ -481,9 +472,8 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当 Worker 对象接收�
 
 - 示例：
   ```
-  import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js");
-  worker.addEventListener("alert", (e)=>{
+  const workerInstance = new worker.Worker("workers/worker.js");
+  workerInstance.addEventListener("alert", (e)=>{
       console.log("alert listener callback");
   })
   ```
@@ -539,8 +529,9 @@ WorkerGlobalScope的onerror属性表示worker在执行过程中发生异常被�
   ```
   // main.js
   import worker from '@ohos.worker';
-  const worker = new worker.Worker("workers/worker.js")
-  
+  const workerInstance = new worker.Worker("workers/worker.js")
+  ```
+  ```
   // worker.js
   import worker from "@ohos.worker";
   const parentPort = worker.parentPort

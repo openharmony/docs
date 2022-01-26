@@ -1,14 +1,5 @@
 # AbilityContext
 
-- [属性](#属性)
-- [startAbility](#startAbility)
-- [startAbility](#startAbility)
-- [startAbilityForResult](#startAbilityForResult)
-- [startAbilityForResult](#startAbilityForResult)
-- [terminateSelf](#terminateSelf)
-- [terminateSelf](#terminateSelf)
-- [terminateSelfWithResult](#terminateSelfWithResult)
-- [terminateSelfWithResult](#terminateSelfWithResult)
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -88,10 +79,10 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 启动Ability并在结束的时候返回执行结果。
 
 - 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 | 
-  | callback | Callback&lt;[AbilityResult](js-apis-featureAbility.md#AbilityResult类型说明)&gt; | 是 | 执行结果回调函数。 | 
+  | want |[Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 |
+  | callback | Callback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
 
 - 示例：
@@ -118,9 +109,9 @@ startAbilityForResult(want: Want): Promise&lt;AbilityResult&gt;;
   | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 | 
 
 - 返回值
-  | 类型 | 说明 | 
+  | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[AbilityResult](js-apis-featureAbility.md#AbilityResult类型说明)&gt; | Promise形式返回执行结果。 | 
+  | Promise&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Promise形式返回执行结果。 |
 
 - 示例：
   ```
@@ -179,10 +170,10 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 停止Ability，并返回给调用startAbilityForResult 接口调用方的相关信息。
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter |  [AbilityResult](js-apis-featureAbility.md#AbilityResult类型说明) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 | 
-  | callback | Callback&lt;void&gt; | 否 | callback形式返回停止结果 | 
+  | parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+  | callback | Callback&lt;void&gt; | 否 | callback形式返回停止结果 |
 
 - 示例：
   ```
@@ -204,9 +195,9 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 停止Ability，并返回给调用startAbilityForResult 接口相关信息。
 
 - 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter |  [AbilityResult](js-apis-featureAbility.md#AbilityResult类型说明) | 是 | 返回给startAbilityForResult&nbsp;调用方的信息。 | 
+  | parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | 是 | 返回给startAbilityForResult&nbsp;调用方的信息。 |
 
 - 返回值：
   | 类型 | 说明 | 

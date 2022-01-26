@@ -1,53 +1,29 @@
 # FeatureAbility模块(JS端SDK接口)
 
-#### 支持设备
-
-| API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 智慧视觉设备 |
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| FeatureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.startAbility(parameter: StartAbilityParameter): Promise\<number> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.terminateSelfWithResult(parameter: AbilityResult): Promise\<void> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.hasWindowFocus(callback: AsyncCallback\<boolean>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.hasWindowFocus(): Promise\<boolean>           | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.getWant(callback: AsyncCallback\<Want>)       | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.getWant(): void                               | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.getContext(): Context                         | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.terminateSelf(callback: AsyncCallback\<void>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.terminateSelf(): Promise\<void>               | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.connectAbility(request: Want, options:ConnectOptions): number | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| FeatureAbility.disconnectAbility(connection: number): Promise\<void> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-
-#### 使用限制
+## 使用限制
 
 FeatureAbility模块的接口只能在Page类型的Ability调用
 
-#### 导入模块
+## 导入模块
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
 ```
 
-#### FeatureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
+## featureAbility.startAbility
 
-* 接口说明
+startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
-  启动新的ability(callback形式)
+启动新的ability（callback形式）。
 
-* startAbility参数描述
+**参数：**
 
-| 名称      | 读写属性 | 类型                  | 必填 | 描述                |
-| --------- | -------- | --------------------- | ---- | ------------------- |
-| parameter | 只读     | [StartAbilityParameter](#StartAbilityParameter类型说明) | 是   | 表示被启动的Ability |
-| callback  | 只读     | AsyncCallback\<number>         | 是   | 被指定的回调方法    |
+| 名称      | 类型                  | 必填 | 描述                |
+| --------- | --------------------- | ---- | ------------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 表示被启动的Ability。 |
+| callback  | AsyncCallback\<number>         | 是   | 被指定的回调方法。   |
 
-- 返回值
-
-- 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -71,21 +47,19 @@ featureAbility.startAbility(
 
 
 
-#### FeatureAbility.startAbility(parameter: StartAbilityParameter): Promise\<number>
+## featureAbility.startAbility
 
-* 接口说明
+startAbility(parameter: StartAbilityParameter): Promise\<number>
 
-  启动新的ability(Promise形式)
+启动新的ability（Promise形式）。
 
-* startAbility参数描述
+**参数：**
 
-| 名称      | 读写属性 | 类型                                                    | 必填 | 描述                |
-| --------- | -------- | ------------------------------------------------------- | ---- | ------------------- |
-| parameter | 只读     | [StartAbilityParameter](#StartAbilityParameter类型说明) | 是   | 表示被启动的Ability |
+| 名称      | 类型                                            | 必填 | 描述                  |
+| --------- | ----------------------------------------------- | ---- | --------------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 表示被启动的Ability。 |
 
-- 返回值
-
-- 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -108,27 +82,25 @@ featureAbility.startAbility(
 });
 ```
 
+## featureAbility.acquireDataAbilityHelper
 
+acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
-#### FeatureAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper
+获取dataAbilityHelper。
 
-* 接口说明
+**参数：**
 
-  获取dataAbilityHelper
+| 名称 | 类型   | 必填 | 描述                     |
+| ---- | ------ | ---- | ------------------------ |
+| uri  | string | 是   | 指示要打开的文件的路径。 |
 
-* 参数描述
+**返回值：**
 
-| 名称 | 读写属性 | 类型   | 必填 | 描述                   |
-| ---- | -------- | ------ | ---- | ---------------------- |
-| uri  | 只读     | string | 是   | 指示要打开的文件的路径 |
+| 类型              | 说明                                         |
+| ----------------- | -------------------------------------------- |
+| DataAbilityHelper | 用来协助其他Ability访问DataAbility的工具类。 |
 
-* 返回值
-
-| 类型              | 说明                                       |
-| ----------------- | ------------------------------------------ |
-| DataAbilityHelper | 用来协助其他Ability访问DataAbility的工具类 |
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -137,26 +109,20 @@ featureAbility.acquireDataAbilityHelper(
 )
 ```
 
+## featureAbility.startAbilityForResult
 
+startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-#### FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
+启动一个ability，并在该ability被销毁时返回执行结果（callback形式）。
 
-* 接口说明
+**参数：**
 
-  启动一个ability，并在该ability被销毁时返回执行结果(callback形式)
+| 名称      | 类型                                            | 必填 | 描述                  |
+| --------- | ----------------------------------------------- | ---- | --------------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 表示被启动的Ability。 |
+| callback  | AsyncCallback\<[AbilityResult](#abilityresult)> | 是   | 被指定的回调方法。    |
 
-* startAbility参数描述
-
-| 名称      | 读写属性 | 类型                   | 必填 | 描述                |
-| --------- | -------- | ---------------------- | ---- | ------------------- |
-| parameter | 只读     | [StartAbilityParameter](#StartAbilityParameter类型说明) | 是   | 表示被启动的Ability |
-| callback  | 只读     | AsyncCallback\<[AbilityResult](#AbilityResult类型说明)> | 是   | 被指定的回调方法    |
-
-* 返回值
-
-  [AbilityResult](#AbilityResult类型说明)
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -177,25 +143,24 @@ featureAbility.startAbilityForResult(
 )
 ```
 
+## featureAbility.startAbilityForResult
 
+startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-#### FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
+启动一个ability，并在该ability被销毁时返回执行结果（Promise形式）。
 
-* 接口说明
+**参数：**
 
-  启动一个ability，并在该ability被销毁时返回执行结果(Promise形式)
+| 名称      | 类型                                            | 必填 | 描述                |
+| --------- | ----------------------------------------------- | ---- | ------------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 表示被启动的Ability |
 
-* startAbility参数描述
+**返回值：**
+| 类型                                      | 说明           |
+| ----------------------------------------- | -------------- |
+| Promise\<[AbilityResult](#abilityresult)> | 返回执行结果。 |
 
-| 名称      | 读写属性 | 类型                                                    | 必填 | 描述                |
-| --------- | -------- | ------------------------------------------------------- | ---- | ------------------- |
-| parameter | 只读     | [StartAbilityParameter](#StartAbilityParameter类型说明) | 是   | 表示被启动的Ability |
-
-* 返回值
-
-  [AbilityResult](#AbilityResult类型说明)
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -230,25 +195,20 @@ featureAbility.startAbilityForResult(
 });
 ```
 
+## featureAbility.terminateSelfWithResult
 
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-#### FeatureAbility.terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
+设置此Page Ability将返回给调用者的结果代码和数据并破坏此Page Ability（callback形式）。
 
-* 接口说明
+**参数：**
 
-  设置此page ability将返回给调用者的结果代码和数据并破坏此page ability(callback形式)
+| 名称      | 类型          | 必填 | 描述                |
+| --------- | ------------- | ---- | ------------------- |
+| parameter | [AbilityResult](#abilityresult) | 是   | 表示被启动的Ability。 |
+| callback  | AsyncCallback\<void> | 是   | 被指定的回调方法。  |
 
-
-* startAbility参数描述
-
-| 名称      | 读写属性 | 类型          | 必填 | 描述                |
-| --------- | -------- | ------------- | ---- | ------------------- |
-| parameter | 只读     | [AbilityResult](#AbilityResult类型说明) | 是   | 表示被启动的Ability |
-| callback  | 只读     | AsyncCallback\<void> | 是   | 被指定的回调方法    |
-
-* 返回值
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -280,23 +240,24 @@ featureAbility.terminateSelfWithResult(
 );
 ```
 
+## featureAbility.terminateSelfWithResult
 
+terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
-#### FeatureAbility.terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
+设置此Page Ability将返回给调用者的结果代码和数据并破坏此Page Ability（Promise形式）。
 
-* 接口说明
+**参数：**
 
-  设置此page ability将返回给调用者的结果代码和数据并破坏此page ability(Promise形式)
+| 名称      | 类型                            | 必填 | 描述                |
+| --------- | ------------------------------- | ---- | ------------------- |
+| parameter | [AbilityResult](#abilityresult) | 是   | 表示被启动的Ability |
 
-* startAbility参数描述
+**返回值：**
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise\<void> | 以Promise形式返回结果。 |
 
-| 名称      | 读写属性 | 类型                                    | 必填 | 描述                |
-| --------- | -------- | --------------------------------------- | ---- | ------------------- |
-| parameter | 只读     | [AbilityResult](#AbilityResult类型说明) | 是   | 表示被启动的Ability |
-
-* 返回值
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -332,23 +293,19 @@ featureAbility.terminateSelfWithResult(
 
 
 
-#### FeatureAbility.hasWindowFocus(callback: AsyncCallback\<boolean>): void
+## featureAbility.hasWindowFocus
 
-* 接口说明
+hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
-  检查ability的主窗口是否具有窗口焦点(callback形式)
+检查Ability的主窗口是否具有窗口焦点（callback形式）。
 
-* 参数描述
+**参数：**
 
-| 名称     | 读写属性 | 类型                    | 必填 | 描述             |
-| -------- | -------- | ----------------------- | ---- | ---------------- |
-| callback | 只读     | AsyncCallback\<boolean> | 是   | 被指定的回调方法 |
+| 名称     | 类型                    | 必填 | 描述                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<boolean> | 是   | 被指定的回调方法。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
-* 返回值
-
-  如果此异能当前具有视窗焦点，则返回{@code true}；否则返回{@code false}
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -357,21 +314,19 @@ featureAbility.hasWindowFocus()
 
 
 
-#### FeatureAbility.hasWindowFocus(): Promise\<boolean>
+## featureAbility.hasWindowFocus
 
-* 接口说明
+hasWindowFocus(): Promise\<boolean>
 
-  检查ability的主窗口是否具有窗口焦点(Promise形式)
+检查Ability的主窗口是否具有窗口焦点（Promise形式）。
 
-* 参数描述
+**返回值：**
 
-  无
+| 类型              | 说明                                                       |
+| ----------------- | ---------------------------------------------------------- |
+| Promise\<boolean> | 如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
-* 返回值
-
-  如果此异能当前具有视窗焦点，则返回{@code true}；否则返回{@code false}
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -382,21 +337,19 @@ featureAbility.hasWindowFocus().then((void) => {
 
 
 
-#### FeatureAbility.getWant(callback: AsyncCallback\<Want>)
+## featureAbility.getWant
 
-* 接口说明
+getWant(callback: AsyncCallback\<Want>): void
 
-  获取从ability发送的want(callback形式)
+获取从Ability发送的Want（callback形式）。
 
-* 参数描述
+**参数：**
 
-| 名称     | 读写属性 | 类型                 | 必填 | 描述             |
-| -------- | -------- | -------------------- | ---- | ---------------- |
-| callback | 只读     | AsyncCallback\<Want> | 是   | 被指定的回调方法 |
+| 名称     | 类型                          | 必填 | 描述               |
+| -------- | ----------------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<[Want](#want)> | 是   | 被指定的回调方法。 |
 
-* 返回值
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -405,19 +358,18 @@ featureAbility.getWant()
 
 
 
-#### FeatureAbility.getWant(): void
+## featureAbility.getWant
 
-* 接口说明
+getWant(): Promise\<Want>
 
-  获取从ability发送的want(Promise形式)
+获取从Ability发送的Want（Promise形式）。
 
-* 参数描述
+**返回值：**
+| 类型                    | 说明                      |
+| ----------------------- | ------------------------- |
+| Promise\<[Want](#want)> | 以Promise的形式返回结果。 |
 
-  无
-
-* 返回值
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -426,19 +378,18 @@ featureAbility.getWant().then((void) => {
 });
 ```
 
+## featureAbility.getContext
 
+getContext(): Context
 
-#### FeatureAbility.getContext(): Context
+获取应用上下文。
 
-* 接口说明
+**返回值：**
+| 类型    | 说明                 |
+| ------- | -------------------- |
+| Context | 返回应用程序上下文。 |
 
-  获取应用程序上下文
-
-* 返回值
-
-  返回应用程序上下文
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -448,21 +399,19 @@ context.getBundleName()
 
 
 
-#### FeatureAbility.terminateSelf(callback: AsyncCallback\<void>): void
+## featureAbility.terminateSelf
 
-* 接口说明
+terminateSelf(callback: AsyncCallback\<void>): void
 
-  设置page ability返回给被调用方的结果代码和数据，并销毁此page ability(callback形式)
+设置Page Ability返回给被调用方的结果代码和数据，并销毁此Page Ability（callback形式）。
 
-* 参数描述
+**参数：**
 
-| 名称     | 读写属性 | 类型                 | 必填 | 描述             |
-| -------- | -------- | -------------------- | ---- | ---------------- |
-| callback | 只读     | AsyncCallback\<void> | 是   | 被指定的回调方法 |
+| 名称     | 类型                 | 必填 | 描述             |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | 是   | 被指定的回调方法 |
 
-* 返回值
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -471,19 +420,18 @@ featureAbility.terminateSelf()
 
 
 
-#### FeatureAbility.terminateSelf(): Promise\<void>
+## featureAbility.terminateSelf
 
-* 接口说明
+terminateSelf(): Promise\<void>
 
-  设置page ability返回给被调用方的结果代码和数据，并销毁此page ability(Promise形式)
+设置Page Ability返回给被调用方的结果代码和数据，并销毁此Page Ability（Promise形式）。
 
-* 参数描述
+**返回值：**
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 以Promise的形式返回结果。 |
 
-  Null
-
-* 返回值
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -491,20 +439,20 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 });
 ```
 
-#### FeatureAbility.connectAbility(request: Want, options:ConnectOptions): number
+## featureAbility.connectAbility
 
-* 接口说明
+connectAbility(request: Want, options:ConnectOptions): number
 
-  将当前ability连接到指定ServiceAbility(callback形式)
+将当前ability连接到指定ServiceAbility（callback形式）。
 
-* connectAbility参数描述
+**参数：**
 
-| 名称    | 读写属性 | 类型           | 必填 | 描述                       |
-| ------- | -------- | -------------- | ---- | -------------------------- |
-| request | 只读     | Want           | 是   | 表示被连接的ServiceAbility |
-| options | 只读     | ConnectOptions | 是   | 被指定的回调方法           |
+| 名称    | 类型           | 必填 | 描述                         |
+| ------- | -------------- | ---- | ---------------------------- |
+| request | Want           | 是   | 表示被连接的ServiceAbility。 |
+| options | ConnectOptions | 是   | 被指定的回调方法。           |
 
-* Want参数描述
+**Want类型说明：**
 
 | 名称         | 读写属性  | 类型     | 必填 | 描述                                                              |
 | ------------ | -------- | -------- | ---- | ----------------------------------                               |
@@ -512,7 +460,7 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 | bundleName   | 只读     | string   | 是   | 表示被连接的ServiceAbility的包名                                   |
 | abilityName  | 只读     | string   | 是   | 表示被连接的ServiceAbility的类名                                   |
 
-- ConnectOptions类型说明
+**ConnectOptions类型说明：**
 
 | 名称         | 读写属性 | 类型     | 必填 | 描述                               |
 | ------------ | -------- | -------- | ---- | ---------------------------------- |
@@ -520,11 +468,12 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 | onDisconnect | 只读     | function | 是   | 连接失败时的回调函数               |
 | onFailed     | 只读     | function | 是   | ConnectAbility调用失败时的回调函数 |
 
-* 返回值
+**返回值：**
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| number | 连接的ServiceAbilityID。 |
 
-  连接的ServiceAbilityID。
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -551,22 +500,20 @@ var connId = featureAbility.connectAbility(
 );
 ```
 
-#### FeatureAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
+## featureAbility.disconnectAbility
 
-* 接口说明
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-  断开与指定ServiceAbility的连接(callback形式)
+断开与指定ServiceAbility的连接（callback形式）。
 
-* disconnectAbility参数描述
+**参数：**
 
-| 名称       | 读写属性 | 类型          | 必填 | 描述                           |
-| ---------- | -------- | ------------- | ---- | ------------------------------ |
-| connection | 只读     | number        | 是   | 指定断开连接的ServiceAbilityID |
-| callback   | 只读     | AsyncCallback\<void> | 是   | 被指定的回调方法               |
+| 名称       | 类型          | 必填 | 描述                           |
+| ---------- | ------------- | ---- | ------------------------------ |
+| connection | number        | 是   | 指定断开连接的ServiceAbilityID |
+| callback   | AsyncCallback\<void> | 是   | 被指定的回调方法               |
 
-* 返回值
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -597,21 +544,24 @@ var result = featureAbility.disconnectAbility(connId,
 );
 ```
 
-#### FeatureAbility.disconnectAbility(connection: number): Promise\<void>
+## featureAbility.disconnectAbility
 
-* 接口说明
+disconnectAbility(connection: number): Promise\<void>
 
-  断开与指定ServiceAbility的连接(promise形式)
+断开与指定ServiceAbility的连接（Promise形式）。
 
-* disconnectAbility参数描述
+**参数：**
 
-| 名称       | 读写属性 | 类型   | 必填 | 描述                           |
-| ---------- | -------- | ------ | ---- | ------------------------------ |
-| connection | 只读     | number | 是   | 指定断开连接的ServiceAbilityID |
+| 名称       | 类型   | 必填 | 描述                           |
+| ---------- | ------ | ---- | ------------------------------ |
+| connection | number | 是   | 指定断开连接的ServiceAbilityID |
 
-* 返回值
+**返回值：**
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise\<void> | 以Promise形式返回结果。 |
 
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -638,28 +588,27 @@ var connId = featureAbility.connectAbility(
 var result = await featureAbility.disconnectAbility(connId);
 ```
 
+## featureAbility.continueAbility
 
-#### FeatureAbility.continueAbility(options: ContinueAbilityOptions, callback: AsyncCallback\<void>): void;
+continueAbility(options: ContinueAbilityOptions, callback: AsyncCallback\<void>): void
 
-* 接口说明
+迁移一个ability到目标设备，并返回执行结果（callback形式）。
 
-  迁移一个ability到目标设备，并返回执行结果(callback形式)
+**参数：**
 
-* startAbility参数描述
+| 名称     | 类型                   | 必填 | 描述                |
+| -------- | ---------------------- | ---- | ------------------- |
+| options  | ContinueAbilityOptions | 是   | 表示被启动的Ability |
+| callback | AsyncCallback\<void>   | 是   | 被指定的回调方法    |
 
-| 名称     | 读写属性 | 类型                   | 必填 | 描述                |
-| -------- | -------- | ---------------------- | ---- | ------------------- |
-| options  | 只读     | ContinueAbilityOptions | 是   | 表示被启动的Ability |
-| callback | 只读     | AsyncCallback\<void>   | 是   | 被指定的回调方法    |
+**ContinueAbilityOptions类型说明：**
 
-- ContinueAbilityOptions类型说明
+| 名称       | 读写属性 | 类型    | 必填 | 描述                                                         |
+| ---------- | -------- | ------- | ---- | ------------------------------------------------------------ |
+| deviceId   | 只读     | string  | 是   | 表示需要包含有关目标启动能力的信息。                         |
+| reversible | 只读     | boolean | 是   | 是否支持回迁的标志，目前不支持该功能，为保留字段，可填false。 |
 
-| 名称       | 读写属性 | 类型    | 必填 | 描述                                                        |
-| ---------- | -------- | ------- | ---- | ----------------------------------------------------------- |
-| deviceId   | 只读     | string  | 是   | 表示需要包含有关目标启动能力的信息                          |
-| reversible | 只读     | boolean | 是   | 是否支持回迁的标志，目前不支持该功能，为保留字段，可填false |
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -679,21 +628,21 @@ async StartContinueAbility(deviceId) {
 this.StartContinueAbility(remoteDeviceId); //remoteDeviceId is acquired from DeviceManager
 ```
 
-#### AbilityResult类型说明
+## AbilityResult
 
 | 名称       | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ---------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | resultCode | 只读     | number                | 是   | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持） |
 | want       | 只读     | [Want](#Want类型说明) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。 |
 
-#### StartAbilityParameter类型说明
+## StartAbilityParameter
 
-| 名称                | 读写属性 | 类型                  | 必填 | 描述                                                         |
-| ------------------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| want                | 只读     | [Want](#Want类型说明) | 是   | 表示需要包含有关目标启动能力的信息。                         |
-| abilityStartSetting | 只读     | {[key: string]: any}  | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
+| 名称                | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| ------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| want                | 只读     | [Want](#want)        | 是   | 表示需要包含有关目标启动能力的信息。                         |
+| abilityStartSetting | 只读     | {[key: string]: any} | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
 
-#### Want类型说明
+## Want
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
