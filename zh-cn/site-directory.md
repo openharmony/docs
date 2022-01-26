@@ -1,12 +1,12 @@
 # OpenHarmony
 
-——>——> [文档导读]
+——>——> 文档导读
 
-——>——> [了解OpenHarmony]
+——>——> 了解OpenHarmony
 
 ——>——>——> [了解OpenHarmony开源项目](OpenHarmony-Overview_zh.md)
 
-——>——>——> [了解OpenHarmony系统]
+——>——>——> 了解OpenHarmony系统
 
 ——>——>——>——>[内核子系统](readme/内核子系统.md)
 
@@ -76,7 +76,7 @@
 
 ——>——>——> [版本说明](release-notes/Readme.md)
 
-——>——> [快速开始]
+——>——> 快速开始
 
 ——>——>——>[轻量和小型系统入门](device-dev/quick-start/quickstart-lite.md)
 
@@ -188,7 +188,7 @@
 
 ——>——>——>——>——>[RK3568开发板介绍](device-dev/quick-start/quickstart-standard-appendix-rk3568.md)
 
-——>——> [兼容性与安全]
+——>——> 兼容性与安全
 
 ——>——>——> [隐私与安全规范](device-dev/security/security.md)
 
@@ -196,7 +196,7 @@
 
 ——>——>——>——> [安全指南](device-dev/security/security-guidelines-overall.md)
 
-——>——> [移植]
+——>——> 移植
 
 ——>——>——>[轻量系统芯片移植指导](device-dev/porting/porting-minichip.md)
 
@@ -260,7 +260,7 @@
 
 ——>——>——>——>[一种快速移植OpenHarmony Linux内核的方法](device-dev/porting/porting-linux-kernel.md)
 
-——>——>——>[轻量和小型系统三方库移植指导](device-dev/porting/ porting-thirdparty.md)
+——>——>——>[轻量和小型系统三方库移植指导](device-dev/porting/porting-thirdparty.md)
 
 ——>——>——>——>[概述](device-dev/porting/porting-thirdparty-overview.md)
 
@@ -272,7 +272,7 @@
 
 ——>——>——>——>[带屏解决方案之恒玄芯片移植案例](device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md)
 
-——>——> [子系统开发]
+——>——> 子系统开发
 
 ——>——>——> [内核](device-dev/kernel/kernel.md)
 
@@ -944,7 +944,7 @@
 
 ——>——>——>——>——> [操作实例](device-dev/bundles/bundles-demo-devsample.md)
 
-——>——> [设备开发示例]
+——>——> 设备开发示例
 
 ——>——>——> [轻量和小型系统设备](device-dev/guide/device-lite.md)
 
@@ -1010,315 +1010,313 @@
 
 ——>——>——>——> [外设驱动开发示例](device-dev/guide/device-outerdriver-demo.md)
 
+——>——> 应用开发
 
+——>——>——> [应用开发快速入门](application-dev/quick-start)
 
-——>——> [应用开发]
+——>——>——>——> [开发准备](application-dev/quick-start/start-overview.md)
 
-——>——>——>[应用开发快速入门](application-dev/quick-start)
+——>——>——>——> [使用JS语言开发](application-dev/quick-start/start-with-js.md)
 
-——>——>——>——>[开发准备](application-dev/quick-start/start-overview.md)
+——>——>——>——> [使用eTS语言开发](application-dev/quick-start/start-with-ets.md)
 
-——>——>——>——>[使用JS语言开发](application-dev/quick-start/start-with-js.md)
+——>——>——> 方舟开发框架（ArkUI）
 
-——>——>——>——>[使用eTS语言开发](application-dev/quick-start/start-with-ets.md)
+——>——>——>——> [方舟开发框架概述](application-dev/ui/arkui-overview.md)
 
-——>——>——>方舟开发框架（ArkUI）
+——>——>——>——> 基于JS扩展的类Web开发范式
 
-——>——>——>——>[方舟开发框架概述](application-dev/ui/arkui-overview.md)
+——>——>——>——>——> [概述](application-dev/ui/ui-js-overview.md)
 
-——>——>——>——>基于JS扩展的类Web开发范式
+——>——>——>——>——> 框架说明
 
-——>——>——>——>——>[概述](application-dev/ui/ui-js-overview.md)
+——>——>——>——>——>——> [文件组织](application-dev/ui/js-framework-file.md)
 
-——>——>——>——>——>框架说明
+——>——>——>——>——>——> [js标签配置](application-dev/ui/js-framework-js-tag.md)
 
-——>——>——>——>——>——>[文件组织](application-dev/ui/js-framework-file.md)
+——>——>——>——>——>——> [app.js](application-dev/ui/js-framework-js-file.md)
 
-——>——>——>——>——>——>[js标签配置](application-dev/ui/js-framework-js-tag.md)
+——>——>——>——>——>——> 语法
 
-——>——>——>——>——>——>[app.js](application-dev/ui/js-framework-js-file.md)
+——>——>——>——>——>——>——> [HML语法参考](application-dev/ui/js-framework-syntax-hml.md)
 
-——>——>——>——>——>——>语法
+——>——>——>——>——>——>——> [CSS语法参考](application-dev/ui/js-framework-syntax-css.md)
 
-——>——>——>——>——>——>——>[HML语法参考](application-dev/ui/js-framework-syntax-hml.md)
+——>——>——>——>——>——>——> [JS语法参考](application-dev/ui/js-framework-syntax-js.md)
 
-——>——>——>——>——>——>——>[CSS语法参考](application-dev/ui/js-framework-syntax-css.md)
+——>——>——>——>——>——> [生命周期](application-dev/ui/js-framework-lifecycle.md)
 
-——>——>——>——>——>——>——>[JS语法参考](application-dev/ui/js-framework-syntax-js.md)
+——>——>——>——>——>——> [资源限定与访问](application-dev/ui/js-framework-resource-restriction.md)
 
-——>——>——>——>——>——>[生命周期](application-dev/ui/js-framework-lifecycle.md)
+——>——>——>——>——>——> [多语言支持](application-dev/ui/js-framework-multiple-languages.md)
 
-——>——>——>——>——>——>[资源限定与访问](application-dev/ui/js-framework-resource-restriction.md)
+——>——>——>——>——> 构建用户界面
 
-——>——>——>——>——>——>[多语言支持](application-dev/ui/js-framework-multiple-languages.md)
+——>——>——>——>——>——> [组件介绍](application-dev/ui/ui-js-building-ui-component.md)
 
-——>——>——>——>——>构建用户界面
+——>——>——>——>——>——> 构建布局
 
-——>——>——>——>——>——>[组件介绍](application-dev/ui/ui-js-building-ui-component.md)
+——>——>——>——>——>——>——> [布局说明](application-dev/ui/ui-js-building-ui-layout-intro.md)
 
-——>——>——>——>——>——>构建布局
+——>——>——>——>——>——>——> [添加标题行和文本区域](application-dev/ui/ui-js-building-ui-layout-text.md)
 
-——>——>——>——>——>——>——>[布局说明](application-dev/ui/ui-js-building-ui-layout-intro.md)
+——>——>——>——>——>——>——> [添加图片区域](application-dev/ui/ui-js-building-ui-layout-image.md)
 
-——>——>——>——>——>——>——>[添加标题行和文本区域](application-dev/ui/ui-js-building-ui-layout-text.md)
+——>——>——>——>——>——>——> [添加留言区域](application-dev/ui/ui-js-building-ui-layout-comment.md)
 
-——>——>——>——>——>——>——>[添加图片区域](application-dev/ui/ui-js-building-ui-layout-image.md)
+——>——>——>——>——>——>——> [添加容器](application-dev/ui/ui-js-building-ui-layout-external-container.md)
 
-——>——>——>——>——>——>——>[添加留言区域](application-dev/ui/ui-js-building-ui-layout-comment.md)
+——>——>——>——>——>——> [添加交互](application-dev/ui/ui-js-building-ui-interactions.md)
 
-——>——>——>——>——>——>——>[添加容器](application-dev/ui/ui-js-building-ui-layout-external-container.md)
+——>——>——>——>——>——> [动画](application-dev/ui/ui-js-building-ui-animation.md)
 
-——>——>——>——>——>——>[添加交互](application-dev/ui/ui-js-building-ui-interactions.md)
+——>——>——>——>——>——> [事件](application-dev/ui/ui-js-building-ui-event.md)
 
-——>——>——>——>——>——>[动画](application-dev/ui/ui-js-building-ui-animation.md)
+——>——>——>——>——>——> [页面路由](application-dev/ui/ui-js-building-ui-routes.md)
 
-——>——>——>——>——>——>[事件](application-dev/ui/ui-js-building-ui-event.md)
+——>——>——>——>——> 常见组件开发指导
 
-——>——>——>——>——>——>[页面路由](application-dev/ui/ui-js-building-ui-routes.md)
+——>——>——>——>——>——> [Text](application-dev/ui/ui-js-components-text.md)
 
-——>——>——>——>——>常见组件开发指导
+——>——>——>——>——>——> [Input](application-dev/ui/ui-js-components-input.md)
 
-——>——>——>——>——>——>[Text](application-dev/ui/ui-js-components-text.md)
+——>——>——>——>——>——> [Button](application-dev/ui/ui-js-components-button.md)
 
-——>——>——>——>——>——>[Input](application-dev/ui/ui-js-components-input.md)
+——>——>——>——>——>——> [List](application-dev/ui/ui-js-components-list.md)
 
-——>——>——>——>——>——>[Button](application-dev/ui/ui-js-components-button.md)
+——>——>——>——>——>——> [Picker](application-dev/ui/ui-js-components-picker.md)
 
-——>——>——>——>——>——>[List](application-dev/ui/ui-js-components-list.md)
+——>——>——>——>——>——> [Dialog](application-dev/ui/ui-js-components-dialog.md)
 
-——>——>——>——>——>——>[Picker](application-dev/ui/ui-js-components-picker.md)
+——>——>——>——>——>——> [Form](application-dev/ui/ui-js-components-form.md)
 
-——>——>——>——>——>——>[Dialog](application-dev/ui/ui-js-components-dialog.md)
+——>——>——>——>——>——> [Stepper](application-dev/ui/ui-js-components-stepper.md)
 
-——>——>——>——>——>——>[Form](application-dev/ui/ui-js-components-form.md)
+——>——>——>——>——>——> [Tabs](application-dev/ui/ui-js-component-tabs.md)
 
-——>——>——>——>——>——>[Stepper](application-dev/ui/ui-js-components-stepper.md)
+——>——>——>——>——>——> [Image](application-dev/ui/ui-js-components-images.md)
 
-——>——>——>——>——>——>[Tabs](application-dev/ui/ui-js-component-tabs.md)
+——>——>——>——>——> 动效开发指导
 
-——>——>——>——>——>——>[Image](application-dev/ui/ui-js-components-images.md)
+——>——>——>——>——>——> CSS动画
 
-——>——>——>——>——>动效开发指导
+——>——>——>——>——>——>——> [属性样式动画](application-dev/ui/ui-js-animate-attribute-style.md)
 
-——>——>——>——>——>——>CSS动画
+——>——>——>——>——>——>——> [transform样式动画](application-dev/ui/ui-js-animate-transform.md)
 
-——>——>——>——>——>——>——>[属性样式动画](application-dev/ui/ui-js-animate-attribute-style.md)
+——>——>——>——>——>——>——> [background-position样式动画](application-dev/ui/ui-js-animate-background-position-style.md)
 
-——>——>——>——>——>——>——>[transform样式动画](application-dev/ui/ui-js-animate-transform.md)
-
-——>——>——>——>——>——>——>[background-position样式动画](application-dev/ui/ui-js-animate-background-position-style.md)
-
-——>——>——>——>——>——>JS动画
+——>——>——>——>——>——> JS动画
 
 ——>——>——>——>——>——>——> [组件动画](application-dev/ui/ui-js-animate-component.md)
 
-——>——>——>——>——>——>——>插值器动画
+——>——>——>——>——>——>——> 插值器动画
 
-——>——>——>——>——>——>——>——>[动画动效](application-dev/ui/ui-js-animate-dynamic-effects.md)
+——>——>——>——>——>——>——>——> [动画动效](application-dev/ui/ui-js-animate-dynamic-effects.md)
 
-——>——>——>——>——>——>——>——>[动画帧](application-dev/ui/ui-js-animate-frame.md)
+——>——>——>——>——>——>——>——> [动画帧](application-dev/ui/ui-js-animate-frame.md)
 
-——>——>——>——>——>[自定义组件](application-dev/ui/ui-js-custom-components.md)
+——>——>——>——>——> [自定义组件](application-dev/ui/ui-js-custom-components.md)
 
-——>——>——>——>基于TS扩展的声明式开发范式
+——>——>——>——> 基于TS扩展的声明式开发范式
 
-——>——>——>——>——>[概述](application-dev/ui/ui-ts-overview.md)
+——>——>——>——>——> [概述](application-dev/ui/ui-ts-overview.md)
 
-——>——>——>——>——>框架说明
+——>——>——>——>——> 框架说明
 
-——>——>——>——>——>——>文件组织
+——>——>——>——>——>——> 文件组织
 
-——>——>——>——>——>——>——>[目录结构](application-dev/ui/ts-framework-directory.md)
+——>——>——>——>——>——>——> [目录结构](application-dev/ui/ts-framework-directory.md)
 
-——>——>——>——>——>——>——>[应用代码文件访问规则](application-dev/ui/ts-framework-file-access-rules.md)
+——>——>——>——>——>——>——> [应用代码文件访问规则](application-dev/ui/ts-framework-file-access-rules.md)
 
-——>——>——>——>——>——>[js标签配置](application-dev/ui/ts-framework-js-tag.md)
+——>——>——>——>——>——> [js标签配置](application-dev/ui/ts-framework-js-tag.md)
 
-——>——>——>——>——>——>资源访问
+——>——>——>——>——>——> 资源访问
 
-——>——>——>——>——>——>——>[媒体资源类型说明](application-dev/ui/ts-media-resource-type.md)
+——>——>——>——>——>——>——> [媒体资源类型说明](application-dev/ui/ts-media-resource-type.md)
 
-——>——>——>——>——>——>[像素单位](application-dev/ui/ts-pixel-units.md)
+——>——>——>——>——>——> [像素单位](application-dev/ui/ts-pixel-units.md)
 
-——>——>——>——>——>——>[类型定义](application-dev/ui/ts-types.md)
+——>——>——>——>——>——> [类型定义](application-dev/ui/ts-types.md)
 
-——>——>——>——>——>声明式语法
+——>——>——>——>——> 声明式语法
 
-——>——>——>——>——>——>[描述规范使用说明](application-dev/ui/ts-syntax-intro.md)
+——>——>——>——>——>——> [描述规范使用说明](application-dev/ui/ts-syntax-intro.md)
 
-——>——>——>——>——>——>通用UI描述规范
+——>——>——>——>——>——> 通用UI描述规范
 
-——>——>——>——>——>——>——>[基本概念](application-dev/ui/ts-general-ui-concepts.md)
+——>——>——>——>——>——>——> [基本概念](application-dev/ui/ts-general-ui-concepts.md)
 
-——>——>——>——>——>——>——>声明式UI描述规范
+——>——>——>——>——>——>——> 声明式UI描述规范
 
-——>——>——>——>——>——>——>——>[无构造参数配置](application-dev/ui/ts-parameterless-configuration.md)
+——>——>——>——>——>——>——>——> [无构造参数配置](application-dev/ui/ts-parameterless-configuration.md)
 
-——>——>——>——>——>——>——>——>[必选参数构造配置](application-dev/ui/ts-configuration-with-mandatory-parameters.md)
+——>——>——>——>——>——>——>——> [必选参数构造配置](application-dev/ui/ts-configuration-with-mandatory-parameters.md)
 
-——>——>——>——>——>——>——>——>[属性配置](application-dev/ui/ts-attribution-configuration.md)
+——>——>——>——>——>——>——>——> [属性配置](application-dev/ui/ts-attribution-configuration.md)
 
-——>——>——>——>——>——>——>——>[事件配置](application-dev/ui/ts-event-configuration.md)
+——>——>——>——>——>——>——>——> [事件配置](application-dev/ui/ts-event-configuration.md)
 
-——>——>——>——>——>——>——>——>[子组件配置](application-dev/ui/ts-child-component-configuration.md)
+——>——>——>——>——>——>——>——> [子组件配置](application-dev/ui/ts-child-component-configuration.md)
 
-——>——>——>——>——>——>——>组件化
+——>——>——>——>——>——>——> 组件化
 
-——>——>——>——>——>——>——>——>[@Component](application-dev/ui/ts-component-based-component.md)
+——>——>——>——>——>——>——>——> [@Component](application-dev/ui/ts-component-based-component.md)
 
-——>——>——>——>——>——>——>——>[@Entry](application-dev/ui/ts-component-based-entry.md)
+——>——>——>——>——>——>——>——> [@Entry](application-dev/ui/ts-component-based-entry.md)
 
-——>——>——>——>——>——>——>——>[@Preview](application-dev/ui/ts-component-based-preview.md)
+——>——>——>——>——>——>——>——> [@Preview](application-dev/ui/ts-component-based-preview.md)
 
-——>——>——>——>——>——>——>——>[@Builder](application-dev/ui/ts-component-based-builder.md)
+——>——>——>——>——>——>——>——> [@Builder](application-dev/ui/ts-component-based-builder.md)
 
-——>——>——>——>——>——>——>——>[@Extend](application-dev/ui/ts-component-based-extend.md)
+——>——>——>——>——>——>——>——> [@Extend](application-dev/ui/ts-component-based-extend.md)
 
-——>——>——>——>——>——>——>——>[@CustomDialog](application-dev/ui/ts-component-based-customdialog.md)
+——>——>——>——>——>——>——>——> [@CustomDialog](application-dev/ui/ts-component-based-customdialog.md)
 
-——>——>——>——>——>——>UI状态管理
+——>——>——>——>——>——> UI状态管理
 
-——>——>——>——>——>——>——>[基本概念](application-dev/ui/ts-ui-state-mgmt-concepts.md)
+——>——>——>——>——>——>——> [基本概念](application-dev/ui/ts-ui-state-mgmt-concepts.md)
 
-——>——>——>——>——>——>——>管理组件拥有的状态
+——>——>——>——>——>——>——> 管理组件拥有的状态
 
-——>——>——>——>——>——>——>——>[@State](application-dev/ui/ts-component-states-state.md)
+——>——>——>——>——>——>——>——> [@State](application-dev/ui/ts-component-states-state.md)
 
-——>——>——>——>——>——>——>——>[@Prop](application-dev/ui/ts-component-states-prop.md)
+——>——>——>——>——>——>——>——> [@Prop](application-dev/ui/ts-component-states-prop.md)
 
-——>——>——>——>——>——>——>——>[@Link](application-dev/ui/ts-component-states-link.md)
+——>——>——>——>——>——>——>——> [@Link](application-dev/ui/ts-component-states-link.md)
 
-——>——>——>——>——>——>——>管理应用程序的状态
+——>——>——>——>——>——>——> 管理应用程序的状态
 
-——>——>——>——>——>——>——>——>接口
+——>——>——>——>——>——>——>——> 接口
 
-——>——>——>——>——>——>——>——>——>[应用程序的数据存储](application-dev/ui/ts-application-states-appstorage.md)
+——>——>——>——>——>——>——>——>——> [应用程序的数据存储](application-dev/ui/ts-application-states-appstorage.md)
 
-——>——>——>——>——>——>——>——>——>[持久化数据管理](application-dev/ui/ts-application-states-apis-persistentstorage.md)
+——>——>——>——>——>——>——>——>——> [持久化数据管理](application-dev/ui/ts-application-states-apis-persistentstorage.md)
 
-——>——>——>——>——>——>——>——>——>[环境变量](application-dev/ui/ts-application-states-apis-environment.md)
+——>——>——>——>——>——>——>——>——> [环境变量](application-dev/ui/ts-application-states-apis-environment.md)
 
-——>——>——>——>——>——>——>——>[AppStorage与组件同步](application-dev/ui/ts-application-states-storagelink-storageprop.md)
+——>——>——>——>——>——>——>——> [AppStorage与组件同步](application-dev/ui/ts-application-states-storagelink-storageprop.md)
 
-——>——>——>——>——>——>——>其他类目的状态管理
+——>——>——>——>——>——>——> 其他类目的状态管理
 
-——>——>——>——>——>——>——>——>[Observed和ObjectLink数据管理](application-dev/ui/ts-other-states-observed-objectlink.md)
+——>——>——>——>——>——>——>——> [Observed和ObjectLink数据管理](application-dev/ui/ts-other-states-observed-objectlink.md)
 
-——>——>——>——>——>——>——>——>[@Consume和@Provide数据管理](application-dev/ui/ts-other-states-consume-provide.md)
+——>——>——>——>——>——>——>——> [@Consume和@Provide数据管理](application-dev/ui/ts-other-states-consume-provide.md)
 
-——>——>——>——>——>——>——>——>[@Watch](application-dev/ui/ts-other-states-watch.md)
+——>——>——>——>——>——>——>——> [@Watch](application-dev/ui/ts-other-states-watch.md)
 
-——>——>——>——>——>——>渲染控制语法
+——>——>——>——>——>——> 渲染控制语法
 
-——>——>——>——>——>——>——>[条件渲染](application-dev/ui/ts-rending-control-syntax-if-else.md)
+——>——>——>——>——>——>——> [条件渲染](application-dev/ui/ts-rending-control-syntax-if-else.md)
 
-——>——>——>——>——>——>——>[循环渲染](application-dev/ui/ts-rending-control-syntax-foreach.md)
+——>——>——>——>——>——>——> [循环渲染](application-dev/ui/ts-rending-control-syntax-foreach.md)
 
-——>——>——>——>——>——>——>[数据懒加载](application-dev/ui/ts-rending-control-syntax-lazyforeach.md)
+——>——>——>——>——>——>——> [数据懒加载](application-dev/ui/ts-rending-control-syntax-lazyforeach.md)
 
-——>——>——>——>——>——>深入理解组件化
+——>——>——>——>——>——> 深入理解组件化
 
-——>——>——>——>——>——>——>[build函数](application-dev/ui/ts-function-build.md)
+——>——>——>——>——>——>——> [build函数](application-dev/ui/ts-function-build.md)
 
-——>——>——>——>——>——>——>[自定义组件初始化](application-dev/ui/ts-custom-component-initialization.md)
+——>——>——>——>——>——>——> [自定义组件初始化](application-dev/ui/ts-custom-component-initialization.md)
 
-——>——>——>——>——>——>——>[自定义组件生命周期回调函数](application-dev/ui/ts-custom-component-lifecycle-callbacks.md)
+——>——>——>——>——>——>——> [自定义组件生命周期回调函数](application-dev/ui/ts-custom-component-lifecycle-callbacks.md)
 
-——>——>——>——>——>——>——>[组件创建和重新初始化示例](application-dev/ui/ts-component-creation-re-initialization.md)
+——>——>——>——>——>——>——> [组件创建和重新初始化示例](application-dev/ui/ts-component-creation-re-initialization.md)
 
-——>——>——>——>——>——>语法糖
+——>——>——>——>——>——> 语法糖
 
-——>——>——>——>——>——>——>[装饰器](application-dev/ui/ts-syntactic-sugar-decorator.md)
+——>——>——>——>——>——>——> [装饰器](application-dev/ui/ts-syntactic-sugar-decorator.md)
 
-——>——>——>——>——>——>——>[链式调用](application-dev/ui/ts-syntactic-sugar-chaining.md)
+——>——>——>——>——>——>——> [链式调用](application-dev/ui/ts-syntactic-sugar-chaining.md)
 
-——>——>——>——>——>——>——>[struct对象](application-dev/ui/ts-syntactic-sugar-struct.md)
+——>——>——>——>——>——>——> [struct对象](application-dev/ui/ts-syntactic-sugar-struct.md)
 
-——>——>——>——>——>——>——>[在实例化过程中省略"new"](application-dev/ui/ts-instantiating-a-struct-without-new-keyword.md)
+——>——>——>——>——>——>——> [在实例化过程中省略"new"](application-dev/ui/ts-instantiating-a-struct-without-new-keyword.md)
 
-——>——>——>——>——>——>——>[组件创建使用独立一行](application-dev/ui/ts-using-a-separate-line-for-new-component.md)
+——>——>——>——>——>——>——> [组件创建使用独立一行](application-dev/ui/ts-using-a-separate-line-for-new-component.md)
 
-——>——>——>——>——>——>——>[生成器函数内使用TS语言的限制](application-dev/ui/ts-restrictions-for-generators.md)
+——>——>——>——>——>——>——> [生成器函数内使用TS语言的限制](application-dev/ui/ts-restrictions-for-generators.md)
 
-——>——>——>——>——>体验声明式UI
+——>——>——>——>——> 体验声明式UI
 
-——>——>——>——>——>——>[创建声明式UI工程](application-dev/ui/ui-ts-creating-project.md)
+——>——>——>——>——>——> [创建声明式UI工程](application-dev/ui/ui-ts-creating-project.md)
 
-——>——>——>——>——>——>[初识Component](application-dev/ui/ui-ts-components.md)
+——>——>——>——>——>——> [初识Component](application-dev/ui/ui-ts-components.md)
 
-——>——>——>——>——>——>[创建简单视图](application-dev/ui/ui-ts-creating-simple-page.md)
+——>——>——>——>——>——> [创建简单视图](application-dev/ui/ui-ts-creating-simple-page.md)
 
-——>——>——>——>——>页面布局与连接
+——>——>——>——>——> 页面布局与连接
 
-——>——>——>——>——>——>[构建食物数据模型](application-dev/ui/ui-ts-building-data-model.md)
+——>——>——>——>——>——> [构建食物数据模型](application-dev/ui/ui-ts-building-data-model.md)
 
-——>——>——>——>——>——>[构建食物列表List布局](application-dev/ui/ui-ts-building-category-list-layout.md)
+——>——>——>——>——>——> [构建食物列表List布局](application-dev/ui/ui-ts-building-category-list-layout.md)
 
-——>——>——>——>——>——>[构建食物分类Grid布局](application-dev/ui/ui-ts-building-category-grid-layout.md)
+——>——>——>——>——>——> [构建食物分类Grid布局](application-dev/ui/ui-ts-building-category-grid-layout.md)
 
-——>——>——>——>——>——>[页面跳转与数据传递](application-dev/ui/ui-ts-page-redirection-data-transmission.md)
+——>——>——>——>——>——> [页面跳转与数据传递](application-dev/ui/ui-ts-page-redirection-data-transmission.md)
 
-——>——>——>音频
+——>——>——> 音频
 
-——>——>——>——>[音频开发概述](application-dev/media/audio-overview.md)
+——>——>——>——> [音频开发概述](application-dev/media/audio-overview.md)
 
-——>——>——>——>[音频播放开发指导](application-dev/media/audio-playback.md)
+——>——>——>——> [音频播放开发指导](application-dev/media/audio-playback.md)
 
-——>——>——>——>[音频管理开发指导](application-dev/media/audio-management.md)
+——>——>——>——> [音频管理开发指导](application-dev/media/audio-management.md)
 
-——>——>——>——>[音频录制开发指导](application-dev/media/audio-recorder.md)
+——>——>——>——> [音频录制开发指导](application-dev/media/audio-recorder.md)
 
-——>——>——>用户认证
+——>——>——> 用户认证
 
-——>——>——>——>[用户认证开发概述](application-dev/security/userauth-overview.md)
+——>——>——>——> [用户认证开发概述](application-dev/security/userauth-overview.md)
 
-——>——>——>——>[用户认证开发指导](application-dev/security/userauth-guidelines.md)
+——>——>——>——> [用户认证开发指导](application-dev/security/userauth-guidelines.md)
 
-——>——>——>IPC与RPC通信
+——>——>——> IPC与RPC通信
 
-——>——>——>——>[IPC与RPC通信概述](application-dev/connectivity/ipc-rpc-overview.md)
+——>——>——>——> [IPC与RPC通信概述](application-dev/connectivity/ipc-rpc-overview.md)
 
-——>——>——>——>[IPC与RPC通信开发指导](application-dev/connectivity/ipc-rpc-development-guideline.md)
+——>——>——>——> [IPC与RPC通信开发指导](application-dev/connectivity/ipc-rpc-development-guideline.md)
 
-——>——>——>——>[远端状态订阅开发实例](application-dev/connectivity/subscribe-remote-state.md)
+——>——>——>——> [远端状态订阅开发实例](application-dev/connectivity/subscribe-remote-state.md)
 
-——>——>——>分布式数据服务
+——>——>——> 分布式数据服务
 
-——>——>——>——>[分布式数据服务概述](application-dev/database/database-mdds-overview.md)
+——>——>——>——> [分布式数据服务概述](application-dev/database/database-mdds-overview.md)
 
-——>——>——>——>[分布式数据服务开发指导](application-dev/database/database-mdds-guidelines.md)
+——>——>——>——> [分布式数据服务开发指导](application-dev/database/database-mdds-guidelines.md)
 
-——>——>——>USB服务
+——>——>——> USB服务
 
-——>——>——>——>[USB服务开发概述](application-dev/usb/usb-overview.md)
+——>——>——>——> [USB服务开发概述](application-dev/usb/usb-overview.md)
 
-——>——>——>——>[USB服务开发指导](application-dev/usb/usb-guidelines.md)
+——>——>——>——> [USB服务开发指导](application-dev/usb/usb-guidelines.md)
 
-——>——>——>应用事件打点
+——>——>——> 应用事件打点
 
-——>——>——>——>[应用事件打点概述](application-dev/application-event-logging/hiappevent-overview.md)
+——>——>——>——> [应用事件打点概述](application-dev/application-event-logging/hiappevent-overview.md)
 
-——>——>——>——>[应用事件开发指导](application-dev/application-event-logging/hiappevent-guidelines.md)
+——>——>——>——> [应用事件开发指导](application-dev/application-event-logging/hiappevent-guidelines.md)
 
-——>——>——>[DevEco Studio（OpenHarmony）使用指南](application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md)
+——>——>——> [DevEco Studio（OpenHarmony）使用指南](application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md)
 
-——>——>——>——>[概述](application-dev/quick-start/deveco-studio-overview.md)
+——>——>——>——> [概述](application-dev/quick-start/deveco-studio-overview.md)
 
-——>——>——>——>[版本变更说明](application-dev/quick-start/deveco-studio-release-notes.md)
+——>——>——>——> [版本变更说明](application-dev/quick-start/deveco-studio-release-notes.md)
 
-——>——>——>——>[配置OpenHarmony SDK](application-dev/quick-start/configuring-openharmony-sdk.md)
+——>——>——>——> [配置OpenHarmony SDK](application-dev/quick-start/configuring-openharmony-sdk.md)
 
-——>——>——>——>[创建OpenHarmony工程](application-dev/quick-start/create-openharmony-project.md)
+——>——>——>——> [创建OpenHarmony工程](application-dev/quick-start/create-openharmony-project.md)
 
-——>——>——>——>——>[使用工程向导创建新工程](application-dev/quick-start/use-wizard-to-create-project.md)
+——>——>——>——>——> [使用工程向导创建新工程](application-dev/quick-start/use-wizard-to-create-project.md)
 
-——>——>——>——>——>[通过导入Sample方式创建新工程](application-dev/quick-start/import-sample-to-create-project.md)
+——>——>——>——>——> [通过导入Sample方式创建新工程](application-dev/quick-start/import-sample-to-create-project.md)
 
-——>——>——>——>[配置OpenHarmony应用签名信息](application-dev/quick-start/configuring-openharmony-app-signature.md)
+——>——>——>——> [配置OpenHarmony应用签名信息](application-dev/quick-start/configuring-openharmony-app-signature.md)
 
-——>——>——>——>[安装运行OpenHarmony应用](application-dev/quick-start/installing-openharmony-app.md)
+——>——>——>——> [安装运行OpenHarmony应用](application-dev/quick-start/installing-openharmony-app.md)
 
-——>——> [调测]
+——>——> 调测
 
 ——>——>——> [测试用例开发](device-dev/subsystems/subsys-testguide-test.md)
 
@@ -1328,17 +1326,17 @@
 
 ——>——>——>——> [hdc\_std 使用指导](device-dev/subsystems/subsys-toolchain-hdc-guide.md)
 
-——>——> [XTS认证]
+——>——> XTS认证
 
 ——>——>——> [XTS认证用例开发指导](device-dev/subsystems/subsys-xts-guide.md)
 
-——>——> [工具]
+——>——> 工具
 
 ——>——>——> [Docker编译环境](device-dev/get-code/gettools-acquire.md)
 
 ——>——>——> [IDE集成开发环境](device-dev/get-code/gettools-ide.md)
 
-——>——> [参考]
+——>——> 参考
 
 ——>——>——> [JS API参考](application-dev/reference/apis/Readme-CN.md)
 
@@ -1360,7 +1358,7 @@
 
 ——>——>——>——>——> [Context模块](application-dev/reference/apis/js-apis-Context.md)
 
-——>——>——>——>资源管理
+——>——>——>——> 资源管理
 
 ——>——>——>——>——> [资源管理](application-dev/reference/apis/js-apis-resource-manager.md)
 
@@ -1368,17 +1366,17 @@
 
 ——>——>——>——>——> [国际化（Intl）](application-dev/reference/apis/js-apis-intl.md)
 
-——>——>——>——>媒体
+——>——>——>——> 媒体
 
 ——>——>——>——>——> [音频管理](application-dev/reference/apis/js-apis-audio.md)
 
 ——>——>——>——>——> [媒体服务](application-dev/reference/apis/js-apis-media.md)
 
-——>——>——>——>安全
+——>——>——>——> 安全
 
 ——>——>——>——>——> [用户认证](application-dev/reference/apis/js-apis-useriam-userauth.md)
 
-——>——>——>——>数据管理
+——>——>——>——> 数据管理
 
 ——>——>——>——>——> [轻量级存储](application-dev/reference/apis/js-apis-data-storage.md)
 
@@ -1392,7 +1390,7 @@
 
 ——>——>——>——>——> [设置数据项名称](application-dev/reference/apis/js-apis-settings.md)
 
-——>——>——>——>文件管理
+——>——>——>——> 文件管理
 
 ——>——>——>——>——> [文件管理](application-dev/reference/apis/js-apis-fileio.md)
 
@@ -1400,13 +1398,13 @@
 
 ——>——>——>——>——> [目录环境](application-dev/reference/apis/js-apis-environment.md)
 
-——>——>——>——>账号管理
+——>——>——>——> 账号管理
 
 ——>——>——>——>——> [分布式帐号管理](application-dev/reference/apis/js-apis-distributed-account.md)
 
 ——>——>——>——>——>[应用帐号管理](application-dev/reference/apis/js-apis-appAccount.md)
 
-——>——>——>——>电话服务
+——>——>——>——> 电话服务
 
 ——>——>——>——>——> [拨打电话](application-dev/reference/apis/js-apis-call.md)
 
@@ -1930,7 +1928,7 @@
 
 ——>——>——>[应用开发包结构说明](application-dev/quick-start/package-structure.md)
 
-——>——>——> [常见问题-设备开发]
+——>——>——> 常见问题-设备开发
 
 ——>——>——>——>[常见问题概述](device-dev/faqs/faqs-overview.md)
 
@@ -1948,7 +1946,7 @@
 
 ——>——>——>——>[系统应用常见问题](device-dev/faqs/faqs-system-using.md)
 
-——>——> [贡献]
+——>——> 贡献
 
 ——>——>——>[参与贡献](contribute/参与贡献.md)
 
