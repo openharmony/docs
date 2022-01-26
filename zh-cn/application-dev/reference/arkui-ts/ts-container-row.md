@@ -68,9 +68,9 @@ Row\(value:\{space?: Length\}\)
 </td>
 </tr>
 </tbody>
-<tbody><tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>justifyContent</p>
+<tbody><tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>justifyContent<sup>8+</sup></p>
 </td>
-<td class="cellrowborder" valign="top" width="19%" headers="mcps1.1.5.1.2 "><p><a href="#li1540916112452">FlexAlign</a></p>
+<td class="cellrowborder" valign="top" width="19%" headers="mcps1.1.5.1.2 "><p><a href="ts-container-flex.md#li1540916112452">FlexAlign</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p>Start</p>
 </td>
