@@ -1,7 +1,5 @@
 # OpenHarmony
 
-——>——> 文档导读
-
 ——>——> 了解OpenHarmony
 
 ——>——>——> [了解OpenHarmony开源项目](OpenHarmony-Overview_zh.md)
