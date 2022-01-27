@@ -1,5 +1,13 @@
 # APIs
 
+- Ability Framework
+    -   [FeatureAbility Module](js-apis-featureAbility.md)
+    -   [ParticleAbility Module](js-apis-particleAbility.md)
+    -   [DataUriUtils Module](js-apis-DataUriUtils.md)
+    -   [Context Module](js-apis-Context.md)
+- Event Notification
+    -   [CommonEvent Module](js-apis-commonEvent.md)
+    -   [Notification Module](js-apis-notification.md)
 -   Resource Management
     -   [Resource Manager](js-apis-resource-manager.md)
     -   [Internationalization \(intl\) ](js-apis-intl.md)
@@ -47,6 +55,7 @@
     -   [Animation](js-apis-basic-features-animator.md)
     -   [HiAppEvent](js-apis-hiappevent.md)
     -   [Performance Tracing](js-apis-bytrace.md)
+    -   [Fault Logger](js-apis-faultLogger.md)
 -   Language Base Class Library
     -   [Obtaining Process Information](js-apis-process.md)
     -   [URL String Parsing](js-apis-url.md)
