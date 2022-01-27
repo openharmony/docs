@@ -10,7 +10,7 @@
 
 ## 订阅实时HiSysEvent事件相关命令<a name="section1210623418527"></a>
 
-1. 实时订阅HiSysEvent事件的基础命令：
+实时订阅HiSysEvent事件的基础命令：
 
 **hisysevent -r**
 
@@ -20,7 +20,7 @@ options选项说明：
 | -------- | --------- |
 | -r       | 以缺省设置实时订阅HiSysEvent事件，在此种订阅方式下有任何实时HiSysEvent事件产生，都会在控制台上打印此HiSysEvent事件 | 
 
-2. 打开调试模式：
+打开调试模式：
 
 **hisysevent -r -d**
 
@@ -30,7 +30,7 @@ options选项说明：
 | -------- | --------- |
 | -d       | 在调试模式下实时订阅HiSysEvent事件 | 
 
-3. 通过事件标签方式订阅实时系统事件：
+通过事件标签方式订阅实时系统事件：
 
 **hisysevnet -r -t \<tag\> \[-c \[WHOLE_WORD|PREFIX|REGULAR\]\]**
 
@@ -58,7 +58,7 @@ options选项说明：
 
 ## 查询历史HiSysEvent事件相关命令<a name="section1210623418539"></a>
 
-1. 查询历史HiSysEvent事件的基础命令：
+查询历史HiSysEvent事件的基础命令：
 
 **hisysevent -l**
 
@@ -68,7 +68,7 @@ options选项说明：
 | -------- | --------- |
 | -l       | 以缺省设置查询历史HiSysEvent事件，此次查询会返回所有落盘的HiSysEvent事件 | 
 
-2. 通过设置开始/结束时间，过滤查询历史HiSysEvent事件的结果的命令：
+通过设置开始/结束时间，过滤查询历史HiSysEvent事件的结果的命令：
 
 **hisysevent -l -s \<begin time\> -e \<end time\>**
 
@@ -79,7 +79,7 @@ options选项说明：
 | -s       | 设置查询历史HiSysEvent事件的开始时间，此次查询只会返回不早于该时间点的HiSysEvent事件 |
 | -e       | 设置查询历史HiSysEvent事件的结束时间，此次查询只会返回不晚于该时间点的HiSysEvent事件 |
 
-3. 通过设置最大数量值，限制查询历史HiSysEvent事件的数量：
+通过设置最大数量值，限制查询历史HiSysEvent事件的数量：
 
 **hisysevent -l -m \<max hisysevent count\>**
 
