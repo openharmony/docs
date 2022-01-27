@@ -3,7 +3,7 @@
 -   [Linux Kernel Versions](#section152847516485)
 -   [OpenHarmony Kernel Version Selection](#section2716416191715)
 
-OpenHarmony adopts the Linux kernel as the basic kernel for standard-system devices \(reference memory ≥ 128 MB\)  so that appropriate OS kernels can be selected for the devices subject to resource limitations and therefore provide basic capabilities for upper-layer apps.
+OpenHarmony adopts the Linux kernel as the basic kernel for standard-system devices \(reference memory ≥ 128 MiB\)  so that appropriate OS kernels can be selected for the devices subject to resource limitations and therefore provide basic capabilities for upper-layer apps.
 
 ## Linux Kernel Versions<a name="section152847516485"></a>
 
