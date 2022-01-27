@@ -14,17 +14,17 @@
 
 **hisysevent -r**
 
-options选项说明：
+选项说明：
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
-| -r       | 以缺省设置实时订阅HiSysEvent事件，在此种订阅方式下有任何实时HiSysEvent事件产生，都会在控制台上打印此HiSysEvent事件 | 
+| -r&nbsp;        | 以缺省设置实时订阅HiSysEvent事件，在此种订阅方式下有任何实时HiSysEvent事件产生，都会在控制台上打印此HiSysEvent事件 | 
 
-打开调试模式：
+1.打开调试模式：
 
 **hisysevent -r -d**
 
-options选项说明：
+选项说明：
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
@@ -34,12 +34,12 @@ options选项说明：
 
 **hisysevnet -r -t \<tag\> \[-c \[WHOLE_WORD|PREFIX|REGULAR\]\]**
 
-options选项说明：
+选项说明：
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
-| -t       | 设置实时订阅的HiSysEvent事件标签，用来过滤订阅的HiSysEvent事件 |
-| -c       | 设置实时订阅的HiSysEvent事件标签匹配规则，有“WHOLE_WORD”、“PREFIX”、“REGULAR”三种匹配规则|
+| -t&nbsp;        | 设置实时订阅的HiSysEvent事件标签，用来过滤订阅的HiSysEvent事件 |
+| -c&nbsp;        | 设置实时订阅的HiSysEvent事件标签匹配规则，有“WHOLE_WORD”、“PREFIX”、“REGULAR”三种匹配规则|
 
 4. 通过事件领域及事件名称的方式订阅实时系统事件：
 
@@ -62,7 +62,7 @@ options选项说明：
 
 **hisysevent -l**
 
-options选项说明：
+选项说明：
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
@@ -72,7 +72,7 @@ options选项说明：
 
 **hisysevent -l -s \<begin time\> -e \<end time\>**
 
-options选项说明：
+选项说明：
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
@@ -83,7 +83,7 @@ options选项说明：
 
 **hisysevent -l -m \<max hisysevent count\>**
 
-options选项说明：
+选项说明：
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
