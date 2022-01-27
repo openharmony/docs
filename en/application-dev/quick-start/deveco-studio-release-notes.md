@@ -1,13 +1,36 @@
-# Version Change History<a name="EN-US_TOPIC_0000001210143219"></a>
+# Version Change History
 
-## V3.0 Beta1 \(2021-09-29\)<a name="section21092033115018"></a>
+- [V3.0 Beta2 (2021-12-31)](#V30-Beta2-2021-12-31)
+ - [Version Compatibility](#Version-Compatibility)
+ - [Version Change History](#Version-Change-History)
+- [V3.0 Beta1 (2021-09-29)](#V30-Beta1-2021-09-29)
 
-<a name="simpletable19435134375015"></a>
-<table id="simpletable19435134375015"><tr id="strow1435543185020"><td valign="top" id="stentry64351943115013"><div class="p" id="p13974162220455"><a name="p13974162220455"></a><a name="p13974162220455"></a><strong id="b0838112318282"><a name="b0838112318282"></a><a name="b0838112318282"></a>New Features</strong><a name="ul11381034104515"></a><a name="ul11381034104515"></a><ul id="ul11381034104515"><li>Added support for OpenHarmony SDK management. You can use SDK Manager to download and manage OpenHarmony SDKs.</li><li>Allowed for building of a single module during HAP compilation and building to accelerate building for multi-module projects; allowed for one-click re-building of HAPs, by automatically conducting the Clean Project operation before a HAP build.</li></ul>
-</div>
-<div class="p" id="p556811306614"><a name="p556811306614"></a><a name="p556811306614"></a><strong id="b0183135142820"><a name="b0183135142820"></a><a name="b0183135142820"></a>Enhanced Features</strong><a name="ul834518400613"></a><a name="ul834518400613"></a><ul id="ul834518400613"><li>Updated the compilation and building plugin to version 3.0.3.2.</li><li>Improved the JSON editor, which now enables quick rectification of resource index errors and instant access to resource values.</li><li>Provided Ohos and Project (default) views for projects, which you can switch between easily.</li><li>Enabled OpenHarmony projects to support Ark build.</li><li>Moved the <strong id="b19966587296"><a name="b19966587296"></a><a name="b19966587296"></a>supportSystem "standard"</strong> field, which is exclusive to OpenHarmony projects, from the module-level <strong id="b596638162911"><a name="b596638162911"></a><a name="b596638162911"></a>build.gradle</strong> file to the project-level <strong id="b199671680295"><a name="b199671680295"></a><a name="b199671680295"></a>build.gradle</strong> file.</li></ul>
-</div>
-</td>
-</tr>
-</table>
+## V3.0 Beta2 (2021-12-31)
 
+
+### Version Compatibility
+
+DevEco Studio 3.0 Beta2 is compatible with the module versions listed below.
+
+| Module | Version | Description | 
+| -------- | -------- | -------- |
+| Gradle | 7.3&nbsp;(7.2&nbsp;at&nbsp;minimum) | DevEco&nbsp;Studio&nbsp;has&nbsp;Gradle&nbsp;7.3&nbsp;preinstalled.&nbsp;No&nbsp;separate&nbsp;installation&nbsp;is&nbsp;required. | 
+| JDK | 11.0.x | DevEco&nbsp;Studio&nbsp;has&nbsp;JDK&nbsp;11&nbsp;preinstalled.&nbsp;No&nbsp;separate&nbsp;installation&nbsp;is&nbsp;required. | 
+| OpenHarmony&nbsp;SDK | 3.1.0.0&nbsp;(API&nbsp;Version&nbsp;8&nbsp;Beta) | This&nbsp;version&nbsp;is&nbsp;compatible&nbsp;with&nbsp;SDKs&nbsp;of&nbsp;earlier&nbsp;versions. | 
+| Toolchinas | 3.1.0.0 | Update&nbsp;them&nbsp;to&nbsp;the&nbsp;latest&nbsp;version. | 
+| hap&nbsp;plug-in | 3.0.5.2 | 
+| decctest&nbsp;plug-in | 1.2.7.2 | 
+
+
+### Version Change History
+
+| |
+| -------- |
+| **New&nbsp;Features**<br/>-&nbsp;Introduced&nbsp;the&nbsp;Chinese&nbsp;UI.&nbsp;By&nbsp;default,&nbsp;the&nbsp;UI&nbsp;is&nbsp;displayed&nbsp;in&nbsp;English.&nbsp;To&nbsp;enable&nbsp;the&nbsp;Chinese&nbsp;UI,&nbsp;go&nbsp;to&nbsp;**Settings**,&nbsp;choose&nbsp;**Plugins**&nbsp;&gt;&nbsp;**installed**,&nbsp;and&nbsp;select&nbsp;**Chinese&nbsp;(Simplified)**.&nbsp;Then,&nbsp;restart&nbsp;DevEco&nbsp;Studio&nbsp;for&nbsp;the&nbsp;settings&nbsp;to&nbsp;take&nbsp;effect.<br/>-&nbsp;Introduced&nbsp;support&nbsp;for&nbsp;OpenHarmony&nbsp;apps&nbsp;and&nbsp;services,&nbsp;with&nbsp;various&nbsp;debugging&nbsp;features,&nbsp;from&nbsp;breakpoint&nbsp;management&nbsp;and&nbsp;variable&nbsp;observation&nbsp;to&nbsp;stepping.<br/>**Enhanced&nbsp;Features**<br/>-&nbsp;Updated&nbsp;the&nbsp;OpenHarmony&nbsp;SDK&nbsp;to&nbsp;3.1.0.0,&nbsp;whose&nbsp;API&nbsp;version&nbsp;is&nbsp;API&nbsp;8&nbsp;Beta&nbsp;and&nbsp;corresponding&nbsp;compilation&nbsp;and&nbsp;building&nbsp;plugin&nbsp;is&nbsp;3.0.5.2.<br/>-&nbsp;Added&nbsp;an&nbsp;ability&nbsp;template&nbsp;that&nbsp;supports&nbsp;low-code&nbsp;development:&nbsp;**[Standard]Empty&nbsp;Ability**.<br/>-&nbsp;Added&nbsp;eTS&nbsp;component&nbsp;preview:&nbsp;allows&nbsp;previewing&nbsp;of&nbsp;eTS&nbsp;components;&nbsp;requires&nbsp;compileSdkVersion&nbsp;8&nbsp;or&nbsp;later.<br/>-&nbsp;Added&nbsp;eTS&nbsp;livee&nbsp;preview:&nbsp;allows&nbsp;viewing&nbsp;of&nbsp;the&nbsp;attribute&nbsp;changes&nbsp;in&nbsp;real&nbsp;time&nbsp;as&nbsp;you&nbsp;make&nbsp;them;&nbsp;requires&nbsp;compileSdkVersion&nbsp;8&nbsp;or&nbsp;later. | 
+
+
+## V3.0 Beta1 (2021-09-29)
+
+| |
+| -------- |
+| **New&nbsp;Features**<br/>-&nbsp;Added&nbsp;support&nbsp;for&nbsp;OpenHarmony&nbsp;SDK&nbsp;management.&nbsp;You&nbsp;can&nbsp;use&nbsp;SDK&nbsp;Manager&nbsp;to&nbsp;download&nbsp;and&nbsp;manage&nbsp;OpenHarmony&nbsp;SDKs.<br/>-&nbsp;Allowed&nbsp;for&nbsp;building&nbsp;of&nbsp;a&nbsp;single&nbsp;module&nbsp;during&nbsp;HAP&nbsp;compilation&nbsp;and&nbsp;building&nbsp;to&nbsp;accelerate&nbsp;building&nbsp;for&nbsp;multi-module&nbsp;projects;&nbsp;allowed&nbsp;for&nbsp;one-click&nbsp;re-building&nbsp;of&nbsp;HAPs,&nbsp;by&nbsp;automatically&nbsp;conducting&nbsp;the&nbsp;Clean&nbsp;Project&nbsp;operation&nbsp;before&nbsp;a&nbsp;HAP&nbsp;build.<br/>**Enhanced&nbsp;Features**<br/>-&nbsp;Updated&nbsp;the&nbsp;compilation&nbsp;and&nbsp;building&nbsp;plugin&nbsp;to&nbsp;version&nbsp;3.0.3.2.<br/>-&nbsp;Improved&nbsp;the&nbsp;JSON&nbsp;editor,&nbsp;which&nbsp;now&nbsp;enables&nbsp;quick&nbsp;rectification&nbsp;of&nbsp;resource&nbsp;index&nbsp;errors&nbsp;and&nbsp;instant&nbsp;access&nbsp;to&nbsp;resource&nbsp;values.<br/>-&nbsp;Provided&nbsp;Ohos&nbsp;and&nbsp;Project&nbsp;(default)&nbsp;views&nbsp;for&nbsp;projects,&nbsp;which&nbsp;you&nbsp;can&nbsp;switch&nbsp;between&nbsp;easily.<br/>-&nbsp;Enabled&nbsp;OpenHarmony&nbsp;projects&nbsp;to&nbsp;support&nbsp;Ark&nbsp;build.<br/>-&nbsp;Moved&nbsp;the&nbsp;**supportSystem&nbsp;"standard"**&nbsp;field,&nbsp;which&nbsp;is&nbsp;exclusive&nbsp;to&nbsp;OpenHarmony&nbsp;projects,&nbsp;from&nbsp;the&nbsp;module-level&nbsp;**build.gradle**&nbsp;file&nbsp;to&nbsp;the&nbsp;project-level&nbsp;**build.gradle**&nbsp;file. | 
