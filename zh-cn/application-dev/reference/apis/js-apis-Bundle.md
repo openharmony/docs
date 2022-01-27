@@ -1,125 +1,95 @@
 # Bundle模块(JS端SDK接口)
 
-#### 支持设备
-
-| API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 智慧视觉设备 |
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| Bundle.getApplicationInfo(bundleName: string, bundleFlags: number, userId: number) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback<ApplicationInfo>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getAllBundleInfo(bundlelFlag: BundleFlag)             | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getAllBundleInfo(bundlelFlag: BundleFlag, callback: AsyncCallback<Array<BundleInfo>>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getBundleInfo(bundleName: string, bundleFlags: number) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getAllApplicationInfo(bundleFlags: number, userId: number) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array<ApplicationInfo>>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.queryAbilityByWant(want: Want, bundleFlags: number, userId: number) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getPermissionDef(permissionName: string)              | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getPermissionDef(permissionName: string, callback: AsyncCallback<permission.PermissionDef>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getBundleArchiveInfo(hapFilePath: string, flags: number) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getBundleArchiveInfo(hapFilePath: string, flags: number, callback: AsyncCallback<BundleInfo>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getBundleInstaller().install(bundleFilePaths: Array<string>, param: InstallParam, callback: AsyncCallback<InstallStatus>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getBundleInstaller().uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback<InstallStatus>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getAllShortcutInfo(bundleName: string): Promise<Array<ShortcutInfo>> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Bundle.getAllShortcutInfo(bundleName: string, callback: AsyncCallback<Array<ShortcutInfo>>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| getModuleUsageRecords(maxNum: number): Promise<Array<ModuleUsageRecord>> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| getModuleUsageRecords(maxNum: number, callback: AsyncCallback<Array<ModuleUsageRecord>>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| checkPermission(bundleName: string, permission: string): Promise<GrantStatus> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| checkPermission(bundleName: string, permission: string, callback: AsyncCallback<GrantStatus>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-
-#### 权限列表
-
--
-
-#### 导入模块
+## 导入模块
 
 ```
 import bundle from '@ohos.bundle';
 ```
 
+## 权限列表
+无
 
 
-#### getApplicationInfo(bundleName: string, bundleFlags: number, userId: number)
 
-* 功能说明
+## bundle.getApplicationInfo
 
-  根据给定的bundle名称获取ApplicationInfo
-  
-* getApplicationInfo参数描述
+getApplicationInfo(bundleName: string, bundleFlags: number, userId: number): Promise\<ApplicationInfo>
 
-  | 名称        | 读写属性 | 类型   | 必填 | 描述                                                    |
-  | ----------- | -------- | ------ | ---- | ------------------------------------------------------- |
-  | bundleName  | 只读     | string | 是   | 应用名                                                  |
-  | bundleFlags | 只读     | number | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
-  | userId      | 只读     | number | 是   | 用户ID                                                  |
-  
-* 返回值
+根据给定的bundle名称获取ApplicationInfo，通过Promise获取返回值。
 
-  Promise<ApplicationInfo>：返回值为Promise对象，Promise中包含应用信息。
+**参数：**
 
-* 示例
+| 名称        | 类型   | 必填 | 描述                                                    |
+| ----------- | ------ | ---- | ------------------------------------------------------- |
+| bundleName  | string | 是   | 应用名                                                  |
+| bundleFlags | number | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
+| userId      | number | 是   | 用户ID                                                  |
+
+**返回值：**
+
+| 类型      | 说明 |
+| ----------- | -------- |
+| Promise\<ApplicationInfo> | 返回值为Promise对象，Promise中包含应用信息。    |
+
+**示例：**
 
 ```
 bundle.getApplicationInfo('com.example.myapplicationInstall', 8, 0).then((data) => {
-    console.info("name: for begin");
-    console.info("name:" + data.name);
-    console.info("bundleName:" + data.bundleName);
-    console.info("description:" + data.description);
-    console.info("descriptionId:" + data.descriptionId);
-    console.info("iconPath:" + data.iconPath);
-    console.info("iconId:" + data.iconId);
-    console.info("label:" + data.label);
-    console.info("labelId:" + data.labelId);
-    console.info("deviceId:" + data.deviceId);
-    console.info("signatureKey:" + data.signatureKey);
-    console.info("process:" + data.process);
-    console.info("isSystemApp:" + data.isSystemApp);
-    console.info("isLauncherApp:" + data.isLauncherApp);
-    console.info("supportedModes:" + data.supportedModes);
+  console.info("name: for begin");
+  console.info("name:" + data.name);
+  console.info("bundleName:" + data.bundleName);
+  console.info("description:" + data.description);
+  console.info("descriptionId:" + data.descriptionId);
+  console.info("iconPath:" + data.iconPath);
+  console.info("iconId:" + data.iconId);
+  console.info("label:" + data.label);
+  console.info("labelId:" + data.labelId);
+  console.info("deviceId:" + data.deviceId);
+  console.info("signatureKey:" + data.signatureKey);
+  console.info("process:" + data.process);
+  console.info("isSystemApp:" + data.isSystemApp);
+  console.info("isLauncherApp:" + data.isLauncherApp);
+  console.info("supportedModes:" + data.supportedModes);
 
-    console.info('getApplicationInfo permissions length [' + data.permissions.length + ']');
-    for (var j = 0; j < data.permissions.length; j++) {
-        console.info("permissions[" + j + "]:" + data.permissions[j]);
-    }
-    console.info('getApplicationInfo moduleSourceDirs length [' + data.moduleSourceDirs.length + ']');
-    for (var j = 0; j < data.moduleSourceDirs.length; j++) {
-        console.info("moduleSourceDirs[" + j + "]:" + data.moduleSourceDirs[j]);
-    }
-    console.info('getApplicationInfo moduleInfos length [' + data.moduleInfos.length + ']');
-    for (var j = 0; j < data.moduleInfos.length; j++) {
-        console.info("moduleInfos[" + j + "]moduleName:" + data.moduleInfos[j].moduleName);
-        console.info("moduleInfos[" + j + "]moduleSourceDir:" + data.moduleInfos[j].moduleSourceDir);
-    }
-    console.info("entryDir:" + data.entryDir);
-    console.info("codePath:" + data.codePath);
-    console.info("dataDir:" + data.dataDir);
-    console.info("dataBaseDir:" + data.dataBaseDir);
-    console.info("cacheDir:" + data.cacheDir);
+  console.info('getApplicationInfo permissions length [' + data.permissions.length + ']');
+  for (var j = 0; j < data.permissions.length; j++) {
+      console.info("permissions[" + j + "]:" + data.permissions[j]);
+  }
+  console.info('getApplicationInfo moduleSourceDirs length [' + data.moduleSourceDirs.length + ']');
+  for (var j = 0; j < data.moduleSourceDirs.length; j++) {
+      console.info("moduleSourceDirs[" + j + "]:" + data.moduleSourceDirs[j]);
+  }
+  console.info('getApplicationInfo moduleInfos length [' + data.moduleInfos.length + ']');
+  for (var j = 0; j < data.moduleInfos.length; j++) {
+      console.info("moduleInfos[" + j + "]moduleName:" + data.moduleInfos[j].moduleName);
+      console.info("moduleInfos[" + j + "]moduleSourceDir:" + data.moduleInfos[j].moduleSourceDir);
+  }
+  console.info("entryDir:" + data.entryDir);
+  console.info("codePath:" + data.codePath);
+  console.info("dataDir:" + data.dataDir);
+  console.info("dataBaseDir:" + data.dataBaseDir);
+  console.info("cacheDir:" + data.cacheDir);
 })
 ```
 
 
 
-#### getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback<ApplicationInfo>)
+## bundle.getApplicationInfo
 
-* 功能说明
+getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-  根据给定的bundle名称获取ApplicationInfo
-  
-* getApplicationInfo参数描述
+根据给定的bundle名称获取ApplicationInfo，通过回调函数获取返回值。
 
-  | 名称        | 读写属性 | 类型                           | 必填 | 描述                                                    |
-  | ----------- | -------- | ------------------------------ | ---- | ------------------------------------------------------- |
-  | bundleName  | 只读     | string                         | 是   | 应用名                                                  |
-  | bundleFlags | 只读     | number                         | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
-  | userId      | 只读     | number                         | 是   | 用户ID                                                  |
-  | callback    | 只读     | AsyncCallback<ApplicationInfo> | 是   | 回调方法                                                |
+**参数：**
 
-* 返回值
+| 名称        | 类型                            | 必填 | 描述                                                    |
+| ----------- | ------------------------------- | ---- | ------------------------------------------------------- |
+| bundleName  | string                          | 是   | 应用名                                                  |
+| bundleFlags | number                          | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
+| userId      | number                          | 是   | 用户ID                                                  |
+| callback    | AsyncCallback\<ApplicationInfo> | 是   | 回调方法                                                |
 
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.getApplicationInfo('com.example.myapplicationInstall', 8, 0, OnReceiveEvent);
@@ -164,23 +134,25 @@ function OnReceiveEvent(err, data) {
 
 
 
-#### getAllBundleInfo(bundleFlag: BundleFlag)
+## bundle.getAllBundleInfo
 
-* 功能说明
+getAllBundleInfo(bundleFlag: BundleFlag): Promise<Array\<BundleInfo>>
 
-  获取系统中所有可用的包信息
-  
-* getAllBundleInfo参数描述
+获取系统中所有可用的包信息，通过Promise获取返回值。
 
-  | 名称       | 读写属性 | 类型       | 必填 | 描述                                                        |
-  | ---------- | -------- | ---------- | ---- | ----------------------------------------------------------- |
-  | bundleFlag | 只读     | BundleFlag | 是   | 0：返回默认BundleInfo<br>1：返回包含abilityInfo的BundleInfo |
+**参数：**
 
-* 返回值
+| 名称       | 类型       | 必填 | 描述                                                        |
+| ---------- | ---------- | ---- | ----------------------------------------------------------- |
+| bundleFlag | BundleFlag | 是   | 0：返回默认BundleInfo<br>1：返回包含abilityInfo的BundleInfo |
 
-  Promise<Array<BundleInfo>>：返回值为Promise对象，Promise中包含包信息列表。
+**返回值：**
 
-* 示例
+| 类型                        | 说明                                           |
+| --------------------------- | ---------------------------------------------- |
+| Promise<Array\<BundleInfo>> | 返回值为Promise对象，Promise中包含包信息列表。 |
+
+**示例：**
 
 ```
 bundle.getAllBundleInfo(0).then((data) => {
@@ -251,24 +223,20 @@ bundle.getAllBundleInfo(0).then((data) => {
 
 
 
-#### getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array<BundleInfo>>)
+## bundle.getAllBundleInfo
 
-* 功能说明
+getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-  获取系统中所有可用的包信息
-  
-* getAllBundleInfo参数描述
+获取系统中所有可用的包信息，通过回调函数获取返回值。
 
-  | 名称       | 读写属性 | 类型                             | 必填 | 描述                                                         |
-  | ---------- | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-  | bundleFlag | 只读     | BundleFlag                       | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-  | callback   | 只读     | AsyncCallback<Array<BundleInfo>> | 是   | 回调方法                                                     |
+**参数：**
 
-* 返回值
+| 名称       | 类型                              | 必填 | 描述                                                         |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleFlag | BundleFlag                        | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
+| callback   | AsyncCallback<Array\<BundleInfo>> | 是   | 回调方法                                                     |
 
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.getAllBundleInfo(0, OnReceiveEvent);
@@ -342,24 +310,26 @@ function OnReceiveEvent(err, data) {
 
 
 
-#### getBundleInfo(bundleName: string, bundleFlags: number)
+## bundle.getBundleInfo
 
-* 功能说明
+getBundleInfo(bundleName: string, bundleFlags: number): Promise\<BundleInfo>
 
-  根据bundle名称获取BundleInfo
-  
-* getBundleInfo参数描述
+根据bundle名称获取BundleInfo，通过Promise获取返回值。
 
-  | 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
-  | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
-  | bundleName  | 只读     | string | 是   | 包名                                                         |
-  | bundleFlags | 只读     | number | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
+**参数：**
 
-* 返回值
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | 是   | 包名                                                         |
+| bundleFlags | number | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
 
-  Promise<BundleInfo>：返回值为Promise对象，Promise中包含包信息。
+**返回值：**
 
-* 示例
+| 类型                 | 说明                                       |
+| -------------------- | ------------------------------------------ |
+| Promise\<BundleInfo> | 返回值为Promise对象，Promise中包含包信息。 |
+
+**示例：**
 
 ```
 bundle.getBundleInfo('com.example.myapplicationInstall', 1).then((data) => {
@@ -427,25 +397,21 @@ bundle.getBundleInfo('com.example.myapplicationInstall', 1).then((data) => {
 
 
 
-#### getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>)
+## bundle.getBundleInfo
 
-* 功能说明
+getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-  根据bundle名称获取BundleInfo
-  
-* getBundleInfo参数描述
+根据bundle名称获取BundleInfo，通过回调函数获取返回值。
 
-  | 名称        | 读写属性 | 类型                      | 必填 | 描述                                                         |
-  | ----------- | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | bundleName  | 只读     | string                    | 是   | 包名                                                         |
-  | bundleFlags | 只读     | number                    | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-  | callback    | 只读     | AsyncCallback<BundleInfo> | 是   | 回调方法                                                     |
+**参数：**
 
-* 返回值
+| 名称        | 类型                       | 必填 | 描述                                                         |
+| ----------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                     | 是   | 包名                                                         |
+| bundleFlags | number                     | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
+| callback    | AsyncCallback\<BundleInfo> | 是   | 回调方法                                                     |
 
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.getBundleInfo('com.example.myapplicationInstall', 1, OnReceiveEvent);
@@ -515,24 +481,26 @@ function OnReceiveEvent(err, data) {
 
 
 
-#### getAllApplicationInfo(bundleFlags: number, userId: number)
+## bundle.getAllApplicationInfo
 
-* 功能说明
+getAllApplicationInfo(bundleFlags: number, userId: number): Promise<Array\<ApplicationInfo>>
 
-  获取指定用户下所有已安装的应用信息
-  
-* getAllApplicationInfo参数描述
+获取指定用户下所有已安装的应用信息，通过Promise获取返回值。
 
-  | 名称        | 读写属性 | 类型   | 必填 | 描述                                                    |
-  | ----------- | -------- | ------ | ---- | ------------------------------------------------------- |
-  | bundleFlags | 只读     | number | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
-  | userId      | 只读     | number | 是   | 用户ID                                                  |
+**参数：**
 
-* 返回值
+| 名称        | 类型   | 必填 | 描述                                                    |
+| ----------- | ------ | ---- | ------------------------------------------------------- |
+| bundleFlags | number | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
+| userId      | number | 是   | 用户ID                                                  |
 
-  Promise<Array<ApplicationInfo>>：返回值为Promise对象，Promise中包含应用信息列表。
+**返回值：**
 
-* 示例
+| 类型                             | 说明                                             |
+| -------------------------------- | ------------------------------------------------ |
+| Promise<Array\<ApplicationInfo>> | 返回值为Promise对象，Promise中包含应用信息列表。 |
+
+**示例：**
 
 ```
 bundle.getAllApplicationInfo(8, 0).then((data) => {
@@ -578,25 +546,21 @@ bundle.getAllApplicationInfo(8, 0).then((data) => {
 
 
 
-#### getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array<ApplicationInfo>>)
+## bundle.getAllApplicationInfo
 
-* 功能说明
+getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
-  获取指定用户下所有已安装的应用信息
-  
-* getAllApplicationInfo参数描述
+获取指定用户下所有已安装的应用信息，通过回调函数获取返回值。
 
-  | 名称        | 读写属性 | 类型                                  | 必填 | 描述                                                    |
-  | ----------- | -------- | ------------------------------------- | ---- | ------------------------------------------------------- |
-  | bundleFlags | 只读     | number                                | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
-  | userId      | 只读     | number                                | 是   | 用户ID                                                  |
-  | callback    | 只读     | AsyncCallback<Array<ApplicationInfo>> | 是   | 回调方法                                                |
+**参数：**
 
-* 返回值
+| 名称        | 类型                                   | 必填 | 描述                                                    |
+| ----------- | -------------------------------------- | ---- | ------------------------------------------------------- |
+| bundleFlags | number                                 | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
+| userId      | number                                 | 是   | 用户ID                                                  |
+| callback    | AsyncCallback<Array\<ApplicationInfo>> | 是   | 回调方法                                                |
 
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.getAllApplicationInfo(8, 0, OnReceiveEvent);
@@ -644,45 +608,26 @@ function OnReceiveEvent(err, data) {
 
 
 
-#### queryAbilityByWant(want: Want, bundleFlags: number, userId: number)
+## bundle.queryAbilityByWant
 
-* 功能说明
+queryAbilityByWant(want: Want, bundleFlags: number, userId: number): Promise<Array\<AbilityInfo>>
 
-  通过Want获取对应的Ability信息
-  
-* queryAbilityInfo参数描述
+通过Want获取对应的Ability信息，通过Promise获取返回值。
 
-  | 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
-  | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
-  | want        | 只读     | Want   | 是   | 指定Want信息                                                 |
-  | bundleFlags | 只读     | number | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-  | userId      | 只读     | number | 是   | 用户ID                                                       |
+**参数：**
 
-* Want类型说明
+| 名称        | 类型          | 必填 | 描述                                                         |
+| ----------- | ------------- | ---- | ------------------------------------------------------------ |
+| want        | [Want](#want) | 是   | 指定Want信息                                                 |
+| bundleFlags | number        | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
+| userId      | number        | 是   | 用户ID                                                       |
 
-  | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
-  | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-  | elementName | 只读     | ElementName          | 是   | 表示运行指定Ability的ElementName。                           |
-  | uri         | 只读     | string               | 否   | 表示Uri描述。                                                |
-  | flags       | 只读     | int                  | 否   | Ability的flag，表示处理Want的方式。                          |
-  | type        | 只读     | string               | 否   | Want中的type属性是指由Want的URI所指示的资源的MIME类型。      |
-  | action      | 只读     | string               | 否   | 表示动作，通常使用系统预置Action，应用也可以自定义Action。   |
-  | want_param  | 只读     | {[key: string]: any} | 否   | want_param是一种支持自定义的数据结构，开发者可以通过want_param传递某些请求所需的额外信息。 |
-  | entities    | 只读     | Array<string>        | 否   | 表示类别，通常使用系统预置Entity，应用也可以自定义Entity。   |
+**返回值：**
+| 类型                         | 说明                                            |
+| ---------------------------- | ----------------------------------------------- |
+| Promise<Array\<AbilityInfo>> | 返回值为Promise对象，Promise中包含Ability信息。 |
 
-* ElementName类型说明
-
-  | 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
-  | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
-  | deviceId    | 只读     | string | 否   | 表示运行指定Ability的设备ID。                                |
-  | bundleName  | 只读     | string | 是   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-  | abilityName | 只读     | string | 是   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-
-* 返回值
-
-  Promise<Array<AbilityInfo>>：返回值为Promise对象，Promise中包含Ability信息。
-
-* 示例
+**示例：**
 
 ```
 bundle.queryAbilityByWant({
@@ -764,46 +709,22 @@ bundle.queryAbilityByWant({
 
 
 
-#### queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>)
+## bundle.queryAbilityByWant
 
-* 功能说明
+queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-  通过Want获取对应的Ability信息
-  
-* queryAbilityInfo参数描述
+通过Want获取对应的Ability信息，通过回调函数获取返回值。
 
-  | 名称        | 读写属性 | 类型                              | 必填 | 描述                                                         |
-  | ----------- | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-  | want        | 只读     | Want                              | 是   | 指定Want信息                                                 |
-  | bundleFlags | 只读     | number                            | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-  | userId      | 只读     | number                            | 是   | 用户ID                                                       |
-  | callback    | 只读     | AsyncCallback<Array<AbilityInfo>> | 是   | 回调方法                                                     |
+**参数：**
 
-* Want类型说明
+| 名称        | 类型                               | 必填 | 描述                                                         |
+| ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| want        | [Want](#want)                      | 是   | 指定Want信息                                                 |
+| bundleFlags | number                             | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
+| userId      | number                             | 是   | 用户ID                                                       |
+| callback    | AsyncCallback<Array\<AbilityInfo>> | 是   | 回调方法                                                     |
 
-  | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
-  | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-  | elementName | 只读     | ElementName          | 是   | 表示运行指定Ability的ElementName。                           |
-  | uri         | 只读     | string               | 否   | 表示Uri描述。                                                |
-  | flags       | 只读     | int                  | 否   | Ability的flag，表示处理Want的方式。                          |
-  | type        | 只读     | string               | 否   | Want中的type属性是指由Want的URI所指示的资源的MIME类型。      |
-  | action      | 只读     | string               | 否   | 表示动作，通常使用系统预置Action，应用也可以自定义Action。   |
-  | want_param  | 只读     | {[key: string]: any} | 否   | want_param是一种支持自定义的数据结构，开发者可以通过want_param传递某些请求所需的额外信息。 |
-  | entities    | 只读     | Array<string>        | 否   | 表示类别，通常使用系统预置Entity，应用也可以自定义Entity。   |
-
-* ElementName类型说明
-
-  | 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
-  | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
-  | deviceId    | 只读     | string | 否   | 表示运行指定Ability的设备ID。                                |
-  | bundleName  | 只读     | string | 是   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-  | abilityName | 只读     | string | 是   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-
-* 返回值
-
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.queryAbilityByWant(
@@ -887,23 +808,24 @@ function OnReceiveEvent(err, data) {
 
 
 
-#### getPermissionDef(permissionName: string)
+## bundle.getPermissionDef
 
-* 功能说明
+getPermissionDef(permissionName: string): Promise\<BundleInfo>
 
-  获取指定权限的详细信息
+获取指定权限的详细信息，通过Promise获取返回值。
 
-* getPermissionDef参数描述
+**参数：**
 
-  | 名称           | 读写属性 | 类型   | 必填 | 描述   |
-  | -------------- | -------- | ------ | ---- | ------ |
-  | permissionName | 只读     | string | 是   | 权限名 |
+| 名称           | 类型   | 必填 | 描述   |
+| -------------- | ------ | ---- | ------ |
+| permissionName | string | 是   | 权限名 |
 
-* 返回值
+**返回值：**
+| 类型                 | 说明                 |
+| -------------------- | -------------------- |
+| Promise\<BundleInfo> | 返回值为bundle信息。 |
 
-  Promise<BundleInfo>：返回值为bundle信息。
-
-* 示例
+**示例：**
 
 ```
 bundle.getPermissionDef('com.permission.CAMERA').then((data) => {
@@ -918,24 +840,20 @@ bundle.getPermissionDef('com.permission.CAMERA').then((data) => {
 
 
 
-#### getPermissionDef(permissionName: string, callback: AsyncCallback<PermissionDef>)
+## bundle.getPermissionDef
 
-* 功能说明
+getPermissionDef(permissionName: string, callback: AsyncCallback\<PermissionDef>): void
 
-  获取指定权限的详细信息
+获取指定权限的详细信息，通过回调函数获取返回值。
 
-* getPermissionDef参数描述
+**参数：**
 
-  | 名称           | 读写属性 | 类型                         | 必填 | 描述     |
-  | -------------- | -------- | ---------------------------- | ---- | -------- |
-  | permissionName | 只读     | string                       | 是   | 权限名   |
-  | callback       | 只读     | AsyncCallback<PermissionDef> | 是   | 回调方法 |
+| 名称           | 类型                          | 必填 | 描述     |
+| -------------- | ----------------------------- | ---- | -------- |
+| permissionName | string                        | 是   | 权限名   |
+| callback       | AsyncCallback\<PermissionDef> | 是   | 回调方法 |
 
-* 返回值
-
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.getBundleInstaller().then((data) => {
@@ -954,24 +872,25 @@ bundle.getBundleInstaller().then((data) => {
 
 
 
-#### getBundleArchiveInfo(hapFilePath: string, bundleFlags: number)
+## bundle.getBundleArchiveInfo
 
-* 功能说明
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number): Promise\<BundleInfo>
 
-  获取HAP包含的应用包信息
+获取HAP包含的应用包信息，通过Promise获取返回值。
 
-* getBundleArchiveInfo参数描述
+**参数：**
 
-  | 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
-  | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
-  | hapFilePath | 只读     | string | 是   | hap包文件路径                                                |
-  | bundleFlags | 只读     | number | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| hapFilePath | string | 是   | hap包文件路径                                                |
+| bundleFlags | number | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
 
-* 返回值
+**返回值：**
+| 类型                 | 说明                 |
+| -------------------- | -------------------- |
+| Promise\<BundleInfo> | 返回值为bundle信息。 |
 
-  Promise<BundleInfo>：返回值为bundle信息。
-
-* 示例
+**示例：**
 
 ```
 bundle.getBundleArchiveInfo('/data/test.hap', 1).then((data) => {
@@ -1036,27 +955,21 @@ bundle.getBundleArchiveInfo('/data/test.hap', 1).then((data) => {
 })
 ```
 
+## bundle.getBundleArchiveInfo
 
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-#### getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>)
+获取HAP包含的应用包信息，通过回调函数获取返回值。
 
-* 功能说明
+**参数：**
 
-  获取HAP包含的应用包信息
+| 名称        | 类型                      | 必填 | 描述                                                         |
+| ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| hapFilePath | string                    | 是   | hap包文件路径                                                |
+| bundleFlags | number                    | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
+| callback    | AsyncCallback<BundleInfo> | 是   | 回调方法                                                     |
 
-* getBundleArchiveInfo参数描述
-
-  | 名称        | 读写属性 | 类型                      | 必填 | 描述                                                         |
-  | ----------- | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | hapFilePath | 只读     | string                    | 是   | hap包文件路径                                                |
-  | bundleFlags | 只读     | number                    | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-  | callback    | 只读     | AsyncCallback<BundleInfo> | 是   | 回调方法                                                     |
-
-* 返回值
-
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.getBundleArchiveInfo('/data/test.hap', 1, OnReceiveEvent);
@@ -1123,34 +1036,21 @@ function OnReceiveEvent(err, data) {
 }
 ```
 
+## install
 
+install(bundleFilePaths: Array\<string>, param: InstallParam, callback: AsyncCallback\<InstallStatus>): void
 
-#### install(bundleFilePaths: Array<string>, param: InstallParam, callback: AsyncCallback<InstallStatus>)
+安装hap包。
 
-* 功能说明
+**参数：**
 
-  安装hap包
-  
-* install参数描述
+| 名称            | 类型                                           | 必填 | 描述                                                         |
+| --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleFilePaths | Array\<string>                                 | 是   | 安装用包路径                                                 |
+| param           | InstallParam                                   | 是   | userId：用户ID<br/>installFlag：安装标识。<br/>      NORMAL：安装/卸载<br/>      REPLACE_EXISTING：更新<br/>isKeepData：卸载时是否保留运行时数据 |
+| callback        | AsyncCallback<[InstallStatus](#Installstatus)> | 是   | 回调方法                                                     |
 
-  | 名称            | 读写属性 | 类型                         | 必填 | 描述                                                         |
-  | --------------- | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-  | bundleFilePaths | 只读     | Array<string>                | 是   | 安装用包路径                                                 |
-  | param           | 只读     | InstallParam                 | 是   | userId：用户ID<br/>installFlag：安装标识。<br/>      NORMAL：安装/卸载<br/>      REPLACE_EXISTING：更新<br/>isKeepData：卸载时是否保留运行时数据 |
-  | callback        | 只读     | AsyncCallback<InstallStatus> | 是   | 回调方法                                                     |
-
-* 返回值
-
-  void
-
-* InstallStatus类型说明
-
-  | 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
-  | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-  | status        | 只读     | InstallErrorCode | 是   | 安装结果code<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2,<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41 |
-  | statusMessage | 只读     | string           | 是   | 安装结果Message                                              |
-
-* 示例
+**示例：**
 
 ```
 bundle.getBundleInstaller().then((data) => {
@@ -1169,34 +1069,21 @@ bundle.getBundleInstaller().then((data) => {
 })
 ```
 
+## uninstall
 
+uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback\<InstallStatus>): void
 
-#### uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback<InstallStatus>)
+卸载hap包。
 
-* 功能说明
+**参数：**
 
-  卸载hap包
-  
-* uninstall参数描述
+| 名称       | 类型                                           | 必填 | 描述                                                         |
+| ---------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName | string                                         | 是   | 卸载用包名                                                   |
+| param      | InstallParam                                   | 是   | userId：用户ID<br/>installFlag：安装标识。<br/>      NORMAL：安装/卸载<br/>      REPLACE_EXISTING：更新<br/>isKeepData：卸载时是否保留运行时数据 |
+| callback   | AsyncCallback<[InstallStatus](#Installstatus)> | 是   | 回调方法                                                     |
 
-  | 名称       | 读写属性 | 类型                         | 必填 | 描述                                                         |
-  | ---------- | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-  | bundleName | 只读     | string                       | 是   | 卸载用包名                                                   |
-  | param      | 只读     | InstallParam                 | 是   | userId：用户ID<br/>installFlag：安装标识。<br/>      NORMAL：安装/卸载<br/>      REPLACE_EXISTING：更新<br/>isKeepData：卸载时是否保留运行时数据 |
-  | callback   | 只读     | AsyncCallback<InstallStatus> | 是   | 回调方法                                                     |
-
-* 返回值
-
-  void
-
-* InstallStatus类型说明
-
-  | 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
-  | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-  | status        | 只读     | InstallErrorCode | 是   | 卸载结果code<br/>SUCCESS = 0<br/>STATUS_UNINSTALL_FAILURE = 7<br/>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br/>STATUS_UNINSTALL_FAILURE_ABORTED = 9,<br/>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41 |
-  | statusMessage | 只读     | string           | 是   | 卸载结果Message                                              |
-
-* 示例
+**示例：**
 
 ```
 bundle.getBundleInstaller().then((data) => {
@@ -1215,25 +1102,24 @@ bundle.getBundleInstaller().then((data) => {
 })
 ```
 
+## bundle.getAllShortcutInfo
 
+getAllShortcutInfo(bundleName: string): Promise\<ShortcutInfo>
 
-#### getAllShortcutInfo(bundleName: string)
+获取指定bundle名的shortcut信息，通过Promise获取返回值。
 
-* 功能说明
+**参数：**
 
-  获取指定bundle名的shortcut信息
+| 名称       | 类型   | 必填 | 描述     |
+| ---------- | ------ | ---- | -------- |
+| bundleName | string | 是   | bundle名 |
 
-* getAllShortcutInfo参数描述
+**返回值：**
+| 类型                   | 说明                 |
+| ---------------------- | -------------------- |
+| Promise\<ShortcutInfo> | 返回值为bundle信息。 |
 
-  | 名称       | 读写属性 | 类型   | 必填 | 描述     |
-  | ---------- | -------- | ------ | ---- | -------- |
-  | bundleName | 只读     | string | 是   | bundle名 |
-
-* 返回值
-
-  Promise<ShortcutInfo>：返回值为bundle信息。
-
-* 示例
+**示例：**
 
 ```
 bundle.getAllShortcutInfo('com.example.third1').then((data) => {
@@ -1243,24 +1129,20 @@ bundle.getAllShortcutInfo('com.example.third1').then((data) => {
 
 
 
-#### getAllShortcutInfo(bundleName: string, callback: AsyncCallback<Array<ShortcutInfo>>)
+## bundle.getAllShortcutInfo
 
-* 功能说明
+getAllShortcutInfo(bundleName: string, callback: AsyncCallback<Array\<ShortcutInfo>>): void
 
-  获取指定bundle名的shortcut信息
+获取指定bundle名的shortcut信息，通过回调函数获取返回值。
 
-* getAllShortcutInfo参数描述
+**参数：**
 
-  | 名称       | 读写属性 | 类型                        | 必填 | 描述     |
-  | ---------- | -------- | --------------------------- | ---- | -------- |
-  | bundleName | 只读     | string                      | 是   | bundle名 |
-  | callback   | 只读     | AsyncCallback<ShortcutInfo> | 是   | 回调方法 |
+| 名称       | 类型                        | 必填 | 描述     |
+| ---------- | --------------------------- | ---- | -------- |
+| bundleName | string                      | 是   | bundle名 |
+| callback   | AsyncCallback<ShortcutInfo> | 是   | 回调方法 |
 
-* 返回值
-
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.getAllShortcutInfo('com.example.third1', OnReceiveEvent);
@@ -1270,26 +1152,25 @@ function OnReceiveEvent(err, data) {
 }
 ```
 
+## bundle.checkPermission
 
+checkPermission(bundleName: string, permission: string): Promise\<GrantStatus>
 
-#### checkPermission(bundleName: string, permission: string)
+校验应用是否具有指定权限，通过Promise获取返回值。
 
-* 功能说明
+**参数：**
 
-  校验应用是否具有指定权限
+| 名称       | 类型   | 必填 | 描述     |
+| ---------- | ------ | ---- | -------- |
+| bundleName | string | 是   | bundle名 |
+| permission | string | 是   | 权限名   |
 
-* checkPermission参数描述
+**返回值：**
+| 类型                  | 说明                 |
+| --------------------- | -------------------- |
+| Promise\<GrantStatus> | 返回值为bundle信息。 |
 
-  | 名称       | 读写属性 | 类型   | 必填 | 描述     |
-  | ---------- | -------- | ------ | ---- | -------- |
-  | bundleName | 只读     | string | 是   | bundle名 |
-  | permission | 只读     | string | 是   | 权限名   |
-
-* 返回值
-
-  Promise<GrantStatus>：返回值为bundle信息。
-
-* 示例
+**示例：**
 
 ```
 bundle.getModuleUsageRecords('com.example.actsbmscheckpermissiontest', 'com.permission.CAMERA').then((data) => {
@@ -1297,27 +1178,21 @@ bundle.getModuleUsageRecords('com.example.actsbmscheckpermissiontest', 'com.perm
 });
 ```
 
+## bundle.checkPermission
 
+checkPermission(bundleName: string, permission: string, callback: AsyncCallback\<GrantStatus>): void
 
-#### checkPermission(bundleName: string, permission: string, callback: AsyncCallback<GrantStatus>)
+校验应用是否具有指定权限，通过回调函数获取返回值。
 
-* 功能说明
+**参数：**
 
-  校验应用是否具有指定权限
+| 名称       | 类型                        | 必填 | 描述     |
+| ---------- | --------------------------- | ---- | -------- |
+| bundleName | string                      | 是   | bundle名 |
+| permission | string                      | 是   | 权限名   |
+| callback   | AsyncCallback\<GrantStatus> | 是   | 回调方法 |
 
-* checkPermission参数描述
-
-  | 名称       | 读写属性 | 类型                       | 必填 | 描述     |
-  | ---------- | -------- | -------------------------- | ---- | -------- |
-  | bundleName | 只读     | string                     | 是   | bundle名 |
-  | permission | 只读     | string                     | 是   | 权限名   |
-  | callback   | 只读     | AsyncCallback<GrantStatus> | 是   | 回调方法 |
-
-* 返回值
-
-  void
-
-* 示例
+**示例：**
 
 ```
 bundle.checkPermission('com.example.actsbmscheckpermissiontest', 'com.permission.CAMERA', OnReceiveEvent);
@@ -1326,3 +1201,30 @@ function OnReceiveEvent(err, data) {
    ...
 }
 ```
+
+## Want
+
+| 名称        | 读写属性 | 类型                        | 必填 | 描述                                                         |
+| ----------- | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| elementName | 只读     | [ElementName](#elementname) | 是   | 表示运行指定Ability的ElementName。                           |
+| uri         | 只读     | string                      | 否   | 表示Uri描述。                                                |
+| flags       | 只读     | int                         | 否   | Ability的flag，表示处理Want的方式。                          |
+| type        | 只读     | string                      | 否   | Want中的type属性是指由Want的URI所指示的资源的MIME类型。      |
+| action      | 只读     | string                      | 否   | 表示动作，通常使用系统预置Action，应用也可以自定义Action。   |
+| want_param  | 只读     | {[key: string]: any}        | 否   | want_param是一种支持自定义的数据结构，开发者可以通过want_param传递某些请求所需的额外信息。 |
+| entities    | 只读     | Array\<string>              | 否   | 表示类别，通常使用系统预置Entity，应用也可以自定义Entity。   |
+
+## ElementName
+
+| 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
+| ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
+| deviceId    | 只读     | string | 否   | 表示运行指定Ability的设备ID。                                |
+| bundleName  | 只读     | string | 是   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| abilityName | 只读     | string | 是   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+
+## InstallStatus
+
+| 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
+| ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| status        | 只读     | InstallErrorCode | 是   | 安装结果code<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2,<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41 |
+| statusMessage | 只读     | string           | 是   | 安装结果Message                                              |

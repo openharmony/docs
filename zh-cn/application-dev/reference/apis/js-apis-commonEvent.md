@@ -1,23 +1,12 @@
 # 公共事件模块
 
-**说明：**
-本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-## 支持设备
-
-| API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 |
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- |
-| CommonEvent.publish(event: string, callback: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
-| CommonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         |
+> **说明：**
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 权限列表
 
-| 系统公共事件宏                                               | 系统公共事件名称                                            | 订阅者所需权限                                               |
-| ------------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------ |
+| 系统公共事件宏      | 系统公共事件名称          | 订阅者所需权限     |
+| ------------ | ------------------ | ---------------------- |
 | COMMON_EVENT_BOOT_COMPLETED                                  | usual.event.BOOT_COMPLETED                                  | ohos.permission.RECEIVER_STARTUP_COMPLETED                   |
 | COMMON_EVENT_SHUTDOWN                                        | usual.event.SHUTDOWN                                        | 无                                                           |
 | COMMON_EVENT_BATTERY_CHANGED                                 | usual.event.BATTERY_CHANGED                                 | 无                                                           |
@@ -114,11 +103,11 @@
 | COMMON_EVENT_USB_DEVICE_DETACHED                             | usual.event.hardware.usb.action.USB_DEVICE_DETACHED         | 无                                                           |
 | COMMON_EVENT_USB_ACCESSORY_ATTACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED      | 无                                                           |
 | COMMON_EVENT_USB_ACCESSORY_DETACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED      | 无                                                           |
-| COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | 无                                                           |
 
 ## 导入模块
@@ -129,20 +118,20 @@ import CommonEvent from '@ohos.commonevent';
 
 
 
-## CommonEvent.publish(event: string, callback: AsyncCallback\<void>): void
+## CommonEvent.publish
 
-- 接口说明
+publish(event: string, callback: AsyncCallback\<void>): void
 
-  发布公共事件（callback形式）
+发布公共事件（callback形式）。
 
-* publish参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                 | 必填 | 描述                 |
-  | -------- | -------- | -------------------- | ---- | -------------------- |
-  | event    | 只读     | string               | 是   | 表示要发送的公共事件 |
-  | callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| 名称     | 读写属性 | 类型                 | 必填 | 描述                   |
+| -------- | -------- | -------------------- | ---- | ---------------------- |
+| event    | 只读     | string               | 是   | 表示要发送的公共事件。 |
+| callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
 
-* 示例
+**示例：**
 
 ```js
 //发布公共事件回调
@@ -156,21 +145,21 @@ CommonEvent.publish("publish_event", PublishCallBack);
 
 
 
-## CommonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
+## CommonEvent.publish
 
-- 接口说明
+publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
-  发布公共事件指定发布信息（callback形式）
+发布公共事件指定发布信息（callback形式）。
 
-- publish参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                   | 必填 | 描述                   |
-  | -------- | -------- | ---------------------- | ---- | ---------------------- |
-  | event    | 只读     | string                 | 是   | 表示要发布的公共事件   |
-  | options  | 只读     | [CommonEventPublishData](#publishData) | 是   | 表示发布公共事件的属性 |
-  | callback | 只读     | AsyncCallback\<void>   | 是   | 表示被指定的回调方法   |
+| 名称     | 读写属性 | 类型                   | 必填 | 描述                   |
+| -------- | -------- | ---------------------- | ---- | ---------------------- |
+| event    | 只读     | string                 | 是   | 表示要发布的公共事件。  |
+| options  | 只读     | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
+| callback | 只读     | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
 
-- 示例
+**示例：**
 
 
 ```js
@@ -190,20 +179,20 @@ CommonEvent.publish("publish_event", options, PublishCallBack);
 
 
 
-## CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
+## CommonEvent.createSubscriber
 
-- 接口说明
+createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
-  创建订阅者（callback形式）
+创建订阅者（callback形式）。
 
-- createSubscriber参数描述
+**参数：**
 
-  | 名称          | 读写属性 | 类型                                                 | 必填 | 描述                     |
-  | ------------- | -------- | ---------------------------------------------------- | ---- | ------------------------ |
-  | subscribeInfo | 只读     | [CommonEventSubscribeInfo](#SubscribeInfo)           | 是   | 表示订阅信息             |
-  | callback      | 只读     | AsyncCallback\<[CommonEventSubscriber](#Subscriber)> | 是   | 表示创建订阅者的回调方法 |
+| 名称          | 读写属性 | 类型                                                         | 必填 | 描述                       |
+| ------------- | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| subscribeInfo | 只读     | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | 是   | 表示订阅信息。             |
+| callback      | 只读     | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | 是   | 表示创建订阅者的回调方法。 |
 
-- 示例
+**示例：**
 
 
 ```js
@@ -223,25 +212,24 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 
 
 
-## CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
+## CommonEvent.createSubscriber
 
-- 接口说明
+createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
-  创建订阅者（Promise形式）
+创建订阅者（Promise形式）。
 
-- createSubscriber参数描述
+**参数：**
 
-  | 名称          | 读写属性 | 类型                                       | 必填 | 描述         |
-  | ------------- | -------- | ------------------------------------------ | ---- | ------------ |
-  | subscribeInfo | 只读     | [CommonEventSubscribeInfo](#SubscribeInfo) | 是   | 表示订阅信息 |
+| 名称          | 读写属性 | 类型                                                  | 必填 | 描述           |
+| ------------- | -------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | 只读     | [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | 是   | 表示订阅信息。 |
 
-- 返回值
+**返回值：**
+| 类型                                                      | 说明             |
+| --------------------------------------------------------- | ---------------- |
+| Promise\<[CommonEventSubscriber](#commoneventsubscriber)> | 返回订阅者对象。 |
 
-  Promise\<[CommonEventSubscriber](#Subscriber)>
-  
-  订阅者对象
-  
-- 示例
+**示例：**
 
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
@@ -258,23 +246,22 @@ CommonEvent.createSubscriber(subscribeInfo).then((data) => {
 
 
 
-## CommonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
+## CommonEvent.subscribe
 
-- 接口说明
+subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
-  订阅公共事件（callback形式）
+订阅公共事件（callback形式）。
 
-- subscribe参数描述
+**参数：**
 
-  | 名称       | 读写属性 | 类型                                                | 必填 | 描述                           |
-  | ---------- | -------- | --------------------------------------------------- | ---- | ------------------------------ |
-  | subscriber | 只读     | [CommonEventSubscriber](#Subscriber)                | 是   | 表示订阅者对象                 |
-  | callback   | 只读     | AsyncCallback\<[CommonEventData](#CommonEventData)> | 是   | 表示接收公共事件数据的回调函数 |
+| 名称       | 读写属性 | 类型                                                | 必填 | 描述                             |
+| ---------- | -------- | --------------------------------------------------- | ---- | -------------------------------- |
+| subscriber | 只读     | [CommonEventSubscriber](#commoneventsubscriber)     | 是   | 表示订阅者对象。                 |
+| callback   | 只读     | AsyncCallback\<[CommonEventData](#commoneventdata)> | 是   | 表示接收公共事件数据的回调函数。 |
 
-- 示例
+**示例：**
 
-  无序事件：
-  
+无序事件：
 
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
@@ -297,7 +284,7 @@ function CreateSubscriberCallBack(err, data) {
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
 
-​    有序事件：
+ 有序事件：
 
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
@@ -341,22 +328,22 @@ function CreateSubscriberCallBack(err, data) {
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
 
-​    
+ 
 
-## CommonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
+## CommonEvent.unsubscribe
 
-- 接口说明
+unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
-  取消订阅公共事件（callback形式）
+取消订阅公共事件（callback形式）。
 
-- unsubscribe参数描述
+**参数：**
 
-  | 名称       | 读写属性 | 类型                  | 必填 | 描述                   |
-  | ---------- | -------- | --------------------- | ---- | ---------------------- |
-  | subscriber | 只读     | CommonEventSubscriber | 是   | 表示订阅者对象         |
-  | callback   | 只读     | AsyncCallback\<void>  | 是   | 表示取消订阅的回调方法 |
+| 名称       | 读写属性 | 类型                  | 必填 | 描述                     |
+| ---------- | -------- | --------------------- | ---- | ------------------------ |
+| subscriber | 只读     | CommonEventSubscriber | 是   | 表示订阅者对象。         |
+| callback   | 只读     | AsyncCallback\<void>  | 是   | 表示取消订阅的回调方法。 |
 
-- 示例
+**示例：**
 
 ```js
 var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
@@ -385,7 +372,7 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 ```
 
-## <span id = "publishData">CommonEventPublishData</span>
+## CommonEventPublishData
 
 | 名称                  | 读写属性 | 类型                 | 必填 | 描述                         |
 | --------------------- | -------- | -------------------- | ---- | ---------------------------- |
@@ -396,7 +383,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 | isOrdered             | 只读     | boolean              | 否   | 表示是否是有序事件           |
 | parameters            | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息       |
 
-## <span id = "SubscribeInfo">CommonEventSubscribeInfo</span>
+## CommonEventSubscribeInfo
 
 | 名称                | 读写属性 | 类型           | 必填 | 描述                                                         |
 | ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
@@ -406,7 +393,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 | userId              | 只读     | number         | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
 | priority            | 只读     | number         | 否   | 表示订阅者的优先级。值的范围是-100到1000                     |
 
-## <span id = "CommonEventData">CommonEventData</span>
+## CommonEventData
 
 | 名称       | 读写属性 | 类型                 | 必填 | 描述                                                   |
 | ---------- | -------- | -------------------- | ---- | ------------------------------------------------------ |
@@ -416,456 +403,460 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 | data       | 只读     | string               | 否   | 表示公共事件的自定义结果数据，用于传递string类型的数据 |
 | parameters | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息                                 |
 
-## <span id = "Subscriber">CommonEventSubscriber</span>
+## CommonEventSubscriber
 
-### getCode（callback形式）
+### getCode
 
-- 方法说明
+getCode(callback: AsyncCallback\<number>): void
 
-  获取公共事件的结果代码（callback形式）
+获取公共事件的结果代码（callback形式）。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                   | 必填 | 描述               |
-  | -------- | ---------------------- | ---- | ------------------ |
-  | callback | AsyncCallback\<number> | 是   | 公共事件的结果代码 |
+| 参数名   | 类型                   | 必填 | 描述               |
+| -------- | ---------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<number> | 是   | 公共事件的结果代码 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function getCodeCallback(err, data) {
-      console.info("==========================>getCodeCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>code:=======================>", data);
-  }
-  subscriber.getCode(getCodeCallback);
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function getCodeCallback(err, data) {
+    console.info("==========================>getCodeCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>code:=======================>", data);
+}
+subscriber.getCode(getCodeCallback);
+```
 
-### getCode（Promise形式）
+### getCode
 
-- 方法说明
+getCode(): Promise\<number>
 
-  获取公共事件的结果代码（Promise形式）
+获取公共事件的结果代码（Promise形式）。
 
-- 返回值
+**返回值：**
 
-  | 类型             | 说明               |
-  | ---------------- | ------------------ |
-  | Promise\<number> | 公共事件的结果代码 |
+| 类型             | 说明                 |
+| ---------------- | -------------------- |
+| Promise\<number> | 公共事件的结果代码。 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.getCode().then((data) => {
-  	console.info("==========================>getCodePromise=======================>");
-      console.info("==========================>code:=======================>", data);
-  });
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.getCode().then((data) => {
+	console.info("==========================>getCodePromise=======================>");
+    console.info("==========================>code:=======================>", data);
+});
+```
 
-### setCode（callback形式）
+### setCode
 
-- 方法说明
+setCode(code: number, callback: AsyncCallback\<void>): void
 
-  设置公共事件的结果代码（callback形式）
+设置公共事件的结果代码（callback形式）。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                 | 必填 | 描述                 |
-  | -------- | -------------------- | ---- | -------------------- |
-  | code     | number               | 是   | 公共事件的结果代码   |
-  | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| 参数名   | 类型                 | 必填 | 描述                   |
+| -------- | -------------------- | ---- | ---------------------- |
+| code     | number               | 是   | 公共事件的结果代码。   |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function setCodeCallback(err) {
-      console.info("==========================>setCodeCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.setCode(1, setCodeCallback);
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function setCodeCallback(err) {
+    console.info("==========================>setCodeCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+}
+subscriber.setCode(1, setCodeCallback);
+```
 
-### setCode（Promise形式）
+### setCode
 
-- 方法说明
+setCode(code: number): Promise\<void>
 
-  设置公共事件的结果代码（Promise形式）
+设置公共事件的结果代码（Promise形式）。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 描述               |
-  | ------ | ------ | ---- | ------------------ |
-  | code   | number | 是   | 公共事件的结果代码 |
+| 参数名 | 类型   | 必填 | 描述               |
+| ------ | ------ | ---- | ------------------ |
+| code   | number | 是   | 公共事件的结果代码 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.setCode(1).then(() => {
-  	console.info("==========================>setCodePromise=======================>");
-  });
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.setCode(1).then(() => {
+	console.info("==========================>setCodePromise=======================>");
+});
+```
 
-### getData（callback形式）
+### getData
 
-- 方法说明
+getData(callback: AsyncCallback\<string>): void
 
-  获取公共事件的结果数据（callback形式）
+获取公共事件的结果数据（callback形式）。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                   | 必填 | 描述               |
-  | -------- | ---------------------- | ---- | ------------------ |
-  | callback | AsyncCallback\<string> | 是   | 公共事件的结果数据 |
+| 参数名   | 类型                   | 必填 | 描述                 |
+| -------- | ---------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<string> | 是   | 公共事件的结果数据。 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function getDataCallback(err, data) {
-      console.info("==========================>getDataCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>data:=======================>", data);
-  }
-  subscriber.getData(getDataCallback);
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function getDataCallback(err, data) {
+    console.info("==========================>getDataCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>data:=======================>", data);
+}
+subscriber.getData(getDataCallback);
+```
 
-### getData（Promise形式）
+### getData
 
-- 方法说明
+getData(): Promise\<string>
 
-  获取公共事件的结果数据（Promise形式）
+获取公共事件的结果数据（Promise形式）。
 
-- 返回值
+**返回值：**
 
-  | 类型             | 说明               |
-  | ---------------- | ------------------ |
-  | Promise\<string> | 公共事件的结果数据 |
+| 类型             | 说明               |
+| ---------------- | ------------------ |
+| Promise\<string> | 公共事件的结果数据 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.getData().then((data) => {
-  	console.info("==========================>getDataPromise=======================>");
-      console.info("==========================>data:=======================>", data);
-  });
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.getData().then((data) => {
+	console.info("==========================>getDataPromise=======================>");
+    console.info("==========================>data:=======================>", data);
+});
+```
 
-### setData（callback形式）
+### setData
 
-- 方法说明
+setData(data: string, callback: AsyncCallback\<void>): void
 
-  设置公共事件的结果数据（callback形式）
+设置公共事件的结果数据（callback形式）。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                 | 必填 | 描述                 |
-  | -------- | -------------------- | ---- | -------------------- |
-  | data     | string               | 是   | 公共事件的结果数据   |
-  | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| 参数名   | 类型                 | 必填 | 描述                 |
+| -------- | -------------------- | ---- | -------------------- |
+| data     | string               | 是   | 公共事件的结果数据   |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function setDataCallback(err) {
-      console.info("==========================>setDataCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.setData("publish_data_changed", setDataCallback);
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function setDataCallback(err) {
+    console.info("==========================>setDataCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+}
+subscriber.setData("publish_data_changed", setDataCallback);
+```
 
-### setData（Promise形式）
+### setData
 
-- 方法说明
+setData(data: string): Promise\<void>
 
-  设置公共事件的结果数据（Promise形式）
+设置公共事件的结果数据（Promise形式）。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 描述               |
-  | ------ | ------ | ---- | ------------------ |
-  | data   | string | 是   | 公共事件的结果数据 |
+| 参数名 | 类型   | 必填 | 描述                 |
+| ------ | ------ | ---- | -------------------- |
+| data   | string | 是   | 公共事件的结果数据。 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.setData("publish_data_changed").then(() => {
-  	console.info("==========================>setDataPromise=======================>");
-  });
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.setData("publish_data_changed").then(() => {
+	console.info("==========================>setDataPromise=======================>");
+});
+```
 
-### setCodeAndData（callback形式）
+### setCodeAndData
 
-- 方法说明
+setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
-  设置公共事件的结果代码和结果数据（callback形式）
+设置公共事件的结果代码和结果数据（callback形式）。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                 | 必填 | 描述                 |
-  | -------- | -------------------- | ---- | -------------------- |
-  | code     | number               | 是   | 公共事件的结果代码   |
-  | data     | string               | 是   | 公共事件的结果数据   |
-  | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| 参数名   | 类型                 | 必填 | 描述                   |
+| -------- | -------------------- | ---- | ---------------------- |
+| code     | number               | 是   | 公共事件的结果代码。   |
+| data     | string               | 是   | 公共事件的结果数据。   |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function setCodeDataCallback(err) {
-      console.info("==========================>setCodeDataCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function setCodeDataCallback(err) {
+    console.info("==========================>setCodeDataCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+}
+subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
+```
 
-### setCodeAndData（Promise形式）
+### setCodeAndData
 
-- 方法说明
+setCodeAndData(code: number, data: string): Promise\<void>
 
-  设置公共事件的结果代码和结果数据（Promise形式）
+设置公共事件的结果代码和结果数据（Promise形式）。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 描述               |
-  | ------ | ------ | ---- | ------------------ |
-  | code   | number | 是   | 公共事件的结果代码 |
-  | data   | string | 是   | 公共事件的结果数据 |
+| 参数名 | 类型   | 必填 | 描述                 |
+| ------ | ------ | ---- | -------------------- |
+| code   | number | 是   | 公共事件的结果代码。 |
+| data   | string | 是   | 公共事件的结果数据。 |
 
-- 示例
+**示例：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
-  	console.info("==========================>setCodeAndData=======================>");
-  });
-  ```
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
+	console.info("==========================>setCodeAndData=======================>");
+});
+```
 
-### isOrderedCommonEvent（callback形式）
+### isOrderedCommonEvent
 
-- 方法说明
+isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
-  查询当前公共事件的是否为有序公共事件，返回true代表是有序公共事件，false代表不是有序公共事件（callback形式）
+查询当前公共事件的是否为有序公共事件（callback形式）。
 
-- 参数
+返回true代表是有序公共事件，false代表不是有序公共事件。
 
-  | 参数名   | 类型                    | 必填 | 描述                             |
-  | -------- | ----------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为有序公共事件 |
+**参数：**
 
-- 示例
+| 参数名   | 类型                    | 必填 | 描述                               |
+| -------- | ----------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为有序公共事件。 |
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function isOrderedCallback(err, data) {
-      console.info("==========================>isOrderedCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>isOrdered:=======================>", data);
-  }
-  subscriber.isOrderedCommonEvent(isOrderedCallback);
-  ```
+**示例：**
 
-### isOrderedCommonEvent（Promise形式）
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function isOrderedCallback(err, data) {
+    console.info("==========================>isOrderedCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>isOrdered:=======================>", data);
+}
+subscriber.isOrderedCommonEvent(isOrderedCallback);
+```
 
-- 方法说明
+### isOrderedCommonEvent
 
-  查询当前公共事件的是否为有序公共事件，返回true代表是有序公共事件，false代表不是有序公共事件（Promise形式）
+isOrderedCommonEvent(): Promise\<boolean>
 
-- 返回值
+查询当前公共事件的是否为有序公共事件（Promise形式）。
 
-  | 类型              | 说明                             |
-  | ----------------- | -------------------------------- |
-  | Promise\<boolean> | 当前公共事件的是否为有序公共事件 |
+返回true代表是有序公共事件，false代表不是有序公共事件。
 
-- 示例
+**返回值：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.isOrderedCommonEvent().then((data) => {
-  	console.info("==========================>isOrdered:=======================>", data);
-  });
-  ```
+| 类型              | 说明                             |
+| ----------------- | -------------------------------- |
+| Promise\<boolean> | 当前公共事件的是否为有序公共事件 |
 
-### abortCommonEvent（callback形式）
+**示例：**
 
-- 方法说明
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.isOrderedCommonEvent().then((data) => {
+	console.info("==========================>isOrdered:=======================>", data);
+});
+```
 
-  取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（callback形式）
+### abortCommonEvent
 
-- 参数
+abortCommonEvent(callback: AsyncCallback\<void>): void
 
-  | 参数名   | 类型                    | 必填 | 描述               |
-  | -------- | ----------------------- | ---- | ------------------ |
-  | callback | AsyncCallback\<boolean> | 是   | 取消当前的公共事件 |
+取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（callback形式）。
 
-- 示例
+**参数：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function abortCallback(err) {
-      console.info("==========================>abortCallback=======================>");
-   	console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.abortCommonEvent(abortCallback);
-  ```
+| 参数名   | 类型                 | 必填 | 描述                 |
+| -------- | -------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void> | 是   | 取消当前的公共事件。 |
 
-### abortCommonEvent（Promise形式）
+**示例：**
 
-- 方法说明
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function abortCallback(err) {
+    console.info("==========================>abortCallback=======================>");
+ 	console.info("==========================>err:=======================>", err.code);
+}
+subscriber.abortCommonEvent(abortCallback);
+```
 
-  取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（Promise形式）
+### abortCommonEvent
 
-- 示例
+abortCommonEvent(): Promise\<void>
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.abortCommonEvent().then(() => {
-  	console.info("==========================>abortCommonEvent:=======================>");
-  });
-  ```
+取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（Promise形式）。
 
-### clearAbortCommonEvent（callback形式）
+**示例：**
 
-- 方法说明
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.abortCommonEvent().then(() => {
+	console.info("==========================>abortCommonEvent:=======================>");
+});
+```
 
-  清除当前公共事件的取消状态，仅对有序公共事件有效（callback形式）
+### clearAbortCommonEvent
 
-- 参数
+clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
-  | 参数名   | 类型                 | 必填 | 描述                 |
-  | -------- | -------------------- | ---- | -------------------- |
-  | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+清除当前公共事件的取消状态，仅对有序公共事件有效（callback形式）。
 
-- 示例
+**参数：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function clearAbortCallback(err) {
-      console.info("==========================>clearAbortCallback=======================>");
-   	console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.clearAbortCommonEvent(clearAbortCallback);
-  ```
+| 参数名   | 类型                 | 必填 | 描述                 |
+| -------- | -------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
 
-### clearAbortCommonEvent（Promise形式）
+**示例：**
 
-- 方法说明
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function clearAbortCallback(err) {
+    console.info("==========================>clearAbortCallback=======================>");
+ 	console.info("==========================>err:=======================>", err.code);
+}
+subscriber.clearAbortCommonEvent(clearAbortCallback);
+```
 
-  清除当前公共事件的取消状态，仅对有序公共事件有效（Promise形式）
+### clearAbortCommonEvent
 
-- 示例
+clearAbortCommonEvent(): Promise\<void>
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.clearAbortCommonEvent().then(() => {
-  	console.info("==========================>clearAbortCommonEvent:=======================>");
-  });
-  ```
+清除当前公共事件的取消状态，仅对有序公共事件有效（Promise形式）。
 
-### getAbortCommonEvent（callback形式）
+**示例：**
 
-- 方法说明
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.clearAbortCommonEvent().then(() => {
+	console.info("==========================>clearAbortCommonEvent:=======================>");
+});
+```
 
-  获取当前有序公共事件是否取消的状态（callback形式）
+### getAbortCommonEvent
 
-- 参数
+getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
-  | 参数名   | 类型                    | 必填 | 描述                               |
-  | -------- | ----------------------- | ---- | ---------------------------------- |
-  | callback | AsyncCallback\<boolean> | 是   | 表示当前有序公共事件是否取消的状态 |
+获取当前有序公共事件是否取消的状态（callback形式）。
 
-- 示例
+**参数：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function getAbortCallback(err, data) {
-      console.info("==========================>getAbortCallback=======================>");
-   	console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>abort:=======================>", data);
-  }
-  subscriber.getAbortCommonEvent(getAbortCallback);
-  ```
+| 参数名   | 类型                    | 必填 | 描述                               |
+| -------- | ----------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<boolean> | 是   | 表示当前有序公共事件是否取消的状态 |
 
-### getAbortCommonEvent（Promise形式）
+**示例：**
 
-- 方法说明
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function getAbortCallback(err, data) {
+    console.info("==========================>getAbortCallback=======================>");
+ 	console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>abort:=======================>", data);
+}
+subscriber.getAbortCommonEvent(getAbortCallback);
+```
 
-  获取当前有序公共事件是否取消的状态（Promise形式）
+### getAbortCommonEvent
 
-- 返回值
+getAbortCommonEvent(): Promise\<void>
 
-  | 类型              | 说明                               |
-  | ----------------- | ---------------------------------- |
-  | Promise\<boolean> | 表示当前有序公共事件是否取消的状态 |
+获取当前有序公共事件是否取消的状态（Promise形式）。
 
-- 示例
+**返回值：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.getAbortCommonEvent().then((data) => {
-  	console.info("==========================>getAbortCommonEvent:=======================>");
-      console.info("==========================>abort:=======================>", data);
-  });
-  ```
+| 类型              | 说明                               |
+| ----------------- | ---------------------------------- |
+| Promise\<boolean> | 表示当前有序公共事件是否取消的状态 |
 
-### getSubscribeInfo（callback形式）
+**示例：**
 
-- 方法说明
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.getAbortCommonEvent().then((data) => {
+	console.info("==========================>getAbortCommonEvent:=======================>");
+    console.info("==========================>abort:=======================>", data);
+});
+```
 
-  获取订阅者的订阅信息（callback形式）
+### getSubscribeInfo
 
-- 参数
+getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
-  | 参数名   | 类型                                     | 必填 | 描述                 |
-  | -------- | ---------------------------------------- | ---- | -------------------- |
-  | callback | AsyncCallback\<CommonEventSubscribeInfo> | 是   | 表示订阅者的订阅信息 |
+获取订阅者的订阅信息（callback形式）。
 
-- 示例
+**参数：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  //设置有序公共事件的结果数据回调
-  function getSubscribeInfoCallback(err, data) {
-      console.info("==========================>getSubscribeInfoCallback=======================>");
-   	console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>priority:=======================>", data.priority);
-  }
-  subscriber.getSubscribeInfo(getSubscribeInfoCallback);
-  ```
+| 参数名   | 类型                                                         | 必填 | 描述                   |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| callback | AsyncCallback\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | 是   | 表示订阅者的订阅信息。 |
 
-### getSubscribeInfo（Promise形式）
+**示例：**
 
-- 方法说明
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//设置有序公共事件的结果数据回调
+function getSubscribeInfoCallback(err, data) {
+    console.info("==========================>getSubscribeInfoCallback=======================>");
+ 	console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>priority:=======================>", data.priority);
+}
+subscriber.getSubscribeInfo(getSubscribeInfoCallback);
+```
 
-  获取订阅者的订阅信息（Promise形式）
+### getSubscribeInfo
 
-- 返回值
+getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
-  | 类型                               | 说明                 |
-  | ---------------------------------- | -------------------- |
-  | Promise\<CommonEventSubscribeInfo> | 表示订阅者的订阅信息 |
+获取订阅者的订阅信息（Promise形式）。
 
-- 示例
+**返回值：**
 
-  ```js
-  var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-  subscriber.getSubscribeInfo().then((data) => {
-  	console.info("==========================>getSubscribeInfo:=======================>");
-      console.info("==========================>priority:=======================>", data.priority);
-  });
-  ```
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| Promise\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | 表示订阅者的订阅信息。 |
+
+**示例：**
+
+```js
+var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+subscriber.getSubscribeInfo().then((data) => {
+	console.info("==========================>getSubscribeInfo:=======================>");
+    console.info("==========================>priority:=======================>", data.priority);
+});
+```

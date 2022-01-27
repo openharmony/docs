@@ -862,7 +862,7 @@ off(type: 'change', callback?: Callback&lt;void&gt;): void;
   	console.debug("receive change data:" + JSON.stringify(data));
   	appAccountManager.off('change', function(){
   		console.debug("off finish");
-  	}
+  	})
   }
   try{
   	appAccountManager.on('change', ["com.example.actsaccounttest"], changeOnCallback);

@@ -6,24 +6,25 @@
 import dataUriUtils from '@ohos.ability.dataUriUtils';
 ```
 
-## DataUriUtils.getId
+## dataUriUtils.getId
 
-- 接口说明
+getId(uri: string): number
 
-  获取附加到给定uri的路径组件末尾的ID
+获取附加到给定uri的路径组件末尾的ID。
 
-- 参数描述
+**参数：**
 
 
-| 名称 | 读写属性 | 类型   | 必填 | 描述                      |
-| ---- | -------- | ------ | ---- | ------------------------- |
-| uri  | 只读     | string | 是   | 指示要从中获取ID的uri对象 |
+| 名称 | 类型   | 必填 | 描述                        |
+| ---- | ------ | ---- | --------------------------- |
+| uri  | string | 是   | 指示要从中获取ID的uri对象。 |
 
-- 返回值
+**返回值：**
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| number | 附加到路径组件末尾的ID。 |
 
-  附加到路径组件末尾的ID
-
-- 示例
+**示例：**
 
 ```js
 import dataUriUtils from '@ohos.ability.datauriutils'
@@ -32,25 +33,26 @@ dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
 
 
 
-## DataUriUtils.attachId
+## dataUriUtils.attachId
 
-- 接口说明
+attachId(uri: string, id: number): string
 
-  将给定ID附加到给定uri的路径组件的末尾
+将给定ID附加到给定uri的路径组件的末尾。
 
-- 参数描述
+**参数：**
 
 
-| 名称 | 读写属性 | 类型   | 必填 | 描述                      |
-| ---- | -------- | ------ | ---- | ------------------------- |
-| uri  | 只读     | string | 是   | 指示要从中获取ID的uri对象 |
-| id   | 只读     | number | 是   | 指示要附加的ID            |
+| 名称 | 类型   | 必填 | 描述                        |
+| ---- | ------ | ---- | --------------------------- |
+| uri  | string | 是   | 指示要从中获取ID的uri对象。 |
+| id   | number | 是   | 指示要附加的ID。            |
 
-- 返回值
+**返回值：**
+| 类型   | 说明                  |
+| ------ | --------------------- |
+| string | 附加给定ID的uri对象。 |
 
-  附加给定ID的uri对象
-
-- 示例
+**示例：**
 
 ```js
 import dataUriUtils from '@ohos.ability.datauriutils'
@@ -63,23 +65,24 @@ dataUriUtils.attachId(
 
 
 
-## DataUriUtils.deleteId
+## dataUriUtils.deleteId
 
-- 接口说明
+deleteId(uri: string): string
 
-  从给定uri的路径组件的末尾删除ID
+从给定uri的路径组件的末尾删除ID。
 
-- 参数描述
+**参数：**
 
-  | 名称 | 读写属性 | 类型   | 必填 | 描述                      |
-  | ---- | -------- | ------ | ---- | ------------------------- |
-  | uri  | 只读     | string | 是   | 指示要从中删除ID的uri对象 |
+| 名称 | 类型   | 必填 | 描述                        |
+| ---- | ------ | ---- | --------------------------- |
+| uri  | string | 是   | 指示要从中删除ID的uri对象。 |
 
-- 返回值
+**返回值：**
+| 类型   | 说明                |
+| ------ | ------------------- |
+| string | ID已删除的uri对象。 |
 
-  ID已删除的uri对象
-
-- 示例
+**示例：**
 
 ```js
 import dataUriUtils from '@ohos.ability.datauriutils'
@@ -88,24 +91,25 @@ dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 
 
 
-## DataUriUtils.updateId
+## dataUriUtils.updateId
 
-- 接口说明 
+updateId(uri: string, id: number): string
 
-  更新指定uri中的ID
+更新指定uri中的ID。
 
-- updateId参数描述
+**参数：**
 
-  | 名称 | 读写属性 | 类型   | 必填 | 描述                |
-  | ---- | -------- | ------ | ---- | ------------------- |
-  | uri  | 只读     | string | 是   | 指示要更新的uri对象 |
-  | id   | 只读     | number | 是   | 指示新ID            |
+| 名称 | 类型   | 必填 | 描述                |
+| ---- | ------ | ---- | ------------------- |
+| uri  | string | 是   | 指示要更新的uri对象 |
+| id   | number | 是   | 指示新ID            |
 
-- 返回值
+**返回值：**
+| 类型   | 说明            |
+| ------ | --------------- |
+| string | 更新的uri对象。 |
 
-  更新的uri对象
-
-- 示例
+**示例：**
 
 ```js
 import dataUriUtils from '@ohos.ability.datauriutils'

@@ -1,28 +1,5 @@
 # Context模块
 
-## 支持设备
-
-| API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 智慧视觉设备 |
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| Context.getOrCreateLocalDir(callback: AsyncCallback\<string>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getOrCreateLocalDir()                                | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.verifyPermission(permission: string, callback: AsyncCallback\<number>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.verifyPermission(permission: string, options?: PermissionOptions) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback\<PermissionRequestResult>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getApplicationInfo()                                 | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getBundleName(callback: AsyncCallback\<string>)      | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getBundleName()                                      | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getProcessInfo(callback: AsyncCallback\<ProcessInfo>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getProcessInfo()                                     | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getElementName(callback: AsyncCallback\<ElementName>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getElementName()                                     | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getProcessName(callback: AsyncCallback\<string>)     | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getProcessName()                                     | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getCallingBundle(callback: AsyncCallback\<string>)   | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| Context.getCallingBundle()                                   | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-
 ## 导入模块
 
 ```js
@@ -38,24 +15,24 @@ var context = featureAbility.getContext();
 context.getOrCreateLocalDir()
 ```
 
-## Context.getOrCreateLocalDir(callback: AsyncCallback<string>)
+## Context
 
-- 接口说明
+### getOrCreateLocalDir
 
-  获取应用程序的本地根目录。如果是第一次调用，将创建目录(callback形式)
+getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
-- getOrCreateLocalDir参数描述
+获取应用程序的本地根目录（callback形式）。
+
+如果是第一次调用，将创建目录。
+
+**参数：**
 
 
-| 名称     | 读写属性 | 类型                   | 必填 | 描述                     |
-| -------- | -------- | ---------------------- | ---- | ------------------------ |
-| callback | 只读     | AsyncCallback\<string> | 是   | 返回应用程序的本地根目录 |
+| 名称     | 类型                   | 必填 | 描述                       |
+| -------- | ---------------------- | ---- | -------------------------- |
+| callback | AsyncCallback\<string> | 是   | 返回应用程序的本地根目录。 |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -67,19 +44,21 @@ context.getOrCreateLocalDir((err, data)=>{
 
 
 
-## Context.getOrCreateLocalDir()
+### getOrCreateLocalDir
 
-- 接口说明
+getOrCreateLocalDir(): Promise\<string>
 
-  获取应用程序的本地根目录。如果是第一次调用，将创建目录(Promise形式)
+获取应用程序的本地根目录（Promise形式）。
 
-- 返回值
+如果是第一次调用，将创建目录。
 
-  | 类型            | 说明                 |
-  | --------------- | -------------------- |
-  | Promise<string> | 应用程序的本地根目录 |
+**返回值：**
 
-- 示例
+| 类型             | 说明                   |
+| ---------------- | ---------------------- |
+| Promise\<string> | 应用程序的本地根目录。 |
+
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -89,33 +68,24 @@ context.getOrCreateLocalDir().then((void) => {
 });
 ```
 
-## PermissionOptions类型说明
-
-| 名称 | 读写属性 | 类型   | 必填 | 描述   |
-| ---- | -------- | ------ | ---- | ------ |
-| pid  | 只读     | number | 否   | 进程id |
-| uid  | 只读     | number | 否   | 用户id |
-
-## Context.verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback<number>)
-
-- 接口说明
-
-  验证系统中运行的特定pid和uid是否允许指定的权限(callback形式)
-
-- 参数描述
 
 
-| 名称       | 读写属性 | 类型                                            | 必填 | 描述                                |
-| ---------- | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
-| permission | 只读     | string                                          | 是   | 指定权限的名称                      |
-| options    | 只读     | [PermissionOptions](#PermissionOptions类型说明) | 是   | 权限选项                              |
-| callback   | 只读     | AsyncCallback\<number>                          | 是   | 返回权限验证结果，0有权限，-1无权限 |
+### verifyPermission
 
-- 返回值
+verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>): void
 
-  void
+验证系统中运行的特定pid和uid是否允许指定的权限（callback形式）。
 
-- 示例
+**参数：**
+
+
+| 名称       | 类型                                    | 必填 | 描述                                  |
+| ---------- | --------------------------------------- | ---- | ------------------------------------- |
+| permission | string                                  | 是   | 指定权限的名称。                      |
+| options    | [PermissionOptions](#permissionoptions) | 是   | 权限选项。                            |
+| callback   | AsyncCallback\<number>                  | 是   | 返回权限验证结果，0有权限，-1无权限。 |
+
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -128,25 +98,21 @@ context.verifyPermission("com.example.permission",datainfo.uid)
 
 
 
-## Context.verifyPermission(permission: string, callback: AsyncCallback<number>)
+### verifyPermission
 
-- 接口说明
+verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 
-  验证系统中运行的当前pid和uid是否具有指定的权限(callback形式)
+验证系统中运行的当前pid和uid是否具有指定的权限（callback形式）。
 
-- 参数描述
+**参数：**
 
 
-| 名称       | 读写属性 | 类型                   | 必填 | 描述                                |
-| ---------- | -------- | ---------------------- | ---- | ----------------------------------- |
-| permission | 只读     | string                 | 是   | 指定权限的名称                      |
-| callback   | 只读     | AsyncCallback\<number> | 是   | 返回权限验证结果，0有权限，-1无权限 |
+| 名称       | 类型                   | 必填 | 描述                                  |
+| ---------- | ---------------------- | ---- | ------------------------------------- |
+| permission | string                 | 是   | 指定权限的名称。                      |
+| callback   | AsyncCallback\<number> | 是   | 返回权限验证结果，0有权限，-1无权限。 |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -154,28 +120,27 @@ var context = featureAbility.getContext();
 context.verifyPermission("com.example.permission")
 ```
 
+### verifyPermission
+
+verifyPermission(permission: string, options?: PermissionOptions): Promise\<number>
+
+验证系统中运行的特定pid和uid是否具有指定的权限（Promise形式）。
+
+**参数：**
 
 
-## Context.verifyPermission(permission: string, options?: PermissionOptions)
+| 名称       | 类型                                    | 必填 | 描述             |
+| ---------- | --------------------------------------- | ---- | ---------------- |
+| permission | string                                  | 是   | 指定权限的名称。 |
+| options    | [PermissionOptions](#permissionoptions) | 否   | 权限选项。       |
 
-- 接口说明
+**返回值：**
 
-  验证系统中运行的特定pid和uid是否具有指定的权限(Promise形式)
-- 参数描述
+| 类型             | 说明                                                        |
+| ---------------- | ----------------------------------------------------------- |
+| Promise\<number> | 如果pid和uid具有权限，则使用0进行异步回调；否则使用-1回调。 |
 
-
-| 名称       | 读写属性 | 类型                                            | 必填 | 描述           |
-| ---------- | -------- | ----------------------------------------------- | ---- | -------------- |
-| permission | 只读     | string                                          | 是   | 指定权限的名称 |
-| options    | 只读     | [PermissionOptions](#PermissionOptions类型说明) | 否   | 权限选项         |
-
-- 返回值
-
-  | 类型            | 说明                                                         |
-  | --------------- | ------------------------------------------------------------ |
-  | Promise<number> | 如果pid和uid具有权限，则使用**0**进行异步回调；否则使用**-1**回调。 |
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -186,35 +151,23 @@ context.getOrCreateLocalDir('com.context.permission',Permission).then((void) => 
 });
 ```
 
-## PermissionRequestResult类型说明
-
-| 名称        | 读写属性 | 类型           | 必填 | 描述               |
-| ----------- | -------- | -------------- | ---- | ------------------ |
-| requestCode | 只读     | number         | 是   | 用户传入的请求代码 |
-| permissions | 只读     | Array\<string> | 是   | 用户传入的权限     |
-| authResults | 只读     | Array\<number> | 是   | 求权限的结果       |
 
 
+### requestPermissionsFromUser
 
-## Context.requestPermissionsFromUser(permissions: Array<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#PermissionRequestResult类型说明)>)
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>)
 
-- 接口说明
+从系统请求某些权限（callback形式）。
 
-  从系统请求某些权限(callback形式)
-
-- requestPermissionsFromUser参数描述
+**参数：**
 
 
-| 名称           | 读写属性 | 类型                                                         | 必填 | 描述                                          |
-| -------------- | -------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| permissions    | 只读     | Array\<string>                                               | 是   | 指示要请求的权限列表。此参数不能为null        |
-| requestCode    | 只读     | number                                                       | 是   | 指示要传递给PermissionRequestResult的请求代码 |
-| resultCallback | 只读     | AsyncCallback\<[PermissionRequestResult](#PermissionRequestResult类型说明)> | 是   | 返回授权结果信息                              |
-- 返回值
-
-  void
-
-- 示例
+| 名称           | 类型                                                         | 必填 | 描述                                            |
+| -------------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| permissions    | Array\<string>                                               | 是   | 指示要请求的权限列表。此参数不能为null。        |
+| requestCode    | number                                                       | 是   | 指示要传递给PermissionRequestResult的请求代码。 |
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | 是   | 返回授权结果信息。                              |
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -231,23 +184,19 @@ context.getOrCreateLocalDir(
 
 
 
-## Context.getApplicationInfo(callback: AsyncCallback<ApplicationInfo>)
+### getApplicationInfo
 
-- 接口说明
+getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>)
 
-  获取有关当前应用程序的信息（callback形式）
+获取有关当前应用程序的信息（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                            | 必填 | 描述                   |
-  | -------- | -------- | ------------------------------- | ---- | ---------------------- |
-  | callback | 只读     | AsyncCallback\<ApplicationInfo> | 是   | 返回当前应用程序的信息 |
+| 名称     | 类型                            | 必填 | 描述                     |
+| -------- | ------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<ApplicationInfo> | 是   | 返回当前应用程序的信息。 |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -257,23 +206,19 @@ context.getApplicationInfo()
 
 
 
-## Context.getApplicationInfo
+### getApplicationInfo
 
-- 接口说明
+getApplicationInfo(): Promise\<ApplicationInfo>
 
-  获取有关当前应用程序的信息（Promise形式)
+获取有关当前应用程序的信息（Promise形式）。
 
-- 参数描述
+**返回值：**
 
-  无
+| 类型                      | 说明               |
+| ------------------------- | ------------------ |
+| Promise\<ApplicationInfo> | 当前应用程序的信息 |
 
-- 返回值
-
-  | 类型                     | 说明               |
-  | ------------------------ | ------------------ |
-  | Promise<ApplicationInfo> | 当前应用程序的信息 |
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -285,23 +230,19 @@ context.getApplicationInfo().then((void) => {
 
 
 
-##  Context.getBundleName(callback: AsyncCallback<string>)
+### getBundleName
 
-- 接口说明
+getBundleName(callback: AsyncCallback\<string>): void
 
-  获取当前ability的捆绑包名称（callback形式）
+获取当前ability的捆绑包名称（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                   | 必填 | 描述                        |
-  | -------- | -------- | ---------------------- | ---- | --------------------------- |
-  | callback | 只读     | AsyncCallback\<string> | 是   | 返回当前ability的捆绑包名称 |
+| 名称     | 类型                   | 必填 | 描述                          |
+| -------- | ---------------------- | ---- | ----------------------------- |
+| callback | AsyncCallback\<string> | 是   | 返回当前ability的捆绑包名称。 |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -311,23 +252,19 @@ context.getBundleName()
 
 
 
-## Context.getBundleName
+### getBundleName
 
-- 接口说明
+getBundleName(): Promise\<string>
 
-  获取当前ability的捆绑包名称（Promise形式)
+获取当前ability的捆绑包名称（Promise形式）。
 
-- 参数描述
+**返回值：**
 
-  无
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise\<string> | 当前ability的捆绑包名称。 |
 
-- 返回值
-
-  | 类型            | 说明                    |
-  | --------------- | ----------------------- |
-  | Promise<string> | 当前ability的捆绑包名称 |
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -339,23 +276,19 @@ context.getBundleName().then((void) => {
 
 
 
-##  Context.getProcessInfo(callback: AsyncCallback<ProcessInfo>)
+### getProcessInfo
 
-- 接口说明
+getProcessInfo(callback: AsyncCallback\<ProcessInfo>)
 
-  获取有关当前进程的信息，包括进程ID和名称（callback形式）
+获取有关当前进程的信息，包括进程ID和名称（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                        | 必填 | 描述               |
-  | -------- | -------- | --------------------------- | ---- | ------------------ |
-  | callback | 只读     | AsyncCallback\<ProcessInfo> | 是   | 返回当前进程的信息 |
+| 名称     | 类型                        | 必填 | 描述                 |
+| -------- | --------------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<ProcessInfo> | 是   | 返回当前进程的信息。 |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -365,23 +298,19 @@ context.getProcessInfo()
 
 
 
-## Context.getProcessInfo
+### getProcessInfo
 
-- 接口说明
+getProcessInfo(): Promise\<ProcessInfo>
 
-  获取有关当前进程的信息，包括进程id和名称（Promise形式)
+获取有关当前进程的信息，包括进程id和名称（Promise形式）。
 
-- 参数描述
+**返回值：**
 
-  无
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| Promise\<ProcessInfo> | 当前进程的信息 |
 
-- 返回值
-
-  | 类型                 | 说明           |
-  | -------------------- | -------------- |
-  | Promise<ProcessInfo> | 当前进程的信息 |
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -393,23 +322,21 @@ context.getProcessInfo().then((void) => {
 
 
 
-##  Context.getElementName(callback: AsyncCallback<ElementName>)
+### getElementName
 
-- 接口说明
+getElementName(callback: AsyncCallback\<ElementName>): void
 
-  获取当前ability的ohos.bundle.ElementName对象。此方法仅适用于页面功能(callback形式）
+获取当前ability的ohos.bundle.ElementName对象（callback形式）。
 
-- 参数描述
+此方法仅适用于页面功能。
 
-  | 名称     | 读写属性 | 类型                        | 必填 | 描述                                         |
-  | -------- | -------- | --------------------------- | ---- | -------------------------------------------- |
-  | callback | 只读     | AsyncCallback\<ElementName> | 是   | 返回当前ability的ohos.bundle.ElementName对象 |
+**参数：**
 
-- 返回值
+| 名称     | 类型                        | 必填 | 描述                                           |
+| -------- | --------------------------- | ---- | ---------------------------------------------- |
+| callback | AsyncCallback\<ElementName> | 是   | 返回当前ability的ohos.bundle.ElementName对象。 |
 
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -419,23 +346,21 @@ context.getElementName()
 
 
 
-## Context.getElementName
+### getElementName
 
-- 接口说明
+getElementName(): Promise\<ElementName>
 
-  获取当前能力的ohos.bundle.ElementName对象。此方法仅适用于页面功能(Promise形式)
+获取当前能力的ohos.bundle.ElementName对象（Promise形式）。
 
-- 参数描述
+此方法仅适用于页面功能。
 
-  无
+**返回值：**
 
-- 返回值
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise\<ElementName> | 当前ability的ohos.bundle.ElementName对象。 |
 
-  | 类型                 | 说明                                     |
-  | -------------------- | ---------------------------------------- |
-  | Promise<ElementName> | 当前ability的ohos.bundle.ElementName对象 |
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -445,23 +370,17 @@ context.getElementName().then((void) => {
 });
 ```
 
-##   **Context.getProcessName(callback: AsyncCallback<string>)**
+### getProcessName
 
-- 接口说明
+getProcessName(callback: AsyncCallback\<string>): void
 
-  获取当前进程的名称(callback形式）
+获取当前进程的名称（callback形式）。
 
-- 参数描述
+| 名称     | 类型                   | 必填 | 描述                 |
+| -------- | ---------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<string> | 是   | 返回当前进程的名称。 |
 
-  | 名称     | 读写属性 | 类型                   | 必填 | 描述               |
-  | -------- | -------- | ---------------------- | ---- | ------------------ |
-  | callback | 只读     | AsyncCallback\<string> | 是   | 返回当前进程的名称 |
-
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -471,23 +390,19 @@ context.getProcessName()
 
 
 
-## Context.getProcessName
+### getProcessName
 
-- 接口说明
+getProcessName(): Promise\<string>
 
-  获取当前进程的名称(Promise形式)
+获取当前进程的名称（Promise形式）。
 
-- 参数描述
+**返回值：**
 
-  无
+| 类型             | 说明                 |
+| ---------------- | -------------------- |
+| Promise\<string> | 返回当前进程的名称。 |
 
-- 返回值
-
-  | 类型            | 说明           |
-  | --------------- | -------------- |
-  | Promise<string> | 当前进程的名称 |
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -499,23 +414,19 @@ context.getProcessName().then((void) => {
 
 
 
-## Context.getCallingBundle(callback: AsyncCallback<string>)
+### getCallingBundle
 
-- 接口说明
+getCallingBundle(callback: AsyncCallback\<string>): void
 
-  获取调用ability的包名称(callback形式）
+获取调用ability的包名称（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                   | 必填 | 描述                      |
-  | -------- | -------- | ---------------------- | ---- | ------------------------- |
-  | callback | 只读     | AsyncCallback\<string> | 是   | 返回调用ability的包名称 |
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | 是   | 返回调用ability的包名称。 |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -525,25 +436,19 @@ context.getCallingBundle()
 
 
 
-## Context.getCallingBundle
+### getCallingBundle
 
-- 接口说明
+getCallingBundle(): Promise\<string>
 
-  获取调用ability的包名称(Promise形式)
+获取调用ability的包名称（Promise形式）。
 
-- 参数描述
+**返回值：**
 
-  无
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<string> | 调用ability的包名称 |
 
-- 返回值
-
-  | 类型            | 说明                      |
-  | --------------- | ------------------------- |
-  | Promise<string> | 调用ability的包名称 |
-
-  
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -553,3 +458,17 @@ context.getCallingBundle().then((void) => {
 });
 ```
 
+## PermissionOptions
+
+| 名称 | 读写属性 | 类型   | 必填 | 描述   |
+| ---- | -------- | ------ | ---- | ------ |
+| pid  | 只读     | number | 否   | 进程id |
+| uid  | 只读     | number | 否   | 用户id |
+
+## PermissionRequestResult
+
+| 名称        | 读写属性 | 类型           | 必填 | 描述               |
+| ----------- | -------- | -------------- | ---- | ------------------ |
+| requestCode | 只读     | number         | 是   | 用户传入的请求代码 |
+| permissions | 只读     | Array\<string> | 是   | 用户传入的权限     |
+| authResults | 只读     | Array\<number> | 是   | 求权限的结果       |

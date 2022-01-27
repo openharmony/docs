@@ -58,7 +58,6 @@ wait(): Promise&lt;number&gt;
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var child = process.runCmd('ls');
   var result = child.wait();
   result.then(val=>{
@@ -80,7 +79,6 @@ getOutput(): Promise&lt;Uint8Array&gt;
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var child = process.runCmd('ls');
   var result = child.wait();
   child.getOutput.then(val=>{
@@ -102,7 +100,6 @@ getErrorOutput函数用来获取子进程的标准错误输出。
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var child = process.runCmd('madir test.text');
   var result = child.wait();
   child.getErrorOutput.then(val=>{
@@ -119,7 +116,6 @@ close():  void
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var child = process.runCmd('sleep 5; ls');
   child.close();
   ```
@@ -138,7 +134,6 @@ kill函数用来发送信号给子进程，结束指定进程。
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var child = process.runCmd('sleep 5; ls');
   child.kill(9);
   ```
@@ -157,7 +152,6 @@ isIsolatedProcess(): boolean
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var result = process.isIsolatedProcess();
   ```
 
@@ -180,7 +174,6 @@ isAppUid(v:number): boolean
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var result = process.isAppUid(688);
   ```
 
@@ -198,7 +191,6 @@ is64Bit(): boolean
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var ressult = process.is64Bit();
   ```
 
@@ -221,7 +213,6 @@ getUidForName(v:string): number
 
 - 示例：
   ```
-  import process from '@ohos.process'
   var pres = process.getUidForName("tool")
   ```
 
@@ -244,7 +235,6 @@ getThreadPriority(v:number): number
 
 - 示例：
   ```
-  import process from '@ohos.process'
   var tid = process.getTid();
   var pres = process.getThreadPriority(tid);
   ```
@@ -263,7 +253,6 @@ getStartRealtime() :number
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var realtime = process.getStartRealtime();
   ```
 
@@ -281,7 +270,6 @@ getAvailableCores() :number[]
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var result = getAvailableCores();
   ```
 
@@ -299,7 +287,6 @@ getPastCputime() :number
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var result = process.getPastCputime() ;
   ```
 
@@ -322,7 +309,6 @@ getSystemConfig(name:number): number
 
 - 示例：
   ```
-  import process from '@ohos.process'
   var _SC_ARG_MAX = 0
   var pres = process.getSystemConfig(_SC_ARG_MAX)
   ```
@@ -346,7 +332,6 @@ getEnvironmentVar(name:string): string
 
 - 示例：
   ```
-  import process from '@ohos.process'
   var pres = process.getEnvironmentVar("PATH")
   ```
 
@@ -378,7 +363,6 @@ runCmd(command: string, options?: { timeout : number, killSignal ：number | str
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var child = process.runCmd('ls', { maxBuffer : 2 });
   var result = child.wait();
   child.getOutput.then(val=>{
@@ -395,7 +379,6 @@ abort(): void
 
 - 示例：
   ```
-  import process from '@ohos.process';
   process.abort();
   ```
 
@@ -420,7 +403,6 @@ on(type: string, listener: EventListener): void
 
 - 示例：
   ```
-  import process from '@ohos.process';
   process.on("data", (e)=>{
       console.log("data callback");
   })
@@ -445,7 +427,6 @@ off(type: string): boolean
 
 - 示例：
   ```
-  import process from '@ohos.process';
   process.on("data", (e)=>{
       console.log("data callback");
   })
@@ -466,7 +447,6 @@ exit(code: number): void
 
 - 示例：
   ```
-  import process from '@ohos.process';
   process.exit(0);
   ```
 
@@ -479,7 +459,6 @@ cwd(): string
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var path = process.cwd();
   ```
 
@@ -497,7 +476,6 @@ chdir(dir: string): void
 
 - 示例：
   ```
-  import process from '@ohos.process';
   process.chdir('/system');
   ```
 
@@ -515,7 +493,6 @@ uptime(): number
 
 - 示例：
   ```
-  import process from '@ohos.process';
   var time = process.uptime();
   ```
 
@@ -539,7 +516,6 @@ kill(pid: number，signal: number ): boolean
 
 - 示例：
   ```
-  import process from '@ohos.process'
   var pres = process.pid
   var result = that.kill(pres, 28)
   ```

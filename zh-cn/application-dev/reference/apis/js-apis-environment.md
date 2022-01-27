@@ -56,7 +56,7 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
   });
   ```
 
-## getUserDataDir
+## environment.getUserDataDir
 
 getUserDataDir():Promise&lt;string&gt;
 
@@ -78,7 +78,7 @@ getUserDataDir():Promise&lt;string&gt;
   });
   ```
 
-## getUserDataDir
+## environment.getUserDataDir
 
 getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 

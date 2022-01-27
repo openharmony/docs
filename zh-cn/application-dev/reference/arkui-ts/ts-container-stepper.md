@@ -5,29 +5,6 @@
 
 步骤导航器。
 
-## 支持设备<a name="section322851519172"></a>
-
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.66106080206986%" id="mcps1.1.5.1.1"><p>手机</p>
-</th>
-<th class="cellrowborder" valign="top" width="26.3130659767141%" id="mcps1.1.5.1.2"><p>平板</p>
-</th>
-<th class="cellrowborder" valign="top" width="24.63130659767141%" id="mcps1.1.5.1.3"><p>智慧屏</p>
-</th>
-<th class="cellrowborder" valign="top" width="25.39456662354463%" id="mcps1.1.5.1.4"><p>智能穿戴</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.66106080206986%" headers="mcps1.1.5.1.1 "><p>支持</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.3130659767141%" headers="mcps1.1.5.1.2 "><p>支持</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.63130659767141%" headers="mcps1.1.5.1.3 "><p>不支持</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.39456662354463%" headers="mcps1.1.5.1.4 "><p>不支持</p>
-</td>
-</tr>
-</tbody>
-</table>
 
 ## 权限列表<a name="section988262631714"></a>
 

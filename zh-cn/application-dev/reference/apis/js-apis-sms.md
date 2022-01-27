@@ -27,8 +27,9 @@ createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallba
 -   示例
 
     ```
-    let specification = '3gpp';
-    let pdu = [0x08, 0x91, ...];
+    const specification = '3gpp';
+    // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
+    const pdu = [0x08, 0x91];
     sms.createMessage(pdu, specification, (err, data) => {
         console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
     });
@@ -57,8 +58,9 @@ createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessag
 -   示例
 
     ```
-    let specification = '3gpp';
-    let pdu = [0x08, 0x91, ...];
+    const specification = '3gpp';
+    // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
+    const pdu = [0x08, 0x91];
     let promise = sms.createMessage(pdu, specification);
     promise.then(data => {
         console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);

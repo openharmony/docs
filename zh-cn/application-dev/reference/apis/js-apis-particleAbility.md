@@ -1,21 +1,8 @@
 # particleAbility模块
 
-## 支持设备
-
-| API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 智慧视觉设备 |
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| particleAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| particleAbility.startAbility(parameter: StartAbilityParameter): Promise\<number> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| particleAbility.terminateSelf(callback: AsyncCallback\<void>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| particleAbility.terminateSelf(): Promise\<void>              | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| particleAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| particleAbility.connectAbility(request: Want, options:ConnectOptions): number | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| particleAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| particleAbility.disconnectAbility(connection: number): Promise\<void> | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-
 ## 使用限制
 
-particleAbility模块用来对Data和Service类型的Ability进行操作
+particleAbility模块用来对Data和Service类型的Ability进行操作。
 
 ## 导入模块
 
@@ -23,25 +10,21 @@ particleAbility模块用来对Data和Service类型的Ability进行操作
 import particleAbility from '@ohos.ability.particleAbility'
 ```
 
-## particleAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void
+## particleAbility.startAbility
 
-- 接口说明
+startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void
 
-  使用此方法启动指定的particleAbility(callback形式)
+使用此方法启动指定的particleAbility（callback形式）。
 
-- startAbility参数描述
+**参数：**
 
 
-| 名称      | 读写属性 | 类型                                                    | 必填 | 描述              |
-| --------- | -------- | ------------------------------------------------------- | ---- | ----------------- |
-| parameter | 只读     | [StartAbilityParameter](#StartAbilityParameter类型说明) | 是   | 指示启动的ability |
-| callback  | 只读     | AsyncCallback\<void>                                    | 是   | 被指定的回调方法  |
+| 名称      | 类型                                            | 必填 | 描述              |
+| --------- | ----------------------------------------------- | ---- | ----------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 指示启动的ability |
+| callback  | AsyncCallback\<void>                            | 是   | 被指定的回调方法  |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
@@ -67,22 +50,23 @@ particleAbility.startAbility(
 
 
 
-## particleAbility.startAbility(parameter: StartAbilityParameter): Promise\<number>
+## particleAbility.startAbility
 
-- 接口说明
-使用此方法启动指定的particleAbility(Promise形式)
+startAbility(parameter: StartAbilityParameter): Promise\<number>
+使用此方法启动指定的particleAbility（Promise形式）。
 
-- startAbility参数描述
+**参数：**
 
 
-| 名称      | 读写属性 | 类型                                                    | 必填 | 描述              |
-| --------- | -------- | ------------------------------------------------------- | ---- | ----------------- |
-| parameter | 只读     | [StartAbilityParameter](#StartAbilityParameter类型说明) | 是   | 指示启动的ability |
-- 返回值
+| 名称      | 类型                                            | 必填 | 描述              |
+| --------- | ----------------------------------------------- | ---- | ----------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 指示启动的ability |
+**返回值：**
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 使用Promise形式返回结果。 |
 
-  Promise\<void>
-
-- 示例
+**示例：**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
@@ -107,23 +91,19 @@ particleAbility.startAbility(
 
 
 
-## particleAbility.terminateSelf(callback: AsyncCallback\<void>): void
+## particleAbility.terminateSelf
 
-- 接口说明
+terminateSelf(callback: AsyncCallback\<void>): void
 
-  终止particleAbility(callback形式)
+终止particleAbility（callback形式）。
 
-- terminateSelf参数描述
+**参数：**
 
-| 名称     | 读写属性 | 类型                 | 必填 | 描述                 |
-| -------- | -------- | -------------------- | ---- | -------------------- |
-| callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| 名称     | 类型                 | 必填 | 描述                 |
+| -------- | -------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
@@ -136,17 +116,18 @@ particleAbility.terminateSelf(
 
 
 
-## particleAbility.terminateSelf(): Promise\<void>
+## particleAbility.terminateSelf
 
-- 接口说明
+terminateSelf(): Promise\<void>
 
-  终止particleAbility(Promise形式)
+终止particleAbility（Promise形式）。
 
-- 返回值
+**返回值：**
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 使用Promise形式返回结果。 |
 
-  Promise\<void>
-
-- 示例
+**示例：**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
@@ -157,25 +138,25 @@ particleAbility.terminateSelf().then((void) => {
 
 
 
-## particleAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper
+## particleAbility.acquireDataAbilityHelper
 
-- 接口说明
+acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
-  获取dataAbilityHelper
+获取dataAbilityHelper。
 
-- acquireDataAbilityHelper参数描述
+**参数：**
 
-| 名称 | 读写属性 | 类型   | 必填 | 描述                   |
-| :--- | -------- | ------ | ---- | ---------------------- |
-| uri  | 只读     | string | 是   | 指示要打开的文件的路径 |
+| 名称 | 类型   | 必填 | 描述                     |
+| :--- | ------ | ---- | ------------------------ |
+| uri  | string | 是   | 指示要打开的文件的路径。 |
 
-- 返回值
+**返回值：**
 
-| 类型              | 说明                                       |
-| ----------------- | ------------------------------------------ |
-| DataAbilityHelper | 用来协助其他Ability访问DataAbility的工具类 |
+| 类型              | 说明                                         |
+| ----------------- | -------------------------------------------- |
+| DataAbilityHelper | 用来协助其他Ability访问DataAbility的工具类。 |
 
-- 示例
+**示例：**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'     
@@ -183,20 +164,20 @@ var uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
 ```
 
-## particleAbility.connectAbility(request: Want, options:ConnectOptions): number
+## particleAbility.connectAbility
 
-* 接口说明
+connectAbility(request: Want, options:ConnectOptions): number
 
-  将当前ability连接到指定ServiceAbility(callback形式)
+将当前ability连接到指定ServiceAbility（callback形式）。
 
-* connectAbility参数描述
+**参数：**
 
-| 名称    | 读写属性 | 类型           | 必填 | 描述                       |
-| ------- | -------- | -------------- | ---- | -------------------------- |
-| request | 只读     | Want           | 是   | 表示被连接的ServiceAbility |
-| options | 只读     | ConnectOptions | 是   | 被指定的回调方法           |
+| 名称    | 类型           | 必填 | 描述                       |
+| ------- | -------------- | ---- | -------------------------- |
+| request | Want           | 是   | 表示被连接的ServiceAbility |
+| options | ConnectOptions | 是   | 被指定的回调方法           |
 
-- ConnectOptions类型说明
+**ConnectOptions类型说明：**
 
 | 名称         | 读写属性 | 类型     | 必填 | 描述                               |
 | ------------ | -------- | -------- | ---- | ---------------------------------- |
@@ -204,11 +185,12 @@ particleAbility.acquireDataAbilityHelper(uri)
 | onDisconnect | 只读     | function | 是   | 断开连接时的回调函数               |
 | onFailed     | 只读     | function | 是   | ConnectAbility调用失败时的回调函数 |
 
-* 返回值
+**返回值：**
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 标识客户端与服务端的连接。 |
 
-  标识一次连接。
-
-* 示例
+**示例：**
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
@@ -234,24 +216,20 @@ var connId = particleAbility.connectAbility(
 );
 ```
 
-## particleAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
+## particleAbility.disconnectAbility
 
-* 接口说明
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-  断开与指定ServiceAbility的连接(callback形式)
+断开与指定ServiceAbility的连接（callback形式）。
 
-* disconnectAbility参数描述
+**参数：**
 
-| 名称       | 读写属性 | 类型          | 必填 | 描述                           |
-| ---------- | -------- | ------------- | ---- | ------------------------------ |
-| connection | 只读     | number        | 是   | 指定断开连接的ServiceAbilityID |
-| callback   | 只读     | AsyncCallback\<void> | 是   | 被指定的回调方法               |
+| 名称       | 类型          | 必填 | 描述                           |
+| ---------- | ------------- | ---- | ------------------------------ |
+| connection | number        | 是   | 指定断开连接的ServiceAbilityID |
+| callback   | AsyncCallback\<void> | 是   | 被指定的回调方法               |
 
-* 返回值
-
-  void
-
-* 示例
+**示例：**
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
@@ -282,23 +260,24 @@ var result = particleAbility.disconnectAbility(connId,
 );
 ```
 
-## particleAbility.disconnectAbility(connection: number): Promise\<void>
+## particleAbility.disconnectAbility
 
-* 接口说明
+disconnectAbility(connection: number): Promise\<void>
 
-  断开与指定ServiceAbility的连接(promise形式)
+断开与指定ServiceAbility的连接（Promise形式）。
 
-* disconnectAbility参数描述
+**参数：**
 
-| 名称       | 读写属性 | 类型   | 必填 | 描述                           |
-| ---------- | -------- | ------ | ---- | ------------------------------ |
-| connection | 只读     | number | 是   | 指定断开连接的ServiceAbilityID |
+| 名称       | 类型   | 必填 | 描述                           |
+| ---------- | ------ | ---- | ------------------------------ |
+| connection | number | 是   | 指定断开连接的ServiceAbilityID |
 
-* 返回值
+**返回值：**
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 使用Promise形式返回结果。 |
 
-  Promise\<void>
-
-* 示例
+**示例：**
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
@@ -327,14 +306,14 @@ var result = particleAbility.disconnectAbility(connId).then((void) => {
 });
 ```
 
-## StartAbilityParameter类型说明
+## StartAbilityParameter
 
 | 名称                | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ------------------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | want                | 只读     | [Want](#Want类型说明) | 是   | 表示需要包含有关目标启动能力的信息。                         |
 | abilityStartSetting | 只读     | {[key: string]: any}  | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
 
-## Want类型说明
+## Want
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
@@ -369,7 +348,7 @@ var result = particleAbility.disconnectAbility(connId).then((void) => {
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
 
-## AbilityStartSetting类型说明
+## AbilityStartSetting
 
 abilityStartSetting属性是一个定义为[key: string]: any的对象，key对应设定类型为：AbilityStartSetting枚举类型，value对应设定类型为：AbilityWindowConfiguration枚举类型。
 
@@ -381,7 +360,7 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 | WINDOW_MODE_KEY | "windowMode"    | 窗口显示模式属性的名称。   |
 | DISPLAY_ID_KEY  | "displayId"     | 窗口显示设备ID属性的名称。 |
 
-## AbilityWindowConfiguration类型说明
+## AbilityWindowConfiguration
 
 使用时通过featureAbility.AbilityWindowConfiguration获取，示例：featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED。 
 

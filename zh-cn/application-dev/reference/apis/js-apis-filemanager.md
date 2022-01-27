@@ -226,7 +226,6 @@ filemanager.createFile(dev, name, media_path, (err, uri) => {
 
 ## FileInfo
 文件信息类型，通过getRoot, listFile等接口返回的类型。
-### 属性
 
   | 参数名 | 类型 | 可读 | 可写 | 说明 |
   | --- | -- | -- | -- | -- |
@@ -239,7 +238,7 @@ filemanager.createFile(dev, name, media_path, (err, uri) => {
 
 ## DevInfo
 设备类型，配置接口访问的设备类型。
-### 属性
+
   | 参数名 | 类型 | 可读 | 可写 | 说明 |
   | --- | -- | -- | -- | -- |
   | name | string | 是 | 是 | 设备名称 |

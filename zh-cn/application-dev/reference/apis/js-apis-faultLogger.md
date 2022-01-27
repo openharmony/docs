@@ -12,7 +12,7 @@ import faultLogger from '@ohos.faultLogger'
 
 无
 
-## faultLogger.FaultType
+## FaultType
 
 故障类型枚举
 
@@ -23,7 +23,7 @@ import faultLogger from '@ohos.faultLogger'
 | JS_CRASH | 3 | JS程序故障类型 |
 | APP_FREEZE | 4 | 应用程序卡死故障类型 |
 
-## faultLogger.FaultLogInfo
+## FaultLogInfo
 
 故障信息数据结构，获取到的故障信息的数据结构
 
