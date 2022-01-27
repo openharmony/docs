@@ -1,4 +1,4 @@
-# MIPI-DSI<a name="EN-US_TOPIC_0000001199825369"></a>
+# MIPI DSI<a name="EN-US_TOPIC_0000001199825369"></a>
 
 -   [Overview](#section1266787503161538)
 -   [How to Develop](#section545182932161538)
@@ -8,14 +8,14 @@
 
 ## Overview<a name="section1266787503161538"></a>
 
-The Display Serial Interface \(DSI\) is a specification developed by the Mobile Industry Processor Interface \(MIPI\) Alliance to reduce the cost of display controllers in mobile devices. In the Hardware Driver Foundation (HDF) framework, the MIPI-DSI module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode,  **DevHandle**  \(a void pointer\) directly points to the kernel-mode address of the device object.
+The Display Serial Interface \(DSI\) is a specification developed by the Mobile Industry Processor Interface \(MIPI\) Alliance to reduce the cost of display controllers in mobile devices. In the Hardware Driver Foundation (HDF) framework, the MIPI DSI module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode,  **DevHandle**  \(a void pointer\) directly points to the kernel-mode address of the device object.
 
 **Figure  1**  Service-free mode<a name="fig207610236189"></a>  
-![](figures/service-free-mode-9.png "service-free-mode-9")
+![](figures/service-free-mode.png "service-free-mode")
 
 ## How to Develop<a name="section545182932161538"></a>
 
-The MIPI-DSI module adaptation involves the following steps:
+The MIPI DSI module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
     -   Instantiate the  **HdfDriverEntry**  structure.
@@ -25,7 +25,7 @@ The MIPI-DSI module adaptation involves the following steps:
     -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
     -   \(Optional\) Add the  **mipidsi\_config.hcs**  file.
 
-3.  Instantiate the MIPI-DSI controller object.
+3.  Instantiate the MIPI DSI controller object.
     -   Initialize  **MipiDsiCntlr**.
     -   Instantiate  **MipiDsiCntlrMethod**  in the  **MipiDsiCntlr**  object.
 
@@ -70,7 +70,7 @@ struct MipiDsiCntlrMethod {// Member functions of the core layer structure
 </thead>
 <tbody><tr id="row318920102175"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p01891103178"><a name="p01891103178"></a><a name="p01891103178"></a>setCntlrCfg</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p1518931041716"><a name="p1518931041716"></a><a name="p1518931041716"></a><strong id="b14872821599"><a name="b14872821599"></a><a name="b14872821599"></a>cntlr</strong>: structure pointer to the MIPI-DSI controller.</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p1518931041716"><a name="p1518931041716"></a><a name="p1518931041716"></a><strong id="b14872821599"><a name="b14872821599"></a><a name="b14872821599"></a>cntlr</strong>: structure pointer to the MIPI DSI controller.</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p51893103174"><a name="p51893103174"></a><a name="p51893103174"></a>–</p>
 </td>
@@ -81,7 +81,7 @@ struct MipiDsiCntlrMethod {// Member functions of the core layer structure
 </tr>
 <tr id="row10189210151713"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p518991017171"><a name="p518991017171"></a><a name="p518991017171"></a>setCmd</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p177917412215"><a name="p177917412215"></a><a name="p177917412215"></a><strong id="b4791144113213"><a name="b4791144113213"></a><a name="b4791144113213"></a>cntlr</strong>: structure pointer to the MIPI-DSI controller. </p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p177917412215"><a name="p177917412215"></a><a name="p177917412215"></a><strong id="b4791144113213"><a name="b4791144113213"></a><a name="b4791144113213"></a>cntlr</strong>: structure pointer to the MIPI DSI controller. </p>
 <p id="p12189131018174"><a name="p12189131018174"></a><a name="p12189131018174"></a><strong id="b192414338012"><a name="b192414338012"></a><a name="b192414338012"></a>cmd</strong>: structure pointer to the input instruction.</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p191891210111710"><a name="p191891210111710"></a><a name="p191891210111710"></a>–</p>
@@ -93,7 +93,7 @@ struct MipiDsiCntlrMethod {// Member functions of the core layer structure
 </tr>
 <tr id="row2190161061714"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p111901810181715"><a name="p111901810181715"></a><a name="p111901810181715"></a>getCmd</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p121902101179"><a name="p121902101179"></a><a name="p121902101179"></a><strong id="b516432716114"><a name="b516432716114"></a><a name="b516432716114"></a>cntlr</strong>: structure pointer to the MIPI-DSI controller.</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p121902101179"><a name="p121902101179"></a><a name="p121902101179"></a><strong id="b516432716114"><a name="b516432716114"></a><a name="b516432716114"></a>cntlr</strong>: structure pointer to the MIPI DSI controller.</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p1519018101171"><a name="p1519018101171"></a><a name="p1519018101171"></a>cmd: structure pointer to the instruction to output.</p>
 </td>
@@ -104,7 +104,7 @@ struct MipiDsiCntlrMethod {// Member functions of the core layer structure
 </tr>
 <tr id="row1919071016171"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p16190131051710"><a name="p16190131051710"></a><a name="p16190131051710"></a>toHs</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p151906102178"><a name="p151906102178"></a><a name="p151906102178"></a><strong id="b159559351014"><a name="b159559351014"></a><a name="b159559351014"></a>cntlr</strong>: structure pointer to the MIPI-DSI controller.</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p151906102178"><a name="p151906102178"></a><a name="p151906102178"></a><strong id="b159559351014"><a name="b159559351014"></a><a name="b159559351014"></a>cntlr</strong>: structure pointer to the MIPI DSI controller.</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p10190181031720"><a name="p10190181031720"></a><a name="p10190181031720"></a>–</p>
 </td>
@@ -115,7 +115,7 @@ struct MipiDsiCntlrMethod {// Member functions of the core layer structure
 </tr>
 <tr id="row01911510161718"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p10191141081717"><a name="p10191141081717"></a><a name="p10191141081717"></a>toLp</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p819121011714"><a name="p819121011714"></a><a name="p819121011714"></a><strong id="b189629351219"><a name="b189629351219"></a><a name="b189629351219"></a>cntlr</strong>: structure pointer to the MIPI-DSI controller.</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p819121011714"><a name="p819121011714"></a><a name="p819121011714"></a><strong id="b189629351219"><a name="b189629351219"></a><a name="b189629351219"></a>cntlr</strong>: structure pointer to the MIPI DSI controller.</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p3191510171717"><a name="p3191510171717"></a><a name="p3191510171717"></a>–</p>
 </td>
@@ -133,7 +133,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
 
 1.  Generally, you need to configure the device attributes in  **xx\_config.hcs**  and add the  **deviceNode**  information to the  **device\_info.hcs**  file. The device attribute values are closely related to the default values or value range of the  **MipiDsiCntlr**  members at the core layer. The  **deviceNode**  information is related to the driver entry registration.
 
-    In this example, no additional attribute needs to be configured for the MIPI-DSI controller. If required, you need to add the  **deviceMatchAttr**  information to  **deviceNode**  in the  **device\_info**  file and add the  **mipidsi\_config**  file.
+    In this example, no additional attribute needs to be configured for the MIPI DSI controller. If required, you need to add the  **deviceMatchAttr**  information to  **deviceNode**  in the  **device\_info**  file and add the  **mipidsi\_config**  file.
 
     -   **device\_info.hcs**  configuration reference
 
@@ -162,7 +162,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
 
     Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exits.
 
-    -   MIPI-DSI driver entry reference
+    -   MIPI DSI driver entry reference
 
         ```
         struct HdfDriverEntry g_mipiTxDriverEntry = {
@@ -177,7 +177,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
 3.  Initialize the  **MipiDsiCntlr**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **MipiDsiCntlrMethod**  \(used to call underlying functions of the driver\) in  **MipiDsiCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **config**  file are used to initialize the structure members. In this example, the MIPI-DSI has no device attribute file. Therefore, the basic member structure is similar to that of  **MipiDsiCntlr**.
+        To the driver, the custom structure carries parameters and data. The values in the  **config**  file are used to initialize the structure members. In this example, the MIPI DSI has no device attribute file. Therefore, the basic member structure is similar to that of  **MipiDsiCntlr**.
 
         ```
         typedef struct {
