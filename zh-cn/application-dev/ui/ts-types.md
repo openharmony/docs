@@ -56,6 +56,27 @@
 | ColorStop | [Color,&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，第二个参数为0~1之间的比例值。 |
 
 
+## ResourceStr类型<a name="ResourceStr"></a>
+
+| 名称 | 类型定义 | 描述 |
+| -------- | -------- | -------- |
+| ResourceStr | string&nbsp;\| <a href="ts-types.md#Resource">Resource</a> | 用于描述资源字符串的类型。 |
+
+
+## ResourceColor类型<a name="ResourceColor"></a>
+
+| 名称 | 类型定义 | 描述 |
+| -------- | -------- | -------- |
+| ResourceColor | Color&nbsp;\| number&nbsp;\| string&nbsp;\| <a href="ts-types.md#Resource">Resource</a> | 用于描述资源颜色类型。 |
+
+
+## Font类型<a name="Font"></a>
+
+| 名称 | 类型定义 | 描述 |
+| -------- | -------- | -------- |
+| Font | {<br/>size?: Length;<br/>weight?: <a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md#li24391125115311">FontWeight</a> &nbsp;\| number &nbsp;\| string;<br/>family?: string &nbsp;\| <a href="ts-types.md#Resource">Resource</a>;<br/>style?: <a href="https://gitee.com/superFat/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md#li6906111945316">FontStyle</a>;<br/>} | 设置文本样式：<br/><ul><li>size: 设置文本尺寸，Length为number类型时，使用fp单位。<br/></li><li>weight: 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/></li><li>family: 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。<br/></li><li>style: 设置文本的字体样式。</li></ul>|
+
+
 ## 示例
 
 ```
