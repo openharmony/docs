@@ -321,8 +321,15 @@ Different from private events, universal events can be bound to most components.
 <td class="cellrowborder" valign="top" width="63%" headers="mcps1.2.4.1.3 "><p id="p204493130105"><a name="p204493130105"></a><a name="p204493130105"></a>Touch force.</p>
 </td>
 </tr>
-</tbody>
+<tr><td class="cellrowborder" valign="top" width="21.060000000000002%" headers="mcps1.2.4.1.1 "><p>identifier<sup>8+</sup></p>
+</td>
+<td class="cellrowborder" valign="top" width="15.939999999999998%" headers="mcps1.2.4.1.2 "><p>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="63%" headers="mcps1.2.4.1.3 "><p>Unique identifier of a touch point on the screen. The value remains unchanged across the events triggered by finger movement on the screen.</p>
+</td>
+</tr></tbody>
 </table>
+
 
 **Table  4**  Attributes of the SwipeEvent object \(inherited from BaseEvent\)
 
@@ -474,4 +481,3 @@ export default {
   }
 }
 ```
-
