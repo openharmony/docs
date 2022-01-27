@@ -11,14 +11,14 @@ import filemanager from 'ohos.filemanager'
 应用需要拥有SystemCapability.FileManagement.FileManagerService权限
 
 ## filemanager.getRoot
-getRoot(dev : DevInfo) : Promise&lt;FileInfo[]&gt;
+getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
 以异步方法获取第一层相册，目录信息。使用promise形式返回结果。
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | dev | DevInfo | 是 | 设备名, 当前仅支持设备'local' |
+  | dev | DevInfo | 否 | 设备名, 当前仅支持设备'local' |
 
 - 返回值
 
@@ -29,8 +29,7 @@ getRoot(dev : DevInfo) : Promise&lt;FileInfo[]&gt;
 - 示例
 
 ```js
-let dev = {name: "local"};
-filemanager.getRoot(dev)
+filemanager.getRoot()
 .then((fileInfo) => {
     if(Array.isArray(fileInfo)) {
         for (var i = 0; i < fileInfo.length; i++) {
@@ -45,7 +44,7 @@ filemanager.getRoot(dev)
 
 ## filemanager.getRoot
 
-getRoot(dev : DevInfo, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
+getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
 
 以异步方法获取第一层相册，目录信息。使用callback形式返回结果。
 
@@ -53,14 +52,13 @@ getRoot(dev : DevInfo, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | dev      | DevInfo              | 是   | 设备名, 当前仅支持设备'local' |
+  | dev      | DevInfo              | 否   | 设备名, 当前仅支持设备'local' |
   | callback | AsyncCallback&lt;FileInfo[]&gt; | 是   | 异步获取文件的信息之后的回调  |
 
 - 示例
 
 ```js
-let dev = {name: "local"};
-filemanager.getRoot(dev, (err, fileInfo) => {
+filemanager.getRoot((err, fileInfo) => {
     if(Array.isArray(fileInfo)) {
         for (var i = 0; i < fileInfo.length; i++) {
             console.log(JSON.Stringify(fileInfo))
@@ -71,17 +69,19 @@ filemanager.getRoot(dev, (err, fileInfo) => {
 
 ## filemanager.listFile
 
-listFile(dev : DevInfo, type : string, path : string, option? : {offset? : number, count?: number}) : Promise&lt;FileInfo[]&gt;
+listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : number, count? : number}) : Promise&lt;FileInfo[]&gt;
 
 以异步方法获取获取第二层相册，文件信息。使用promise形式返回结果。
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | dev | DevInfo | 是 | 设备名, 当前仅支持设备'local' |
   | type | string | 是 | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
   | path | string | 是 | 待查询目录uri |
-
+  | dev | DevInfo | 是 | 设备名, 当前仅支持设备'local' |
+  | offset | number | 否 | 待查询文件偏移 |
+  | count | number | 否 | 待查询文件个数 |
+  
 - 返回值
 
   | 类型 | 说明 |
@@ -99,8 +99,7 @@ listFile(dev : DevInfo, type : string, path : string, option? : {offset? : numbe
 // 获取目录下所有文件
 // 通过listFile、getRoot获取的文件uri
 let media_path = file.uri
-let dev = {name: "local"};
-filemanager.listFile(dev, "file", media_path)
+filemanager.listFile(media_path, "file")
 .then((fileInfo) => {
     if(Array.isArray(fileInfo)) {
         for (var i = 0; i < fileInfo.length; i++) {
@@ -114,7 +113,7 @@ filemanager.listFile(dev, "file", media_path)
 ```
 ## filemanager.listFile
 
-listFile(dev : DevInfo, type : string, path : string, option? : {offset? : number, count?: number}, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
+listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : number, count? : number}, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
 
 以异步方法获取获取第二层相册，文件信息。使用callback形式返回结果。
 
@@ -122,9 +121,11 @@ listFile(dev : DevInfo, type : string, path : string, option? : {offset? : numbe
 
   | 参数名   | 类型                      | 必填 | 说明                                                         |
   | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | dev      | DevInfo             | 是   | 设备名, 当前仅支持设备'local'                                |
   | type     | string                    | 是   | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
   | path     | string                    | 是   | 待查询目录uri                                                |
+  | dev | DevInfo | 否 | 设备名, 当前仅支持设备'local' |
+  | offset | number | 否 | 待查询文件偏移 |
+  | count | number | 否 | 待查询文件个数 |
   | callback | AsyncCallback&lt;FileInfo[]&gt; | 是   | 异步获取文件的信息之后的回调                                 |
 - 异常
 
@@ -137,8 +138,7 @@ listFile(dev : DevInfo, type : string, path : string, option? : {offset? : numbe
 ```js
 // 通过listFile、getRoot获取的文件uri
 let media_path = file.uri
-let dev = {name: "local"};
-filemanager.listFile(dev, "file", media_path, (err, fileInfo) => {
+filemanager.listFile(media_path, "file", (err, fileInfo) => {
     if(Array.isArray(fileInfo)) {
         for (var i = 0; i < fileInfo.length; i++) {
             console.log(JSON.Stringify(fileInfo))
@@ -149,16 +149,16 @@ filemanager.listFile(dev, "file", media_path, (err, fileInfo) => {
 
 ## filemanager.createFile
 
-filemanager.createFile(dev : DevInfo, filename: string, path : string)  :   promise&lt;string&gt;
+filemanager.createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   promise&lt;string&gt;
 
 以异步方法创建文件到指定路径，返回文件uri。使用promise形式返回结果。
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | dev | DevInfo | 是 | 设备名, 当前仅支持设备'local' |
   | filename | string | 是 | 待创建的文件名 |
   | path | string | 是 | 待保存目的相册uri |
+  | dev | DevInfo | 否 | 设备名, 当前仅支持设备'local' |
 
 - 返回值
 
@@ -178,8 +178,7 @@ filemanager.createFile(dev : DevInfo, filename: string, path : string)  :   prom
 // 创建文件，返回文件uri
 let media_path = file.uri // 通过listFile、getRoot获取的文件uri
 let name = "xxx.jpg" // 待保存文件的后缀
-let dev = {name: "local"};
-filemanager.createFile(dev, name, media_path)
+filemanager.createFile(media_path, name)
 .then((uri) => {
 // 返回uri给应用
 })
@@ -190,7 +189,7 @@ filemanager.createFile(dev, name, media_path)
 
 ## filemanager.createFile
 
-createFile(dev : DevInfo, filename: string, path : string, callback : AsyncCallback&lt;string&gt;) : void
+createFile(path : string, filename: string, options? : {dev? : DevInfo}, callback : AsyncCallback&lt;string&gt;) : void
 
 以异步方法创建文件到指定路径，返回文件uri。使用callback形式返回结果。
 
@@ -198,9 +197,9 @@ createFile(dev : DevInfo, filename: string, path : string, callback : AsyncCallb
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | dev      | DevInfo              | 是   | 设备名, 当前仅支持设备'local' |
   | filename | string                    | 是   | 待创建的文件名                |
   | path     | string                    | 是   | 待保存目的相册uri             |
+  | dev | DevInfo | 否 | 设备名, 当前仅支持设备'local' |
   | callback | AsyncCallback&lt;FileInfo[]&gt; | 是   | 异步获取文件的信息之后的回调  |
 
 - 异常
@@ -218,8 +217,7 @@ createFile(dev : DevInfo, filename: string, path : string, callback : AsyncCallb
 let media_path = file.uri
 // 待保存文件的后缀
 let name = "xxx.jpg"
-let dev = {name: "local"};
-filemanager.createFile(dev, name, media_path, (err, uri) => {
+filemanager.createFile(media_path, name, (err, uri) => {
 // 返回uri给应用
 })
 ```
@@ -228,14 +226,14 @@ filemanager.createFile(dev, name, media_path, (err, uri) => {
 文件信息类型，通过getRoot, listFile等接口返回的类型。
 ### 属性
 
-  | 参数名 | 类型 | 可读 | 可写 | 说明 |
-  | --- | -- | -- | -- | -- |
-  | name | string | 是 | 否 | 文件名称 |
-  | path | string | 是 | 否 | 文件Uri |
-  | type | string | 是 | 否 | 文件类型 |
-  | size | number | 是 | 否 | 文件大小 |
-  | added_time | number | 是 | 否 | 媒体插入时间 |
-  | modified_time | number | 是 | 否 | 媒体修改时间 |
+| 参数名 | 类型 | 可读 | 可写 | 说明 |
+| --- | -- | -- | -- | -- |
+| name | string | 是 | 否 | 文件名称 |
+| path | string | 是 | 否 | 文件Uri |
+| type | string | 是 | 否 | 文件类型 |
+| size | number | 是 | 否 | 文件大小 |
+| addedTime | number | 是 | 否 | 媒体插入时间 |
+| modifiedTime | number | 是 | 否 | 媒体修改时间 |
 
 ## DevInfo
 设备类型，配置接口访问的设备类型。
