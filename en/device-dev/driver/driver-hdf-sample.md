@@ -50,7 +50,7 @@ root {
 
 ## Compiling the Driver Code<a name="section177988005"></a>
 
-The following is the sample driver code compiled based on HDF:
+The following is the sample driver code compiled based on HDF (for details, see [Driver Development](driver-hdf-development.md)):
 
 ```
 #include <fcntl.h>
@@ -122,7 +122,7 @@ HDF_INIT(g_sampleDriverEntry);
 
 ## Compiling the Code for Interaction<a name="section6205173816412"></a>
 
-The following is the sample code compiled based on HDF for interaction between the driver and user-state applications:
+The following is the sample code compiled based on HDF for interaction between the driver and user-state applications. You can place the code in **drivers/adapter/uhdf** for compilation. For details about the **build.gn** file, see **drivers/framework/sample/platform/uart/dev/build.gn**.
 
 ```
 #include <fcntl.h>
