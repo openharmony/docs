@@ -15,7 +15,7 @@
 
 **图片名称以开发板名称命名。*
 
-*参考文档：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/oem_minitinier_des_3861.md*
+*参考文档：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-introduction-hi3861.md*
 
 ********
 ## 开发板规格
@@ -33,7 +33,7 @@
 *【写作说明】支持的OpenHarmony关键特性列表。*
 
 ## 引脚定义
-*【写作说明】介绍单板的管脚定义等，描述单板I/O引脚，PIN，以及如何配置PIN、如何使用PIN连接外部组件。*  
+*【写作说明】介绍单板的管脚定义等，描述单板I/O引脚，以及如何配置PIN、如何使用PIN连接外部组件。*  
 
 ## 搭建开发环境
 
