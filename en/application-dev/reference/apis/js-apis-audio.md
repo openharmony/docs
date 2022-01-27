@@ -1,4 +1,15 @@
-# Audio Management<a name="EN-US_TOPIC_0000001149807881"></a>
+# Audio
+
+This module provides the following functions: audio management, audio rendering and system sound management.
+
+
+---
+## ***Note:***
+
+    Changes to the AudioRenderer interface have been proposed.
+    When the updated APIs have been integrated, the document will be revised, and apps must adapt to it.
+
+---
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
@@ -10,11 +21,13 @@ import audio from '@ohos.multimedia.audio';
 
 None
 
-## getAudioManager\(\): AudioManager<a name="section84581011418"></a>
+## audioManager
+
+getAudioManager\(\): AudioManager<a name="section84581011418"></a>
 
 Obtains an  **AudioManager**  instance.
 
-**Return values**
+**Return value**
 
 <a name="table16391145317913"></a>
 <table><thead align="left"><tr id="row2391145319910"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p13911353991"><a name="p13911353991"></a><a name="p13911353991"></a>Type</p>
@@ -25,7 +38,7 @@ Obtains an  **AudioManager**  instance.
 </thead>
 <tbody><tr id="row1339114531391"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p1338931454713"><a name="p1338931454713"></a><a name="p1338931454713"></a><a href="#section8265143814015">AudioManager</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p1039217531898"><a name="p1039217531898"></a><a name="p1039217531898"></a>Audio manager</p>
+<td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p1039217531898"><a name="p1039217531898"></a><a name="p1039217531898"></a>AudioManager object.</p>
 </td>
 </tr>
 </tbody>
@@ -36,6 +49,55 @@ Obtains an  **AudioManager**  instance.
 ```
 var audioManager = audio.getAudioManager();
 ```
+
+
+## audioRenderer
+
+createAudioRenderer(volumeType: AudioVolumeType): AudioRenderer<a name="createaudioRenderer"></a>
+
+Obtains an  **AudioRenderer**  instance.
+
+**Parameters**
+| Name       | Type            | Mandatory | Description        |
+| :--------- | :-------------- | :-------- | :----------------- |
+| volumeType | AudioVolumeType | Yes       | Audio stream type. |
+
+**Return value**
+
+| Type          | Description           |
+| ------------- | --------------------- |
+| AudioRenderer | AudioRenderer object. |
+
+**Example**
+
+```
+const volType = audio.AudioVolumeType.MEDIA;
+const audioRenderer = audio.createAudioRenderer(volType);
+```
+
+
+## systemSoundManager
+
+getSystemSoundManager(): SystemSoundManager<a name="getsystemsoundmanager"></a>
+
+Obtains a  **SystemSoundManager**  instance.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type               | Description                |
+| ------------------ | -------------------------- |
+| SystemSoundManager | SystemSoundManager object. |
+
+**Example**
+
+```
+const systemSoundManager = audio.getSystemSoundManager();
+```
+
 
 ## AudioVolumeType<a name="section92261857172218"></a>
 
@@ -54,18 +116,19 @@ Enumerates audio stream types.
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p2282152962115"><a name="p2282152962115"></a><a name="p2282152962115"></a>2</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p328012293211"><a name="p328012293211"></a><a name="p328012293211"></a>Audio stream for ringtones</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p328012293211"><a name="p328012293211"></a><a name="p328012293211"></a>Audio stream for ringtones.</p>
 </td>
 </tr>
 <tr id="row6892145616397"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p027662952110"><a name="p027662952110"></a><a name="p027662952110"></a>MEDIA</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p17273229192113"><a name="p17273229192113"></a><a name="p17273229192113"></a>3</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p182452299212"><a name="p182452299212"></a><a name="p182452299212"></a>Audio stream for media purpose</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p182452299212"><a name="p182452299212"></a><a name="p182452299212"></a>Audio stream for media purpose.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
 
 ## DeviceFlag<a name="section11285183164210"></a>
 
@@ -84,25 +147,26 @@ Enumerates audio device flags.
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p172861314213"><a name="p172861314213"></a><a name="p172861314213"></a>1</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p5286133134212"><a name="p5286133134212"></a><a name="p5286133134212"></a>Output device</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p5286133134212"><a name="p5286133134212"></a><a name="p5286133134212"></a>Output device.</p>
 </td>
 </tr>
 <tr id="row2286163194220"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p5514162412251"><a name="p5514162412251"></a><a name="p5514162412251"></a>INPUT_DEVICES_FLAG</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p112863354219"><a name="p112863354219"></a><a name="p112863354219"></a>2</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1328617334214"><a name="p1328617334214"></a><a name="p1328617334214"></a>Input device</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1328617334214"><a name="p1328617334214"></a><a name="p1328617334214"></a>Input device.</p>
 </td>
 </tr>
 <tr id="row10631228192520"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p1731716317259"><a name="p1731716317259"></a><a name="p1731716317259"></a>ALL_DEVICES_FLAG</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p1364628102517"><a name="p1364628102517"></a><a name="p1364628102517"></a>3</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1864182814256"><a name="p1864182814256"></a><a name="p1864182814256"></a>All devices</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1864182814256"><a name="p1864182814256"></a><a name="p1864182814256"></a>All devices.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
 
 ## DeviceRole<a name="section380038142619"></a>
 
@@ -121,18 +185,19 @@ Enumerates audio device roles.
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p98008852610"><a name="p98008852610"></a><a name="p98008852610"></a>1</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p118009817260"><a name="p118009817260"></a><a name="p118009817260"></a>Input role</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p118009817260"><a name="p118009817260"></a><a name="p118009817260"></a>Input role.</p>
 </td>
 </tr>
 <tr id="row680018802618"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p2011710479267"><a name="p2011710479267"></a><a name="p2011710479267"></a>OUTPUT_DEVICE</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p08009812613"><a name="p08009812613"></a><a name="p08009812613"></a>2</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p380020842611"><a name="p380020842611"></a><a name="p380020842611"></a>Output role</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p380020842611"><a name="p380020842611"></a><a name="p380020842611"></a>Output role.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
 
 ## DeviceType<a name="section11727420122710"></a>
 
@@ -151,46 +216,47 @@ Enumerates audio device types.
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p772892012273"><a name="p772892012273"></a><a name="p772892012273"></a>0</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p137281920172712"><a name="p137281920172712"></a><a name="p137281920172712"></a>Invalid device</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p137281920172712"><a name="p137281920172712"></a><a name="p137281920172712"></a>Invalid device.</p>
 </td>
 </tr>
 <tr id="row16728520192714"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p4753161132815"><a name="p4753161132815"></a><a name="p4753161132815"></a>SPEAKER</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p3728920162713"><a name="p3728920162713"></a><a name="p3728920162713"></a>1</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p17728112062715"><a name="p17728112062715"></a><a name="p17728112062715"></a>Speaker</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p17728112062715"><a name="p17728112062715"></a><a name="p17728112062715"></a>Speaker.</p>
 </td>
 </tr>
 <tr id="row1758117472814"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p74802011112815"><a name="p74802011112815"></a><a name="p74802011112815"></a>WIRED_HEADSET</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p35820462819"><a name="p35820462819"></a><a name="p35820462819"></a>2</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p155821548285"><a name="p155821548285"></a><a name="p155821548285"></a>Wired headset</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p155821548285"><a name="p155821548285"></a><a name="p155821548285"></a>Wired headset.</p>
 </td>
 </tr>
 <tr id="row1335108192818"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p107521514142811"><a name="p107521514142811"></a><a name="p107521514142811"></a>BLUETOOTH_SCO</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p18335108112819"><a name="p18335108112819"></a><a name="p18335108112819"></a>3</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p193351683289"><a name="p193351683289"></a><a name="p193351683289"></a>Bluetooth device using the synchronous connection oriented (SCO) link</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p193351683289"><a name="p193351683289"></a><a name="p193351683289"></a>Bluetooth device using the synchronous connection oriented (SCO) link.</p>
 </td>
 </tr>
 <tr id="row1649111617286"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p10784017102818"><a name="p10784017102818"></a><a name="p10784017102818"></a>BLUETOOTH_A2DP</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p849110610286"><a name="p849110610286"></a><a name="p849110610286"></a>4</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p549117620284"><a name="p549117620284"></a><a name="p549117620284"></a>Bluetooth device using the advanced audio distribution profile (A2DP)</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p549117620284"><a name="p549117620284"></a><a name="p549117620284"></a>Bluetooth device using the advanced audio distribution profile (A2DP).</p>
 </td>
 </tr>
 <tr id="row81701220112812"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p168642028152812"><a name="p168642028152812"></a><a name="p168642028152812"></a>MIC</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p517062012812"><a name="p517062012812"></a><a name="p517062012812"></a>5</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p5170520112813"><a name="p5170520112813"></a><a name="p5170520112813"></a>Microphone</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p5170520112813"><a name="p5170520112813"></a><a name="p5170520112813"></a>Microphone.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
 
 ## AudioRingMode<sup>7+</sup><a name="section14948916131018"></a>
 
@@ -209,33 +275,236 @@ Enumerates ringer modes.
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p18788114345414"><a name="p18788114345414"></a><a name="p18788114345414"></a>0</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1378874385416"><a name="p1378874385416"></a><a name="p1378874385416"></a>Silence mode</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1378874385416"><a name="p1378874385416"></a><a name="p1378874385416"></a>Silence mode.</p>
 </td>
 </tr>
 <tr id="row69495166107"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p1447557125520"><a name="p1447557125520"></a><a name="p1447557125520"></a>RINGER_MODE_VIBRATE</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p04766720552"><a name="p04766720552"></a><a name="p04766720552"></a>1</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p3610191945517"><a name="p3610191945517"></a><a name="p3610191945517"></a>Vibration mode</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p3610191945517"><a name="p3610191945517"></a><a name="p3610191945517"></a>Vibration mode.</p>
 </td>
 </tr>
 <tr id="row49498168105"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p1034891712171"><a name="p1034891712171"></a><a name="p1034891712171"></a>RINGER_MODE_NORMAL</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p421692310811"><a name="p421692310811"></a><a name="p421692310811"></a>2</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p187929346177"><a name="p187929346177"></a><a name="p187929346177"></a>Normal mode</p>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p187929346177"><a name="p187929346177"></a><a name="p187929346177"></a>Normal mode.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## AudioManager<a name="section8265143814015"></a>
+
+## AudioSampleFormat<sup>8+</sup><a name="audiosampleformat"></a>
+Enumerates the audio sample formats.
+
+| Name          | Default Value | Description                           |
+| :------------ | :------------ | :------------------------------------ |
+| INVALID_WIDTH | -1            | Invalid format.                       |
+| SAMPLE_U8     | 1             | Unsigned 8 bit integer.               |
+| SAMPLE_S16LE  | 0             | Signed 16 bit integer, little endian. |
+| SAMPLE_S24LE  | 1             | Signed 24 bit integer, little endian. |
+| SAMPLE_S32LE  | 2             | Signed 32 bit integer, little endian. |
+
+
+## AudioChannel<sup>8+</sup><a name="audiochannel"></a>
+Enumerates the audio channels.
+
+| Name   | Default Value | Description      |
+| :----- | :------------ | :--------------- |
+| MONO   | 1             | Channel count 1. |
+| STEREO | 2             | Channel count 2. |
+
+
+## AudioSamplingRate<sup>8+</sup><a name="audiosamplingrate"></a>
+Enumerates the audio sampling rates.
+
+| Name              | Default Value | Description          |
+| :---------------- | :------------ | :------------------- |
+| SAMPLE_RATE_8000  | 8000          | Sampling rate 8000.  |
+| SAMPLE_RATE_11025 | 11025         | Sampling rate 11025. |
+| SAMPLE_RATE_12000 | 12000         | Sampling rate 12000. |
+| SAMPLE_RATE_16000 | 16000         | Sampling rate 16000. |
+| SAMPLE_RATE_22050 | 22050         | Sampling rate 22050. |
+| SAMPLE_RATE_24000 | 24000         | Sampling rate 24000. |
+| SAMPLE_RATE_32000 | 32000         | Sampling rate 32000. |
+| SAMPLE_RATE_44100 | 44100         | Sampling rate 44100. |
+| SAMPLE_RATE_48000 | 48000         | Sampling rate 48000. |
+| SAMPLE_RATE_64000 | 64000         | Sampling rate 64000. |
+| SAMPLE_RATE_96000 | 96000         | Sampling rate 96000. |
+
+
+## AudioEncodingType<sup>8+</sup><a name="audioencodingtype"></a>
+Enumerates the audio encoding types.
+
+| Name             | Default Value | Description |
+| :--------------- | :------------ | :---------- |
+| ENCODING_PCM     | 0             | PCM.        |
+| ENCODING_INVALID | 1             | Invalid.    |
+
+
+## ContentType<sup>8+</sup><a name="contentype"></a>
+Enumerates the content types.
+
+| Name                      | Default Value | Description           |
+| :------------------------ | :------------ | :-------------------- |
+| CONTENT_TYPE_UNKNOWN      | 0             | Unknown content.      |
+| CONTENT_TYPE_SPEECH       | 1             | Speech content.       |
+| CONTENT_TYPE_MUSIC        | 2             | Music content.        |
+| CONTENT_TYPE_MOVIE        | 3             | Movie content.        |
+| CONTENT_TYPE_SONIFICATION | 4             | Notification content. |
+| CONTENT_TYPE_RINGTONE     | 5             | Ringtone content.     |
+
+
+## StreamUsage<sup>8+</sup><a name="streamusage"></a>
+Enumerates the stream usage.
+
+| Name                               | Default Value | Description                     |
+| :--------------------------------- | :------------ | :------------------------------ |
+| STREAM_USAGE_UNKNOWN               | 0             | Unknown usage.                  |
+| STREAM_USAGE_MEDIA                 | 1             | Media usage.                    |
+| STREAM_USAGE_VOICE_COMMUNICATION   | 2             | Voice communication usage.      |
+| STREAM_USAGE_NOTIFICATION_RINGTONE | 3             | Notification or ringtone usage. |
+
+
+## AudioState<sup>8+</sup><a name="audiostate"></a>
+Enumerates the audio states.
+
+| Name           | Default Value | Description                |
+| :------------- | :------------ | :------------------------- |
+| STATE_INVALID  | -1            | Invalid state.             |
+| STATE_NEW      | 0             | Create New instance state. |
+| STATE_PREPARED | 1             | Prepared state.            |
+| STATE_RUNNING  | 2             | Running state.             |
+| STATE_STOPPED  | 3             | Stopped state.             |
+| STATE_RELEASED | 4             | Released state.            |
+| STATE_PAUSED   | 5             | Paused state.              |
+
+
+## AudioRendererRate<sup>8+</sup><a name="audiorendererrate"></a>
+Enumerates the audio renderer rates.
+
+| Name               | Default Value | Description  |
+| :----------------- | :------------ | :----------- |
+| RENDER_RATE_NORMAL | 0             | Normal rate. |
+| RENDER_RATE_DOUBLE | 1             | Double rate. |
+| RENDER_RATE_HALF   | 2             | Half rate.   |
+
+
+## InterruptType<sup>8+</sup><a name="interrupttype"></a>
+Enumerates the interrupt types.
+
+| Name                 | Default Value | Description                          |
+| :------------------- | :------------ | :----------------------------------- |
+| INTERRUPT_TYPE_BEGIN | 1             | Audio playback interruption started. |
+| INTERRUPT_TYPE_END   | 2             | Audio playback interruption ended.   |
+
+
+## InterruptForceType<sup>8+</sup><a name="interruptforcetype"></a>
+Enumerates the interrupt force types.
+
+| Name            | Default Value | Description                              |
+| :-------------- | :------------ | :--------------------------------------- |
+| INTERRUPT_FORCE | 0             | Forced action taken by system.           |
+| INTERRUPT_SHARE | 1             | App can choose to take action or ignore. |
+
+
+## InterruptHint<sup>8+</sup><a name="interrupthint"></a>
+Enumerates the interrupt hints.
+
+| Name                  | Default Value | Description                |
+| :-------------------- | :------------ | :------------------------- |
+| INTERRUPT_HINT_NONE   | 0             | None.                      |
+| INTERRUPT_HINT_RESUME | 1             | Resume the playback.       |
+| INTERRUPT_HINT_PAUSE  | 2             | Paused/Pause the playback. |
+| INTERRUPT_HINT_STOP   | 3             | Stopped/Stop the playback. |
+| INTERRUPT_HINT_DUCK   | 4             | Ducked the playback.       |
+| INTERRUPT_HINT_UNDUCK | 5             | Unducked the playback.     |
+
+
+## RingtoneType<sup>8+</sup><a name="ringtonetype"></a>
+Enumerates the ringtone types.
+
+| Name                   | Default Value | Description     |
+| :--------------------- | :------------ | :-------------- |
+| RINGTONE_TYPE_DEFAULT  | 0             | Default type.   |
+| RINGTONE_TYPE_MULTISIM | 1             | Multi-SIM type. |
+
+
+## AudioParameters<sup>8+</sup><a name="audioparameters"></a>
+Describes audio parameters of playback files.
+
+**Parameters**
+
+| Name         | Type              | Mandatory | Description                                   |
+| :----------- | :---------------- | :-------- | :-------------------------------------------- |
+| format       | AudioSampleFormat | Yes       | Sample format of the audio file to be played. |
+| channels     | AudioChannel      | Yes       | Channel count of the audio file to be played. |
+| samplingRate | AudioSamplingRate | Yes       | Sample rate of the audio file to be played.   |
+| encoding     | AudioEncodingType | Yes       | Encoding type of the audio file to be played. |
+| contentType  | ContentType       | Yes       | Content type.                                 |
+| usage        | StreamUsage       | Yes       | Stream usage.                                 |
+| deviceRole   | DeviceRole        | Yes       | Device role.                                  |
+| deviceType   | DeviceType        | Yes       | Device type.                                  |
+
+
+## AudioRendererInfo<sup>8+</sup><a name="audiorendererinfo"></a>
+Describes audio renderer information.
+
+**Parameters**
+
+| Name          | Type        | Mandatory | Description           |
+| :------------ | :---------- | :-------- | :-------------------- |
+| contentType   | ContentType | Yes       | Content type.         |
+| usage         | StreamUsage | Yes       | Stream usage.         |
+| rendererFlags | number      | Yes       | Audio renderer flags. |
+
+
+## InterruptEvent<sup>8+</sup><a name="interruptevent"></a>
+Describes the interrupt event received by the app when playback is interrupted.
+
+**Parameters**
+
+| Name      | Type               | Mandatory | Description                                                                 |
+| :-------- | :----------------- | :-------- | :-------------------------------------------------------------------------- |
+| eventType | InterruptType      | Yes       | Indicates whether the interruption has started or finished.                 |
+| forceType | InterruptForceType | Yes       | Indicates  whether the action is taken by system or to be taken by the app. |
+| hintType  | InterruptHint      | Yes       | Indicates the kind of action.                                               |
+
+
+## VolumeEvent<sup>8+</sup><a name="volumeevent"></a>
+Describes the volume event received by the app when the volume is changed.
+
+**Parameters**
+
+| Name       | Type            | Mandatory | Description                              |
+| :--------- | :-------------- | :-------- | :--------------------------------------- |
+| volumeType | AudioVolumeType | Yes       | Volume type of the current stream.       |
+| volume     | number          | Yes       | Volume level.                            |
+| updateUi   | boolean         | Yes       | Whether to show the volume change in UI. |
+
+
+## RingtoneOptions<sup>8+</sup><a name="ringtoneoptions"></a>
+Describes ringtone options.
+
+**Parameters**
+
+| Name   | Type    | Mandatory | Description      |
+| :----- | :------ | :-------- | :--------------- |
+| volume | number  | Yes       | Ringtone volume. |
+| loop   | boolean | Yes       | Loop value.      |
+
+
+# AudioManager<a name="section8265143814015"></a>
 
 Implements audio volume and audio device management.
 
-### setVolume\(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void\>\): void<a name="section189141826104616"></a>
+## audioManager.setVolume
 
-Sets the volume for a stream. This method uses an asynchronous callback to return the execution result.
+setVolume\(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void\>\): void<a name="section189141826104616"></a>
+
+Sets the volume for a stream. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -256,7 +525,7 @@ Sets the volume for a stream. This method uses an asynchronous callback to retur
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p1751247115312"><a name="p1751247115312"></a><a name="p1751247115312"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p151134811149"><a name="p151134811149"></a><a name="p151134811149"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p151134811149"><a name="p151134811149"></a><a name="p151134811149"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row1811164871417"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p141114817144"><a name="p141114817144"></a><a name="p141114817144"></a>volume</p>
@@ -274,13 +543,13 @@ Sets the volume for a stream. This method uses an asynchronous callback to retur
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p15134711532"><a name="p15134711532"></a><a name="p15134711532"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p751211651512"><a name="p751211651512"></a><a name="p751211651512"></a>Callback used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p751211651512"><a name="p751211651512"></a><a name="p751211651512"></a>Callback used to return the result.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -295,10 +564,11 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err)=>{
    console.log('Callback invoked to indicate a successful volume setting.');
 })
 ```
+## audioManager.setVolume
 
-### setVolume\(volumeType: AudioVolumeType, volume: number\): Promise<void\><a name="section102021249114612"></a>
+setVolume\(volumeType: AudioVolumeType, volume: number\): Promise<void\><a name="section102021249114612"></a>
 
-Sets the volume for a stream. This method uses a promise to return the execution result.
+Sets the volume for a stream. This method uses a promise to return the result.
 
 **Parameters**
 
@@ -319,7 +589,7 @@ Sets the volume for a stream. This method uses a promise to return the execution
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p2094702218579"><a name="p2094702218579"></a><a name="p2094702218579"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p1688131812176"><a name="p1688131812176"></a><a name="p1688131812176"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p1688131812176"><a name="p1688131812176"></a><a name="p1688131812176"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row5688218131711"><td class="cellrowborder" valign="top" width="17.599999999999998%" headers="mcps1.1.5.1.1 "><p id="p176881618181715"><a name="p176881618181715"></a><a name="p176881618181715"></a>volume</p>
@@ -334,7 +604,7 @@ Sets the volume for a stream. This method uses a promise to return the execution
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table106721328171713"></a>
 <table><thead align="left"><tr id="row9672122817176"><th class="cellrowborder" valign="top" width="26.06%" id="mcps1.1.3.1.1"><p id="p106728288171"><a name="p106728288171"></a><a name="p106728288171"></a>Type</p>
@@ -345,7 +615,7 @@ Sets the volume for a stream. This method uses a promise to return the execution
 </thead>
 <tbody><tr id="row06721528191711"><td class="cellrowborder" valign="top" width="26.06%" headers="mcps1.1.3.1.1 "><p id="p107821612171919"><a name="p107821612171919"></a><a name="p107821612171919"></a>Promise&lt;void&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p4672828141718"><a name="p4672828141718"></a><a name="p4672828141718"></a>Promise used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p4672828141718"><a name="p4672828141718"></a><a name="p4672828141718"></a>Promise used to return the result.</p>
 </td>
 </tr>
 </tbody>
@@ -359,7 +629,9 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(()=>
 )
 ```
 
-### getVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section4387320194714"></a>
+## audioManager.getVolume
+
+getVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section4387320194714"></a>
 
 Obtains the volume of a stream. This method uses an asynchronous callback to return the query result.
 
@@ -382,7 +654,7 @@ Obtains the volume of a stream. This method uses an asynchronous callback to ret
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p3407185013588"><a name="p3407185013588"></a><a name="p3407185013588"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p44331613142018"><a name="p44331613142018"></a><a name="p44331613142018"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p44331613142018"><a name="p44331613142018"></a><a name="p44331613142018"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row743331372014"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p143341319205"><a name="p143341319205"></a><a name="p143341319205"></a>callback</p>
@@ -391,13 +663,13 @@ Obtains the volume of a stream. This method uses an asynchronous callback to ret
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p12659352195818"><a name="p12659352195818"></a><a name="p12659352195818"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p3433161313204"><a name="p3433161313204"></a><a name="p3433161313204"></a>Callback used to return the volume</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p3433161313204"><a name="p3433161313204"></a><a name="p3433161313204"></a>Callback used to return the volume.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -413,7 +685,10 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### getVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section04121965119"></a>
+
+## audioManager.getVolume
+
+getVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section04121965119"></a>
 
 Obtains the volume of a stream. This method uses a promise to return the query result.
 
@@ -436,13 +711,13 @@ Obtains the volume of a stream. This method uses a promise to return the query r
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p118791205914"><a name="p118791205914"></a><a name="p118791205914"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p6434613122010"><a name="p6434613122010"></a><a name="p6434613122010"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p6434613122010"><a name="p6434613122010"></a><a name="p6434613122010"></a>Audio stream type.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table11435101313201"></a>
 <table><thead align="left"><tr id="row9435191332013"><th class="cellrowborder" valign="top" width="25.97%" id="mcps1.1.3.1.1"><p id="p7435131352019"><a name="p7435131352019"></a><a name="p7435131352019"></a>Type</p>
@@ -453,7 +728,7 @@ Obtains the volume of a stream. This method uses a promise to return the query r
 </thead>
 <tbody><tr id="row1143515137209"><td class="cellrowborder" valign="top" width="25.97%" headers="mcps1.1.3.1.1 "><p id="p3435171318201"><a name="p3435171318201"></a><a name="p3435171318201"></a>Promise&lt;number&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="74.03%" headers="mcps1.1.3.1.2 "><p id="p17435513102016"><a name="p17435513102016"></a><a name="p17435513102016"></a>Promise used to return the volume</p>
+<td class="cellrowborder" valign="top" width="74.03%" headers="mcps1.1.3.1.2 "><p id="p17435513102016"><a name="p17435513102016"></a><a name="p17435513102016"></a>Promise used to return the volume.</p>
 </td>
 </tr>
 </tbody>
@@ -467,7 +742,10 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### getMinVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section188714283511"></a>
+
+## audioManager.getMinVolume
+
+getMinVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section188714283511"></a>
 
 Obtains the minimum volume allowed for a stream. This method uses an asynchronous callback to return the query result.
 
@@ -490,7 +768,7 @@ Obtains the minimum volume allowed for a stream. This method uses an asynchronou
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p59791018125916"><a name="p59791018125916"></a><a name="p59791018125916"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p758517710222"><a name="p758517710222"></a><a name="p758517710222"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p758517710222"><a name="p758517710222"></a><a name="p758517710222"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row165851718222"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p115866772214"><a name="p115866772214"></a><a name="p115866772214"></a>callback</p>
@@ -499,13 +777,13 @@ Obtains the minimum volume allowed for a stream. This method uses an asynchronou
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p89791518185916"><a name="p89791518185916"></a><a name="p89791518185916"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p1958614711221"><a name="p1958614711221"></a><a name="p1958614711221"></a>Callback used to return the minimum volume</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p1958614711221"><a name="p1958614711221"></a><a name="p1958614711221"></a>Callback used to return the minimum volume.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -521,7 +799,10 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### getMinVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section41556389511"></a>
+
+## audioManager.getMinVolume
+
+getMinVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section41556389511"></a>
 
 Obtains the minimum volume allowed for a stream. This method uses a promise to return the query result.
 
@@ -544,13 +825,13 @@ Obtains the minimum volume allowed for a stream. This method uses a promise to r
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p2048622713593"><a name="p2048622713593"></a><a name="p2048622713593"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p135871079226"><a name="p135871079226"></a><a name="p135871079226"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p135871079226"><a name="p135871079226"></a><a name="p135871079226"></a>Audio stream type.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table35874718223"></a>
 <table><thead align="left"><tr id="row1558718715227"><th class="cellrowborder" valign="top" width="26.02%" id="mcps1.1.3.1.1"><p id="p75871715226"><a name="p75871715226"></a><a name="p75871715226"></a>Type</p>
@@ -561,7 +842,7 @@ Obtains the minimum volume allowed for a stream. This method uses a promise to r
 </thead>
 <tbody><tr id="row1458710714221"><td class="cellrowborder" valign="top" width="26.02%" headers="mcps1.1.3.1.1 "><p id="p558737142218"><a name="p558737142218"></a><a name="p558737142218"></a>Promise&lt;number&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.98%" headers="mcps1.1.3.1.2 "><p id="p05878717229"><a name="p05878717229"></a><a name="p05878717229"></a>Promise used to return the minimum volume</p>
+<td class="cellrowborder" valign="top" width="73.98%" headers="mcps1.1.3.1.2 "><p id="p05878717229"><a name="p05878717229"></a><a name="p05878717229"></a>Promise used to return the minimum volume.</p>
 </td>
 </tr>
 </tbody>
@@ -575,7 +856,10 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### getMaxVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section690395418516"></a>
+
+## audioManager.getMaxVolume
+
+getMaxVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void<a name="section690395418516"></a>
 
 Obtains the maximum volume allowed for a stream. This method uses an asynchronous callback to return the query result.
 
@@ -598,7 +882,7 @@ Obtains the maximum volume allowed for a stream. This method uses an asynchronou
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p14753114317590"><a name="p14753114317590"></a><a name="p14753114317590"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p8210242112217"><a name="p8210242112217"></a><a name="p8210242112217"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p8210242112217"><a name="p8210242112217"></a><a name="p8210242112217"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row82115429227"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p4211842132218"><a name="p4211842132218"></a><a name="p4211842132218"></a>callback</p>
@@ -607,13 +891,13 @@ Obtains the maximum volume allowed for a stream. This method uses an asynchronou
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p1275384315910"><a name="p1275384315910"></a><a name="p1275384315910"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p1621114282212"><a name="p1621114282212"></a><a name="p1621114282212"></a>Callback used to return the maximum volume</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p1621114282212"><a name="p1621114282212"></a><a name="p1621114282212"></a>Callback used to return the maximum volume.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -629,7 +913,10 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### getMaxVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section155151345217"></a>
+
+## audioManager.getMaxVolume
+
+getMaxVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section155151345217"></a>
 
 Obtains the maximum volume allowed for a stream. This method uses a promise to return the query result.
 
@@ -652,13 +939,13 @@ Obtains the maximum volume allowed for a stream. This method uses a promise to r
 </td>
 <td class="cellrowborder" valign="top" width="8.72%" headers="mcps1.1.5.1.3 "><p id="p45811752165910"><a name="p45811752165910"></a><a name="p45811752165910"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.169999999999995%" headers="mcps1.1.5.1.4 "><p id="p1021294292216"><a name="p1021294292216"></a><a name="p1021294292216"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="53.169999999999995%" headers="mcps1.1.5.1.4 "><p id="p1021294292216"><a name="p1021294292216"></a><a name="p1021294292216"></a>Audio stream type.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table621215425220"></a>
 <table><thead align="left"><tr id="row3212842112215"><th class="cellrowborder" valign="top" width="26.02%" id="mcps1.1.3.1.1"><p id="p521274272216"><a name="p521274272216"></a><a name="p521274272216"></a>Type</p>
@@ -669,7 +956,7 @@ Obtains the maximum volume allowed for a stream. This method uses a promise to r
 </thead>
 <tbody><tr id="row12121442192216"><td class="cellrowborder" valign="top" width="26.02%" headers="mcps1.1.3.1.1 "><p id="p72128426221"><a name="p72128426221"></a><a name="p72128426221"></a>Promise&lt;number&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.98%" headers="mcps1.1.3.1.2 "><p id="p4212114210226"><a name="p4212114210226"></a><a name="p4212114210226"></a>Promise used to return the maximum volume</p>
+<td class="cellrowborder" valign="top" width="73.98%" headers="mcps1.1.3.1.2 "><p id="p4212114210226"><a name="p4212114210226"></a><a name="p4212114210226"></a>Promise used to return the maximum volume.</p>
 </td>
 </tr>
 </tbody>
@@ -683,9 +970,11 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data)=>
 )
 ```
 
-### mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section13516136134613"></a>
+## audioManager.mute
 
-Mutes a stream. This method uses an asynchronous callback to return the execution result.
+mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section13516136134613"></a>
+
+Mutes a stream. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -706,7 +995,7 @@ Mutes a stream. This method uses an asynchronous callback to return the executio
 </td>
 <td class="cellrowborder" valign="top" width="8.97%" headers="mcps1.1.5.1.3 "><p id="p14517113634613"><a name="p14517113634613"></a><a name="p14517113634613"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.94%" headers="mcps1.1.5.1.4 "><p id="p412912394120"><a name="p412912394120"></a><a name="p412912394120"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="53.94%" headers="mcps1.1.5.1.4 "><p id="p412912394120"><a name="p412912394120"></a><a name="p412912394120"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row051703612469"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p8518436144612"><a name="p8518436144612"></a><a name="p8518436144612"></a>mute</p>
@@ -724,13 +1013,13 @@ Mutes a stream. This method uses an asynchronous callback to return the executio
 </td>
 <td class="cellrowborder" valign="top" width="8.97%" headers="mcps1.1.5.1.3 "><p id="p65181636194618"><a name="p65181636194618"></a><a name="p65181636194618"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.94%" headers="mcps1.1.5.1.4 "><p id="p18115237124119"><a name="p18115237124119"></a><a name="p18115237124119"></a>Callback used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="53.94%" headers="mcps1.1.5.1.4 "><p id="p18115237124119"><a name="p18115237124119"></a><a name="p18115237124119"></a>Callback used to return the result.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -746,9 +1035,12 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
 })
 ```
 
-### mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\><sup>7+</sup><a name="section7519036144616"></a>
 
-Mutes a stream. This method uses a promise to return the execution result.
+## audioManager.mute
+
+mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\><sup>7+</sup><a name="section7519036144616"></a>
+
+Mutes a stream. This method uses a promise to return the result.
 
 **Parameters**
 
@@ -769,7 +1061,7 @@ Mutes a stream. This method uses a promise to return the execution result.
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.5.1.3 "><p id="p85203364468"><a name="p85203364468"></a><a name="p85203364468"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="52.959999999999994%" headers="mcps1.1.5.1.4 "><p id="p05201036124617"><a name="p05201036124617"></a><a name="p05201036124617"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="52.959999999999994%" headers="mcps1.1.5.1.4 "><p id="p05201036124617"><a name="p05201036124617"></a><a name="p05201036124617"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row7520143614463"><td class="cellrowborder" valign="top" width="17.599999999999998%" headers="mcps1.1.5.1.1 "><p id="p9522436134617"><a name="p9522436134617"></a><a name="p9522436134617"></a>mute</p>
@@ -784,7 +1076,7 @@ Mutes a stream. This method uses a promise to return the execution result.
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table1152273694614"></a>
 <table><thead align="left"><tr id="row352213367467"><th class="cellrowborder" valign="top" width="26.06%" id="mcps1.1.3.1.1"><p id="p16791154010553"><a name="p16791154010553"></a><a name="p16791154010553"></a>Type</p>
@@ -795,7 +1087,7 @@ Mutes a stream. This method uses a promise to return the execution result.
 </thead>
 <tbody><tr id="row185231369468"><td class="cellrowborder" valign="top" width="26.06%" headers="mcps1.1.3.1.1 "><p id="p25231836174612"><a name="p25231836174612"></a><a name="p25231836174612"></a>Promise&lt;void&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p18347134724215"><a name="p18347134724215"></a><a name="p18347134724215"></a>Promise used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p18347134724215"><a name="p18347134724215"></a><a name="p18347134724215"></a>Promise used to return the result.</p>
 </td>
 </tr>
 </tbody>
@@ -809,7 +1101,10 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() =>
 )
 ```
 
-### isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section10684183819585"></a>
+
+## audioManager.isMute
+
+isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section10684183819585"></a>
 
 Checks whether a stream is muted. This method uses an asynchronous callback to return the query result.
 
@@ -832,7 +1127,7 @@ Checks whether a stream is muted. This method uses an asynchronous callback to r
 </td>
 <td class="cellrowborder" valign="top" width="10.56%" headers="mcps1.1.5.1.3 "><p id="p12686123814583"><a name="p12686123814583"></a><a name="p12686123814583"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="52.349999999999994%" headers="mcps1.1.5.1.4 "><p id="p6947181918459"><a name="p6947181918459"></a><a name="p6947181918459"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="52.349999999999994%" headers="mcps1.1.5.1.4 "><p id="p6947181918459"><a name="p6947181918459"></a><a name="p6947181918459"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row15686153825819"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p5686153895817"><a name="p5686153895817"></a><a name="p5686153895817"></a>callback</p>
@@ -847,7 +1142,7 @@ Checks whether a stream is muted. This method uses an asynchronous callback to r
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -863,9 +1158,12 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### isMute\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="section6920211145610"></a>
 
-Checks whether a stream is muted. This method uses a promise to return the execution result.
+## audioManager.isMute
+
+isMute\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="section6920211145610"></a>
+
+Checks whether a stream is muted. This method uses a promise to return the result.
 
 **Parameters**
 
@@ -886,13 +1184,13 @@ Checks whether a stream is muted. This method uses a promise to return the execu
 </td>
 <td class="cellrowborder" valign="top" width="9.94%" headers="mcps1.1.5.1.3 "><p id="p1921131145612"><a name="p1921131145612"></a><a name="p1921131145612"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="52.96999999999999%" headers="mcps1.1.5.1.4 "><p id="p12726822462"><a name="p12726822462"></a><a name="p12726822462"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="52.96999999999999%" headers="mcps1.1.5.1.4 "><p id="p12726822462"><a name="p12726822462"></a><a name="p12726822462"></a>Audio stream type.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table1392211113567"></a>
 <table><thead align="left"><tr id="row39224110565"><th class="cellrowborder" valign="top" width="25.97%" id="mcps1.1.3.1.1"><p id="p1532894520558"><a name="p1532894520558"></a><a name="p1532894520558"></a>Type</p>
@@ -917,7 +1215,10 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section380012544121"></a>
+
+## audioManager.isActive
+
+isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section380012544121"></a>
 
 Checks whether a stream is active. This method uses an asynchronous callback to return the query result.
 
@@ -940,7 +1241,7 @@ Checks whether a stream is active. This method uses an asynchronous callback to 
 </td>
 <td class="cellrowborder" valign="top" width="9.78%" headers="mcps1.1.5.1.3 "><p id="p1180275418128"><a name="p1180275418128"></a><a name="p1180275418128"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p106221941204617"><a name="p106221941204617"></a><a name="p106221941204617"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p106221941204617"><a name="p106221941204617"></a><a name="p106221941204617"></a>Audio stream type.</p>
 </td>
 </tr>
 <tr id="row148021654111218"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p1280275410128"><a name="p1280275410128"></a><a name="p1280275410128"></a>callback</p>
@@ -955,7 +1256,7 @@ Checks whether a stream is active. This method uses an asynchronous callback to 
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -971,7 +1272,10 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### isActive\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="section1880315481216"></a>
+
+## audioManager.isActive
+
+isActive\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="section1880315481216"></a>
 
 Checks whether a stream is active. This method uses a promise to return the query result.
 
@@ -994,13 +1298,13 @@ Checks whether a stream is active. This method uses a promise to return the quer
 </td>
 <td class="cellrowborder" valign="top" width="9.43%" headers="mcps1.1.5.1.3 "><p id="p380585411216"><a name="p380585411216"></a><a name="p380585411216"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.480000000000004%" headers="mcps1.1.5.1.4 "><p id="p1238516185410"><a name="p1238516185410"></a><a name="p1238516185410"></a>Audio stream type</p>
+<td class="cellrowborder" valign="top" width="53.480000000000004%" headers="mcps1.1.5.1.4 "><p id="p1238516185410"><a name="p1238516185410"></a><a name="p1238516185410"></a>Audio stream type.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table1380613543122"></a>
 <table><thead align="left"><tr id="row2806125411129"><th class="cellrowborder" valign="top" width="25.97%" id="mcps1.1.3.1.1"><p id="p07811652175517"><a name="p07811652175517"></a><a name="p07811652175517"></a>Type</p>
@@ -1025,9 +1329,12 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section18572131483613"></a>
 
-Sets the ringer mode. This method uses an asynchronous callback to return the execution result.
+## audioManager.setRingerMode
+
+setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section18572131483613"></a>
+
+Sets the ringer mode. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -1048,7 +1355,7 @@ Sets the ringer mode. This method uses an asynchronous callback to return the ex
 </td>
 <td class="cellrowborder" valign="top" width="10.56%" headers="mcps1.1.5.1.3 "><p id="p35731514193617"><a name="p35731514193617"></a><a name="p35731514193617"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="52.349999999999994%" headers="mcps1.1.5.1.4 "><p id="p8573191453617"><a name="p8573191453617"></a><a name="p8573191453617"></a>Ringer mode</p>
+<td class="cellrowborder" valign="top" width="52.349999999999994%" headers="mcps1.1.5.1.4 "><p id="p8573191453617"><a name="p8573191453617"></a><a name="p8573191453617"></a>Ringer mode.</p>
 </td>
 </tr>
 <tr id="row165731014143611"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p357416149361"><a name="p357416149361"></a><a name="p357416149361"></a>callback</p>
@@ -1057,13 +1364,13 @@ Sets the ringer mode. This method uses an asynchronous callback to return the ex
 </td>
 <td class="cellrowborder" valign="top" width="10.56%" headers="mcps1.1.5.1.3 "><p id="p95741514103617"><a name="p95741514103617"></a><a name="p95741514103617"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="52.349999999999994%" headers="mcps1.1.5.1.4 "><p id="p19574514123617"><a name="p19574514123617"></a><a name="p19574514123617"></a>Callback used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="52.349999999999994%" headers="mcps1.1.5.1.4 "><p id="p19574514123617"><a name="p19574514123617"></a><a name="p19574514123617"></a>Callback used to return the result.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1079,9 +1386,12 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 })
 ```
 
-### setRingerMode\(mode: AudioRingMode\): Promise<void\><sup>7+</sup><a name="section55741914143615"></a>
 
-Sets the ringer mode. This method uses a promise to return the execution result.
+## audioManager.setRingerMode
+
+setRingerMode\(mode: AudioRingMode\): Promise<void\><sup>7+</sup><a name="section55741914143615"></a>
+
+Sets the ringer mode. This method uses a promise to return the result.
 
 **Parameters**
 
@@ -1102,13 +1412,13 @@ Sets the ringer mode. This method uses a promise to return the execution result.
 </td>
 <td class="cellrowborder" valign="top" width="9.08%" headers="mcps1.1.5.1.3 "><p id="p9575191416367"><a name="p9575191416367"></a><a name="p9575191416367"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.83%" headers="mcps1.1.5.1.4 "><p id="p10576214143620"><a name="p10576214143620"></a><a name="p10576214143620"></a>Ringer mode</p>
+<td class="cellrowborder" valign="top" width="53.83%" headers="mcps1.1.5.1.4 "><p id="p10576214143620"><a name="p10576214143620"></a><a name="p10576214143620"></a>Ringer mode.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table145763146361"></a>
 <table><thead align="left"><tr id="row1576101403610"><th class="cellrowborder" valign="top" width="26.06%" id="mcps1.1.3.1.1"><p id="p465818212561"><a name="p465818212561"></a><a name="p465818212561"></a>Type</p>
@@ -1119,7 +1429,7 @@ Sets the ringer mode. This method uses a promise to return the execution result.
 </thead>
 <tbody><tr id="row1257711144362"><td class="cellrowborder" valign="top" width="26.06%" headers="mcps1.1.3.1.1 "><p id="p1577714143613"><a name="p1577714143613"></a><a name="p1577714143613"></a>Promise&lt;void&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p20577181420364"><a name="p20577181420364"></a><a name="p20577181420364"></a>Promise used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p20577181420364"><a name="p20577181420364"></a><a name="p20577181420364"></a>Promise used to return the result.</p>
 </td>
 </tr>
 </tbody>
@@ -1133,7 +1443,10 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() =>
 )
 ```
 
-### getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void<sup>7+</sup><a name="section149044108162"></a>
+
+## audioManager.getRingerMode
+
+getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void<sup>7+</sup><a name="section149044108162"></a>
 
 Obtains the ringer mode. This method uses an asynchronous callback to return the query result.
 
@@ -1156,13 +1469,13 @@ Obtains the ringer mode. This method uses an asynchronous callback to return the
 </td>
 <td class="cellrowborder" valign="top" width="9.8%" headers="mcps1.1.5.1.3 "><p id="p12907181051618"><a name="p12907181051618"></a><a name="p12907181051618"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.919999999999995%" headers="mcps1.1.5.1.4 "><p id="p1890771019169"><a name="p1890771019169"></a><a name="p1890771019169"></a>Callback used to return the ringer mode</p>
+<td class="cellrowborder" valign="top" width="49.919999999999995%" headers="mcps1.1.5.1.4 "><p id="p1890771019169"><a name="p1890771019169"></a><a name="p1890771019169"></a>Callback used to return the ringer mode.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1178,7 +1491,10 @@ audioManager.getRingerMode((err, value) => {
 })
 ```
 
-### getRingerMode\(\): Promise<AudioRingMode\><sup>7+</sup><a name="section13908210101620"></a>
+
+## audioManager.getRingerMode
+
+getRingerMode\(\): Promise<AudioRingMode\><sup>7+</sup><a name="section13908210101620"></a>
 
 Obtains the ringer mode. This method uses a promise to return the query result.
 
@@ -1186,7 +1502,7 @@ Obtains the ringer mode. This method uses a promise to return the query result.
 
 None
 
-**Return values**
+**Return value**
 
 <a name="table59092010111611"></a>
 <table><thead align="left"><tr id="row1290901017161"><th class="cellrowborder" valign="top" width="25.97%" id="mcps1.1.3.1.1"><p id="p138856135611"><a name="p138856135611"></a><a name="p138856135611"></a>Type</p>
@@ -1197,7 +1513,7 @@ None
 </thead>
 <tbody><tr id="row14910121071610"><td class="cellrowborder" valign="top" width="25.97%" headers="mcps1.1.3.1.1 "><p id="p191031031611"><a name="p191031031611"></a><a name="p191031031611"></a>Promise&lt;<a href="#section14948916131018">AudioRingMode</a>&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="74.03%" headers="mcps1.1.3.1.2 "><p id="p17910141021611"><a name="p17910141021611"></a><a name="p17910141021611"></a>Promise used to return the ringer mode</p>
+<td class="cellrowborder" valign="top" width="74.03%" headers="mcps1.1.3.1.2 "><p id="p17910141021611"><a name="p17910141021611"></a><a name="p17910141021611"></a>Promise used to return the ringer mode.</p>
 </td>
 </tr>
 </tbody>
@@ -1211,9 +1527,12 @@ audioManager.getRingerMode().then((value) =>
 )
 ```
 
-### setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section1691957174818"></a>
 
-Sets an audio parameter. This method uses an asynchronous callback to return the execution result.
+## audioManager.setAudioParameter
+
+setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section1691957174818"></a>
+
+Sets an audio parameter. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -1234,7 +1553,7 @@ Sets an audio parameter. This method uses an asynchronous callback to return the
 </td>
 <td class="cellrowborder" valign="top" width="9.08%" headers="mcps1.1.5.1.3 "><p id="p811195717481"><a name="p811195717481"></a><a name="p811195717481"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.83%" headers="mcps1.1.5.1.4 "><p id="p10117574484"><a name="p10117574484"></a><a name="p10117574484"></a>Key of the audio parameter to set</p>
+<td class="cellrowborder" valign="top" width="53.83%" headers="mcps1.1.5.1.4 "><p id="p10117574484"><a name="p10117574484"></a><a name="p10117574484"></a>Key of the audio parameter to set.</p>
 </td>
 </tr>
 <tr id="row16111057124817"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p1159793235211"><a name="p1159793235211"></a><a name="p1159793235211"></a>value</p>
@@ -1243,7 +1562,7 @@ Sets an audio parameter. This method uses an asynchronous callback to return the
 </td>
 <td class="cellrowborder" valign="top" width="9.08%" headers="mcps1.1.5.1.3 "><p id="p91155718487"><a name="p91155718487"></a><a name="p91155718487"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.83%" headers="mcps1.1.5.1.4 "><p id="p13111157164816"><a name="p13111157164816"></a><a name="p13111157164816"></a>Value of the audio parameter to set</p>
+<td class="cellrowborder" valign="top" width="53.83%" headers="mcps1.1.5.1.4 "><p id="p13111157164816"><a name="p13111157164816"></a><a name="p13111157164816"></a>Value of the audio parameter to set.</p>
 </td>
 </tr>
 <tr id="row611205754810"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p31235754812"><a name="p31235754812"></a><a name="p31235754812"></a>callback</p>
@@ -1252,13 +1571,13 @@ Sets an audio parameter. This method uses an asynchronous callback to return the
 </td>
 <td class="cellrowborder" valign="top" width="9.08%" headers="mcps1.1.5.1.3 "><p id="p101255744812"><a name="p101255744812"></a><a name="p101255744812"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.83%" headers="mcps1.1.5.1.4 "><p id="p91220576488"><a name="p91220576488"></a><a name="p91220576488"></a>Callback used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="53.83%" headers="mcps1.1.5.1.4 "><p id="p91220576488"><a name="p91220576488"></a><a name="p91220576488"></a>Callback used to return the result.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1274,9 +1593,12 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 })
 ```
 
-### setAudioParameter\(key: string, value: string\): Promise<void\><sup>7+</sup><a name="section18121057174820"></a>
 
-Sets an audio parameter. This method uses a promise to return the execution result.
+## audioManager.setAudioParameter
+
+setAudioParameter\(key: string, value: string\): Promise<void\><sup>7+</sup><a name="section18121057174820"></a>
+
+Sets an audio parameter. This method uses a promise to return the result.
 
 **Parameters**
 
@@ -1297,7 +1619,7 @@ Sets an audio parameter. This method uses a promise to return the execution resu
 </td>
 <td class="cellrowborder" valign="top" width="9.78%" headers="mcps1.1.5.1.3 "><p id="p52122259012"><a name="p52122259012"></a><a name="p52122259012"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p1747016545595"><a name="p1747016545595"></a><a name="p1747016545595"></a>Key of the audio parameter to set</p>
+<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p1747016545595"><a name="p1747016545595"></a><a name="p1747016545595"></a>Key of the audio parameter to set.</p>
 </td>
 </tr>
 <tr id="row914185716488"><td class="cellrowborder" valign="top" width="17.599999999999998%" headers="mcps1.1.5.1.1 "><p id="p1931324215016"><a name="p1931324215016"></a><a name="p1931324215016"></a>value</p>
@@ -1306,13 +1628,13 @@ Sets an audio parameter. This method uses a promise to return the execution resu
 </td>
 <td class="cellrowborder" valign="top" width="9.78%" headers="mcps1.1.5.1.3 "><p id="p931316429017"><a name="p931316429017"></a><a name="p931316429017"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p1231310421203"><a name="p1231310421203"></a><a name="p1231310421203"></a>Value of the audio parameter to set</p>
+<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p1231310421203"><a name="p1231310421203"></a><a name="p1231310421203"></a>Value of the audio parameter to set.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table1514135774811"></a>
 <table><thead align="left"><tr id="row16141857164818"><th class="cellrowborder" valign="top" width="26.06%" id="mcps1.1.3.1.1"><p id="p1847161019561"><a name="p1847161019561"></a><a name="p1847161019561"></a>Type</p>
@@ -1323,7 +1645,7 @@ Sets an audio parameter. This method uses a promise to return the execution resu
 </thead>
 <tbody><tr id="row1815185711489"><td class="cellrowborder" valign="top" width="26.06%" headers="mcps1.1.3.1.1 "><p id="p8151957184816"><a name="p8151957184816"></a><a name="p8151957184816"></a>Promise&lt;void&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p41511577486"><a name="p41511577486"></a><a name="p41511577486"></a>Promise used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p41511577486"><a name="p41511577486"></a><a name="p41511577486"></a>Promise used to return the result.</p>
 </td>
 </tr>
 </tbody>
@@ -1337,7 +1659,10 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() =>
 )
 ```
 
-### getAudioParameter\(key: string, callback: AsyncCallback<string\>\): void<sup>7+</sup><a name="section1415145714812"></a>
+
+## audioManager.getAudioParameter
+
+getAudioParameter\(key: string, callback: AsyncCallback<string\>\): void<sup>7+</sup><a name="section1415145714812"></a>
 
 Obtains the value of an audio parameter. This method uses an asynchronous callback to return the query result.
 
@@ -1360,7 +1685,7 @@ Obtains the value of an audio parameter. This method uses an asynchronous callba
 </td>
 <td class="cellrowborder" valign="top" width="9.17%" headers="mcps1.1.5.1.3 "><p id="p82209596816"><a name="p82209596816"></a><a name="p82209596816"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.74%" headers="mcps1.1.5.1.4 "><p id="p11261642604"><a name="p11261642604"></a><a name="p11261642604"></a>Key of the audio parameter whose value is to be obtained</p>
+<td class="cellrowborder" valign="top" width="53.74%" headers="mcps1.1.5.1.4 "><p id="p11261642604"><a name="p11261642604"></a><a name="p11261642604"></a>Key of the audio parameter whose value is to be obtained.</p>
 </td>
 </tr>
 <tr id="row61715714487"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p1517145710486"><a name="p1517145710486"></a><a name="p1517145710486"></a>callback</p>
@@ -1369,13 +1694,13 @@ Obtains the value of an audio parameter. This method uses an asynchronous callba
 </td>
 <td class="cellrowborder" valign="top" width="9.17%" headers="mcps1.1.5.1.3 "><p id="p21785718487"><a name="p21785718487"></a><a name="p21785718487"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.74%" headers="mcps1.1.5.1.4 "><p id="p91715719485"><a name="p91715719485"></a><a name="p91715719485"></a>Callback used to return the value of the audio parameter</p>
+<td class="cellrowborder" valign="top" width="53.74%" headers="mcps1.1.5.1.4 "><p id="p91715719485"><a name="p91715719485"></a><a name="p91715719485"></a>Callback used to return the value of the audio parameter.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1391,7 +1716,10 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 })
 ```
 
-### getAudioParameter\(key: string\): Promise<string\><sup>7+</sup><a name="section3185577485"></a>
+
+## audioManager.getAudioParameter
+
+getAudioParameter\(key: string\): Promise<string\><sup>7+</sup><a name="section3185577485"></a>
 
 Obtains the value of an audio parameter. This method uses a promise to return the query result.
 
@@ -1414,13 +1742,13 @@ Obtains the value of an audio parameter. This method uses a promise to return th
 </td>
 <td class="cellrowborder" valign="top" width="9.42%" headers="mcps1.1.5.1.3 "><p id="p1798812477124"><a name="p1798812477124"></a><a name="p1798812477124"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.49%" headers="mcps1.1.5.1.4 "><p id="p1860910215116"><a name="p1860910215116"></a><a name="p1860910215116"></a>Key of the audio parameter whose value is to be obtained</p>
+<td class="cellrowborder" valign="top" width="53.49%" headers="mcps1.1.5.1.4 "><p id="p1860910215116"><a name="p1860910215116"></a><a name="p1860910215116"></a>Key of the audio parameter whose value is to be obtained.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table152065754818"></a>
 <table><thead align="left"><tr id="row10201357184813"><th class="cellrowborder" valign="top" width="25.97%" id="mcps1.1.3.1.1"><p id="p11727422165616"><a name="p11727422165616"></a><a name="p11727422165616"></a>Type</p>
@@ -1431,7 +1759,7 @@ Obtains the value of an audio parameter. This method uses a promise to return th
 </thead>
 <tbody><tr id="row8207572485"><td class="cellrowborder" valign="top" width="25.97%" headers="mcps1.1.3.1.1 "><p id="p22155774819"><a name="p22155774819"></a><a name="p22155774819"></a>Promise&lt;string&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="74.03%" headers="mcps1.1.3.1.2 "><p id="p1121155704810"><a name="p1121155704810"></a><a name="p1121155704810"></a>Promise used to return the value of the audio parameter</p>
+<td class="cellrowborder" valign="top" width="74.03%" headers="mcps1.1.3.1.2 "><p id="p1121155704810"><a name="p1121155704810"></a><a name="p1121155704810"></a>Promise used to return the value of the audio parameter.</p>
 </td>
 </tr>
 </tbody>
@@ -1445,7 +1773,10 @@ audioManager.getAudioParameter('PBits per sample').then((value) =>
 )
 ```
 
-### getDevices\(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors\>\): void<a name="section11536182020523"></a>
+
+## audioManager.getDevices
+
+getDevices\(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors\>\): void<a name="section11536182020523"></a>
 
 Obtains the audio devices with a specific flag. This method uses an asynchronous callback to return the query result.
 
@@ -1468,7 +1799,7 @@ Obtains the audio devices with a specific flag. This method uses an asynchronous
 </td>
 <td class="cellrowborder" valign="top" width="12.78%" headers="mcps1.1.5.1.3 "><p id="p830651111019"><a name="p830651111019"></a><a name="p830651111019"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="48.65%" headers="mcps1.1.5.1.4 "><p id="p10654131616248"><a name="p10654131616248"></a><a name="p10654131616248"></a>Audio device flag</p>
+<td class="cellrowborder" valign="top" width="48.65%" headers="mcps1.1.5.1.4 "><p id="p10654131616248"><a name="p10654131616248"></a><a name="p10654131616248"></a>Audio device flag.</p>
 </td>
 </tr>
 <tr id="row16544162243"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p176541316122412"><a name="p176541316122412"></a><a name="p176541316122412"></a>callback</p>
@@ -1477,13 +1808,13 @@ Obtains the audio devices with a specific flag. This method uses an asynchronous
 </td>
 <td class="cellrowborder" valign="top" width="12.78%" headers="mcps1.1.5.1.3 "><p id="p2307711908"><a name="p2307711908"></a><a name="p2307711908"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="48.65%" headers="mcps1.1.5.1.4 "><p id="p19654141672416"><a name="p19654141672416"></a><a name="p19654141672416"></a>Callback used to return the device list</p>
+<td class="cellrowborder" valign="top" width="48.65%" headers="mcps1.1.5.1.4 "><p id="p19654141672416"><a name="p19654141672416"></a><a name="p19654141672416"></a>Callback used to return the device list.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1499,7 +1830,11 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
 })
 ```
 
-### getDevices\(deviceFlag: DeviceFlag\): Promise<AudioDeviceDescriptors\><a name="section181733125210"></a>
+
+
+## audioManager.getDevices
+
+getDevices\(deviceFlag: DeviceFlag\): Promise<AudioDeviceDescriptors\><a name="section181733125210"></a>
 
 Obtains the audio devices with a specific flag. This method uses a promise to return the query result.
 
@@ -1522,13 +1857,13 @@ Obtains the audio devices with a specific flag. This method uses a promise to re
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p12161129209"><a name="p12161129209"></a><a name="p12161129209"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p1692985222710"><a name="p1692985222710"></a><a name="p1692985222710"></a>Audio device flag</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p1692985222710"><a name="p1692985222710"></a><a name="p1692985222710"></a>Audio device flag.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table565618166249"></a>
 <table><thead align="left"><tr id="row19656151662410"><th class="cellrowborder" valign="top" width="26.02%" id="mcps1.1.3.1.1"><p id="p15656916152415"><a name="p15656916152415"></a><a name="p15656916152415"></a>Type</p>
@@ -1539,7 +1874,7 @@ Obtains the audio devices with a specific flag. This method uses a promise to re
 </thead>
 <tbody><tr id="row665681617243"><td class="cellrowborder" valign="top" width="26.02%" headers="mcps1.1.3.1.1 "><p id="p5673192162816"><a name="p5673192162816"></a><a name="p5673192162816"></a>Promise&lt;<a href="#section5181155710523">AudioDeviceDescriptors</a>&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.98%" headers="mcps1.1.3.1.2 "><p id="p765751610249"><a name="p765751610249"></a><a name="p765751610249"></a>Promise used to return the device list</p>
+<td class="cellrowborder" valign="top" width="73.98%" headers="mcps1.1.3.1.2 "><p id="p765751610249"><a name="p765751610249"></a><a name="p765751610249"></a>Promise used to return the device list.</p>
 </td>
 </tr>
 </tbody>
@@ -1553,9 +1888,12 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
 )
 ```
 
-### setDeviceActive\(deviceType: DeviceType, active: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section103558400222"></a>
 
-Sets a device to the active state. This method uses an asynchronous callback to return the execution result.
+## audioManager.setDeviceActive
+
+setDeviceActive\(deviceType: DeviceType, active: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section103558400222"></a>
+
+Sets a device to the active state. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -1576,7 +1914,7 @@ Sets a device to the active state. This method uses an asynchronous callback to 
 </td>
 <td class="cellrowborder" valign="top" width="9.78%" headers="mcps1.1.5.1.3 "><p id="p035794062216"><a name="p035794062216"></a><a name="p035794062216"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p166271345204414"><a name="p166271345204414"></a><a name="p166271345204414"></a>Audio device type</p>
+<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p166271345204414"><a name="p166271345204414"></a><a name="p166271345204414"></a>Audio device type.</p>
 </td>
 </tr>
 <tr id="row1635713409226"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p268924403311"><a name="p268924403311"></a><a name="p268924403311"></a>active</p>
@@ -1594,13 +1932,13 @@ Sets a device to the active state. This method uses an asynchronous callback to 
 </td>
 <td class="cellrowborder" valign="top" width="9.78%" headers="mcps1.1.5.1.3 "><p id="p10358124014222"><a name="p10358124014222"></a><a name="p10358124014222"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p13358540132217"><a name="p13358540132217"></a><a name="p13358540132217"></a>Callback used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="53.13%" headers="mcps1.1.5.1.4 "><p id="p13358540132217"><a name="p13358540132217"></a><a name="p13358540132217"></a>Callback used to return the result.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1616,9 +1954,13 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
 })
 ```
 
-### setDeviceActive\(deviceType: DeviceType, active: boolean\): Promise<void\><sup>7+</sup><a name="section1235914401228"></a>
 
-Sets a device to the active state. This method uses a promise to return the execution result.
+
+## audioManager.setDeviceActive
+
+setDeviceActive\(deviceType: DeviceType, active: boolean\): Promise<void\><sup>7+</sup><a name="section1235914401228"></a>
+
+Sets a device to the active state. This method uses a promise to return the result.
 
 **Parameters**
 
@@ -1639,7 +1981,7 @@ Sets a device to the active state. This method uses a promise to return the exec
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p id="p103601240202216"><a name="p103601240202216"></a><a name="p103601240202216"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p173618402226"><a name="p173618402226"></a><a name="p173618402226"></a>Audio device type</p>
+<td class="cellrowborder" valign="top" width="55.38999999999999%" headers="mcps1.1.5.1.4 "><p id="p173618402226"><a name="p173618402226"></a><a name="p173618402226"></a>Audio device type.</p>
 </td>
 </tr>
 <tr id="row10361104018222"><td class="cellrowborder" valign="top" width="17.599999999999998%" headers="mcps1.1.5.1.1 "><p id="p280718578504"><a name="p280718578504"></a><a name="p280718578504"></a>active</p>
@@ -1654,7 +1996,7 @@ Sets a device to the active state. This method uses a promise to return the exec
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table636154016223"></a>
 <table><thead align="left"><tr id="row17362540112218"><th class="cellrowborder" valign="top" width="26.06%" id="mcps1.1.3.1.1"><p id="p78801632195618"><a name="p78801632195618"></a><a name="p78801632195618"></a>Type</p>
@@ -1665,7 +2007,7 @@ Sets a device to the active state. This method uses a promise to return the exec
 </thead>
 <tbody><tr id="row143621940142213"><td class="cellrowborder" valign="top" width="26.06%" headers="mcps1.1.3.1.1 "><p id="p236215405225"><a name="p236215405225"></a><a name="p236215405225"></a>Promise&lt;void&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p536214032220"><a name="p536214032220"></a><a name="p536214032220"></a>Promise used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p536214032220"><a name="p536214032220"></a><a name="p536214032220"></a>Promise used to return the result.</p>
 </td>
 </tr>
 </tbody>
@@ -1679,7 +2021,10 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
 )
 ```
 
-### isDeviceActive\(deviceType: DeviceType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section12363240122219"></a>
+
+## audioManager.isDeviceActive
+
+isDeviceActive\(deviceType: DeviceType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section12363240122219"></a>
 
 Checks whether a device is active. This method uses an asynchronous callback to return the query result.
 
@@ -1702,7 +2047,7 @@ Checks whether a device is active. This method uses an asynchronous callback to 
 </td>
 <td class="cellrowborder" valign="top" width="9.25%" headers="mcps1.1.5.1.3 "><p id="p122111521127"><a name="p122111521127"></a><a name="p122111521127"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.66%" headers="mcps1.1.5.1.4 "><p id="p4364640122219"><a name="p4364640122219"></a><a name="p4364640122219"></a>Audio device type</p>
+<td class="cellrowborder" valign="top" width="53.66%" headers="mcps1.1.5.1.4 "><p id="p4364640122219"><a name="p4364640122219"></a><a name="p4364640122219"></a>Audio device type.</p>
 </td>
 </tr>
 <tr id="row11365174011226"><td class="cellrowborder" valign="top" width="17.57%" headers="mcps1.1.5.1.1 "><p id="p14365144016225"><a name="p14365144016225"></a><a name="p14365144016225"></a>callback</p>
@@ -1711,13 +2056,13 @@ Checks whether a device is active. This method uses an asynchronous callback to 
 </td>
 <td class="cellrowborder" valign="top" width="9.25%" headers="mcps1.1.5.1.3 "><p id="p20365154014220"><a name="p20365154014220"></a><a name="p20365154014220"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.66%" headers="mcps1.1.5.1.4 "><p id="p19365154072213"><a name="p19365154072213"></a><a name="p19365154072213"></a>Callback used to return the active status of the device</p>
+<td class="cellrowborder" valign="top" width="53.66%" headers="mcps1.1.5.1.4 "><p id="p19365154072213"><a name="p19365154072213"></a><a name="p19365154072213"></a>Callback used to return the active status of the device.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1733,7 +2078,10 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
 })
 ```
 
-### isDeviceActive\(deviceType: DeviceType\): Promise<boolean\><sup>7+</sup><a name="section18366184012213"></a>
+
+## audioManager.isDeviceActive
+
+isDeviceActive\(deviceType: DeviceType\): Promise<boolean\><sup>7+</sup><a name="section18366184012213"></a>
 
 Checks whether a device is active. This method uses a promise to return the query result.
 
@@ -1756,13 +2104,13 @@ Checks whether a device is active. This method uses a promise to return the quer
 </td>
 <td class="cellrowborder" valign="top" width="8.99%" headers="mcps1.1.5.1.3 "><p id="p201646138419"><a name="p201646138419"></a><a name="p201646138419"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.92%" headers="mcps1.1.5.1.4 "><p id="p7164113246"><a name="p7164113246"></a><a name="p7164113246"></a>Audio device type</p>
+<td class="cellrowborder" valign="top" width="53.92%" headers="mcps1.1.5.1.4 "><p id="p7164113246"><a name="p7164113246"></a><a name="p7164113246"></a>Audio device type.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table1368174012225"></a>
 <table><thead align="left"><tr id="row17368164018220"><th class="cellrowborder" valign="top" width="25.97%" id="mcps1.1.3.1.1"><p id="p16368154062213"><a name="p16368154062213"></a><a name="p16368154062213"></a>Type</p>
@@ -1773,7 +2121,7 @@ Checks whether a device is active. This method uses a promise to return the quer
 </thead>
 <tbody><tr id="row8368840162213"><td class="cellrowborder" valign="top" width="25.97%" headers="mcps1.1.3.1.1 "><p id="p1436944092212"><a name="p1436944092212"></a><a name="p1436944092212"></a>Promise&lt;boolean&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="74.03%" headers="mcps1.1.3.1.2 "><p id="p113691340122217"><a name="p113691340122217"></a><a name="p113691340122217"></a>Promise used to return the active status of the device</p>
+<td class="cellrowborder" valign="top" width="74.03%" headers="mcps1.1.3.1.2 "><p id="p113691340122217"><a name="p113691340122217"></a><a name="p113691340122217"></a>Promise used to return the active status of the device.</p>
 </td>
 </tr>
 </tbody>
@@ -1787,9 +2135,12 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) =>
 )
 ```
 
-### setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section14703163618122"></a>
 
-Mutes or unmutes the microphone. This method uses an asynchronous callback to return the execution result.
+## audioManager.setMicrophoneMute
+
+setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section14703163618122"></a>
+
+Mutes or unmutes the microphone. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
@@ -1819,13 +2170,13 @@ Mutes or unmutes the microphone. This method uses an asynchronous callback to re
 </td>
 <td class="cellrowborder" valign="top" width="9.6%" headers="mcps1.1.5.1.3 "><p id="p1570573621213"><a name="p1570573621213"></a><a name="p1570573621213"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.31%" headers="mcps1.1.5.1.4 "><p id="p19706103612122"><a name="p19706103612122"></a><a name="p19706103612122"></a>Callback used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="53.31%" headers="mcps1.1.5.1.4 "><p id="p19706103612122"><a name="p19706103612122"></a><a name="p19706103612122"></a>Callback used to return the result.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1841,9 +2192,12 @@ audioManager.setMicrophoneMute(true, (err) => {
 })
 ```
 
-### setMicrophoneMute\(mute: boolean\): Promise<void\><sup>7+</sup><a name="section56287111791"></a>
 
-Mutes or unmutes the microphone. This method uses a promise to return the execution result.
+## audioManager.setMicrophoneMute
+
+setMicrophoneMute\(mute: boolean\): Promise<void\><sup>7+</sup><a name="section56287111791"></a>
+
+Mutes or unmutes the microphone. This method uses a promise to return the result.
 
 **Parameters**
 
@@ -1870,7 +2224,7 @@ Mutes or unmutes the microphone. This method uses a promise to return the execut
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 <a name="table1263113111593"></a>
 <table><thead align="left"><tr id="row1863116111998"><th class="cellrowborder" valign="top" width="26.06%" id="mcps1.1.3.1.1"><p id="p17429547125617"><a name="p17429547125617"></a><a name="p17429547125617"></a>Type</p>
@@ -1881,7 +2235,7 @@ Mutes or unmutes the microphone. This method uses a promise to return the execut
 </thead>
 <tbody><tr id="row19631511495"><td class="cellrowborder" valign="top" width="26.06%" headers="mcps1.1.3.1.1 "><p id="p963131110911"><a name="p963131110911"></a><a name="p963131110911"></a>Promise&lt;void&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p2632911495"><a name="p2632911495"></a><a name="p2632911495"></a>Promise used to return the execution result</p>
+<td class="cellrowborder" valign="top" width="73.94%" headers="mcps1.1.3.1.2 "><p id="p2632911495"><a name="p2632911495"></a><a name="p2632911495"></a>Promise used to return the result.</p>
 </td>
 </tr>
 </tbody>
@@ -1895,7 +2249,10 @@ audioManager.setMicrophoneMute(true).then(() =>
 )
 ```
 
-### isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section6632141119912"></a>
+
+## audioManager.isMicrophoneMute
+
+isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section6632141119912"></a>
 
 Checks whether the microphone is muted. This method uses an asynchronous callback to return the query result.
 
@@ -1924,7 +2281,7 @@ Checks whether the microphone is muted. This method uses an asynchronous callbac
 </tbody>
 </table>
 
-**Return values**
+**Return value**
 
 None
 
@@ -1940,7 +2297,10 @@ audioManager.isMicrophoneMute((err, value) => {
 })
 ```
 
-### isMicrophoneMute\(\): Promise<boolean\><sup>7+</sup><a name="section196363111918"></a>
+
+## audioManager.isMicrophoneMute
+
+isMicrophoneMute\(\): Promise<boolean\><sup>7+</sup><a name="section196363111918"></a>
 
 Checks whether the microphone is muted. This method uses a promise to return the query result.
 
@@ -1948,7 +2308,7 @@ Checks whether the microphone is muted. This method uses a promise to return the
 
 None
 
-**Return values**
+**Return value**
 
 <a name="table1563618111590"></a>
 <table><thead align="left"><tr id="row1563614111198"><th class="cellrowborder" valign="top" width="25.97%" id="mcps1.1.3.1.1"><p id="p4631195085616"><a name="p4631195085616"></a><a name="p4631195085616"></a>Type</p>
@@ -1973,64 +2333,1673 @@ audioManager.isMicrophoneMute().then((value) =>
 )
 ```
 
-## AudioDeviceDescriptor<a name="section164657411927"></a>
 
+## audioManager.on
+
+on(type: 'volumeChange', callback: Callback<VolumeEvent\>): void<sup>8+</sup><a name="onvolumechange"></a>
+
+Listens for system volume change events. This method uses a callback to get volume change events.
+
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                          |
+| :------- | :--------------------- | :-------- | :--------------------------------------------------- |
+| type     | string                 | Yes       | Type of the playback event to listen for.            |
+| callback | Callback<VolumeEvent\> | Yes       | Callback used to get the system volume change event. |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioManager.on('volumeChange', (volumeEvent) => {
+    console.log('VolumeType of stream: ' + volumeEvent.volumeType);
+    console.log('Volume level: ' + volumeEvent.volume);
+    console.log('Whether to updateUI: ' + volumeEvent.updateUi);
+})
+```
+
+
+## audioManager.on
+
+on(type: 'ringerModeChange', callback: Callback<AudioRingMode\>): void<sup>8+</sup><a name="onringermodechange"></a>
+
+Listens for ringer mode change events. This method uses a callback to get ringer mode changes.
+
+**Parameters**
+
+| Name     | Type                     | Mandatory | Description                                   |
+| :------- | :----------------------- | :-------- | :-------------------------------------------- |
+| type     | string                   | Yes       | Type of the playback event to listen for.     |
+| callback | Callback<AudioRingMode\> | Yes       | Callback used to get the updated ringer mode. |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioManager.on('ringerModeChange', (ringerMode) => {
+    console.log('Updated ringermode: ' + ringerMode);
+})
+```
+
+# AudioDeviceDescriptor<a name="section164657411927"></a>
 Describes an audio device.
-
-### Attributes<a name="section4947115405"></a>
-
-<a name="table92548495595"></a>
-<table><thead align="left"><tr id="row132541749175917"><th class="cellrowborder" valign="top" width="22.65226522652265%" id="mcps1.1.6.1.1"><p id="p925404965919"><a name="p925404965919"></a><a name="p925404965919"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="17.021702170217022%" id="mcps1.1.6.1.2"><p id="p325464914599"><a name="p325464914599"></a><a name="p325464914599"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.720872087208722%" id="mcps1.1.6.1.3"><p id="p025484918596"><a name="p025484918596"></a><a name="p025484918596"></a>Readable</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.881388138813882%" id="mcps1.1.6.1.4"><p id="p025414499590"><a name="p025414499590"></a><a name="p025414499590"></a>Writable</p>
-</th>
-<th class="cellrowborder" valign="top" width="37.72377237723772%" id="mcps1.1.6.1.5"><p id="p20254134925912"><a name="p20254134925912"></a><a name="p20254134925912"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row18254849155915"><td class="cellrowborder" valign="top" width="22.65226522652265%" headers="mcps1.1.6.1.1 "><p id="p4909151512710"><a name="p4909151512710"></a><a name="p4909151512710"></a>deviceRole</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.021702170217022%" headers="mcps1.1.6.1.2 "><p id="p262713618564"><a name="p262713618564"></a><a name="p262713618564"></a><a href="#section380038142619">DeviceRole</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.6.1.3 "><p id="p8254749195914"><a name="p8254749195914"></a><a name="p8254749195914"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.881388138813882%" headers="mcps1.1.6.1.4 "><p id="p5255549115910"><a name="p5255549115910"></a><a name="p5255549115910"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="37.72377237723772%" headers="mcps1.1.6.1.5 "><p id="p11973171511560"><a name="p11973171511560"></a><a name="p11973171511560"></a>Audio device role</p>
-</td>
-</tr>
-<tr id="row3558145812553"><td class="cellrowborder" valign="top" width="22.65226522652265%" headers="mcps1.1.6.1.1 "><p id="p1155815580552"><a name="p1155815580552"></a><a name="p1155815580552"></a>deviceType</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.021702170217022%" headers="mcps1.1.6.1.2 "><p id="p5558165811550"><a name="p5558165811550"></a><a name="p5558165811550"></a><a href="#section11727420122710">DeviceType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.6.1.3 "><p id="p17539151215617"><a name="p17539151215617"></a><a name="p17539151215617"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.881388138813882%" headers="mcps1.1.6.1.4 "><p id="p85391712105612"><a name="p85391712105612"></a><a name="p85391712105612"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="37.72377237723772%" headers="mcps1.1.6.1.5 "><p id="p525718188565"><a name="p525718188565"></a><a name="p525718188565"></a>Audio device type</p>
-</td>
-</tr>
-</tbody>
-</table>
 
 ## AudioDeviceDescriptors<a name="section5181155710523"></a>
 
-<a name="table169751229266"></a>
-<table><thead align="left"><tr id="row169757224268"><th class="cellrowborder" valign="top" width="19.7%" id="mcps1.1.3.1.1"><p id="p19975182202612"><a name="p19975182202612"></a><a name="p19975182202612"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="80.30000000000001%" id="mcps1.1.3.1.2"><p id="p109751622132611"><a name="p109751622132611"></a><a name="p109751622132611"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row169751322182613"><td class="cellrowborder" valign="top" width="19.7%" headers="mcps1.1.3.1.1 "><p id="p139751522182616"><a name="p139751522182616"></a><a name="p139751522182616"></a>Device attribute array</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.30000000000001%" headers="mcps1.1.3.1.2 "><p id="p597532272616"><a name="p597532272616"></a><a name="p597532272616"></a>Array of <strong id="b1463165615308"><a name="b1463165615308"></a><a name="b1463165615308"></a>AudioDeviceDescriptor</strong>s, which is read-only</p>
-</td>
-</tr>
-</tbody>
-</table>
+type AudioDeviceDescriptors = Array<Readonly<AudioDeviceDescriptor\>\> : void<a name="audiodevicedescriptors"></a>\
+<br>
+Array of AudioDeviceDescriptors, which is read-only.
 
+## audioDeviceDescriptor.deviceRole
+
+readonly deviceRole: DeviceRole <a name="devicerole-getter"></a>
+
+Defines the role of the device.
+
+| Name       | Type       | Readable | Writable | Description        |
+| :--------- | :--------- | :------- | :------- | ------------------ |
+| deviceRole | DeviceRole | Yes      | No       | Audio device role. |
+
+## audioDeviceDescriptor.deviceType
+
+readonly deviceType: DeviceType <a name="devicetype-getter"></a>
+
+Defines the type of the device.
+
+| Name       | Type       | Readable | Writable | Description        |
+| :--------- | :--------- | :------- | :------- | ------------------ |
+| deviceType | DeviceType | Yes      | No       | Audio device type. |
+
+```
+function deviceProp(audioDeviceDescriptor, index, array) {
+    deviceRoleValue = audioDeviceDescriptor.deviceRole;
+    deviceTypeValue = audioDeviceDescriptor.deviceType;
+}
+
+deviceRoleValue = null;
+deviceTypeValue = null;
+const promise = audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
+promise.then(async function (audioDeviceDescriptors) {
+    console.info('getDevices OUTPUT_DEVICES_FLAG');
+    audioDeviceDescriptors.forEach(deviceProp);
+    if (deviceTypeValue != null && deviceRoleValue != null){
+        console.info('OUTPUT_DEVICES_FLAG : Pass');
+            expect(true).assertTrue();
+    }
+    else{
+        console.error('OUTPUT_DEVICES_FLAG : fail');
+        expect(false).assertTrue();
+        }
+    });
+    await promise;
+    done();
+})
+```
+# AudioRenderer<a name="audiorenderer"></a>
+Provides audio playback APIs.
+
+
+## audioRenderer.state
+
+readonly state: AudioState <sup>8+</sup><a name="rendererstate-getter"></a>
+
+Defines the current render state.
+
+| Name  | Type       | Readable | Writable | Description         |
+| :---- | :--------- | :------- | :------- | :------------------ |
+| state | AudioState | Yes      | No       | Audio render state. |
+
+**Example**
+
+```
+    var state = audioRenderer.state;
+```
+
+
+## audioRenderer.setParams
+
+setParams(params: AudioParameters, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setparams-asynccallback"></a>
+
+Sets audio parameters for rendering. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                             |
+| :------- | :------------------- | :-------- | :-------------------------------------- |
+| params   | AudioParameters      | Yes       | Audio parameters of the file to be set. |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result.     |
+|          |                      |           |                                         |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+var audioParams = {
+        format: audio.AudioSampleFormat.SAMPLE_S16LE,
+        channels: audio.AudioChannel.STEREO,
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_16000,
+        encoding: audio.AudioEncodingType.ENCODING_PCM,
+    };
+
+audioRenderer.setParams(audioParams, (err)=>{
+   if (err) {
+	   console.error('Failed to set params. ${err.message}');
+	   return;
+   }
+   console.log('Callback invoked to indicate a successful params setting.');
+})
+```
+
+
+## audioRenderer.setParams
+
+setParams(params: AudioParameters): Promise<void\><sup>8+</sup><a name="setparams-promise"></a>
+
+Sets audio parameters for rendering. This method uses a promise to return the result.
+
+**Parameters**
+
+| Name   | Type            | Mandatory | Description                             |
+| :----- | :-------------- | :-------- | :-------------------------------------- |
+| params | AudioParameters | Yes       | Audio parameters of the file to be set. |
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+var audioParams = {
+        format: audio.AudioSampleFormat.SAMPLE_S16LE,
+        channels: audio.AudioChannel.STEREO,
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_16000,
+        encoding: audio.AudioEncodingType.ENCODING_PCM,
+    };
+
+await audioRenderer.setParams(audioParams);
+```
+
+
+## audioRenderer.getParams
+
+getParams(callback: AsyncCallback<AudioParameters\>): void<sup>8+</sup><a name="getparams-asynccallback"></a>
+
+Gets audio parameters of the renderer. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                            | Mandatory | Description                                   |
+| :------- | :------------------------------ | :-------- | :-------------------------------------------- |
+| callback | AsyncCallback<AudioParameters\> | Yes       | Callback used to return the audio parameters. |
+|          |                                 |           |                                               |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.getParams((err, audioParams)=>{
+    console.log('Renderer GetParams:');
+    console.log('Renderer format:' + audioParams.format);
+    console.log('Renderer samplingRate:' + audioParams.samplingRate);
+    console.log('Renderer channels:' + audioParams.channels);
+    console.log('Renderer encoding:' + audioParams.encoding);
+})
+```
+
+
+## audioRenderer.getParams
+
+getParams(): Promise<AudioParameters\><sup>8+</sup><a name="getparams-promise"></a>
+
+Gets audio parameters of the renderer. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type                      | Description                                  |
+| :------------------------ | :------------------------------------------- |
+| Promise<AudioParameters\> | Promise used to return the audio parameters. |
+
+**Example**
+
+```
+let audioParams = await audioRenderer.getParams();
+console.log('Renderer GetParams:');
+console.log('Renderer format:' + audioParams.format);
+console.log('Renderer samplingRate:' + audioParams.samplingRate);
+console.log('Renderer channels:' + audioParams.channels);
+console.log('Renderer encoding:' + audioParams.encoding);
+```
+
+
+## audioRenderer.start
+
+start(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="start-asynccallback"></a>
+
+Starts the renderer. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                                                                    |
+| :------- | :---------------------- | :-------- | :----------------------------------------------------------------------------- |
+| callback | AsyncCallback<boolean\> | Yes       | Returns true if the renderer is started successfully; returns false otherwise. |
+|          |                         |           |                                                                                |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.start((err, started)=>{
+    if (started) {
+	    console.log('Renderer started.');
+    } else {
+        console.error('Renderer start rejected.');
+    }
+})
+```
+
+
+## audioRenderer.start
+
+start(): Promise<boolean\><a name="start-promise"><sup>8+</sup></a>
+
+Starts the renderer. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type              | Description                                                                    |
+| :---------------- | :----------------------------------------------------------------------------- |
+| Promise<boolean\> | Returns true if the renderer is started successfully; returns false otherwise. |
+
+**Example**
+
+```
+var started = await audioRenderer.start();
+if (started) {
+    console.log('Renderer started');
+} else {
+    console.error('Renderer start rejected');
+}
+```
+
+
+## audioRenderer.pause
+
+pause(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="pause-asynccallback"></a>
+
+Pauses rendering. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                                                                   |
+| :------- | :---------------------- | :-------- | :---------------------------------------------------------------------------- |
+| callback | AsyncCallback<boolean\> | Yes       | Returns true if the renderer is paused successfully; returns false otherwise. |
+|          |                         |           |                                                                               |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.pause((err, paused)=>{
+    if (paused) {
+	   console.log('Renderer paused.');
+    } else {
+       console.error('Renderer pause failed');
+    }
+})
+```
+
+
+
+## audioRenderer.pause
+
+pause(): Promise<boolean\><sup>8+</sup><a name="pause-promise"></a>
+
+Pauses rendering. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type              | Description                                                                   |
+| :---------------- | :---------------------------------------------------------------------------- |
+| Promise<boolean\> | Returns true if the renderer is paused successfully; returns false otherwise. |
+
+**Example**
+
+```
+var paused = await audioRenderer.pause();
+if (paused) {
+    console.log('Renderer paused');
+} else {
+    console.error('Renderer pause failed');
+}
+```
+
+
+
+## audioRenderer.drain
+
+drain(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="drain-asynccallback"></a>
+
+Drains the playback buffer. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                                                                  |
+| :------- | :---------------------- | :-------- | :--------------------------------------------------------------------------- |
+| callback | AsyncCallback<boolean\> | Yes       | Returns true if the buffer is drained successfully; returns false otherwise. |
+|          |                         |           |                                                                              |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.drain((err, drained)=>{
+    if (drained) {
+	    console.log('Renderer drained.');
+    } else {
+       console.error('Renderer drain failed');
+    }
+})
+```
+
+
+## audioRenderer.drain
+
+drain(): Promise<boolean\><sup>8+</sup><a name="drain-promise"></a>
+
+Drains the playback buffer. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type              | Description                                                                  |
+| :---------------- | :--------------------------------------------------------------------------- |
+| Promise<boolean\> | Returns true if the buffer is drained successfully; returns false otherwise. |
+
+**Example**
+
+```
+var drained = await audioRenderer.drain();
+if (drained) {
+    console.log('Renderer drained');
+} else {
+    console.error('Renderer drain failed');
+}
+```
+
+
+## audioRenderer.stop
+
+stop(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="stop-asynccallback"></a>
+
+Stops rendering. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                                                                     |
+| :------- | :---------------------- | :-------- | :------------------------------------------------------------------------------ |
+| callback | AsyncCallback<boolean\> | Yes       | Returns true if the rendering is stopped successfully; returns false otherwise. |
+|          |                         |           |                                                                                 |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.stop((err, stopped)=>{
+    if (stopped) {
+	    console.log('Renderer stopped.');
+    } else {
+       console.error('Renderer stop failed');
+    }
+})
+```
+
+
+## audioRenderer.stop
+
+stop(): Promise<boolean\><sup>8+</sup><a name="stop-promise"></a>
+
+Stops rendering. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type              | Description                                                                     |
+| :---------------- | :------------------------------------------------------------------------------ |
+| Promise<boolean\> | Returns true if the rendering is stopped successfully; returns false otherwise. |
+
+**Example**
+
+```
+var stopped = await audioRenderer.stop();
+if (stopped) {
+    console.log('Renderer stopped');
+} else {
+    console.error('Renderer stop failed');
+}
+```
+
+
+## audioRenderer.release
+
+release(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="release-asynccallback"></a>
+
+Releases the renderer. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                                                                     |
+| :------- | :---------------------- | :-------- | :------------------------------------------------------------------------------ |
+| callback | AsyncCallback<boolean\> | Yes       | Returns true if the renderer is released successfully; returns false otherwise. |
+|          |                         |           |                                                                                 |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.release((err, released)=>{
+    if (released) {
+	    console.log('Renderer released.');
+    } else {
+       console.error('Renderer release failed');
+    }
+})
+```
+
+
+
+## audioRenderer.release
+
+release(): Promise<boolean\><sup>8+</sup><a name="release-promise"></a>
+
+Releases the renderer. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type              | Description                                                                     |
+| :---------------- | :------------------------------------------------------------------------------ |
+| Promise<boolean\> | Returns true if the renderer is released successfully; returns false otherwise. |
+
+**Example**
+
+```
+var released = await audioRenderer.release();
+if (released) {
+    console.log('Renderer released');
+} else {
+    console.error('Renderer release failed');
+}
+```
+
+
+
+## audioRenderer.write
+
+write(buffer: ArrayBuffer, callback: AsyncCallback<number\>): void<sup>8+</sup><a name="write-asynccallback"></a>
+
+Writes the buffer. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                                                                                          |
+| :------- | :---------------------- | :-------- | :--------------------------------------------------------------------------------------------------- |
+| buffer   | ArrayBuffer             | Yes       | Buffer to be written.                                                                                |
+| callback | AsyncCallback<boolean\> | Yes       | Returns the number of bytes written if the operation is successful; returns an error code otherwise. |
+|          |                         |           |                                                                                                      |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+let ss = fileio.createStreamSync(filePath, 'r');
+let buf = new ArrayBuffer(bufferSize);
+ss.readSync(buf);
+audioRenderer.write(buf, (err, writtenbytes)=>{
+    if (writtenbytes < 0) {
+	    console.error('write failed.');
+    } else {
+       console.log('Actual written bytes: ' + writtenbytes);
+    }
+})
+```
+
+
+## audioRenderer.write
+
+write(buffer: ArrayBuffer): Promise<number\><sup>8+</sup><a name="write-promise"></a>
+
+Writes the buffer. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                                                                                          |
+| :--------------- | :--------------------------------------------------------------------------------------------------- |
+| Promise<number\> | Returns the number of bytes written if the operation is successful; returns an error code otherwise. |
+
+**Example**
+
+```
+let ss = fileio.createStreamSync(filePath, 'r');
+let buf = new ArrayBuffer(bufferSize);
+ss.readSync(buf);
+let writtenbytes = await audioRenderer.write(buf);
+if (writtenbytes < 0) {
+	console.error('write failed.');
+} else {
+    console.log('Actual written bytes: ' + writtenbytes);
+}
+```
+
+
+
+## audioRenderer.getAudioTime
+
+getAudioTime(callback: AsyncCallback<number\>): void<sup>8+</sup><a name="getaudiotime-asynccallback"></a>
+
+Obtains the timestamp. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                            |
+| :------- | :--------------------- | :-------- | :------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the timestamp. |
+|          |                        |           |                                        |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.getAudioTime((err, timestamp)=>{
+    console.log('Current timestamp: ' + timestamp);
+})
+```
+
+
+## audioRenderer.getAudioTime
+
+getAudioTime(): Promise<number\><sup>8+</sup><a name="getaudiotime-promise"></a>
+
+Obtains the timestamp. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                           |
+| :--------------- | :------------------------------------ |
+| Promise<number\> | Promise used to return the timestamp. |
+
+**Example**
+
+```
+let timestamp = await audioRenderer.getAudioTime();
+console.log('Current timestamp: ' + timestamp);
+```
+
+
+## audioRenderer.getBufferSize
+
+getBufferSize(callback: AsyncCallback<number\>): void<sup>8+</sup><a name="getbuffersize-asynccallback"></a>
+
+Obtains a reasonable minimum buffer size for rendering. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                              |
+| :------- | :--------------------- | :-------- | :--------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the buffer size. |
+|          |                        |           |                                          |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.getBufferSize((err, bufferSize)=>{
+    if (err) {
+        console.error('getBufferSize error');
+    }
+})
+let buf = new ArrayBuffer(bufferSize);
+ss.readSync(buf);
+```
+
+
+## audioRenderer.getBufferSize
+
+getBufferSize(): Promise<number\><sup>8+</sup><a name="getbuffersize-promise"></a>
+
+Obtains a reasonable minimum buffer size for rendering. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                             |
+| :--------------- | :-------------------------------------- |
+| Promise<number\> | Promise used to return the buffer size. |
+
+**Example**
+
+```
+var bufferSize = await audioRenderer.getBufferSize();
+let buf = new ArrayBuffer(bufferSize);
+ss.readSync(buf);
+```
+
+
+## audioRenderer.setRenderRate
+
+setRenderRate(rate: AudioRendererRate, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setrenderrate-asynccallback"></a>
+
+Sets the render rate. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| rate     | AudioRendererRate    | Yes       | Audio render rate.                  |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+|          |                      |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err)=> {
+    if (err) {
+	    console.error('Failed to set params');
+    } else {
+        console.log('Callback invoked to indicate a successful render rate setting.');
+    }
+})
+```
+
+
+## audioRenderer.setRenderRate
+
+setRenderRate(rate: AudioRendererRate): Promise<void\><sup>8+</sup><a name="setrenderrate-promise"></a>
+
+Sets the render rate. This method uses a promise to return the result.
+
+**Parameters**
+
+| Name | Type              | Mandatory | Description        |
+| :--- | :---------------- | :-------- | :----------------- |
+| rate | AudioRendererRate | Yes       | Audio render rate. |
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+await audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL);
+```
+
+
+## audioRenderer.getRenderRate
+
+getRenderRate(callback: AsyncCallback<AudioRendererRate\>): void<sup>8+</sup><a name="getrenderrate-asynccallback"></a>
+
+Obtains the current render rate. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+| Name     | Type                              | Mandatory | Description                                    |
+| :------- | :-------------------------------- | :-------- | :--------------------------------------------- |
+| callback | AsyncCallback<AudioRendererRate\> | Yes       | Callback used to return the audio render rate. |
+|          |                                   |           |                                                |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.getRenderRate((err, renderrate)=>{
+    console.log('getRenderRate: ' + renderrate);
+})
+```
+
+
+## audioRenderer.getRenderRate
+
+getRenderRate(): Promise<AudioRendererRate\><a name="getrenderrate-promise"><sup>8+</sup></a>
+
+Obtains the current render rate. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type                        | Description                                   |
+| :-------------------------- | :-------------------------------------------- |
+| Promise<AudioRendererRate\> | Promise used to return the audio render rate. |
+
+**Example**
+
+```
+let renderRate = await audioRenderer.getRenderRate();
+console.log('getRenderRate: ' + renderrate);
+```
+
+
+## audioRenderer.on
+
+on(type: 'interrupt', callback: Callback<InterruptEvent\>): void<sup>8+</sup><a name="oninterrupt"></a>
+
+Listens for audio interrupt events. This method uses a callback to get interrupt events. The interrupt event is triggered when audio playback is interrupted.
+
+**Parameters**
+| Name     | Type                      | Mandatory | Description                                     |
+| :------- | :------------------------ | :-------- | :---------------------------------------------- |
+| type     | string                    | Yes       | Type of the playback event to listen for.       |
+| callback | Callback<InterruptEvent\> | Yes       | Callback used to listen for interrupt callback. |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.on('interrupt', (interruptEvent) => {
+    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+        switch (interruptEvent.hintType) {
+            case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+                console.log('Force paused. Stop writing');
+                isPlay = false;
+                break;
+            case audio.InterruptHint.INTERRUPT_HINT_STOP:
+                console.log('Force stopped. Stop writing');
+                isPlay = false;
+                break;
+        }
+    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+         switch (interruptEvent.hintType) {
+            case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+                console.log('Resume force paused renderer or ignore');
+                startRenderer();
+                break;
+            case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+                console.log('Choose to pause or ignore');
+                pauseRenderer();
+                break;
+        }
+    }
+})
+```
+
+
+
+## SystemSoundManager<a name="systemsoundmanager"></a>
+
+
+## systemSoundManager.setSystemRingtoneUri
+
+setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setsystemringtoneuri-asynccallback"></a>
+
+Sets the system ringtone URI. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| context  | Context              | Yes       | Current application context.        |
+| uri      | string               | Yes       | Ringtone URI to be set.             |
+| type     | RingtoneType         | Yes       | Ringtone type to be set.            |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+|          |                      |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.setSystemRingtoneUri(null, '/data/media/Ringtonetone.wav',
+    audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err)=> {
+    if (err) {
+	    console.error('Failed to setSystemRingtoneUri');
+    } else {
+        console.log('Callback invoked to indicate a successful system ringtone URI setting.');
+    }
+})
+```
+
+
+## systemSoundManager.setSystemRingtoneUri
+
+setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise<void\><sup>8+</sup><a name="setsystemringtoneuri-promise"></a>
+
+Sets the system ringtone URI. This method uses a promise to return the result.
+
+**Parameters**
+
+| Name    | Type         | Mandatory | Description                  |
+| :------ | :----------- | :-------- | :--------------------------- |
+| context | Context      | Yes       | Current application context. |
+| uri     | string       | Yes       | Ringtone URI to be set.      |
+| type    | RingtoneType | Yes       | Ringtone type to be set.     |
+|         |              |           |                              |
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+await systemSoundManager.setSystemRingtoneUri(null, '/data/media/Ringtone.wav', audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
+```
+
+
+## systemSoundManager.getSystemRingtoneUri
+
+getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallback<string\>): void<sup>8+</sup><a name="getsystemringtoneuri-asynccallback"></a>
+
+Obtains the system ringtone URI. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                         |
+| :------- | :--------------------- | :-------- | :---------------------------------- |
+| context  | Context                | Yes       | Current application context.        |
+| type     | RingtoneType           | Yes       | Ringtone type to be obtained.       |
+| callback | AsyncCallback<string\> | Yes       | Callback used to return the result. |
+|          |                        |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtoneUri)=>{
+    if (err) {
+        console.err('getSystemRingtoneUri failed');
+    } else {
+        console.log('getSystemRingtoneUri success: ' + ringtoneUri);
+    }
+})
+```
+
+
+## systemSoundManager.getSystemRingtoneUri
+
+getSystemRingtoneUri(context: Context, type: RingtoneType): Promise<string\><a name="getsystemringtoneuri-promise"><sup>8+</sup></a>
+
+Obtains the system ringtone URI. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                       |
+| :--------------- | :-------------------------------- |
+| Promise<string\> | Promise used to the ringtone URI. |
+
+**Example**
+
+```
+let ringtoneUri = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
+if (ringtoneUri == '/data/media/Believer60s.wav') {
+    console.log('getSystemRingtoneUri success: ' + uri);
+} else {
+    console.log('getSystemRingtoneUri fail: ' + uri);
+}
+```
+
+
+## systemSoundManager.getSystemRingtonePlayer
+
+getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCallback<RingtonePlayer\>): void<sup>8+</sup><a name="getsystemringtoneplayer-asynccallback"></a>
+
+Obtains the ringtone player. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                            | Mandatory | Description                               |
+| :------- | :------------------------------ | :-------- | :---------------------------------------- |
+| context  | Context                         | Yes       | Current application context.              |
+| type     | RingtoneType                    | Yes       | Ringtone type to be obtained.             |
+| callback | AsyncCallback<RingtonePlayer\>) | Yes       | Ringtone player maintained in the system. |
+|          |                                 |           |                                           |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
+    if (err) {
+        console.err('getSystemRingtonePlayer failed');
+    } else {
+        console.log('getSystemRingtonePlayer success: ');
+    }
+})
+```
+
+
+## systemSoundManager.getSystemRingtonePlayer
+
+getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise<RingtonePlayer\><a name="getsystemringtoneplayer-promise"><sup>8+</sup></a>
+
+Obtains the ringtone player. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type                     | Description                              |
+| :----------------------- | :--------------------------------------- |
+| Promise<RingtonePlayer\> | Promise used return the ringtone player. |
+
+**Example**
+
+```
+let ringtonePlayer = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
+```
+
+
+## systemSoundManager.setSystemNotificationUri
+
+setSystemNotificationUri(context: Context, uri: string, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setsystemnotificationuri-asynccallback"></a>
+
+Sets the system notification URI. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| context  | Context              | Yes       | Current application context.        |
+| uri      | string               | Yes       | System notification URI to be set.  |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+|          |                      |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.setSystemNotificationUri(null, '/data/media/Notification.wav'), (err)=> {
+    if (err) {
+	    console.error('Failed to setSystemNotificationUri');
+    } else {
+        console.log('Callback invoked to indicate a successful system notification URI setting.');
+    }
+})
+```
+
+
+## systemSoundManager.setSystemNotificationUri
+
+setSystemNotificationUri(context: Context, uri: string): Promise<void\><sup>8+</sup><a name="setsystemnotificationuri-promise"></a>
+
+Sets the system notification URI. This method uses a promise to return the result.
+
+**Parameters**
+
+| Name    | Type    | Mandatory | Description                        |
+| :------ | :------ | :-------- | :--------------------------------- |
+| context | Context | Yes       | Current application context.       |
+| uri     | string  | Yes       | System notification URI to be set. |
+|         |         |           |                                    |
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+await systemSoundManager.setSystemNotificationUri(null, '/data/media/Notification.wav');
+```
+
+
+## systemSoundManager.getSystemNotificationUri
+
+getSystemNotificationUri(context: Context, callback: AsyncCallback<string\>): void<sup>8+</sup><a name="getsystemnotificationuri-asynccallback"></a>
+
+Obtains the system notification URI. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                          |
+| :------- | :--------------------- | :-------- | :--------------------------------------------------- |
+| context  | Context                | Yes       | Current application context.                         |
+| callback | AsyncCallback<string\> | Yes       | Callback used to return the system notification URI. |
+|          |                        |           |                                                      |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.getSystemNotificationUri(null, (err, notificationUri)=>{
+    if (err) {
+        console.err('getSystemNotificationUri failed');
+    } else {
+        console.log('getSystemNotificationUri success: ' + notificationUri);
+    }
+})
+```
+
+
+## systemSoundManager.getSystemNotificationUri
+
+getSystemNotificationUri(context: Context): Promise<string\><a name="getsystemnotificationuri-promise"><sup>8+</sup></a>
+
+Obtains the system notification URI. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                                         |
+| :--------------- | :-------------------------------------------------- |
+| Promise<string\> | Promise used to return the system notification URI. |
+
+**Example**
+
+```
+let notificationUri = await systemSoundManager.getSystemNotificationUri(null);
+console.log('getSystemNotificationUri : ' + uri);
+```
+
+
+## systemSoundManager.setSystemAlarmUri
+
+setSystemAlarmUri(context: Context, uri: string, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setsystemalarmuri-asynccallback"></a>
+
+Sets the system alarm URI. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| context  | Context              | Yes       | Current application context.        |
+| uri      | string               | Yes       | System alarm URI to be set.         |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+|          |                      |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.setSystemAlarmUri(null, '/data/media/Alarm.wav'), (err)=> {
+    if (err) {
+	    console.error('Failed to setSystemAlarmUri');
+    } else {
+        console.log('Callback invoked to indicate a successful system alarm URI setting.');
+    }
+})
+```
+
+
+## systemSoundManager.setSystemAlarmUri
+
+setSystemAlarmUri(context: Context, uri: string): Promise<void\><sup>8+</sup><a name="setsystemalarmuri-promise"></a>
+
+Sets the system alarm URI. This method uses a promise to return the result.
+
+**Parameters**
+
+| Name    | Type    | Mandatory | Description                  |
+| :------ | :------ | :-------- | :--------------------------- |
+| context | Context | Yes       | Current application context. |
+| uri     | string  | Yes       | System alarm URI to be set.  |
+|         |         |           |                              |
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+await systemSoundManager.setSystemAlarmUri(null, '/data/media/Alarm.wav');
+```
+
+
+## systemSoundManager.getSystemAlarmUri
+
+getSystemAlarmUri(context: Context, callback: AsyncCallback<string>): void<sup>8+</sup><a name="getsystemalarmuri-asynccallback"></a>
+
+Obtains the system alarm URI. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                   |
+| :------- | :--------------------- | :-------- | :-------------------------------------------- |
+| context  | Context                | Yes       | Current application context.                  |
+| callback | AsyncCallback<string\> | Yes       | Callback used to return the system alarm URI. |
+|          |                        |           |                                               |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.getSystemAlarmUri(null, (err, alarmUri)=>{
+    if (err) {
+        console.err('getSystemAlarmUri failed');
+    } else {
+        console.log('getSystemAlarmUri success: ' + alarmUri);
+    }
+})
+```
+
+
+## systemSoundManager.getSystemAlarmUri
+
+getSystemAlarmUri(context: Context): Promise<string\><a name="getsystemalarmuri-promise"><sup>8+</sup></a>
+
+Obtains the system alarm URI. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                                  |
+| :--------------- | :------------------------------------------- |
+| Promise<string\> | Promise used to return the system alarm URI. |
+
+**Example**
+
+```
+let alarmUri = await systemSoundManager.getSystemAlarmUri(null);
+console.log('getSystemAlarmUri success: ' + alarmUri);
+```
+
+
+# RingtonePlayer<a name="ringtoneplayer"></a>
+
+## ringtonePlayer.state
+
+readonly state: AudioState <sup>8+</sup><a name="ringtoneplayerstate-getter"></a>
+
+Defines the current ringtone player state.
+
+| Name  | Type       | Readable | Writable | Description            |
+| :---- | :--------- | :------- | :------- | :--------------------- |
+| state | AudioState | Yes      | No       | Ringtone player state. |
+
+**Example**
+
+```
+systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
+    if (err) {
+        console.err('getSystemRingtonePlayer failed');
+        return;
+    } else {
+        console.log('getSystemRingtonePlayer success');
+    }
+});
+
+var state = ringtonePlayer.state;
+```
+
+
+## ringtonePlayer.getTitle
+
+getTitle(callback: AsyncCallback<string\>): void<sup>8+</sup><a name="gettitle-asynccallback"></a>
+
+Obtains the title of the ringtone. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+| Name     | Type                   | Mandatory | Description                                        |
+| :------- | :--------------------- | :-------- | :------------------------------------------------- |
+| callback | AsyncCallback<string\> | Yes       | Callback used to return the title of the ringtone. |
+|          |                        |           |                                                    |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
+    if (err) {
+        console.err('getSystemRingtonePlayer failed');
+        return;
+    } else {
+        console.log('getSystemRingtonePlayer success');
+    }
+});
+
+ringtonePlayer.getTitle((err, title)=>{
+    if (err) {
+        console.err('getTitle failed');
+    } else {
+        console.log('getTitle success: ' + title);
+    }
+})
+```
+
+
+## ringtonePlayer.getTitle
+
+getTitle(): Promise<string\><a name="gettitle-promise"><sup>8+</sup></a>
+
+Obtains the title of the ringtone. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                                       |
+| :--------------- | :------------------------------------------------ |
+| Promise<string\> | Promise used to return the title of the ringtone. |
+
+**Example**
+
+```
+let ringtonePlayer = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
+let title = await ringtonePlayer.getTitle();
+```
+
+
+## ringtonePlayer.getAudioRendererInfo
+
+getAudioRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void<sup>8+</sup><a name="getaudiorendererinfo-asynccallback"></a>
+
+Obtains the audio renderer information. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                              | Mandatory | Description                                             |
+| :------- | :-------------------------------- | :-------- | :------------------------------------------------------ |
+| callback | AsyncCallback<AudioRendererInfo\> | Yes       | Callback used to return the audio renderer information. |
+|          |                                   |           |                                                         |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
+    if (err) {
+        console.err('getSystemRingtonePlayer failed');
+        return;
+    } else {
+        console.log('getSystemRingtonePlayer success: ');
+    }
+});
+
+ringtonePlayer.getAudioRendererInfo((err, rendererInfo)=>{
+    if (err) {
+        console.err('getAudioRendererInfo failed');
+    } else {
+        console.log('getAudioRendererInfo success');
+    }
+});
+```
+
+
+## ringtonePlayer.getAudioRendererInfo
+
+getAudioRendererInfo(): Promise<AudioRendererInfo\><a name="gettitle-promise"><sup>8+</sup></a>
+
+Obtains the audio renderer information. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type                        | Description                                            |
+| :-------------------------- | :----------------------------------------------------- |
+| Promise<AudioRendererInfo\> | Promise used to return the audio renderer information. |
+
+**Example**
+
+```
+let ringtonePlayer = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
+let rendererInfo = await ringtonePlayer.getAudioRendererInfo();
+```
+
+
+## ringtonePlayer.configure
+
+configure(options: RingtoneOptions, callback: AsyncCallback<void>): void<sup>8+</sup><a name="configure-asynccallback"></a>
+
+Configures ringtone options. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| options  | RingtoneOptions      | Yes       | Ringtone options.                   |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+|          |                      |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
+    if (err) {
+        console.err('getSystemRingtonePlayer failed');
+        return;
+    } else {
+        console.log('getSystemRingtonePlayer success: ');
+    }
+});
+
+let ringtoneOptions = {
+    volume: 1,
+    loop: false
+};
+
+ringtonePlayer.configure(ringtoneOptions, (err)=> {
+    if (err) {
+	    console.error('Failed to configure ringtone options');
+    } else {
+        console.log('Callback invoked to indicate a successful ringtone options configuration.');
+    }
+})
+```
+
+
+## ringtonePlayer.configure
+
+configure(options: RingtoneOptions): Promise<void\><sup>8+</sup><a name="configure-promise"></a>
+
+Configures ringtone options. This method uses a promise to return the result.
+
+**Parameters**
+
+| Name    | Type            | Mandatory | Description       |
+| :------ | :-------------- | :-------- | :---------------- |
+| options | RingtoneOptions | Yes       | Ringtone options. |
+|         |                 |           |                   |
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+let ringtonePlayer = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
+let ringtoneOptions = {
+    volume: 1,
+    loop: false
+};
+
+await ringtonePlayer.configure(ringtoneOptions);
+```
+
+
+## ringtonePlayer.start
+
+start(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="startringtoneplayer-asynccallback"></a>
+
+Starts playing ringtone. This method uses a callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+|          |                      |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+ringtonePlayer.start((err)=> {
+    if (err) {
+	    console.error('Failed to start playing ringtone');
+    } else {
+        console.log('Ringtone start playing successfully.');
+    }
+})
+```
+
+
+## ringtonePlayer.start
+
+start(): Promise<void\><sup>8+</sup><a name="startringtoneplayer-promise"></a>
+
+Starts playing ringtone. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+await ringtonePlayer.start();
+```
+
+
+## ringtonePlayer.stop
+
+stop(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="stopringtoneplayer-asynccallback"></a>
+
+Stops playing ringtone. This method uses a callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+|          |                      |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+ringtonePlayer.stop((err)=> {
+    if (err) {
+	    console.error('Failed to stop playing ringtone');
+    } else {
+        console.log('Ringtone stop playing successfully.');
+    }
+})
+```
+
+
+## ringtonePlayer.stop
+
+stop(): Promise<void\><sup>8+</sup><a name="stopringtoneplayer-promise"></a>
+
+Stops playing ringtone. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+await ringtonePlayer.stop();
+```
+
+
+## ringtonePlayer.release
+
+release(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="releaseringtoneplayer-asynccallback"></a>
+
+Releases ringtone player resources. This method uses a callback to return the result.
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+|          |                      |           |                                     |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+ringtonePlayer.release((err)=> {
+    if (err) {
+	    console.error('Failed to release ringtone player resource');
+    } else {
+        console.log('Release ringtone player resource successfully.');
+    }
+})
+```
+
+
+## ringtonePlayer.release
+
+release(): Promise<void\><sup>8+</sup><a name="releaseringtoneplayer-promise"></a>
+
+Releases ringtone player resource. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+await ringtonePlayer.release();
+```
