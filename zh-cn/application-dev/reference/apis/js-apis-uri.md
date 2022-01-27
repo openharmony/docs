@@ -48,8 +48,10 @@ constructor是URI的构造函数。
 - 示例：
   ```
   var mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
-  new URI(mm); // Output 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
-  new URI('http://username:password@host:8080'); // Output 'http://username:password@host:8080';
+  new uri.URI(mm); // Output 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
+  ```
+  ```
+  new uri.URI('http://username:password@host:8080'); // Output 'http://username:password@host:8080';
   ```
 
 
@@ -66,7 +68,7 @@ toString(): string
 
 - 示例:
   ```
-  const url = new URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+  const url = new uri.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
   url.toString()
   ```
 
@@ -89,9 +91,9 @@ equals(other: URI): boolean
 
 - 示例:
   ```
-  const uri = new URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-  const uri1 = new URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
-  uri.equals(uri1);
+  const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+  const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
+  uriInstance.equals(uriInstance1);
   ```
 
 
@@ -106,8 +108,8 @@ equals(other: URI): boolean
 
 - 示例:
   ```
-  const uri = new URI('http://username:password@www.qwer.com:8080?query=pppppp');
-  uri.checkIsAbsolute();
+  const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080?query=pppppp');
+  uriInstance.checkIsAbsolute();
   ```
 
 
@@ -124,7 +126,7 @@ normalize(): URI
 
 - 示例:
   ```
-  const uri = new URI('http://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
-  let uri1 = uri.normalize();
-  uri1.path;
+  const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
+  let uriInstance1 = uriInstance.normalize();
+  uriInstance1.path;
   ```
