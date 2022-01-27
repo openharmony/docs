@@ -20,7 +20,7 @@
 | -------- | --------- |
 | -r&nbsp;        | 以缺省设置实时订阅HiSysEvent事件，在此种订阅方式下有任何实时HiSysEvent事件产生，都会在控制台上打印此HiSysEvent事件 | 
 
-1.打开调试模式：
+打开调试模式：
 
 **hisysevent -r -d**
 
