@@ -10,7 +10,6 @@
     -   [Notification Module](js-apis-notification.md)
 -   Media
     -   [Audio Management](js-apis-audio.md)
-    -   [Media Playback and Recording](js-apis-media.md)
 -   [Console Logs](console-logs.md)
 -   [HiAppEvent](hiappevent.md)
 -   [Page Routing](page-routing.md)
