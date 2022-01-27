@@ -3,6 +3,7 @@
 - Ability Framework
     -   [FeatureAbility Module](js-apis-featureAbility.md)
     -   [ParticleAbility Module](js-apis-particleAbility.md)
+    -   [DataAbilityHelper Module](js-apis-dataAbilityHelper.md)
     -   [DataUriUtils Module](js-apis-DataUriUtils.md)
     -   [Context Module](js-apis-Context.md)
 - Event Notification
