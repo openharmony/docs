@@ -1,6 +1,6 @@
 # JS API 差异报告
 
-OpenHarmony 3.1 Beta1相较于OpenHarmony 3.0 LTS版本的API变更如下:
+OpenHarmony 3.1 Beta相较于OpenHarmony 3.0 LTS版本的API变更如下:
 
 ## 标准系统接口变更
 
@@ -43,7 +43,7 @@ OpenHarmony 3.1 Beta1相较于OpenHarmony 3.0 LTS版本的API变更如下:
 | Ark UI框架-画布组件 | Lottie | 新增 | 新增Lottie库的支持。 |
 | Ark UI框架-全局UI方法 | ActionSheet | 新增 | 新增列表选择弹窗。 |
 | USB服务-usb | getDevices(): Array<Readonly<USBDevice>> | 新增      | 新增获取USB设备列表的接口 |
-| USB服务-usb | connectDevice(device: USBDevice): Readonly<USBDevicePipe> | 新增 | 新增根据{@link getDevices()}返回的设备信息打开USB设备的接口 |
+| USB服务-usb | connectDevice(device: USBDevice): Readonly<USBDevicePipe> | 新增 | 新增根据**getDevices()**返回的设备信息打开USB设备的接口 |
 | USB服务-usb | hasRight(deviceName: string): boolean | 新增 | 新增判断是否有权访问设备的接口 |
 | USB服务-usb | requestRight(deviceName: string): Promise<boolean> | 新增 | 新增请求给定软件包的临时权限以访问设备的接口 |
 | USB服务-usb | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number | 新增 | 新增获取接口的接口 |

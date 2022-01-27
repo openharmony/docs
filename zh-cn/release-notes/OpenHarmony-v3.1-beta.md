@@ -105,7 +105,7 @@ repo forall -c 'git lfs pull'
 | 语言编译器运行时子系统 | -&nbsp;I4MBUK：JavaScript/TypeScript默认运行时从quickjs替换为方舟运行时。<br/>-&nbsp;I4MBUJ：方舟运行时内存回收功能增强，支持并发标记算法以及并发压缩算法，支持选择部分region进行压缩GC（Partial&nbsp;CompressionGC），优化GC&nbsp;pause&nbsp;time减少30%。 | NA |
 | 全球化子系统 | -&nbsp;支持国际化特性：单复数规则、字符串排序、电话号码处理、日历&amp;本地历法、度量衡体系和格式化、区域表示和属性、时间段格式化、字母表检索、unicode字符属性、断词换行<br/>-&nbsp;支持系统资源、rawfile资源 | NA |
 | 分布式软总线子系统 | -I4FZ29：软总线提供传输ExtAPI接口<br/>-I4FZ25：软总线支持网络切换组网 | -I4FZ29：软总线提供传输ExtAPI接口<br/>-I4FZ25：软总线支持网络切换组网 |
-| 启动子系统 | NA | -I3XGJH：init基础环境构建<br/>-I3XGKV：sytemparameter管理<br/>-I3XGLN：init&nbsp;脚本管理<br/>-I3XGMQ：基础权限管理<br/>-I3XGN8：bootimage构建和加载<br/>-I3XGKV：uevent&nbsp;管理<br/>-I3XGKV：sytemparameter管理<br/>-I3XGNM：烧写模式支持 |
+| 启动子系统 | NA | -I3XGJH：init基础环境构建<br/>-I3XGKV：system parameter管理<br/>-I3XGLN：init&nbsp;脚本管理<br/>-I3XGMQ：基础权限管理<br/>-I3XGN8：bootimage构建和加载<br/>-I3XGKV：uevent&nbsp;管理<br/>-I3XGNM：烧写模式支持 |
 | 媒体子系统 | NA | -I4BX5Z：HiStreamer支持音频播放和控制<br/>-I4BX8A：HiStreamer支持常见音频格式mp3/wav的播放<br/>-I4BX9E：HiStreamer播放引擎框架需求<br/>-I4DK89：HiStreamer插件框架需求<br/>-I4DK8D：HiStreamer性能和DFX需求 |
 | 图形子系统 | 全新设计OpenHarmony&nbsp;图形栈：<br/>新增UI框架渲染后端特性支持<br/>新增ArkUI控件接入RenderService渲染后端 | NA |
 | 内核子系统 | 内核（Linux&nbsp;5.10）<br/>-I4LUG4&nbsp;CMA内存区域复用（目前仅支持Hi3516DV300，暂不支持RK平台）<br/>-I4LX4G&nbsp;支持anonymous&nbsp;vma命名（目前仅支持Hi3516DV300，暂不支持RK平台） | -I3ND6Y：【性能】OS内核&amp;驱动启动优化 |
@@ -142,7 +142,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 
 #### 新增Samples
 
-**表1** Samples列表
+**表4** Samples列表
 
 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- |
@@ -165,13 +165,13 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [JS页面弹窗](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog) | JS中支持用户自定义弹窗，&lt;dialog/&gt;组件作为容器组件，用户可以自定义弹窗的样式和布局。本示例完成了添加和删除联系人功能，在添加和删除时使用自定义弹窗来实现。 | JS |
 | [JSList商品列表](https://gitee.com/openharmony/app_samples/tree/master/UI/JsList) | 本示例展示了list控件在商品分类列表中的应用，在listGroup里采用两个list-item分别展示了Group收缩和Group展开的两种列表形态，点击后会弹出相应的list列表。 | JS |
 | [JSPanel](https://gitee.com/openharmony/app_samples/tree/master/UI/JsPanel) | JS提供一种轻量级的内容展示面板，此面板可滑动，可自定义触发方式、弹出高度等属性。本示例通过可滑动面板展示了商品详细信息与平台保障。 | JS |
-| [JsSvg](https://gitee.com/openharmony/app_samples/tree/master/UI/JsSvg) | 本示例展示了JS中&lt;svg/>组件及其子组件的使用，包括<svg\>、<rect\>、<circle\>、<ellipse\>、<path\>、<line\>、<polygon\>、<polyline\>、<text\>、<animate\>、<animateTransform\> 。 | JS |
+| [JsSvg](https://gitee.com/openharmony/app_samples/tree/master/UI/JsSvg) | 本示例展示了JS中<svg/>组件及其子组件的使用，包括<svg\>、<rect\>、<circle\>、<ellipse\>、<path\>、<line\>、<polygon\>、<polyline\>、<text\>、<animate\>、<animateTransform\> 。 | JS |
 | [JS自定义组件](https://gitee.com/openharmony/app_samples/tree/master/UI/JSUICustomComponent) | 自定义组件是用户根据业务需求，将已有的组件组合，封装成的新组件，可以在工程中多次调用，提高代码的可读性。本示例展示了JS中自定义组件的使用，包括基本用法、自定义事件、Props和事件参数。 | JS |
 
 
 #### 新增Codelabs
 
-**表2** Codelabs列表
+**表5** Codelabs列表
 
 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- |
@@ -190,7 +190,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 
 ## 修复缺陷列表
 
-**表4** 修复缺陷ISSUE列表
+**表6** 修复缺陷ISSUE列表
 
 | ISSUE单号 | 问题描述 |
 | -------- | -------- |
@@ -203,7 +203,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 
 ## 遗留缺陷列表
 
-**表6** 遗留缺陷列表
+**表7** 遗留缺陷列表
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 |
 | -------- | -------- | -------- | -------- |

@@ -4,7 +4,7 @@ OpenHarmony 3.1 Beta相较于OpenHarmony 3.0 LTS版本的API变更如下:
 
 ## 标准系统接口变更
 
-| 模块名称           | 接口名称                                                     | 变更类型 | 变更类型                                          |
+| 模块名称           | 接口名称                                                     | 变更类型 | 变更说明                                          |
 | ------------------ | ------------------------------------------------------------ | -------- | ------------------------------------------------- |
 | bundle             | napi_value ClearBundleCache(napi_env env, napi_callback_info info) | 新增     | 新增清理应用缓存接口                              |
 | bundle             | napi_value SetApplicationEnabled(napi_env env, napi_callback_info info) | 新增     | 新增设置应用使能接口                              |
