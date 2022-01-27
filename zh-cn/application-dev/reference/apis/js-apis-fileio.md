@@ -392,7 +392,7 @@ fsyncSync(fd: number): void
 
 - 示例：
   ```
-  fileio.fyncsSync)(fd);
+  fileio.fyncsSync(fd);
   ```
 
 
