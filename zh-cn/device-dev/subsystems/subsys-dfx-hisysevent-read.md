@@ -118,7 +118,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 1.  编译配置：
 
-    -   编译配置文件中添加对hisysevent\_native部件的libhisyseventmanager库的依赖。
+    -   编译配置文件中添加对hisysevent\_native部件libhisyseventmanager库的依赖。
 
     ```
     external_deps = [ "hisysevent_native:libhisyseventmanager",  ]
@@ -127,7 +127,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 2.  源代码开发：
 
-    -   自定义订阅回调实现类DemoListener, 引入hisysevent\_manager.h头文件，：
+    -   自定义订阅回调实现类DemoListener：
 
     ```
     #ifndef DEMO_LISTENER_H
