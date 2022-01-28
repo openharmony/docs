@@ -134,7 +134,6 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 
     ```
-    // 以下是订阅系统事件的示例
     #include "hisysevent_manager.h"
     #include <iostream>
     namespace OHOS {
