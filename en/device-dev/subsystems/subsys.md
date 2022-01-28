@@ -8,6 +8,8 @@
 
 -   **[Multimedia](subsys-multimedia.md)**  
 
+-   **[Data Management](subsys-data.md)**  
+
 -   **[Utils](subsys-utils.md)**  
 
 -   **[AI Framework](subsys-aiframework.md)**  
