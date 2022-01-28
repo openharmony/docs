@@ -972,7 +972,7 @@ Synchronizes a file in synchronous mode.
 -   Example
 
     ```
-    fileio.fyncsSync)(fd);
+    fileio.fyncsSync(fd);
     ```
 
 
