@@ -696,19 +696,19 @@ this.StartContinueAbility(remoteDeviceId); //remoteDeviceId is acquired from Dev
 
 | Name| Name| Description|
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Permission to read the URI.|
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Permission to write the URI.|
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | Whether to return the result to the ability.|
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | Whether abilities on the local device can be migrated to a remote device.|
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | Whether a component belongs to OHOS.|
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Whether to enable an ability.|
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Permission to make the URI persist.|
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Permission to authenticate prefix URI.|
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Support for the startup across multiple devices in a distributed scheduler.|
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Functionality of using the Service template is enabled regardless of whether the host application is started.|
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Whether the migration is reversible.|
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | A demand for the installation of a specific function.|
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | A demand for the installation of a specific function in background mode.|
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | An instruction for clearing other tasks. This flag can be set for the **Want** object passed to **ohos.app.Context#startAbility** and must be used together with **flag_ABILITY_NEW_MISSION**.|
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | An instruction for creating a task on the history task stack.|
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | An existing instance of the ability to start will be reused if it is already at the top of the task stack. Otherwise, a new ability instance is created.|
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.|
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.|
+| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | Returns the result to the ability.|
+| FLAG_ABILITY_CONTINUATION            | 0x00000008 | Indicates whether the ability on the local device can be migrated to a remote device.|
+| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | Indicates that a component does not belong to OHOS.|
+| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Indicates whether to enable an ability.|
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Indicates the permission to make the URI persistent.|
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Indicates the permission to verify URIs by prefix matching.|
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Supports cross-device startup in a distributed scheduler.|
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the Service ability is started regardless of whether the host application has been started.|
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.|
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.|
+| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.|
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object passed to **ohos.app.Context#startAbility** and must be used together with **flag_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the historical mission stack.|
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Starts the mission on the top of the existing mission stack; creates an ability instance if no mission exists.|
