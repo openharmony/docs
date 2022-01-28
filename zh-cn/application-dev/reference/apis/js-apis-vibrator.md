@@ -16,7 +16,7 @@ import vibrate from '@ohos.vibrator';
 ohos.permission.VIBRATE
 
 
-## vibrate.vibrate
+## vibrator.vibrate
 
 vibrate(duration: number): Promise&lt;void&gt;
 
@@ -37,17 +37,15 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 - 示例：
   ```
-  vibrator.vibrate(1000).then(error)=>{
-     if(error){  
-         console.log(“error.code”+error.code+“error.message”+error.message);
-     }else{
-         console.log(“Promise returned to indicate a successful vibration.”);
-     }
-  }
+  vibrator.vibrate(1000).then(()=>{
+      console.log("Promise returned to indicate a successful vibration.");
+  }, (error)=>{
+      console.log("error.code"+error.code+"error.message"+error.message);
+  });
   ```
 
 
-## vibrate.vibrate
+## vibrator.vibrate
 
 vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
@@ -62,16 +60,16 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 - 示例**：**
   ```
   vibrator.vibrate(1000,function(error){
-     if(error){
-         console.log(“error.code”+error.code+“error.message”+error.message);
-     }else{
-         console.log(“Callback returned to indicate a successful vibration.”);
-     }
+      if(error){
+          console.log("error.code"+error.code+"error.message"+error.message);
+      }else{
+          console.log("Callback returned to indicate a successful vibration.");
+      }
   })
   ```
 
 
-## vibrate.vibrate
+## vibrator.vibrate
 
 vibrate(effectId: EffectId): Promise&lt;void&gt;
 
@@ -89,17 +87,15 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 - 示例：
   ```
-  vibrator.vibrate(effectId:EffectId).then(error)=>{
-     if(error){
-         console.log(“error.code”+error.code+“error.message”+error.message);
-     }else{
-         Console.log(“Promise returned to indicate a successful vibration.”);
-     }
-  }
+  vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
+      console.log("Promise returned to indicate a successful vibration.");
+  }, (error)=>{
+      console.log("error.code"+error.code+"error.message"+error.message);
+  });
   ```
 
 
-## vibrate.vibrate
+## vibrator.vibrate
 
 vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
@@ -113,17 +109,17 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 - 示例：
   ```
-  vibrator.vibrate(effectId:EffectId,function(error){
-     if(error){
-         console.log(“error.code”+error.code+“error.message”+error.message);
-     }else{
-         console.log(“Callback returned to indicate a successful vibration.”);
-     }
+  vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
+      if(error){
+          console.log("error.code"+error.code+"error.message"+error.message);
+      }else{
+          console.log("Callback returned to indicate a successful vibration.");
+      }
   })
   ```
 
 
-## vibrate.stop
+## vibrator.stop
 
 stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
@@ -141,17 +137,15 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 - 示例：
   ```
-  vibrator.stop(stopMode:VibratorStopMode).then((error)=>{
-     if(error){
-         console.log(“error.code”+error.code+“error.message”+error.message);
-     }else{
-         Console.log(“Promise returned to indicate successful.”);
-     }
-  })
+  vibrator.vibrate(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
+      console.log("Promise returned to indicate a successful vibration.");
+  }, (error)=>{
+      console.log("error.code"+error.code+"error.message"+error.message);
+  });
   ```
 
 
-## vibrate.stop
+## vibrator.stop
 
 stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
@@ -165,12 +159,12 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 - 示例：
   ```
-  vibrator.stop(stopMode:VibratorStopMode,function(error){
-     if(error){
-         console.log(“error.code”+error.code+“error.message”+error.message);
-     }else{
-         Console.log(“Callback returned to indicate successful.”);
-     }
+  vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
+      if(error){
+          console.log("error.code"+error.code+"error.message"+error.message);
+      }else{
+          Console.log("Callback returned to indicate successful.");
+      }
   })
   ```
 
