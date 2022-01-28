@@ -35,7 +35,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 "><p id="p1104194420248"><a name="p1104194420248"></a><a name="p1104194420248"></a>接口功能：<br>&emsp;&emsp;移除订阅hisysevent系统事件侦听对象。</p>
 <p id="p7943171095411"><a name="p7943171095411"></a><a name="p7943171095411"></a>输入参数：</p>
 <a name="ul894321075411"></a><a name="ul894321075411"></a><ul id="ul894321075411"><li>listener：订阅回调对象。</li></ul>
-<p id="p9744631162515"><a name="p9744631162515"></a><a name="p9744631162515"></a>返回值：<br>无。</p>
+<p id="p9744631162515"><a name="p9744631162515"></a><a name="p9744631162515"></a>返回值：<br>&emsp;&emsp;无。</p>
 </td>
 </tr>
 </tbody>
