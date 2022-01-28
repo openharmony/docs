@@ -1,14 +1,14 @@
 # HiSysEvent工具使用指导<a name="ZH-CN_TOPIC_0000001231614021"></a>
 
 -   [概述](#section1886702718521)
--   [订阅实时HiSysEvent事件相关命令](#section1210623418527)
+-   [实时订阅HiSysEvent事件相关命令](#section1210623418527)
 -   [查询历史HiSysEvent事件相关命令](#section1210623418539)
 
 ## 概述<a name="section1886702718521"></a>
 
 目前在系统的/system/bin目录下预置了hisysevent工具，开发者可以通过此工具实时订阅HiSysEvent事件及查询历史HiSysEvent事件。
 
-## 订阅实时HiSysEvent事件相关命令<a name="section1210623418527"></a>
+## 实时订阅HiSysEvent事件相关命令<a name="section1210623418527"></a>
 
 实时订阅HiSysEvent事件的基础命令：
 
