@@ -45,7 +45,7 @@ addPath\(path: Object\): void
     @Entry
     @Component
     struct AddPath {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     
       private path2Da: Path2D = new Path2D("M250 150 L150 350 L350 350 Z")
@@ -83,7 +83,7 @@ closePath\(\): void
     @Entry
     @Component
     struct ClosePath {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -161,7 +161,7 @@ moveTo\(x: number, y: number\): void
     @Entry
     @Component
     struct MoveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -239,7 +239,7 @@ lineTo\(x: number, y: number\): void
     @Entry
     @Component
     struct LineTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -363,7 +363,7 @@ bezierCurveTo\(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number
     @Entry
     @Component
     struct BezierCurveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -460,7 +460,7 @@ quadraticCurveTo\(cpx: number, cpy: number, x: number ,y: number\): void
     @Entry
     @Component
     struct QuadraticCurveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -580,7 +580,7 @@ arc\(x: number, y: number, radius: number, startAngle: number, endAngle: number,
     @Entry
     @Component
     struct Arc {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -687,7 +687,7 @@ arcTo\(x1: number, y1: number, x2: number, y2: number, radius: number\): void
     @Entry
     @Component
     struct ArcTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -827,8 +827,8 @@ ellipse\(x: number, y: number, radiusX: number, radiusY: number, rotation: numbe
     ```
     @Entry
     @Component
-    struct Ellipse {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+    struct CanvasExample {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -924,8 +924,8 @@ rect\(x: number, y: number, width: number, height: number\): void
     ```
     @Entry
     @Component
-    struct Rect {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+    struct CanvasExample {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
