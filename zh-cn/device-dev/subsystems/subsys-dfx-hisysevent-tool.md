@@ -6,7 +6,7 @@
 
 ## 概述<a name="section1886702718521"></a>
 
-目前在系统的/system/bin目录下预置了hisysevent工具，开发者可以通过此工具订阅实时系统事件及查询历史HiSysEvent事件。
+目前在系统的/system/bin目录下预置了hisysevent工具，开发者可以通过此工具实时订阅HiSysEvent事件及查询历史HiSysEvent事件。
 
 ## 订阅实时HiSysEvent事件相关命令<a name="section1210623418527"></a>
 
@@ -30,7 +30,7 @@
 | -------- | --------- |
 | -d       | 在调试模式下实时订阅HiSysEvent事件 | 
 
-通过事件标签方式订阅实时系统事件：
+通过事件标签方式实时订阅HiSysEvent事件：
 
 **hisysevnet -r -t \<tag\> \[-c \[WHOLE_WORD|PREFIX|REGULAR\]\]**
 
@@ -41,7 +41,7 @@
 | -t&nbsp;        | 设置实时订阅的HiSysEvent事件标签，用来过滤订阅的HiSysEvent事件 |
 | -c&nbsp;        | 设置实时订阅的HiSysEvent事件标签匹配规则，有“WHOLE_WORD”、“PREFIX”、“REGULAR”三种匹配规则|
 
-4. 通过事件领域及事件名称的方式订阅实时系统事件：
+4. 通过事件领域及事件名称的方式实时订阅HiSysEvent事件：
 
 **hisysevent -r -o \<domain\> -n \<eventName\> \[-c \[WHOLE_WORD|PREFIX|REGULAR\]\]**
 
