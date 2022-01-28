@@ -1,5 +1,9 @@
 # Overview<a name="EN-US_TOPIC_0000001116414108"></a>
 
+-   [About the Document](#section189422248491)
+-   [Restrictions](#section65191625782)
+-   [DevEco Studio Evolution Roadmap](#section187875207166)
+
 ## About the Document<a name="section189422248491"></a>
 
 DevEco Studio is an integrated development environment \(IDE\) of HarmonyOS apps. As HarmonyOS is developed based on OpenHarmony, DevEco Studio can also be used to develop OpenHarmony apps.
@@ -7,15 +11,15 @@ DevEco Studio is an integrated development environment \(IDE\) of HarmonyOS apps
 The process of developing an OpenHarmony app using DevEco Studio is the same as that of developing a HarmonyOS app. This document describes the differences between OpenHarmony and HarmonyOS app development.
 
 -   **Environment setup**: You need to manually install the OpenHarmony SDK for the OpenHarmony app development. For details, see  [Configuring the OpenHarmony SDK](configuring-openharmony-sdk.md).
--   **OpenHarmony project import**: To develop an OpenHarmony app, you can only import a sample project to start with. For details, see  [Importing a Sample to Create a Project](import-sample-to-create-project.md).
+-   **Creating an OpenHarmony project**: Create a project by using the project wizard or by importing a sample project. For details, see  [Using the Project Wizard to Create a Project](use-wizard-to-create-project.md).
 -   **Signature configuration for debugging**: To run an OpenHarmony app on a real device, you need to sign the app first. For instructions, see  [Configuring the OpenHarmony App Signature](configuring-openharmony-app-signature.md).
--   **App running on a real device**: To run your app on a real device, you need to use the hdc tool to push the HAP package of the OpenHarmony to the real device for installation. For details, see  [Installing and Running Your OpenHarmony App](installing-openharmony-app.md).
+-   **App running on a real device**: Push the OpenHarmony HAP package to the real device for installation. For details, see  [Installing and Running Your OpenHarmony App](installing-openharmony-app.md).
 
 For details about how to use DevEco Studio, see  [HUAWEI DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/tools_overview-0000001053582387).
 
 ## Restrictions<a name="section65191625782"></a>
 
--   OpenHarmony supports only app development in JS.
+-   OpenHarmony supports only app development in eTS and JS.
 -   Developing OpenHarmony apps in DevEco Studio is supported on Windows.
 
 DevEco Studio serves as a development tool for both OpenHarmony and HarmonyOS apps. Refer to the following table for descriptions about the functions not supported for OpenHarmony.
@@ -29,14 +33,7 @@ DevEco Studio serves as a development tool for both OpenHarmony and HarmonyOS ap
 </th>
 </tr>
 </thead>
-<tbody><tr id="row3627192183319"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p1362817213320"><a name="p1362817213320"></a><a name="p1362817213320"></a>Creating modules</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p8226191353"><a name="p8226191353"></a><a name="p8226191353"></a><strong id="b17226139143511"><a name="b17226139143511"></a><a name="b17226139143511"></a>√</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p14226894353"><a name="p14226894353"></a><a name="p14226894353"></a><strong id="b122614963510"><a name="b122614963510"></a><a name="b122614963510"></a>X</strong></p>
-</td>
-</tr>
-<tr id="row955132319355"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p1655172423517"><a name="p1655172423517"></a><a name="p1655172423517"></a>Service widgets</p>
+<tbody><tr id="row955132319355"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p1655172423517"><a name="p1655172423517"></a><a name="p1655172423517"></a>Service widgets</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p1555192493516"><a name="p1555192493516"></a><a name="p1555192493516"></a><strong id="b11551102403511"><a name="b11551102403511"></a><a name="b11551102403511"></a>√</strong></p>
 </td>
@@ -64,7 +61,7 @@ DevEco Studio serves as a development tool for both OpenHarmony and HarmonyOS ap
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.3 "><p id="p139324438515"><a name="p139324438515"></a><a name="p139324438515"></a><strong id="b169321543175116"><a name="b169321543175116"></a><a name="b169321543175116"></a>X</strong></p>
 </td>
 </tr>
-<tr id="row15269933419"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p152318351369"><a name="p152318351369"></a><a name="p152318351369"></a>Using DevEco Studio for debugging, log viewing, and optimization</p>
+<tr id="row15269933419"><td class="cellrowborder" valign="top" width="29.882988298829883%" headers="mcps1.1.4.1.1 "><p id="p152318351369"><a name="p152318351369"></a><a name="p152318351369"></a>Using DevEco Studio for log viewing and optimization</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.783678367836785%" headers="mcps1.1.4.1.2 "><p id="p623118353360"><a name="p623118353360"></a><a name="p623118353360"></a><strong id="b10231535143615"><a name="b10231535143615"></a><a name="b10231535143615"></a>√</strong></p>
 </td>

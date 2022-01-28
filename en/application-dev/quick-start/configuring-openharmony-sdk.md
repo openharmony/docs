@@ -1,5 +1,13 @@
 # Configuring the OpenHarmony SDK<a name="EN-US_TOPIC_0000001113561194"></a>
 
+-   [Prerequisites](#section164161442154812)
+-   [Configuring the SDK Information](#section1265592425017)
+-   [References](#section0384143616409)
+    -   [Setting Up the DevEco Studio Proxy](#section10129720184214)
+    -   [Setting Up the npm Proxy](#section19984059114316)
+    -   [Setting Up the Gradle Proxy](#section164211820465)
+
+
 To set up the OpenHarmony app development environment, configure the corresponding SDK information in DevEco Studio first.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
@@ -22,11 +30,16 @@ DevEco Studio manages SDKs and toolchains using SDK Manager. OpenHarmony contain
 </th>
 </tr>
 </thead>
-<tbody><tr id="row44334409916"><td class="cellrowborder" valign="top" width="24.709999999999997%" headers="mcps1.1.4.1.1 "><p id="p88381448125813"><a name="p88381448125813"></a><a name="p88381448125813"></a>SDK</p>
+<tbody><tr id="row44334409916"><td class="cellrowborder" rowspan="2" valign="top" width="24.709999999999997%" headers="mcps1.1.4.1.1 "><p id="p88381448125813"><a name="p88381448125813"></a><a name="p88381448125813"></a>SDK</p>
 </td>
 <td class="cellrowborder" valign="top" width="25.3%" headers="mcps1.1.4.1.2 "><p id="p1946175813574"><a name="p1946175813574"></a><a name="p1946175813574"></a>JS</p>
 </td>
 <td class="cellrowborder" valign="top" width="49.99%" headers="mcps1.1.4.1.3 "><p id="p54625885713"><a name="p54625885713"></a><a name="p54625885713"></a>SDK for JS.</p>
+</td>
+</tr>
+<tr id="row12199716103617"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p9200131683616"><a name="p9200131683616"></a><a name="p9200131683616"></a>eTS</p>
+</td>
+<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p523912359172"><a name="p523912359172"></a><a name="p523912359172"></a>SDK for Extended TypeScript (eTS).</p>
 </td>
 </tr>
 <tr id="row14474585576"><td class="cellrowborder" rowspan="2" valign="top" width="24.709999999999997%" headers="mcps1.1.4.1.1 "><p id="p124765819578"><a name="p124765819578"></a><a name="p124765819578"></a>SDK Tool</p>
@@ -61,9 +74,6 @@ DevEco Studio manages SDKs and toolchains using SDK Manager. OpenHarmony contain
 
 4.  On the  **Settings Confirmation**  page, click  **Next**. When the  **License Agreement**  dialog box appears, click  **Accept**.
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >If the message "Install js dependencies failed." is displayed during SDK download, follow the FAQ about the  [JS SDK Installation Failure](https://developer.harmonyos.com/en/docs/documentation/doc-guides/faq-development-environment-0000001168829643#section1311117111474)  to troubleshoot.
-
     ![](figures/en-us_image_0000001163472654.png)
 
 5.  After the OpenHarmony SDK and tools are downloaded, click  **Finish**  to access the DevEco Studio welcome page.
@@ -79,7 +89,7 @@ Generally, only some enterprise networks rather than personal area networks or h
 
 If you are using DevEco Studio for the first time and the  **Set up HTTP Proxy**  page is displayed, it indicates that your network requires a proxy. In this case, set up the DevEco Studio proxy, npm proxy, and Gradle proxy.
 
-![](figures/en-us_image_0000001123021842.png)
+![](figures/en-us_image_0000001166582138.png)
 
 ### Setting Up the DevEco Studio Proxy<a name="section10129720184214"></a>
 
@@ -87,8 +97,8 @@ If you are using DevEco Studio for the first time and the  **Set up HTTP Proxy**
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
     >If this is not the first time you are using DevEco Studio:
-    >-   On the welcome page, choose  **Configure**  \(or the  ![](figures/en-us_image_0000001122862128.png)  icon\) \>  **Settings**  \>  **Appearance & Behavior**  \>  **System Settings**  \>  **HTTP Proxy**  to access the HTTP proxy settings. \(For macOS, choose  **Configure**  \>  **Preferences**  \>  **Appearance & Behavior**  \>  **System Settings**  \>  **HTTP Proxy**.\)
-    >-   When on a project page, choose  **File**  \>  **Settings**  \>  **Appearance & Behavior**  \>  **System Settings**  \>  **HTTP Proxy**  to access the HTTP proxy settings. \(For macOS, choose  **DevEco Studio**  \>  **Preferences**  \>  **Appearance & Behavior**  \>  **System Settings**  \>  ** HTTP Proxy**.\)
+    >-   On the welcome page, choose  **Configure**  \(or  ![](figures/en-us_image_0000001212142015.png)\)** \> Settings \> Appearance & Behavior \> System Settings \> HTTP Proxy**  to access the HTTP Proxy settings. \(For macOS, choose  **Configure \> Preferences \> Appearance & Behavior \> System Settings \> HTTP Proxy**.\)
+    >-   When on a project page, choose  **File \> Settings \> Appearance & Behavior \> System Settings \> HTTP Proxy**  to access the HTTP Proxy settings. \(For macOS, choose  **DevEco Studio \> Preferences \> Appearance & Behavior \> System Settings \> HTTP Proxy**.\)
 
     -   **HTTP**  parameters:  **If you are not sure about the information, contact your network administrator.**
         -   **Host name**: Enter the host name or IP address of the proxy server.
@@ -100,9 +110,9 @@ If you are using DevEco Studio for the first time and the  **Set up HTTP Proxy**
         -   **Password**: Enter the password used to access the proxy server.
         -   **Remember**: Select this option to remember the password.
 
-    ![](figures/en-us_image_0000001123021962.png)
+    ![](figures/en-us_image_0000001212062065.png)
 
-2.  When you have finished, click  **Check connection**  and enter a URL \(for example,  **https://developer.harmonyos.com**\) to check the network connectivity. If the message "Connection successful" is displayed, it indicates that the proxy was set up successfully.
+2.  When you have finished, click  **Check connection**  and enter a URL to check the network connectivity. If the message "Connection successful" is displayed, it indicates that the proxy was set up successfully.
 3.  Click  **Next: Configure npm**  to set up the npm proxy. For details, see  [Setting Up the npm Proxy](#section19984059114316).
 
 ### Setting Up the npm Proxy<a name="section19984059114316"></a>
@@ -153,13 +163,13 @@ If your proxy server requires the user name and password for authentication, set
 
 4.  When you are done, follow the instructions in  [Configuring the SDK Information](#section1265592425017).
 
-### Setting up the Gradle Proxy<a name="section164211820465"></a>
+### Setting Up the Gradle Proxy<a name="section164211820465"></a>
 
 1.  Open  **This PC**, and enter  **%userprofile%**  in the address box to access the user profile. \(For macOS, choose  **Go**  \>  **Home**.\)
 
-    ![](figures/en-us_image_0000001123024482.png)
+    ![](figures/en-us_image_0000001166740700.png)
 
-2.  Create a  **.gradle.**  folder if there is none.
+2.  Create a  **.gradle**  folder if there is none.
 
     >![](../public_sys-resources/icon-note.gif) **NOTE:** 
     >Before creating a  **.gradle**  folder in macOS, set the system to show hidden files.
