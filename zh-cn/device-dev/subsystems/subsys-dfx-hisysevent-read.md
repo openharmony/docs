@@ -118,59 +118,69 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 本实例介绍如何订阅domain=HIVIEWDFX的所有系统事件。
 
-1.  源代码开发：
+1.  编译设置：
 
-    -   引入对应的头文件：
-
-        hisysevent\_manager.h。
-
-    -   实现回调接口：
-
-        HiSysEventSubscribeCallBackBase::OnHandle\(const std::string& domain, const std::string& eventName, const int eventType, const std::string& eventDetail\)。
-
-    -   注册回调对象：
-
-        HiSysEventManager::AddEventListener\(std::shared\_ptr<HiSysEventSubscribeCallBackBase\> listener, std::vector<ListenerRule\>& rules\)。
-
+    -   在编译配置文件中添加对hisysevent\_native部件的libhisyseventmanager库的依赖。
 
     ```
-    #include "hisysevent_manager.h"
-    #include <iostream>
-    namespace OHOS {
-    namespace HiviewDFX {
-    // 实现订阅回调对象的接口
-    void HiSysEventToolListener::OnHandle(const std::string& domain, const std::string& eventName,
+    external_deps = [ "hisysevent_native:libhisyseventmanager",  ]
+    ```
+
+
+2.  源代码开发：
+
+    -   自定义订阅回调实现类DemoListener, 引入hisysevent\_manager.h头文件，：
+
+    ```
+    #ifndef DEMO_LISTENER_H
+    #define DEMO_LISTENER_H
+
+    #include "hisysevent_subscribe_callback_native.h"
+
+    #include <string>
+
+    class DemoListener : public OHOS::HiviewDFX::HiSysEventSubscribeCallBackNative {
+    public:
+        explicit DemoListener() : HiSysEventSubscribeCallBackNative() {}
+        void OnHandle(const std::string& domain, const std::string& eventName, const int eventType,
+            const std::string& eventDetail);
+        virtual ~DemoListener() {}
+        void OnServiceDied();
+    };
+    ```
+
+    -   实现订阅回调接口：
+
+    ```
+	#include "demo_listener.h"
+	
+	#include <iostream>
+	
+    void DemoListener::OnHandle(const std::string& domain, const std::string& eventName,
         const int eventType, const std::string& eventDetail)
     {
         std::cout << eventDetail << std::endl;
     }
-    
-    void HiSysEventToolListener::OnServiceDied()
+
+    void DemoListener::OnServiceDied()
     {
         std::cout << std::string("service disconnect, exit") << std::endl;
         exit(0);
     }
-    } // namespace HiviewDFX
-    } // namespace OHOS
-    
-    // 调用订阅接口注册开发实现的订阅对象
-    auto toolListener = std::make_shared<HiSysEventToolListener>();
-    ListenerRule tagRule("dfx"); // 事件标签规则订阅，规则类型默认的全词匹配类型
-    ListenerRule regRule("dfx.*", RuleType::REGULAR); // 事件标签规则订阅，规则类型为正则匹配类型
+    ```
+
+    -   通过HiSysEventManager类提供的AddEventListener接口注册回调对象：
+
+    ```
+	auto demoListener = std::make_shared<DemoListener>();
+	ListenerRule tagRule("dfx"); // 事件标签规则订阅，规则类型默认的全词匹配类型
+	ListenerRule regRule("dfx.*", RuleType::REGULAR); // 事件标签规则订阅，规则类型为正则匹配类型
     ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX); // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
     std::vector<ListenerRule> sysRules;
     sysRules.push_back(tagRule);
     sysRules.push_back(regRule);
     sysRules.push_back(domainNameRule);
-    HiSysEventManager::AddEventListener(toolListener, sysRules);
-    ```
-
-2.  编译设置：
-
-    在BUILD.gn编译文件中，需要添加依赖hisysevent\_native部件的libhisyseventmanager库。
-
-    ```
-    external_deps = [ "hisysevent_native:libhisyseventmanager",  ]
+    HiSysEventManager::AddEventListener(demoListener, sysRules);
     ```
 
 
