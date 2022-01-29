@@ -10,6 +10,6 @@
 -   [OpenHarmony v1.1.3 LTS (2021-09-30)](OpenHarmony-v1-1-3-LTS.md)
 -   [OpenHarmony v1.1.2 LTS (2021-08-04)](OpenHarmony-v1.1.2-LTS.md)
 -   [OpenHarmony 1.1.1 LTS (2021-06-22)](OpenHarmony-1-1-1-LTS.md)
--   [OpenHarmony 1.1.0 LTS (2021-04-01)](openharmony-1-1-0-LTS.md)
+-   [OpenHarmony 1.1.0 LTS (2021-04-01)](OpenHarmony-1-1-0-LTS.md)
 -   [OpenHarmony 1.0 (2020-09-10)](OpenHarmony-1-0.md)
 

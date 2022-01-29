@@ -4,7 +4,7 @@
 - [Version Mapping](#Version-Mapping)
 - [Source Code Acquisition](#Source-Code-Acquisition)
   - [Acquiring Source Code Using the repo Tool](#Acquiring-Source-Code-Using-the-repo-Tool)
-  - [Acquiring Source Code from a Mirror](#Acquiring-Source-Code-from-a-Mirror)
+  - [Acquiring Source Code from Mirrors](#Acquiring-Source-Code-from-Mirrors)
 - [What's New](#What-Is-New)
   - [Feature Updates](#Feature-Updates)
   - [API Updates](#API-Updates)
@@ -68,7 +68,7 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-### Acquiring Source Code from a Mirror
+### Acquiring Source Code from Mirrors
 
 **Table 2** Mirrors for acquiring source code
 

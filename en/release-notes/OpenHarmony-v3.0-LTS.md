@@ -84,11 +84,11 @@ repo forall -c 'git lfs pull'
 ```
 
 
-### Acquiring Source Code from an Image Site
+### Acquiring Source Code from Mirrors
 
-**Table 2** Sites for acquiring source code
+**Table 2** Mirrors for acquiring source code
 
-| LTS&nbsp;Code | Version&nbsp;Information | Site | SHA-256&nbsp;Verification&nbsp;Code | 
+| LTS&nbsp;Code | Version&nbsp;Information | Mirror | SHA-256 Checksum | 
 | -------- | -------- | -------- | -------- |
 | Full&nbsp;code&nbsp;(for&nbsp;mini,&nbsp;small,&nbsp;and&nbsp;standard&nbsp;systems) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz.sha256) | 
 | Standard&nbsp;system&nbsp;solution&nbsp;(binary) | 3.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz.sha256) | 
