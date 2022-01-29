@@ -1,6 +1,6 @@
 # USB<a name="EN-US_TOPIC_0000001221951993"></a>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>**NOTE:** 
 >The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="section290293011431"></a>
@@ -1430,4 +1430,3 @@ Enumerates request directions.
 </tr>
 </tbody>
 </table>
-

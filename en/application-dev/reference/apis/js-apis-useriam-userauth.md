@@ -1,6 +1,6 @@
 # User Authentication<a name="EN-US_TOPIC_0000001189766193"></a>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>**NOTE:** 
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Applicable Devices<a name="section16881239114912"></a>
@@ -887,4 +887,3 @@ Enumerates the tip codes generated during the authentication process.
 </tr>
 </tbody>
 </table>
-
