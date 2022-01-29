@@ -271,13 +271,13 @@ EVENT_NAMEB:
 <p id="p877916558213"><a name="p877916558213"></a><a name="p877916558213"></a>--yaml-list</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-<p id="p14727325133218"><a name="p14727325133218"></a><a name="p14727325133218"></a>指定需要编译的yaml文件路径列表 多个yaml文件路径之间用空格分隔</p>
+<p id="p14727325133218"><a name="p14727325133218"></a><a name="p14727325133218"></a>指定需要编译的yaml文件路径列表，多个yaml文件路径之间用空格分隔。</p>
 </td><tr id="row16441155832499">
 <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
 <p id="p877916421213"><a name="p877916421213"></a><a name="p877916421213"></a>--def-path</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-<p id="p14727323533218"><a name="p14727323533218"></a><a name="p14727323533218"></a>指定编译生成的hisysevent.def文件的生成路径</p>
+<p id="p14727323533218"><a name="p14727323533218"></a><a name="p14727323533218"></a>指定编译生成的hisysevent.def文件的生成路径。</p>
 </td>
 </tr>
 </tbody>
