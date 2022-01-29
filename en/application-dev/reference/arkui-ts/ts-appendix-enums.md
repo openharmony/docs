@@ -1,4 +1,4 @@
-# Built-in Enums<a name="EN-US_TOPIC_0000001111421446"></a>
+# Built-in Enums<a name="EN-US_TOPIC_0000001237715093"></a>
 
 ## Alignment Enums<a name="section1145418513159"></a>
 
@@ -52,6 +52,28 @@
 <tr id="row47413343231"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="p197417348233"><a name="p197417348233"></a><a name="p197417348233"></a>BottomEnd</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="p27411434112313"><a name="p27411434112313"></a><a name="p27411434112313"></a>Bottom end.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+## Axis enums<a name="section1397918486200"></a>
+
+<a name="table1997916485207"></a>
+<table><thead align="left"><tr id="row17979154832018"><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p id="p99791648142018"><a name="p99791648142018"></a><a name="p99791648142018"></a>Name</p>
+</th>
+<th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p id="p3979174817207"><a name="p3979174817207"></a><a name="p3979174817207"></a>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr id="row20979648122015"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p19979194812011"><a name="p19979194812011"></a><a name="p19979194812011"></a>Vertical</p>
+</td>
+<td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p797913487204"><a name="p797913487204"></a><a name="p797913487204"></a>Vertical direction.</p>
+</td>
+</tr>
+<tr id="row10979184822017"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p29798488209"><a name="p29798488209"></a><a name="p29798488209"></a>Horizontal</p>
+</td>
+<td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p109791248102011"><a name="p109791248102011"></a><a name="p109791248102011"></a>Horizontal direction.</p>
 </td>
 </tr>
 </tbody>

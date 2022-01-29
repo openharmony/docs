@@ -59,7 +59,7 @@ export default {
 }
 ```
 
-![](figures/5-9.gif)
+![](figures/5-5.gif)
 
 ## Setting Dialog Box Response<a name="section15709114251818"></a>
 

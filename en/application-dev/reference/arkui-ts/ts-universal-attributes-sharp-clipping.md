@@ -1,4 +1,13 @@
-# Shape Clipping<a name="EN-US_TOPIC_0000001128996148"></a>
+# Shape Clipping<a name="EN-US_TOPIC_0000001237555111"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table146051414275"></a>
 <table><thead align="left"><tr id="row668017152712"><th class="cellrowborder" valign="top" width="14.19%" id="mcps1.1.5.1.1"><p id="p668014113277"><a name="p668014113277"></a><a name="p668014113277"></a>Name</p>

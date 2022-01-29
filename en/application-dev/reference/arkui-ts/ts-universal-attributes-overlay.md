@@ -1,4 +1,13 @@
-# Overlay<a name="EN-US_TOPIC_0000001154905728"></a>
+# Overlay<a name="EN-US_TOPIC_0000001237355073"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table3548mcpsimp"></a>
 <table><thead align="left"><tr id="row3556mcpsimp"><th class="cellrowborder" valign="top" width="15.120000000000001%" id="mcps1.1.5.1.1"><p id="p3558mcpsimp"><a name="p3558mcpsimp"></a><a name="p3558mcpsimp"></a>Name</p>
@@ -44,7 +53,7 @@ struct OverlayExample {
         Column() {
           Image($r('app.media.img'))
             .width(240).height(240)
-            .overlay("Don't walk and play with your phone.", { align: Alignment.Bottom, offset: { x: 0, y: -15 } })
+            .overlay("Winter is a beautiful season, especially when it snows.", { align: Alignment.Bottom, offset: { x: 0, y: -15 } })
         }.border({ color: Color.Black, width: 2 })
       }.width('100%')
     }.padding({ top: 20 })
@@ -52,5 +61,5 @@ struct OverlayExample {
 }
 ```
 
-![](figures/overlay.gif)
+![](figures/en-us_image_0000001194911566.png)
 

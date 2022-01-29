@@ -1,11 +1,11 @@
 # animateMotion<a name="EN-US_TOPIC_0000001173324621"></a>
 
-The  **<animateMotion\>**  component is used to apply the path animation.
+The  **<animateMotion\>**  component is used to define the animation along a path.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The APIs of this module are supported since API version 7.
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -90,5 +90,5 @@ The  **animate**  attributes \(**values**  does not take effect\) and the attrib
 </div>
 ```
 
-![](figures/2-46.gif)
+![](figures/2-11.gif)
 

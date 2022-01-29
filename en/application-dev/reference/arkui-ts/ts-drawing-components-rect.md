@@ -1,6 +1,13 @@
-# Rect<a name="EN-US_TOPIC_0000001119767798"></a>
+# Rect<a name="EN-US_TOPIC_0000001192755114"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Rect\>**  component is used to draw a rectangle.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section172855459342"></a>
 

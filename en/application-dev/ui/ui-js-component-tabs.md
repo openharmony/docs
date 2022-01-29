@@ -42,7 +42,7 @@ Create a  **<tabs\>**  component in the  **.hml**  file under  **pages/index**.
 }
 ```
 
-![](figures/3-13.gif)
+![](figures/3-9.gif)
 
 ## Setting the Tabs Orientation<a name="section1696313408199"></a>
 
@@ -146,7 +146,7 @@ Set the background color, border, and tab-content layout of the  **<tabs\>**  co
 }
 ```
 
-![](figures/31-14.gif)
+![](figures/31.gif)
 
 ## Displaying the Tab Index<a name="section331041121215"></a>
 
@@ -187,6 +187,7 @@ export default {
 ![](figures/32.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>
 >-   A  **<tabs\>**  can wrap at most one  [**<tab-bar\>**](../reference/arkui-js/js-components-container-tab-bar.md)  and at most one  [**<tab-content\>**](../reference/arkui-js/js-components-container-tab-content.md).
 
 ## Example Scenario<a name="section1117302718531"></a>

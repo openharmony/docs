@@ -1,19 +1,28 @@
-# Key Event<a name="EN-US_TOPIC_0000001167303697"></a>
+# Key Event<a name="EN-US_TOPIC_0000001192915122"></a>
 
-<a name="table2154mcpsimp"></a>
-<table><thead align="left"><tr id="row2160mcpsimp"><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.5.1.1"><p id="p2164mcpsimp"><a name="p2164mcpsimp"></a><a name="p2164mcpsimp"></a>Name</p>
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Events<a name="section2158223135910"></a>
+
+<a name="table1721263545919"></a>
+<table><thead align="left"><tr id="row1021273545912"><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.5.1.1"><p id="p8212635135919"><a name="p8212635135919"></a><a name="p8212635135919"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.2"><p id="p11204193417499"><a name="p11204193417499"></a><a name="p11204193417499"></a>Bubble Supported</p>
+<th class="cellrowborder" valign="top" id="mcps1.1.5.1.2"><p id="p1321253510597"><a name="p1321253510597"></a><a name="p1321253510597"></a>Bubble Supported</p>
 </th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.3"><p id="p2166mcpsimp"><a name="p2166mcpsimp"></a><a name="p2166mcpsimp"></a>Description</p>
+<th class="cellrowborder" valign="top" id="mcps1.1.5.1.3"><p id="p1421211354599"><a name="p1421211354599"></a><a name="p1421211354599"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2167mcpsimp"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p id="p1458682911559"><a name="p1458682911559"></a><a name="p1458682911559"></a>onKeyEvent(event: (event?: KeyEvent) =&gt; void)</p>
+<tbody><tr id="row112122035115916"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p id="p1221214357594"><a name="p1221214357594"></a><a name="p1221214357594"></a>onKeyEvent(event: (event?: KeyEvent) =&gt; void)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p id="p13204434194919"><a name="p13204434194919"></a><a name="p13204434194919"></a>Yes</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p id="p102121035145917"><a name="p102121035145917"></a><a name="p102121035145917"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p id="p2173mcpsimp"><a name="p2173mcpsimp"></a><a name="p2173mcpsimp"></a>Called when a key event occurs. For details about the event parameters, see <a href="#section3668926124018">KeyEvent Object</a>.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p id="p22121535105920"><a name="p22121535105920"></a><a name="p22121535105920"></a>Called when a key event occurs. For details about the event parameters, see <a href="#section3668926124018">KeyEvent Object</a>.</p>
 </td>
 </tr>
 </tbody>

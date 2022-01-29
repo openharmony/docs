@@ -57,15 +57,15 @@ export default {
 }
 ```
 
-![](figures/1-19.gif)
+![](figures/1-14.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   When using the  **animate**  method, you must pass the  [Keyframes](../reference/arkui-js/js-components-common-methods.md#table1491078445)  and  [Options](../reference/arkui-js/js-components-common-methods.md#table587915341817)  parameters.
->-   If  **animate**  is called for multiple times and the replace policy is used, parameters passed to the last call will take effect.
+>-   When using the  **animate**  method, you must pass the  keyframes  and  options  parameters.
+>-   If  **animate**  is called multiple times and the  **replace**  policy is used, parameters passed to the last call will take effect.
 
 ## Setting Animation Parameters<a name="section36079502817"></a>
 
-After obtaining an  **animation**  object, you can set its style working on the component with the  [Keyframes](../reference/arkui-js/js-components-common-methods.md#table1491078445)  parameter.
+After obtaining an  **animation**  object, you can set its style working on the component by using the  keyframes  parameter.
 
 ```
 <!-- xxx.hml -->
@@ -134,13 +134,13 @@ export default {
 }
 ```
 
-![](figures/1-20.gif)
+![](figures/1-15.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   The sequence of  **translate**,  **scale**, and  **rotate**  affects the animation effect.
 >-   **transformOrigin**  works only for  **scale**  and  **rotate**.
 
-Set the animation attributes with the  [Options](../reference/arkui-js/js-components-common-methods.md#table587915341817)  parameter.
+Set the animation attributes by using the options parameter.
 
 ```
 <!-- xxx.hml -->
@@ -201,18 +201,18 @@ export default {
 }
 ```
 
-![](figures/3-21.gif)
+![](figures/3-16.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >**direction**: mode of playing the animation.
 >**normal**: plays the animation in forward loop mode.
 >**reverse**: plays the animation in reverse loop mode.
 >**alternate**: plays the animation in alternating loop mode. When the animation is played for an odd number of times, the playback is in forward direction. When the animation is played for an even number of times, the playback is in reverse direction.
->**alternate-reverse**: plays the animation in reverse-alternating loop mode. When the animation is played for an odd number of times, the playback is in reverse direction. When the animation is played for an even number of times, the playback is in forward direction.
+>**alternate-reverse**: plays the animation in reverse alternating loop mode. When the animation is played for an odd number of times, the playback is in reverse direction. When the animation is played for an even number of times, the playback is in forward direction.
 
 ## Adding an Event and Calling a Method<a name="section950105162810"></a>
 
-Animation objects support animation events and methods. You can achieve the intended animation by adding start and cancel events and calling the play, pause, rewind, and stop methods.
+Animation objects support animation events and methods. You can achieve the intended animation by adding  **start**  and  **cancel**  events and calling the  **play**,  **pause**,  **rewind**, and  **stop**  methods.
 
 ```
 <!-- xxx.hml -->
@@ -336,7 +336,7 @@ export default {
 }
 ```
 
-![](figures/111-22.gif)
+![](figures/111-17.gif)
 
 Change the animation status by changing the  **playStat**  attribute.
 

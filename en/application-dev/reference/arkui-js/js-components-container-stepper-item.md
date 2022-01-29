@@ -2,18 +2,15 @@
 
 The  **<stepper-item\>**  component displays a step in the step navigator. This component is the child component of  **<stepper\>**.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
-
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -90,7 +87,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section1326042123512"></a>
+## Styles<a name="section1326042123512"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -171,7 +168,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p198071106919"><a name="p198071106919"></a><a name="p198071106919"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p169212584815"><a name="p169212584815"></a><a name="p169212584815"></a>Text modifier. Available values are as follows:</p>
+<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p169212584815"><a name="p169212584815"></a><a name="p169212584815"></a>Text decoration. Available values are as follows:</p>
 <a name="ul1768145382318"></a><a name="ul1768145382318"></a><ul id="ul1768145382318"><li><strong id="b1627816474112"><a name="b1627816474112"></a><a name="b1627816474112"></a>underline</strong>: An underline is used.</li><li><strong id="b245013501810"><a name="b245013501810"></a><a name="b245013501810"></a>line-through</strong>: A strikethrough is used.</li><li><strong id="b27555510116"><a name="b27555510116"></a><a name="b27555510116"></a>none</strong>: The standard text is used.</li></ul>
 </td>
 </tr>
@@ -193,7 +190,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 >-   Height and width styles are not supported. The width of each item is the same as that of its container. The height of each item is the difference between the container height and the bottom button height.
 >-   The  **posit**  style is not supported.
 
-## Event<a name="section121081858163714"></a>
+## Events<a name="section121081858163714"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -223,11 +220,11 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are not supported.
 
-## Example Code<a name="section10326712123215"></a>
+## Example<a name="section10326712123215"></a>
 
 For details, see the  [stepper example code](js-components-container-stepper.md).
 

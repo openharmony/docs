@@ -1,4 +1,11 @@
-# TapGesture<a name="EN-US_TOPIC_0000001159258799"></a>
+# TapGesture<a name="EN-US_TOPIC_0000001237475081"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
 
 ## APIs<a name="section11129153920518"></a>
 
@@ -59,13 +66,18 @@ TapGesture\(options?: \{ count?: number, fingers?: number \}\)
 </th>
 </tr>
 </thead>
-<tbody><tr id="row4541257114319"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p5541357194313"><a name="p5541357194313"></a><a name="p5541357194313"></a>onAction((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tbody><tr id="row4541257114319"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p5541357194313"><a name="p5541357194313"></a><a name="p5541357194313"></a>onAction((event?: <a href="#li21621335144710">TapGestureEvent</a>) =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p11541155710434"><a name="p11541155710434"></a><a name="p11541155710434"></a>Callback invoked when a tap gesture is recognized.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
+-   <a name="li21621335144710"></a>TapGestureEvent attributes<sup>8+</sup>
+
+    Inherited from  [GestureEvent](ts-gesture-settings.md#table290mcpsimp).
+
 
 ## Example<a name="section16900453182718"></a>
 

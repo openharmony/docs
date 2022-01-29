@@ -1,12 +1,19 @@
-# Counter<a name="EN-US_TOPIC_0000001169265275"></a>
+# Counter<a name="EN-US_TOPIC_0000001193075082"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Counter\>**  component provides an operation to increase or decrease the number.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section5989144051714"></a>
 
 This component can contain child components.
 
-## API<a name="section14196162892911"></a>
+## APIs<a name="section14196162892911"></a>
 
 Counter\(\)
 
@@ -21,12 +28,12 @@ Universal events and gestures are not supported. Only the events listed below ar
 </th>
 </tr>
 </thead>
-<tbody><tr id="row124407372409"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p18440143716402"><a name="p18440143716402"></a><a name="p18440143716402"></a>onInc(callback: () =&gt; void)</p>
+<tbody><tr id="row124407372409"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p18440143716402"><a name="p18440143716402"></a><a name="p18440143716402"></a>onInc(event: () =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p144407372407"><a name="p144407372407"></a><a name="p144407372407"></a>Event indicating that the number of monitored objects is increased.</p>
 </td>
 </tr>
-<tr id="row844013754010"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p244016375402"><a name="p244016375402"></a><a name="p244016375402"></a>onDec(callback: () =&gt; void)</p>
+<tr id="row844013754010"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p244016375402"><a name="p244016375402"></a><a name="p244016375402"></a>onDec(event: () =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1744012372402"><a name="p1744012372402"></a><a name="p1744012372402"></a>Event indicating that the number of monitored objects is decreased.</p>
 </td>

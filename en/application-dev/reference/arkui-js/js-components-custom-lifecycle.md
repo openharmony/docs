@@ -1,7 +1,7 @@
 # Lifecycle Definition<a name="EN-US_TOPIC_0000001127125084"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
+>This component is supported since API version 5. Updates will be marked with a superscript to indicate their earliest API version.
 
 We provide a range of lifecycle callbacks for custom components, including  **onInit**,  **onAttached**,  **onDetached**,  **onLayoutReady**,  **onDestroy**,  **onPageShow**, and  **onPageHide**. You can use these callbacks to manage the internal logic of your custom components. The following describes the times when the lifecycle callbacks are invoked.
 

@@ -1,10 +1,10 @@
 # Overview<a name="EN-US_TOPIC_0000001192705715"></a>
 
-The TypeScript-based declarative development paradigm of ArkUI is a simplified, high-performance UI development framework for cross-device applications.
+The TypeScript-based declarative development paradigm of  ArkUI is a simplified, high-performance UI development framework for cross-device applications on OpenHarmony.
 
 ## Basic Capabilities<a name="section10519124516264"></a>
 
-In ArkUI that uses the TypeScript-based declarative development paradigm, the programming mode is closer to natural semantics. You can intuitively describe the UI without caring about how the framework implements UI drawing and rendering, leading to simplified and efficient development. The UI capabilities are provided from three dimensions: component, animation, and state management. It also provides system capability APIs to allow for effortless invocation of system capabilities.
+In  ArkUI that uses the TypeScript-based declarative development paradigm, the programming mode is closer to natural semantics. You can intuitively describe the UI without caring about how the framework implements UI drawing and rendering, leading to simplified and efficient development. The UI capabilities are provided from three dimensions: component, animation, and state management. System capability APIs are also provided to allow for effortless invocation of system capabilities.
 
 -   **Out-of-the-box components**
 
@@ -23,7 +23,7 @@ In ArkUI that uses the TypeScript-based declarative development paradigm, the pr
 
 -   **System capability APIs**
 
-    Development is never so easy, with a diverse array of encapsulated system capability APIs, from UI design to system capability invoking.
+    Development has never been so easy, with a diverse array of encapsulated system capability APIs, from UI design to system capability invoking.
 
 
 ## Overall Architecture<a name="section11428133282710"></a>

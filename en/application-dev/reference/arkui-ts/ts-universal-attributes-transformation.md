@@ -1,4 +1,13 @@
-# Transformation<a name="EN-US_TOPIC_0000001119769150"></a>
+# Transformation<a name="EN-US_TOPIC_0000001237355071"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table2999mcpsimp"></a>
 <table><thead align="left"><tr id="row3007mcpsimp"><th class="cellrowborder" valign="top" width="13.87%" id="mcps1.1.5.1.1"><p id="p3009mcpsimp"><a name="p3009mcpsimp"></a><a name="p3009mcpsimp"></a>Name</p>
@@ -125,5 +134,5 @@ struct TransformExample {
 }
 ```
 
-![](figures/1111-59.png)
+![](figures/1111.png)
 

@@ -37,3 +37,29 @@
 </tbody>
 </table>
 
+## Example<a name="section3302437114813"></a>
+
+```
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+</div>
+```
+
+```
+//xxx.js
+import prompt from '@system.prompt';
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.fillRect(0,0,200,200)
+    var imageData = ctx.createImageData(1,1)
+    prompt.showToast({
+      message:imageData,
+      duration:5000
+    })
+  }
+}
+```
+

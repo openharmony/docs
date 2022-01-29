@@ -1,6 +1,13 @@
-# Slider<a name="EN-US_TOPIC_0000001196785701"></a>
+# Slider<a name="EN-US_TOPIC_0000001193075098"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Slider\>**  component is used to quickly adjust settings, such as the volume and brightness.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
 
 ## Child Components<a name="section53281531154915"></a>
 
@@ -8,7 +15,7 @@ None
 
 ## APIs<a name="section1989913519718"></a>
 
-Slider\(value:\{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle\}\)
+Slider\(value:\{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis\}\)
 
 -   Parameters
 
@@ -75,9 +82,20 @@ Slider\(value:\{value?: number, min?: number, max?: number, step?: number, style
     </td>
     <td class="cellrowborder" valign="top" width="11.99%" headers="mcps1.1.6.1.3 "><p id="p23195591625"><a name="p23195591625"></a><a name="p23195591625"></a>No</p>
     </td>
-    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p id="p1031915594211"><a name="p1031915594211"></a><a name="p1031915594211"></a>Outset</p>
+    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p id="p1031915594211"><a name="p1031915594211"></a><a name="p1031915594211"></a>SliderStyle.OutSet</p>
     </td>
     <td class="cellrowborder" valign="top" width="46.18%" headers="mcps1.1.6.1.5 "><p id="p14319959825"><a name="p14319959825"></a><a name="p14319959825"></a>Style of the slider.</p>
+    </td>
+    </tr>
+    <tr id="row12196385536"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p673310695318"><a name="p673310695318"></a><a name="p673310695318"></a>direction<sup id="sup147861551955"><a name="sup147861551955"></a><a name="sup147861551955"></a>8+</sup></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p id="p673376125316"><a name="p673376125316"></a><a name="p673376125316"></a><a href="ts-appendix-enums.md#section1397918486200">Axis</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="11.99%" headers="mcps1.1.6.1.3 "><p id="p27331261536"><a name="p27331261536"></a><a name="p27331261536"></a>No</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p id="p273311617538"><a name="p273311617538"></a><a name="p273311617538"></a>Axis.Horizontal</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="46.18%" headers="mcps1.1.6.1.5 "><p id="p27331563533"><a name="p27331563533"></a><a name="p27331563533"></a>Whether the slider moves horizontally or vertically.</p>
     </td>
     </tr>
     </tbody>
@@ -107,6 +125,8 @@ Slider\(value:\{value?: number, min?: number, max?: number, step?: number, style
 
 
 ## Attributes<a name="section18430105671014"></a>
+
+Touch target configuration is not supported.
 
 <a name="table181736291110"></a>
 <table><thead align="left"><tr id="row1117442161117"><th class="cellrowborder" valign="top" width="18.72%" id="mcps1.1.5.1.1"><p id="p2017411217117"><a name="p2017411217117"></a><a name="p2017411217117"></a>Name</p>
@@ -224,6 +244,8 @@ Among all the universal events, only  **OnAppear**  and  **OnDisAppear**  are su
 struct SliderExample {
   @State outSetValue: number = 40
   @State inSetValue: number = 40
+  @State outVerticalSetValue: number = 40
+  @State inVerticalSetValue: number = 40
 
   build() {
     Column({ space: 5 }) {
@@ -271,10 +293,57 @@ struct SliderExample {
         Text(this.inSetValue.toFixed(0)).fontSize(16)
       }
       .width('80%')
+
+      Row() {
+        Column() {
+          Text('slider out direction set').fontSize(9).fontColor(0xCCCCCC).width('50%')
+          Slider({
+            value: this.outVerticalSetValue,
+            min: 0,
+            max: 100,
+            step: 1,
+            style: SliderStyle.OutSet,
+            direction: Axis.Vertical
+          })
+          .blockColor(Color.Blue)
+          .trackColor(Color.Gray)
+          .selectedColor(Color.Blue)
+          .showSteps(true)
+          .showTips(true)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.outVerticalSetValue = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+          Text(this.outVerticalSetValue.toFixed(0)).fontSize(16)
+        }.width('50%').height(300)
+
+        Column() {
+          Text('slider in direction set').fontSize(9).fontColor(0xCCCCCC).width('50%')
+          Slider({
+            value: this.inVerticalSetValue,
+            min: 0,
+            max: 100,
+            step: 1,
+            style: SliderStyle.InSet,
+            direction: Axis.Vertical
+          })
+          .blockColor(0xCCCCCC)
+          .trackColor(Color.Black)
+          .selectedColor(0xCCCCCC)
+          .showSteps(false)
+          .showTips(false)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.inVerticalSetValue = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+          Text(this.inVerticalSetValue.toFixed(0)).fontSize(16)
+        }.width('50%').height(300)
+      }
+
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![](figures/sider.gif)
+![](figures/slider.gif)
 

@@ -1,11 +1,11 @@
 # tspan<a name="EN-US_TOPIC_0000001173324671"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The APIs of this module are supported since API version 7.
+>-   This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >-   The text content must be written in the content area. The  **<tspan\>**  child component can be nested.
 >-   **<tspan\>**  can be nested only by the parent element label  **svg**.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -124,7 +124,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p324614367213"><a name="p324614367213"></a><a name="p324614367213"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>Transparency of an element. The value ranges from <strong id="b146141522124413"><a name="b146141522124413"></a><a name="b146141522124413"></a>0</strong> to <strong id="b86151522104410"><a name="b86151522104410"></a><a name="b86151522104410"></a>1</strong>. The value <strong id="b1661672294413"><a name="b1661672294413"></a><a name="b1661672294413"></a>1</strong> means opaque, and <strong id="b1261762218443"><a name="b1261762218443"></a><a name="b1261762218443"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>Opacity of an element. The value ranges from <strong id="b146141522124413"><a name="b146141522124413"></a><a name="b146141522124413"></a>0</strong> to <strong id="b86151522104410"><a name="b86151522104410"></a><a name="b86151522104410"></a>1</strong>. The value <strong id="b1661672294413"><a name="b1661672294413"></a><a name="b1661672294413"></a>1</strong> means opaque, and <strong id="b1261762218443"><a name="b1261762218443"></a><a name="b1261762218443"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
 </td>
 </tr>
 <tr id="row146374535911"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p116269843018"><a name="p116269843018"></a><a name="p116269843018"></a>fill-opacity</p>
@@ -135,7 +135,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p186261823015"><a name="p186261823015"></a><a name="p186261823015"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p96263816305"><a name="p96263816305"></a><a name="p96263816305"></a>Font fill transparency.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p96263816305"><a name="p96263816305"></a><a name="p96263816305"></a>Font fill opacity.</p>
 </td>
 </tr>
 <tr id="row155411819590"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p271765912321"><a name="p271765912321"></a><a name="p271765912321"></a>stroke</p>
@@ -168,7 +168,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p94238149345"><a name="p94238149345"></a><a name="p94238149345"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p15423714173415"><a name="p15423714173415"></a><a name="p15423714173415"></a>Stroke transparency.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p15423714173415"><a name="p15423714173415"></a><a name="p15423714173415"></a>Stroke opacity.</p>
 </td>
 </tr>
 </tbody>

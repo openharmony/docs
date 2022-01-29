@@ -1,9 +1,6 @@
 # Path2D<a name="EN-US_TOPIC_0000001173164751"></a>
 
-**<Path2D\>**  allows you to describe a path through an existing path. This path can be drawn through the  **stroke**  API of  **Canvas**.
-
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 6.
+**Path2D**  allows you to describe a path through an existing path. This path can be drawn through the  **stroke**  API of  **Canvas**.
 
 ## addPath<a name="section12484748163816"></a>
 
@@ -14,7 +11,7 @@ Adds a path to this path.
 -   Parameters
 
     <a name="table1948454813819"></a>
-    <table><thead align="left"><tr id="row17484114816383"><th class="cellrowborder" valign="top" width="21.69%" id="mcps1.1.4.1.1"><p id="p1348494853817"><a name="p1348494853817"></a><a name="p1348494853817"></a>Parameter</p>
+    <table><thead align="left"><tr id="row17484114816383"><th class="cellrowborder" valign="top" width="21.69%" id="mcps1.1.4.1.1"><p id="p1348494853817"><a name="p1348494853817"></a><a name="p1348494853817"></a>Name</p>
     </th>
     <th class="cellrowborder" valign="top" width="34.74%" id="mcps1.1.4.1.2"><p id="p1148414873815"><a name="p1148414873815"></a><a name="p1148414873815"></a>Type</p>
     </th>
@@ -34,27 +31,40 @@ Adds a path to this path.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path1 = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
-    var path2 = ctx.createPath2D();
-    path2.addPath(path1);
-    ctx.stroke(path2);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path1 = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
+        var path2 = ctx.createPath2D();
+        path2.addPath(path1);
+        ctx.stroke(path2);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001173164873.png)
 
 
 ## setTransform<a name="section68262045132013"></a>
 
 setTransform\(scaleX: number, skewX: number, skewY: number, scaleY: number, translateX: number, translateY: number\): void
 
-Draws an arc based on the radius and points on the arc.
+Sets the path transformation matrix.
 
 -   Parameters
 
     <a name="table4826104515201"></a>
-    <table><thead align="left"><tr id="row58261345122010"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1382684562019"><a name="p1382684562019"></a><a name="p1382684562019"></a>Parameter</p>
+    <table><thead align="left"><tr id="row58261345122010"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1382684562019"><a name="p1382684562019"></a><a name="p1382684562019"></a>Name</p>
     </th>
     <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.2"><p id="p382617450202"><a name="p382617450202"></a><a name="p382617450202"></a>Type</p>
     </th>
@@ -109,14 +119,27 @@ Draws an arc based on the radius and points on the arc.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
-    path.setTransform(0.8, 0, 0, 0.4, 0, 0);
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
+        path.setTransform(0.8, 0, 0, 0.4, 0, 0);
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001127125208.png)
 
 
 ## closePath<a name="section653891424217"></a>
@@ -127,17 +150,30 @@ Moves the current point of the path back to the start point of the path, and dra
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(200, 100);
-    path.lineTo(300, 100);
-    path.lineTo(200, 200);
-    path.closePath();
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(200, 100);
+        path.lineTo(300, 100);
+        path.lineTo(200, 200);
+        path.closePath();
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001127125202.png)
 
 
 ## moveTo<a name="section384917162456"></a>
@@ -176,17 +212,30 @@ Moves the current coordinate point of the path to the target point, without draw
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(50, 100);
-    path.lineTo(250, 100);
-    path.lineTo(150, 200);
-    path.closePath();
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(50, 100);
+        path.lineTo(250, 100);
+        path.lineTo(150, 200);
+        path.closePath();
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001173164869.png)
 
 
 ## lineTo<a name="section1374011322484"></a>
@@ -225,18 +274,31 @@ Draws a straight line from the current point to the target point.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 400px; height: 450px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(100, 100);
-    path.lineTo(100, 200);
-    path.lineTo(200, 200);
-    path.lineTo(200, 100);
-    path.closePath();
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(100, 100);
+        path.lineTo(100, 200);
+        path.lineTo(200, 200);
+        path.lineTo(200, 100);
+        path.closePath();
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001127285024.png)
 
 
 ## bezierCurveTo<a name="section122413525494"></a>
@@ -303,20 +365,33 @@ Draws a cubic bezier curve on the canvas.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(10, 10);
-    path.bezierCurveTo(20, 100, 200, 100, 200, 20);
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(10, 10);
+        path.bezierCurveTo(20, 100, 200, 100, 200, 20);
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001173324783.png)
 
 
 ## quadraticCurveTo<a name="section16154556165015"></a>
 
-quadraticCurveTo\(cpx: number, cpy: number, x: number ,y: number\): void
+quadraticCurveTo\(cpx: number, cpy: number, x: number, y: number\): void
 
 Draws a quadratic curve on the canvas.
 
@@ -364,15 +439,28 @@ Draws a quadratic curve on the canvas.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(10, 10);
-    path.quadraticCurveTo(100, 100, 200, 20);
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(10, 10);
+        path.quadraticCurveTo(100, 100, 200, 20);
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001173164871.png)
 
 
 ## arc<a name="section950116919527"></a>
@@ -439,14 +527,27 @@ Draws an arc on the canvas.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.arc(100, 75, 50, 0, 6.28);
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.arc(100, 75, 50, 0, 6.28);
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001173164867.png)
 
 
 ## arcTo<a name="section98421358175219"></a>
@@ -506,14 +607,27 @@ Draws an arc based on the radius and points on the arc.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.arcTo(150, 20, 150, 70, 50);
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.arcTo(150, 20, 150, 70, 50);
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001127125204.png)
 
 
 ## ellipse<a name="section8146160205420"></a>
@@ -537,28 +651,28 @@ Draws an ellipse in the specified rectangular region.
     </td>
     <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p71470013548"><a name="p71470013548"></a><a name="p71470013548"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p714720125410"><a name="p714720125410"></a><a name="p714720125410"></a>X coordinate of the ellipse center</p>
+    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p714720125410"><a name="p714720125410"></a><a name="p714720125410"></a>X-coordinate of the ellipse center</p>
     </td>
     </tr>
     <tr id="row1114710018548"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p1214718010544"><a name="p1214718010544"></a><a name="p1214718010544"></a>y</p>
     </td>
     <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p314760175411"><a name="p314760175411"></a><a name="p314760175411"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p014730105419"><a name="p014730105419"></a><a name="p014730105419"></a>Y coordinate of the ellipse center</p>
+    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p014730105419"><a name="p014730105419"></a><a name="p014730105419"></a>Y-coordinate of the ellipse center</p>
     </td>
     </tr>
     <tr id="row2147709540"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p201478045416"><a name="p201478045416"></a><a name="p201478045416"></a>radiusX</p>
     </td>
     <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p14147205540"><a name="p14147205540"></a><a name="p14147205540"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p151475013547"><a name="p151475013547"></a><a name="p151475013547"></a>Ellipse radius on the x axis</p>
+    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p151475013547"><a name="p151475013547"></a><a name="p151475013547"></a>Ellipse radius on the x-axis.</p>
     </td>
     </tr>
     <tr id="row61474012544"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p51477018543"><a name="p51477018543"></a><a name="p51477018543"></a>radiusY</p>
     </td>
     <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p14148150205416"><a name="p14148150205416"></a><a name="p14148150205416"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p181481705544"><a name="p181481705544"></a><a name="p181481705544"></a>Ellipse radius on the y axis</p>
+    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p181481705544"><a name="p181481705544"></a><a name="p181481705544"></a>Ellipse radius on the y-axis.</p>
     </td>
     </tr>
     <tr id="row201484005417"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p161483075416"><a name="p161483075416"></a><a name="p161483075416"></a>rotation</p>
@@ -594,14 +708,27 @@ Draws an ellipse in the specified rectangular region.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
+    ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
 
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
-    ctx.stroke(path);
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx =el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
+        ctx.stroke(path);
+      }
+    }
     ```
+
+    ![](figures/en-us_image_0000001173324787.png)
 
 
 ## rect<a name="section18565225124518"></a>
@@ -625,28 +752,28 @@ Creates a rectangle.
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p3238194814560"><a name="p3238194814560"></a><a name="p3238194814560"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p9238204818566"><a name="p9238204818566"></a><a name="p9238204818566"></a>X-coordinate of the upper left corner of the rectangle</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p9238204818566"><a name="p9238204818566"></a><a name="p9238204818566"></a>X-coordinate of the upper left corner of the rectangle.</p>
     </td>
     </tr>
     <tr id="row1423884816562"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p132383488563"><a name="p132383488563"></a><a name="p132383488563"></a>y</p>
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p02395487560"><a name="p02395487560"></a><a name="p02395487560"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523934819568"><a name="p523934819568"></a><a name="p523934819568"></a>Y-coordinate of the upper left corner of the rectangle</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523934819568"><a name="p523934819568"></a><a name="p523934819568"></a>Y-coordinate of the upper left corner of the rectangle.</p>
     </td>
     </tr>
     <tr id="row723954815563"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p182391481565"><a name="p182391481565"></a><a name="p182391481565"></a>width</p>
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p142391648145610"><a name="p142391648145610"></a><a name="p142391648145610"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523919486569"><a name="p523919486569"></a><a name="p523919486569"></a>Width of the rectangle</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523919486569"><a name="p523919486569"></a><a name="p523919486569"></a>Width of the rectangle.</p>
     </td>
     </tr>
     <tr id="row1723924885618"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1923934820561"><a name="p1923934820561"></a><a name="p1923934820561"></a>height</p>
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p13239448135615"><a name="p13239448135615"></a><a name="p13239448135615"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523924819568"><a name="p523924819568"></a><a name="p523924819568"></a>Height of the rectangle</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523924819568"><a name="p523924819568"></a><a name="p523924819568"></a>Height of the rectangle.</p>
     </td>
     </tr>
     </tbody>
@@ -654,13 +781,25 @@ Creates a rectangle.
 
 -   Example
 
-    ![](figures/en-us_image_0000001173164873.png)
-
     ```
-    const ctx = canvas.getContext('2d');
-    var path = ctx.createPath2D();
-    path.rect(20, 20, 100, 100);
-    ctx.stroke(path);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
+    </div>
     ```
 
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.rect(20, 20, 100, 100);
+        ctx.stroke(path);
+      }
+    }
+    ```
+
+    ![](figures/en-us_image_0000001127125212.png)
 

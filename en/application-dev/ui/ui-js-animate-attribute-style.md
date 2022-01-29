@@ -1,6 +1,6 @@
-# Attribute Style Animation<a name="EN-US_TOPIC_0000001172005058"></a>
+# Defining Attribute Style Animations<a name="EN-US_TOPIC_0000001172005058"></a>
 
-In  [Keyframes](../reference/arkui-js/js-components-common-methods.md#table1491078445), dynamically set the width and height of the parent component to scale the component. Set the  **scale**  attribute for child components to scale the parent and child components at the same time. Then, set the  **opacity**  attribute to display or hide parent and child components.
+Keyframes  is used to scale a component by dynamically setting the width and height of its parent component. Set the  **scale**  attribute for child components to scale the child and parent components at the same time. Then, set the  **opacity**  attribute to display or hide the child and parent components.
 
 ```
 <!-- xxx.hml -->
@@ -56,7 +56,7 @@ text{
     opacity: 0;
   }
 }
-/* Parent component scaling */
+/* Scaling of the parent component */
 @keyframes change1{
   0% {
     width: 20%;
@@ -67,7 +67,7 @@ text{
     height: 200px;
   }
 }  
-/* Text scaling of child components */
+/* Text scaling of the child component */
 @keyframes change2{
   0%{
    transform: scale(0);
@@ -81,6 +81,6 @@ text{
 ![](figures/d1.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->1.  The values of animation attributes are not sequenced. The values of  **duration**  and  **delay**  are parsed based on the sequence in which they are displayed.
+>1.  The values of  **animation**  attributes are not sequenced. However, the values of  **duration**  and  **delay**  are parsed based on the sequence in which they are displayed.
 >2.  The  **animation-duration**  attribute must be set. Otherwise, the duration is 0, which means there is no animation effect. When  **animation-fill-mode**  is set to  **forwards**, the component directly displays the style of the last frame.
 

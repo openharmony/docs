@@ -2,15 +2,15 @@
 
 The  **<list\>**  component provides a list container that presents a series of list items arranged in a column with the same width. Lists support presentations of the same data in a multiple and coherent row style, for example, images and texts.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 N/A
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 <[list-item](js-components-container-list-item-group.md)\> and <[list-item-group](js-components-container-list-item.md)\>
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -150,30 +150,6 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <a name="ul4276203212589"></a><a name="ul4276203212589"></a><ul id="ul4276203212589"><li><strong id="b1694164924312"><a name="b1694164924312"></a><a name="b1694164924312"></a>default</strong>: not specified (following the theme)</li><li><strong id="b4888059134313"><a name="b4888059134313"></a><a name="b4888059134313"></a>rect</strong>: rectangle</li><li><strong id="b631715664410"><a name="b631715664410"></a><a name="b631715664410"></a>round</strong>: circle</li></ul>
 </td>
 </tr>
-<tr id="row10121910145814"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p227683210584"><a name="p227683210584"></a><a name="p227683210584"></a>itemscale</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p2027673265811"><a name="p2027673265811"></a><a name="p2027673265811"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p1727603216580"><a name="p1727603216580"></a><a name="p1727603216580"></a>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p6276163212589"><a name="p6276163212589"></a><a name="p6276163212589"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p16277132135812"><a name="p16277132135812"></a><a name="p16277132135812"></a>Whether to cancel the zoom-in and zoom-out effects of the focus. This attribute takes effect only on wearables and smart TVs.</p>
-<div class="note" id="note113581896559"><a name="note113581896559"></a><a name="note113581896559"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p133581695550"><a name="p133581695550"></a><a name="p133581695550"></a>This attribute takes effect only when <strong id="b10248189123018"><a name="b10248189123018"></a><a name="b10248189123018"></a>columns</strong> is set to <strong id="b12350171163010"><a name="b12350171163010"></a><a name="b12350171163010"></a>1</strong>.</p>
-</div></div>
-</td>
-</tr>
-<tr id="row11341075811"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p13277123215580"><a name="p13277123215580"></a><a name="p13277123215580"></a>itemcenter</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p927717326586"><a name="p927717326586"></a><a name="p927717326586"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p192771432115817"><a name="p192771432115817"></a><a name="p192771432115817"></a>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p18277732135814"><a name="p18277732135814"></a><a name="p18277732135814"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1927713211588"><a name="p1927713211588"></a><a name="p1927713211588"></a>Whether there is always an item at the center of the cross axis of the view for the initialization page and a page after scrolling. This attribute applies only to wearables.</p>
-</td>
-</tr>
 <tr id="row1465212481574"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p102776324585"><a name="p102776324585"></a><a name="p102776324585"></a>updateeffect</p>
 </td>
 <td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p4277133275818"><a name="p4277133275818"></a><a name="p4277133275818"></a>boolean</p>
@@ -200,18 +176,6 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </li></ul>
 </td>
 </tr>
-<tr id="row8177174618571"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p1278123295811"><a name="p1278123295811"></a><a name="p1278123295811"></a>scrollvibrate</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p6278203217582"><a name="p6278203217582"></a><a name="p6278203217582"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p327833265819"><a name="p327833265819"></a><a name="p327833265819"></a>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p12278193225810"><a name="p12278193225810"></a><a name="p12278193225810"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p19278163265812"><a name="p19278163265812"></a><a name="p19278163265812"></a>Whether the device vibrates when the list is scrolled. This attribute takes effect only for wearables.</p>
-<a name="ul5278113217581"></a><a name="ul5278113217581"></a><ul id="ul5278113217581"><li><strong id="b148920537143"><a name="b148920537143"></a><a name="b148920537143"></a>true</strong>: The device vibrates when the list is scrolled.</li><li><strong id="b1726651391519"><a name="b1726651391519"></a><a name="b1726651391519"></a>false</strong>: The device does not vibrate when the list is scrolled.</li></ul>
-</td>
-</tr>
 <tr id="row114931435579"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p2278932185814"><a name="p2278932185814"></a><a name="p2278932185814"></a>initialindex</p>
 </td>
 <td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p627818324584"><a name="p627818324584"></a><a name="p627818324584"></a>number</p>
@@ -220,8 +184,8 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p20278123225811"><a name="p20278123225811"></a><a name="p20278123225811"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p19236720152515"><a name="p19236720152515"></a><a name="p19236720152515"></a>Item to be displayed at the start position of the viewport when the current list is loaded for the first time. The default value is <strong id="b1823682018251"><a name="b1823682018251"></a><a name="b1823682018251"></a>0</strong>, indicating that the first item is displayed. </p>
-<p id="p16604922152515"><a name="p16604922152515"></a><a name="p16604922152515"></a>The setting does not take effect in any of the following cases: </p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p19236720152515"><a name="p19236720152515"></a><a name="p19236720152515"></a>Item to be displayed at the start position of the viewport when the current list is loaded for the first time. The default value is <strong id="b1823682018251"><a name="b1823682018251"></a><a name="b1823682018251"></a>0</strong>, indicating that the first item is displayed.</p>
+<p id="p16604922152515"><a name="p16604922152515"></a><a name="p16604922152515"></a>The setting does not take effect in any of the following cases:</p>
 <a name="ul920222662516"></a><a name="ul920222662516"></a><ul id="ul920222662516"><li>The value you set is greater than the index of the last item.</li><li>The <strong id="b39045241265"><a name="b39045241265"></a><a name="b39045241265"></a>initialoffset</strong> attribute is set.</li><li><strong id="b102021626202510"><a name="b102021626202510"></a><a name="b102021626202510"></a>indexer</strong> or <strong id="b1420282652515"><a name="b1420282652515"></a><a name="b1420282652515"></a>scrollpage</strong> is set to <strong id="b192021826132518"><a name="b192021826132518"></a><a name="b192021826132518"></a>true</strong>.</li></ul>
 </td>
 </tr>
@@ -250,7 +214,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -297,7 +261,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p15440541997"><a name="p15440541997"></a><a name="p15440541997"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p10440341697"><a name="p10440341697"></a><a name="p10440341697"></a>Item divider length. If this style is not set, the maximum length is the width of the main axis, and the actual length depends on the <strong id="b11621155518258"><a name="b11621155518258"></a><a name="b11621155518258"></a>divider-origin</strong> parameter. This style is valid only when the <strong id="b68621714152610"><a name="b68621714152610"></a><a name="b68621714152610"></a>divider</strong> attribute of the list is set to <strong id="b1040015185263"><a name="b1040015185263"></a><a name="b1040015185263"></a>true</strong>.</p>
+<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p10440341697"><a name="p10440341697"></a><a name="p10440341697"></a>Item divider length. If this style is not set, the maximum length is the width of the main axis, and the actual length depends on the <strong id="b11621155518258"><a name="b11621155518258"></a><a name="b11621155518258"></a>divider-origin</strong> parameter. This style is valid only when the <strong id="b68621714152610"><a name="b68621714152610"></a><a name="b68621714152610"></a>divider</strong> attribute of <strong id="b189911656201616"><a name="b189911656201616"></a><a name="b189911656201616"></a>&lt;list&gt;</strong> is set to <strong id="b1040015185263"><a name="b1040015185263"></a><a name="b1040015185263"></a>true</strong>.</p>
 </td>
 </tr>
 <tr id="row46441281390"><td class="cellrowborder" valign="top" width="23.11768823117688%" headers="mcps1.1.6.1.1 "><p id="p1223216191395"><a name="p1223216191395"></a><a name="p1223216191395"></a>divider-origin<sup id="sup18714913122119"><a name="sup18714913122119"></a><a name="sup18714913122119"></a>5+</sup></p>
@@ -308,7 +272,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p3232141916912"><a name="p3232141916912"></a><a name="p3232141916912"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p42327191895"><a name="p42327191895"></a><a name="p42327191895"></a>Item divider offset relative to the start point of the main axis. This style is valid only when the <strong id="b194511311204618"><a name="b194511311204618"></a><a name="b194511311204618"></a>divider</strong> attribute of the list is set to <strong id="b13844149467"><a name="b13844149467"></a><a name="b13844149467"></a>true</strong>.</p>
+<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p42327191895"><a name="p42327191895"></a><a name="p42327191895"></a>Item divider offset relative to the start point of the main axis. This style is valid only when the <strong id="b194511311204618"><a name="b194511311204618"></a><a name="b194511311204618"></a>divider</strong> attribute of <strong id="b16151347170"><a name="b16151347170"></a><a name="b16151347170"></a>&lt;list&gt;</strong> is set to <strong id="b13844149467"><a name="b13844149467"></a><a name="b13844149467"></a>true</strong>.</p>
 </td>
 </tr>
 <tr id="row39106404819"><td class="cellrowborder" valign="top" width="23.11768823117688%" headers="mcps1.1.6.1.1 "><p id="p11283866482"><a name="p11283866482"></a><a name="p11283866482"></a>flex-direction</p>
@@ -410,7 +374,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section471854810515"></a>
+## Events<a name="section471854810515"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -487,7 +451,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section47669296127"></a>
+## Methods<a name="section47669296127"></a>
 
 In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
 
@@ -586,7 +550,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 </th>
 <th class="cellrowborder" valign="top" width="22.000000000000004%" id="mcps1.2.6.1.2"><p id="a9710da1e083c4c4980317ab1772446a1"><a name="a9710da1e083c4c4980317ab1772446a1"></a><a name="a9710da1e083c4c4980317ab1772446a1"></a>Type</p>
 </th>
-<th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.2.6.1.3"><p id="a273155109e9b41b1876c7b4944800ee4"><a name="a273155109e9b41b1876c7b4944800ee4"></a><a name="a273155109e9b41b1876c7b4944800ee4"></a>Mandatory/Optional</p>
+<th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.2.6.1.3"><p id="a273155109e9b41b1876c7b4944800ee4"><a name="a273155109e9b41b1876c7b4944800ee4"></a><a name="a273155109e9b41b1876c7b4944800ee4"></a>Mandatory</p>
 </th>
 <th class="cellrowborder" valign="top" width="21.000000000000004%" id="mcps1.2.6.1.4"><p id="ae31408099fa24514bac47cf09a9e7b1a"><a name="ae31408099fa24514bac47cf09a9e7b1a"></a><a name="ae31408099fa24514bac47cf09a9e7b1a"></a>Default Value</p>
 </th>
@@ -657,62 +621,3 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 </tr>
 </tbody>
 </table>
-
-## Example Code<a name="section24931424488"></a>
-
-```
-<!-- index.hml -->
-<div class="container">
-  <list class="todo-wrapper">
-    <list-item for="{{todolist}}" class="todo-item">
-      <text class="todo-title">{{$item.title}}</text>
-      <text class="todo-title">{{$item.date}}</text>
-    </list-item>
-  </list>
-</div>
-```
-
-```
-// index.js
-export default {
-  data: {
-    todolist: [{
-      title: 'Prepare for the interview',
-      date: 'Dec 31, 2021 10:00:00',
-    }, {
-      title: 'Watch the movie',
-      date: 'Dec 31, 2021 20:00:00',
-    }],
-  },
-}
-```
-
-```
-/* index.css */
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 0px;
-  top: 0px;
-  width: 454px;
-  height: 454px;
-}
-.todo-wrapper {
-  width: 454px;
-  height: 300px;
-}
-.todo-item {
-  width: 454px;
-  height: 80px;
-  flex-direction: column;
-}
-.todo-title {
-  width: 454px;
-  height: 40px;
-  text-align: center;
-}
-```
-
-![](figures/33-30.png)
-

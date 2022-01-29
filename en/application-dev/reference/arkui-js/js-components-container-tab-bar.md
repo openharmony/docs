@@ -2,15 +2,15 @@
 
 **<tab-bar\>**  is a child component of  **<[tabs](js-components-container-tabs.md)\>**  and is used to provide the area to display tab labels. Its child components are horizontally arranged.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="sfddaafa400fa4802a6c4344a0cc0f9ed"></a>
+## Child Components<a name="sfddaafa400fa4802a6c4344a0cc0f9ed"></a>
 
 Supported
 
-## Attribute<a name="s45d9533b71b049aba681c57db73d9f7b"></a>
+## Attributes<a name="s45d9533b71b049aba681c57db73d9f7b"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -42,19 +42,19 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section193239416388"></a>
+## Styles<a name="section193239416388"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Event<a name="section71081937192815"></a>
+## Events<a name="section71081937192815"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
-## Example Code<a name="section10605165263911"></a>
+## Example<a name="section10605165263911"></a>
 
 For details, see the  [tabs example code](js-components-container-tabs.md#section14993155318710).
 

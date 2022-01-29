@@ -2,19 +2,19 @@
 
 The  **<div\>**  component is a basic container that is used as the root node of the page structure or is used to group the content.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 Attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
 
-## Style<a name="section10683162023215"></a>
+## Styles<a name="section10683162023215"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -64,7 +64,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 <td class="cellrowborder" valign="top" width="7.329267073292671%" headers="mcps1.1.6.1.4 "><p id="p1368522019327"><a name="p1368522019327"></a><a name="p1368522019327"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="41.21587841215879%" headers="mcps1.1.6.1.5 "><p id="p2685520183214"><a name="p2685520183214"></a><a name="p2685520183214"></a>How items are aligned along the main axis of the current line in a flex container. Available values are as follows:</p>
-<a name="ul10685142083220"></a><a name="ul10685142083220"></a><ul id="ul10685142083220"><li><strong id="b1501318300"><a name="b1501318300"></a><a name="b1501318300"></a>flex-start</strong>: Items are packed towards the start line.</li><li><strong id="b44838392915"><a name="b44838392915"></a><a name="b44838392915"></a>flex-end</strong>: Items are packed towards the end line.</li><li><strong id="b1427203684411"><a name="b1427203684411"></a><a name="b1427203684411"></a>center</strong>: Items are centered along the line.</li><li><strong id="b22154711448"><a name="b22154711448"></a><a name="b22154711448"></a>space-between</strong>: Items are positioned with space between the lines.</li><li><strong id="b233020014456"><a name="b233020014456"></a><a name="b233020014456"></a>space-around</strong>: Items are positioned with space before, between, and after the lines.</li><li><strong id="b93731646175116"><a name="b93731646175116"></a><a name="b93731646175116"></a>space-evenly</strong><sup id="sup7995448141310"><a name="sup7995448141310"></a><a name="sup7995448141310"></a>5+</sup>: Items are arranged with even space between each two.</li></ul>
+<a name="ul10685142083220"></a><a name="ul10685142083220"></a><ul id="ul10685142083220"><li><strong id="b1501318300"><a name="b1501318300"></a><a name="b1501318300"></a>flex-start</strong>: Items are packed towards the start row.</li><li><strong id="b44838392915"><a name="b44838392915"></a><a name="b44838392915"></a>flex-end</strong>: Items are packed towards the end row.</li><li><strong id="b1427203684411"><a name="b1427203684411"></a><a name="b1427203684411"></a>center</strong>: Items are centered along the row.</li><li><strong id="b22154711448"><a name="b22154711448"></a><a name="b22154711448"></a>space-between</strong>: Items are positioned with space between the rows.</li><li><strong id="b233020014456"><a name="b233020014456"></a><a name="b233020014456"></a>space-around</strong>: Items are positioned with space before, between, and after the rows.</li><li><strong id="b93731646175116"><a name="b93731646175116"></a><a name="b93731646175116"></a>space-evenly</strong><sup id="sup7995448141310"><a name="sup7995448141310"></a><a name="sup7995448141310"></a>5+</sup>: Items are arranged with even space between each two.</li></ul>
 </td>
 </tr>
 <tr id="row1268518207327"><td class="cellrowborder" valign="top" width="21.18788121187881%" headers="mcps1.1.6.1.1 "><p id="p16685172073216"><a name="p16685172073216"></a><a name="p16685172073216"></a>align-items</p>
@@ -87,8 +87,8 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="7.329267073292671%" headers="mcps1.1.6.1.4 "><p id="p17687720143219"><a name="p17687720143219"></a><a name="p17687720143219"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="41.21587841215879%" headers="mcps1.1.6.1.5 "><p id="p10687112023210"><a name="p10687112023210"></a><a name="p10687112023210"></a>Multi-line alignment mode when there is extra space in the cross axis. Available values are as follows:</p>
-<a name="ul156878209329"></a><a name="ul156878209329"></a><ul id="ul156878209329"><li><strong id="b136621415154616"><a name="b136621415154616"></a><a name="b136621415154616"></a>flex-start</strong>: All lines are packed towards the start of the cross axis. The start edge of the cross axis of the first line is aligned with the start edge of the cross axis of the container. All subsequent lines are aligned with the previous line.</li><li><strong id="b597516158475"><a name="b597516158475"></a><a name="b597516158475"></a>flex-end</strong>: All lines are packed towards the end of the cross axis. The end of the cross axis of the last line is aligned with the end of the cross axis of the container. All subsequent lines are aligned with the previous line.</li><li><strong id="b13497201184810"><a name="b13497201184810"></a><a name="b13497201184810"></a>center</strong>: All lines are packed towards the center of the container. Lines are close to each other and aligned with the center of the container. The spacing between the start of the container's cross axis and the first line is equal to the spacing between the end of the container's cross axis and the last line.</li><li><strong id="b1679416397492"><a name="b1679416397492"></a><a name="b1679416397492"></a>space-between</strong>: All lines are evenly distributed in the container. The spacing between two adjacent lines is the same. The start and end edges of the container's cross axis are aligned with the edges of the first and last lines, respectively.</li><li><strong id="b190019665015"><a name="b190019665015"></a><a name="b190019665015"></a>space-around</strong>: All lines are evenly distributed in the container, and the spacing between two adjacent lines is the same. The spacing between the start edge of the container's cross axis and the first line and that between the end edge and the last line are half of the spacing between two adjacent lines.</li></ul>
+<td class="cellrowborder" valign="top" width="41.21587841215879%" headers="mcps1.1.6.1.5 "><p id="p10687112023210"><a name="p10687112023210"></a><a name="p10687112023210"></a>Multi-row alignment mode when there is extra space in the cross axis. Available values are as follows:</p>
+<a name="ul156878209329"></a><a name="ul156878209329"></a><ul id="ul156878209329"><li><strong id="b136621415154616"><a name="b136621415154616"></a><a name="b136621415154616"></a>flex-start</strong>: All rows are packed towards the start of the cross axis. The start edge of the cross axis of the first row is aligned with the start edge of the cross axis of the container. All subsequent rows are aligned with the previous row.</li><li><strong id="b597516158475"><a name="b597516158475"></a><a name="b597516158475"></a>flex-end</strong>: All rows are packed towards the end of the cross axis. The end of the cross axis of the last row is aligned with the end of the cross axis of the container. All subsequent rows are aligned with the previous row.</li><li><strong id="b13497201184810"><a name="b13497201184810"></a><a name="b13497201184810"></a>center</strong>: All rows are packed towards the center of the container. Rows are close to each other and aligned with the center of the container. The spacing between the start of the container's cross axis and the first row is equal to the spacing between the end of the container's cross axis and the last row.</li><li><strong id="b1679416397492"><a name="b1679416397492"></a><a name="b1679416397492"></a>space-between</strong>: All rows are evenly distributed in the container. The spacing between two adjacent rows is the same. The start and end edges of the container's cross axis are aligned with the edges of the first and last rows, respectively.</li><li><strong id="b190019665015"><a name="b190019665015"></a><a name="b190019665015"></a>space-around</strong>: All rows are evenly distributed in the container, and the spacing between two adjacent lines is the same. The spacing between the start edge of the container's cross axis and the first row and that between the end edge and the last row are half of the spacing between two adjacent rows.</li></ul>
 </td>
 </tr>
 <tr id="row668711200324"><td class="cellrowborder" valign="top" width="21.18788121187881%" headers="mcps1.1.6.1.1 "><p id="p1368732083214"><a name="p1368732083214"></a><a name="p1368732083214"></a>display</p>
@@ -224,7 +224,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section77341431152917"></a>
+## Events<a name="section77341431152917"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -268,7 +268,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
 
@@ -371,7 +371,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 </tbody>
 </table>
 
-## Example Code<a name="section1241545010391"></a>
+## Example<a name="section1241545010391"></a>
 
 1.  Flex style
 
@@ -466,7 +466,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/22-25.png)
+    ![](figures/22.png)
 
 3.  Grid style
 
@@ -532,7 +532,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/11-26.png)
+    ![](figures/11.png)
 
 4.  Dragging<sup>7+</sup>
 
@@ -570,8 +570,8 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
         })
       },
       drag(e){
-        this.left = e.dragevent.globalX;
-        this.top = e.dragevent.globalY;
+        this.left = e.globalX;
+        this.top = e.globalY;
       },
       dragend(e){
         prompt.showToast({
@@ -581,7 +581,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/9-27.gif)
+    ![](figures/9.gif)
 
     ```
     <!-- xxx.hml -->
@@ -618,8 +618,8 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
         top:0,
       },
       drag(e){
-        this.left = e.dragevent.globalX;
-        this.top = e.dragevent.globalY;
+        this.left = e.globalX;
+        this.top = e.globalY;
       },
       dragenter(e){
         prompt.showToast({
@@ -644,7 +644,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/6-28.gif)
+    ![](figures/6.gif)
 
 5.  Pinching<sup>7+</sup>
 
@@ -700,6 +700,5 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/5-29.gif)
-
+    ![](figures/5.gif)
 

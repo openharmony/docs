@@ -68,7 +68,7 @@ Use the Keytool in the Open JDK to generate a CSR.
 3.  Run the following command to generate a key store. This example creates a key store named  **ide\_demo\_app.p12**  and saves it to the root directory of the D drive.
 
     ```
-    keytool -genkeypair -alias "ide_demo_app" -keyalg EC -sigalg SHA256withECDSA -dname "C=CN,O=HUAWEI,OU=HUAWEI IDE,CN=ide_demo_app"  -keystore d:\\idedemokey.p12 -storetype pkcs12 -validity 9125 -storepass 123456Abc -keypass 123456Abc
+    keytool -genkeypair -alias "ide_demo_app" -keyalg EC -sigalg SHA256withECDSA -dname "C=CN,O=Organization,OU=Unit,CN=ide_demo_app"  -keystore d:\\idedemokey.p12 -storetype pkcs12 -validity 9125 -storepass 123456Abc -keypass 123456Abc
     ```
 
     Parameters in the key store:
@@ -80,8 +80,8 @@ Use the Keytool in the Open JDK to generate a CSR.
     -   **sigalg**: signature algorithm, which is automatically set to  **SHA256withECDSA**  and cannot be changed.
     -   **dname**:
         -   **C**: country/region code, such as  **CN**.
-        -   **O**: organization name, such as  **HUAWEI**.
-        -   **OU**: organization unit name, such as  **HUAWEI IDE**.
+        -   **O**: organization name, such as  **Organization**.
+        -   **OU**: organization unit name, such as  **Unit**.
         -   **CN**: your first name and last name. Set this parameter to be the same as  **alias**.
 
     -   **validity**: certificate validity period. It is recommended that you set this parameter to  **9125**  \(25 years\).

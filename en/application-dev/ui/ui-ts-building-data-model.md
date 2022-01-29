@@ -1,14 +1,14 @@
 # Building a Food Data Model<a name="EN-US_TOPIC_0000001146785866"></a>
 
-In the created page, we use various items to describe food, such as food names, calories, proteins, fats, carbohydrates, and vitamin C. This form of coding is impractical in actual development. Therefore, you need to create food data models to store and manage data in a unified manner.
+On the created page, we use various items to describe food, such as food names, calories, proteins, fats, carbohydrates, and vitamin C. This form of coding is impractical in actual development. Therefore, you need to create food data models to store and manage data in a unified manner.
 
 ![](figures/en-us_image_0000001215433095.png)
 
-1.  Create a  **model**  folder and create the  **FoodData.ets**  file in the  **model**  folder.
+1.  Create a folder named  **model**  and create a file named  **FoodData.ets**  therein.
 
     ![](figures/en-us_image_0000001195119619.png)
 
-2.  Define the food data storage model  **FoodData**  and the enumerated variable  **Category**. The  **FoodData**  class contains the food ID, name, category, image, calories, protein, fat, carbohydrates, and vitamin C attributes.
+2.  Define a food data storage model,  **FoodData**, and an enum variable,  **Category**. The  **FoodData**  class contains the food ID, name, category, image, calories, protein, fat, carbohydrates, and vitamin C attributes.
 
     The eTS programming language is an extension of the TS language and also supports the TS syntax.
 
@@ -47,13 +47,13 @@ In the created page, we use various items to describe food, such as food names, 
     }
     ```
 
-3.  Store food image resources in the  **resources**  \>  **phone**  \>  **media**  directory. The image name is the food name.
+3.  Store food image resources in the  **resources**  \>  **phone**  \>  **media**  directory. Use food names as the image names.
 
     ![](figures/en-us_image_0000001195117633.png)
 
-4.  Create food resource data. Create  **FoodDataModels.ets**  in the  **model**  folder and declare the food composition array  **FoodComposition**  on the page.
+4.  Create food resource data. Create  **FoodDataModels.ets**  in the  **model**  folder and declare a food composition array,  **FoodComposition**  on the page.
 
-    In this example, 12 pieces of food data are used. In actual development, you can customize more data resources. When there are a large number of food resources, it is recommended that  **LazyForEach**  be used to load data. The following nutritional data is sourced from the Internet.
+    In this example, 12 pieces of food data are used. You can customize more data resources when needed. Use  **LazyForEach**  to load data if a large amount of food data is involved. The following nutritional data is sourced from the Internet.
 
     ```
     const FoodComposition: any[] = [
@@ -72,7 +72,7 @@ In the created page, we use various items to describe food, such as food names, 
     ]
     ```
 
-5.  Create the  **initializeOnStartUp**  method to initialize the  **FoodData**  array. In  **FoodDataModels.ets**, the  **FoodData**  and  **Category**  defined in  **FoodData.ets**  are used. Therefore, you need to use  **export**  for  **FoodData**  class in  **FoodData.ets**, and use  **import**  for the  **FoodData**  and  **Category**  in  **FoodDataModels.ets**.
+5.  Create the  **initializeOnStartUp**  method to initialize the  **FoodData**  array. Export the  **FoodData**  class from  **FoodData.ets**, and import  **FoodData**  and  **Category**  in  **FoodDataModels.ets**.
 
     ```
     // FoodData.ets

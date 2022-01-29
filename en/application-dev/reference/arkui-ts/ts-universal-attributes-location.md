@@ -1,4 +1,13 @@
-# Location<a name="EN-US_TOPIC_0000001166648181"></a>
+# Location<a name="EN-US_TOPIC_0000001193075116"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section8832145623"></a>
 
 <a name="table2377mcpsimp"></a>
 <table><thead align="left"><tr id="row2385mcpsimp"><th class="cellrowborder" valign="top" width="17.341734173417343%" id="mcps1.1.5.1.1"><p id="p2387mcpsimp"><a name="p2387mcpsimp"></a><a name="p2387mcpsimp"></a>Name</p>

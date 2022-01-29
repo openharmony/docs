@@ -2,9 +2,6 @@
 
 The  **<form\>**  component allows the content in  **input**  elements to be submitted and reset.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 6.
-
 ## Required Permissions<a name="section11257113618419"></a>
 
 None
@@ -13,15 +10,15 @@ None
 
 Supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 Attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
 
-## Style<a name="section10683162023215"></a>
+## Styles<a name="section10683162023215"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Event<a name="section77341431152917"></a>
+## Events<a name="section77341431152917"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -72,23 +69,27 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
-## Example:<a name="section1241545010391"></a>
+## Example<a name="section1241545010391"></a>
 
 ```
 <!-- xxx.hml -->
 <form onsubmit='onSubmit' onreset='onReset'>
+  <div style="width: 600px;height: 150px;flex-direction: row;justify-content: space-around;">
     <label>Option 1</label>
-  <input type='radio' name='radioGroup' value='radio1'></input>
+    <input type='radio' name='radioGroup' value='radio1'></input>
     <label>Option 2</label>
-  <input type='radio' name='radioGroup' value='radio2'></input>
-    <text>Input text</text>
+    <input type='radio' name='radioGroup' value='radio2'></input>
+  </div>
+  <text style="margin-left: 50px;margin-bottom: 50px;">Enter text</text>
   <input type='text' name='user'></input>
-  <input type='submit'>Submit</input>
-  <input type='reset'>Reset</input>
+  <div style="width: 600px;height: 150px;margin-top: 50px;flex-direction: row;justify-content: space-around;">
+    <input type='submit'>Submit</input>
+    <input type='reset'>Reset</input>
+  </div>
 </form>
 ```
 
@@ -104,4 +105,6 @@ export default{
   }
 }
 ```
+
+![](figures/001.gif)
 

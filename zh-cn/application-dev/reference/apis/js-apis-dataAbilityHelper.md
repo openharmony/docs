@@ -1,35 +1,6 @@
-### DataAbilityHelper模块(JS端SDK接口)
+# DataAbilityHelper模块(JS端SDK接口)
 
-#### 支持设备
-
-| API                                                          | 手机 | 平板 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 智慧视觉设备 |
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| DataAbilityHelper.openFile(uri: string, mode: string, callback: AsyncCallback\<number>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.openFile(uri: string, mode: string)        | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.getType(uri: string, callback: AsyncCallback\<string>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.getType(uri: string)                       | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.normalizeUri(uri: string)                  | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.denormalizeUri(uri: string, callback: AsyncCallback\<string>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.denormalizeUri(uri: string)                | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.notifyChange(uri: string, callback: AsyncCallback\<void>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.notifyChange(uri: string)                  | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-| DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates) | 支持 | 支持 | 支持   | 支持     | 不支持         | 不支持       |
-
-#### 导入模块
+## 导入模块
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
@@ -37,26 +8,23 @@ import ohos_data_ability from '@ohos.data.dataability'
 import ohos_data_rdb from '@ohos.data.rdb'
 ```
 
-#### DataAbilityHelper.openFile(uri: string, mode: string, callback: AsyncCallback\<number>)
+## DataAbilityHelper
 
-- 接口说明
+### openFile
 
-  在指定的远程路径中打开文件(callback形式)
+openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
+在指定的远程路径中打开文件（callback形式）。
 
-* 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                 | 必填 | 描述                     |
-  | -------- | -------- | -------------------- | ---- | ------------------------ |
-  | uri      | 只读     | string               | 是   | 指示要打开的文件的路径。 |
-  | mode     | 只读     | string               | 是   | 指示文件打开模式‘rwt’。  |
-  | callback | 只读     | AsyncCallback\<void> | 是   | 被指定的回调方法         |
+| 名称     | 类型                   | 必填 | 描述                               |
+| -------- | ---------------------- | ---- | ---------------------------------- |
+| uri      | string                 | 是   | 指示要打开的文件的路径。           |
+| mode     | string                 | 是   | 指示文件打开模式‘rwt’。            |
+| callback | AsyncCallback\<number> | 是   | 被指定的回调方法，返回文件描述符。 |
 
-* 返回值
-
-  返回文件描述符。
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -72,24 +40,23 @@ DAHelper.openFile(
 });
 ```
 
-#### DataAbilityHelper.openFile(uri: string, mode: string)
+### openFile
 
-- 接口说明
+openFile(uri: string, mode: string): Promise\<number>
 
-  在指定的远程路径中打开文件(Promise形式)
+**参数：**
 
-* 参数描述
+| 名称 | 类型   | 必填 | 描述                     |
+| ---- | ------ | ---- | ------------------------ |
+| uri  | string | 是   | 指示要打开的文件的路径。 |
+| mode | string | 是   | 指示文件打开模式‘rwt’。  |
 
-  | 名称 | 读写属性 | 类型   | 必填 | 描述                     |
-  | ---- | -------- | ------ | ---- | ------------------------ |
-  | uri  | 只读     | string | 是   | 指示要打开的文件的路径。 |
-  | mode | 只读     | string | 是   | 指示文件打开模式‘rwt’。  |
+**返回值：**
+| 类型             | 说明             |
+| ---------------- | ---------------- |
+| Promise\<number> | 返回文件描述符。 |
 
-* 返回值
-
-  返回文件描述符。
-
-* 示例
+**示例：**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -104,25 +71,21 @@ DAHelper.openFile(
 });
 ```
 
-#### DataAbilityHelper.on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>)
+### on('dataChange')
 
-- 接口说明
+on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
-  注册观察者以观察给定uri指定的数据callback通知
+注册观察者以观察给定uri指定的数据callback通知。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                 | 必填 | 描述                     |
-  | -------- | -------- | -------------------- | ---- | ------------------------ |
-  | type     | 只读     | string               | 是   | 数据更改。               |
-  | uri      | 只读     | string               | 是   | 指示要操作的数据的路径。 |
-  | callback | 只读     | AsyncCallback\<void> | 是   | 指示数据更改时的回调。   |
+| 名称     | 类型                 | 必填 | 描述                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| type     | string               | 是   | 数据更改。               |
+| uri      | string               | 是   | 指示要操作的数据的路径。 |
+| callback | AsyncCallback\<void> | 是   | 指示数据更改时的回调。   |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -139,25 +102,21 @@ helper.on(
 )
 ```
 
-#### DataAbilityHelper.off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>)
+### off('dataChange')
 
-- 接口说明
+off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-  注消观察者以停止观察给定uri指定的数据callback通知
+注消观察者以停止观察给定uri指定的数据callback通知。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                 | 必填 | 描述                     |
-  | -------- | -------- | -------------------- | ---- | ------------------------ |
-  | type     | 只读     | string               | 是   | 数据更改。               |
-  | uri      | 只读     | string               | 是   | 指示要操作的数据的路径。 |
-  | callback | 只读     | AsyncCallback\<void> | 否   | 指示已注册的回调。       |
+| 名称     | 类型                 | 必填 | 描述                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| type     | string               | 是   | 数据更改。               |
+| uri      | string               | 是   | 指示要操作的数据的路径。 |
+| callback | AsyncCallback\<void> | 否   | 指示已注册的回调。       |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -178,24 +137,20 @@ helper.off(
 )
 ```
 
-#### DataAbilityHelper.getType(uri: string, callback: AsyncCallback\<string>)
+### getType
 
-- 接口说明
+getType(uri: string, callback: AsyncCallback\<string>): void
 
-  获取给定URI指定数据的MIME类型(callback形式)
+获取给定URI指定数据的MIME类型（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                   | 必填 | 描述                     |
-  | -------- | -------- | ---------------------- | ---- | ------------------------ |
-  | uri      | 只读     | string                 | 是   | 指示要操作的数据的路径。 |
-  | callback | 只读     | AsyncCallback\<string> | 是   | 回调方法                 |
+| 名称     | 类型                   | 必填 | 描述                                          |
+| -------- | ---------------------- | ---- | --------------------------------------------- |
+| uri      | string                 | 是   | 指示要操作的数据的路径。                      |
+| callback | AsyncCallback\<string> | 是   | 回调方法，返回与uri指定的数据匹配的MIME类型。 |
 
-- 返回值
-
-  返回与uri指定的数据匹配的MIME类型。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -209,23 +164,24 @@ DAHelper.getType(
 });
 ```
 
-#### DataAbilityHelper.getType(uri: string)
+### getType
 
-- 接口说明
+getType(uri: string): Promise\<string>
 
-  获取给定URI指定数据的MIME类型(Promise形式)
+获取给定URI指定数据的MIME类型（Promise形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称 | 读写属性 | 类型   | 必填 | 描述                     |
-  | ---- | -------- | ------ | ---- | ------------------------ |
-  | uri  | 只读     | string | 是   | 指示要操作的数据的路径。 |
+| 名称 | 类型   | 必填 | 描述                     |
+| ---- | ------ | ---- | ------------------------ |
+| uri  | string | 是   | 指示要操作的数据的路径。 |
 
-- 返回值
+**返回值：**
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| Promise\<string> | 返回与uri指定的数据匹配的MIME类型。 |
 
-  返回与uri指定的数据匹配的MIME类型。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -239,25 +195,21 @@ DAHelper.getType(
 });
 ```
 
-#### DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>)
+### getFileTypes
 
-- 接口说明
+getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
 
-  获取支持的文件的MIME类型(callback形式)
+获取支持的文件的MIME类型（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称           | 读写属性 | 类型                           | 必填 | 描述                         |
-  | -------------- | -------- | ------------------------------ | ---- | ---------------------------- |
-  | uri            | 只读     | string                         | 是   | 指示要获取的文件的路径。     |
-  | mimeTypeFilter | 只读     | string                         | 是   | 指示要获取的文件的MIME类型。 |
-  | callback       | 只读     | AsyncCallback\<Array\<string>> | 是   | 回调方法                     |
+| 名称           | 类型                           | 必填 | 描述                               |
+| -------------- | ------------------------------ | ---- | ---------------------------------- |
+| uri            | string                         | 是   | 指示要获取的文件的路径。           |
+| mimeTypeFilter | string                         | 是   | 指示要获取的文件的MIME类型。       |
+| callback       | AsyncCallback\<Array\<string>> | 是   | 回调方法，返回匹配的MIME类型数组。 |
 
-- 返回值
-
-  返回匹配的MIME类型数组。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -272,24 +224,27 @@ DAHelper.getFileTypes(
 });
 ```
 
-#### DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string)
 
-- 接口说明
 
-  获取支持的文件的MIME类型(Promise形式)
+### getFileTypes
 
-- 参数描述
+getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
-  | 名称           | 读写属性 | 类型   | 必填 | 描述                         |
-  | -------------- | -------- | ------ | ---- | ---------------------------- |
-  | uri            | 只读     | string | 是   | 指示要获取的文件的路径。     |
-  | mimeTypeFilter | 只读     | string | 是   | 指示要获取的文件的MIME类型。 |
+获取支持的文件的MIME类型（Promise形式）。
 
-- 返回值
+**参数：**
 
-  返回匹配的MIME类型数组。
+| 名称           | 类型   | 必填 | 描述                         |
+| -------------- | ------ | ---- | ---------------------------- |
+| uri            | string | 是   | 指示要获取的文件的路径。     |
+| mimeTypeFilter | string | 是   | 指示要获取的文件的MIME类型。 |
 
-- 示例
+**返回值：**
+| 类型                     | 说明                     |
+| ------------------------ | ------------------------ |
+| Promise\<Array\<string>> | 返回匹配的MIME类型数组。 |
+
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -304,24 +259,20 @@ DAHelper.getFileTypes(
 });
 ```
 
-#### DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>)
+### normalizeUri
 
-- 接口说明
+normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-  将引用数据功能的给定uri转换为规范化uri(callback形式)
+将引用数据功能的给定uri转换为规范化uri（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                   | 必填 | 描述                    |
-  | -------- | -------- | ---------------------- | ---- | ----------------------- |
-  | uri      | 只读     | string                 | 是   | 指示要规范化的uri对象。 |
-  | callback | 只读     | AsyncCallback\<string> | 是   | 回调方法                |
+| 名称     | 类型                   | 必填 | 描述                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| uri      | string                 | 是   | 指示要规范化的uri对象。                                      |
+| callback | AsyncCallback\<string> | 是   | 回调方法。如果数据功能支持uri规范化或null，则返回规范化uri对象。 |
 
-- 返回值
-
-  如果数据功能支持uri规范化或null，则返回规范化uri对象。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -335,23 +286,24 @@ DAHelper.normalizeUri(
 });
 ```
 
-#### DataAbilityHelper.normalizeUri(uri: string)
+### normalizeUri
 
-- 接口说明
+normalizeUri(uri: string): Promise\<string>
 
-  将引用数据功能的给定uri转换为规范化uri(Promise形式)
+将引用数据功能的给定uri转换为规范化uri（Promise形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称 | 读写属性 | 类型   | 必填 | 描述                    |
-  | ---- | -------- | ------ | ---- | ----------------------- |
-  | uri  | 只读     | string | 是   | 指示要规范化的uri对象。 |
+| 名称 | 类型   | 必填 | 描述                    |
+| ---- | ------ | ---- | ----------------------- |
+| uri  | string | 是   | 指示要规范化的uri对象。 |
 
-- 返回值
+**返回值：**
+| 类型             | 说明                                                   |
+| ---------------- | ------------------------------------------------------ |
+| Promise\<string> | 如果数据功能支持uri规范化或null，则返回规范化uri对象。 |
 
-  如果数据功能支持uri规范化或null，则返回规范化uri对象。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -365,24 +317,20 @@ DAHelper.normalizeUri(
 });
 ```
 
-#### DataAbilityHelper.denormalizeUri(uri: string, callback: AsyncCallback\<string>)
+### denormalizeUri
 
-- 接口说明
+denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-  将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri(callback形式)
+将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                   | 必填 | 描述                    |
-  | -------- | -------- | ---------------------- | ---- | ----------------------- |
-  | uri      | 只读     | string                 | 是   | 指示要规范化的uri对象。 |
-  | callback | 只读     | AsyncCallback\<string> | 是   | 回调方法                |
+| 名称     | 类型                   | 必填 | 描述                                                |
+| -------- | ---------------------- | ---- | --------------------------------------------------- |
+| uri      | string                 | 是   | 指示要规范化的uri对象。                             |
+| callback | AsyncCallback\<string> | 是   | 回调方法。如果反规范化成功，则返回反规范化uri对象。 |
 
-- 返回值
-
-  如果反规范化成功，则返回反规范化uri对象。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -396,23 +344,26 @@ DAHelper.denormalizeUri(
 });
 ```
 
-#### DataAbilityHelper.denormalizeUri(uri: string)
 
-- 接口说明
 
-  将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri(Promise形式)
+### denormalizeUri
 
-- 参数描述
+denormalizeUri(uri: string): Promise\<string>
 
-  | 名称 | 读写属性 | 类型   | 必填 | 描述                    |
-  | ---- | -------- | ------ | ---- | ----------------------- |
-  | uri  | 只读     | string | 是   | 指示要规范化的uri对象。 |
+将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri（Promise形式）。
 
-- 返回值
+**参数：**
 
-  如果反规范化成功，则返回反规范化uri对象。
+| 名称 | 类型   | 必填 | 描述                    |
+| ---- | ------ | ---- | ----------------------- |
+| uri  | string | 是   | 指示要规范化的uri对象。 |
 
-- 示例
+**返回值：**
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise\<string> | 如果反规范化成功，则返回反规范化uri对象。 |
+
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -426,24 +377,20 @@ DAHelper.denormalizeUri(
 });
 ```
 
-#### DataAbilityHelper.notifyChange(uri: string, callback: AsyncCallback\<void>)
+### notifyChange
 
-- 接口说明
+notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
-  通知已注册的观察者uri指定的数据资源的更改(callback形式)
+通知已注册的观察者uri指定的数据资源的更改（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称     | 读写属性 | 类型                 | 必填 | 描述                     |
-  | -------- | -------- | -------------------- | ---- | ------------------------ |
-  | uri      | 只读     | string               | 是   | 指示要操作的数据的路径。 |
-  | callback | 只读     | AsyncCallback\<void> | 是   | 回调方法                 |
+| 名称     | 类型                 | 必填 | 描述                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| uri      | string               | 是   | 指示要操作的数据的路径。 |
+| callback | AsyncCallback\<void> | 是   | 回调方法。               |
 
-- 返回值
-
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -457,23 +404,24 @@ helper.notifyChange(
 });
 ```
 
-#### DataAbilityHelper.notifyChange(uri: string)
+### notifyChange
 
-- 接口说明
+notifyChange(uri: string): Promise\<void>
 
-  通知已注册的观察者uri指定的数据资源的更改(Promise形式)
+通知已注册的观察者uri指定的数据资源的更改（Promise形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称 | 读写属性 | 类型   | 必填 | 描述                     |
-  | ---- | -------- | ------ | ---- | ------------------------ |
-  | uri  | 只读     | string | 是   | 指示要操作的数据的路径。 |
+| 名称 | 类型   | 必填 | 描述                     |
+| ---- | ------ | ---- | ------------------------ |
+| uri  | string | 是   | 指示要操作的数据的路径。 |
 
-- 返回值
+**返回值：**
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise\<void> | 返回值为Promise对象。 |
 
-  void
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -487,25 +435,21 @@ DAHelper.notifyChange(
 });
 ```
 
-#### DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>)
+### insert
 
-- 接口说明
+insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
 
-  将单个数据记录插入数据库(callback形式)
+将单个数据记录插入数据库（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称         | 读写属性 | 类型                   | 必填 | 描述                                                   |
-  | ------------ | -------- | ---------------------- | ---- | ------------------------------------------------------ |
-  | uri          | 只读     | string                 | 是   | 指示要插入的数据的路径。                               |
-  | valuesBucket | 只读     | rdb.ValuesBucket       | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
-  | callback     | 只读     | AsyncCallback\<number> | 是   | 回调方法                                               |
+| 名称         | 类型                   | 必填 | 描述                                                   |
+| ------------ | ---------------------- | ---- | ------------------------------------------------------ |
+| uri          | string                 | 是   | 指示要插入的数据的路径。                               |
+| valuesBucket | rdb.ValuesBucket       | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
+| callback     | AsyncCallback\<number> | 是   | 回调方法，返回插入数据记录的索引。                     |
 
-- 返回值
-
-  返回插入数据记录的索引。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -526,24 +470,25 @@ DAHelper.insert(
 });
 ```
 
-#### DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket)
+### insert
 
-- 接口说明
+insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
-  将单个数据记录插入数据库(Promise形式)
+将单个数据记录插入数据库（Promise形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称         | 读写属性 | 类型             | 必填 | 描述                                                   |
-  | ------------ | -------- | ---------------- | ---- | ------------------------------------------------------ |
-  | uri          | 只读     | string           | 是   | 指示要插入的数据的路径。                               |
-  | valuesBucket | 只读     | rdb.ValuesBucket | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
+| 名称         | 类型             | 必填 | 描述                                                   |
+| ------------ | ---------------- | ---- | ------------------------------------------------------ |
+| uri          | string           | 是   | 指示要插入的数据的路径。                               |
+| valuesBucket | rdb.ValuesBucket | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
 
-- 返回值
+**返回值：**
+| 类型             | 说明                     |
+| ---------------- | ------------------------ |
+| Promise\<number> | 返回插入数据记录的索引。 |
 
-  返回插入数据记录的索引。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -564,25 +509,21 @@ DAHelper.insert(
 });
 ```
 
-#### DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>)
+### batchInsert
 
-- 接口说明
+batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
-  将多个数据记录插入数据库(callback形式)
+插入数据库（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称         | 读写属性 | 类型                    | 必填 | 描述                     |
-  | ------------ | -------- | ----------------------- | ---- | ------------------------ |
-  | uri          | 只读     | string                  | 是   | 指示要插入的数据的路径。 |
-  | valuesBucket | 只读     | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。   |
-  | callback     | 只读     | AsyncCallback\<number>  | 是   | 回调方法                 |
+| 名称         | 类型                    | 必填 | 描述                             |
+| ------------ | ----------------------- | ---- | -------------------------------- |
+| uri          | string                  | 是   | 指示要插入的数据的路径。         |
+| valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。           |
+| callback     | AsyncCallback\<number>  | 是   | 回调方法。返回插入的数据记录数。 |
 
-- 返回值
-
-  返回插入的数据记录数。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -600,24 +541,25 @@ DAHelper.batchInsert(
 });
 ```
 
-#### DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>)
+### batchInsert
 
-- 接口说明
+batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<number>
 
-  将多个数据记录插入数据库(Promise形式)
+将多个数据记录插入数据库（Promise形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称         | 读写属性 | 类型                    | 必填 | 描述                     |
-  | ------------ | -------- | ----------------------- | ---- | ------------------------ |
-  | uri          | 只读     | string                  | 是   | 指示要插入的数据的路径。 |
-  | valuesBucket | 只读     | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。   |
+| 名称         | 类型                    | 必填 | 描述                     |
+| ------------ | ----------------------- | ---- | ------------------------ |
+| uri          | string                  | 是   | 指示要插入的数据的路径。 |
+| valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。   |
 
-- 返回值
+**返回值：**
+| 类型             | 说明                   |
+| ---------------- | ---------------------- |
+| Promise\<number> | 返回插入的数据记录数。 |
 
-  返回插入的数据记录数。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -635,25 +577,21 @@ DAHelper.batchInsert(
 });
 ```
 
-#### DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>)
+### delete
 
-- 接口说明
+delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-  从数据库中删除一个或多个数据记录(callback形式)
+从数据库中删除一个或多个数据记录（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称         | 读写属性 | 类型                              | 必填 | 描述                                             |
-  | ------------ | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri          | 只读     | string                            | 是   | 指示要删除的数据的路径。                         |
-  | valuesBucket | 只读     | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-  | callback     | 只读     | AsyncCallback\<number>            | 是   | 回调方法                                         |
+| 名称         | 类型                              | 必填 | 描述                                             |
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | 是   | 指示要删除的数据的路径。                         |
+| valuesBucket | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| callback     | AsyncCallback\<number>            | 是   | 回调方法。返回已删除的数据记录数。               |
 
-- 返回值
-
-  返回已删除的数据记录数。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -670,24 +608,25 @@ DAHelper.delete(
 });
 ```
 
-#### DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates)
+### delete
 
-- 接口说明
+delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
 
-  从数据库中删除一个或多个数据记录(Promise形式)
+从数据库中删除一个或多个数据记录（Promise形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称         | 读写属性 | 类型                              | 必填 | 描述                                             |
-  | ------------ | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri          | 只读     | string                            | 是   | 指示要删除的数据的路径。                         |
-  | valuesBucket | 只读     | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| 名称         | 类型                              | 必填 | 描述                                             |
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | 是   | 指示要删除的数据的路径。                         |
+| valuesBucket | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
-- 返回值
+**返回值：**
+| 类型             | 说明                     |
+| ---------------- | ------------------------ |
+| Promise\<number> | 返回已删除的数据记录数。 |
 
-  返回已删除的数据记录数。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -703,26 +642,22 @@ DAHelper.delete(
 });
 ```
 
-#### DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>)
+### update
 
-- 接口说明
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-  更新数据库中的数据记录(callback形式)
+更新数据库中的数据记录（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称         | 读写属性 | 类型                              | 必填 | 描述                                             |
-  | ------------ | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri          | 只读     | string                            | 是   | 指示要更新的数据的路径。                         |
-  | valuesBucket | 只读     | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
-  | predicates   | 只读     | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-  | callback     | 只读     | AsyncCallback\<number>            | 是   | 回调方法                                         |
+| 名称         | 类型                              | 必填 | 描述                                             |
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | 是   | 指示要更新的数据的路径。                         |
+| valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
+| predicates   | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| callback     | AsyncCallback\<number>            | 是   | 回调方法，返回更新的数据记录数。                 |
 
-- 返回值
-
-  返回更新的数据记录数。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -746,25 +681,26 @@ DAHelper.update(
 });
 ```
 
-#### DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates)
+### update
 
-- 接口说明
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
 
-  更新数据库中的数据记录(Promise形式)
+更新数据库中的数据记录（Promise形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称         | 读写属性 | 类型                              | 必填 | 描述                                             |
-  | ------------ | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri          | 只读     | string                            | 是   | 指示要更新的数据的路径。                         |
-  | valuesBucket | 只读     | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
-  | predicates   | 只读     | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| 名称         | 类型                              | 必填 | 描述                                             |
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | 是   | 指示要更新的数据的路径。                         |
+| valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
+| predicates   | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
-- 返回值
+**返回值：**
+| 类型             | 说明                                         |
+| ---------------- | -------------------------------------------- |
+| Promise\<number> | 返回值为Promise对象，Promise中包含应用信息。 |
 
-  返回更新的数据记录数。
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -788,26 +724,22 @@ DAHelper.update(
 });
 ```
 
-#### DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>)
+### query
 
-- 接口说明
+query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
-  查询数据库中的数据(callback形式)
+查询数据库中的数据（callback形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称       | 读写属性 | 类型                              | 必填 | 描述                                             |
-  | ---------- | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri        | 只读     | string                            | 是   | 指示要查询的数据的路径。                         |
-  | columns    | 只读     | rdb.ValuesBucket                  | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
-  | predicates | 只读     | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-  | callback   | 只读     | AsyncCallback\<ResultSet>         | 是   | 回调方法                                         |
+| 名称       | 类型                              | 必填 | 描述                                             |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | 是   | 指示要查询的数据的路径。                         |
+| columns    | rdb.ValuesBucket                  | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| callback   | AsyncCallback\<ResultSet>         | 是   | 回调方法，返回查询结果。                         |
 
-- 返回值
-
-  返回查询结果
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -828,25 +760,26 @@ DAHelper.query(
 
 
 
-#### DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates)
+### query
 
-- 接口说明
+query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
 
-  查询数据库中的数据(Promise形式)
+查询数据库中的数据（Promise形式）。
 
-- 参数描述
+**参数：**
 
-  | 名称       | 读写属性 | 类型                              | 必填 | 描述                                             |
-  | ---------- | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri        | 读写     | string                            | 是   | 指示要查询的数据的路径。                         |
-  | columns    | 读写     | rdb.ValuesBucket                  | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
-  | predicates | 读写     | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| 名称       | 类型                              | 必填 | 描述                                             |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | 是   | 指示要查询的数据的路径。                         |
+| columns    | rdb.ValuesBucket                  | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
-- 返回值
+**返回值：**
+| 类型                | 说明           |
+| ------------------- | -------------- |
+| Promise\<ResultSet> | 返回查询结果。 |
 
-  返回查询结果
-
-- 示例
+**示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'

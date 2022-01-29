@@ -1,4 +1,4 @@
-# Drawing Components<a name="EN-US_TOPIC_0000001166647443"></a>
+# Drawing Components<a name="EN-US_TOPIC_0000001192915088"></a>
 
 -   **[Circle](ts-drawing-components-circle.md)**  
 

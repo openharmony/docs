@@ -1,6 +1,9 @@
-# Button<a name="EN-US_TOPIC_0000001158141265"></a>
+# Button<a name="EN-US_TOPIC_0000001192755124"></a>
 
-Provides the button component.
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+The  **<Button\>**  component represents a component that can trigger actions.
 
 ## Required Permissions<a name="section173151571452"></a>
 

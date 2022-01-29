@@ -1,4 +1,7 @@
-# Image<a name="EN-US_TOPIC_0000001111581276"></a>
+# Image<a name="EN-US_TOPIC_0000001237555109"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Image\>**  component is used to render and display images.
 
@@ -12,7 +15,7 @@ None
 
 ## APIs<a name="section15735153218576"></a>
 
-Image\(src: string | PixelMap\)
+Image\(value: \{uri: string | PixelMap\}\)
 
 -   Parameters
 
@@ -29,7 +32,7 @@ Image\(src: string | PixelMap\)
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row4879761529"><td class="cellrowborder" valign="top" width="12.7%" headers="mcps1.1.6.1.1 "><p id="p1187919675215"><a name="p1187919675215"></a><a name="p1187919675215"></a>src</p>
+    <tbody><tr id="row4879761529"><td class="cellrowborder" valign="top" width="12.7%" headers="mcps1.1.6.1.1 "><p id="p1187919675215"><a name="p1187919675215"></a><a name="p1187919675215"></a>uri</p>
     </td>
     <td class="cellrowborder" valign="top" width="19.46%" headers="mcps1.1.6.1.2 "><p id="p1387910665219"><a name="p1387910665219"></a><a name="p1387910665219"></a>string</p>
     </td>
@@ -120,6 +123,15 @@ Image\(src: string | PixelMap\)
 <td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p id="p183371140553"><a name="p183371140553"></a><a name="p183371140553"></a>Decoding size of the image. The original image is decoded into an image of the specified size. If the value is of the number type, the unit px is used.</p>
 <div class="note" id="note374810206156"><a name="note374810206156"></a><a name="note374810206156"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p2748162014159"><a name="p2748162014159"></a><a name="p2748162014159"></a>This attribute is not applicable to a <strong id="b1471919148510"><a name="b1471919148510"></a><a name="b1471919148510"></a>PixelMap</strong> object.</p>
 </div></div>
+</td>
+</tr>
+<tr id="row6137112734612"><td class="cellrowborder" valign="top" width="14.899999999999999%" headers="mcps1.1.5.1.1 "><p id="p15138127154611"><a name="p15138127154611"></a><a name="p15138127154611"></a>syncLoad<sup id="sup1585891816340"><a name="sup1585891816340"></a><a name="sup1585891816340"></a>8+</sup></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.2 "><p id="p1713812744620"><a name="p1713812744620"></a><a name="p1713812744620"></a>boolean</p>
+</td>
+<td class="cellrowborder" valign="top" width="17.46%" headers="mcps1.1.5.1.3 "><p id="p3139162711464"><a name="p3139162711464"></a><a name="p3139162711464"></a>false</p>
+</td>
+<td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p id="p115061143124713"><a name="p115061143124713"></a><a name="p115061143124713"></a>Whether to load images synchronously. By default, images are loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed.</p>
 </td>
 </tr>
 </tbody>
@@ -313,7 +325,7 @@ struct ImageExample1 {
 }
 ```
 
-![](figures/image1.gif)
+![](figures/en-us_image_0000001239925031.gif)
 
 ```
 // Image2
@@ -382,7 +394,7 @@ struct ImageExample2 {
 }
 ```
 
-![](figures/image2.gif)
+![](figures/en-us_image_0000001194605518.png)
 
 ```
 // Image3
@@ -444,5 +456,5 @@ struct ImageExample3 {
 }
 ```
 
-![](figures/image3.gif)
+![](figures/en-us_image_0000001194942468.gif)
 

@@ -2,15 +2,15 @@
 
 The  **<popup\>**  component is used to display a pop-up to offer instructions after a user clicks a bound control.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="s726c642d8f514b0cb5ef8854fe6ac02c"></a>
+## Child Components<a name="s726c642d8f514b0cb5ef8854fe6ac02c"></a>
 
 All child components are supported. Each  **<popup\>**  can have only one child component<sup>5+</sup>.
 
-## Attribute<a name="s7ff9da9346504b11aca7015dc689dc67"></a>
+## Attributes<a name="s7ff9da9346504b11aca7015dc689dc67"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -91,7 +91,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   The  **focusable**  attribute is not supported.
 
-## Style<a name="s472a5052130e49bca059adfe7bb6b96d"></a>
+## Styles<a name="s472a5052130e49bca059adfe7bb6b96d"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -125,7 +125,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   Position-related styles are not supported.
 
-## Event<a name="section1295913853210"></a>
+## Events<a name="section1295913853210"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -148,7 +148,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section1970516568131"></a>
+## Methods<a name="section1970516568131"></a>
 
 Only the following methods are supported.
 

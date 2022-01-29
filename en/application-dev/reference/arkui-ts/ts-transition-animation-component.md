@@ -1,4 +1,7 @@
-# Component Transition<a name="EN-US_TOPIC_0000001119768666"></a>
+# Component Transition<a name="EN-US_TOPIC_0000001237715077"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 Configure the component transition animations for when a component is inserted or deleted, which improves user experience. This feature takes effect only when  **animateTo**  is used. The animation duration, curve, and delay are the same as those configured in  **animateTo**.
 

@@ -2,10 +2,7 @@
 
 **font-face**  is used to define the font style. You can define  **font-face**  in  **style**  to specify a font name and resource for your application and then reference this font from  **font-family**.
 
-The custom font can be loaded from the font file in a project.
-
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The font format can be .ttf or .otf.
+The custom font can be loaded from the font file in a project. The font file must be in .ttf or .otf format.
 
 ## Defining @font-face<a name="section185107316712"></a>
 
@@ -24,7 +21,7 @@ Customize a font.
 
 Supported sources of customized fonts:
 
--   Font file in the project: Specify the path of the font file in the project through  **url**. \(You can use absolute paths only. For details, see  [Resources and File Access Rules](js-framework-file.md#section6620355202117).\)
+-   Font file in the project: Specify the path of the font file in the project through  **url**. \(You can use absolute paths only. For details, see  [Resources and File Access Rules](../../ui/js-framework-file.md#section6620355202117).\)
 
 -   You can set only one  **src**  attribute.
 

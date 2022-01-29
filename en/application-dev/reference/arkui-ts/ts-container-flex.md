@@ -1,4 +1,7 @@
-# Flex<a name="EN-US_TOPIC_0000001159178189"></a>
+# Flex<a name="EN-US_TOPIC_0000001237475079"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Flex\>**  component allows for an elastic layout.
 
@@ -12,7 +15,7 @@ This component can contain child components.
 
 ## APIs<a name="section14196162892911"></a>
 
-Flex\(options?: \{ direction?: FlexDirection, wrap?: FlexWrap, justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign \}\)
+Flex\(options?: \{ direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign \}\)
 
 Creates a standard  **<Flex\>**  component.
 
@@ -402,7 +405,7 @@ struct FlexExample4 {
 
 ![](figures/flex04.jpg)
 
-![](figures/flex04-61.gif)
+![](figures/flex04-2.gif)
 
 ```
 // Example 05

@@ -1,9 +1,9 @@
-# Blank<a name="EN-US_TOPIC_0000001169482471"></a>
-
-The  **<Blank\>**  component supports automatic filling of the empty part of the container along the main axis.
+# Blank<a name="EN-US_TOPIC_0000001192915120"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   This component is valid only when the parent component is  **<Row\>**  or  **<Column\>**.
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+The  **<Blank\>**  component supports automatic filling of the empty part of the container along the main axis. This component is valid only when the parent component is  **<Row\>**  or  **<Column\>**.
 
 ## Required Permissions<a name="section781125411508"></a>
 
@@ -86,8 +86,8 @@ struct BlankExample {
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank()
-        Text('on/off').fontSize(18).height(60)
-      }.width('100%').backgroundColor(0xFFFFFF).borderRadius(15).padding(12)
+        Toggle({ type: ToggleType.Switch })
+      }.width('100%').backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
     }.backgroundColor(0xEFEFEF).padding(20)
   }
 }
@@ -95,9 +95,9 @@ struct BlankExample {
 
 Portrait mode
 
-![](figures/blank_v.gif)
+![](figures/blank1.gif)
 
 Landscape mode
 
-![](figures/blank_h.gif)
+![](figures/blank2.gif)
 

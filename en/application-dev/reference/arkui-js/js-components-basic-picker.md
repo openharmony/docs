@@ -42,7 +42,9 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-Common selector \(type is  **text**\)
+### Text Selector<a name="section28061337142416"></a>
+
+When  **type**  is set to  **text**, a text selector is used.
 
 <a name="ta708bd4856a044b79bae50a2ce6981b8"></a>
 <table><thead align="left"><tr id="re08662644cee4140ad0d5bac7978cd9b"><th class="cellrowborder" valign="top" width="24.007599240075994%" id="mcps1.1.6.1.1"><p id="af5b093e471ec47119f04bf2fe91b6f64"><a name="af5b093e471ec47119f04bf2fe91b6f64"></a><a name="af5b093e471ec47119f04bf2fe91b6f64"></a>Name</p>
@@ -95,7 +97,9 @@ Common selector \(type is  **text**\)
 </tbody>
 </table>
 
-Date selector \(type is  **date**\)
+### Date Selector<a name="section194021642517"></a>
+
+When  **type**  is set to  **date**, a date selector is used.
 
 <a name="table174784493618"></a>
 <table><thead align="left"><tr id="row54789491561"><th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.1.6.1.1"><p id="p14781849561"><a name="p14781849561"></a><a name="p14781849561"></a>Name</p>
@@ -181,7 +185,9 @@ Date selector \(type is  **date**\)
 </tbody>
 </table>
 
-Time selector \(**type**  is  **time**\)
+### Time Selector<a name="section14386134222510"></a>
+
+When  **type**  is set to  **time**, a time selector is used.
 
 <a name="table89366820719"></a>
 <table><thead align="left"><tr id="row49367819714"><th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.1.6.1.1"><p id="p1493614815715"><a name="p1493614815715"></a><a name="p1493614815715"></a>Name</p>
@@ -215,7 +221,7 @@ Time selector \(**type**  is  **time**\)
 </td>
 <td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p id="p16773151914716"><a name="p16773151914716"></a><a name="p16773151914716"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p57739191974"><a name="p57739191974"></a><a name="p57739191974"></a>Default value of the time selector, in format of HH:mm. If seconds are contained, the format is HH:mm:ss.</p>
+<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p57739191974"><a name="p57739191974"></a><a name="p57739191974"></a>Default value of the time selector, in the format of HH:mm. If seconds are contained, the format is HH:mm:ss.</p>
 </td>
 </tr>
 <tr id="row179378815715"><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p id="p1577313191078"><a name="p1577313191078"></a><a name="p1577313191078"></a>value</p>
@@ -247,7 +253,9 @@ Time selector \(**type**  is  **time**\)
 </tbody>
 </table>
 
-Date and time selector \(type is  **datetime**\)
+### Date and Time Selector<a name="section10180192513261"></a>
+
+When  **type**  is set to  **datetime**, a date and time selector is used.
 
 <a name="table1188511392120"></a>
 <table><thead align="left"><tr id="row16886193915128"><th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.1.6.1.1"><p id="p58868399129"><a name="p58868399129"></a><a name="p58868399129"></a>Name</p>
@@ -270,7 +278,9 @@ Date and time selector \(type is  **datetime**\)
 </td>
 <td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p id="p4887203911129"><a name="p4887203911129"></a><a name="p4887203911129"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p988710393122"><a name="p988710393122"></a><a name="p988710393122"></a>Default value of the date and time selector. The value can be in the format of MM-DD-HH-mm or YYYY-MM-DD-HH-mm. If the year is not set, the current year is used by default. The value you set is the date selected by default in the pop-up window.</p>
+<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p177512214430"><a name="p177512214430"></a><a name="p177512214430"></a>Default value of the date and time selector. The value can be in either of the following formats:</p>
+<a name="ul204071643430"></a><a name="ul204071643430"></a><ul id="ul204071643430"><li>MM-DD-HH-mm</li><li>YYYY-MM-DD-HH-mm</li></ul>
+<p id="p192194417433"><a name="p192194417433"></a><a name="p192194417433"></a>If the year is not set, the current year is used by default. The value you set is the date selected by default in the pop-up window.</p>
 </td>
 </tr>
 <tr id="row1887173951219"><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p id="p1288733931210"><a name="p1288733931210"></a><a name="p1288733931210"></a>value</p>
@@ -294,7 +304,7 @@ Date and time selector \(type is  **datetime**\)
 <td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p id="p171426196242"><a name="p171426196242"></a><a name="p171426196242"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p1314251932418"><a name="p1314251932418"></a><a name="p1314251932418"></a>Time format used by the date and time selector. Available values include:</p>
-<a name="ul4189124631213"></a><a name="ul4189124631213"></a><ul id="ul4189124631213"><li><strong id="b113902010491"><a name="b113902010491"></a><a name="b113902010491"></a>12</strong>: displayed in 12-hour format and distinguished by a.m. and p.m.</li><li><strong id="b849292001"><a name="b849292001"></a><a name="b849292001"></a>24</strong>: displayed in 24-hour format<div class="note" id="note1563822112115"><a name="note1563822112115"></a><a name="note1563822112115"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1563882115113"><a name="p1563882115113"></a><a name="p1563882115113"></a>The default value is the most commonly-used hour format in the current locale. <sup id="sup1719092182914"><a name="sup1719092182914"></a><a name="sup1719092182914"></a>5+</sup></p>
+<a name="ul4189124631213"></a><a name="ul4189124631213"></a><ul id="ul4189124631213"><li><strong id="b113902010491"><a name="b113902010491"></a><a name="b113902010491"></a>12</strong>: displayed in 12-hour format and distinguished by a.m. and p.m.</li><li><strong id="b1676844709"><a name="b1676844709"></a><a name="b1676844709"></a>24</strong>: displayed in 24-hour format<div class="note" id="note1563822112115"><a name="note1563822112115"></a><a name="note1563822112115"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1563882115113"><a name="p1563882115113"></a><a name="p1563882115113"></a>The default value is the most commonly-used hour format in the current locale. <sup id="sup1719092182914"><a name="sup1719092182914"></a><a name="sup1719092182914"></a>5+</sup></p>
 </div></div>
 </li></ul>
 </td>
@@ -326,7 +336,9 @@ Date and time selector \(type is  **datetime**\)
 </tbody>
 </table>
 
-Multi-column text selector \(type is  **multi-text**\)
+### Multi-Column Text Selector<a name="section18757165414262"></a>
+
+When  **type**  is set to  **multi-text**, a multi-column text selector is used.
 
 <a name="table1886619321772"></a>
 <table><thead align="left"><tr id="row198671332179"><th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.1.6.1.1"><p id="p168677321871"><a name="p168677321871"></a><a name="p168677321871"></a>Name</p>
@@ -390,7 +402,7 @@ Multi-column text selector \(type is  **multi-text**\)
 </tbody>
 </table>
 
-## Style<a name="section1299175511712"></a>
+## Styles<a name="section1299175511712"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -524,11 +536,11 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section1724215114357"></a>
+## Events<a name="section1724215114357"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
-Common selector \(type is  **text**\)
+### Common Selector<a name="section167201221192710"></a>
 
 <a name="table1024535153519"></a>
 <table><thead align="left"><tr id="row14245051103519"><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.4.1.1"><p id="p024535163513"><a name="p024535163513"></a><a name="p024535163513"></a>Name</p>
@@ -541,7 +553,7 @@ Common selector \(type is  **text**\)
 </thead>
 <tbody><tr id="row1624595173510"><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p id="p1424518517357"><a name="p1424518517357"></a><a name="p1424518517357"></a>change</p>
 </td>
-<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p id="p52451351143515"><a name="p52451351143515"></a><a name="p52451351143515"></a>{ newValue:newValue, newSelected:newSelected }</p>
+<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p id="p52451351143515"><a name="p52451351143515"></a><a name="p52451351143515"></a>{ newValue: newValue, newSelected: newSelected }</p>
 </td>
 <td class="cellrowborder" valign="top" width="50.41%" headers="mcps1.1.4.1.3 "><p id="p202450516358"><a name="p202450516358"></a><a name="p202450516358"></a>Triggered when a value is selected and the OK button is clicked in the displayed pop-up window. <strong id="b13272174011538"><a name="b13272174011538"></a><a name="b13272174011538"></a>newSelected</strong> is the index.</p>
 </td>
@@ -556,7 +568,7 @@ Common selector \(type is  **text**\)
 </tbody>
 </table>
 
-Date selector \(type is  **date**\)
+### Date Selector<a name="section161113322714"></a>
 
 <a name="table424655112352"></a>
 <table><thead align="left"><tr id="row7246155163518"><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.4.1.1"><p id="p02465511352"><a name="p02465511352"></a><a name="p02465511352"></a>Name</p>
@@ -569,7 +581,7 @@ Date selector \(type is  **date**\)
 </thead>
 <tbody><tr id="row82462051163517"><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p id="p424617518356"><a name="p424617518356"></a><a name="p424617518356"></a>change</p>
 </td>
-<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p id="p8246185133519"><a name="p8246185133519"></a><a name="p8246185133519"></a>{ year:year, month:month, day:day }</p>
+<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p id="p8246185133519"><a name="p8246185133519"></a><a name="p8246185133519"></a>{ year: year, month: month, day: day }</p>
 </td>
 <td class="cellrowborder" valign="top" width="50.41%" headers="mcps1.1.4.1.3 "><p id="p192461451183514"><a name="p192461451183514"></a><a name="p192461451183514"></a>Triggered when a value is selected and the OK button is clicked in the displayed pop-up window.</p>
 <div class="note" id="note192461751103512"><a name="note192461751103512"></a><a name="note192461751103512"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p16246125163517"><a name="p16246125163517"></a><a name="p16246125163517"></a>The value of <strong id="b86982012556"><a name="b86982012556"></a><a name="b86982012556"></a>month</strong> ranges from 0 (January) to 11 (December). <sup id="sup102461651123517"><a name="sup102461651123517"></a><a name="sup102461651123517"></a>5+</sup></p>
@@ -586,7 +598,7 @@ Date selector \(type is  **date**\)
 </tbody>
 </table>
 
-Date and time selector \(type is  **datetime**\)
+### Date and Time Selector<a name="section15386114572710"></a>
 
 <a name="table2024785114353"></a>
 <table><thead align="left"><tr id="row2247551163520"><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.4.1.1"><p id="p824775114357"><a name="p824775114357"></a><a name="p824775114357"></a>Name</p>
@@ -599,7 +611,7 @@ Date and time selector \(type is  **datetime**\)
 </thead>
 <tbody><tr id="row192475517358"><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p id="p724705119351"><a name="p724705119351"></a><a name="p724705119351"></a>change</p>
 </td>
-<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p id="p5247175116352"><a name="p5247175116352"></a><a name="p5247175116352"></a>{ year:year, month:month, day:day,  hour:hour, minute:minute}</p>
+<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p id="p5247175116352"><a name="p5247175116352"></a><a name="p5247175116352"></a>{ year: year, month: month, day: day,  hour: hour, minute: minute}</p>
 </td>
 <td class="cellrowborder" valign="top" width="50.41%" headers="mcps1.1.4.1.3 "><p id="p13247155111354"><a name="p13247155111354"></a><a name="p13247155111354"></a>Triggered when a value is selected and the OK button is clicked in the displayed pop-up window.</p>
 </td>
@@ -614,7 +626,7 @@ Date and time selector \(type is  **datetime**\)
 </tbody>
 </table>
 
-Time selector \(type is  **time**\)
+### Time Selector<a name="section17835159152813"></a>
 
 <a name="table102472051113519"></a>
 <table><thead align="left"><tr id="row162481151143512"><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.4.1.1"><p id="p18248145153511"><a name="p18248145153511"></a><a name="p18248145153511"></a>Name</p>
@@ -627,8 +639,7 @@ Time selector \(type is  **time**\)
 </thead>
 <tbody><tr id="row82481516354"><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p id="p824812519355"><a name="p824812519355"></a><a name="p824812519355"></a>change</p>
 </td>
-<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p id="p5248115183512"><a name="p5248115183512"></a><a name="p5248115183512"></a>{ hour:hour, minute:minute,</p>
-<p id="p17248165153517"><a name="p17248165153517"></a><a name="p17248165153517"></a>[second:second] }</p>
+<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p id="p5248115183512"><a name="p5248115183512"></a><a name="p5248115183512"></a>{ hour: hour, minute: minute, [second: second] }</p>
 </td>
 <td class="cellrowborder" valign="top" width="50.41%" headers="mcps1.1.4.1.3 "><p id="p824811519353"><a name="p824811519353"></a><a name="p824811519353"></a>Triggered when a value is selected and the OK button is clicked in the displayed pop-up window. If <strong id="b793820412016"><a name="b793820412016"></a><a name="b793820412016"></a>containsecond</strong> is set to true, value contains seconds.</p>
 </td>
@@ -643,7 +654,7 @@ Time selector \(type is  **time**\)
 </tbody>
 </table>
 
-Multi-column text selector \(type is  **multi-text**\)
+### Multi-Column Text Selector<a name="section126981922162818"></a>
 
 <a name="table14249251153519"></a>
 <table><thead align="left"><tr id="row152491451133516"><th class="cellrowborder" valign="top" width="13.969999999999999%" id="mcps1.1.4.1.1"><p id="p202497516355"><a name="p202497516355"></a><a name="p202497516355"></a>Name</p>
@@ -656,7 +667,7 @@ Multi-column text selector \(type is  **multi-text**\)
 </thead>
 <tbody><tr id="row13249351183510"><td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.4.1.1 "><p id="p1524916515353"><a name="p1524916515353"></a><a name="p1524916515353"></a>change</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.9%" headers="mcps1.1.4.1.2 "><p id="p1249195111352"><a name="p1249195111352"></a><a name="p1249195111352"></a>{newValue:[newValue1, newValue2, newValue3, ...], newSelected:[newSelected1, newSelected2, newSelected3, ...]}</p>
+<td class="cellrowborder" valign="top" width="36.9%" headers="mcps1.1.4.1.2 "><p id="p1249195111352"><a name="p1249195111352"></a><a name="p1249195111352"></a>{ newValue: [newValue1, newValue2, newValue3, …], newSelected:[newSelected1, newSelected2, newSelected3, …] }</p>
 </td>
 <td class="cellrowborder" valign="top" width="49.13%" headers="mcps1.1.4.1.3 "><p id="p10250165119356"><a name="p10250165119356"></a><a name="p10250165119356"></a>Triggered when an item is selected and the OK button is clicked in the displayed pop-up window.</p>
 <a name="ul1425045115352"></a><a name="ul1425045115352"></a><ul id="ul1425045115352"><li><strong id="b0626192372512"><a name="b0626192372512"></a><a name="b0626192372512"></a>newValue</strong> is an array consisting of the values of the selected items.</li><li><strong id="b1290181522710"><a name="b1290181522710"></a><a name="b1290181522710"></a>newSelected</strong> is an array consisting of the indexes of the selected items. The lengths of <strong id="b142032033192714"><a name="b142032033192714"></a><a name="b142032033192714"></a>newValue</strong> and <strong id="b131696406270"><a name="b131696406270"></a><a name="b131696406270"></a>newSelected</strong> are the same as the length of <strong id="b49772553275"><a name="b49772553275"></a><a name="b49772553275"></a>range</strong>.</li></ul>
@@ -664,9 +675,9 @@ Multi-column text selector \(type is  **multi-text**\)
 </tr>
 <tr id="row325015143518"><td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.4.1.1 "><p id="p8250205119359"><a name="p8250205119359"></a><a name="p8250205119359"></a>columnchange</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.9%" headers="mcps1.1.4.1.2 "><p id="p1325015111351"><a name="p1325015111351"></a><a name="p1325015111351"></a>{ column:column, newValue:newValue, newSelected:newSelected }</p>
+<td class="cellrowborder" valign="top" width="36.9%" headers="mcps1.1.4.1.2 "><p id="p1325015111351"><a name="p1325015111351"></a><a name="p1325015111351"></a>{ column: column, newValue: newValue, newSelected: newSelected }</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.13%" headers="mcps1.1.4.1.3 "><p id="p5250115112351"><a name="p5250115112351"></a><a name="p5250115112351"></a>Triggered when the value of a column in the multi-column text selector changes.</p>
+<td class="cellrowborder" valign="top" width="49.13%" headers="mcps1.1.4.1.3 "><p id="p5250115112351"><a name="p5250115112351"></a><a name="p5250115112351"></a>Triggered when the value of a column in the multi-column selector changes.</p>
 <a name="ul025095133520"></a><a name="ul025095133520"></a><ul id="ul025095133520"><li><strong id="b1266741291"><a name="b1266741291"></a><a name="b1266741291"></a>column</strong> indicates the column whose value has changed.</li><li><strong id="b1657817287298"><a name="b1657817287298"></a><a name="b1657817287298"></a>newValue</strong> indicates the selected value.</li><li><strong id="b0186105592917"><a name="b0186105592917"></a><a name="b0186105592917"></a>newSelected</strong> indicates the index of the selected value.</li></ul>
 </td>
 </tr>
@@ -680,7 +691,7 @@ Multi-column text selector \(type is  **multi-text**\)
 </tbody>
 </table>
 
-## Method<a name="section47669296127"></a>
+## Methods<a name="section47669296127"></a>
 
 In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
 
@@ -708,20 +719,25 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 ```
 <!-- xxx.hml -->
 <div class="container">
-  <picker id="picker_text" type="text" value="{{textvalue}}" selected="{{textselect}}" range="{{rangetext}}" onchange="textonchange"
-    oncancel="textoncancel" class="pickertext"></picker>
+  <select @change="selectChange">
+        <option value="{{ item }}" for="item in selectList">
+            {{ item }}
+        </option>
+  </select>
+  <picker id="picker0" type="text" value="{{textvalue}}" selected="{{textselect}}" range="{{rangetext}}" onchange="textonchange"
+    oncancel="textoncancel" class="pickertext"  "></picker>
 
-  <picker id="picker_date" type="date" value="{{datevalue}}" start="2002-2-5" end="2030-6-5" selected="{{dateselect}}" lunarswitch="true"
-    onchange="dateonchange" oncancel="dateoncancel" class="pickerdate"></picker>
+  <picker id="picker1" type="date" value="{{datevalue}}" start="2002-2-5" end="2030-6-5" selected="{{dateselect}}" lunarswitch="true"
+    onchange="dateonchange" oncancel="dateoncancel" class="pickerdate" show="false"></picker>
 
-  <picker id="picker_time" type="time" value="{{timevalue}}" containsecond="{{containsecond}}" selected="{{timeselect}}" hours="12"
-    onchange="timeonchange" oncancel="timeoncancel" class="pickertime"></picker>
+  <picker id="picker2" type="time" value="{{timevalue}}" containsecond="{{containsecond}}" selected="{{timeselect}}" hours="12"
+    onchange="timeonchange" oncancel="timeoncancel" class="pickertime" show="false"></picker>
 
-  <picker id="picker_datetime" type="datetime" value="{{datetimevalue}}" selected="{{datetimeselect}}" hours="24" lunarswitch="true"
-    onchange="datetimeonchange" oncancel="datetimeoncancel" class="pickerdatetime"></picker>
+  <picker id="picker3" type="datetime" value="{{datetimevalue}}" selected="{{datetimeselect}}" hours="24" lunarswitch="true"
+    onchange="datetimeonchange" oncancel="datetimeoncancel" class="pickerdatetime" show="false"></picker>
 
-  <picker id="picker_multi" type="multi-text" value="{{multitextvalue}}" columns="3" range="{{multitext}}" selected="{{multitextselect}}"
-    onchange="multitextonchange" oncancel="multitextoncancel" class="pickermuitl"></picker>
+  <picker id="picker4" type="multi-text" value="{{multitextvalue}}" columns="3" range="{{multitext}}" selected="{{multitextselect}}"
+    onchange="multitextonchange" oncancel="multitextoncancel" class="pickermuitl" show="false"></picker>
 </div>
 ```
 
@@ -732,28 +748,23 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
   justify-content: center;
   align-items: center;
 }
-.pickertext{    
-  background-color: red;
-  width: 300;
-  height: 400;
+ picker{
+  width:60%;
+  height:80px;
+  border-radius:20px;
+  text-color:white;
+  font-size:15px;
+  background-color:#4747e3;
+  margin-left:20%;
 }
-.pickerdate{    
-  background-color: #BEFF5B;
-  width: 200;
-  height: 200;
-}
-.pickertime{    
-  background-color: #B764FF;
-  width: 500;
-  height: 200;
-}
-.pickerdatetime{    
-  background-color: #FF6387;
-  width: 100%;
-  height: 300;
-}
-.pickermuitl{    
-  background-color: #71FF31;
+ select{
+  background-color: #efecec;
+  height: 50px;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 300px;
+  margin-bottom: 50px;
+  font-size: 22px;
 }
 ```
 
@@ -763,6 +774,7 @@ import router from '@system.router';
 import prompt from '@system.prompt';
 export default {
   data: {    
+    selectList:["text","data","time","datetime","multitext"],
     rangetext:['15', "20", "25"],    
     multitext:[["a", "b", "c"], ["e", "f", "g"], ["h", "i"], ["k", "l", "m"]],    
     textvalue:'default textvalue',    
@@ -777,6 +789,13 @@ export default {
     dateselect:'2021-3-2',    
     textselect:'2'
   },
+  selectChange(e){
+        for(let i = 0;i<this.selectList.length;i++){
+            if(e.newValue == this.selectList[i]){
+                this.$element("picker"+i).show();
+            }
+        }
+    },
   textonchange(e) {    
     this.textvalue = e.newValue;    
     prompt.showToast({ message:"text:"+e.newValue+",newSelected:"+e.newSelected })
@@ -786,7 +805,7 @@ export default {
   },
   dateonchange(e) {    
     this.datevalue = e.year + "-" + e.month + "-" + e.day;    
-    prompt.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day })
+    prompt.showToast({ message:"date:"+e.year+"-"+(e.month+1)+"-"+e.day })
   },
   dateoncancel() {    
     prompt.showToast({ message:"date: dateoncancel" })
@@ -794,24 +813,24 @@ export default {
   timeonchange(e) {    
     if(this.containsecond){        
       this.timevalue=e.hour+":"+e.minute+":"+e.second;        
-      prompt.showToast({message:"Time: " + e.hour + ": "+ e.minute + ": "+ e.second })
+      prompt.showToast({ message:"Time:" + e.hour + ":" + e.minute + ":" + e.second })
     } else {        
       this.timevalue=e.hour+":"+e.minute;        
-      prompt.showToast({message:"Time: " + e.hour + ": "+ e.minute })
+      prompt.showToast({ message:"Time:" + e.hour + ":" + e.minute })
     }},
   timeoncancel() {    
     prompt.showToast({ message:"timeoncancel" })
   },
   datetimeonchange(e) {    
     this.datetimevalue=e.year+"-"+e.month+"-"+e.day+" "+e.hour+":"+e.minute;    
-    prompt.showToast({message:"Time:"+e.month+"-"+e.day+""+e.hour+":"+e.minute})
+    prompt.showToast({ message:"Time:"+(e.month+1)+"-"+e.day+" "+e.hour+":"+e.minute })
   },
   datetimeoncancel() {    
     prompt.showToast({ message:"datetimeoncancel" })
   },
   multitextonchange(e) {    
     this.multitextvalue=e.newValue;    
-    prompt.showToast({message:"Multi-column text change" + e.newValue})
+    prompt.showToast({ message:"Multi-column text change" + e.newValue })
   },
   multitextoncancel() {    
     prompt.showToast({ message:"multitextoncancel" })
@@ -822,20 +841,5 @@ export default {
 }
 ```
 
-**Figure  1**  text<a name="fig0994231184518"></a>  
-![](figures/text.png "text")
-
-**Figure  2**  date<a name="fig4844164313500"></a>  
-
-
-![](figures/label.png)
-
-**Figure  3**  time<a name="fig12393130145110"></a>  
-![](figures/time.png "time")
-
-**Figure  4**  datetime<a name="fig15761018155119"></a>  
-![](figures/datetime.png "datetime")
-
-**Figure  5**  multitext<a name="fig92262011524"></a>  
-![](figures/multitext.png "multitext")
+![](figures/mmmm.gif)
 

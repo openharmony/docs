@@ -23,7 +23,7 @@ Create an  **<image\>**  component in the  **.hml**  file under  **pages/index**
 }
 ```
 
-![](figures/10-15.png)
+![](figures/10-10.png)
 
 ## Setting the Image Style<a name="section17276142315293"></a>
 
@@ -55,11 +55,11 @@ image{
 }
 ```
 
-![](figures/7-16.png)
+![](figures/7-11.png)
 
 ## Display Multiple Images<a name="section297282517378"></a>
 
-Define a  **for**  loop to display multiple images cyclically. Set  **option**  to specify the image scale style. For details about the scale styles, see the description of  [object-fit](../reference/arkui-js/js-components-basic-image.md#table175851535113711).
+Define a  **for**  loop to display multiple images cyclically. Set  **option**  to specify the image scale style. For details about the scale styles, see the description of object-fit.
 
 ```
 <!-- index.hml -->
@@ -129,7 +129,7 @@ export default {
 }
 ```
 
-![](figures/34-17.gif)
+![](figures/34-12.gif)
 
 ## Loading Images<a name="section06913511375"></a>
 

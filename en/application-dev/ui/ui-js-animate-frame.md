@@ -96,11 +96,11 @@ export default {
 ![](figures/3333.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->When invoking the callback, the  **requestAnimationFrame**  method passes in the timestamp as the first parameter, which indicates the time when  **requestAnimationFrame**  starts to execute the callback.
+>When invoking the callback, the  **requestAnimationFrame**  method passes the timestamp as the first parameter, which indicates the time when  **requestAnimationFrame**  starts to execute the callback.
 
 ## Canceling an Animation Frame<a name="section13657493110"></a>
 
-Use the  **cancelAnimationFrame**  method to cancel frames on a one-by-one basis. It cancels an animation frame request sent through  **requestAnimationFrame**.
+Use the  **cancelAnimationFrame**  method to cancel frames on a one-by-one basis. When this method is called, the animation frame request sent through  **requestAnimationFrame**  will be canceled.
 
 ```
 <!-- xxx.hml -->
@@ -184,5 +184,5 @@ export default {
 ![](figures/4444.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->When this method is called, a parameter that indicates an ID must be passed.
+>When  **cancelAnimationFrame**  is called, a parameter that indicates an ID must be passed.
 

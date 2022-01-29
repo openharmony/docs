@@ -1,6 +1,13 @@
-# ImageAnimator<a name="EN-US_TOPIC_0000001119928156"></a>
+# ImageAnimator<a name="EN-US_TOPIC_0000001192595166"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<ImageAnimator\>**  component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
 
 ## Child Components<a name="section1848323814535"></a>
 

@@ -2,14 +2,11 @@
 
 An entrance piece that can contain images and text. It is usually used to display receivers, for example, email recipients or message recipients.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
-
 ## Child Component<a name="section9288143101012"></a>
 
 None
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -62,14 +59,14 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section17756476592"></a>
+## Styles<a name="section17756476592"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >By default, text and images are placed in the middle of the  **<piece\>**  component.
 
-## Event<a name="section19137152119"></a>
+## Events<a name="section19137152119"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -100,10 +97,20 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
 ```
 <!-- xxx.hml-->
-<div>
-  <piece if="{{first}}" content="Huawei"></piece>
-  <piece if="{{second}}" content="Huawei" closable="true" onclose="closeSecond"></piece>
+<div class="container" >
+  <piece if="{{first}}" content="example"></piece>
+  <piece if="{{second}}" content="example" closable="true" onclose="closeSecond"></piece>
 </div>
+```
+
+```
+/* xxx.css */
+.container {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
 ```
 
 ```
@@ -119,5 +126,5 @@ export default {
 }
 ```
 
-![](figures/1-38.gif)
+![](figures/11-5.gif)
 

@@ -2,7 +2,7 @@
 
 Before creating a project, you need to install DevEco Studio. For details, see  [HUAWEI DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/tools_overview-0000001053582387).
 
-1.  Open DevEco Studio and click  **Create Project**. If a project exists, choose  **File**  \>  **New**  \>  **New project**.
+1.  Open DevEco Studio and click  **Create Project**. If there is already a project, choose  **File**  \>  **New**  \>  **New project**.
 
     ![](figures/en-us_image_0000001168956332.png)
 
@@ -14,13 +14,13 @@ Before creating a project, you need to install DevEco Studio. For details, see  
 
     ![](figures/en-us_image_0000001213462329.png)
 
-4.  On the project configuration page, change the project name to  **HealthyDiet**, set  **Project Type**  to  **Application**,  **Device Type**  to  **Phone**,  **Language**  to  **eTS**, and enable compatibility with API version 7. By default, DevEco Studio saves the project to drive C. To change the save path, click the folder icon for  **Save Location**  and specify a path. After completing configuration, click  **Finish**.
+4.  On the project configuration page, set Project Name to  **HealthyDiet**,  **Project Type**  to  **Application**,  **Device Type**  to  **Phone**,  **Language**  to  **eTS**, and  **Compatible API Version**  to  **SDK: API Version 7**. By default, DevEco Studio saves the project to drive C. You can change the save path by setting  **Save Location**. When you are done, click  **Finish**.
 
     ![](figures/en-us_image_0000001167746622.png)
 
 5.  After the project is created, open the  **app.ets**  file.
 
-    The  **app.ets**  file provides the  **onCreate**  and  **onDestroy**  methods for the application lifecycle. These methods are called when an application is created and when an application is destroyed, respectively. Global variables can be declared in  **app.ets**, and the declared data and methods are shared by the entire application.
+    The  **app.ets**  file provides the  **onCreate**  and  **onDestroy**  methods for the application lifecycle.  **onCreate**  is called when an application is created, and  **onDestroy**  is called when an application is destroyed. Global variables can be declared in the  **app.ets**  file, wherein the declared data and methods are shared by the entire application.
 
     ```
     export default {

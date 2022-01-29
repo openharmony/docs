@@ -1,4 +1,4 @@
-# Universal Attributes<a name="EN-US_TOPIC_0000001111421390"></a>
+# Universal Attributes<a name="EN-US_TOPIC_0000001237355049"></a>
 
 -   **[Size](ts-universal-attributes-size.md)**  
 
@@ -37,5 +37,9 @@
 -   **[Popup Control](ts-universal-attributes-popup.md)**  
 
 -   **[Menu Control](ts-universal-attributes-menu.md)**  
+
+-   **[Click Control](ts-universal-attributes-touchable.md)**  
+
+-   **[Touch Target](ts-universal-attributes-response-region.md)**  
 
 

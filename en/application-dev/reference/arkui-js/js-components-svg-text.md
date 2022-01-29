@@ -3,12 +3,12 @@
 The  **<text\>**  component is used to display a piece of textual information.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The APIs of this module are supported since API version 7.
+>-   This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >-   The text content must be written in the content area. The  **tspan**  sub-element label can be nested to segment the text content. The  **textPath**  sub-element label can be nested to draw the text content based on the specified path.
 >-   **<text\>**  can be nested only by the parent element label  **svg**.
 >-   Only the default font  **sans-serif**  is supported.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -129,7 +129,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.6%" headers="mcps1.1.6.1.4 "><p id="p115433589554"><a name="p115433589554"></a><a name="p115433589554"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p19543058195511"><a name="p19543058195511"></a><a name="p19543058195511"></a>Font fill transparency.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p19543058195511"><a name="p19543058195511"></a><a name="p19543058195511"></a>Font fill opacity.</p>
 </td>
 </tr>
 <tr id="row14858838113210"><td class="cellrowborder" valign="top" width="16.84%" headers="mcps1.1.6.1.1 "><p id="a4a0bae0e1bb946d6bc7bf30e0a535343"><a name="a4a0bae0e1bb946d6bc7bf30e0a535343"></a><a name="a4a0bae0e1bb946d6bc7bf30e0a535343"></a>opacity</p>
@@ -140,7 +140,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.6%" headers="mcps1.1.6.1.4 "><p id="p324614367213"><a name="p324614367213"></a><a name="p324614367213"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>Transparency of an element. The value ranges from <strong id="b20788312163913"><a name="b20788312163913"></a><a name="b20788312163913"></a>0</strong> to <strong id="b2789412193917"><a name="b2789412193917"></a><a name="b2789412193917"></a>1</strong>. The value <strong id="b1978901216398"><a name="b1978901216398"></a><a name="b1978901216398"></a>1</strong> means opaque, and <strong id="b18790171213917"><a name="b18790171213917"></a><a name="b18790171213917"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>Opacity of an element. The value ranges from <strong id="b20788312163913"><a name="b20788312163913"></a><a name="b20788312163913"></a>0</strong> to <strong id="b2789412193917"><a name="b2789412193917"></a><a name="b2789412193917"></a>1</strong>. The value <strong id="b1978901216398"><a name="b1978901216398"></a><a name="b1978901216398"></a>1</strong> means opaque, and <strong id="b18790171213917"><a name="b18790171213917"></a><a name="b18790171213917"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
 </td>
 </tr>
 <tr id="row55924498556"><td class="cellrowborder" valign="top" width="16.84%" headers="mcps1.1.6.1.1 "><p id="p17543185895520"><a name="p17543185895520"></a><a name="p17543185895520"></a>stroke</p>
@@ -173,7 +173,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.6%" headers="mcps1.1.6.1.4 "><p id="p13544258195517"><a name="p13544258195517"></a><a name="p13544258195517"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p14544185816559"><a name="p14544185816559"></a><a name="p14544185816559"></a>Stroke transparency.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p14544185816559"><a name="p14544185816559"></a><a name="p14544185816559"></a>Stroke opacity.</p>
 </td>
 </tr>
 </tbody>

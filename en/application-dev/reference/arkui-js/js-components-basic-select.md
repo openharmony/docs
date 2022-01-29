@@ -2,7 +2,7 @@
 
 The  **<select\>**  component provides a drop-down list that allows users to select among multiple options.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -10,11 +10,11 @@ None
 
 The  **<[option](js-components-basic-option.md)\>**  child component is supported.
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 Attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
 
-## Style<a name="section648514244510"></a>
+## Styles<a name="section648514244510"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -45,7 +45,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section3892191911214"></a>
+## Events<a name="section3892191911214"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 

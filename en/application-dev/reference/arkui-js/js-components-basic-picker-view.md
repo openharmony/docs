@@ -2,11 +2,11 @@
 
 The  **<picker-view\>**  component provides the view that shows an embedded scrollable selector on the screen.
 
-## Child Component<a name="section54292411343"></a>
+## Child Components<a name="section54292411343"></a>
 
 Not supported
 
-## Attribute<a name="section121957126347"></a>
+## Attributes<a name="section121957126347"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -62,7 +62,7 @@ Text selector \(**type**  is  **text**\)
 <td class="cellrowborder" valign="top" width="7.14928507149285%" headers="mcps1.1.6.1.4 "><p id="p12490132765"><a name="p12490132765"></a><a name="p12490132765"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="49.4050594940506%" headers="mcps1.1.6.1.5 "><p id="p879110395507"><a name="p879110395507"></a><a name="p879110395507"></a>Value range of the text selector.</p>
-<div class="note" id="note195791919121"><a name="note195791919121"></a><a name="note195791919121"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p11957191913124"><a name="p11957191913124"></a><a name="p11957191913124"></a>Use the data binding mode, for example, range = {{data}}. Declare the corresponding variable <strong id="b1056351631112"><a name="b1056351631112"></a><a name="b1056351631112"></a>data: ["15", "20", "25"]</strong> in the JavaScript.</p>
+<div class="note" id="note195791919121"><a name="note195791919121"></a><a name="note195791919121"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p11957191913124"><a name="p11957191913124"></a><a name="p11957191913124"></a>Use the data binding mode, for example, range = {{data}}. Declare the corresponding variable <strong id="b1056351631112"><a name="b1056351631112"></a><a name="b1056351631112"></a>data: ["15", "20", "25"]</strong> in JavaScript.</p>
 </div></div>
 </td>
 </tr>
@@ -269,7 +269,7 @@ Date and time selector \(**type**  is  **datetime**\)
 <td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p id="p171426196242"><a name="p171426196242"></a><a name="p171426196242"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p1314251932418"><a name="p1314251932418"></a><a name="p1314251932418"></a>Time format used by the date and time selector. Available values include:</p>
-<a name="ul15923173119204"></a><a name="ul15923173119204"></a><ul id="ul15923173119204"><li><strong id="b113902010491"><a name="b113902010491"></a><a name="b113902010491"></a>12</strong>: displayed in 12-hour format and distinguished by a.m. and p.m.</li><li><strong id="b1738347230"><a name="b1738347230"></a><a name="b1738347230"></a>24</strong>: displayed in 24-hour format<div class="note" id="note1880145011113"><a name="note1880145011113"></a><a name="note1880145011113"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1988165031111"><a name="p1988165031111"></a><a name="p1988165031111"></a>The default value is the most commonly-used hour format in the current locale. <sup id="sup11183114910314"><a name="sup11183114910314"></a><a name="sup11183114910314"></a>5+</sup></p>
+<a name="ul15923173119204"></a><a name="ul15923173119204"></a><ul id="ul15923173119204"><li><strong id="b113902010491"><a name="b113902010491"></a><a name="b113902010491"></a>12</strong>: displayed in 12-hour format and distinguished by a.m. and p.m.</li><li><strong id="b930736675"><a name="b930736675"></a><a name="b930736675"></a>24</strong>: displayed in 24-hour format<div class="note" id="note1880145011113"><a name="note1880145011113"></a><a name="note1880145011113"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1988165031111"><a name="p1988165031111"></a><a name="p1988165031111"></a>The default value is the most commonly-used hour format in the current locale. <sup id="sup11183114910314"><a name="sup11183114910314"></a><a name="sup11183114910314"></a>5+</sup></p>
 </div></div>
 </li></ul>
 </td>
@@ -354,7 +354,7 @@ Multi-column text selector \(**type**  is  **multi-text**\)
 </tbody>
 </table>
 
-## Style<a name="section198061172344"></a>
+## Styles<a name="section198061172344"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -449,13 +449,13 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="5.909409059094091%" headers="mcps1.1.6.1.4 "><p id="p134951723154010"><a name="p134951723154010"></a><a name="p134951723154010"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p124957233408"><a name="p124957233408"></a><a name="p124957233408"></a>Font type of an item. Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the font specified in <a href="js-components-common-customizing-font.md">Custom Font Styles</a> is used for the text</p>
+<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p124957233408"><a name="p124957233408"></a><a name="p124957233408"></a>Font type of an item. Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the font specified by <a href="js-components-common-customizing-font.md">Custom Font Styles</a> is used for the text</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## Event<a name="section103398253399"></a>
+## Events<a name="section103398253399"></a>
 
 The following events are supported.
 
@@ -565,7 +565,7 @@ Multi-text selector \(**type**  is  **multi-text**\)
 </tbody>
 </table>
 
-## Method<a name="section718304515396"></a>
+## Methods<a name="section718304515396"></a>
 
 Not supported
 
@@ -633,5 +633,5 @@ export default {
 }
 ```
 
-![](figures/lite_bar-37.png)
+![](figures/lite_bar-4.png)
 

@@ -1,4 +1,4 @@
-# Props<a name="EN-US_TOPIC_0000001173164675"></a>
+# props<a name="EN-US_TOPIC_0000001173164675"></a>
 
 You can use  **props**  to declare attributes of a custom component and pass the attributes to the child component. The supported types of  **props**  include String, Number, Boolean, Array, Object, and Function. Note that a camel case attribute name \(**compProp**\) should be converted to the kebab case format \(**comp-prop**\) when you reference the attribute in an external parent component. You can add  **props**  to a custom component, and pass the attribute to the child component.
 

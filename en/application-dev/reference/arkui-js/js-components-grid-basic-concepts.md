@@ -11,9 +11,6 @@ As a layout-auxiliary positioning tool, the grid system plays an essential role 
 3.  Provides a flexible spacing adjustment method for applications to keep up with layout in special scenarios.
 
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->Grid components are supported since API version 5.
-
 ## Concepts<a name="section1429110563714"></a>
 
 A column system contains of three attributes: margins, gutters, and columns.
@@ -43,5 +40,4 @@ A column system contains of three attributes: margins, gutters, and columns.
     **md**: 8 columns for 600 ≤ horizontal vp < 840
 
     **lg**: 12 columns for 840 ≤ horizontal vp
-
 

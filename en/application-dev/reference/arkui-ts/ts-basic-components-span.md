@@ -1,4 +1,7 @@
-# Span<a name="EN-US_TOPIC_0000001112938338"></a>
+# Span<a name="EN-US_TOPIC_0000001237475051"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The <Span\> component is used to display a paragraph of textual information. It can be used only as a child component in the  **<Text\>**  component.
 
@@ -46,7 +49,7 @@ Span\(content: string\)
 
 ## Attributes<a name="section11378635172316"></a>
 
-The universal attribute methods support only the common text style.
+In addition to the text style attributes, the attributes below are supported.
 
 <a name="table952mcpsimp"></a>
 <table><thead align="left"><tr id="row959mcpsimp"><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p id="p961mcpsimp"><a name="p961mcpsimp"></a><a name="p961mcpsimp"></a>Name</p>
@@ -88,6 +91,9 @@ The universal attribute methods support only the common text style.
 ## Events<a name="section1093554116361"></a>
 
 Among all the universal events, only the click event is supported.
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>As the  **<Span\>**  component does not have size information, the  **target**  attribute of the  **ClickEvent**  object returned by the click event is invalid.
 
 ## Example<a name="section21711157202411"></a>
 

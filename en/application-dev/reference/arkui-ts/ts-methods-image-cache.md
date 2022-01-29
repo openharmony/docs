@@ -1,4 +1,7 @@
-# Image Cache<a name="EN-US_TOPIC_0000001164050290"></a>
+# Image Cache<a name="EN-US_TOPIC_0000001192915092"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="section5628811168"></a>
 
@@ -46,7 +49,6 @@ Sets the maximum number of decoded images that can be cached in the memory to sp
     ```
     // app.ets
     import app from '@system.app';
-    
     export default {
         onCreate() { 
             app.setImageCacheCount(100)    // Set the maximum number of decoded images that can be cached in the memory to 100.

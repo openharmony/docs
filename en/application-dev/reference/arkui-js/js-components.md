@@ -8,10 +8,9 @@
 
 -   **[Media Components](js-components-media.md)**  
 
--   **[Canvas Components \(Rich\)](js-components-canvas.md)**  
+-   **[Canvas Components ](js-components-canvas.md)**  
 
 -   **[Grid](js-components-grid.md)**  
 
 -   **[SVG Components](js-svg.md)**  
-
 

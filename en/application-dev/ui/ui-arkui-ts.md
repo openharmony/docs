@@ -1,10 +1,12 @@
-# TypeScript-based Declarative Development Paradigm<a name="EN-US_TOPIC_0000001172873562"></a>
+# TypeScript-based Declarative Development Paradigm<a name="EN-US_TOPIC_0000001169328728"></a>
 
 -   **[Overview](ui-ts-overview.md)**  
 
--   **[Introduction](ui-ts-developing-intro.md)**  
+-   **[Framework Overview](ts-framework.md)**  
 
--   **[Experiencing the Declarative UI](ui-ts-experiencing-declarative--u.md)**  
+-   **[Declarative Syntax](ts-declarative-syntax.md)**  
+
+-   **[Experiencing the Declarative UI](ui-ts-experiencing-declarative-ui.md)**  
 
 -   **[Defining Page Layout and Connection](ui-ts-page-layout-connections.md)**  
 

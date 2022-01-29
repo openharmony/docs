@@ -1,6 +1,15 @@
-# Opacity<a name="EN-US_TOPIC_0000001158141255"></a>
+# Opacity<a name="EN-US_TOPIC_0000001237475067"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The attributes described in this topic are used to set the opacity of a component.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table581mcpsimp"></a>
 <table><thead align="left"><tr id="row587mcpsimp"><th class="cellrowborder" valign="top" width="13.969999999999999%" id="mcps1.1.5.1.1"><p id="p589mcpsimp"><a name="p589mcpsimp"></a><a name="p589mcpsimp"></a>Name</p>

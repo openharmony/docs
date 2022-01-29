@@ -2,7 +2,7 @@
 
 The  **<label\>**  component defines labels for the  **<input\>**,  **<button\>**, and  **<textarea\>**  components. When a label is clicked, the click effect of the component associated with the label will be triggered.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -10,7 +10,7 @@ None
 
 Not supported
 
-## Attribute<a name="s6c8b111b1d2e40b3b356f03389dad9cf"></a>
+## Attributes<a name="s6c8b111b1d2e40b3b356f03389dad9cf"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -41,7 +41,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="s5ed16ca4a52b4f8eb4c1a1e04ea9c2c4"></a>
+## Styles<a name="s5ed16ca4a52b4f8eb4c1a1e04ea9c2c4"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -138,7 +138,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p46671227774"><a name="p46671227774"></a><a name="p46671227774"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p166715271479"><a name="p166715271479"></a><a name="p166715271479"></a>Text modifier. Available values are as follows:</p>
+<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p166715271479"><a name="p166715271479"></a><a name="p166715271479"></a>Text decoration. Available values are as follows:</p>
 <a name="ul2667127575"></a><a name="ul2667127575"></a><ul id="ul2667127575"><li><strong id="b81406780441533"><a name="b81406780441533"></a><a name="b81406780441533"></a>underline</strong>: An underline is used.</li><li><strong id="b83360459041533"><a name="b83360459041533"></a><a name="b83360459041533"></a>line-through</strong>: A strikethrough is used.</li><li><strong id="b155693540941533"><a name="b155693540941533"></a><a name="b155693540941533"></a>none</strong>: The standard text is used.</li></ul>
 </td>
 </tr>
@@ -249,11 +249,11 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section57301035448"></a>
+## Events<a name="section57301035448"></a>
 
 Not supported
 
-## Method<a name="section340215162812"></a>
+## Methods<a name="section340215162812"></a>
 
 Not supported
 

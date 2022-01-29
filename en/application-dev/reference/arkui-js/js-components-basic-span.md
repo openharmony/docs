@@ -2,22 +2,22 @@
 
 The  **<span\>**  child component of  **<[text](js-components-basic-text.md)\>**  is used as a text modifier.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 The  **<span\>**  child component is supported.
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 Attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The  **focusable**  and  **disabled**  attributes are not supported.
+>The  **focusable**  and  **disabled**  attributes are not supported.
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 Only the following style attributes are supported.
 
@@ -116,7 +116,7 @@ Only the following style attributes are supported.
 </tbody>
 </table>
 
-## Event<a name="section1319514265813"></a>
+## Events<a name="section1319514265813"></a>
 
 Only the click event in  [Universal Events](js-components-common-events.md)  is supported.
 

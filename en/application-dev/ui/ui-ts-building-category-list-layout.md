@@ -1,8 +1,8 @@
 # Building a Food Category List Layout<a name="EN-US_TOPIC_0000001192705719"></a>
 
-Use the  **List**  component and  **ForEach**  loop rendering to build the food category list layout.
+Use the  **List**  component and  **ForEach**  loop to build the food category list layout.
 
-1.  Create the  **FoodCategoryList.ets**  page in the  **pages**  directory, change the name of the  **index.ets**  file to  **FoodDetail.ets**, and add the  **index.ets**  file to the  **"pages"**  tag in the  **config.json**  file. The page in the first position is the home page.
+1.  Create a page file named  **FoodCategoryList.ets**  in the  **pages**  directory, rename the  **index.ets**  file  **FoodDetail.ets**, and add the renamed file to the  **"pages"**  tag in the  **config.json**  file. The first page under the tag is the home page.
 
     ```
     "js": [
@@ -14,7 +14,7 @@ Use the  **List**  component and  **ForEach**  loop rendering to build the food 
     ]
     ```
 
-2.  Create the  **FoodList**  component as the page entry component. The  **FoodListItem**  component is a child component of the  **FoodList**  component. The  **<List\>**  component is used to display repeated data of the same type. Its child component** <ListItem\>**  is used to display specific items in the list.
+2.  Create a  **List**  component named  **FoodList**  as the page entry point. Then, add a  **ListItem**  component named  **FoodListItem**  as its child component. The  **List**  component is used to display data of the same type. Its child component  **<ListItem\>**  is used to display specific items in the list.
 
     ```
     @Component
@@ -42,7 +42,7 @@ Use the  **List**  component and  **ForEach**  loop rendering to build the food 
     import { initializeOnStartup } from '../model/FoodDataModels'
     ```
 
-4.  Configure  **FoodList**  and  **FoodListItem**  components to pass values between each other. Create the member variable  **foodItems**  of the  **FoodData\[\]**  type in the  **FoodList**  component and invoke the  **initializeOnStartup**  method to assign a value to the variable. Create a member variable  **foodItem**  of the  **FoodData**  type in the  **FoodListItem**  component. Pass the  **foodItems\[0\]**  of the first element in the  **foodItems**  array of the parent component to  **FoodListItem**  as a parameter.
+4.  Configure the  **FoodList**  and  **FoodListItem**  components to pass values. Create a member variable named  **foodItems**  of the  **FoodData\[\]**  type in the  **FoodList**  component and invoke the  **initializeOnStartup**  method to assign a value to the variable. Create a member variable  **foodItem**  of the  **FoodData**  type in the  **FoodListItem**  component. Pass the  **foodItems\[0\]**  of the first element in the parent  **foodItems**  array as a parameter to  **FoodListItem**.
 
     ```
     import { FoodData } from '../model/FoodData'
@@ -68,7 +68,7 @@ Use the  **List**  component and  **ForEach**  loop rendering to build the food 
     }
     ```
 
-5.  Declare the UI layout of the  **FoodListItem**  child component. Create the  **Flex**  component, including the thumbnail of the food image, food name, and calories corresponding to the food.
+5.  Declare the UI layout of the  **FoodListItem**  child component. Create a  **Flex**  component, including the food image thumbnail, food name, and calories in the food.
 
     ```
     import { FoodData } from '../model/FoodData'
@@ -112,7 +112,7 @@ Use the  **List**  component and  **ForEach**  loop rendering to build the food 
 
     ![](figures/en-us_image_0000001204776353.png)
 
-6.  Create two  **FoodListItem**  objects. Create two  **FoodListItem**  objects in the  **<List\>**  component and pass the first element  **this.foodItems\[0\]**  and the second element  **foodItem: this.foodItems\[1\]**  to the  **FoodListItem**.
+6.  Create two  **FoodListItem**  objects. Create two  **FoodListItem**  objects in the  **List**  component and pass the first element  **this.foodItems\[0\]**  and the second element  **foodItem: this.foodItems\[1\]**  to the  **FoodListItem**.
 
     ```
     import { FoodData } from '../model/FoodData'
@@ -159,7 +159,7 @@ Use the  **List**  component and  **ForEach**  loop rendering to build the food 
 
     ![](figures/en-us_image_0000001204537865.png)
 
-7.  Import  **ForEach**  to avoid creating  **FoodListItem**  objects one by one.
+7.  Import  **ForEach**  so that you do not need to create  **FoodListItem**  objects one by one.
 
     ```
     ForEach(
@@ -169,9 +169,9 @@ Use the  **List**  component and  **ForEach**  loop rendering to build the food 
     )
     ```
 
-    The  **ForEach**  group has three parameters. The first parameter is the array to be traversed, the second parameter is the lambda function for generating child components, and the third parameter is the key value generator. The third parameter is optional. However, for performance reasons, it is strongly recommended that you provide it.  **keyGenerator**  enables the development framework to better recognize array changes without having to rebuild all nodes due to item changes.
+    The  **ForEach**  group has three parameters. The first parameter is the array to be traversed, the second parameter is the lambda function for generating child components, and the third parameter is the key value generator. The third parameter is optional. Yet, for performance reasons, it is strongly recommended that you provide it.  **keyGenerator**  enables the development framework to better recognize array changes without having to rebuild all nodes after item changes.
 
-    Traverse the  **foodItems**  array to cyclically create the  **ListItem**  component. Each item in  **foodItems**  is passed as a parameter to the  **FoodListItem**  component.
+    Traverse the  **foodItems**  array to cyclically create the  **ListItem**  component. Pass each item in  **foodItems**  as a parameter to the  **FoodListItem**  component.
 
     ```
     ForEach(this.foodItems, item => {

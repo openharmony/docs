@@ -1,8 +1,11 @@
-# QRCode<a name="EN-US_TOPIC_0000001111842032"></a>
+# QRCode<a name="EN-US_TOPIC_0000001237475049"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<QRCode\>**  component is used to display QR code information.
 
-## Permissions Required<a name="section435712372238"></a>
+## Required Permissions<a name="section435712372238"></a>
 
 None
 
@@ -12,7 +15,7 @@ None
 
 ## APIs<a name="section18806175252314"></a>
 
-QRCode\(value: \{value: string\}\)
+QRCode\(value: string\)
 
 -   Parameters
 

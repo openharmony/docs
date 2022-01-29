@@ -1,4 +1,7 @@
-# Transition of Shared Elements<a name="EN-US_TOPIC_0000001166727423"></a>
+# Transition of Shared Elements<a name="EN-US_TOPIC_0000001193075084"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 Shared element transition can be used for transition between pages, for example, transition from an image on the current page to the next page.
 

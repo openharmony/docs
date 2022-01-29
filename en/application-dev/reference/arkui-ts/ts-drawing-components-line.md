@@ -1,6 +1,13 @@
-# Line<a name="EN-US_TOPIC_0000001119927706"></a>
+# Line<a name="EN-US_TOPIC_0000001192755100"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Line\>**  component is used to draw a straight line.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section143301522164414"></a>
 
@@ -8,7 +15,7 @@ None
 
 ## APIs<a name="section29061037114413"></a>
 
-Line\(options?: \{width: Length, height: Length\}\)
+Line\(options?: \{width: Lenght, height: Length\}\)
 
 -   Parameters
 

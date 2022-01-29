@@ -71,5 +71,5 @@ export default {
 }
 ```
 
-The  ArkUI also provides many form components, such as switches, tags, and pickers, for you to flexibly lay out pages and improve their interactions with users. For details, see  [Container Components](../reference/arkui-js/js-components-container-badge.md).
+ ArkUI also provides many form components, such as switches, tags, and pickers, for you to flexibly lay out pages and improve their interactions with users. For details, see  [Container Components](../reference/arkui-js/js-components-container.md).
 

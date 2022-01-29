@@ -1,4 +1,4 @@
-# Gesture Processing<a name="EN-US_TOPIC_0000001113098142"></a>
+# Gesture Processing<a name="EN-US_TOPIC_0000001192595144"></a>
 
 -   **[Gesture Binding Methods](ts-gesture-settings.md)**  
 

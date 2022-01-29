@@ -1,6 +1,13 @@
-# GridContainer<a name="EN-US_TOPIC_0000001128072986"></a>
+# GridContainer<a name="EN-US_TOPIC_0000001192755112"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<GridContainer\>**  component lays out components vertically. It is used only in the grid layout.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section5989144051714"></a>
 
@@ -8,7 +15,7 @@ This component can contain child components.
 
 ## APIs<a name="section1643325819470"></a>
 
-GridContainer\(options? :\{ columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length \}\)
+GridContainer\(options?: \{ columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length\}\)
 
 -   Parameter
 

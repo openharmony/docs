@@ -1,4 +1,7 @@
-# AnimatorProperty<a name="EN-US_TOPIC_0000001111421394"></a>
+# Attribute Animation<a name="EN-US_TOPIC_0000001192915094"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 When the universal attributes of a component change, you can create an  **AnimatorProperty**  for gradient to improve user experience.
 

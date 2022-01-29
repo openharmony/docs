@@ -35,10 +35,10 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
   // app.js
   export default {
     onCreate() {
-      console.info('AceApplication onCreate');
+      console.info('Application onCreate');
     },
     onDestroy() {
-      console.info('AceApplication onDestroy');
+      console.info('Application onDestroy');
     },
     globalData: {
       appData: 'appData',

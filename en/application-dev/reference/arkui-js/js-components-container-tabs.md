@@ -2,15 +2,15 @@
 
 The  **<tabs\>**  component provides a tab container.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 A  **<tabs\>**  can wrap at most one  **<[tab-bar](js-components-container-tab-bar.md)\>**  and at most one  **<[tab-content](js-components-container-tab-content.md)\>**.
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -53,11 +53,11 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section169548171376"></a>
+## Styles<a name="section169548171376"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Event<a name="section3892191911214"></a>
+## Events<a name="section3892191911214"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -82,7 +82,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Example Code<a name="section14993155318710"></a>
+## Example<a name="section14993155318710"></a>
 
 ```
 <!-- xxx.hml -->

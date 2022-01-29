@@ -6,7 +6,7 @@
 ## 导入模块<a name="section1727172013219"></a>
 
 ```
-import matrix4 from '@ohos.matrix4'
+import Matrix4 from '@ohos.matrix4'
 ```
 
 ## 权限列表<a name="section7743183014286"></a>
@@ -228,7 +228,6 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 -   示例
 
     ```
-    import Matrix4 from '@ohos.matrix4'
     // 创建一个四阶矩阵
     let matrix = Matrix4.init([1.0, 0.0, 0.0, 0.0,
                               0.0, 1.0, 0.0, 0.0,
@@ -263,8 +262,7 @@ Matrix的初始化函数，可以返回一个单位矩阵对象。
 
     ```
     // matrix1 和 matrix2 效果一致
-    import Matrix4 from '@ohos.matrix4'
-    let matrix = Matrix4.init([1.0, 0.0, 0.0, 0.0,
+    let matrix1 = Matrix4.init([1.0, 0.0, 0.0, 0.0,
                               0.0, 1.0, 0.0, 0.0,
                               0.0, 0.0, 1.0, 0.0,
                               0.0, 0.0, 0.0, 1.0])
@@ -297,7 +295,6 @@ Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
 -   示例
 
     ```
-    import Matrix4 from '@ohos.matrix4'
     @Entry
     @Component
     struct Test {
@@ -318,8 +315,8 @@ Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
       }
     }
     ```
-
-    ![](figures/s1.png)
+    
+![](figures/s1.png)
 
 
 ## Matrix4<a name="section118153513365"></a>
@@ -377,7 +374,6 @@ Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个�
 -   示例
 
     ```
-    import Matrix4 from '@ohos.matrix4'
     @Entry
     @Component
     struct Test {
@@ -394,8 +390,8 @@ Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个�
       }
     }
     ```
-
-    ![](figures/q1.png)
+    
+![](figures/q1.png)
 
 
 ### invert<a name="section592117351618"></a>
@@ -423,7 +419,6 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 -   示例
 
     ```
-    import Matrix4 from '@ohos.matrix4'
     // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
     let matrix1 = Matrix4.identity().scale({x:2})
     let matrix2 = matrix1.invert()
@@ -506,7 +501,6 @@ Matrix的平移函数，可以为当前矩阵增加x轴/Y轴/Z轴平移效果。
 -   示例
 
     ```
-    import Matrix4 from '@ohos.matrix4'
     @Entry
     @Component
     struct Test {
@@ -520,8 +514,8 @@ Matrix的平移函数，可以为当前矩阵增加x轴/Y轴/Z轴平移效果。
       }
     }
     ```
-
-    ![](figures/s3.png)
+    
+![](figures/s3.png)
 
 
 ### scale<a name="section835405115174"></a>
@@ -622,7 +616,6 @@ Matrix的缩放函数，可以为当前矩阵增加x轴/Y轴/Z轴缩放效果。
 -   示例
 
     ```
-    import Matrix4 from '@ohos.matrix4'
     @Entry
     @Component
     struct Test {
@@ -636,8 +629,8 @@ Matrix的缩放函数，可以为当前矩阵增加x轴/Y轴/Z轴缩放效果。
       }
     }
     ```
-
-    ![](figures/s4-(1).png)
+    
+![](figures/s4-(1).png)
 
 
 ### rotate<a name="section524516309189"></a>
@@ -749,7 +742,6 @@ Matrix的旋转函数，可以为当前矩阵增加x轴/Y轴/Z轴旋转效果。
 -   示例
 
     ```
-    import Matrix4 from '@ohos.matrix4'
     @Entry
     @Component
     struct Test {
@@ -763,8 +755,8 @@ Matrix的旋转函数，可以为当前矩阵增加x轴/Y轴/Z轴旋转效果。
       }
     }
     ```
-
-    ![](figures/1.png)
+    
+![](figures/1.png)
 
 
 ### transformPoint<a name="section174811817131913"></a>
@@ -821,7 +813,6 @@ Matrix的坐标点转换函数，可以将当前的变换效果作用到一个�
 -   示例
 
     ```
-    import Matrix4 from '@ohos.matrix4'
     import prompt from '@system.prompt'
     
     @Entry
@@ -838,7 +829,6 @@ Matrix的坐标点转换函数，可以将当前的变换效果作用到一个�
       }
     }
     ```
-
-    ![](figures/222.gif)
-
+    
+![](figures/222.gif)
 

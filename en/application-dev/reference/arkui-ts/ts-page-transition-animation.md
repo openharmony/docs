@@ -1,11 +1,14 @@
-# Page Transition<a name="EN-US_TOPIC_0000001119927608"></a>
+# Page Transition<a name="EN-US_TOPIC_0000001237715079"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 Customize the page transition animations by configuring the page entrance and exit components in the global  **pageTransition**  method.
 
 <a name="table290mcpsimp"></a>
-<table><thead align="left"><tr id="row296mcpsimp"><th class="cellrowborder" valign="top" width="22.12%" id="mcps1.1.4.1.1"><p id="p298mcpsimp"><a name="p298mcpsimp"></a><a name="p298mcpsimp"></a>Component</p>
+<table><thead align="left"><tr id="row296mcpsimp"><th class="cellrowborder" valign="top" width="22.12%" id="mcps1.1.4.1.1"><p id="p298mcpsimp"><a name="p298mcpsimp"></a><a name="p298mcpsimp"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="17.31%" id="mcps1.1.4.1.2"><p id="p300mcpsimp"><a name="p300mcpsimp"></a><a name="p300mcpsimp"></a>Parameter</p>
+<th class="cellrowborder" valign="top" width="17.31%" id="mcps1.1.4.1.2"><p id="p300mcpsimp"><a name="p300mcpsimp"></a><a name="p300mcpsimp"></a>Type</p>
 </th>
 <th class="cellrowborder" valign="top" width="60.57%" id="mcps1.1.4.1.3"><p id="p302mcpsimp"><a name="p302mcpsimp"></a><a name="p302mcpsimp"></a>Description</p>
 </th>

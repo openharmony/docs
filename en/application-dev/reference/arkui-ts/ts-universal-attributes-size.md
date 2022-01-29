@@ -1,11 +1,18 @@
-# Size<a name="EN-US_TOPIC_0000001111581272"></a>
+# Size<a name="EN-US_TOPIC_0000001192915116"></a>
 
-This topic describes the attributes used to set the component size.
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section17707164916113"></a>
 
 <a name="table372mcpsimp"></a>
-<table><thead align="left"><tr id="row379mcpsimp"><th class="cellrowborder" valign="top" width="14.04%" id="mcps1.1.5.1.1"><p id="p381mcpsimp"><a name="p381mcpsimp"></a><a name="p381mcpsimp"></a>Name</p>
+<table><thead align="left"><tr id="row379mcpsimp"><th class="cellrowborder" valign="top" width="14.49%" id="mcps1.1.5.1.1"><p id="p381mcpsimp"><a name="p381mcpsimp"></a><a name="p381mcpsimp"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="30.17%" id="mcps1.1.5.1.2"><p id="p383mcpsimp"><a name="p383mcpsimp"></a><a name="p383mcpsimp"></a>Type</p>
+<th class="cellrowborder" valign="top" width="29.720000000000002%" id="mcps1.1.5.1.2"><p id="p383mcpsimp"><a name="p383mcpsimp"></a><a name="p383mcpsimp"></a>Type</p>
 </th>
 <th class="cellrowborder" valign="top" width="18.98%" id="mcps1.1.5.1.3"><p id="p385mcpsimp"><a name="p385mcpsimp"></a><a name="p385mcpsimp"></a>Default Value</p>
 </th>
@@ -13,27 +20,27 @@ This topic describes the attributes used to set the component size.
 </th>
 </tr>
 </thead>
-<tbody><tr id="row388mcpsimp"><td class="cellrowborder" valign="top" width="14.04%" headers="mcps1.1.5.1.1 "><p id="p390mcpsimp"><a name="p390mcpsimp"></a><a name="p390mcpsimp"></a>width</p>
+<tbody><tr id="row388mcpsimp"><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p id="p390mcpsimp"><a name="p390mcpsimp"></a><a name="p390mcpsimp"></a>width</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.17%" headers="mcps1.1.5.1.2 "><p id="p392mcpsimp"><a name="p392mcpsimp"></a><a name="p392mcpsimp"></a>Length</p>
+<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p id="p392mcpsimp"><a name="p392mcpsimp"></a><a name="p392mcpsimp"></a>Length</p>
 </td>
 <td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p id="p394mcpsimp"><a name="p394mcpsimp"></a><a name="p394mcpsimp"></a>-</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p id="p396mcpsimp"><a name="p396mcpsimp"></a><a name="p396mcpsimp"></a>Width of a component. By default, the width required to fully hold the component content is used.</p>
 </td>
 </tr>
-<tr id="row397mcpsimp"><td class="cellrowborder" valign="top" width="14.04%" headers="mcps1.1.5.1.1 "><p id="p399mcpsimp"><a name="p399mcpsimp"></a><a name="p399mcpsimp"></a>height</p>
+<tr id="row397mcpsimp"><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p id="p399mcpsimp"><a name="p399mcpsimp"></a><a name="p399mcpsimp"></a>height</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.17%" headers="mcps1.1.5.1.2 "><p id="p401mcpsimp"><a name="p401mcpsimp"></a><a name="p401mcpsimp"></a>Length</p>
+<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p id="p401mcpsimp"><a name="p401mcpsimp"></a><a name="p401mcpsimp"></a>Length</p>
 </td>
 <td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p id="p403mcpsimp"><a name="p403mcpsimp"></a><a name="p403mcpsimp"></a>-</p>
 </td>
 <td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p id="p405mcpsimp"><a name="p405mcpsimp"></a><a name="p405mcpsimp"></a>Height of the component. By default, the height required to fully hold the component content is used.</p>
 </td>
 </tr>
-<tr id="row1833162114520"><td class="cellrowborder" valign="top" width="14.04%" headers="mcps1.1.5.1.1 "><p id="p2302mcpsimp"><a name="p2302mcpsimp"></a><a name="p2302mcpsimp"></a>size</p>
+<tr id="row1833162114520"><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p id="p2302mcpsimp"><a name="p2302mcpsimp"></a><a name="p2302mcpsimp"></a>size</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.17%" headers="mcps1.1.5.1.2 "><p id="p331335610221"><a name="p331335610221"></a><a name="p331335610221"></a>{</p>
+<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p id="p331335610221"><a name="p331335610221"></a><a name="p331335610221"></a>{</p>
 <p id="p14757012233"><a name="p14757012233"></a><a name="p14757012233"></a>width?: Length,</p>
 <p id="p172028105237"><a name="p172028105237"></a><a name="p172028105237"></a>height?: Length</p>
 <p id="p2304mcpsimp"><a name="p2304mcpsimp"></a><a name="p2304mcpsimp"></a>}</p>
@@ -43,9 +50,9 @@ This topic describes the attributes used to set the component size.
 <td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p id="p2308mcpsimp"><a name="p2308mcpsimp"></a><a name="p2308mcpsimp"></a>Height and width of the component.</p>
 </td>
 </tr>
-<tr id="row406mcpsimp"><td class="cellrowborder" valign="top" width="14.04%" headers="mcps1.1.5.1.1 "><p id="p408mcpsimp"><a name="p408mcpsimp"></a><a name="p408mcpsimp"></a>padding</p>
+<tr id="row406mcpsimp"><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p id="p408mcpsimp"><a name="p408mcpsimp"></a><a name="p408mcpsimp"></a>padding</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.17%" headers="mcps1.1.5.1.2 "><p id="p77142022184414"><a name="p77142022184414"></a><a name="p77142022184414"></a>{</p>
+<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p id="p77142022184414"><a name="p77142022184414"></a><a name="p77142022184414"></a>{</p>
 <p id="p10161526164411"><a name="p10161526164411"></a><a name="p10161526164411"></a>top?: Length,</p>
 <p id="p145099281445"><a name="p145099281445"></a><a name="p145099281445"></a>right?: Length,</p>
 <p id="p13718733124415"><a name="p13718733124415"></a><a name="p13718733124415"></a>bottom?: Length,</p>
@@ -58,9 +65,9 @@ This topic describes the attributes used to set the component size.
 <p id="p113121266320"><a name="p113121266320"></a><a name="p113121266320"></a>When the parameter is of the <strong id="b3975853191218"><a name="b3975853191218"></a><a name="b3975853191218"></a>Length</strong> type, the four paddings take effect.</p>
 </td>
 </tr>
-<tr id="row419mcpsimp"><td class="cellrowborder" valign="top" width="14.04%" headers="mcps1.1.5.1.1 "><p id="p421mcpsimp"><a name="p421mcpsimp"></a><a name="p421mcpsimp"></a>margin</p>
+<tr id="row419mcpsimp"><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p id="p421mcpsimp"><a name="p421mcpsimp"></a><a name="p421mcpsimp"></a>margin</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.17%" headers="mcps1.1.5.1.2 "><p id="p17197165164516"><a name="p17197165164516"></a><a name="p17197165164516"></a>{</p>
+<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p id="p17197165164516"><a name="p17197165164516"></a><a name="p17197165164516"></a>{</p>
 <p id="p1780118538452"><a name="p1780118538452"></a><a name="p1780118538452"></a>top?: Length,</p>
 <p id="p131781357144519"><a name="p131781357144519"></a><a name="p131781357144519"></a>right?: Length,</p>
 <p id="p9656135974517"><a name="p9656135974517"></a><a name="p9656135974517"></a>bottom?: Length,</p>
@@ -74,13 +81,13 @@ This topic describes the attributes used to set the component size.
 <p id="p15312192683212"><a name="p15312192683212"></a><a name="p15312192683212"></a>When the parameter is of the <strong id="b45731402134"><a name="b45731402134"></a><a name="b45731402134"></a>Length</strong> type, the four margins take effect.</p>
 </td>
 </tr>
-<tr id="row176711443134019"><td class="cellrowborder" valign="top" width="14.04%" headers="mcps1.1.5.1.1 "><p id="p2313mcpsimp"><a name="p2313mcpsimp"></a><a name="p2313mcpsimp"></a>constraintSize</p>
+<tr id="row176711443134019"><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p id="p2313mcpsimp"><a name="p2313mcpsimp"></a><a name="p2313mcpsimp"></a>constraintSize</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.17%" headers="mcps1.1.5.1.2 "><p id="p461192115467"><a name="p461192115467"></a><a name="p461192115467"></a>{</p>
+<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p id="p461192115467"><a name="p461192115467"></a><a name="p461192115467"></a>{</p>
 <p id="p11113203434615"><a name="p11113203434615"></a><a name="p11113203434615"></a>minWidth?: Length,</p>
 <p id="p149961241183520"><a name="p149961241183520"></a><a name="p149961241183520"></a>maxWidth?: Length,</p>
 <p id="p19940543173518"><a name="p19940543173518"></a><a name="p19940543173518"></a>minHeight?: Length,</p>
-<p id="p169561826154615"><a name="p169561826154615"></a><a name="p169561826154615"></a>maxHeight?: Length</p>
+<p id="p169561826154615"><a name="p169561826154615"></a><a name="p169561826154615"></a>maxHeight?: Lenght</p>
 <p id="p2315mcpsimp"><a name="p2315mcpsimp"></a><a name="p2315mcpsimp"></a>}</p>
 </td>
 <td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p id="p240035994617"><a name="p240035994617"></a><a name="p240035994617"></a>{</p>
@@ -93,9 +100,9 @@ This topic describes the attributes used to set the component size.
 <td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p id="p2319mcpsimp"><a name="p2319mcpsimp"></a><a name="p2319mcpsimp"></a>Constraint size of the component, which is used to limit the size range during component layout.</p>
 </td>
 </tr>
-<tr id="row59967194437"><td class="cellrowborder" valign="top" width="14.04%" headers="mcps1.1.5.1.1 "><p id="p2357mcpsimp"><a name="p2357mcpsimp"></a><a name="p2357mcpsimp"></a>layoutWeight</p>
+<tr id="row59967194437"><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p id="p2357mcpsimp"><a name="p2357mcpsimp"></a><a name="p2357mcpsimp"></a>layoutWeight</p>
 </td>
-<td class="cellrowborder" valign="top" width="30.17%" headers="mcps1.1.5.1.2 "><p id="p2359mcpsimp"><a name="p2359mcpsimp"></a><a name="p2359mcpsimp"></a>number</p>
+<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p id="p2359mcpsimp"><a name="p2359mcpsimp"></a><a name="p2359mcpsimp"></a>number</p>
 </td>
 <td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p id="p2361mcpsimp"><a name="p2361mcpsimp"></a><a name="p2361mcpsimp"></a>0</p>
 </td>

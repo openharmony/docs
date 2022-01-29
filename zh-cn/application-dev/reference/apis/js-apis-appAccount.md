@@ -183,7 +183,7 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.disableAppAccess("ZhangSan", "com.huawei.ohos.accountjsdemo", (err) => { 
+  appAccountManager.disableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo", (err) => { 
       console.log("disableAppAccess err: " + JSON.stringify(err));
   });
   ```
@@ -211,7 +211,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;;
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.disableAppAccess("ZhangSan", "com.huawei.ohos.accountjsdemo").then(() => { 
+  appAccountManager.disableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
       console.log('disableAppAccess Success');
   }).catch((err) => {
       console.log("disableAppAccess err: "  + JSON.stringify(err));
@@ -236,7 +236,7 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.enableAppAccess("ZhangSan", "com.huawei.ohos.accountjsdemo", (err) => { 
+  appAccountManager.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo", (err) => { 
       console.log("enableAppAccess: " + JSON.stringify(err));
    });
   ```
@@ -263,7 +263,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;;
 - 示例：
 
   ```
-  app_account_instance.enableAppAccess("ZhangSan", "com.huawei.ohos.accountjsdemo").then(() => { 
+  app_account_instance.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err) => {
       console.log("enableAppAccess err: "  + JSON.stringify(err));

@@ -165,7 +165,7 @@ Different from private events, universal events can be bound to most components.
 </td>
 <td class="cellrowborder" valign="top" width="20.242024202420243%" headers="mcps1.1.5.1.2 "><p id="p94331834504"><a name="p94331834504"></a><a name="p94331834504"></a><a href="#table95551461358">DragEvent</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p143310312509"><a name="p143310312509"></a><a name="p143310312509"></a>Triggered when dragging is ended.</p>
+<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p143310312509"><a name="p143310312509"></a><a name="p143310312509"></a>Tiggered when dragging is ended.</p>
 </td>
 <td class="cellrowborder" valign="top" width="19.451945194519453%" headers="mcps1.1.5.1.4 "><p id="p194331833500"><a name="p194331833500"></a><a name="p194331833500"></a>No</p>
 </td>
@@ -174,7 +174,7 @@ Different from private events, universal events can be bound to most components.
 </td>
 <td class="cellrowborder" valign="top" width="20.242024202420243%" headers="mcps1.1.5.1.2 "><p id="p697082875015"><a name="p697082875015"></a><a name="p697082875015"></a><a href="#table95551461358">DragEvent</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p79702028125013"><a name="p79702028125013"></a><a name="p79702028125013"></a>Triggered for entering the component to release.</p>
+<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p79702028125013"><a name="p79702028125013"></a><a name="p79702028125013"></a>Triggered when the dragged component enters a drop target.</p>
 </td>
 <td class="cellrowborder" valign="top" width="19.451945194519453%" headers="mcps1.1.5.1.4 "><p id="p1297011285502"><a name="p1297011285502"></a><a name="p1297011285502"></a>No</p>
 </td>
@@ -183,7 +183,7 @@ Different from private events, universal events can be bound to most components.
 </td>
 <td class="cellrowborder" valign="top" width="20.242024202420243%" headers="mcps1.1.5.1.2 "><p id="p1598793419509"><a name="p1598793419509"></a><a name="p1598793419509"></a><a href="#table95551461358">DragEvent</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p8987163414509"><a name="p8987163414509"></a><a name="p8987163414509"></a>Triggered for being in the component to release.</p>
+<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p8987163414509"><a name="p8987163414509"></a><a name="p8987163414509"></a>Triggered when the dragged component is being dragged over a drop target.</p>
 </td>
 <td class="cellrowborder" valign="top" width="19.451945194519453%" headers="mcps1.1.5.1.4 "><p id="p19987103405015"><a name="p19987103405015"></a><a name="p19987103405015"></a>No</p>
 </td>
@@ -192,7 +192,7 @@ Different from private events, universal events can be bound to most components.
 </td>
 <td class="cellrowborder" valign="top" width="20.242024202420243%" headers="mcps1.1.5.1.2 "><p id="p18335153913504"><a name="p18335153913504"></a><a name="p18335153913504"></a><a href="#table95551461358">DragEvent</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p8335173910503"><a name="p8335173910503"></a><a name="p8335173910503"></a>Triggered for exiting the component to release.</p>
+<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p8335173910503"><a name="p8335173910503"></a><a name="p8335173910503"></a>Triggered when the dragged component leaves a drop target.</p>
 </td>
 <td class="cellrowborder" valign="top" width="19.451945194519453%" headers="mcps1.1.5.1.4 "><p id="p10338193915012"><a name="p10338193915012"></a><a name="p10338193915012"></a>No</p>
 </td>
@@ -201,7 +201,7 @@ Different from private events, universal events can be bound to most components.
 </td>
 <td class="cellrowborder" valign="top" width="20.242024202420243%" headers="mcps1.1.5.1.2 "><p id="p1627055514502"><a name="p1627055514502"></a><a name="p1627055514502"></a><a href="#table95551461358">DragEvent</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p162704558509"><a name="p162704558509"></a><a name="p162704558509"></a>Triggered when the drop operation occurs in the droppable area.</p>
+<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p162704558509"><a name="p162704558509"></a><a name="p162704558509"></a>Triggered when a component is dropped on a drop target.</p>
 </td>
 <td class="cellrowborder" valign="top" width="19.451945194519453%" headers="mcps1.1.5.1.4 "><p id="p127065585014"><a name="p127065585014"></a><a name="p127065585014"></a>No</p>
 </td>
@@ -210,7 +210,7 @@ Different from private events, universal events can be bound to most components.
 </table>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   Events not listed in the preceding table are non-bubbling events, such as the  [change event](js-components-basic-input.md#section1721512551218). For details, see the specific component.
+>Events not listed in the preceding table are non-bubbling events, such as the  [change event](js-components-basic-input.md#section1721512551218). For details, see the specific component.
 
 **Table  1**  Attributes of the BaseEvent object
 
@@ -268,7 +268,7 @@ Different from private events, universal events can be bound to most components.
 </tbody>
 </table>
 
-**Table  3**  Attributes of the TouchEvent object
+**Table  3**  TouchInfo
 
 <a name="tf03fc1fac826405d95028a3b880047b6"></a>
 <table><thead align="left"><tr id="rff1c937243f04922b941ec313c0cc858"><th class="cellrowborder" valign="top" width="21%" id="mcps1.2.4.1.1"><p id="a7f9f203c859c4f2ab2f44035c97cffa7"><a name="a7f9f203c859c4f2ab2f44035c97cffa7"></a><a name="a7f9f203c859c4f2ab2f44035c97cffa7"></a>Attribute</p>
@@ -321,15 +321,8 @@ Different from private events, universal events can be bound to most components.
 <td class="cellrowborder" valign="top" width="63%" headers="mcps1.2.4.1.3 "><p id="p204493130105"><a name="p204493130105"></a><a name="p204493130105"></a>Touch force.</p>
 </td>
 </tr>
-<tr><td class="cellrowborder" valign="top" width="21.060000000000002%" headers="mcps1.2.4.1.1 "><p>identifier<sup>8+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="15.939999999999998%" headers="mcps1.2.4.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="63%" headers="mcps1.2.4.1.3 "><p>Unique identifier of a touch point on the screen. The value remains unchanged across the events triggered by finger movement on the screen.</p>
-</td>
-</tr></tbody>
+</tbody>
 </table>
-
 
 **Table  4**  Attributes of the SwipeEvent object \(inherited from BaseEvent\)
 
@@ -395,7 +388,7 @@ Different from private events, universal events can be bound to most components.
 </tbody>
 </table>
 
-**Table  6**  Attributes of the KeyEvent object \(inherited from BaseEvent\)<sup>7+</sup>\(Rich\)
+**Table  6**  Attributes of the DragEvent object \(inherited from BaseEvent\)<sup>7+</sup>
 
 <a name="table95551461358"></a>
 <table><thead align="left"><tr id="row0556746250"><th class="cellrowborder" valign="top" width="17%" id="mcps1.2.4.1.1"><p id="p1555617466516"><a name="p1555617466516"></a><a name="p1555617466516"></a>Attribute</p>
@@ -481,3 +474,4 @@ export default {
   }
 }
 ```
+

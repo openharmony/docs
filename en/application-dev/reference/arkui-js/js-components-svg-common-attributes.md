@@ -1,5 +1,8 @@
 # Universal Attributes<a name="EN-US_TOPIC_0000001210298229"></a>
 
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>Universal attributes are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
 <a name="table20633101642315"></a>
 <table><thead align="left"><tr id="row663331618238"><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p id="aaf1247770b244944bbcc9f28d9a6f00b"><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a>Name</p>
 </th>
@@ -32,7 +35,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p17246836142119"><a name="p17246836142119"></a><a name="p17246836142119"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="adbe7ecbee96b4f938b04a4b8d62791bf"><a name="adbe7ecbee96b4f938b04a4b8d62791bf"></a><a name="adbe7ecbee96b4f938b04a4b8d62791bf"></a>Transparency of a fill color. The value ranges from <strong id="b372234019102"><a name="b372234019102"></a><a name="b372234019102"></a>0</strong> to <strong id="b572294061011"><a name="b572294061011"></a><a name="b572294061011"></a>1</strong>. The value <strong id="b13723174011104"><a name="b13723174011104"></a><a name="b13723174011104"></a>1</strong> means opaque, and <strong id="b157233405107"><a name="b157233405107"></a><a name="b157233405107"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="adbe7ecbee96b4f938b04a4b8d62791bf"><a name="adbe7ecbee96b4f938b04a4b8d62791bf"></a><a name="adbe7ecbee96b4f938b04a4b8d62791bf"></a>Opacity of a fill color. The value ranges from <strong id="b372234019102"><a name="b372234019102"></a><a name="b372234019102"></a>0</strong> to <strong id="b572294061011"><a name="b572294061011"></a><a name="b572294061011"></a>1</strong>. The value <strong id="b13723174011104"><a name="b13723174011104"></a><a name="b13723174011104"></a>1</strong> means opaque, and <strong id="b157233405107"><a name="b157233405107"></a><a name="b157233405107"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
 </td>
 </tr>
 <tr id="row1946552964610"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p946522913468"><a name="p946522913468"></a><a name="p946522913468"></a>fill-rule</p>
@@ -43,7 +46,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p34651229104619"><a name="p34651229104619"></a><a name="p34651229104619"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p174651329114611"><a name="p174651329114611"></a><a name="p174651329114611"></a><strong id="b1959241720111"><a name="b1959241720111"></a><a name="b1959241720111"></a>nonzero</strong>: non-zero rule; <strong id="b4448201918119"><a name="b4448201918119"></a><a name="b4448201918119"></a>evend</strong>: parity rule.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p174651329114611"><a name="p174651329114611"></a><a name="p174651329114611"></a><strong id="b1959241720111"><a name="b1959241720111"></a><a name="b1959241720111"></a>nonzero</strong>: non-zero rule; <strong id="b4448201918119"><a name="b4448201918119"></a><a name="b4448201918119"></a>evenodd</strong>: parity rule.</p>
 </td>
 </tr>
 <tr id="row10634131610230"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="a4a0bae0e1bb946d6bc7bf30e0a535343"><a name="a4a0bae0e1bb946d6bc7bf30e0a535343"></a><a name="a4a0bae0e1bb946d6bc7bf30e0a535343"></a>opacity</p>
@@ -54,7 +57,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p324614367213"><a name="p324614367213"></a><a name="p324614367213"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>Transparency of an element. The value ranges from <strong id="b1748232615116"><a name="b1748232615116"></a><a name="b1748232615116"></a>0</strong> to <strong id="b14836266111"><a name="b14836266111"></a><a name="b14836266111"></a>1</strong>. The value <strong id="b64831526121110"><a name="b64831526121110"></a><a name="b64831526121110"></a>1</strong> means opaque, and <strong id="b144843268112"><a name="b144843268112"></a><a name="b144843268112"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>Opacity of an element. The value ranges from <strong id="b1748232615116"><a name="b1748232615116"></a><a name="b1748232615116"></a>0</strong> to <strong id="b14836266111"><a name="b14836266111"></a><a name="b14836266111"></a>1</strong>. The value <strong id="b64831526121110"><a name="b64831526121110"></a><a name="b64831526121110"></a>1</strong> means opaque, and <strong id="b144843268112"><a name="b144843268112"></a><a name="b144843268112"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
 </td>
 </tr>
 <tr id="row1634171618236"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="a3cf785e2a2a043268d168f58d59207c8"><a name="a3cf785e2a2a043268d168f58d59207c8"></a><a name="a3cf785e2a2a043268d168f58d59207c8"></a>stroke</p>
@@ -137,7 +140,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p19779132663212"><a name="p19779132663212"></a><a name="p19779132663212"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p104188333270"><a name="p104188333270"></a><a name="p104188333270"></a>Transparency of the stroke. The value ranges from <strong id="b8690125911451"><a name="b8690125911451"></a><a name="b8690125911451"></a>0</strong> to <strong id="b17690195910457"><a name="b17690195910457"></a><a name="b17690195910457"></a>1</strong>. The value <strong id="b1469145934519"><a name="b1469145934519"></a><a name="b1469145934519"></a>1</strong> means opaque, and <strong id="b15691165954514"><a name="b15691165954514"></a><a name="b15691165954514"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p104188333270"><a name="p104188333270"></a><a name="p104188333270"></a>Opacity of the stroke. The value ranges from <strong id="b8690125911451"><a name="b8690125911451"></a><a name="b8690125911451"></a>0</strong> to <strong id="b17690195910457"><a name="b17690195910457"></a><a name="b17690195910457"></a>1</strong>. The value <strong id="b1469145934519"><a name="b1469145934519"></a><a name="b1469145934519"></a>1</strong> means opaque, and <strong id="b15691165954514"><a name="b15691165954514"></a><a name="b15691165954514"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
 </td>
 </tr>
 <tr id="row0693162293115"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p12693142223110"><a name="p12693142223110"></a><a name="p12693142223110"></a>stroke-width</p>
@@ -165,7 +168,7 @@
 <p id="p2853121513620"><a name="p2853121513620"></a><a name="p2853121513620"></a><strong id="b182151374485"><a name="b182151374485"></a><a name="b182151374485"></a>scale(&lt;x&gt; [&lt;y&gt;])</strong>: scales along the x[y]-axis.</p>
 <p id="p08302534363"><a name="p08302534363"></a><a name="p08302534363"></a><strong id="b195865430485"><a name="b195865430485"></a><a name="b195865430485"></a>rotate(&lt;a&gt; [&lt;x&gt; &lt;y&gt;])</strong>: rotates at an angle of <strong id="b117161113533"><a name="b117161113533"></a><a name="b117161113533"></a>a</strong> with (x,y) as the center.</p>
 <p id="p91741924123618"><a name="p91741924123618"></a><a name="p91741924123618"></a><strong id="b187551240134919"><a name="b187551240134919"></a><a name="b187551240134919"></a>skewX(&lt;a&gt;)</strong>: skews at an angle of <strong id="b173605136532"><a name="b173605136532"></a><a name="b173605136532"></a>a</strong> along the x-axis.</p>
-<p id="p192841756133515"><a name="p192841756133515"></a><a name="p192841756133515"></a><strong id="b75191724115317"><a name="b75191724115317"></a><a name="b75191724115317"></a>skewX(&lt;a&gt;)</strong>: skews at an angle of <strong id="b1252062495318"><a name="b1252062495318"></a><a name="b1252062495318"></a>a</strong> along the y-axis.</p>
+<p id="p192841756133515"><a name="p192841756133515"></a><a name="p192841756133515"></a><strong id="b75191724115317"><a name="b75191724115317"></a><a name="b75191724115317"></a>skewY(&lt;a&gt;)</strong>: skews at an angle of <strong id="b1252062495318"><a name="b1252062495318"></a><a name="b1252062495318"></a>a</strong> along the y-axis.</p>
 </td>
 </tr>
 </tbody>

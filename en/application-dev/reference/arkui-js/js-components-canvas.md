@@ -18,4 +18,3 @@
 
 -   **[OffscreenCanvasRenderingContext2D](js-offscreencanvasrenderingcontext2d.md)**  
 
-

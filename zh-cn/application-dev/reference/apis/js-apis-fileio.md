@@ -2031,14 +2031,14 @@ lchownSync(path: string, uid: number, gid: number): void
 
 createWatcher(filename: string, events: number, callback: AsyncCallback&lt;number&gt;): Watcher
 
-以异步方法监控文件或者目录的变化，使用callback形式返回结果。
+以异步方法监听文件或者目录的变化，使用callback形式返回结果。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | filename | string | 是 | 待监视文件的绝对路径。 |
-  | events | Number | 是 | -&nbsp;1:&nbsp;监控文件或者目录是否发生重命名。<br/>-&nbsp;2：监控文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
-  | callback | AsyncCallback&lt;number&nbsp;&gt; | 是 | 每监控发生变化一次，调用一次此函数。 |
+  | events | Number | 是 | -&nbsp;1:&nbsp;监听文件或者目录是否发生重命名。<br/>-&nbsp;2：监听文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
+  | callback | AsyncCallback&lt;number&nbsp;&gt; | 是 | 每发生变化一次，调用一次此函数。 |
 
 - 返回值：
   | 参数名 | 说明 |

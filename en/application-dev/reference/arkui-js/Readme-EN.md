@@ -1,17 +1,4 @@
-# JavaScript-based Web-like Development Paradigm
-
--   [Framework](js-framework.md)
-    -   [File Organization](js-framework-file.md)
-    -   ["js" Tag](js-framework-js-tag.md)
-    -   [app.js](js-framework-js-file.md)
-    -   [Syntax](js-framework-syntax.md)
-        -   [HML](js-framework-syntax-hml.md)
-        -   [CSS](js-framework-syntax-css.md)
-        -   [JavaScript](js-framework-syntax-js.md)
-
-    -   [Lifecycle](js-framework-lifecycle.md)
-    -   [Resource Limitations and Access](js-framework-resource-restriction.md)
-    -   [Multi-Language Capability](js-framework-multiple-languages.md)
+#  TypeScript-based Declarative Development Paradigm
 
 -   [Components](js-components.md)
     -   [Common](js-components-common.md)
@@ -20,7 +7,7 @@
         -   [Universal Events](js-components-common-events.md)
         -   [Universal Methods](js-components-common-methods.md)
         -   [Animation Styles](js-components-common-animation.md)
-        -   [Gradient Styles](js-components-common-gradient.md)
+        -   [Gradient Styles](reference/arkui-js/js-components-common-gradient.md)
         -   [Transition Styles](js-components-common-transition.md)
         -   [Media Query](js-components-common-mediaquery.md)
         -   [Custom Font Styles](js-components-common-customizing-font.md)
@@ -77,7 +64,7 @@
     -   [Media Components](js-components-media.md)
         -   [video](js-components-media-video.md)
 
-    -   [Canvas Components](js-components-canvas.md)
+    -   [Canvas Components ](js-components-canvas.md)
         -   [canvas](js-components-canvas-canvas.md)
         -   [CanvasRenderingContext2D](js-components-canvas-canvasrenderingcontext2d.md)
         -   [Image](js-components-canvas-image.md)
@@ -114,10 +101,11 @@
 -   [Custom Components](js-components-custom.md)
     -   [Basic Usage](js-components-custom-basic-usage.md)
     -   [Custom Events](js-components-custom-events.md)
-    -   [Props](js-components-custom-props.md)
+    -   [props](js-components-custom-props.md)
     -   [Event Parameter](js-components-custom-event-parameter.md)
     -   [slot](js-components-custom-slot.md)
     -   [Lifecycle Definition](js-components-custom-lifecycle.md)
 
 -   [Appendix](js-appendix.md)
     -   [Type Attributes](js-appendix-types.md)
+

@@ -2,14 +2,11 @@
 
 The  **<toolbar-item\>**  component is the child component of  **<toolbar\>**  to display an operation option on the toolbar.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
-
 ## Child Component<a name="section9288143101012"></a>
 
 None
 
-## Attribute<a name="section19217161499"></a>
+## Attributes<a name="section19217161499"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -51,7 +48,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section184493015533"></a>
+## Styles<a name="section184493015533"></a>
 
 Only the following style attributes are supported.
 
@@ -132,7 +129,7 @@ Only the following style attributes are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p9452124171410"><a name="p9452124171410"></a><a name="p9452124171410"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.300000000000004%" headers="mcps1.1.6.1.5 "><p id="p18934647142514"><a name="p18934647142514"></a><a name="p18934647142514"></a>Text modifier. Available values are as follows:</p>
+<td class="cellrowborder" valign="top" width="46.300000000000004%" headers="mcps1.1.6.1.5 "><p id="p18934647142514"><a name="p18934647142514"></a><a name="p18934647142514"></a>Text decoration. Available values are as follows:</p>
 <a name="ol280935211386"></a><a name="ol280935211386"></a><ol id="ol280935211386"><li><strong id="b113241833938"><a name="b113241833938"></a><a name="b113241833938"></a>underline</strong>: An underline is used.</li><li><strong id="b1838734735"><a name="b1838734735"></a><a name="b1838734735"></a>line-through</strong>: A strikethrough is used.</li><li><strong id="b1177036435"><a name="b1177036435"></a><a name="b1177036435"></a>none</strong>: The standard text is used.</li></ol>
 </td>
 </tr>
@@ -191,7 +188,7 @@ Only the following style attributes are supported.
 <td class="cellrowborder" valign="top" width="46.300000000000004%" headers="mcps1.1.6.1.5 "><p id="a0709b83d5c8e4b75b1f0bb42d913ac02"><a name="a0709b83d5c8e4b75b1f0bb42d913ac02"></a><a name="a0709b83d5c8e4b75b1f0bb42d913ac02"></a>Background image size.</p>
 <a name="ub2423a2f8d96432f8c58c629288432c5"></a><a name="ub2423a2f8d96432f8c58c629288432c5"></a><ul id="ub2423a2f8d96432f8c58c629288432c5"><li>The <strong id="b1240813501139"><a name="b1240813501139"></a><a name="b1240813501139"></a>string</strong> values are as follows:<a name="uee8f5c89381a4ce682a5d557f8e558ee"></a><a name="uee8f5c89381a4ce682a5d557f8e558ee"></a><ul id="uee8f5c89381a4ce682a5d557f8e558ee"><li><strong id="b18294195114318"><a name="b18294195114318"></a><a name="b18294195114318"></a>contain</strong>: Expands the image to the maximum size so that the height and width of the image are applicable to the content area.</li><li><strong id="b10184452334"><a name="b10184452334"></a><a name="b10184452334"></a>cover</strong>: Extends the background image to a large enough size so that the background image completely covers the background area. Some parts of the image may not be displayed in the background area.</li><li><strong id="b14980752831"><a name="b14980752831"></a><a name="b14980752831"></a>auto</strong>: The original image width-height ratio is retained.</li></ul>
 </li><li>The two <strong id="b57176531536"><a name="b57176531536"></a><a name="b57176531536"></a>&lt;length&gt;</strong> values are as follows:<p id="a5b969a49f8074aae96a12e4232e47c5d"><a name="a5b969a49f8074aae96a12e4232e47c5d"></a><a name="a5b969a49f8074aae96a12e4232e47c5d"></a>Width and height of the background image. The first value indicates the width, and the second value indicates the height. If you only set one value, the other value is set to <strong id="b14228456634"><a name="b14228456634"></a><a name="b14228456634"></a>auto</strong> by default.</p>
-</li><li>The two <strong id="b4995195613312"><a name="b4995195613312"></a><a name="b4995195613312"></a>&lt;percentage&gt;</strong> values are as follows:<p id="a19ef0a7986ce47f2b7fe614975e23cd9"><a name="a19ef0a7986ce47f2b7fe614975e23cd9"></a><a name="a19ef0a7986ce47f2b7fe614975e23cd9"></a>Width and height of the background image in percentage of the parent element. The first value indicates the width, and the second value indicates the height. If you only set one value, the other value is set to <strong id="b874377959"><a name="b874377959"></a><a name="b874377959"></a>auto</strong> by default.</p>
+</li><li>The two <strong id="b4995195613312"><a name="b4995195613312"></a><a name="b4995195613312"></a>&lt;percentage&gt;</strong> values are as follows:<p id="a19ef0a7986ce47f2b7fe614975e23cd9"><a name="a19ef0a7986ce47f2b7fe614975e23cd9"></a><a name="a19ef0a7986ce47f2b7fe614975e23cd9"></a>Width and height of the background image in percentage of the parent element. The first value indicates the width, and the second value indicates the height. If you only set one value, the other value is set to <strong id="b1633231830"><a name="b1633231830"></a><a name="b1633231830"></a>auto</strong> by default.</p>
 </li></ul>
 </td>
 </tr>
@@ -228,7 +225,7 @@ Only the following style attributes are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p14523246147"><a name="p14523246147"></a><a name="p14523246147"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.300000000000004%" headers="mcps1.1.6.1.5 "><p id="a2e8d180f3c914356af72e679446f4ab5"><a name="a2e8d180f3c914356af72e679446f4ab5"></a><a name="a2e8d180f3c914356af72e679446f4ab5"></a>Transparency of an element. The value ranges from <strong id="b202809908441242"><a name="b202809908441242"></a><a name="b202809908441242"></a>0</strong> to <strong id="b99312114841242"><a name="b99312114841242"></a><a name="b99312114841242"></a>1</strong>. The value <strong id="b27854883241242"><a name="b27854883241242"></a><a name="b27854883241242"></a>1</strong> means opaque, and <strong id="b52017499041242"><a name="b52017499041242"></a><a name="b52017499041242"></a>0</strong> means completely transparent.</p>
+<td class="cellrowborder" valign="top" width="46.300000000000004%" headers="mcps1.1.6.1.5 "><p id="a2e8d180f3c914356af72e679446f4ab5"><a name="a2e8d180f3c914356af72e679446f4ab5"></a><a name="a2e8d180f3c914356af72e679446f4ab5"></a>Opacity of an element. The value ranges from <strong id="b202809908441242"><a name="b202809908441242"></a><a name="b202809908441242"></a>0</strong> to <strong id="b99312114841242"><a name="b99312114841242"></a><a name="b99312114841242"></a>1</strong>. The value <strong id="b27854883241242"><a name="b27854883241242"></a><a name="b27854883241242"></a>1</strong> means opaque, and <strong id="b52017499041242"><a name="b52017499041242"></a><a name="b52017499041242"></a>0</strong> means completely transparent.</p>
 </td>
 </tr>
 <tr id="row48391367556"><td class="cellrowborder" valign="top" width="17.98%" headers="mcps1.1.6.1.1 "><p id="a2e53aab1be1043489c29919ab37c6ea4"><a name="a2e53aab1be1043489c29919ab37c6ea4"></a><a name="a2e53aab1be1043489c29919ab37c6ea4"></a>display</p>
@@ -262,7 +259,7 @@ Only the following style attributes are supported.
 </tbody>
 </table>
 
-## Event<a name="section571865310552"></a>
+## Events<a name="section571865310552"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
@@ -273,6 +270,7 @@ Not supported
 ## Example<a name="section1240714821316"></a>
 
 ```
+<!-- xxx.hml -->
 <toolbar style="position: fixed; bottom: 0px; ">    
    <toolbar-item icon='common/Icon/location.png' value='Option 1' >   </toolbar-item>
    <toolbar-item icon='common/Icon/heart.png' value='Option 2'>   </toolbar-item>    
@@ -283,5 +281,5 @@ Not supported
 </toolbar>
 ```
 
-![](figures/progress-43.jpg)
+![](figures/progress-7.jpg)
 

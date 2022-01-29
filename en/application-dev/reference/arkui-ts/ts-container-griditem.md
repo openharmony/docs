@@ -1,4 +1,7 @@
-# GridItem<a name="EN-US_TOPIC_0000001111581312"></a>
+# GridItem<a name="EN-US_TOPIC_0000001237715083"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<GridItem\>**  component provides a single item in a grid.
 

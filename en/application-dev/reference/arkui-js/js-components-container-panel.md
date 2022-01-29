@@ -2,14 +2,11 @@
 
 The  **<panel\>**  component is a slidable panel. It provides a lightweight content display window with flexible sizes. The  **<panel\>**  component pops up when it is displayed.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
-
-## Child Component<a name="section19368335134016"></a>
+## Child Components<a name="section19368335134016"></a>
 
 Yes
 
-## Attribute<a name="section1100152194018"></a>
+## Attributes<a name="section1100152194018"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -107,7 +104,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 >-   Rendering attributes, including  **for**,  **if**, and  **show**, are not supported.
 >-   The  **focusable**  and  **disabled**  attributes are not supported.
 
-## Style<a name="section1137118175437"></a>
+## Styles<a name="section1137118175437"></a>
 
 Only the following style attributes are supported.
 
@@ -393,13 +390,13 @@ Only the following style attributes are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="ad2fe0856816f4eaf9c10e2a1d74419a9"><a name="ad2fe0856816f4eaf9c10e2a1d74419a9"></a><a name="ad2fe0856816f4eaf9c10e2a1d74419a9"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="a2e8d180f3c914356af72e679446f4ab5"><a name="a2e8d180f3c914356af72e679446f4ab5"></a><a name="a2e8d180f3c914356af72e679446f4ab5"></a>Transparency of an element. The value ranges from <strong id="b15364171275710"><a name="b15364171275710"></a><a name="b15364171275710"></a>0</strong> to <strong id="b93641412135719"><a name="b93641412135719"></a><a name="b93641412135719"></a>1</strong>. The value <strong id="b03651712145710"><a name="b03651712145710"></a><a name="b03651712145710"></a>1</strong> means opaque, and <strong id="b17366101211577"><a name="b17366101211577"></a><a name="b17366101211577"></a>0</strong> means completely transparent.</p>
+<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="a2e8d180f3c914356af72e679446f4ab5"><a name="a2e8d180f3c914356af72e679446f4ab5"></a><a name="a2e8d180f3c914356af72e679446f4ab5"></a>Opacity of an element. The value ranges from <strong id="b15364171275710"><a name="b15364171275710"></a><a name="b15364171275710"></a>0</strong> to <strong id="b93641412135719"><a name="b93641412135719"></a><a name="b93641412135719"></a>1</strong>. The value <strong id="b03651712145710"><a name="b03651712145710"></a><a name="b03651712145710"></a>1</strong> means opaque, and <strong id="b17366101211577"><a name="b17366101211577"></a><a name="b17366101211577"></a>0</strong> means completely transparent.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
-## Event<a name="section1614413538447"></a>
+## Events<a name="section1614413538447"></a>
 
 The following events are supported.
 
@@ -428,7 +425,7 @@ The following events are supported.
 </tbody>
 </table>
 
-## Method<a name="section165301745164719"></a>
+## Methods<a name="section165301745164719"></a>
 
 Only the following methods are supported.
 
@@ -458,7 +455,7 @@ Only the following methods are supported.
 </tbody>
 </table>
 
-## Example Code<a name="section36743614499"></a>
+## Example<a name="section36743614499"></a>
 
 ```
 <!-- xxx.hml -->

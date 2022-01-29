@@ -1,4 +1,7 @@
-# Motion Path Animation<a name="EN-US_TOPIC_0000001172422155"></a>
+# Motion Path Animation<a name="EN-US_TOPIC_0000001193075092"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The attributes described in this topic are used to set the motion path of the component in a translation animation.
 

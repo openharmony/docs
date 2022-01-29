@@ -1,6 +1,6 @@
 # Implementing Page Redirection and Data Transmission<a name="EN-US_TOPIC_0000001146626072"></a>
 
-This section describes how to implement page redirection and data transmission:
+This section describes how to implement page redirection and data transmission between pages:
 
 1.  Page redirection: Click a food item on the food list page to go to the food details page. Click the back button on the food details page to go back to the food list page.
 2.  Data transmission between pages: After you click a food item,  **FoodDetail**  receives data from the previous page and renders the corresponding food details page.
@@ -44,7 +44,7 @@ The procedure below uses these two mechanisms for redirection between the page l
 
     ![](figures/listrouter.gif)
 
-2.  Click  **FoodGridItem**. The  **FoodDetail**  page is displayed. Call the  **push**  API of the  **router**  module to push the  **FoodDetail**  page to the route stack to implement page redirection. To use the router APIs, you need to import  **router**.
+2.  Click  **FoodGridItem**. The  **FoodDetail**  page is displayed. Import the  **router**  module, and then call the  **push**  API of this module to push the  **FoodDetail**  page to the route stack to implement page redirection.
 
     ```
     import router from '@system.router'
@@ -118,7 +118,7 @@ The procedure below uses these two mechanisms for redirection between the page l
 
 ## Data Transmission Between Pages<a name="section86431031144816"></a>
 
-We have implemented the redirection and going back of the  **FoodCategoryList**  and  **FoodDetail**  pages. However, the tomato details page is displayed no matter which  **FoodListItem**/**FoodGridItem**  is clicked. This is because the data transmission between pages is not configured and the routing with parameters is required.
+We have implemented the redirection and going back of the  **FoodCategoryList**  and  **FoodDetail**  pages. At this point, the tomato details page is displayed no matter which  **FoodListItem**/**FoodGridItem**  is clicked. This is because the data transmission between pages is not yet configured. To configure data transmission between pages, set the routing with parameters as follows:
 
 1.  Set the  **params**  attribute in the  **Navigator**  of the  **FoodListItem**  component. The  **params**  attribute accepts the key-value object.
 
@@ -161,7 +161,7 @@ We have implemented the redirection and going back of the  **FoodCategoryList** 
     }
     ```
 
-3.  Obtain the value of  **foodData**. Call  **router.getParams\(\).foodData**  to obtain the data corresponding to  **foodDate**  carried when the  **FoodCategoryList**  page is displayed.
+3.  Obtain the value of  **foodData**. Call  **router.getParams\(\).foodData**  to obtain the data corresponding to  **foodData**  carried when the  **FoodCategoryList**  page is displayed.
 
     ```
     @Entry
@@ -266,5 +266,14 @@ We have implemented the redirection and going back of the  **FoodCategoryList** 
       }
     }
     ```
+
+
+## Samples<a name="section18889555307"></a>
+
+The following sample is provided to help you better understand how to define the page layout and connection:
+
+-   [eTSDefiningPageLayoutAndConnection](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSDefiningPageLayoutAndConnection)
+
+    This sample exemplifies the basic usage of the list layout, grid layout, and page routing, by building the food list page and food details page.
 
 

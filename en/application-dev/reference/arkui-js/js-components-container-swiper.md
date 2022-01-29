@@ -2,15 +2,15 @@
 
 The  **<swiper\>**  component provides a container that allows users to switch among child components by swiping operations.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 All child components except  **<list\>**  are supported.
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -81,19 +81,6 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </td>
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p892412121355"><a name="p892412121355"></a><a name="p892412121355"></a>Whether to enable the digital indicator. The default value is <strong id="b186731053201012"><a name="b186731053201012"></a><a name="b186731053201012"></a>false</strong>.</p>
 <div class="note" id="note592581253511"><a name="note592581253511"></a><a name="note592581253511"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1892581233520"><a name="p1892581233520"></a><a name="p1892581233520"></a>The digital indicator takes effect only when <strong id="b129911746141816"><a name="b129911746141816"></a><a name="b129911746141816"></a>indicator</strong> is set to <strong id="b1176765601811"><a name="b1176765601811"></a><a name="b1176765601811"></a>true</strong>.</p>
-</div></div>
-</td>
-</tr>
-<tr id="row20134846183410"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p392501293511"><a name="p392501293511"></a><a name="p392501293511"></a>indicatormask </p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p79251912133517"><a name="p79251912133517"></a><a name="p79251912133517"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p1192511233517"><a name="p1192511233517"></a><a name="p1192511233517"></a>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p12925201243510"><a name="p12925201243510"></a><a name="p12925201243510"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p12925111219353"><a name="p12925111219353"></a><a name="p12925111219353"></a>Whether to use the indicator mask. If this attribute is set to <strong id="b6349154810236"><a name="b6349154810236"></a><a name="b6349154810236"></a>true</strong>, the indicator has a gradient mask.</p>
-<div class="note" id="note5256105081615"><a name="note5256105081615"></a><a name="note5256105081615"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p42561450171619"><a name="p42561450171619"></a><a name="p42561450171619"></a>This attribute does not take effect for smartphones.<sup id="sup95431732161815"><a name="sup95431732161815"></a><a name="sup95431732161815"></a>5+</sup></p>
 </div></div>
 </td>
 </tr>
@@ -169,7 +156,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section08721578337"></a>
+## Styles<a name="section08721578337"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -255,7 +242,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section5891352194417"></a>
+## Events<a name="section5891352194417"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -292,7 +279,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section47669296127"></a>
+## Methods<a name="section47669296127"></a>
 
 In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
 
@@ -329,7 +316,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 </tbody>
 </table>
 
-## Example Code<a name="section1933534232313"></a>
+## Example<a name="section1933534232313"></a>
 
 ```
 <!-- xxx.hml -->
@@ -414,5 +401,5 @@ export default {
 }
 ```
 
-![](figures/4-31.gif)
+![](figures/4-0.gif)
 

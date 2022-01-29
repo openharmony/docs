@@ -1,6 +1,13 @@
-# Polyline<a name="EN-US_TOPIC_0000001119767800"></a>
+# Polyline<a name="EN-US_TOPIC_0000001192595150"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Polyline\>**  component is used to draw a polyline.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section29916914716"></a>
 
@@ -8,7 +15,7 @@ None
 
 ## APIs<a name="section19864224475"></a>
 
-Polyline\(options?: \{width: Length, height: Length\}\)
+Polyline\(options?: \{width: Lenght, height: Length\}\)
 
 -   Parameters
 

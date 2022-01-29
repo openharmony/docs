@@ -6,11 +6,11 @@ The  **<rating\>**  component provides a rating bar used for reviews and ratings
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -76,7 +76,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -130,8 +130,8 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="20.80791920807919%" headers="mcps1.1.6.1.2 "><p id="p69101950104910"><a name="p69101950104910"></a><a name="p69101950104910"></a>&lt;length&gt;|&lt;percentage&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.93890610938906%" headers="mcps1.1.6.1.3 "><p id="p391015084913"><a name="p391015084913"></a><a name="p391015084913"></a>120px</p>
-<p id="p1391055012499"><a name="p1391055012499"></a><a name="p1391055012499"></a>60px (cannot be edited)</p>
+<td class="cellrowborder" valign="top" width="10.93890610938906%" headers="mcps1.1.6.1.3 "><p id="p391015084913"><a name="p391015084913"></a><a name="p391015084913"></a>120 px</p>
+<p id="p1391055012499"><a name="p1391055012499"></a><a name="p1391055012499"></a>60 px (cannot be edited)</p>
 </td>
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p13910125064911"><a name="p13910125064911"></a><a name="p13910125064911"></a>No</p>
 </td>
@@ -167,7 +167,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >You must set  **star-background**,  **star-secondary**, and  **star-foreground**. Otherwise, the rating star is gray, indicating that the image is set incorrectly.
 
-## Event<a name="section124498406719"></a>
+## Events<a name="section124498406719"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -190,7 +190,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
@@ -228,5 +228,5 @@ export default {
 }
 ```
 
-![](figures/1-39.png)
+![](figures/1-6.png)
 

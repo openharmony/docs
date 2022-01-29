@@ -1,12 +1,6 @@
-# @Builder
+# @Builder<a name="ZH-CN_TOPIC_0000001134858596"></a>
 
-
-
-@Builder装饰器定义了一个如何渲染自定义组件的方法。此装饰器提供了一个修饰方法，其目的是和[build函数](../ui/ts-function-build.md)一致。@Builder装饰器装饰的方法的语法规范与build函数也保持一致。
-
-
-通过@Builder装饰器可以在一个自定义组件内快速生成多个布局内容。
-
+@Builder装饰的方法用于定义组件的声明式UI描述，在一个自定义组件内快速生成多个布局内容。@Builder装饰方法的功能和语法规范与[build函数](ts-function-build.md)相同。
 
 ```
 @Entry
@@ -45,3 +39,4 @@ struct CompA {
   }
 }
 ```
+

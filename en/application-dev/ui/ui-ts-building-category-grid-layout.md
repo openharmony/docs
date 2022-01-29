@@ -2,7 +2,7 @@
 
 The diet application allows food on the home page to display in list or grid mode. You can implement switching between food categories through tabs in grid mode.
 
-1.  Add the  **Category**  enumeration type to the  **FoodCategoryList**  page.
+1.  Import the  **Category**  enumeration type to the  **FoodCategoryList**  page.
 
     ```
     import { Category, FoodData } from '../model/FoodData'
@@ -86,7 +86,7 @@ The diet application allows food on the home page to display in list or grid mod
     }
     ```
 
-5.  Add the  **@State**  decorator. After you click the switch tab in the upper right corner, the page does not change. This is because the  **showList**  does not have state data and its change does not trigger the page refresh. You need to add the  **@State**  decorator to make it state data. The change of the  **@State**  decorator will cause the component where the decorator is located to be re-rendered.
+5.  Add the  **@State**  decorator. After you click the switch tab in the upper right corner, the page does not change. This is because the  **showList**  does not have state data and its change does not trigger the page refresh. You need to add the  **@State**  decorator to make it state data. The change of the  **@State**  decorator will cause re-rendering of the component where the decorator is located.
 
     ```
     @Entry
@@ -247,7 +247,7 @@ The diet application allows food on the home page to display in list or grid mod
 
     ![](figures/video_2021-10-21_105602.gif)
 
-10. Create the  **Category.Vegetable**,  **Category.Fruit**,  **Category.Nut**,  **Category.SeaFood**, and  **Category.Desert**  tabs.
+10. Create the  **Category.Vegetable**,  **Category.Fruit**,  **Category.Nut**,  **Category.SeaFood**, and  **Category.Dessert**  tabs.
 
     ```
     @Component

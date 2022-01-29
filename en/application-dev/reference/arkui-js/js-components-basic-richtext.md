@@ -3,22 +3,21 @@
 The  **<richtext\>**  component displays rich text information.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   This component is supported since API version 6.
 >-   The rich text content must be written in the content area.
 
 ## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 Only the  **id**,  **style**, and  **class**  attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 Only the  **display**  and** visibility**  styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Event<a name="section17878123517511"></a>
+## Events<a name="section17878123517511"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -53,8 +52,9 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 >-   Accessibility events are not supported.
 >-   When a page containing  **<richtext\>**  is returned, the page's transition effect does not apply to the area where the rich text is displayed.
 >-   Make sure the rich text does not go beyond the height of the screen. Otherwise, the excess content will not be displayed.
+>-   The width cannot be set. By default, the rich text is displayed in full screen.
 
-## Method<a name="section14703165113610"></a>
+## Methods<a name="section14703165113610"></a>
 
 Not supported
 

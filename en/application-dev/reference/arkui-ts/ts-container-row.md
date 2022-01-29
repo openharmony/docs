@@ -1,4 +1,7 @@
-# Row<a name="EN-US_TOPIC_0000001158141273"></a>
+# Row<a name="EN-US_TOPIC_0000001237355047"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Row\>**  component lays out child components horizontally.
 
@@ -12,7 +15,7 @@ This component can contain child components.
 
 ## APIs<a name="section11682122941119"></a>
 
-Row\(options?: \{ space?: Length \}\)
+Row\(value:\{space?: Length\}\)
 
 -   Parameters
 

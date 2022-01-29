@@ -6,7 +6,7 @@ The  **<slider\>**  component is used to quickly adjust settings, such as volume
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -110,7 +110,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -165,7 +165,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section412849105010"></a>
+## Events<a name="section412849105010"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -240,7 +240,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
   <text>slider start value is {{startValue}}</text>
   <text>slider current value is {{currentValue}}</text>
   <text>slider end value is {{endValue}}</text>
-  <slider min="0" max="100" value="{{value}}" onchange="setvalue"></slider>
+  <slider min="0" max="100" value="{{value}}" onchange="setvalue" ></slider>
 </div>
 ```
 
@@ -250,6 +250,8 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+  
 }
 ```
 
@@ -277,5 +279,5 @@ export default {
 }
 ```
 
-![](figures/progress-40.png)
+![](figures/slider.png)
 

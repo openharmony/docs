@@ -46,7 +46,7 @@ Set the  **color**,  **font-size**, and  **allow-scale**  attributes.
 
 -   Adding a text modifier
 
-Set the  **text-decoration**  attribute to add an underline, overline, line-through, or a combination of lines to selected text. For values of  **text-decoration**, see  [Text Styles](../reference/arkui-js/js-components-basic-text.md#section5775351116).
+Set the  **text-decoration**  attribute to add an underline, overline, line-through, or a combination of lines to selected text. For values of  **text-decoration**, see [Text Style](../reference/arkui-js/js-components-basic-text.md).
 
 ```
 <!-- xxx.hml -->
@@ -72,7 +72,7 @@ text{
 }
 ```
 
-![](figures/3-1.png)
+![](figures/3.png)
 
 -   Hiding text content
 
@@ -110,7 +110,7 @@ Set the  **text-overflow**  attribute to  **ellipsis**  so that overflowed text 
 
 -   Setting the text line breaking mode
 
-Set the  **word-break**  attribute to specify how to break lines of text. For values of  **word-break**, see  [Text Styles](../reference/arkui-js/js-components-basic-text.md#section5775351116).
+Set the  **word-break**  attribute to specify how to break lines of text. For values of  **word-break**, see  [Text Styles](../reference/arkui-js/js-components-basic-text.md).
 
 ```
 <!-- xxx.hml -->
@@ -181,11 +181,11 @@ Set the  **word-break**  attribute to specify how to break lines of text. For va
 </div>
 ```
 
-![](figures/01-2.png)
+![](figures/01-1.png)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   When the  **<span\>**  child component is used to form a text paragraph, incorrect settings of the  **<span\>**  attributes \(for example,  **font-weight**  set to  **1000**\) will result in abnormal display of the text paragraph.
->-   When the  **<span\>**  child component is being used, do not include any text you want to show in the  **<text\>**  component, as such text will not be displayed.
+>-   When the  **<span\>**  child component is used to form a text paragraph, incorrect  **<span\>**  attribute settings \(for example, setting of  **font-weight**  to  **1000**\) will result in abnormal display of the text paragraph.
+>-   When the  **<span\>**  child component is being used, do not include any text you want to show in the  **<text\>**  component, as such text will not be displayed if you do so.
 
 ## Example Scenario<a name="section7280164491412"></a>
 
@@ -240,5 +240,5 @@ export default {
 }
 ```
 
-![](figures/1-3.gif)
+![](figures/1.gif)
 

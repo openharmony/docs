@@ -1,4 +1,7 @@
-# Column<a name="EN-US_TOPIC_0000001111421414"></a>
+# Column<a name="EN-US_TOPIC_0000001192915096"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Column\>**  component lays out child components vertically.
 
@@ -12,7 +15,7 @@ This component can contain child components.
 
 ## APIs<a name="section14196162892911"></a>
 
-Column\(options?: \{ space?: Length \}\)
+Column\(value:\{space?: Length\}\)
 
 -   Parameters
 

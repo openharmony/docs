@@ -105,7 +105,7 @@ export default{
 }
 ```
 
-![](figures/8-10.gif)
+![](figures/8-6.gif)
 
 ## Example Scenario<a name="section54252520379"></a>
 
