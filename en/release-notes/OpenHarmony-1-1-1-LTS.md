@@ -2,7 +2,7 @@
 
 -   [Version Description](#section1846294912228)
 -   [Source Code Acquisition](#section84808293211)
-    -   [Acquiring Source Code from Image Sites](#section8394142222113)
+    -   [Acquiring Source Code from Mirrors](#section8394142222113)
     -   [Acquiring Source Code Using the repo Tool](#section7180193542317)
 
 -   [What's New](#section175225345334)
@@ -13,18 +13,18 @@ This is an updated long-term support \(LTS\) version of OpenHarmony. It supports
 
 ## Source Code Acquisition<a name="section84808293211"></a>
 
-### Acquiring Source Code from Image Sites<a name="section8394142222113"></a>
+### Acquiring Source Code from Mirrors<a name="section8394142222113"></a>
 
-**Table  1**  Sites for acquiring source code
+**Table  1**  Mirrors for acquiring source code
 
 <a name="table14394152217216"></a>
 <table><thead align="left"><tr id="row15394132214217"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p15394122214219"><a name="p15394122214219"></a><a name="p15394122214219"></a>Source Code</p>
 </th>
 <th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.2"><p id="p10394112292119"><a name="p10394112292119"></a><a name="p10394112292119"></a>Version</p>
 </th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p039562213211"><a name="p039562213211"></a><a name="p039562213211"></a>Site</p>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p039562213211"><a name="p039562213211"></a><a name="p039562213211"></a>Mirror</p>
 </th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.4"><p id="p1039572272110"><a name="p1039572272110"></a><a name="p1039572272110"></a>SHA-256 Verification Code</p>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.4"><p id="p1039572272110"><a name="p1039572272110"></a><a name="p1039572272110"></a>SHA-256 Checksum</p>
 </th>
 </tr>
 </thead>
@@ -32,7 +32,7 @@ This is an updated long-term support \(LTS\) version of OpenHarmony. It supports
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p839514220217"><a name="p839514220217"></a><a name="p839514220217"></a>1.1.1</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p15931114016546"><a name="p15931114016546"></a><a name="p15931114016546"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p15931114016546"><a name="p15931114016546"></a><a name="p15931114016546"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p3770144281415"><a name="p3770144281415"></a><a name="p3770144281415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
@@ -41,7 +41,7 @@ This is an updated long-term support \(LTS\) version of OpenHarmony. It supports
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p7395722112113"><a name="p7395722112113"></a><a name="p7395722112113"></a>1.1.1</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p29291940175415"><a name="p29291940175415"></a><a name="p29291940175415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p29291940175415"><a name="p29291940175415"></a><a name="p29291940175415"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p134864584147"><a name="p134864584147"></a><a name="p134864584147"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
@@ -50,7 +50,7 @@ This is an updated long-term support \(LTS\) version of OpenHarmony. It supports
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p12395182210215"><a name="p12395182210215"></a><a name="p12395182210215"></a>1.1.1</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p125681045181518"><a name="p125681045181518"></a><a name="p125681045181518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3518ev300-1.1.1.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p125681045181518"><a name="p125681045181518"></a><a name="p125681045181518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3518ev300-1.1.1.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p4607175915149"><a name="p4607175915149"></a><a name="p4607175915149"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3518ev300-1.1.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
@@ -59,7 +59,7 @@ This is an updated long-term support \(LTS\) version of OpenHarmony. It supports
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p20395152262114"><a name="p20395152262114"></a><a name="p20395152262114"></a>1.1.1</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p10455184661518"><a name="p10455184661518"></a><a name="p10455184661518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p10455184661518"><a name="p10455184661518"></a><a name="p10455184661518"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p84951102150"><a name="p84951102150"></a><a name="p84951102150"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz.sha256" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
@@ -68,7 +68,7 @@ This is an updated long-term support \(LTS\) version of OpenHarmony. It supports
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p10396102282110"><a name="p10396102282110"></a><a name="p10396102282110"></a>1.1.1</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/OpenHarmony_Release_Notes 1.1.1 LTS.zip" target="_blank" rel="noopener noreferrer">Site</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://repo.huaweicloud.com/harmonyos/os/1.1.1/OpenHarmony_Release_Notes 1.1.1 LTS.zip" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>

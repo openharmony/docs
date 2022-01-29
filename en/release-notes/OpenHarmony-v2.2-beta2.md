@@ -83,11 +83,11 @@ repo forall -c 'git lfs pull'
 ```
 
 
-### Acquiring Source Code from Image Sites
+### Acquiring Source Code from Mirrors
 
-**Table  2** Sites for acquiring source code
+**Table  2** Mirrors for acquiring source code
 
-| Source&nbsp;Code | Version | Site | SHA-256&nbsp;Checksum | 
+| Source&nbsp;Code | Version | Mirror | SHA-256&nbsp;Checksum | 
 | -------- | -------- | -------- | -------- |
 | Full&nbsp;code&nbsp;(for&nbsp;mini,&nbsp;small,&nbsp;and&nbsp;standard&nbsp;systems) | 2.2 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/code-v2.2-beta2_20210730.tar.gz.sha256) | 
 | Standard&nbsp;system&nbsp;solution&nbsp;(binary) | 2.2 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/standard-2.2-Beta2.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.2-Beta2/standard-2.2-Beta2.tar.gz.sha256) | 
@@ -261,6 +261,14 @@ This release provides the following new and enhanced features based on OpenHarmo
 </tr>
 </tbody>
 </table>
+
+### API Updates
+
+For details, see:
+
+-   [JS API Differences](api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
+
+-   [Native API Differences](api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
 
 ## Resolved Issues<a name="section3442123281619"></a>
 
