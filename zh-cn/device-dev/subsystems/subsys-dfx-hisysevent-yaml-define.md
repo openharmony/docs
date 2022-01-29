@@ -235,7 +235,7 @@ EVENT_NAMEB:
 
 ### yaml文件的编译<a name="section123181432175137"></a>
 
-1.  全量编译：
+-   全量编译：
 
     -   全量编译整个系统，会将所有部件配置的yaml文件中的配置进行汇总，正常完成系统编译后，指定目录下就会生成hisysevent.def文件。
 
@@ -249,7 +249,7 @@ EVENT_NAMEB:
     cd 工程根目录的绝对路径 | find out -name hisysevent.def -type f
     ```
 
-2.  单文件编译：
+-   单文件编译：
 
     也可以只编译单个部件的yaml文件，命令如下：
 
