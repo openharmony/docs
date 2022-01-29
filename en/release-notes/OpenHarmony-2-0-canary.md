@@ -75,14 +75,14 @@ repo forall -c'git lfs pull'
 ```
 
 
-### Acquiring Source Code from Images
+### Acquiring Source Code from Mirrors
 
-**Table  2** Images for acquiring source code
+**Table  2** Mirrors for acquiring source code
 
-| Source&nbsp;Code | Version | Image | SHA-256&nbsp;Checksum | 
+| Source&nbsp;Code | Version | Mirror | SHA-256&nbsp;Checksum | 
 | -------- | -------- | -------- | -------- |
 | Full&nbsp;code&nbsp;base | 2.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz.sha256) | 
-| Release&nbsp;Notes | 2.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/openharmony-2-0-canary.md) | - | 
+| Release&nbsp;Notes | 2.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-2-0-canary.md) | - | 
 
 
 ## What's New<a name="section11256141314463"></a>

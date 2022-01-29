@@ -3,8 +3,8 @@
 -   [Overview](#section1846294912228)
 -   [Version Mapping](#section395983762117)
 -   [Source Code Acquisition](#section84808293211)
-    -   [Acquiring Source Code from Image Sites](#section8394142222113)
-
+    -   [Acquiring Source Code Using the repo Tool](#section8394142222114)
+    -   [Acquiring Source Code from Mirrors](#section8394142222113)
 -   [What's New](#section175225345334)
 -   [Resolved Issues](#section11935243172612)
 
@@ -44,7 +44,7 @@ This is an updated long-term support \(LTS\) version of OpenHarmony. It supports
 
 ## Source Code Acquisition<a name="section84808293211"></a>
 
-Acquiring Source Code Using the repo Tool
+### Acquiring Source Code Using the repo Tool<a name="section8394142222114"></a>
 
 Method 1 \(recommended\): Use the  **repo**  tool to download the source code over SSH. \(You must have registered an SSH public key for access to Gitee.\)
 
@@ -62,16 +62,16 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-### Acquiring Source Code from Image Sites<a name="section8394142222113"></a>
+### Acquiring Source Code from Mirrors<a name="section8394142222113"></a>
 
-**Table  2**  Sites for acquiring source code
+**Table  2**  Mirrors for acquiring source code
 
 <a name="table14394152217216"></a>
 <table><thead align="left"><tr id="row15394132214217"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p15394122214219"><a name="p15394122214219"></a><a name="p15394122214219"></a>Source Code</p>
 </th>
 <th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.2"><p id="p10394112292119"><a name="p10394112292119"></a><a name="p10394112292119"></a>Version Information</p>
 </th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p039562213211"><a name="p039562213211"></a><a name="p039562213211"></a>Site</p>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p039562213211"><a name="p039562213211"></a><a name="p039562213211"></a>Mirror</p>
 </th>
 <th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.4"><p id="p1039572272110"><a name="p1039572272110"></a><a name="p1039572272110"></a>SHA-256 Checksum</p>
 </th>

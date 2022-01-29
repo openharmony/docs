@@ -2,9 +2,8 @@
 
 -   [Overview](#section1846294912228)
 -   [Source Code Acquisition](#section84808293211)
-    -   [Acquiring Source Code from Images](#section8394142222113)
+    -   [Acquiring Source Code from Mirrors](#section8394142222113)
     -   [Acquiring Source Code Using the repo Tool](#section7180193542317)
-
 -   [What's New](#section175225345334)
 -   [Resolved Issues](#section11935243172612)
 
@@ -21,16 +20,16 @@ This is the first long-term support \(LTS\) version of OpenHarmony. It supports 
 
 ## Source Code Acquisition<a name="section84808293211"></a>
 
-### Acquiring Source Code from Images<a name="section8394142222113"></a>
+### Acquiring Source Code from Mirrors<a name="section8394142222113"></a>
 
-**Table  1**  Images for acquiring source code
+**Table  1**  Mirrors for acquiring source code
 
 <a name="table14394152217216"></a>
 <table><thead align="left"><tr id="row15394132214217"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p15394122214219"><a name="p15394122214219"></a><a name="p15394122214219"></a>Source Code</p>
 </th>
 <th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.2"><p id="p10394112292119"><a name="p10394112292119"></a><a name="p10394112292119"></a>Version Information</p>
 </th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p039562213211"><a name="p039562213211"></a><a name="p039562213211"></a>Image</p>
+<th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.3"><p id="p039562213211"><a name="p039562213211"></a><a name="p039562213211"></a>Mirror</p>
 </th>
 <th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.4"><p id="p1039572272110"><a name="p1039572272110"></a><a name="p1039572272110"></a>SHA-256 Checksum</p>
 </th>
