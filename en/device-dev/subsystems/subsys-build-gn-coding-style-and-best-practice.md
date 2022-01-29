@@ -51,7 +51,7 @@ action("some_action") {
 
 A global variable starts with a **lowercase letter**.
 
-If you want a variable value to be modified by **gn args**, you use **declare\_args**. Otherwise, do not use **declare\_args**.
+If you want a variable value to be modified by **gn args**, use **declare\_args**. Otherwise, do not use **declare\_args**.
 
 ```
 # Example 2
@@ -334,13 +334,13 @@ Prioritize the Python script over the shell script in **action**. The Python scr
 
 ### Sharing Data Between Modules
 
-Data sharing between modules is common. For example, module A may want to know the **outputs** and **deps** of module B.
+Data sharing between modules is common. For example, a module may want to know the **outputs** and **deps** of another module.
 
 - Data sharing within the same **BUILD.gn** file
 
   Data in the same **BUILD.gn** file can be shared by defining global variables.
 
-  In the following example, the output of module a is the input of module b. Module a shares data with module b by defining global variables.
+  In the following example, the output of module **a** is the input of module **b**. Module **a** shares data with module **b** by defining global variables.
 
   ```
   # Example 12
@@ -500,9 +500,9 @@ In the latest version, **set_source_assignment_filter** is replaced by **filter_
 - Each part declares its inner-kit for other parts to invoke. For details about the declaration of inner-kit, see **ohos.build** in the source code.
 - Inter-part dependencies can only be inner-kit modules.
 
-- If the values of **part_name** of modules a and b are the same, the two modules belong to the same part. In this case, the dependency between modules a and b can be declared using **deps**.
+- If the values of **part_name** of modules **a** and **b** are the same, the two modules belong to the same part. In this case, the dependency between the modules can be declared using **deps**.
 
-- If the values of **part_name** of modules A and B are different, the two modules belong to different parts. In this case, the dependency between modules A and B must be declared using **external_deps** in the format of *componentName:moduleName*. See Example 19.
+- If the values of **part_name** of modules **a** and **b** are different, the two modules belong to different parts. In this case, the dependency between the modules must be declared using **external_deps** in the format of *componentName:moduleName*. See Example 19.
 
   ```
   # Example 19
