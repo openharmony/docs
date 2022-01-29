@@ -68,7 +68,7 @@
 <p id="p167271525213215"><a name="p167271525213215"></a><a name="p167271525213215"></a>取值范围：</p>
 <a name="ul6717142215021"></a><a name="ul6717142215021"></a>
 <ul id="ul6717142215021">
-<li>CRITICAL：严格。</li>
+<li>CRITICAL：严重。</li>
 <li>MINOR：一般。</li>
 </ul>
 </td>
@@ -162,7 +162,7 @@
 </tbody>
 </table>
 
-### yaml文件样例<a name="section123181432175123"></a>
+### yaml文件样例及说明<a name="section123181432175123"></a>
 
 ```
 ##########################################
@@ -172,17 +172,22 @@
 domain: MODULEA
 
 EVENT_NAMEA:
-    __BASE: {type: FAULT, level: CRITICAL, tag: tag1 tag2, desc: event name a}
+    __BASE: {type: FAULT, level: CRITICAL, desc: event name a}
     NAME1: {type: STRING, desc: name1}
     NAME2: {type: STRING, desc: name2}
     NAME3: {type: UINT16, desc: name3}
 
 EVENT_NAMEB:
-    __BASE: {type: STATISTIC, level: CRITICAL, desc: event name b}
+    __BASE: {type: STATISTIC, level: MINOR, tag: tag1 tag2, desc: event name b}
     NAME1: {type: UINT16, desc: name1}
-    NAME2: {type: UINT32, desc: name2}
+    NAME2: {type: INT32, desc: name2}
 
 ```
+
+**样例说明**：
+-   该yaml文件指定的事件领域名称为MODULEA，该事件领域包含两个事件，名称分别是EVENT_NAMEA和EVENT_NAMEB。
+-   EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](subsys-dfx-hisysevent-read.md)。
+-   EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](subsys-dfx-hisysevent-read.md)，，所以还可以通过事件标签对该事件进行[实时订阅](subsys-dfx-hisysevent-read.md)。
 
 ## yaml文件的验证流程<a name="section123181432175115"></a>
 
