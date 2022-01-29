@@ -187,7 +187,7 @@ EVENT_NAMEB:
 
 ### yaml文件的路径配置<a name="section123181432175135"></a>
 
--   在bundle.js文件中通过```hisysevent_config```属性完成yaml文件的路径指定：
+在bundle.js文件中通过```hisysevent_config```属性完成yaml文件的路径指定：
 
     ```
     {
@@ -230,8 +230,10 @@ EVENT_NAMEB:
    }
    ```
 
+
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >yaml文件可根据实际需求置于部件工程的任意目录下，只要在bundle.js文件指定即可。
+
 
 ### yaml文件的编译<a name="section123181432175137"></a>
 
