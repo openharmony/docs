@@ -187,53 +187,51 @@ EVENT_NAMEB:
 
 ### yaml文件的路径配置<a name="section123181432175135"></a>
 
-在bundle.js文件中通过```hisysevent_config```属性完成yaml文件的路径指定：
+-   在bundle.js文件中通过```hisysevent_config```属性完成yaml文件的路径指定：
 
-    ```
-    {
-        "name": "@ohos/moduel_a",
-        "description": "module a",
-        "version": "3.1",
-        "license": "Apache License 2.0",
-        "publishAs": "code-segment",
-        "segment": {
-            "destPath": "moduel_a_path"
+```
+{
+    "name": "@ohos/moduel_a",
+    "description": "module a",
+    "version": "3.1",
+    "license": "Apache License 2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "moduel_a_path"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "hisysevent_native",
+        "subsystem": "hiviewdfx",
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "",
+        "ram": "",
+        "hisysevent_config": [
+            "//moduel_a_path/yaml_file1.yaml",
+            "//moduel_a_path/yaml_file2.yaml"
+        ],
+        "deps": {
+            "components": [
+                "hilog_native",
+                "hitrace_native",
+                "ipc",
+                "safwk",
+                "samgr_standard",
+                "utils_base"
+            ],
+            "third_party": []
         },
-        "dirs": {},
-        "scripts": {},
-        "component": {
-            "name": "hisysevent_native",
-            "subsystem": "hiviewdfx",
-            "adapted_system_type": [
-                "standard"
-            ],
-            "rom": "",
-            "ram": "",
-            "hisysevent_config": [
-                "//moduel_a_path/yaml_file1.yaml",
-                "//moduel_a_path/yaml_file2.yaml"
-            ],
-            "deps": {
-                "components": [
-                    "hilog_native",
-                  "hitrace_native",
-                  "ipc",
-                  "safwk",
-                  "samgr_standard",
-                  "utils_base"
-                ],
-                  "third_party": []
-            },
-            "build": {
-            }
+        "build": {
         }
-   }
-   ```
-
+    }
+}
+```
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >yaml文件可根据实际需求置于部件工程的任意目录下，只要在bundle.js文件指定即可。
-
 
 ### yaml文件的编译<a name="section123181432175137"></a>
 
