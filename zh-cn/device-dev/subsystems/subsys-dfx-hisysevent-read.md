@@ -150,10 +150,10 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
     -   实现订阅回调接口：
 
     ```
-	#include "demo_listener.h"
-	
-	#include <iostream>
-	
+    #include "demo_listener.h"
+
+    #include <iostream>
+
     void DemoListener::OnHandle(const std::string& domain, const std::string& eventName,
         const int eventType, const std::string& eventDetail)
     {
@@ -170,12 +170,12 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
     -   通过HiSysEventManager类提供的AddEventListener接口注册回调对象：
 
     ```
-	auto demoListener = std::make_shared<DemoListener>();
-	// 事件标签规则订阅，规则类型为默认的全词匹配类型
-	ListenerRule tagRule("dfx");
-	// 事件标签规则订阅，规则类型为正则匹配类型
-	ListenerRule regRule("dfx.*", RuleType::REGULAR);
-	// 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
+    auto demoListener = std::make_shared<DemoListener>();
+    // 事件标签规则订阅，规则类型为默认的全词匹配类型
+    ListenerRule tagRule("dfx");
+    // 事件标签规则订阅，规则类型为正则匹配类型
+    ListenerRule regRule("dfx.*", RuleType::REGULAR);
+    // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
     ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
     std::vector<ListenerRule> sysRules;
     sysRules.push_back(tagRule);
