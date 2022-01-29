@@ -1,4 +1,4 @@
-# HiSysEvent打点YAML文件配置指导<a name="ZH-CN_TOPIC_0000001080478132"></a>
+# HiSysEvent打点管理配置指导<a name="ZH-CN_TOPIC_0000001080478132"></a>
 
 -   [概述](#section315316685115)
 -   [yaml文件的编写](#section123181432175113)
@@ -11,7 +11,7 @@
 	
 ## 概述<a name="section315316685115"></a>
 
-OpenHarmony编译框架会收集各个部件通过bundle.js文件所指定的yaml文件，然后通过python编译脚本解析校验这些yaml文件。通过解析校验之后，该python脚本还会将这些yaml文件中配置的信息转换成名为“hisysevent.def”的json文件。最后，编译框架会将此json文件打包到rom的在指定路径。
+部件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.js文件中配置这些文件的路径。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.js文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下。
 
 ## yaml文件的编写<a name="section123181432175113"></a>
 
