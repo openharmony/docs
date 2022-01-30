@@ -2,9 +2,9 @@
 
 -   [Audio](audio.md)
     -   [Audio Overview](audio-overview.md)
-    -   [Development Guidelines on Audio Playback](audio-playback.md) 
+    -   [Audio Playback Development](audio-playback.md) 
 
-    -   [Development Guidelines on Audio Management](audio-management.md)  
+    -   [Audio Management Development](audio-management.md)  
 
-    -   [Development Guidelines on Audio Recording](audio-recorder.md) 
+    -   [Audio Recording Development](audio-recorder.md) 
 
