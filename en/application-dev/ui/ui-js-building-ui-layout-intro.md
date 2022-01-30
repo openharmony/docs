@@ -1,14 +1,12 @@
 # Layout Description<a name="EN-US_TOPIC_0000001063230905"></a>
 
-The baseline width for page design is 720 logical px. The display width of a page element depends on the ratio of the screen width to the baseline width.
+The baseline width for page design is 720 logical pixels. The display width of a page element depends on the ratio of the screen width to the baseline width.
 
 For example, when the width of a component is 100 px, its display width is converted as follows:
 
--   On a screen with the width of 720 physical px, the display width is 100 physical px.
+On a screen with the width of 720 physical pixels, the display width is 100 physical pixels. On a screen with the width of 1440 physical pixels, the display width is 200 physical pixels.
 
--   On a screen with the width of 1440 physical px, the display width is 200 physical px.
-
-Basic elements on the page include title, text, and image areas. Each basic element may contain multiple sub-elements. You can add components, such as buttons, switches, and progress bars, to these elements and sub-elements as required. When setting the layout, you need to consider the following for each basic element:
+Basic page elements include title, text, and image areas. Each basic element may contain multiple sub-elements. You can add components, such as buttons, switches, and progress bars, to these elements and sub-elements as required. When setting the layout, you need to consider the following for each basic element:
 
 -   Size and arrangement
 -   Overlapping with other elements
@@ -24,5 +22,5 @@ You can disassemble elements on the page first and then implement them in sequen
 **Figure  2**  Layout of the comment area<a name="fig186911810182717"></a>  
 
 
-![](figures/Figure3.png)
+![](figures/figures3.png)
 

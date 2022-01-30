@@ -64,22 +64,22 @@ finishTrace(name: string, taskId: number): void
   ```
   //追踪并行执行的同名任务
   bytrace.startTrace("myTestFunc", 1);
-  ...... //业务流程
+  //业务流程...... 
   bytrace.startTrace("myTestFunc", 2);  //第二个追踪的任务开始，同时第一个追踪的同名任务还没结束，出现了并行执行，对应接口的taskId需要不同。
-  ...... //业务流程
+  //业务流程...... 
   bytrace.finishTrace("myTestFunc", 1);
-  ...... //业务流程
+  //业务流程...... 
   bytrace.finishTrace("myTestFunc", 2);
   ```
 
   ```
   //追踪串行执行的同名任务
   bytrace.startTrace("myTestFunc", 1);
-  ...... //业务流程
+  //业务流程...... 
   bytrace.finishTrace("myTestFunc", 1);  //第一个追踪的任务结束
-  ...... //业务流程
+  //业务流程...... 
   bytrace.startTrace("myTestFunc", 1);   //第二个追踪的同名任务开始，同名的待追踪任务串行执行。
-  ...... //业务流程
+  //业务流程...... 
   bytrace.finishTrace("myTestFunc", 1);
   ```
 
@@ -101,7 +101,7 @@ traceByValue(name: string, value: number): void
   ```
   let traceCount = 3;
   bytrace.traceByValue("myTestCount", traceCount);
-  ......
-  traceCount = 5;
+  traceCount = 4;
   bytrace.traceByValue("myTestCount", traceCount);
+  //业务流程......
   ```

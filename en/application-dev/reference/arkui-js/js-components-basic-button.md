@@ -2,11 +2,11 @@
 
 The  **<button\>**  component includes capsule, circle, text, arc, and download buttons.
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -19,7 +19,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </th>
 <th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p id="p824610360217"><a name="p824610360217"></a><a name="p824610360217"></a>Mandatory</p>
 </th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p id="a1d574a0044ed42ec8a2603bc82734232"><a name="a1d574a0044ed42ec8a2603bc82734232"></a><a name="a1d574a0044ed42ec8a2603bc82734232"></a>Triggered when</p>
+<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p id="a1d574a0044ed42ec8a2603bc82734232"><a name="a1d574a0044ed42ec8a2603bc82734232"></a><a name="a1d574a0044ed42ec8a2603bc82734232"></a>Description</p>
 </th>
 </tr>
 </thead>
@@ -83,9 +83,9 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
-When the button type is not  **arc**:
+### When the Button Type Is Not  **arc**<a name="section1511020589345"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -204,7 +204,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="6.639336066393361%" headers="mcps1.1.6.1.4 "><p id="p168401030114412"><a name="p168401030114412"></a><a name="p168401030114412"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="45.28547145285472%" headers="mcps1.1.6.1.5 "><p id="p11841183004414"><a name="p11841183004414"></a><a name="p11841183004414"></a>Radius of a circle button or fillet radius of a capsule button. For a circle button, this style takes precedence over <strong id="b5673247143117"><a name="b5673247143117"></a><a name="b5673247143117"></a>width</strong> and <strong id="b17675114743117"><a name="b17675114743117"></a><a name="b17675114743117"></a>height</strong> in the common styles.</p>
+<td class="cellrowborder" valign="top" width="45.28547145285472%" headers="mcps1.1.6.1.5 "><p id="p11841183004414"><a name="p11841183004414"></a><a name="p11841183004414"></a>Button radius. For a circle button, this style takes precedence over <strong id="b5673247143117"><a name="b5673247143117"></a><a name="b5673247143117"></a>width</strong> and <strong id="b17675114743117"><a name="b17675114743117"></a><a name="b17675114743117"></a>height</strong> in the common styles.</p>
 </td>
 </tr>
 </tbody>
@@ -215,7 +215,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 >-   For circle buttons, text-related styles are not supported.
 >-   For text buttons, the text size is automatically adaptive, and  **radius**,  **width**, and  **height**  cannot be set. The  **background-color**  style is not supported when the background is completely transparent.
 
-The following styles are supported when the button type is  **arc**.
+### When the Button Type Is  **arc**<a name="section16818713355"></a>
 
 In addition to the  **background-color**,  **opacity**,  **display**,  **visibility**,  **position**,  **\[left|top****|right|bottom**  styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -301,11 +301,11 @@ In addition to the  **background-color**,  **opacity**,  **display**,  **visibil
 </tbody>
 </table>
 
-## Event<a name="section71081937192815"></a>
+## Events<a name="section71081937192815"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
-## Method<a name="section47669296127"></a>
+## Methods<a name="section47669296127"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
@@ -332,7 +332,7 @@ When the button type is  **download**, the following methods are supported.
 </tbody>
 </table>
 
-## Example Code<a name="section16867208402"></a>
+## Example<a name="section16867208402"></a>
 
 ```
 <!-- xxx.hml -->
@@ -393,19 +393,19 @@ When the button type is  **download**, the following methods are supported.
 // xxx.js 
 export default {
   data: {
-    progress: 5,
+    count: 5,
     downloadText: "Download"
   },
   progress(e) {
-    this.progress += 10;
-    this.downloadText = this.progress + "%";
-    this.$element('download-btn').setProgress({ progress: this.progress });
-    if (this.progress >= 100) {
+    this.count+= 10;
+    this.downloadText = this.count+ "%";
+    this.$element('download-btn').setProgress({ progress: this.count});
+    if (this.count>= 100) {
       this.downloadText = "Done";
     }
   }
 }
 ```
 
-![](figures/1-32.png)
+![](figures/1.png)
 

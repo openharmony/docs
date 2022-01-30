@@ -5,9 +5,9 @@ The  **<animateTransform\>**  component is used to apply a transform animation a
 <circle\>, <ellipse\>, <line\>, <path\>, <polygon\>, <polyline\>, <rect\>, <text\>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The APIs of this module are supported since API version 7.
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 

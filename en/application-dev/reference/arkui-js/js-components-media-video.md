@@ -8,13 +8,13 @@ The  **<video\>**  component provides a video player.
 >    "configChanges": ["orientation"]
 >    ```
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 ## Child Component<a name="sc18e8342b29747dbbd70887cc3c0a22d"></a>
 
 Not supported
 
-## Attribute<a name="s50d82bce96774b86846ab2739d7ce18d"></a>
+## Attributes<a name="s50d82bce96774b86846ab2739d7ce18d"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -78,7 +78,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="sfbde25405aca4513a9c938f2f339b770"></a>
+## Styles<a name="sfbde25405aca4513a9c938f2f339b770"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -126,14 +126,14 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section4181420161817"></a>
+## Events<a name="section4181420161817"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
 <a name="table836435619510"></a>
 <table><thead align="left"><tr id="row153658563517"><th class="cellrowborder" valign="top" width="24.852485248524854%" id="mcps1.1.4.1.1"><p id="a426b8903842d48fa8012a24ff3c997eb"><a name="a426b8903842d48fa8012a24ff3c997eb"></a><a name="a426b8903842d48fa8012a24ff3c997eb"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="29.552955295529554%" id="mcps1.1.4.1.2"><p id="a53448ba47e5e4ae9bf7774c90820e970"><a name="a53448ba47e5e4ae9bf7774c90820e970"></a><a name="a53448ba47e5e4ae9bf7774c90820e970"></a>Parameter Type</p>
+<th class="cellrowborder" valign="top" width="29.552955295529554%" id="mcps1.1.4.1.2"><p id="a53448ba47e5e4ae9bf7774c90820e970"><a name="a53448ba47e5e4ae9bf7774c90820e970"></a><a name="a53448ba47e5e4ae9bf7774c90820e970"></a>Parameter</p>
 </th>
 <th class="cellrowborder" valign="top" width="45.5945594559456%" id="mcps1.1.4.1.3"><p id="add489ff50c444f24b759162c7f4bad9a"><a name="add489ff50c444f24b759162c7f4bad9a"></a><a name="add489ff50c444f24b759162c7f4bad9a"></a>Description</p>
 </th>
@@ -198,14 +198,14 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="s557cc2f457ff42a193807500adae2f91"></a>
+## Methods<a name="s557cc2f457ff42a193807500adae2f91"></a>
 
-In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
+In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following methods are supported.
 
 <a name="t0b0d71e0664f479d9fbcfe2cf45b34a0"></a>
 <table><thead align="left"><tr id="r80520812e64447b7a841590ba3d1ecf9"><th class="cellrowborder" valign="top" width="28.000000000000004%" id="mcps1.1.4.1.1"><p id="ab440f3031e7242d1a1ee00ba387b151f"><a name="ab440f3031e7242d1a1ee00ba387b151f"></a><a name="ab440f3031e7242d1a1ee00ba387b151f"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="42%" id="mcps1.1.4.1.2"><p id="a1e28b7e4cdc84e9eacc51b8ce51590df"><a name="a1e28b7e4cdc84e9eacc51b8ce51590df"></a><a name="a1e28b7e4cdc84e9eacc51b8ce51590df"></a>Parameter Type</p>
+<th class="cellrowborder" valign="top" width="42%" id="mcps1.1.4.1.2"><p id="a1e28b7e4cdc84e9eacc51b8ce51590df"><a name="a1e28b7e4cdc84e9eacc51b8ce51590df"></a><a name="a1e28b7e4cdc84e9eacc51b8ce51590df"></a>Type</p>
 </th>
 <th class="cellrowborder" valign="top" width="30%" id="mcps1.1.4.1.3"><p id="ad91f1de026e24e60b0fe5078f4226f65"><a name="ad91f1de026e24e60b0fe5078f4226f65"></a><a name="ad91f1de026e24e60b0fe5078f4226f65"></a>Description</p>
 </th>
@@ -234,4 +234,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 </tr>
 </tbody>
 </table>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>The methods in the above table can be called after the  **attached**  callback is invoked.
 

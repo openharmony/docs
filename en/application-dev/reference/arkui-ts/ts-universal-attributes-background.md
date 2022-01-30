@@ -1,6 +1,15 @@
-# Background<a name="EN-US_TOPIC_0000001111421392"></a>
+# Background<a name="EN-US_TOPIC_0000001237555119"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The attributes in this topic are used to set the background color of a component.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table548mcpsimp"></a>
 <table><thead align="left"><tr id="row555mcpsimp"><th class="cellrowborder" valign="top" width="18.279999999999998%" id="mcps1.1.5.1.1"><p id="p557mcpsimp"><a name="p557mcpsimp"></a><a name="p557mcpsimp"></a>Name</p>

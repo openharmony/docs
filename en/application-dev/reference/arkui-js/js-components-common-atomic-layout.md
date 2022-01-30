@@ -2,9 +2,6 @@
 
 The atomic layout implements adaptive layout for screens of different sizes and types. Designers can use the atomic layout to define adaptive rules for elements on UIs of different forms. Developers can use the atomic layout to implement the adaptive UI features matching the design effect for a variety of screens.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The atomic layout is supported since API version 5.
-
 ## Hiding Components<a name="section0441154013284"></a>
 
 You can set priority flags for a flex layout that does not support cross-row display to define the display priorities for elements in the horizontal or vertical direction. The elements are hidden based on available space of the container.
@@ -92,4 +89,3 @@ A component with fixed ratio can be scaled up and down while retaining its aspec
 </tr>
 </tbody>
 </table>
-

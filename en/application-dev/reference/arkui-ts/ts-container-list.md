@@ -1,4 +1,7 @@
-# List<a name="EN-US_TOPIC_0000001158141283"></a>
+# List<a name="EN-US_TOPIC_0000001237555113"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<List\>**  component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentations of the same type of data in a multiple and coherent row style, for example, images or text.
 
@@ -12,7 +15,7 @@ This component contains the child component  [<ListItem\>](ts-container-listitem
 
 ## APIs<a name="section297911264713"></a>
 
-List\(options?: \{ space?: number, initialIndex?: number \}\)
+List\(value:\{space?: number, initialIndex?: number\}\)
 
 -   Parameters
 
@@ -70,7 +73,7 @@ List\(options?: \{ space?: number, initialIndex?: number \}\)
 </thead>
 <tbody><tr id="row1490mcpsimp"><td class="cellrowborder" valign="top" width="14.08%" headers="mcps1.1.5.1.1 "><p id="p1492mcpsimp"><a name="p1492mcpsimp"></a><a name="p1492mcpsimp"></a>listDirection</p>
 </td>
-<td class="cellrowborder" valign="top" width="25.46%" headers="mcps1.1.5.1.2 "><p id="p1494mcpsimp"><a name="p1494mcpsimp"></a><a name="p1494mcpsimp"></a><a href="#li7849892417">Axis</a></p>
+<td class="cellrowborder" valign="top" width="25.46%" headers="mcps1.1.5.1.2 "><p id="p1494mcpsimp"><a name="p1494mcpsimp"></a><a name="p1494mcpsimp"></a><a href="ts-appendix-enums.md#section1397918486200">Axis</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="15.790000000000001%" headers="mcps1.1.5.1.3 "><p id="p1496mcpsimp"><a name="p1496mcpsimp"></a><a name="p1496mcpsimp"></a>Vertical</p>
 </td>
@@ -126,29 +129,6 @@ List\(options?: \{ space?: number, initialIndex?: number \}\)
 </tbody>
 </table>
 
--   <a name="li7849892417"></a>Axis enums
-
-    <a name="table12144170154116"></a>
-    <table><thead align="left"><tr id="row1314430184118"><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p id="p1614414014416"><a name="p1614414014416"></a><a name="p1614414014416"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p id="p1314415074113"><a name="p1314415074113"></a><a name="p1314415074113"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row61441505417"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p191443034117"><a name="p191443034117"></a><a name="p191443034117"></a>Vertical</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p121447017412"><a name="p121447017412"></a><a name="p121447017412"></a>The list items are vertically arranged.</p>
-    </td>
-    </tr>
-    <tr id="row20144801418"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p17145110194110"><a name="p17145110194110"></a><a name="p17145110194110"></a>Horizontal</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p171454015415"><a name="p171454015415"></a><a name="p171454015415"></a>The list items are horizontally arranged.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
 -   <a name="li13407161352416"></a>EdgeEffect enums
 
     <a name="table13368194184518"></a>
@@ -175,20 +155,64 @@ List\(options?: \{ space?: number, initialIndex?: number \}\)
 ## Events<a name="section5672149135016"></a>
 
 <a name="table268mcpsimp"></a>
-<table><thead align="left"><tr id="row274mcpsimp"><th class="cellrowborder" valign="top" width="54.11%" id="mcps1.1.3.1.1"><p id="p276mcpsimp"><a name="p276mcpsimp"></a><a name="p276mcpsimp"></a>Name</p>
+<table><thead align="left"><tr id="row274mcpsimp"><th class="cellrowborder" valign="top" width="52.07000000000001%" id="mcps1.1.3.1.1"><p id="p276mcpsimp"><a name="p276mcpsimp"></a><a name="p276mcpsimp"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="45.89%" id="mcps1.1.3.1.2"><p id="p280mcpsimp"><a name="p280mcpsimp"></a><a name="p280mcpsimp"></a>Description</p>
+<th class="cellrowborder" valign="top" width="47.93%" id="mcps1.1.3.1.2"><p id="p280mcpsimp"><a name="p280mcpsimp"></a><a name="p280mcpsimp"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row281mcpsimp"><td class="cellrowborder" valign="top" width="54.11%" headers="mcps1.1.3.1.1 "><p id="p283mcpsimp"><a name="p283mcpsimp"></a><a name="p283mcpsimp"></a>onItemDelete(index: number) =&gt; boolean</p>
+<tbody><tr id="row281mcpsimp"><td class="cellrowborder" valign="top" width="52.07000000000001%" headers="mcps1.1.3.1.1 "><p id="p283mcpsimp"><a name="p283mcpsimp"></a><a name="p283mcpsimp"></a>onItemDelete(index: number) =&gt; boolean</p>
 </td>
-<td class="cellrowborder" valign="top" width="45.89%" headers="mcps1.1.3.1.2 "><p id="p19272193554015"><a name="p19272193554015"></a><a name="p19272193554015"></a>Triggered when a list item is deleted.</p>
+<td class="cellrowborder" valign="top" width="47.93%" headers="mcps1.1.3.1.2 "><p id="p19272193554015"><a name="p19272193554015"></a><a name="p19272193554015"></a>Triggered when a list item is deleted.</p>
 </td>
 </tr>
-<tr id="row14368347144014"><td class="cellrowborder" valign="top" width="54.11%" headers="mcps1.1.3.1.1 "><p id="p44468559402"><a name="p44468559402"></a><a name="p44468559402"></a>onScrollIndex(firstIndex: number, lastIndex: number) =&gt; void</p>
+<tr id="row14368347144014"><td class="cellrowborder" valign="top" width="52.07000000000001%" headers="mcps1.1.3.1.1 "><p id="p44468559402"><a name="p44468559402"></a><a name="p44468559402"></a>onScrollIndex(firstIndex: number, lastIndex: number) =&gt; void</p>
 </td>
-<td class="cellrowborder" valign="top" width="45.89%" headers="mcps1.1.3.1.2 "><p id="p6369104717402"><a name="p6369104717402"></a><a name="p6369104717402"></a>Triggered when the start position and end position of the current list are changed.</p>
+<td class="cellrowborder" valign="top" width="47.93%" headers="mcps1.1.3.1.2 "><p id="p6369104717402"><a name="p6369104717402"></a><a name="p6369104717402"></a>Triggered when the start position and end position of the current list are changed.</p>
+</td>
+</tr>
+<tr id="row141733308324"><td class="cellrowborder" valign="top" width="52.07000000000001%" headers="mcps1.1.3.1.1 "><p id="p1217353043218"><a name="p1217353043218"></a><a name="p1217353043218"></a>onItemDragEnter(callback: (event: <a href="#li2640114814351">ItemDragInfo</a>) =&gt; void)</p>
+</td>
+<td class="cellrowborder" valign="top" width="47.93%" headers="mcps1.1.3.1.2 "><p id="p23399260547"><a name="p23399260547"></a><a name="p23399260547"></a>Triggered when the list item that is bound to the drag event enters a valid drop target.</p>
+<a name="ul1833918269542"></a><a name="ul1833918269542"></a><ul id="ul1833918269542"><li><strong id="b560301120593"><a name="b560301120593"></a><a name="b560301120593"></a>itemIndex</strong>: original index of the list item that is being dragged.</li><li><strong id="b199637243011"><a name="b199637243011"></a><a name="b199637243011"></a>insertIndex</strong>: index of the list item after it is dragged and inserted into the list.</li></ul>
+<div class="note" id="note1389615018342"><a name="note1389615018342"></a><a name="note1389615018342"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1589619033415"><a name="p1589619033415"></a><a name="p1589619033415"></a>This event is valid only when the <strong id="b350094618013"><a name="b350094618013"></a><a name="b350094618013"></a>onDrop</strong> event is listened to.</p>
+</div></div>
+</td>
+</tr>
+<tr id="row2057824563212"><td class="cellrowborder" valign="top" width="52.07000000000001%" headers="mcps1.1.3.1.1 "><p id="p1167987103713"><a name="p1167987103713"></a><a name="p1167987103713"></a>onItemDragMove(callback: (event: <a href="#li2640114814351">ItemDragInfo</a>, itemIndex: number, insertIndex: number) =&gt; void)</p>
+<p id="p186798733715"><a name="p186798733715"></a><a name="p186798733715"></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="47.93%" headers="mcps1.1.3.1.2 "><p id="p1157864513220"><a name="p1157864513220"></a><a name="p1157864513220"></a>Triggered when the list item that is bound to the drag event enters a valid drop target.</p>
+<a name="ul836918413451"></a><a name="ul836918413451"></a><ul id="ul836918413451"><li><strong id="b8247135719415"><a name="b8247135719415"></a><a name="b8247135719415"></a>itemIndex</strong>: original index of the list item that is being dragged.</li><li><strong id="b5579858449"><a name="b5579858449"></a><a name="b5579858449"></a>insertIndex</strong>: index of the list item after it is dragged and inserted into the list.</li></ul>
+<div class="note" id="note590016344379"><a name="note590016344379"></a><a name="note590016344379"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1542313448378"><a name="p1542313448378"></a><a name="p1542313448378"></a>This event is valid only when the <strong id="b109221227518"><a name="b109221227518"></a><a name="b109221227518"></a>onDrop</strong> event is listened to.</p>
+</div></div>
+</td>
+</tr>
+<tr id="row974815613383"><td class="cellrowborder" valign="top" width="52.07000000000001%" headers="mcps1.1.3.1.1 "><p id="p19672727173815"><a name="p19672727173815"></a><a name="p19672727173815"></a>onItemDragLeave(callback: (event: <a href="#li2640114814351">ItemDragInfo</a>, itemIndex: number) =&gt; void)</p>
+<p id="p10672202753811"><a name="p10672202753811"></a><a name="p10672202753811"></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="47.93%" headers="mcps1.1.3.1.2 "><p id="p656844733810"><a name="p656844733810"></a><a name="p656844733810"></a>Triggered when the list item that is bound to the drag event leaves a valid drop target.</p>
+<a name="ul99161456478"></a><a name="ul99161456478"></a><ul id="ul99161456478"><li><strong id="b182438421552"><a name="b182438421552"></a><a name="b182438421552"></a>itemIndex</strong>: original index of the list item that is being dragged.</li></ul>
+<div class="note" id="note243419019390"><a name="note243419019390"></a><a name="note243419019390"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p104341033917"><a name="p104341033917"></a><a name="p104341033917"></a>This event is valid only when the <strong id="b1019610147619"><a name="b1019610147619"></a><a name="b1019610147619"></a>onDrop</strong> event is listened to.</p>
+</div></div>
+</td>
+</tr>
+<tr id="row1720491343810"><td class="cellrowborder" valign="top" width="52.07000000000001%" headers="mcps1.1.3.1.1 "><p id="p9577114710395"><a name="p9577114710395"></a><a name="p9577114710395"></a>onItemDragStart(callback: (event: <a href="#li2640114814351">ItemDragInfo</a>, itemIndex: number)  =&gt; <a href="../../toctopics/en-us_topic_0000001237475069.md#section2538145016250">CustomBuilder</a>)</p>
+<p id="p4577104710392"><a name="p4577104710392"></a><a name="p4577104710392"></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="47.93%" headers="mcps1.1.3.1.2 "><p id="p182042136385"><a name="p182042136385"></a><a name="p182042136385"></a>Triggered when the list item that is bound to the drag event is dragged for the first time.</p>
+<a name="ul1881145784611"></a><a name="ul1881145784611"></a><ul id="ul1881145784611"><li><strong id="b82390280516"><a name="b82390280516"></a><a name="b82390280516"></a>itemIndex</strong>: original index of the list item that is being dragged.</li><li>Return value: floating UI layout of the list item that is being dragged.</li></ul>
+<div class="note" id="note1037918101408"><a name="note1037918101408"></a><a name="note1037918101408"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p9379310194011"><a name="p9379310194011"></a><a name="p9379310194011"></a>This event is valid only when the <strong id="b177064346511"><a name="b177064346511"></a><a name="b177064346511"></a>onDrop</strong> event is listened to.</p>
+</div></div>
+</td>
+</tr>
+<tr id="row4718518103817"><td class="cellrowborder" valign="top" width="52.07000000000001%" headers="mcps1.1.3.1.1 "><p id="p136755015412"><a name="p136755015412"></a><a name="p136755015412"></a>onItemDrop(callback: (event: <a href="#li2640114814351">ItemDragInfo</a>, itemIndex: number, insertIndex: number, isSuccess: boolean) =&gt; void)</p>
+<p id="p1667517004111"><a name="p1667517004111"></a><a name="p1667517004111"></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="47.93%" headers="mcps1.1.3.1.2 "><p id="p652618815718"><a name="p652618815718"></a><a name="p652618815718"></a>Triggered when the list item that is bound to the drag event is dropped on a valid drop target.</p>
+<a name="ul37763355718"></a><a name="ul37763355718"></a><ul id="ul37763355718"><li><strong id="b0833843159"><a name="b0833843159"></a><a name="b0833843159"></a>itemIndex</strong>: original index of the list item that is being dragged.</li><li><strong id="b4895105717514"><a name="b4895105717514"></a><a name="b4895105717514"></a>insertIndex</strong>: index of the list item after it is dragged and inserted into the list.</li><li><strong id="b94071747612"><a name="b94071747612"></a><a name="b94071747612"></a>isSuccess</strong>: whether the insertion is successful after the list item is dropped.</li></ul>
+<div class="note" id="note1965019172424"><a name="note1965019172424"></a><a name="note1965019172424"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1965081715421"><a name="p1965081715421"></a><a name="p1965081715421"></a>This event is valid only when the <strong id="b1264511141175"><a name="b1264511141175"></a><a name="b1264511141175"></a>onDrop</strong> event is listened to.</p>
+</div></div>
 </td>
 </tr>
 </tbody>
@@ -197,8 +221,40 @@ List\(options?: \{ space?: number, initialIndex?: number \}\)
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >To enable the editable mode for a list, the following conditions must be met:
 >-   **editMode**  is set to  **true**.
->-   The  **onItemDelete**  callback is bound, and the value  **true**  is returned.
->-   The  **editable**  attribute of  **<ListItem\>**  is set to  **true**.
+>-   The list is bound to the  **onItemDelete**  event and the event returns  **true**  during event callback.
+>-   The  **editable**  attribute of  **ListItem**  is set to  **true**.
+>To enable for a list item, the following conditions must be met:
+>-   **editMode**  is set to  **true**.
+>-   The list item is bound to the  **onItemDragStart**  event and the event returns a floating UI during event callback.
+
+-   <a name="li2640114814351"></a>ItemDragInfo attributes
+
+    <a name="table157652053174913"></a>
+    <table><thead align="left"><tr id="row18765165318494"><th class="cellrowborder" valign="top" width="20.09%" id="mcps1.1.4.1.1"><p id="p18765145315496"><a name="p18765145315496"></a><a name="p18765145315496"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="20.22%" id="mcps1.1.4.1.2"><p id="p37651453144919"><a name="p37651453144919"></a><a name="p37651453144919"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="59.69%" id="mcps1.1.4.1.3"><p id="p376585317492"><a name="p376585317492"></a><a name="p376585317492"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1476685312494"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p3766753204913"><a name="p3766753204913"></a><a name="p3766753204913"></a>x</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.22%" headers="mcps1.1.4.1.2 "><p id="p1576614537496"><a name="p1576614537496"></a><a name="p1576614537496"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.69%" headers="mcps1.1.4.1.3 "><p id="p976617538499"><a name="p976617538499"></a><a name="p976617538499"></a>X-coordinate of the item that is being dragged.</p>
+    </td>
+    </tr>
+    <tr id="row776635311495"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p4766145315497"><a name="p4766145315497"></a><a name="p4766145315497"></a>y</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="20.22%" headers="mcps1.1.4.1.2 "><p id="p11766153104919"><a name="p11766153104919"></a><a name="p11766153104919"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.69%" headers="mcps1.1.4.1.3 "><p id="p16766195315494"><a name="p16766195315494"></a><a name="p16766195315494"></a>Y-coordinate of the item that is being dragged.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
 
 ## Example<a name="section02653368513"></a>
 
@@ -249,4 +305,122 @@ struct ListExample {
 ```
 
 ![](figures/list.gif)
+
+```
+@Entry
+@Component
+struct DragListExample {
+  @State number1: string[] = ['0', '1', '2']
+  @State number2: string[] = ['one', 'two', 'three']
+  @State text: string = ''
+  @State bool1: boolean = false
+  @State bool2: boolean = false
+
+  @Builder pixelMapBuilder() {
+    Text('-1')
+      .width('100%').height(100).fontSize(16)
+      .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+  }
+
+  build() {
+    Column() {
+      List() {
+        ForEach(this.number1, (item) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xF666FF)
+          }
+        }, item => item)
+      }
+      .editMode(true)
+      .width('90%').divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
+      .onItemDelete((index: number) => {
+        console.info(this.Number1[index] + 'Delete')
+        this.Number1.splice(index, 1)
+        console.info(JSON.stringify(this.Number1))
+        return true
+      })
+      .onItemDragStart((event: ItemDragInfo, itemIndex: number) => {
+        this.bool1 = true
+        this.text = this.number1[itemIndex]
+        console.log("List1 onItemDragStart, itemIndex:" + itemIndex + ",  ItemDragInfo:"+`${JSON.stringify(event)}`)
+        return this.pixelMapBuilder
+      })
+      .onItemDragEnter((event: ItemDragInfo) => {
+        console.log("List1 onItemDragEnter")
+      })
+      .onItemDragMove((event: ItemDragInfo, itemIndex: number, insertIndex: number) => {
+        console.log("List1 onItemDragMove, itemIndex:" + itemIndex + ", insertIndex:" + insertIndex)
+      })
+      .onItemDragLeave((event: ItemDragInfo, itemIndex: number) => {
+        console.log("List1 onItemDragLeave, itemIndex:" + itemIndex)
+      })
+      .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => {
+        if (isSuccess) {
+          if (this.bool2) {
+            this.number2.splice(itemIndex, 1)
+            this.number1.splice(insertIndex, 0, this.text)
+            this.bool1 = false
+            this.bool2 = false
+          } else if (this.bool1) {
+            this.number1.splice(itemIndex, 1)
+            this.number1.splice(insertIndex, 0, this.text)
+            this.bool1 = false
+            this.bool2 = false
+          }
+        }
+        console.log("List1 onItemDrop, itemIndex:" + itemIndex + ", insertIndex:" + insertIndex + ", isSuccess:" + isSuccess)
+      })
+      Divider().strokeWidth(5).color(0x2788D9).lineCap(LineCapStyle.Round).margin(20)
+      List() {
+        ForEach(this.Number2, (item) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFF888)
+          }
+        }, item => item)
+      }
+      .edgeEffect(EdgeEffect.None)
+      .width('90%')
+      .editMode(true)
+      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
+      .onItemDragStart((event: ItemDragInfo, itemIndex: number) => {
+        this.bool2 = true
+        this.text = this.number2[itemIndex]
+        console.log("List2 onItemDragStart, itemIndex:" + itemIndex)
+        return this.pixelMapBuilder
+      })
+      .onItemDragEnter((event: ItemDragInfo) => {
+        console.log("List2 onItemDragEnter")
+      })
+      .onItemDragMove((event: ItemDragInfo, itemIndex: number, insertIndex: number) => {
+        console.log("List2 onItemDragMove, itemIndex:" + itemIndex + ", insertIndex:" + insertIndex)
+      })
+      .onItemDragLeave((event: ItemDragInfo, itemIndex: number) => {
+        console.log("List2 onItemDragLeave, itemIndex:" + itemIndex)
+      })
+      .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => {
+        if (isSuccess) {
+          if (this.bool1) {
+            this.number1.splice(itemIndex, 1)
+            this.number2.splice(insertIndex, 0, this.text)
+            this.bool1 = false
+            this.bool2 = false
+          } else if (this.bool2) {
+            this.number2.splice(itemIndex, 1)
+            this.number2.splice(insertIndex, 0, this.text)
+            this.bool1 = false
+            this.bool2 = false
+          }
+        }
+        console.log("List2 onItemDrop, itemIndex:" + itemIndex + ", insertIndex:" + insertIndex + ", isSuccess:" + isSuccess)
+      })
+    }.width('100%').height('100%').backgroundColor(0xE600000).padding({ top: 25 })
+  }
+}
+```
+
+![](figures/gif-4.gif)
 

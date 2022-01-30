@@ -1,9 +1,6 @@
-# @CustomDialog
+# @CustomDialog<a name="ZH-CN_TOPIC_0000001192355895"></a>
 
-
-
-**@CustomDialog** 装饰器用于装饰自定义弹窗。
-
+**@CustomDialog**装饰器用于装饰自定义弹窗。
 
 ```
 // custom-dialog-demo.ets
@@ -49,3 +46,4 @@ struct CustomDialogUser {
     }
 }
 ```
+

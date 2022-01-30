@@ -1,4 +1,11 @@
-# PanGesture<a name="EN-US_TOPIC_0000001159378779"></a>
+# PanGesture<a name="EN-US_TOPIC_0000001192595174"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
 
 ## APIs<a name="section710011405537"></a>
 
@@ -156,28 +163,59 @@ PanGestureOption\(options?: \{ fingers?: number, direction?: PanDirection, dista
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1239716482219"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p939715481627"><a name="p939715481627"></a><a name="p939715481627"></a>onActionStart((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tbody><tr id="row1239716482219"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p939715481627"><a name="p939715481627"></a><a name="p939715481627"></a>onActionStart(callback: (event?: <a href="#li21621335144710">PanGestureEvent</a>) =&gt; void)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p19397248426"><a name="p19397248426"></a><a name="p19397248426"></a>Callback for the pan gestures reorganization event.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p19397248426"><a name="p19397248426"></a><a name="p19397248426"></a>Callback for the pan gestures recognition event.</p>
 </td>
 </tr>
-<tr id="row1839712484218"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p1839715484210"><a name="p1839715484210"></a><a name="p1839715484210"></a>onActionUpdate((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tr id="row1839712484218"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p1839715484210"><a name="p1839715484210"></a><a name="p1839715484210"></a>onActionUpdate(callback: (event?: <a href="#li21621335144710">PanGestureEvent</a>) =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1939717489216"><a name="p1939717489216"></a><a name="p1939717489216"></a>Callback for the pan gesture movement event.</p>
 </td>
 </tr>
-<tr id="row73976481829"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p12397134811215"><a name="p12397134811215"></a><a name="p12397134811215"></a>onActionEnd((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tr id="row73976481829"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p12397134811215"><a name="p12397134811215"></a><a name="p12397134811215"></a>onActionEnd(callback: (event?: <a href="#li21621335144710">PanGestureEvent</a>) =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p10398148327"><a name="p10398148327"></a><a name="p10398148327"></a>Callback for fingers pick-up.</p>
 </td>
 </tr>
-<tr id="row639834815211"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p4398154814218"><a name="p4398154814218"></a><a name="p4398154814218"></a>onActionCancel(event: () =&gt; void)</p>
+<tr id="row639834815211"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p4398154814218"><a name="p4398154814218"></a><a name="p4398154814218"></a>onActionCancel(callback: () =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p33985481128"><a name="p33985481128"></a><a name="p33985481128"></a>Callback for the touch cancellation event.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
+-   <a name="li21621335144710"></a>PanGestureEvent attributes<sup>8+</sup>
+
+    Inherited from  [GestureEvent](ts-gesture-settings.md#table290mcpsimp).
+
+    <a name="table290mcpsimp"></a>
+    <table><thead align="left"><tr id="row296mcpsimp"><th class="cellrowborder" valign="top" width="20.09%" id="mcps1.1.4.1.1"><p id="p298mcpsimp"><a name="p298mcpsimp"></a><a name="p298mcpsimp"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="18.41%" id="mcps1.1.4.1.2"><p id="p300mcpsimp"><a name="p300mcpsimp"></a><a name="p300mcpsimp"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.5%" id="mcps1.1.4.1.3"><p id="p302mcpsimp"><a name="p302mcpsimp"></a><a name="p302mcpsimp"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row303mcpsimp"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p312mcpsimp"><a name="p312mcpsimp"></a><a name="p312mcpsimp"></a>offsetX</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.41%" headers="mcps1.1.4.1.2 "><p id="p314mcpsimp"><a name="p314mcpsimp"></a><a name="p314mcpsimp"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p316mcpsimp"><a name="p316mcpsimp"></a><a name="p316mcpsimp"></a>Offset of the gesture event, in vp.</p>
+    </td>
+    </tr>
+    <tr id="row310mcpsimp"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p319mcpsimp"><a name="p319mcpsimp"></a><a name="p319mcpsimp"></a>offsetY</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.41%" headers="mcps1.1.4.1.2 "><p id="p321mcpsimp"><a name="p321mcpsimp"></a><a name="p321mcpsimp"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p323mcpsimp"><a name="p323mcpsimp"></a><a name="p323mcpsimp"></a>Offset of the gesture event, in vp.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
 
 ## Example<a name="section16900453182718"></a>
 
@@ -196,10 +234,10 @@ struct PanGestureExample {
     .translate({ x: this.offsetX, y: this.offsetY, z: 5 })
     .gesture(
       PanGesture({})
-        .onActionStart((event: GestureEvent) => {
+        .onActionStart((event: PanGestureEvent) => {
           console.info('Pan start')
         })
-        .onActionUpdate((event: GestureEvent) => {
+        .onActionUpdate((event: PanGestureEvent) => {
           this.offsetX = event.offsetX
           this.offsetY = event.offsetY
         })

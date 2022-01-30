@@ -1,13 +1,13 @@
 # Animation Effect<a name="EN-US_TOPIC_0000001217007973"></a>
 
-You can set the interpolator to implement the animation effect. For details, see  Animation.
+You can set the interpolator to implement the animation effect. For details, see  [Animation](../reference/apis/js-apis-basic-features-animator.md).
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >This feature is supported since API version 6.
 
 ## Creating an Animation Object<a name="section2124172032912"></a>
 
-Use  **createAnimator**  to create an animation object and set the animation attributes with the  [options](../reference/arkui-js/js-components-common-methods.md#table587915341817)  parameter.
+Use  **createAnimator**  to create an  **animation**  object and set the  **animation**  attributes by using the  options parameter.
 
 ```
 <!-- xxx.hml -->
@@ -81,7 +81,7 @@ export default {
 
 ## Adding Animation Events and Calling Methods<a name="section123951438112912"></a>
 
-The  **animator**  supports events and methods, which you can use to customize the animation effect. Events include add frames, cancel, repeat, and finish. Methods include update, play, pause, cancel, reverse, and finish. For details about the supported events and methods, see  animator supported events  and  animator supported APIs.
+The  **animator**  supports events and methods, which you can use to customize the animation effect. Events include  **frame**,  **cancel**,  **repeat**, and  **finish**. Methods include  **update**,  **play**,  **pause**,  **cancel**,  **reverse**, and  **finish**. For details about the supported events and methods, see  [animator supported events and  animator supported APIs](../reference/apis/js-apis-basic-features-animator.md).
 
 ```
 <!-- xxx.hml -->
@@ -230,7 +230,7 @@ export default {
 }
 ```
 
-![](figures/1-23.gif)
+![](figures/1-18.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >When calling the  **update**  method, you can use it to update the animation parameters. The input parameters are the same as those of  **createAnimator**.

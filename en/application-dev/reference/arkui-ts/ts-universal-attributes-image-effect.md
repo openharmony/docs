@@ -1,4 +1,13 @@
-# Image Effect Configuration<a name="EN-US_TOPIC_0000001119928854"></a>
+# Image Effect Configuration<a name="EN-US_TOPIC_0000001237715097"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table3076mcpsimp"></a>
 <table><thead align="left"><tr id="row3084mcpsimp"><th class="cellrowborder" valign="top" width="15.409999999999998%" id="mcps1.1.5.1.1"><p id="p3086mcpsimp"><a name="p3086mcpsimp"></a><a name="p3086mcpsimp"></a>Name</p>
@@ -86,6 +95,15 @@
 <td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.5.1.3 "><p id="p17197101195218"><a name="p17197101195218"></a><a name="p17197101195218"></a>0</p>
 </td>
 <td class="cellrowborder" valign="top" width="40.56%" headers="mcps1.1.5.1.4 "><p id="p3476165475218"><a name="p3476165475218"></a><a name="p3476165475218"></a>Inverts the input image. The input parameter is an image inversion ratio. The value <strong id="b14161413529"><a name="b14161413529"></a><a name="b14161413529"></a>1</strong> indicates complete inversion. The value <strong id="b1662571385213"><a name="b1662571385213"></a><a name="b1662571385213"></a>0</strong> indicates that the image does not change. The unit is percentage.</p>
+</td>
+</tr>
+<tr id="row916618513522"><td class="cellrowborder" valign="top" width="15.409999999999998%" headers="mcps1.1.5.1.1 "><p id="p116716519529"><a name="p116716519529"></a><a name="p116716519529"></a>colorBlend <sup id="sup4981191915316"><a name="sup4981191915316"></a><a name="sup4981191915316"></a>8+</sup></p>
+</td>
+<td class="cellrowborder" valign="top" width="20.91%" headers="mcps1.1.5.1.2 "><p id="p78661214533"><a name="p78661214533"></a><a name="p78661214533"></a>Color</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.5.1.3 "><p id="p61691512523"><a name="p61691512523"></a><a name="p61691512523"></a>-</p>
+</td>
+<td class="cellrowborder" valign="top" width="40.56%" headers="mcps1.1.5.1.4 "><p id="p71693515216"><a name="p71693515216"></a><a name="p71693515216"></a>Adds the color blend effect to the current component. The input parameter is the blended color.</p>
 </td>
 </tr>
 <tr id="row4632151055214"><td class="cellrowborder" valign="top" width="15.409999999999998%" headers="mcps1.1.5.1.1 "><p id="p1632161019520"><a name="p1632161019520"></a><a name="p1632161019520"></a>sepia</p>

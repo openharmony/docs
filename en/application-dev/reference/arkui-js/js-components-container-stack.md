@@ -2,31 +2,31 @@
 
 The  **<stack\>**  component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="s2936fc34a22b44aa8389d1ec3de8fa61"></a>
+## Child Components<a name="s2936fc34a22b44aa8389d1ec3de8fa61"></a>
 
 Supported
 
-## Attribute<a name="s7207d4d586504fa3be62558273017fbe"></a>
+## Attributes<a name="s7207d4d586504fa3be62558273017fbe"></a>
 
 Attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
 
-## Style<a name="section1774719169253"></a>
+## Styles<a name="section1774719169253"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Event<a name="section1948143416285"></a>
+## Events<a name="section1948143416285"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
-## Example Code<a name="section18137649112711"></a>
+## Example<a name="section18137649112711"></a>
 
 ```
 <!-- xxx.hml -->

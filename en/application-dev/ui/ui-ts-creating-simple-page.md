@@ -1,12 +1,12 @@
 # Creating a Simple Page<a name="EN-US_TOPIC_0000001192745831"></a>
 
-In this section, we will start the development of the food details page and learn how to build custom components through the container components  **<Stack\>**  and  **<Flex\>**  as well as basic components  **<Image\>**  and  **<Text\>**  to complete the food introduction with pictures and texts.
+In this section, we will develop an infographic food details page, by building custom components through the container components  **<Stack\>**  and  **<Flex\>**  as well as basic components  **<Image\>**  and  **<Text\>**.
 
 ## Building the Stack Layout<a name="section12782105345718"></a>
 
 1.  Create a food name.
 
-    Delete the code of the  **build**  method of the project template, create the  **<Stack\>**  component, and place the  **<Text\>**  component in the braces of the  **<Stack\>**  component so that the  **<Text\>**  component becomes a child component of the  **<Stack\>**  component. A  **<Stack\>**  component consists of one or more child components. The latter child component overwrites the former child component.
+    Delete the code of the  **build**  method in the project template, create a  **<Stack\>**  component, and place the  **<Text\>**  component in the braces of the  **<Stack\>**  component so that the  **<Text\>**  component becomes a child component of the  **<Stack\>**  component. A  **<Stack\>**  component consists of one or more child components. The latter child component overwrites the former one.
 
     ```
     @Entry
@@ -26,7 +26,7 @@ In this section, we will start the development of the food details page and lear
 
 2.  Display food pictures.
 
-    Create an  **<Image\>**  component and specify the URL for the component. The  **<Image\>**  and  **<Text\>**  components are mandatory. To display the  **<Text\>**  component above the  **<Image\>**  component, you need to declare the  **<Image\>**  component first. Image resources are stored in the  **rawfile**  folder in  **resources**. When referencing the resources in the  **rawfile**  folder, use the  **$rawfile\('_filename_  loaded\)**  format, where  **filename**  indicates the relative path of the file in the  **rawfile**  folder. Currently,  **$rawfile**  only allows the  **<Image\>**  component to reference image resources.
+    Create an  **<Image\>**  component and specify a URL for it. The  **<Image\>**  and  **<Text\>**  components are mandatory. To display the  **<Text\>**  component above the  **<Image\>**  component, you need to declare the  **<Image\>**  component first. Image resources are stored in the  **rawfile**  folder in  **resources**. When referencing the resources in the  **rawfile**  folder, use the  **$rawfile\('_filename_  loaded\)**  format, where  **filename**  indicates the relative path of the file in the  **rawfile**  folder. Currently,  **$rawfile**  only allows the  **<Image\>**  component to reference image resources.
 
     ```
     @Entry
@@ -249,7 +249,7 @@ You can use the  **Flex**  layout to build a food composition table. In this way
 
 2.  Create a  **Flex**  component to display two food composition categories in the tomato: Calories and Nutrition.
 
-    **Calories**  contains information about calories.  **Nutrition**  contains protein, fat, carbohydrates, and vitamin C.
+    **Calories**  contains information about calories.  **Nutrition**  contains information about protein, fat, carbohydrates, and vitamin C.
 
     Create the Calories class. Create a  **Flex**  component and set its height to  **280**, and the top, right, and left margins to  **30**. The  **Flex**  component contains three  **Text**  child components, which represent the category name \(**Calories**\), content name \(**Calories**\), and contain value \(**17 kcal**\), respectively. By default, child components in the  **Flex**  component are arranged horizontally.
 
@@ -546,5 +546,14 @@ You can use the  **Flex**  layout to build a food composition table. In this way
     ![](figures/en-us_image_0000001215199399.png)
 
 
-You've learned how to build a simple food details page. Read on to define page layout and connection.
+You've learned how to build a simple food details page. Read on to learn how to define the page layout and connection.
+
+## Samples<a name="section1398393853412"></a>
+
+The following sample is provided to help you better understand how to use build a simple page:
+
+-   [eTSBuildCommonView](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSBuildCommonView)
+
+    This sample shows how to build a common view to display the picture of tomatoes and nutrition information, with the stack layout and flex layout.
+
 

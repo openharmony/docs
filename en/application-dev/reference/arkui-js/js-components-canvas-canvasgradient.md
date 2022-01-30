@@ -8,10 +8,10 @@ addColorStop\(offset: number, color: string\): void
 
 Adds a color stop for the** CanvasGradient**  object based on the specified offset and gradient color.
 
--   Parameter
+-   Parameters
 
     <a name="table1032173253712"></a>
-    <table><thead align="left"><tr id="row166643263712"><th class="cellrowborder" valign="top" width="21.69%" id="mcps1.1.4.1.1"><p id="p1966932123714"><a name="p1966932123714"></a><a name="p1966932123714"></a>Parameter</p>
+    <table><thead align="left"><tr id="row166643263712"><th class="cellrowborder" valign="top" width="21.69%" id="mcps1.1.4.1.1"><p id="p1966932123714"><a name="p1966932123714"></a><a name="p1966932123714"></a>Name</p>
     </th>
     <th class="cellrowborder" valign="top" width="34.74%" id="mcps1.1.4.1.2"><p id="p10661232173710"><a name="p10661232173710"></a><a name="p10661232173710"></a>Type</p>
     </th>
@@ -39,11 +39,25 @@ Adds a color stop for the** CanvasGradient**  object based on the specified offs
 -   Example Code
 
     ```
-    const gradient = ctx.createLinearGradient(0,0,100,0);
-    gradient.addColorStop(0,'#00ffff');
-    gradient.addColorStop(1,'#ffff00');
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+      <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
+    </div>
+    ```
+
+    ```
+    // xxx.js
+    export default {
+      handleClick() {
+        const el =this.$refs.canvas;
+        const ctx =el.getContext('2d');
+        const gradient = ctx.createLinearGradient(0,0,100,0);
+        gradient.addColorStop(0,'#00ffff');
+        gradient.addColorStop(1,'#ffff00');
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001152610806.png)
-
 

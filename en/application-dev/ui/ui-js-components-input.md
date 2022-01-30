@@ -25,7 +25,7 @@ Create an  **<input\>**  component in the  **.hml**  file under  **pages/index**
 }
 ```
 
-![](figures/2-4.png)
+![](figures/2.png)
 
 ## Setting the Input Type<a name="section34344913465"></a>
 
@@ -222,6 +222,7 @@ import prompt from '@system.prompt'
 ![](figures/19.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>
 >-   This method is available when the input type is set to  **text**,  **email**,  **date**,  **time**,  **number**, or  **password**.
 
 ## Example Scenario<a name="section85617733119"></a>

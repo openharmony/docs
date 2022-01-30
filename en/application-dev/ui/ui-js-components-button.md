@@ -23,7 +23,7 @@ Create a  **<button\>**  component in the  **.hml**  file under  **pages/index**
 }
 ```
 
-![](figures/3-5.png)
+![](figures/3-2.png)
 
 ## Setting the Button Type<a name="section1599710524112"></a>
 
@@ -61,7 +61,7 @@ Set the  **type**  attribute of the  **<input\>**  component to  **button**,  **
 }
 ```
 
-![](figures/05-6.png)
+![](figures/05-3.png)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   For capsule buttons, border-related styles are not supported.
@@ -157,6 +157,7 @@ export default {
 ![](figures/34.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>
 >-   The  **setProgress**  method supports only buttons of the download type.
 
 ## Example Scenario<a name="section64731917115116"></a>

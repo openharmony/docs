@@ -1,4 +1,7 @@
-# Tabs<a name="EN-US_TOPIC_0000001166728941"></a>
+# Tabs<a name="EN-US_TOPIC_0000001237475055"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Tabs\>**  component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
@@ -132,6 +135,8 @@ Defines a tab controller, which is used to control switching of tabs.
 </table>
 
 ## Attributes<a name="section1738516911810"></a>
+
+Touch target configuration is not supported.
 
 <a name="table1854mcpsimp"></a>
 <table><thead align="left"><tr id="row1861mcpsimp"><th class="cellrowborder" valign="top" width="17.82%" id="mcps1.1.5.1.1"><p id="p1863mcpsimp"><a name="p1863mcpsimp"></a><a name="p1863mcpsimp"></a>Name</p>

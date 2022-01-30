@@ -62,7 +62,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 
 3. 执行如下命令，生成公私钥文件。例如，生成的密钥库名称为ide_demo_app.p12，存储到D盘根目录下。
    ```
-   keytool -genkeypair -alias "ide_demo_app" -keyalg EC -sigalg SHA256withECDSA -dname "C=CN,O=HUAWEI,OU=HUAWEI IDE,CN=ide_demo_app"  -keystore d:\\idedemokey.p12 -storetype pkcs12 -validity 9125 -storepass 123456Abc -keypass 123456Abc
+   keytool -genkeypair -alias "ide_demo_app" -keyalg EC -sigalg SHA256withECDSA -dname "C=CN,O=Organization,OU=Unit IDE,CN=ide_demo_app"  -keystore d:\\idedemokey.p12 -storetype pkcs12 -validity 9125 -storepass 123456Abc -keypass 123456Abc
    ```
 
    生成公私钥文件的参数说明如下：
@@ -74,8 +74,8 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
    - **sigalg**：签名算法，固定为**SHA256withECDSA**。
    - **dname**：按照操作界面提示进行输入。
       - C：国家/地区代码，如CN。
-      - O：组织名称，如HUAWEI。
-      - OU：组织单位名称，如HUAWEI IDE。
+      - O：组织名称，如Organization。
+      - OU：组织单位名称，如Unit。
       - CN：名字与姓氏，建议与别名一致。
    - **validity**：证书有效期，建议设置为9125（25年）。
    - **storepass**：设置密钥库密码，必须由大写字母、小写字母、数字和特殊符号中的两种以上字符的组合，长度至少为8位。请记住该密码，后续签名配置需要使用。

@@ -2,15 +2,15 @@
 
 The  **<divider\>**  component is used to separate content blocks and content elements. It can be used for the list or UI layout.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -42,9 +42,9 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </table>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The  **focusable**  and  **disabled**  attributes are not supported.
+>The  **focusable**  and  **disabled**  attributes are not supported.
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 Only the following style attributes are supported.
 
@@ -163,7 +163,7 @@ Only the following style attributes are supported.
 <td class="cellrowborder" valign="top" width="6.7999234889058915%" headers="mcps1.1.6.1.4 "><p id="p1335271877"><a name="p1335271877"></a><a name="p1335271877"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="38.77199693955624%" headers="mcps1.1.6.1.5 "><p id="p13246193876"><a name="p13246193876"></a><a name="p13246193876"></a>How much a child component will grow. The value specifies allocation of the remaining space on the main axis of the parent component. Size of available space = Container size - Total size of all child components. Value <strong id="b13294279468"><a name="b13294279468"></a><a name="b13294279468"></a>0</strong> indicates that the child component does not grow.</p>
-<div class="note" id="note62462313719"><a name="note62462313719"></a><a name="note62462313719"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1324610312715"><a name="p1324610312715"></a><a name="p1324610312715"></a>This attribute takes effect only when the parent component is <strong id="b676193985"><a name="b676193985"></a><a name="b676193985"></a>&lt;div&gt;</strong>, <strong id="b1088144526"><a name="b1088144526"></a><a name="b1088144526"></a>&lt;list-item&gt;</strong>, or <strong id="b875849304"><a name="b875849304"></a><a name="b875849304"></a>&lt;tabs&gt;</strong>.</p>
+<div class="note" id="note62462313719"><a name="note62462313719"></a><a name="note62462313719"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1324610312715"><a name="p1324610312715"></a><a name="p1324610312715"></a>This attribute takes effect only when the parent component is <strong id="b1949597674"><a name="b1949597674"></a><a name="b1949597674"></a>&lt;div&gt;</strong>, <strong id="b1228816217"><a name="b1228816217"></a><a name="b1228816217"></a>&lt;list-item&gt;</strong>, or <strong id="b184212334"><a name="b184212334"></a><a name="b184212334"></a>&lt;tabs&gt;</strong>.</p>
 </div></div>
 <p id="p14246435713"><a name="p14246435713"></a><a name="p14246435713"></a></p>
 </td>
@@ -177,7 +177,7 @@ Only the following style attributes are supported.
 <td class="cellrowborder" valign="top" width="6.7999234889058915%" headers="mcps1.1.6.1.4 "><p id="p164884516713"><a name="p164884516713"></a><a name="p164884516713"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="38.77199693955624%" headers="mcps1.1.6.1.5 "><p id="p13640114214710"><a name="p13640114214710"></a><a name="p13640114214710"></a>How much a child component will shrink. The shrink occurs only when the sum of default element widths is greater than that of the parent component. Value <strong id="b618802815466"><a name="b618802815466"></a><a name="b618802815466"></a>0</strong> indicates that the child component does not shrink.</p>
-<div class="note" id="note364074212713"><a name="note364074212713"></a><a name="note364074212713"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p186406427711"><a name="p186406427711"></a><a name="p186406427711"></a>This attribute takes effect only when the parent component is <strong id="b1505907737"><a name="b1505907737"></a><a name="b1505907737"></a>&lt;div&gt;</strong>, <strong id="b392646631"><a name="b392646631"></a><a name="b392646631"></a>&lt;list-item&gt;</strong>, or <strong id="b1428054285"><a name="b1428054285"></a><a name="b1428054285"></a>&lt;tabs&gt;</strong>.</p>
+<div class="note" id="note364074212713"><a name="note364074212713"></a><a name="note364074212713"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p186406427711"><a name="p186406427711"></a><a name="p186406427711"></a>This attribute takes effect only when the parent component is <strong id="b97929801"><a name="b97929801"></a><a name="b97929801"></a>&lt;div&gt;</strong>, <strong id="b1772326374"><a name="b1772326374"></a><a name="b1772326374"></a>&lt;list-item&gt;</strong>, or <strong id="b397489204"><a name="b397489204"></a><a name="b397489204"></a>&lt;tabs&gt;</strong>.</p>
 </div></div>
 </td>
 </tr>
@@ -198,11 +198,11 @@ Only the following style attributes are supported.
 </tbody>
 </table>
 
-## Event<a name="section1944813319536"></a>
+## Events<a name="section1944813319536"></a>
 
 Not supported
 
-## Method<a name="section163401342195315"></a>
+## Methods<a name="section163401342195315"></a>
 
 Not supported
 
@@ -242,5 +242,5 @@ Not supported
 }
 ```
 
-![](figures/1-33.jpg)
+![](figures/1-1.jpg)
 

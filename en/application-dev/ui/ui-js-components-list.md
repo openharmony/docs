@@ -183,9 +183,10 @@ export default {
 }
 ```
 
-![](figures/8-7.gif)
+![](figures/8-4.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>
 >-   The  **groupcollapse**  and  **groupexpand**  events can be used only by the  **list-item-group**  component.
 
 ## Example Scenario<a name="section1945019230211"></a>

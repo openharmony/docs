@@ -1,4 +1,7 @@
-# Media Query<a name="EN-US_TOPIC_0000001211727455"></a>
+# Media Query<a name="EN-US_TOPIC_0000001237555091"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="section377963175114"></a>
 
@@ -130,7 +133,7 @@ Registers a callback with the corresponding query condition by using the handle.
     </thead>
     <tbody><tr id="row322812133816"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1422881315812"><a name="p1422881315812"></a><a name="p1422881315812"></a>type</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.29%" headers="mcps1.1.5.1.2 "><p id="p922811131387"><a name="p922811131387"></a><a name="p922811131387"></a>boolean</p>
+    <td class="cellrowborder" valign="top" width="34.29%" headers="mcps1.1.5.1.2 "><p id="p922811131387"><a name="p922811131387"></a><a name="p922811131387"></a>string</p>
     </td>
     <td class="cellrowborder" valign="top" width="10.79%" headers="mcps1.1.5.1.3 "><p id="p112281713086"><a name="p112281713086"></a><a name="p112281713086"></a>Yes</p>
     </td>

@@ -1048,7 +1048,7 @@ install(bundleFilePaths: Array\<string>, param: InstallParam, callback: AsyncCal
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleFilePaths | Array\<string>                                 | 是   | 安装用包路径                                                 |
 | param           | InstallParam                                   | 是   | userId：用户ID<br/>installFlag：安装标识。<br/>      NORMAL：安装/卸载<br/>      REPLACE_EXISTING：更新<br/>isKeepData：卸载时是否保留运行时数据 |
-| callback        | AsyncCallback<[InstallStatus](#Installstatus)> | 是   | 回调方法                                                     |
+| callback        | AsyncCallback<[InstallStatus](#installstatus)> | 是   | 回调方法                                                     |
 
 **示例：**
 
@@ -1081,7 +1081,7 @@ uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback\<Inst
 | ---------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                                         | 是   | 卸载用包名                                                   |
 | param      | InstallParam                                   | 是   | userId：用户ID<br/>installFlag：安装标识。<br/>      NORMAL：安装/卸载<br/>      REPLACE_EXISTING：更新<br/>isKeepData：卸载时是否保留运行时数据 |
-| callback   | AsyncCallback<[InstallStatus](#Installstatus)> | 是   | 回调方法                                                     |
+| callback   | AsyncCallback<[InstallStatus](#installstatus)> | 是   | 回调方法                                                     |
 
 **示例：**
 

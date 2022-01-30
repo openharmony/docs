@@ -1,4 +1,7 @@
-# Text<a name="EN-US_TOPIC_0000001111581280"></a>
+# Text<a name="EN-US_TOPIC_0000001192915102"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Text\>**  component is used to display a paragraph of textual information.
 

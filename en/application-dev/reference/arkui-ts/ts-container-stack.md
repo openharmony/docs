@@ -1,4 +1,7 @@
-# Stack<a name="EN-US_TOPIC_0000001158261249"></a>
+# Stack<a name="EN-US_TOPIC_0000001237555083"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Stack\>**  component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
 
@@ -12,7 +15,7 @@ The  **<Stack\>**  component can contain child components.
 
 ## APIs<a name="section13412231148"></a>
 
-Stack\(options?: \{ alignContent?: Alignment \}\)
+Stack\(value:\{alignContent?: Alignment\}\)
 
 -   Parameters
 

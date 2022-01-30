@@ -1,4 +1,7 @@
-# Navigator<a name="EN-US_TOPIC_0000001111421442"></a>
+# Navigator<a name="EN-US_TOPIC_0000001192915106"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Navigator\>**  component provides redirection.
 

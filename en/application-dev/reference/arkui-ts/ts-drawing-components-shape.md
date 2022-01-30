@@ -1,4 +1,7 @@
-# Shape<a name="EN-US_TOPIC_0000001119927704"></a>
+# Shape<a name="EN-US_TOPIC_0000001237555097"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Shape\>**  component is the parent component of the drawing components. The attributes described in this topic are universal attributes supported by all the drawing components.
 
@@ -6,13 +9,17 @@ The  **<Shape\>**  component is the parent component of the drawing components. 
 
 2. The  **<Shape\>**  component is used independently to draw a specific shape.
 
+## Required Permissions<a name="section53281531154915"></a>
+
+None
+
 ## Child Components<a name="section5989144051714"></a>
 
 The  **<Shape\>**  component can contain child components.
 
 ## APIs<a name="section5143192918416"></a>
 
-Shape\(target?: PixelMap\)
+Shape\(value:\{target?: PixelMap\}\)
 
 -   Parameters
 
@@ -224,7 +231,7 @@ Shape\(target?: PixelMap\)
 struct ShapeExample {
   build() {
     Column({ space: 5 }) {
-      Text('basic').fontSize(9).fontColor(0xCCCCCC).width(320)
+      Text('basic').fontSize(30).fontColor(0xCCCCCC).width(320)
       // Draw a 300 x 50 rectangle with strokes at (-2, -2). The fill color is 0x317Af7, the stroke color is black, the stroke width is 4, the stroke dash is 20, the offset is 10 to the left, the cap style is rounded, the join style is rounded, and anti-aliasing is enabled (default).
       // Draw a 300 x 50 ellipse with strokes at (-2, 58). The fill color is 0x317Af7, the stroke color is black, the stroke width is 4, the stroke dash is 20, the offset is 10 to the left, the cap style is rounded, the join style is rounded, and anti-aliasing is enabled (default).
       // Draw a 300 x 10 path at (-2, 118). The fill color is 0x317Af7, the stroke color is black, the stroke width is 4, the stroke dash is 20, the offset is 10 to the left, the cap style is rounded, and the join style is rounded, and anti-aliasing is enabled (default).
@@ -233,7 +240,7 @@ struct ShapeExample {
         Ellipse().width(300).height(50).offset({ x: 0, y: 60 })
         Path().width(300).height(10).commands('M0 0 L900 0').offset({ x: 0, y: 120 })
       }
-      .viewPort({ x: -2, y: -2, width: 304, height: 124 })
+      .viewPort({ x: -2, y: -2, width: 304, height: 130 })
       .fill(0x317Af7).stroke(Color.Black).strokeWidth(4)
       .strokeDashArray([20]).strokeDashOffset(10).strokeLineCap(LineCapStyle.Round)
       .strokeLineJoin(LineJoinStyle.Round).antiAlias(true)
@@ -242,32 +249,32 @@ struct ShapeExample {
         Rect().width(300).height(50)
       }.viewPort({ x: -1, y: -1, width: 302, height: 52 }).fill(0x317Af7).stroke(Color.Black).strokeWidth(2)
 
-      Text('border').fontSize(9).fontColor(0xCCCCCC).width(320)
+      Text('border').fontSize(30).fontColor(0xCCCCCC).width(320).margin({top:30})
       // Draw a 300 x 10 path at (0, -5). The color is 0xEE8443, the stroke width is 10, and the stroke gap is 20.
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
-      }.viewPort({ x: 0, y: -5, width: 300, height: 10 }).stroke(0xEE8443).strokeWidth(10).strokeDashArray([20])
+      }.viewPort({ x: 0, y: -5, width: 300, height: 20 }).stroke(0xEE8443).strokeWidth(10).strokeDashArray([20])
       // Draw a 300 x 10 path at (0, -5). The fill color is 0xEE8443, the stroke width is 10, the stroke gap is 20, and the offset is 10 to the left.
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
-      .viewPort({ x: 0, y: -5, width: 300, height: 10 })
+      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443).strokeWidth(10).strokeDashArray([20]).strokeDashOffset(10)
       // Draw a 300 x 10 path at (0, -5). The fill color is 0xEE8443, the stroke width is 10, and the stroke opacity is 0.5.
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
-      }.viewPort({ x: 0, y: -5, width: 300, height: 10 }).stroke(0xEE8443).strokeWidth(10).strokeOpacity(0.5)
+      }.viewPort({ x: 0, y: -5, width: 300, height: 20 }).stroke(0xEE8443).strokeWidth(10).strokeOpacity(0.5)
       // Draw a 300 x 10 path at (0, -5). The fill color is 0xEE8443, the stroke width is 10, the stroke dash is 20, the offset is 10 to the left, and the cap style is rounded.
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
-      .viewPort({ x: 0, y: -5, width: 300, height: 10 })
+      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443).strokeWidth(10).strokeDashArray([20]).strokeLineCap(LineCapStyle.Round)
       // Draw a 300 x 50 rectangle with strokes at (-5, -5). The fill color is 0x317Af7, the stroke width is 10, the stroke color is 0xEE8443, and the join style is rounded.
       Shape() {
-        Rect().width(300).height(50)
+        Rect().width(300).height(100)
       }
-      .viewPort({ x: -5, y: -5, width: 310, height: 60 })
+      .viewPort({ x: -5, y: -5, width: 310, height: 120 })
       .fill(0x317Af7).stroke(0xEE8443).strokeWidth(10).strokeLineJoin(LineJoinStyle.Round)
       Shape() {
         Path().width(300).height(60).commands('M0 0 L400 0 L400 200 Z')
@@ -280,5 +287,5 @@ struct ShapeExample {
 }
 ```
 
-![](figures/shape.gif)
+![](figures/2-01.png)
 

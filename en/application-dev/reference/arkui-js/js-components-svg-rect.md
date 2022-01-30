@@ -3,9 +3,9 @@
 The  **<rect\>**  component is used to draw rectangles and rounded rectangles.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The APIs of this module are supported since API version 7.
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -15,7 +15,7 @@ None
 
 ## Attributes<a name="section2907183951110"></a>
 
-The universal attributes as well as the attributes listed below are supported.
+The  [universal attributes](js-components-svg-common-attributes.md)  and the attributes listed below are supported.
 
 <a name="table20633101642315"></a>
 <table><thead align="left"><tr id="row663331618238"><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p id="aaf1247770b244944bbcc9f28d9a6f00b"><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a>Name</p>

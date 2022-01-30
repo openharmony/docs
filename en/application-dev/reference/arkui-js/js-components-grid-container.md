@@ -1,8 +1,8 @@
 # grid-container<a name="EN-US_TOPIC_0000001173324617"></a>
 
-The  **<grid-container\>**  component is the root container of the grid layout. Within the root container, you can use  **<grid-row\>**  and  **<gird-col\>**  for the grid layout.
+The  **<grid-container\>**  component is the root container of the grid layout. Within the root container, you can use  **<grid-row\>**  and  **<grid-col\>**  for the grid layout.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -10,7 +10,7 @@ None
 
 Only the  **<grid-row\>**  component is supported.
 
-## Attribute<a name="section5248929161316"></a>
+## Attributes<a name="section5248929161316"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -166,9 +166,10 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </table>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>
 >-   The px unit is applicable when  **autoDesignWidth**  is set to  **true**  in the "js" tag.  <sup>6+</sup>
 
-## Style<a name="section16690243163414"></a>
+## Styles<a name="section16690243163414"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -224,7 +225,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section291933813509"></a>
+## Events<a name="section291933813509"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
@@ -274,5 +275,5 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 
 ## Example Code<a name="section132671420142616"></a>
 
-For details, see  [grid-col](js-components-grid-col.md#section2021865273710).
+For details, see  [grid-col](js-components-grid-col.md).
 

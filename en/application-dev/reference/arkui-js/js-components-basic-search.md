@@ -2,11 +2,11 @@
 
 The  **<search\>**  component provides an input area for users to search.
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -84,7 +84,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 **Table  1**  MenuOption<sup>5+</sup>
 
 <a name="table83621954963"></a>
-<table><thead align="left"><tr id="row536212545619"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p143621541967"><a name="p143621541967"></a><a name="p143621541967"></a>Method</p>
+<table><thead align="left"><tr id="row536212545619"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p143621541967"><a name="p143621541967"></a><a name="p143621541967"></a>Name</p>
 </th>
 <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p936215541620"><a name="p936215541620"></a><a name="p936215541620"></a>Type</p>
 </th>
@@ -109,7 +109,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -208,7 +208,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section17878123517511"></a>
+## Events<a name="section17878123517511"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -268,7 +268,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 

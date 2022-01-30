@@ -1,35 +1,38 @@
-# AlphabetIndexer<a name="EN-US_TOPIC_0000001190892709"></a>
+# AlphabetIndexer<a name="EN-US_TOPIC_0000001192915108"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<AlphabetIndexer\>**  component provides an alphabetic index bar.
 
 ## Applicable Devices<a name="section151761552181217"></a>
 
 <a name="table857714145377"></a>
-<table><thead align="left"><tr id="row55778146373"><th class="cellrowborder" valign="top" width="21.412300683371296%" id="mcps1.1.6.1.1"><p id="p7577141417376"><a name="p7577141417376"></a><a name="p7577141417376"></a>Phone</p>
+<table><thead align="left"><tr id="row55778146373"><th class="cellrowborder" valign="top" width="25.223613595706617%" id="mcps1.1.5.1.1"><p id="p7577141417376"><a name="p7577141417376"></a><a name="p7577141417376"></a>Phone</p>
 </th>
-<th class="cellrowborder" valign="top" width="18.21057960010124%" id="mcps1.1.6.1.2"><p id="p487719816463"><a name="p487719816463"></a><a name="p487719816463"></a>Tablet</p>
+<th class="cellrowborder" valign="top" width="21.451997614788315%" id="mcps1.1.5.1.2"><p id="p487719816463"><a name="p487719816463"></a><a name="p487719816463"></a>Tablet</p>
 </th>
-<th class="cellrowborder" valign="top" width="15.110098709187547%" id="mcps1.1.6.1.3"><p id="p127712344124"><a name="p127712344124"></a><a name="p127712344124"></a>Head Unit</p>
+<th class="cellrowborder" valign="top" width="26.25223613595707%" id="mcps1.1.5.1.3"><p id="p135771614203720"><a name="p135771614203720"></a><a name="p135771614203720"></a>Smart TV</p>
 </th>
-<th class="cellrowborder" valign="top" width="22.285497342444952%" id="mcps1.1.6.1.4"><p id="p135771614203720"><a name="p135771614203720"></a><a name="p135771614203720"></a>Smart TV</p>
-</th>
-<th class="cellrowborder" valign="top" width="22.981523664894965%" id="mcps1.1.6.1.5"><p id="p25772014133712"><a name="p25772014133712"></a><a name="p25772014133712"></a>Wearable</p>
+<th class="cellrowborder" valign="top" width="27.072152653548002%" id="mcps1.1.5.1.4"><p id="p25772014133712"><a name="p25772014133712"></a><a name="p25772014133712"></a>Wearable</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row8578151423715"><td class="cellrowborder" valign="top" width="21.412300683371296%" headers="mcps1.1.6.1.1 "><p id="p65782014203718"><a name="p65782014203718"></a><a name="p65782014203718"></a>Yes</p>
+<tbody><tr id="row8578151423715"><td class="cellrowborder" valign="top" width="25.223613595706617%" headers="mcps1.1.5.1.1 "><p id="p65782014203718"><a name="p65782014203718"></a><a name="p65782014203718"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.21057960010124%" headers="mcps1.1.6.1.2 "><p id="p148771182469"><a name="p148771182469"></a><a name="p148771182469"></a>Yes</p>
+<td class="cellrowborder" valign="top" width="21.451997614788315%" headers="mcps1.1.5.1.2 "><p id="p148771182469"><a name="p148771182469"></a><a name="p148771182469"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.110098709187547%" headers="mcps1.1.6.1.3 "><p id="p197711344124"><a name="p197711344124"></a><a name="p197711344124"></a>Yes</p>
+<td class="cellrowborder" valign="top" width="26.25223613595707%" headers="mcps1.1.5.1.3 "><p id="p45783141377"><a name="p45783141377"></a><a name="p45783141377"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="22.285497342444952%" headers="mcps1.1.6.1.4 "><p id="p45783141377"><a name="p45783141377"></a><a name="p45783141377"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.981523664894965%" headers="mcps1.1.6.1.5 "><p id="p11578161443718"><a name="p11578161443718"></a><a name="p11578161443718"></a>No</p>
+<td class="cellrowborder" valign="top" width="27.072152653548002%" headers="mcps1.1.5.1.4 "><p id="p11578161443718"><a name="p11578161443718"></a><a name="p11578161443718"></a>No</p>
 </td>
 </tr>
 </tbody>
 </table>
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section1437452132415"></a>
 
@@ -213,7 +216,18 @@ AlphabetIndexer\(value: \{arrayValue : Array<string\>, selected : number\}\)
 </thead>
 <tbody><tr id="row281mcpsimp"><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p id="p283mcpsimp"><a name="p283mcpsimp"></a><a name="p283mcpsimp"></a>onSelected(index: number) =&gt; void</p>
 </td>
-<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p id="p287mcpsimp"><a name="p287mcpsimp"></a><a name="p287mcpsimp"></a>Callback invoked when an item in the alphabetic indexer bar is selected.</p>
+<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p id="p287mcpsimp"><a name="p287mcpsimp"></a><a name="p287mcpsimp"></a>Invoked when an item in the alphabetic indexer bar is selected.</p>
+</td>
+</tr>
+<tr id="row6557140191017"><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p id="p7557240111016"><a name="p7557240111016"></a><a name="p7557240111016"></a>onRequestPopupData(callback: (index: number) =&gt; Array&lt;string&gt;)<sup id="sup17217132713428"><a name="sup17217132713428"></a><a name="sup17217132713428"></a>8+</sup></p>
+</td>
+<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p id="p20571454122014"><a name="p20571454122014"></a><a name="p20571454122014"></a>Invoked when a request for displaying content in the index prompt window is sent when an item in the alphabetic indexer bar is selected.</p>
+<p id="p16840741181813"><a name="p16840741181813"></a><a name="p16840741181813"></a>The return value is a string array corresponding to the indexes. The string array is displayed vertically in the pop-up window. It can display up to five strings at a time and allows scrolling.</p>
+</td>
+</tr>
+<tr id="row4394151501110"><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p id="p0394415161111"><a name="p0394415161111"></a><a name="p0394415161111"></a>onPopupSelected(callback: (index: number) =&gt; void)<sup id="sup1585891816340"><a name="sup1585891816340"></a><a name="sup1585891816340"></a>8+</sup></p>
+</td>
+<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p id="p23941815181117"><a name="p23941815181117"></a><a name="p23941815181117"></a>Invoked when an item in the index prompt window is selected.</p>
 </td>
 </tr>
 </tbody>
@@ -228,7 +242,7 @@ struct AlphabetIndexerComponent {
   private value: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
   build() {
-    AlphabetIndexer({ ArrayValue: this.value, selected: 0 })
+    AlphabetIndexer({ arrayValue: this.value, selected: 0 })
       .selectedColor(0xffffff) // Font color of the selected text
       .popupColor(0xFFFAF0) // Font color of the pop-up text
       .selectedBackgroundColor(0xCCCCCC) // Background color of the selected text

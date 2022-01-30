@@ -51,7 +51,7 @@ constructor(locale: string, options?: options)
 
 - 示例：
   ```
-  var locale = new Intl.Locale("zh-CN"， { numeric: true });
+  var locale = new Intl.Locale("zh-CN");
   ```
 
 
@@ -405,7 +405,7 @@ compare(first: string, second: string): number
 
 - 示例：
   ```
-  var collator = new intl.Collator("zh-Hans");
+  var collator = new Intl.Collator("zh-Hans");
   collator.compare("first", "second");
   ```
 
@@ -423,7 +423,7 @@ resolvedOptions(): CollatorOptions
 
 - 示例：
   ```
-  var collator = new intl.Collator("zh-Hans");
+  var collator = new Intl.Collator("zh-Hans");
   var options = collator.resolvedOptions();
   ```
 
@@ -494,7 +494,7 @@ select(n: number): string
 
 - 示例：
   ```
-  var pluralRules = new intl.PluralRules("zh-Hans");
+  var pluralRules = new Intl.PluralRules("zh-Hans");
   pluralRules.select(1);
   ```
 

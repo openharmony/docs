@@ -2,15 +2,15 @@
 
 The  **<dialog\>**  component is a custom pop-up container.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 A single child component is supported.
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -44,11 +44,11 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   The  **<dialog\>**  component does not support the  **focusable**  and  **click-effect**  attributes.
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 Only the  **width**,  **height**,  **margin**,  **margin-\[left|top|right|bottom\]**, and  **margin-\[start|end\]**  styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Event<a name="section8562129182916"></a>
+## Events<a name="section8562129182916"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are not supported. The following table lists the supported event.
 
@@ -85,7 +85,7 @@ Events in  [Universal Events](js-components-common-events.md)  are not supported
 </tbody>
 </table>
 
-## Method<a name="section11753103216253"></a>
+## Methods<a name="section11753103216253"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are not supported. The following table lists the supported methods.
 
@@ -221,5 +221,5 @@ export default {
 }
 ```
 
-![](figures/4-24.gif)
+![](figures/4.gif)
 

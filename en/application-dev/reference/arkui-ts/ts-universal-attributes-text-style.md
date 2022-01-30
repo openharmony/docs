@@ -1,6 +1,15 @@
-# Text Style<a name="EN-US_TOPIC_0000001111681086"></a>
+# Text Style<a name="EN-US_TOPIC_0000001237475065"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The attributes described in this topic are used to set the text style for a component that contains text.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table1272794482110"></a>
 <table><thead align="left"><tr id="row1672764492111"><th class="cellrowborder" valign="top" width="13.15%" id="mcps1.1.5.1.1"><p id="p187274444211"><a name="p187274444211"></a><a name="p187274444211"></a>Name</p>

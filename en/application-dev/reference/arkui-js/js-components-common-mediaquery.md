@@ -1,12 +1,12 @@
 # Media Query<a name="EN-US_TOPIC_0000001173164721"></a>
 
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>-   The  **media**  attribute uses the actual size, physical pixel, and screen resolution of the device by default. Do not confuse them with the configuration based on basic screen width 720 px.
+
 Media query is widely used on mobile devices. You may need to frequently modify the application style based on the device type or specific features and device parameters \(such as the screen resolution\). To keep up with your requirements, the media query component provides the following features:
 
 1.  Allows you to design different layouts matching the device and application attributes.
 2.  Synchronously updates the application page layouts when your screen changes dynamically \(for example, in the event of screen splitting or landscape/portrait orientation switching\).
-
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The  **media**  attribute uses the actual size, physical pixel, and screen resolution of the device by default. Do not confuse them with the configuration based on basic screen width 720 px.
 
 ## CSS Syntax Rules<a name="section168919480313"></a>
 
@@ -123,22 +123,22 @@ At MediaQuery Level 4, range query is imported so that you can use the operators
 </thead>
 <tbody><tr id="row1468318918281"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p49711232172812"><a name="p49711232172812"></a><a name="p49711232172812"></a>&lt;=</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p136831596288"><a name="p136831596288"></a><a name="p136831596288"></a>Less than or equal to, for example, <strong id="b211556787"><a name="b211556787"></a><a name="b211556787"></a>screen and (50 &lt;= height)</strong>.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001173164721_p136831596288"><a name="en-us_topic_0000001173164721_p136831596288"></a><a name="en-us_topic_0000001173164721_p136831596288"></a>Less than or equal to, for example, screen and (50 &lt;= height).</p>
 </td>
 </tr>
 <tr id="row1668311912810"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p116831991284"><a name="p116831991284"></a><a name="p116831991284"></a>&gt;=</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p453664715285"><a name="p453664715285"></a><a name="p453664715285"></a>Greater than or equal to, for example, <strong id="b323819191682"><a name="b323819191682"></a><a name="b323819191682"></a>screen and (600 &gt;= height)</strong>.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001173164721_p453664715285"><a name="en-us_topic_0000001173164721_p453664715285"></a><a name="en-us_topic_0000001173164721_p453664715285"></a>Greater than or equal to, for example, screen and (600 &gt;= height).</p>
 </td>
 </tr>
 <tr id="row868311910281"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p146837922814"><a name="p146837922814"></a><a name="p146837922814"></a>&lt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p3387258152815"><a name="p3387258152815"></a><a name="p3387258152815"></a>Less than, for example, <strong id="b14362020884"><a name="b14362020884"></a><a name="b14362020884"></a>screen and (50 &lt; height)</strong>.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001173164721_p3387258152815"><a name="en-us_topic_0000001173164721_p3387258152815"></a><a name="en-us_topic_0000001173164721_p3387258152815"></a>Less than, for example, screen and (50 &lt; height).</p>
 </td>
 </tr>
 <tr id="row14896753202819"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p148971753172813"><a name="p148971753172813"></a><a name="p148971753172813"></a>&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p10897195319286"><a name="p10897195319286"></a><a name="p10897195319286"></a>Greater than, for example, <strong id="b297316262812"><a name="b297316262812"></a><a name="b297316262812"></a>screen and (600 &gt; height)</strong>.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="en-us_topic_0000001173164721_p10897195319286"><a name="en-us_topic_0000001173164721_p10897195319286"></a><a name="en-us_topic_0000001173164721_p10897195319286"></a>Greater than, for example, screen and (600 &gt; height).</p>
 </td>
 </tr>
 </tbody>

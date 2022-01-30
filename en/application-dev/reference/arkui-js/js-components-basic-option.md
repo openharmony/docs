@@ -12,7 +12,7 @@ None
 
 None
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -48,7 +48,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="ad0233f7d2ac4447facb335d36c8acfc5"><a name="ad0233f7d2ac4447facb335d36c8acfc5"></a><a name="ad0233f7d2ac4447facb335d36c8acfc5"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1145911181476"><a name="p1145911181476"></a><a name="p1145911181476"></a>Value of an option, which is used as the returned value of the selected event of the <strong id="b984993812421"><a name="b984993812421"></a><a name="b984993812421"></a>&lt;select&gt;</strong>or <strong id="b136061622193920"><a name="b136061622193920"></a><a name="b136061622193920"></a>&lt;menu&gt;</strong> parent component.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1145911181476"><a name="p1145911181476"></a><a name="p1145911181476"></a>Value of an option, which is used as the return value of the selected event of the <strong id="b984993812421"><a name="b984993812421"></a><a name="b984993812421"></a>&lt;select&gt;</strong>or <strong id="b136061622193920"><a name="b136061622193920"></a><a name="b136061622193920"></a>&lt;menu&gt;</strong> parent component.</p>
 <div class="note" id="note174591818114715"><a name="note174591818114715"></a><a name="note174591818114715"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p9459218134716"><a name="p9459218134716"></a><a name="p9459218134716"></a>The option value to be displayed on the UI must be put between the start and end tags, for example, <strong id="b1333453312333"><a name="b1333453312333"></a><a name="b1333453312333"></a>&lt;option value="10"&gt;October&lt;/option&gt;</strong>.</p>
 </div></div>
 </td>
@@ -67,7 +67,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 The following style attributes are supported.
 
@@ -155,11 +155,11 @@ The following style attributes are supported.
 </tbody>
 </table>
 
-## Event<a name="section1013173520328"></a>
+## Events<a name="section1013173520328"></a>
 
 None
 
-## Method<a name="section45101363326"></a>
+## Methods<a name="section45101363326"></a>
 
 None
 

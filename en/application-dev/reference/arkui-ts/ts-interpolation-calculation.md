@@ -1,4 +1,7 @@
-# Interpolation Calculation<a name="EN-US_TOPIC_0000001119768252"></a>
+# Interpolation Calculation<a name="EN-US_TOPIC_0000001237475061"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="section377963175114"></a>
 
@@ -292,5 +295,5 @@ struct ImageComponent {
 }
 ```
 
-![](figures/5-65.gif)
+![](figures/5.gif)
 

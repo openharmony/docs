@@ -1,6 +1,15 @@
-# Border Configuration<a name="EN-US_TOPIC_0000001158261223"></a>
+# Border Configuration<a name="EN-US_TOPIC_0000001237555101"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 This section describes the settings of border styles.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table444mcpsimp"></a>
 <table><thead align="left"><tr id="row451mcpsimp"><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p id="p453mcpsimp"><a name="p453mcpsimp"></a><a name="p453mcpsimp"></a>Name</p>

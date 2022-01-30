@@ -10,12 +10,103 @@
 ## 导入模块
 
 ```js
-import client from '@ohos.update'
+import update from '@ohos.update'
 ```
 
 ## 权限列表
 
 无
+
+## 获取升级对象Updater
+
+### update.getUpdater
+
+getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
+
+获取本地升级Updater。
+
+**参数：**
+
+| 参数名      | 类型                        | 必填 | 说明     |
+| ----------- | --------------------------- | ---- | -------- |
+| upgradeFile | string                      | 是   | 升级文件 |
+| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型 |
+
+**返回值：**
+
+| 类型                | 说明     |
+| ------------------- | -------- |
+| [Updater](#updater) | 升级对象 |
+
+**示例：**
+
+```
+try {
+  let updater = update.getUpdater('/data/updater/updater.zip', 'OTA');
+} catch(error) {
+  console.error(" Fail to get updater error: " + error);
+}
+```
+
+### update.getUpdaterForOther
+
+getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
+
+获取升级对象给待升级设备。
+
+**参数：**
+
+| 参数名      | 类型                        | 必填 | 说明       |
+| ----------- | --------------------------- | ---- | ---------- |
+| upgradeFile | string                      | 是   | 升级文件   |
+| device      | string                      | 是   | 待升级设备 |
+| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型   |
+
+**返回值：**
+
+| 类型                | 说明     |
+| ------------------- | -------- |
+| [Updater](#updater) | 升级对象 |
+
+**示例：**
+
+```
+try {
+  let updater = update.getUpdaterForOther('/data/updater/updater.zip', '1234567890', 'OTA');
+} catch(error) {
+  console.error(" Fail to get updater error: " + error);
+}
+```
+
+### update.getUpdaterFromOther
+
+getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
+
+获取其它设备为本设备升级的Updater。
+
+**参数：**
+
+| 参数名      | 类型                        | 必填 | 说明       |
+| ----------- | --------------------------- | ---- | ---------- |
+| upgradeFile | string                      | 是   | 升级文件   |
+| device      | string                      | 是   | 待升级设备 |
+| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型   |
+
+**返回值：**
+
+| 类型                | 说明     |
+| ------------------- | -------- |
+| [Updater](#updater) | 升级对象 |
+
+**示例：**
+
+```
+try {
+  let updater = update.getUpdaterFromOther('/data/updater/updater.zip', '1234567890', 'OTA');
+} catch(error) {
+  console.error(" Fail to get updater error: " + error);
+}
+```
 
 ## Updater
 
@@ -34,12 +125,12 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 **示例：**
 
 ```
-updater.getNewVersionInfo(info => {
+update.getNewVersionInfo(info => {
   console.log("getNewVersionInfo success  " + info.status);
   console.log(`info versionName = ` + info.result[0].versionName);
   console.log(`info versionCode = ` + info.result[0].versionCode);
   console.log(`info verifyInfo = ` + info.result[0].verifyInfo);
-)};
+});
 ```
 
 ### getNewVersionInfo
@@ -57,14 +148,13 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 **示例：**
 
 ```
-var p = updater.getNewVersionInfo();
-p.then(function (value) {
+updater.getNewVersionInfo().then(value => {
   console.log(`info versionName = ` + value.result[0].versionName);
   console.log(`info versionCode = ` + value.result[0].versionCode);
   console.log(`info verifyInfo = ` + value.result[0].verifyInfo);
-}).catch(function (err) {
+}).catch(err => {
   console.log("getNewVersionInfo promise error: " + err.code);
-)};
+});
 ```
 
 ### checkNewVersion
@@ -82,12 +172,12 @@ checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 **示例：**
 
 ```
-updater.checkNewVersion(info => {
+update.checkNewVersion(info => {
   console.log("checkNewVersion success  " + info.status);
   console.log(`info versionName = ` + info.result[0].versionName);
   console.log(`info versionCode = ` + info.result[0].versionCode);
   console.log(`info verifyInfo = ` + info.result[0].verifyInfo);
-)};
+});
 ```
 
 ### checkNewVersion
@@ -105,14 +195,13 @@ checkNewVersion(): Promise\<NewVersionInfo>
 **示例:**
 
 ```
-var p = updater.checkNewVersion();
-p.then(function (value) {
+update.checkNewVersion().then(value => {
   console.log(`info versionName = ` + value.result[0].versionName);
   console.log(`info versionCode = ` + value.result[0].versionCode);
   console.log(`info verifyInfo = ` + value.result[0].verifyInfo);
-}).catch(function (err) {
+}).catch(err => {
   console.log("checkNewVersion promise error: " + err.code);
-)};
+});
 ```
 
 ### verifyUpdatePackage
@@ -131,12 +220,10 @@ verifyUpdatePackage(upgradeFile: string, certsFile: string): void
 **示例：**
 
 ```
-var getVar = update.getUpdater();
-getVar.on("verifyProgress", function (callback){
-    console.info('on verifyProgress ' + callback.percent);
+update.on("verifyProgress", callback => {
+  console.info('on verifyProgress ' + callback.percent);
 });
-getVar.verifyUpdatePackage("XXX", "XXX");
-getVar.off("verifyProgress");
+update.verifyUpdatePackage("XXX", "XXX");
 ```
 
 ### rebootAndCleanUserData
@@ -154,12 +241,10 @@ rebootAndCleanUserData(): Promise\<number>
 **示例：**
 
 ```
-var getVar = update.getUpdater();
-p = getVar.rebootAndCleanUserData();
-p.then(function (value) {
-    console.info("rebootAndCleanUserData promise success: " + value);
-}).catch(function (err) {
-    console.info("rebootAndCleanUserData promise error: " + err.code);
+update.rebootAndCleanUserData().then(result => {
+  console.log("rebootAndCleanUserData " + result);
+}).catch(err => {
+  console.info("rebootAndCleanUserData promise error: " + err.code);
 });
 ```
 
@@ -178,13 +263,8 @@ rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```
-var getVar = update.getUpdater();
-getVar.rebootAndCleanUserData(function (err, data) {
-    if (err.code == 0) {
-        console.info("rebootAndCleanUserData callback success:" + data)
-    } else {
-        console.info("rebootAndCleanUserData callback err:" + err.code)
-    }
+update.rebootAndCleanUserData(result => {
+  console.log("rebootAndCleanUserData ", result)
 });
 ```
 
@@ -203,10 +283,9 @@ applyNewVersion(): Promise\<number>
 **示例：**
 
 ```
-var getVar = update.getUpdater();
-p.then(function (value) {
-    console.info("applyNewVersion promise success: " + value);
-}).catch(function (err) {
+update.applyNewVersion().then(result => {
+    console.log("appVewVersion ", result)
+}).catch(err => {
     console.info("applyNewVersion promise error: " + err.code);
 });
 ```
@@ -226,13 +305,8 @@ applyNewVersion(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```
-var getVar = update.getUpdater();
-getVar.applyNewVersion(function (err, data) {
-    if (err.code == 0) {
-        console.info("applyNewVersion callback success:" + data)
-    } else {
-        console.info("applyNewVersion callback err:" + err.code)
-    }
+update.applyNewVersion(result => {
+  console.log("applyNewVersion ", result)
 });
 ```
 
@@ -249,7 +323,7 @@ updater.on("downloadProgress", progress => {
   console.log("downloadProgress on" + progress);
   console.log(`downloadProgress status: ` + progress.status);
   console.log(`downloadProgress percent: ` + progress.percent);
-)};
+});
 updater.download();
 ```
 
@@ -266,7 +340,7 @@ updater.on("upgradeProgress", progress => {
   console.log("upgradeProgress on" + progress);
   console.log(`upgradeProgress status: ` + progress.status);
   console.log(`upgradeProgress percent: ` + progress.percent);
-)};
+});
 updater.upgrade();
 ```
 
@@ -288,14 +362,15 @@ setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
 ```
 // 设置策略
 let policy = {
-autoDownload: false,
-autoDownloadNet: true,
-mode: 2,
-autoUpgradeInterval: [ 2, 3 ],
-autoUpgradeCondition: 2
+  autoDownload: false,
+  autoDownloadNet: true,
+  mode: 2,
+  autoUpgradeInterval: [ 2, 3 ],
+  autoUpgradeCondition: 2
 }
-updater.setUpdatePolicy(policy, function(result) {
-console.log("setUpdatePolicy ", result)});
+update.setUpdatePolicy(policy, result => {
+  console.log("setUpdatePolicy ", result)
+});
 ```
 
 ### setUpdatePolicy
@@ -320,16 +395,17 @@ setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
 
 ```
 let policy = {
-autoDownload: false,
-autoDownloadNet: true,
-mode: 2,
-autoUpgradeInterval: [ 2, 3 ],
-autoUpgradeCondition: 2
+  autoDownload: false,
+  autoDownloadNet: true,
+  mode: 2,
+  autoUpgradeInterval: [ 2, 3 ],
+  autoUpgradeCondition: 2
 }
-updater.setUpdatePolicy(policy)
-.then(data=>
-console.log('set policy success')
-)
+update.setUpdatePolicy(policy).then(result => 
+  console.log("setUpdatePolicy ", result)
+).catch(err => {
+  console.log("setUpdatePolicy promise error: " + err.code);
+});
 ```
 
 ### getUpdatePolicy
@@ -347,12 +423,12 @@ getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
 **示例：**
 
 ```
-updater.getUpdatePolicy(policy => {
+update.getUpdatePolicy(policy => {
   console.log("getUpdatePolicy success");
   console.log(`policy autoDownload = ` + policy.autoDownload);
   console.log(`policy autoDownloadNet = ` + policy.autoDownloadNet);
   console.log(`policy mode = ` + policy.mode);
-)};
+});
 ```
 
 ### getUpdatePolicy
@@ -370,103 +446,13 @@ getUpdatePolicy(): Promise\<UpdatePolicy>
 **示例：**
 
 ```
-p = updater.getUpdatePolicy();
-p.then(function (value) {
+update.getUpdatePolicy().then(value => {
   console.log(`info autoDownload = ` + value.autoDownload);
   console.log(`info autoDownloadNet = ` + value.autoDownloadNet);
   console.log(`info mode = ` + value.mode);
-}).catch(function (err) {
+}).catch(err => {
   console.log("getUpdatePolicy promise error: " + err.code);
-)};
-```
-
-## update.getUpdater
-
-getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
-
-获取本地升级Updater。
-
-**参数：**
-
-| 参数名      | 类型                        | 必填 | 说明     |
-| ----------- | --------------------------- | ---- | -------- |
-| upgradeFile | string                      | 是   | 升级文件 |
-| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型 |
-
-**返回值：**
-
-| 类型                | 说明     |
-| ------------------- | -------- |
-| [Updater](#updater) | 升级对象 |
-
-**示例：**
-
-```
-try {
-  page.data.updater = update.getUpdater('/data/updater/updater.zip', 'OTA');
-} catch(error) {
-  console.error(" Fail to get updater error: " + error);
-}
-```
-
-## update.getUpdaterForOther
-
-getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
-
-获取升级对象给待升级设备。
-
-**参数：**
-
-| 参数名      | 类型                        | 必填 | 说明       |
-| ----------- | --------------------------- | ---- | ---------- |
-| upgradeFile | string                      | 是   | 升级文件   |
-| device      | string                      | 是   | 待升级设备 |
-| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型   |
-
-**返回值：**
-
-| 类型                | 说明     |
-| ------------------- | -------- |
-| [Updater](#updater) | 升级对象 |
-
-**示例：**
-
-```
-try {
-  page.data.updater = update.getUpdaterForOther('/data/updater/updater.zip', '1234567890', 'OTA');
-} catch(error) {
-  console.error(" Fail to get updater error: " + error);
-}
-```
-
-## update.getUpdaterFromOther
-
-getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
-
-获取其它设备为本设备升级的Updater。
-
-**参数：**
-
-| 参数名      | 类型                        | 必填 | 说明       |
-| ----------- | --------------------------- | ---- | ---------- |
-| upgradeFile | string                      | 是   | 升级文件   |
-| device      | string                      | 是   | 待升级设备 |
-| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型   |
-
-**返回值：**
-
-| 类型                | 说明     |
-| ------------------- | -------- |
-| [Updater](#updater) | 升级对象 |
-
-**示例：**
-
-```
-try {
-  page.data.updater = update.getUpdaterFromOther('/data/updater/updater.zip', '1234567890', 'OTA');
-} catch(error) {
-  console.error(" Fail to get updater error: " + error);
-}
+});
 ```
 
 ## UpdateTypes

@@ -2,15 +2,15 @@
 
 The  **<menu\>**  component provides menus as temporary pop-up windows to display operations that can be performed by users.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 **[<option\>](js-components-basic-option.md)**
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -65,9 +65,9 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </table>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The  **focusable**  and  **disabled**  attributes are not supported.
+>The  **focusable**  and  **disabled**  attributes are not supported.
 
-## Style<a name="section1382826121311"></a>
+## Styles<a name="section1382826121311"></a>
 
 Only the following style attributes are supported.
 
@@ -166,7 +166,7 @@ Only the following style attributes are supported.
 </tbody>
 </table>
 
-## Event<a name="section5624519222"></a>
+## Events<a name="section5624519222"></a>
 
 The following events are supported.
 
@@ -196,7 +196,7 @@ The following events are supported.
 </tbody>
 </table>
 
-## Method<a name="section47669296127"></a>
+## Methods<a name="section47669296127"></a>
 
 The following methods are supported.
 

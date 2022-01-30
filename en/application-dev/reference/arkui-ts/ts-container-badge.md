@@ -1,6 +1,13 @@
-# Badge<a name="EN-US_TOPIC_0000001196785703"></a>
+# Badge<a name="EN-US_TOPIC_0000001237715075"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Badge\>**  component presents event information on a component.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section1089034711356"></a>
 

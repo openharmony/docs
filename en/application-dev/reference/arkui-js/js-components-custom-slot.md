@@ -1,7 +1,7 @@
 # slot<a name="EN-US_TOPIC_0000001127284840"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The APIs of this module are supported since API version 7.
+>The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Default Slot<a name="section68133181214"></a>
 

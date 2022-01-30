@@ -1,4 +1,7 @@
-# Custom Dialog box<a name="EN-US_TOPIC_0000001192158175"></a>
+# Custom Dialog box<a name="EN-US_TOPIC_0000001237355055"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **CustomDialogController**  class is used to display a custom dialog box.
 
@@ -23,7 +26,7 @@ CustomDialogController\(value:\{builder: CustomDialog, cancel?: \(\) =\> void, a
     </thead>
     <tbody><tr id="row617013216610"><td class="cellrowborder" valign="top" width="13.16%" headers="mcps1.1.6.1.1 "><p id="p11170822063"><a name="p11170822063"></a><a name="p11170822063"></a>builder</p>
     </td>
-    <td class="cellrowborder" valign="top" width="20.75%" headers="mcps1.1.6.1.2 "><p id="p151701826617"><a name="p151701826617"></a><a name="p151701826617"></a><a href="ts-component-based-customdialog.md">CustomDialog</a></p>
+    <td class="cellrowborder" valign="top" width="20.75%" headers="mcps1.1.6.1.2 "><p id="p151701826617"><a name="p151701826617"></a><a name="p151701826617"></a><a href="217.md">CustomDialog</a></p>
     </td>
     <td class="cellrowborder" valign="top" width="5.680000000000001%" headers="mcps1.1.6.1.3 "><p id="p151705218616"><a name="p151705218616"></a><a name="p151705218616"></a>Yes</p>
     </td>

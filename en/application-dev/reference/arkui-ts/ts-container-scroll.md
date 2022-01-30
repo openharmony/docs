@@ -1,4 +1,7 @@
-# Scroll<a name="EN-US_TOPIC_0000001163543527"></a>
+# Scroll<a name="EN-US_TOPIC_0000001192595158"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Scroll\>**  component scrolls the content when the layout size of a component exceeds the viewport of its parent component.
 
@@ -19,9 +22,9 @@ Scroll\(scroller?: Scroller\)
 <a name="table0461840719"></a>
 <table><thead align="left"><tr id="row10461406119"><th class="cellrowborder" valign="top" width="18.81188118811881%" id="mcps1.1.5.1.1"><p id="p114614406120"><a name="p114614406120"></a><a name="p114614406120"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" width="18.81188118811881%" id="mcps1.1.5.1.2"><p id="p1461740412"><a name="p1461740412"></a><a name="p1461740412"></a>Type</p>
+<th class="cellrowborder" valign="top" width="18.801880188018803%" id="mcps1.1.5.1.2"><p id="p1461740412"><a name="p1461740412"></a><a name="p1461740412"></a>Type</p>
 </th>
-<th class="cellrowborder" valign="top" width="14.85148514851485%" id="mcps1.1.5.1.3"><p id="p1146194011113"><a name="p1146194011113"></a><a name="p1146194011113"></a>Default Value</p>
+<th class="cellrowborder" valign="top" width="14.861486148614864%" id="mcps1.1.5.1.3"><p id="p1146194011113"><a name="p1146194011113"></a><a name="p1146194011113"></a>Default Value</p>
 </th>
 <th class="cellrowborder" valign="top" width="47.52475247524753%" id="mcps1.1.5.1.4"><p id="p1463401818"><a name="p1463401818"></a><a name="p1463401818"></a>Description</p>
 </th>
@@ -29,36 +32,36 @@ Scroll\(scroller?: Scroller\)
 </thead>
 <tbody><tr id="row74616401011"><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p id="p44619407119"><a name="p44619407119"></a><a name="p44619407119"></a>scrollable</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p id="p114684017118"><a name="p114684017118"></a><a name="p114684017118"></a><a href="#li1464044171913">ScrollDirection</a></p>
+<td class="cellrowborder" valign="top" width="18.801880188018803%" headers="mcps1.1.5.1.2 "><p id="p114684017118"><a name="p114684017118"></a><a name="p114684017118"></a><a href="#li1464044171913">ScrollDirection</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p id="p134610401415"><a name="p134610401415"></a><a name="p134610401415"></a>Vertical</p>
+<td class="cellrowborder" valign="top" width="14.861486148614864%" headers="mcps1.1.5.1.3 "><p id="p134610401415"><a name="p134610401415"></a><a name="p134610401415"></a>Vertical</p>
 </td>
 <td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p id="p74616407117"><a name="p74616407117"></a><a name="p74616407117"></a>Scroll method.</p>
 </td>
 </tr>
 <tr id="row10854143717118"><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p id="p1685403713116"><a name="p1685403713116"></a><a name="p1685403713116"></a>scrollBar</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p id="p087765315"><a name="p087765315"></a><a name="p087765315"></a><a href="ts-appendix-enums.md#section122549529179">BarState</a></p>
+<td class="cellrowborder" valign="top" width="18.801880188018803%" headers="mcps1.1.5.1.2 "><p id="p087765315"><a name="p087765315"></a><a name="p087765315"></a><a href="ts-appendix-enums.md#section122549529179">BarState</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p id="p173471491823"><a name="p173471491823"></a><a name="p173471491823"></a>Auto</p>
+<td class="cellrowborder" valign="top" width="14.861486148614864%" headers="mcps1.1.5.1.3 "><p id="p173471491823"><a name="p173471491823"></a><a name="p173471491823"></a>Auto</p>
 </td>
 <td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p id="p114261215315"><a name="p114261215315"></a><a name="p114261215315"></a>Scroll bar status.</p>
 </td>
 </tr>
 <tr id="row11414540317"><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p id="p19414194019118"><a name="p19414194019118"></a><a name="p19414194019118"></a>scrollBarColor</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p id="p841454012118"><a name="p841454012118"></a><a name="p841454012118"></a>Color</p>
+<td class="cellrowborder" valign="top" width="18.801880188018803%" headers="mcps1.1.5.1.2 "><p id="p841454012118"><a name="p841454012118"></a><a name="p841454012118"></a>Color</p>
 </td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p id="p194142401415"><a name="p194142401415"></a><a name="p194142401415"></a>-</p>
+<td class="cellrowborder" valign="top" width="14.861486148614864%" headers="mcps1.1.5.1.3 "><p id="p194142401415"><a name="p194142401415"></a><a name="p194142401415"></a>-</p>
 </td>
 <td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p id="p7414340714"><a name="p7414340714"></a><a name="p7414340714"></a>Color of the scroll bar.</p>
 </td>
 </tr>
 <tr id="row044484216112"><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p id="p1944417421711"><a name="p1944417421711"></a><a name="p1944417421711"></a>scrollBarWidth</p>
 </td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p id="p1386661639"><a name="p1386661639"></a><a name="p1386661639"></a>Length</p>
+<td class="cellrowborder" valign="top" width="18.801880188018803%" headers="mcps1.1.5.1.2 "><p id="p1386661639"><a name="p1386661639"></a><a name="p1386661639"></a>Length</p>
 </td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p id="p4444542713"><a name="p4444542713"></a><a name="p4444542713"></a>-</p>
+<td class="cellrowborder" valign="top" width="14.861486148614864%" headers="mcps1.1.5.1.3 "><p id="p4444542713"><a name="p4444542713"></a><a name="p4444542713"></a>-</p>
 </td>
 <td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p id="p11444642012"><a name="p11444642012"></a><a name="p11444642012"></a>Width of the scrollbar.</p>
 </td>
@@ -66,7 +69,7 @@ Scroll\(scroller?: Scroller\)
 </tbody>
 </table>
 
--   <a name="li1464044171913"></a>ScrollDirection enums
+-   <a name="li1464044171913"></a>ScrollDirection
 
     <a name="table13104911929"></a>
     <table><thead align="left"><tr id="row11104011320"><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p id="p11104171129"><a name="p11104171129"></a><a name="p11104171129"></a>Name</p>
@@ -98,7 +101,7 @@ Scroll\(scroller?: Scroller\)
 
 Controller of the scrollable container component. You can bind this component to the container component and use it to control the scrolling of the container component. Currently, this component can be bound to the  **<List\>**  and  **<Scroll\>**  components.
 
-### Objects to Import<a name="section1241383014362"></a>
+### Creating an Object<a name="section1241383014362"></a>
 
 ```
 scroller: Scroller = new Scroller()
@@ -156,7 +159,8 @@ Scrolls to the specified position.
     </td>
     <td class="cellrowborder" valign="top" width="7.08%" headers="mcps1.1.6.1.3 "><p id="p1441573073612"><a name="p1441573073612"></a><a name="p1441573073612"></a>No</p>
     </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 ">&nbsp;&nbsp;</td>
+    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p id="p144151730173619"><a name="p144151730173619"></a><a name="p144151730173619"></a>-</p>
+    </td>
     <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p id="p341519302361"><a name="p341519302361"></a><a name="p341519302361"></a>Animation configuration, which includes the following:</p>
     <a name="ul154152304364"></a><a name="ul154152304364"></a><ul id="ul154152304364"><li><strong id="b10320330393"><a name="b10320330393"></a><a name="b10320330393"></a>duration</strong>: scrolling duration.</li><li><strong id="b641674418913"><a name="b641674418913"></a><a name="b641674418913"></a>curve</strong>: scrolling curve.</li></ul>
     </td>
@@ -194,7 +198,8 @@ Scrolls to the edge of the container.
     </td>
     <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p id="p5416130133613"><a name="p5416130133613"></a><a name="p5416130133613"></a>-</p>
     </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 ">&nbsp;&nbsp;</td>
+    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p id="p1241673011362"><a name="p1241673011362"></a><a name="p1241673011362"></a>Edge position to scroll to.</p>
+    </td>
     </tr>
     </tbody>
     </table>
@@ -202,7 +207,9 @@ Scrolls to the edge of the container.
 
 ### scroller.scrollPage<a name="section2416163018368"></a>
 
-scrollPage\(value: \{ next: boolean, direction?: Axis \}\): void
+scrollPage\(value: \{ next: boolean \}\): void
+
+Scrolls to the next or previous page.
 
 -   Parameters
 
@@ -227,17 +234,7 @@ scrollPage\(value: \{ next: boolean, direction?: Axis \}\): void
     </td>
     <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p id="p17416193043615"><a name="p17416193043615"></a><a name="p17416193043615"></a>-</p>
     </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p id="p1941613011362"><a name="p1941613011362"></a><a name="p1941613011362"></a>Whether to turn to the next page.</p>
-    </td>
-    </tr>
-    <tr id="row15416130133614"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p4416103013613"><a name="p4416103013613"></a><a name="p4416103013613"></a>direction</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p id="p141733016364"><a name="p141733016364"></a><a name="p141733016364"></a>Axis</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.499999999999998%" headers="mcps1.1.6.1.3 "><p id="p16417103019366"><a name="p16417103019366"></a><a name="p16417103019366"></a>No</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 ">&nbsp;&nbsp;</td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p id="p18417113003611"><a name="p18417113003611"></a><a name="p18417113003611"></a>Horizontal or vertical page flipping. If the scrolling direction of the scroll container is determined, this parameter can be omitted.</p>
+    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p id="p1941613011362"><a name="p1941613011362"></a><a name="p1941613011362"></a>Whether to turn to the next page. The value <strong id="b13842341565"><a name="b13842341565"></a><a name="b13842341565"></a>true</strong> means to turn to the next page, and the value <strong id="b17843945613"><a name="b17843945613"></a><a name="b17843945613"></a>false</strong> means to turn to the previous page.</p>
     </td>
     </tr>
     </tbody>
@@ -276,7 +273,7 @@ Obtains the scrolling offset.
 
 scroller.scrollToIndex\(value: number\): void
 
-Scrolls to the item with the specified index.
+Scrolls to the specified index.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >Only the  **<List\>**  component is supported.
@@ -332,7 +329,7 @@ Scrolls to the item with the specified index.
 </tr>
 <tr id="row9211043639"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p20211243636"><a name="p20211243636"></a><a name="p20211243636"></a>onScrollEnd() =&gt; void</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1221112432312"><a name="p1221112432312"></a><a name="p1221112432312"></a>Invoked when a scrolling stop event occurs.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1221112432312"><a name="p1221112432312"></a><a name="p1221112432312"></a>Invoked when scrolling stops.</p>
 </td>
 </tr>
 </tbody>

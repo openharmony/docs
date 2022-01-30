@@ -1254,15 +1254,17 @@
 
 ——>——>——>——>——>——> [页面跳转与数据传递](application-dev/ui/ui-ts-page-redirection-data-transmission.md)
 
-——>——>——> 音频
+——>——>——> 媒体
 
-——>——>——>——> [音频开发概述](application-dev/media/audio-overview.md)
+——>——>——>——> 音频
 
-——>——>——>——> [音频播放开发指导](application-dev/media/audio-playback.md)
+——>——>——>——>——> [音频开发概述](application-dev/media/audio-overview.md)
 
-——>——>——>——> [音频管理开发指导](application-dev/media/audio-management.md)
+——>——>——>——>——> [音频播放开发指导](application-dev/media/audio-playback.md)
 
-——>——>——>——> [音频录制开发指导](application-dev/media/audio-recorder.md)
+——>——>——>——>——> [音频管理开发指导](application-dev/media/audio-management.md)
+
+——>——>——>——>——> [音频录制开发指导](application-dev/media/audio-recorder.md)
 
 ——>——>——> 用户认证
 
@@ -1290,11 +1292,11 @@
 
 ——>——>——>——> [USB服务开发指导](application-dev/usb/usb-guidelines.md)
 
-——>——>——> 应用事件打点
+——>——>——> DFX
 
-——>——>——>——> [应用事件打点概述](application-dev/application-event-logging/hiappevent-overview.md)
+——>——>——>——> [应用事件打点概述](application-dev/dfx/hiappevent-overview.md)
 
-——>——>——>——> [应用事件开发指导](application-dev/application-event-logging/hiappevent-guidelines.md)
+——>——>——>——> [应用事件开发指导](application-dev/dfx/hiappevent-guidelines.md)
 
 ——>——>——> [DevEco Studio（OpenHarmony）使用指南](application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md)
 

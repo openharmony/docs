@@ -1,19 +1,16 @@
 # list-item<a name="EN-US_TOPIC_0000001127125046"></a>
 
-**<list-item\>**  is a child component of the  **<[list](js-components-container-list.md)\>**  component and is used to display items in a list.
+**<list-item\>**  is a child component of the  **<[list](js-components-container-list.md)\>**  component and is used to display items in a list. You can customize the width of each  **<list-item\>**. However, if you retain the default value  **stretch**  of  **align-items**  for the parent component  **<list\>**, the width of  **<list-item\>**  is equal to that of  **<list\>**. You can set  **align-items**  to other values rather than  **stretch**  to make the customized  **<list-item-group\>**  width take effect.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->You can customize the width of each  **<list-item\>**. However, if you retain the default value  **stretch**  of  **align-items**  for the parent component  **<list\>**, the width of  **<list-item\>**  is equal to that of  **<list\>**. You can set  **align-items**  to other values rather than  **stretch**  to make the customized  **<list-item\>**  width take effect.
-
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
-Supported
+This component supports only one child component.
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -38,7 +35,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p14956141314133"><a name="p14956141314133"></a><a name="p14956141314133"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1595671312135"><a name="p1595671312135"></a><a name="p1595671312135"></a>Type of the list-item. A list can contain multiple list-item types. The same type of list items should have the same view layout after being rendered. If the type is fixed, replace the <strong id="b1152364710610"><a name="b1152364710610"></a><a name="b1152364710610"></a>if</strong> attribute with the <strong id="b8963450964"><a name="b8963450964"></a><a name="b8963450964"></a>show</strong> attribute to ensure that the view layout remains unchanged.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1595671312135"><a name="p1595671312135"></a><a name="p1595671312135"></a>Type of the list-item. A list can contain multiple list-item types. The same type of list items should have the same view layout after being rendered. When the type is fixed, replace the <strong id="b1152364710610"><a name="b1152364710610"></a><a name="b1152364710610"></a>if</strong> attribute with the <strong id="b8963450964"><a name="b8963450964"></a><a name="b8963450964"></a>show</strong> attribute to ensure that the view layout remains unchanged.</p>
 </td>
 </tr>
 <tr id="row182818671318"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p209561313171315"><a name="p209561313171315"></a><a name="p209561313171315"></a>primary</p>
@@ -75,17 +72,6 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <a name="ul69572137130"></a><a name="ul69572137130"></a><ul id="ul69572137130"><li><strong id="b13151921114"><a name="b13151921114"></a><a name="b13151921114"></a>none</strong>: The current item does not stick at the top.</li><li><strong id="b646332811"><a name="b646332811"></a><a name="b646332811"></a>normal</strong>: The current item sticks at the top and disappears with a sliding effect.</li><li><strong id="b20166151733418"><a name="b20166151733418"></a><a name="b20166151733418"></a>opacity</strong>: The current item sticks at the top and disappears gradually. This option is only supported on wearables.</li></ul>
 </td>
 </tr>
-<tr id="row4396145720125"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p195701331315"><a name="p195701331315"></a><a name="p195701331315"></a>stickyradius</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p2095751320137"><a name="p2095751320137"></a><a name="p2095751320137"></a>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p795718138135"><a name="p795718138135"></a><a name="p795718138135"></a>1000px</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p1495781391311"><a name="p1495781391311"></a><a name="p1495781391311"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1295771341313"><a name="p1295771341313"></a><a name="p1295771341313"></a>Radius of the arc for a sticky item on the wearable. If this attribute is not specified, the default radius is used. When <strong id="b52853015313"><a name="b52853015313"></a><a name="b52853015313"></a>sticky</strong> is set to <strong id="b827308337"><a name="b827308337"></a><a name="b827308337"></a>none</strong>, this attribute setting is invalid.</p>
-</td>
-</tr>
 <tr id="row6359185421211"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p109577139132"><a name="p109577139132"></a><a name="p109577139132"></a>clickeffect<sup id="sup1375415364114"><a name="sup1375415364114"></a><a name="sup1375415364114"></a>5+</sup></p>
 </td>
 <td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p9957161341310"><a name="p9957161341310"></a><a name="p9957161341310"></a>boolean</p>
@@ -101,7 +87,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -132,7 +118,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section1948820711216"></a>
+## Events<a name="section1948820711216"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -158,11 +144,11 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
-## Example Code<a name="section634316188515"></a>
+## Example<a name="section634316188515"></a>
 
 For details, see the  [list example code](js-components-container-list.md#section24931424488).
 

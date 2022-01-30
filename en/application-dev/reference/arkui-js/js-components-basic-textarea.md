@@ -10,7 +10,7 @@ None
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -179,7 +179,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section182794053"></a>
+## Styles<a name="section182794053"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -278,7 +278,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section3892191911214"></a>
+## Events<a name="section3892191911214"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -361,11 +361,14 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
 ```
 // xxx.js
+import prompt from '@system.prompt';
+export default {
 change(e){
   prompt.showToast({
     message: 'value: ' + e.text + ', lines: ' + e.lines + ', height: ' + e.height,
     duration: 3000,
   });
+}
 }
 ```
 

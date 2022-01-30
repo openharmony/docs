@@ -3,11 +3,11 @@
 The  **<textPath\>**  component is used to draw text along the path.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The APIs of this module are supported since API version 7.
+>-   This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >-   Draws text based on the specified path. The  **tspan**  child component can be nested for segmenting.
 >-   **<textPath\>**  can be nested only by the parent element label  **svg**.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -89,6 +89,17 @@ The attributes in the following table are supported.
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1661813321247"><a name="p1661813321247"></a><a name="p1661813321247"></a>Font fill color.</p>
 </td>
 </tr>
+<tr id="row35122053818"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p185135014381"><a name="p185135014381"></a><a name="p185135014381"></a>by</p>
+</td>
+<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p3513501388"><a name="p3513501388"></a><a name="p3513501388"></a>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p195135011386"><a name="p195135011386"></a><a name="p195135011386"></a>-</p>
+</td>
+<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p13513190203818"><a name="p13513190203818"></a><a name="p13513190203818"></a>No</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1551320143814"><a name="p1551320143814"></a><a name="p1551320143814"></a>Attribute offset relative to the specified animation. The default value of <strong id="b47896415258"><a name="b47896415258"></a><a name="b47896415258"></a>from</strong> is the original attribute value.</p>
+</td>
+</tr>
 <tr id="row818611518331"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="a4a0bae0e1bb946d6bc7bf30e0a535343"><a name="a4a0bae0e1bb946d6bc7bf30e0a535343"></a><a name="a4a0bae0e1bb946d6bc7bf30e0a535343"></a>opacity</p>
 </td>
 <td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="a2679e4565dbc4370b40d1be831a6148d"><a name="a2679e4565dbc4370b40d1be831a6148d"></a><a name="a2679e4565dbc4370b40d1be831a6148d"></a>number</p>
@@ -97,7 +108,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p324614367213"><a name="p324614367213"></a><a name="p324614367213"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>Transparency of an element. The value ranges from <strong id="b79611410473"><a name="b79611410473"></a><a name="b79611410473"></a>0</strong> to <strong id="b129720146470"><a name="b129720146470"></a><a name="b129720146470"></a>1</strong>. The value <strong id="b998914144710"><a name="b998914144710"></a><a name="b998914144710"></a>1</strong> means opaque, and <strong id="b10991814184713"><a name="b10991814184713"></a><a name="b10991814184713"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="aa0471c31e05e465aa9c42312b9ab9f6f"><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a><a name="aa0471c31e05e465aa9c42312b9ab9f6f"></a>Opacity of an element. The value ranges from <strong id="b79611410473"><a name="b79611410473"></a><a name="b79611410473"></a>0</strong> to <strong id="b129720146470"><a name="b129720146470"></a><a name="b129720146470"></a>1</strong>. The value <strong id="b998914144710"><a name="b998914144710"></a><a name="b998914144710"></a>1</strong> means opaque, and <strong id="b10991814184713"><a name="b10991814184713"></a><a name="b10991814184713"></a>0</strong> means completely transparent. Attribute animations are supported.</p>
 </td>
 </tr>
 <tr id="row2924118202412"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p196181832182412"><a name="p196181832182412"></a><a name="p196181832182412"></a>fill-opacity</p>
@@ -108,7 +119,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p11618632132414"><a name="p11618632132414"></a><a name="p11618632132414"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p8618113232414"><a name="p8618113232414"></a><a name="p8618113232414"></a>Font fill transparency.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p8618113232414"><a name="p8618113232414"></a><a name="p8618113232414"></a>Font fill opacity.</p>
 </td>
 </tr>
 <tr id="row2173171232411"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p10618143213244"><a name="p10618143213244"></a><a name="p10618143213244"></a>stroke</p>
@@ -141,7 +152,7 @@ The attributes in the following table are supported.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p56194325241"><a name="p56194325241"></a><a name="p56194325241"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1461983272420"><a name="p1461983272420"></a><a name="p1461983272420"></a>Stroke transparency.</p>
+<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1461983272420"><a name="p1461983272420"></a><a name="p1461983272420"></a>Stroke opacity.</p>
 </td>
 </tr>
 </tbody>
@@ -304,7 +315,7 @@ Animation and effect of the combination of  **textpath**  and  **tspan**
 
 \(1\) "tspan attribute x|rotate" indicates that the text drawing start point moves from 50 px to 100 px and rotates clockwise by 0 degrees to 360 degrees.
 
-\(2\) "tspan attribute dx|opacity" is drawn after the "tspan static." drawing is complete. The offset moves from 0% to 30%, and the transparency changes from shallow to deep.
+\(2\) "tspan attribute dx|opacity" is drawn after the "tspan static." drawing is complete. The offset moves from 0% to 30%, and the opacity changes from shallow to deep.
 
 \(3\)  **tspan move**: After the previous  **tspan**  is drawn, the next tspan is drawn with an offset of 5% to show the effect of following the previous  **tspan**.
 
@@ -340,7 +351,7 @@ Animation and effect of the combination of  **textpath**  and  **tspan**
 
 \(1\)  **This is TextPath**.: Draw the first paragraph of text on the path without offset. The size is 30px, and the color is "\#D2691E".
 
-\(2\) The value of  **tspan attribute fill|fill-opacity**  is 20px offset from the end of the previous text segment. The color is from blue to red, and the transparency is from light to deep.
+\(2\) The value of  **tspan attribute fill|fill-opacity**  is 20px offset from the end of the previous text segment. The color is from blue to red, and the opacity is from light to deep.
 
 \(3\)  **tspan attribute font-size**: The drawing start point is 20px offset from the end of the previous segment. The start point is static, and the font size ranges from 10px to 50px. The overall length is continuously prolonged.
 
@@ -377,5 +388,5 @@ Animation and effect of the combination of  **textpath**  and  **tspan**
 
 \(1\)  **tspan attribute stroke**: The stroke color gradually changes from red to green.
 
-\(2\)  **tspan attribute stroke-width-opacity**: The contour width is changed from 1px to 5px, and the transparency is changed from shallow to deep.
+\(2\)  **tspan attribute stroke-width-opacity**: The contour width is changed from 1px to 5px, and the opacity is changed from shallow to deep.
 

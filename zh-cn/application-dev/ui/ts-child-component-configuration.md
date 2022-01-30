@@ -1,12 +1,8 @@
-# 子组件配置
+# 子组件配置<a name="ZH-CN_TOPIC_0000001157228875"></a>
 
-
-
-对于支持子组件配置的组件，例如容器组件，在“**{ ... }**”里为组件添加子组件的UI描述。**Column**、**Row**、**Stack**、**Button**、**Grid**和**List**组件都是容器组件。
-
+对于支持子组件配置的组件，例如容器组件，在“**\{ ... \}**”里为组件添加子组件的UI描述。**Column**、**Row**、**Stack**、**Button**、**Grid**和**List**组件都是容器组件。
 
 以下是简单的**Column**示例：
-
 
 ```
 Column() {
@@ -19,9 +15,7 @@ Column() {
 }
 ```
 
-
 可以嵌套多个子组件：
-
 
 ```
 Column() {
@@ -50,3 +44,4 @@ Column() {
     }
 }.alignItems(HorizontalAlign.Center) // center align components inside Column
 ```
+

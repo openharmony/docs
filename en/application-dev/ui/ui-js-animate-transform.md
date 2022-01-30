@@ -4,7 +4,7 @@ Set the  **transform**  attribute for component rotation, scaling, translation, 
 
 ## Designing Static Animation<a name="section82321901242"></a>
 
-Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower part of the rhombus with a rectangle below to form a roof. Set the  **translate**  attribute value of the rectangle to \(150px, -150px\) to determine the coordinate position to form a door, use the  **position**  attribute to translate the horizontal and vertical lines to the specified coordinates of the parent component \(square\), set the  **scale**  attribute to scale in the parent and child components together to determine the window size, and use the  **skewX**  attribute to skew the component and set the coordinate  **translate\(200px,-830px\)**  to form a chimney.
+Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower part of the rhombus with a rectangle to form a roof. Set the  **translate**  attribute of the rectangle to the coordinate \(150px, -150px\) to form a door, use the  **position**  attribute to translate the horizontal and vertical axes to the specified coordinates of the parent component \(square\), set the  **scale**  attribute to scale up the parent and child components together to determine the window size, and use the  **skewX**  attribute to skew the component and set the coordinate  **translate\(200px,-830px\)**  to form a chimney.
 
 ```
 <!-- xxx.hml -->
@@ -86,11 +86,11 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
 }
 ```
 
-![](figures/111-18.png)
+![](figures/111-13.png)
 
 ## Designing Translation Animation<a name="section1212234417247"></a>
 
-This example implements an animation of a falling ball by changing the ball's y-axis coordinate. Decrease the y-axis coordinate over a time frame to make the ball bounce back. Gradually decrease the bounce height until it drops to 0. An animation where the ball falls is hereby created.
+Decrease the y-coordinate over a time frame to make the ball bounce back. Gradually decrease the bounce height until it drops to 0. An animation where the ball falls is hereby created.
 
 ```
 <!-- xxx.hml -->
@@ -166,7 +166,7 @@ This example implements an animation of a falling ball by changing the ball's y-
 
 ## Designing Rotation Animation<a name="section74101411112517"></a>
 
-Set the rotation center around an element in different  **transform-origin**  positions. Of the  **rotate3d**  values, the first three values are the rotation vectors of the x-axis, y-axis, and z-axis, respectively; the fourth value is the rotation angle, which can be a negative value to indicate that the rotation is performed anticlockwise.
+Set the rotation center around an element in different  **transform-origin**  positions. Of the  **rotate3d**  values, the first three values are the rotation vectors of the x-axis, y-axis, and z-axis, respectively; the fourth value is the rotation angle, which can be a negative value to indicate that the rotation is performed counterclockwise.
 
 ```
 <!-- xxx.hml -->
@@ -299,15 +299,7 @@ Set the rotation center around an element in different  **transform-origin**  po
 
 ## Designing Scaling Animation<a name="section137551633132519"></a>
 
-This example implements a ripple animation with the  **scale**  attribute. Here is the overall procedure:
-
-1. Use the positioning function to determine the element's position coordinates.
-
-2. Create multiple components to achieve the overlapping effect.
-
-3. Set the  **opacity**  attribute to hide or display the components. To scale and hide/display a component at the same time, set both the  **scale**  and  **opacity**  attributes.
-
-4. Set different animation durations for different components to achieve the diffusion effect.
+This example implements a ripple animation with the  **scale**  attribute. Here is the overall procedure: First, use the positioning function to determine the coordinates of the element's position. Then, create multiple components to achieve the overlapping effect. After that, set the  **opacity**  attribute to hide or display the components. To scale and hide/display a component at the same time, set both the  **scale**  and  **opacity**  attributes. Finally, set different animation durations for different components to achieve the diffusion effect.
 
 Set the scaling values for the x-axis, y-axis, and z-axis in  **scale3d**  to implement the animation.
 
@@ -417,7 +409,7 @@ text{
 ![](figures/d3.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->After the  **transform**  attributes are set, the child element changes with the parent element. Value changes of other attributes \(such as  **height**  and  **width**\) of the parent element will not affect the child element.
+>After the  **transform**  attributes are set, the child element changes with the parent element. Value changing of other attributes \(such as  **height**  and  **width**\) of the parent element will not affect the child element.
 
 ## Setting matrix<a name="section114961910132614"></a>
 
@@ -463,7 +455,7 @@ The  **matrix**  attribute defines a transformation matrix with six input parame
 
 ## Integrating transform Attributes<a name="section20503152610"></a>
 
-You can set multiple  **transform**  attributes at the same time to apply different transformations to a component. The following example simulatenously applies scaling, translating, and rotating.
+You can set multiple  **transform**  attributes at the same time to apply different transformations to a component. The following example applies the  **scale**,  **translate**, and  **rotate**  attributes simultaneously.
 
 ```
 <!-- xxx.hml -->
@@ -570,7 +562,7 @@ You can set multiple  **transform**  attributes at the same time to apply differ
 ![](figures/d4.gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->1.  When multiple transforms are set, the later one overwrites the previous one. To use multiple transform styles at the same time, use the shorthand form to write multiple attribute values in one, for example,  **transform: scale\(1\) rotate\(0\) translate\(0,0\)**.
->2.  When using the shorthand form, note that the animation effect varies according to the sequence of the attribute values.
->3.  The  **transform**  attributes used when the animation starts must match those when the animation ends. When attributes do not match, the respective animation does not work. Only the animation that has matching values is displayed.
+>1.  When multiple  **transform**  attributes are set, the later one overwrites the previous one. To apply multiple transform styles at the same time, use the shorthand notation; that is, write multiple style values in one  **transform**, for example,  **transform: scale\(1\) rotate\(0\) translate\(0,0\)**.
+>2.  When using the shorthand notion, note that the animation effect varies according to the sequence of the style values.
+>3.  The style values in the  **transform**  attribute used when the animation starts and ends must be in one-to-one mapping. Only the styles that have value mappings are played.
 

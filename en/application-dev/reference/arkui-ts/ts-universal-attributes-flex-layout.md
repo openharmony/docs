@@ -1,7 +1,14 @@
-# Flex Layout<a name="EN-US_TOPIC_0000001160986263"></a>
+# Flex Layout<a name="EN-US_TOPIC_0000001192755122"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The attributes described in this topic are valid only when the parent component is  **Flex**.
+>-   This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>-   This attribute is valid only when the parent component is a  **Flex**  component.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section414916171752"></a>
 
 <a name="table444mcpsimp"></a>
 <table><thead align="left"><tr id="row451mcpsimp"><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p id="p453mcpsimp"><a name="p453mcpsimp"></a><a name="p453mcpsimp"></a>Name</p>

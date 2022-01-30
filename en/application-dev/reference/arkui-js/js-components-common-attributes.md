@@ -72,18 +72,21 @@ Common attributes are used to set component identities and appearance.
 <td class="cellrowborder" valign="top" width="51.78482151784822%" headers="mcps1.1.6.1.5 "><p id="a4065980a1e914cf98acce5250ee4ae5a"><a name="a4065980a1e914cf98acce5250ee4ae5a"></a><a name="a4065980a1e914cf98acce5250ee4ae5a"></a>Whether a component is disabled. If it is disabled, it cannot respond to user interaction.</p>
 </td>
 </tr>
-<tr id="r7f258d2c12844b5bbb0b880b9c5fa7d7"><td class="cellrowborder" valign="top" width="19.598040195980403%" headers="mcps1.1.6.1.1 "><p id="abe276788904d4133bf35c5594eb4d20a"><a name="abe276788904d4133bf35c5594eb4d20a"></a><a name="abe276788904d4133bf35c5594eb4d20a"></a>focusable</p>
+<tr id="row17245762598"><td class="cellrowborder" valign="top" width="19.598040195980403%" headers="mcps1.1.6.1.1 "><p id="p4643111525911"><a name="p4643111525911"></a><a name="p4643111525911"></a>data</p>
 </td>
-<td class="cellrowborder" valign="top" width="11.08889111088891%" headers="mcps1.1.6.1.2 "><p id="a8a4db446ac404162806f6013cacf49a8"><a name="a8a4db446ac404162806f6013cacf49a8"></a><a name="a8a4db446ac404162806f6013cacf49a8"></a>boolean</p>
+<td class="cellrowborder" valign="top" width="11.08889111088891%" headers="mcps1.1.6.1.2 "><p id="p586671911599"><a name="p586671911599"></a><a name="p586671911599"></a>string</p>
 </td>
-<td class="cellrowborder" valign="top" width="10.00899910008999%" headers="mcps1.1.6.1.3 "><p id="a515466e622f447ce8bcb07e0e85d0c50"><a name="a515466e622f447ce8bcb07e0e85d0c50"></a><a name="a515466e622f447ce8bcb07e0e85d0c50"></a>false</p>
+<td class="cellrowborder" valign="top" width="10.00899910008999%" headers="mcps1.1.6.1.3 "><p id="p18866121905913"><a name="p18866121905913"></a><a name="p18866121905913"></a>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p8818135901612"><a name="p8818135901612"></a><a name="p8818135901612"></a>No</p>
+<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p168661719165920"><a name="p168661719165920"></a><a name="p168661719165920"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="51.78482151784822%" headers="mcps1.1.6.1.5 "><p id="a8e6a00e044b44797a3db0ea017c82cd5"><a name="a8e6a00e044b44797a3db0ea017c82cd5"></a><a name="a8e6a00e044b44797a3db0ea017c82cd5"></a>Whether a component can gain focus. When <strong id="b040892514141"><a name="b040892514141"></a><a name="b040892514141"></a>focusable</strong> is set to <strong id="b1277952713149"><a name="b1277952713149"></a><a name="b1277952713149"></a>true</strong>, the component can respond to focus events and key events. If a key event or click event is set for the component, this attribute is set to <strong id="b147301971024"><a name="b147301971024"></a><a name="b147301971024"></a>true</strong> automatically.</p>
+<td class="cellrowborder" valign="top" width="51.78482151784822%" headers="mcps1.1.6.1.5 "><p id="p84627247592"><a name="p84627247592"></a><a name="p84627247592"></a>Attribute set for the component to facilitate data storage and reading. In the JS file:</p>
+<a name="ul711919169212"></a><a name="ul711919169212"></a><ul id="ul711919169212"><li>Use <strong id="b20252034115"><a name="b20252034115"></a><a name="b20252034115"></a>e.target.attr.data</strong> to read data in the event callback, where <strong id="b11257020416"><a name="b11257020416"></a><a name="b11257020416"></a>e</strong> is the input parameter.</li><li>After a DOM element is obtained by using <strong id="b772121564115"><a name="b772121564115"></a><a name="b772121564115"></a>$element</strong> or <strong id="b872151510415"><a name="b872151510415"></a><a name="b872151510415"></a>$refs</strong>, it can be accessed through <strong id="b87221415194114"><a name="b87221415194114"></a><a name="b87221415194114"></a>attr.data</strong>.</li></ul>
+<div class="note" id="note259213045911"><a name="note259213045911"></a><a name="note259213045911"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p359213019595"><a name="p359213019595"></a><a name="p359213019595"></a>It is recommended that you use <strong id="b1593375914218"><a name="b1593375914218"></a><a name="b1593375914218"></a>data-*</strong> since API version 6.</p>
+</div></div>
 </td>
 </tr>
-<tr id="rc6c4586e5aa8487ba77c1e8df90c121d"><td class="cellrowborder" valign="top" width="19.598040195980403%" headers="mcps1.1.6.1.1 "><p id="a751c9d46a62348ec902c7fdf97468b9d"><a name="a751c9d46a62348ec902c7fdf97468b9d"></a><a name="a751c9d46a62348ec902c7fdf97468b9d"></a>data-*<sup id="sup186963594254"><a name="sup186963594254"></a><a name="sup186963594254"></a>6+</sup></p>
+<tr id="rc6c4586e5aa8487ba77c1e8df90c121d"><td class="cellrowborder" valign="top" width="19.598040195980403%" headers="mcps1.1.6.1.1 "><p id="p2077661832920"><a name="p2077661832920"></a><a name="p2077661832920"></a>data-*<sup id="sup186963594254"><a name="sup186963594254"></a><a name="sup186963594254"></a>6+</sup></p>
 </td>
 <td class="cellrowborder" valign="top" width="11.08889111088891%" headers="mcps1.1.6.1.2 "><p id="a8e6d1bb4d0bc423fb8466ee3acd1882f"><a name="a8e6d1bb4d0bc423fb8466ee3acd1882f"></a><a name="a8e6d1bb4d0bc423fb8466ee3acd1882f"></a>string</p>
 </td>

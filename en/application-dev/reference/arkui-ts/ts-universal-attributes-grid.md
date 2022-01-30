@@ -1,7 +1,14 @@
-# Grid<a name="EN-US_TOPIC_0000001174112533"></a>
+# Grid<a name="EN-US_TOPIC_0000001192755130"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The column width and column gap in the grid layout are determined by the nearest parent component  **GridContainer**. The component tree that uses grid attributes must contain one  **GridContainer**  or more.
+>-   This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>-   The column width and column gap in the grid layout are determined by the nearest parent component  **GridContainer**. The component tree that uses grid attributes must contain one  **GridContainer**  or more.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table1265031910316"></a>
 <table><thead align="left"><tr id="row9650111916319"><th class="cellrowborder" valign="top" width="15.42%" id="mcps1.1.5.1.1"><p id="p18651919153114"><a name="p18651919153114"></a><a name="p18651919153114"></a>Name</p>

@@ -1,4 +1,7 @@
-# Grid<a name="EN-US_TOPIC_0000001158261259"></a>
+# Grid<a name="EN-US_TOPIC_0000001237355067"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Grid\>**  component is a two-dimensional layout. The component is divided into rows and columns, to form cells. You can specify the cell where an item is located and combine different grids to form various layouts.
 
@@ -69,15 +72,15 @@ Grid\(\)
 ## Events<a name="section1822319492372"></a>
 
 <a name="table1422484983716"></a>
-<table><thead align="left"><tr id="row122247497373"><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p id="p1224949123712"><a name="p1224949123712"></a><a name="p1224949123712"></a>Name</p>
+<table><thead align="left"><tr id="row122247497373"><th class="cellrowborder" valign="top" width="39.77%" id="mcps1.1.3.1.1"><p id="p1224949123712"><a name="p1224949123712"></a><a name="p1224949123712"></a>Name</p>
 </th>
-<th class="cellrowborder" valign="top" id="mcps1.1.4.1.2"><p id="p1022424983717"><a name="p1022424983717"></a><a name="p1022424983717"></a>Description</p>
+<th class="cellrowborder" valign="top" width="60.23%" id="mcps1.1.3.1.2"><p id="p1022424983717"><a name="p1022424983717"></a><a name="p1022424983717"></a>Description</p>
 </th>
 </tr>
 </thead>
-<tbody><tr id="row19224134910371"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p622474918373"><a name="p622474918373"></a><a name="p622474918373"></a>onScrollIndex(first: number) =&gt; void</p>
+<tbody><tr id="row19224134910371"><td class="cellrowborder" valign="top" width="39.77%" headers="mcps1.1.3.1.1 "><p id="p622474918373"><a name="p622474918373"></a><a name="p622474918373"></a>onScrollIndex(first: number) =&gt; void</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p18224144918373"><a name="p18224144918373"></a><a name="p18224144918373"></a>Triggered when the start item of the grid changes.</p>
+<td class="cellrowborder" valign="top" width="60.23%" headers="mcps1.1.3.1.2 "><p id="p18224144918373"><a name="p18224144918373"></a><a name="p18224144918373"></a>Triggered when the start item of the grid changes.</p>
 </td>
 </tr>
 </tbody>
@@ -144,5 +147,5 @@ struct GridExample {
 }
 ```
 
-![](figures/grid-62.gif)
+![](figures/grid-3.gif)
 

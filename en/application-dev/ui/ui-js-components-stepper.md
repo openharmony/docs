@@ -38,7 +38,7 @@ text{
 }
 ```
 
-![](figures/2-11.gif)
+![](figures/2-7.gif)
 
 ## Setting the Index<a name="section1696313408199"></a>
 
@@ -76,7 +76,7 @@ text{
 
 ![](figures/10.gif)
 
-Set the  **label**  attribute to customize the button text for the  **<stepper-item\>**  .
+Set the  **label**  attribute to customize the button text for the  **<stepper-item\>**.
 
 ```
 <!-- index.hml -->
@@ -133,7 +133,7 @@ export default {
 }
 ```
 
-![](figures/11-12.gif)
+![](figures/11-8.gif)
 
 ## Setting the Style<a name="section482815298502"></a>
 

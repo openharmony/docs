@@ -1,4 +1,7 @@
-# ListItem<a name="EN-US_TOPIC_0000001158141287"></a>
+# ListItem<a name="EN-US_TOPIC_0000001192595148"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<ListItem\>**  component displays specific items in the list. Its width occupies the  **<List\>**  component by default and must be used together with  **<List\>**.
 

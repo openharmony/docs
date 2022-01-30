@@ -2,7 +2,7 @@
 
 The  **<switch\>**  component is used to enable or disable a function.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -10,7 +10,7 @@ None
 
 None
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -74,7 +74,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -143,7 +143,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p71431411417"><a name="p71431411417"></a><a name="p71431411417"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p71435417112"><a name="p71435417112"></a><a name="p71435417112"></a>Whether the font size changes following the system's font size settings.</p>
+<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p71435417112"><a name="p71435417112"></a><a name="p71435417112"></a>Whether the font size changes with the system's font size settings.</p>
 <div class="note" id="note214334112118"><a name="note214334112118"></a><a name="note214334112118"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p3143174118114"><a name="p3143174118114"></a><a name="p3143174118114"></a>If the <strong id="b524714361237"><a name="b524714361237"></a><a name="b524714361237"></a>config-changes</strong> tag of <strong id="b19256136236"><a name="b19256136236"></a><a name="b19256136236"></a>fontSize</strong> is configured for abilities in the <strong id="b32576360318"><a name="b32576360318"></a><a name="b32576360318"></a>config.json</strong> file, the setting takes effect without application restart.</p>
 </div></div>
 </td>
@@ -184,7 +184,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section1042893411015"></a>
+## Events<a name="section1042893411015"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 

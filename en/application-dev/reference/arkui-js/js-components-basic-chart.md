@@ -2,7 +2,7 @@
 
 The  **<chart\>**  component displays line charts, gauge charts, and bar charts.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -10,7 +10,7 @@ None
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -797,7 +797,7 @@ For gauge charts, the following attribute is supported.
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -869,7 +869,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p191706020496"><a name="p191706020496"></a><a name="p191706020496"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p18170170194913"><a name="p18170170194913"></a><a name="p18170170194913"></a>Center of the scale bar of the gauge component. This style is supported by the gauge chart only. This style takes precedence over the <strong id="b644769657"><a name="b644769657"></a><a name="b644769657"></a>position</strong> style in the common styles, and must be used together with <strong id="b02839331014"><a name="b02839331014"></a><a name="b02839331014"></a>center-x</strong> and <strong id="b1928518331711"><a name="b1928518331711"></a><a name="b1928518331711"></a>radius</strong>. This style is supported by the gauge chart only.</p>
+<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p18170170194913"><a name="p18170170194913"></a><a name="p18170170194913"></a>Center of the scale bar of the gauge component. This style is supported by the gauge chart only. This style takes precedence over the <strong id="b1629744408"><a name="b1629744408"></a><a name="b1629744408"></a>position</strong> style in the common styles, and must be used together with <strong id="b02839331014"><a name="b02839331014"></a><a name="b02839331014"></a>center-x</strong> and <strong id="b1928518331711"><a name="b1928518331711"></a><a name="b1928518331711"></a>radius</strong>. This style is supported by the gauge chart only.</p>
 </td>
 </tr>
 <tr id="row6170208490"><td class="cellrowborder" valign="top" width="23.11768823117688%" headers="mcps1.1.6.1.1 "><p id="p1317016019498"><a name="p1317016019498"></a><a name="p1317016019498"></a>radius</p>
@@ -932,11 +932,11 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section749131815264"></a>
+## Events<a name="section749131815264"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
-## Method<a name="section4480852195018"></a>
+## Methods<a name="section4480852195018"></a>
 
 In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
 
@@ -1155,5 +1155,4 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     ```
 
     ![](figures/en-us_image_0000001127125264.png)
-
 

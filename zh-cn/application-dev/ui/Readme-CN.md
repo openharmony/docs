@@ -84,11 +84,9 @@
                     - [@Prop](ts-component-states-prop.md)
                     - [@Link](ts-component-states-link.md)
                 - 管理应用程序的状态
-                    - 接口
-                        - [应用程序的数据存储](ts-application-states-appstorage.md)
-                        - [持久化数据管理](ts-application-states-apis-persistentstorage.md)
-                        - [环境变量](ts-application-states-apis-environment.md)
-                    - [AppStorage与组件同步](ts-application-states-storagelink-storageprop.md)
+                    - [应用程序的数据存储](ts-application-states-appstorage.md)
+                    - [持久化数据管理](ts-application-states-apis-persistentstorage.md)
+                    - [环境变量](ts-application-states-apis-environment.md)
                 - 其他类目的状态管理
                     - [Observed和ObjectLink数据管理](ts-other-states-observed-objectlink.md)
                     - [@Consume和@Provide数据管理](ts-other-states-consume-provide.md)
@@ -102,13 +100,7 @@
                 - [自定义组件初始化](ts-custom-component-initialization.md)
                 - [自定义组件生命周期回调函数](ts-custom-component-lifecycle-callbacks.md)
                 - [组件创建和重新初始化示例](ts-component-creation-re-initialization.md)
-            - 语法糖
-                - [装饰器](ts-syntactic-sugar-decorator.md)
-                - [链式调用](ts-syntactic-sugar-chaining.md)
-                - [struct对象](ts-syntactic-sugar-struct.md)
-                - [在实例化过程中省略"new"](ts-instantiating-a-struct-without-new-keyword.md)
-                - [组件创建使用独立一行](ts-using-a-separate-line-for-new-component.md)
-                - [生成器函数内使用TS语言的限制](ts-restrictions-for-generators.md)
+            - [语法糖](ts-syntactic-sugar.md)
         - 体验声明式UI
             - [创建声明式UI工程](ui-ts-creating-project.md)
             - [初识Component](ui-ts-components.md)

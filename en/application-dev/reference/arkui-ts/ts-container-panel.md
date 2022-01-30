@@ -1,4 +1,7 @@
-# Panel<a name="EN-US_TOPIC_0000001111421438"></a>
+# Panel<a name="EN-US_TOPIC_0000001192755104"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Panel\>**  component is a slidable panel that presents lightweight content with flexible sizes. It is a pop-up component.
 

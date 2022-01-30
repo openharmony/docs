@@ -48,7 +48,7 @@ Set the  **type**  attribute of the  **<picker\>**  component. For example, set 
   background-color: #F1F3F5;
 }
 .pickertext{
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 ```
 
@@ -63,7 +63,7 @@ export default {
 }
 ```
 
-![](figures/2-8.gif)
+![](figures/20211217-130837(welinkpc).gif)
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   When setting the value range of a common selector, you must use the data binding mode.
@@ -181,7 +181,7 @@ Implement a health check-in application by using the  **<picker\>**  component.
     <picker class="pick" type="text" value="{{yorn2}}" range="{{yesno}}" selected="1" onchange="isTouch"></picker>
   </div>
   <div class="out-container">
-    <button value="Submit" style="margin-top:100px;width:50%;font-color:#0000ff;" onclick="showtoast"></button>
+    <button value="Submit" style="margin-top:100px;width:50%;font-color:#0000ff;height:80px" onclick="showtoast"></button>
   </div>
 </div>
 ```
@@ -263,11 +263,9 @@ export default {
     this.build = e.newValue
   },
   dateonchange(e) {
+    e.month=e.month+1;
     this.datevalue = e.year + "-" + e.month + "-" + e.day;
-    pmt.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day })  },
-  datetimeonchange(e) {
-    this.datetimevalue=e.year+"-"+e.month+"-"+e.day+" "+e.hour+":"+e.minute;
-    pmt.showToast({ message:"Time:"+e.month+"-"+e.day+" "+e.hour+":"+e.minute })
+    pmt.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day }) 
   },
   showtoast() {
     pmt.showToast({
@@ -279,5 +277,5 @@ export default {
 }
 ```
 
-![](figures/31.gif)
+![](figures/qqqq.gif)
 

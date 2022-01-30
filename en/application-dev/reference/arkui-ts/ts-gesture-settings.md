@@ -1,4 +1,13 @@
-# Gesture Binding Methods<a name="EN-US_TOPIC_0000001113113018"></a>
+# Gesture Binding Methods<a name="EN-US_TOPIC_0000001237555115"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Binding Gesture Recognition<a name="section42396384106"></a>
 
 You can use the following attributes to bind gesture recognition to a component. When a gesture is recognized, the event callback is invoked to notify the component.
 
@@ -73,7 +82,7 @@ You can use the following attributes to bind gesture recognition to a component.
     <tr id="row12452184217398"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p54523425398"><a name="p54523425398"></a><a name="p54523425398"></a>IgnoreInternal</p>
     </td>
     <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p745215426391"><a name="p745215426391"></a><a name="p745215426391"></a>The gestures of child components are masked. Only the gestures of the current component are recognized.</p>
-    <div class="note" id="note498994724413"><a name="note498994724413"></a><a name="note498994724413"></a><span class="notetitle"> NOTE: </span><div class="notebody"><a name="ul0160856174418"></a><a name="ul0160856174418"></a><ul id="ul0160856174418"><li>However, the built-in gestures of the child components are not masked. For example, when the child component is a <strong id="b15749201120175"><a name="b15749201120175"></a><a name="b15749201120175"></a>&lt;List&gt;</strong> component, the built-in sliding gestures can still be triggered.</li></ul>
+    <div class="note" id="note498994724413"><a name="note498994724413"></a><a name="note498994724413"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p7133719163415"><a name="p7133719163415"></a><a name="p7133719163415"></a>However, the built-in gestures of the child components are not masked. For example, when the child component is a <strong id="b15749201120175"><a name="b15749201120175"></a><a name="b15749201120175"></a>&lt;List&gt;</strong> component, the built-in sliding gestures can still be triggered.</p>
     </div></div>
     </td>
     </tr>
@@ -149,68 +158,26 @@ The component uses the  **gesture**  method to bind the gesture object and uses 
 -   <a name="li209321550192419"></a>GestureEvent attributes
 
     <a name="table290mcpsimp"></a>
-    <table><thead align="left"><tr id="row296mcpsimp"><th class="cellrowborder" valign="top" width="20.11%" id="mcps1.1.4.1.1"><p id="p298mcpsimp"><a name="p298mcpsimp"></a><a name="p298mcpsimp"></a>Name</p>
+    <table><thead align="left"><tr id="row296mcpsimp"><th class="cellrowborder" valign="top" width="20.09%" id="mcps1.1.4.1.1"><p id="p298mcpsimp"><a name="p298mcpsimp"></a><a name="p298mcpsimp"></a>Name</p>
     </th>
-    <th class="cellrowborder" valign="top" width="18.39%" id="mcps1.1.4.1.2"><p id="p300mcpsimp"><a name="p300mcpsimp"></a><a name="p300mcpsimp"></a>Type</p>
+    <th class="cellrowborder" valign="top" width="18.41%" id="mcps1.1.4.1.2"><p id="p300mcpsimp"><a name="p300mcpsimp"></a><a name="p300mcpsimp"></a>Type</p>
     </th>
     <th class="cellrowborder" valign="top" width="61.5%" id="mcps1.1.4.1.3"><p id="p302mcpsimp"><a name="p302mcpsimp"></a><a name="p302mcpsimp"></a>Description</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row303mcpsimp"><td class="cellrowborder" valign="top" width="20.11%" headers="mcps1.1.4.1.1 "><p id="p305mcpsimp"><a name="p305mcpsimp"></a><a name="p305mcpsimp"></a>repeat</p>
+    <tbody><tr id="row1194611133620"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p1619501111361"><a name="p1619501111361"></a><a name="p1619501111361"></a>timestamp</p>
     </td>
-    <td class="cellrowborder" valign="top" width="18.39%" headers="mcps1.1.4.1.2 "><p id="p307mcpsimp"><a name="p307mcpsimp"></a><a name="p307mcpsimp"></a>boolean</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p309mcpsimp"><a name="p309mcpsimp"></a><a name="p309mcpsimp"></a>Whether an event is repeatedly triggered. This attribute is used for the long press gesture.</p>
-    </td>
-    </tr>
-    <tr id="row310mcpsimp"><td class="cellrowborder" valign="top" width="20.11%" headers="mcps1.1.4.1.1 "><p id="p312mcpsimp"><a name="p312mcpsimp"></a><a name="p312mcpsimp"></a>offsetX</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.39%" headers="mcps1.1.4.1.2 "><p id="p314mcpsimp"><a name="p314mcpsimp"></a><a name="p314mcpsimp"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p316mcpsimp"><a name="p316mcpsimp"></a><a name="p316mcpsimp"></a>Gesture event offset along the x-axis, in vp. This attribute is used for the pan gesture.</p>
-    </td>
-    </tr>
-    <tr id="row317mcpsimp"><td class="cellrowborder" valign="top" width="20.11%" headers="mcps1.1.4.1.1 "><p id="p319mcpsimp"><a name="p319mcpsimp"></a><a name="p319mcpsimp"></a>offsetY</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.39%" headers="mcps1.1.4.1.2 "><p id="p321mcpsimp"><a name="p321mcpsimp"></a><a name="p321mcpsimp"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p323mcpsimp"><a name="p323mcpsimp"></a><a name="p323mcpsimp"></a>Gesture event offset along the y-axis, in vp. This attribute is used for the pan gesture.</p>
-    </td>
-    </tr>
-    <tr id="row324mcpsimp"><td class="cellrowborder" valign="top" width="20.11%" headers="mcps1.1.4.1.1 "><p id="p326mcpsimp"><a name="p326mcpsimp"></a><a name="p326mcpsimp"></a>scale</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.39%" headers="mcps1.1.4.1.2 "><p id="p328mcpsimp"><a name="p328mcpsimp"></a><a name="p328mcpsimp"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p330mcpsimp"><a name="p330mcpsimp"></a><a name="p330mcpsimp"></a>Scale ratio. This attribute is used for the pinch gesture.</p>
-    </td>
-    </tr>
-    <tr id="row4266173283818"><td class="cellrowborder" valign="top" width="20.11%" headers="mcps1.1.4.1.1 "><p id="p1626610325382"><a name="p1626610325382"></a><a name="p1626610325382"></a>pinchCenterX</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.39%" headers="mcps1.1.4.1.2 "><p id="p1526643203814"><a name="p1526643203814"></a><a name="p1526643203814"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p4266163216388"><a name="p4266163216388"></a><a name="p4266163216388"></a>X-coordinate of the center point of the pinch gesture, in px. This attribute is used for the pinch gesture.</p>
-    </td>
-    </tr>
-    <tr id="row838693614382"><td class="cellrowborder" valign="top" width="20.11%" headers="mcps1.1.4.1.1 "><p id="p19386163653814"><a name="p19386163653814"></a><a name="p19386163653814"></a>pinchCenterY</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.39%" headers="mcps1.1.4.1.2 "><p id="p638693615380"><a name="p638693615380"></a><a name="p638693615380"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p1238643673818"><a name="p1238643673818"></a><a name="p1238643673818"></a>Y-coordinate of the center point of the pinch gesture, in px. This attribute is used for the pinch gesture.</p>
-    </td>
-    </tr>
-    <tr id="row331mcpsimp"><td class="cellrowborder" valign="top" width="20.11%" headers="mcps1.1.4.1.1 "><p id="p333mcpsimp"><a name="p333mcpsimp"></a><a name="p333mcpsimp"></a>angle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.39%" headers="mcps1.1.4.1.2 "><p id="p335mcpsimp"><a name="p335mcpsimp"></a><a name="p335mcpsimp"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p337mcpsimp"><a name="p337mcpsimp"></a><a name="p337mcpsimp"></a>Rotation angle. This attribute is used for the rotation gesture.</p>
-    </td>
-    </tr>
-    <tr id="row1194611133620"><td class="cellrowborder" valign="top" width="20.11%" headers="mcps1.1.4.1.1 "><p id="p1619501111361"><a name="p1619501111361"></a><a name="p1619501111361"></a>timestamp</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.39%" headers="mcps1.1.4.1.2 "><p id="p5195161119368"><a name="p5195161119368"></a><a name="p5195161119368"></a>number</p>
+    <td class="cellrowborder" valign="top" width="18.41%" headers="mcps1.1.4.1.2 "><p id="p5195161119368"><a name="p5195161119368"></a><a name="p5195161119368"></a>number</p>
     </td>
     <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p171951211103611"><a name="p171951211103611"></a><a name="p171951211103611"></a>Timestamp of the event.</p>
+    </td>
+    </tr>
+    <tr id="row172883835616"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p142883855619"><a name="p142883855619"></a><a name="p142883855619"></a>target<sup id="sup64431218143812"><a name="sup64431218143812"></a><a name="sup64431218143812"></a>8+</sup></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.41%" headers="mcps1.1.4.1.2 "><p id="p1729193845612"><a name="p1729193845612"></a><a name="p1729193845612"></a><a href="ts-universal-events-click.md#li552912253714">EventTarget</a></p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p122913385561"><a name="p122913385561"></a><a name="p122913385561"></a>Object that triggers the gesture event.</p>
     </td>
     </tr>
     </tbody>
@@ -226,22 +193,28 @@ struct GestureSettingsExample {
   @State value: string = ''
 
   build() {
-    Column() {
-      Text('Click\n' + this.value).gesture(TapGesture()
-        .onAction(() => {
-          this.value = 'gesture onAction'
-        }))
-    }.height(200).width(300).padding(60).border({ width: 1 }).margin(30)
+    Column(){
+      Column() {
+        Text('Click\n' + this.value)
+          .gesture(
+          TapGesture()
+            .onAction(() => {
+              this.value = 'gesture onAction'
+            }))
+      }.height(200).width(300).padding(60).border({ width: 1 })
     // When priorityGesture is specified, the bound gesture is preferentially recognized and the child component gesture is ignored.
-    .priorityGesture(
+      .priorityGesture(
       TapGesture()
-        .onAction(() => {
-          this.value = 'priorityGesture onAction'
+        .onAction((event: GestureEvent) => {
+this.value = 'priorityGesture onAction' + '\ncomponent globalPos: ('
+          + event.target.area.globalPos.x + ',' + event.target.area.globalPos.y + '）\nwidth:'
+          + event.target.area.width + '\nheight：' + event.target.area.height
         }), GestureMask.IgnoreInternal
-    )
+      )
+    }.padding(60)
   }
 }
 ```
 
-![](figures/gesturesetting.gif)
+![](figures/en-us_image_0000001237475107.gif)
 

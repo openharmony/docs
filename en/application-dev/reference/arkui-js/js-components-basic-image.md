@@ -6,7 +6,7 @@ The  **<image\>**  component is used to render and display images.
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -50,7 +50,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section45171131134215"></a>
+## Styles<a name="section45171131134215"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following style attributes are supported.
 
@@ -109,7 +109,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 <td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p id="p8824165110385"><a name="p8824165110385"></a><a name="p8824165110385"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p1582420513383"><a name="p1582420513383"></a><a name="p1582420513383"></a>Position of an image in the component.</p>
-<p id="p8751515174019"><a name="p8751515174019"></a><a name="p8751515174019"></a>The options are as follows:</p>
+<p id="p8751515174019"><a name="p8751515174019"></a><a name="p8751515174019"></a>There are two setting types:</p>
 <p id="p19751111518408"><a name="p19751111518408"></a><a name="p19751111518408"></a>1. Pixels. For example, <strong id="b556573313565"><a name="b556573313565"></a><a name="b556573313565"></a>15px 15px</strong> indicates the moving position along the x-axis or y-axis.</p>
 <p id="p119413158218"><a name="p119413158218"></a><a name="p119413158218"></a>2. Characters. Optional values are as follows:</p>
 <a name="ul1815918338215"></a><a name="ul1815918338215"></a><ul id="ul1815918338215"><li><strong id="b3821337205612"><a name="b3821337205612"></a><a name="b3821337205612"></a>left</strong>: The image is displayed on the left of the component.</li><li><strong id="b15293940115610"><a name="b15293940115610"></a><a name="b15293940115610"></a>top</strong> The image is displayed on the top of the component.</li><li><strong id="b7691642165610"><a name="b7691642165610"></a><a name="b7691642165610"></a>right</strong> The image is displayed on the right of the component.</li><li><strong id="b1347220437562"><a name="b1347220437562"></a><a name="b1347220437562"></a>bottom</strong> The image is displayed at the bottom of the component.</li></ul>
@@ -129,7 +129,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </thead>
 <tbody><tr id="row658523520377"><td class="cellrowborder" valign="top" width="15.02%" headers="mcps1.2.3.1.1 "><p id="p1558553553710"><a name="p1558553553710"></a><a name="p1558553553710"></a>cover</p>
 </td>
-<td class="cellrowborder" valign="top" width="84.98%" headers="mcps1.2.3.1.2 "><p id="p4585103573718"><a name="p4585103573718"></a><a name="p4585103573718"></a>The image is scaled with the aspect ratio retained for both sides to be greater than or equal to the display boundaries and displayed in the middle.</p>
+<td class="cellrowborder" valign="top" width="84.98%" headers="mcps1.2.3.1.2 "><p id="p4585103573718"><a name="p4585103573718"></a><a name="p4585103573718"></a>The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries and displayed in the middle.</p>
 </td>
 </tr>
 <tr id="row8585133543716"><td class="cellrowborder" valign="top" width="15.02%" headers="mcps1.2.3.1.1 "><p id="p20585735123718"><a name="p20585735123718"></a><a name="p20585735123718"></a>contain</p>
@@ -163,7 +163,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 >1.  If the  **<image\>**  component is too small to afford the SVG image, the SVG image is cropped and only its upper left part is displayed in the component.
 >2.  If the  **<image\>**  component is big enough to afford the SVG image, this SVG image is displayed in the upper left corner of the component.
 
-## Event<a name="section3892191911214"></a>
+## Events<a name="section3892191911214"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -193,7 +193,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
@@ -202,7 +202,7 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 ```
 <!-- xxx.hml -->
 <div class="container">
-  <image src="common/hw_rights.JPG" style="width: 300px; height: 300px; object-fit:{{fit}}; object-position: 0px 0px; border: 1px solid red;">
+  <image src="common/images/hw_right.png" style="width: 300px; height: 300px; object-fit:{{fit}}; object-position: center center; border: 1px solid red; ">
   </image>
   <select class="selects" onchange="change_fit">
     <option for="{{fits}}" value="{{$item}}">{{$item}}</option>
@@ -216,6 +216,8 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  
+  
 }
 .selects{
   margin-top: 20px;
@@ -238,5 +240,5 @@ export default {
 }
 ```
 
-![](figures/en-us_image_0000001127284936.gif)
+![](figures/gif.gif)
 

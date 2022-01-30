@@ -3,9 +3,9 @@
 The  **<text\>**  component is used to display a piece of textual information.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The text content must be written in the content area.
+>-   The text content must be written in the content area.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -13,11 +13,11 @@ None
 
 **<[span](js-components-basic-span.md)\>**  is supported. 
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 Attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -64,7 +64,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="5.959404059594041%" headers="mcps1.1.6.1.4 "><p id="p651012207315"><a name="p651012207315"></a><a name="p651012207315"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p1951012205310"><a name="p1951012205310"></a><a name="p1951012205310"></a>Whether the font size changes following the system's font size settings.</p>
+<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p1951012205310"><a name="p1951012205310"></a><a name="p1951012205310"></a>Whether the font size changes with the system's font size settings.</p>
 <div class="note" id="note12510112010317"><a name="note12510112010317"></a><a name="note12510112010317"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p10510720332"><a name="p10510720332"></a><a name="p10510720332"></a>For details about how to make the configuration take effect dynamically, see the <strong id="b65592247511"><a name="b65592247511"></a><a name="b65592247511"></a>config-changes</strong> attribute in the <strong id="b1576712361551"><a name="b1576712361551"></a><a name="b1576712361551"></a>config.json</strong> file.</p>
 </div></div>
 </td>
@@ -126,7 +126,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="5.959404059594041%" headers="mcps1.1.6.1.4 "><p id="p551152012314"><a name="p551152012314"></a><a name="p551152012314"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p1751117201737"><a name="p1751117201737"></a><a name="p1751117201737"></a>Text modifier. Available values are as follows:</p>
+<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p1751117201737"><a name="p1751117201737"></a><a name="p1751117201737"></a>Text decoration. Available values are as follows:</p>
 <a name="ul9511720637"></a><a name="ul9511720637"></a><ul id="ul9511720637"><li><strong id="b164849427323"><a name="b164849427323"></a><a name="b164849427323"></a>underline</strong>: An underline is used.</li><li><strong id="b1562604511325"><a name="b1562604511325"></a><a name="b1562604511325"></a>line-through</strong>: A strikethrough is used.</li><li><strong id="b13748195193210"><a name="b13748195193210"></a><a name="b13748195193210"></a>none</strong>: The standard text is used.</li></ul>
 </td>
 </tr>
@@ -138,7 +138,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="5.959404059594041%" headers="mcps1.1.6.1.4 "><p id="p1743764161320"><a name="p1743764161320"></a><a name="p1743764161320"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p2437104151319"><a name="p2437104151319"></a><a name="p2437104151319"></a>Color of the text modifier.</p>
+<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p2437104151319"><a name="p2437104151319"></a><a name="p2437104151319"></a>Color of the text decoration.</p>
 </td>
 </tr>
 <tr id="row95113208317"><td class="cellrowborder" valign="top" width="16.58834116588341%" headers="mcps1.1.6.1.1 "><p id="p651118201637"><a name="p651118201637"></a><a name="p651118201637"></a>text-align</p>
@@ -199,7 +199,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="5.959404059594041%" headers="mcps1.1.6.1.4 "><p id="p35148201135"><a name="p35148201135"></a><a name="p35148201135"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p934052515223"><a name="p934052515223"></a><a name="p934052515223"></a>Maximum number of text lines. The value is of the string type. The options are as follows:</p>
+<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p934052515223"><a name="p934052515223"></a><a name="p934052515223"></a>Maximum number of text lines. The <strong id="b10373134345315"><a name="b10373134345315"></a><a name="b10373134345315"></a>string</strong> values are as follows:</p>
 <a name="ul6458027152218"></a><a name="ul6458027152218"></a><ul id="ul6458027152218"><li><strong id="b1132417423294"><a name="b1132417423294"></a><a name="b1132417423294"></a>auto</strong><sup id="sup15460165433814"><a name="sup15460165433814"></a><a name="sup15460165433814"></a>7+</sup>: The number of text lines adapts to the container height.</li></ul>
 </td>
 </tr>
@@ -222,7 +222,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </td>
 <td class="cellrowborder" valign="top" width="5.959404059594041%" headers="mcps1.1.6.1.4 "><p id="p9515120231"><a name="p9515120231"></a><a name="p9515120231"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p11515520038"><a name="p11515520038"></a><a name="p11515520038"></a>Maximum font size in the text. This style must be used together with <strong id="b22010161547"><a name="b22010161547"></a><a name="b22010161547"></a>min-font-size</strong>. The font size can be changed dynamically. After the maximum and minimum font sizes are set, <strong id="b1294781198"><a name="b1294781198"></a><a name="b1294781198"></a>font-size</strong> does not take effect.</p>
+<td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p11515520038"><a name="p11515520038"></a><a name="p11515520038"></a>Maximum font size in the text. This style must be used together with <strong id="b22010161547"><a name="b22010161547"></a><a name="b22010161547"></a>min-font-size</strong>. The font size can be changed dynamically. After the maximum and minimum font sizes are set, <strong id="b302292867"><a name="b302292867"></a><a name="b302292867"></a>font-size</strong> does not take effect.</p>
 </td>
 </tr>
 <tr id="row155154201838"><td class="cellrowborder" valign="top" width="16.58834116588341%" headers="mcps1.1.6.1.1 "><p id="p151592017316"><a name="p151592017316"></a><a name="p151592017316"></a>font-size-step </p>
@@ -280,7 +280,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 <td class="cellrowborder" valign="top" width="5.959404059594041%" headers="mcps1.1.6.1.4 "><p id="p083911713168"><a name="p083911713168"></a><a name="p083911713168"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="44.16558344165583%" headers="mcps1.1.6.1.5 "><p id="p9839417181617"><a name="p9839417181617"></a><a name="p9839417181617"></a>Mode for processing blanks in the component. The options are as follows:</p>
-<a name="ul9139155131615"></a><a name="ul9139155131615"></a><ul id="ul9139155131615"><li><strong id="b491965183217"><a name="b491965183217"></a><a name="b491965183217"></a>normal</strong>: All spaces, carriage returns, and tabs are combined into one space, and the text is automatically wrapped.</li><li><strong id="b6272101473212"><a name="b6272101473212"></a><a name="b6272101473212"></a>nowrap</strong>: All spaces, carriage returns, and tabs are combined into one space, and the text is not wrapped.</li><li><strong id="b15224284323"><a name="b15224284323"></a><a name="b15224284323"></a>pre</strong>: All contents are output as-is without line breaks.</li><li><strong id="b16557113373214"><a name="b16557113373214"></a><a name="b16557113373214"></a>pre-wrap</strong>: All contents are output as-is with line breaks.</li><li><strong id="b16445113143320"><a name="b16445113143320"></a><a name="b16445113143320"></a>pre-line</strong>: All spaces and tabs are combined into one space, the carriage return remains unchanged, and the text is wrapped.</li></ul>
+<a name="ul9139155131615"></a><a name="ul9139155131615"></a><ul id="ul9139155131615"><li><strong id="b491965183217"><a name="b491965183217"></a><a name="b491965183217"></a>normal</strong>: All spaces, carriage returns, and tabs are combined into one space, and the text is automatically wrapped.</li><li><strong id="b6272101473212"><a name="b6272101473212"></a><a name="b6272101473212"></a>nowrap</strong>: All spaces, carriage returns, and tabs are combined into one space, and the text is not wrapped.</li><li><strong id="b1853091145817"><a name="b1853091145817"></a><a name="b1853091145817"></a>pre</strong>: All contents are output as-is.</li><li><strong id="b16557113373214"><a name="b16557113373214"></a><a name="b16557113373214"></a>pre-wrap</strong>: All contents are output as-is with line breaks.</li><li><strong id="b16445113143320"><a name="b16445113143320"></a><a name="b16445113143320"></a>pre-line</strong>: All spaces and tabs are combined into one space, the carriage return remains unchanged, and the text is wrapped.</li></ul>
 </td>
 </tr>
 <tr id="row10859173188"><td class="cellrowborder" valign="top" width="16.58834116588341%" headers="mcps1.1.6.1.1 "><p id="p168595741814"><a name="p168595741814"></a><a name="p168595741814"></a>adapt-height<sup id="sup10570154133314"><a name="sup10570154133314"></a><a name="sup10570154133314"></a>7+</sup></p>
@@ -307,7 +307,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 >-   The  **letter-spacing**,  **text-align**,  **line-height**,  **text-overflow**, and  **max-lines**  styles take effect on text content held by the  **<text\>**  component and its child components \(**<span\>**\).
 >-   The  **<text\>**  component does not support the coexistence of the text content and  **<span\>**  subcomponents. \(If both of them exist, only the content in  **<span\>**  is displayed.\)
 
-## Event<a name="section1948820711216"></a>
+## Events<a name="section1948820711216"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
@@ -362,7 +362,7 @@ export default {
 }
 ```
 
-![](figures/3-41.png)
+![](figures/3.png)
 
 ```
 <!-- xxx.hml -->
@@ -401,5 +401,5 @@ export default {
 }
 ```
 
-![](figures/2-42.png)
+![](figures/2.png)
 

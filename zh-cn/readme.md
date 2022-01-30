@@ -67,7 +67,7 @@
     -   connectivity：[网络与连接](application-dev/connectivity/Readme-CN.md)
     -   database：[分布式数据服务](application-dev/database/Readme-CN.md)
     -   usb：[USB服务](application-dev//usb/Readme-CN.md)
-    -   application-event-logging：[应用事件打点](application-dev/application-event-logging/Readme-CN.md)
+    -   dfx：[DFX](application-dev/dfx/Readme-CN.md)
     -   reference：[开发参考](application-dev/reference/Readme-CN.md)
 -   许可证及版权信息检查工具：[开源合规审查工具](https://gitee.com/openharmony-sig/tools_oat)
 -   glossary：[术语](device-dev/glossary/glossary.md)

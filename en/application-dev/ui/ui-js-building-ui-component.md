@@ -47,3 +47,4 @@ Components can be classified into the following types based on their functions.
 </tr>
 </tbody>
 </table>
+

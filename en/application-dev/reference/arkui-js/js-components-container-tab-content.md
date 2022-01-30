@@ -2,15 +2,15 @@
 
 **<tab-content\>**  is a child component of  [<tabs\>](js-components-container-tabs.md)  and is used to provide the area for displaying the tab content. By default, its height is such that all the remaining space of the  **<tabs\>**  component is filled. The child components are arranged horizontally. When  **<tab-content\>**  is used as a child element in a container, the length on the main axis direction must be specified. Otherwise, the child element cannot be displayed.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="s6831289f2fac48a892746bd57f336c26"></a>
+## Child Components<a name="s6831289f2fac48a892746bd57f336c26"></a>
 
 Supported
 
-## Attribute<a name="s623ab9c704b24c329d0e91e85a30263e"></a>
+## Attributes<a name="s623ab9c704b24c329d0e91e85a30263e"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -41,15 +41,15 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section15751323144115"></a>
+## Styles<a name="section15751323144115"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Event<a name="s0c39d3f35b9d4af69a19456ae743c675"></a>
+## Events<a name="s0c39d3f35b9d4af69a19456ae743c675"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
-## Example Code<a name="section11929165914411"></a>
+## Example<a name="section11929165914411"></a>
 
 For details, see the  [tabs example code](js-components-container-tabs.md#section14993155318710).
 

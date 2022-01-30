@@ -1,4 +1,13 @@
-# Visibility<a name="EN-US_TOPIC_0000001166728051"></a>
+# Visibility<a name="EN-US_TOPIC_0000001192755134"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table3856mcpsimp"></a>
 <table><thead align="left"><tr id="row3864mcpsimp"><th class="cellrowborder" valign="top" width="12.088791120887912%" id="mcps1.1.5.1.1"><p id="p3866mcpsimp"><a name="p3866mcpsimp"></a><a name="p3866mcpsimp"></a>Name</p>

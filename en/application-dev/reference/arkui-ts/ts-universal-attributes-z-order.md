@@ -1,4 +1,13 @@
-# Z-order Control<a name="EN-US_TOPIC_0000001166648623"></a>
+# Z-order Control<a name="EN-US_TOPIC_0000001237475083"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table3548mcpsimp"></a>
 <table><thead align="left"><tr id="row3556mcpsimp"><th class="cellrowborder" valign="top" width="15.120000000000001%" id="mcps1.1.5.1.1"><p id="p3558mcpsimp"><a name="p3558mcpsimp"></a><a name="p3558mcpsimp"></a>Name</p>

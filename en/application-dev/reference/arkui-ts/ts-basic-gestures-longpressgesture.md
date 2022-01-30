@@ -1,4 +1,11 @@
-# LongPressGesture<a name="EN-US_TOPIC_0000001113138854"></a>
+# LongPressGesture<a name="EN-US_TOPIC_0000001237555117"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
 
 ## APIs<a name="section710011405537"></a>
 
@@ -65,12 +72,12 @@ LongPressGesture\(options?: \{ fingers?: number, repeat?: boolean, duration?: nu
 </th>
 </tr>
 </thead>
-<tbody><tr id="row4541257114319"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p5541357194313"><a name="p5541357194313"></a><a name="p5541357194313"></a>onAction((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tbody><tr id="row4541257114319"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p5541357194313"><a name="p5541357194313"></a><a name="p5541357194313"></a>onAction((event?: <a href="#li21621335144710">LongPressGestureEvent</a>) =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p11541155710434"><a name="p11541155710434"></a><a name="p11541155710434"></a>Callback invoked when a long press gesture is recognized.</p>
 </td>
 </tr>
-<tr id="row2899841162916"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p15900174162916"><a name="p15900174162916"></a><a name="p15900174162916"></a>onActionEnd((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tr id="row2899841162916"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p15900174162916"><a name="p15900174162916"></a><a name="p15900174162916"></a>onActionEnd((event?: <a href="#li21621335144710">LongPressGestureEvent</a>) =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p69001041172920"><a name="p69001041172920"></a><a name="p69001041172920"></a>Callback invoked when the finger used for a long press gesture is lift.</p>
 </td>
@@ -82,6 +89,30 @@ LongPressGesture\(options?: \{ fingers?: number, repeat?: boolean, duration?: nu
 </tr>
 </tbody>
 </table>
+
+-   <a name="li21621335144710"></a>LongPressGestureEvent attributes<sup>8+</sup>
+
+    Inherited from  [GestureEvent](ts-gesture-settings.md#table290mcpsimp).
+
+    <a name="table290mcpsimp"></a>
+    <table><thead align="left"><tr id="row296mcpsimp"><th class="cellrowborder" valign="top" width="20.09%" id="mcps1.1.4.1.1"><p id="p298mcpsimp"><a name="p298mcpsimp"></a><a name="p298mcpsimp"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="18.41%" id="mcps1.1.4.1.2"><p id="p300mcpsimp"><a name="p300mcpsimp"></a><a name="p300mcpsimp"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.5%" id="mcps1.1.4.1.3"><p id="p302mcpsimp"><a name="p302mcpsimp"></a><a name="p302mcpsimp"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row303mcpsimp"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p305mcpsimp"><a name="p305mcpsimp"></a><a name="p305mcpsimp"></a>repeat</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.41%" headers="mcps1.1.4.1.2 "><p id="p307mcpsimp"><a name="p307mcpsimp"></a><a name="p307mcpsimp"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p309mcpsimp"><a name="p309mcpsimp"></a><a name="p309mcpsimp"></a>Whether the event is repeated.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
 
 ## Example<a name="section16900453182718"></a>
 
@@ -99,7 +130,7 @@ struct LongPressGestureExample {
     .gesture(
       LongPressGesture({ repeat: true })
         // Repeatedly triggered when the long press gesture exists.
-        .onAction((event: GestureEvent) => {
+        .onAction((event: LongPressGestureEvent) => {
           if (event.repeat) { this.count++ }
         })
         // Triggered when the long press gesture ends.

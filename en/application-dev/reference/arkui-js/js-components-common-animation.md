@@ -19,7 +19,7 @@ Components support dynamic rotation, translation, and scaling effects. These eff
 </td>
 <td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.3 "><p id="p1986319537716"><a name="p1986319537716"></a><a name="p1986319537716"></a>center center</p>
 </td>
-<td class="cellrowborder" valign="top" width="37%" headers="mcps1.1.5.1.4 "><p id="p6867140201912"><a name="p6867140201912"></a><a name="p6867140201912"></a>Origin position of the transformed element. The unit can be px or a percentage (relative to the animation target component). If only one value is specified, the other value is <strong id="b18297190153111"><a name="b18297190153111"></a><a name="b18297190153111"></a>50%</strong>. The available values for the first string are <strong id="b76212170322"><a name="b76212170322"></a><a name="b76212170322"></a>left</strong>, <strong id="b56420192323"><a name="b56420192323"></a><a name="b56420192323"></a>center</strong>, and <strong id="b641019164323"><a name="b641019164323"></a><a name="b641019164323"></a>right</strong>. The available values for the second string are <strong id="b11194144433213"><a name="b11194144433213"></a><a name="b11194144433213"></a>top</strong>, <strong id="b15762430323"><a name="b15762430323"></a><a name="b15762430323"></a>center</strong>, and <strong id="b7648942183213"><a name="b7648942183213"></a><a name="b7648942183213"></a>bottom</strong>.</p>
+<td class="cellrowborder" valign="top" width="37%" headers="mcps1.1.5.1.4 "><p id="p6867140201912"><a name="p6867140201912"></a><a name="p6867140201912"></a>Origin position of the transformed element. The unit can be px or a percentage (relative to the animation target component). If only one value is specified, the other one is <strong id="b18297190153111"><a name="b18297190153111"></a><a name="b18297190153111"></a>50%</strong>. The available values for the first string are <strong id="b76212170322"><a name="b76212170322"></a><a name="b76212170322"></a>left</strong>, <strong id="b56420192323"><a name="b56420192323"></a><a name="b56420192323"></a>center</strong>, and <strong id="b641019164323"><a name="b641019164323"></a><a name="b641019164323"></a>right</strong>. The available values for the second string are <strong id="b11194144433213"><a name="b11194144433213"></a><a name="b11194144433213"></a>top</strong>, <strong id="b15762430323"><a name="b15762430323"></a><a name="b15762430323"></a>center</strong>, and <strong id="b7648942183213"><a name="b7648942183213"></a><a name="b7648942183213"></a>bottom</strong>.</p>
 <p id="p11863165316720"><a name="p11863165316720"></a><a name="p11863165316720"></a>Example:</p>
 <p id="p146961332184513"><a name="p146961332184513"></a><a name="p146961332184513"></a>transform-origin: 200px 30%</p>
 <p id="p12696232144513"><a name="p12696232144513"></a><a name="p12696232144513"></a>transform-origin: 100px top</p>
@@ -369,7 +369,7 @@ Components support dynamic rotation, translation, and scaling effects. These eff
 </td>
 <td class="cellrowborder" valign="top" width="13.13131313131313%" headers="mcps1.2.5.1.3 "><p id="p34533341167"><a name="p34533341167"></a><a name="p34533341167"></a>50% 50%</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.464646464646464%" headers="mcps1.2.5.1.4 "><p id="p14867144143014"><a name="p14867144143014"></a><a name="p14867144143014"></a>Set the background image for a window. The unit can be percentage or px. The first value indicates the horizontal position, and the second value indicates the vertical position. If only one value is specified, the other value is <strong id="b726314471500"><a name="b726314471500"></a><a name="b726314471500"></a>50%</strong>. The available values for the first string are <strong id="b13819621155112"><a name="b13819621155112"></a><a name="b13819621155112"></a>left</strong>, <strong id="b188192021185113"><a name="b188192021185113"></a><a name="b188192021185113"></a>center</strong>, and <strong id="b14819132110512"><a name="b14819132110512"></a><a name="b14819132110512"></a>right</strong>. The available values for the second string are <strong id="b18203211511"><a name="b18203211511"></a><a name="b18203211511"></a>top</strong>, <strong id="b1182002113513"><a name="b1182002113513"></a><a name="b1182002113513"></a>center</strong>, and <strong id="b1882072165113"><a name="b1882072165113"></a><a name="b1882072165113"></a>bottom</strong>.</p>
+<td class="cellrowborder" valign="top" width="46.464646464646464%" headers="mcps1.2.5.1.4 "><p id="p14867144143014"><a name="p14867144143014"></a><a name="p14867144143014"></a>Set the background image for a window. The unit can be percentage or px. The first value indicates the horizontal position, and the second value indicates the vertical position. If only one value is specified, the other one is <strong id="b726314471500"><a name="b726314471500"></a><a name="b726314471500"></a>50%</strong>. The available values for the first string are <strong id="b13819621155112"><a name="b13819621155112"></a><a name="b13819621155112"></a>left</strong>, <strong id="b188192021185113"><a name="b188192021185113"></a><a name="b188192021185113"></a>center</strong>, and <strong id="b14819132110512"><a name="b14819132110512"></a><a name="b14819132110512"></a>right</strong>. The available values for the second string are <strong id="b18203211511"><a name="b18203211511"></a><a name="b18203211511"></a>top</strong>, <strong id="b1182002113513"><a name="b1182002113513"></a><a name="b1182002113513"></a>center</strong>, and <strong id="b1882072165113"><a name="b1882072165113"></a><a name="b1882072165113"></a>bottom</strong>.</p>
 <p id="p1345315341569"><a name="p1345315341569"></a><a name="p1345315341569"></a>Example:</p>
 <a name="ul19908143113422"></a><a name="ul19908143113422"></a><ul id="ul19908143113422"><li>background-position: 200px 30%</li><li>background-position: 100px top</li><li>background-position: center center</li></ul>
 </td>
@@ -464,7 +464,7 @@ export default {
 }
 ```
 
-![](figures/en-us_image_0000001173324797.gif)
+![](figures/en-us_image_0000001127285034.gif)
 
 ```
 <!-- xxx.hml -->
@@ -521,6 +521,8 @@ export default {
     transition: all 5s linear 0s;
 }
 ```
+
+![](figures/en-us_image_0000001152833768.gif)
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >The @keyframes rule with  **from**  and  **to**  defined cannot be dynamically bound to an element.

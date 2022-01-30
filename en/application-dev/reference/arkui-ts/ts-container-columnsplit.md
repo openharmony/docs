@@ -1,6 +1,13 @@
-# ColumnSplit<a name="EN-US_TOPIC_0000001121464544"></a>
+# ColumnSplit<a name="EN-US_TOPIC_0000001237475057"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<ColumnSplit\>**  lays out child components vertically and inserts a horizontal divider between every two child components.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section5989144051714"></a>
 

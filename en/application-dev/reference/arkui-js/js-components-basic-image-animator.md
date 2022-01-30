@@ -6,7 +6,7 @@ The  **<image-animator\>**  component is used to provide an image frame animator
 
 Not supported
 
-## Attribute<a name="section1342212415618"></a>
+## Attributes<a name="section1342212415618"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -191,11 +191,11 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section1774719169253"></a>
+## Styles<a name="section1774719169253"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
-## Event<a name="section17969351566"></a>
+## Events<a name="section17969351566"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -239,7 +239,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section1428810433566"></a>
+## Methods<a name="section1428810433566"></a>
 
 In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
 

@@ -2,19 +2,18 @@
 
 **<list-item-group\>**  is a child component of  **<[list](js-components-container-list.md)\>**  and is used to group items in a list. By default, the width of  **<list-item-group\>**  is equal to that of  **<list\>**.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   To use this component, you must set the  **columns**  attribute of the parent component  **<list\>**  to  **1**. Otherwise,  **<list-item-group\>**  is not displayed.
->-   You can customize the width of each  **<list-item-group\>**. However, if you retain the default value  **stretch**  of  **align-items**  for the parent component  **<list\>**, the width of  **<list-item-group\>**  is equal to that of  **<list\>**. You can set  **align-items**  to other values rather than  **stretch**  to make the customized  **<list-item-group\>**  width take effect.
+-   To use this component, you must set the  **columns**  attribute of the parent component  **<list\>**  to  **1**. Otherwise,  **<list-item-group\>**  is not displayed.
+-   You can customize the width of each  **<list-item-group\>**. However, if you retain the default value  **stretch**  of  **align-items**  for the parent component  **<list\>**, the width of  **<list-item-group\>**  is equal to that of  **<list\>**. You can set  **align-items**  to other values rather than  **stretch**  to make the customized  **<list-item-group\>**  width take effect.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Only  **<[list-item](js-components-container-list-item.md)\>**  are supported.
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -48,7 +47,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   **id**  in the common attributes is used to identify a group. The input parameters of related functions and event information in the list also use  **id**  to uniquely identify a group.
 
-## Style<a name="section16337145611017"></a>
+## Styles<a name="section16337145611017"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -92,7 +91,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section1052914819116"></a>
+## Events<a name="section1052914819116"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -134,11 +133,11 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
-## Example Code<a name="section1159816598218"></a>
+## Example<a name="section1159816598218"></a>
 
 ```
 <!-- xxx.hml -->

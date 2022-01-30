@@ -1,9 +1,14 @@
-# @Watch
+# @Watch<a name="ZH-CN_TOPIC_0000001177658253"></a>
 
+@Watch用于监听状态变量的变化，语法结构为：
 
+```
+@State @Watch("onChanged") count : number = 0
+```
 
-应用可以注册回调方法。当一个被@State, @Prop, @Link, @ObjectLink, @Provide, @Consume, @StorageProp, 以及 @StorageLink中任意一个装饰器修饰的变量改变时，均可触发此回调。@Watch中的变量一定要使用（“”）进行包装。
+如上给状态变量增加一个@Watch装饰器，通过@Watch注册一个回调方法onChanged， 当状态变量count被改变时， 触发onChanged回调。
 
+装饰器@State, @Prop, @Link, @ObjectLink, @Provide, @Consume, @StorageProp以及 @StorageLink装饰的变量可以监听其变化。
 
 ```
 @Entry
@@ -34,3 +39,4 @@ struct CompA {
     }
 }
 ```
+

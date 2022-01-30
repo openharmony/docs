@@ -2,7 +2,7 @@
 
 The  **<input\>**  component provides an interactive interface to receive user input. It can be a radio button, check box, button, single-line text box, and more.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -10,7 +10,7 @@ None
 
 Not supported
 
-## Attribute<a name="section2907183951110"></a>
+## Attributes<a name="section2907183951110"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -234,7 +234,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section066012492913"></a>
+## Styles<a name="section066012492913"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -322,7 +322,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section1721512551218"></a>
+## Events<a name="section1721512551218"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -414,7 +414,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
     </table>
 
 
-## Method<a name="section47669296127"></a>
+## Methods<a name="section47669296127"></a>
 
 In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
 
@@ -506,7 +506,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/1-34.png)
+    ![](figures/1-2.png)
 
 2.  Common button
 
@@ -522,6 +522,8 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     .div-button {
       flex-direction: column;
       align-items: center;
+      
+      
     }
     .button {
       margin-top: 30px;
@@ -529,14 +531,15 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/1-34.png)
+    ![](figures/en-us_image_0000001198898293.png)
 
 3.  Check box
 
     ```
     <!-- xxx.hml -->
     <div class="content">
-      <input onchange="checkboxOnChange" checked="true"' type="checkbox"></input>
+      <input onchange="checkboxOnChange" checked="true" type="checkbox"></input>
+      
     </div>
     ```
 
@@ -545,6 +548,8 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     .content{
       width: 100%;
       height: 200px;
+      
+      
       align-items: center; 
       justify-content: center;   
     }
@@ -563,7 +568,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/1-35.png)
+    ![](figures/en-us_image_0000001173324749.png)
 
 4.  Radio button
 
@@ -601,6 +606,5 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
     }
     ```
 
-    ![](figures/1-36.png)
-
+    ![](figures/1-3.png)
 

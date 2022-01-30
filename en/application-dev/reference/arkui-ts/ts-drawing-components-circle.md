@@ -1,6 +1,13 @@
-# Circle<a name="EN-US_TOPIC_0000001166727517"></a>
+# Circle<a name="EN-US_TOPIC_0000001192755110"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Circle\>**  component is used to draw a circle.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section5327181920402"></a>
 

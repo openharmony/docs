@@ -1,5 +1,6 @@
 # CanvasRenderingContext2D<a name="EN-US_TOPIC_0000001173164707"></a>
 
+
 **CanvasRenderingContext2D**  allows you to draw rectangles, text, images,  and other objects on a canvas.
 
 -   Example
@@ -40,7 +41,7 @@
 
 -   Anti-aliasing enabled
 
-    ![](figures/screenshot-44.png)
+    ![](figures/screenshot-8.png)
 
 
 ## Attributes<a name="section122871125229"></a>
@@ -133,7 +134,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="49.63496349634964%" headers="mcps1.1.5.1.4 "><p id="p1268512328512"><a name="p1268512328512"></a><a name="p1268512328512"></a>Text alignment mode. Available values are as follows:</p>
 <a name="ul47713282523"></a><a name="ul47713282523"></a><ul id="ul47713282523"><li><strong id="b239931418519"><a name="b239931418519"></a><a name="b239931418519"></a>left</strong>: The text is left-aligned.</li><li><strong id="b149317195119"><a name="b149317195119"></a><a name="b149317195119"></a>right</strong>: The text is right-aligned.</li><li><strong id="b12166174551511"><a name="b12166174551511"></a><a name="b12166174551511"></a>center</strong>: The text is center-aligned.</li><li><strong id="b34311647161"><a name="b34311647161"></a><a name="b34311647161"></a>start</strong>: The text is aligned with the start bound.</li><li><strong id="b1142411721715"><a name="b1142411721715"></a><a name="b1142411721715"></a>end</strong>: The text is aligned with the end bound.</li></ul>
-<div class="note" id="note18771928165213"><a name="note18771928165213"></a><a name="note18771928165213"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p977142811526"><a name="p977142811526"></a><a name="p977142811526"></a>In the <strong id="b385912505119"><a name="b385912505119"></a><a name="b385912505119"></a>ltr</strong> layout mode, the value <strong id="b3859725195119"><a name="b3859725195119"></a><a name="b3859725195119"></a>start</strong> equals to <strong id="b88601025175113"><a name="b88601025175113"></a><a name="b88601025175113"></a>left</strong>. In the <strong id="b986032585116"><a name="b986032585116"></a><a name="b986032585116"></a>rtl</strong> layout mode, the value <strong id="b286112519518"><a name="b286112519518"></a><a name="b286112519518"></a>start</strong> equals to <strong id="b386132525113"><a name="b386132525113"></a><a name="b386132525113"></a>right</strong>.</p>
+<div class="note" id="note18771928165213"><a name="note18771928165213"></a><a name="note18771928165213"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p977142811526"><a name="p977142811526"></a><a name="p977142811526"></a>In the <strong id="b385912505119"><a name="b385912505119"></a><a name="b385912505119"></a>ltr</strong> layout mode, the value <strong id="b3859725195119"><a name="b3859725195119"></a><a name="b3859725195119"></a>start</strong> equals <strong id="b88601025175113"><a name="b88601025175113"></a><a name="b88601025175113"></a>left</strong>. In the <strong id="b986032585116"><a name="b986032585116"></a><a name="b986032585116"></a>rtl</strong> layout mode, the value <strong id="b286112519518"><a name="b286112519518"></a><a name="b286112519518"></a>start</strong> equals <strong id="b386132525113"><a name="b386132525113"></a><a name="b386132525113"></a>right</strong>.</p>
 </div></div>
 </td>
 </tr>
@@ -153,7 +154,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="9.650965096509651%" headers="mcps1.1.5.1.3 "><p id="p16620536473"><a name="p16620536473"></a><a name="p16620536473"></a>-</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.63496349634964%" headers="mcps1.1.5.1.4 "><p id="p1062063174719"><a name="p1062063174719"></a><a name="p1062063174719"></a>Transparency. <strong id="b16159759105218"><a name="b16159759105218"></a><a name="b16159759105218"></a>0.0</strong>: completely transparent; <strong id="b784142165312"><a name="b784142165312"></a><a name="b784142165312"></a>1.0</strong>: completely opaque.</p>
+<td class="cellrowborder" valign="top" width="49.63496349634964%" headers="mcps1.1.5.1.4 "><p id="p1062063174719"><a name="p1062063174719"></a><a name="p1062063174719"></a>Opacity. <strong id="b16159759105218"><a name="b16159759105218"></a><a name="b16159759105218"></a>0.0</strong>: completely transparent; <strong id="b784142165312"><a name="b784142165312"></a><a name="b784142165312"></a>1.0</strong>: completely opaque.</p>
 </td>
 </tr>
 <tr id="row674934291912"><td class="cellrowborder" valign="top" width="13.97139713971397%" headers="mcps1.1.5.1.1 "><p id="p15749144231914"><a name="p15749144231914"></a><a name="p15749144231914"></a><a href="#section1864372311920">lineDashOffset</a></p>
@@ -225,8 +226,22 @@
 ### fillStyle<a name="section948213716202"></a>
 
 ```
-ctx.fillStyle = '#0000ff';
-ctx.fillRect(20, 20, 150, 100);
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.fillStyle = '#0000ff';
+    ctx.fillRect(20, 20, 150, 100);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001166962736.png)
@@ -234,8 +249,22 @@ ctx.fillRect(20, 20, 150, 100);
 ### lineWidth<a name="section1334911993014"></a>
 
 ```
-ctx.lineWidth = 5;
-ctx.strokeRect(25, 25, 85, 105);
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.lineWidth = 5;
+    ctx.strokeRect(25, 25, 85, 105);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001166484430.png)
@@ -243,9 +272,23 @@ ctx.strokeRect(25, 25, 85, 105);
 ### strokeStyle<a name="section64021403250"></a>
 
 ```
-ctx.lineWidth = 10;
-ctx.strokeStyle = '#0000ff';
-ctx.strokeRect(25, 25, 155, 105);
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = '#0000ff';
+    ctx.strokeRect(25, 25, 155, 105);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001212124299.png)
@@ -253,12 +296,26 @@ ctx.strokeRect(25, 25, 155, 105);
 ### lineCap<a name="section6297132917520"></a>
 
 ```
-ctx.lineWidth = 8;
-ctx.beginPath();
-ctx.lineCap = 'round';
-ctx.moveTo(30, 50);
-ctx.lineTo(220, 50);
-ctx.stroke();
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.lineCap = 'round';
+    ctx.moveTo(30, 50);
+    ctx.lineTo(220, 50);
+    ctx.stroke();
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001214837127.png)
@@ -266,13 +323,27 @@ ctx.stroke();
 ### lineJoin<a name="section1538165645420"></a>
 
 ```
-ctx.beginPath();
-ctx.lineWidth = 8;
-ctx.lineJoin = 'miter';
-ctx.moveTo(30, 30);
-ctx.lineTo(120, 60);
-ctx.lineTo(30, 110);
-ctx.stroke();
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.beginPath();
+    ctx.lineWidth = 8;
+    ctx.lineJoin = 'miter';
+    ctx.moveTo(30, 30);
+    ctx.lineTo(120, 60);
+    ctx.lineTo(30, 110);
+    ctx.stroke();
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001214717247.png)
@@ -280,13 +351,27 @@ ctx.stroke();
 ### miterLimit<a name="section1584174515577"></a>
 
 ```
-ctx.lineWidth = 8;
-ctx.lineJoin = 'miter';
-ctx.miterLimit = 3;
-ctx.moveTo(30, 30);
-ctx.lineTo(60, 35);
-ctx.lineTo(30, 37);
-ctx.stroke();
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.lineWidth =14;
+    ctx.lineJoin = 'miter';
+    ctx.miterLimit = 3;
+    ctx.moveTo(30, 30);
+    ctx.lineTo(120, 60);
+    ctx.lineTo(30, 70);
+    ctx.stroke();
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001167001464.png)
@@ -294,8 +379,22 @@ ctx.stroke();
 ### font<a name="section17299329495"></a>
 
 ```
-ctx.font = '30px sans-serif';
-ctx.fillText("Hello World", 20, 60);
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.font = '30px sans-serif';
+    ctx.fillText("Hello World", 20, 60);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001167046832.png)
@@ -303,24 +402,38 @@ ctx.fillText("Hello World", 20, 60);
 ### textAlign<a name="section323614315118"></a>
 
 ```
-ctx.strokeStyle = '#0000ff';
-ctx.moveTo(140, 10);
-ctx.lineTo(140, 160);
-ctx.stroke();
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
 
-ctx.font = '18px sans-serif';    
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.strokeStyle = '#0000ff';
+    ctx.moveTo(140, 10);
+    ctx.lineTo(140, 160);
+    ctx.stroke();
+
+    ctx.font = '18px sans-serif';    
 
 // Show the textAlign values.
-ctx.textAlign = 'start';      
-ctx.fillText('textAlign=start', 140, 60);        
-ctx.textAlign = 'end';      
-ctx.fillText('textAlign=end', 140, 80);  
-ctx.textAlign = 'left';      
-ctx.fillText('textAlign=left', 140, 100);
-ctx.textAlign = 'center';     
-ctx.fillText('textAlign=center',140, 120);              
-ctx.textAlign = 'right';      
-ctx.fillText('textAlign=right',140, 140);
+    ctx.textAlign = 'start';      
+    ctx.fillText('textAlign=start', 140, 60);        
+    ctx.textAlign = 'end';      
+    ctx.fillText('textAlign=end', 140, 80);  
+    ctx.textAlign = 'left';      
+    ctx.fillText('textAlign=left', 140, 100);
+    ctx.textAlign = 'center';     
+    ctx.fillText('textAlign=center',140, 120);              
+    ctx.textAlign = 'right';      
+    ctx.fillText('textAlign=right',140, 140);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001167472798.png)
@@ -328,23 +441,37 @@ ctx.fillText('textAlign=right',140, 140);
 ### textBaseline<a name="section53111286533"></a>
 
 ```
-ctx.strokeStyle = '#0000ff';
-ctx.moveTo(0, 120);
-ctx.lineTo(400, 120);
-ctx.stroke();
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
+</div>
+```
 
-ctx.font = '20px sans-serif';
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.strokeStyle = '#0000ff';
+    ctx.moveTo(0, 120);
+    ctx.lineTo(400, 120);
+    ctx.stroke();
 
-ctx.textBaseline = 'top'; 
-ctx.fillText('Top', 10, 120); 
-ctx.textBaseline = 'bottom'; 
-ctx.fillText('Bottom', 55, 120); 
-ctx.textBaseline = 'middle'; 
-ctx.fillText('Middle', 125, 120); 
-ctx.textBaseline = 'alphabetic'; 
-ctx.fillText('Alphabetic', 195, 120); 
-ctx.textBaseline = 'hanging'; 
-ctx.fillText('Hanging', 295, 120);
+    ctx.font = '20px sans-serif';
+
+    ctx.textBaseline = 'top'; 
+    ctx.fillText('Top', 10, 120); 
+    ctx.textBaseline = 'bottom'; 
+    ctx.fillText('Bottom', 55, 120); 
+    ctx.textBaseline = 'middle'; 
+    ctx.fillText('Middle', 125, 120); 
+    ctx.textBaseline = 'alphabetic'; 
+    ctx.fillText('Alphabetic', 195, 120); 
+    ctx.textBaseline = 'hanging'; 
+    ctx.fillText('Hanging', 295, 120);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001169315920.png)
@@ -352,11 +479,26 @@ ctx.fillText('Hanging', 295, 120);
 ### globalAlpha<a name="section12301614194711"></a>
 
 ```
-ctx.fillStyle = 'rgb(255,0,0)';
-ctx.fillRect(0, 0, 50, 50);
-ctx.globalAlpha = 0.4;
-ctx.fillStyle = 'rgb(0,0,255)'; 
-ctx.fillRect(50, 50, 50, 50); 
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(0, 0, 50, 50);
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = 'rgb(0,0,255)'; 
+    ctx.fillRect(50, 50, 50, 50);
+ 
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001167953648.png)
@@ -364,17 +506,31 @@ ctx.fillRect(50, 50, 50, 50);
 ### lineDashOffset<a name="section1864372311920"></a>
 
 ```
-ctx.arc(100, 75, 50, 0, 6.28);
-ctx.setLineDash([10,20]);
-ctx.lineDashOffset = 10.0;
-ctx.stroke();
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.arc(100, 75, 50, 0, 6.28);
+    ctx.setLineDash([10,20]);
+    ctx.lineDashOffset = 10.0;
+    ctx.stroke();
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001167950468.png)
 
 ### globalCompositeOperation<a name="section864572415229"></a>
 
--   <a name="li15554182282920"></a>Defines a  **globalCompositeOperation**  object.
+-   <a name="li15554182282920"></a>Enumerates the operation types.
 
     <a name="table18531056194"></a>
     <table><thead align="left"><tr id="row11531165161910"><th class="cellrowborder" valign="top" width="12.78%" id="mcps1.1.3.1.1"><p id="p165310561912"><a name="p165310561912"></a><a name="p165310561912"></a>Value</p>
@@ -445,17 +601,31 @@ ctx.stroke();
 -   Example
 
     ```
-    ctx.fillStyle = 'rgb(255,0,0)';
-    ctx.fillRect(20, 20, 50, 50);
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'rgb(0,0,255)';
-    ctx.fillRect(50, 50, 50, 50);
-    // Start drawing second example
-    ctx.fillStyle = 'rgb(255,0,0)';
-    ctx.fillRect(120, 20, 50, 50);
-    ctx.globalCompositeOperation = 'destination-over';
-    ctx.fillStyle = 'rgb(0,0,255)';
-    ctx.fillRect(150, 50, 50, 50);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.fillStyle = 'rgb(255,0,0)';
+        ctx.fillRect(20, 20, 50, 50);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgb(0,0,255)';
+        ctx.fillRect(50, 50, 50, 50);
+        // Start drawing second example
+        ctx.fillStyle = 'rgb(255,0,0)';
+        ctx.fillRect(120, 20, 50, 50);
+        ctx.globalCompositeOperation = 'destination-over';
+        ctx.fillStyle = 'rgb(0,0,255)';
+        ctx.fillRect(150, 50, 50, 50);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001213192781.png)
@@ -466,10 +636,24 @@ ctx.stroke();
 ### shadowBlur<a name="section168015179313"></a>
 
 ```
-ctx.shadowBlur = 30;
-ctx.shadowColor = 'rgb(0,0,0)';
-ctx.fillStyle = 'rgb(255,0,0)';
-ctx.fillRect(20, 20, 100, 80);
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = 'rgb(0,0,0)';
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(20, 20, 100, 80);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001168111514.png)
@@ -477,10 +661,24 @@ ctx.fillRect(20, 20, 100, 80);
 ### shadowColor<a name="section18310428123315"></a>
 
 ```
-ctx.shadowBlur = 30;
-ctx.shadowColor = 'rgb(0,0,255)';
-ctx.fillStyle = 'rgb(255,0,0)';
-ctx.fillRect(30, 30, 100, 100);
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = 'rgb(0,0,255)';
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(30, 30, 100, 100);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001168111610.png)
@@ -488,11 +686,25 @@ ctx.fillRect(30, 30, 100, 100);
 ### shadowOffsetX<a name="section642861510359"></a>
 
 ```
-ctx.shadowBlur = 10;
-ctx.shadowOffsetX = 20;
-ctx.shadowColor = 'rgb(0,0,0)';
-ctx.fillStyle = 'rgb(255,0,0)';
-ctx.fillRect(20, 20, 100, 80);
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = 20;
+    ctx.shadowColor = 'rgb(0,0,0)';
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(20, 20, 100, 80);
+  }
+}
 ```
 
 ![](figures/en-us_image_0000001167631876.png)
@@ -500,11 +712,25 @@ ctx.fillRect(20, 20, 100, 80);
 ### shadowOffsetY<a name="section1554144712379"></a>
 
 ```
-ctx.shadowBlur = 10;
-ctx.shadowOffsetY = 20;
-ctx.shadowColor = 'rgb(0,0,0)';
-ctx.fillStyle = 'rgb(255,0,0)';
-ctx.fillRect(30, 30, 100, 100);
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 20;
+    ctx.shadowColor = 'rgb(0,0,0)';
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(30, 30, 100, 100);
+ }
+}
 ```
 
 ![](figures/en-us_image_0000001213193285.png)
@@ -512,12 +738,26 @@ ctx.fillRect(30, 30, 100, 100);
 ### imageSmoothingEnabled<sup>6+</sup><a name="section3704184543915"></a>
 
 ```
-var img = new Image();
-img.src = 'common/image/huawei.jpg';
-img.onload = function() {
-  ctx.imageSmoothingEnabled = false;
-  ctx.drawImage(img, 0, 0, 400, 200);
-};
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
+```
+
+```
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    var img = new Image();
+    img.src = 'common/image/example.jpg';
+    img.onload = function() {
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img, 0, 0, 400, 200);
+    };
+  }
+}
 ```
 
 ![](figures/smoothoff.png)
@@ -530,7 +770,7 @@ fillRect\(x: number, y: number, width:number, height: number\): void
 
 Fills a rectangle on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table1373232324719"></a>
     <table><thead align="left"><tr id="row157320236475"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p12732423164717"><a name="p12732423164717"></a><a name="p12732423164717"></a>Name</p>
@@ -559,7 +799,7 @@ Fills a rectangle on the canvas.
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p3733102394714"><a name="p3733102394714"></a><a name="p3733102394714"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p47331023144712"><a name="p47331023144712"></a><a name="p47331023144712"></a>Width of the rectangle</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p47331023144712"><a name="p47331023144712"></a><a name="p47331023144712"></a>Width of the rectangle.</p>
     </td>
     </tr>
     <tr id="row6733182354714"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1673322384718"><a name="p1673322384718"></a><a name="p1673322384718"></a>height</p>
@@ -575,7 +815,21 @@ Fills a rectangle on the canvas.
 -   Example
 
     ```
-    ctx.fillRect(20, 20, 200, 150);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.fillRect(20, 20, 200, 150);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214811029.png)
@@ -587,7 +841,7 @@ clearRect\(x: number, y: number, width:number, height: number\): void
 
 Clears the content in a rectangle on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table8705824156"></a>
     <table><thead align="left"><tr id="row13705024154"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p107055216158"><a name="p107055216158"></a><a name="p107055216158"></a>Name</p>
@@ -616,7 +870,7 @@ Clears the content in a rectangle on the canvas.
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p67109212153"><a name="p67109212153"></a><a name="p67109212153"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p5710122101512"><a name="p5710122101512"></a><a name="p5710122101512"></a>Width of the rectangle</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p5710122101512"><a name="p5710122101512"></a><a name="p5710122101512"></a>Width of the rectangle.</p>
     </td>
     </tr>
     <tr id="row2071014213157"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p10710162191517"><a name="p10710162191517"></a><a name="p10710162191517"></a>height</p>
@@ -632,9 +886,23 @@ Clears the content in a rectangle on the canvas.
 -   Example
 
     ```
-    ctx.fillStyle = 'rgb(0,0,255)';
-    ctx.fillRect(0, 0, 400, 200);
-    ctx.clearRect(20, 20, 150, 100);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.fillStyle = 'rgb(0,0,255)';
+        ctx.fillRect(0, 0, 400, 200);
+        ctx.clearRect(20, 20, 150, 100);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214619417.png)
@@ -646,7 +914,7 @@ strokeRect\(x: number, y: number, width:number, height: number\): void
 
 Draws a rectangle stroke on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table5198152151717"></a>
     <table><thead align="left"><tr id="row4198102117177"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1319842114173"><a name="p1319842114173"></a><a name="p1319842114173"></a>Name</p>
@@ -675,7 +943,7 @@ Draws a rectangle stroke on the canvas.
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p7199152181719"><a name="p7199152181719"></a><a name="p7199152181719"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p1519918213174"><a name="p1519918213174"></a><a name="p1519918213174"></a>Width of the rectangle</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p1519918213174"><a name="p1519918213174"></a><a name="p1519918213174"></a>Width of the rectangle.</p>
     </td>
     </tr>
     <tr id="row519962131710"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p219972181712"><a name="p219972181712"></a><a name="p219972181712"></a>height</p>
@@ -691,7 +959,21 @@ Draws a rectangle stroke on the canvas.
 -   Example
 
     ```
-    ctx.strokeRect(30, 30, 200, 150);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.strokeRect(30, 30, 200, 150);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214822091.png)
@@ -703,7 +985,7 @@ fillText\(text: string, x: number, y: number\): void
 
 Draws filled text on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table530775318111"></a>
     <table><thead align="left"><tr id="row73073531818"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p73081653910"><a name="p73081653910"></a><a name="p73081653910"></a>Name</p>
@@ -741,8 +1023,22 @@ Draws filled text on the canvas.
 -   Example
 
     ```
-    ctx.font = '35px sans-serif';
-    ctx.fillText("Hello World!", 20, 60);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.font = '35px sans-serif';
+        ctx.fillText("Hello World!", 10, 60);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214469787.png)
@@ -754,7 +1050,7 @@ strokeText\(text: string, x: number, y: number\): void
 
 Draws a text stroke on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table26917485393"></a>
     <table><thead align="left"><tr id="row7719748133917"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p19719548153913"><a name="p19719548153913"></a><a name="p19719548153913"></a>Name</p>
@@ -792,8 +1088,22 @@ Draws a text stroke on the canvas.
 -   Example
 
     ```
-    ctx.font = '25px sans-serif';
-    ctx.strokeText("Hello World!", 20, 60);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.font = '25px sans-serif';
+        ctx.strokeText("Hello World!", 10, 60);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214460669.png)
@@ -805,7 +1115,7 @@ measureText\(text: string\): TextMetrics
 
 Returns a  **TextMetrics**  object used to obtain the width of specified text.
 
--   Parameter
+-   Parameters
 
     <a name="table15114131710195"></a>
     <table><thead align="left"><tr id="row11115171771919"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p18115111741913"><a name="p18115111741913"></a><a name="p18115111741913"></a>Name</p>
@@ -846,10 +1156,24 @@ Returns a  **TextMetrics**  object used to obtain the width of specified text.
 -   Example
 
     ```
-    ctx.font = '25px sans-serif';
-    var txt = 'Hello World';
-    ctx.fillText("width:" + ctx.measureText(txt).width, 20, 60);
-    ctx.fillText(txt, 20, 110);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.font = '20px sans-serif';
+        var txt = 'Hello World';
+        ctx.fillText("width:" + ctx.measureText(txt).width, 20, 60);
+        ctx.fillText(txt, 20, 110);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169142476.png)
@@ -864,13 +1188,28 @@ Draws a stroke.
 -   Example
 
     ```
-    ctx.moveTo(25, 25);
-    ctx.lineTo(25, 105);
-    ctx.strokeStyle = 'rgb(0,0,255)';
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
     ```
 
-    ![](figures/en-us_image_0000001169309930.png)
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.moveTo(25, 25);
+        ctx.lineTo(25, 250);
+        ctx.lineWidth = '6';
+        ctx.strokeStyle = 'rgb(0,0,255)';
+        ctx.stroke();
+      }
+    }
+    ```
+
+    ![](figures/en-us_image_0000001236697937.png)
 
 
 ### beginPath<a name="section6111135582910"></a>
@@ -882,12 +1221,26 @@ Creates a drawing path.
 -   Example
 
     ```
-    ctx.beginPath();              
-    ctx.lineWidth = '6';
-    ctx.strokeStyle = '#0000ff';
-    ctx.moveTo(15, 80); 
-    ctx.lineTo(280, 160);
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.beginPath();              
+        ctx.lineWidth = '6';
+        ctx.strokeStyle = '#0000ff';
+        ctx.moveTo(15, 80); 
+        ctx.lineTo(280, 80);
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214629745.png)
@@ -899,7 +1252,7 @@ moveTo\(x: number, y: number\): void
 
 Moves a drawing path to a target position on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table312917301124"></a>
     <table><thead align="left"><tr id="row91295301224"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p31291730926"><a name="p31291730926"></a><a name="p31291730926"></a>Name</p>
@@ -930,10 +1283,24 @@ Moves a drawing path to a target position on the canvas.
 -   Example
 
     ```
-    ctx.beginPath();
-    ctx.moveTo(10, 10);
-    ctx.lineTo(280, 160);
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.beginPath();
+        ctx.moveTo(10, 10);
+        ctx.lineTo(280, 160);
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169309948.png)
@@ -945,7 +1312,7 @@ lineTo\(x: number, y: number\): void
 
 Connects the current point to a target position using a straight line.
 
--   Parameter
+-   Parameters
 
     <a name="table1445416436219"></a>
     <table><thead align="left"><tr id="row7455164312219"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p134551143322"><a name="p134551143322"></a><a name="p134551143322"></a>Name</p>
@@ -976,10 +1343,24 @@ Connects the current point to a target position using a straight line.
 -   Example
 
     ```
-    ctx.beginPath();
-    ctx.moveTo(10, 10);
-    ctx.lineTo(280, 160);
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.beginPath();
+        ctx.moveTo(10, 10);
+        ctx.lineTo(280, 160);
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169469914.png)
@@ -994,12 +1375,26 @@ Draws a closed path.
 -   Example
 
     ```
-    ctx.beginPath();
-    ctx.moveTo(30, 30);
-    ctx.lineTo(110, 30);
-    ctx.lineTo(70, 90);
-    ctx.closePath();
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.beginPath();
+        ctx.moveTo(30, 30);
+        ctx.lineTo(110, 30);
+        ctx.lineTo(70, 90);
+        ctx.closePath();
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169151508.png)
@@ -1011,7 +1406,7 @@ createPattern\(image: Image, repetition: string\): Object
 
 Creates a pattern for image filling based on a specified source image and repetition mode.
 
--   Parameter
+-   Parameters
 
     <a name="table10856104714495"></a>
     <table><thead align="left"><tr id="row6877547164915"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p087713474499"><a name="p087713474499"></a><a name="p087713474499"></a>Name</p>
@@ -1059,9 +1454,25 @@ Creates a pattern for image filling based on a specified source image and repeti
 -   Example
 
     ```
-    var pat = ctx.createPattern(img, 'repeat');
-    ctx.fillStyle = pat;
-    ctx.fillRect(0, 0, 20, 20);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var img = new Image();
+        img.src = 'common/images/example.jpg';
+        var pat = ctx.createPattern(img, 'repeat');
+        ctx.fillStyle = pat;
+        ctx.fillRect(0, 0, 20, 20);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169301188.png)
@@ -1073,7 +1484,7 @@ bezierCurveTo\(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number
 
 Draws a cubic bezier curve on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table20386105825314"></a>
     <table><thead align="left"><tr id="row15411458165315"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1411155895315"><a name="p1411155895315"></a><a name="p1411155895315"></a>Name</p>
@@ -1132,10 +1543,24 @@ Draws a cubic bezier curve on the canvas.
 -   Example
 
     ```
-    ctx.beginPath();
-    ctx.moveTo(10, 10);
-    ctx.bezierCurveTo(20, 100, 200, 100, 200, 20);
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.beginPath();
+        ctx.moveTo(10, 10);
+        ctx.bezierCurveTo(20, 100, 200, 100, 200, 20);
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214621177.png)
@@ -1147,7 +1572,7 @@ quadraticCurveTo\(cpx: number, cpy: number, x: number, y: number\): void
 
 Draws a quadratic curve on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table109941430581"></a>
     <table><thead align="left"><tr id="row1499443014812"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p179941301485"><a name="p179941301485"></a><a name="p179941301485"></a>Name</p>
@@ -1192,10 +1617,24 @@ Draws a quadratic curve on the canvas.
 -   Example
 
     ```
-    ctx.beginPath();
-    ctx.moveTo(20, 20);
-    ctx.quadraticCurveTo(100, 100, 200, 20);
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.beginPath();
+        ctx.moveTo(20, 20);
+        ctx.quadraticCurveTo(100, 100, 200, 20);
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169461910.png)
@@ -1207,7 +1646,7 @@ arc\(x: number, y: number, radius: number, startAngle: number, endAngle: number,
 
 Draws an arc on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table54911191131"></a>
     <table><thead align="left"><tr id="row185014191332"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1950151914316"><a name="p1950151914316"></a><a name="p1950151914316"></a>Name</p>
@@ -1266,9 +1705,23 @@ Draws an arc on the canvas.
 -   Example
 
     ```
-    ctx.beginPath();
-    ctx.arc(100, 75, 50, 0, 6.28);
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.beginPath();
+        ctx.arc(100, 75, 50, 0, 6.28);
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169470288.png)
@@ -1280,7 +1733,7 @@ arcTo\(x1: number, y1: number, x2: number, y2: number, radius: number\): void
 
 Draws an arc based on the radius and points on the arc.
 
--   Parameter
+-   Parameters
 
     <a name="table12152133112229"></a>
     <table><thead align="left"><tr id="row1715273113226"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1215215310226"><a name="p1215215310226"></a><a name="p1215215310226"></a>Name</p>
@@ -1332,9 +1785,23 @@ Draws an arc based on the radius and points on the arc.
 -   Example
 
     ```
-    ctx.moveTo(100, 20);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.moveTo(100, 20);
     ctx.arcTo(150, 20, 150, 70, 50); // Create an arc.
-    ctx.stroke();
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169143586.png)
@@ -1346,7 +1813,7 @@ ellipse\(x: number, y: number, radiusX: number, radiusY: number, rotation: numbe
 
 Draws an ellipse in the specified rectangular region.
 
--   Parameter
+-   Parameters
 
     <a name="table12823135618229"></a>
     <table><thead align="left"><tr id="row182305611226"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p id="p138231956142218"><a name="p138231956142218"></a><a name="p138231956142218"></a>Name</p>
@@ -1361,28 +1828,28 @@ Draws an ellipse in the specified rectangular region.
     </td>
     <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p1482465682213"><a name="p1482465682213"></a><a name="p1482465682213"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p1382411562226"><a name="p1382411562226"></a><a name="p1382411562226"></a>X coordinate of the ellipse center</p>
+    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p1382411562226"><a name="p1382411562226"></a><a name="p1382411562226"></a>X-coordinate of the ellipse center</p>
     </td>
     </tr>
     <tr id="row208241356122211"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p68240561227"><a name="p68240561227"></a><a name="p68240561227"></a>y</p>
     </td>
     <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p12824756112214"><a name="p12824756112214"></a><a name="p12824756112214"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p148241656172214"><a name="p148241656172214"></a><a name="p148241656172214"></a>Y coordinate of the ellipse center</p>
+    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p148241656172214"><a name="p148241656172214"></a><a name="p148241656172214"></a>Y-coordinate of the ellipse center</p>
     </td>
     </tr>
     <tr id="row1082445642218"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p9824656182219"><a name="p9824656182219"></a><a name="p9824656182219"></a>radiusX</p>
     </td>
     <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p15824155622217"><a name="p15824155622217"></a><a name="p15824155622217"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p682413561228"><a name="p682413561228"></a><a name="p682413561228"></a>Ellipse radius on the x axis</p>
+    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p682413561228"><a name="p682413561228"></a><a name="p682413561228"></a>Ellipse radius on the x-axis.</p>
     </td>
     </tr>
     <tr id="row17825175682218"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p13825135617221"><a name="p13825135617221"></a><a name="p13825135617221"></a>radiusY</p>
     </td>
     <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p6825956112217"><a name="p6825956112217"></a><a name="p6825956112217"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p282585612210"><a name="p282585612210"></a><a name="p282585612210"></a>Ellipse radius on the y axis</p>
+    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p282585612210"><a name="p282585612210"></a><a name="p282585612210"></a>Ellipse radius on the y-axis.</p>
     </td>
     </tr>
     <tr id="row10825195614222"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p9825145612211"><a name="p9825145612211"></a><a name="p9825145612211"></a>rotation</p>
@@ -1419,9 +1886,23 @@ Draws an ellipse in the specified rectangular region.
 -   Example
 
     ```
-    ctx.beginPath();
-    ctx.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.beginPath();
+        ctx.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/ellipse.png)
@@ -1433,7 +1914,7 @@ rect\(x: number, y: number, width: number, height: number\): void
 
 Creates a rectangle.
 
--   Parameter
+-   Parameters
 
     <a name="table1084813371231"></a>
     <table><thead align="left"><tr id="row884816379311"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1584812371430"><a name="p1584812371430"></a><a name="p1584812371430"></a>Name</p>
@@ -1462,7 +1943,7 @@ Creates a rectangle.
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p1984933711316"><a name="p1984933711316"></a><a name="p1984933711316"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p785053719314"><a name="p785053719314"></a><a name="p785053719314"></a>Width of the rectangle</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p785053719314"><a name="p785053719314"></a><a name="p785053719314"></a>Width of the rectangle.</p>
     </td>
     </tr>
     <tr id="row685017371316"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p485016379318"><a name="p485016379318"></a><a name="p485016379318"></a>height</p>
@@ -1478,8 +1959,22 @@ Creates a rectangle.
 -   Example
 
     ```
-    ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20)
-    ctx.stroke(); // Draw it
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20)
+        ctx.stroke(); // Draw it
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214630783.png)
@@ -1494,8 +1989,22 @@ Fills the area inside a closed path.
 -   Example
 
     ```
-    ctx.rect(20, 20, 100, 100); // Create a 100 x 100 rectangle at (20, 20).
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+    ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20).
     ctx.fill(); // Fill the rectangle using default settings.
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214703717.png)
@@ -1510,12 +2019,26 @@ Sets the current path to a clipping path.
 -   Example
 
     ```
-    ctx.rect(0, 0, 200, 200);
-    ctx.stroke();
-    ctx.clip();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.rect(0, 0, 200, 200);
+        ctx.stroke();
+        ctx.clip();
     // Clip a rectangle and fill it with red paint.
-    ctx.fillStyle = "rgb(255,0,0)";
-    ctx.fillRect(0, 0, 150, 150);
+        ctx.fillStyle = "rgb(255,0,0)";
+        ctx.fillRect(0, 0, 150, 150);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169303414.png)
@@ -1527,7 +2050,7 @@ rotate\(rotate: number\): void
 
 Rotates a canvas clockwise around its coordinate axes.
 
--   Parameter
+-   Parameters
 
     <a name="table177595432310"></a>
     <table><thead align="left"><tr id="row1575155414230"><th class="cellrowborder" valign="top" width="17.22172217221722%" id="mcps1.1.4.1.1"><p id="p177565416234"><a name="p177565416234"></a><a name="p177565416234"></a>Name</p>
@@ -1551,8 +2074,22 @@ Rotates a canvas clockwise around its coordinate axes.
 -   Example
 
     ```
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
     ctx.rotate(45 * Math.PI / 180); // Rotate the rectangle 45 degrees.
-    ctx.fillRect(70, 20, 50, 50);
+        ctx.fillRect(70, 20, 50, 50);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169463368.png)
@@ -1564,7 +2101,7 @@ scale\(x: number, y: number\): void
 
 Scales a canvas based on scaling factors.
 
--   Parameter
+-   Parameters
 
     <a name="table462911619244"></a>
     <table><thead align="left"><tr id="row7630146182414"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p136303613242"><a name="p136303613242"></a><a name="p136303613242"></a>Name</p>
@@ -1595,9 +2132,23 @@ Scales a canvas based on scaling factors.
 -   Example
 
     ```
-    ctx.strokeRect(10, 10, 25, 25);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.strokeRect(10, 10, 25, 25);
     ctx.scale(2, 2);// Set a 200% scale factor for the rectangle.
-    ctx.strokeRect(10, 10, 25, 25);
+        ctx.strokeRect(10, 10, 25, 25);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214463281.png)
@@ -1614,7 +2165,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 >-   x' = scaleX \* x + skewY \* y + translateX
 >-   y' = skewX \* x + scaleY \* y + translateY
 
--   Parameter
+-   Parameters
 
     <a name="table167761820132416"></a>
     <table><thead align="left"><tr id="row1377692013246"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p577712010246"><a name="p577712010246"></a><a name="p577712010246"></a>Name</p>
@@ -1673,14 +2224,28 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 -   Example
 
     ```
-    ctx.fillStyle = 'rgb(0,0,0)';
-    ctx.fillRect(0, 0, 100, 100)
-    ctx.transform(1, 0.5, -0.5, 1, 10, 10);
-    ctx.fillStyle = 'rgb(255,0,0)';
-    ctx.fillRect(0, 0, 100, 100);
-    ctx.transform(1, 0.5, -0.5, 1, 10, 10);
-    ctx.fillStyle = 'rgb(0,0,255)';
-    ctx.fillRect(0, 0, 100, 100);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.fillStyle = 'rgb(0,0,0)';
+        ctx.fillRect(0, 0, 100, 100)
+        ctx.transform(1, 0.5, -0.5, 1, 10, 10);
+        ctx.fillStyle = 'rgb(255,0,0)';
+        ctx.fillRect(0, 0, 100, 100);
+        ctx.transform(1, 0.5, -0.5, 1, 10, 10);
+        ctx.fillStyle = 'rgb(0,0,255)';
+        ctx.fillRect(0, 0, 100, 100);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214623227.png)
@@ -1751,11 +2316,25 @@ Resets the existing transformation matrix and creates a new transformation matri
 -   Example
 
     ```
-    ctx.fillStyle = 'rgb(255,0,0)';
-    ctx.fillRect(0, 0, 100, 100)
-    ctx.setTransform(1,0.5, -0.5, 1, 10, 10);
-    ctx.fillStyle = 'rgb(0,0,255)';
-    ctx.fillRect(0, 0, 100, 100);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.fillStyle = 'rgb(255,0,0)';
+        ctx.fillRect(0, 0, 100, 100)
+        ctx.setTransform(1,0.5, -0.5, 1, 10, 10);
+        ctx.fillStyle = 'rgb(0,0,255)';
+        ctx.fillRect(0, 0, 100, 100);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001168984880.png)
@@ -1767,7 +2346,7 @@ translate\(x: number, y: number\): void
 
 Moves the origin of the coordinate system.
 
--   Parameter
+-   Parameters
 
     <a name="table1465912422516"></a>
     <table><thead align="left"><tr id="row2659152411256"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p7659122462512"><a name="p7659122462512"></a><a name="p7659122462512"></a>Name</p>
@@ -1798,9 +2377,23 @@ Moves the origin of the coordinate system.
 -   Example
 
     ```
-    ctx.fillRect(10, 10, 50, 50);
-    ctx.translate(70, 70);
-    ctx.fillRect(10, 10, 50, 50);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.fillRect(10, 10, 50, 50);
+        ctx.translate(70, 70);
+        ctx.fillRect(10, 10, 50, 50);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001169144864.png)
@@ -1812,7 +2405,7 @@ createPath2D\(path: Path2D, cmds: string\): Path2D
 
 Creates a  **Path2D**  object.
 
--   Parameter
+-   Parameters
 
     <a name="table184353715259"></a>
     <table><thead align="left"><tr id="row1431337122512"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1943133715251"><a name="p1943133715251"></a><a name="p1943133715251"></a>Name</p>
@@ -1847,16 +2440,30 @@ Creates a  **Path2D**  object.
 -   Example
 
     ```
-    var path1 = ctx.createPath2D();
-    path1.moveTo(100, 100);
-    path1.lineTo(200, 100);
-    path1.lineTo(100, 200);
-    path1.closePath();
-    ctx.stroke(path1);
-    var path2 = ctx.createPath2D("M150 150 L50 250 L250 250 Z");
-    ctx.stroke(path2);
-    var path3 = ctx.createPath2D(path2);
-    ctx.stroke(path3);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path1 = ctx.createPath2D();
+        path1.moveTo(100, 100);
+        path1.lineTo(200, 100);
+        path1.lineTo(100, 200);
+        path1.closePath();
+        ctx.stroke(path1);
+        var path2 = ctx.createPath2D("M150 150 L50 250 L250 250 Z");
+        ctx.stroke(path2);
+        var path3 = ctx.createPath2D(path2);
+        ctx.stroke(path3);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214824709.png)
@@ -1868,7 +2475,7 @@ drawImage\(image: Image, sx: number, sy: number, sWidth: number, sHeight: number
 
 Draws an image.
 
--   Parameter
+-   Parameters
 
     <a name="table15343954192511"></a>
     <table><thead align="left"><tr id="row934385462514"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p234425402516"><a name="p234425402516"></a><a name="p234425402516"></a>Name</p>
@@ -1948,11 +2555,23 @@ Draws an image.
 -   Example
 
     ```
-    var test = this.$element('drawImage');
-    var ctx = test.getContext('2d');
-    var img = new Image();
-    img.src = 'common/image/test.jpg';
-    ctx.drawImage(img, 50, 80, 80, 80);
+    <!-- xxx.hml -->
+    <div>
+      <canvas style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        var test = this.$element('drawImage');
+        var ctx = test.getContext('2d');
+        var img = new Image();
+        img.src = 'common/image/test.jpg';
+        ctx.drawImage(img, 50, 80, 80, 80);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214704759.png)
@@ -1967,7 +2586,21 @@ Restores the saved drawing context.
 -   Example
 
     ```
-    ctx.restore();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.restore();
+      }
+    }
     ```
 
 
@@ -1980,7 +2613,21 @@ Saves the current drawing context.
 -   Example
 
     ```
-    ctx.save();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.save();
+      }
+    }
     ```
 
 
@@ -1990,7 +2637,7 @@ createLinearGradient\(x0: number, y0: number, x1: number, y1: number\): Object
 
 Creates a linear gradient. A CanvasGradient object is returned. For details, see  [CanvasGradient](js-components-canvas-canvasgradient.md).
 
--   Parameter
+-   Parameters
 
     <a name="table19361832162616"></a>
     <table><thead align="left"><tr id="row1637032122611"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p537193219260"><a name="p537193219260"></a><a name="p537193219260"></a>Name</p>
@@ -2005,34 +2652,34 @@ Creates a linear gradient. A CanvasGradient object is returned. For details, see
     </td>
     <td class="cellrowborder" valign="top" width="32.39393939393939%" headers="mcps1.1.4.1.2 "><p id="p10375329268"><a name="p10375329268"></a><a name="p10375329268"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p113818328263"><a name="p113818328263"></a><a name="p113818328263"></a>X coordinate of the start point</p>
+    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p113818328263"><a name="p113818328263"></a><a name="p113818328263"></a>X-coordinate of the start point.</p>
     </td>
     </tr>
     <tr id="row15388324266"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p938173212619"><a name="p938173212619"></a><a name="p938173212619"></a>y0</p>
     </td>
     <td class="cellrowborder" valign="top" width="32.39393939393939%" headers="mcps1.1.4.1.2 "><p id="p16381832152614"><a name="p16381832152614"></a><a name="p16381832152614"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p338183214266"><a name="p338183214266"></a><a name="p338183214266"></a>Y coordinate of the start point</p>
+    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p338183214266"><a name="p338183214266"></a><a name="p338183214266"></a>Y-coordinate of the start point.</p>
     </td>
     </tr>
     <tr id="row83817327269"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p18381132112618"><a name="p18381132112618"></a><a name="p18381132112618"></a>x1</p>
     </td>
     <td class="cellrowborder" valign="top" width="32.39393939393939%" headers="mcps1.1.4.1.2 "><p id="p133843211264"><a name="p133843211264"></a><a name="p133843211264"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p163983282614"><a name="p163983282614"></a><a name="p163983282614"></a>X coordinate of the end point</p>
+    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p163983282614"><a name="p163983282614"></a><a name="p163983282614"></a>X-coordinate of the end point.</p>
     </td>
     </tr>
     <tr id="row1439132132612"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1439133232611"><a name="p1439133232611"></a><a name="p1439133232611"></a>y1</p>
     </td>
     <td class="cellrowborder" valign="top" width="32.39393939393939%" headers="mcps1.1.4.1.2 "><p id="p1639332122610"><a name="p1639332122610"></a><a name="p1639332122610"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p939173219269"><a name="p939173219269"></a><a name="p939173219269"></a>Y coordinate of the end point</p>
+    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p939173219269"><a name="p939173219269"></a><a name="p939173219269"></a>Y-coordinate of the end point.</p>
     </td>
     </tr>
     </tbody>
     </table>
 
--   Return Value
+-   Return values
 
     <a name="table439193252611"></a>
     <table><thead align="left"><tr id="row114063282615"><th class="cellrowborder" valign="top" width="19.77%" id="mcps1.1.3.1.1"><p id="p204033211261"><a name="p204033211261"></a><a name="p204033211261"></a>Type</p>
@@ -2053,8 +2700,10 @@ Creates a linear gradient. A CanvasGradient object is returned. For details, see
 
     ```
     <!-- xxx.hml -->
-    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
-    <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+      <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
+    </div>
     ```
 
     ```
@@ -2085,7 +2734,7 @@ createRadialGradient\(x0: number, y0: number, r0: number, x1: number, y1: number
 
 Creates a radial gradient and returns a  **CanvasGradient**  object.
 
--   Parameter
+-   Parameters
 
     <a name="table9496553172619"></a>
     <table><thead align="left"><tr id="row174967534267"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p5496553122613"><a name="p5496553122613"></a><a name="p5496553122613"></a>Name</p>
@@ -2100,14 +2749,14 @@ Creates a radial gradient and returns a  **CanvasGradient**  object.
     </td>
     <td class="cellrowborder" valign="top" width="32.39393939393939%" headers="mcps1.1.4.1.2 "><p id="p154971053112612"><a name="p154971053112612"></a><a name="p154971053112612"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p449795313266"><a name="p449795313266"></a><a name="p449795313266"></a>X coordinate of the start point</p>
+    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p449795313266"><a name="p449795313266"></a><a name="p449795313266"></a>X-coordinate of the start point.</p>
     </td>
     </tr>
     <tr id="row049765372611"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p11497205392611"><a name="p11497205392611"></a><a name="p11497205392611"></a>y0</p>
     </td>
     <td class="cellrowborder" valign="top" width="32.39393939393939%" headers="mcps1.1.4.1.2 "><p id="p14497155311269"><a name="p14497155311269"></a><a name="p14497155311269"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p64981353152618"><a name="p64981353152618"></a><a name="p64981353152618"></a>Y coordinate of the center of the start circle</p>
+    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p64981353152618"><a name="p64981353152618"></a><a name="p64981353152618"></a>Y-coordinate of the center of the start circle.</p>
     </td>
     </tr>
     <tr id="row849895313262"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p549855362610"><a name="p549855362610"></a><a name="p549855362610"></a>r0</p>
@@ -2121,14 +2770,14 @@ Creates a radial gradient and returns a  **CanvasGradient**  object.
     </td>
     <td class="cellrowborder" valign="top" width="32.39393939393939%" headers="mcps1.1.4.1.2 "><p id="p5498145342616"><a name="p5498145342616"></a><a name="p5498145342616"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p44991538268"><a name="p44991538268"></a><a name="p44991538268"></a>X coordinate of the center of the end circle</p>
+    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p44991538268"><a name="p44991538268"></a><a name="p44991538268"></a>X-coordinate of the center of the end circle.</p>
     </td>
     </tr>
     <tr id="row1499753172618"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p549955382610"><a name="p549955382610"></a><a name="p549955382610"></a>y1</p>
     </td>
     <td class="cellrowborder" valign="top" width="32.39393939393939%" headers="mcps1.1.4.1.2 "><p id="p3499115316263"><a name="p3499115316263"></a><a name="p3499115316263"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p15499195318265"><a name="p15499195318265"></a><a name="p15499195318265"></a>Y coordinate of the center of the end circle</p>
+    <td class="cellrowborder" valign="top" width="34.27272727272727%" headers="mcps1.1.4.1.3 "><p id="p15499195318265"><a name="p15499195318265"></a><a name="p15499195318265"></a>Y-coordinate of the center of the end circle.</p>
     </td>
     </tr>
     <tr id="row1349914536267"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p204997535268"><a name="p204997535268"></a><a name="p204997535268"></a>r1</p>
@@ -2152,7 +2801,7 @@ Creates a radial gradient and returns a  **CanvasGradient**  object.
     </thead>
     <tbody><tr id="row195011053162617"><td class="cellrowborder" valign="top" width="19.77%" headers="mcps1.1.3.1.1 "><p id="p850120532265"><a name="p850120532265"></a><a name="p850120532265"></a>Object</p>
     </td>
-    <td class="cellrowborder" valign="top" width="80.23%" headers="mcps1.1.3.1.2 "><p id="p15011053132619"><a name="p15011053132619"></a><a name="p15011053132619"></a>Returns the created <strong id="b1966119245"><a name="b1966119245"></a><a name="b1966119245"></a>CanvasGradient</strong> object.</p>
+    <td class="cellrowborder" valign="top" width="80.23%" headers="mcps1.1.3.1.2 "><p id="p15011053132619"><a name="p15011053132619"></a><a name="p15011053132619"></a>Returns the created <strong id="b1081596225"><a name="b1081596225"></a><a name="b1081596225"></a>CanvasGradient</strong> object.</p>
     </td>
     </tr>
     </tbody>
@@ -2162,8 +2811,10 @@ Creates a radial gradient and returns a  **CanvasGradient**  object.
 
     ```
     <!-- xxx.hml -->
-    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
-    <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+      <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
+    </div>
     ```
 
     ```
@@ -2194,7 +2845,7 @@ createImageData\(width: number, height: number, imageData: Object\): Object
 
 Creates an  **ImageData**  object. For details, see  [ImageData](js-components-canvas-imagedata.md).
 
--   Parameter
+-   Parameters
 
     <a name="table2368127102714"></a>
     <table><thead align="left"><tr id="row43688742711"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p123682719277"><a name="p123682719277"></a><a name="p123682719277"></a>Name</p>
@@ -2249,8 +2900,22 @@ Creates an  **ImageData**  object. For details, see  [ImageData](js-components-c
 -   Example
 
     ```
-    imageData = ctx.createImageData(50, 100);  // Create ImageData with 50px width and 100px height
-    newImageData = ctx.createImageData(imageData);  // Create ImageData using the input imageData
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        imageData = ctx.createImageData(50, 100);  // Create ImageData with 50px width and 100px height
+        newImageData = ctx.createImageData(imageData);  // Create ImageData using the input imageData
+      }
+    }
     ```
 
 
@@ -2260,7 +2925,7 @@ getImageData\(sx: number, sy: number, sw: number, sh: number\): Object
 
 Creates an  **ImageData**  object with pixels in the specified area on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table03551423182717"></a>
     <table><thead align="left"><tr id="row23561523152710"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1335652312713"><a name="p1335652312713"></a><a name="p1335652312713"></a>Name</p>
@@ -2275,14 +2940,14 @@ Creates an  **ImageData**  object with pixels in the specified area on the canva
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p14357142313278"><a name="p14357142313278"></a><a name="p14357142313278"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p1357923192710"><a name="p1357923192710"></a><a name="p1357923192710"></a>X-coordinate of the upper left corner of the output area</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p1357923192710"><a name="p1357923192710"></a><a name="p1357923192710"></a>X coordinate of the upper left corner of the output area</p>
     </td>
     </tr>
     <tr id="row7357142352712"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p4357172313279"><a name="p4357172313279"></a><a name="p4357172313279"></a>sy</p>
     </td>
     <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p133571523152710"><a name="p133571523152710"></a><a name="p133571523152710"></a>number</p>
     </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p18357152311271"><a name="p18357152311271"></a><a name="p18357152311271"></a>Y-coordinate of the upper left corner of the output area</p>
+    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p18357152311271"><a name="p18357152311271"></a><a name="p18357152311271"></a>Y coordinate of the upper left corner of the output area</p>
     </td>
     </tr>
     <tr id="row83571223112712"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p12358132313275"><a name="p12358132313275"></a><a name="p12358132313275"></a>sw</p>
@@ -2322,9 +2987,21 @@ Creates an  **ImageData**  object with pixels in the specified area on the canva
 -   Example
 
     ```
-    var test = this.$element('getImageData');
-    var ctx = test.getContext('2d');
-    var imageData = ctx.getImageData(0, 0, 280, 300);
+    <!-- xxx.hml -->
+    <div>
+      <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        var test = this.$element('getImageData')
+        var ctx = test.getContext('2d');
+        var imageData = ctx.getImageData(0, 0, 280, 300);
+      }
+    }
     ```
 
 
@@ -2334,7 +3011,7 @@ putImageData\(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY:
 
 Puts the  **ImageData**  onto a rectangular area on the canvas.
 
--   Parameter
+-   Parameters
 
     <a name="table1140093817271"></a>
     <table><thead align="left"><tr id="row1400738152714"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1340073812276"><a name="p1340073812276"></a><a name="p1340073812276"></a>Name</p>
@@ -2400,16 +3077,28 @@ Puts the  **ImageData**  onto a rectangular area on the canvas.
 -   Example
 
     ```
-    var test = this.$element('putImageData');
-    var ctx = test.getContext('2d');
-    var imgData = ctx.createImageData(100, 100);
-    for (var i = 0; i < imgData.data.length; i += 4) {
-      imgData.data[i + 0] = 255;
-      imgData.data[i + 1] = 0;
-      imgData.data[i + 2] = 0;
-      imgData.data[i + 3] = 255;
+    <!-- xxx.hml -->
+    <div>
+      <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        var test = this.$element('getImageData')
+        var ctx = test.getContext('2d');
+        var imgData = ctx.createImageData(100, 100);
+        for (var i = 0; i < imgData.data.length; i += 4) {
+          imgData.data[i + 0] = 255;
+          imgData.data[i + 1] = 0;
+          imgData.data[i + 2] = 0;
+          imgData.data[i + 3] = 255;
+      }
+        ctx.putImageData(imgData, 10, 10);
+      }
     }
-    ctx.putImageData(imgData, 10, 10);
     ```
 
     ![](figures/en-us_image_0000001214463283.png)
@@ -2421,7 +3110,7 @@ setLineDash\(segments: Array\): void
 
 Sets the dash line style.
 
--   Parameter
+-   Parameters
 
     <a name="table759511504274"></a>
     <table><thead align="left"><tr id="row9595115015273"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1459505082718"><a name="p1459505082718"></a><a name="p1459505082718"></a>Name</p>
@@ -2445,9 +3134,23 @@ Sets the dash line style.
 -   Example
 
     ```
-    ctx.arc(100, 75, 50, 0, 6.28);
-    ctx.setLineDash([10,20]);
-    ctx.stroke();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        ctx.arc(100, 75, 50, 0, 6.28);
+        ctx.setLineDash([10,20]);
+        ctx.stroke();
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001214623229.png)
@@ -2470,7 +3173,7 @@ Obtains the dash line style.
     </thead>
     <tbody><tr id="row278317321285"><td class="cellrowborder" valign="top" width="19.77%" headers="mcps1.1.3.1.1 "><p id="p137831632182813"><a name="p137831632182813"></a><a name="p137831632182813"></a>Array</p>
     </td>
-    <td class="cellrowborder" valign="top" width="80.23%" headers="mcps1.1.3.1.2 "><p id="p1783123216281"><a name="p1783123216281"></a><a name="p1783123216281"></a>Interval of alternate line segments and the length of spacing</p>
+    <td class="cellrowborder" valign="top" width="80.23%" headers="mcps1.1.3.1.2 "><p id="p1783123216281"><a name="p1783123216281"></a><a name="p1783123216281"></a>Interval of alternate line segments and the length of spacing.</p>
     </td>
     </tr>
     </tbody>
@@ -2479,7 +3182,21 @@ Obtains the dash line style.
 -   Example
 
     ```
-    var info = ctx.getLineDash();
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var info = ctx.getLineDash();
+      }
+    }
     ```
 
 
@@ -2489,7 +3206,7 @@ transferFromImageBitmap\(bitmap: ImageBitmap\): void
 
 Displays the specified  **ImageBitmap**  object.
 
--   Parameter
+-   Parameters
 
     <a name="table52958562288"></a>
     <table><thead align="left"><tr id="row72951856192819"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p229575610288"><a name="p229575610288"></a><a name="p229575610288"></a>Name</p>
@@ -2513,15 +3230,28 @@ Displays the specified  **ImageBitmap**  object.
 -   Example
 
     ```
-    var canvas = this.$refs.canvasId.getContext('2d');
-    var offscreen = new OffscreenCanvas(500,500);
-    var offscreenCanvasCtx = offscreen.getContext("2d");
-    offscreenCanvasCtx.fillRect(0, 0, 200, 200);
+    <!-- xxx.hml -->
+    <div>
+      <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+    </div>
+    ```
+
+    ```
+    //xxx.js
+    export default {
+      onShow() {
+        const el =this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var canvas = this.$refs.canvas.getContext('2d');
+        var offscreen = new OffscreenCanvas(500,500);
+        var offscreenCanvasCtx = offscreen.getContext("2d");
+        offscreenCanvasCtx.fillRect(0, 0, 200, 200); 
     
-    var bitmap = offscreen.transferToImageBitmap();
-    canvas.transferFromImageBitmap(bitmap);
+        var bitmap = offscreen.transferToImageBitmap();
+        canvas.transferFromImageBitmap(bitmap);
+      }
+    }
     ```
 
     ![](figures/en-us_image_0000001168984882.png)
-
 

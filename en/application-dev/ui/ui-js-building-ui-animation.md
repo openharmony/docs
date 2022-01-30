@@ -60,7 +60,7 @@ The static animation has only the start and end states. To set the transition st
 
 The core of a continuous animation is animation attributes, which define the start and end states of the animation and the curve of time and speed. Animation attributes can implement the following effects:
 
--   **animation-name**: Background color, transparency, width, height, and transformation type applied to the element after the animation is executed
+-   **animation-name**: Background color, opacity, width, height, and transformation type applied to the element after the animation is executed
 -   **animation-delay**  and  **animation-duration**: Element delay and duration after the animation is executed
 -   **animation-timing-function**: Speed curve of an animation, which makes the animation more fluent
 -   **animation-iteration-count**: Number of animation playback times

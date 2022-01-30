@@ -1,4 +1,7 @@
-# Explicit Animation<a name="EN-US_TOPIC_0000001166728467"></a>
+# Explicit Animation<a name="EN-US_TOPIC_0000001237355059"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 <a name="table1895110111017"></a>
 <table><thead align="left"><tr id="row18957091013"><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p id="p78958041010"><a name="p78958041010"></a><a name="p78958041010"></a>Name</p>

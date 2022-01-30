@@ -2,10 +2,7 @@
 
 The  **<toggle\>**  component allows your user to select from a group of options and may display the selection result in real time. Generally, the option group consists of many toggles.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
-
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -13,7 +10,7 @@ None
 
 Not supported
 
-## Attribute<a name="section2598341175212"></a>
+## Attributes<a name="section2598341175212"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -55,7 +52,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section3655917541"></a>
+## Styles<a name="section3655917541"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -72,7 +69,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </th>
 </tr>
 </thead>
-<tbody><tr id="row203632017171314"><td class="cellrowborder" valign="top" width="17.928207179282072%" headers="mcps1.1.6.1.1 "><p id="p8363111761310"><a name="p8363111761310"></a><a name="p8363111761310"></a>color</p>
+<tbody><tr id="row203632017171314"><td class="cellrowborder" valign="top" width="17.928207179282072%" headers="mcps1.1.6.1.1 "><p id="p8363111761310"><a name="p8363111761310"></a><a name="p8363111761310"></a>text-color</p>
 </td>
 <td class="cellrowborder" valign="top" width="14.088591140885912%" headers="mcps1.1.6.1.2 "><p id="p18363101741314"><a name="p18363101741314"></a><a name="p18363101741314"></a>&lt;color&gt;</p>
 </td>
@@ -143,7 +140,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </tbody>
 </table>
 
-## Event<a name="section3892191911214"></a>
+## Events<a name="section3892191911214"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -166,7 +163,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 

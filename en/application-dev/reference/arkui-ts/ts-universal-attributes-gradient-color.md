@@ -1,4 +1,13 @@
-# Gradient Color<a name="EN-US_TOPIC_0000001150694530"></a>
+# Gradient Color<a name="EN-US_TOPIC_0000001237355083"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
+
+## Attributes<a name="section6820191711316"></a>
 
 <a name="table1265031910316"></a>
 <table><thead align="left"><tr id="row9650111916319"><th class="cellrowborder" valign="top" width="17.86%" id="mcps1.1.5.1.1"><p id="p18651919153114"><a name="p18651919153114"></a><a name="p18651919153114"></a>Name</p>
@@ -14,9 +23,9 @@
 <tbody><tr id="row1165131943114"><td class="cellrowborder" valign="top" width="17.86%" headers="mcps1.1.5.1.1 "><p id="p122152715327"><a name="p122152715327"></a><a name="p122152715327"></a>linearGradient</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.92%" headers="mcps1.1.5.1.2 "><p id="p94621515915"><a name="p94621515915"></a><a name="p94621515915"></a>{</p>
-<p id="p696011914596"><a name="p696011914596"></a><a name="p696011914596"></a>angle?: <a href="ts-types.md#section1530915545289">Angle</a>,</p>
+<p id="p696011914596"><a name="p696011914596"></a><a name="p696011914596"></a>angle?: <a href="../../toctopics/en-us_topic_0000001237475069.md#section1530915545289">Angle</a>,</p>
 <p id="p116922025185912"><a name="p116922025185912"></a><a name="p116922025185912"></a>direction?:<a href="#li1798245810543">GradientDirection</a>,</p>
-<p id="p38974273590"><a name="p38974273590"></a><a name="p38974273590"></a>colors: Array&lt;<a href="ts-types.md#section5633640161413">ColorStop</a>&gt;</p>
+<p id="p38974273590"><a name="p38974273590"></a><a name="p38974273590"></a>colors: Array&lt;<a href="../../toctopics/en-us_topic_0000001237475069.md#section5633640161413">ColorStop</a>&gt;</p>
 <p id="p82133214396"><a name="p82133214396"></a><a name="p82133214396"></a>repeating?: boolean</p>
 <p id="p822914920401"><a name="p822914920401"></a><a name="p822914920401"></a>}</p>
 </td>
@@ -35,7 +44,7 @@
 <p id="p1973712343599"><a name="p1973712343599"></a><a name="p1973712343599"></a>center: Point,</p>
 <p id="p6761136175910"><a name="p6761136175910"></a><a name="p6761136175910"></a>start?: angle,</p>
 <p id="p16717740175912"><a name="p16717740175912"></a><a name="p16717740175912"></a>end?: angle,</p>
-<p id="p11563114615596"><a name="p11563114615596"></a><a name="p11563114615596"></a>colors: Array&lt;<a href="ts-types.md#section5633640161413">ColorStop</a>&gt;</p>
+<p id="p11563114615596"><a name="p11563114615596"></a><a name="p11563114615596"></a>colors: Array&lt;<a href="../../toctopics/en-us_topic_0000001237475069.md#section5633640161413">ColorStop</a>&gt;</p>
 <p id="p1246417165412"><a name="p1246417165412"></a><a name="p1246417165412"></a>repeating?: boolean</p>
 <p id="p2843117104311"><a name="p2843117104311"></a><a name="p2843117104311"></a>}</p>
 </td>
@@ -54,7 +63,7 @@
 <td class="cellrowborder" valign="top" width="35.92%" headers="mcps1.1.5.1.2 "><p id="p106469530594"><a name="p106469530594"></a><a name="p106469530594"></a>{</p>
 <p id="p167511156125910"><a name="p167511156125910"></a><a name="p167511156125910"></a>center: Point,</p>
 <p id="p39331958195916"><a name="p39331958195916"></a><a name="p39331958195916"></a>radius: Length,</p>
-<p id="p65713519017"><a name="p65713519017"></a><a name="p65713519017"></a>colors: Array&lt;<a href="ts-types.md#section5633640161413">ColorStop</a>&gt;</p>
+<p id="p65713519017"><a name="p65713519017"></a><a name="p65713519017"></a>colors: Array&lt;<a href="../../toctopics/en-us_topic_0000001237475069.md#section5633640161413">ColorStop</a>&gt;</p>
 <p id="p48831534184115"><a name="p48831534184115"></a><a name="p48831534184115"></a>repeating: boolean</p>
 <p id="p99163173317"><a name="p99163173317"></a><a name="p99163173317"></a>}</p>
 </td>

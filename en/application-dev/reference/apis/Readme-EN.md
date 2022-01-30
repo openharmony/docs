@@ -16,6 +16,8 @@
 -   Media
     -   [Audio Management](js-apis-audio.md)
     -   [Media Playback and Recording](js-apis-media.md)
+-   Security
+    - [User Authentication](js-apis-useriam-userauth.md)
 -   Data Management
     -   [File Management](js-apis-fileio.md)
     -   [Lightweight Storage](js-apis-data-storage.md)
@@ -45,6 +47,7 @@
     -   [Window](js-apis-window.md)
     -   [Display](js-apis-display.md)
     -   [Update](js-apis-update.md) 
+    -   [USB](js-apis-usb.md)
 -   Basic Features
     -   [Application Context](js-apis-basic-features-app-context.md)
     -   [Console Logs](js-apis-basic-features-logs.md)
@@ -60,6 +63,6 @@
 -   Language Base Class Library
     -   [Obtaining Process Information](js-apis-process.md)
     -   [URL String Parsing](js-apis-url.md)
-    -   [String Encoding and Decoding](js-apis-util.md)
+    -   [Util](js-apis-util.md)
     -   [Worker Startup](js-apis-worker.md)
 

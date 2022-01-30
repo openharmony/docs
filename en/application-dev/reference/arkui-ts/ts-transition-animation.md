@@ -1,4 +1,4 @@
-# Transition Animation<a name="EN-US_TOPIC_0000001119927434"></a>
+# Transition Animation<a name="EN-US_TOPIC_0000001193075094"></a>
 
 -   **[Page Transition](ts-page-transition-animation.md)**  
 

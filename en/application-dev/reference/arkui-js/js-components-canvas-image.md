@@ -2,10 +2,10 @@
 
 **Image**  allows you to add an image.
 
-## Attribute<a name="section1968021961113"></a>
+## Attributes<a name="section1968021961113"></a>
 
 <a name="table1025010619328"></a>
-<table><thead align="left"><tr id="row163667603219"><th class="cellrowborder" valign="top" width="21.73%" id="mcps1.1.6.1.1"><p id="p536646193210"><a name="p536646193210"></a><a name="p536646193210"></a>Attribute</p>
+<table><thead align="left"><tr id="row163667603219"><th class="cellrowborder" valign="top" width="21.73%" id="mcps1.1.6.1.1"><p id="p536646193210"><a name="p536646193210"></a><a name="p536646193210"></a>Name</p>
 </th>
 <th class="cellrowborder" valign="top" width="22.41%" id="mcps1.1.6.1.2"><p id="p7366166163213"><a name="p7366166163213"></a><a name="p7366166163213"></a>Type</p>
 </th>
@@ -25,7 +25,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p id="p636611610320"><a name="p636611610320"></a><a name="p636611610320"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="p13366106173215"><a name="p13366106173215"></a><a name="p13366106173215"></a>Image resource path</p>
+<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="p13366106173215"><a name="p13366106173215"></a><a name="p13366106173215"></a>Image resource path.</p>
 </td>
 </tr>
 <tr id="row13366969325"><td class="cellrowborder" valign="top" width="21.73%" headers="mcps1.1.6.1.1 "><p id="p13366136183210"><a name="p13366136183210"></a><a name="p13366136183210"></a>width</p>
@@ -36,7 +36,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p id="p636617633210"><a name="p636617633210"></a><a name="p636617633210"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="p123661613324"><a name="p123661613324"></a><a name="p123661613324"></a>Image width</p>
+<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="p123661613324"><a name="p123661613324"></a><a name="p123661613324"></a>Image width.</p>
 </td>
 </tr>
 <tr id="row103661365321"><td class="cellrowborder" valign="top" width="21.73%" headers="mcps1.1.6.1.1 "><p id="p163663610321"><a name="p163663610321"></a><a name="p163663610321"></a>height</p>
@@ -47,7 +47,7 @@
 </td>
 <td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p id="p3367566327"><a name="p3367566327"></a><a name="p3367566327"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="p43671663322"><a name="p43671663322"></a><a name="p43671663322"></a>Image height</p>
+<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p id="p43671663322"><a name="p43671663322"></a><a name="p43671663322"></a>Image height.</p>
 </td>
 </tr>
 <tr id="row18346152013215"><td class="cellrowborder" valign="top" width="21.73%" headers="mcps1.1.6.1.1 "><p id="p1033772416322"><a name="p1033772416322"></a><a name="p1033772416322"></a>onload</p>
@@ -78,17 +78,30 @@
 ## Example<a name="section13457717134912"></a>
 
 ```
-var ctx = this.$element('drawImage').getContext('2d');
-var img = new Image();
-img.src = 'common/images/huawei.jpg';
-img.onload = function() {
-  console.log('Image load success');
-  ctx.drawImage(img, 0, 0, 360, 250);
-};
-img.onerror = function() {
-  console.log('Image load fail');
-};
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
+</div>
 ```
 
-![](figures/en-us_image_0000001198530395.png)
+```
+//xxx.js
+export default {
+  onShow(){
+    const el =this.$refs.canvas
+    var ctx = this.$element('drawImage').getContext('2d');
+    var img = new Image();
+    img.src = 'common/images/example.jpg';
+    img.onload = function() {
+    console.log('Image load success');
+    ctx.drawImage(img, 0, 0, 360, 250);
+   };
+    img.onerror = function() {
+    console.log('Image load fail');
+    };
+  }
+}
+```
+
+![](figures/1-9.png)
 

@@ -1,4 +1,7 @@
-# Divider<a name="EN-US_TOPIC_0000001111421406"></a>
+# Divider<a name="EN-US_TOPIC_0000001192755128"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Divider\>**  component is used to separate content blocks and content elements.
 
@@ -101,5 +104,5 @@ struct DividerExample {
 }
 ```
 
-![](figures/divider.png)
+![](figures/en-us_image_0000001196780640.png)
 

@@ -2,21 +2,18 @@
 
 The  **<stepper\>**  component provides a step navigator. When multiple steps are required to complete a task, you can use the  **<stepper\>**  component to navigate your users through the whole process.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
-
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Only the  **<stepper-item\>**  component is supported.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >Steps in the  **<stepper\>**  are sorted according to the sequence of its  **<stepper-item\>**  child components.
 
-## Attribute<a name="section191521418142311"></a>
+## Attributes<a name="section191521418142311"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -43,14 +40,14 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section72591594253"></a>
+## Styles<a name="section72591594253"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >By default, the  **<stepper\>**  component fills entire space of its container. To optimize user experience, it is recommended that the container should be as large as the application window in size, or should be the root component.
 
-## Event<a name="section69611614182911"></a>
+## Events<a name="section69611614182911"></a>
 
 In addition to the events in  [Universal Events](js-components-common-events.md), the following events are supported.
 
@@ -101,7 +98,7 @@ In addition to the events in  [Universal Events](js-components-common-events.md)
 </tbody>
 </table>
 
-## Method<a name="section1954212182148"></a>
+## Methods<a name="section1954212182148"></a>
 
 In addition to the methods in  [Universal Methods](js-components-common-methods.md), the following events are supported.
 
@@ -125,7 +122,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 </tbody>
 </table>
 
-## Example Code<a name="section15374183712313"></a>
+## Example<a name="section15374183712313"></a>
 
 ```
 <!-- xxx.hml -->

@@ -4,7 +4,7 @@
 
 -   **[Custom Events](js-components-custom-events.md)**  
 
--   **[Props](js-components-custom-props.md)**  
+-   **[props](js-components-custom-props.md)**  
 
 -   **[Event Parameter](js-components-custom-event-parameter.md)**  
 

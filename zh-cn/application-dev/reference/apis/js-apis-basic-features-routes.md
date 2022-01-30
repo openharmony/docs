@@ -289,35 +289,3 @@ disableAlertBeforeBackPage(Object): void
     }
   }
   ```
-
-## router.getParams<sup>7+</sup>
-
-getParams(): Object
-
-获取发起跳转的页面往当前页传入的参数。
-
-- 返回值
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Object | 发起跳转的页面往当前页传入的参数。 |
-
-- 示例
-  ```
-  // 在当前页面中
-  export default {
-    pushPage() {
-      router.push({
-        uri: 'pages/detail/detail',
-        params: {
-          data1: 'message',
-        },
-      });
-    }
-  }
-  // 在detail页面中
-  export default {
-    onInit() {
-      console.info('showData1:' + router.getParams().data1);
-    }
-  }
-  ```

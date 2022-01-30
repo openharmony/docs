@@ -1,4 +1,11 @@
-# Combined Gestures<a name="EN-US_TOPIC_0000001160419381"></a>
+# Combined Gestures<a name="EN-US_TOPIC_0000001193075118"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
 
 ## APIs<a name="section46581530142116"></a>
 

@@ -1,6 +1,6 @@
-# Animation<a name="EN-US_TOPIC_0000001212188559"></a>
+# Animation<a name="EN-US_TOPIC_0000001237355053"></a>
 
--   **[AnimatorProperty](ts-animatorproperty.md)**  
+-   **[Attribute Animation](ts-animatorproperty.md)**  
 
 -   **[Explicit Animation](ts-explicit-animation.md)**  
 

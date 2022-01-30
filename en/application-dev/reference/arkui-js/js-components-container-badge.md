@@ -2,21 +2,18 @@
 
 The  **<badge\>**  component is used to mark new events that require user attention in your application.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
-
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 This component supports only one child component.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >If multiple child components are used, only the first one takes effect by default.
 
-## Attribute<a name="section1355418214459"></a>
+## Attributes<a name="section1355418214459"></a>
 
 In addition to the attributes in  [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
 
@@ -172,31 +169,31 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 </tbody>
 </table>
 
-## Style<a name="section5775351116"></a>
+## Styles<a name="section5775351116"></a>
 
 Styles in  [Universal Styles](js-components-common-styles.md)  are supported.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >The total size of child components must be smaller than or equal to that of the  **<badge\>**  component. Otherwise, the child components cannot be displayed.
 
-## Event<a name="section43461940193518"></a>
+## Events<a name="section43461940193518"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
-## Example Code<a name="section3510104413431"></a>
+## Example<a name="section3510104413431"></a>
 
 ```
 <!-- xxx.hml -->
 <div class="container">
   <badge class="badge" config="{{badgeconfig}}" visible="true" count="100" maxcount="99">
-    <text class="text1">huawei</text>
+    <text class="text1">example</text>
   </badge>
   <badge class="badge" visible="true" count="0">
-    <text class="text2">huawei</text>
+    <text class="text2">example</text>
   </badge>
 </div>
 ```
@@ -234,5 +231,5 @@ export default {
 }
 ```
 
-![](figures/en-us_image_0000001150368628.png)
+![](figures/figures1.png)
 

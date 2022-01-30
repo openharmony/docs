@@ -3,9 +3,9 @@
 The  **<animate\>**  component is used to apply animation to an  **<svg\>**  component.
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The APIs of this module are supported since API version 7.
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
@@ -221,7 +221,7 @@ Not supported
 </div>
 ```
 
-![](figures/1-45.gif)
+![](figures/1-10.gif)
 
 ```
 <!-- xxx.hml -->

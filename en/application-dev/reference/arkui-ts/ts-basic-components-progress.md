@@ -1,35 +1,13 @@
-# Progress<a name="EN-US_TOPIC_0000001196704047"></a>
+# Progress<a name="EN-US_TOPIC_0000001193075086"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Progress\>**  component is used to provide a progress bar that displays the progress of content loading or an operation.
 
-## Applicable Devices<a name="section19354150201519"></a>
+## Required Permissions<a name="section781125411508"></a>
 
-<a name="table440621417340"></a>
-<table><thead align="left"><tr id="row15406121413347"><th class="cellrowborder" valign="top" width="21.412300683371296%" id="mcps1.1.6.1.1"><p id="p54061614143413"><a name="p54061614143413"></a><a name="p54061614143413"></a>Phone</p>
-</th>
-<th class="cellrowborder" valign="top" width="18.21057960010124%" id="mcps1.1.6.1.2"><p id="p13407414163412"><a name="p13407414163412"></a><a name="p13407414163412"></a>Tablet</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.110098709187547%" id="mcps1.1.6.1.3"><p id="p127712344124"><a name="p127712344124"></a><a name="p127712344124"></a>Head Unit</p>
-</th>
-<th class="cellrowborder" valign="top" width="22.285497342444952%" id="mcps1.1.6.1.4"><p id="p15407161403413"><a name="p15407161403413"></a><a name="p15407161403413"></a>Smart TV</p>
-</th>
-<th class="cellrowborder" valign="top" width="22.981523664894965%" id="mcps1.1.6.1.5"><p id="p1540751411345"><a name="p1540751411345"></a><a name="p1540751411345"></a>Wearable</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row114071914133413"><td class="cellrowborder" valign="top" width="21.412300683371296%" headers="mcps1.1.6.1.1 "><p id="p94074143344"><a name="p94074143344"></a><a name="p94074143344"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.21057960010124%" headers="mcps1.1.6.1.2 "><p id="p5407914103413"><a name="p5407914103413"></a><a name="p5407914103413"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.110098709187547%" headers="mcps1.1.6.1.3 "><p id="p197711344124"><a name="p197711344124"></a><a name="p197711344124"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.285497342444952%" headers="mcps1.1.6.1.4 "><p id="p19407161414342"><a name="p19407161414342"></a><a name="p19407161414342"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.981523664894965%" headers="mcps1.1.6.1.5 "><p id="p1540711463414"><a name="p1540711463414"></a><a name="p1540711463414"></a>No</p>
-</td>
-</tr>
-</tbody>
-</table>
+None
 
 ## Child Components<a name="section53281531154915"></a>
 
@@ -39,7 +17,7 @@ None
 
 Progress\(value: \{value: number, total?: number, style?: ProgressStyle\}\)
 
-Creates a progress bar with a clear progress.
+Creates a progress bar with a specified progress value.
 
 -   Parameters
 
@@ -163,5 +141,5 @@ struct ProgressExample {
 }
 ```
 
-![](figures/progress-60.png)
+![](figures/progress.png)
 

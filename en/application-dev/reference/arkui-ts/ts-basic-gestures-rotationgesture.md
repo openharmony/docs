@@ -1,4 +1,11 @@
-# RotationGesture<a name="EN-US_TOPIC_0000001159258801"></a>
+# RotationGesture<a name="EN-US_TOPIC_0000001192595172"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Required Permissions<a name="section781125411508"></a>
+
+None
 
 ## APIs<a name="section46581530142116"></a>
 
@@ -54,17 +61,17 @@ RotationGesture\(options?: \{ fingers?: number, angle?: number \}\)
 </th>
 </tr>
 </thead>
-<tbody><tr id="row4541257114319"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p5541357194313"><a name="p5541357194313"></a><a name="p5541357194313"></a>onActionStart((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tbody><tr id="row4541257114319"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p5541357194313"><a name="p5541357194313"></a><a name="p5541357194313"></a>onActionStart((event?: <a href="#li21621335144710">RotationGestureEvent</a>) =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p11541155710434"><a name="p11541155710434"></a><a name="p11541155710434"></a>Callback invoked when a rotation gesture is recognized.</p>
 </td>
 </tr>
-<tr id="row54544191113"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p145591931117"><a name="p145591931117"></a><a name="p145591931117"></a>onActionUpdate((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tr id="row54544191113"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p145591931117"><a name="p145591931117"></a><a name="p145591931117"></a>onActionUpdate((event?: <a href="#li21621335144710">RotationGestureEvent</a>) =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1455111961111"><a name="p1455111961111"></a><a name="p1455111961111"></a>Callback invoked during the movement of the rotation gesture.</p>
 </td>
 </tr>
-<tr id="row2899841162916"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p15900174162916"><a name="p15900174162916"></a><a name="p15900174162916"></a>onActionEnd((event?: <a href="ts-gesture-settings.md#table290mcpsimp">GestureEvent</a>) =&gt; void)</p>
+<tr id="row2899841162916"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p15900174162916"><a name="p15900174162916"></a><a name="p15900174162916"></a>onActionEnd((event?: <a href="#li21621335144710">RotationGestureEvent</a>) =&gt; void)</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p69001041172920"><a name="p69001041172920"></a><a name="p69001041172920"></a>Callback invoked when the finger used for the rotation gesture is lift.</p>
 </td>
@@ -76,6 +83,44 @@ RotationGesture\(options?: \{ fingers?: number, angle?: number \}\)
 </tr>
 </tbody>
 </table>
+
+-   <a name="li21621335144710"></a>RotationGestureEvent attributes<sup>8+</sup>
+
+    Inherited from  [GestureEvent](ts-gesture-settings.md#table290mcpsimp).
+
+    <a name="table290mcpsimp"></a>
+    <table><thead align="left"><tr id="row296mcpsimp"><th class="cellrowborder" valign="top" width="20.09%" id="mcps1.1.4.1.1"><p id="p298mcpsimp"><a name="p298mcpsimp"></a><a name="p298mcpsimp"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="18.41%" id="mcps1.1.4.1.2"><p id="p300mcpsimp"><a name="p300mcpsimp"></a><a name="p300mcpsimp"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.5%" id="mcps1.1.4.1.3"><p id="p302mcpsimp"><a name="p302mcpsimp"></a><a name="p302mcpsimp"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row303mcpsimp"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p333mcpsimp"><a name="p333mcpsimp"></a><a name="p333mcpsimp"></a>angle</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.41%" headers="mcps1.1.4.1.2 "><p id="p335mcpsimp"><a name="p335mcpsimp"></a><a name="p335mcpsimp"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p337mcpsimp"><a name="p337mcpsimp"></a><a name="p337mcpsimp"></a>Rotation angle.</p>
+    </td>
+    </tr>
+    <tr id="row310mcpsimp"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p1626610325382"><a name="p1626610325382"></a><a name="p1626610325382"></a>pinchCenterX</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.41%" headers="mcps1.1.4.1.2 "><p id="p1526643203814"><a name="p1526643203814"></a><a name="p1526643203814"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p4266163216388"><a name="p4266163216388"></a><a name="p4266163216388"></a>X coordinate of the center of the pinch, in px.</p>
+    </td>
+    </tr>
+    <tr id="row317mcpsimp"><td class="cellrowborder" valign="top" width="20.09%" headers="mcps1.1.4.1.1 "><p id="p19386163653814"><a name="p19386163653814"></a><a name="p19386163653814"></a>pinchCenterY</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="18.41%" headers="mcps1.1.4.1.2 "><p id="p638693615380"><a name="p638693615380"></a><a name="p638693615380"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.5%" headers="mcps1.1.4.1.3 "><p id="p1238643673818"><a name="p1238643673818"></a><a name="p1238643673818"></a>Y coordinate of the center of the pinch, in px.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
 
 ## Example<a name="section16900453182718"></a>
 
@@ -93,10 +138,10 @@ struct RotationGestureExample {
     .margin(80).rotate({ x:1, y:2, z:3, angle: this.angle })
     .gesture(
       RotationGesture()
-        .onActionStart((event: GestureEvent) => {
+        .onActionStart((event: RotationGestureEvent) => {
           console.log('Rotation start')
         })
-        .onActionUpdate((event: GestureEvent) => {
+        .onActionUpdate((event: RotationGestureEvent) => {
           this.angle = event.angle
         })
         .onActionEnd(() => {

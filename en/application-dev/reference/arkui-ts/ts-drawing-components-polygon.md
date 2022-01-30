@@ -1,6 +1,13 @@
-# Polygon<a name="EN-US_TOPIC_0000001166727519"></a>
+# Polygon<a name="EN-US_TOPIC_0000001192755108"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Polygon\>**  component is used to draw a polygon.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section095923464810"></a>
 
@@ -8,7 +15,7 @@ None
 
 ## APIs<a name="section19993104611483"></a>
 
-Polygon\(value:\{options?: \{width: Length, height: Length\}\}\)
+Polygon\(value:\{options?: \{width: Lenght, height: Length\}\}\)
 
 -   Parameters
 

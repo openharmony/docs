@@ -2,19 +2,19 @@
 
 The  **<grid-row\>**  component is a container used as a child component of  **<grid-container\>**. Each  **<grid-col\>**  component is arranged horizontally with  **flex**-related styles. By default, items in the  **<grid-row\>**  component are packed towards the start row and aligned to the start of the cross axis. You can set the items to be displayed in multiple axes.
 
-## Permission List<a name="section11257113618419"></a>
+## Required Permissions<a name="section11257113618419"></a>
 
 None
 
-## Child Component<a name="section9288143101012"></a>
+## Child Components<a name="section9288143101012"></a>
 
 Only the  **<grid-col\>**  component is supported.
 
-## Attribute<a name="section631751545214"></a>
+## Attributes<a name="section631751545214"></a>
 
 Attributes in  [Universal Attributes](js-components-common-attributes.md)  are supported.
 
-## Style<a name="section9475356165220"></a>
+## Styles<a name="section9475356165220"></a>
 
 In addition to the styles in  [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
@@ -83,17 +83,17 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 </table>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   Width-related styles are not supported.
+>Width-related styles are not supported.
 
-## Event<a name="section1417950207"></a>
+## Events<a name="section1417950207"></a>
 
 Events in  [Universal Events](js-components-common-events.md)  are supported.
 
-## Method<a name="section2279124532420"></a>
+## Methods<a name="section2279124532420"></a>
 
 Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
 ## Example Code<a name="section634316188515"></a>
 
-For details, see  [grid-col](js-components-grid-col.md#section2021865273710).
+For details, see  [grid-col](js-components-grid-col.md).
 

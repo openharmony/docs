@@ -1,6 +1,13 @@
-# Ellipse<a name="EN-US_TOPIC_0000001166647479"></a>
+# Ellipse<a name="EN-US_TOPIC_0000001193075096"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The  **<Ellipse\>**  component is used to draw an ellipse.
+
+## Required Permissions<a name="section53281531154915"></a>
+
+None
 
 ## Child Components<a name="section121862320423"></a>
 
@@ -8,7 +15,7 @@ None
 
 ## APIs<a name="section1870194144317"></a>
 
-ellipse\(options?: \{width: Length, height: Length\}\)
+ellipse\(options?: \{width: Lenght, height: Length\}\)
 
 -   Parameters
 
@@ -137,5 +144,5 @@ struct EllipseExample {
 }
 ```
 
-![](figures/ellipse-63.png)
+![](figures/ellipse.png)
 

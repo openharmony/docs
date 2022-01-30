@@ -1,4 +1,7 @@
-# Matrix Transformation<a name="EN-US_TOPIC_0000001119928158"></a>
+# Matrix Transformation<a name="EN-US_TOPIC_0000001192915104"></a>
+
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="section1727172013219"></a>
 
@@ -775,7 +778,7 @@ Matrix rotation function, which is used to add the rotation effect to the x, y, 
     }
     ```
 
-    ![](figures/1-64.png)
+    ![](figures/1.png)
 
 
 ### transformPoint<a name="section174811817131913"></a>
