@@ -1,7 +1,5 @@
 # Introduction to the Shell<a name="EN-US_TOPIC_0000001179965829"></a>
 
--   [Important Notes](#section12298165312328)
-
 The shell provided by the OpenHarmony kernel supports commonly used debugging commands. You can also add and custom commands to the shell of the OpenHarmony kernel to address your service needs. The common debugging commands include the following:
 
 -   System commands: commands used to query information, such as system tasks, semaphores, system software timers, CPU usage, and interrupts.

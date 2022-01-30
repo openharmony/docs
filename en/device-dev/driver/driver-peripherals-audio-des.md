@@ -1,54 +1,5 @@
 # Audio
 
-- **[Audio Driver Overview](#section1000)**
-
-- **[Audio Driver Architecture](#section2000)**
-
-- **[Audio Driver Development](#section3000)**
-
-    - **[Audio ADM Architecture](#section3100)**
-        - [Startup Process](#section3111)
-        - [Playback Process](#section3112)
-        - [Control Process](#section3113)
-
-    - **[Audio Driver Development Procedure](#section3200)**
-        - [Development on an Adapted Platform](#section3221)
-        - [Development on a New Platform](#section3222)
-
-- **[Audio Driver Development Examples](#section4000)**
-    - [Codec Driver Development Example](#section4100)
-        - [Filling in Codec Data Structures](#section4111)
-        - [Initializing the Codec Device and Codec DAI Device](#section4112)
-        - [Implementing the Codec Operation Function Set](#section4113)
-        - [Registering and Binding Codec to HDF](#section4114)
-        - [Configuring HCS](#section4115)
-    - [Accessory Driver Development Example](#section4200)
-        - [Filling in Accessory Data Structures](#section4221)
-        - [Initializing the Accessory Device and Accessory DAI Device](#section4222)
-        - [Implementing the Accessory Operation Function Set](#section4223)
-        - [Registering and Binding Accessory to HDF](#section4224)
-        - [Configuring HCS](#section4225)
-    - [Platform Driver Development Example](#section4300)
-        - [Filling in Platform Data Structures](#section4331)
-        - [Initializing the DMA Device](#section4332)
-        - [Implementing the DMA Operation Function Set](#section4333)
-        - [Registering and Binding Platform to HDF](#section4334)
-        - [Configuring HCS](#section4335)
-    - [DAI Driver Development Example](#section4400)
-        - [Filling in DAI Data Structures](#section4441)
-        - [Initializing the DAI Device](#section4442)
-        - [Implementing the DAI Operation Function Set](#section4443)
-        - [Registering and Binding DAI to HDF](#section4444)
-        - [Configuring HCS](#section4445)
-    - [Adding Compilation Configuration to Makefile](#section4500)
-    - [Source Code Structure and Directory](#section4600)
-
-- **[HAL-based Development Procedure and Example](#section5000)**
-    - [Development Procedure](#section5100)
-    - [Development Example](#section5200)
-
-- **[Summary](#section9999)**
-
 # Audio Driver Overview<a name="section1000"></a>
 
 A multimedia system is an indispensable part in Internet of Things (IoT) devices. Audio is an important module of the multimedia system, and building an audio driver model is particularly important in device development.

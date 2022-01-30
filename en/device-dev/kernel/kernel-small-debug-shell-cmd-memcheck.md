@@ -1,12 +1,5 @@
 # memcheck<a name="EN-US_TOPIC_0000001134006252"></a>
 
--   [Command Function](#section191633812516)
--   [Syntax](#section428816435510)
--   [Parameters](#section1939943304411)
--   [Usage](#section228914491951)
--   [Example](#section17373205314515)
--   [Output](#section13406205385413)
-
 ## Command Function<a name="section191633812516"></a>
 
 This command is used to check whether the dynamically requested memory block is complete and whether nodes in the memory pool are damaged due to out-of-bounds memory access.

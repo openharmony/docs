@@ -1,8 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001152533331"></a>
 
--   [System Types](#section767218232110)
--   [Document Outline](#section19810171681218)
-
 This topic provides a panorama of all documents for you to obtain helpful information quickly. These documents are classified based on your learning progress and development scenarios of OpenHarmony.
 
 ## System Types<a name="section767218232110"></a>

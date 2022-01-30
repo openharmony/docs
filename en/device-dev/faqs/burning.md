@@ -1,11 +1,5 @@
 # Burning<a name="EN-US_TOPIC_0000001170009518"></a>
 
--   [Mini and Small Systems](#section278314413530)
-    -   ["Error: Opening COMxx: Access denied" Is Displayed After a Serial Port Is Selected for Burning](#section18988185615914)
-    -   [What should I do when the image failed to be burnt?](#section1370982513317)
-    -   [What should I do when no command output is displayed?](#section183421944953)
-    -   [What should I do when Windows-based PC failed to be connected to the board?](#section1215410450215)
-
 
 ## Mini and Small Systems<a name="section278314413530"></a>
 

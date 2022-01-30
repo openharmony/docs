@@ -1,17 +1,5 @@
 # Kernel<a name="EN-US_TOPIC_0000001077309884"></a>
 
--   [Introduction](#section11660541593)
--   [LiteOS](#section6253122153515)
--   [Linux](#section143373618411)
--   [Directory Structure](#section21571344112)
--   [Constraints](#section19647171710417)
--   [Usage](#section1393789267)
-    -   [LiteOS](#section118811457303)
-    -   [Linux](#section1352114469620)
-
--   [Build](#section19369206113115)
--   [Repositories Involved](#section27639463106)
-
 ## Introduction<a name="section11660541593"></a>
 
 OpenHarmony provides LiteOS and Linux for different levels of systems. LiteOS applies to mini and small systems. Linux applies to small and standard systems.

@@ -1,24 +1,5 @@
 # Security Guidelines<a name="EN-US_TOPIC_0000001052530786"></a>
 
--   [Overview](#section1521410017353)
--   [Hardware Security](#section2558121318351)
-    -   [Mechanism](#section1399511541896)
-    -   [Recommended Practices](#section948519243104)
-
--   [System Security](#section87802111361)
-    -   [Mechanism](#section149107611118)
-    -   [Recommended Practices](#section1364122019112)
-
--   [Data Security](#section2468927364)
-    -   [Mechanism](#section1378993720111)
-    -   [Recommended Practices](#section1531735481112)
-
--   [Device Interconnection Security](#section26153183616)
--   [Application Security](#section852593153614)
-    -   [Mechanism](#section55012136125)
-    -   [Recommended Practices](#section6341102610123)
-
-
 ## Overview<a name="section1521410017353"></a>
 
 OpenHarmony is an open OS that allows you to easily develop services and applications. It provides an execution environment to ensure security of application data and user data.

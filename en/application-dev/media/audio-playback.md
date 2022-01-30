@@ -1,7 +1,4 @@
-# Development Guidelines on Audio Playback
-
-- [When to Use](#When-to-Use)
-- [Available APIs](#Available-APIs)
+# Audio Playback Development
 
 ## When to Use
 

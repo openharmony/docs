@@ -1,11 +1,5 @@
 # Account<a name="EN-US_TOPIC_0000001078092678"></a>
 
--   [Introduction](#section11660541593)
--   [Architecture](#section1412183212132)
--   [Directory Structure](#section161941989596)
--   [Usage Guidelines](#section1312121216216)
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section11660541593"></a>
 
 In a standard system, the Account subsystem supports login status management of distributed cloud accounts, interconnection with vendors' cloud account apps on the device side, and query and update of the cloud account login status.

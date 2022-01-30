@@ -1,15 +1,5 @@
 # Development Guidelines on Layout Container Components<a name="EN-US_TOPIC_0000001052661991"></a>
 
--   [UISwipeView](#section13631719181717)
--   [When to Use](#section11299120102617)
--   [Available APIs](#section767434119261)
--   [Development Procedure \(Non-Cyclic Horizontal Swiping\)](#section111911175287)
--   [Development Procedure \(Cyclic Horizontal Swiping\)](#section1976914915282)
--   [GridLayout](#section46819199173)
--   [When to Use](#section831618247294)
--   [Available APIs](#section597214622912)
--   [How to Develop](#section1418253410306)
-
 Layout container components consist of basic view classes. You can set the view positions to achieve nested and overlapped layouts, set the layout type and margin to standardize the child components in the layout, and call certain functions to implement layout views based on parent and sibling components.
 
 ## UISwipeView<a name="section13631719181717"></a>

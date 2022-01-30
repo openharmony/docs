@@ -1,20 +1,5 @@
 # Queue<a name="EN-US_TOPIC_0000001078912736"></a>
 
--   [Basic Concepts](#section81171363232)
--   [Working Principles](#section1074515132316)
-    -   [Queue Control Block](#section194431851201315)
-    -   [Working Principles](#section89875741418)
-
--   [Development Guidelines](#section827981242419)
-    -   [Available APIs](#section19327151642413)
-    -   [How to Develop](#section1390154210243)
-
--   [Development Example](#section27132341285)
-    -   [Example Description](#section197311443141017)
-    -   [Sample Code](#section972214490107)
-    -   [Verification](#section19287165416106)
-
-
 ## Basic Concepts<a name="section81171363232"></a>
 
 A queue, also called a message queue, is a data structure used for communication between tasks. The queue receives messages of unfixed length from tasks or interrupts, and determines whether to store the transferred messages in the queue based on different APIs.

@@ -1,8 +1,5 @@
 # Driver Service Management<a name="EN-US_TOPIC_0000001052777057"></a>
 
--   [When to Use](#section14244270117)
--   [Available APIs](#section1432412561722)
--   [How to Develop](#section393515164416)
 
 Driver services are objects of open capabilities provided by the HDF and are managed by the HDF in a unified manner. Using driver service management, you can release and obtain driver services.
 

@@ -1,19 +1,5 @@
 # XTS<a name="EN-US_TOPIC_0000001126156429"></a>
 
--   [Introduction](#section465982318513)
--   [System Types](#section125090457443)
--   [Directory Structure](#section161941989596)
--   [Constraints](#section119744591305)
--   [Usage Guidelines](#section137768191623)
--   [Test Case Development Guidelines](#section3695134065513)
-    -   [C-based Test Case Development and Compilation \(for the Mini System\)](#section198193336544)
-    -   [C-based Test Case Execution \(for the Mini System\)](#section13820233175418)
-    -   [C++-based Test Case Development and Compilation \(for Standard and Small Systems\)](#section3822123311540)
-    -   [C++-based Test Case Execution \(for Standard and Small Systems\)](#section128222336544)
-    -   [JavaScript-based Test Case Development \(for the Standard System\)](#section159801435165220)
-    -   [JavaScript-based Test Case Packaging \(for the Standard System\)](#section445519106559)
-
-
 ## Introduction<a name="section465982318513"></a>
 
 The X test suite \(XTS\) subsystem contains a set of OpenHarmony certification test suites, including the currently supported application compatibility test suite \(ACTS\) and the device compatibility test suite \(DCTS\) that will be supported in the future.

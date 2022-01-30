@@ -1,13 +1,5 @@
 # API Development<a name="EN-US_TOPIC_0000001096100171"></a>
 
--   [Rule: Encapsulate the external APIs provided by the client based on the algorithm call sequence. For the SDK of an asynchronous plug-in, implement the IClientCb callback API provided by the client.](#section15872017171616)
--   [Rule: Save all common data related to client interaction in the SDK during API implementation.](#section011283741612)
--   [Recommendation: Enable the SDK to implement the IServiceDeadCb API defined by the client.](#section1199125331613)
--   [Rule: Convert dedicated algorithm data into common data of the AI engine if the SDK and plug-ins need to use the codec module.](#section93139389171)
--   [Rule: Release the memory used by the encoded or decoded parameters in the SDK. Otherwise, a memory leakage occurs.](#section1698441814183)
--   [Rule: Enable plug-ins to implement the IPlugin API defined by the server and use the PLUGIN\_INTERFACE\_IMPL statement to provide the function pointer for external systems.](#section20850717196)
--   [Rule: Use the unified data channel provided by the AI engine for plug-ins.](#section1493821732019)
-
 ## Rule: Encapsulate the external APIs provided by the client based on the algorithm call sequence. For the SDK of an asynchronous plug-in, implement the  **IClientCb**  callback API provided by the client.<a name="section15872017171616"></a>
 
 The external APIs provided by the client of the AI engine include  **AieClientInit**,  **AieClientPrepare**,  **AieClientSyncProcess**,  **AieClientAsyncProcess**,  **AieClientRelease**,  **AieClientDestroy**,  **AieClientSetOption**, and  **AieClientGetOption**. The SDK needs to encapsulate at least the following five APIs in sequence:  **AieClientInit**,  **AieClientPrepare**,  **AieClientSyncProcess**  \(or  **AieClientAsyncProcess**\),  **AieClientRelease**, and  **AieClientDestroy**. Otherwise, a call failure or memory leakage may occur. For example, if the  **AieClientprepare**  API is omitted during encapsulation, the server cannot load the plug-in. As a result, APIs that follow it cannot be called.

@@ -1,12 +1,5 @@
 # Development Guidelines on Application Signature Verification<a name="EN-US_TOPIC_0000001058671627"></a>
 
--   [When to Use](#section18502174174019)
--   [Signature Verification Process](#section554632717226)
--   [Available APIs](#section1633115419401)
--   [How to Develop](#section4207112818418)
-    -   [OpenHarmony Self-signed Application](#section167151429133312)
-
-
 ## When to Use<a name="section18502174174019"></a>
 
 To ensure the integrity and trustworthiness of the applications to be installed in OpenHarmony, the applications must be signed and their signatures must be verified.

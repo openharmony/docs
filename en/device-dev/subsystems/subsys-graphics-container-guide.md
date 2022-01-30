@@ -1,14 +1,5 @@
 # Development Guidelines on Container Components<a name="EN-US_TOPIC_0000001052810390"></a>
 
--   [UIViewGroup](#section145471898812)
--   [When to Use](#section0916112362216)
--   [Available APIs](#section12641756192212)
--   [How to Develop](#section5412161692311)
--   [UIScrollView](#section174961523161315)
--   [When to Use](#section8937101902413)
--   [Available APIs](#section14789133142420)
--   [How to Develop](#section1769754422417)
-
 Container components are capable of containing UI components and inherit from  **UIViewGroup**. Components that are commonly used and need to contain child components are placed in the container class inheritance structure. For example, you need to call the  **Add**  function to add information such as time statistics and icons to  **UIAnalogClock**.
 
 **Figure  1**  Structure of common container components<a name="fig1931013319293"></a>  

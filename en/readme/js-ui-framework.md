@@ -1,10 +1,5 @@
 # JS UI Framework<a name="EN-US_TOPIC_0000001087318673"></a>
 
--   [Introduction](#section11660541593)
--   [Directory Structure](#section179173014915)
--   [Usage](#section1711605017917)
--   [Repositories Involved](#section1599816111011)
-
 ## Introduction<a name="section11660541593"></a>
 
 The OpenHarmony JS UI framework provides basic, container, and canvas UI components and standard CSS animation capabilities. It supports the web-development-like programming paradigm.

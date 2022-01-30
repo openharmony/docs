@@ -1,31 +1,5 @@
 # Building Guidelines for Mini and Small Systems<a name="EN-US_TOPIC_0000001060646620"></a>
 
--   [Overview](#section10958256161119)
-    -   [Basic Concepts](#section1732301411128)
-    -   [Directory Structure](#section1588744014121)
-    -   [Build Process](#section15761735134)
-
--   [Configuration Rules](#section2345183962710)
-    -   [Module](#section142532518308)
-    -   [Chipset](#section121501451143710)
-    -   [Product](#section134549283435)
-
--   [Usage Guidelines](#section13754457192211)
-    -   [Prerequisites](#section31651120233)
-    -   [Using hb](#section1133304172313)
-    -   [Adding a Module](#section167110415315)
-    -   [Adding a Chipset Solution](#section1474718565412)
-    -   [Adding a Product Solution](#section1097623294220)
-
--   [Troubleshooting](#section19909721104319)
-    -   [Invalid -- w Option](#section138233464318)
-    -   [Library ncurses Not Found](#section151033911442)
-    -   [mcopy not Found](#section19811838104418)
-    -   [No riscv File or Directory](#section03111118451)
-    -   [No Crypto](#section69981127125013)
-    -   [Unexpected Operator](#section967617530505)
-
-
 ## Overview<a name="section10958256161119"></a>
 
 The Compilation and Building subsystem is a build framework that supports module-based OpenHarmony development using Generate Ninja \(GN\) and Ninja. You can use this subsystem to:

@@ -1,13 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001062229264"></a>
 
--   [When to Use](#section93012287133)
--   [Available APIs](#section11821047161319)
--   [How to Develop](#section10514141679)
-    -   [Creating a Service Ability](#section19921154214315)
-    -   [Development Guidelines on Bundle Management](#section1724016743217)
-    -   [Packing a HAP File](#section171771212328)
-
-
 ## When to Use<a name="section93012287133"></a>
 
 -   Develop Page abilities for applications that have a UI for human-machine interaction, such as news applications, video players, navigation applications, and payment applications. Most applications we use in our daily lives are such type of applications.

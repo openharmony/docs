@@ -1,4 +1,4 @@
-# Development Guide for usage of SoundManager
+# SoundManager Development
 
 ## **Summary**
 This guide will show you how to use SoundManager to save and retrieve the ringtone, alarm and notification uris.

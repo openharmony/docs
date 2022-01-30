@@ -1,14 +1,5 @@
 # Porting a Library Built Using CMake<a name="EN-US_TOPIC_0000001200172241"></a>
 
--   [Source Code Acquisition](#section1771132116245)
--   [Porting Guidelines](#section9737174410328)
--   [Cross-Compilation](#section38205577332)
-    -   [Compilation Reference](#section1088111263418)
-    -   [Cross-Compilation Settings](#section8168182883515)
-
--   [Library Test](#section6686144293611)
--   [Adding the Compiled double-conversion Library to the OpenHarmony Project](#section1651053153715)
-
 The following shows how to port the double-conversion library.
 
 ## Source Code Acquisition<a name="section1771132116245"></a>

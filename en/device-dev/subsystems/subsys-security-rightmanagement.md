@@ -1,10 +1,5 @@
 # Development Guidelines on Application Permission Management<a name="EN-US_TOPIC_0000001058864249"></a>
 
--   [How Application Permission Management Works](#section193961322175011)
--   [When to Use](#section18502174174019)
--   [Available APIs](#section1633115419401)
--   [How to Develop](#section022611498210)
-
 ## How Application Permission Management Works<a name="section193961322175011"></a>
 
 OpenHarmony allows users to install third-party applications and controls calls made by third-party applications to sensitive permissions. When developing an application, you need to declare the sensitive permissions that the application may require in the  **profile.json**  file. The permissions can be static or dynamic. Static permissions need to be registered during application installation, and dynamic permissions can be obtained only upon user authorization. Authorization modes include system settings, manual authorization by applications, and others. In addition, application signature control is used to ensure that the application installation package has been confirmed by the device vendor.

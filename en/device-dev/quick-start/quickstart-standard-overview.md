@@ -1,9 +1,5 @@
 # Introduction<a name="EN-US_TOPIC_0000001166764513"></a>
 
--   [Quick Start Process](#section7825218111517)
--   [Introduction to the Development Board](#en-us_topic_0000001053666242_section047719215429)
--   [Development Board Specifications](#en-us_topic_0000001053666242_section15192203316533)
-
 This document helps you quickly understand how to set up a standard OpenHarmony system, and how to build, burn, and start the system. You can develop the standard system in Windows and build source code in Linux.
 
 This document uses the recommended Hi3516D V300 development board as an example.

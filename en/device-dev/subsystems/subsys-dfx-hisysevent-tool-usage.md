@@ -1,8 +1,5 @@
 # HiSysEvent Tool Usage<a name="EN-US_TOPIC_0000001231614021"></a>
 
--   [Overview](#section1886702718521)
--   [Usage](#section1210623418527)
-
 ## Overview<a name="section1886702718521"></a>
 
 The HiSysEvent tool is a command line tool preconfigured in the system. You can specify search criteria to query system events that meet your requirement. Using this tool, you can debug event logging during development or query system events for fault locating.

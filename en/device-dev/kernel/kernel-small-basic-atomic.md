@@ -1,13 +1,5 @@
 # Atomic Operation<a name="EN-US_TOPIC_0000001078876272"></a>
 
--   [Basic Concepts](#section1792118384594)
--   [Working Principles](#section1786635117596)
--   [Development Guidelines](#section2911115308)
-    -   [Available APIs](#section335914201010)
-    -   [How to Develop](#section12207371304)
-    -   [Development Example](#section8538651511)
-
-
 ## Basic Concepts<a name="section1792118384594"></a>
 
 In an OS that supports multiple tasks, modifying data in a memory area requires three steps: read data, modify data, and write data. However, data in a same memory area may be simultaneously accessed by multiple tasks. If the data modification is interrupted by another task, the execution result of the operation is unpredictable.

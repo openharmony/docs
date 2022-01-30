@@ -1,13 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001078718194"></a>
 
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Example Description](#section3741753191918)
-    -   [Sample Code](#section20760101182016)
-    -   [Verification](#section11244112818172)
-
-
 ## Available APIs<a name="section158501652121514"></a>
 
 The following table describes APIs available for the OpenHarmony LiteOS-M software timer module. For more details about the APIs, see the API reference.

@@ -1,12 +1,5 @@
 # Driver Subsystem<a name="EN-US_TOPIC_0000001052619216"></a>
 
--   [Overview](#section11660541593)
--   [Architecture](#section101721227145613)
--   [Directory Structure](#section1464106163817)
--   [Use](#section8496817141616)
--   [Installation](#section14778154275818)
--   [Repositories Involved](#section134812226297)
-
 ## Overview<a name="section11660541593"></a>
 
 The OpenHarmony driver subsystem is constructed using the C object-oriented programming \(OOP\). It provides a unified driver platform through platform decoupling, kernel decoupling, and compatible kernels. This unified driver architecture platform is designed to provide a more precise and efficient development environment, where you develop a driver that can be deployed on different systems supporting HDF.

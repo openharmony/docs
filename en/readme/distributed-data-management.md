@@ -1,13 +1,5 @@
 # Distributed Data Management<a name="EN-US_TOPIC_0000001096920663"></a>
 
--   [Introduction](#section11660541593)
--   [Directory Structure](#section161941989596)
--   [Usage](#section1312121216216)
-    -   [Local Data Management](#section129654513264)
-    -   [Distributed Data Service](#section1961602912224)
-
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section11660541593"></a>
 
 **About the Subsystem**

@@ -1,11 +1,5 @@
 # HiSysEvent Listening<a name="EN-US_TOPIC_0000001185655868"></a>
 
--   [Overview](#section315316685112)
--   [Available APIs](#section0342191810519)
--   [How to Develop](#section123181432175110)
-    -   [C++](#section2016116181902)
-
-
 ## Overview<a name="section315316685112"></a>
 
 HiSysEvent supports listening for events across processes. You can register a listener to listen for concerned events on a real-time basis. For example, you can enable the battery module to listen for power consumption event for power usage analysis.

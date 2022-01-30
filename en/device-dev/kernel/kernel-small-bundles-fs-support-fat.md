@@ -1,11 +1,5 @@
 # FAT<a name="EN-US_TOPIC_0000001078576202"></a>
 
--   [Basic Concepts](#section621393911385)
--   [Working Principles](#section10796155213381)
--   [Development Guidelines](#section144094483919)
-    -   [How to Develop](#section139086116394)
-
-
 ## Basic Concepts<a name="section621393911385"></a>
 
 File Allocation Table \(FAT\) is a file system developed for personal computers. It consists of the Dos Boot Record \(DBR\) region, FAT region, and Data region. Each entry in the FAT region records information about the corresponding cluster in the storage device. The cluster information includes whether the cluster is used, number of the next cluster of the file, whether the file ends. The FAT file system supports multiple formats, such as FAT12, FAT16, and FAT32. The numbers 12, 16, and 32 indicate the number of bytes of the FAT table entries, respectively, and also restrict the maximum file size in the system. The FAT file system supports multiple media, especially removable storage media \(such as USB flash drives, SD cards, and removable hard drives\). The FAT file system ensures good compatibility between embedded devices and desktop systems \(such as Windows and Linux\) and facilitates file management.

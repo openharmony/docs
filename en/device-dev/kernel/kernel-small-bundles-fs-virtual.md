@@ -1,13 +1,5 @@
 # Virtual File System<a name="EN-US_TOPIC_0000001123796667"></a>
 
--   [Basic Concepts](#section1253851143520)
--   [Working Principles](#section14915913123510)
--   [Development Guidelines](#section1759563620358)
-    -   [Available APIs](#section17865142133511)
-    -   [How to Develop](#section64113023616)
-    -   [Development Example](#section236041883618)
-
-
 ## Basic Concepts<a name="section1253851143520"></a>
 
 The Virtual File System \(VFS\) is not a real file system. It is an abstract layer on top of a heterogeneous file system and provides you with a unified Unix-like file operation interface. Different types of file systems provide different interfaces. If there are multiple types of file systems in the system, different and non-standard interfaces are required for accessing these file systems. The VFS can be introduced as an abstract layer in the system to harmonize the differences between these heterogeneous file systems. In this way, the system does not need to care about the storage medium and file system type at the bottom layer when accessing a file system.

@@ -1,7 +1,5 @@
 # USB Usage Guidelines<a name="EN-US_TOPIC_0000001077367159"></a>
 
--   [How to Use](#section18816105182315)
-
 The following procedure uses bulk transfer as an example.
 
 ## Procedure<a name="section18816105182315"></a>

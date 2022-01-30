@@ -1,18 +1,5 @@
 # USB<a name="EN-US_TOPIC_0000001228574475"></a>
 
--   [Overview](#section127mcpsimp)
-    -   [Available APIs](#section141mcpsimp)
-
--   [Development Guidelines](#section581mcpsimp)
-    -   [Developing Driver Using Host DDK APIs](#section584mcpsimp)
-    -   [Developing Driver Using Host Raw APIs](#section594mcpsimp)
-    -   [Developing Driver Using Device DDK APIs](#section600mcpsimp)
-
--   [Development Examples](#section607mcpsimp)
-    -   [Developing Driver Using Host DDK APIs](#section609mcpsimp)
-    -   [Developing Driver Using Host Raw APIs](#section612mcpsimp)
-    -   [Developing Driver Using Device DDK APIs](#section615mcpsimp)
-
 
 ## Overview<a name="section127mcpsimp"></a>
 

@@ -1,11 +1,5 @@
 # OpenHarmony 1.0 \(2020-09-10\)<a name="EN-US_TOPIC_0000001079132978"></a>
 
--   [Overview](#section249611124916)
--   [Source Code Acquisition](#section127301717165113)
-    -   [Acquiring Source Code from Mirrors](#section157648475298)
-    -   [Acquiring Source Code Using the repo Tool](#section49746186307)
-
-
 ## Overview<a name="section249611124916"></a>
 
 This is the initial release for this product.

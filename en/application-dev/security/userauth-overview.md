@@ -1,8 +1,8 @@
 # User Authentication Overview<a name="EN-US_TOPIC_0000001050991067"></a>
 
-HarmonyOS provides biometric recognition that can be used for identity authentication in device unlocking, application login, and payment.
+OpenHarmony provides biometric recognition that can be used for identity authentication in device unlocking, application login, and payment.
 
-HarmonyOS provides both 2D and 3D facial recognition. You can provide either or both of them on your device based on the hardware and technology applied on the device. 3D facial recognition is superior to 2D facial recognition in terms of recognition rate and anti-counterfeiting capability. However, you can use 3D facial recognition only if your device supports capabilities such as 3D structured light and 3D Time of Flight \(TOF\).
+OpenHarmony provides both 2D and 3D facial recognition. You can provide either or both of them on your device based on the hardware and technology applied on the device. 3D facial recognition is superior to 2D facial recognition in terms of recognition rate and anti-counterfeiting capability. However, you can use 3D facial recognition only if your device supports capabilities such as 3D structured light and 3D Time of Flight \(TOF\).
 
 ## Basic Concepts<a name="section95562369310"></a>
 
@@ -18,7 +18,7 @@ Facial characteristics are stored in the TEE, which uses strong cryptographic al
 
 ## Limitations and Constraints<a name="section6226193317475"></a>
 
--   HarmonyOS only supports facial recognition and local authentication, and does not support an authentication UI.
+-   OpenHarmony only supports facial recognition and local authentication, and does not support an authentication UI.
 -   To use biometric recognition, a device must have a camera with a face image pixel greater than 100x100.
 -   The device must have a TEE, where encrypted facial characteristics are stored.
 -   Facial recognition may not work for people with similar looks and children whose facial features keep changing. If you are concerned about this, consider using other authentication modes.

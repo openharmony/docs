@@ -1,11 +1,5 @@
 # ARK Runtime Subsystem<a name="EN-US_TOPIC_0000001138852894"></a>
 
-- [ARK Runtime Subsystem<a name="EN-US_TOPIC_0000001138852894"></a>](#ark-runtime-subsystem)
-  - [Introduction<a name="section11660541593"></a>](#introduction)
-  - [Directory Structure<a name="section161941989596"></a>](#directory-structure)
-  - [Usage Guide<a name="section18393638195820"></a>](#usage-guide)
-  - [Repositories Involved<a name="section1371113476307"></a>](#repositories-involved)
-
 ## Introduction<a name="section11660541593"></a>
 
 ARK is a unified programming platform developed by Huawei. Its key components include a compiler, toolchain, and runtime. ARK supports compilation and execution of high-level programming languages on the multiple hardware platform and accelerates the execution of the OpenHarmony operating system and its applications and services on mobile phones, PCs, tablets, TVs, automobiles, and smart wearables. The ARK-JS open sourced this time provides the capability of compiling and running the JavaScript \(JS\) language on the standard system of OpenHarmony.

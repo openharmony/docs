@@ -1,15 +1,5 @@
 # OpenHarmony 3.0 LTS
 
-- [Version Description](#Version-Description)
-- [Version Mapping](#Version-Mapping)
-- [Source Code Acquisition](#Source-Code-Acquisition)
-- [What's New](#What-Is-New)
-    - [Feature Updates](#Feature-Updates)
-    - [API Updates](#API-Updates)
-    - [Chip and Development Board Adaptation](#Chip-and-Development-Board-Adaptation)
-- [Resolved Issues](#Resolved-Issues)
-- [Known Issues](#Known-Issues)
-
 ## Version Description
 
 This version has updates for the standard system, mini system, and small system on the basis of OpenHarmony 2.2 Beta2.

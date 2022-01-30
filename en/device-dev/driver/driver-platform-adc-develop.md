@@ -1,10 +1,5 @@
 # ADC<a name="EN-US_TOPIC_0000001153677754"></a>
 
--   [Overview](#section268031773165048)
--   [How to Develop](#section100579767165048)
-    -   [AdcMethod](#section1618135285210)
-
--   [Development Example](#section1745221471165048)
 
 ## Overview<a name="section268031773165048"></a>
 

@@ -1,12 +1,5 @@
 # writeproc<a name="EN-US_TOPIC_0000001179845935"></a>
 
--   [Command Function](#section366714216619)
--   [Syntax](#section8833164614615)
--   [Parameters](#section12809111019453)
--   [Usage](#section15935131220717)
--   [Example](#section79281818476)
--   [Output](#section12742311179)
-
 ## Command Function<a name="section366714216619"></a>
 
 This command is used to write data to a specified proc file system. The proc file system supports the input of string parameters. Each file needs to implement its own method.

@@ -1,12 +1,5 @@
 # partition<a name="EN-US_TOPIC_0000001179965851"></a>
 
--   [Command Function](#section255095212257)
--   [Syntax](#section10258056122515)
--   [Parameters](#section177200581256)
--   [Usage](#section17866411262)
--   [Example](#section1927174202610)
--   [Output](#section11321011223)
-
 ## Command Function<a name="section255095212257"></a>
 
 This command is used to query flash partition information.

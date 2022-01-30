@@ -1,22 +1,5 @@
 # Standard System Porting Guide<a name="EN-US_TOPIC_0000001180064129"></a>
 
--   [Defining a Development Board](#section132mcpsimp)
-    -   [Defining an SoC](#section135mcpsimp)
-    -   [Defining a Product](#section145mcpsimp)
-    -   [Verifying the Porting](#section163mcpsimp)
-
--   [Porting the Kernel](#section171mcpsimp)
-    -   [1. Adding a Kernel-built Subsystem to the SoC](#section174mcpsimp)
-    -   [2. Building the Kernel](#section182mcpsimp)
-    -   [3. Verifying the Porting](#section207mcpsimp)
-
--   [Porting the HDF Driver](#section210mcpsimp)
-    -   [1. LCD](#section212mcpsimp)
-    -   [2. Touchscreen](#section229mcpsimp)
-    -   [3. WLAN](#section274mcpsimp)
-    -   [4. Samples](#section11253153018415)
-
-
 This document describes the general process for porting a development board, rather than the porting process specific to a System on Chip \(SoC\). In the future, the community will provide more development board porting examples for your reference.
 
 ## Defining a Development Board<a name="section132mcpsimp"></a>

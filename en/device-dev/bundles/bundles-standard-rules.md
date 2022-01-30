@@ -1,26 +1,5 @@
 # Bundle Development Specifications<a name="EN-US_TOPIC_0000001051452141"></a>
 
--   [Overview](#section1725818533344)
-    -   [Definition](#section4821219183514)
-    -   [Bundle Division Rules](#section1089794263513)
-    -   [Bundle Dependency](#section25701647163710)
-
--   [Bundle Composition](#section185538333914)
-    -   [Code Files](#section8431268393)
-    -   [README File](#section168121548173914)
-    -   [Metadata Description File](#section7107181819406)
-
--   [Bundle Management](#section32061634104110)
-    -   [Dependency](#section791115242423)
-    -   [HPM Command Reference](#section1183205411429)
-
--   [Bundle Version](#section12612142864316)
-    -   [Version Number Naming Specifications](#section1487612416432)
-    -   [Version Publishing](#section1548171014440)
-
--   [Distribution](#section1264139114413)
--   [Environment Variables](#section15352105174512)
-
 ## Overview<a name="section1725818533344"></a>
 
 This document describes the basic concepts of a bundle and how to define it in compliance with specifications.

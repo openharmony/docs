@@ -1,31 +1,5 @@
 # System Applications<a name="EN-US_TOPIC_0000001169690992"></a>
 
--   [Utils](#section639433461512)
-    -   [1. Failure in running the KV store on the LiteOS-A kernel \(Hi3516 or Hi3518\) due to incorrect path setting for the KV store](#section16520347131511)
-
--   [Visual Applications](#section787718474161)
-    -   [Is there a global variable that can be accessed by all pages?](#section187297991718)
-    -   [How do I obtain DOM elements?](#section1833493719175)
-    -   [How do I pass values between pages?](#section184283812183)
-    -   [How do I scroll a list to an item?](#section11897734131811)
-    -   [Does the <text\> component support multiple lines?](#section5872656121814)
-    -   [Why is a component not displayed?](#section7397125317107)
-    -   [How do I implement scrolling on a page?](#section338794422010)
-    -   [Why do not the left and top attributes take effect?](#section2597193611217)
-    -   [Why does not dynamic binding take effect?](#section6939050172115)
-    -   [How do I implement relative and absolute positioning?](#section5547311192215)
-    -   [How do I display or hide a component?](#section16107113352213)
-    -   [What are the precautions for using the margin attribute?](#section1524910142314)
-    -   [What are the precautions for event subscription?](#section1537132012231)
-    -   [What are the precautions for using dynamic binding?](#section96561452236)
-    -   [How does the loop attribute take effect for <swiper\>?](#section690166112414)
-    -   [What are the precautions for using an array?](#section1554552822414)
-
--   [HDC](#section412357182518)
-    -   [hdc\_std Fails to Connect to a Device](#section1965012223257)
-    -   [hdc\_std Fails to Run](#section1157575212515)
-
-
 ## Utils<a name="section639433461512"></a>
 
 ### 1. Failure in running the KV store on the LiteOS-A kernel \(Hi3516 or Hi3518\) due to incorrect path setting for the KV store<a name="section16520347131511"></a>

@@ -1,24 +1,5 @@
 # Development Guidelines on Common Components<a name="EN-US_TOPIC_0000001052170409"></a>
 
--   [UIButton](#section145353310214)
--   [When to Use](#section1169616141577)
--   [Available APIs](#section341211538315)
--   [How to Develop](#section22501726193214)
--   [UIImageView](#section19523161611259)
--   [When to Use](#section1274484210400)
--   [Available APIs](#section74981992411)
--   [How to Develop \(Adaptive Mode\)](#section144341333134114)
--   [How to Develop \(Tile Mode\)](#section97178160421)
--   [UILabel](#section16588132012911)
--   [When to Use](#section6870195634218)
--   [Available APIs](#section2012714510433)
--   [How to Develop \(Default Mode\)](#section83221538114410)
--   [How to Develop \(Background Color and Opacity\)](#section933360204510)
--   [How to Develop \(Letter Spacing\)](#section19447826124518)
--   [How to Develop \(Size-Adaptive Mode\)](#section101711842154617)
--   [How to Develop \(Ellipsis Mode\)](#section1249519410471)
--   [How to Develop \(Scrolling Mode\)](#section15643122618478)
-
 Common components inherit from the base class  **UIView**. Child components cannot be added to common components, such as buttons, images, and labels.
 
 **Figure  1**  Tree structure of common components<a name="fig3386518305"></a>  

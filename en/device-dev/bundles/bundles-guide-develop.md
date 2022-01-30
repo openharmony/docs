@@ -1,17 +1,5 @@
 # Developing Bundles<a name="EN-US_TOPIC_0000001051690861"></a>
 
--   [Creating a Bundle](#section717481119145)
--   [Defining an Existing Project as a Bundle](#section102861955201410)
--   [Releasing the Bundle on the HPM Platform](#section1318574233211)
--   [Referencing a Bundle](#section19311124115315)
--   [Installing a Bundle Globally](#section165131927192120)
--   [Compiling a Bundle](#section136732148541)
--   [Defining the Build Script](#section10274147111610)
--   [Executing the Build Script](#section879301916172)
--   [Defining a Distribution](#section413216495619)
--   [Defining Scripts](#section11503171219190)
--   [Building a Distribution](#section4694125521912)
-
 You can use any of the following methods to develop OpenHarmony bundles:
 
 -   Create a new bundle from scratch.

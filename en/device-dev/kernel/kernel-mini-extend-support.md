@@ -1,13 +1,5 @@
 # C++ Support<a name="EN-US_TOPIC_0000001079036442"></a>
 
--   [Basic Concepts](#section11374125415814)
--   [Working Principles](#section189351319134418)
--   [Development Guidelines](#section166302407911)
-    -   [Available APIs](#section1881825119919)
-    -   [How to Develop](#section76371145108)
-    -   [Development Example](#section994427141111)
-
-
 ## Basic Concepts<a name="section11374125415814"></a>
 
 As one of the most widely used programming languages, C++ supports features, such as classes, encapsulation, and overloading. It is an object-oriented programming language developed based on the C language.

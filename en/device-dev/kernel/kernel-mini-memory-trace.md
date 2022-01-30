@@ -1,15 +1,5 @@
 # Trace Debugging<a name="EN-US_TOPIC_0000001162019075"></a>
 
--   [Basic Concepts](#section44851752123712)
--   [Working Principles](#section5282148123813)
--   [Available APIs](#section16304193215387)
--   [Development Guidelines](#section498695853819)
-    -   [How to Develop](#section1875652316393)
-    -   [Development Example](#section0403134913395)
-    -   [Sample Code](#section1492711418400)
-    -   [Verification](#section869613984012)
-
-
 ## Basic Concepts<a name="section44851752123712"></a>
 
 Trace debugging helps you learn about the kernel running process and the execution sequence of modules and tasks. With the information, you can better understand the code running process of the kernel and locate time sequence problems.

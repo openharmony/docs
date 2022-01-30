@@ -1,12 +1,5 @@
 # Contribution Process<a name="EN-US_TOPIC_0000001052970939"></a>
 
--   [Preparations](#section124971410183614)
--   [Downloading Code](#section6125202333611)
--   [Committing Code](#section338918220422)
--   [Creating a Pull Request](#section28261522124316)
--   [Building Access Control](#section981124754415)
--   [Reviewing Code](#section17823849145014)
-
 ## Preparations<a name="section124971410183614"></a>
 
 -   Install, configure, and use Git. For details, visit  [https://gitee.com/help/categories/43](https://gitee.com/help/categories/43).

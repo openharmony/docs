@@ -1,29 +1,5 @@
 # Overview of FAQs<a name="EN-US_TOPIC_0000001169691604"></a>
 
--   [Environment Setup](#section93289248249)
-    -   [Mini and Small Systems](#section197234983111)
-
--   [Compilation and Building](#section18826114693810)
-    -   [Mini and Small Systems](#section693410399)
-
--   [Burning](#section6556741113712)
-    -   [Mini and Small Systems](#section1029933713812)
-
--   [Kernel](#section13741125564211)
-    -   [Basic Kernel](#section1723365191114)
-    -   [File System](#section14523145918136)
-    -   [Chip Adaptation](#section141541939159)
-    -   [Third-party Components](#section4988163321816)
-    -   [Compilation and Linking](#section080219574225)
-
--   [Porting](#section129331824154313)
--   [Startup and Recovery](#section83501764443)
--   [System Services](#section19567132114455)
-    -   [Utils](#section3214181711465)
-    -   [Visual Applications](#section295651815466)
-    -   [HDC](#section178081876506)
-
-
 FAQs are used to help developers solve problems frequently encountered during development. They cover a wide range of topics.
 
 ## Environment Setup<a name="section93289248249"></a>

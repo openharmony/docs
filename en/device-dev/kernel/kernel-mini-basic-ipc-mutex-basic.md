@@ -1,7 +1,5 @@
 # Basic Concepts<a name="EN-US_TOPIC_0000001078716896"></a>
 
--   [Working Principles](#section115161649726)
-
 A mutual exclusion \(mutex\) is a special binary semaphore used for exclusive access to shared resources.
 
 A mutex can be unlocked or locked. When a mutex is held by a task, the mutex is locked and the task obtains the ownership of the mutex. When the task releases the mutex, the mutex is unlocked and the task will lose the ownership of the mutex. When a task holds a mutex, other tasks cannot unlock or hold the mutex.

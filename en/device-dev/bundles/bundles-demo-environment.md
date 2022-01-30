@@ -1,12 +1,5 @@
 # Configuring the Compilation Environment<a name="EN-US_TOPIC_0000001071315859"></a>
 
--   [Linux Server](#section20979554791)
--   [Node.js](#section9954105413153)
--   [Installing hpm-cli Tool](#section15937194904819)
--   [Python Environment](#section1621819180417)
--   [File Packaging Tool](#section77617165913)
--   [SCons](#section20558439191516)
-
 ![](figure/3516dv300.png)
 
 ## Linux Server<a name="section20979554791"></a>

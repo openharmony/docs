@@ -1,8 +1,5 @@
 # Basic Kernel Adaptation<a name="EN-US_TOPIC_0000001199842517"></a>
 
--   [Adaptation Process](#section14523241594)
--   [Feature Configuration](#section112994366592)
-
 The LiteOS Cortex-M kernel provides the system initialization process and customized configuration options required for system running. During kernel porting, you must pay attention to the functions related to hardware configuration in the initialization process and understand the kernel configuration options so that the minimum kernel that matches the board can be tailored.
 
 ## Adaptation Process<a name="section14523241594"></a>

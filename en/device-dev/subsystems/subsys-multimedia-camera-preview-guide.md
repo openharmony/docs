@@ -1,10 +1,5 @@
 # Development Guidelines on Previewing<a name="EN-US_TOPIC_0000001051930577"></a>
 
--   [When to Use](#section186634310418)
--   [Available APIs](#section125479541744)
--   [Limitations and Constraints](#section1165911177314)
--   [How to Develop](#section34171333656)
-
 ## When to Use<a name="section186634310418"></a>
 
 Use the camera module APIs to generate and play video streams.

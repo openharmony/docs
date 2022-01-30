@@ -1,10 +1,5 @@
 # DFX<a name="EN-US_TOPIC_0000001162014185"></a>
 
--   [Introduction](#section1347419114210)
--   [Architecture](#section342962219551)
--   [Directory Structure](#section62815498425)
--   [Repositories Involved](#section767551120815)
-
 ## Introduction<a name="section1347419114210"></a>
 
 [Design for X](https://en.wikipedia.org/wiki/Design_for_X)  \(DFX\) refers to the software design that aims to improve the quality attribute in OpenHarmony. It mainly consists of two parts: design for reliability \(DFR\) and design for testability \(DFT\).

@@ -1,9 +1,5 @@
 # Installing hpm-cli Tool<a name="EN-US_TOPIC_0000001051770836"></a>
 
--   [Installing Node.js and hpm](#section106591616205311)
--   [\(Optional\) Configuring hpm](#section71821165412)
--   [Downloading OpenHarmony Code](#section102338221707)
-
 To develop a bundle, you first need to install the HarmonyOS Package Manager \(hpm\), a cross-platform command line tool developed based on Node.js. To run the hpm, you need to install Node.js, and then install the hpm using the Node Package Manager \(npm\).
 
 ## Installing Node.js and hpm<a name="section106591616205311"></a>
