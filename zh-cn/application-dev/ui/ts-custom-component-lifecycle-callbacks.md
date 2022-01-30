@@ -72,7 +72,7 @@ struct CountDownTimerComponent {
 
 上述示例表明，生命周期函数对于允许CountDownTimerComponent管理其计时器资源至关重要，类似的函数也包括异步从网络请求加载资源。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >-   允许在生命周期函数中使用**Promise**和异步回调函数，比如网络资源获取，定时器设置等；
 >-   不允许在生命周期函数中使用**async await**。
 
