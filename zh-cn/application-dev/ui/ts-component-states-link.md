@@ -8,7 +8,7 @@
 -   **双向通信：**子组件对**@Link**变量的更改将同步修改父组件的**@State**变量；
 -   **创建自定义组件时需要将变量的引用传递给@Link变量：**在创建组件的新实例时，必须使用命名参数初始化所有**@Link**变量。**@Link**变量可以使用**@State**变量或**@Link**变量的引用进行初始化，**@State**变量可以通过'**$**'操作符创建引用。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >**@Link**变量不能在组件内部进行初始化。
 
 ## 简单类型示例<a name="section19793192619582"></a>
