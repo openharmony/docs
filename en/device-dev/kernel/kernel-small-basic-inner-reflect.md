@@ -1,12 +1,5 @@
 # Virtual-to-Physical Mapping<a name="EN-US_TOPIC_0000001079036248"></a>
 
--   [Basic Concepts](#section9108144913615)
--   [Working Principles](#section12392621871)
--   [Development Guidelines](#section10264102013713)
-    -   [Available APIs](#section195320251578)
-    -   [How to Develop](#section152774210712)
-
-
 ## Basic Concepts<a name="section9108144913615"></a>
 
 The Memory Management Unit \(MMU\) is used to map the virtual addresses in the process space and the actual physical addresses and specify corresponding access permissions and cache attributes. When a program is executed, the CPU accesses the virtual memory, locates the corresponding physical memory based on the MMU page table entry, and executes the code or performs data read/write operations. The page tables of the MMU store the mappings between virtual and physical addresses and the access permission. A page table is created when each process is created. The page table contains page table entries \(PTEs\), and each PTE describes a mapping between a virtual address region and a physical address region. The MMU has a Translation Lookaside Buffer \(TLB\) to perform address translation. During address translation, the MMU first searches the TLB for the corresponding PTE. If a match is found, the address can be returned directly. The following figure illustrates how the CPU accesses the memory or peripherals.

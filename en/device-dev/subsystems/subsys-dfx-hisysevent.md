@@ -1,9 +1,5 @@
 # Development Guidelines on HiSysEvent<a name="EN-US_TOPIC_0000001091101688"></a>
 
--   [Overview](#section77571101789)
--   [Available APIs](#section13480315886)
--   [How to Develop](#section112771171317)
-
 ## Overview<a name="section77571101789"></a>
 
 HiSysEvent provides event logging APIs for OpenHarmony to record important information of key processes during system running, helping you locate faults. In addition, you can upload the log data to the cloud for big data analytics.

@@ -1,12 +1,5 @@
 # Bitwise Operation<a name="EN-US_TOPIC_0000001078588212"></a>
 
--   [Basic Concepts](#section1990715203418)
--   [Available APIs](#section848334511411)
--   [Development Example](#section67569495514)
-    -   [Example Description](#section33551554391)
-    -   [Verification](#section8931859194)
-
-
 ## Basic Concepts<a name="section1990715203418"></a>
 
 A bitwise operation operates on a binary number at the level of its individual bits. For example, a variable can be set as a program PSW \(PSW\), and each bit \(flag bit\) in the PSW can have a self-defined meaning.

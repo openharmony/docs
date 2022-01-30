@@ -1,10 +1,5 @@
 # utils<a name="EN-US_TOPIC_0000001078403148"></a>
 
--   [Introduction](#section11660541593)
--   [Directory Structure](#section17271017133915)
--   [Usage](#section137421544135015)
--   [Repositories Involved](#section1249817110914)
-
 ## Introduction<a name="section11660541593"></a>
 
 The  **utils**  repository provides ndk_libraries_config and system functions.

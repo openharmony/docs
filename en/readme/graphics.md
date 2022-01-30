@@ -1,21 +1,5 @@
 # Graphics<a name="EN-US_TOPIC_0000001115588688"></a>
 
--   [1.1 Mini System](#section1346303311377)
-    -   [Introduction](#section1165992615384)
-    -   [Directory Structure](#section141331948134020)
-    -   [Constraints](#section15729113104112)
-    -   [Usage](#section812962919413)
-    -   [Repositories Involved](#section12651205434115)
-
--   [1.2 Standard System](#section1249610812538)
-    -   [Introduction](#section1374615251510)
-    -   [Directory Structure](#section16751364713)
-    -   [Constraints](#section126494189715)
-    -   [Compilation and Building](#section883114292070)
-    -   [Usage](#section1351214227564)
-    -   [Repositories Involved](#section11578621131119)
-
-
 The Graphics subsystem mainly consists of user interface \(UI\) components, layout, animator, font, input event, window management, and rendering and drawing modules. It is an application framework that can be built on the LiteOS to develop OpenHarmony applications for Internet of Things \(IoT\) devices with limited hardware resources or on the standard OS to develop OpenHarmony applications for standard- and large-system devices \(for example, tablet and lite smart devices\).
 
 ## 1.1 Mini System<a name="section1346303311377"></a>

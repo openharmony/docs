@@ -1,11 +1,5 @@
 # Watchdog<a name="EN-US_TOPIC_0000001199821009"></a>
 
--   [Overview](#section1315827527160117)
--   [How to Develop](#section477974542160117)
-    -   [WatchdogMethod](#section220331929)
-
--   [Development Example](#section1832270347160117)
-
 ## Overview<a name="section1315827527160117"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the Watchdog \(also called Watchdog timer\) module uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.

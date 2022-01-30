@@ -1,14 +1,5 @@
 # Static Memory<a name="EN-US_TOPIC_0000001078876516"></a>
 
--   [Working Principles](#section165473517522)
--   [Development Guidelines](#section57511620165218)
-    -   [When to Use](#section215474911529)
-    -   [Available APIs](#section79231214539)
-    -   [How to Develop](#section1388511316548)
-    -   [Development Example](#section17801515105519)
-    -   [Verification](#section11818154112319)
-
-
 ## Working Principles<a name="section165473517522"></a>
 
 The static memory is a static array. The block size in the static memory pool is set during initialization and cannot be changed after initialization.

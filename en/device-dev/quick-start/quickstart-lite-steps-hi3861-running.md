@@ -1,13 +1,5 @@
 # Running a Hello World Program<a name="EN-US_TOPIC_0000001128311062"></a>
 
--   [Modifying Source Code](#section79601457101015)
--   [Debugging and Verification](#section1621064881419)
-    -   [printf](#section5204547123316)
-    -   [Locating Exceptions Using the ASM File](#section15919111423416)
-
--   [Viewing Execution Result](#section18115713118)
--   [Follow-up Learning](#section9712145420182)
-
 This example shows how to compile a simple service and print  **Hello World**  to help you preliminarily understand how to run OpenHarmony on Hi3861.
 
 ## Modifying Source Code<a name="section79601457101015"></a>

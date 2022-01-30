@@ -1,10 +1,5 @@
 # Basic Concepts<a name="EN-US_TOPIC_0000001123763599"></a>
 
--   [Working Principles](#section1735611583011)
-    -   [Event Control Block](#section1161415384467)
-    -   [Working Principles](#section187761153144617)
-
-
 An event is a mechanism for communication between tasks. It can be used to synchronize tasks. The events have the following features:
 
 -   Events can be synchronized in one-to-many or many-to-many mode. In one-to-many mode, a task can wait for multiple events. In many-to-many mode, multiple tasks can wait for multiple events. However, a write event wakes up only one task from the block.

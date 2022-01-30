@@ -1,10 +1,5 @@
 # Distributed Scheduler<a name="EN-US_TOPIC_0000001115719369"></a>
 
--   [Introduction](#section11660541593)
--   [System Architecture](#section13587185873516)
--   [Directory Structure](#section161941989596)
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section11660541593"></a>
 
 Distributed Scheduler is used for cross-device component management. It allows the local device to access or control remote components, and enables app collaboration in distributed scenarios. Its main functions are as follows:

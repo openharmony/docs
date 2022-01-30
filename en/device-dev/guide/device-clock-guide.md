@@ -1,15 +1,5 @@
 # Development Guidelines on Clock Apps<a name="EN-US_TOPIC_0000001115417926"></a>
 
--   [Overview](#section11522349121115)
--   [Preparations](#section6592121861218)
--   [How to Develop](#section19901741111312)
--   [Signing and Packaging](#section10601181101516)
--   [Running on the Real Device](#section092721731511)
--   [FAQs](#section1122413460153)
-    -   [hdc\_std Fails to Connect to a Device](#section1922725151614)
-    -   [hdc\_std Fails to Run](#section15657547131615)
-
-
 ## Overview<a name="section11522349121115"></a>
 
 This document describes how to quickly set up a development environment \(using the Hi3516D V300 development board\) and develop a clock app running on OpenHarmony. You can click  [here](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)  to obtain the sample code.

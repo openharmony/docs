@@ -1,10 +1,5 @@
 # LCD<a name="EN-US_TOPIC_0000001052857284"></a>
 
--   [Overview](#section141575391542)
--   [API Description](#section53793327396)
--   [How to Develop](#section12394223125615)
--   [Development Example](#section7441155155813)
-
 ## Overview<a name="section141575391542"></a>
 
 The Liquid Crystal Display \(LCD\) driver powers on the LCD and initializes internal LCD registers through APIs to enable the LCD to work properly. The display driver is developed based on the hardware driver foundation \([HDF](driver-hdf-overview.md)\). It provides power-on, power-off, and sending of the initialization sequence for LCD hardware across OSs and platforms. The display driver model is shown in  [Figure 1](#fig69138814229).

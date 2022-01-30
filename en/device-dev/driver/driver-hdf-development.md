@@ -1,8 +1,5 @@
 # Driver Development<a name="EN-US_TOPIC_0000001051930361"></a>
 
--   [Introduction](#section157425168112)
--   [How to Develop](#section1969312275533)
-
 ## Introduction<a name="section157425168112"></a>
 
 The HDF is designed based on the component-based driver model. It provides more refined driver management to make driver development and deployment more standard. Device drivers of the same type are placed in the same host. You can develop and deploy the drivers separately. One driver can have multiple nodes.  [Figure 1](#fig3580184214210)  shows the HDF driver model.

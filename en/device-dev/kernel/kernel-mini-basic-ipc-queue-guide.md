@@ -1,13 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001123763635"></a>
 
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Example Description](#section2148236125814)
-    -   [Sample Code](#section121451047155716)
-    -   [Verification](#section2742182082117)
-
-
 ## Available APIs<a name="section158501652121514"></a>
 
 <a name="table10903105695114"></a>

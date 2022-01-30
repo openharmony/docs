@@ -1,12 +1,5 @@
 # ping6<a name="EN-US_TOPIC_0000001134006274"></a>
 
--   [Command Function](#section1057291313393)
--   [Syntax](#section199901315123919)
--   [Parameters](#section4679319113919)
--   [Usage](#section1127917226399)
--   [Example](#section7211192553917)
--   [Output](#section4846145221215)
-
 ## Command Function<a name="section1057291313393"></a>
 
 This command is used to test an IPv6 network connection.

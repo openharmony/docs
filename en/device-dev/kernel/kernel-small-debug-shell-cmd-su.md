@@ -1,12 +1,5 @@
 # su<a name="EN-US_TOPIC_0000001179965841"></a>
 
--   [Command Function](#section297810431676)
--   [Syntax](#section157131147876)
--   [Parameters](#section04145521671)
--   [Usage](#section14615155610719)
--   [Example](#section13338150985)
--   [Output](#section125021924194613)
-
 ## Command Function<a name="section297810431676"></a>
 
 This command is used to switch the user.

@@ -1,7 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001152860497"></a>
 
--   [Sample Code](#section1034515054620)
-
 When porting LittleFS to a new hardware device, you need to declare  **lfs\_config**:
 
 ```

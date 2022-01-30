@@ -1,9 +1,5 @@
 # Driver Message Mechanism Management<a name="EN-US_TOPIC_0000001052657065"></a>
 
--   [When to Use](#section33014541954)
--   [Available APIs](#section538852311616)
--   [How to Develop](#section946912121153)
-
 ## When to Use<a name="section33014541954"></a>
 
 When user-level applications need to interact with kernel-level drivers, the driver message mechanism of the HDF can be used.

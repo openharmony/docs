@@ -1,8 +1,5 @@
 # Startup<a name="EN-US_TOPIC_0000001063402122"></a>
 
--   [Context Structure](#section167378304212)
--   [Limitations and Constraints](#section2029921310472)
-
 ## Context Structure<a name="section167378304212"></a>
 
 The following figure shows the context structure of the Startup subsystem.

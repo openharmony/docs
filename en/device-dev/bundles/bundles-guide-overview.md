@@ -1,8 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001051452100"></a>
 
--   [Bundle](#section196713235514)
--   [Distribution](#section155387501033)
-
 This section describes the bundle-specific concepts in HarmonyOS. It uses an example to step you through how to create, develop, build, release, and install a bundle using the  **hpm-cli**  tool.
 
 ## Bundle<a name="section196713235514"></a>
@@ -37,5 +34,5 @@ A distribution is a complete HarmonyOS release that integrates various bundles, 
 **Figure  1**  Relationship between bundles and a distribution<a name="fig85033524124"></a>  
 
 
-![](figure/组件和发行版的构成-英文.png)
+![](figure/bundle-distribution.png)
 

@@ -1,12 +1,5 @@
 # pmm<a name="EN-US_TOPIC_0000001179965839"></a>
 
--   [Command Function](#section445335110416)
--   [Syntax](#section1795712553416)
--   [Parameters](#section92544592410)
--   [Usage](#section104151141252)
--   [Example](#section11545171957)
--   [Output](#section075617368542)
-
 ## Command Function<a name="section445335110416"></a>
 
 This command is used to check the usage of the physical pages and page cache of the system memory.

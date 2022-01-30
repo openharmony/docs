@@ -1,7 +1,5 @@
 # Reference<a name="EN-US_TOPIC_0000001062922155"></a>
 
--   [Directory Structure](#section3523121414020)
-
 ## Directory Structure<a name="section3523121414020"></a>
 
 The following table describes the directory structure of the Startup subsystem.

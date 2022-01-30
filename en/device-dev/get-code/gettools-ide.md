@@ -1,8 +1,5 @@
 # IDE<a name="EN-US_TOPIC_0000001128361880"></a>
 
--   [Acquiring the Device Development Tool \(HUAWEI DevEco Device Tool\)](#section2452141120244)
--   [Acquiring the Application Development Tool \(HUAWEI DevEco Studio\)](#section0904101019258)
-
 ## Acquiring the Device Development Tool \(HUAWEI DevEco Device Tool\)<a name="section2452141120244"></a>
 
 HUAWEI DevEco Device Tool is a one-stop integrated development environment \(IDE\) provided to develop applications for OpenHarmony devices. It allows on-demand customization of OpenHarmony components, code editing, building, burning, and debugging, and supports C and C++ languages. This tool is installed in Visual Studio Code as a plug-in. For details, see  [HUAWEI DevEco Device Tool](https://device.harmonyos.com/en/ide)  and  [HUAWEI DevEco Device Tool User Guide](https://device.harmonyos.com/en/docs/ide/user-guides/service_introduction-0000001050166905).

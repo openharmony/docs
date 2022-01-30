@@ -1,11 +1,5 @@
 # MMC<a name="EN-US_TOPIC_0000001153669000"></a>
 
--   [Overview](#section1846388309162704)
--   [How to Develop](#section1617495117162704)
-    -   [MmcCntlrOps](#section6203107192915)
-
--   [Development Example](#section1220893490162704)
-
 ## Overview<a name="section1846388309162704"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the MultiMedia Card \(MMC\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.

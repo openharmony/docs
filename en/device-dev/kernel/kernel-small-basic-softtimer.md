@@ -1,13 +1,5 @@
 # Software Timer<a name="EN-US_TOPIC_0000001078575728"></a>
 
--   [Basic Concepts](#section4118241563)
--   [Working Principles](#section31079397569)
--   [Development Guidelines](#section18576131520577)
-    -   [Available APIs](#section3138019145719)
-    -   [How to Develop](#section1344817403575)
-    -   [Development Example](#section114416313585)
-
-
 ## Basic Concepts<a name="section4118241563"></a>
 
 The software timer is a software-simulated timer based on system tick interrupts. When the preset tick counter value has elapsed, the user-defined callback will be invoked. The timing precision is related to the cycle of the system tick clock. Due to the limitation in hardware, the number of hardware timers cannot meet users' requirements. Therefore, the Huawei LiteOS provides the software timer function. The software timer allows more timing services to be created, increasing the number of timers.

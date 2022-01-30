@@ -1,10 +1,5 @@
 # Development Guidelines on IPC Authentication<a name="EN-US_TOPIC_0000001058671861"></a>
 
--   [When to Use](#section18502174174019)
--   [Available APIs](#section1633115419401)
--   [How to Develop](#section022611498210)
--   [FAQ](#section15729104510271)
-
 ## When to Use<a name="section18502174174019"></a>
 
 System services registered with Samgr can be accessed by other processes through IPC APIs. When a process requests to access such an API, IPC authentication is triggered to check whether the process has the required permission. If the process does not have the required permission, the access request will be denied.

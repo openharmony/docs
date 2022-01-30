@@ -1,10 +1,5 @@
 # XTS<a name="EN-US_TOPIC_0000001199722627"></a>
 
--   [Introduction](#section6725155811454)
-    -   [Adding the XTS Subsystem to the Building Component](#section46981118105417)
-    -   [Executing ACTS Cases for the IoTLink Module](#section9489122319819)
-
-
 ## Introduction<a name="section6725155811454"></a>
 
 X Test Suite \(XTS\) is a set of OpenHarmony certification test suites. Currently, the application compatibility test suite \(ACTS\) is supported. The  **test/xts**  repository contains the  **acts**  directory and  **tools**  software package.

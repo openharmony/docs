@@ -1,19 +1,5 @@
 # USB<a name="EN-US_TOPIC_0000001052857350"></a>
 
--   [Overview](#section175431838101617)
-    -   [Available APIs](#section17667171301711)
-
--   [Development Guidelines](#section65745222184)
-    -   [Developing Driver Using Host DDK APIs](#section865734181916)
-    -   [Developing Driver Using Host Raw APIs](#section865734181916)
-    -   [Developing Driver Using Device DDK APIs](#section865734181916)
-
--   [Development Examples](#section263714411191)
-    -   [Developing Driver Using Host DDK APIs](#section18249155619195)
-    -   [Developing Driver Using Host Raw APIs](#section3571192072014)
-    -   [Developing Driver Using Device DDK APIs](#section6356758162015)
-
-
 ## Overview <a name="section175431838101617"></a>
 
 USB host development aims to provide host-related functions, including protocol encapsulation, device management, and driver installation and uninstall.

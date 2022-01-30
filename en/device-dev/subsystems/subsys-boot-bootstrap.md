@@ -1,8 +1,5 @@
 # bootstrap Module<a name="EN-US_TOPIC_0000001063402356"></a>
 
--   [Available APIs](#section1633115419401)
--   [How to Use](#section2055311316228)
-
 This module implements automatic service initialization. That is, the initialization function does not need to be explicitly called. Instead, it is declared using the macro definition and is automatically executed when the system is started. Specifically, after the function for starting a service is declared using a macro, it is placed in the predefined  **zInit**  code segment. During system startup, the  **OHOS\_SystemInit**  API is called to traverse the code segment and call the functions in the code segment. Therefore, you need to include the  **zInit**  code segment in the linker script and call the  **OHOS\_SystemInit**  API in the  **main**  function.
 
 For details about how to include the  **zInit**  code segment, see the Hi3861 linker script in  **vendor/hisi/hi3861/hi3861/build/link/link.ld.S**.

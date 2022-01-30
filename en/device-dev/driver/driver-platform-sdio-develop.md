@@ -1,11 +1,5 @@
 # SDIO<a name="EN-US_TOPIC_0000001199682295"></a>
 
--   [Overview](#section1347805272150053)
--   [How to Develop](#section581179475150053)
-    -   [SdioDeviceOps](#section482911395315)
-
--   [Development Example](#section2112250242150053)
-
 ## Overview<a name="section1347805272150053"></a>
 
 A Secure Digital Input Output \(SDIO\) card is an extension of the SD specification to cover I/O functions. SD and SDIO are called multimedia card \(MMCs\). In the Hardware Driver Foundation \(HDF\) framework, the SDIO module uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.

@@ -1,14 +1,5 @@
 # Interrupt and Exception Handling<a name="EN-US_TOPIC_0000001123638623"></a>
 
--   [Basic Concepts](#section439816296117)
--   [Working Principles](#section2792838318)
--   [Development Guidelines](#section15415165510110)
-    -   [Available APIs](#section57441612024)
-    -   [How to Develop](#section64332181221)
-    -   [Development Example](#section204698276478)
-    -   [Verification](#section1466144215476)
-
-
 ## Basic Concepts<a name="section439816296117"></a>
 
 An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. An interrupt alerts the processor to a high-priority condition requiring the interruption of the current code being executed by the processor. In this way, the CPU does not need to spend a lot of time in waiting and querying the peripheral status, which effectively improves the real-time performance and execution efficiency of the system.

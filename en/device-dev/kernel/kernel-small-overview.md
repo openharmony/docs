@@ -1,8 +1,5 @@
 # Kernel Overview<a name="EN-US_TOPIC_0000001122933245"></a>
 
--   [Overview](#section6614133913129)
--   [Kernel Architecture](#section827143517385)
-
 ## Overview<a name="section6614133913129"></a>
 
 The OpenHarmony lightweight kernel is a next-generation kernel developed based on the lightweight IoT operating system Huawei LiteOS. Two types of kernels are available: LiteOS-M and LiteOS-A. The LiteOS-M kernel is designed for lightweight systems, which support MCU memory of hundreds of KB and MPU isolation. FreeRTOS and ThreadX are counterparts in the industry. The LiteOS-A kernel is ideal for small systems, which support memory in MB and MMU isolation. Similar kernels include Zircon and Darwin. This development guide applies to the LiteOS-A kernel.

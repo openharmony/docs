@@ -1,9 +1,5 @@
 # Startup and Recovery<a name="EN-US_TOPIC_0000001215449321"></a>
 
--   [System startup interrupted due to "parse failed!" error](#section835662214302)
--   [System automatically restarted again and again](#section3857921143117)
--   [Failed to call the SetParameter or GetParameter API with correct parameter values](#section548818116328)
-
 ## System startup interrupted due to "parse failed!" error<a name="section835662214302"></a>
 
 **Problem**

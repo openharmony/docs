@@ -1,7 +1,5 @@
 # Setting Up Windows Development Environment<a name="EN-US_TOPIC_0000001216018805"></a>
 
--   [Installing DevEco Device Tool](#en-us_topic_0000001058091994_section10761564496)
-
 System requirements:
 
 -   OS: 64-bit Windows 10

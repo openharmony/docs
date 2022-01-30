@@ -1,12 +1,5 @@
 # Virtual Memory Management<a name="EN-US_TOPIC_0000001123800847"></a>
 
--   [Basic Concepts](#section650193717411)
--   [Working Principles](#section072885512412)
--   [Development Guidelines](#section20956116050)
-    -   [Available APIs](#section166137221657)
-    -   [How to Develop](#section8752103914513)
-
-
 ## Basic Concepts<a name="section650193717411"></a>
 
 Virtual memory management is a technology used by computer systems to manage memory. Each process has a continuous virtual address space. The size of the virtual address space is determined by the number of CPU bits. The maximum addressing space for a 32-bit hardware platform ranges from 0 GiB to 4 GiB. The 4 GiB space is divided into two parts: 3 GiB higher-address space for the LiteOS-A kernel and 1 GiB lower-address space for processes. The virtual address space of each process space is independent, and the code and data do not affect each other.

@@ -1,12 +1,5 @@
 # format<a name="EN-US_TOPIC_0000001134006262"></a>
 
--   [Command Function](#section1922331919169)
--   [Syntax](#section249226169)
--   [Parameters](#section985173416177)
--   [Usage](#section1510162714162)
--   [Example](#section25691431161611)
--   [Output](#section17368112365920)
-
 ## Command Function<a name="section1922331919169"></a>
 
 This command is used to format a disk.

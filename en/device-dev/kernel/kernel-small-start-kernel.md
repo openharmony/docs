@@ -1,10 +1,5 @@
 # Startup in Kernel Space<a name="EN-US_TOPIC_0000001127506594"></a>
 
--   [Kernel Startup Process](#section9882154318299)
--   [Programming Example](#section19145114703217)
-    -   [Example Description](#section1045483642518)
-
-
 ## Kernel Startup Process<a name="section9882154318299"></a>
 
 The kernel startup process consists of the assembly startup and C language startup, as shown in the following figure. The assembly startup involves initializing CPU settings, disabling dCache/iCache, enabling the FPU and NEON, setting the MMU to establish the virtual-physical address mapping, setting the system stack, clearing the BSS segment, and calling the main function of the C language. The C language startup involves starting the OsMain function and starting scheduling. As shown in the following figure, the OsMain function is used for basic kernel initialization and architecture- and board-level initialization. The kernel startup framework leads the initialization process. The right part of the figure shows the phase in which external modules can register with the kernel startup framework and starts. The following table describes each phase.

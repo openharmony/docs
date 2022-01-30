@@ -1,14 +1,5 @@
 # Testing<a name="EN-US_TOPIC_0000001082440445"></a>
 
--   [Overview](#section7375710115617)
--   [Directory Structure](#section102031353175317)
--   [Constraints](#section87444710110)
--   [Installation](#section1347156474)
--   [Test Cases](#section125411936102918)
--   [Test Framework Usage](#section75882026185016)
--   [Test Result and Logs](#section414715805819)
--   [Repositories Involved](#section6299103515474)
-
 ## Overview<a name="section7375710115617"></a>
 
 The test-driven development mode is used during the development process. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase.

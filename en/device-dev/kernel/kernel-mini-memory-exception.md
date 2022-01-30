@@ -1,13 +1,5 @@
 # Exception Debugging<a name="EN-US_TOPIC_0000001124786041"></a>
 
--   [Basic Concepts](#section2741911123412)
--   [Working Principles](#section16618124317346)
--   [Available APIs](#section16111931351)
--   [Usage Guidelines](#section16317163520350)
-    -   [How to Develop](#section13457839133618)
-    -   [How to Locate Exceptions](#section197332323815)
-
-
 ## Basic Concepts<a name="section2741911123412"></a>
 
 The OpenHarmony LiteOS-M provides exception handling and debugging measures to help locate and analyze problems. Exception handling involves a series of actions taken by the OS to respond to exceptions occurred during the OS running, for example, printing the exception type, system status, call stack information of the current function, CPU information, and call stack information of tasks.

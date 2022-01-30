@@ -1,12 +1,5 @@
 # netstat<a name="EN-US_TOPIC_0000001179845939"></a>
 
--   [Command Function](#section13469162113816)
--   [Syntax](#section795712373812)
--   [Parameters](#section17629431193817)
--   [Usage](#section5277153519380)
--   [Example](#section108141437163820)
--   [Output](#section1357015107117)
-
 ## Command Function<a name="section13469162113816"></a>
 
 The  **netstat**  command is a console command and is used for monitoring the TCP/IP network. It can display the actual network connections and the status of each network interface device. It is used to display the statistics related to the TCP and UDP protocols and check the network connection to each port on the device \(board\).

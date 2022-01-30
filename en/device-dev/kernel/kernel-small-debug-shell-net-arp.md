@@ -1,11 +1,5 @@
 # arp<a name="EN-US_TOPIC_0000001134006270"></a>
 
--   [Command Function](#section201149459368)
--   [Syntax](#section579813484364)
--   [Parameters](#section168065311366)
--   [Usage](#section19190125723612)
--   [Example](#section10383416372)
-
 ## Command Function<a name="section201149459368"></a>
 
 On an Ethernet, hosts communicate with each other using MAC addresses \(non-IP addresses\). Therefore, IP addresses must be converted into MAC addresses so that hosts can communicate with each other on a LAN \(Ethernet\). To resolve this issue, the host stores a table containing the mapping between IP addresses and MAC addresses, that is, the ARP cache table. When the host needs to send an IP packet to the destination IP address on a LAN, the host can query the destination MAC address from the ARP cache table. The ARP cache table is maintained by the TCP/IP protocol stack. You can run the  **arp**  command to view and modify the ARP cache table.

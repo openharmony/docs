@@ -1,9 +1,5 @@
 # HDF Development Example<a name="EN-US_TOPIC_0000001052451677"></a>
 
--   [Adding Configuration](#section27261067111)
--   [Compiling the Driver Code](#section177988005)
--   [Compiling the Code for Interaction](#section6205173816412)
-
 The following example shows how to add driver configuration, compile the driver code, and implement interaction between the user-state applications and the driver.
 
 ## Adding Configuration<a name="section27261067111"></a>

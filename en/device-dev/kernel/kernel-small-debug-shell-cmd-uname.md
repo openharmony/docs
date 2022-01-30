@@ -1,11 +1,5 @@
 # uname<a name="EN-US_TOPIC_0000001179965843"></a>
 
--   [Command Function](#section107697383115)
--   [Syntax](#section162824341116)
--   [Usage](#section2652124861114)
--   [Example](#section0107995132)
--   [Output](#section1215113245511)
-
 ## Command Function<a name="section107697383115"></a>
 
 This command is used to display the name, version creation time, system name, and version information of the current OS.

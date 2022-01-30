@@ -1,16 +1,5 @@
 # Distributed File<a name="EN-US_TOPIC_0000001101541814"></a>
 
--   [Introduction](#section104mcpsimp)
-    -   [Architecture](#section110mcpsimp)
-
--   [Directory Structure](#section113mcpsimp)
--   [Constraints](#section117mcpsimp)
--   [Usage](#section125mcpsimp)
-    -   [Available APIs](#section127mcpsimp)
-    -   [Usage Guidelines](#section149mcpsimp)
-
--   [Repositories Involved](#section178mcpsimp)
-
 ## Introduction<a name="section104mcpsimp"></a>
 
 Currently, the Distributed File subsystem provides apps with JavaScript APIs for I/O capabilities, including APIs for managing files and directories, obtaining file information, reading and writing data streams of files, and receiving URIs rather than absolute paths.

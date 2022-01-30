@@ -1,10 +1,5 @@
 # File System Adaptation<a name="EN-US_TOPIC_0000001078936814"></a>
 
--   [Basic Concepts](#section19480121811422)
--   [Adapting the Mount API](#section147051940104212)
--   [Adapting the Lookup API](#section11930181394317)
--   [Summary and Precautions](#section5617183014319)
-
 ## Basic Concepts<a name="section19480121811422"></a>
 
 The purpose of interconnecting with the VFS layer is to implement API functions defined by the VFS layer. You can adapt some APIs based on the file system features and service requirements. Basically, file read and write must be supported. The minimum file system adaptation is as follows:

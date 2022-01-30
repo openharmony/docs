@@ -1,15 +1,5 @@
 # Setting Up the Environment<a name="EN-US_TOPIC_0000001128470862"></a>
 
--   [Environment Requirements](#section1724111409282)
-    -   [Hardware](#section487353718276)
-    -   [Software](#section17315193935817)
-
--   [Installing Linux Build Tools](#section8831868501)
-    -   [Changing Linux Shell to Bash](#section434110241084)
-    -   [Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)](#section25911132141020)
-    -   [Installing File Packing Tools](#section390214473129)
-
-
 ## Environment Requirements<a name="section1724111409282"></a>
 
 ### Hardware<a name="section487353718276"></a>

@@ -1,8 +1,5 @@
 # Basic Concepts<a name="EN-US_TOPIC_0000001123863155"></a>
 
--   [Task-related Concepts](#section673132352511)
--   [Task Running Mechanism](#section176294469251)
-
 From the perspective of the operating system, tasks are the minimum running units that compete for system resources. They can use or wait for CPUs, use system resources such as memory, and run independently.
 
 The task module of the OpenHarmony LiteOS-M provides multiple tasks and supports switching between tasks, helping users manage business process procedures. The task module has the following features:

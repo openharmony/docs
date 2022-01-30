@@ -1,8 +1,5 @@
 # Magic Key<a name="EN-US_TOPIC_0000001133846498"></a>
 
--   [When to Use](#section2350114718546)
--   [How to Use](#section3305151511559)
-
 ## When to Use<a name="section2350114718546"></a>
 
 When the system does not respond, you can use the magic key to check whether the system is locked and interrupted \(the magic key also does not respond\) or view the system task running status.

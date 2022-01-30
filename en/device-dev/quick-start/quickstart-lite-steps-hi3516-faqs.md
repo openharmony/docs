@@ -1,11 +1,5 @@
 # FAQs<a name="EN-US_TOPIC_0000001128470856"></a>
 
--   ["Error: Opening COMxx: Access denied" Is Displayed After a Serial Port Is Selected for Burning](#section627268185113)
--   [What should I do when Windows-based PC failed to be connected to the board?](#section195391036568)
--   [What should I do when the image failed to be burnt?](#section571164016565)
--   [What should I do when the message indicating Python cannot be found is displayed during compilation and building?](#section1039835245619)
--   [What should I do when no command output is displayed?](#section14871149155911)
-
 ## "Error: Opening COMxx: Access denied" Is Displayed After a Serial Port Is Selected for Burning<a name="section627268185113"></a>
 
 -   **Symptom**

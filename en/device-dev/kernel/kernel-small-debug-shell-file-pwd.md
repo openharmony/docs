@@ -1,12 +1,5 @@
 # pwd<a name="EN-US_TOPIC_0000001133846488"></a>
 
--   [Command Function](#section197737712267)
--   [Syntax](#section1544061016267)
--   [Parameters](#section599112120262)
--   [Usage](#section66901116152615)
--   [Example](#section7427181922612)
--   [Output](#section116313389418)
-
 ## Command Function<a name="section197737712267"></a>
 
 This command is used to display the current path.

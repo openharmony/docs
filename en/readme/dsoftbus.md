@@ -1,15 +1,5 @@
 # DSoftBus<a name="EN-US_TOPIC_0000001090266209"></a>
 
--   [Introduction](#section11660541593)
--   [Architecture](#section342962219551)
--   [Directory Structure](#section161941989596)
--   [Constraints](#section119744591305)
--   [Usage Guidelines](#section1312121216216)
-    -   [RPC](#section129654513264)
-    -   [DSoftBus](#section36252592710)
-
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section11660541593"></a>
 
 The DSoftBus subsystem provides communication capabilities for OpenHarmony, including WLAN, Bluetooth, DSoftBus, and remote procedure call \(RPC\).

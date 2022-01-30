@@ -1,8 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001153683022"></a>
 
--   [Porting Process](#section1283115812294)
--   [Board-Level Directory Specifications](#section6204129143013)
-
 ## Porting Process<a name="section1283115812294"></a>
 
 After the minimum system is ported, you can port the board-level system by:

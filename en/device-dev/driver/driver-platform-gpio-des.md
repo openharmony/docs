@@ -1,14 +1,5 @@
 # GPIO<a name="EN-US_TOPIC_0000001206171135"></a>
 
--   [Overview](#section1635911016188)
--   [Available APIs](#section589913442203)
--   [Usage Guidelines](#section259614242196)
-    -   [How to Use](#section103477714216)
-    -   [Determining a GPIO Pin Number](#section370083272117)
-    -   [Using APIs to Operate GPIO Pins](#section13604050132118)
-
--   [Usage Example](#section25941262111)
-
 ## Overview<a name="section1635911016188"></a>
 
 Generally, a general-purpose input/output \(GPIO\) controller manages all GPIO pins by group. Each group of GPIO pins is associated with one or more registers. The GPIO pins are operated by reading data from and writing data to the registers.

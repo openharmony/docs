@@ -1,10 +1,5 @@
 # HDF Overview<a name="EN-US_TOPIC_0000001051611604"></a>
 
--   [Introduction](#section0649162112376)
--   [Driver Loading](#section68701942154319)
--   [Driver Service Management](#section12453133414412)
--   [Driver Message Mechanism](#section129410710451)
-
 ## Introduction<a name="section0649162112376"></a>
 
 The Hardware Driver Foundation \(HDF\) provides the following driver framework capabilities: driver loading, driver service management, and driver message mechanism. This unified driver architecture platform is designed to provide a more precise and efficient development environment, where you can perform one-time development and multi-system deployment.

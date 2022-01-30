@@ -1,12 +1,5 @@
 # free<a name="EN-US_TOPIC_0000001133846472"></a>
 
--   [Command Function](#section175151514841)
--   [Syntax](#section8488721749)
--   [Parameters](#section27272181949)
--   [Usage](#section148661259410)
--   [Example](#section68081530242)
--   [Output](#section171235517543)
-
 ## Command Function<a name="section175151514841"></a>
 
 This command is used to display the system memory usage and the sizes of the  **text**,  **data**,  **rodata**, and  **bss**  segments.

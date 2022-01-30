@@ -1,8 +1,5 @@
 # Adding Pages<a name="EN-US_TOPIC_0000001054607703"></a>
 
--   [Creating the Home Page](#section16935511143715)
--   [Creating the Details Page](#section122131729173819)
-
 ## Creating the Home Page<a name="section16935511143715"></a>
 
 Upon creation of the project, the  **index**  page is automatically generated, which is the home page of AirQuality.  [Figure 1](#fig16545205773718)  shows the project directory.

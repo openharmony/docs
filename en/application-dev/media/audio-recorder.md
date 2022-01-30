@@ -1,4 +1,4 @@
-# Development Guidelines on Audio Recording<a name="EN-US_TOPIC_0000001163844398"></a>
+# Audio Recording Development<a name="EN-US_TOPIC_0000001163844398"></a>
 
 ## When to Use<a name="section910413166166"></a>
 

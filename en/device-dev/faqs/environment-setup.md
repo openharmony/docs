@@ -1,18 +1,5 @@
 # Environment Setup<a name="EN-US_TOPIC_0000001215650793"></a>
 
--   [Mini and Small Systems](#section1742119306399)
-    -   [What should I do if garbled characters and segmentation faults occur during hb installation?](#section36351051193919)
-    -   [What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?](#section48221013144011)
-    -   [What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb installation?](#section10307193044111)
-    -   [What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?](#section8692735427)
-    -   [What should I do when the message configure: error: no acceptable C compiler found in $PATH is displayed during Python 3 installation?](#section870082884217)
-    -   [What should I do when the message -bash: make: command not found is displayed during Python 3 installation?](#section198707170455)
-    -   [What should I do when the message zlib not available is displayed during Python 3 installation?](#section85401445204518)
-    -   [What should I do when the message No module named '\_ctypes' is displayed during Python 3 installation?](#section12202694460)
-    -   [What should I do when an error with lsb\_release occurs during kconfiglib installation?](#section5803174135115)
-    -   [What should I do if the message "ImportError: No module named apt\_pkg" is displayed during the execution of an unidentifiable command?](#section510820516515)
-
-
 ## Mini and Small Systems<a name="section1742119306399"></a>
 
 ### What should I do if garbled characters and segmentation faults occur during hb installation?<a name="section36351051193919"></a>

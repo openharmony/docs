@@ -1,9 +1,5 @@
 # Update<a name="EN-US_TOPIC_0000001149909821"></a>
 
--   [Introduction](#section184mcpsimp)
--   [Directory Structure](#section212mcpsimp)
--   [Repositories Involved](#section251mcpsimp)
-
 ## Introduction<a name="section184mcpsimp"></a>
 
 The Update subsystem helps you implement over the air \(OTA\) update of OpenHarmony devices. The update subsystem consists of the following:

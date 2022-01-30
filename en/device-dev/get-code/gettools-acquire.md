@@ -1,18 +1,5 @@
 # Docker Environment<a name="EN-US_TOPIC_0000001055701144"></a>
 
--   [Introduction](#section107932281315)
--   [Preparations](#section7337134183512)
--   [Standalone Docker Environment](#section2858536103611)
-    -   [Setting Up the Docker Environment for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\)](#section319412277287)
-    -   [Building for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\)](#section631485163615)
-    -   [Setting Up the Docker Environment for Standard-System Devices \(reference memory ≥ 128 MB\)](#section13585262391)
-    -   [Building for Standard-System Devices \(reference memory ≥ 128 MB\)](#section193711513406)
-
--   [HPM-based Docker Environment](#section485713518337)
-    -   [Setting Up the Docker Environment](#section3295842510)
-    -   [Obtaining and Building Source Code](#section69141039143518)
-
-
 ## Introduction<a name="section107932281315"></a>
 
 OpenHarmony provides the following two types of Docker environments for you to quickly get the development environment ready:

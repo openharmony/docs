@@ -1,9 +1,5 @@
 # Working Principles<a name="EN-US_TOPIC_0000001166037675"></a>
 
--   [Memory Leak Check](#section142061581018)
--   [Heap Memory Statistics](#section136902041337)
--   [Memory Integrity Check](#section196491231761)
-
 ## Memory Leak Check<a name="section142061581018"></a>
 
 The memory debugging module maintains 128 \(that is the maximum number of threads supported in the system\) linked lists for each process. The index of each linked list is the thread ID.

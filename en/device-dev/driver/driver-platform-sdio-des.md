@@ -1,21 +1,5 @@
 # SDIO<a name="EN-US_TOPIC_0000001160653028"></a>
 
--   [Overview](#section1155271783811)
--   [Available APIs](#section12601496259)
--   [Usage Guidelines](#section1878939192515)
-    -   [How to Use](#section1490685512255)
-    -   [Opening an SDIO Controller](#section10782428132616)
-    -   [Claiming a Host Exclusively](#section11263172312715)
-    -   [Enabling the SDIO Device](#section17861486271)
-    -   [Claiming an SDIO IRQ](#section521213262286)
-    -   [Performing SDIO Communication](#section85661522153420)
-    -   [Releasing the SDIO IRQ](#section1683449352)
-    -   [Disabling the SDIO Device](#section15379324143611)
-    -   [Releasing the Exclusively Claimed Host](#section536018263713)
-    -   [Closing an SDIO Controller](#section4752739183716)
-
--   [Usage Example](#section376910122382)
-
 ## Overview<a name="section1155271783811"></a>
 
 -   Secure Digital Input/Output \(SDIO\) is a peripheral interface evolved from the Secure Digital \(SD\) memory card interface. The SDIO interface is compatible with SD memory cards and can be connected to devices that support the SDIO interface.

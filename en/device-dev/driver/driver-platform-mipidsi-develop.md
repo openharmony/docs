@@ -1,11 +1,5 @@
 # MIPI-DSI<a name="EN-US_TOPIC_0000001199825369"></a>
 
--   [Overview](#section1266787503161538)
--   [How to Develop](#section545182932161538)
-    -   [MipiDsiCntlrMethod](#section10711202141617)
-
--   [Development Example](#section1167576616161538)
-
 ## Overview<a name="section1266787503161538"></a>
 
 The Display Serial Interface \(DSI\) is a specification developed by the Mobile Industry Processor Interface \(MIPI\) Alliance to reduce the cost of display controllers in mobile devices. In the Hardware Driver Foundation (HDF) framework, the MIPI-DSI module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode,  **DevHandle**  \(a void pointer\) directly points to the kernel-mode address of the device object.

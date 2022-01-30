@@ -1,42 +1,5 @@
 # hdc\_std Usage Guidelines<a name="EN-US_TOPIC_0000001080478129"></a>
 
--   [Preparations](#section05992022154916)
--   [Important Notes](#section19543134915210)
--   [Option-related Commands](#section618522925119)
-    -   [-h/help -v/version](#section51533527212)
-    -   [-t key](#section1180555115159)
-
--   [Querying the Device List](#section174891132104218)
-    -   [list targets\[-v\]](#section12911142313168)
-
--   [Service Process Commands](#section680531510497)
-    -   [target mount](#section396717571168)
-    -   [smode \[off\]](#section179951621713)
-    -   [kill \[-r\]](#section419144621712)
-    -   [start \[-r\]](#section184811812183)
-
--   [Network Commands](#section71176123212)
-    -   [tconn host\[:port\]\[-remove\]](#section191911334206)
-    -   [tmode usb](#section17840182562015)
-    -   [tmode port port-number](#section101113462113)
-
--   [File Commands](#section173133523013)
-    -   [file send local remote](#section126223231307)
-    -   [file recv \[-a\] remote local](#section26966541304)
-
--   [App Commands](#section2072647133819)
-    -   [install \[-r/-d/-g\] package](#section49615195111)
-    -   [uninstall \[-k\] package](#section167618461814)
-
--   [Debugging Commands](#section112861250195015)
-    -   [hilog](#section32171612221)
-    -   [shell \[command\]](#section524235625)
-
--   [Troubleshooting](#section592920255582)
-    -   [hdc\_std Fails to Connect to a Device](#section74019384588)
-
--   [hdc\_std Fails to Run](#section6825095917)
-
 hdc\_std \(OpenHarmony Device Connector\) is a command line tool provided by OpenHarmony for debugging. With this tool, you can interact with real devices or simulators from a Windows or Linux OS.
 
 This section describes how to set up the hdc\_std environment and use its common commands.

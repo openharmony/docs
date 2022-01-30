@@ -1,14 +1,5 @@
 # Telephony <a name="EN-US_TOPIC_0000001162422291"></a>
 
--   [Introduction](#section104mcpsimp)
--   [Directory Structure](#section119mcpsimp)
--   [Constraints](#section123mcpsimp)
--   [Usage Guidelines](#section128mcpsimp)
-    -   [Obtaining Current Cellular Network Signal Information](#section1458213210369)
-    -   [Observing Cellular Network Status Changes](#section750135512369)
-
--   [Repositories Involved](#section152mcpsimp)
-
 ## Introduction<a name="section104mcpsimp"></a>
 
 The Telephony subsystem provides APIs for obtaining information about the wireless cellular network and SIM card. Applications can call these APIs to obtain information such as the name of the currently registered network, network service status, signal strength, and SIM card information.
