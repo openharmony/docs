@@ -62,7 +62,7 @@ OpenHarmony应用通过数字证书（.cer文件）和Profile文件（.p7b文件
 
 3. 执行如下命令，生成公私钥文件。例如，生成的密钥库名称为ide_demo_app.p12，存储到D盘根目录下。
    ```
-   keytool -genkeypair -alias "ide_demo_app" -keyalg EC -sigalg SHA256withECDSA -dname "C=CN,O=Organization,OU=Unit IDE,CN=ide_demo_app"  -keystore d:\\idedemokey.p12 -storetype pkcs12 -validity 9125 -storepass 123456Abc -keypass 123456Abc
+   keytool -genkeypair -alias "ide_demo_app" -keyalg EC -sigalg SHA256withECDSA -dname "C=CN,O=Organization,OU=Unit,CN=ide_demo_app"  -keystore d:\\idedemokey.p12 -storetype pkcs12 -validity 9125 -storepass 123456Abc -keypass 123456Abc
    ```
 
    生成公私钥文件的参数说明如下：
