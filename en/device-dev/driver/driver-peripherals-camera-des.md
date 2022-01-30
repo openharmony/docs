@@ -1,60 +1,57 @@
-# Camera<a name="EN-US_TOPIC_0000001242747077"></a>
+# Camera<a name="ZH-CN_TOPIC_0000001078436908"></a>
 
--   [Introduction](#section353860995163604)
--   [Development Guidelines](#section1291233039163604)
-    -   [Available APIs](#section1192025723163604)
-    -   [How to Develop](#section1407626053163604)
-
--   [Development Example](#section605457993163604)
-
-## Introduction<a name="section353860995163604"></a>
-
-The OpenHarmony camera driver model implements the camera hardware driver interface \(HDI\) and the camera pipeline model to manage camera devices.
-
-The camera driver model consists of the following layers:
-
--   HDI implementation layer: implements standard southbound interfaces of OpenHarmony cameras.
-
--   Framework layer: connects to the HDI implementation layer for control instruction and stream transfer, establishes data channels, and manages camera devices.
-
--   Adaptation layer: shields the differences between bottom-layer chips and OSs for multi-platform adaptation.
+- [Camera<a name="ZH-CN_TOPIC_0000001078436908"></a>](#camera)
+  - [概述<a name="section11660541593"></a>](#概述)
+  - [开发指导<a name="section161941989596"></a>](#开发指导)
+    - [HDI接口说明<a name="section1551164914237"></a>](#hdi接口说明)
+    - [开发步骤<a name="section19806524151819"></a>](#开发步骤)
+  - [开发实例<a name="section1564411661810"></a>](#开发实例)
 
 
-**Figure  1**  Architecture of the camera driver model<a name="fig39018241682"></a>  
-![](figures/architecture-of-the-camera-driver-model.png "architecture-of-the-camera-driver-model")
+## 概述<a name="section11660541593"></a>
 
-1.  The CameraDeviceHost process is created during system startup. The process enumerates underlying devices, creates a  **DeviceManager**  instance that manages the device tree, an object for each underlying device, and a  **CameraHost**  instance, and registers the  **CameraHost**  instance with the UHDF service. Through this service, the upper layer can obtain the CameraDeviceHost process at the bottom layer to operate the underlying devices. Note that the  **DeviceManager**  instance can also be created by using the configuration table.
+OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Driver Interface）接口，对下实现相机Pipeline模型，管理相机各个硬件设备。
+该驱动框架模型内部分为三层，依次为HDI实现层、框架层和适配层，各层基本概念如下：
++ **HDI实现层**：对上实现OHOS（OpenHarmony Operation System）相机标准南向接口。
+  
++ **框架层**：对接HDI实现层的控制、流的转发，实现数据通路的搭建，管理相机各个硬件设备等功能。
 
-2.  The Camera Service obtains the  **CameraHost**  instance through the CameraDeviceHost service. The  **CameraHost**  instance can be used to obtain the bottom-layer camera capabilities, turn on the flashlight, call the  **Open\(\)**  interface to start the camera and create a connection, create a  **DeviceManager**  instance \(powering on the bottom-layer hardware modules\), and create a  **CameraDevice**  instance \(providing the device control interface for the upper layer\). When the  **CameraDevice**  instance is created, each submodule of PipelineCore is instantiated. Among the submodules, StreamPiplineCore is responsible for creating pipelines, and MetaQueueManager is responsible for reporting metadata.
++ **适配层**：屏蔽底层芯片和OS（Operation System）差异，支持多平台适配。
 
-3.  The Camera Service configures the stream and creates a  **Stream**  instance through the  **CameraDevice**  instance at the bottom layer. The StreamPipelineStrategy module creates the node connection mode of the corresponding stream by using the mode issued by the upper layer and querying the configuration table. The StreamPipelineBuilder module creates a node and returns the pipeline to the StreamPipelineDispatcher module through the connection. The StreamPipelineDispatcher module provides unified pipeline invoking management.
+**<a name="fig3672817152110"></a>**
+**图 1**  基于HDF驱动框架的Camera驱动模型
+![](figures/logic-view-of-camera-hal-zh.png)
 
-4.  The Camera Service controls the stream operations through the  **Stream**  instance. The  **AttachBufferQueue\(\)**  interface is used to deliver the buffer queue requested from the display module to the bottom layer. The CameraDeviceDriverModel manages the buffer. After the  **Capture\(\)**  interface is called to deliver commands, the bottom layer transfers the buffer to the upper layer. The Image Signal Processor \(ISP\) node obtains a specified number of buffers from the buffer queue and delivers the buffers to the bottom-layer ISP hardware. After filling the buffers, the ISP hardware transfers the buffers to the CameraDeviceDriverModel. The CameraDeviceDriverModel fills the created pipeline with the received buffers by using a loop thread. Each node processes the pipeline data and transfers the data to the upper layer by using a callback. At the same time, the buffers are freed for reuse.
+1. 系统启动时创建CameraDeviceHost进程。进程创建后，首先枚举底层设备，创建（也可以通过配置表创建）管理设备树的DeviceManager类及其内部各个底层设备的对象，创建对应的CameraHost类实例并且将其注册到UHDF服务中，方便上层通过UHDF服务获取底层CameraDeviceHost的服务，从而操作底层设备。
 
-5.  The Camera Service delivers the photographing command through the  **Capture\(\)**  interface. The  **ChangeToOfflineStream\(\)**  interface is used to query the position of the photographing buffer. If the ISP hardware has output an image and sent the image data to the IPP node, the common photographing streams can be converted into offline streams. Otherwise, the close process is executed. The  **ChangeToOfflineStream\(\)**  interface transfers  **StreamInfo**  to enable the offline stream to obtain the stream information of the common stream, confirms the node connection mode of the offline stream based on the configuration table, and creates the node connection of the offline stream. If the node connection has been created, the interface releases the node required by the non-offline stream through  **CloseCamera\(\)**. It then waits for the buffer to return from the bottom-layer pipeline to the upper layer and then releases the pipeline resources.
+2. Service通过CameraDeviceHost服务获取CameraHost实例，CameraHost可以获取底层的Camera能力，打开手电筒、调用Open接口打开Camera创建连接、创建DeviceManager（负责底层硬件模块上电）、创建CameraDevice（向上提供设备控制接口）。创建CameraDevice时会实例化PipelineCore的各个子模块，其中StreamPiplineCore负责创建Pipeline，MetaQueueManager负责上报meta。
+   
+3. Service通过底层的CameraDevice配置流、创建Stream类。StreamPipelineStrategy模块通过上层下发的模式和查询配置表创建对应流的Node连接方式，StreamPipelineBuilder模块创建Node实例并且连接返回该Pipline给StreamPipelineDispatcher。StreamPipelineDispatcher提供统一的Pipline调用管理。
 
-6.  The Camera Service sends the  **CaptureSetting**  parameter to the CameraDeviceDriverModel through the  **UpdateSettings\(\)**  interface of the  **CameraDevice**  instance. The CameraDeviceDriverModel forwards the parameter to each node through the StreamPipelineDispatcher module. The  **CaptureSetting**  parameter carried in the  **StartStreamingCapture\(\)**  and  **Capture\(\)**  interfaces is forwarded to the node to which the stream belongs through the StreamPipelineDispatcher module.
+4. Service通过Stream控制整个流的操作，AttachBufferQueue接口将从显示模块申请的BufferQueue下发到底层，由CameraDeviceDriverModel自行管理buffer，当Capture接口下发命令后，底层开始向上传递buffer。Pipeline的IspNode依次从BufferQueue获取指定数量buffer，然后下发到底层ISP（Image Signal Processor，图像信号处理器）硬件，ISP填充完之后将buffer传递给CameraDeviceDriverModel，CameraDeviceDriverModel通过循环线程将buffer填充到已经创建好的Pipeline中，各个Node处理后通过回调传递给上层，同时buffer返回BufferQueue等待下一次下发。
 
-7.  The Camera Service controls underlying metadata reporting through the  **EnableResult\(\)**  and  **DisableResult\(\)**  interfaces. If the bottom-layer metadata needs to be reported, the pipeline creates a buffer queue in the CameraDeviceDriverModel to collect and transfer metadata, queries the configuration table based on the StreamPipelineStrategy module, and creates and connects to the specified node through the StreamPipelineBuilder module. The MetaQueueManager module delivers the buffer to the bottom layer, and the bottom-layer node fills in data. The MetaQueueManager module then invokes the upper-layer callback to transfer the data to the upper layer.
+5. Service通过Capture接口下发拍照命令。ChangeToOfflineStream接口查询拍照buffer位置，如果ISP已经出图，并且图像数据已经送到IPP node，可以将普通拍照流转换为离线流，否则直接走关闭流程。ChangeToOfflineStream接口通过传递StreamInfo使离线流获取到普通流的流信息，并且通过配置表确认离线流的具体Node连接方式，创建离线流的Node连接（如果已创建则通过CloseCamera释放非离线流所需的Node），等待buffer从底层Pipeline回传到上层再释放持有的Pipeline相关资源。
 
-8.  The Camera Service calls the  **Close\(\)**  interface of the  **CameraDevice**  class, and the  **CameraDevice**  instance calls the corresponding DeviceManager module to power off each hardware. If an offline stream exists in the subpipeline of the IPP node, the offline stream must be reserved until the execution is complete.
+6. Service通过CameraDevice的UpdateSettings接口向下发送CaptureSetting参数，CameraDeviceDriverModel通过StreamPipelineDispatcher模块向各个Node转发，StartStreamingCapture和Capture接口携带的CaptureSetting通过StreamPipelineDispatcher模块向该流所属的Node转发。
 
-9.  To implement dynamic frame control, a CollectBuffer thread is started in the StreamOperator. The CollectBuffer thread obtains a buffer from the buffer queue of each stream. If the frame rate of a stream needs to be controlled \(1/n of the sensor output frame rate\), the CollectBuffer thread can control the buffer packaging of each frame as required, and determine whether to collect the buffer of the stream. For example, if the output frame rate of the sensor is 120 fps and the preview stream frame rate is 30 fps, the CollectBuffer thread collects the buffer of the preview stream every 4 fps.
+7. Service通过EnableResult和DisableResult接口控制底层meta的上报。如果需要底层meta上报，pipeline会创建CameraDeviceDriverModel内部的一个Bufferqueue用来收集和传递meta，根据StreamPipelineStrategy模块查询配置表并通过StreamPipelineBuilder创建和连接Node，MetaQueueManager下发buffer至底层，底层相关Node填充数据，MetaQueueManager模块再调用上层回调传递给上层。
+
+8. Service调用CameraDevice的Close接口，CameraDevice调用对应的DeviceManager模块对各个硬件下电；如果此时在Ipp的SubPipeline中存在OfflineStream，则需要保留OfflineStream，直到执行完毕。
+
+9.  动态帧率控制。在StreamOperator中起一个CollectBuffer线程，CollectBuffer线程从每一路stream的BufferQueue中获取buffer，如果某一路流的帧率需要控制（为sensor出帧帧率的1/n），可以根据需求控制每一帧的buffer打包，并决定是否collect此路流的buffer（比如sensor出帧帧率为120fps，预览流的帧率为30fps，CollectBuffer线程collect预览流的buffer时，每隔4fps collect一次）。
+
+## 开发指导<a name="section161941989596"></a>
+
+### HDI接口说明<a name="section1551164914237"></a>
+旨在了解HDI接口的作用及函数参数的传递规则，详情可见[Camera驱动子系统HDI使用说明](https://gitee.com/openharmony/drivers_peripheral/blob/master/camera/README_zh.md)。
 
 
-## Development Guidelines<a name="section1291233039163604"></a>
+### 开发步骤<a name="section19806524151819"></a>
 
-### Available APIs<a name="section1192025723163604"></a>
+下面分步骤描述了Camera驱动框架的主要接口，包括注册、检测；创建、捕获和销毁流；打开和关闭设备等接口（为了更清晰的展示和描述主要功能的实现部分，该章节删除了部分判错和LOG源码）。
+1. 注册CameraHost
 
-For details about the HDI functionalities and the function passing rules, see "Available APIs" in  [Camera](https://gitee.com/openharmony/drivers_peripheral/blob/master/camera/README_zh.md).
-
-### How to Develop<a name="section1407626053163604"></a>
-
-The following describes the main APIs of the camera driver model, including the APIs for registering and detecting cameras, creating, capturing, and destroying streams, and enabling and disabling devices. \(To clearly describe the implementation of main functionalities, some error judgment and log source code are not described here.\)
-
-1.  Register a  **CameraHost**.
-
-    Define the  **HdfDriverEntry**  structure to define the method for initializing a  **CameraHost**.
+    定义Camera的HdfDriverEntry结构体，该结构体中定义了CameraHost初始化的方法。
 
     ```
     struct HdfDriverEntry g_cameraHostDriverEntry = {
@@ -64,12 +61,12 @@ The following describes the main APIs of the camera driver model, including the 
         .Init = HdfCameraHostDriverInit,
         .Release = HdfCameraHostDriverRelease,
     };
-    HDF_INIT(g_cameraHostDriverEntry); // Register the HdfDriverEntry structure with the HDF.
+    HDF_INIT(g_cameraHostDriverEntry); // 将Camera的HdfDriverEntry结构体注册到HDF上
     ```
 
-2.  Initialize the  **CameraHost**.
+2. CameraHost初始化
 
-    **HdfCameraHostDriverBind**  defined in the  **HdfDriverEntry**  structure provides the registration of  **CameraServiceDispatch\(\)**  and  **CameraHostStubInstance\(\)**.  **CameraServiceDispatch\(\)**  is used to remotely call a method of the  **CameraHost**, such as  **OpenCamera\(\)**  and  **SetFlashlight\(\)**.  **CameraHostStubInstance\(\)**  is used to initialize the camera device, which is called during system startup.
+    步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。这两个接口一个是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，另外一个是Camera设备的初始化，在开机时被调用。
 
     ```
     int HdfCameraHostDriverBind(HdfDeviceObject *deviceObject)
@@ -84,16 +81,16 @@ The following describes the main APIs of the camera driver model, including the 
             HDF_LOGE("HdfCameraHostDriverBind OsalMemAlloc HdfCameraService failed!");
             return HDF_FAILURE;
         }
-        hdfCameraService->ioservice.Dispatch = CameraServiceDispatch; // Used to call methods of the CameraHost.
+        hdfCameraService->ioservice.Dispatch = CameraServiceDispatch; // 提供远端CameraHost调用方法
         hdfCameraService->ioservice.Open = nullptr;
         hdfCameraService->ioservice.Release = nullptr;
-        hdfCameraService->instance = CameraHostStubInstance(); // Initialize the camera device.
+        hdfCameraService->instance = CameraHostStubInstance(); // 初始化Camera设备
         deviceObject->service = &hdfCameraService->ioservice;
         return HDF_SUCCESS;
     }
     ```
 
-    The following functions are the implementation of the methods of the  **CameraHost**:
+    下面的函数是远端CameraHost调用的方法：
 
     ```
     int32_t CameraHostStub::CameraHostServiceStubOnRemoteRequest(int cmdId, MessageParcel &data,
@@ -124,11 +121,11 @@ The following describes the main APIs of the camera driver model, including the 
     }
     ```
 
-    **CameraHostStubInstance\(\)**  finally calls  **CameraHostImpl::Init\(\)**  to obtain the physical camera and initialize the DeviceManager and PipelineCore modules.
+    CameraHostStubInstance()接口最终调用CameraHostImpl::Init()方法，该方法会获取物理Camera，并对DeviceManager和PipelineCore进行初始化。
 
-3.  Obtain the  **CamerHost**.
+3. 获取CamerHost
 
-    Call the  **Get\(\)**  interface to obtain the  **CameraHost**  from the  **CameraService**. The  **Get\(\)**  interface is as follows:
+    调用Get()接口从远端CameraService中获取CameraHost对象。get()方法如下：
 
     ```
     sptr<ICameraHost> ICameraHost::Get(const char *serviceName)
@@ -140,9 +137,9 @@ The following describes the main APIs of the camera driver model, including the 
                 HDF_LOGE("%s: IServiceManager failed!", __func__);
                 break;
             }
-            auto remote = servMgr->GetService(serviceName);  // Obtain the CameraHost based on serviceName.
+            auto remote = servMgr->GetService(serviceName);  // 根据serviceName名称获取CameraHost
             if (remote != nullptr) {
-                sptr<CameraHostProxy> hostSptr = iface_cast<CameraHostProxy>(remote); // Return the CameraHostProxy object that contains methods such as OpenCamera() to the caller.
+                sptr<CameraHostProxy> hostSptr = iface_cast<CameraHostProxy>(remote); // 将CameraHostProxy对象返回给调用者，该对象中包含OpenCamera()等方法。
                 return hostSptr;
             }
             HDF_LOGE("%s: GetService failed! serviceName = %s", __func__, serviceName);
@@ -152,11 +149,10 @@ The following describes the main APIs of the camera driver model, including the 
     }
     ```
 
-4.  Implement the  **OpenCamera\(\)**  interface.
+4. OpenCamera()接口
 
-    The  **CameraHostProxy**  class provides five interfaces:  **SetCallback\(\)**,  **GetCameraIds\(\)**,  **GetCameraAbility\(\)**,  **OpenCamera\(\)**, and  **SetFlashlight\(\)**. The following describes  **OpenCamera\(\)**.
-
-    The  **OpenCamera\(\)**  interface calls the remote  **CameraHostStubOpenCamera\(\)**  interface through the CMD\_CAMERA\_HOST\_OPEN\_CAMERA to obtain an  **ICameraDevice**  object.
+    CameraHostProxy对象中有五个方法，分别是SetCallback、GetCameraIds、GetCameraAbility、OpenCamera和SetFlashlight。下面着重描述OpenCamera接口。
+    CameraHostProxy的OpenCamera()接口通过CMD_CAMERA_HOST_OPEN_CAMERA调用远端CameraHostStubOpenCamera()接口并获取ICameraDevice对象。
 
     ```
     CamRetCode CameraHostProxy::OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &pDevice)
@@ -179,7 +175,7 @@ The following describes the main APIs of the camera driver model, including the 
     }
     ```
 
-    **Remote\(\)-\>SendRequest**  calls  **CameraHostServiceStubOnRemoteRequest\(\)**, enters the  **CameraHostStubOpenCamera\(\)**  interface based on  **cmdId**, and finally calls  **CameraHostImpl::OpenCamera\(\)**  to obtain a  **CameraDevice**  and power on the camera hardware.
+    Remote()->SendRequest调用上文提到的CameraHostServiceStubOnRemoteRequest()，根据cmdId进入CameraHostStubOpenCamera()接口，最终调用CameraHostImpl::OpenCamera()，该接口获取了CameraDevice并对硬件进行上电等操作。
 
     ```
     CamRetCode CameraHostImpl::OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &device)
@@ -204,7 +200,7 @@ The following describes the main APIs of the camera driver model, including the 
             CAMERA_LOGE("get physic cameraId failed.");
             return DEVICE_ERROR;
         }
-        if (CameraPowerUp(cameraId, phyCameraIds) != RC_OK) { // Power on the camera hardware.
+        if (CameraPowerUp(cameraId, phyCameraIds) != RC_OK) { // 对Camera硬件上电
             CAMERA_LOGE("camera powerup failed.");
             CameraPowerDown(phyCameraIds);
             return DEVICE_ERROR;
@@ -214,15 +210,15 @@ The following describes the main APIs of the camera driver model, including the 
         if (sptrDevice == deviceBackup_.end()) {
             deviceBackup_[cameraId] = cameraDevice.get();
         }
-        device = deviceBackup_[cameraId]; 
+        device = deviceBackup_[cameraId];
         cameraDevice->SetStatus(true);
         return NO_ERROR;
     }
     ```
 
-5.  Implement the  **GetStreamOperator\(\)**  interface.
+5. GetStreamOperator()接口
 
-    **CameraDeviceImpl**  defines interfaces such as  **GetStreamOperator\(\)**,  **UpdateSettings\(\)**,  **SetResultMode\(\)**, and  **GetEnabledResult\(\)**. The following is an example of implementing the  **GetStreamOperator\(\)**  interface:
+    CameraDeviceImpl定义了GetStreamOperator、UpdateSettings、SetResultMode和GetEnabledResult等方法，获取流操作方法如下：
 
     ```
     CamRetCode CameraDeviceImpl::GetStreamOperator(const OHOS::sptr<IStreamOperatorCallback> &callback,
@@ -234,7 +230,7 @@ The following describes the main APIs of the camera driver model, including the 
         }
         spCameraDeciceCallback_ = callback;
         if (spStreamOperator_ == nullptr) {
-            // Here, an spStreamOperator object is created and passed to the caller for stream operations.
+            // 这里new了一个spStreamOperator对象传递给调用者，以便对stream进行各种操作。
             spStreamOperator_ = new(std::nothrow) StreamOperatorImpl(spCameraDeciceCallback_, shared_from_this());
             if (spStreamOperator_ == nullptr) {
                 CAMERA_LOGW("create stream operator failed.");
@@ -250,26 +246,26 @@ The following describes the main APIs of the camera driver model, including the 
     }
     ```
 
-6.  Create a stream.
+6. 创建流
 
-    Fill in the  **StreamInfo**  structure before creating a stream by calling  **CreateStreams\(\)**.
+    调用CreateStreams创建流前需要填充StreamInfo结构体，具体内容如下：
 
     ```
     using StreamInfo = struct _StreamInfo {
         int streamId_; 
-        int width_; // Stream width
-        int height_; // Stream height
-        int format_; // Stream format, for example, PIXEL_FMT_YCRCB_420_SP
+        int width_;  // 数据流宽
+        int height_; // 数据流高
+        int format_; // 数据流格式，如PIXEL_FMT_YCRCB_420_SP
         int datasapce_; 
-        StreamIntent intent_; // StreamIntent, for example, PREVIEW
+        StreamIntent intent_; // StreamIntent 如PREVIEW
         bool tunneledMode_;
-        OHOS::sptr<OHOS::IBufferProducer> bufferQueue_; // The stream buffer queue can be created by using the streamCustomer->CreateProducer() interface.
+        OHOS::sptr<OHOS::IBufferProducer> bufferQueue_; // 数据流bufferQueue可用streamCustomer->CreateProducer()接口创建
         int minFrameDuration_;
         EncodeType encodeType_;
     };
     ```
 
-    The  **CreateStreams\(\)**  interface in the  **StreamOperatorImpl**  class is used to create a  **StreamBase**  instance, which can then be used to initialize operations such as  **CreateBufferPool\(\)**  by using the  **init\(\)**  method.
+    CreateStreams()接口是StreamOperatorImpl类中的方法，该接口的主要作用是创建一个StreamBase对象，通过StreamBase的Init方法初始化CreateBufferPool等操作。
 
     ```
     RetCode StreamOperatorImpl::CreateStream(const std::shared_ptr<StreamInfo>& streamInfo)
@@ -287,15 +283,15 @@ The following describes the main APIs of the camera driver model, including the 
             CAMERA_LOGE("do not support stream type. [type = %{public}d]", streamInfo->intent_);
             return RC_ERROR;
         }
-        std::shared_ptr<StreamBase> stream = StreamFactory::Instance().CreateShared(itr->second); // Create a StreamBase instance.
+        std::shared_ptr<StreamBase> stream = StreamFactory::Instance().CreateShared(itr->second); // 创建StreamBase实例
         RetCode rc = stream->Init(streamInfo); 
         return RC_OK;
     }
     ```
 
-7.  Configure the stream.
+7. 配置流
 
-    Use the  **CommitStreams\(\)**  method to configure the stream, including PipelineCore initialization and creation. It must be called after the stream is created.
+    CommitStreams()是配置流的接口，必须在创建流之后调用，其主要作用是初始化Pipeline和创建Pipeline。
 
     ```
     CamRetCode StreamOperatorImpl::CommitStreams(OperationMode mode, const std::shared_ptr<CameraStandard::CameraMetadata>& modeSetting)
@@ -308,43 +304,43 @@ The following describes the main APIs of the camera driver model, including the 
         std::shared_ptr<IPipelineCore> PipelineCore =
             std::static_pointer_cast<CameraDeviceImpl>(cameraDevice)->GetPipelineCore();
         if (PipelineCore == nullptr) {
-            CAMERA_LOGE("Failed to obtain PipelineCore.");
+            CAMERA_LOGE("get pipeline core failed.");
             return CAMERA_CLOSED;
         }
     
         streamPipeCore_ = PipelineCore->GetStreamPipelineCore();
         if (streamPipeCore_ == nullptr) {
-            CAMERA_LOGE("Failed to obtain the stream PipelineCore.");
+            CAMERA_LOGE("get stream pipeline core failed.");
             return DEVICE_ERROR;
         }
     
-        RetCode rc = streamPipeCore_->Init(); // Initialize the PipelineCore.
+        RetCode rc = streamPipeCore_->Init(); // 对pipelinecore的初始化
         if (rc != RC_OK) {
-            CAMERA_LOGE("Failed to initialize the stream PipelineCore.");
+            CAMERA_LOGE("stream pipeline core init failed.");
             return DEVICE_ERROR;
         }
-        rc = streamPipeCore_->CreatePipeline(mode); // Create a pipeline.
+        rc = streamPipeCore_->CreatePipeline(mode); // 创建一个pipeline
         if (rc != RC_OK) {
-            CAMERA_LOGE("Failed to create pipeline.");
+            CAMERA_LOGE("create pipeline failed.");
             return INVALID_ARGUMENT;
         }
         return NO_ERROR;
     }
     ```
 
-8.  Capture images.
+8. 捕获图像
 
-    Fill in the  **CaptureInfo**  structure before calling the  **Capture\(\)**  method.
+    在调用Capture()接口前需要先填充CaptureInfo结构体，具体内容如下：
 
     ```
     using CaptureInfo = struct _CaptureInfo {
-          std::vector<int> streamIds_; // IDs of streams to be captured
-          std::shared_ptr<CameraStandard::CameraMetadata> captureSetting_; // Camera ability can be obtained through the GetCameraAbility() interface of CameraHost.
+          std::vector<int> streamIds_; //需要Capture的streamIds
+          std::shared_ptr<CameraStandard::CameraMetadata> captureSetting_; // 这里填充camera ability 可通过CameraHost 的GetCameraAbility()接口获取
          bool enableShutterCallback_;
     };
     ```
 
-    Use the  **Capture\(\)**  interface in  **StreamOperatorImpl**  to call the  **CreateCapture\(\)**  interface to capture streams.
+    StreamOperatorImpl中的Capture方法主要调用CreateCapture()接口去捕获数据流：
 
     ```
     CamRetCode StreamOperatorImpl::Capture(int captureId, const std::shared_ptr<CaptureInfo>& captureInfo, bool isStreaming)
@@ -374,74 +370,74 @@ The following describes the main APIs of the camera driver model, including the 
     }  
     ```
 
-9.  Cancel the capture and release the offline stream.
+9. 取消捕获和释放离线流
 
-    Use the  **CancelCapture\(\)**  interface in the  **StreamOperatorImpl**  class to cancel the stream capture based on  **captureId**.
+    StreamOperatorImpl类中的CancelCapture()接口的主要作用是根据captureId取消数据流的捕获。
 
     ```
     CamRetCode StreamOperatorImpl::CancelCapture(int captureId)
     {
-          auto itr = camerCaptureMap_.find(captureId); // Search for the CameraCapture object in the Map based on the captureId.
-          RetCode rc = itr->second->Cancel(); // Call the Cancel() interface in CameraCapture to cancel the stream capture.
+          auto itr = camerCaptureMap_.find(captureId); //根据captureId 在Map中查找对应的CameraCapture对象
+          RetCode rc = itr->second->Cancel(); //调用CameraCapture中Cancel方法结束数据捕获
           std::unique_lock<std::mutex> lock(captureMutex_);
-          camerCaptureMap_.erase(itr); // Erase the CameraCapture object.
+          camerCaptureMap_.erase(itr); //擦除该CameraCapture对象
           return NO_ERROR;
     }
     ```
 
-    Use the  **ReleaseStreams\(\)**  interface in the  **StreamOperatorImpl**  class t release the streams created by using  **CreateStream\(\)**  and  **CommitStreams\(\)**  and destroy the pipeline.
+    StreamOperatorImpl类中的ReleaseStreams接口的主要作用是释放之前通过CreateStream()和CommitStreams()接口创建的流，并销毁Pipeline。
 
     ```
     CamRetCode StreamOperatorImpl::ReleaseStreams(const std::vector<int>& streamIds)
     {
-        RetCode rc = DestroyStreamPipeline(streamIds); // Destroy the pipeline based on streamIds.
+        RetCode rc = DestroyStreamPipeline(streamIds); //销毁该streamIds 的pipeline
         rc = DestroyHostStreamMgr(streamIds);
-        rc = DestroyStreams(streamIds); // Destroy the stream specified by streamIds.
+        rc = DestroyStreams(streamIds); //销毁该streamIds 的 Stream
         return NO_ERROR;
     }
     ```
 
-10. Close the camera device.
+10. 关闭Camera设备
 
-    Use the  **Close\(\)**  interface in the  **CameraDeviceImpl**  class to close the camera device. This interface calls  **PowerDown\(\)**  in the  **DeviceManager**  to power off the device.
+    调用CameraDeviceImpl中的Close()来关闭CameraDevice，该接口调用deviceManager中的PowerDown()来给设备下电。
 
 
-## Development Example<a name="section605457993163604"></a>
+## 开发实例<a name="section1564411661810"></a>
 
-There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  directory. After system startup, the executable file  **ohos\_camera\_demo**  is generated in the  **/system/bin**  directory. This demo can implement basic camera capabilities such as preview and photographing. The following uses the demo as an example to describe how to use the HDI to implement the  **PreviewOn\(\)**  and  **CaptureON\(\)**  interfaces.
+在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/system/bin下生成可执行文件ohos_camera_demo，该demo可以完成camera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例。
 
-1.  Construct a Hos3516Demo object in the  **main**  function. This object contains methods for initializing the camera and starting, stopping, and releasing streams. The  **mainDemo-\>InitSensors\(\)**  function is used to initialize the  **CameraHost**, and the  **mainDemo-\>InitCameraDevice\(\)**  function is used to initialize the  **CameraDevice**.
+1. 在main函数中构造一个Hos3516Demo对象，该对象中有对camera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
 
     ```
     int main(int argc, char** argv)
     {
         RetCode rc = RC_OK;
         auto mainDemo = std::make_shared<Hos3516Demo>();
-        rc = mainDemo->InitSensors(); // Initialize the CameraHost.
+        rc = mainDemo->InitSensors(); // 初始化CameraHost
         if (rc == RC_ERROR) {
             CAMERA_LOGE("main test: mainDemo->InitSensors() error\n");
             return -1;
         }
-    
-        rc = mainDemo->InitCameraDevice(); // Initialize the CameraDevice.
+
+        rc = mainDemo->InitCameraDevice(); // 初始化CameraDevice
         if (rc == RC_ERROR) {
             CAMERA_LOGE("main test: mainDemo->InitCameraDevice() error\n");
             return -1;
         }
     
-        rc = PreviewOn(0, mainDemo); // Configure and enable streams.
+        rc = PreviewOn(0, mainDemo); // 配流和启流
         if (rc != RC_OK) {
             CAMERA_LOGE("main test: PreviewOn() error demo exit");
             return -1;
         }
     
-        ManuList(mainDemo, argc, argv); // Print the menu to the console.
+        ManuList(mainDemo, argc, argv); // 打印菜单到控制台
     
         return RC_OK;
     }
     ```
 
-    The function used to initialize the  **CameraHost**  is implemented as follows, where the HDI  **ICameraHost::Get\(\)**  is called to obtain the  **demoCameraHost**  and set the callback:
+    初始化CameraHost函数实现如下，这里调用了HDI接口ICameraHost::Get()去获取demoCameraHost，并对其设置回调函数。
 
     ```
     RetCode Hos3516Demo::InitSensors()
@@ -458,7 +454,7 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
     }
     ```
 
-    The implementation of the function for initializing the  **CameraDevice**  is as follows, where the  **GetCameraIds\(cameraIds\_\)**,  **GetCameraAbility\(cameraId, ability\_\)**, and  **OpenCamera\(cameraIds\_.front\(\), callback, demoCameraDevice\_\)**  interfaces are called to obtain the  **demoCameraHost**.
+    初始化CameraDevice函数实现如下，这里调用了GetCameraIds(cameraIds_)，GetCameraAbility(cameraId, ability_)，OpenCamera(cameraIds_.front(), callback, demoCameraDevice_)等接口实现了demoCameraHost的获取。
 
     ```
     RetCode Hos3516Demo::InitCameraDevice()
@@ -473,24 +469,24 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
     }   
     ```
 
-2.  Implement the  **PreviewOn\(\)**  interface to configure streams, enable preview streams, and start stream capture. After this interface is called, the camera preview channel starts running. Two streams are enabled: preview stream and capture or video stream. Only the preview stream will be captured.
+2. PreviewOn()接口包含配置流、开启预览流和启动Capture动作。该接口执行完成后Camera预览通路已经开始运转并开启了两路流，一路流是preview，另外一路流是capture或者video，两路流中仅对preview流进行capture动作。
 
     ```
     static RetCode PreviewOn(int mode, const std::shared_ptr<Hos3516Demo>& mainDemo)
     {
-         rc = mainDemo->StartPreviewStream(); // Configure the preview stream.
+         rc = mainDemo->StartPreviewStream(); // 配置preview流
          if (mode == 0) {
-            rc = mainDemo->StartCaptureStream(); // Configure the capture stream.
+            rc = mainDemo->StartCaptureStream(); // 配置capture流
           } else {
-            rc = mainDemo->StartVideoStream(); // Configure the video stream.
+            rc = mainDemo->StartVideoStream(); // 配置video流
           }
     
-        rc = mainDemo->CaptureON(STREAM_ID_PREVIEW, CAPTURE_ID_PREVIEW, CAPTURE_PREVIEW); // Capture the preview stream.
+        rc = mainDemo->CaptureON(STREAM_ID_PREVIEW, CAPTURE_ID_PREVIEW, CAPTURE_PREVIEW); // 将preview流capture
         return RC_OK;
     }           
     ```
 
-    The  **StartCaptureStream\(\)**,  **StartVideoStream\(\)**, and  **StartPreviewStream\(\)**  interfaces call the  **CreateStream\(\)**  interface with different input parameters.
+    StartCaptureStream()、StartVideoStream()和StartPreviewStream()接口都会调用CreateStream()接口，只是传入的参数不同。
 
     ```
     RetCode Hos3516Demo::StartVideoStream()
@@ -498,22 +494,22 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
         RetCode rc = RC_OK;
         if (isVideoOn_ == 0) {
             isVideoOn_ = 1;
-            rc = CreateStream(STREAM_ID_VIDEO, streamCustomerVideo_, VIDEO); // To enable the preview stream or capture stream, change the input parameters.
+            rc = CreateStream(STREAM_ID_VIDEO, streamCustomerVideo_, VIDEO); // 如需启preview或者capture流更改该接口参数即可。
         }
         return RC_OK;
     }
     ```
 
-    The  **CreateStream\(\)**  interface calls the HDI to configure and create a stream. Specifically, the interface first calls the HDI to obtain a  **StreamOperation**  object and then creates a  **StreamInfo**  object. Call  **CreateStreams\(\)**  and  **CommitStreams\(\)**  to create and configure a stream.
+    CreateStream()方法调用HDI接口去配置和创建流，首先调用HDI接口去获取StreamOperation对象，然后创建一个StreamInfo。调用CreateStreams()和CommitStreams()实际创建流并配置流。
 
     ```
     RetCode Hos3516Demo::CreateStreams(const int streamIdSecond, StreamIntent intent)
     {
         std::vector<std::shared_ptr<StreamInfo>> streamInfos;
         std::vector<std::shared_ptr<StreamInfo>>().swap(streamInfos);
-        GetStreamOpt(); // Obtain a StreamOperator object.
+        GetStreamOpt(); // 获取StreamOperator对象
         std::shared_ptr<StreamInfo> previewStreamInfo = std::make_shared<StreamInfo>();
-        SetStreamInfo(previewStreamInfo, streamCustomerPreview_, STREAM_ID_PREVIEW, PREVIEW); // Fill in the StreamInfo.
+        SetStreamInfo(previewStreamInfo, streamCustomerPreview_, STREAM_ID_PREVIEW, PREVIEW); // 填充StreamInfo
         if (previewStreamInfo->bufferQueue_ == nullptr) {
             CAMERA_LOGE("demo test: CreateStream CreateProducer(); is nullptr\n");
             return RC_ERROR;
@@ -533,13 +529,13 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
         }
         streamInfos.push_back(secondStreamInfo);
     
-        rc = streamOperator_->CreateStreams(streamInfos); // Create a stream.
+        rc = streamOperator_->CreateStreams(streamInfos); // 创建流
         if (rc != Camera::NO_ERROR) {
             CAMERA_LOGE("demo test: CreateStream CreateStreams error\n");
             return RC_ERROR;
         }
     
-        rc = streamOperator_->CommitStreams(Camera::NORMAL, ability_); // Commit the stream.
+        rc = streamOperator_->CommitStreams(Camera::NORMAL, ability_);
         if (rc != Camera::NO_ERROR) {
             CAMERA_LOGE("demo test: CreateStream CommitStreams error\n");
             std::vector<int> streamIds = {STREAM_ID_PREVIEW, streamIdSecond};
@@ -550,26 +546,26 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
     }
     ```
 
-    The  **CaptureON\(\)**  interface calls the  **Capture\(\)**  method of  **StreamOperator**  to obtain camera data, rotate the buffer, and start a thread to receive data of the corresponding type.
+    CaptureON()接口调用streamOperator的Capture()方法获取camera数据并轮转buffer，拉起一个线程接收相应类型的数据。
 
     ```
     RetCode Hos3516Demo::CaptureON(const int streamId, const int captureId, CaptureMode mode)
     {
-        The std::shared_ptr<Camera::CaptureInfo> captureInfo = std::make_shared<Camera::CaptureInfo>(); // Create and fill in CaptureInfo.
+        std::shared_ptr<Camera::CaptureInfo> captureInfo = std::make_shared<Camera::CaptureInfo>(); // 创建并填充CaptureInfo
         captureInfo->streamIds_ = {streamId};
         captureInfo->captureSetting_ = ability_;
         captureInfo->enableShutterCallback_ = false;
     
-        The int rc = streamOperator_->Capture(captureId, captureInfo, true); // The stream capture starts, and buffer recycling starts.
+        int rc = streamOperator_->Capture(captureId, captureInfo, true); // 实际capture开始，buffer轮转开始
         if (mode == CAPTURE_PREVIEW) {
-            streamCustomerPreview_->ReceiveFrameOn(nullptr); // Create a preview thread to receive the passed buffers.
+            streamCustomerPreview_->ReceiveFrameOn(nullptr); // 创建预览线程接收递上来的buffer
         } else if (mode == CAPTURE_SNAPSHOT) {
-            The streamCustomerCapture_->ReceiveFrameOn([this](void* addr, const uint32_t size) { // Create a capture thread to receive the passed buffers through the StoreImage callback.
+            streamCustomerCapture_->ReceiveFrameOn([this](void* addr, const uint32_t size) { // 创建capture线程通过StoreImage回调接收递上来的buffer
                 StoreImage(addr, size);
             });
         } else if (mode == CAPTURE_VIDEO) {
             OpenVideoFile();
-            streamCustomerVideo_->ReceiveFrameOn([this](void* addr, const uint32_t size) {// Create a video thread to receive the passed buffer by calling the StoreVideo callback.
+            streamCustomerVideo_->ReceiveFrameOn([this](void* addr, const uint32_t size) {// 创建Video线程通过StoreVideo回调接收递上来的buffer
                 StoreVideo(addr, size);
             });
         }
@@ -577,7 +573,7 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
     }
     ```
 
-3.  Implement the  **ManuList\(\)**  function to obtain characters from the console through the  **fgets\(\)**  interface. Different characters correspond to different capabilities provided by the demo, and the functionality menu is printed.
+3. ManuList()函数从控制台通过fgets()接口获取字符，不同字符所对应demo支持的功能不同，并打印出该demo所支持功能的菜单。
 
     ```
     static void ManuList(const std::shared_ptr<Hos3516Demo>& mainDemo,
@@ -590,22 +586,22 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
         while(1) {
             switch (c) {
                 case 'h':
-                    c = PutMenuAndGetChr(); // Print the menu.
+                    c = PutMenuAndGetChr(); // 打印菜单
                     break;
                     
                     case 'f':
-                    FlashLightTest(mainDemo); // Test the flashlight capability.
+                    FlashLightTest(mainDemo); // 手电筒功能测试
                     c = PutMenuAndGetChr();
                     break;
                 case 'o':
-                    OfflineTest(mainDemo); // Test the offline capability.
+                    OfflineTest(mainDemo); // Offline功能测试
                     c = PutMenuAndGetChr();
                     break;
                 case 'c':
-                    CaptureTest(mainDemo); // Test the capture capability.
+                    CaptureTest(mainDemo); // Capture功能测试
                     c = PutMenuAndGetChr();
                     break;
-                case 'w': // Test the AWB capability.
+                case 'w': // AWB功能测试
                     if (awb) {
                         mainDemo->SetAwbMode(OHOS_CAMERA_AWB_MODE_INCANDESCENT);
                     } else {
@@ -614,15 +610,15 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
                     awb = !awb;
                     c = PutMenuAndGetChr();
                     break;
-                case 'a': // Test the AE capability.
+                case 'a': // AE功能测试
                     mainDemo->SetAeExpo();
                     c = PutMenuAndGetChr();
                     break;
-                case 'v': // Test the video capability.
+                case 'v': // Video功能测试
                     VideoTest(mainDemo);
                     c = PutMenuAndGetChr();
                     break;
-                case 'q': // Exit the demo.
+                case 'q': // 退出demo
                     PreviewOff(mainDemo);
                     mainDemo->QuitDemo();
                     exit(EXIT_SUCCESS);
@@ -636,9 +632,9 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
     }
     ```
 
-    The  **PutMenuAndGetChr\(\)**  interface prints the menu of the demo and calls  **fgets\(\)**  to wait for commands from the console.
+    PutMenuAndGetChr()接口打印了demo程序的菜单，并调用fgets()等待从控制台输入命令，内容如下：
 
-    ```
+    ``` 
     static int PutMenuAndGetChr(void)
     {
         constexpr uint32_t inputCount = 50;
@@ -658,7 +654,7 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
     }
     ```
 
-    The console outputs the menu details as follows:
+    控制台输出菜单详情如下：
 
     ```
     "Options:\n"
@@ -672,6 +668,5 @@ There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  director
     "-q | --quit          stop preview and quit this app\n");
     ```
 
-    Other capabilities in the demo are implemented by calling different HDIs, which are similar to  **PreviewOn\(\)**. For details, see  [ohos\_camera\_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init).
-
+    demo中其他功能会调用不同的HDI接口去实现，与PreviewOn()接口类似，这里不再赘述，具体详情可以参见[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
 
