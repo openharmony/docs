@@ -146,6 +146,7 @@ Describes a rectangle.
 Describes the area where the window cannot be displayed.
 
 <a name="table1944014278510"></a>
+
 <table><thead align="left"><tr id="row0440172711515"><th class="cellrowborder" valign="top" width="19.46%" id="mcps1.1.6.1.1"><p id="p1444017272516"><a name="p1444017272516"></a><a name="p1444017272516"></a>Name</p>
 </th>
 <th class="cellrowborder" valign="top" width="19.02%" id="mcps1.1.6.1.2"><p id="p244013271852"><a name="p244013271852"></a><a name="p244013271852"></a>Type</p>
@@ -1208,6 +1209,32 @@ Sets whether to keep the screen always on.
     });
     ```
 
+### setWindowType<sup>7+</sup>
+
+setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the window type.
+
+- Parameters
+
+  | Name     | Type                               | Mandatory | Description                              |
+  | -------- | ---------------------------------- | --------- | ---------------------------------------- |
+  | type     | [WindowType](#section099619567453) | Yes       | Window type.                             |
+  | callback | AsyncCallback&lt;void&gt;          | Yes       | Callback used to return the window type. |
+
+
+- Example
+  ```
+  var type = window.TYPE_APP;
+  windowClass.setWindowType(type, (err, data) => {
+    if (err) {
+        console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in setting the window type. Data: ' + JSON.stringify(data))
+  });
+  ```
+
 
 ## setDimBehind<sup>7+</sup><a name="section1291661141917"></a>
 
@@ -2206,104 +2233,44 @@ Disables listening for keyboard height changes.
     windowClass.off(type);
     ```
 
+### on('keyboardHeightChange'|'windowSizeChange'<sup>7+</sup>|'systemAvoidAreaChange'<sup>7+</sup>)
 
-## on\('keyboardHeightChange'|'windowSizeChange'<sup>7+</sup>|'systemAvoidAreaChange'<sup>7+</sup>\)<a name="section5851341125"></a>
-
-on\(type: string, callback: Callback<AvoidArea | Size | number\>\): void;
+on(type: string, callback: Callback&lt;AvoidArea | Size | number&gt;): void
 
 Enables listening.
 
--   Parameters
+- Parameters
 
-    <a name="table1185133418121"></a>
-    <table><thead align="left"><tr id="row10857341125"><th class="cellrowborder" valign="top" width="21.04%" id="mcps1.1.5.1.1"><p id="p88503412128"><a name="p88503412128"></a><a name="p88503412128"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="20.57%" id="mcps1.1.5.1.2"><p id="p98513411125"><a name="p98513411125"></a><a name="p98513411125"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="7.3999999999999995%" id="mcps1.1.5.1.3"><p id="p585163481213"><a name="p585163481213"></a><a name="p585163481213"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50.99%" id="mcps1.1.5.1.4"><p id="p086183411124"><a name="p086183411124"></a><a name="p086183411124"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row286153419127"><td class="cellrowborder" valign="top" width="21.04%" headers="mcps1.1.5.1.1 "><p id="p108693415126"><a name="p108693415126"></a><a name="p108693415126"></a>type</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20.57%" headers="mcps1.1.5.1.2 "><p id="p18867344125"><a name="p18867344125"></a><a name="p18867344125"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.3999999999999995%" headers="mcps1.1.5.1.3 "><p id="p7863341127"><a name="p7863341127"></a><a name="p7863341127"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50.99%" headers="mcps1.1.5.1.4 "><p id="p13667183712314"><a name="p13667183712314"></a><a name="p13667183712314"></a>Listening type.</p>
-    <a name="ul14115199322"></a><a name="ul14115199322"></a><ul id="ul14115199322"><li><strong id="b769552812371"><a name="b769552812371"></a><a name="b769552812371"></a>keyboardHeightChange</strong>: listening for keyboard height changes.</li><li><strong id="b1623112311379"><a name="b1623112311379"></a><a name="b1623112311379"></a>windowSizeChange</strong><sup id="sup192328313374"><a name="sup192328313374"></a><a name="sup192328313374"></a>7+</sup>: listening for window size changes.</li><li><strong id="b1187717338379"><a name="b1187717338379"></a><a name="b1187717338379"></a>systemAvoidAreaChange</strong><sup id="sup4877113363711"><a name="sup4877113363711"></a><a name="sup4877113363711"></a>7+</sup>: listening for changes to the area where the window cannot be displayed.</li></ul>
-    </td>
-    </tr>
-    <tr id="row1083141772919"><td class="cellrowborder" valign="top" width="21.04%" headers="mcps1.1.5.1.1 "><p id="p3150181912299"><a name="p3150181912299"></a><a name="p3150181912299"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20.57%" headers="mcps1.1.5.1.2 "><p id="p415019193293"><a name="p415019193293"></a><a name="p415019193293"></a>Callback&lt;<a href="#section74393271254">AvoidArea</a> | Size | number&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.3999999999999995%" headers="mcps1.1.5.1.3 "><p id="p1915061962911"><a name="p1915061962911"></a><a name="p1915061962911"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50.99%" headers="mcps1.1.5.1.4 "><p id="p91501819172913"><a name="p91501819172913"></a><a name="p91501819172913"></a>Callback used to return the information.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  | Name     | Type                                                         | Mandatory | Description                                                  |
+  | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+  | type     | string                                                       | Yes       | Listening type. <br/>-&nbsp;**keyboardHeightChange**: listening for keyboard height changes.<br/>-&nbsp;**windowSizeChange'7+**: listening for window size changes.<br/>-&nbsp;**systemAvoidAreaChange'7+**: listening for changes to the area where the window cannot be displayed. |
+  | callback | Callback&lt;[AvoidArea](#section74393271254)&nbsp;\|&nbsp;[Size](#section695585431120)&nbsp;\|&nbsp;number&gt; | Yes       | Callback used to return the information.                     |
 
--   Example
+- Example
 
-    ```
-    var type = 'windowSizeChange';
-    windowClass.on(type, (data) => {
-        console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
-    });
-    ```
+  ```
+  var type = 'windowSizeChange';
+  windowClass.on(type, (data) => {
+      console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
+  });
+  ```
 
+### off('keyboardHeightChange'|'windowSizeChange'<sup>7+</sup>|'systemAvoidAreaChange'<sup>7+</sup>)
 
-## off\('keyboardHeightChange'|'windowSizeChange'<sup>7+</sup>|'systemAvoidAreaChange'<sup>7+</sup>\)<a name="section17101545165715"></a>
-
-off\(type: string, callback?: Callback<AvoidArea | Size | number\>\): void;
+off(type: string, callback?: Callback&lt;AvoidArea | Size | number&gt;): void
 
 Disables listening.
 
--   Parameters
+- Parameters
 
-    <a name="table2071074535719"></a>
-    <table><thead align="left"><tr id="row271074585710"><th class="cellrowborder" valign="top" width="15.82%" id="mcps1.1.5.1.1"><p id="p10711194512573"><a name="p10711194512573"></a><a name="p10711194512573"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="25.790000000000003%" id="mcps1.1.5.1.2"><p id="p6711194555716"><a name="p6711194555716"></a><a name="p6711194555716"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="7.3999999999999995%" id="mcps1.1.5.1.3"><p id="p1271174511572"><a name="p1271174511572"></a><a name="p1271174511572"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50.99%" id="mcps1.1.5.1.4"><p id="p8711645125712"><a name="p8711645125712"></a><a name="p8711645125712"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1971164525712"><td class="cellrowborder" valign="top" width="15.82%" headers="mcps1.1.5.1.1 "><p id="p6711245195712"><a name="p6711245195712"></a><a name="p6711245195712"></a>type</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="25.790000000000003%" headers="mcps1.1.5.1.2 "><p id="p19712164575719"><a name="p19712164575719"></a><a name="p19712164575719"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.3999999999999995%" headers="mcps1.1.5.1.3 "><p id="p137121245165712"><a name="p137121245165712"></a><a name="p137121245165712"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50.99%" headers="mcps1.1.5.1.4 "><p id="p6985181216330"><a name="p6985181216330"></a><a name="p6985181216330"></a>Listening type.</p>
-    <a name="ul138421616133318"></a><a name="ul138421616133318"></a><ul id="ul138421616133318"><li><strong id="b1586219427379"><a name="b1586219427379"></a><a name="b1586219427379"></a>keyboardHeightChange</strong>: listening for keyboard height changes.</li><li><strong id="b38954434379"><a name="b38954434379"></a><a name="b38954434379"></a>windowSizeChange</strong><sup id="sup5896114333712"><a name="sup5896114333712"></a><a name="sup5896114333712"></a>7+</sup>: listening for window size changes.</li><li><strong id="b18271846153710"><a name="b18271846153710"></a><a name="b18271846153710"></a>systemAvoidAreaChange</strong><sup id="sup122711469375"><a name="sup122711469375"></a><a name="sup122711469375"></a>7+</sup>: listening for changes to the area where the window cannot be displayed.</li></ul>
-    </td>
-    </tr>
-    <tr id="row5866948182910"><td class="cellrowborder" valign="top" width="15.82%" headers="mcps1.1.5.1.1 "><p id="p13413850202918"><a name="p13413850202918"></a><a name="p13413850202918"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="25.790000000000003%" headers="mcps1.1.5.1.2 "><p id="p10413850142915"><a name="p10413850142915"></a><a name="p10413850142915"></a>Callback&lt;<a href="#section74393271254">AvoidArea</a> | Size | number&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.3999999999999995%" headers="mcps1.1.5.1.3 "><p id="p841345092915"><a name="p841345092915"></a><a name="p841345092915"></a>No</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50.99%" headers="mcps1.1.5.1.4 "><p id="p134131250102915"><a name="p134131250102915"></a><a name="p134131250102915"></a>Callback used to return the information.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  | Name     | Type                                                         | Mandatory | Description                                                  |
+  | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+  | type     | string                                                       | Yes       | Listening type. <br/>-&nbsp;**'keyboardHeightChange'**: listening for keyboard height changes.<br/>-&nbsp;**'windowSizeChange'<sup>7+</sup>**: listening for window size changes.<br/>-&nbsp;**'systemAvoidAreaChange'<sup>7+</sup>**: listening for changes to the area where the window cannot be displayed. |
+  | callback | Callback&lt;[AvoidArea](#section74393271254)&nbsp;\|&nbsp;[Size](#section695585431120)&nbsp;\|&nbsp;number&gt; | No        | Callback used to return the information.                     |
 
--   Example
+- Example
 
-    ```
-    var type = 'windowSizeChange';
-    windowClass.off(type);
-    ```
-
-
+  ```
+  var type = 'windowSizeChange';
+  windowClass.off(type);
+  ```
