@@ -35,5 +35,5 @@ A distribution is a complete HarmonyOS release that integrates various bundles, 
 **Figure  1**  Relationship between bundles and a distribution<a name="fig85033524124"></a>  
 
 
-![](figure/组件和发行版的构成-英文.png)
+![](figure/bundle-distribution.png)
 
