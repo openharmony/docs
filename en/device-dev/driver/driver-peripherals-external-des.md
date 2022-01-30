@@ -3,7 +3,7 @@
 -   [Overview](#section729758162218)
     -   [WLAN Driver API Architecture](#section178022416377)
 
--   [Available APIs](#"Available APIs")
+-   [Available APIs](#section7331102018815)
 -   [How to Develop](#section15957746172412)
 -   [Development Example](#section1395253612512)
 
@@ -27,7 +27,7 @@ The WLAN module provides the following three types of APIs:
 **Figure  2**  Available APIs of the WLAN module<a name="fig1492411431166"></a>  
 ![](figures/available-apis-of-the-wlan-module.png "available-apis-of-the-wlan-module")
 
-## Available APIs
+## Available APIs<a name="section7331102018815"></a>
 
 The WLAN driver module provides APIs that can be directly called by driver developers, such as creating/releasing a  **WifiModule**, connecting to/disconnecting from a WLAN hotspot, applying for/releasing a  **NetBuf**, and converting between the  **pbuf**  structure of Lightweight IP \(lwIP\) and a  **NetBuf**.  [Table 1](#table1521573319472)  describes some APIs.
 
