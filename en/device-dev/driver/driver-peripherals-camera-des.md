@@ -1,6 +1,6 @@
 # Camera<a name="EN-US_TOPIC_0000001242747077"></a>
 
-## Introduction
+## Overview
 
 The OpenHarmony camera driver model implements the camera hardware driver interface \(HDI\) and the camera pipeline model to manage camera devices.
 
