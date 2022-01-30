@@ -65,7 +65,7 @@ ForEach\(arr: any\[\],itemGenerator: \(item: any, index?: number\) =\> void, key
 </tbody>
 </table>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >-   必须在容器组件内使用；
 >-   生成的子组件允许在**ForEach**的父容器组件中，允许子组件生成器函数中包含**if/else**条件渲染，同时也允许**ForEach**包含在**if/else**条件渲染语句中；
 >-   子项生成器函数的调用顺序不一定和数组中的数据项相同，在开发过程中不要假设子项生成器和键值生成器函数是否执行以及执行顺序。如下示例可能无法正常工作：
