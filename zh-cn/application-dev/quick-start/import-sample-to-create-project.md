@@ -10,9 +10,9 @@ OpenHarmony SDK配置完成后，便可以启动应用开发。针对OpenHarmony
 
 
 1. 在DevEco Studio的欢迎页，进入**Configure （或**![zh-cn_image_0000001118018452](figures/zh-cn_image_0000001118018452.png)**图标） &gt; Settings &gt; Version Control &gt; Git**界面，点击Test按钮检测是否安装Git工具。
-   - 已安装，请根据[ERROR:Invalid link:zh-cn_topic_0000001163914943.xml#xref1062745524418,link:#li5947194711181](#li5947194711181)开始导入Sample。
+   - 已安装，请根据**步骤2**开始导入Sample。  
       ![zh-cn_image_0000001118018088](figures/zh-cn_image_0000001118018088.png)
-   - 未安装，请点击**Download and Install**，DevEco Studio会自动下载并安装。安装完成后，请根据[ERROR:Invalid link:zh-cn_topic_0000001163914943.xml#xref1191414223536,link:#li5947194711181](#li5947194711181)开始导入Sample。
+   - 未安装，请点击**Download and Install**，DevEco Studio会自动下载并安装。安装完成后，请根据**步骤2**开始导入Sample。
       ![zh-cn_image_0000001164498191](figures/zh-cn_image_0000001164498191.png)
 
 2. 在DevEco Studio的欢迎页，点击**Import Sample**按钮，导入Sample工程。
