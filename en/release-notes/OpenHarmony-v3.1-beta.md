@@ -1,21 +1,5 @@
 # OpenHarmony 3.1 Beta
 
-- [Version Description](#Version-Description)
-- [Version Mapping](#Version-Mapping)
-- [Source Code Acquisition](#Source-Code-Acquisition)
-  - [Acquiring Source Code Using the repo Tool](#Acquiring-Source-Code-Using-the-repo-Tool)
-  - [Acquiring Source Code from Mirrors](#Acquiring-Source-Code-from-Mirrors)
-- [What's New](#What-Is-New)
-  - [Feature Updates](#Feature-Updates)
-  - [API Updates](#API-Updates)
-  - [Chip and Development Board Adaptation](#Chip-and-Development-Board-Adaptation)
-  - [Samples &amp; Codelabs](#samples-amp-codelabs)
-     - [New Samples](#New-Samples)
-     - [New Codelabs](#New-Codelabs)
-- [Resolved Issues](#Resolved-Issues)
-- [Known Issues](#Known-Issues)
-
-
 ## Version Description
 
 OpenHarmony 3.1 Beta provides the following enhancements over OpenHarmony 3.0 LTS:

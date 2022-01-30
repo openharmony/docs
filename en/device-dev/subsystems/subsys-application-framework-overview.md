@@ -1,11 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001062225512"></a>
 
--   [Basic Concepts](#section72601941194812)
--   [Ability Management Framework](#section14633111813374)
--   [Bundle Management Framework](#section1341146154412)
--   [Working Principles](#section94302021112717)
--   [Limitations and Constraints](#section89534912527)
-
 The application framework is provided by OpenHarmony for you to develop OpenHarmony applications. It consists of two modules: ability management framework \(also called the ability framework\) and bundle management framework.
 
 ## Basic Concepts<a name="section72601941194812"></a>

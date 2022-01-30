@@ -1,7 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001051452100"></a>
 
--   [Bundle](#section196713235514)
--   [Distribution](#section155387501033)
 
 This section describes the bundle-specific concepts in HarmonyOS. It uses an example to step you through how to create, develop, build, release, and install a bundle using the  **hpm-cli**  tool.
 

@@ -1,11 +1,5 @@
 # Programming Language Runtime<a name="EN-US_TOPIC_0000001124628397"></a>
 
--   [Introduction](#section15963162310012)
--   [Directory Structure](#section971210485617)
--   [Constraints](#section119744591305)
--   [Usage](#section1312121216216)
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section15963162310012"></a>
 
 This subsystem provides the compilation and execution environment for programs developed with JavaScript, and C/C++, basic libraries that support the runtime, and the runtime-associated APIs, compilers, and auxiliary tools. Modules in this subsystem are classified based on the currently supported programming languages: JavaScript, and C/C++. Each module can be compiled independently and can be combined and separated based on development scenarios.

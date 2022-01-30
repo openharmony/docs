@@ -1,9 +1,5 @@
 # Device Driver Porting<a name="EN-US_TOPIC_0000001200252097"></a>
 
--   [LCD Driver Porting](#section1574513454119)
--   [Touchscreen Driver Porting](#section20284142116422)
--   [WLAN Driver Porting](#section0969448164217)
-
 This section describes how to port device drivers.
 
 ## LCD Driver Porting<a name="section1574513454119"></a>

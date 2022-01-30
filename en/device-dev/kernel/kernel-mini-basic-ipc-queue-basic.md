@@ -1,10 +1,5 @@
 # Basic Concepts<a name="EN-US_TOPIC_0000001078876506"></a>
 
--   [Working Principles](#section1582619446311)
-    -   [Queue Control Block](#section1648304614720)
-    -   [Working Principles](#section15384012164811)
-
-
 A queue, also called a message queue, is a data structure used for communication between tasks. The queue receives messages of unfixed length from tasks or interrupts, and determines whether to store the transferred messages in the queue based on different APIs.
 
 Tasks can read messages from a queue. When the queue has no messages, the tasks are suspended. When the queue has a new message, the suspended tasks are woken up and process the new message. Tasks can also write messages to the queue. When the queue is full, the write task is suspended. When there is an available message node in the queue, the suspended write task is woken up and writes a message.

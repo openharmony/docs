@@ -1,12 +1,5 @@
 # Utils Development Guidelines<a name="EN-US_TOPIC_0000001059307279"></a>
 
--   [Available APIs](#section1633115419401)
--   [How to Develop](#section17450172710292)
-    -   [Developing a Native Application for the KV Store That Uses the LiteOS Cortex-A Kernel \(Hi3516 or Hi3518\)](#section258354119295)
-    -   [Dumping System Attributes on the Platform That Uses the LiteOS Cortex-M Kernel](#section9179161863014)
-    -   [Dumping System Attributes on the Platform That Uses the LiteOS Cortex-A Kernel](#section3179121853017)
-
-
 ## Available APIs<a name="section1633115419401"></a>
 
 **Table  1**  APIs for file operations

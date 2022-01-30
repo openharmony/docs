@@ -1,10 +1,5 @@
 # Hi3861 Development Board<a name="EN-US_TOPIC_0000001174270685"></a>
 
--   [Introduction](#section19352114194115)
--   [Resources and Constraints](#section82610215014)
--   [Development Board Specifications](#section169054431017)
--   [Key Features](#section1317173016507)
-
 ## Introduction<a name="section19352114194115"></a>
 
 The Hi3861 WLAN module is a development board with 2 x 5 cm form factor. It contains a 2.4 GHz WLAN SoC that highly integrates the IEEE 802.11b/g/n baseband and radio frequency \(RF\) circuit. This module provides open and easy-to-use development and debugging environments for running OpenHarmony.

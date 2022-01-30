@@ -1,8 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001051690589"></a>
 
--   [Basic Concepts](#section175012297491)
--   [Working Principles](#section193961322175011)
-
 ## Basic Concepts<a name="section175012297491"></a>
 
 Camera is one of the services provided by the OpenHarmony multimedia subsystem. The camera module provides recording, preview, and photographing features and supports concurrent stream reading by multiple users.

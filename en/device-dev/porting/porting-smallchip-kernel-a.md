@@ -1,14 +1,5 @@
 # LiteOS Cortex-A<a name="EN-US_TOPIC_0000001200171989"></a>
 
--   [Overview](#section14876256185510)
-    -   [Porting Scenario](#section1986014410569)
-    -   [Directory Specifications](#section10916181716564)
-
--   [Adaptation Process](#section814974018565)
-    -   [Programming Example](#section10854481825)
-
--   [Verification](#section646410453212)
-
 ## Overview<a name="section14876256185510"></a>
 
 ### Porting Scenario<a name="section1986014410569"></a>

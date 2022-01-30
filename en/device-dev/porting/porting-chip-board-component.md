@@ -1,8 +1,5 @@
 # System Modules<a name="EN-US_TOPIC_0000001199722621"></a>
 
--   [SAMGR](#section105874301910)
--   [DFX](#section20064420420)
-
 System modules, such as the system ability manager \(SAMGR\) and DFX subsystem, provide basic capabilities for upper-layer applications. During board-level system porting, you can directly select the system modules as required without any adaptation.
 
 ## SAMGR<a name="section105874301910"></a>

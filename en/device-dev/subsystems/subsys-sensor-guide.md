@@ -1,7 +1,5 @@
 # Sensors Usage Guidelines<a name="EN-US_TOPIC_0000001077367158"></a>
 
--   [How to Use](#section18816105182315)
-
 The following steps use the sensor whose  **sensorTypeId**  is  **0**  as an example. The guidelines for other sensor types are similar.
 
 ## How to Use<a name="section18816105182315"></a>

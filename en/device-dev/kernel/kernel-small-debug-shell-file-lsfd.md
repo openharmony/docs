@@ -1,11 +1,5 @@
 # lsfd<a name="EN-US_TOPIC_0000001179965849"></a>
 
--   [Command Function](#section2053406181716)
--   [Syntax](#section523771017172)
--   [Usage](#section27241213201719)
--   [Example](#section442617197173)
--   [Output](#section42491639151813)
-
 ## Command Function<a name="section2053406181716"></a>
 
 This command is used to display the file descriptors and names of the files that are open.

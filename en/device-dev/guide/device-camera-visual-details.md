@@ -1,8 +1,5 @@
 # Building the Details Page<a name="EN-US_TOPIC_0000001054727679"></a>
 
--   [detail.hml](#section275215487291)
--   [detail.css](#section2589154215301)
--   [detail.js](#section163410883117)
 
 The  **detail**  page displays the air quality data of a week in a chart. There are two parts on the page: title bar and chart bar. Considering the display effect of the chart bar, use multiple  **<div\>**  components instead of one  **<chart\>**  component.
 

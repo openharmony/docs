@@ -1,9 +1,5 @@
 # Trace<a name="EN-US_TOPIC_0000001123695263"></a>
 
--   [Basic Concepts](#section531482192018)
--   [Working Principles](#section5125124532010)
--   [Usage](#section1381714413216)
-
 ## Basic Concepts<a name="section531482192018"></a>
 
 Trace is a functional framework provided by the kernel for tracing key processes of modules. You can implement trace at key positions for modules based on mechanism requirements, and export the traced information as files or in other modes for further analysis.

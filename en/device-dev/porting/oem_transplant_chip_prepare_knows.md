@@ -1,9 +1,5 @@
 # Before You Start<a name="EN-US_TOPIC_0000001199722625"></a>
 
--   [Porting Directory](#section284217487490)
--   [Porting Process](#section639315306506)
--   [Porting Specifications](#section187870185219)
-
 This document provides basic guidance for OpenHarmony developers and system on a chip \(SoC\) or module vendors to port OpenHarmony to typical chip architectures, such as the cortex-M and RISC-V series. Currently, the Bluetooth service is not supported. Due to the complexity of the OpenHarmony project, this document is subject to update as the version and APIs change.
 
 This guide is intended for readers who have experience in developing embedded systems. Therefore, it mainly describes operations and key points during platform porting instead of basic introduction to the OS.

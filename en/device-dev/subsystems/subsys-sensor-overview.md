@@ -1,8 +1,5 @@
 # Sensors Overview<a name="EN-US_TOPIC_0000001092893507"></a>
 
--   [Introduction](#section667413271505)
--   [Available APIs](#section7255104114110)
-
 ## Introduction<a name="section667413271505"></a>
 
 The pan-sensor service subsystem provides a lightweight sensor service framework. You can call APIs offered by this framework to query the sensor list, enable or disable a sensor, and subscribe to or unsubscribe from sensor data. The following figure shows the architecture of the lightweight sensor framework.

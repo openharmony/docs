@@ -1,10 +1,5 @@
 # Basic Concepts<a name="EN-US_TOPIC_0000001124066587"></a>
 
--   [Working Principles](#section1794010261861)
-    -   [Semaphore control block](#section11372149164815)
-    -   [Working Principles](#section139726510491)
-
-
 Semaphore is a mechanism for implementing inter-task communication. It implements synchronization between tasks or exclusive access to shared resources.
 
 In the data structure of a semaphore, there is a value indicating the number of shared resources available. The value can be:

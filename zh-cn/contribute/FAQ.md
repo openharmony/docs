@@ -1,15 +1,5 @@
 # FAQ<a name="ZH-CN_TOPIC_0000001053622377"></a>
 
-[多个代码仓存在编译依赖时如何同时发起构建](#section169732563435)
-
-[ `Signed-off-by`相关操作](#section-signed-off)
-
-[DCO校验异常处理](#section-dco)
-
-[回退提交](#section479422315253)
-
-[处理冲突](#section94417232274)
-
 
 ## 多个代码仓存在编译依赖时如何同时发起构建<a name="section169732563435"></a>
 

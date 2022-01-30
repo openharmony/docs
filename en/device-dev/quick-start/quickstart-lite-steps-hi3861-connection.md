@@ -1,9 +1,5 @@
 # Setting Up WLAN Connection<a name="EN-US_TOPIC_0000001174350611"></a>
 
--   [Building Source Code](#section191121332125319)
--   [Burning Images](#section3288165814218)
--   [Connecting WLAN Module to the Internet.](#section194671619167)
-
 This example shows how to connect the WLAN module to the gateway using attention \(AT\) commands.
 
 ## Building Source Code<a name="section191121332125319"></a>

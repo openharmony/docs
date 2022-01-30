@@ -1,8 +1,5 @@
 # Development Guidelines on Audio Playback
 
-- [When to Use](#When-to-Use)
-- [Available APIs](#Available-APIs)
-
 ## When to Use
 
 You use audio playback APIs to convert audio data into audible analog signals, play the audio signals using output devices, and manage playback tasks.

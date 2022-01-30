@@ -1,10 +1,5 @@
 # Dying Gasp<a name="EN-US_TOPIC_0000001078588210"></a>
 
--   [When to Use](#section158501652121514)
--   [Available APIs](#section1186411122215)
--   [Parameters](#section1083765723015)
--   [How to Develop](#section783435801510)
-
 ## When to Use<a name="section158501652121514"></a>
 
 For a device without a serial port, save the exception information to a non-volatile storage medium to facilitate fault location during system running.

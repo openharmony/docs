@@ -1,15 +1,5 @@
 # Standard Library<a name="EN-US_TOPIC_0000001126847658"></a>
 
--   [Standard Library API Framework](#section149319478561)
--   [Development Example](#section20874620185915)
--   [Differences from the Linux Standard Library](#section6555642165713)
-    -   [Process](#section11299104511409)
-    -   [Memory](#section175754484116)
-    -   [File System](#section118191113134220)
-    -   [Signal](#section195939264421)
-    -   [Time](#section20825124304213)
-
-
 The OpenHarmony kernel uses the musl libc library that supports the Portable Operating System Interface \(POSIX\). You can develop components and applications working on the kernel based on the POSIX.
 
 ## Standard Library API Framework<a name="section149319478561"></a>

@@ -1,9 +1,5 @@
 # OpenHarmony 2.0 Canary \(2021-06-02\)<a name="EN-US_TOPIC_0000001102397706"></a>
 
--   [Version Description](#section1677664815431)
--   [Version Mapping](#section13201781528)
--   [What's New](#section11256141314463)
-
 ## Version Description<a name="section1677664815431"></a>
 
 On the basis of OpenHarmony 1.1.0, OpenHarmony 2.0 adds the version for the standard system, which delivers the following functions:

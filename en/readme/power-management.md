@@ -1,10 +1,5 @@
 # Power Management<a name="EN-US_TOPIC_0000001121107655"></a>
 
--   [Introduction](#section11660541593)
--   [Directory Structure](#section19472752217)
--   [Usage](#section19959125052315)
--   [Repositories Involved](#section63151229062)
-
 ## Introduction<a name="section11660541593"></a>
 
 The power management subsystem provides the following functions:

@@ -1,21 +1,5 @@
 # Obtaining Source Code<a name="EN-US_TOPIC_0000001150448437"></a>
 
--   [About OpenHarmony](#section6370143622110)
--   [Overview of Source Code Acquisition](#section12763342204)
--   [Method 1: Acquiring Source Code from the Gitee Code Repository](#section537312010229)
-    -   [When to Use](#section10881513459)
-    -   [Prerequisites](#section102871547153314)
-    -   [How to Use](#section429012478331)
-
--   [Method 2: Acquiring Source Code from DevEco Marketplace](#section463013147412)
-    -   [When to Use](#section26661067443)
-    -   [Prerequisites](#section17544943123315)
-    -   [How to Use](#section954619433333)
-
--   [Method 3: Acquiring Source Code from a Mirror Site](#section1186691118430)
--   [Method 4: Acquiring Source Code from the GitHub Image Repository \(at 23:00 UTC Every Day\)](#section23448418360)
--   [Source Code Directories](#section1072115612811)
-
 ## About OpenHarmony<a name="section6370143622110"></a>
 
 OpenHarmony is an open-source project launched by the OpenAtom Foundation. The purpose of this project is to build an open, distributed operating system \(OS\) framework for smart IoT devices in the full-scenario, full-connectivity, and full-intelligence era. 

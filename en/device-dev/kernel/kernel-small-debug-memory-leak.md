@@ -1,12 +1,5 @@
 # Memory Leak Check<a name="EN-US_TOPIC_0000001078876382"></a>
 
--   [Basic Concepts](#section1026719436293)
--   [Function Configuration](#section13991354162914)
--   [Development Guidelines](#section95828159308)
-    -   [How to Develop](#section369844416304)
-    -   [Development Example](#section460801313313)
-
-
 ## Basic Concepts<a name="section1026719436293"></a>
 
 As an optional function of the kernel, memory leak check is used to locate dynamic memory leak problems. After this function is enabled, the dynamic memory automatically records the link registers \(LRs\) used when memory is allocated. If a memory leak occurs, the recorded information helps locate the memory allocated for further analysis.

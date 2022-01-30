@@ -1,9 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001153842840"></a>
 
--   [Porting Scenario](#section93781277367)
--   [Directory Specifications](#section18127744153119)
--   [Chip Architecture Adaptation](#section137431650339)
-
 ## Porting Scenario<a name="section93781277367"></a>
 
 The chip architecture adaptation process is optional. If the particular chip architecture is supported in the  **liteos\_m/arch**  directory, you can directly implement the board adaptation. Otherwise, chip architecture porting is required.

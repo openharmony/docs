@@ -1,14 +1,5 @@
 # Physical Memory Management<a name="EN-US_TOPIC_0000001078575732"></a>
 
--   [Basic Concepts](#section210891719217)
--   [Working Principles](#section111355315213)
--   [Development Guidelines](#section393116496217)
-    -   [Available APIs](#section13210155619214)
-    -   [How to Develop](#section178441091231)
-    -   [Development Example](#section1258174015319)
-    -   [Verification](#section515091342819)
-
-
 ## Basic Concepts<a name="section210891719217"></a>
 
 Physical memory is one of the most important resources on a computer. It is the memory space that is provided by the physical memory devices and can be directly addressed through the CPU bus. The physical memory provides temporary storage space for the OS and programs. The LiteOS-A kernel manages the physical memory by memory paging. Except the memory occupied by the kernel heap, other available memory is divided into page frames in the unit of 4 KiB. Memory is allocated and reclaimed by page frame. The kernel uses the buddy algorithm to manage free pages to reduce the fragmentation rate and improve the memory allocation and release efficiency. However, a small block may block the merge of a large block, causing a failure in allocating a large memory block.

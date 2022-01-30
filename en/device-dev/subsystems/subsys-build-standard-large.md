@@ -1,16 +1,5 @@
 # Building Guidelines for Standard Systems<a name="EN-US_TOPIC_0000001076490572"></a>
 
--   [Overview](#section17466112012244)
-    -   [Basic Concepts](#section445513507246)
-    -   [Working Principles](#section12541217142510)
-    -   [Limitations and Constraints](#section886933762513)
-
--   [Compilation and Building Guidelines](#section16901215262)
-    -   [Directory Structure](#section109065332264)
-    -   [Build Command](#section123265539266)
-    -   [How to Develop](#section591084422719)
-
-
 ## Overview<a name="section17466112012244"></a>
 
 The compilation and building subsystem provides a framework based on Generate Ninja \(GN\) and Ninja. This subsystem allows you to:

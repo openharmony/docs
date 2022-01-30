@@ -1,9 +1,5 @@
 # bytrace Usage Guidelines<a name="EN-US_TOPIC_0000001083359811"></a>
 
--   [Overview](#section11388623181619)
--   [How to Develop](#section1595564317164)
--   [Usage Example](#section667273201818)
-
 ## Overview<a name="section11388623181619"></a>
 
 bytrace is a tool for you to trace processes and analyze performance. It encapsulates and extends the kernel ftrace and supports event tracking in the user space. With bytrace, you can open a user-space or kernel-space label you want to view \(run the  **bytrace -l**  command to query all the supported labels\) and run the  **--trace\_begin**  and  **-o filename**  \(or  **--output filename**\) commands to capture traces and dump them to a specified file.

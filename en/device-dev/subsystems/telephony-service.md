@@ -1,10 +1,5 @@
 # Telephony Service<a name="EN-US_TOPIC_0000001164469232"></a>
 
--   [Introduction](#section184mcpsimp)
--   [Basic Concepts](#section187mcpsimp)
--   [Working Principles](#section194mcpsimp)
--   [Constraints](#section205mcpsimp)
-
 ## Introduction<a name="section184mcpsimp"></a>
 
 This document provides development guidelines related to the telephony subsystem, including modem vendor library integration, initialization, service request responding, and modem event reporting. It is intended as a reference for developers of different modem chips, helping them efficiently develop telephony service-related functions.

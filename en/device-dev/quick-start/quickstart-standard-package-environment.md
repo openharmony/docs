@@ -1,13 +1,5 @@
 # Setting Up a Ubuntu Development Environment Using the Installation Package<a name="EN-US_TOPIC_0000001119804790"></a>
 
--   [Installing Dependent Tools](#section18431165519244)
--   [Obtaining Standard-System Source Code](#section113751052102517)
-    -   [Prerequisites](#section102871547153314)
-    -   [Procedure](#section429012478331)
-
--   [Running prebuilts](#section0495320152619)
--   [Building Source Code](#section1664835963517)
-
 ## Installing Dependent Tools<a name="section18431165519244"></a>
 
 The installation command is as follows:

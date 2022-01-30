@@ -1,16 +1,5 @@
 # Setting Up Ubuntu Development Environment<a name="EN-US_TOPIC_0000001174350605"></a>
 
--   [Obtaining Source Code and Tools](#section1897711811517)
--   [Obtaining Source Code](#section1545225464016)
--   [Installing Necessary Libraries and Tools](#section108201740181219)
--   [Installing Python3](#section1238412211211)
--   [Installing LLVM \(Required only for OpenHarmony\_v1.x\)](#section12202192215415)
--   [Installing hb](#section15794154618411)
-    -   [Prerequisites](#section1083283711515)
-    -   [Installation Procedure](#section11518484814)
-    -   [Uninstalling hb](#section3512551574)
-
-
 Operating system: 64-bit version of Ubuntu 16.04 or later.
 
 Perform the following steps to set up the development environment:

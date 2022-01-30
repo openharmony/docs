@@ -1,13 +1,5 @@
 # ***ExampleName*** Subsystem/Part
 
-- [Introduction](#Introduction)
-- [Directory Structure](#Directory-Structure)
-- [Constraints](#Constraints)
-- [Compilation and Building](#Compilation-and-Building)
-- [Usage](#Usage)
-    - [Available APIs](#Available-APIs)
-    - [How to Use](#How-to-Use)
-- [Repositories Involved](#Repositories-Involved)
 
 [Title Description] Use **Subsystem** or **Part** based on the Readme file type.
 

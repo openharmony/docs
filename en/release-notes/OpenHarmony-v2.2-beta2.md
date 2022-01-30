@@ -1,11 +1,5 @@
 # OpenHarmony v2.2 Beta2<a name="EN-US_TOPIC_0000001182379069"></a>
 
--   [Version Description](#section1677664815431)
--   [Version Mapping](#section13201781528)
--   [Source Code Acquisition](#section1350215462116)
--   [What's New](#section11256141314463)
--   [Resolved Issues](#section3442123281619)
-
 ## Version Description<a name="section1677664815431"></a>
 
 This release provides new and enhanced features for the mini system, small system, and standard system based on OpenHarmony 2.0 Canary.

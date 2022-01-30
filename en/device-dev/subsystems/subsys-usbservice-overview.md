@@ -1,11 +1,5 @@
 # USB Overview<a name="EN-US_TOPIC_0000001092893508"></a>
 
--   [Introduction](#section175431838101617)
--   [Available APIs](#section83365421647)
-    -   [Host](#section83365421658)
-    -   [Device](#section83365421669)
-    -   [Port](#section83365421670)
-
 ## Introduction<a name="section175431838101617"></a>
 
   USB devices are classified into two types: USB host and USB device. On OpenHarmony, you can use the port service to switch between the host mode and device mode. In host mode, you can obtain the list of connected USB devices, manage device access permissions, and perform bulk transfer or control transfer between the host and connected devices. In device mode, you can switch between functions including HDC (debugging), ACM (serial port), and ECM (Ethernet port).

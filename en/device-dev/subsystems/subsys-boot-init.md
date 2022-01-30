@@ -1,9 +1,5 @@
 # init Module<a name="EN-US_TOPIC_0000001062722441"></a>
 
--   [Configuration File](#section56901555917)
--   [How to Develop](#section15371931131117)
--   [How to Use](#section173413113565)
-
 The init module starts key service processes during system startup. If you would like to add a system service that automatically starts upon system startup, you can add the service to the  **init.cfg**  file.
 
 ## Configuration File<a name="section56901555917"></a>

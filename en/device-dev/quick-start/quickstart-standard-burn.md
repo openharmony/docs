@@ -1,8 +1,5 @@
 # Burning Images<a name="EN-US_TOPIC_0000001153557088"></a>
 
--   [Prerequisites](#section18547185418328)
--   [Programming Flash Memory Through the Network Port](#section1965361953312)
-
 Burning of a regular system requires DevEco Device Tool v2.2 Beta1 or later.
 
 Hi3516D V300 supports burning of the standard system through the USB port, network port, or serial port, where:

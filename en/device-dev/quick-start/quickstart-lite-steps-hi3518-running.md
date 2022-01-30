@@ -1,11 +1,5 @@
 # Running a Hello OHOS Program<a name="EN-US_TOPIC_0000001174350607"></a>
 
--   [Creating a Program](#section1550972416485)
--   [Building](#section234175193114)
--   [Burning](#section7609155824819)
--   [Running an Image](#section17612105814480)
--   [Follow-up Learning](#section9712145420182)
-
 This section describes how to create, compile, burn, and run the first program, and finally print  **Hello OHOS!**  on the develop board.
 
 ## Creating a Program<a name="section1550972416485"></a>

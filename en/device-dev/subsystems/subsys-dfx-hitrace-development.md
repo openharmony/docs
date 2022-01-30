@@ -1,19 +1,5 @@
 # HiTrace Development<a name="EN-US_TOPIC_0000001186134310"></a>
 
--   [Overview](#section3986195420436)
--   [Use Cases](#section134561822574)
-    -   [Usage Example](#section63861653124417)
-
--   [Available APIs](#section1517945334617)
-    -   [Java, C++, and C APIs](#section932504474)
-    -   [Parameters of C++ APIs](#section2514638125)
-
--   [Call Chain Processing](#section11257133933)
--   [How to Develop](#section14310412491)
-    -   [C++](#section114916381509)
-    -   [C](#section108292107514)
-
-
 ## Overview<a name="section3986195420436"></a>
 
 HiTrace tracks the call chain with the same  **traceid**  throughout the inter-device, inter-process, and inter-thread service processes. It associates and displays the call relationship and various output information during the entire process, helping you analyze and locate faults and optimize the system.

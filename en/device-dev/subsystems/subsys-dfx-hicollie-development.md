@@ -1,14 +1,5 @@
 # HiCollie Development<a name="EN-US_TOPIC_0000001231255509"></a>
 
--   [Overview](#section3432134085116)
--   [Available APIs](#section139261151145116)
--   [Example](#section1589120102458)
--   [How to Develop](#section13905646534)
-    -   [C++](#section9797199145316)
-    -   [Thread Suspension Monitoring](#section1734221332)
-    -   [Timeout Monitoring](#section2186947140)
-
-
 ## Overview<a name="section3432134085116"></a>
 
 HiCollie provides the software watchdog function. It provides a unified framework for fault detection and fault log generation to help you locate software timeout faults resulting from system service deadlock, application main thread blocking, and service process timeout. 

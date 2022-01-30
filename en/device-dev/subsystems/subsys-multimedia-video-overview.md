@@ -1,8 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001051770578"></a>
 
--   [Basic Concepts](#section967213571204)
--   [Encoding and Decoding](#section1582020483111)
-
 OpenHarmony multimedia services help you to develop for audio and video playback and recording.
 
 -   The media playback module facilitates the development of audio and video playback, including media file and stream playback, volume control, and playback progress control.

@@ -1,12 +1,5 @@
 # task<a name="EN-US_TOPIC_0000001179845923"></a>
 
--   [Command Function](#section0533181714106)
--   [Syntax](#section1014412308101)
--   [Parameters](#section116057158506)
--   [Usage](#section2053502951112)
--   [Example](#section12629113381116)
--   [Output](#section19299103465015)
-
 ## Command Function<a name="section0533181714106"></a>
 
 This command is used to query information about processes and threads.

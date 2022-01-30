@@ -1,12 +1,5 @@
 # OpenHarmony 1.1.0 LTS \(2021-04-01\)<a name="EN-US_TOPIC_0000001095652840"></a>
 
--   [Overview](#section1846294912228)
--   [Source Code Acquisition](#section84808293211)
-    -   [Acquiring Source Code from Mirrors](#section8394142222113)
-    -   [Acquiring Source Code Using the repo Tool](#section7180193542317)
--   [What's New](#section175225345334)
--   [Resolved Issues](#section11935243172612)
-
 ## Overview<a name="section1846294912228"></a>
 
 This is the first long-term support \(LTS\) version of OpenHarmony. It supports more functions and fixes some bugs in OpenHarmony 1.0.

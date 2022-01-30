@@ -1,10 +1,5 @@
 # Development Guidelines on Video Recording<a name="EN-US_TOPIC_0000001051451869"></a>
 
--   [When to Use](#section186634310418)
--   [Available APIs](#section125479541744)
--   [Limitations and Constraints](#section1165911177314)
--   [How to Develop](#section1196016315516)
-
 ## When to Use<a name="section186634310418"></a>
 
 Use the camera module APIs to capture video streams.

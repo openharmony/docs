@@ -1,13 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001124066545"></a>
 
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Example Description](#section127752801718)
-    -   [Sample Code](#section321653551711)
-    -   [Verification](#section4366193318167)
-
-
 The time management module provides APIs to implement conversion between the system running time, ticks, and seconds/milliseconds.
 
 ## Available APIs<a name="section158501652121514"></a>

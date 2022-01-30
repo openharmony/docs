@@ -1,11 +1,5 @@
 # LiteIPC<a name="EN-US_TOPIC_0000001123520161"></a>
 
--   [Basic Concepts](#section1980994712918)
--   [Working Principles](#section849811592918)
--   [Development Guidelines](#section17571315171017)
-    -   [Available APIs](#section725022011103)
-
-
 ## Basic Concepts<a name="section1980994712918"></a>
 
 LiteIPC is a new inter-process communication \(IPC\) mechanism provided by the OpenHarmony LiteOS-A kernel. Different from the traditional System V IPC, LiteIPC is designed for Remote Procedure Call \(RPC\). In addition, it provides APIs for the upper layer through device files, not through traditional API functions.

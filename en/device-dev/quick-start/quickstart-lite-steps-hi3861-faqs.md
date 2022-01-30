@@ -1,17 +1,5 @@
 # FAQs<a name="EN-US_TOPIC_0000001128311054"></a>
 
--   [What should I do when the message configure: error: no acceptable C compiler found in $PATH is displayed during Python 3 installation?](#section1221016541119)
--   [What should I do when the message -bash: make: command not found is displayed during Python 3 installation?](#section1913477181213)
--   [What should I do when the message zlib not available is displayed during Python 3 installation?](#section108211415131210)
--   [What should I do when the message No module named '\_ctypes' is displayed during Python 3 installation?](#section2062268124)
--   [What should I do when the message No module named 'Crypto' is displayed during compilation and building?](#section982315398121)
--   [What should I do when the message No module named 'ecdsa' is displayed during compilation and building?](#section102035451216)
--   [What should I do when the message Could not find a version that satisfies the requirement six\>=1.9.0 is displayed during compilation and building?](#section4498158162320)
--   [What should I do when the message cannot find -lgcc is displayed during compilation and building?](#section11181036112615)
--   [What should I do when the message indicating Python cannot be found is displayed during compilation and building?](#section1571810194619)
--   [What should I do when the message indicating Python3 cannot be found is displayed during compilation and building?](#section108385316482)
--   [What should I do when an error with lsb\_release occurs during kconfiglib installation?](#section691681635814)
-
 ## What should I do when the message  **configure: error: no acceptable C compiler found in $PATH**  is displayed during Python 3 installation?<a name="section1221016541119"></a>
 
 -   **Symptom**

@@ -1,10 +1,5 @@
 # Porting a Library Built Using Makefile<a name="EN-US_TOPIC_0000001154372572"></a>
 
--   [Source Code Acquisition](#section114115321416)
--   [Cross-Compilation Settings](#section81263255384)
--   [Library Test](#section1830015913391)
--   [Adding the Compiled yxml Library to the OpenHarmony Project](#section1898016213406)
-
 The following shows how to port the yxml library.
 
 ## Source Code Acquisition<a name="section114115321416"></a>

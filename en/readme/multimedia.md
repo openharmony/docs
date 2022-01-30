@@ -1,12 +1,5 @@
 # Multimedia<a name="EN-US_TOPIC_0000001078026808"></a>
 
--   [Introduction](#section11660541593)
--   [Directory Structure](#section161941989596)
--   [Constraints](#section119744591305)
--   [Usage Guidelines](#section1312121216216)
--   [Installation](#section11914418405)
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section11660541593"></a>
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and media resources.

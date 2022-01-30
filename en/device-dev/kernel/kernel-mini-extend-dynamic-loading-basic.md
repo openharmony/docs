@@ -1,15 +1,5 @@
 # Basic Concepts<a name="EN-US_TOPIC_0000001136130422"></a>
 
--   [Working Principles](#section139861939219)
-    -   [Exporting the Symbol Table](#section15414650102716)
-    -   [Loading an ELF File](#section5221181562810)
-    -   [ELF File Link](#section68441639182817)
-
--   [ELF Specifications](#section187315541916)
-    -   [ELF Type](#section1701552268)
-    -   [Options for Linking](#section17292133274)
-
-
 In small devices with limited hardware resources, dynamic algorithm deployment capability is required to solve the problem that multiple algorithms cannot be deployed at the same time. The LiteOS-M kernel uses the Executable and Linkable Format \(ELF\) because it is easy to use and compatible with a wide variety of platforms. The LiteOS-M provides APIs similar to  **dlopen**  and  **dlsym**. Apps can load and unload required algorithm libraries by using the APIs provided by the dynamic loading module. As shown in the following figure, the app obtains the corresponding information output through the API required by the third-party algorithm library. The third-party algorithm library depends on the basic APIs provided by the kernel, such as  **malloc**. After the app loads the API and relocates undefined symbols, it can call the API to complete the function. The dynamic loading component supports only the Arm architecture. In addition, the signature and source of the shared library to be loaded must be verified to ensure the system security.
 
 **Figure  1**  LiteOS-M kernel dynamic loading architecture<a name="fig3662173651419"></a>  
