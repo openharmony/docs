@@ -8,6 +8,6 @@ interface Builder {
 }
 ```
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >build方法仅支持组合组件，使用渲染控制语法。
 
