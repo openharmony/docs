@@ -1,29 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001167051994"></a>
 
--   [Initializing a Modem Vendor Library](#section211mcpsimp)
-    -   [When to Use](#section213mcpsimp)
-    -   [Available APIs](#section811343241215)
-    -   [How to Develop](#section51031144122)
-    -   [Debugging and Verification](#section5351151517132)
-
--   [Responding to Modem Service Requests](#section295mcpsimp)
-    -   [When to Use](#section297mcpsimp)
-    -   [Available APIs](#section9503155219134)
-    -   [How to Develop](#section17190412101414)
-    -   [Debugging and Verification](#section10207938171413)
-
--   [Reporting Modem Events](#section390mcpsimp)
-    -   [When to Use](#section401mcpsimp)
-    -   [Available APIs](#section191193791518)
-    -   [How to Develop](#section16394112401512)
-    -   [Debugging and Verification](#section16999174401516)
-    -   [Development Examples](#section33444350167)
-
--   [Integrating Modem Vendor Libraries](#section590mcpsimp)
-    -   [Configuring Compilation Information](#section592mcpsimp)
-    -   [Debugging and Verification](#section620mcpsimp)
-
-
 ## Initializing a Modem Vendor Library<a name="section211mcpsimp"></a>
 
 ### When to Use<a name="section213mcpsimp"></a>

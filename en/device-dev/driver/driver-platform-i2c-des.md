@@ -1,15 +1,5 @@
 # I2C<a name="EN-US_TOPIC_0000001206171515"></a>
 
--   [Overview](#section5361140416)
--   [Available APIs](#section545869122317)
--   [Usage Guidelines](#section1695201514281)
-    -   [How to Use](#section1338373417288)
-    -   [Opening an I2C Controller](#section13751110132914)
-    -   [Performing I2C Communication](#section9202183372916)
-    -   [Closing an I2C Controller](#section19481164133018)
-
--   [Usage Example](#section5302202015300)
-
 ## Overview<a name="section5361140416"></a>
 
 -   The Inter-Integrated Circuit \(I2C\) is a simple, bidirectional, and synchronous serial bus that uses merely two wires.

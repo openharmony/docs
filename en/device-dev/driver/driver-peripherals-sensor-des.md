@@ -1,11 +1,5 @@
 # Sensor<a name="EN-US_TOPIC_0000001078401780"></a>
 
--   [Overview](#section3634112111)
--   [Available APIs](#section20930112117478)
--   [How to Develop](#section1140943382)
--   [Development Example](#section257750691)
--   [Test Guidelines](#section106021256121219)
-
 ## Overview<a name="section3634112111"></a>
 
 The sensor driver module provides APIs for upper-layer sensor services to implement basic sensor capabilities, including querying the sensor list, enabling or disabling a sensor, subscribing to or unsubscribing from sensor data, and setting sensor options. The sensor driver model is developed based on the Hardware Driver Foundation \(HDF\) and supports functions such as cross-OS migration and differentiated device configuration. The following figure shows the architecture of the sensor driver model.

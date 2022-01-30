@@ -1,10 +1,5 @@
 # Video Recording<a name="EN-US_TOPIC_0000001055234528"></a>
 
--   [When to Use](#en-us_topic_0000001051451869_section186634310418)
--   [Available APIs](#en-us_topic_0000001051451869_section125479541744)
--   [Limitations and Constraints](#en-us_topic_0000001051451869_section1165911177314)
--   [How to Develop](#en-us_topic_0000001051451869_section1196016315516)
-
 ## When to Use<a name="en-us_topic_0000001051451869_section186634310418"></a>
 
 Use the camera module APIs to capture video streams.

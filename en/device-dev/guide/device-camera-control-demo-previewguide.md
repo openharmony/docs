@@ -1,10 +1,5 @@
 # Previewing<a name="EN-US_TOPIC_0000001055394496"></a>
 
--   [When to Use](#en-us_topic_0000001051930577_section186634310418)
--   [Available APIs](#en-us_topic_0000001051930577_section125479541744)
--   [Limitations and Constraints](#en-us_topic_0000001051930577_section1165911177314)
--   [How to Develop](#en-us_topic_0000001051930577_section34171333656)
-
 ## When to Use<a name="en-us_topic_0000001051930577_section186634310418"></a>
 
 Use the camera module APIs to generate and play video streams.

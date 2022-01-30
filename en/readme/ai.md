@@ -1,12 +1,5 @@
 # AI<a name="EN-US_TOPIC_0000001087226912"></a>
 
--   [Introduction](#section187321516154516)
--   [Directory Structure](#section571610913453)
--   [Constraints](#section5748426453)
--   [Usage](#section6370123616447)
--   [Repositories Involved](#section10492183517430)
--   [Reference](#section6808423133718)
-
 ## Introduction<a name="section187321516154516"></a>
 
 The AI subsystem is the part of OpenHarmony that provides native distributed AI capabilities. At the heart of the subsystem is a unified AI engine framework, which implements quick integration of AI algorithm plug-ins. The framework consists of the plug-in management, module management, and communication management modules, fulfilling lifecycle management and on-demand deployment of AI algorithms. Under this framework, AI algorithm APIs will be standardized to facilitate distributed calling of AI capabilities. In addition, unified inference APIs will be provided to adapt to different inference framework hierarchies.

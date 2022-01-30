@@ -1,25 +1,5 @@
 # OTA Update<a name="EN-US_TOPIC_0000001163932574"></a>
 
--   [Introduction](#section753413913562)
--   [Constraints](#section61232796162135)
--   [Generating a Public/Private Key Pair](#section1392711588162135)
--   [Generating an Update Package](#section704519924162135)
-    -   [Mini and Small Systems](#section527064658162135)
-    -   [Standard System](#section1291354584162135)
-
--   [Uploading the Update Package](#section1040019352162135)
--   [Downloading the Update Package](#section1870792413162135)
--   [Integrating OTA Update Capabilities](#section2107348555162135)
--   [API Application Scenario \(Default\)](#section1308521557162135)
-    -   [How to Develop](#section2103641927162135)
-    -   [Sample Code](#section1918621904162135)
-
--   [API Application Scenario \(Custom\)](#section1332839930162135)
-    -   [How to Develop](#section2120976727162135)
-    -   [Sample Code](#section1743369672162135)
-
--   [Upgrading the System](#section1704276175162135)
-
 ## Introduction<a name="section753413913562"></a>
 
 Over the Air \(OTA\) is a technology that makes it easier for you to remotely update devices, such as IP cameras. Currently, the mini and small systems support update using a full package, but not a differential package. A full package contains all content of a new system, and a differential package contains the differences between the old and new systems.

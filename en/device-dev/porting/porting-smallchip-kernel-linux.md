@@ -1,12 +1,5 @@
 # Linux Kernel<a name="EN-US_TOPIC_0000001200171987"></a>
 
--   [Overview](#section6282121355111)
-    -   [Basic Information](#section19589322515)
-    -   [Bootloader](#section19062510518)
-
--   [Adaptation, Building, Burning, and Startup](#section11112101695215)
--   [Verification](#section17318153325311)
-
 ## Overview<a name="section6282121355111"></a>
 
 Linux kernel porting involves basic kernel compilation, building, and verification after third-party chipset patches are installed based on the Linux kernel baseline.

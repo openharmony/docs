@@ -1,25 +1,5 @@
 # Development Example for Peripheral Drivers<a name="EN-US_TOPIC_0000001157063303"></a>
 
--   [Overview](#section86753818426)
-    -   [Hardware Resources](#section123071189431)
-    -   [Input Driver Model](#section53684425430)
-
--   [Setting Up the Environment](#section661075474418)
--   [Developing a Touchscreen Driver](#section15233162984520)
-    -   [Configuring Device Driver Descriptions](#section16761205604515)
-    -   [Configuring the Touchscreen](#section156331030144617)
-    -   [Adapting to the Private Drivers of the Touchscreen](#section17127331595)
-
--   [Building Source Code and Burning Images](#section16465031164711)
--   [Debugging and Verification](#section62577313482)
--   [Input Driver Model Workflow Analysis](#section1578569154917)
-    -   [Parsing Private Configuration Data](#section1310113815495)
-    -   [Initializing the Input Device Manager and Registering the Driver with the HDF](#section614512119500)
-    -   [Initializing the Input Common Driver and Registering the Driver with the HDF](#section16194201755019)
-    -   [Initializing the Input Chip Driver and Registering the Driver with the HDF](#section1090743312505)
-    -   [Function Invocation Logic](#section81801147529)
-
-
 ## Overview<a name="section86753818426"></a>
 
 This document describes how to develop a touchscreen driver on the Hi3516D V300 development board using the HDF input driver model, helping you quickly get started with OpenHarmony peripheral driver development.

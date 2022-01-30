@@ -1,12 +1,5 @@
 # dns<a name="EN-US_TOPIC_0000001179965857"></a>
 
--   [Command Function](#section997513673713)
--   [Syntax](#section146015943711)
--   [Parameters](#section5732111163716)
--   [Usage](#section15642141417371)
--   [Example](#section1995841617370)
--   [Output](#section1114210258917)
-
 ## Command Function<a name="section997513673713"></a>
 
 This command is used to query and set the IP address of a DNS server on a board.

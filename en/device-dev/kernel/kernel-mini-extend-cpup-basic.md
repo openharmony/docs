@@ -1,7 +1,5 @@
 # Basic Concepts<a name="EN-US_TOPIC_0000001123948105"></a>
 
--   [Working Principles](#section96644177124)
-
 The central processing unit percent \(CPUP\) includes the system CPUP and task CPUP.
 
 The system CPUP is the CPU usage of the system within a period of time. It reflects the CPU load and the system running status \(idle or busy\) in the given period of time. The valid range of the system CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the system runs with full load.

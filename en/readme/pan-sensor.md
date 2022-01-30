@@ -1,10 +1,5 @@
 # Pan-Sensor<a name="EN-US_TOPIC_0000001078062432"></a>
 
--   [Introduction](#section11660541593)
--   [Directory Structure](#section161941989596)
--   [Usage](#section1312121216216)
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section11660541593"></a>
 
 The pan-sensor service subsystem provides a lightweight sensor service framework, through which you can perform the following operations:

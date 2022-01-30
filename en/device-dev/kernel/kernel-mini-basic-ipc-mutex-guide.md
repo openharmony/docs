@@ -1,13 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001078588414"></a>
 
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section1426719434114)
-    -   [Example Description](#section896412438910)
-    -   [Sample Code](#section149077554912)
-    -   [Verification](#section2059413981311)
-
-
 ## Available APIs<a name="section158501652121514"></a>
 
 **Table  1**  APIs of the mutex module

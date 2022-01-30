@@ -1,13 +1,5 @@
 # Setting Up a Ubuntu Development Environment in Docker Mode<a name="EN-US_TOPIC_0000001119805112"></a>
 
--   [Obtaining Standard-System Source Code](#section8761819202511)
-    -   [Prerequisites](#section102871547153314)
-    -   [Procedure](#section429012478331)
-
--   [Running prebuilts](#section0495320152619)
--   [Obtaining the Docker Environment](#section181431248132513)
--   [Building Source Code](#section92391739152318)
-
 The standard OpenHarmony system provides a Docker environment which encapsulates build tools.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 

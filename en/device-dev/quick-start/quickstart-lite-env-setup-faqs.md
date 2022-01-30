@@ -1,11 +1,5 @@
 # FAQs<a name="EN-US_TOPIC_0000001128470858"></a>
 
--   [What should I do if garbled characters and segmentation faults occur during hb installation?](#section411894616119)
--   [What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?](#section629417571626)
--   [What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb installation?](#section10871523332)
--   [What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?](#section47351657163213)
--   [What should I do if the message "ImportError: No module named apt\_pkg" is displayed during the execution of an unidentifiable command?](#section159891252236)
-
 ## What should I do if garbled characters and segmentation faults occur during hb installation?<a name="section411894616119"></a>
 
 -   **Symptom**

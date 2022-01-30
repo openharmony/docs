@@ -1,18 +1,5 @@
 # Compilation and Building Subsystem<a name="EN-US_TOPIC_0000001215530845"></a>
 
--   [Mini and Small Systems](#section78686441462)
-    -   [Invalid -- w Option](#section67961431372)
-    -   [Library ncurses Not Found](#section199631617371)
-    -   [mcopy not Found](#section937435175)
-    -   [No riscv File or Directory](#section1115535018713)
-    -   [No Crypto](#section17982573813)
-    -   [Unexpected Operator](#section53663205819)
-    -   [What should I do when the message Could not find a version that satisfies the requirement six\>=1.9.0 is displayed during compilation and building?](#section1917790845)
-    -   [What should I do when the message cannot find -lgcc is displayed during compilation and building?](#section141771701647)
-    -   [What should I do when the message indicating Python cannot be found is displayed during compilation and building?](#section51781202415)
-    -   [What should I do when the message indicating Python 3 cannot be found is displayed during compilation and building?](#section1917950148)
-
-
 ## Mini and Small Systems<a name="section78686441462"></a>
 
 ### Invalid -- w Option<a name="section67961431372"></a>

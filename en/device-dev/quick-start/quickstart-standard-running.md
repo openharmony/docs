@@ -1,8 +1,5 @@
 # Running an Image<a name="EN-US_TOPIC_0000001142160948"></a>
 
--   [Running an Image](#section153991115191314)
--   [Next](#section5600113114323)
-
 ## Running an Image<a name="section153991115191314"></a>
 
 After the image burning is complete, perform the following steps to run the system:

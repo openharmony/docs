@@ -1,9 +1,5 @@
 # Implementation of APIs at the HAL<a name="EN-US_TOPIC_0000001199722623"></a>
 
--   [Utils](#section1394788286)
--   [IoT Peripheral Subsystem](#section958113200811)
--   [WLAN](#section1331917210911)
-
 The HAL mainly aims to decouple OpenHarmony from the SoC. The following modules describe the dependency of OpenHarmony on the SoC APIs.
 
 ## Utils<a name="section1394788286"></a>

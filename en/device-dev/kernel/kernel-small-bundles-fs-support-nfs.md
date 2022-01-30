@@ -1,9 +1,5 @@
 # NFS<a name="EN-US_TOPIC_0000001078704660"></a>
 
--   [Basic Concepts](#section195414101464)
--   [Working Principles](#section165621321194618)
--   [Development Guidelines](#section7454935184611)
-
 ## Basic Concepts<a name="section195414101464"></a>
 
 NFS allows you to share files across hosts and OSs over a network. You can treat NFS as a file system service, which is equivalent to folder sharing in the Windows OS to some extent.

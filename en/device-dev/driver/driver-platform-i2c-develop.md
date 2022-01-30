@@ -1,11 +1,5 @@
 # I2C<a name="EN-US_TOPIC_0000001153579420"></a>
 
--   [Overview](#section2040078630114257)
--   [How to Develop](#section1085786591114257)
-    -   [I2cMethod and I2cLockMethod](#section1683458184518)
-
--   [Development Example](#section1773332551114257)
-
 ## Overview<a name="section2040078630114257"></a>
 
 The Inter-Integrated Circuit \(I2C\) bus is a simple and bidirectional two-wire synchronous serial bus developed by Philips. In the Hardware Driver Foundation (HDF) framework, the I2C module uses the unified service mode for API adaptation. In this mode, a device service is used as the I2C manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the I2C module has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.

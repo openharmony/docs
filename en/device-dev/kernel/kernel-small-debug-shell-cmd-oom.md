@@ -1,11 +1,5 @@
 # oom<a name="EN-US_TOPIC_0000001179845919"></a>
 
--   [Command Function](#section366714216619)
--   [Syntax](#section8833164614615)
--   [Parameters](#section12809111019453)
--   [Usage](#section15935131220717)
--   [Output](#section12742311179)
-
 ## Command Function<a name="section366714216619"></a>
 
 This command is used to query and set the low memory threshold and the page cache reclaim threshold.

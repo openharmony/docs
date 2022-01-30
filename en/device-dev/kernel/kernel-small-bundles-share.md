@@ -1,8 +1,5 @@
 # Virtual Dynamic Shared Object<a name="EN-US_TOPIC_0000001078863800"></a>
 
--   [Basic Concepts](#section174577181688)
--   [Working Principles](#section546363114810)
-
 ## Basic Concepts<a name="section174577181688"></a>
 
 Different from a common dynamic shared library, which stores its so files in the file system, the virtual dynamic shared object \(VDSO\) has its so files stored in the system image. The kernel determines the so files and provides them to the application program. That is why the VDSO is called a virtual dynamic shared library.

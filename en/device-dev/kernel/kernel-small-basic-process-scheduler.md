@@ -1,12 +1,5 @@
 # Scheduler<a name="EN-US_TOPIC_0000001078863798"></a>
 
--   [Basic Concepts](#section123882355719)
--   [Working Principles](#section143015396572)
--   [Development Guidelines](#section10604192145816)
-    -   [Available APIs](#section207985910582)
-    -   [How to Develop](#section1015110331584)
-
-
 ## Basic Concepts<a name="section123882355719"></a>
 
 The OpenHarmony LiteOS-A kernel uses the preemptive scheduling mechanism for tasks. The task with a higher priority is scheduled over the task with a lower priority. Time slice round-robin is used to schedule tasks with the same priority. The system runs based on the real-time timeline from the startup, which ensures good real-time performance of the scheduling algorithm.

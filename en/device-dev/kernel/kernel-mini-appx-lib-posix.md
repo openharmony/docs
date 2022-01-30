@@ -1,12 +1,5 @@
 # POSIX Support<a name="EN-US_TOPIC_0000001078589734"></a>
 
--   [Basic Concepts](#section1757915134139)
--   [Development Guidelines](#section1573664211318)
-    -   [Available APIs](#section10429150121317)
-    -   [Important Notes](#section109174418147)
-    -   [Development Example](#section206149278155)
-
-
 ## Basic Concepts<a name="section1757915134139"></a>
 
 The OpenHarmony kernel uses the  **musl libc**  library and self-developed APIs and supports the Portable Operating System Interface \(POSIX\). You can develop components and applications working on the kernel based on the POSIX.

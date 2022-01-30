@@ -1,10 +1,5 @@
 # Globalization<a name="EN-US_TOPIC_0000001115837954"></a>
 
--   [Introduction](#section11660541593)
--   [Architecture](#section1558604311012)
--   [Directory Structure](#section161941989596)
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section11660541593"></a>
 
 If OpenHarmony devices and applications need to be used globally, they must meet the requirements of users in different regions on languages and cultures. The Globalization subsystem provides the multi-language and multi-cultural capabilities for global use, including:

@@ -1,11 +1,5 @@
 # Startup<a name="EN-US_TOPIC_0000001124561621"></a>
 
--   [Introduction](#section11660541593)
--   [Directory Structure](#section161941989596)
--   [Constraints](#section1718733212019)
--   [Usage Guidelines](#section8533192617117)
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section11660541593"></a>
 
 The Startup subsystem provides the functions of starting key system processes and services after the kernel is started and before applications are started, and restoring the system to factory settings. The subsystem consists of the following modules:

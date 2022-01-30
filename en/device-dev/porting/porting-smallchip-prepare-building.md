@@ -1,9 +1,5 @@
 # Compilation and Building<a name="EN-US_TOPIC_0000001154212512"></a>
 
--   [Compilation Environment Setup](#section3336103410314)
--   [Introduction to the Compilation and Building Subsystem](#section354343816319)
--   [Adding a Chipset Solution](#section18612153175011)
-
 ## Compilation Environment Setup<a name="section3336103410314"></a>
 
 Set up the basic environment by following instructions in  [Ubuntu Build Environment](../quick-start/quickstart-lite-env-setup-linux.md). Both the user space and LiteOS Cortex-A kernel space are compiled using the LLVM compiler. If you choose to port the Linux kernel, run the following command to install the gcc-arm-linux-gnueabi cross compiler for compiling the Linux kernel-space image:

@@ -1,15 +1,5 @@
 # Development Example for Platform Drivers<a name="EN-US_TOPIC_0000001157064271"></a>
 
--   [Overview](#section194201316174215)
--   [Preparations](#section6926133918422)
--   [Development](#section65801539470)
-    -   [File Description](#section0708184454414)
-    -   [Instantiating the Driver Entry](#section85325864412)
-    -   [Setting Related Parameters](#section8155172019453)
-    -   [Adding a Controller](#section1335374114452)
-
--   [Building Source Code and Burning Images](#section164824754712)
-
 ## Overview<a name="section194201316174215"></a>
 
 This document uses the I2C driver as an example to describe how to develop platform drivers based on the hardware driver foundation \(HDF\).

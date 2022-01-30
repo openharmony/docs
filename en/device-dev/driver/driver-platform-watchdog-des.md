@@ -1,20 +1,5 @@
 # Watchdog<a name="EN-US_TOPIC_0000001206372825"></a>
 
--   [Overview](#section14918241977)
--   [Available APIs](#section1180575010271)
--   [Usage Guidelines](#section10103184312813)
-    -   [How to Use](#section10181195910815)
-    -   [Opening a Watchdog](#section66089201107)
-    -   [Obtaining the Watchdog Status](#section786624341011)
-    -   [Setting the Timeout Duration](#section182386137111)
-    -   [Obtaining the Timeout Duration](#section1883310371114)
-    -   [Starting a Watchdog](#section82501405123)
-    -   [Feeding a Watchdog](#section3547530101211)
-    -   [Stopping a Watchdog](#section944595841217)
-    -   [Closing a Watchdog](#section96561824121311)
-
--   [Usage Example](#section1724514523135)
-
 ## Overview<a name="section14918241977"></a>
 
 A watchdog, also called a watchdog timer, is a hardware timing device. If an error occurs in the main program of the system and fails to reset the watchdog timer, the watchdog timer sends a reset signal to restore the system to a normal state.

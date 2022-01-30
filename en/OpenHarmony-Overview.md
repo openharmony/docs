@@ -1,18 +1,5 @@
 # OpenHarmony<a name="EN-US_TOPIC_0000001158661243"></a>
 
--   [Introduction](#section1270210396435)
--   [Technical Architecture](#section2502124574318)
--   [Technical Features](#section12212842173518)
--   [OS Types](#section145241459142416)
--   [Subsystems](#section25831825174419)
--   [Getting Started](#section44681652104210)
--   [Code Repository Addresses](#section107651249181914)
--   [OpenHarmony Documentation](#section21031470109)
--   [Source Code Downloading](#section39011923144212)
--   [How to Participate](#section19611528174215)
--   [License Agreement](#section1245517472115)
--   [Contact Info](#section61728335424)
-
 ## Introduction<a name="section1270210396435"></a>
 
 OpenHarmony is an open-source project incubated and operated by the OpenAtom Foundation. It is an open-source operating system with a framework and platform applicable to smart devices in all scenarios of a fully-connected world. It aims to promote the development of the Internet of Everything (IoE).

@@ -1,6 +1,4 @@
-﻿
-
-# Setting Up the Environment
+﻿# Setting Up the Environment
 ## Basic Test Framework Environment
 
 |Environment|Operating System|Linux Extended Component|Python|Python Plug-ins|NFS Server|HDC|

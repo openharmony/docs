@@ -1,21 +1,5 @@
 # UART<a name="EN-US_TOPIC_0000001160652800"></a>
 
--   [Overview](#section833012453535)
--   [Available APIs](#section1928742202715)
--   [Usage Guidelines](#section12779050105412)
-    -   [How to Use](#section1858116395510)
-    -   [Obtaining a UART Device Handle](#section124512065617)
-    -   [Setting the UART Baud Rate](#section86881004579)
-    -   [Obtaining the UART Baud Rate](#section897032965712)
-    -   [Setting the UART Device Attributes](#section129141884588)
-    -   [Obtaining UART Device Attributes](#section18689637165812)
-    -   [Setting the UART Transmission Mode](#section72713435918)
-    -   [Writing Data of a Specified Length into a UART Device](#section128001736155919)
-    -   [Reading Data of a Specified Length from a UART Device](#section92851601604)
-    -   [Destroying the UART Device Handle](#section1477410521406)
-
--   [Usage Example](#section35404241311)
-
 ## Overview<a name="section833012453535"></a>
 
 -   The Universal Asynchronous Receiver/Transmitter \(UART\) is a universal serial data bus used for asynchronous communication. It enables bi-directional communication between devices in full-duplex mode.

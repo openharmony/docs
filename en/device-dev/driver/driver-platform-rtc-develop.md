@@ -1,11 +1,5 @@
 # RTC<a name="EN-US_TOPIC_0000001153785954"></a>
 
--   [Overview](#section509989381142407)
--   [How to Develop](#section1784450860142407)
-    -   [RtcMethod](#section13652132473017)
-
--   [Development Example](#section1594883301142407)
-
 ## Overview<a name="section509989381142407"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the real-time clock \(RTC\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.

@@ -1,8 +1,5 @@
 # Preparations<a name="EN-US_TOPIC_0000001055087693"></a>
 
--   [Setting Up the Development Environment](#section1912530122716)
--   [Creating a Project](#section1456035192720)
-
 ## Setting Up the Development Environment<a name="section1912530122716"></a>
 
 Download and install DevEco Studio. For details, see the  [HUAWEI DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/software_install-0000001053582415).

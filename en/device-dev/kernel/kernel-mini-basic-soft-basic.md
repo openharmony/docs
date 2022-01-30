@@ -1,10 +1,5 @@
 # Basic Concepts<a name="EN-US_TOPIC_0000001124074751"></a>
 
--   [Working Principles](#section070665816719)
-    -   [Timer States](#section115453813506)
-    -   [Timer Modes](#section137521353175010)
-
-
 The software timer is a software-simulated timer based on system tick interrupts. When the preset tick counter value has elapsed, the user-defined callback will be invoked. The timing precision is related to the cycle of the system tick clock.
 
 Due to the limitation in hardware, the number of hardware timers cannot meet users' requirements. Therefore, the OpenHarmony LiteOS-M kernel provides the software timer function. The software timer allows more timing services to be created, increasing the number of timers.

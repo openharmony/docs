@@ -1,14 +1,5 @@
 # Glossary<a name="EN-US_TOPIC_0000001111039518"></a>
 
--   [A](#en-us_topic_0000001050749051_section1679023922312)
--   [B](#en-us_topic_0000001050749051_section62182102017)
--   [D](#en-us_topic_0000001050749051_section1670294920236)
--   [F](#en-us_topic_0000001050749051_section5406185415236)
--   [H](#en-us_topic_0000001050749051_section891816813243)
--   [I](#en-us_topic_0000001050749051_section10124052142516)
--   [P](#en-us_topic_0000001050749051_section779354121411)
--   [S](#en-us_topic_0000001050749051_section25661636182615)
-
 ## A<a name="en-us_topic_0000001050749051_section1679023922312"></a>
 
 -   **Ability**

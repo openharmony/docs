@@ -1,19 +1,5 @@
 # A Method for Rapidly Porting the OpenHarmony Linux Kernel<a name="EN-US_TOPIC_0000001162545194"></a>
 
--   [Overview](#section28051350151118)
--   [Overall Porting Approach](#section994883124)
-    -   [Kernel Mode Layer and User Mode Layer](#section953481431217)
-    -   [Composition of the Kernel Mode Layer](#section81437528121)
-    -   [Overall Porting Process](#section86060191)
-
--   [Procedure](#section98871341171310)
-    -   [Setting Up the Environment](#section16584650181314)
-    -   [Porting Basic Kernel-Mode Code](#section95112081716)
-    -   [Porting the HDF Feature](#section12971205681710)
-    -   [Building the Image](#section1681965561911)
-    -   [\(Optional\) Building and Running HDF Test Cases](#section460792312204)
-
-
 ## Overview<a name="section28051350151118"></a>
 
 This document describes how to quickly port OpenHarmony to a third-party chip platform by using the existing capabilities of the Linux kernel of the third-party chip platform.

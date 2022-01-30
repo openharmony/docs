@@ -1,9 +1,5 @@
 # Code Management<a name="EN-US_TOPIC_0000001096216399"></a>
 
--   [Recommendation: Develop plug-ins and northbound SDKs in the directories specified by the AI engine.](#section17176374131)
--   [Rule: Store all external APIs provided by plug-ins in the interfaces/kits directory of the AI subsystem.](#section2551029111312)
--   [Rule: Make sure that plug-in compilation results are stored in the /usr/lib directory.](#section97021558121310)
-
 Code of the AI engine framework consists of three parts:  **client**,  **server**, and  **common**. The client module provides the server connection management function. The northbound SDK needs to encapsulate and call the public APIs provided by the client in the algorithm's external APIs. The server module provides functions such as plug-in loading and task management. Plug-ins are integrated using the plug-in APIs provided by the server. The common module provides platform-related operation methods, engine protocols, and tool classes for other modules.
 
 [Figure 1](#fig171811112818)  shows the code dependency between modules of the AI engine framework.
@@ -11,7 +7,7 @@ Code of the AI engine framework consists of three parts:  **client**,  **server*
 **Figure  1**  Code dependency<a name="fig171811112818"></a>  
 
 
-![](figure/插件依赖-(2).jpg)
+![](figure/code-dependency-(2).jpg)
 
 ## Recommendation: Develop plug-ins and northbound SDKs in the directories specified by the AI engine.<a name="section17176374131"></a>
 

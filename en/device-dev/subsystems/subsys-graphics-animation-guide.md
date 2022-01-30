@@ -1,8 +1,5 @@
 # Development Guidelines on Animators<a name="EN-US_TOPIC_0000001051451654"></a>
 
--   [When to Use](#section726685714018)
--   [Available APIs](#section85794718418)
--   [How to Develop](#section14101161317435)
 
 ## When to Use<a name="section726685714018"></a>
 

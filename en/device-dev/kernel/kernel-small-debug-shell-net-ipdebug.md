@@ -1,10 +1,5 @@
 # ipdebug<a name="EN-US_TOPIC_0000001134006272"></a>
 
--   [Command Function](#section10191115553720)
--   [Syntax](#section124061758123713)
--   [Usage](#section171837113810)
--   [Output](#section561416467104)
-
 ## Command Function<a name="section10191115553720"></a>
 
 **ipdebug**  is a console command and is used for IPv6 information debugging. It can display IPv6 address prefixes, neighbor entries, destination cache entries, and default routing entries.

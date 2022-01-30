@@ -1,7 +1,5 @@
 # Utils FAQ<a name="EN-US_TOPIC_0000001058735275"></a>
 
--   [1. Failure in running the KV store on the LiteOS Cortex-A kernel \(Hi3516 or Hi3518\) due to incorrect path setting for the KV store](#section2041345718513)
-
 ## 1. Failure in running the KV store on the LiteOS Cortex-A kernel \(Hi3516 or Hi3518\) due to incorrect path setting for the KV store<a name="section2041345718513"></a>
 
 **Problem**

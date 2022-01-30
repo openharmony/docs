@@ -1,14 +1,5 @@
 # TOUCHSCREEN<a name="EN-US_TOPIC_0000001052857350"></a>
 
--   [Overview](#section175431838101617)
--   [Available APIs](#section105459441659)
--   [How to Develop](#section65745222184)
--   [Development Example](#section263714411191)
-    -   [Add the touchscreen driver-related descriptions.](#section18249155619195)
-    -   [Board-level Hardware Configuration and Private Data Configuration](#section3571192072014)
-    -   [Adding the Touchscreen Driver](#section6356758162015)
-
-
 ## Overview<a name="section175431838101617"></a>
 
 -   **Functions of the Touchscreen driver**

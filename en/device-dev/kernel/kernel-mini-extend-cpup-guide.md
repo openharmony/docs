@@ -1,13 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001079036450"></a>
 
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Example Description](#section51413507517)
-    -   [Sample Code](#section17617965523)
-    -   [Verification](#section1968771515188)
-
-
 ## Available APIs<a name="section158501652121514"></a>
 
 **Table  1**  Functions

@@ -1,15 +1,5 @@
 # Heap Memory Management<a name="EN-US_TOPIC_0000001123795191"></a>
 
--   [Basic Concepts](#section449414395916)
--   [Working Principles](#section465085575911)
--   [Development Guidelines](#section577019272015)
-    -   [When to Use](#section326917198583)
-    -   [Available APIs](#section1032331584)
-    -   [How to Develop](#section07271773592)
-    -   [Development Example](#section84931234145913)
-    -   [Verification](#section165233233917)
-
-
 ## Basic Concepts<a name="section449414395916"></a>
 
 Memory management module, one of the core modules of the OS, manages the memory resources of the system. Memory management involves memory initialization, allocation, and release. The heap memory management of the OpenHarmony LiteOS-A provides functions such as memory initialization, allocation, and release. While the OS is running, the heap memory management module manages the memory usage of users and the OS by allocating and releasing memory. This helps achieve the optimal memory usage and usage efficiency and minimize memory fragments.

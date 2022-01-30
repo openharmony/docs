@@ -1,12 +1,5 @@
 # Dynamic Loading and Linking<a name="EN-US_TOPIC_0000001078523712"></a>
 
--   [Basic Concepts](#section208951139453)
--   [Working Principles](#section14140155320511)
--   [Development Guidelines](#section133501496612)
-    -   [Available APIs](#section874113201669)
-    -   [How to Develop](#section196712561563)
-
-
 ## Basic Concepts<a name="section208951139453"></a>
 
 The OpenHarmony dynamic loading and linking mechanism includes a kernel loader and a dynamic linker. The kernel loader loads application programs and the dynamic linker. The dynamic linker loads the shared library on which the application programs depend, and performs symbol relocation for the application programs and shared libraries. Compared with static linking, dynamic linking is a mechanism for delaying the linking of applications and dynamic libraries to run time.

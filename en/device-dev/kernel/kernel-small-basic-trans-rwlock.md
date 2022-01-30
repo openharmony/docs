@@ -1,12 +1,5 @@
 # RW Lock<a name="EN-US_TOPIC_0000001078912738"></a>
 
--   [Basic Concepts](#section4692105214260)
--   [Working Principles](#section1239111562720)
--   [Development Guidelines](#section11643194275)
-    -   [Available APIs](#section15335332122717)
-    -   [How to Develop](#section14774114882714)
-
-
 ## Basic Concepts<a name="section4692105214260"></a>
 
 Similar to a mutex, a read-write lock \(RW lock\) can be used to synchronize tasks in the same process. Different from a mutex, an RW lock allows concurrent access for read operations, while write operations require exclusive access.

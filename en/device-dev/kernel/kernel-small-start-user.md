@@ -1,11 +1,5 @@
 # Startup in User Space<a name="EN-US_TOPIC_0000001123640059"></a>
 
--   [Startup of the Root Process in User Space](#section79911135647)
-    -   [Startup Process of the Root Process](#section1184317581349)
-    -   [Responsibilities of the Root Process](#section1590220321759)
-
--   [Running Programs in User Space](#section194576310611)
-
 ## Startup of the Root Process in User Space<a name="section79911135647"></a>
 
 The root process is the first user-space process in the system. The process ID is 1. The root process is the ancestor of all user-space processes.

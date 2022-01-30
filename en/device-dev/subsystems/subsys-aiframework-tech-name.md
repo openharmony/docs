@@ -1,8 +1,5 @@
 # Naming<a name="EN-US_TOPIC_0000001095816835"></a>
 
--   [Rule: Name an SDK in the format of domain\_keyword<\_other information 1\_other information 2\_...\>\_sdk.so.](#section62071110121516)
--   [Rule: Name a plug-in in the format of domain\_keyword<\_other information 1\_other information 2\_...\>.so.](#section1665562841519)
-
 ## Rule: Name an SDK in the format of  **domain\_keyword<\_other information 1\_other information 2\_...\>\_sdk.so**.<a name="section62071110121516"></a>
 
 You are advised to use the commonly known abbreviations for domains. For example, use  **cv**  for image and video,  **asr**  for voice recognition, and  **translation**  for text translation. Add one if there is no available abbreviation for a domain. Use keywords that accurately describe the algorithm capability of the plug-in. For example, use  **keyword\_spotting**  for wakeup keyword spotting \(KWS\). Add other information, such as the supported chip type and applicable region, between  **keyword**  and  **sdk**, with each of them separated by an underscore \(\_\). Note that the name of a northbound SDK must end with  **sdk**.

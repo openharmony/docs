@@ -1,11 +1,5 @@
 # PWM<a name="EN-US_TOPIC_0000001199714793"></a>
 
--   [Overview](#section1591602238164144)
--   [How to Develop](#section967396342164144)
-    -   [PwmMethod](#section14560119104318)
-
--   [Development Example](#section1883877829164144)
-
 ## Overview<a name="section1591602238164144"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the Pulse Width Modulator \(PWM\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.

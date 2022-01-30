@@ -1,16 +1,5 @@
 # MIPI DSI<a name="EN-US_TOPIC_0000001160971534"></a>
 
--   [Overview](#section16806142183217)
--   [Available APIs](#section12720125432316)
--   [Usage Guidelines](#section037231715335)
-    -   [How to Use](#section49299119344)
-    -   [Obtains a MIPI DSI device handle.](#section5126155683811)
-    -   [Setting MIPI DSI Configuration Parameters](#section201164274344)
-    -   [Sending/Receiving the Pointer to a Command](#section199401342173415)
-    -   [Releasing the MIPI DSI Device Handle](#section161011610357)
-
--   [Usage Example](#section17470126123520)
-
 ## Overview<a name="section16806142183217"></a>
 
 -   The Display Serial Interface \(DSI\) is a specification stipulated by the Mobile Industry Processor Interface \(MIPI\) Alliance, aiming to reduce the cost of display controllers in a mobile device. It defines a serial bus and communication protocol among the host, the source of image data, and the target device. In this way, the DSI can send pixel data or commands to peripherals \(usually LCDs or similar display devices\) in serial mode, or reads information such as status and pixel from the peripherals.

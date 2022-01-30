@@ -1,15 +1,5 @@
 # FAQs<a name="EN-US_TOPIC_0000001053622377"></a>
 
-[How Do I Create PRs at the Same Time If Multiple Code Repositories Have Compilation Dependencies?](#section169732563435)
-
-[Sign-off-by Operations](#section-sign-off)
-
-[Handling Exceptions of DCO Verification](#section-dco)
-
-[Rollback](#section479422315253)
-
-[Resolving Merge Conflicts](#section94417232274)
-
 ## How Do I Create PRs at the Same Time If Multiple Code Repositories Have Compilation Dependencies?<a name="section169732563435"></a>
 
 During the development of the operating system \(OS\), it is common that multiple code repositories have compilation dependencies. Therefore, the PRs need to be created and merged at the same time. For this reason, Gitee uses issues as the association identifiers for code repositories with dependency dependencies to commit the PRs. Follow the operations below:

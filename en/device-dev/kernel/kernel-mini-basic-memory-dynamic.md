@@ -1,14 +1,5 @@
 # Dynamic Memory<a name="EN-US_TOPIC_0000001123763647"></a>
 
--   [Working Principles](#section328282013571)
--   [Development Guidelines](#section7921151015814)
-    -   [When to Use](#section326917198583)
-    -   [Available APIs](#section1032331584)
-    -   [How to Develop](#section07271773592)
-    -   [Development Example](#section84931234145913)
-    -   [Verification](#section165233233917)
-
-
 ## Working Principles<a name="section328282013571"></a>
 
 Dynamic memory management allows memory blocks of any size to be allocated from a large contiguous memory \(memory pool or heap memory\) configured in the system based on user demands when memory resources are sufficient. The memory block can be released for further use when not required. Compared with static memory management, dynamic memory management allows memory allocation on demand but causes fragmentation of memory.

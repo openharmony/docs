@@ -1,11 +1,5 @@
 # Development Guidelines<a name="EN-US_TOPIC_0000001123948079"></a>
 
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Verification](#section189023104457)
-
-
 When a task is created, the OpenHarmony LiteOS-M kernel can perform operations, such as locking or unlocking task scheduling, suspending, restoring, and delaying the task, and setting or obtaining the task priority.
 
 ## Available APIs<a name="section158501652121514"></a>

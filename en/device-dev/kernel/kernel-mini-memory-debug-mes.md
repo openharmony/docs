@@ -1,14 +1,5 @@
 # Memory Information Statistics<a name="EN-US_TOPIC_0000001078916690"></a>
 
--   [Basic Concepts](#section52691565235)
--   [Function Configuration](#section470611682411)
--   [Development Guidelines](#section9368374243)
-    -   [How to Develop](#section679912407257)
-    -   [Development Example](#section1025453412611)
-    -   [Sample Code](#section165277971315)
-    -   [Verification](#section3460102414271)
-
-
 ## Basic Concepts<a name="section52691565235"></a>
 
 Memory information includes the memory pool size, memory usage, remaining memory size, maximum free memory, memory waterline, number of memory nodes, and fragmentation rate.

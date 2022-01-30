@@ -1,10 +1,5 @@
 # Kernel Overview<a name="EN-US_TOPIC_0000001123863153"></a>
 
--   [Overview](#section1429342661510)
-    -   [CPU Architecture Support](#section48891456112819)
-    -   [Working Principles](#section4599142312817)
-
-
 ## Overview<a name="section1429342661510"></a>
 
 The OpenHarmony LiteOS-M kernel is a lightweight operating system \(OS\) kernel designed for the IoT field. It features small size, low power consumption, and high performance. The LiteOS-M kernel has simple code structure, including the minimum function set, kernel abstraction layer, optional components, and project directory.

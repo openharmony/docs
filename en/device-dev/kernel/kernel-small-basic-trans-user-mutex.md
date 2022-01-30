@@ -1,8 +1,5 @@
 # Futex<a name="EN-US_TOPIC_0000001078912732"></a>
 
--   [Basic Concepts](#section643519912920)
--   [Working Principles](#section16834132502910)
-
 ## Basic Concepts<a name="section643519912920"></a>
 
 Fast userspace mutex \(futex\) is a system call capability provided by the kernel. It is a user-space lock that combines basic components and user-space lock logic. It is a lock used by both user space and kernel space, for example, userspace mutex, barrier and cond synchronization lock, and RW lock. The user-space part implements lock logic, and the kernel-space part implements lock scheduling.

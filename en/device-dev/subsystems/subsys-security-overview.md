@@ -1,8 +1,5 @@
 # Overview<a name="EN-US_TOPIC_0000001058831526"></a>
 
--   [Basic Concepts](#section175012297491)
--   [Limitations and Constraints](#section2029921310472)
-
 The OpenHarmony security subsystem provides security capabilities that make your applications and devices more secure and help you manage permissions. This subsystem has the following modules:
 
 -   Application signature verification

@@ -1,24 +1,5 @@
 # FAQs<a name="EN-US_TOPIC_0000001055049072"></a>
 
--   [Visual Application FAQs](#section147421736145813)
-    -   [Is there a global variable that can be accessed by all pages?](#section294382614018)
-    -   [How do I obtain DOM elements?](#section1423713435019)
-    -   [How do I pass values between pages?](#section119822143117)
-    -   [How do I scroll a list to an item?](#section188663819111)
-    -   [Does the <text\> component support multiple lines?](#section205741157418)
-    -   [Why is a component not displayed?](#section1345810151025)
-    -   [How do I implement scrolling on a page?](#section1724052813218)
-    -   [Why do not the left and top attributes take effect?](#section34659571520)
-    -   [Why does not dynamic binding take effect?](#section1758881511313)
-    -   [How do I implement relative and absolute positioning?](#section1378730235)
-    -   [How do I display or hide a component?](#section1243424718312)
-    -   [What are the precautions for using the margin attribute?](#section7923357414)
-    -   [What are the precautions for event subscription?](#section91641925548)
-    -   [What are the precautions for using dynamic binding?](#section1292412431744)
-    -   [How does the loop attribute take effect for <swiper\>?](#section1136434952)
-    -   [What are the precautions for using an array?](#section1979819133510)
-
-
 ## Visual Application FAQs<a name="section147421736145813"></a>
 
 ### Is there a global variable that can be accessed by all pages?<a name="section294382614018"></a>

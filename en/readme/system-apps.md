@@ -1,9 +1,5 @@
 # System Apps<a name="EN-US_TOPIC_0000001103601750"></a>
 
--   [Introduction](#section663544819225)
--   [Directory Structure](#section161941989596)
--   [Repositories Involved](#section1371113476307)
-
 ## Introduction<a name="section663544819225"></a>
 
 This module provides some system apps that are applicable to the OpenHarmony standard system, such as Launcher, SystemUI, and Settings. It also provides specific examples for you to build standard-system apps, which can be installed on all devices running the standard system.

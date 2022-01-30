@@ -1,17 +1,5 @@
 # Setting Up the Environment<a name="EN-US_TOPIC_0000001174270691"></a>
 
--   [Environment Requirements](#section466851916410)
-    -   [Hardware](#section19202111020215)
-    -   [Software](#section727451210318)
-
--   [Installing Linux Build Tools](#section497484245614)
-    -   [Installing Basic Software Used for Compilation and Building \(Required Only for Ubuntu 20+\)](#section45512412251)
-    -   [Installing Scons](#section7438245172514)
-    -   [Installing Python Modules](#section88701892341)
-    -   [Installing gcc\_riscv32 \(Compiler Toolchain for WLAN Module\)](#section34435451256)
-
--   [Installing the USB-to-Serial Driver](#section1027732411513)
-
 ## Environment Requirements<a name="section466851916410"></a>
 
 ### Hardware<a name="section19202111020215"></a>

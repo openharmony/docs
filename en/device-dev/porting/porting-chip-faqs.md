@@ -1,7 +1,5 @@
 # FAQ<a name="EN-US_TOPIC_0000001153683024"></a>
 
--   [How Do I Mount the Heap Memory to the Kernel?](#section965418378552)
-
 ## How Do I Mount the Heap Memory to the Kernel?<a name="section965418378552"></a>
 
 -   The following table describes the macros for configuring the kernel heap memory. You can configure them as required in the  **target\_config.h**  file.

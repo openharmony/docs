@@ -1,9 +1,5 @@
 # Common Fault Locating Methods<a name="EN-US_TOPIC_0000001079096842"></a>
 
--   [Locating the Fault based on Exception Information](#section695838161711)
--   [Checking Memory Pool Integrity](#section362917569179)
--   [Locating Memory Overwriting for a Global Variable](#section18971311121816)
-
 ## Locating the Fault based on Exception Information<a name="section695838161711"></a>
 
 When the system is suspended unexpectedly, information about key registers is displayed on the serial port, as shown in the following figure. The information can be used to locate the function where the exception occurs and the related call stack.

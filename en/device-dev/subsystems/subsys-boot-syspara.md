@@ -1,16 +1,5 @@
 # syspara Module<a name="EN-US_TOPIC_0000001063362360"></a>
 
--   [Introduction](#section381564832813)
--   [System Parameter Definition Rules](#section431671411293)
-    -   [System Parameter Value Definition File](#section885018321291)
-    -   [System Parameter DAC Definition File](#section1333155762915)
-    -   [Installation of the System Parameter Definition File](#section43801513193014)
-    -   [Loading Sequence of the System Parameter Value Definition File](#section89971332173017)
-
--   [Usage of Shell Commands](#section2039119283111)
--   [Available APIs](#section0137175692616)
--   [How to Use](#section118404913233)
-
 ## Introduction<a name="section381564832813"></a>
 
 This module provides an easy-to-use key-value pair access interface for system services to configure service functions based on their own system parameters. The following figure shows the basic primitives used to access and operate system parameters.

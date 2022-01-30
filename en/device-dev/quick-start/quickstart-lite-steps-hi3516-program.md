@@ -1,10 +1,5 @@
 # Developing a Driver<a name="EN-US_TOPIC_0000001174350613"></a>
 
--   [Introduction to Driver](#s8efc1952ebfe4d1ea717182e108c29bb)
--   [Building Source Code and Burning Images](#section660016185110)
--   [Running an Image](#section333215226219)
--   [Follow-up Learning](#section9712145420182)
-
 This section describes how to develop a driver on the board, including introduction, compilation, burning, and running of the driver.
 
 ## Introduction to Driver<a name="s8efc1952ebfe4d1ea717182e108c29bb"></a>

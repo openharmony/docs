@@ -1,22 +1,5 @@
 # Driver Configuration Management<a name="EN-US_TOPIC_0000001053493462"></a>
 
--   [HDF Configuration Overview](#section59914284576)
--   [Configuration Syntax](#section533713333580)
-    -   [Keywords](#section4522107333)
-    -   [Basic Structures](#section853042911312)
-    -   [Data Types](#section177001259134)
-    -   [Pre-Processing](#section14867121641)
-    -   [Comments](#section1323412417)
-    -   [Reference Modifications](#section193708571145)
-    -   [Node Replication](#section1487792020513)
-    -   [Delete](#section1096515391155)
-    -   [Attribute References](#section20271317611)
-    -   [Template](#section958819191063)
-
--   [Configuration Generation](#section106152531919)
-    -   [Introduction to hc-gen](#section359734416616)
-
-
 ## HDF Configuration Overview<a name="section59914284576"></a>
 
 HCS is the source code that describes the configuration of the HDF using key-value pairs. It decouples the configuration code from driver code, thereby facilitating configuration management.
