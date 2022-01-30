@@ -139,7 +139,7 @@ UI组件可以通过装饰器将应用程序状态数据与**AppStorage**进行�
 </tbody>
 </table>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >当前接口当前仅可以处理基础类型数据，对于修改object中某一个值尚未支持。
 
 ## AppStorage与组件同步<a name="section1315514223716"></a>
