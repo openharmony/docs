@@ -151,7 +151,7 @@ LazyForEach\(dataSource: IDataSource, itemGenerator: \(item: any\) =\> void, key
 </tbody>
 </table>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >-   数据懒加载必须在容器组件内使用，且仅有List、Grid以及Swiper组件支持数据的懒加载（即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次加载所有的数据；
 >-   **LazyForEach**在每次迭代中，必须且只允许创建一个子组件；
 >-   生成的子组件必须允许在**LazyForEach**的父容器组件中；

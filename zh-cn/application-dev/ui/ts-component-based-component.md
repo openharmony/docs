@@ -9,7 +9,7 @@
 
 对组件化的深入描述，请参考[深入理解组件化](ts-a-deep-dive-into-component.md)。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >-   自定义组件必须定义build方法。
 >-   自定义组件禁止自定义构造函数。
 

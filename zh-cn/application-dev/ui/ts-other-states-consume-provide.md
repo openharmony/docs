@@ -52,7 +52,7 @@ Provide作为数据的提供方，可以更新其子孙节点的数据，并触�
 </tbody>
 </table>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >使用@Provide 和@Consume时避免循环引用导致死循环。
 
 其他属性说明与Provide一致。

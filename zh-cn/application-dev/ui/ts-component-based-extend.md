@@ -23,6 +23,6 @@ struct FancyUse {
 }
 ```
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >@Extend装饰器不能用在自定义组件struct定义框内。
 

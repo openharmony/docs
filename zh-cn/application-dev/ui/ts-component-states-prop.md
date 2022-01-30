@@ -63,6 +63,6 @@ struct CountDownComponent {
 
 在上述示例中，当按“+1”或“-1”按钮时，父组件状态发生变化，重新执行**build**方法，此时将创建一个新的**CountDownComponent**组件。父组件的**countDownStartValue**状态属性被用于初始化子组件的**@Prop**变量，当按下子组件的“Try again”按钮时，其**@Prop**变量**count**将被更改，**CountDownComponent**重新渲染。但是**count**值的更改不会影响父组件的**countDownStartValue**值。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >创建新组件实例时，必须初始化其所有**@Prop**变量。
 

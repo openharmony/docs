@@ -58,7 +58,7 @@
 </tbody>
 </table>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >-   PersistProp接口使用时，需要保证输入对应的key应当在Appstorage存在。
 >-   DeleteProp接口使用时，只能对本次启动已经link过的数据生效。
 

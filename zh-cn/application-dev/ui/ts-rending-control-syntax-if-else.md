@@ -2,7 +2,7 @@
 
 使用**if/else**进行条件渲染。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 >-   if条件语句可以使用状态变量。
 >-   使用if可以使子组件的渲染依赖条件语句。
 >-   必须在容器组件内使用。
