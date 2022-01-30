@@ -1,13 +1,6 @@
 # Camera<a name="EN-US_TOPIC_0000001242747077"></a>
 
--   [Introduction](#section353860995163604)
--   [Development Guidelines](#section1291233039163604)
-    -   [Available APIs](#section1192025723163604)
-    -   [How to Develop](#section1407626053163604)
-
--   [Development Example](#section605457993163604)
-
-## Introduction<a name="section353860995163604"></a>
+## Overview
 
 The OpenHarmony camera driver model implements the camera hardware driver interface \(HDI\) and the camera pipeline model to manage camera devices.
 
@@ -20,8 +13,8 @@ The camera driver model consists of the following layers:
 -   Adaptation layer: shields the differences between bottom-layer chips and OSs for multi-platform adaptation.
 
 
-**Figure  1**  Architecture of the camera driver model<a name="fig39018241682"></a>  
-![](figures/architecture-of-the-camera-driver-model.png "architecture-of-the-camera-driver-model")
+**Figure  1**  Architecture of the camera driver model  
+![](figures/camera-driver-model-architecture.png "camera-driver-model-architecture")
 
 1.  The CameraDeviceHost process is created during system startup. The process enumerates underlying devices, creates a  **DeviceManager**  instance that manages the device tree, an object for each underlying device, and a  **CameraHost**  instance, and registers the  **CameraHost**  instance with the UHDF service. Through this service, the upper layer can obtain the CameraDeviceHost process at the bottom layer to operate the underlying devices. Note that the  **DeviceManager**  instance can also be created by using the configuration table.
 
@@ -42,13 +35,13 @@ The camera driver model consists of the following layers:
 9.  To implement dynamic frame control, a CollectBuffer thread is started in the StreamOperator. The CollectBuffer thread obtains a buffer from the buffer queue of each stream. If the frame rate of a stream needs to be controlled \(1/n of the sensor output frame rate\), the CollectBuffer thread can control the buffer packaging of each frame as required, and determine whether to collect the buffer of the stream. For example, if the output frame rate of the sensor is 120 fps and the preview stream frame rate is 30 fps, the CollectBuffer thread collects the buffer of the preview stream every 4 fps.
 
 
-## Development Guidelines<a name="section1291233039163604"></a>
+## Development Guidelines
 
-### Available APIs<a name="section1192025723163604"></a>
+### Available APIs
 
 For details about the HDI functionalities and the function passing rules, see "Available APIs" in  [Camera](https://gitee.com/openharmony/drivers_peripheral/blob/master/camera/README_zh.md).
 
-### How to Develop<a name="section1407626053163604"></a>
+### How to Develop
 
 The following describes the main APIs of the camera driver model, including the APIs for registering and detecting cameras, creating, capturing, and destroying streams, and enabling and disabling devices. \(To clearly describe the implementation of main functionalities, some error judgment and log source code are not described here.\)
 
@@ -406,7 +399,7 @@ The following describes the main APIs of the camera driver model, including the 
     Use the  **Close\(\)**  interface in the  **CameraDeviceImpl**  class to close the camera device. This interface calls  **PowerDown\(\)**  in the  **DeviceManager**  to power off the device.
 
 
-## Development Example<a name="section605457993163604"></a>
+## Development Example
 
 There is a camera demo in the  **/drivers/peripheral/camera/hal/init**  directory. After system startup, the executable file  **ohos\_camera\_demo**  is generated in the  **/system/bin**  directory. This demo can implement basic camera capabilities such as preview and photographing. The following uses the demo as an example to describe how to use the HDI to implement the  **PreviewOn\(\)**  and  **CaptureON\(\)**  interfaces.
 
