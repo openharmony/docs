@@ -3,8 +3,6 @@
 ---
 ## ***Note***:
     1. This document applies to JavaScript.
-    2. Changes to the AudioRenderer interface have been proposed.
-       When the updated APIs have been integrated, the document will be revised, and apps must adapt to it.
 ---
 ## **Summary**
 This guide will show you how to use AudioRenderer to create an audio player app.
@@ -24,11 +22,28 @@ Please see [**js-apis-audio.md**](https://gitee.com/openharmony/docs/blob/master
 
 ## **Usage**
 Here's an example of how to use AudioRenderer to play a raw audio file.
-1. Use **createAudioRenderer** to create an AudioRenderer instance for the **AudioVolumeType**.\
+1. Use **createAudioRenderer** to create an AudioRenderer instance. Renderer parameters can be set in **audioRendererOptions**.\
    This object can be used to play, control, and obtain the status of the playback, as well as receive callback notifications.
    ```
-    const volType = audio.AudioVolumeType.MEDIA; // For music
-	const audioRenderer = audio.createAudioRenderer(volType);
+    var audioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+    }
+
+    var audioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_SPEECH,
+        usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+        rendererFlags: 1
+    }
+
+    var audioRendererOptions = {
+        streamInfo: audioStreamInfo,
+        rendererInfo: audioRendererInfo
+    }
+
+    let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
    ```
 
 2. Subscribe to audio interruption events using the **on** API.\
@@ -118,27 +133,8 @@ Here's an example of how to use AudioRenderer to play a raw audio file.
     });
    ```
 
-3. Prepare the renderer. Call **SetParams** on the instance. You need to set the renderer parameters based on the audio playback specification.
-   ```
-    async function prepareRenderer() {
-        // file_example_WAV_2MG.wav
-        var audioParams = {
-            format: audio.AudioSampleFormat.SAMPLE_S16LE,
-            channels: audio.AudioChannel.STEREO,
-            samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_16000,
-            encoding: audio.AudioEncodingType.ENCODING_PCM,
-        };
-
-        let response = await audioRenderer.setParams(audioParams);
-        var state = audioRenderer.state;
-        if (state != audio.AudioState.STATE_PREPARED) {
-            console.info('Prepare renderer failed');
-            return;
-        }
-    }
-   ```
 4. Call the **start()** function on the AudioRenderer instance to start/resume the playback task.\
-   The renderer state will be STATE _RUNNING once the start is complete. You can then begin writing buffers.
+   The renderer state will be STATE_RUNNING once the start is complete. You can then begin writing buffers.
    ```
     async function startRenderer() {
         var state = audioRenderer.state;
@@ -148,13 +144,14 @@ Here's an example of how to use AudioRenderer to play a raw audio file.
             console.info('Renderer is not in a correct state to start');
             return;
         }
-        var started = await audioRenderer.start();
-        if (started) {
-            isPlay = true;
+
+        await audioRenderer.start();
+
+        state = audioRenderer.state;
+        if (state == audio.AudioState.STATE_RUNNING) {
             console.info('Renderer started');
         } else {
             console.error('Renderer start failed');
-            return;
         }
     }
 
@@ -212,8 +209,11 @@ Here's an example of how to use AudioRenderer to play a raw audio file.
             console.info('Renderer is not running');
             return;
         }
-        var paused = await audioRenderer.pause();
-        if (paused) {
+
+        await audioRenderer.pause();
+
+        state = audioRenderer.state;
+        if (state == audio.AudioState.STATE_PAUSED) {
             console.info('Renderer paused');
         } else {
             console.error('Renderer pause failed');
@@ -226,8 +226,11 @@ Here's an example of how to use AudioRenderer to play a raw audio file.
             console.info('Renderer is not running or paused');
             return;
         }
-        var stopped = await audioRenderer.stop();
-        if (stopped) {
+
+        await audioRenderer.stop();
+
+        state = audioRenderer.state;
+        if (state == audio.AudioState.STATE_STOPPED) {
             console.info('Renderer stopped');
         } else {
             console.error('Renderer stop failed');
@@ -243,8 +246,11 @@ Here's an example of how to use AudioRenderer to play a raw audio file.
             console.info('Resourced already released');
             return;
         }
-        var released = await audioRenderer.release();
-        if (released) {
+
+        await audioRenderer.release();
+
+        state = audioRenderer.state;
+        if (state == STATE_RELEASED) {
             console.info('Renderer released');
         } else {
             console.info('Renderer release failed');
@@ -257,7 +263,6 @@ Here's an example of how to use AudioRenderer to play a raw audio file.
 You should also keep in mind that an AudioRenderer is state-based.
 That is, the AudioRenderer has an internal state that you must always check when calling playback control APIs, because some operations are only acceptable while the renderer is in a given state.\
 The system may throw an error/exception or generate other undefined behaviour if you perform an operation while in the improper state.\
-Before each necessary operation, the example code performs a state check.
 
 ## **Asynchronous Operations:**
 Most of the AudioRenderer calls are asynchronous. As a result, the UI thread will not be blocked.\
@@ -267,4 +272,3 @@ provides reference for both callback and promise.
 
 ## **Other APIs:**
 See [**js-apis-audio.md**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-audio.md) for more useful APIs like getAudioTime, drain, and getBufferSize.
-

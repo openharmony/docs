@@ -146,7 +146,13 @@ You use audio management APIs to set and obtain volume, and get information abou
 </th>
 </tr>
 </thead>
-<tbody><tr id="row188162012454"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p764215288462"><a name="p764215288462"></a><a name="p764215288462"></a>MEDIA = 1</p>
+<tbody>
+<tr id="row188162012454"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p764215288462"><a name="p764215288462"></a><a name="p764215288462"></a>VOICE_CALL = 0</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1596200459"><a name="p1596200459"></a><a name="p1596200459"></a>Audio streams for voice calls</p>
+</td>
+</tr>
+<tr id="row188162012454"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p764215288462"><a name="p764215288462"></a><a name="p764215288462"></a>MEDIA = 1</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1596200459"><a name="p1596200459"></a><a name="p1596200459"></a>Audio streams for media purpose</p>
 </td>
@@ -154,6 +160,11 @@ You use audio management APIs to set and obtain volume, and get information abou
 <tr id="row1288915367468"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p51611346194614"><a name="p51611346194614"></a><a name="p51611346194614"></a>RINGTONE = 2</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p9333131144712"><a name="p9333131144712"></a><a name="p9333131144712"></a>Audio streams for ring tones</p>
+<tr id="row188162012454"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p764215288462"><a name="p764215288462"></a><a name="p764215288462"></a>VOICE_ASSISTANT = 9</p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1596200459"><a name="p1596200459"></a><a name="p1596200459"></a>Audio streams for voice assistant</p>
+</td>
+</tr>
 </td>
 </tr>
 </tbody>
@@ -222,27 +233,27 @@ You use audio management APIs to set and obtain volume, and get information abou
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p17389145016497"><a name="p17389145016497"></a><a name="p17389145016497"></a>Invalid device</p>
 </td>
 </tr>
-<tr id="row938915016493"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p538925044916"><a name="p538925044916"></a><a name="p538925044916"></a>SPEAKER = 1</p>
+<tr id="row938915016493"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p538925044916"><a name="p538925044916"></a><a name="p538925044916"></a>SPEAKER = 2</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p16724165865017"><a name="p16724165865017"></a><a name="p16724165865017"></a>Speaker</p>
 </td>
 </tr>
-<tr id="row12389105084916"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p538914502497"><a name="p538914502497"></a><a name="p538914502497"></a>WIRED_HEADSET = 2</p>
+<tr id="row12389105084916"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p538914502497"><a name="p538914502497"></a><a name="p538914502497"></a>WIRED_HEADSET = 3</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p63891850144911"><a name="p63891850144911"></a><a name="p63891850144911"></a>Wired headset</p>
 </td>
 </tr>
-<tr id="row2389205074915"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p10389175054919"><a name="p10389175054919"></a><a name="p10389175054919"></a>BLUETOOTH_SCO = 3</p>
+<tr id="row2389205074915"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p10389175054919"><a name="p10389175054919"></a><a name="p10389175054919"></a>BLUETOOTH_SCO = 7</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p538905016496"><a name="p538905016496"></a><a name="p538905016496"></a>Bluetooth device using the synchronous connection oriented link (SCO)</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p538905016496"><a name="p538905016496"></a><a name="p538905016496"></a>Bluetooth device using the synchronous connection oriented (SCO) link</p>
 </td>
 </tr>
-<tr id="row83891502499"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1938975015494"><a name="p1938975015494"></a><a name="p1938975015494"></a>BLUETOOTH_A2DP = 4</p>
+<tr id="row83891502499"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1938975015494"><a name="p1938975015494"></a><a name="p1938975015494"></a>BLUETOOTH_A2DP = 8</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p193891550134912"><a name="p193891550134912"></a><a name="p193891550134912"></a>Bluetooth device using advanced audio distribution profile (A2DP)</p>
 </td>
 </tr>
-<tr id="row11389175014916"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1738955018497"><a name="p1738955018497"></a><a name="p1738955018497"></a>MIC = 5</p>
+<tr id="row11389175014916"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1738955018497"><a name="p1738955018497"></a><a name="p1738955018497"></a>MIC = 15</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p73891250174914"><a name="p73891250174914"></a><a name="p73891250174914"></a>Microphone</p>
 </td>
@@ -269,5 +280,3 @@ You use audio management APIs to set and obtain volume, and get information abou
        console.log(`Media getVolume  ${value}`);
     });
     ```
-
-
