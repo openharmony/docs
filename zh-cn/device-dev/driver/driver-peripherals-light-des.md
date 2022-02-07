@@ -42,7 +42,7 @@ Light驱动模型以标准系统Hi3516DV300为例，介绍整个驱动加载及�
 
 ### 接口说明
 
-Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模式和闪烁时间的能力。Light硬件服务调用GetLightInfo获取灯设备的基本信息；调用TurnOnLight接口启动配置的闪烁效果。Light驱动模型对HDI开放的API接口能力，参考[表1](#Light驱动模型对外API接口能力介绍)。
+Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模式和闪烁时间的能力。Light硬件服务调用GetLightInfo获取Light设备的基本信息；调用TurnOnLight接口启动配置的闪烁效果。Light驱动模型对HDI开放的API接口能力，参考[表1](#Light驱动模型对外API接口能力介绍)。
 
 **表1 **  Light驱动模型对外API接口能力介绍
 
@@ -62,7 +62,7 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
 1. Light驱动的初始化和去初始化
 
    - 调用HDF_INIT将驱动入口注册到HDF框架中。在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
-     灯驱动模型使用HCS作为配置描述源码，HCS配置字段详细介绍请参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
+     Light驱动模型使用HCS作为配置描述源码，HCS配置字段详细介绍请参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
      其Driver Entry入口函数定义如下:
      
      ```c
@@ -166,7 +166,7 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
      
      ```
 
-   - Light设备管理模块负责系统中灯器件接口发布，在系统启动过程中，HDF框架机制通过灯Host里设备HCS配置信息，加载设备管理驱动。
+   - Light设备管理模块负责系统中Light器件接口发布，在系统启动过程中，HDF框架机制通过灯Host里设备HCS配置信息，加载设备管理驱动。
 
      ```hcs
      /* 灯设备HCS配置 */
