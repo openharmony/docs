@@ -6,34 +6,41 @@
 import bundle from '@ohos.bundle';
 ```
 
+## 系统能力
+
+SystemCapability.BundleManager.BundleFramework
+
 ## 权限列表
+
 无
-
-
 
 ## bundle.getApplicationInfo
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number): Promise\<ApplicationInfo>
 
-根据给定的bundle名称获取ApplicationInfo，通过Promise获取返回值。
+以异步方法根据给定的包名获取ApplicationInfo，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
 
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                    |
-| ----------- | ------ | ---- | ------------------------------------------------------- |
-| bundleName  | string | 是   | 应用名                                                  |
-| bundleFlags | number | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
-| userId      | number | 是   | 用户ID                                                  |
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | 是   | 要查询的应用程序包名称。                                     |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0 |
+| userId      | number | 是   | 用户ID                                                       |
 
 **返回值：**
 
 | 类型      | 说明 |
 | ----------- | -------- |
-| Promise\<ApplicationInfo> | 返回值为Promise对象，Promise中包含应用信息。    |
+| Promise\<ApplicationInfo> | Promise形式返回应用程序信息。 |
 
 **示例：**
 
-```
+```js
 bundle.getApplicationInfo('com.example.myapplicationInstall', 8, 0).then((data) => {
   console.info("name: for begin");
   console.info("name:" + data.name);
@@ -78,20 +85,24 @@ bundle.getApplicationInfo('com.example.myapplicationInstall', 8, 0).then((data) 
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-根据给定的bundle名称获取ApplicationInfo，通过回调函数获取返回值。
+以异步方法根据给定的包名获取ApplicationInfo，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
 
 **参数：**
 
-| 名称        | 类型                            | 必填 | 描述                                                    |
-| ----------- | ------------------------------- | ---- | ------------------------------------------------------- |
-| bundleName  | string                          | 是   | 应用名                                                  |
-| bundleFlags | number                          | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
-| userId      | number                          | 是   | 用户ID                                                  |
-| callback    | AsyncCallback\<ApplicationInfo> | 是   | 回调方法                                                |
+| 名称        | 类型                            | 必填 | 描述                                                         |
+| ----------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                          | 是   | 要查询的应用程序包名称。                                     |
+| bundleFlags | number                          | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0 |
+| userId      | number                          | 是   | 用户ID                                                       |
+| callback    | AsyncCallback\<ApplicationInfo> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
 
 **示例：**
 
-```
+```js
 bundle.getApplicationInfo('com.example.myapplicationInstall', 8, 0, OnReceiveEvent);
 
 function OnReceiveEvent(err, data) {
@@ -138,7 +149,11 @@ function OnReceiveEvent(err, data) {
 
 getAllBundleInfo(bundleFlag: BundleFlag): Promise<Array\<BundleInfo>>
 
-获取系统中所有可用的包信息，通过Promise获取返回值。
+以异步方法获取系统中所有可用的BundleInfo，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **参数：**
 
@@ -148,13 +163,13 @@ getAllBundleInfo(bundleFlag: BundleFlag): Promise<Array\<BundleInfo>>
 
 **返回值：**
 
-| 类型                        | 说明                                           |
-| --------------------------- | ---------------------------------------------- |
-| Promise<Array\<BundleInfo>> | 返回值为Promise对象，Promise中包含包信息列表。 |
+| 类型                        | 说明                                |
+| --------------------------- | ----------------------------------- |
+| Promise<Array\<BundleInfo>> | Promise形式返回所有可用的BundleInfo |
 
 **示例：**
 
-```
+```js
 bundle.getAllBundleInfo(0).then((data) => {
     for (var i = 0; i < data.length; i++) {
         console.info("index[" + i + "].name: for begin");
@@ -227,18 +242,22 @@ bundle.getAllBundleInfo(0).then((data) => {
 
 getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-获取系统中所有可用的包信息，通过回调函数获取返回值。
+以异步方法获取系统中所有可用的BundleInfo，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **参数：**
 
 | 名称       | 类型                              | 必填 | 描述                                                         |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleFlag | BundleFlag                        | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-| callback   | AsyncCallback<Array\<BundleInfo>> | 是   | 回调方法                                                     |
+| callback   | AsyncCallback<Array\<BundleInfo>> | 是   | 程序启动作为入参的回调函数，返回所有可用的BundleInfo。       |
 
 **示例：**
 
-```
+```js
 bundle.getAllBundleInfo(0, OnReceiveEvent);
 
 function OnReceiveEvent(err, data) {
@@ -314,7 +333,11 @@ function OnReceiveEvent(err, data) {
 
 getBundleInfo(bundleName: string, bundleFlags: number): Promise\<BundleInfo>
 
-根据bundle名称获取BundleInfo，通过Promise获取返回值。
+以异步方法根据给定的包名获取BundleInfo，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
 
 **参数：**
 
@@ -331,7 +354,7 @@ getBundleInfo(bundleName: string, bundleFlags: number): Promise\<BundleInfo>
 
 **示例：**
 
-```
+```js
 bundle.getBundleInfo('com.example.myapplicationInstall', 1).then((data) => {
     console.info("name:" + data.name);
     console.info("label:" + data.label);
@@ -401,7 +424,11 @@ bundle.getBundleInfo('com.example.myapplicationInstall', 1).then((data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-根据bundle名称获取BundleInfo，通过回调函数获取返回值。
+以异步方法根据给定的包名获取BundleInfo，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
 
 **参数：**
 
@@ -409,11 +436,11 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 | ----------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                     | 是   | 包名                                                         |
 | bundleFlags | number                     | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-| callback    | AsyncCallback\<BundleInfo> | 是   | 回调方法                                                     |
+| callback    | AsyncCallback\<BundleInfo> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
 
 **示例：**
 
-```
+```js
 bundle.getBundleInfo('com.example.myapplicationInstall', 1, OnReceiveEvent);
 
 function OnReceiveEvent(err, data) {
@@ -487,12 +514,16 @@ getAllApplicationInfo(bundleFlags: number, userId: number): Promise<Array\<Appli
 
 获取指定用户下所有已安装的应用信息，通过Promise获取返回值。
 
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
 **参数：**
 
-| 名称        | 类型   | 必填 | 描述                                                    |
-| ----------- | ------ | ---- | ------------------------------------------------------- |
-| bundleFlags | number | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
-| userId      | number | 是   | 用户ID                                                  |
+| 名称        | 类型   | 必填 | 描述                                                   |
+| ----------- | ------ | ---- | ------------------------------------------------------ |
+| bundleFlags | number | 是   | 0：返回默认应用信息<<br/>8：返回包含权限信息的应用信息 |
+| userId      | number | 是   | 用户ID                                                 |
 
 **返回值：**
 
@@ -502,7 +533,7 @@ getAllApplicationInfo(bundleFlags: number, userId: number): Promise<Array\<Appli
 
 **示例：**
 
-```
+```js
 bundle.getAllApplicationInfo(8, 0).then((data) => {
     console.info('xxx getAllApplicationInfo data length [' + data.length + ']');
     for (var i = 0; i < data.length; i++) {
@@ -552,17 +583,21 @@ getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallba
 
 获取指定用户下所有已安装的应用信息，通过回调函数获取返回值。
 
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
 **参数：**
 
-| 名称        | 类型                                   | 必填 | 描述                                                    |
-| ----------- | -------------------------------------- | ---- | ------------------------------------------------------- |
-| bundleFlags | number                                 | 是   | 0：返回默认app信息<<br/>8：返回包含permissions的app信息 |
-| userId      | number                                 | 是   | 用户ID                                                  |
-| callback    | AsyncCallback<Array\<ApplicationInfo>> | 是   | 回调方法                                                |
+| 名称        | 类型                                   | 必填 | 描述                                                   |
+| ----------- | -------------------------------------- | ---- | ------------------------------------------------------ |
+| bundleFlags | number                                 | 是   | 0：返回默认应用信息<<br/>8：返回包含权限信息的应用信息 |
+| userId      | number                                 | 是   | 用户ID                                                 |
+| callback    | AsyncCallback<Array\<ApplicationInfo>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。         |
 
 **示例：**
 
-```
+```js
 bundle.getAllApplicationInfo(8, 0, OnReceiveEvent);
 
 function OnReceiveEvent(err, data) {
@@ -610,26 +645,31 @@ function OnReceiveEvent(err, data) {
 
 ## bundle.queryAbilityByWant
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId: number): Promise<Array\<AbilityInfo>>
+queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
-通过Want获取对应的Ability信息，通过Promise获取返回值。
+以异步方法根据给定的意图获取Ability信息，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
 
 **参数：**
 
-| 名称        | 类型          | 必填 | 描述                                                         |
-| ----------- | ------------- | ---- | ------------------------------------------------------------ |
-| want        | [Want](#want) | 是   | 指定Want信息                                                 |
-| bundleFlags | number        | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-| userId      | number        | 是   | 用户ID                                                       |
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| want        | Want   | 是   | 包含要查询的应用程序包名称的意图。                           |
+| bundleFlags | number | 是   | 0：返回默认AbilityInfo<br/>2：返回包含权限信息的AbilityInfo<br/>4：返回包含应用信息的AbilityInfo |
+| userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0          |
 
 **返回值：**
-| 类型                         | 说明                                            |
-| ---------------------------- | ----------------------------------------------- |
-| Promise<Array\<AbilityInfo>> | 返回值为Promise对象，Promise中包含Ability信息。 |
+
+| 类型                         | 说明                         |
+| ---------------------------- | ---------------------------- |
+| Promise<Array\<AbilityInfo>> | Promise形式返回Ability信息。 |
 
 **示例：**
 
-```
+```js
 bundle.queryAbilityByWant({
     want: {
         action: "action.system.home",
@@ -713,20 +753,20 @@ bundle.queryAbilityByWant({
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-通过Want获取对应的Ability信息，通过回调函数获取返回值。
+以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
 **参数：**
 
 | 名称        | 类型                               | 必填 | 描述                                                         |
 | ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| want        | [Want](#want)                      | 是   | 指定Want信息                                                 |
-| bundleFlags | number                             | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
+| want        | Want                               | 是   | 指示包含要查询的应用程序包名称的意图。                       |
+| bundleFlags | number                             | 是   | 0：返回默认AbilityInfo<br/>2：返回包含权限信息的AbilityInfo<br/>4：返回包含应用信息的AbilityInfo |
 | userId      | number                             | 是   | 用户ID                                                       |
-| callback    | AsyncCallback<Array\<AbilityInfo>> | 是   | 回调方法                                                     |
+| callback    | AsyncCallback<Array\<AbilityInfo>> | 是   | 程序启动作为入参的回调函数，返回Ability信息。                |
 
 **示例：**
 
-```
+```js
 bundle.queryAbilityByWant(
     {
         want: {
@@ -806,93 +846,124 @@ function OnReceiveEvent(err, data) {
 }
 ```
 
+## bundle.queryAbilityByWant
 
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void
 
-## bundle.getPermissionDef
-
-getPermissionDef(permissionName: string): Promise\<BundleInfo>
-
-获取指定权限的详细信息，通过Promise获取返回值。
+以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
 **参数：**
 
-| 名称           | 类型   | 必填 | 描述   |
-| -------------- | ------ | ---- | ------ |
-| permissionName | string | 是   | 权限名 |
-
-**返回值：**
-| 类型                 | 说明                 |
-| -------------------- | -------------------- |
-| Promise\<BundleInfo> | 返回值为bundle信息。 |
+| 名称        | 类型                               | 必填 | 描述                                                         |
+| ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| want        | Want                               | 是   | 指示包含要查询的应用程序包名称的意图。                       |
+| bundleFlags | number                             | 是   | 0：返回默认AbilityInfo<br/>2：返回包含权限信息的AbilityInfo<br/>4：返回包含应用信息的AbilityInfo |
+| callback    | AsyncCallback<Array\<AbilityInfo>> | 是   | 程序启动作为入参的回调函数，返回Ability信息。                |
 
 **示例：**
 
-```
-bundle.getPermissionDef('com.permission.CAMERA').then((data) => {
-    console.info("permissionName:" + data.permissionName);
-    console.info("bundleName:" + data.bundleName);
-    console.info("grantMode:" + data.grantMode);
-    console.info("availableScope:" + data.availableScope);
+```js
+bundle.queryAbilityByWant(
+    {
+        want: {
+            action: "action.system.home",
+            entities: ["entity.system.home"],
+            elementName: {
+                deviceId: "0",
+                bundleName: "com.example.myapplicationInstall",
+                abilityName: "com.example.myapplication.MainAbility",
+            },
+        }
+    }, 1,
+    }, OnReceiveEvent);
+
+function OnReceiveEvent(err, data) {
+    console.info("name:" + data.name);
     console.info("label:" + data.label);
-    console.info("labelId:" + data.labelId);
-})
-```
+    console.info("description:" + data.description);
+    console.info("iconPath:" + data.iconPath);
+    console.info("visible:" + data.visible);
+    console.info("kind:" + data.kind);
+    console.info("uri:" + data.uri);
+    console.info("process:" + data.process);
+    console.info("package:" + data.package);
+    console.info("bundleName:" + data.bundleName);
+    console.info("moduleName:" + data.moduleName);
+    console.info("applicationName:" + data.applicationName);
+    console.info("deviceId:" + data.deviceId);
+    console.info("codePath:" + data.codePath);
+    console.info("resourcePath:" + data.resourcePath);
+    console.info("libPath:" + data.libPath);
 
-
-
-## bundle.getPermissionDef
-
-getPermissionDef(permissionName: string, callback: AsyncCallback\<PermissionDef>): void
-
-获取指定权限的详细信息，通过回调函数获取返回值。
-
-**参数：**
-
-| 名称           | 类型                          | 必填 | 描述     |
-| -------------- | ----------------------------- | ---- | -------- |
-| permissionName | string                        | 是   | 权限名   |
-| callback       | AsyncCallback\<PermissionDef> | 是   | 回调方法 |
-
-**示例：**
-
-```
-bundle.getBundleInstaller().then((data) => {
-    data.getPermissionDef('com.permission.CAMERA', OnReceiveEvent);
-
-    function OnReceiveEvent(err, data) {
-        console.info("permissionName:" + data.permissionName);
-        console.info("bundleName:" + data.bundleName);
-        console.info("grantMode:" + data.grantMode);
-        console.info("availableScope:" + data.availableScope);
-        console.info("label:" + data.label);
-        console.info("labelId:" + data.labelId);
+    console.info('queryAbilityInfo permissions length [' + data.permissions.length + ']');
+    for (var j = 0; j < data.permissions.length; j++) {
+        console.info("permissions[" + j + "]:" + data.permissions[j]);
     }
-})
+    console.info('queryAbilityInfo deviceTypes length [' + data.deviceTypes.length + ']');
+    for (var j = 0; j < data.deviceTypes.length; j++) {
+        console.info("deviceTypes[" + j + "]:" + data.deviceTypes[j]);
+    }
+    console.info('queryAbilityInfo deviceCapabilities length [' + data.deviceCapabilities.length + ']');
+    for (var j = 0; j < data.deviceCapabilities.length; j++) {
+        console.info("deviceCapabilities[" + j + "]:" + data.deviceCapabilities[j]);
+    }
+    console.info("appInfo.name:" + data.applicationInfo.name);
+    console.info("appInfo.bundleName:" + data.applicationInfo.bundleName);
+    // ability type: 0:UNKNOWN, 1:PAGE, 2:SERVICE, 3:DATA
+    console.info("type:" + data.type);
+    // orientation: 0:UNSPECIFIED, 1:LANDSCAPE, 2:PORTRAIT, 3:FOLLOWRECENT,
+    console.info("orientation:" + data.orientation);
+    // launchMode: 0:SINGLETON, 1:SINGLETOP, 2:STANDARD
+    console.info("launchMode:" + data.launchMode);
+
+    // the enum of AbilityType
+    console.info("AbilityType:" + bundle.AbilityType.UNKNOWN);
+    console.info("AbilityType:" + bundle.AbilityType.PAGE);
+    console.info("AbilityType:" + bundle.AbilityType.SERVICE);
+    console.info("AbilityType:" + bundle.AbilityType.DATA);
+    if (data.type == bundle.AbilityType.PAGE) {
+        console.info("this AbilityType is PAGE");
+    }
+    // the enum of DisplayOrientation
+    console.info("DisplayOrientation:" + bundle.DisplayOrientation.UNSPECIFIED);
+    console.info("DisplayOrientation:" + bundle.DisplayOrientation.LANDSCAPE);
+    console.info("DisplayOrientation:" + bundle.DisplayOrientation.PORTRAIT);
+    console.info("DisplayOrientation:" + bundle.DisplayOrientation.FOLLOWRECENT);
+    if (data.orientation == bundle.DisplayOrientation.UNSPECIFIED) {
+        console.info("this DisplayOrientation is UNSPECIFIED");
+    }
+    // the enum of LaunchMode
+    console.info("LaunchMode:" + bundle.LaunchMode.SINGLETON);
+    console.info("LaunchMode:" + bundle.LaunchMode.SINGLETOP);
+    console.info("LaunchMode:" + bundle.LaunchMode.STANDARD);
+    if (data.launchMode == bundle.LaunchMode.STANDARD) {
+        console.info("this LaunchMode is STANDARD");
+    }
+}
 ```
-
-
 
 ## bundle.getBundleArchiveInfo
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number): Promise\<BundleInfo>
 
-获取HAP包含的应用包信息，通过Promise获取返回值。
+以异步方法从给定的HAP中获取BundleInfo，使用Promise形式返回结果。
 
 **参数：**
 
 | 名称        | 类型   | 必填 | 描述                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| hapFilePath | string | 是   | hap包文件路径                                                |
+| hapFilePath | string | 是   | HAP文件路径                                                  |
 | bundleFlags | number | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
 
 **返回值：**
-| 类型                 | 说明                 |
-| -------------------- | -------------------- |
-| Promise\<BundleInfo> | 返回值为bundle信息。 |
+
+| 类型                 | 说明                                       |
+| -------------------- | ------------------------------------------ |
+| Promise\<BundleInfo> | 返回值为Promise对象，Promise中包含包信息。 |
 
 **示例：**
 
-```
+```js
 bundle.getBundleArchiveInfo('/data/test.hap', 1).then((data) => {
     console.info("name:" + data.name);
     console.info("label:" + data.label);
@@ -959,19 +1030,19 @@ bundle.getBundleArchiveInfo('/data/test.hap', 1).then((data) => {
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-获取HAP包含的应用包信息，通过回调函数获取返回值。
+以异步方法从给定的HAP中获取BundleInfo，使用callback形式返回结果。
 
 **参数：**
 
 | 名称        | 类型                      | 必填 | 描述                                                         |
 | ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| hapFilePath | string                    | 是   | hap包文件路径                                                |
+| hapFilePath | string                    | 是   | HAP文件路径                                                  |
 | bundleFlags | number                    | 是   | 0：返回默认BundleInfo<br/>1：返回包含abilityInfo的BundleInfo |
-| callback    | AsyncCallback<BundleInfo> | 是   | 回调方法                                                     |
+| callback    | AsyncCallback<BundleInfo> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
 
 **示例：**
 
-```
+```js
 bundle.getBundleArchiveInfo('/data/test.hap', 1, OnReceiveEvent);
 
 function OnReceiveEvent(err, data) {
@@ -1036,28 +1107,27 @@ function OnReceiveEvent(err, data) {
 }
 ```
 
-## install
+## bundle.getBundleInstaller
 
-install(bundleFilePaths: Array\<string>, param: InstallParam, callback: AsyncCallback\<InstallStatus>): void
+getBundleInstaller(): Promise<BundleInstaller>
 
-安装hap包。
+以异步方法获取BundleInstaller，使用Promise形式返回结果。
 
-**参数：**
+**返回值：**
 
-| 名称            | 类型                                           | 必填 | 描述                                                         |
-| --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleFilePaths | Array\<string>                                 | 是   | 安装用包路径                                                 |
-| param           | InstallParam                                   | 是   | userId：用户ID<br/>installFlag：安装标识。<br/>      NORMAL：安装/卸载<br/>      REPLACE_EXISTING：更新<br/>isKeepData：卸载时是否保留运行时数据 |
-| callback        | AsyncCallback<[InstallStatus](#installstatus)> | 是   | 回调方法                                                     |
+| 类型                     | 说明                                                |
+| ------------------------ | --------------------------------------------------- |
+| Promise<BundleInstaller> | 返回值为Promise对象，Promise中包含BundleInstaller。 |
 
 **示例：**
 
-```
+```js
 bundle.getBundleInstaller().then((data) => {
     data.install(['/data/test.hap'], {
         param: {
-            userId: 0,
-            isKeepData: false
+      		userId: 0,
+      		installFlag: 1,
+      		isKeepData: false
         }
     }, OnReceiveinstallEvent);
 
@@ -1069,44 +1139,41 @@ bundle.getBundleInstaller().then((data) => {
 })
 ```
 
-## uninstall
+## bundle.getBundleInstaller
 
-uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback\<InstallStatus>): void
+getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;
 
-卸载hap包。
+以异步方法从给定的HAP中获取BundleInstaller，使用callback形式返回结果。
 
 **参数：**
 
-| 名称       | 类型                                           | 必填 | 描述                                                         |
-| ---------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string                                         | 是   | 卸载用包名                                                   |
-| param      | InstallParam                                   | 是   | userId：用户ID<br/>installFlag：安装标识。<br/>      NORMAL：安装/卸载<br/>      REPLACE_EXISTING：更新<br/>isKeepData：卸载时是否保留运行时数据 |
-| callback   | AsyncCallback<[InstallStatus](#installstatus)> | 是   | 回调方法                                                     |
+| 名称     | 类型                           | 必填 | 描述                                              |
+| -------- | ------------------------------ | ---- | ------------------------------------------------- |
+| callback | AsyncCallback<BundleInstaller> | 是   | 程序启动作为入参的回调函数，返回BundleInstaller。 |
 
 **示例：**
 
-```
-bundle.getBundleInstaller().then((data) => {
-    data.uninstall('com.example.myapplication', {
-        param: {
-            userId: 0,
-            isKeepData: false
-        }
+```js
+bundle.getBundleInstaller((err, data)=>{
+  data.uninstall('com.example.myapplication', {
+      userId: 0,
+      installFlag: 1,
+      isKeepData: false
     }, OnReceiveinstallEvent);
 
-    function OnReceiveinstallEvent(err, data) {
-        console.info("name: for begin");
-        console.info("uninstall result code:" + data.status);
-        console.info("uninstall result msg:" + data.statusMessage);
-    }
+  function OnReceiveinstallEvent(err, data) {
+    console.info("name: for begin");
+    console.info("uninstall result code:" + data.status);
+    console.info("uninstall result msg:" + data.statusMessage);
+  }
 })
 ```
 
 ## bundle.getAllShortcutInfo
 
-getAllShortcutInfo(bundleName: string): Promise\<ShortcutInfo>
+getAllShortcutInfo(bundleName: string): Promise<Array<ShortcutInfo>>
 
-获取指定bundle名的shortcut信息，通过Promise获取返回值。
+以异步方法获取指定bundle的Shortcut信息，使用Promise形式返回结果。
 
 **参数：**
 
@@ -1115,15 +1182,15 @@ getAllShortcutInfo(bundleName: string): Promise\<ShortcutInfo>
 | bundleName | string | 是   | bundle名 |
 
 **返回值：**
-| 类型                   | 说明                 |
-| ---------------------- | -------------------- |
-| Promise\<ShortcutInfo> | 返回值为bundle信息。 |
+| 类型                          | 说明                                                 |
+| ----------------------------- | ---------------------------------------------------- |
+| Promise\<Array<ShortcutInfo>> | 返回值为Promise对象，Promise中包含Shortcut信息列表。 |
 
 **示例：**
 
-```
+```js
 bundle.getAllShortcutInfo('com.example.third1').then((data) => {
-    ...
+    console.log("getAllShortcutInfo data:" + data);
 });
 ```
 
@@ -1133,22 +1200,22 @@ bundle.getAllShortcutInfo('com.example.third1').then((data) => {
 
 getAllShortcutInfo(bundleName: string, callback: AsyncCallback<Array\<ShortcutInfo>>): void
 
-获取指定bundle名的shortcut信息，通过回调函数获取返回值。
+以异步方法获取指定bundle的Shortcut信息，使用callback形式返回结果。
 
 **参数：**
 
-| 名称       | 类型                        | 必填 | 描述     |
-| ---------- | --------------------------- | ---- | -------- |
-| bundleName | string                      | 是   | bundle名 |
-| callback   | AsyncCallback<ShortcutInfo> | 是   | 回调方法 |
+| 名称       | 类型                                 | 必填 | 描述                                               |
+| ---------- | ------------------------------------ | ---- | -------------------------------------------------- |
+| bundleName | string                               | 是   | bundle名                                           |
+| callback   | AsyncCallback<<Array\<ShortcutInfo>> | 是   | 程序启动作为入参的回调函数，返回Shortcut信息列表。 |
 
 **示例：**
 
-```
+```js
 bundle.getAllShortcutInfo('com.example.third1', OnReceiveEvent);
 
 function OnReceiveEvent(err, data) {
-   ...
+   console.log("getAllShortcutInfo data:" + data);
 }
 ```
 
@@ -1156,7 +1223,7 @@ function OnReceiveEvent(err, data) {
 
 checkPermission(bundleName: string, permission: string): Promise\<GrantStatus>
 
-校验应用是否具有指定权限，通过Promise获取返回值。
+以异步方法校验指定bundle是否具有指定权限，使用Promise形式返回结果。
 
 **参数：**
 
@@ -1166,15 +1233,15 @@ checkPermission(bundleName: string, permission: string): Promise\<GrantStatus>
 | permission | string | 是   | 权限名   |
 
 **返回值：**
-| 类型                  | 说明                 |
-| --------------------- | -------------------- |
-| Promise\<GrantStatus> | 返回值为bundle信息。 |
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise\<GrantStatus> | 返回值为Promise对象，Promise中包含校验结果。<br/>-1: 未授权 <br/>0: 已授权 |
 
 **示例：**
 
-```
-bundle.getModuleUsageRecords('com.example.actsbmscheckpermissiontest', 'com.permission.CAMERA').then((data) => {
-    ...
+```js
+bundle.checkPermission('com.example.actsbmscheckpermissiontest', 'com.permission.CAMERA').then((data) => {
+    console.log("checkPermission data:" + data);
 });
 ```
 
@@ -1182,37 +1249,25 @@ bundle.getModuleUsageRecords('com.example.actsbmscheckpermissiontest', 'com.perm
 
 checkPermission(bundleName: string, permission: string, callback: AsyncCallback\<GrantStatus>): void
 
-校验应用是否具有指定权限，通过回调函数获取返回值。
+以异步方法校验指定bundle是否具有指定权限，使用callback形式返回结果。
 
 **参数：**
 
-| 名称       | 类型                        | 必填 | 描述     |
-| ---------- | --------------------------- | ---- | -------- |
-| bundleName | string                      | 是   | bundle名 |
-| permission | string                      | 是   | 权限名   |
-| callback   | AsyncCallback\<GrantStatus> | 是   | 回调方法 |
+| 名称       | 类型                        | 必填 | 描述                                                         |
+| ---------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName | string                      | 是   | bundle名                                                     |
+| permission | string                      | 是   | 权限名                                                       |
+| callback   | AsyncCallback\<GrantStatus> | 是   | 程序启动作为入参的回调函数，返回校验结果。<br/>-1: 未授权 <br/>0: 已授权 |
 
 **示例：**
 
-```
+```js
 bundle.checkPermission('com.example.actsbmscheckpermissiontest', 'com.permission.CAMERA', OnReceiveEvent);
 
 function OnReceiveEvent(err, data) {
-   ...
+   console.log("checkPermission data:" + data);
 }
 ```
-
-## Want
-
-| 名称        | 读写属性 | 类型                        | 必填 | 描述                                                         |
-| ----------- | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| elementName | 只读     | [ElementName](#elementname) | 是   | 表示运行指定Ability的ElementName。                           |
-| uri         | 只读     | string                      | 否   | 表示Uri描述。                                                |
-| flags       | 只读     | int                         | 否   | Ability的flag，表示处理Want的方式。                          |
-| type        | 只读     | string                      | 否   | Want中的type属性是指由Want的URI所指示的资源的MIME类型。      |
-| action      | 只读     | string                      | 否   | 表示动作，通常使用系统预置Action，应用也可以自定义Action。   |
-| want_param  | 只读     | {[key: string]: any}        | 否   | want_param是一种支持自定义的数据结构，开发者可以通过want_param传递某些请求所需的额外信息。 |
-| entities    | 只读     | Array\<string>              | 否   | 表示类别，通常使用系统预置Entity，应用也可以自定义Entity。   |
 
 ## ElementName
 
