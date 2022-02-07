@@ -6,6 +6,7 @@
 
 - 音频播放（[AudioPlayer](#audioplayer)）
 - 音频录制（[AudioRecorder](#audiorecorder)）
+- 视频录制（[VideoRecorder](#VideoRecorder<sup>8+</sup>)）
 
 后续将提供以下功能：视频播放、视频录制、DataSource音视频播放、音视频编解码、容器封装解封装、媒体能力查询等功能。
 
@@ -20,6 +21,8 @@ import media from '@ohos.multimedia.media';
 createAudioPlayer(): [AudioPlayer](#audioplayer)
 
 同步方式创建音频播放实例。
+
+
 
 **返回值：**
 
@@ -103,9 +106,127 @@ createAudioRecorder(): AudioRecorder
 
 **示例：**
 
-```
+```js
 var audiorecorder = media.createAudioRecorder(); 
 ```
+
+## media.createAudioRecorderAsync<sup>8+</sup>
+
+createAudioRecorderAsync(callback: AsyncCallback\<[AudioRecorder](#audiorecorder)>): void
+
+异步方式创建音频录制实例。通过注册回调函数获取返回值。
+
+**参数：**
+
+| 参数名   | 类型                                           | 必填 | 说明                           |
+| -------- | ---------------------------------------------- | ---- | ------------------------------ |
+| callback | AsyncCallback<[AudioRecorder](#audiorecorder)> | 是   | 异步创建音频录制实例回调方法。 |
+
+**示例：**
+
+```js
+media.createAudioRecorderAsync((error, audio) => {
+   if (typeof(audio) != 'undefined') {
+       audioRecorder = audio;
+       console.info('audio createAudioRecorderAsync success');
+   } else {
+       console.info(`audio createAudioRecorderAsync fail, error:${error.message}`);
+   }
+});
+```
+
+## media.createAudioRecorderAsync<sup>8+</sup>
+
+createAudioRecorderAsync: Promise<[AudioRecorder](#audiorecorder)>
+
+异步方式创建音频录制实例。通过Promise获取返回值。
+
+**返回值：**
+
+| 类型                                     | 说明                                |
+| ---------------------------------------- | ----------------------------------- |
+| Promise<[AudioRecorder](#audiorecorder)> | 异步创建音频录制实例Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`audio failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`audio catchCallback, error:${error.message}`);
+}
+
+await media.createAudioRecorderAsync.then((audio) => {
+    if (typeof(audio) != 'undefined') {
+       audioRecorder = audio;
+       console.info('audio createAudioRecorderAsync success');
+   } else {
+       console.info('audio createAudioRecorderAsync fail');
+   }
+}, failureCallback).catch(catchCallback);
+```
+
+
+
+## media.createVideoRecorderAsync<sup>8+</sup>
+
+createVideoRecorderAsync(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>): void
+
+异步方式创建视频录制实例。通过注册回调函数获取返回值。
+
+**参数：**
+
+| 参数名   | 类型                                                        | 必填 | 说明                           |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder8)> | 是   | 异步创建视频录制实例回调方法。 |
+
+**示例：**
+
+```js
+media.createVideoRecorderAsync((error, video) => {
+   if (typeof(video) != 'undefined') {
+       videoRecorder = video;
+       console.info('video createVideoRecorderAsync success');
+   } else {
+       console.info(`video createVideoRecorderAsync fail, error:${error.message}`);
+   }
+});
+```
+
+## media.createVideoRecorderAsync<sup>8+</sup>
+
+createVideoRecorderAsync: Promise<[VideoRecorder](#videorecorder8)>
+
+异步方式创建视频录制实例。通过Promise获取返回值。
+
+**返回值：**
+
+| 类型                                                  | 说明                                |
+| ----------------------------------------------------- | ----------------------------------- |
+| Promise<[VideoRecorder](#videorecorder8)> | 异步创建视频录制实例Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+
+await media.createVideoRecorderAsync.then((video) => {
+    if (typeof(video) != 'undefined') {
+       videoRecorder = video;
+       console.info('video createVideoRecorderAsync success');
+   } else {
+       console.info('video createVideoRecorderAsync fail');
+   }
+}, failureCallback).catch(catchCallback);
+```
+
+
 
 ## MediaErrorCode<sup>8+</sup>
 
@@ -140,6 +261,7 @@ Codec MIME类型枚举
 
 | 名称         | 值                | 说明                     |
 | ------------ | ----------------- | ------------------------ |
+| VIDEO_MPEG4  | ”video/mp4v-es“   | 表示视频/mpeg4类型。     |
 | AUDIO_MPEG   | "audio/mpeg"      | 表示音频/mpeg类型。      |
 | AUDIO_AAC    | "audio/mp4a-latm" | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | "audio/vorbis"    | 表示音频/vorbis类型。    |
@@ -558,9 +680,11 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ## AudioRecorder
 
-音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#createaudiorecorder-audiorecorder)构建一个AudioRecorder实例。
+音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#media.createaudiorecorder) 或[createAudioRecorderAsync()](#media.createaudiorecorderasync8)构建一个[AudioRecorder](#audiorecorder)实例。
 
-### prepare
+音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
+
+### prepare<a name=audiorecorder_prepare></a>
 
 prepare(config: AudioRecorderConfig): void
 
@@ -570,36 +694,73 @@ prepare(config: AudioRecorderConfig): void
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [AudioRecorderConfig](#audiorecorderconfig) | 是   | 配置录音的相关参数，包括音频输出URI、编码格式、采样率、声道数等。 |
+| config | [AudioRecorderConfig](#audiorecorderconfig) | 是   | 配置录音的相关参数，包括音频输出URI、[编码格式](#audioencoder)、采样率、声道数、[输出格式](#audiooutputformat)等。 |
 
 **示例：**
 
-```
+```js
 let audioRecorderConfig = {
-    audioEncoder : AAC_LC ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
-    format : AAC_ADTS,
-    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',
+    format : media.AudioOutputFormat.AAC_ADTS,
+    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',       // 文件需先由调用者创建，并给予适当的权限
+    location : { latitude : 30, longitude : 130},
 }
-audiorecorder.prepare(audioRecorderConfig)
+audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
+    console.log('prepare success');
+});
+audioRecorder.prepare(audioRecorderConfig)
 ```
 
 
-### start
+### start<a name=audiorecorder_start></a>
 
 start(): void
 
-开始录音。
+开始录制，需在[prepare](#on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'))事件成功触发后，才能调用start方法。
 
 **示例：**
 
-```
-audiorecorder.start();
+```js
+audioRecorder.on('start', () => {    //设置'start'事件回调
+    console.log('audio recorder start success');
+});
+audioRecorder.start();
 ```
 
-### stop
+### pause<a name=audiorecorder_pause></a>
+
+pause():void
+
+暂停录制，需要在[start](#on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'))事件成功触发后，才能调用pause方法。
+
+**示例：**
+
+```js
+audioRecorder.on('pause', () => {    //设置'pause'事件回调
+    console.log('audio recorder pause success');
+});
+audioRecorder.pause();
+```
+
+### resume<a name=audiorecorder_resume></a>
+
+resume():void
+
+暂停录制，需要在[pause](#on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'))事件成功触发后，才能调用resume方法。
+
+**示例：**
+
+```js
+audioRecorder.on('resume', () => {    //设置'resume'事件回调
+    console.log('audio recorder resume success');
+});
+audioRecorder.resume();
+```
+
+### stop<a name=audiorecorder_stop></a>
 
 stop(): void
 
@@ -607,11 +768,14 @@ stop(): void
 
 **示例：**
 
-```
-audiorecorder.stop();
+```js
+audioRecorder.on('stop', () => {    //设置'stop'事件回调
+    console.log('audio recorder stop success');
+});
+audioRecorder.stop();
 ```
 
-### release
+### release<a name=audiorecorder_release></a>
 
 release(): void
 
@@ -619,17 +783,18 @@ release(): void
 
 **示例：**
 
-```
-audiorecorder.release();
+```js
+audioRecorder.release();
+audioRecorder = undefined;
 ```
 
-### reset
+### reset<a name=audiorecorder_reset></a>
 
 reset(): void
 
 重置录音。
 
-进行重置录音之前，需要先调用stop()停止录音。重置录音之后，需要调用prepare()设置录音配置项，才能再次进行录音。
+进行重置录音之前，需要先调用[stop()](#audiorecorder_stop)停止录音。重置录音之后，需要调用[prepare()](#audiorecorder_prepare)设置录音参数项，才能再次进行录音。
 
 **示例：**
 
@@ -637,9 +802,9 @@ reset(): void
 audiorecorder.reset();
 ```
 
-### on('prepare' | 'start' |  'stop' | 'release' | 'reset')
+### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')
 
-on(type: 'prepare' | 'start' | 'stop' | 'release' | 'reset', callback: () => void): void
+on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void
 
 开始订阅音频录制事件。
 
@@ -647,15 +812,49 @@ on(type: 'prepare' | 'start' | 'stop' | 'release' | 'reset', callback: () => voi
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 录制事件回调类型，支持的事件包括：'prepare'&nbsp;\|&nbsp;'start'&nbsp;\|&nbsp;'stop'&nbsp;\|&nbsp;'release'&nbsp;\|&nbsp;'reset'。<br/>-&nbsp;'prepare'&nbsp;：音频录制准备完成后，触发该事件。<br/>-&nbsp;'start'&nbsp;：音频录制开始后，触发该事件。<br/>-&nbsp;'stop'&nbsp;：音频录制停止后，触发该事件。<br/>-&nbsp;'release'&nbsp;：音频录制相关资源释放后，触发该事件。<br/>-&nbsp;'reset'：音频录制重置后，触发该事件。 |
-| callback | function | 是   | 录制事件回调方法。                                           |
+| type     | string   | 是   | 录制事件回调类型，支持的事件包括：'prepare'&nbsp;\|&nbsp;'start'&nbsp;\|  'pause' \| ’resume‘ \|&nbsp;'stop'&nbsp;\|&nbsp;'release'&nbsp;\|&nbsp;'reset'。<br/>-&nbsp;'prepare'&nbsp;：完成[prepare](#audiorecorder_prepare)调用，音频录制参数设置完成，触发该事件。<br/>-&nbsp;'start'&nbsp;：完成[start](#audiorecorder_start)调用，音频录制开始，触发该事件。<br/>-&nbsp;'pause': 完成[pause](#audiorecorder_pause)调用，音频暂停录制，触发该事件。<br/>-&nbsp;'resume': 完成[resume](#audiorecorder_resume)调用，音频恢复录制，触发该事件。<br/>-&nbsp;'stop'&nbsp;：完成[stop](#audiorecorder_stop)调用，音频停止录制，触发该事件。<br/>-&nbsp;'release'&nbsp;：完成[release](#audiorecorder_release)调用，音频释放录制资源，触发该事件。<br/>-&nbsp;'reset'：完成[reset](#audiorecorder_reset)调用，音频重置为初始状态，触发该事件。 |
+| callback | ()=>void | 是   | 录制事件回调方法。                                           |
 
 **示例：**
 
-```
-audiorecorder.on('prepare', () => {
-  console.log('Preparation succeeded.');
-  audiorecorder.start();
+```js
+let audiorecorder = media.createAudioRecorder();  								// 创建一个音频录制实例
+let audioRecorderConfig = {
+    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncodeBitRate : 22050,
+    audioSampleRate : 22050,
+    numberOfChannels : 2,
+    format : media.AudioOutputFormat.AAC_ADTS,
+    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',  // 文件需先由调用者创建，并给予适当的权限
+    location : { latitude : 30, longitude : 130},
+}
+audioRecorder.on('error', (error) => {             								// 设置'error'事件回调
+	console.info(`audio error called, errName is ${error.name}`);
+    console.info(`audio error called, errCode is ${error.code}`);
+    console.info(`audio error called, errMessage is ${error.message}`);
+});
+audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
+    console.log('prepare success');
+    audioRecorder.start();                       								// 开始录制，并触发'start'事件回调
+});
+audioRecorder.prepare(audioRecorderConfig)       								// 设置录制参数 ，并触发'prepare'事件回调
+audioRecorder.on('start', () => {    		     								// 设置'start'事件回调
+    console.log('audio recorder start success');
+});
+audioRecorder.on('pause', () => {    		     								// 设置'pause'事件回调
+    console.log('audio recorder pause success');
+});
+audioRecorder.on('resume', () => {    		     								// 设置'resume'事件回调
+    console.log('audio recorder resume success');
+});
+audioRecorder.on('stop', () => {    		     								// 设置'stop'事件回调
+    console.log('audio recorder stop success');
+});
+audioRecorder.on('release', () => {    		     								// 设置'release'事件回调
+    console.log('audio recorder release success');
+});
+audioRecorder.on('reset', () => {    		     								// 设置'reset'事件回调
+    console.log('audio recorder reset success');
 });
 ```
 
@@ -672,19 +871,30 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：音频录制过程中发生错误，触发该事件。 |
 | callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
 
+**示例：**
+
+```js
+audioRecorder.on('error', (error) => {      							// 设置'error'事件回调
+	console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
+    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
+    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
+});
+audioRecorder.prepare();  												// prepare不设置参数，触发'error'事件
+```
 
 ## AudioRecorderConfig
 
 表示音频的录音配置。
 
-| 名称               | 参数类型                                | 必填 | 说明                                                         |
-| ------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioEncoder       | [AudioEncoder](#audioencoder)           | 否   | 音频编码格式，默认设置为AAC_LC。                             |
-| audioEncodeBitRate | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
-| audioSampleRate    | number                                  | 否   | 音频采集采样率，默认值为48000。                              |
-| numberOfChannels   | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
-| format             | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
-| uri                | string                                  | 是   | 音频输出URI。支持：<br/>1.&nbsp;文件的绝对路径：file:///data/data/ohos.xxx.xxx/cache/test.mp4![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br/>2.&nbsp;文件的fd路径：file://1&nbsp;(fd&nbsp;number) |
+| 名称                  | 参数类型                                | 必填 | 说明                                                         |
+| --------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioEncoder          | [AudioEncoder](#audioencoder)           | 否   | 音频编码格式，默认设置为AAC_LC。                             |
+| audioEncodeBitRate    | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
+| audioSampleRate       | number                                  | 否   | 音频采集采样率，默认值为48000。                              |
+| numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
+| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
+| location<sup>8+</sup> | [Location](#location8)                  | 否   | 音频采集的地理位置。                                         |
+| uri                   | string                                  | 是   | 音频输出URI。支持：<br/>1.&nbsp;文件的绝对路径：file:///data/data/ohos.xxx.xxx/cache/test.mp4![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br/>2.&nbsp;文件的fd路径：file://1&nbsp;(fd&nbsp;number)<br/> 文件需要由调用者创建，并赋予适当的权限。 |
 
 
 ## AudioEncoder
@@ -704,3 +914,659 @@ on(type: 'error', callback: ErrorCallback): void
 | -------- | ------ | ------------------------------------------------------------ |
 | MPEG_4   | 2      | 封装为MPEG-4格式。                                           |
 | AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
+
+## VideoRecorder<sup>8+</sup>
+
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorderAsync()](#media.createvideorecorderasync<sup>8+</sup>)构建一个[VideoRecorder](#videorecorder<sup>8+</sup>)实例。
+
+视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
+
+### 属性
+
+| 名称  | 类型                                  | 可读 | 可写 | 说明             |
+| ----- | ------------------------------------- | ---- | ---- | ---------------- |
+| state | [VideoRecordState](#videorecordstate) | 是   | 否   | 视频录制的状态。 |
+
+### prepare<a name=videorecorder_prepare1></a>
+
+prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
+
+异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                |
+| -------- | ------------------------------------------- | ---- | ----------------------------------- |
+| config   | [VideoRecorderConfig](#videorecorderconfig) | 是   | 配置视频录制的相关参数。            |
+| callback | AsyncCallback\<void>                        | 是   | 异步视频录制prepare方法的回调方法。 |
+
+**示例：**
+
+```js
+let videoProfile = {
+    audioBitrate : 48000,
+    audioChannels : 2,
+    audioCodec : 'audio/mp4a-latm',
+    audioSampleRate : 48000,
+    fileFormat : 'mp4',
+    videoBitrate : 48000,
+    videoCodec : 'video/mp4v-es',
+    videoFrameWidth : 640,
+    videoFrameHeight : 480,
+    videoFrameRate : 30
+}
+
+let videoConfig = {
+    audioSourceType : 1,
+    videoSourceType : 0,
+    profile : videoProfile,
+    url : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.mp4',   // 文件需先由调用者创建，并给予适当的权限
+    orientationHint : 0,
+    location : { latitude : 30, longitude : 130 },
+}
+
+// asyncallback
+let videoRecorder = null;
+let events = require('events');
+let eventEmitter = new events.EventEmitter();                              // prepare事件触发
+
+eventEmitter.on('prepare', () => {
+    videoRecorder.prepare(videoConfig, (err) => {
+        if (typeof (err) == 'undefined') {
+            console.info('prepare success')
+        } else {
+            console.info('prepare failed and error is ' + err.message)
+        }
+    });
+});
+
+media.createVideoRecorder((err, recorder) => {
+    if (typeof (err) == 'undefined' && typeof (recorder) != 'undefined') {
+        videoRecorder = recorder
+        console.info('createVideoRecorder success')
+        eventEmitter.emit('prepare')
+    } else {
+        console.info('createVideoRecorder failed and error is ' + err.message)
+    }
+});
+```
+
+### prepare<a name=videorecorder_prepare2></a>
+
+prepare(config: VideoRecorderConfig): Promise\<void>;
+
+异步方式进行视频录制的参数设置。通过Promise获取返回值。
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| config | [VideoRecorderConfig](#videorecorderconfig) | 是   | 配置视频录制的相关参数。 |
+
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<void> | 异步视频录制prepare方法的Promise返回值。 |
+
+**示例：**
+
+```js
+let videoProfile = {
+    audioBitrate : 48000,
+    audioChannels : 2,
+    audioCodec : 'audio/mp4a-latm',
+    audioSampleRate : 48000,
+    fileFormat : 'mp4',
+    videoBitrate : 48000,
+    videoCodec : 'video/mp4v-es',
+    videoFrameWidth : 640,
+    videoFrameHeight : 480,
+    videoFrameRate : 30
+}
+
+let videoConfig = {
+    audioSourceType : 1,
+    videoSourceType : 0,
+    profile : videoProfile,
+    url : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.mp4',   // 文件需先由调用者创建，并给予适当的权限
+    orientationHint : 0,
+    location : { latitude : 30, longitude : 130 },
+}
+
+// promise
+let videoRecorder = null;
+await media.createVideoRecorder().then((recorder) => {
+    if (typeof (recorder) != 'undefined') {
+        videoRecorder = recorder;
+        console.info('createVideoRecorder success');
+    } else {
+        console.info('createVideoRecorder failed');
+    }
+}, (err) => {
+    console.info('error hanppend message is ' + err.message);
+}).catch((err) => {
+    console.info('catch err error message is ' + err.message);
+});
+
+await videoRecorder.prepare(videoConfig).then(() => {
+    console.info('prepare success');
+}, (err) => {
+    console.info('prepare failed and error is ' + err.message);
+}).catch((err) => {
+    console.info('prepare failed and catch error is ' + err.message);
+});
+```
+
+### getInputSurface
+
+getInputSurface(callback: AsyncCallback\<string>): void;
+
+异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
+
+应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
+
+只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                        |
+| -------- | ---------------------- | ---- | --------------------------- |
+| callback | AsyncCallback\<string> | 是   | 异步获得surface的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+let surfaceId = null;
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('getInputSurface', () => {
+    videoRecorder.getInputSurface((err, surfaceId) => {
+        if (typeof (err) == 'undefined') {
+            console.info('getInputSurface success');
+        } else {
+            console.info('getInputSurface failed and error is ' + err.message);
+        }
+    });
+});
+```
+
+### getInputSurface
+
+getInputSurface(): Promise\<string>;
+
+ 异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
+
+应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
+
+只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<string> | 异步获得surface的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+let surfaceId = null;
+await videoRecorder.getInputSurface().then((surface) => {
+    console.info('getInputSurface success');
+    surfaceId = surface;
+}, (err) => {
+    console.info('getInputSurface failed and error is ' + err.message);
+}).catch((err) => {
+    console.info('getInputSurface failed and catch error is ' + err.message);
+});
+```
+
+### start<a name=videorecorder_start1></a>
+
+start(callback: AsyncCallback\<void>): void;
+
+异步方式开始视频录制。通过注册回调函数获取返回值。
+
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)后调用，需要依赖数据源先给surface传递数据。
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步开始视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('start', () => {
+    videoRecorder.start((err) => {
+        if (typeof (err) == 'undefined') {
+            console.info('start videorecorder success');
+        } else {
+            console.info('start videorecorder failed and error is ' + err.message);
+        }
+    });
+});
+```
+
+### start<a name=videorecorder_start2></a>
+
+start(): Promise\<void>;
+
+异步方式开始视频录制。通过Promise获取返回值。
+
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)后调用，需要依赖数据源先给surface传递数据。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步开始视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+await videoRecorder.start().then(() => {
+    console.info('start videorecorder success');
+}, (err) => {
+    console.info('start videorecorder failed and error is ' + err.message);
+}).catch((err) => {
+    console.info('start videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### pause<a name=videorecorder_pause1></a>
+
+pause(callback: AsyncCallback\<void>): void;
+
+异步方式暂停视频录制。通过注册回调函数获取返回值。
+
+在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步暂停视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('pause', () => {
+    videoRecorder.pause((err) => {
+        if (typeof (err) == 'undefined') {
+            console.info('pause videorecorder success');
+        } else {
+            console.info('pause videorecorder failed and error is ' + err.message);
+        }
+    });
+});
+```
+
+### pause<a name=videorecorder_pause2></a>
+
+pause(): Promise\<void>;
+
+异步方式暂停视频录制。通过Promise获取返回值。
+
+在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步暂停视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+await videoRecorder.pause().then(() => {
+    console.info('pause videorecorder success');
+}, (err) => {
+    console.info('pause videorecorder failed and error is ' + err.message);
+}).catch((err) => {
+    console.info('pause videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### resume<a name=videorecorder_resume1></a>
+
+resume(callback: AsyncCallback\<void>): void;
+
+异步方式恢复视频录制。通过注册回调函数获取返回值。
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步恢复视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('resume', () => {
+    videoRecorder.resume((err) => {
+        if (typeof (err) == 'undefined') {
+            console.info('resume videorecorder success');
+        } else {
+            console.info('resume videorecorder failed and error is ' + err.message);
+        }
+    });
+});
+```
+
+### resume<a name=videorecorder_resume2></a>
+
+resume(): Promise\<void>;
+
+异步方式恢复视频录制。通过Promise获取返回值。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步恢复视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+await videoRecorder.resume().then(() => {
+    console.info('resume videorecorder success');
+}, (err) => {
+    console.info('resume videorecorder failed and error is ' + err.message);
+}).catch((err) => {
+    console.info('resume videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### stop<a name=videorecorder_stop1></a>
+
+stop(callback: AsyncCallback\<void>): void;
+
+异步方式停止视频录制。通过注册回调函数获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)接口才能重新录制。
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步停止视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('stop', () => {
+    videoRecorder.stop((err) => {
+        if (typeof (err) == 'undefined') {
+            console.info('stop videorecorder success');
+        } else {
+            console.info('stop videorecorder failed and error is ' + err.message);
+        }
+    });
+});
+```
+
+### stop<a name=videorecorder_stop2></a>
+
+stop(): Promise\<void>;
+
+异步方式停止视频录制。通过Promise获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)接口才能重新录制。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步停止视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+await videoRecorder.stop().then(() => {
+    console.info('stop videorecorder success');
+}, (err) => {
+    console.info('stop videorecorder failed and error is ' + err.message);
+}).catch((err) => {
+    console.info('stop videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### release<a name=videorecorder_release1></a>
+
+release(callback: AsyncCallback\<void>): void;
+
+异步方式释放视频录制资源。通过注册回调函数获取返回值。
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                             |
+| -------- | -------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步释放视频录制资源的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('release', () => {
+    videoRecorder.release((err) => {
+        if (typeof (err) == 'undefined') {
+            console.info('release videorecorder success');
+        } else {
+            console.info('release videorecorder failed and error is ' + err.message);
+        }
+    });
+});
+```
+
+### release<a name=videorecorder_release2></a>
+
+release(): Promise\<void>;
+
+异步方式释放视频录制资源。通过Promise获取返回值。
+
+**返回值：**
+
+| 类型           | 说明                                      |
+| -------------- | ----------------------------------------- |
+| Promise\<void> | 异步释放视频录制资源方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+await videoRecorder.release().then(() => {
+    console.info('release videorecorder success');
+}, (err) => {
+    console.info('release videorecorder failed and error is ' + err.message);
+}).catch((err) => {
+    console.info('release videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### reset<a name=videorecorder_reset1></a>
+
+reset(callback: AsyncCallback\<void>): void;
+
+异步方式重置视频录制。通过注册回调函数获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)接口才能重新录制。
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步重置视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('reset', () => {
+    videoRecorder.reset((err) => {
+        if (typeof (err) == 'undefined') {
+            console.info('reset videorecorder success');
+        } else {
+            console.info('reset videorecorder failed and error is ' + err.message);
+        }
+    });
+});
+```
+
+### reset<a name=videorecorder_reset2></a>
+
+reset(): Promise\<void>;
+
+异步方式重置视频录制。通过Promise获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)接口才能重新录制。
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步重置视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+await videoRecorder.reset().then(() => {
+    console.info('reset videorecorder success');
+}, (err) => {
+    console.info('reset videorecorder failed and error is ' + err.message);
+}).catch((err) => {
+    console.info('reset videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### on('error')
+
+on(type: 'error', callback: ErrorCallback): void
+
+开始订阅视频录制错误事件。
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：音频录制过程中发生错误，触发该事件。 |
+| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+
+**示例：**
+
+```js
+videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
+	console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
+    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
+    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
+});
+// 当获取videoRecordState接口出错时通过此订阅事件上报
+```
+
+## VideoRecordState<sup>8+</sup>
+
+视频录制的状态机。可通过state属性获取当前状态。
+
+| 名称     | 类型   | 描述                   |
+| -------- | ------ | ---------------------- |
+| idle     | string | 视频录制空闲。         |
+| prepared | string | 视频录制参数设置完成。 |
+| playing  | string | 视频正在录制。         |
+| paused   | string | 视频暂停录制。         |
+| stopped  | string | 视频录制停止。         |
+| error    | string | 错误状态。             |
+
+## VideoRecorderConfig<sup>8+</sup>
+
+表示视频录制的参数设置。
+
+| 名称            | 参数类型                                                   | 必填 | 说明                                                         |
+| --------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioSourceType | [AudioSourceType](#audiosourcetype<sup>8+</sup>)           | 是   | 视频录制的音频源类型。                                       |
+| videoSourceType | [VideoSourceType](#videosourcetype<sup>8+</sup>)           | 是   | 视频录制的视频源类型。                                       |
+| profile         | [VideoRecorderProfile](#videorecorderprofile<sup>8+</sup>) | 是   | 视频录制的profile。                                          |
+| orientationHint | number                                                     | 否   | 录制视频的旋转角度。                                         |
+| location        | [Location](#location8)                                     | 否   | 录制视频的地理位置。                                         |
+| uri             | string                                                     | 是   | 视频输出URI。支持：<br/>1.&nbsp;文件的绝对路径：file:///data/data/ohos.xxx.xxx/cache/test.mp4![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br/>2.&nbsp;文件的fd路径：file://1&nbsp;(fd&nbsp;number)<br/> 文件需要由调用者创建，并赋予适当的权限。 |
+
+## AudioSourceType<sup>8+</sup>
+
+表示视频录制中音频源类型的枚举。
+
+| 名称                       | 值   | 说明                   |
+| -------------------------- | ---- | ---------------------- |
+| AUDIO_SOURCE_TYPE_DEFAULT0 | 0    | 默认的音频输入源类型。 |
+| AUDIO_SOURCE_TYPE_MIC      | 1    | 表示MIC的音频输入源。  |
+
+## VideoSourceType<sup>8+</sup>
+
+表示视频录制中视频源类型的枚举。
+
+| 名称                          | 值   | 说明                            |
+| ----------------------------- | ---- | ------------------------------- |
+| VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | 输入surface中携带的是raw data。 |
+| VIDEO_SOURCE_TYPE_SURFACE_ES  | 1    | 输入surface中携带的是ES data。  |
+
+## VideoRecorderProfile<sup>8+</sup>
+
+视频录制的配置文件。
+
+| 名称             | 参数类型                                     | 必填 | 说明             |
+| ---------------- | -------------------------------------------- | ---- | ---------------- |
+| audioBitrate     | number                                       | 是   | 音频编码比特率。 |
+| audioChannels    | number                                       | 是   | 音频采集声道数。 |
+| audioCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 音频编码格式。   |
+| audioSampleRate  | number                                       | 是   | 音频采样率。     |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
+| videoCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 视频编码格式。   |
+| videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
+| videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
+
+## ContainerFormatType<sup>8+</sup>
+
+表示容器格式类型的枚举，缩写为CFT。
+
+| 名称        | 值    | 说明                  |
+| ----------- | ----- | --------------------- |
+| CFT_MPEG_4  | "mp4" | 视频的容器格式，MP4。 |
+| CFT_MPEG_4A | "m4a" | 音频的容器格式，M4A。 |
+
+## Location<sup>8+</sup>
+
+视频录制的地理位置。
+
+| 名称      | 参数类型 | 必填 | 说明             |
+| --------- | -------- | ---- | ---------------- |
+| latitude  | number   | 是   | 地理位置的纬度。 |
+| longitude | number   | 是   | 地理位置的经度。 |
