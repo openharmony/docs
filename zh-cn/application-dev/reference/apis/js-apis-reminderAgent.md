@@ -11,6 +11,11 @@ import reminderAgent from'@ohos.reminderAgent';
 ```
 
 
+## 系统能力
+
+SystemCapability.Notification.ReminderAgent
+
+
 ## 权限
 
 ohos.permission.PUBLISH_AGENT_REMINDER
