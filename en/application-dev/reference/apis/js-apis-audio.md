@@ -2,15 +2,6 @@
 
 This module provides the following functions: audio management, audio rendering and system sound management.
 
-
----
-## ***Note:***
-
-    Changes to the AudioRenderer interface have been proposed.
-    When the updated APIs have been integrated, the document will be revised, and apps must adapt to it.
-
----
-
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
 ```
@@ -71,8 +62,25 @@ Obtains an  **AudioRenderer**  instance.
 **Example**
 
 ```
-const volType = audio.AudioVolumeType.MEDIA;
-const audioRenderer = audio.createAudioRenderer(volType);
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_1,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+
+let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 ```
 
 
@@ -112,7 +120,15 @@ Enumerates audio stream types.
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1389215612395"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p52851329122117"><a name="p52851329122117"></a><a name="p52851329122117"></a>RINGTONE</p>
+<tbody>
+<tr id="row1389215612395"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p52851329122117"><a name="p52851329122117"></a><a name="p52851329122117"></a>VOICE_CALL</p>
+</td>
+<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p2282152962115"><a name="p2282152962115"></a><a name="p2282152962115"></a>0</p>
+</td>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p328012293211"><a name="p328012293211"></a><a name="p328012293211"></a>Audio stream for voice calls.</p>
+</td>
+</tr>
+<tr id="row1389215612395"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p52851329122117"><a name="p52851329122117"></a><a name="p52851329122117"></a>RINGTONE</p>
 </td>
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p2282152962115"><a name="p2282152962115"></a><a name="p2282152962115"></a>2</p>
 </td>
@@ -124,6 +140,13 @@ Enumerates audio stream types.
 <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p17273229192113"><a name="p17273229192113"></a><a name="p17273229192113"></a>3</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p182452299212"><a name="p182452299212"></a><a name="p182452299212"></a>Audio stream for media purpose.</p>
+</td>
+</tr>
+<tr id="row6892145616397"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p027662952110"><a name="p027662952110"></a><a name="p027662952110"></a>VOICE_ASSISTANT</p>
+</td>
+<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p17273229192113"><a name="p17273229192113"></a><a name="p17273229192113"></a>9</p>
+</td>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p182452299212"><a name="p182452299212"></a><a name="p182452299212"></a>Audio stream for voice assistant.</p>
 </td>
 </tr>
 </tbody>
@@ -221,35 +244,35 @@ Enumerates audio device types.
 </tr>
 <tr id="row16728520192714"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p4753161132815"><a name="p4753161132815"></a><a name="p4753161132815"></a>SPEAKER</p>
 </td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p3728920162713"><a name="p3728920162713"></a><a name="p3728920162713"></a>1</p>
+<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p3728920162713"><a name="p3728920162713"></a><a name="p3728920162713"></a>2</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p17728112062715"><a name="p17728112062715"></a><a name="p17728112062715"></a>Speaker.</p>
 </td>
 </tr>
 <tr id="row1758117472814"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p74802011112815"><a name="p74802011112815"></a><a name="p74802011112815"></a>WIRED_HEADSET</p>
 </td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p35820462819"><a name="p35820462819"></a><a name="p35820462819"></a>2</p>
+<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p35820462819"><a name="p35820462819"></a><a name="p35820462819"></a>3</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p155821548285"><a name="p155821548285"></a><a name="p155821548285"></a>Wired headset.</p>
 </td>
 </tr>
 <tr id="row1335108192818"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p107521514142811"><a name="p107521514142811"></a><a name="p107521514142811"></a>BLUETOOTH_SCO</p>
 </td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p18335108112819"><a name="p18335108112819"></a><a name="p18335108112819"></a>3</p>
+<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p18335108112819"><a name="p18335108112819"></a><a name="p18335108112819"></a>7</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p193351683289"><a name="p193351683289"></a><a name="p193351683289"></a>Bluetooth device using the synchronous connection oriented (SCO) link.</p>
 </td>
 </tr>
 <tr id="row1649111617286"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p10784017102818"><a name="p10784017102818"></a><a name="p10784017102818"></a>BLUETOOTH_A2DP</p>
 </td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p849110610286"><a name="p849110610286"></a><a name="p849110610286"></a>4</p>
+<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p849110610286"><a name="p849110610286"></a><a name="p849110610286"></a>8</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p549117620284"><a name="p549117620284"></a><a name="p549117620284"></a>Bluetooth device using the advanced audio distribution profile (A2DP).</p>
 </td>
 </tr>
 <tr id="row81701220112812"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p168642028152812"><a name="p168642028152812"></a><a name="p168642028152812"></a>MIC</p>
 </td>
-<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p517062012812"><a name="p517062012812"></a><a name="p517062012812"></a>5</p>
+<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p517062012812"><a name="p517062012812"></a><a name="p517062012812"></a>15</p>
 </td>
 <td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p5170520112813"><a name="p5170520112813"></a><a name="p5170520112813"></a>Microphone.</p>
 </td>
@@ -302,19 +325,24 @@ Enumerates the audio sample formats.
 | Name          | Default Value | Description                           |
 | :------------ | :------------ | :------------------------------------ |
 | INVALID_WIDTH | -1            | Invalid format.                       |
-| SAMPLE_U8     | 1             | Unsigned 8 bit integer.               |
-| SAMPLE_S16LE  | 0             | Signed 16 bit integer, little endian. |
-| SAMPLE_S24LE  | 1             | Signed 24 bit integer, little endian. |
-| SAMPLE_S32LE  | 2             | Signed 32 bit integer, little endian. |
-
+| SAMPLE_U8     | 0             | Unsigned 8 bit integer.               |
+| SAMPLE_S16LE  | 1             | Signed 16 bit integer, little endian. |
+| SAMPLE_S24LE  | 2             | Signed 24 bit integer, little endian. |
+| SAMPLE_S32LE  | 3             | Signed 32 bit integer, little endian. |
 
 ## AudioChannel<sup>8+</sup><a name="audiochannel"></a>
 Enumerates the audio channels.
 
 | Name   | Default Value | Description      |
 | :----- | :------------ | :--------------- |
-| MONO   | 1             | Channel count 1. |
-| STEREO | 2             | Channel count 2. |
+| CHANNEL_1 | 0x1 << 0   | Channel count 1. |
+| CHANNEL_2 | 0x1 << 1   | Channel count 2. |
+| CHANNEL_3 | 0x1 << 2   | Channel count 3. |
+| CHANNEL_4 | 0x1 << 3   | Channel count 4. |
+| CHANNEL_5 | 0x1 << 4   | Channel count 5. |
+| CHANNEL_6 | 0x1 << 5   | Channel count 6. |
+| CHANNEL_7 | 0x1 << 6   | Channel count 7. |
+| CHANNEL_8 | 0x1 << 7   | Channel count 8. |
 
 
 ## AudioSamplingRate<sup>8+</sup><a name="audiosamplingrate"></a>
@@ -338,10 +366,10 @@ Enumerates the audio sampling rates.
 ## AudioEncodingType<sup>8+</sup><a name="audioencodingtype"></a>
 Enumerates the audio encoding types.
 
-| Name             | Default Value | Description |
-| :--------------- | :------------ | :---------- |
-| ENCODING_PCM     | 0             | PCM.        |
-| ENCODING_INVALID | 1             | Invalid.    |
+| Name                  | Default Value | Description       |
+| :-------------------- | :------------ | :---------------- |
+| ENCODING_TYPE_INVALID | -1             | Invalid.        |
+| ENCODING_TYPE_RAW     |  0             | PCM encoding.    |
 
 
 ## ContentType<sup>8+</sup><a name="contentype"></a>
@@ -431,23 +459,17 @@ Enumerates the ringtone types.
 | RINGTONE_TYPE_DEFAULT  | 0             | Default type.   |
 | RINGTONE_TYPE_MULTISIM | 1             | Multi-SIM type. |
 
-
-## AudioParameters<sup>8+</sup><a name="audioparameters"></a>
-Describes audio parameters of playback files.
+## AudioStreamInfo<sup>8+</sup><a name="audiorstreaminfo"></a>
+Describes audio stream information.
 
 **Parameters**
 
-| Name         | Type              | Mandatory | Description                                   |
-| :----------- | :---------------- | :-------- | :-------------------------------------------- |
-| format       | AudioSampleFormat | Yes       | Sample format of the audio file to be played. |
-| channels     | AudioChannel      | Yes       | Channel count of the audio file to be played. |
-| samplingRate | AudioSamplingRate | Yes       | Sample rate of the audio file to be played.   |
-| encoding     | AudioEncodingType | Yes       | Encoding type of the audio file to be played. |
-| contentType  | ContentType       | Yes       | Content type.                                 |
-| usage        | StreamUsage       | Yes       | Stream usage.                                 |
-| deviceRole   | DeviceRole        | Yes       | Device role.                                  |
-| deviceType   | DeviceType        | Yes       | Device type.                                  |
-
+| Name          | Type                  | Mandatory | Description           |
+| :------------ | :-------------------- | :-------- | :-------------------- |
+| samplingRate  | AudioSamplingRate     | Yes       | Sampling rate.        |
+| channels      | AudioChannel          | Yes       | Audio channels.       |
+| sampleFormat  | AudioSampleFormat     | Yes       | Audio sample format.  |
+| encodingType  | AudioEncodingType     | Yes       | Audio encoding type.  |
 
 ## AudioRendererInfo<sup>8+</sup><a name="audiorendererinfo"></a>
 Describes audio renderer information.
@@ -2461,20 +2483,18 @@ Defines the current render state.
     var state = audioRenderer.state;
 ```
 
+## audioRenderer.getRendererInfo
 
-## audioRenderer.setParams
+getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void<sup>8+</sup><a name="getrendererinfo-asynccallback"></a>
 
-setParams(params: AudioParameters, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setparams-asynccallback"></a>
-
-Sets audio parameters for rendering. This method uses an asynchronous callback to return the result.
+Gets the renderer information provided while creating a renderer instance. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                             |
-| :------- | :------------------- | :-------- | :-------------------------------------- |
-| params   | AudioParameters      | Yes       | Audio parameters of the file to be set. |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result.     |
-|          |                      |           |                                         |
+| Name     | Type                               | Mandatory | Description                                       |
+| :------- | :--------------------------------- | :-------- | :------------------------------------------------ |
+| callback | AsyncCallback<AudioRendererInfo\>  | Yes       | Callback used to return the renderer information. |
+|          |                                    |           |                                                   |
 
 **Return value**
 
@@ -2483,34 +2503,136 @@ None
 **Example**
 
 ```
-var audioParams = {
-        format: audio.AudioSampleFormat.SAMPLE_S16LE,
-        channels: audio.AudioChannel.STEREO,
-        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_16000,
-        encoding: audio.AudioEncodingType.ENCODING_PCM,
-    };
-
-audioRenderer.setParams(audioParams, (err)=>{
-   if (err) {
-	   console.error('Failed to set params. ${err.message}');
-	   return;
-   }
-   console.log('Callback invoked to indicate a successful params setting.');
+audioRenderer.getRendererInfo((err, rendererInfo)=>{
+    console.log('Renderer GetRendererInfo:');
+    console.log('Renderer content:' + rendererInfo.content);
+    console.log('Renderer usage:' + rendererInfo.usage);
+    console.log('Renderer flags:' + rendererInfo.rendererFlags);
 })
 ```
 
 
-## audioRenderer.setParams
+## audioRenderer.getRendererInfo
 
-setParams(params: AudioParameters): Promise<void\><sup>8+</sup><a name="setparams-promise"></a>
+getParams(): Promise<AudioRendererInfo\><sup>8+</sup><a name="getrendererinfo-promise"></a>
 
-Sets audio parameters for rendering. This method uses a promise to return the result.
+Gets the renderer information provided while creating a renderer instance. This method uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type            | Mandatory | Description                             |
-| :----- | :-------------- | :-------- | :-------------------------------------- |
-| params | AudioParameters | Yes       | Audio parameters of the file to be set. |
+None
+
+**Return value**
+
+| Type                          | Description                                      |
+| :---------------------------- | :----------------------------------------------- |
+| Promise<AudioRendererInfo\>   | Promise used to return the renderer information. |
+
+**Example**
+
+```
+let rendererInfo = await audioRenderer.getRendererInfo();
+console.log('Renderer GetRendererInfo:');
+console.log('Renderer content:' + rendererInfo.content);
+console.log('Renderer usage:' + rendererInfo.usage);
+console.log('Renderer flags:' + rendererInfo.rendererFlags);
+```
+
+## audioRenderer.getStreamInfo
+
+getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void<sup>8+</sup><a name="getstreaminfo-asynccallback"></a>
+
+Gets the renderer stream information. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                               | Mandatory | Description                                     |
+| :------- | :--------------------------------- | :-------- | :---------------------------------------------- |
+| callback | AsyncCallback<AudioStreamInfo\>    | Yes       | Callback used to return the stream information. |
+|          |                                    |           |                                                 |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.getStreamInfo((err, streamInfo)=>{
+    console.log('Renderer GetStreamInfo:');
+    console.log('Renderer sampling rate:' + streamInfo.samplingRate);
+    console.log('Renderer channel:' + streamInfo.AudioChannel);
+    console.log('Renderer format:' + streamInfo.AudioSampleFormat);
+    console.log('Renderer encoding type:' + streamInfo.AudioEncodingType);
+})
+```
+
+## audioRenderer.getStreamInfo
+
+getStreamInfo(): Promise<AudioStreamInfo\><sup>8+</sup><a name="getstreaminfo-promise"></a>
+
+Gets the renderer stream information. This method uses a promise to return the result.
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type                          | Description                                      |
+| :---------------------------- | :----------------------------------------------- |
+| Promise<AudioStreamInfo\>     | Promise used to return the stream information.   |
+
+**Example**
+
+```
+let streamInfo = await audioRenderer.getStreamInfo();
+console.log('Renderer GetStreamInfo:');
+console.log('Renderer sampling rate:' + streamInfo.samplingRate);
+console.log('Renderer channel:' + streamInfo.AudioChannel);
+console.log('Renderer format:' + streamInfo.AudioSampleFormat);
+console.log('Renderer encoding type:' + streamInfo.AudioEncodingType);
+```
+
+## audioRenderer.start
+
+start(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="start-asynccallback"></a>
+
+Starts the renderer. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                             |
+| :------- | :---------------------- | :-------- | :-------------------------------------- |
+| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.     |
+|          |                         |           |                                         |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.start((err)=>{
+    if (err) {
+        console.error('Renderer start failed.');
+    } else {
+        console.info('Renderer start success.');
+    }
+})
+```
+
+
+## audioRenderer.start
+
+start(): Promise<void\><a name="start-promise"><sup>8+</sup></a>
+
+Starts the renderer. This method uses a promise to return the result.
+
+**Parameters**
+
+None
 
 **Return value**
 
@@ -2521,145 +2643,22 @@ Sets audio parameters for rendering. This method uses a promise to return the re
 **Example**
 
 ```
-var audioParams = {
-        format: audio.AudioSampleFormat.SAMPLE_S16LE,
-        channels: audio.AudioChannel.STEREO,
-        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_16000,
-        encoding: audio.AudioEncodingType.ENCODING_PCM,
-    };
-
-await audioRenderer.setParams(audioParams);
-```
-
-
-## audioRenderer.getParams
-
-getParams(callback: AsyncCallback<AudioParameters\>): void<sup>8+</sup><a name="getparams-asynccallback"></a>
-
-Gets audio parameters of the renderer. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                            | Mandatory | Description                                   |
-| :------- | :------------------------------ | :-------- | :-------------------------------------------- |
-| callback | AsyncCallback<AudioParameters\> | Yes       | Callback used to return the audio parameters. |
-|          |                                 |           |                                               |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-audioRenderer.getParams((err, audioParams)=>{
-    console.log('Renderer GetParams:');
-    console.log('Renderer format:' + audioParams.format);
-    console.log('Renderer samplingRate:' + audioParams.samplingRate);
-    console.log('Renderer channels:' + audioParams.channels);
-    console.log('Renderer encoding:' + audioParams.encoding);
-})
-```
-
-
-## audioRenderer.getParams
-
-getParams(): Promise<AudioParameters\><sup>8+</sup><a name="getparams-promise"></a>
-
-Gets audio parameters of the renderer. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type                      | Description                                  |
-| :------------------------ | :------------------------------------------- |
-| Promise<AudioParameters\> | Promise used to return the audio parameters. |
-
-**Example**
-
-```
-let audioParams = await audioRenderer.getParams();
-console.log('Renderer GetParams:');
-console.log('Renderer format:' + audioParams.format);
-console.log('Renderer samplingRate:' + audioParams.samplingRate);
-console.log('Renderer channels:' + audioParams.channels);
-console.log('Renderer encoding:' + audioParams.encoding);
-```
-
-
-## audioRenderer.start
-
-start(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="start-asynccallback"></a>
-
-Starts the renderer. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                    | Mandatory | Description                                                                    |
-| :------- | :---------------------- | :-------- | :----------------------------------------------------------------------------- |
-| callback | AsyncCallback<boolean\> | Yes       | Returns true if the renderer is started successfully; returns false otherwise. |
-|          |                         |           |                                                                                |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-audioRenderer.start((err, started)=>{
-    if (started) {
-	    console.log('Renderer started.');
-    } else {
-        console.error('Renderer start rejected.');
-    }
-})
-```
-
-
-## audioRenderer.start
-
-start(): Promise<boolean\><a name="start-promise"><sup>8+</sup></a>
-
-Starts the renderer. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type              | Description                                                                    |
-| :---------------- | :----------------------------------------------------------------------------- |
-| Promise<boolean\> | Returns true if the renderer is started successfully; returns false otherwise. |
-
-**Example**
-
-```
-var started = await audioRenderer.start();
-if (started) {
-    console.log('Renderer started');
-} else {
-    console.error('Renderer start rejected');
-}
+await audioRenderer.start();
 ```
 
 
 ## audioRenderer.pause
 
-pause(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="pause-asynccallback"></a>
+pause(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="pause-asynccallback"></a>
 
 Pauses rendering. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                    | Mandatory | Description                                                                   |
-| :------- | :---------------------- | :-------- | :---------------------------------------------------------------------------- |
-| callback | AsyncCallback<boolean\> | Yes       | Returns true if the renderer is paused successfully; returns false otherwise. |
-|          |                         |           |                                                                               |
+| Name     | Type                    | Mandatory | Description                           |
+| :------- | :---------------------- | :-------- | :------------------------------------ |
+| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.   |
+|          |                         |           |                                       |
 
 **Return value**
 
@@ -2668,11 +2667,11 @@ None
 **Example**
 
 ```
-audioRenderer.pause((err, paused)=>{
-    if (paused) {
-	   console.log('Renderer paused.');
+audioRenderer.pause((err)=>{
+    if (err) {
+        console.error('Renderer pause failed');
     } else {
-       console.error('Renderer pause failed');
+        console.log('Renderer paused.');
     }
 })
 ```
@@ -2681,7 +2680,7 @@ audioRenderer.pause((err, paused)=>{
 
 ## audioRenderer.pause
 
-pause(): Promise<boolean\><sup>8+</sup><a name="pause-promise"></a>
+pause(): Promise<void\><sup>8+</sup><a name="pause-promise"></a>
 
 Pauses rendering. This method uses a promise to return the result.
 
@@ -2691,35 +2690,30 @@ None
 
 **Return value**
 
-| Type              | Description                                                                   |
-| :---------------- | :---------------------------------------------------------------------------- |
-| Promise<boolean\> | Returns true if the renderer is paused successfully; returns false otherwise. |
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
 
 **Example**
 
 ```
-var paused = await audioRenderer.pause();
-if (paused) {
-    console.log('Renderer paused');
-} else {
-    console.error('Renderer pause failed');
-}
+await audioRenderer.pause();
 ```
 
 
 
 ## audioRenderer.drain
 
-drain(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="drain-asynccallback"></a>
+drain(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="drain-asynccallback"></a>
 
 Drains the playback buffer. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                    | Mandatory | Description                                                                  |
-| :------- | :---------------------- | :-------- | :--------------------------------------------------------------------------- |
-| callback | AsyncCallback<boolean\> | Yes       | Returns true if the buffer is drained successfully; returns false otherwise. |
-|          |                         |           |                                                                              |
+| Name     | Type                    | Mandatory | Description                             |
+| :------- | :---------------------- | :-------- | :---------------------------------------|
+| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.     |
+|          |                         |           |                                         |
 
 **Return value**
 
@@ -2728,11 +2722,11 @@ None
 **Example**
 
 ```
-audioRenderer.drain((err, drained)=>{
-    if (drained) {
-	    console.log('Renderer drained.');
+audioRenderer.drain((err)=>{
+    if (err) {
+        console.error('Renderer drain failed');
     } else {
-       console.error('Renderer drain failed');
+        console.log('Renderer drained.');
     }
 })
 ```
@@ -2740,7 +2734,7 @@ audioRenderer.drain((err, drained)=>{
 
 ## audioRenderer.drain
 
-drain(): Promise<boolean\><sup>8+</sup><a name="drain-promise"></a>
+drain(): Promise<void\><sup>8+</sup><a name="drain-promise"></a>
 
 Drains the playback buffer. This method uses a promise to return the result.
 
@@ -2750,34 +2744,29 @@ None
 
 **Return value**
 
-| Type              | Description                                                                  |
-| :---------------- | :--------------------------------------------------------------------------- |
-| Promise<boolean\> | Returns true if the buffer is drained successfully; returns false otherwise. |
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
 
 **Example**
 
 ```
-var drained = await audioRenderer.drain();
-if (drained) {
-    console.log('Renderer drained');
-} else {
-    console.error('Renderer drain failed');
-}
+await audioRenderer.drain();
 ```
 
 
 ## audioRenderer.stop
 
-stop(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="stop-asynccallback"></a>
+stop(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="stop-asynccallback"></a>
 
 Stops rendering. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                    | Mandatory | Description                                                                     |
-| :------- | :---------------------- | :-------- | :------------------------------------------------------------------------------ |
-| callback | AsyncCallback<boolean\> | Yes       | Returns true if the rendering is stopped successfully; returns false otherwise. |
-|          |                         |           |                                                                                 |
+| Name     | Type                    | Mandatory | Description                            |
+| :------- | :---------------------- | :-------- | :------------------------------------- |
+| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.    |
+|          |                         |           |                                        |
 
 **Return value**
 
@@ -2786,11 +2775,11 @@ None
 **Example**
 
 ```
-audioRenderer.stop((err, stopped)=>{
-    if (stopped) {
-	    console.log('Renderer stopped.');
+audioRenderer.stop((err)=>{
+    if (err) {
+        console.error('Renderer stop failed');
     } else {
-       console.error('Renderer stop failed');
+        console.log('Renderer stopped.');
     }
 })
 ```
@@ -2798,7 +2787,7 @@ audioRenderer.stop((err, stopped)=>{
 
 ## audioRenderer.stop
 
-stop(): Promise<boolean\><sup>8+</sup><a name="stop-promise"></a>
+stop(): Promise<void\><sup>8+</sup><a name="stop-promise"></a>
 
 Stops rendering. This method uses a promise to return the result.
 
@@ -2808,34 +2797,29 @@ None
 
 **Return value**
 
-| Type              | Description                                                                     |
-| :---------------- | :------------------------------------------------------------------------------ |
-| Promise<boolean\> | Returns true if the rendering is stopped successfully; returns false otherwise. |
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
 
 **Example**
 
 ```
-var stopped = await audioRenderer.stop();
-if (stopped) {
-    console.log('Renderer stopped');
-} else {
-    console.error('Renderer stop failed');
-}
+await audioRenderer.stop();
 ```
 
 
 ## audioRenderer.release
 
-release(callback: AsyncCallback<boolean\>): void<sup>8+</sup><a name="release-asynccallback"></a>
+release(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="release-asynccallback"></a>
 
 Releases the renderer. This method uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                    | Mandatory | Description                                                                     |
-| :------- | :---------------------- | :-------- | :------------------------------------------------------------------------------ |
-| callback | AsyncCallback<boolean\> | Yes       | Returns true if the renderer is released successfully; returns false otherwise. |
-|          |                         |           |                                                                                 |
+| Name     | Type                    | Mandatory | Description                            |
+| :------- | :---------------------- | :-------- | :------------------------------------- |
+| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.    |
+|          |                         |           |                                        |
 
 **Return value**
 
@@ -2844,11 +2828,11 @@ None
 **Example**
 
 ```
-audioRenderer.release((err, released)=>{
-    if (released) {
-	    console.log('Renderer released.');
+audioRenderer.release((err)=>{
+    if (err) {
+        console.error('Renderer release failed');
     } else {
-       console.error('Renderer release failed');
+        console.log('Renderer released.');
     }
 })
 ```
@@ -2857,7 +2841,7 @@ audioRenderer.release((err, released)=>{
 
 ## audioRenderer.release
 
-release(): Promise<boolean\><sup>8+</sup><a name="release-promise"></a>
+release(): Promise<void\><sup>8+</sup><a name="release-promise"></a>
 
 Releases the renderer. This method uses a promise to return the result.
 
@@ -2867,19 +2851,14 @@ None
 
 **Return value**
 
-| Type              | Description                                                                     |
-| :---------------- | :------------------------------------------------------------------------------ |
-| Promise<boolean\> | Returns true if the renderer is released successfully; returns false otherwise. |
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
 
 **Example**
 
 ```
-var released = await audioRenderer.release();
-if (released) {
-    console.log('Renderer released');
-} else {
-    console.error('Renderer release failed');
-}
+await audioRenderer.release();
 ```
 
 
