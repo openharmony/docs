@@ -305,7 +305,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | resId | number | 是 | 资源ID值 |
-  | callback | AsyncCallback&lt;Array&lt;Uint8Array&gt;&gt; | 是 | 异步回调，用于返回获取的媒体文件内容 |
+  | callback | AsyncCallback&lt;Uint8Array&gt; | 是 | 异步回调，用于返回获取的媒体文件内容 |
 
 - 示例：
   ```
@@ -335,7 +335,7 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;Uint8Array&gt;&gt; | 资源ID值对应的媒体文件内容 |
+  | Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
 
 - 示例：
   ```
@@ -564,7 +564,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | path | string | 是 | rawfile文件路径 |
-  | callback | AsyncCallback&lt;Array&lt;Uint8Array&gt;&gt; | 是 | 异步回调，用于返回获取的rawfile文件内容 |
+  | callback | AsyncCallback&lt;Uint8Array&gt; | 是 | 异步回调，用于返回获取的rawfile文件内容 |
 
 - 示例：
   ```
@@ -593,7 +593,7 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;Uint8Array&gt;&gt; | rawfile文件内容 |
+  | Promise&lt;Uint8Array&gt; | rawfile文件内容 |
 
 - 示例：
   ```
