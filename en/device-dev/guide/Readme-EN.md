@@ -2,7 +2,7 @@
 
 - [Mini- and Small-System Devices](device-lite.md)
   - [WLAN-connected Products](device-wlan.md)
-    - [LED Peripheral Control](device-wlan-led-outcontrol.md)
+    - [LED Peripheral Control](device-wlan-led-control.md)
     - [Third-Party SDK Integration](device-wlan-sdk.md)
   - [Cameras Without a Screen](device-iotcamera.md)
     - [Camera Control](device-iotcamera-control.md)
