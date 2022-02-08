@@ -1,11 +1,5 @@
 # 配置OpenHarmony应用签名信息
 
-- [生成密钥和证书请求文件](#生成密钥和证书请求文件)
- - [使用DevEco Studio生成](#使用DevEco-Studio生成)
- - [使用命令行工具生成](#使用命令行工具生成)
-- [生成应用证书文件](#生成应用证书文件)
-- [生成应用Profile文件](#生成应用Profile文件)
-- [配置应用签名信息](#配置应用签名信息)
 
 使用真机设备运行和调试OpenHarmony应用前，需要对应用进行签名才能正常运行。该指导用于OpenHarmony应用的签名配置。除此章节以外，DevEco Studio的其余操作指导无差别，具体请访问[HUAWEI DevEco Studio使用指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/tools_overview-0000001053582387)。配置应用签名信息的流程如下图所示。
 
