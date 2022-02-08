@@ -449,7 +449,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 | 名称    | 类型           | 必填 | 描述                         |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | Want           | 是   | 表示被连接的ServiceAbility。 |
+| request | [Want](#want)           | 是   | 表示被连接的ServiceAbility。 |
 | options | ConnectOptions | 是   | 被指定的回调方法。           |
 
 **Want类型说明：**
@@ -633,7 +633,7 @@ this.StartContinueAbility(remoteDeviceId); //remoteDeviceId is acquired from Dev
 | 名称       | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ---------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | resultCode | 只读     | number                | 是   | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持） |
-| want       | 只读     | [Want](#Want类型说明) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。 |
+| want       | 只读     | [Want](#want) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。 |
 
 ## StartAbilityParameter
 
