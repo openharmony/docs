@@ -2,7 +2,7 @@
 
 -   **[HiSysEvent打点指导](subsys-dfx-hisysevent-write.md)**
 
--   **[HiSysEvent打点管理配置指导](subsys-dfx-hisysevent-yaml-define.md)**
+-   **[HiSysEvent打点配置指导](subsys-dfx-hisysevent-write-config.md)**
 
 -   **[HiSysEvent订阅指导](subsys-dfx-hisysevent-read.md)**
 

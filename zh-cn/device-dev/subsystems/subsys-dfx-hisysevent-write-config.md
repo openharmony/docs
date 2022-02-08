@@ -1,4 +1,4 @@
-# HiSysEvent打点管理配置指导<a name="ZH-CN_TOPIC_0000001080478132"></a>
+# HiSysEvent打点配置指导<a name="ZH-CN_TOPIC_0000001080478132"></a>
 
 -   [概述](#section315316685115)
 -   [yaml文件的编写](#section123181432175113)
