@@ -107,7 +107,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```js
-var audiorecorder = media.createAudioRecorder(); 
+let audiorecorder = media.createAudioRecorder(); 
 ```
 
 ## media.createAudioRecorderAsync<sup>8+</sup>
@@ -711,7 +711,7 @@ let audioRecorderConfig = {
 audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
     console.log('prepare success');
 });
-audioRecorder.prepare(audioRecorderConfig)
+audioRecorder.prepare(audioRecorderConfig);
 ```
 
 
@@ -784,6 +784,9 @@ release(): void
 **示例：**
 
 ```js
+audioRecorder.on('release', () => {    //设置'release'事件回调
+    console.log('audio recorder release success');
+});
 audioRecorder.release();
 audioRecorder = undefined;
 ```
@@ -798,8 +801,11 @@ reset(): void
 
 **示例：**
 
-```
-audiorecorder.reset();
+```js
+audioRecorder.on('reset', () => {    //设置'reset'事件回调
+    console.log('audio recorder reset success');
+});
+audioRecorder.reset();
 ```
 
 ### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')
@@ -837,7 +843,6 @@ audioRecorder.on('prepare', () => {              								// 设置'prepare'事�
     console.log('prepare success');
     audioRecorder.start();                       								// 开始录制，并触发'start'事件回调
 });
-audioRecorder.prepare(audioRecorderConfig)       								// 设置录制参数 ，并触发'prepare'事件回调
 audioRecorder.on('start', () => {    		     								// 设置'start'事件回调
     console.log('audio recorder start success');
 });
@@ -856,6 +861,7 @@ audioRecorder.on('release', () => {    		     								// 设置'release'事件�
 audioRecorder.on('reset', () => {    		     								// 设置'reset'事件回调
     console.log('audio recorder reset success');
 });
+audioRecorder.prepare(audioRecorderConfig)       								// 设置录制参数 ，并触发'prepare'事件回调
 ```
 
 ### on('error')
@@ -968,25 +974,25 @@ let videoConfig = {
 // asyncallback
 let videoRecorder = null;
 let events = require('events');
-let eventEmitter = new events.EventEmitter();                              // prepare事件触发
+let eventEmitter = new events.EventEmitter();                              
 
 eventEmitter.on('prepare', () => {
     videoRecorder.prepare(videoConfig, (err) => {
         if (typeof (err) == 'undefined') {
-            console.info('prepare success')
+            console.info('prepare success');
         } else {
-            console.info('prepare failed and error is ' + err.message)
+            console.info('prepare failed and error is ' + err.message);
         }
     });
 });
 
 media.createVideoRecorder((err, recorder) => {
     if (typeof (err) == 'undefined' && typeof (recorder) != 'undefined') {
-        videoRecorder = recorder
-        console.info('createVideoRecorder success')
-        eventEmitter.emit('prepare')
+        videoRecorder = recorder;
+        console.info('createVideoRecorder success');
+        eventEmitter.emit('prepare');                                        // prepare事件触发
     } else {
-        console.info('createVideoRecorder failed and error is ' + err.message)
+        console.info('createVideoRecorder failed and error is ' + err.message);
     }
 });
 ```
@@ -1078,9 +1084,11 @@ getInputSurface(callback: AsyncCallback\<string>): void;
 
 ```js
 // asyncallback
+let surfaceID = null;   											// 传递给外界的surfaceID
 videoRecorder.getInputSurface((err, surfaceId) => {
     if (typeof (err) == 'undefined') {
         console.info('getInputSurface success');
+        surfaceID = surfaceId;
     } else {
         console.info('getInputSurface failed and error is ' + err.message);
     }
@@ -1107,9 +1115,10 @@ getInputSurface(): Promise\<string>;
 
 ```js
 // promise
-await videoRecorder.getInputSurface().then((surface) => {
+let surfaceID = null;   											// 传递给外界的surfaceID
+await videoRecorder.getInputSurface().then((surfaceId) => {
     console.info('getInputSurface success');
-    surfaceId = surface;
+    surfaceID = surfaceId;
 }, (err) => {
     console.info('getInputSurface failed and error is ' + err.message);
 }).catch((err) => {
