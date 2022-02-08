@@ -549,7 +549,7 @@ getRingerMode(): Promise&lt;AudioRingMode&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AudioRingMode](#audioringmode7-)&gt; | Promise回调返回系统的铃声模式。 |
+| Promise&lt;[AudioRingMode](#audioringmode)&gt; | Promise回调返回系统的铃声模式。 |
 
 **示例：**
 
