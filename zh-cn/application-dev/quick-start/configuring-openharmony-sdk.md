@@ -1,11 +1,5 @@
 # 配置OpenHarmony SDK
 
-- [前提条件](#前提条件)
-- [配置SDK信息](#配置SDK信息)
-- [参考信息](#参考信息)
- - [配置DevEco Studio代理](#配置DevEco-Studio代理)
- - [配置NPM代理](#配置NPM代理)
- - [设置Gradle代理](#设置Gradle代理)
 
 在设置OpenHarmony应用开发环境时，需要开发者在DevEco Studio中配置对应的SDK信息。
 
