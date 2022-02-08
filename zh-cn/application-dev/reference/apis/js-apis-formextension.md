@@ -31,7 +31,7 @@ onCreate(want: Want): formBindingData.FormBindingData
 
   | 参数名 | 类型                                   | 必填 | 说明                                                         |
   | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | want   | [Want](js-apis-featureAbility.md#want) | 是   | 当前Extension相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。 |
+  | want   | [Want](js-apis-featureAbility.md#want) | 是   | 当前Extension相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 - 返回值：
 
@@ -77,7 +77,7 @@ onCastToNormal(formId: string): void
 
 onUpdate(formId: string): void
 
-卡片提供方接收更新卡片的通知接口。
+卡片提供方接收更新卡片的通知接口。获取最新数据后调用[FormExtensionContext](js-apis-formextensioncontext.md)的updateForm接口刷新卡片数据。
 
 - 参数：
 
@@ -90,6 +90,12 @@ onUpdate(formId: string): void
   ```
   onUpdate(formId) {
       console.log('FormExtension onUpdate, formId:' + formId);
+      let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+      this.context.updateForm(formId, obj2)
+          .then((data)=>{
+              console.log('FormExtension context updateForm, data:' + data);
+          }).catch((error) => {
+          console.error('Operation updateForm failed. Cause: ' + error);});
   }
   ```
 

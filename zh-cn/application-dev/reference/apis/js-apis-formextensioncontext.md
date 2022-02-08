@@ -9,7 +9,7 @@ FormExtension的上下文环境，提供FormExtension具有的能力和接口，
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void
 
-更新卡片。
+主动更新卡片。
 
 - 参数：
 

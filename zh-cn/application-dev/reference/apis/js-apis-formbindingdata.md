@@ -21,9 +21,9 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 - 参数：
 
-  | 参数名 | 类型           | 必填 | 说明                 |
-  | ------ | -------------- | ---- | -------------------- |
-  | obj    | Object或string | 否   | js卡片要展示的数据。 |
+  | 参数名 | 类型           | 必填 | 说明                                                         |
+  | ------ | -------------- | ---- | ------------------------------------------------------------ |
+  | obj    | Object或string | 否   | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。 |
 
 
 
@@ -46,6 +46,6 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 FormBindingData相关描述。
 
-| 名称 | 类型           | 说明                 |
-| ---- | -------------- | -------------------- |
-| obj  | Object或string | js卡片要展示的数据。 |
+| 名称 | 类型           | 说明                                                         |
+| ---- | -------------- | ------------------------------------------------------------ |
+| obj  | Object或string | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。 |
