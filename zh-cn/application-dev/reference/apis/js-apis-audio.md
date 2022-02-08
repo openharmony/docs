@@ -771,7 +771,7 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
 
 isDeviceActive(deviceType: DeviceType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定设备激活状态，使用callback方式返回异步结果。
+获取指定设备的激活状态，使用callback方式返回异步结果。
 
 **参数：**
 
@@ -797,7 +797,7 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
 
 isDeviceActive(deviceType: DeviceType): Promise&lt;boolean&gt;
 
-获取指定设备激活状态，使用promise方式返回异步结果。
+获取指定设备的激活状态，使用promise方式返回异步结果。
 
 **参数：**
 
