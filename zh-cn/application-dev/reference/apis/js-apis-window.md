@@ -451,7 +451,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | [WindowType](#windowType7) | 是 |窗口类型。 |
+  | type | [WindowType](#windowtype7) | 是 |窗口类型。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例
