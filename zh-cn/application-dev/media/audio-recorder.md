@@ -14,22 +14,6 @@
 
 ![zh-ch_image_audio_recorder_zero](figures/zh-ch_image_audio_recorder_zero.jpg)
 
-音频录制零层图简单说明：
-
-1、JS应用，包括系统录音机等音频录制类应用。
-
-2、表示应用可以通过调用音频录制JS层的接口与音频录制JS Framework进行交互，或者通过ACE组件调用到音频录制Native接口，与音频录制的Native Framework进行交互。
-
-3、媒体服务模块。
-
-4、系统服务/IPC通信子系统。
-
-5、音频录制访问文件涉及权限子系统。
-
-6、音频录制中涉及的系统权限校验系统。
-
-7、音频录制涉及的音频服务模块。
-
 ## 音频录制开发步骤
 
 详细API含义可参考：[js-apis-media.md](../reference/apis/js-apis-media.md)

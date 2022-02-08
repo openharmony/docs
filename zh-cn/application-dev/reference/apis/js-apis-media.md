@@ -719,7 +719,7 @@ audioRecorder.prepare(audioRecorderConfig);
 
 start(): void
 
-开始录制，需在[prepare](#on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'))事件成功触发后，才能调用start方法。
+开始录制，需在[prepare](#audiorecorder_on)事件成功触发后，才能调用start方法。
 
 **示例：**
 
@@ -734,7 +734,7 @@ audioRecorder.start();
 
 pause():void
 
-暂停录制，需要在[start](#on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'))事件成功触发后，才能调用pause方法。
+暂停录制，需要在[start](#audiorecorder_on)事件成功触发后，才能调用pause方法。
 
 **示例：**
 
@@ -749,7 +749,7 @@ audioRecorder.pause();
 
 resume():void
 
-暂停录制，需要在[pause](#on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'))事件成功触发后，才能调用resume方法。
+暂停录制，需要在[pause](#audiorecorder_on)事件成功触发后，才能调用resume方法。
 
 **示例：**
 
@@ -808,7 +808,7 @@ audioRecorder.on('reset', () => {    //设置'reset'事件回调
 audioRecorder.reset();
 ```
 
-### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')
+### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')<a name=audiorecorder_on></a>
 
 on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void
 
@@ -923,7 +923,7 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 ## VideoRecorder<sup>8+</sup>
 
-视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorderAsync()](#media.createvideorecorderasync<sup>8+</sup>)构建一个[VideoRecorder](#videorecorder<sup>8+</sup>)实例。
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorderAsync()](#media.createvideorecorderasync8)构建一个[VideoRecorder](#videorecorder8)实例。
 
 视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
 
