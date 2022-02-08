@@ -488,7 +488,7 @@ HDF_DEVICE_ROOT := $(HDF_DIR_PREFIX)/../device
 obj-$(CONFIG_DRIVERS_WLAN_XXX) += $(HDF_DEVICE_ROOT)/MySoCVendor/peripheral/build/standard/
 ```
 
-When  **DRIVERS\_WLAN\_XXX**  is enabled in the kernel,  **makefile**  in  **//device/MySoCVendor/peripheral/build/standard/**  is called. For more details, see  [WLAN Development](../guide/device-wlan-led-outcontrol.md).
+When  **DRIVERS\_WLAN\_XXX**  is enabled in the kernel,  **makefile**  in  **//device/MySoCVendor/peripheral/build/standard/**  is called. For more details, see  [WLAN Development](../guide/device-wlan-led-control.md).
 
 ### 4. Samples<a name="section11253153018415"></a>
 
