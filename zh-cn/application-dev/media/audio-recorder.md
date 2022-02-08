@@ -39,7 +39,7 @@
 包含流程：创建实例，设置录制参数，录制音频，暂停录制，恢复录制，停止录制，释放资源等流程。
 
 ```js
-funfunction SetCallBack(audioRecorder) {
+function SetCallBack(audioRecorder) {
     audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
         console.log('prepare success');    
         // 录制界面可切换至已准备好，可点击录制按钮进行录制
@@ -87,7 +87,7 @@ let audioRecorderConfig = {
     uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',       // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }																					
-audioRecorder.prepare(audioRecorderConfig)
+audioRecorder.prepare(audioRecorderConfig);
 // 4.开始录制
 audioRecorder.start();                            	// 需等待'prepare'事件回调完成后，才可调用start进行录制，触发'start'事件回调
 // 5.暂停录制

@@ -1078,18 +1078,12 @@ getInputSurface(callback: AsyncCallback\<string>): void;
 
 ```js
 // asyncallback
-let surfaceId = null;
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('getInputSurface', () => {
-    videoRecorder.getInputSurface((err, surfaceId) => {
-        if (typeof (err) == 'undefined') {
-            console.info('getInputSurface success');
-        } else {
-            console.info('getInputSurface failed and error is ' + err.message);
-        }
-    });
+videoRecorder.getInputSurface((err, surfaceId) => {
+    if (typeof (err) == 'undefined') {
+        console.info('getInputSurface success');
+    } else {
+        console.info('getInputSurface failed and error is ' + err.message);
+    }
 });
 ```
 
@@ -1113,7 +1107,6 @@ getInputSurface(): Promise\<string>;
 
 ```js
 // promise
-let surfaceId = null;
 await videoRecorder.getInputSurface().then((surface) => {
     console.info('getInputSurface success');
     surfaceId = surface;
@@ -1142,17 +1135,12 @@ start(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('start', () => {
-    videoRecorder.start((err) => {
-        if (typeof (err) == 'undefined') {
-            console.info('start videorecorder success');
-        } else {
-            console.info('start videorecorder failed and error is ' + err.message);
-        }
-    });
+videoRecorder.start((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('start videorecorder success');
+    } else {
+        console.info('start videorecorder failed and error is ' + err.message);
+    }
 });
 ```
 
@@ -1201,17 +1189,12 @@ pause(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('pause', () => {
-    videoRecorder.pause((err) => {
-        if (typeof (err) == 'undefined') {
-            console.info('pause videorecorder success');
-        } else {
-            console.info('pause videorecorder failed and error is ' + err.message);
-        }
-    });
+videoRecorder.pause((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('pause videorecorder success');
+    } else {
+        console.info('pause videorecorder failed and error is ' + err.message);
+    }
 });
 ```
 
@@ -1258,17 +1241,12 @@ resume(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('resume', () => {
-    videoRecorder.resume((err) => {
-        if (typeof (err) == 'undefined') {
-            console.info('resume videorecorder success');
-        } else {
-            console.info('resume videorecorder failed and error is ' + err.message);
-        }
-    });
+videoRecorder.resume((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('resume videorecorder success');
+    } else {
+        console.info('resume videorecorder failed and error is ' + err.message);
+    }
 });
 ```
 
@@ -1315,17 +1293,12 @@ stop(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('stop', () => {
-    videoRecorder.stop((err) => {
-        if (typeof (err) == 'undefined') {
-            console.info('stop videorecorder success');
-        } else {
-            console.info('stop videorecorder failed and error is ' + err.message);
-        }
-    });
+videoRecorder.stop((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('stop videorecorder success');
+    } else {
+        console.info('stop videorecorder failed and error is ' + err.message);
+    }
 });
 ```
 
@@ -1372,17 +1345,12 @@ release(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('release', () => {
-    videoRecorder.release((err) => {
-        if (typeof (err) == 'undefined') {
-            console.info('release videorecorder success');
-        } else {
-            console.info('release videorecorder failed and error is ' + err.message);
-        }
-    });
+videoRecorder.release((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('release videorecorder success');
+    } else {
+        console.info('release videorecorder failed and error is ' + err.message);
+    }
 });
 ```
 
@@ -1429,17 +1397,12 @@ reset(callback: AsyncCallback\<void>): void;
 
 ```js
 // asyncallback
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('reset', () => {
-    videoRecorder.reset((err) => {
-        if (typeof (err) == 'undefined') {
-            console.info('reset videorecorder success');
-        } else {
-            console.info('reset videorecorder failed and error is ' + err.message);
-        }
-    });
+videoRecorder.reset((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('reset videorecorder success');
+    } else {
+        console.info('reset videorecorder failed and error is ' + err.message);
+    }
 });
 ```
 
