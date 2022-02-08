@@ -31,7 +31,7 @@ import faultLogger from '@ohos.faultLogger'
 | -------- | -------- | -------- |
 | pid | number | 故障进程的进程id |
 | uid | number | 故障进程的用户id |
-| type | [FaultType](#faultloggerfaulttype) | 故障类型 |
+| type | [FaultType](#faulttype) | 故障类型 |
 | timestamp | number | 日志生成时的秒级时间戳 |
 | reason | string | 发生故障的原因 |
 | module | string | 发生故障的模块 |
@@ -47,8 +47,8 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | faultType | [FaultType](#faultloggerfaulttype) | 是 | 输入要查询的故障类型。 |
-  | callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloggerfaultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
+  | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
+  | callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
 
 - 示例：
 ```
@@ -83,12 +83,12 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | faultType | [FaultType](#faultloggerfaulttype) | 是 | 输入要查询的故障类型。 |
+  | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[FaultLogInfo](#faultloggerfaultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常 |
+  | Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常 |
 
 - 示例：
 ```

@@ -582,7 +582,7 @@ getBoundingClientRect\(\):  [ <Rect\>](#table1650917111414)
 
 ## createIntersectionObserver<a name="section7425195215615"></a>
 
-createIntersectionObserver\(param?：[ObserverParam](#table143341035121917)\):[Observer](#table4506633141711)
+createIntersectionObserver\(param?：ObserverParam\): Observer)
 
 监听元素在当前页面的可见范围。
 
@@ -600,7 +600,7 @@ createIntersectionObserver\(param?：[ObserverParam](#table143341035121917)\):[O
     </thead>
     <tbody><tr><td class="cellrowborder" valign="top" width="19.2%" headers="mcps1.1.5.1.1 "><p>param</p>
     </td>
-    <td class="cellrowborder" valign="top" width="17.1%" headers="mcps1.1.5.1.2 "><p><a href="#table1335524911817">ObserverParam</a></p>
+    <td class="cellrowborder" valign="top" width="17.1%" headers="mcps1.1.5.1.2 "><p>ObserverParam</p>
     </td>
     <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.5.1.3 "><p>-</p>
     </td>

@@ -174,7 +174,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 | 名称    | 类型           | 必填 | 描述                       |
 | ------- | -------------- | ---- | -------------------------- |
-| request | Want           | 是   | 表示被连接的ServiceAbility |
+| request | [Want](#want)           | 是   | 表示被连接的ServiceAbility |
 | options | ConnectOptions | 是   | 被指定的回调方法           |
 
 **ConnectOptions类型说明：**
@@ -310,7 +310,7 @@ var result = particleAbility.disconnectAbility(connId).then((void) => {
 
 | 名称                | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ------------------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| want                | 只读     | [Want](#Want类型说明) | 是   | 表示需要包含有关目标启动能力的信息。                         |
+| want                | 只读     | [Want](#want) | 是   | 表示需要包含有关目标启动能力的信息。                         |
 | abilityStartSetting | 只读     | {[key: string]: any}  | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
 
 ## Want
