@@ -243,7 +243,7 @@ usb.setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-需要调用[usb.getDevices](#usb-getdevices)获取设备列表以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
+需要调用[usb.getDevices](#usbgetdevices)获取设备列表以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
