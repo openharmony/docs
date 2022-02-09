@@ -9,9 +9,9 @@
 import hitrace from '@ohos.hitrace';
 ```
 
-## 权限
+## 系统能力
 
-无
+SystemCapability.HiviewDFX.HITrace
 
 ## HiTraceFlag
 
