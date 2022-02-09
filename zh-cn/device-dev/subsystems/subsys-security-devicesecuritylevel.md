@@ -26,6 +26,7 @@
         - [4.3 生成根签名验证信息](#43-生成根签名验证信息)
         - [4.4 合并生成attestation](#44-合并生成attestation)
       - [5. 构造完整的凭据](#5-构造完整的凭据)
+    - [凭据交换协议](#凭据交换协议)
     - [工具使用介绍](#工具使用介绍)
   - [常见问题](#常见问题)
   - [参考资料](#参考资料)
@@ -356,6 +357,59 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJhbmQiOiAicmszNTY4IiwgIm1vZGVsIjogInJrMzU2OCIsICJzb2Z0d2FyZVZlcnNpb24iOiAiMy4yLjIiLCAic2VjdXJpdHlMZXZlbCI6ICJTTDEiLCAic2lnblRpbWUiOiAiMjAyMjAyMDkxNTAyNTkiLCAidmVyc2lvbiI6ICIxLjAuMSJ9.MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6vRTRs0xk6xKp8A0XwMMiIyjZlujPJfasCvFonpsvXLAqCAIYbe1J0k4Zfg==.W3sidXNlclB1YmxpY0tleSI6ICJNSG93RkFZSEtvWkl6ajBDQVFZSkt5UURBd0lJQVFFTEEySUFCREdOMU9xYWZrWFc2a0l1SEZrMVQ0TS84RVJUY3p0eWRDaGtramFROEkzNEc2Q3E1aTNJcnczVnRhQS9KTTF2a0lHOUZDVWRUaHZFUlJFUTFUdG9xemdxZW9SUzVwQW1EYUUyalEwYzdDem8rOHVUWTRIYW1weXZ1TENtenlYUXFnPT0iLCAic2lnbmF0dXJlIjogIk1HTUNMeHVjUnoyZndKZ092QkxyU1U3K1hlVTA3R0EyVXhZbDFMbEJLUnVIUS9wZlNWVHBEd0ZHSTNTb3h5ODR3NThIQWpBeGRtNEY3b3YvYUtEL0NFZi9QZlZDWHVlbE1mQys1L3pkUExXUUJEVnlGdWQrNVdYL3g4U083VXM5UGFhRW1mZz0ifSwgeyJ1c2VyUHVibGljS2V5IjogIk1Ib3dGQVlIS29aSXpqMENBUVlKS3lRREF3SUlBUUVMQTJJQUJHMWU3TDJVd1AyWWxTajB2RWViUGJpNVpLMDh5NS9UeHRWb3VrRFpIUGtSNlRtb2JoVGpyMVRVNzZpUkU4bDlWQlhuU1h1QVB6cjBuSHdKVkdVZVJMdmp4MVh0YUZReE9QNjhjNlIvRTdFWkZ2STdRUFg1N0tvRkhYdkEvVlJaNnc9PSIsICJzaWduYXR1cmUiOiAiTUdRQ01FUVdFNnk0Rm42SFg1ekFvTzNkYzl5cG1Sd2lBclplc2o5aVBROTZEaEhuNXJkRTdNaGFMdWNRZ0MvaXhjSWJsZ0l3QkN5aFBvRUg2RjFITFlwM2xqbWVncVlZQ1E5NHEyZm1kbDB6dHhrWEVTOVpPOVRNSUZQRVpKYlpmUnU5ZHcyOSJ9LCB7InVzZXJQdWJsaWNLZXkiOiAiTUhvd0ZBWUhLb1pJemowQ0FRWUpLeVFEQXdJSUFRRUxBMklBQkZRUUlDWmpWUTV4bkE0c2RMbUJzUmVaMzRJeWdkSmZhanA3SnRReFBzU2RwWTJXV0FneXp6Rm40OFFRRWhoU1BtdzhJYUU3VlJKRENBT3FYRnhGektJbFBFTDFvcFJDUmhhWmJrRzc5Y3ZrWC9HVVhlaFVYc2V2ZGhyb2VRVERFdz09IiwgInNpZ25hdHVyZSI6ICJNR1FDTUdQRndvSDJLbHhwbVZhWXRWV1ViMHpDSUJxYXFXY2F6czFqOVp4YklLUmVkR2tJY0VJdHN0UFoxdnVTanYvNDJnSXdSeGZPcTRoQTdNMHlGV2ZPSndqRTlTc2JsYXhvRDNiRTZCYzN2QjUyMmsyQ0ZJNWJqelpkeUFTVW04d2J2TW5WIn1d
 ```
 
+### 凭据交换协议
+
+设备安全等级模块在感知到有新设备上线时，会通过[分布式软总线](https://gitee.com/openharmony/communication_dsoftbus)提供的通道向该设备请求其设备安全等级凭据
+
+凭据请求报文格式如下：
+
+``` json
+{
+    "message": 1,
+    "payload": {
+        "version": 196608,
+        "challenge": "0102030405060708",
+        "support": [
+            300
+        ]
+    }
+}
+```
+
+其中各个字段解释如下：
+
+|  字段名   |               含义解释                |
+| :-------: | :-----------------------------------: |
+|  message  | 消息头，取值1表示设备安全等级凭据请求 |
+|  payload  |      消息payload，具体的请求信息      |
+|  version  |           请求端协议版本号            |
+| challenge |       本次请求信息对应的挑战值        |
+|  support  |       请求端支持的凭据格式列表        |
+
+对端设备在接受到凭据请求后，会按照如下格式进行回复
+
+``` json
+{
+    "message": 2,
+    "payload": {
+        "version": 196608,
+        "type": 300,
+        "challenge": "0102030405060708",
+        "info": "YWJjZAEDBQcJxxxxx"
+    }
+}
+```
+
+其中各个字段解释如下：
+|  字段名   |                      含义解释                      |
+| :-------: | :------------------------------------------------: |
+|  message  |       消息头，取值2表示设备安全等级凭据应答        |
+|  payload  |            消息payload，具体的应答信息             |
+|  version  |                  应答端协议版本号                  |
+|   type    | 应答端本次返回的凭据格式，用来描述如何解析info字段 |
+| challenge |              本次应答信息对应的挑战值              |
+|   info    |                  签名后的凭据信息                  |
+
 ### 工具使用介绍
 
 为方便开发者对于“凭据文件”的进一步理解，设备安全等级管理模块提供了[凭据工具](https://gitee.com/openharmony/security_device_security_level/blob/master/oem_property/ohos/dslm_cred_tool.py)，该工具是一个python脚本，基于OPENSSL命令行的简单封装，可以便捷的提供凭据文件的签发和验证功能。
@@ -369,7 +423,7 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
 
 2. 凭据文件的生成：
 
-   生成一个名为cred.txt的凭据文件，并指定payload中的相关信息。
+   生成一个名为cred.txt的凭据文件，并指定设备型号为rk3568、设备版本号为3.0.0、设备安全等级为SL3等payload信息。
 
     ``` bash
     ./dslm_cred_tool.py create --field-manufacture OHOS --field-brand rk3568  --field-model rk3568 --field-software-version 3.0.0 --field-security-level SL3 --cred-file cred.txt
