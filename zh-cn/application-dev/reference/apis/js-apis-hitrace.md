@@ -13,7 +13,7 @@ import hitrace from '@ohos.hitrace';
 
 无
 
-## hitrace.HiTraceFlag
+## HiTraceFlag
 
 跟踪标志组合类型枚举
 
@@ -28,7 +28,7 @@ import hitrace from '@ohos.hitrace';
 | FAILURE_TRIGGER   | 1 << 5 | 故障触发标志   |
 | D2D_TP_INFO       | 1 << 6 | 设备间埋点标志 |
 
-## hitrace.HiTraceTracePointType
+## HiTraceTracePointType
 
 跟踪埋点类型枚举
 
@@ -40,7 +40,7 @@ import hitrace from '@ohos.hitrace';
 | SR       | 3 | 服务端接收类型  |
 | GENERAL  | 4 | 常规类型        |
 
-## hitrace.HiTraceCommunicationMode
+## HiTraceCommunicationMode
 
 跟踪通信类型枚举
 
@@ -51,7 +51,7 @@ import hitrace from '@ohos.hitrace';
 | PROCESS  | 2 | 进程间通信类型  |
 | DEVICE   | 3 | 设备间通信类型  |
 
-## hitrace.HiTraceId
+## HiTraceId
 
 此接口为HiTraceId对象接口
 
@@ -72,11 +72,11 @@ begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | name  | string | 是 | 跟踪业务名。 |
-  | flags | number | 是 | [跟踪标志组合](#hitracehitraceflag)。 |
+  | flags | number | 是 | [跟踪标志组合](#hitraceflag)。 |
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | [HiTraceId](#hitracehitraceid) | HiTraceId实例。 |
+  | [HiTraceId](#hitraceid) | HiTraceId实例。 |
 
 - 示例：
   ```
@@ -92,7 +92,7 @@ end(id: HiTraceId): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | id | [HiTraceId](#hitracehitraceid) | 是 | HiTraceId实例。 |
+  | id | [HiTraceId](#hitraceid) | 是 | HiTraceId实例。 |
 
 - 示例：
   ```
@@ -110,7 +110,7 @@ getId(): HiTraceId
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | [HiTraceId](#hitracehitraceid) | HiTraceId实例。 |
+  | [HiTraceId](#hitraceid) | HiTraceId实例。 |
 
 - 示例：
   ```
@@ -129,7 +129,7 @@ setId(id: HiTraceId): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | id | [HiTraceId](#hitracehitraceid) | 是 | HiTraceId实例。 |
+  | id | [HiTraceId](#hitraceid) | 是 | HiTraceId实例。 |
 
 - 示例：
   ```
@@ -162,7 +162,7 @@ createSpan(): HiTraceId
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | [HiTraceId](#hitracehitraceid) | HiTraceId实例。 |
+  | [HiTraceId](#hitraceid) | HiTraceId实例。 |
 
 - 示例：
   ```
@@ -181,9 +181,9 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTr
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | mode | [HiTraceCommunicationMode](#hitracehitracecommunicationmode) | 是 | 信息埋点需要指定的跟踪通信模式。 |
-  | type | [HiTraceTracePointType](#hitracehitracetracepointtype)| 是 | 信息埋点需要指定的跟踪埋点类型。 |
-  | id   | [HiTraceId](#hitracehitraceid) | 是 | 实施信息埋点操作的HiTraceId实例。 |
+  | mode | [HiTraceCommunicationMode](#hitracecommunicationmode) | 是 | 信息埋点需要指定的跟踪通信模式。 |
+  | type | [HiTraceTracePointType](#hitracetracepointtype)| 是 | 信息埋点需要指定的跟踪埋点类型。 |
+  | id   | [HiTraceId](#hitraceid) | 是 | 实施信息埋点操作的HiTraceId实例。 |
   | msg  | string | 否 | 信息埋点操作传入的trace说明信息。 |
 
 - 示例：
@@ -202,7 +202,7 @@ isValid(id: HiTraceId): boolean
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | id  | [HiTraceId](#hitracehitraceid) | 是 | 需要判断是否有效的HiTraceId实例。 |
+  | id  | [HiTraceId](#hitraceid) | 是 | 需要判断是否有效的HiTraceId实例。 |
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -224,8 +224,8 @@ isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | id  | [HiTraceId](#hitracehitraceid) | 是 | 需要判断指定跟踪标志是否置位的HiTraceId实例。 |
-  | flag | [HiTraceFlag](#hitracehitraceflag) | 是 | 指定的跟踪标志。 |
+  | id  | [HiTraceId](#hitraceid) | 是 | 需要判断指定跟踪标志是否置位的HiTraceId实例。 |
+  | flag | [HiTraceFlag](#hitraceflag) | 是 | 指定的跟踪标志。 |
 
 - 示例：
   ```
@@ -244,8 +244,8 @@ enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | id  | [HiTraceId](#hitracehitraceid) | 是 | 需要置位指定跟踪标志的HiTraceId实例。 |
-  | flag | [HiTraceFlag](#hitracehitraceflag) | 是 | 指定的跟踪标志。 |
+  | id  | [HiTraceId](#hitraceid) | 是 | 需要置位指定跟踪标志的HiTraceId实例。 |
+  | flag | [HiTraceFlag](#hitraceflag) | 是 | 指定的跟踪标志。 |
 
 - 示例：
   ```
