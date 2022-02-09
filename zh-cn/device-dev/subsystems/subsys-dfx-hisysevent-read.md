@@ -2,9 +2,7 @@
 
 -   [概述](#section315316685112)
 -   [接口说明](#section0342191810519)
--   [订阅HiSysEvent事件](#section123181432175110)
-    -   [编译配置](#section123181432175187)
-    -   [源代码开发](#section123181432175165)
+-   [开发实例](#section123181432175110)
 
 ## 概述<a name="section315316685112"></a>
 
@@ -112,71 +110,71 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 </tbody>
 </table>
 
-## 订阅HiSysEvent事件<a name="section123181432175110"></a>
+## 开发实例<a name="section123181432175110"></a>
 
-### 编译配置<a name="section123181432175187"></a>
+C++接口实例
 
-编译配置文件中增加对hisysevent\_native组件libhisyseventmanager库的依赖：
+1.  编译配置文件中增加对hisysevent\_native组件libhisyseventmanager库的依赖：
 
-```
-external_deps = [ "hisysevent_native:libhisyseventmanager", ]
-```
+    ```
+	external_deps = [ "hisysevent_native:libhisyseventmanager", ]
+	```
 
-### 源代码开发<a name="section123181432175165"></a>
+2.  源代码开发
 
--   自定义订阅回调实现类DemoListener：
+    自定义订阅回调实现类DemoListener：
 
-```
-#ifndef DEMO_LISTENER_H
-#define DEMO_LISTENER_H
+    ```
+    #ifndef DEMO_LISTENER_H
+    #define DEMO_LISTENER_H
 
-#include "hisysevent_subscribe_callback_native.h"
+    #include "hisysevent_subscribe_callback_native.h"
 
-#include <string>
+    #include <string>
 
-class DemoListener : public OHOS::HiviewDFX::HiSysEventSubscribeCallBackNative {
-public:
-    explicit DemoListener() : HiSysEventSubscribeCallBackNative() {}
-    void OnHandle(const std::string& domain, const std::string& eventName, const int eventType,
-        const std::string& eventDetail);
-    virtual ~DemoListener() {}
-    void OnServiceDied();
-};
-```
+    class DemoListener : public OHOS::HiviewDFX::HiSysEventSubscribeCallBackNative {
+    public:
+        explicit DemoListener() : HiSysEventSubscribeCallBackNative() {}
+        void OnHandle(const std::string& domain, const std::string& eventName, const int eventType,
+            const std::string& eventDetail);
+        virtual ~DemoListener() {}
+        void OnServiceDied();
+    };
+    ```
 
--   实现订阅回调接口：
+    实现订阅回调接口：
 
-```
-#include "demo_listener.h"
+    ```
+    #include "demo_listener.h"
 
-#include <iostream>
+    #include <iostream>
 
-void DemoListener::OnHandle(const std::string& domain, const std::string& eventName,
-    const int eventType, const std::string& eventDetail)
-{
-    std::cout << eventDetail << std::endl;
-}
+    void DemoListener::OnHandle(const std::string& domain, const std::string& eventName,
+        const int eventType, const std::string& eventDetail)
+    {
+        std::cout << eventDetail << std::endl;
+    }
 
-void DemoListener::OnServiceDied()
-{
-    std::cout << std::string("service disconnect, exit") << std::endl;
-    exit(0);
-}
-```
+    void DemoListener::OnServiceDied()
+    {
+        std::cout << std::string("service disconnect, exit") << std::endl;
+        exit(0);
+    }
+    ```
 
--   通过HiSysEventManager类提供的AddEventListener接口注册回调对象：
+    通过HiSysEventManager类提供的AddEventListener接口注册回调对象：
 
-```
-auto demoListener = std::make_shared<DemoListener>();
-// 事件标签规则订阅，规则类型为默认的全词匹配类型
-ListenerRule tagRule("dfx");
-// 事件标签规则订阅，规则类型为正则匹配类型
-ListenerRule regRule("dfx.*", RuleType::REGULAR);
-// 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
-ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
-std::vector<ListenerRule> sysRules;
-sysRules.push_back(tagRule);
-sysRules.push_back(regRule);
-sysRules.push_back(domainNameRule);
-HiSysEventManager::AddEventListener(demoListener, sysRules);
-```
+    ```
+    auto demoListener = std::make_shared<DemoListener>();
+    // 事件标签规则订阅，规则类型为默认的全词匹配类型
+    ListenerRule tagRule("dfx");
+    // 事件标签规则订阅，规则类型为正则匹配类型
+    ListenerRule regRule("dfx.*", RuleType::REGULAR);
+    // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
+    ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
+    std::vector<ListenerRule> sysRules;
+    sysRules.push_back(tagRule);
+    sysRules.push_back(regRule);
+    sysRules.push_back(domainNameRule);
+    HiSysEventManager::AddEventListener(demoListener, sysRules);
+    ```
