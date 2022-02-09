@@ -1786,7 +1786,7 @@ public void xsltTrans(String src, String dst, String xslt) {
 }
 ```
 
-A security policy can be added to **TransformerFactory**. Java has a built-in blocklist for XSLT. Here some [insecure methods are disabled by setting **http://javax.xml.XMLConstants/feature/secure-processing** to **true**.](http://javax.xml.xmlconstants/feature/secure-processing属性设置为true开启防护，可以禁用一些不安全的方法。)
+A security policy can be added to **TransformerFactory**. Java has a built-in blocklist for XSLT. Here some insecure methods are disabled by setting **http://javax.xml.XMLConstants/feature/secure-processing** to **true**.
 
 ## Try best to simplify the regular expression (regex) to prevent regular expression denial of service (ReDoS) attacks
 
