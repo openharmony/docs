@@ -17,7 +17,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 **HiSysEvent事件订阅条件约束：**
 
-- HiSysEvent事件订阅结果取决于订阅的HiSysEvent事件是否已在组件中进行配置，具体配置方法请参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
+- 在订阅HiSysEvent事件之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
 
 ## 开发指导<a name="section315316685113"></a>
 

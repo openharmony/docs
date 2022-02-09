@@ -17,7 +17,7 @@ HiSysEvent提供OpenHarmony打点接口，通过在关键路径打点记录系�
 
 **HiSysEvent事件打点条件约束：**
 
-- HiSysEvent事件打点结果取决于该HiSysEvent事件是否已在组件中进行配置，具体配置方法请参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
+- 在进行HiSysEvent事件打点之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
 
 ## 开发指导<a name="section314416685113"></a>
 
