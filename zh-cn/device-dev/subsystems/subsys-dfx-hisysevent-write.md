@@ -1,7 +1,7 @@
 # HiSysEvent打点指导<a name="ZH-CN_TOPIC_0000001231373947"></a>
 
 -   [概述](#section77571101789)
--   [打点配置](#section112771171321)
+	-   [约束与限制](#section123181432175224)
 -   [接口说明](#section13480315886)
 -   [开发实例](#section112771171317)
 
@@ -9,9 +9,11 @@
 
 HiSysEvent提供OpenHarmony打点接口，通过在关键路径打点记录系统在运行过程中的重要信息，辅助开发者定位问题，此外还支持开发者将数据上传到云进行大数据质量度量。
 
-## 打点配置<a name="section112771171321"></a>
+### 约束与限制<a name="section123181432175224"></a>
 
-在进行HiSysEvent事件打点之前，需要先对HiSysEvent事件打点进行配置，具体可参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
+**HiSysEvent事件打点条件约束：**
+
+- HiSysEvent事件打点结果取决于该HiSysEvent事件是否已在组件中进行配置，具体配置方法请参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
 
 ## 接口说明<a name="section13480315886"></a>
 
