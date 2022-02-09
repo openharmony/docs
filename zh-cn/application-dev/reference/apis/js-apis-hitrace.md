@@ -66,7 +66,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
 
-跟踪开始同步接口。
+开始跟踪，同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -87,7 +87,7 @@ begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
 
 end(id: HiTraceId): void
 
-跟踪结束同步接口。
+结束跟踪，同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -97,7 +97,7 @@ end(id: HiTraceId): void
 - 示例：
   ```
   let asyncTraceId = hitrace.begin("business");
-  ...
+  // 若干业务逻辑完成后，结束跟踪。
   hitrace.end(asyncTraceId);
   ```
 
@@ -105,7 +105,7 @@ end(id: HiTraceId): void
 
 getId(): HiTraceId
 
-获取跟踪标识同步接口。
+获取跟踪标识，同步接口。
 
 - 返回值：
   | 类型 | 说明 |
@@ -115,16 +115,15 @@ getId(): HiTraceId
 - 示例：
   ```
   let traceId = hitrace.begin("business");
-  ...
+  // 若干业务逻辑完成后，获取当前HiTraceId。
   let curTraceId = hitrace.getId();
-  ...
   ```
 
 ## hitrace.setId
 
 setId(id: HiTraceId): void
 
-设置跟踪标识同步接口。
+设置跟踪标识，同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -134,30 +133,28 @@ setId(id: HiTraceId): void
 - 示例：
   ```
   let traceId = hitrace.begin("business");
-  ...
+  // 若干业务逻辑完成后，设置当前HiTraceId。
   hitrace.setId(asyncTraceId);
-  ...
   ```
 
 ## hitrace.clearId
 
 clearId(): void
 
-清除跟踪标识同步接口。
+清除跟踪标识，同步接口。
 
 - 示例：
   ```
   let traceId = hitrace.begin("business");
-  ...
+  // 若干业务逻辑完成后，清除当前HiTraceId。
   hitrace.clearId();
-  ...
   ```
 
 ## hitrace.createSpan
 
 createSpan(): HiTraceId
 
-创建跟踪分支同步接口。
+创建跟踪分支，同步接口。
 
 - 返回值：
   | 类型 | 说明 |
@@ -167,16 +164,15 @@ createSpan(): HiTraceId
 - 示例：
   ```
   let traceId = hitrace.begin("business");
-  ...
+  // 若干业务逻辑完成后，创建跟踪分支。
   let spanTraceId = hitrace.createSpan();
-  ...
   ```
 
 ## hitrace.tracepoint
 
 tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTraceId, msg?: string): void
 
-信息埋点同步接口。
+信息埋点，同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -189,7 +185,7 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTr
 - 示例：
   ```
   let asyncTraceId = hitrace.begin("business", hitrace.HiTraceFlag.INCLUDE_ASYNC | hitrace.HiTraceFlag.DONOT_CREATE_SPAN);
-  ...
+  // 若干业务逻辑完成后，触发信息埋点操作。
   hitrace.tracepoint(hitrace.HiTraceCommunicationMode.THREAD, hitrace.HiTraceTracePointType.SS, asyncTraceId, "Just a example");
   ```
 
@@ -197,7 +193,7 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTr
 
 isValid(id: HiTraceId): boolean
 
-判断HiTraceId对象是否有效同步接口。
+判断HiTraceId对象是否有效，同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -206,12 +202,11 @@ isValid(id: HiTraceId): boolean
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 判断HiTraceId是否有效的结果。 |
+  | boolean | 返回true表示HiTraceId有效，否则无效。 |
 
 - 示例：
   ```
   let traceId = hitrace.begin("business");
-  ...
   let traceIdIsvalid = hitrace.isValid(traceId);
   ```
 
@@ -219,18 +214,20 @@ isValid(id: HiTraceId): boolean
 
 isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
-判断HiTraceId对象中指定的跟踪标志是否置位同步接口。
+判断HiTraceId对象中指定的跟踪标志是否已置位，同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id  | [HiTraceId](#hitraceid) | 是 | 需要判断指定跟踪标志是否置位的HiTraceId实例。 |
   | flag | [HiTraceFlag](#hitraceflag) | 是 | 指定的跟踪标志。 |
-
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true标识HiTraceId已置位指定的flag，否则没有置位。 |
 - 示例：
   ```
   let asyncTraceId = hitrace.begin("business", hitrace.HiTraceFlag.INCLUDE_ASYNC);
-  ...
   // enabledDoNotCreateSpanFlag为true
   let enabledDoNotCreateSpanFlag = hitrace.isFlagEnabled(asyncTraceId, hitrace.HiTraceFlag.INCLUDE_ASYNC);
   ```
@@ -239,7 +236,7 @@ isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
 enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 
-置位HiTraceId对象中指定的跟踪标志同步接口。
+置位HiTraceId对象中指定的跟踪标志，同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
