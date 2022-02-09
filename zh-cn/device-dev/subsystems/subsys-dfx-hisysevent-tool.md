@@ -12,7 +12,9 @@
 
 实时订阅HiSysEvent事件的基础命令：
 
-**hisysevent -r**
+```
+hisysevent -r
+```
 
 选项说明：
 
@@ -22,7 +24,9 @@
 
 打开调试模式：
 
-**hisysevent -r -d**
+```
+hisysevent -r -d
+```
 
 选项说明：
 
@@ -32,7 +36,9 @@
 
 通过事件标签方式实时订阅HiSysEvent事件：
 
-**hisysevnet -r -t \<tag\> \[-c \[WHOLE_WORD|PREFIX|REGULAR\]\]**
+```
+hisysevnet -r -t <tag> [-c [WHOLE_WORD|PREFIX|REGULAR]]
+```
 
 选项说明：
 
@@ -43,7 +49,9 @@
 
 4. 通过事件领域及事件名称的方式实时订阅HiSysEvent事件：
 
-**hisysevent -r -o \<domain\> -n \<eventName\> \[-c \[WHOLE_WORD|PREFIX|REGULAR\]\]**
+```
+hisysevent -r -o <domain> -n <eventName> [-c [WHOLE_WORD|PREFIX|REGULAR]]
+```
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
@@ -58,7 +66,9 @@
 
 查询历史HiSysEvent事件的基础命令：
 
-**hisysevent -l**
+```
+hisysevent -l
+```
 
 选项说明：
 
@@ -68,7 +78,9 @@
 
 通过设置开始/结束时间，过滤查询历史HiSysEvent事件的结果的命令：
 
-**hisysevent -l -s \<begin time\> -e \<end time\>**
+```
+hisysevent -l -s <begin time> -e <end time>
+```
 
 选项说明：
 
@@ -79,7 +91,9 @@
 
 通过设置最大数量值，限制查询历史HiSysEvent事件的数量：
 
-**hisysevent -l -m \<max hisysevent count\>**
+```
+hisysevent -l -m <max hisysevent count>
+```
 
 选项说明：
 

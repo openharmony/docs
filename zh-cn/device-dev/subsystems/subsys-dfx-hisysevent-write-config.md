@@ -1,40 +1,42 @@
 # HiSysEvent打点配置指导<a name="ZH-CN_TOPIC_0000001080478132"></a>
 
 -   [概述](#section315316685115)
--   [yaml文件的编写](#section123181432175113)
+    -   [基本概念](#section123181432175143)
+	-   [约束与限制](#section123181432175114)  
+-   [编写yaml文件](#section123181432175113)
     -   [yaml文件编写规则](#section123181432175133)
-	-   [yaml文件样例](#section123181432175123)
--   [yaml文件的验证流程](#section123181432175115)
-    -   [yaml文件的路径配置](#section123181432175135)
-    -   [yaml文件的编译](#section123181432175137)
-    -   [打点验证](#section123181432175139)
-	
+	-   [yaml文件编写样例](#section123181432175123)
+-   [验证yaml文件](#section123181432175115)
+    -   [配置yaml文件路径](#section123181432175135)
+    -   [编译yaml文件](#section123181432175137)
+    -   [打点及查询定义的事件](#section123181432175139)
+
 ## 概述<a name="section315316685115"></a>
 
-部件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.js文件中配置这些文件的路径。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.js文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下。
+组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.js文件中[配置yaml文件的路径](#section123181432175135)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.js文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
 
-## yaml文件的编写<a name="section123181432175113"></a>
+### 基本概念<a name="section123181432175143"></a>
 
-### yaml文件编写规则<a name="section123181432175133"></a>
+在配置HiSysEvent打点之前，开发者应了解一下基本概念：
 
-1.  每个部件可定义一个或多个yaml文件，每个yaml文件只能有一个事件领域domain，且不能与其他事件领域重名，事件领域的命名规则如下：
-    -   字母开头，且只能由大写字母/数字/下划线组成；
-    -   字符串长度取值范围为1~16。
+-   事件领域：用于标识事件所属的领域，在yaml文件中以domain为键值指定，可参考yaml文件样例中的[domain](#section123181432175123)。
 
-2.  每个事件领域可定义零个或多个事件名称event，同一个事件领域内部的事件名称不能重名，事件名称的命名规则如下：
-    -   字母开头，且只能由大写字母/数字/下划线组成；
-    -   字符串长度取值范围1~32；
-    -   单个事件领域内部事件名称的不能超过4096个。
+-   事件名称：用于指定事件领域包含的所有事件，可参考yaml文件样例中的[EVENT_NAMEA/EVENT_NAMEB](#section123181432175123)。
 
-3.  每个事件名称可定义多个参数param，同一个事件名称内部的参数不能重名，参数的命名规则如下：
-    -   字母开头，且只能由大写字母/数字/下划线组成；
-    -   字符串长度取值范围1~32；
-    -   单个事件名称内包含的参数的个数不能超过128个。
+-   参数：用于定义某个事件名称包含的所有键值，可参考yaml文件样例中的[__BASE/NAME1/NAME2](#section123181432175123)。
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->每个事件名称**有且只有**一个名称为```__BASE```的参数，此参数字段组成如表1，其他自定义名称的参数，具体字段组成如表2：
 
-**表 1**
+### 约束与限制<a name="section123181432175114"></a>
+
+**定义事件领域、事件名称及参数的约束限制：**
+
+-   事件领域：每个yaml文件只能有一个事件领域，且不能与其他事件领域重名。
+
+-   事件名称：每个事件领域可定义零个或多个事件名称，同一个事件领域内部的事件名称不能重名。
+
+-   参数：每个事件名称可定义多个参数，同一个事件名称内部的参数不能重名，每个事件名称**有且只有**一个名称为__BASE的参数，此参数字段组成如表1，他自定义参数，具体字段组成如表2。
+
+**表 1** __BASE参数字段说明
 
 <a name="table1844019587513"></a>
 <table><thead align="left"><tr id="row1440058186118"><th class="cellrowborder" valign="top" id="mcps1.2.3.1.1"><p id="p19441135865020"><a name="p19441135845020"></a><a name="p19441135865020"></a>字段名称</p>
@@ -103,7 +105,7 @@
 </tbody>
 </table>
 
-**表 2**
+**表 2** 自定义参数字段说明
 
 <a name="table1844019587523"></a>
 <table><thead align="left"><tr id="row1440060185118"><th class="cellrowborder" valign="top" id="mcps1.2.3.1.1"><p id="p19442235845020"><a name="p19442235845020"></a><a name="p19442235845020"></a>字段名称</p>
@@ -117,7 +119,7 @@
 <p id="p8779163453213"><a name="p8779163453213"></a><a name="p8779163453213"></a>type</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-<p id="p14727325235218"><a name="p14727325235218"></a><a name="p14727325235218"></a>字段说明：<br>&emsp;&emsp;必选字段，用来该参数的类型。</p>
+<p id="p14727325235218"><a name="p14727325235218"></a><a name="p14727325235218"></a>字段说明：<br>&emsp;&emsp;必选字段，用来标识该参数的类型。</p>
 <p id="p167271372203215"><a name="p167271372203215"></a><a name="p167271372203215"></a>取值范围：</p>
 <a name="ul6717342214921"></a><a name="ul6717342214921"></a>
 <ul id="ul6717134514921">
@@ -162,7 +164,27 @@
 </tbody>
 </table>
 
-### yaml文件样例及说明<a name="section123181432175123"></a>
+## 编写yaml文件<a name="section123181432175113"></a>
+
+### yaml文件编写规则<a name="section123181432175133"></a>
+
+-   事件领域命名规则：
+    -   字母开头，且只能由大写字母/数字/下划线组成；
+    -   字符串长度取值范围为1~16。
+-   事件名称命名规则：
+    -   字母开头，且只能由大写字母/数字/下划线组成；
+    -   字符串长度取值范围1~32；
+    -   单个事件领域内部事件名称的不能超过4096个。
+-   参数命名规则：
+    -   字母开头，且只能由大写字母/数字/下划线组成；
+    -   字符串长度取值范围1~32；
+    -   单个事件名称内包含的参数的个数不能超过128个。
+
+### yaml文件编写样例<a name="section123181432175123"></a>
+
+-   yaml文件样例指定的事件领域名称为MODULEA，该事件领域包含两个事件，名称分别是EVENT_NAMEA和EVENT_NAMEB。
+-   EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](subsys-dfx-hisysevent-read.md)。
+-   EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](subsys-dfx-hisysevent-read.md)，，所以还可以通过事件标签对该事件进行[实时订阅](subsys-dfx-hisysevent-read.md)。
 
 ```
 ##########################################
@@ -181,19 +203,13 @@ EVENT_NAMEB:
     __BASE: {type: STATISTIC, level: MINOR, tag: tag1 tag2, desc: event name b}
     NAME1: {type: UINT16, desc: name1}
     NAME2: {type: INT32, desc: name2}
-
 ```
 
-**样例说明**：
--   该yaml文件指定的事件领域名称为MODULEA，该事件领域包含两个事件，名称分别是EVENT_NAMEA和EVENT_NAMEB。
--   EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](subsys-dfx-hisysevent-read.md)。
--   EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](subsys-dfx-hisysevent-read.md)，，所以还可以通过事件标签对该事件进行[实时订阅](subsys-dfx-hisysevent-read.md)。
+## 验证yaml文件<a name="section123181432175115"></a>
 
-## yaml文件的验证流程<a name="section123181432175115"></a>
+### 配置yaml文件路径<a name="section123181432175135"></a>
 
-### yaml文件的路径配置<a name="section123181432175135"></a>
-
--   在bundle.js文件中通过```hisysevent_config```属性完成yaml文件的路径指定：
+在bundle.js文件中通过```hisysevent_config```属性完成yaml文件的路径指定：
 
 ```
 {
@@ -237,33 +253,36 @@ EVENT_NAMEB:
 ```
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
->yaml文件可根据实际需求置于部件工程的任意目录下，只要在bundle.js文件指定即可。
+>yaml文件可根据实际需求置于组件工程的任意目录下，只要在bundle.js文件指定即可。
 
-### yaml文件的编译<a name="section123181432175137"></a>
+### 编译yaml文件<a name="section123181432175137"></a>
 
 -   全量编译：
 
-    -   全量编译整个系统，会将所有部件配置的yaml文件中的配置进行汇总，正常完成系统编译后，指定目录下就会生成hisysevent.def文件。
+    -   全量编译整个系统，会将所有组件配置的yaml文件中的配置进行汇总，正常完成系统编译后，指定目录下就会生成hisysevent.def文件。
 
     ```
-    cd 工程根目录的绝对路径 | ./build --product-name <product name>
+    cd 工程根目录的绝对路径
+	./build --product-name <product name>
     ```
 
     -   全量编译生成的hisysevent.def文件可以通过以下命令获取：
 
     ```
-    cd 工程根目录的绝对路径 | find out -name hisysevent.def -type f
+    cd 工程根目录的绝对路径
+    find out -name hisysevent.def -type f
     ```
 
 -   单文件编译：
 
-    也可以只编译单个部件的yaml文件，命令如下：
+    也可以只编译单个组件的yaml文件，命令如下：
 
     ```
-    cd 工程根目录的绝对路径 | ./build/ohos/hisysevent/gen_def_from_all_yaml.py --yaml-list <yaml file list> --def-path <file store directory>
+    cd 工程根目录的绝对路径
+    ./build/ohos/hisysevent/gen_def_from_all_yaml.py --yaml-list <yaml file list> --def-path <file store directory>
     ```
 
-**表 3**
+**表 3**  单文件编译参数说明
 
 <a name="table1844019587534"></a>
 <table><thead align="left"><tr id="row1440056575118"><th class="cellrowborder" valign="top" id="mcps1.2.3.1.1"><p id="p19432435845020"><a name="p19432435845020"></a><a name="p19432435845020"></a>选项名称</p>
@@ -289,8 +308,8 @@ EVENT_NAMEB:
 </tbody>
 </table>
 
-### 打点验证<a name="section123181432175139"></a>
+### 打点及查询定义的事件<a name="section123181432175139"></a>
 
-1.  通过[hdc工具](subsys-toolchain-hdc-guide.md)将hisysevent.def文件推送到至设备的//system/etc/hiview/目录下;
+1.  通过[hdc_std工具](subsys-toolchain-hdc-guide.md)将hisysevent.def文件推送到至设备的//system/etc/hiview/目录下;
 
-2.  触发HiSysEvent事件打点，通过[hisysevent工具](subsys-dfx-hisysevent-tool.md)查询历史HiSysEvent事件，确认触发的HiSysEvent事件是否打点成功。
+2.  触发yaml文件自定义的HiSysEvent事件完成打点，通过[hisysevent -l]命令(subsys-dfx-hisysevent-tool.md)查询历史HiSysEvent事件，确认触发的自定义HiSysEvent事件是否打点成功。
