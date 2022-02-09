@@ -1,51 +1,43 @@
 # ServiceExtension
 
-- [导入模块](#导入模块)
-- [权限](#权限)
-- [属性](#属性)
-- [onCreate](#onCreate)
-- [onDestroy](#onDestroy)
-- [onRequest](#onRequest)
-- [onConnect](#onConnect)
-- [onDisconnect](#onDisconnect)
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-提供ServiceExtension服务扩展相关接口。
+Provides APIs related to **ServiceExtension**.
 
 
-## 导入模块
+## Modules to Import
 
 ```
 import ServiceExtension from '@ohos.application.ServiceExtension';
 ```
 
 
-## 权限
+## Required Permissions
 
-无
+None
 
 
-## 属性
+## Attributes
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 | 
+| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | Yes| No| Service extension context, which is inherited from **ExtensionContext**.| 
 
 
 ## onCreate
 
 onCreate(want: Want): void;
 
-Extension生命周期回调，在创建时回调，执行初始化业务逻辑操作。
+Called when an extension is created to initialize the service logic.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+  | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
 
-- 示例：
+- Example
   ```
   onCreate(want) {
       console.log('onCreate, want:' + want.abilityName);
@@ -57,9 +49,9 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 onDestroy(): void;
 
-Extension生命周期回调，在销毁时回调，执行资源清理等操作。
+Called when this extension is destroyed to clear resources.
 
-- 示例：
+- Example
   ```
   onDestroy() {
       console.log('onDestroy');
@@ -72,15 +64,15 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 
 onRequest(want: Want, startId: number): void;
 
-Extension生命周期回调，如果是startAbility拉起的服务，会在onCreate之后回调。每次拉起服务都会回调，startId会递增。
+Called after **onCreate** is invoked when an ability is started by calling **startAbility**. The value of **startId** is incremented for each ability that is started.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
-  | startId | number | 是 | 返回拉起次数。首次拉起初始值返回1，多次之后自动递增。 | 
+  | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
+  | startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.| 
 
-- 示例：
+- Example
   ```
   onRequest(want: Want, startId: number) {
       console.log('onRequest, want:' + want.abilityName);
@@ -92,19 +84,19 @@ Extension生命周期回调，如果是startAbility拉起的服务，会在onCre
 
 onConnect(want: Want): rpc.RemoteObject;
 
-Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于和客户端进行通信。
+Called after **onCreate** is invoked when an ability is started by calling **connectAbility**. A **RemoteObject** object is returned for communication with the client.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-featureAbility.md#Want类型说明)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+  | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
 
-- 返回值：
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description| 
   | -------- | -------- |
-  | rpc.RemoteObject | 一个RemoteObject对象，用于和客户端进行通信。 | 
+  | rpc.RemoteObject | A **RemoteObject** object used for communication with the client.| 
 
-- 示例：
+- Example
   ```
   import rpc from '@ohos.rpc'
   class StubTest extends rpc.RemoteObject{
@@ -126,14 +118,14 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 onDisconnect(want: Want): void;
 
-Extension的生命周期，断开服务连接时回调。
+Called when the ability is disconnected.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-featureAbility.md#Want类型说明)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+  | want |[Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
 
-- 示例：
+- Example
   ```
   onDisconnect(want) {
       console.log('onDisconnect, want:' + want.abilityName);

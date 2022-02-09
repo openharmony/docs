@@ -1,18 +1,10 @@
 # ServiceExtensionContext
 
-- [startAbility](#startAbility)
-- [startAbility](#startAbility)
-- [terminateSelf](#terminateSelf)
-- [terminateSelf](#terminateSelf)
-- [connectAbility](#connectAbility)
-- [disconnectAbility](#disconnectAbility)
-- [disconnectAbility](#disconnectAbility)
-- [ConnectOptions](#ConnectOptions)
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-ServiceExtension的上下文环境，提供ServiceExtension具有的能力和接口，继承自ExtensionContext。
+Implements the context that provides the capabilities and APIs of **ServiceExtension**. This class is inherited from **ExtensionContext**.
 
 
 ## startAbility
@@ -21,16 +13,16 @@ ServiceExtension的上下文环境，提供ServiceExtension具有的能力和接
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 
-启动Ability。
+Starts an ability. This method uses a callback to return the result.
 
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the ability to start, such as the ability name and bundle name.| 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the method is successfully called.| 
 
-- 示例：
+- Example
   ```
   let want = {
       "bundleName": "com.example.myapp",
@@ -46,19 +38,19 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 startAbility(want: Want): Promise&lt;void&gt;;
 
-启动Ability。通过Promise返回结果。
+Starts an ability. This method uses a promise to return the result.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
+  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the ability to start, such as the ability name and bundle name.| 
 
-- 返回值：
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the method is successfully called.| 
 
-- 示例：
+- Example
   ```
   let want = {
       "bundleName": "com.example.myapp",
@@ -76,14 +68,14 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability自身。
+Terminates this ability. This method uses a callback to return the result.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the method is successfully called.| 
 
-- 示例：
+- Example
   ```
   this.context.terminateSelf((err) => {
       console.log('terminateSelf result:' + JSON.stringfy(err);
@@ -95,14 +87,14 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 terminateSelf(): Promise&lt;void&gt;;
 
-停止自身。通过Promise返回结果。
+Terminates this ability. This method uses a promise to return the result.
 
-- 返回值：
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the method is successfully called.| 
 
-- 示例：
+- Example
   ```
   this.context.terminateSelf(want).then((data) => {
       console.log('success:' + JSON.stringfy(data));
@@ -116,20 +108,20 @@ terminateSelf(): Promise&lt;void&gt;;
 
 connectAbility(want: Want, options: ConnectOptions): number;
 
-将一个Ability与服务类型的Ability绑定。
+Connects this ability to a Service ability.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
-  | options | [ConnectOptions](#connectoptions) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 | 
+  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the ability to connect to, such as the ability name and bundle name.| 
+  | options | [ConnectOptions](#connectoptions) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.| 
 
-- 返回值
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description| 
   | -------- | -------- |
-  | number | 返回一个number，后续根据这个number去断开连接。 | 
+  | number | A number, based on which the connection will be interrupted.| 
 
-- 示例：
+- Example
   ```
   let want = {
       "bundleName": "com.example.myapp",
@@ -148,17 +140,17 @@ connectAbility(want: Want, options: ConnectOptions): number;
 
 disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
-将一个Ability与绑定的服务类型的Ability解绑。
+Disconnects this ability from the Service ability. This method uses a callback to return the result.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | connection | number | 是 | 在connectAbility中返回的number。 | 
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+  | connection | number | Yes| Number returned after **connectAbility** is called.| 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the method is successfully called.| 
 
-- 示例：
+- Example
   ```
-  this.context.disconnectAbility(connection, (err) => { // connection为connectAbility中的返回值
+  this.context.disconnectAbility(connection, (err) => { // connection is the return value of connectAbility.
       console.log('terminateSelf result:' + JSON.stringfy(err);
   }
   ```
@@ -168,21 +160,21 @@ disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
 disconnectAbility(connection: number): Promise&lt;void&gt;;
 
-将一个Ability与绑定的服务类型的Ability解绑。通过Promise返回结果。
+Disconnects this ability from the Service ability. This method uses a promise to return the result.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | connection | number | 是 | 在connectAbility中返回的number。 | 
+  | connection | number | Yes| Number returned after **connectAbility** is called.| 
 
-- 返回值：
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the method is successfully called.| 
 
-- 示例：
+- Example
   ```
-  this.context.disconnectAbility(connection).then((data) => { // connection为connectAbility中的返回值
+  this.context.disconnectAbility(connection).then((data) => { // connection is the return value of connectAbility.
       console.log('success:' + JSON.stringfy(data));
   )).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
@@ -192,10 +184,10 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 
 ## ConnectOptions
 
-ConnectOptions数据结构。
+Defines the **ConnectOptions** data structure.
 
-| 名称 | 说明 | 
+| Name| Description| 
 | -------- | -------- |
-| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Ability成功连接一个服务类型Ability的回调接口。 | 
-| onDisconnect(elementName:ElementName) | 对端服务发生异常或者被杀死回调该接口。 | 
-| onFailed(code:&nbsp;number) | 连接失败时回调该接口。 | 
+| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Called when this ability is connected to a Service ability.| 
+| onDisconnect(elementName:ElementName) | Called when the peer service is abnormal or killed.| 
+| onFailed(code:&nbsp;number) | Called when the connection fails.| 

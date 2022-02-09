@@ -1,15 +1,14 @@
 # ExtensionContext
 
-- [属性](#属性)
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-Extension的上下文环境，继承自Context。
+Implements extension context. This module is inherited from **Context**.
 
 
-## 属性
+## Attributes
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前Hap包的信息。 | 
+| currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.| 

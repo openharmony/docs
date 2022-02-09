@@ -1,42 +1,33 @@
 # AbilityContext
 
-- [属性](#属性)
-- [startAbility](#startAbility)
-- [startAbility](#startAbility)
-- [startAbilityForResult](#startAbilityForResult)
-- [startAbilityForResult](#startAbilityForResult)
-- [terminateSelf](#terminateSelf)
-- [terminateSelf](#terminateSelf)
-- [terminateSelfWithResult](#terminateSelfWithResult)
-- [terminateSelfWithResult](#terminateSelfWithResult)
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-Ability的上下文环境，继承自Context。
+Implements ability context. This module is inherited from **Context**.
 
 
-## 属性
+## Attributes
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 | 
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 | 
+| abilityInfo | AbilityInfo | Yes| No| Ability information.| 
+| currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.| 
 
 
 ## startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。
+Starts an ability. This method uses a callback to return the result.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 | 
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 | 
+  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.| 
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.| 
 
-- 示例：
+- Example
   ```
   var want = {
   	"deviceId": "",
@@ -53,19 +44,19 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 startAbility(want: Want): Promise&lt;void&gt;;
 
-启动Ability。通过Promise返回结果。
+Starts an ability. This method uses a promise to return the result.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 | 
+  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.| 
 
-- 返回值：
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise形式返回启动结果。 | 
+  | Promise&lt;void&gt; | Promise used to return the result.| 
 
-- 示例：
+- Example
   ```
   var want = {
   	"deviceId": "",
@@ -85,16 +76,16 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在结束的时候返回执行结果。
+Starts an ability. This method uses a callback to return the execution result when the ability is terminated.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 | 
-  | callback | Callback&lt;[AbilityResult](js-apis-featureAbility.md#AbilityResult类型说明)&gt; | 是 | 执行结果回调函数。 | 
+  | want |[Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.|
+  | callback | Callback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
 
 
-- 示例：
+- Example
   ```
   this.context.startAbilityForResult(
       {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"},
@@ -110,19 +101,19 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 startAbilityForResult(want: Want): Promise&lt;AbilityResult&gt;;
 
-启动Ability并在结束的时候返回执行结果。
+Starts an ability. This method uses a promise to return the execution result when the ability is terminated.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 | 
+  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.| 
 
-- 返回值
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[AbilityResult](js-apis-featureAbility.md#AbilityResult类型说明)&gt; | Promise形式返回执行结果。 | 
+  | Promise&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Promise used to return the result.|
 
-- 示例：
+- Example
   ```
   this.context.startAbilityForResult({bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}).then((result) => {
       console.log("startAbilityForResult Promise.resolve is called, result.resultCode = " + result.resultCode)
@@ -136,14 +127,14 @@ startAbilityForResult(want: Want): Promise&lt;AbilityResult&gt;;
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability自身。
+Terminates this ability. This method uses a callback to return the result.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the method is successfully called.| 
 
-- 示例：
+- Example
   ```
   this.context.terminateSelf((err) => {
       console.log('terminateSelf result:' + JSON.stringfy(err);
@@ -155,14 +146,14 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 terminateSelf(): Promise&lt;void&gt;;
 
-停止Ability自身。通过Promise返回结果。
+Terminates this ability. This method uses a promise to return the result.
 
-- 返回值：
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the method is successfully called.| 
 
-- 示例：
+- Example
   ```
   this.context.terminateSelf(want).then((data) => {
       console.log('success:' + JSON.stringfy(data));
@@ -176,15 +167,15 @@ terminateSelf(): Promise&lt;void&gt;;
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability，并返回给调用startAbilityForResult 接口调用方的相关信息。
+Terminates this ability. This method uses a callback to return the information to the caller of **startAbilityForResult**.
 
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | parameter |  [AbilityResult](js-apis-featureAbility.md#AbilityResult类型说明) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 | 
-  | callback | Callback&lt;void&gt; | 否 | callback形式返回停止结果 | 
+  | parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | Yes| Information returned to the caller.|
+  | callback | Callback&lt;void&gt; | No| Callback used to return the information.|
 
-- 示例：
+- Example
   ```
   this.context.terminateSelfWithResult(
      {
@@ -201,19 +192,19 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
-停止Ability，并返回给调用startAbilityForResult 接口相关信息。
+Terminates this ability. This method uses a promise to return information to the caller of **startAbilityForResult**.
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 | 
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | parameter |  [AbilityResult](js-apis-featureAbility.md#AbilityResult类型说明) | 是 | 返回给startAbilityForResult&nbsp;调用方的信息。 | 
+  | parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | Yes| Information returned to the caller.|
 
-- 返回值：
-  | 类型 | 说明 | 
+- Return value
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise形式返回停止结果 | 
+  | Promise&lt;void&gt; | Promise used to return the result.| 
 
-- 示例：
+- Example
   ```
   this.context.terminateSelfWithResult(
   {
