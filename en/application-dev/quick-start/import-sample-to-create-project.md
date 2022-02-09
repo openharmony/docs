@@ -6,11 +6,11 @@
 After the OpenHarmony SDK is configured, you can get started to develop your app by  **importing a sample project**.
 
 1.  On the DevEco Studio welcome page, select  **Configure**  or click the  ![](figures/en-us_image_0000001118018452.png)  icon, and choose  **Settings**  \>  **Version Control**  \>  **Git**. Then click  **Test**  to check whether the Git tool has been installed.
-    -   If the tool has been installed, import a sample by referring to  [2](#li5947194711181).
+    -   If the tool has been installed, import a sample by following the instructions in Step 2.
 
         ![](figures/en-us_image_0000001118018088.png)
 
-    -   If the tool hasn't been installed, click  **Download and Install**. DevEco Studio will automatically download and install it. Then import a sample by referring to  [2](#li5947194711181).
+    -   If the tool hasn't been installed, click  **Download and Install**. DevEco Studio will automatically download and install it. Then import a sample by following the instructions in Step 2.
 
         ![](figures/en-us_image_0000001164498191.png)
 
