@@ -11,6 +11,11 @@ import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
 
 
+## 系统能力
+
+SystemCapability.Account.OsAccount
+
+
 ## account_distributedAccount.getDistributedAccountAbility
 
 getDistributedAccountAbility(): DistributedAccountAbility
