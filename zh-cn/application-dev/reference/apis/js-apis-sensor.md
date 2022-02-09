@@ -22,9 +22,9 @@ import sensor from '@ohos.sensor';
 陀螺仪：ohos.permission.GYROSCOPE
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
-on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;,options?: Options): void
+on(type:  sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;,options?: Options): void
 
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
@@ -39,23 +39,23 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;Acc
 
 - 示例：
   ```
-  sensor.on(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      console.info('X-coordinate component: ' + data.x);    
+      console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-    },
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
 
-on(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -68,23 +68,23 @@ on(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&lt;
 
 - 示例：
   ```
-  sensor.on(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,function(error,data){    
-     if (error) {
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,function(error,data){
+      if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
 
-on(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -97,7 +97,7 @@ on(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallb
 
 - 示例：
   ```
-  sensor.on(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -108,15 +108,15 @@ on(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallb
       console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_GRAVITY)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY)
 
-on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityResponse&gt;,options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityResponse&gt;,options?: Options): void
 
 监听重力传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -129,23 +129,23 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityRe
 
 - 示例：
   ```
-  sensor.on(type:SensorType.SENSOR_TYPE_ID_GRAVITY,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      console.info('X-coordinate component: ' + data.x); 
+      console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE)
 
-on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;GyroscopeResponse&gt;, options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;GyroscopeResponse&gt;, options?: Options): void
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -158,23 +158,23 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;Gyrosco
 
 - 示例：
   ```
-  sensor.on(type:SensorType.SENSOR_TYPE_ID_GUROSCOPE,function(error,data){    
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      console.info('X-coordinate component: ' + data.x); 
+      console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
 
-on(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -187,26 +187,26 @@ on(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      console.info('X-coordinate component: ' + data.x);  
+      console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX); 
+      console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
 
-on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: AsyncCallback&lt;SignificantMotionResponse&gt;, options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: AsyncCallback&lt;SignificantMotionResponse&gt;, options?: Options): void
 
 监听大幅动作传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -219,21 +219,21 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: AsyncCallback&l
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Scalar data: ' + data.scalar);
-    }
-    {interval: 10000000}      
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: AsyncCallback&lt;PedometerDetectResponse&gt;, options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: AsyncCallback&lt;PedometerDetectResponse&gt;, options?: Options): void
 
 监听计步检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -246,21 +246,21 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: AsyncCallback&
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(error,data){
       if (error) {
-          console.error(""Subscription failed. Error code: " + error.code + "; message: " + error.message);
+          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Scalar data: ' + data.scalar);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER)
 
-on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;, options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;, options?: Options): void
 
 监听计步传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -273,21 +273,21 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;Pedomet
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Steps: ' + data.steps);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
 
-on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -300,21 +300,21 @@ on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&lt;
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Temperature: ' + data.temperature);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
 
-on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;MagneticFieldResponse&gt;,options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
 监听磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -327,7 +327,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;Ma
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD,function(error,data){    
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -335,15 +335,15 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;Ma
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
 
-on(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCallback&lt;MagneticFieldUncalibratedResponse&gt;, options: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCallback&lt;MagneticFieldUncalibratedResponse&gt;, options: Options): void
 
 监听未校准磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -356,26 +356,26 @@ on(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCall
 
 - 示例：
   ```
-  ensor.on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      console.info('X-coordinate component: ' + data.x);    
-      console.info('Y-coordinate component: ' + data.y);    
-      console.info('Z-coordinate component: ' + data.z);    
-      console.info('X-coordinate bias: ' + data.biasX);    
+      console.info('X-coordinate component: ' + data.x);
+      console.info('Y-coordinate component: ' + data.y);
+      console.info('Z-coordinate component: ' + data.z);
+      console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-    {interval: 10000000}   //设置数据的上报频率。
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY)
 
-on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;ProximityResponse&gt;,options?: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;ProximityResponse&gt;,options?: Options): void
 
 监听接近光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -388,21 +388,21 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;Proximi
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Distance: ' + data.distance);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY)
 
-on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;,options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;,options?: Options): void
 
 监听湿度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -415,21 +415,21 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;Humidity
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Humidity: ' + data.humidity);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_BAROMETER)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER)
 
-on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;BarometerResponse&gt;,options?: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;BarometerResponse&gt;,options?: Options): void
 
 监听气压计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -442,21 +442,21 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;Baromet
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_BAROMETER,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Atmospheric pressure: ' + data.pressure);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_HALL)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL)
 
-on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: AsyncCallback&lt;HallResponse&gt;, options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback: AsyncCallback&lt;HallResponse&gt;, options?: Options): void
 
 监听霍尔传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -469,21 +469,21 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: AsyncCallback&lt;HallResponse
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_HALL,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Status: ' + data.status);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
 
-on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;LightResponse&gt;, options?: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;LightResponse&gt;, options?: Options): void
 
 监听环境光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -496,21 +496,21 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;Lig
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(error,data){
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      console.info(''Illumination: ' + data.intensity);
-    }
-    {interval: 10000000}
+      console.info(' Illumination: ' + data.intensity);
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION)
 
-on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;, options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;, options?: Options): void
 
 监听方向传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -523,7 +523,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;Orien
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION,function(error,data){    
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -531,15 +531,15 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;Orien
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
 
-on(type:SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback:AsyncCallback&lt;RotationVectorResponse&gt;,options?: Options): void
+on(type:sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback:AsyncCallback&lt;RotationVectorResponse&gt;,options?: Options): void
 
 监听旋转矢量传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -552,7 +552,7 @@ on(type:SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback:AsyncCallback&lt;Rota
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(error,data){    
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -560,15 +560,15 @@ on(type:SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback:AsyncCallback&lt;Rota
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
 
-on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;WearDetectionResponse&gt;,options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;WearDetectionResponse&gt;,options?: Options): void
 
 监听佩戴检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -581,21 +581,21 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;We
 
 - 示例：
   ```
-  sensor.on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(error,data){    
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
       console.info('Wear status: ' + data.value);
-    }
-    {interval: 10000000}
+  },
+      {interval: 10000000}
   );
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
-once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;): void
 
 监听加速度传感器的数据变化一次。
 
@@ -607,7 +607,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;A
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(error,data){
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -620,9 +620,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;A
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
 
-once(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&lt;LinearAccelerometerResponse&gt;): void
+once(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&lt;LinearAccelerometerResponse&gt;): void
 
 监听线性加速度传感器数据变化一次。
 
@@ -634,7 +634,7 @@ once(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&l
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -647,9 +647,9 @@ once(type:SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&l
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
 
-once(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallback&lt;AccelerometerUncalibratedResponse&gt;): void
+once(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 监听未校准加速度传感器的数据变化一次。
 
@@ -661,7 +661,7 @@ once(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCal
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -677,9 +677,9 @@ once(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCal
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_GRAVITY)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY)
 
-once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityResponse&gt;): void
+once(type:sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityResponse&gt;): void
 
 监听重力传感器的数据变化一次。
 
@@ -691,7 +691,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;Gravity
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_GRAVITY, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -704,9 +704,9 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;Gravity
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE)
 
-once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;GyroscopeResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;GyroscopeResponse&gt;): void
 
 监听陀螺仪传感器的数据变化一次。
 
@@ -718,7 +718,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;Gyros
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -731,9 +731,9 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;Gyros
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
 
-once(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&lt;GyroscopeUncalibratedResponse&gt;): void
+once(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&lt;GyroscopeUncalibratedResponse&gt;): void
 
 监听未校准陀螺仪传感器的数据变化一次。
 
@@ -745,7 +745,7 @@ once(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallbac
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -761,9 +761,9 @@ once(type:SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallbac
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
 
-once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback:AsyncCallback&lt;SignificantMotionResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback:AsyncCallback&lt;SignificantMotionResponse&gt;): void
 
 监听有效运动传感器的数据变化一次。
 
@@ -775,7 +775,7 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback:AsyncCallback&l
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -786,9 +786,9 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback:AsyncCallback&l
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-once(type:SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCallback&lt;PedometerDetectResponse&gt;): void
+once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCallback&lt;PedometerDetectResponse&gt;): void
 
 监听计步检测传感器数据变化一次。
 
@@ -800,7 +800,7 @@ once(type:SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCallback&l
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -811,9 +811,9 @@ once(type:SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCallback&l
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER)
 
-once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;): void
 
 监听计步器传感器数据变化一次。
 
@@ -825,7 +825,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;Pedom
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_PEDOMETER, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -836,9 +836,9 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;Pedom
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
 
-once(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&lt;AmbientTemperatureResponse&gt;): void
+once(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&lt;AmbientTemperatureResponse&gt;): void
 
 监听环境温度传感器数据变化一次。
 
@@ -850,7 +850,7 @@ once(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&l
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -861,9 +861,9 @@ once(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&l
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
 
-once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;MagneticFieldResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;MagneticFieldResponse&gt;): void
 
 监听磁场传感器数据变化一次。
 
@@ -875,7 +875,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -888,9 +888,9 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
 
-once(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCallback&lt;MagneticFieldUncalibratedResponse&gt;): void
+once(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCallback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 监听未校准磁场传感器数据变化一次。
 
@@ -902,7 +902,7 @@ once(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCa
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -918,9 +918,9 @@ once(type:SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCa
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY)
 
-once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;ProximityResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;ProximityResponse&gt;): void
 
 监听接近光传感器数据变化一次。
 
@@ -932,7 +932,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;Proxi
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_PROXIMITY, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -943,9 +943,9 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;Proxi
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY)
 
-once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;): void
 
 监听湿度传感器数据变化一次。
 
@@ -957,7 +957,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;Humidi
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_HUMIDITY, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -968,9 +968,9 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;Humidi
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_BAROMETER)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER)
 
-once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;BarometerResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;BarometerResponse&gt;): void
 
 监听气压计传感器数据变化一次。
 
@@ -982,7 +982,7 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;Barom
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_BAROMETER, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -993,9 +993,9 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;Barom
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_HALL)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL)
 
-once(type: SensorType.SENSOR_TYPE_ID_HALL, callback:   AsyncCallback&lt;HallResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback:   AsyncCallback&lt;HallResponse&gt;): void
 
 监听霍尔传感器数据变化一次。
 
@@ -1007,7 +1007,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback:   AsyncCallback&lt;HallResp
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_HALL, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -1018,9 +1018,9 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback:   AsyncCallback&lt;HallResp
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
 
-once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;LightResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;LightResponse&gt;): void
 
 监听环境光传感器数据变化一次。
 
@@ -1032,20 +1032,20 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;L
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
       }
-      console.info(''Illumination: ' + data.intensity);
+      console.info(' Illumination: ' + data.intensity);
     }
   );
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION)
 
-once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;): void
 
 监听方向传感器数据变化一次。
 
@@ -1057,7 +1057,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;Ori
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_ORIENTATION, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -1070,9 +1070,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;Ori
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
 
-once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: AsyncCallback&lt;RotationVectorResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: AsyncCallback&lt;RotationVectorResponse&gt;): void
 
 监听旋转矢量传感器数据变化一次。
 
@@ -1084,7 +1084,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: AsyncCallback&lt
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -1097,9 +1097,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: AsyncCallback&lt
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE)
 
-once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&lt;HeartRateResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&lt;HeartRateResponse&gt;): void
 
 监听心率传感器数据变化一次。
 
@@ -1111,7 +1111,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&lt;Hear
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_HEART_RATE, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -1122,9 +1122,9 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&lt;Hear
   ```
 
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
 
-once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;WearDetectionResponse&gt;): void
+once(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;WearDetectionResponse&gt;): void
 
 监听佩戴检测传感器数据变化一次。
 
@@ -1136,7 +1136,7 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;
 
 - 示例：
   ```
-  sensor.once(type:SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(error, data) {
       if (error) {
           console.error("Failed to register data, error code is" + error.code + ", message: " + error.message);
           return;
@@ -1161,7 +1161,7 @@ off(type: SensorType, callback?: AsyncCallback&lt;void&gt;): void
 
 - 示例：
   ```
-  sensor.off(type:SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(error) {
+  sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(error) {
       if (error) {
           console.error("Failed to unsubscribe from acceleration sensor data. Error code: " + error.code + "; message: " + error.message);
           return;
