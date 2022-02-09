@@ -112,17 +112,11 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 ## 开发实例<a name="section123181432175110"></a>
 
-C++接口实例
+订阅HiSysEvent事件C++接口实例
 
-1.  编译配置文件中增加对hisysevent\_native组件libhisyseventmanager库的依赖：
+1.  源代码开发
 
-    ```
-	external_deps = [ "hisysevent_native:libhisyseventmanager", ]
-	```
-
-2.  源代码开发
-
-    自定义订阅回调实现类DemoListener：
+    自定义订阅回调实现类头文件DemoListener.h：
 
 	```
 	#ifndef DEMO_LISTENER_H
@@ -140,9 +134,11 @@ C++接口实例
 		virtual ~DemoListener() {}
 		void OnServiceDied();
 	};
+	
+	#endif DEMO_LISTENER_H
 	```
 
-    实现订阅回调接口：
+    增加DemoListener.cpp文件，在DemoListener类中根据实际需求自定义订阅回调接口的实现逻辑：
 
 	```
 	#include "demo_listener.h"
@@ -162,7 +158,7 @@ C++接口实例
 	}
 	```
 
-	通过HiSysEventManager类提供的AddEventListener接口注册回调对象：
+	通过HiSysEventManager类提供的AddEventListener接口注册回调对象，完成对HiSysEvent的订阅：
 
 	```
 	auto demoListener = std::make_shared<DemoListener>();
@@ -177,4 +173,10 @@ C++接口实例
 	sysRules.push_back(regRule);
 	sysRules.push_back(domainNameRule);
 	HiSysEventManager::AddEventListener(demoListener, sysRules);
+	```
+
+2.  编译配置文件中增加对hisysevent\_native组件libhisyseventmanager库的依赖：
+
+    ```
+	external_deps = [ "hisysevent_native:libhisyseventmanager", ]
 	```
