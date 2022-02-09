@@ -11,7 +11,7 @@ import hitrace from '@ohos.hitrace';
 
 ## 系统能力
 
-SystemCapability.HiviewDFX.HITrace
+SystemCapability.HiviewDFX.HiTrace
 
 ## HiTraceFlag
 
