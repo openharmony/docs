@@ -172,7 +172,7 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
      /* 灯设备HCS配置 */
      device_light :: device {
          device0 :: deviceNode {
-             policy = 2; // 驱动服务发布的策略
+             policy = 2; // 驱动服务发布的策略（0：不提供服务，1：对内核态发布服务，2：对内核态和用户态都发布服务）
              priority = 100; // Light驱动启动优先级（0-200），值越大优先级越低，建议配置为100，优先级相同则不保证device的加载顺序
              preload = 0; // 驱动按需加载字段，0表示加载，2表示不加载
              permission = 0664;  // 驱动创建设备节点权限
@@ -234,8 +234,8 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
                          busGNum = 30;                // 绿色对应的GPIO管脚
                          busBNum = 29;                // 蓝色对应的GPIO管脚
                          lightBrightness = 0X80000000;// RGB: R:16-31bit、G:8-15bit、B:0-7bit
-                         onTime = 50;                 // 一个闪烁周期内亮灯时长
-                         offTime = 50;                // 一个闪烁周期内熄灯时长
+                         onTime = 50;                 // 一个闪烁周期内亮灯时长（ms）
+                         offTime = 50;                // 一个闪烁周期内熄灯时长（ms）
                      }
                  }
              }
