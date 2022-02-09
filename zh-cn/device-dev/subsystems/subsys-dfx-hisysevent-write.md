@@ -285,4 +285,4 @@ C++接口实例
 
 ## 打点配置指导<a name="section112771171321"></a>
 
-在进行HiSysEvent事件打点之前，需要先对HiSysEvent打点行为进行配置，具体可参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)
+在进行HiSysEvent事件打点之前，需要先对HiSysEvent事件打点进行配置，具体可参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)
