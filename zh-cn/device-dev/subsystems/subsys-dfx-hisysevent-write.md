@@ -1,13 +1,17 @@
 # HiSysEvent打点指导<a name="ZH-CN_TOPIC_0000001231373947"></a>
 
 -   [概述](#section77571101789)
+-   [打点配置](#section112771171321)
 -   [接口说明](#section13480315886)
 -   [开发实例](#section112771171317)
--   [打点配置指导](#section112771171321)
 
 ## 概述<a name="section77571101789"></a>
 
 HiSysEvent提供OpenHarmony打点接口，通过在关键路径打点记录系统在运行过程中的重要信息，辅助开发者定位问题，此外还支持开发者将数据上传到云进行大数据质量度量。
+
+## 打点配置<a name="section112771171321"></a>
+
+在进行HiSysEvent事件打点之前，需要先对HiSysEvent事件打点进行配置，具体可参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
 
 ## 接口说明<a name="section13480315886"></a>
 
@@ -282,7 +286,3 @@ C++接口实例
     ```
     external_deps = [ "hisysevent_native:libhisysevent" ]
     ```
-
-## 打点配置指导<a name="section112771171321"></a>
-
-在进行HiSysEvent事件打点之前，需要先对HiSysEvent事件打点进行配置，具体可参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)

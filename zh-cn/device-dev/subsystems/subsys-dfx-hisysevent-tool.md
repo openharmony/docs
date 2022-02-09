@@ -10,7 +10,7 @@
 
 ## 实时订阅HiSysEvent事件相关命令<a name="section1210623418527"></a>
 
-实时订阅HiSysEvent事件的基础命令：
+- 实时订阅HiSysEvent事件的基础命令：
 
 ```
 hisysevent -r
@@ -20,9 +20,9 @@ hisysevent -r
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
-| -r&nbsp;        | 以缺省设置实时订阅HiSysEvent事件，在此种订阅方式下有任何实时HiSysEvent事件产生，都会在控制台上打印此HiSysEvent事件 | 
+| -r&nbsp;        | 以缺省设置实时订阅HiSysEvent事件，在此种订阅方式下有任何实时HiSysEvent事件产生，都会在控制台上打印此HiSysEvent事件 |
 
-打开调试模式：
+- 打开调试模式：
 
 ```
 hisysevent -r -d
@@ -32,9 +32,9 @@ hisysevent -r -d
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
-| -d       | 在调试模式下实时订阅HiSysEvent事件 | 
+| -d       | 在调试模式下实时订阅HiSysEvent事件 |
 
-通过事件标签方式实时订阅HiSysEvent事件：
+- 通过事件标签方式实时订阅HiSysEvent事件：
 
 ```
 hisysevnet -r -t <tag> [-c [WHOLE_WORD|PREFIX|REGULAR]]
@@ -47,7 +47,7 @@ hisysevnet -r -t <tag> [-c [WHOLE_WORD|PREFIX|REGULAR]]
 | -t&nbsp;        | 设置实时订阅的HiSysEvent事件标签，用来过滤订阅的HiSysEvent事件 |
 | -c&nbsp;        | 设置实时订阅的HiSysEvent事件标签匹配规则，有“WHOLE_WORD”、“PREFIX”、“REGULAR”三种匹配规则|
 
-4. 通过事件领域及事件名称的方式实时订阅HiSysEvent事件：
+- 通过事件领域及事件名称的方式实时订阅HiSysEvent事件：
 
 ```
 hisysevent -r -o <domain> -n <eventName> [-c [WHOLE_WORD|PREFIX|REGULAR]]
@@ -64,7 +64,7 @@ hisysevent -r -o <domain> -n <eventName> [-c [WHOLE_WORD|PREFIX|REGULAR]]
 
 ## 查询历史HiSysEvent事件相关命令<a name="section1210623418539"></a>
 
-查询历史HiSysEvent事件的基础命令：
+- 查询历史HiSysEvent事件的基础命令：
 
 ```
 hisysevent -l
@@ -74,9 +74,9 @@ hisysevent -l
 
 | 选项名称 | 功能说明  |
 | -------- | --------- |
-| -l       | 以缺省设置查询历史HiSysEvent事件，此次查询会返回最近不多于1000条的HiSysEvent事件 | 
+| -l       | 以缺省设置查询历史HiSysEvent事件，此次查询会返回最近不多于1000条的HiSysEvent事件 |
 
-通过设置开始/结束时间，过滤查询历史HiSysEvent事件的结果的命令：
+- 通过设置开始/结束时间，过滤查询历史HiSysEvent事件的结果的命令：
 
 ```
 hisysevent -l -s <begin time> -e <end time>
@@ -89,7 +89,7 @@ hisysevent -l -s <begin time> -e <end time>
 | -s       | 设置查询历史HiSysEvent事件的开始时间，此次查询只会返回不早于该时间点的HiSysEvent事件 |
 | -e       | 设置查询历史HiSysEvent事件的结束时间，此次查询只会返回不晚于该时间点的HiSysEvent事件 |
 
-通过设置最大数量值，限制查询历史HiSysEvent事件的数量：
+- 通过设置最大数量值，限制查询历史HiSysEvent事件的数量：
 
 ```
 hisysevent -l -m <max hisysevent count>
