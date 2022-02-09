@@ -16,7 +16,7 @@ For details about the APIs used for audio playback, see [js-apis-media.md](../re
 
 The full audio playback process includes creating an instance, setting the URI, playing audio, seeking to the playback position, setting the volume, pausing playback, obtaining track information, stopping playback, resetting resources, and releasing resources.
 
-For details about the **src** media source input types supported by **AudioPlayer**, see the [src attributes](../reference/apis/js-apis-media.md#audioplayer_Attributes).
+For details about the **src** media source input types supported by **AudioPlayer**, see the [src attribute](../reference/apis/js-apis-media.md#audioplayer_Attributes).
 
 ```js
 function SetCallBack(audioPlayer) {
