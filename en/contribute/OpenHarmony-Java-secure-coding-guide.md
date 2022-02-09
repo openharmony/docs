@@ -1,4 +1,4 @@
-# OpenHarmony Java Secure Coding Guide
+# Java Secure Coding Guide
 
 This document provides secure coding suggestions for Java-based development.
 

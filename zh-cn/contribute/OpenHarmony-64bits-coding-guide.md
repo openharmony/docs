@@ -7,7 +7,7 @@
 OpenHarmony的目标是面向全场景、全连接、全智能时代，基于开源的方式，搭建一个智能终端设备操作系统的框架和平台，促进万物互联产业的繁荣发展。具有“硬件互助，资源共享”、“一次开发，多端部署”、“统一OS，弹性部署”的技术特性。
 OpenHarmony支持三种系统类型：
 
-1. 轻量系统（mini system），面向从MCU类处理器（例如Arm Cortex-M、RISC-V 32位）的轻量设备，硬件资源极其有限，支持的设备最小内存为128KiB；
+1. 轻量系统（mini system），面向MCU类处理器（例如Arm Cortex-M、RISC-V 32位）的轻量设备，硬件资源极其有限，支持的设备最小内存为128KiB；
 2. 小型系统（small system），面向应用处理器（例如Arm Cortex-A 64位）的设备，支持的设备最小内存为1MiB
 3. 标准系统（standard system），面向应用处理器（例如Arm Cortex-A 64位）的设备，支持的设备最小内存为128MiB
 
@@ -35,7 +35,7 @@ OpenHarmony支持三种系统类型：
 | size_t    | **4**     | **8**    | **8**     | 4        | 8         |
 | pointer   | **4**     | **8**    | **8**     | 4        | 8         |
 
-上表中只包含了部分基本类型，下表分别将ILP32和LP64的siziof和print`进行对比，展示了更全面的常量和类型对应的差异：
+上表中只包含了部分基本类型，下表分别将ILP32和LP64的sizeof和print`进行对比，展示了更全面的常量和类型对应的差异：
 
 | Type               | ILP32 sizeof | ILP32 print | LP64 sizeof | LP64 print | 备注   |
 | ------------------ | ------------ | ----------- | ----------- | ---------- | ------ |
@@ -115,8 +115,8 @@ typedef struct tagFoo {
 | uint16_t         | 2     | 2     | %u      | 代替unsigned short                                           |
 | int32_t          | 4     | 4     | %d      | 代替int                                                      |
 | uint32_t         | 4     | 4     | %u      | 代替unsigned int                                             |
-| int64_t          | 8     | 8     | %PRId64 | 代替long long，宏实现代码兼容                                |
-| uint64_t         | 8     | 8     | %PRIu64 | 代替unsigned longlong，宏实现代码兼容                        |
+| int64_t          | 8     | 8     | %PRId64 | 代替long long、宏实现代码兼容                                |
+| uint64_t         | 8     | 8     | %PRIu64 | 代替unsigned long long、宏实现代码兼容                        |
 | float            | 4     | 4     | %f      | 单精度浮点数                                                 |
 | double           | 8     | 8     | %lf     | 双精度浮点数                                                 |
 | bool             | 1     | 1     | %d      | 布尔类型                                                     |
@@ -170,7 +170,7 @@ long var;
 
 #### 【规则】当需要采用整型变量来存储指针时，变量应该定义成uintptr_t以适应不同的位宽
 
-【说明】uintptr_t类型用于用于存储指针长度级别的数据，其长度在32位和64位可自动适应。
+【说明】uintptr_t类型用于用于存储指针长度的数据，其长度在32位和64位可自动适应。
 
 【示例】
 
@@ -262,7 +262,7 @@ format ‘%p’ expects argument of type ‘void *’, but argument 2 has type �
 | 0x80000000LL   | 8         | 8     | 增加LL后缀，小于uint32_t范围，长度固定                       |
 | 0x8000000000   | **NA或8** | **8** | 无后缀，超过uint32_t的范围，编译器默认为LL或无效，64位下固定为uint64_t类型 |
 | 0x8000000000L  | **NA或8** | **8** | 后缀为L，对超过uint32_t的范围常数，增加该参数没有意义，应当避免使用 |
-| 0x8000000000LL | 8         | 8     | 默认为LL，uint64_t类型                                       |
+| 0x8000000000LL | 8         | 8     | 后缀为LL，uint64_t类型                                       |
 
 从上表中可看出，使用L或UL后缀的常量，其长度在32位和64位下发生变化，不利于代码的可移植性，因此禁止使用这个后缀。
 
@@ -533,7 +533,7 @@ q = (int32_t *) (int32_t)&i;
 int32_t length = (int32_t)strlen(str); // 错误
 ```
 
-strlen返回size_t（它在LP64中是unsigned long），当赋值给一个int32_t时，截断是必然发生的。而通常，截断只会在str的长度大于2GB时才会发生，这种情况在程序中一般不会出现，容易出现问题。
+strlen返回size_t（它在LP64中是unsigned long），当赋值给一个int32_t时，截断是必然发生的。而通常，截断只会在str的长度大于2GB时才会发生，这种情况在程序中一般不会出现，容易忽略。
 
 #### 【规则】在64位环境下使用大数组或大for循环索引时，索引类型应当与下标边界保持一致
 
