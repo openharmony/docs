@@ -15,7 +15,7 @@
     -   [Internationalization \(i18n\) ](js-apis-i18n.md)
 -   Media
     -   [Audio Management](js-apis-audio.md)
-    -   [Media Playback and Recording](js-apis-media.md)
+    -   [Media](js-apis-media.md)
 -   Security
     - [User Authentication](js-apis-useriam-userauth.md)
 -   Data Management
