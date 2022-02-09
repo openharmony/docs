@@ -1,14 +1,27 @@
 # HiSysEvent订阅指导<a name="ZH-CN_TOPIC_0000001185655868"></a>
 
 -   [概述](#section315316685112)
--   [接口说明](#section0342191810519)
--   [开发实例](#section123181432175110)
+    -   [功能简介](#section123181433335224)
+	-   [约束与限制](#section123181433375224)
+-   [开发指导](#section315316685113)
+    -   [接口说明](#section0342191810519)
+    -   [开发实例](#section123181432175110)
 
 ## 概述<a name="section315316685112"></a>
 
+### 功能简介<a name="section123181433335224"></a>
+
 HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接口实时获取关注的事件，例如电池模块侦听功耗相关的事件，用于分析耗电情况。
 
-## 接口说明<a name="section0342191810519"></a>
+### 约束与限制<a name="section123181433375224"></a>
+
+**HiSysEvent事件订阅条件约束：**
+
+- HiSysEvent事件订阅结果取决于订阅的HiSysEvent事件是否已在组件中进行配置，具体配置方法请参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
+
+## 开发指导<a name="section315316685113"></a>
+
+### 接口说明<a name="section0342191810519"></a>
 
 **表 1**  HiSysEvent订阅接口
 
@@ -110,7 +123,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 </tbody>
 </table>
 
-## 开发实例<a name="section123181432175110"></a>
+### 开发实例<a name="section123181432175110"></a>
 
 订阅HiSysEvent事件C++接口实例
 
