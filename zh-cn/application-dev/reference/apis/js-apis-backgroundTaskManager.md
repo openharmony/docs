@@ -10,10 +10,14 @@
 import backgroundTaskManager from '@ohos.backgroundTaskManager';  
 ```
 
+## 系统能力
+SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-## 权限
+## 权限列表
 
-无
+长时任务需要申请如下权限：
+
+ohos.permission.KEEP_BACKGROUND_RUNNING
 
 
 ## backgroundTaskManager.requestSuspendDelay
@@ -122,3 +126,168 @@ cancelSuspendDelay(requestId: number): void
 | requestId | number | 是 | 延迟挂起的请求ID。 |
 | actualDelayTime | number | 是 | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
 
+## backgroundTaskManager.startBackgroundRunning
+
+startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void;
+
+向系统申请长时任务，使用callback形式返回结果。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用运行的上下文 |
+  | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
+  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+
+- **示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import featureAbility from '@ohos.ability.featureAbility';
+import wantAgent from '@ohos.wantAgent';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation failed Cause: " + err);
+    } else {
+        console.info("Operation succeeded");
+    }
+}
+
+let wantAgentInfo = {
+    wants: [
+        {
+            bundleName: "com.example.myapplication",
+            abilityName: "com.example.myapplication.MainAbility"
+        }
+    ],
+    operationType: wantAgent.OperationType.START_ABILITY,
+    requestCode: 0,
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+};
+
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
+});
+
+```
+
+## backgroundTaskManager.startBackgroundRunning
+
+startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
+
+向系统申请长时任务，使用promise形式返回结果。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用运行的上下文 |
+  | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
+  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
+
+- **返回值**
+  | 类型           | 说明                      |
+  | -------------- | ------------------------- |
+  | Promise\<void> | 使用Promise形式返回结果。 |
+
+- **示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import featureAbility from '@ohos.ability.featureAbility';
+import wantAgent from '@ohos.wantAgent';
+
+let wantAgentInfo = {
+    wants: [
+        {
+            bundleName: "com.example.myapplication",
+            abilityName: "com.example.myapplication.MainAbility"
+        }
+    ],
+    operationType: wantAgent.OperationType.START_ABILITY,
+    requestCode: 0,
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+};
+
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+        console.info("Operation succeeded");
+    }).catch((err) => {
+        console.error("Operation failed Cause: " + err);
+    });
+});
+
+```
+
+## backgroundTaskManager.stopBackgroundRunning
+
+stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;
+
+向系统申请取消长时任务，使用callback形式返回结果。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用运行的上下文 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+
+- **示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import featureAbility from '@ohos.ability.featureAbility';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation failed Cause: " + err);
+    } else {
+        console.info("Operation succeeded");
+    }
+}
+
+backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
+
+```
+
+## backgroundTaskManager.stopBackgroundRunning
+
+stopBackgroundRunning(context: Context): Promise&lt;void&gt;;
+
+向系统申请取消长时任务，使用promise形式返回结果。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用运行的上下文 |
+
+- **返回值**
+  | 类型           | 说明                      |
+  | -------------- | ------------------------- |
+  | Promise\<void> | 使用Promise形式返回结果。 |
+
+- **示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import featureAbility from '@ohos.ability.featureAbility';
+
+backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+    console.info("Operation succeeded");
+}).catch((err) => {
+    console.error("Operation failed Cause: " + err);
+});
+
+```
+
+## BackgroundMode
+
+| 参数名                  | 参数 | 描述 |
+| ----------------------- | -------- | -------- |
+| DATA_TRANSFER           | 1 | 数据传输 |
+| AUDIO_PLAYBACK          | 2 | 音频播放 |
+| AUDIO_RECORDING         | 3 | 录音 |
+| LOCATION                | 4 | 定位导航 |
+| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关 |
+| MULTI_DEVICE_CONNECTION | 6 | 多设备互联 |
+| WIFI_INTERACTION        | 7 | WLAN相关（系统保留） |
+| VOIP                    | 8 | 音视频通话（系统保留） |
+| TASK_KEEPING            | 9 | 计算任务（仅供PC使用） |
