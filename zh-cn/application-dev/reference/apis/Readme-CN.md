@@ -20,6 +20,7 @@
     - [媒体服务](js-apis-media.md)
 - 安全
     - [用户认证](js-apis-useriam-userauth.md)
+    - [访问控制](js-apis-security-accessToken.md)
 - 数据管理
     - [轻量级存储](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
