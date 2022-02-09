@@ -158,7 +158,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 	}
 	```
 
-	通过HiSysEventManager类提供的AddEventListener接口注册回调对象，完成对HiSysEvent的订阅：
+    通过HiSysEventManager类提供的AddEventListener接口注册回调对象，完成对HiSysEvent的订阅：
 
 	```
 	auto demoListener = std::make_shared<DemoListener>();
@@ -175,7 +175,9 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 	HiSysEventManager::AddEventListener(demoListener, sysRules);
 	```
 
-2.  编译配置文件中增加对hisysevent\_native组件libhisyseventmanager库的依赖：
+2.  编译配置
+
+    在BUILD.gn编译文件中，需要添加依赖hisysevent\_native组件的libhisyseventmanager库：
 
     ```
 	external_deps = [ "hisysevent_native:libhisyseventmanager", ]
