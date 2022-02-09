@@ -312,4 +312,4 @@ EVENT_NAMEB:
 
 1.  通过[hdc_std工具](subsys-toolchain-hdc-guide.md)将hisysevent.def文件推送到至设备的//system/etc/hiview/目录下;
 
-2.  触发yaml文件自定义的HiSysEvent事件完成打点，通过[hisysevent -l]命令(subsys-dfx-hisysevent-tool.md)查询历史HiSysEvent事件，确认触发的自定义HiSysEvent事件是否打点成功。
+2.  触发yaml文件自定义的HiSysEvent事件完成打点，通过[hisysevent -l](subsys-dfx-hisysevent-tool.md)命令查询历史HiSysEvent事件，确认触发的自定义HiSysEvent事件是否打点成功。
