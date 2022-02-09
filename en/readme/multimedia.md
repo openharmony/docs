@@ -1,5 +1,13 @@
 # Multimedia<a name="EN-US_TOPIC_0000001078026808"></a>
 
+-   [Introduction](#section11660541593)
+-   [System Architecture](#section11660541594)
+-   [Directory Structure](#section161941989596)
+-   [Constraints](#section119744591305)
+-   [Usage Guidelines](#section1312121216216)
+-   [Installation](#section11914418405)
+-   [Repositories Involved](#section1371113476307)
+
 ## Introduction<a name="section11660541593"></a>
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and media resources.
@@ -8,23 +16,24 @@ This subsystem offers various media services covering audio, videos, and cameras
 
 -   Audio playback and recording
 -   Video playback and recording
-
 -   Photographing and recording \(with cameras\)
 
-## Architecture<a name="section11660541594"></a>
+## System Architecture<a name="section11660541594"></a>
 
-**Figure  1**  Common architecture of the multimedia subsystem<a name="fig13371156141412"></a>  
+**Figure 1** Architecture of the multimedia subsystem<a name="fig99659301300"></a>
 
+![](figures/multimedia-architecture.png)
 
-![](figures/en-us_image_0000001163462711.png)
-
-**Figure  2**  Architecture of the multimedia subsystem suitable for the small system<a name="fig866802061417"></a>  
-
-
-![](figures/multimedia-subsystem-architecture.png)
-
-**Figure  3**  Multimedia service flow for the small system<a name="fig1334042801419"></a>  
-![](figures/multimedia-service-flow-for-the-small-system.png "multimedia-service-flow-for-the-small-system")
+- **Media**: provides playback and recording APIs for applications, and invokes the Gstreamer, Histreamer, or other engines through cross-process calling or direct calling.
+  - For the mini system, the media component invokes Histreamer to support audio playback.
+  - For the small system, the media component invokes recorder_lite to support audio/video recording and invokes player_lite by default to support audio/video playback. If the system variable **debug.media_service.histreamer** is set to **1**, the component invokes Histreamer to support audio/video playback. For details, see [syspara Module](https://device.harmonyos.com/en/docs/documentation/guide/subsys-boot-syspara-0000001063362360) or [syspara_lite](https://gitee.com/openharmony/startup_syspara_lite).
+  - For the standard system, the media component invokes Gstreamer to support audio/video playback and recording.
+- **Audio**: supports audio input and output, policy management, and audio focus management.
+- **Camera**: provides camera operation APIs for preview, photographing, and video recording.
+- **Image**: supports encoding and decoding of common image formats.
+- **MediaLibrary**: supports local and distributed media data access management.
+- **Histreamer**: a lightweight media engine that supports file/network streaming media input, audio/video decoding and playback, audio/video encoding and recording, and plugin extension.
+- **Gstreamer**: an open-source GStreamer engine that supports streaming media, audio and video playback, and recording.
 
 ## Directory Structure<a name="section161941989596"></a>
 
@@ -59,6 +68,13 @@ The structure of the repository directory is as follows:
 │   ├── figures                                        # Architecture and process figures of the playback and recording module for the standard system
 │   ├── frameworks                                     # Playback and recording framework implementation for the standard system
 │   └── interfaces                                     # Playback and recording module APIs for the standard system
+├── histreamer                                         # Histreamer engine
+│   └── engine                                         # Media engine
+│       ├── player                                     # Encapsulated player
+│       ├── foundation                                 # Basic tools
+│       ├── pipeline                                   # Pipeline framework
+│       └── plugin                                     # Plugin framework
+│           └── plugins                                # Platform software plugins
 └── utils                                              # Subsystem utility module
     └── lite                                           # Utility module for the small system
         ├── figures                                    # Architecture and process figures of the utility module for the small system
@@ -94,9 +110,10 @@ Load the kernel and related drivers before installing the repository. For detail
 
 [multimedia\_utils\_lite](https://gitee.com/openharmony/multimedia_utils_lite)
 
+[multimedia\_histreamer](https://gitee.com/openharmony/multimedia_histreamer)
+
 [multimedia\_camera\_standard](https://gitee.com/openharmony/multimedia_camera_standard)
 
 [multimedia\_audio\_standard](https://gitee.com/openharmony/multimedia_audio_standard)
 
 [multimedia\_media\_standard](https://gitee.com/openharmony/multimedia_media_standard)
-
