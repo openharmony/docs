@@ -15,7 +15,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 ## HiTraceFlag
 
-跟踪标志组合类型枚举
+跟踪标志组合类型枚举。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -30,7 +30,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 ## HiTraceTracePointType
 
-跟踪埋点类型枚举
+跟踪埋点类型枚举。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -42,7 +42,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 ## HiTraceCommunicationMode
 
-跟踪通信类型枚举
+跟踪通信类型枚举。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -53,7 +53,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 ## HiTraceId
 
-此接口为HiTraceId对象接口
+此接口为HiTraceId对象接口。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -66,7 +66,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
 
-跟踪开始同步接口
+跟踪开始同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -87,7 +87,7 @@ begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
 
 end(id: HiTraceId): void
 
-跟踪结束同步接口
+跟踪结束同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -105,7 +105,7 @@ end(id: HiTraceId): void
 
 getId(): HiTraceId
 
-获取跟踪标识同步接口
+获取跟踪标识同步接口。
 
 - 返回值：
   | 类型 | 说明 |
@@ -124,7 +124,7 @@ getId(): HiTraceId
 
 setId(id: HiTraceId): void
 
-设置跟踪标识同步接口
+设置跟踪标识同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -143,7 +143,7 @@ setId(id: HiTraceId): void
 
 clearId(): void
 
-清除跟踪标识同步接口
+清除跟踪标识同步接口。
 
 - 示例：
   ```
@@ -157,7 +157,7 @@ clearId(): void
 
 createSpan(): HiTraceId
 
-创建跟踪分支同步接口
+创建跟踪分支同步接口。
 
 - 返回值：
   | 类型 | 说明 |
@@ -176,7 +176,7 @@ createSpan(): HiTraceId
 
 tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTraceId, msg?: string): void
 
-信息埋点同步接口
+信息埋点同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -197,7 +197,7 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTr
 
 isValid(id: HiTraceId): boolean
 
-判断HiTraceId对象是否有效同步接口
+判断HiTraceId对象是否有效同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -219,7 +219,7 @@ isValid(id: HiTraceId): boolean
 
 isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
-判断HiTraceId对象中指定的跟踪标志是否置位同步接口
+判断HiTraceId对象中指定的跟踪标志是否置位同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -239,7 +239,7 @@ isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
 enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 
-置位HiTraceId对象中指定的跟踪标志同步接口
+置位HiTraceId对象中指定的跟踪标志同步接口。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
