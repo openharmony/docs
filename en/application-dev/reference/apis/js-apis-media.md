@@ -193,7 +193,7 @@ For details about the audio playback demo, see [Audio Playback Development](.../
 
 play(): void
 
-Starts to play audio resources. This method can be called only after the [dataLoad](#on('play' | 'pause' | 'stop' | 'reset' | 'dataload' | 'finish' | 'volumechange')) event is triggered.
+Starts to play audio resources. This method can be called only after the **dataLoad** event is triggered.
 
 **Example**
 
