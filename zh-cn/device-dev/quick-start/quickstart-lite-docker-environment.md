@@ -21,40 +21,14 @@
 
 OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud.com/swr/?region=cn-south-1#/app/warehouse/warehouseMangeDetail/goldensir/openharmony-docker/openharmony-docker?type=ownImage)上。开发者可以通过该镜像在很大程度上简化编译前的环境配置。下文将介绍具体使用步骤。
 
-**方式一：从HuaweiCloud SWR上直接获取Docker镜像进行构建：**
-
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
     ```
-
-
-**方式二：通过Dockerfile 构建本地Docker镜像进行构建：**
-
-1.  获取Dockerfile脚本文件，用来构建本地Docker镜像。
-
-    ```
-    git clone https://gitee.com/openharmony/docs.git
-    ```
-
-2.  进入Dockerfile代码目录路径执行Docker镜像构建命令。
-
-    ```
-    cd docs/docker
-    ./build.sh
-    ```
-
-3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
-    ```
-
-
