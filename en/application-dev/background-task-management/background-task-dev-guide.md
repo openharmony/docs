@@ -59,7 +59,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 ```
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 let myReason = 'test requestSuspendDelay';
-// Request suspension delay.
+// Request a suspension delay.
 let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
     console.info("Request suspension delay will time out.");
 });
