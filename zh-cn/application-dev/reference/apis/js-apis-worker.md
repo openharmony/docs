@@ -11,11 +11,6 @@ import worker from '@ohos.worker';
 ```
 
 
-## 权限
-
-无
-
-
 ## 属性
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -51,7 +46,7 @@ worker构造函数。
   | options | [WorkerOptions](#workeroptions) | 否 | worker构造的选项。 |
 
 - 返回值：
-  | 参数名 | 说明 |
+  | 类型 | 说明 |
   | -------- | -------- |
   | worker | 执行Worker构造函数生成的Worker对象，失败则返回undefined。 |
 
@@ -294,7 +289,7 @@ dispatchEvent(event: Event): boolean
   | event | [Event](#event) | 是 | 需要分发的事件。 |
 
 - 返回值：
-  | 参数名 | 说明 |
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 分发的结果，false表示分发失败。 |
 
@@ -347,7 +342,7 @@ worker向宿主线程发送消息。
   ```
   ```
   // worker.js
-  import worker from "@ohos.worker";
+  import worker from '@ohos.worker';
   const parentPort = worker.parentPort;
   parentPort.onmessage = function(e){
       parentPort.postMessage("receive data from main.js")
@@ -369,7 +364,7 @@ close(): void
   ```
   ```
   // worker.js
-  import worker from "@ohos.worker";
+  import worker from '@ohos.worker';
   const parentPort = worker.parentPort;
   parentPort.onmessage = function(e) {
       parentPort.close()
@@ -397,7 +392,7 @@ DedicatedWorkerGlobalScope的onmessage属性表示worker线程收到来自其宿
   ```
   ```
   // worker.js
-  import worker from "@ohos.worker";
+  import worker from '@ohos.worker';
   const parentPort = worker.parentPort;
   parentPort.onmessage = function(e) {
       console.log("receive main.js message")
@@ -424,7 +419,7 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当 Worker 对象接收�
   ```
   ```
   // worker.js
-  import worker from "@ohos.worker";
+  import worker from '@ohos.worker';
   const parentPort = worker.parentPort;
   parentPort.onmessageerror= function(e) {
       console.log("worker.js onmessageerror")
@@ -466,7 +461,7 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当 Worker 对象接收�
   | evt | [Event](#event) | 是 | 回调的事件类。 |
 
 - 返回值
-  | 参数名 | 说明 |
+  | 类型 | 说明 |
   | -------- | -------- |
   | void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回值或者以Promise形式返回。 |
 
@@ -533,7 +528,7 @@ WorkerGlobalScope的onerror属性表示worker在执行过程中发生异常被�
   ```
   ```
   // worker.js
-  import worker from "@ohos.worker";
+  import worker from '@ohos.worker';
   const parentPort = worker.parentPort
   parentPort.onerror = function(e){
       console.log("worker.js onerror")

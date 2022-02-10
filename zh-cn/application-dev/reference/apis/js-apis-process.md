@@ -11,11 +11,6 @@ import process from '@ohos.process';
 ```
 
 
-## 权限
-
-无
-
-
 ## 属性
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -295,7 +290,7 @@ getPastCputime() :number
 
 getSystemConfig(name:number): number
 
-用该方法发送signal到指定的进程。
+获取系统配置信息。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |

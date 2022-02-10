@@ -7,11 +7,6 @@ import audio from '@ohos.multimedia.audio';
 ```
 
 
-## 权限
-
-无
-
-
 ## getAudioManager
 
 getAudioManager(): AudioManager
@@ -115,6 +110,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err)=>{
    if (err) {
 	   console.error('Failed to set the volume. ${err.message}');
@@ -146,6 +142,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(()=>
     console.log('Promise returned to indicate a successful volume setting.');
 )
@@ -167,6 +164,7 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
    if (err) {
 	   console.error('Failed to obtain the volume. ${err.message}');
@@ -197,6 +195,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) =>
     console.log('Promise returned to indicate that the volume is obtained.' + value);
 )
@@ -218,6 +217,7 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
     if (err) {
         console.error('Failed to obtain the minimum volume. ${err.message}');
@@ -248,6 +248,7 @@ getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) =>
     console.log('Promised returned to indicate that the minimum  volume is obtained.' + value);
 )
@@ -269,6 +270,7 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
     if (err) {
         console.error('Failed to obtain the maximum volume. ${err.message}');
@@ -299,6 +301,7 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data)=>
     console.log('Promised returned to indicate that the maximum volume is obtained.');
 )
@@ -321,6 +324,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
     if (err) {
         console.error('Failed to mute the stream. ${err.message}');
@@ -353,6 +357,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() =>
     console.log('Promise returned to indicate that the stream is muted.');
 )
@@ -375,6 +380,7 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
    if (err) {
 	   console.error('Failed to obtain the mute status. ${err.message}');
@@ -406,6 +412,7 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) =>
     console.log('Promise returned to indicate that the mute status of the stream is obtained.' + value);
 )
@@ -427,6 +434,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
     if (err) {
         console.error('Failed to obtain the active status of the stream. ${err.message}');
@@ -457,6 +465,7 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) =>
     console.log('Promise returned to indicate that the active status of the stream is obtained.' + value);
 )
@@ -478,6 +487,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
    if (err) {
        console.error('Failed to set the ringer mode.​ ${err.message}');
@@ -508,6 +518,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() =>
     console.log('Promise returned to indicate a successful setting of the ringer mode.');
 )
@@ -529,6 +540,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getRingerMode((err, value) => {
    if (err) {
 	   console.error('Failed to obtain the ringer mode.​ ${err.message}');
@@ -554,6 +566,7 @@ getRingerMode(): Promise&lt;AudioRingMode&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getRingerMode().then((value) =>
     console.log('Promise returned to indicate that the ringer mode is obtained.' + value);
 )
@@ -576,6 +589,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
     if (err) {
         console.error('Failed to set the audio parameter. ${err.message}');
@@ -607,6 +621,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setAudioParameter('PBits per sample', '8 bit').then(() =>
     console.log('Promise returned to indicate a successful setting of the audio parameter.');
 )
@@ -628,6 +643,7 @@ getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getAudioParameter('PBits per sample', (err, value) => {
     if (err) {
         console.error('Failed to obtain the value of the audio parameter. ${err.message}');
@@ -658,6 +674,7 @@ getAudioParameter(key: string): Promise&lt;string&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getAudioParameter('PBits per sample').then((value) =>
     console.log('Promise returned to indicate that the value of the audio parameter is obtained.' + value);
 )
@@ -678,6 +695,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 
 **示例：**
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
    if (err) {
 	   console.error('Failed to obtain the device list. ${err.message}');
@@ -708,6 +726,7 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
     console.log('Promise returned to indicate that the device list is obtained.');
 )
@@ -730,6 +749,7 @@ setDeviceActive(deviceType: DeviceType, active: boolean, callback: AsyncCallback
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
     if (err) {
         console.error('Failed to set the active status of the device. ${err.message}');
@@ -762,6 +782,7 @@ setDeviceActive(deviceType: DeviceType, active: boolean): Promise&lt;void&gt;
 
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
     console.log('Promise returned to indicate that the device is set to the active status.');
 )
@@ -783,6 +804,7 @@ isDeviceActive(deviceType: DeviceType, callback: AsyncCallback&lt;boolean&gt;): 
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
     if (err) {
         console.error('Failed to obtain the active status of the device. ${err.message}');
@@ -814,6 +836,7 @@ isDeviceActive(deviceType: DeviceType): Promise&lt;boolean&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) =>
     console.log('Promise returned to indicate that the active status of the device is obtained.' + value);
 )
@@ -835,6 +858,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setMicrophoneMute(true, (err) => {
     if (err) {
         console.error('Failed to mute the microphone. ${err.message}');
@@ -865,6 +889,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.setMicrophoneMute(true).then(() =>
     console.log('Promise returned to indicate that the microphone is muted.');
 )
@@ -885,6 +910,7 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.isMicrophoneMute((err, value) => {
     if (err) {
         console.error('Failed to obtain the mute status of the microphone. ${err.message}');
@@ -910,6 +936,7 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 
 
 ```
+var audioManager = audio.getAudioManager();
 audioManager.isMicrophoneMute().then((value) =>
     console.log('Promise returned to indicate that the mute status of the microphone is obtained.', + value);
 )

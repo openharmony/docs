@@ -90,8 +90,9 @@ equals(other: URI): boolean
   uriInstance.equals(uriInstance1);
   ```
 
-
 ### checkIsAbsolute
+
+checkIsAbsolute(): boolean
 
 判断此URI是否为绝对URI（是否定义了scheme组件）。
 
