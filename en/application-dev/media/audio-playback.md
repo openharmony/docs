@@ -2,127 +2,178 @@
 
 ## When to Use
 
-You use audio playback APIs to convert audio data into audible analog signals, play the audio signals using output devices, and manage playback tasks.
+You can use audio playback APIs to convert audio data into audible analog signals, play the signals using output devices, and manage playback tasks.
 
 **Figure 1** Playback status
-![](figures/playback-status.png "playback-status")
 
+![en-us_image_20220117](figures/en-us_image_20220117.jpg)
 
-## Available APIs
+## How to Develop
 
-**Table 1** APIs for audio playback 
+For details about the APIs used for audio playback, see [js-apis-media.md](../reference/apis/js-apis-media.md).
 
-| API| Description| 
-| -------- | -------- |
-| media.createAudioPlayer() | Creates an **AudioPlayer** instance.| 
-| AudioPlayer | Provides audio playback features. For details, see the table below.| 
+### Full-Process Scenario
 
-**Table 2** AudioPlayer methods
+The full audio playback process includes creating an instance, setting the URI, playing audio, seeking to the playback position, setting the volume, pausing playback, obtaining track information, stopping playback, resetting resources, and releasing resources.
 
-| Method| Description| 
-| -------- | -------- |
-| release() | Releases audio resources.| 
-| play() | Starts audio playback.| 
-| pause() | Pauses playback.| 
-| stop() | Stops playback.| 
-| reset()<sup>7+</sup> | Resets the audio source to be played.| 
-| setVolume(vol:&nbsp;number) | Sets playback volume.| 
-| seek(timeMs:&nbsp;number) | Changes the playback position.| 
-| src:string | Defines the URI of an audio file to play.| 
-| state:AudioState | Defines the playback state.| 
-| currentTime:number | Defines the current playback position.| 
-| duration:number | Defines the playback duration. The value **-1** is returned if the data source does not support playback position change, for example, in the real-time streaming media scenario.| 
-| loop:boolean | Defines whether to loop audio playback.| 
-| on('play',&nbsp;function&nbsp;callback) | Subscribes to the playback start event.| 
-| on('pause',&nbsp;function&nbsp;callback) | Subscribes to the playback pause event.| 
-| on('stop',&nbsp;function&nbsp;callback) | Subscribes to the playback stop event.| 
-| on('reset',&nbsp;function&nbsp;callback) | Subscribes to the playback reset event.| 
-| on('finish',function&nbsp;callback) | Subscribes to the playback end event.| 
-| on('error',&nbsp;function&nbsp;callback) | Subscribes to the playback error event.| 
-| on('dataload',&nbsp;function&nbsp;callback) | Subscribes to the data loading event.| 
-| on('volumeChange',&nbsp;function&nbsp;callback) | Subscribes to the volume change event.| 
-| on('timeUpdate',&nbsp;function&nbsp;callback) | Subscribes to the progress change event.| 
+For details about the **src** media source input types supported by **AudioPlayer**, see the [src attribute](../reference/apis/js-apis-media.md#audioplayer_Attributes).
 
-
-1. Create an audio player.
-   ```
-   import media from '@ohos.multimedia.media';
-   var player = media.createAudioPlayer();
-   ```
-
-2. Set the subscription events.
-   ```
-   player.on('play', (err, action) => {
-       if (err) {
-           console.error('Error returned in the play() callback.');
-           return;
-        }
-        console.info('Current player duration: '+ player.duration);
-        console.info('Current player time: ' + player.currentTime);
-        console.info('Current player status: '+player.state);
-        console.info('Pause MP3');
-        player.pause();
-   });
-   player.on('pause', (err, action) => {
-        if (err) {
-            console.error('Error returned in the pause() callback.');
+```js
+function SetCallBack(audioPlayer) {
+    audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
+        console.info('audio set source success');
+        // The playback page is ready. You can click the Play button to start the playback.
+    });
+    audioPlayer.on('play', () => {                  // Set the 'play' event callback.
+        console.info('audio play success');
+        // The Play button is changed to the pausable state.
+    });
+    audioPlayer.on('pause', () => {                 // Set the 'pause' event callback.
+        console.info('audio pause success');
+        // The Play button is changed to the playable state.
+    });
+    audioPlayer.on('stop', () => {                  // Set the 'stop' event callback.
+        console.info('audio stop success');
+        // The playback stops, the playback progress bar returns to 0, and the Play button is changed to the playable state.
+    });
+    audioPlayer.on('reset', () => {                 // Set the 'reset' event callback.
+        console.info('audio reset success');
+        // You can reconfigure the src attribute to play another audio file.
+    });
+    audioPlayer.on('timeUpdate', (seekDoneTime) => {// Set the 'timeUpdate' event callback.
+        if (typeof(seekDoneTime) == 'undefined') {
+            console.info('audio seek fail');
             return;
-         }
-         console.info('Current player status: ' + player.state);
-         console.info('Current player time: ' + player.currentTime);
-         player.seek(30000); // Seek for 30 seconds.
-   });
-   player.on('stop', (err, action) => {
-       if (err) {
-           console.error('Error returned in the stop() callback.');
-           return;
-       }
-       console.info('stop callback invoked. State:' + player.state);
-       player.reset();
-   });
-   player.on('dataLoad', (err, action) => {
-       if (err) {
-           console.error('Error returned in the dataLoad() callback.');
-           return;
-       }
-        console.info('dataLoad callback invoked. Current time: ' + player.currentTime);
-        console.info('Duration of the source:' + player.duration);
-        player.play();
-   });
-   player.on('reset', (err, action) => {
-       if (err) {
-           console.error('Error returned in the reset() callback.');
-           return;
-       }
-       console.info('reset callback invoked.');
-       player.release();
-   });
-   player.on('finish', (err, action) => {
-        if (err) {
-           console.error('Error returned in the finish() callback.');
-           return;
         }
-        console.info('finish callback invoked.');
-   });
-   player.on('timeUpdate', (seekTime, action) => {
-       console.info('Seek time: ' + seekTime);
-       console.info('Current player time: ' + player.currentTime);
-       var newTime = player.currentTime;
-       if(newTime == 30000) {
-           console.info('Seek succeeded. New time: ' + newTime);
-       } else {
-           console.error('Seek failed: ', + newTime);
-        }
-           player.stop();
-   });
-   player.on('error', (err) => {
-        console.error('Player error: ${err.message}');
-   });
-   ```
+        console.info('audio seek success, and seek time is ' + seekDoneTime);
+        // The playback progress bar is updated to the seek position.
+    });
+    audioPlayer.on('volumeChange', () => {          // Set the 'volumeChange' event callback.
+        console.info('audio volumeChange success');
+        // Display the updated volume.
+    });
+    audioPlayer.on('finish', () => {                // Set the 'finish' event callback, which is triggered when the playback is complete.
+        console.info('audio play finish');
+    });
+    audioPlayer.on('error', (error) => {            // Set the 'error' event callback.
+        console.info(`audio error called, errName is ${error.name}`);
+        console.info(`audio error called, errCode is ${error.code}`);
+        console.info(`audio error called, errMessage is ${error.message}`);
+    });
+}
 
-3. Start playback.
-   ```
-   var audioSourceMp3 = 'file://test.mp3';
-   player.src = audioSourceMp3;
-   player.loop = true;
-   ```
+function printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('audio key is ' + item);
+        console.info('audio value is ' + property);
+    }
+}
+
+// 1. Create an audioPlayer instance.
+let audioPlayer = media.createAudioPlayer();
+SetCallBack(audioPlayer);                          // Set the event callbacks.
+// 2. Set the URI of the audio file.
+audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  // Set the src attribute and trigger the 'dataLoad' event callback.
+// 3. Play the audio.
+audioPlayer.play();                               // The play() method can be invoked only after the 'dataLoad' event callback is complete. The 'play' event callback is triggered.
+// 4. Seek to the playback position.
+audioPlayer.seek(30000);                          // Trigger the 'timeUpdate' event callback, and seek to 30000 ms for playback.
+// 5. Set the volume.
+audioPlayer.setVolume(0.5);                       // Trigger the 'volumeChange' event callback.
+// 6. Pause the playback.
+audioPlayer.pause();                              // Trigger the 'pause' event callback and pause the playback.
+// 7. Obtain the track information.
+audioPlayer.getTrackDescription((error, arrlist) => {  // Obtain the audio track information in callback mode.
+    if (typeof (arrlist) != 'undefined') {
+        for (let i = 0; i < arrlist.length; i++) {
+            printfDescription(arrlist[i]);
+        }
+    } else {
+        console.log(`audio getTrackDescription fail, error:${error.message}`);
+    }
+});
+// 8. Stop playback.
+audioPlayer.stop();                              // Trigger the 'stop' event callback.
+// 9. Reset the playback resources.
+audioPlayer.reset();                             // Trigger the 'reset' event callback, and reconfigure the src attribute to switch to the next song.
+// 10. Release the resource.
+audioPlayer.release();                           // Release the AudioPlayer resource.
+audioPlayer = undefined;
+```
+
+### Normal Playback Scenario
+
+```js
+function SetCallBack(audioPlayer) {
+    audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
+        console.info('audio set source success');
+        audioPlayer.play();                         // Call the play() method to start the playback and trigger the 'play' event callback.
+    });
+    audioPlayer.on('play', () => {                  // Set the 'play' event callback.
+        console.info('audio play success');
+    });
+    audioPlayer.on('finish', () => {                // Set the 'finish' event callback, which is triggered when the playback is complete.
+        console.info('audio play finish');
+        audioPlayer.release();                      // Release the AudioPlayer instance.
+		audioPlayer = undefined;
+    });
+}
+
+let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
+SetCallBack(audioPlayer);                          // Set the event callbacks.
+/* Set the URI of the audio file selected by the user. */
+audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  // Set the src attribute and trigger the 'dataLoad' event callback.
+```
+
+### Switching to the Next Song
+
+```js
+function SetCallBack(audioPlayer) {
+    audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
+        console.info('audio set source success');
+        audioPlayer.play();                         // Call the play() method to start the playback and trigger the 'play' event callback.
+    });
+    audioPlayer.on('play', () => {                  // Set the 'play' event callback.
+        console.info('audio play success');
+    });
+    audioPlayer.on('finish', () => {                // Set the 'finish' event callback, which is triggered when the playback is complete.
+        console.info('audio play finish');
+        audioPlayer.release();                      // Release the AudioPlayer instance.
+		audioPlayer = undefined;
+    });
+}
+
+let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
+SetCallBack(audioPlayer);                          // Set the event callbacks.
+/* Set the URI of the audio file selected by the user. */
+audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  // Set the src attribute and trigger the 'dataLoad' event callback.
+/* Send the instruction to switch to the next song after a period of time. */
+audioPlayer.reset();
+audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/next.mp3';
+```
+
+### Looping a Song
+
+```js
+function SetCallBack(audioPlayer) {
+    audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
+        console.info('audio set source success');
+        audioPlayer.play();                         // Call the play() method to start the playback and trigger the 'play' event callback.
+    });
+    audioPlayer.on('play', () => {                  // Set the 'play' event callback.
+        console.info('audio play success');
+    });
+    audioPlayer.on('finish', () => {                // Set the 'finish' event callback, which is triggered when the playback is complete.
+        console.info('audio play finish');
+        audioPlayer.release();                      // Release the AudioPlayer instance.
+		audioPlayer = undefined;
+    });
+}
+
+let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
+SetCallBack(audioPlayer);                          // Set the event callbacks.
+/* Set the URI of the audio file selected by the user. */
+audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  // Set the src attribute and trigger the 'dataLoad' event callback.
+audioPlayer.loop = true;                           // Set the loop playback attribute.
+```
