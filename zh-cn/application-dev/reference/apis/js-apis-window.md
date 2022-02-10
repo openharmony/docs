@@ -11,6 +11,11 @@ import window from '@ohos.window';
 ```
 
 
+## 系统能力
+SystemCapability.WindowManager.WindowManager.Core
+
+
+
 ## 权限列表
 
 ohos.permission.SYSTEM_FLOAT_WINDOW
