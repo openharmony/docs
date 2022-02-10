@@ -66,9 +66,9 @@
     - [设置系统时间](js-apis-system-time.md)
     - [动画](js-apis-basic-features-animator.md)
     - [应用打点](js-apis-hiappevent.md)
-    - [性能打点](js-apis-bytrace.md)
+    - [性能打点](js-apis-hitracemeter.md)
     - [故障日志获取](js-apis-faultLogger.md)
-    - [分布式跟踪](js-apis-hitrace.md)
+    - [分布式跟踪](js-apis-hitracechain.md)
 - 语言基础类库
     - [获取进程相关的信息](js-apis-process.md)
     - [URL字符串解析](js-apis-url.md)
