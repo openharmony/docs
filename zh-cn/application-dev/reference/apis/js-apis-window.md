@@ -189,7 +189,7 @@ getAbilityWindowMode(callback: AsyncCallback&lt;WindowMode&gt;): void
   ```
   window.getAbilityWindowMode((err, data) => {
       if (err) {
-          console.error(''Failed to obtain the window mode. Cause:' + JSON.stringify(err));
+          console.error('Failed to obtain the window mode. Cause:' + JSON.stringify(err));
           return;
       }
       console.info('Window mode obtained. Data:' + JSON.stringify(data))
