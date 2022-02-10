@@ -29,7 +29,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 ## How to Develop
 
-1. Request suspension delay.
+1. Request a suspension delay.
    ```
    import backgroundTaskManager from '@ohos.backgroundTaskManager';
    let myReason = 'test requestSuspendDelay';
