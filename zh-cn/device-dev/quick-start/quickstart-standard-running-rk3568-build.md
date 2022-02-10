@@ -38,8 +38,6 @@ bash build/prebuilts_download.sh
 
 ### 获取Docker环境<a name="section615912103552"></a>
 
-**方式一：从HuaweiCloud SWR上直接获取Docker镜像进行构建：**
-
 1.  获取Docker镜像。
 
     ```
@@ -50,28 +48,6 @@ bash build/prebuilts_download.sh
 
     ```
     docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
-    ```
-
-
-**方式二：通过Dockerfile 构建本地Docker镜像进行构建**：
-
-1.  获取Dockerfile脚本文件，用来构建本地Docker镜像。
-
-    ```
-    git clone https://gitee.com/openharmony/docs.git
-    ```
-
-2.  进入Dockerfile代码目录路径执行Docker镜像构建命令。
-
-    ```
-    cd docs/docker/standard
-    ./build.sh
-    ```
-
-3.  进入源码根目录执行如下命令，从而进入Docker构建环境。
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
     ```
 
 

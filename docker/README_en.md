@@ -8,45 +8,21 @@ The Docker image of OpenHarmony is hosted on [HUAWEI Cloud SWR](https://auth.hua
 
 | Docker Image Repository                                      | Tag     | Description                                                  |
 | :----------------------------------------------------------- | :------ | :----------------------------------------------------------- |
-| `swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker` | `0.0.5` | The HarmonyOSOpenHarmony build environment has been pre-installed. This repository applies to Mini-System Devices (reference memory ≥ 128 KB) and Small-System Devices (reference memory ≥ 1 MB). |
+| `swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker` | `0.0.6` | The OpenHarmony build environment has been pre-installed. This repository applies to Mini-System Devices (reference memory ≥ 128 KB) and Small-System Devices (reference memory ≥ 1 MB). |
 
 ### Usage
 
- After configuring the development environments, perform the steps below to access the Docker environment. The following steps use Ubuntu as an example (Windows is also supported).
-
-#### **Method 1: Obtaining the Docker image from HuaweiCloud SWR**：
+ After configuring the development environments, perform the steps below to access the Docker environment. 
 
 1. Obtain the Docker image.
      ```
-     docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+     docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
      ```
 2. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
      ```
-     docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+     docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
      ```
 3. Run the following script to start building for different platforms.
-     ```
-     hb set # Set the working directory.
-     . # Enter the directory where the source code is stored. If the code is stored in the current directory, enter a period (.).
-     Press the Up or Down key to select the platform to build on, then press Enter.
-     hb build -f # Start building.
-     ```
-
- #### **Method 2: Using the Dockerfile to Build a Local Docker Image**
-1. Obtain the Dockerfile script for a local Docker image.
-     ```
-     git clone https://gitee.com/openharmony/docs.git
-     ```
-2. Go to the directory of the Dockerfile code and run the following command to build the Docker image:
-     ```
-     cd docs/docker
-     ./build.sh
-     ```
-4. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
-     ```
-     docker run -it -v $(pwd):/home/openharmony openharmony-docker:0.0.5
-     ```
-5. Run the following script to start building for different platforms.
      ```
      hb set # Set the working directory.
      . # Enter the directory where the source code is stored. If the code is stored in the current directory, enter a period (.).
