@@ -6,6 +6,12 @@
 import Notification from '@ohos.notification';
 ```
 
+## 系统能力
+
+```js
+SystemCapability.Notification.Notification
+```
+
 ## Notification.publish(request: NotificationRequest, callback: AsyncCallback\<void\>)
 
 - 接口说明

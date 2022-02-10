@@ -116,7 +116,11 @@
 import CommonEvent from '@ohos.commonevent';
 ```
 
+## 系统能力
 
+```js
+SystemCapability.Notification.CommonEvent
+```
 
 ## CommonEvent.publish
 
