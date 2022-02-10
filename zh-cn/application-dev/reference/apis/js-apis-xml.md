@@ -11,11 +11,6 @@ import xml from '@ohos.xml';
 ```
 
 
-## 权限
-
-无
-
-
 ## XmlSerializer
 
 
@@ -28,7 +23,7 @@ XmlSerializer的构造函数。
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | 是 | 用于接收写入xml信息的ArrayBuffer&nbsp;\|&nbsp;DataView内存。 |
+  | buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | 是 | 用于接收写入xml信息的ArrayBuffer或DataView内存。 |
   | encoding | string | 否 | 编码格式。 |
 
 - 示例：
@@ -48,8 +43,8 @@ setAttributes(name: string, value: string)：void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | name | string | 是 | 属性的key值 |
-  | value | string | 是 | 属性的value值 |
+  | name | string | 是 | 属性的key值。 |
+  | value | string | 是 | 属性的value值。 |
 
 - 示例：
   ```
@@ -67,7 +62,7 @@ addEmptyElement(name: string): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | name | string | 是 | 该空元素的元素名 |
+  | name | string | 是 | 该空元素的元素名。 |
 
 - 示例：
   ```
@@ -93,12 +88,12 @@ setDeclaration(): void
 
 startElement(name: string): void
 
-XmlSerializer的构造函数。
+根据给定名称写入元素开始标记。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | name | string | 是 | 当前元素的元素名 |
+  | name | string | 是 | 当前元素的元素名。 |
 
 - 示例：
   ```
@@ -113,7 +108,7 @@ XmlSerializer的构造函数。
 
 endElement(): void
 
-设置结束元素方法。
+写入元素结束标记。
 
 - 示例：
   ```
@@ -135,8 +130,8 @@ setNamespace(prefix: string, namespace: string): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | prefix | string | 是 | 当前元素及其子元素的前缀 |
-  | namespace | string | 是 | 当前元素及其子元素的命名空间 |
+  | prefix | string | 是 | 当前元素及其子元素的前缀。 |
+  | namespace | string | 是 | 当前元素及其子元素的命名空间。 |
 
 - 示例：
   ```
@@ -148,43 +143,43 @@ setNamespace(prefix: string, namespace: string): void
   thatSer.endElement();// = >'<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
   ```
 
-### setCommnet
+### setComment
 
-setCommnet(text: string): void
+setComment(text: string): void
 
 写入comment属性。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | text | string | 是 | 当前元素的注释内容 |
+  | text | string | 是 | 当前元素的注释内容。 |
 
 - 示例：
   ```
   var arrayBuffer = new ArrayBuffer(1024);
   var thatSer = new xml.XmlSerializer(arrayBuffer);
   thatSer.startElement("note");
-  thatSer.setCommnet("Hi!");
+  thatSer.setComment("Hi!");
   thatSer.endElement(); // => '<note>\r\n  <!--Hi!-->\r\n</note>';
   ```
 
 
-### setCData
+### setCDATA
 
-setCData(text: string): void
+setCDATA(text: string): void
 
-写入CData属性。
+写入CDATA属性。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | text | string | 是 | CDate属性的内容 |
+  | text | string | 是 | CDATA属性的内容。 |
 
 - 示例：
   ```
   var arrayBuffer = new ArrayBuffer(1028);
   var thatSer = new xml.XmlSerializer(arrayBuffer);
-  thatSer.setCData('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
+  thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
   ```
 
 
@@ -197,7 +192,7 @@ setText(text: string): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | text | string | 是 | text属性的内容 |
+  | text | string | 是 | text属性的内容。 |
 
 - 示例：
   ```
@@ -219,7 +214,7 @@ setDocType(text: string): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | text | string | 是 | DocType属性的内容 |
+  | text | string | 是 | DocType属性的内容。 |
 
 - 示例：
   ```
@@ -241,8 +236,8 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | 是 | 含有xml文本信息的ArrayBuffer&nbsp;或者DataView |
-  | encoding | string | 否 | 编码格式（仅支持utf-8） |
+  | buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | 是 | 含有xml文本信息的ArrayBuffer或者DataView。 |
+  | encoding | string | 否 | 编码格式（仅支持utf-8）。 |
 
 - 示例：
   ```
@@ -325,12 +320,12 @@ xml解析选项。
 
 getColumnNumber(): number
 
-获取当前行号，从1开始。
+获取当前列号，从1开始。
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 返回当前行号。 |
+  | number | 返回当前列号。 |
 
 
 ### getDepth
@@ -349,12 +344,12 @@ getDepth(): number
 
 getLineNumber(): number
 
-获取当前列号，从1开始。
+获取当前行号，从1开始。
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 返回当前列号。 |
+  | number | 返回当前行号。 |
 
 
 ### getName

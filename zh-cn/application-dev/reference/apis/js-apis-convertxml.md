@@ -7,13 +7,8 @@
 ## 导入模块
 
 ```
-import convertxml from '@ohos.convertxml'
+import convertxml from '@ohos.convertxml';
 ```
-
-
-## 权限
-
-无
 
 ## ConvertXML
 
@@ -48,7 +43,7 @@ convert(xml: string, options?: ConvertOptions) : Object
       '    <todo>Work</todo>' +
       '    <todo>Play</todo>' +
       '</note>';
-  var conv= new convertxml.ConvertXML();
+  var conv = new convertxml.ConvertXML();
   var result1 = conv.convert(xml, {trim: false, ignoreDeclaration: false});
   console.log(result1)
   ```
@@ -63,7 +58,7 @@ convert(xml: string, options?: ConvertOptions) : Object
 | ignoreInstruction | boolean  | 否   | 是否忽略xml的写入处理指令，默认false。                      |
 | ignoreAttributes  | boolean  | 否   | 是否跨多行打印属性并缩进属性，默认false。                   |
 | ignoreComment     | boolean  | 否   | 是否忽略元素的注释信息，默认false。                         |
-| ignoreCdata       | boolean  | 否   | 是否忽略元素的CData信息，默认false。                        |
+| ignoreCDATA       | boolean  | 否   | 是否忽略元素的CDATA信息，默认false。                        |
 | ignoreDoctype     | boolean  | 否   | 是否忽略元素的Doctype信息，默认false。                      |
 | ignoreText        | boolean  | 否   | 是否忽略元素的文本信息，默认false。                         |
 | declarationKey    | string   | 否   | 用于输出对象中declaration的属性键的名称，默认_declaration。 |
