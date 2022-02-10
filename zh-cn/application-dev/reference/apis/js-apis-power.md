@@ -10,14 +10,9 @@
 import power from '@ohos.power';
 ```
 
+## 系统能力
 
-## 权限
-
-关机权限： ohos.permission.SHUTDOWN
-
-重启权限： ohos.permission.REBOOT
-
-重启并进入recovery模式的权限：ohos.permission.REBOOT_RECOVERY
+SystemCapability.PowerManager.PowerManager
 
 
 ## power.shutdownDevice
@@ -25,6 +20,8 @@ import power from '@ohos.power';
 shutdownDevice(reason: string): void
 
 系统关机。
+
+需要权限：ohos.permission.SHUTDOWN
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -43,6 +40,8 @@ shutdownDevice(reason: string): void
 rebootDevice(reason: string): void
 
 重启设备。
+
+需要权限：ohos.permission.REBOOT（重启权限）、ohos.permission.REBOOT_RECOVERY（重启并进入recovery模式的权限）
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
