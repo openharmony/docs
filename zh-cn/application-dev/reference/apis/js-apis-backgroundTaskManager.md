@@ -12,6 +12,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 ## 系统能力
 SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 ## 权限列表
 
