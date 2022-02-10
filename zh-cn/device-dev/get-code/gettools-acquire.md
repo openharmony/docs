@@ -43,7 +43,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </td>
 <td class="cellrowborder" valign="top" width="35.8935893589359%" headers="mcps1.2.6.1.4 "><p id="p12667431305"><a name="p12667431305"></a><a name="p12667431305"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>0.0.5</p>
+<td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>0.0.6</p>
 </td>
 </tr>
 <tr id="row998612174129"><td class="cellrowborder" valign="top" headers="mcps1.2.6.1.1 "><p id="p1998617172126"><a name="p1998617172126"></a><a name="p1998617172126"></a>标准系统</p>
@@ -73,6 +73,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 
 
 
+
 ## 环境准备<a name="section7337134183512"></a>
 
 在使用docker环境前需要先完成以下操作：
@@ -90,12 +91,10 @@ OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud
 
 ### 搭建Docker环境-轻量系统类设备（参考内存≥128KB）和小型系统类设备（参考内存≥1MB）<a name="section319412277287"></a>
 
-**方式一：从HuaweiCloud SWR上直接获取Docker镜像进行构建：**
-
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
@@ -103,43 +102,13 @@ OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud
     ubuntu下执行：
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
     ```
 
     windows下执行（假设源码目录为D:\\OpenHarmony）：
 
     ```
-    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
-    ```
-
-
-**方式二：通过Dockerfile 构建本地Docker镜像进行构建**
-
-1.  获取Dockerfile脚本文件，用来构建本地Docker镜像。
-
-    ```
-    git clone https://gitee.com/openharmony/docs.git
-    ```
-
-2.  进入Dockerfile代码目录路径执行Docker镜像构建命令。
-
-    ```
-    cd docs/docker
-    ./build.sh
-    ```
-
-3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
-
-    ubuntu下执行：
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
-    ```
-
-    windows下执行（假设源码目录为D:\\OpenHarmony）：
-
-    ```
-    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
     ```
 
 
@@ -189,28 +158,6 @@ hb set
 
     ```
     docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
-    ```
-
-
-**方式二：通过Dockerfile 构建本地Docker镜像进行构建**
-
-1.  获取Dockerfile脚本文件，用来构建本地Docker镜像。
-
-    ```
-    git clone https://gitee.com/openharmony/docs.git
-    ```
-
-2.  进入Dockerfile代码目录路径执行Docker镜像构建命令。
-
-    ```
-    cd docs/docker/standard
-    ./build.sh
-    ```
-
-3.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
     ```
 
 

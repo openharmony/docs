@@ -6,8 +6,6 @@ The Docker image of OpenHarmony is hosted on [HUAWEI Cloud SWR](https://auth.hua
 
 ### Setting Up the Docker Environment for Standard-System Devices (reference memory ≥ 128 MB) 
 
-##### **Method 1: Obtaining the Docker image from HuaweiCloud SWR**：
-
 1. Obtain the Docker image.
 ```
 docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
@@ -15,22 +13,6 @@ docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-dock
 2. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 ```
 docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
-```
-
-##### **Method 2: Using the Dockerfile to Build a Local Docker Image**
-
-1. Obtain the Dockerfile script for a local Docker image.
-```
-git clone https://gitee.com/openharmony/docs.git
-```
-2. Go to the directory of the Dockerfile code and run the following command to build the Docker image:
-```
-cd docs/docker/standard
-./build.sh
-```
-3. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
-```
-docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
 ```
 
 ### Building for Standard-System Devices (reference memory ≥ 128 MB)
