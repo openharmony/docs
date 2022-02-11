@@ -3,17 +3,6 @@
 **Note:**
 The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Applicable Devices
-
-| API                                                          | Phone| Tablet| Smart TV| Wearable| Lite Wearable|
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- |
-| CommonEvent.publish(event: string, callback: AsyncCallback\<void>) | Yes| Yes| Yes| Yes| No|
-| CommonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>) | Yes| Yes| Yes| Yes| No|
-| CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>) | Yes| Yes| Yes| Yes| No|
-| CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo) | Yes| Yes| Yes| Yes| No|
-| CommonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>) | Yes| Yes| Yes| Yes| No|
-| CommonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>) | Yes| Yes| Yes| Yes| No|
-
 ## Required Permissions
 
 | Common Event Macro| Common Event Name| Subscriber Permissions|

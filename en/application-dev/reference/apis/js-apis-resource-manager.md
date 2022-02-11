@@ -1,8 +1,8 @@
-# Resource Manager<a name="EN-US_TOPIC_0000001200042191"></a>
+# Resource Manager<a name="EN-US_TOPIC_0000001192428610"></a>
+
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
@@ -362,8 +362,6 @@ Enumerates screen density types.
 
 Provides the device configuration.
 
-### Attributes<a name="section254242964810"></a>
-
 <a name="table1459620431636"></a>
 <table><thead align="left"><tr id="row25971143435"><th class="cellrowborder" valign="top" width="15.870000000000001%" id="mcps1.1.6.1.1"><p id="p1559716434320"><a name="p1559716434320"></a><a name="p1559716434320"></a>Name</p>
 </th>
@@ -406,8 +404,6 @@ Provides the device configuration.
 
 Provides the device capability.
 
-### Attributes<a name="section2201153419440"></a>
-
 <a name="table16201103444414"></a>
 <table><thead align="left"><tr id="row620123444415"><th class="cellrowborder" valign="top" width="15.870000000000001%" id="mcps1.1.6.1.1"><p id="p1620163494418"><a name="p1620163494418"></a><a name="p1620163494418"></a>Name</p>
 </th>
@@ -449,6 +445,10 @@ Provides the device capability.
 ## ResourceManager<a name="section137771134135415"></a>
 
 Provides the capability of accessing application resources.
+
+>![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>-   The methods involved in  **ResourceManager**  are applicable only to the TypeScript-based declarative development paradigm.
+>-   Resource files are defined in the  **resources**  directory of the project. You can obtain the resource ID from  **$r\(resource address\).id**, for example,  **$r\(?app.string.test?\).id**.
 
 ### getString<a name="section9779153419548"></a>
 
@@ -494,7 +494,7 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getString(0x1000000, (error, value) => {
+        mgr.getString($r('app.string.test').id, (error, value) => {
             if (error != null) {
                 console.log(value);
             } else {
@@ -557,7 +557,7 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getString(0x1000000).then(value => {
+        mgr.getString($r('app.string.test').id).then(value => {
             console.log(value);
         }).catch(error => {
             console.log("getstring promise " + error);
@@ -610,7 +610,7 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getStringArray(0x1000000, (error, value) => {
+        mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
             if (error != null) {
                 console.log(value);
             } else {
@@ -663,7 +663,7 @@ Obtains the array of strings corresponding to the specified resource ID. This me
     </thead>
     <tbody><tr id="row119261820145419"><td class="cellrowborder" valign="top" width="20.05%" headers="mcps1.1.3.1.1 "><p id="p179309445393"><a name="p179309445393"></a><a name="p179309445393"></a>Promise&lt;Array&lt;string&gt;&gt;</p>
     </td>
-    <td class="cellrowborder" valign="top" width="79.95%" headers="mcps1.1.3.1.2 "><p id="p139301144153915"><a name="p139301144153915"></a><a name="p139301144153915"></a>Array of character strings corresponding to the specified resource ID.</p>
+    <td class="cellrowborder" valign="top" width="79.95%" headers="mcps1.1.3.1.2 "><p id="p139301144153915"><a name="p139301144153915"></a><a name="p139301144153915"></a>Array of strings corresponding to the specified resource ID.</p>
     </td>
     </tr>
     </tbody>
@@ -673,7 +673,7 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-         mgr.getStringArray(0x1000000).then(value => {
+         mgr.getStringArray($r('app.strarray.test').id).then(value => {
             console.log(value);
         }).catch(error => {
             console.log("getstring promise " + error);
@@ -712,7 +712,7 @@ Obtains the content of the media file corresponding to the specified resource ID
     </tr>
     <tr id="row1971112524019"><td class="cellrowborder" valign="top" width="7.901402961808262%" headers="mcps1.1.5.1.1 "><p id="p27111125204017"><a name="p27111125204017"></a><a name="p27111125204017"></a>callback</p>
     </td>
-    <td class="cellrowborder" valign="top" width="25.565081839438818%" headers="mcps1.1.5.1.2 "><p id="p1371152514409"><a name="p1371152514409"></a><a name="p1371152514409"></a>AsyncCallback&lt;Array&lt;Uint8Array&gt;&gt;</p>
+    <td class="cellrowborder" valign="top" width="25.565081839438818%" headers="mcps1.1.5.1.2 "><p id="p1371152514409"><a name="p1371152514409"></a><a name="p1371152514409"></a>AsyncCallback&lt;Uint8Array&gt;</p>
     </td>
     <td class="cellrowborder" valign="top" width="6.819953234606392%" headers="mcps1.1.5.1.3 "><p id="p13711625124019"><a name="p13711625124019"></a><a name="p13711625124019"></a>Yes</p>
     </td>
@@ -726,7 +726,7 @@ Obtains the content of the media file corresponding to the specified resource ID
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getMedia(0x1000000, (error, value) => {
+        mgr.getMedia($r('app.media.test').id, (error, value) => {
             if (error != null) {
                 console.log(value);
             } else {
@@ -777,7 +777,7 @@ Obtains the content of the media file corresponding to the specified resource ID
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row9713142554012"><td class="cellrowborder" valign="top" width="23.02%" headers="mcps1.1.3.1.1 "><p id="p1071352554019"><a name="p1071352554019"></a><a name="p1071352554019"></a>Promise&lt;Array&lt;Uint8Array&gt;&gt;</p>
+    <tbody><tr id="row9713142554012"><td class="cellrowborder" valign="top" width="23.02%" headers="mcps1.1.3.1.1 "><p id="p1071352554019"><a name="p1071352554019"></a><a name="p1071352554019"></a>Promise&lt;Uint8Array&gt;</p>
     </td>
     <td class="cellrowborder" valign="top" width="76.98%" headers="mcps1.1.3.1.2 "><p id="p8713192517405"><a name="p8713192517405"></a><a name="p8713192517405"></a>Promise used to return the content of the obtained media file.</p>
     </td>
@@ -789,7 +789,7 @@ Obtains the content of the media file corresponding to the specified resource ID
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getMedia(0x1000000).then(value => {
+        mgr.getMedia($r('app.media.test').id).then(value => {
             console.log(value);
         }).catch(error => {
             console.log("getstring promise " + error);
@@ -842,7 +842,7 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getMediaBase64(0x1000000, (error, value) => {
+        mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
             if (error != null) {
                 console.log(value);
             } else {
@@ -905,7 +905,7 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getMediaBase64(0x1000000).then(value => {
+        mgr.getMediaBase64($r('app.media.test').id).then(value => {
             console.log(value);
         }).catch(error => {
             console.log("getstring promise " + error);
@@ -1131,7 +1131,7 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getPluralString(0x1000000, 1, (error, value) => {
+        mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
             if (error != null) {
                 console.log(value);
             } else {
@@ -1203,7 +1203,7 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 
     ```
     resourceManager.getResourceManager((error, mgr) => {
-        mgr.getPluralString(0x1000000, 1).then(value => {
+        mgr.getPluralString($r("app.plural.test").id, 1).then(value => {
             console.log(value);
         }).catch(error => {
             console.log("getstring promise " + error);
@@ -1211,4 +1211,119 @@ Obtains the specified number of singular-plural strings corresponding to the spe
     });
     ```
 
+
+### getRawFile<sup>8+</sup><a name="section95073471466"></a>
+
+getRawFile\(path: string, callback: AsyncCallback<Uint8Array\>\): void
+
+Obtains the content of rawfile in the specified path. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+    <a name="table15072471264"></a>
+    <table><thead align="left"><tr id="row1550784715616"><th class="cellrowborder" valign="top" width="7.901402961808262%" id="mcps1.1.5.1.1"><p id="p1650720473611"><a name="p1650720473611"></a><a name="p1650720473611"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="25.565081839438818%" id="mcps1.1.5.1.2"><p id="p1850710478614"><a name="p1850710478614"></a><a name="p1850710478614"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.819953234606392%" id="mcps1.1.5.1.3"><p id="p7508247962"><a name="p7508247962"></a><a name="p7508247962"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="59.713561964146535%" id="mcps1.1.5.1.4"><p id="p1250816471565"><a name="p1250816471565"></a><a name="p1250816471565"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row205084473617"><td class="cellrowborder" valign="top" width="7.901402961808262%" headers="mcps1.1.5.1.1 "><p id="p12508144716615"><a name="p12508144716615"></a><a name="p12508144716615"></a>path</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="25.565081839438818%" headers="mcps1.1.5.1.2 "><p id="p45085471768"><a name="p45085471768"></a><a name="p45085471768"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.819953234606392%" headers="mcps1.1.5.1.3 "><p id="p1150834716613"><a name="p1150834716613"></a><a name="p1150834716613"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.713561964146535%" headers="mcps1.1.5.1.4 "><p id="p950814719617"><a name="p950814719617"></a><a name="p950814719617"></a>Path of the rawfile.</p>
+    </td>
+    </tr>
+    <tr id="row145082471163"><td class="cellrowborder" valign="top" width="7.901402961808262%" headers="mcps1.1.5.1.1 "><p id="p145081347867"><a name="p145081347867"></a><a name="p145081347867"></a>callback</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="25.565081839438818%" headers="mcps1.1.5.1.2 "><p id="p550814471615"><a name="p550814471615"></a><a name="p550814471615"></a>AsyncCallback&lt;Uint8Array&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.819953234606392%" headers="mcps1.1.5.1.3 "><p id="p1450884713612"><a name="p1450884713612"></a><a name="p1450884713612"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.713561964146535%" headers="mcps1.1.5.1.4 "><p id="p150864719611"><a name="p150864719611"></a><a name="p150864719611"></a> Asynchronous callback used to return the rawfile content, in byte arrays.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Example
+
+    ```
+    resourceManager.getResourceManager((error, mgr) => {
+        mgr.getRawFile("test.xml", (error, value) => {
+            if (error != null) {
+                console.log(value);
+            } else {
+                console.log(value);
+            }
+        });
+    });
+    ```
+
+
+### getRawFile<sup>8+</sup><a name="section53115315102"></a>
+
+getRawFile\(path: string\): Promise<Uint8Array\>
+
+Obtains the content of the rawfile in the specified path. This method uses a promise to return the result.
+
+-   Parameters
+
+    <a name="table73111831141015"></a>
+    <table><thead align="left"><tr id="row1311143131013"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p1631163171011"><a name="p1631163171011"></a><a name="p1631163171011"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p431193191013"><a name="p431193191013"></a><a name="p431193191013"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p131114317106"><a name="p131114317106"></a><a name="p131114317106"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p1531211312104"><a name="p1531211312104"></a><a name="p1531211312104"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1331263131011"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1531223111011"><a name="p1531223111011"></a><a name="p1531223111011"></a>path</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p173121931151016"><a name="p173121931151016"></a><a name="p173121931151016"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p12312173118102"><a name="p12312173118102"></a><a name="p12312173118102"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p13312163141013"><a name="p13312163141013"></a><a name="p13312163141013"></a>Path of the rawfile.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table6312113112103"></a>
+    <table><thead align="left"><tr id="row12312231101015"><th class="cellrowborder" valign="top" width="34.339999999999996%" id="mcps1.1.3.1.1"><p id="p19312173112109"><a name="p19312173112109"></a><a name="p19312173112109"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="65.66%" id="mcps1.1.3.1.2"><p id="p1431223161016"><a name="p1431223161016"></a><a name="p1431223161016"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row12312431151011"><td class="cellrowborder" valign="top" width="34.339999999999996%" headers="mcps1.1.3.1.1 "><p id="p14312113119102"><a name="p14312113119102"></a><a name="p14312113119102"></a>Promise&lt;Uint8Array&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="65.66%" headers="mcps1.1.3.1.2 "><p id="p43128317109"><a name="p43128317109"></a><a name="p43128317109"></a> Promise used to return the rawfile content, in byte arrays.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Example
+
+    ```
+    resourceManager.getResourceManager((error, mgr) => {
+        mgr.getRawFile("test.xml").then(value => {
+            console.log(value);
+        }).catch(error => {
+            console.log("getrawfile promise " + error);
+        });
+    });
+    ```
 
