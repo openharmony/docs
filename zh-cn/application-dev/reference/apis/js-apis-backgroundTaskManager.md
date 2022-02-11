@@ -129,7 +129,7 @@ cancelSuspendDelay(requestId: number): void
 
 ## backgroundTaskManager.startBackgroundRunning
 
-startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void;
+<sup>[8]</sup> startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void;
 
 向系统申请长时任务，使用callback形式返回结果。
 
@@ -138,7 +138,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
   | -------- | -------- | -------- | -------- |
   | context | Context | 是 | 应用运行的上下文 |
   | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
-  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
+  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面。使用方式参考：<sup>[8]</sup>  |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
 
 - **示例**：
@@ -176,7 +176,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ## backgroundTaskManager.startBackgroundRunning
 
-startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
+<sup>[8]</sup> startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
 向系统申请长时任务，使用promise形式返回结果。
 
@@ -223,7 +223,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ## backgroundTaskManager.stopBackgroundRunning
 
-stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;
+<sup>[8]</sup> stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;
 
 向系统申请取消长时任务，使用callback形式返回结果。
 
@@ -252,7 +252,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 
 ## backgroundTaskManager.stopBackgroundRunning
 
-stopBackgroundRunning(context: Context): Promise&lt;void&gt;;
+<sup>[8]</sup> stopBackgroundRunning(context: Context): Promise&lt;void&gt;;
 
 向系统申请取消长时任务，使用promise形式返回结果。
 
@@ -279,7 +279,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ```
 
-## BackgroundMode
+## <sup>[8]</sup> BackgroundMode
 
 | 参数名                  | 参数 | 描述 |
 | ----------------------- | -------- | -------- |
