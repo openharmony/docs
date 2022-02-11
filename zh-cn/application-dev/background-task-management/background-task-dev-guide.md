@@ -7,7 +7,7 @@
 
 ## 接口说明
 
-```
+```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 ```
 
@@ -31,51 +31,60 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 ## 开发步骤
 
+
 1. 申请延迟挂起
-   ```
-   import backgroundTaskManager from '@ohos.backgroundTaskManager';
-   let myReason = 'test requestSuspendDelay';
-   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-       console.info("Request suspend delay will time out.");
-   });
-   var id = delayInfo.requestId;console.info("requestId is: " + id);
-   ```
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+let myReason = 'test requestSuspendDelay';
+let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+    console.info("Request suspend delay will time out.");
+});
+
+var id = delayInfo.requestId;console.info("requestId is: " + id);
+```
+
 
 2. 获取进入挂起前的剩余时间
-   ```
-   backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-       console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
-   }).catch( err => {
-       console.log('promise => Operation failed. Cause: ' + err.data);
-   });
+```js
+backgroundTaskManager.getRemainingDelayTime(id).then( res => {
+    console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+}).catch( err => {
+    console.log('promise => Operation failed. Cause: ' + err.data);
+});
    ```
 
+
 3. 取消延迟挂起
-   ```
-   backgroundTaskManager.cancelSuspendDelay(id);
-   ```
+```js
+backgroundTaskManager.cancelSuspendDelay(id);
+```
 
 
 ## 开发实例
 
-```
+```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 let myReason = 'test requestSuspendDelay';
+
 // 申请延迟挂起
 let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
     console.info("Request suspend delay will time out.");
 });
+
 // 打印延迟挂起信息
 var id = delayInfo.requestId;
 var time = delayInfo.actualDelayTime;
 console.info("The requestId is: " + id);
 console.info("The actualDelayTime is: " + time);
+
 // 获取应用程序进入挂起状态前的剩余时间
 backgroundTaskManager.getRemainingDelayTime(id).then( res => {
     console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
 }).catch( err => {
     console.log('promise => Operation failed. Cause: ' + err.data);
 });
+
 // 取消延迟挂起
 backgroundTaskManager.cancelSuspendDelay(id);
 ```
