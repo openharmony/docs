@@ -65,7 +65,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
   ```
   statfs.getFreeBytes(path, function(err, number){
-      //do something
+      // Do something.
   });
   ```
 
@@ -110,6 +110,6 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
   ```
   statfs.getTotalBytes(path, function(err, number){
-      //do something
+      // Do something.
   });
   ```
