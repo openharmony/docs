@@ -27,8 +27,9 @@ Creates an SMS message instance based on the protocol data unit (PDU) and the sp
 -   Example
 
     ```
-    let specification = '3gpp';
-    let pdu = [0x08, 0x91, ...];
+    const specification = '3gpp';
+    // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
+    const pdu = [0x08, 0x91];
     sms.createMessage(pdu, specification, (err, data) => {
         console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
     });
@@ -57,8 +58,9 @@ Creates an SMS message instance based on the PDU and the specified SMS protocol.
 -   Example
 
     ```
-    let specification = '3gpp';
-    let pdu = [0x08, 0x91, ...];
+    const specification = '3gpp';
+    // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
+    const pdu = [0x08, 0x91];
     let promise = sms.createMessage(pdu, specification);
     promise.then(data => {
         console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
