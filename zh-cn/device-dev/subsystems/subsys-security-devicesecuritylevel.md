@@ -11,8 +11,10 @@
     - [接口说明](#接口说明)
     - [开发步骤](#开发步骤)
     - [开发示例](#开发示例)
-  - [设备安全等级凭据](#设备安全等级凭据)
-    - [凭据文件说明](#凭据文件说明)
+      - [1. 同步接口使用示例](#1-同步接口使用示例)
+      - [2. 异步接口使用示例](#2-异步接口使用示例)
+  - [设备安全等级定制](#设备安全等级定制)
+    - [设备安全等级凭据](#设备安全等级凭据)
     - [凭据文件生成步骤](#凭据文件生成步骤)
       - [1. 构造header](#1-构造header)
       - [2. 构造payload](#2-构造payload)
@@ -67,7 +69,7 @@ OpenHarmony系统安全架构如下图所示：
 
 ### 约束与限制
 
-OpenHarmony设备的默认安全等级为SL1，设备制造商可以根据设备实际情况定制更高的安全等级。详细请参考章节[设备安全等级凭据](#设备安全等级凭据)。
+OpenHarmony设备的默认安全等级为SL1，设备制造商可以根据设备实际情况定制更高的安全等级。详细请参考章节[设备安全等级定制](#设备安全等级定制)。
 
 ## 开发指导
 
@@ -133,7 +135,7 @@ OpenHarmony设备的默认安全等级为SL1，设备制造商可以根据设备
 1、当目标设备的设备安全等级大于或者等于SL3时，默认允许该文件的传递。
 2、当目标设备的设备安全等级小于SL3时，默认拒绝该文件的外传，同时弹框告知用户。
 
-参考代码1:（同步接口使用示例）
+#### 1. 同步接口使用示例
 
 ```cpp
 void CheckDestDeviceSecurityLevel(const DeviceIdentify *device, RequestOption *option)
@@ -165,7 +167,7 @@ void CheckDestDeviceSecurityLevel(const DeviceIdentify *device, RequestOption *o
 }
 ```
 
-参考代码2:（异步接口使用示例）
+#### 2. 异步接口使用示例
 
 ```cpp
 // 回调函数
@@ -202,9 +204,13 @@ void CheckDestDeviceSecurityLevelAsync(const DeviceIdentify *device, RequestOpti
 }
 ```
 
-## 设备安全等级凭据
+## 设备安全等级定制
 
-### 凭据文件说明
+### 设备安全等级凭据
+
+OpenHarmony的设备安全等级管理模块提供了安全等级信息同步与验证的默认实现。它假定所有OpenHarmony设备的安全等级为SL1，并且采用了一套较为宽松的验证方案。详细细节可以参考[相关源码](https://gitee.com/openharmony/security_device_security_level/tree/master/oem_property/ohos)。
+
+设备制造商可以根据设备实际情况，参考[基本概念](#基本概念)章节的描述，修改默认的设备安全等级信息。与此同时，设备制造商还可以将OpenHarmony中的默认实现替换为更加严格的验证策略，包括但不限于采用更加精确的一机一凭据策略、从服务器定期下载更新的凭据并严格认证凭据的签发者和有效期、使用TEE甚至SE对凭据文件进行进一步的签名等流程。
 
 为了保证设备安全等级信息的完整性和不可抵赖性。设备的安全等级信息需要封装在“设备安全等级凭据”（简称为“凭据”）文件中在设备间进行传递，凭据中除了包含设备的安全等级信息之外，还可以包含设备型号、设备版本号等其它设备固有属性，同时使用PKI技术对上述信息进行签名。并结合[设备认证](https://gitee.com/openharmony/security_deviceauth)、[HUKS](https://gitee.com/openharmony/security_huks)等OpenHarmony其他基础安全能力。最大程度的保证了凭据传递的安全性。
 
@@ -254,6 +260,23 @@ eyJ0eXAiOiAiRFNMIn0=
 ```undefined
 eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJhbmQiOiAicmszNTY4IiwgIm1vZGVsIjogInJrMzU2OCIsICJzb2Z0d2FyZVZlcnNpb24iOiAiMy4yLjIiLCAic2VjdXJpdHlMZXZlbCI6ICJTTDEiLCAic2lnblRpbWUiOiAiMjAyMjAyMDkxNTAyNTkiLCAidmVyc2lvbiI6ICIxLjAuMSJ9
 ```
+
+payload中各字段说明如下：
+
+|     字段名      |      字段说明      | 是否必选字段 |       取值范围        |
+| :-------------: | :----------------: | :----------: | :-------------------: |
+|      type       |    凭据发布类型    |      是      |    [debug release]    |
+|   manufacture   |   设备制造商信息   |      是      |    string [0..128]    |
+|      brand      |    设备品牌信息    |      是      |    string [0..128]    |
+|      model      |    设备型号信息    |      是      |    string [0..128]    |
+| softwareVersion | 设备软件版本号信息 |      是      |    string [0..128]    |
+|  securityLevel  |  设备安全等级信息  |      是      | [SL1 SL2 SL3 SL4 SL5] |
+|    signTime     |   本凭据签名时间   |      是      |    string [0..128]    |
+|     version     |    本凭据版本号    |      是      |    string [0..32]     |
+|       sn        |    设备SN序列号    |      否      |    string [0..128]    |
+|      udid       |   设备UDID序列号   |      否      |    string [0..128]    |
+
+
 
 #### 3. 构造signature
 
@@ -351,7 +374,7 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 
 #### 5. 构造完整的凭据
 
-用符号"."连接上述 `<base64-head>.<base64-payload>.<SIGNATURE>.<ATTESTATIONINFO>`四段数据，最终结果示例如下：
+用符号"."连接上述四段数据，最终得到 `<base64-header>.<base64-payload>.<base64-signature>.<base64-attestation>`，其示例如下：
 
 ```undefined
 eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJhbmQiOiAicmszNTY4IiwgIm1vZGVsIjogInJrMzU2OCIsICJzb2Z0d2FyZVZlcnNpb24iOiAiMy4yLjIiLCAic2VjdXJpdHlMZXZlbCI6ICJTTDEiLCAic2lnblRpbWUiOiAiMjAyMjAyMDkxNTAyNTkiLCAidmVyc2lvbiI6ICIxLjAuMSJ9.MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6vRTRs0xk6xKp8A0XwMMiIyjZlujPJfasCvFonpsvXLAqCAIYbe1J0k4Zfg==.W3sidXNlclB1YmxpY0tleSI6ICJNSG93RkFZSEtvWkl6ajBDQVFZSkt5UURBd0lJQVFFTEEySUFCREdOMU9xYWZrWFc2a0l1SEZrMVQ0TS84RVJUY3p0eWRDaGtramFROEkzNEc2Q3E1aTNJcnczVnRhQS9KTTF2a0lHOUZDVWRUaHZFUlJFUTFUdG9xemdxZW9SUzVwQW1EYUUyalEwYzdDem8rOHVUWTRIYW1weXZ1TENtenlYUXFnPT0iLCAic2lnbmF0dXJlIjogIk1HTUNMeHVjUnoyZndKZ092QkxyU1U3K1hlVTA3R0EyVXhZbDFMbEJLUnVIUS9wZlNWVHBEd0ZHSTNTb3h5ODR3NThIQWpBeGRtNEY3b3YvYUtEL0NFZi9QZlZDWHVlbE1mQys1L3pkUExXUUJEVnlGdWQrNVdYL3g4U083VXM5UGFhRW1mZz0ifSwgeyJ1c2VyUHVibGljS2V5IjogIk1Ib3dGQVlIS29aSXpqMENBUVlKS3lRREF3SUlBUUVMQTJJQUJHMWU3TDJVd1AyWWxTajB2RWViUGJpNVpLMDh5NS9UeHRWb3VrRFpIUGtSNlRtb2JoVGpyMVRVNzZpUkU4bDlWQlhuU1h1QVB6cjBuSHdKVkdVZVJMdmp4MVh0YUZReE9QNjhjNlIvRTdFWkZ2STdRUFg1N0tvRkhYdkEvVlJaNnc9PSIsICJzaWduYXR1cmUiOiAiTUdRQ01FUVdFNnk0Rm42SFg1ekFvTzNkYzl5cG1Sd2lBclplc2o5aVBROTZEaEhuNXJkRTdNaGFMdWNRZ0MvaXhjSWJsZ0l3QkN5aFBvRUg2RjFITFlwM2xqbWVncVlZQ1E5NHEyZm1kbDB6dHhrWEVTOVpPOVRNSUZQRVpKYlpmUnU5ZHcyOSJ9LCB7InVzZXJQdWJsaWNLZXkiOiAiTUhvd0ZBWUhLb1pJemowQ0FRWUpLeVFEQXdJSUFRRUxBMklBQkZRUUlDWmpWUTV4bkE0c2RMbUJzUmVaMzRJeWdkSmZhanA3SnRReFBzU2RwWTJXV0FneXp6Rm40OFFRRWhoU1BtdzhJYUU3VlJKRENBT3FYRnhGektJbFBFTDFvcFJDUmhhWmJrRzc5Y3ZrWC9HVVhlaFVYc2V2ZGhyb2VRVERFdz09IiwgInNpZ25hdHVyZSI6ICJNR1FDTUdQRndvSDJLbHhwbVZhWXRWV1ViMHpDSUJxYXFXY2F6czFqOVp4YklLUmVkR2tJY0VJdHN0UFoxdnVTanYvNDJnSXdSeGZPcTRoQTdNMHlGV2ZPSndqRTlTc2JsYXhvRDNiRTZCYzN2QjUyMmsyQ0ZJNWJqelpkeUFTVW04d2J2TW5WIn1d
@@ -395,20 +418,20 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
         "version": 196608,
         "type": 300,
         "challenge": "0102030405060708",
-        "info": "YWJjZAEDBQcJxxxxx"
+        "info": "YWJjZAEDBQcJ..."
     }
 }
 ```
 
 其中各个字段解释如下：
-|  字段名   |                      含义解释                      |
-| :-------: | :------------------------------------------------: |
-|  message  |       消息头，取值2表示设备安全等级凭据应答        |
-|  payload  |            消息payload，具体的应答信息             |
-|  version  |                  应答端协议版本号                  |
-|   type    | 应答端本次返回的凭据格式，用来描述如何解析info字段 |
-| challenge |              本次应答信息对应的挑战值              |
-|   info    |                  签名后的凭据信息                  |
+|  字段名   |                          含义解释                          |
+| :-------: | :--------------------------------------------------------: |
+|  message  |           消息头，取值2表示设备安全等级凭据应答            |
+|  payload  |                消息payload，具体的应答信息                 |
+|  version  |                      应答端协议版本号                      |
+|   type    |     应答端本次返回的凭据格式，用来描述如何解析info字段     |
+| challenge |                  本次应答信息对应的挑战值                  |
+|   info    | 签名后的凭据信息，同时还包含设备绑定关系、挑战值校验等信息 |
 
 ### 工具使用介绍
 
