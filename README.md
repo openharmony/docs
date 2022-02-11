@@ -14,15 +14,17 @@ This repository stores device and application development documents provided by 
 
 ### Latest Versions
 
-master: the latest version.
+ - master: the latest version.
 
-OpenHarmony 3.1 Beta. [Learn more](en/release-notes/OpenHarmony-v3.1-beta.md)
+ - OpenHarmony 3.1 Beta. [Learn more](en/release-notes/OpenHarmony-v3.1-beta.md)
 
-OpenHarmony 3.0 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0-LTS.md)
+ - OpenHarmony 3.0 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0-LTS.md)
 
-OpenHarmony v2.2 Beta2. [Learn more](en/release-notes/OpenHarmony-v2.2-beta2.md)
+   This version is upgraded to OpenHarmony 3.0.1 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.1-LTS.md)
 
-OpenHarmony 2.0 Canary. [Learn more](en/release-notes/OpenHarmony-2-0-canary.md)
+ - OpenHarmony v2.2 Beta2. [Learn more](en/release-notes/OpenHarmony-v2.2-beta2.md)
+
+ - OpenHarmony 2.0 Canary. [Learn more](en/release-notes/OpenHarmony-2-0-Canary.md)
 
 ### Historical Stable Versions
 
