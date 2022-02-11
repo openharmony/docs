@@ -68,7 +68,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   Table 5 API for deleting data
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | Deletes data. <ul><li> **deletedRows**: specifies the number of rows to delete. </li><li> **predicates**: specifies the table name and conditions for deleting the data.  **AbsRdbPredicates** has the following classes: <ul><li> **RdbPredicates**: specifies update conditions by calling its methods, such as **equalTo**. </li><li> **RawRdbPredicates**: specifies the table name, **whereClause** and **whereArgs** only. </li></ul></li></ul> |
+  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | Deletes data. <ul><li> **deletedRows**: specifies the number of rows to delete. </li><li> **predicates**: specifies the table name and conditions for deleting the data.  **AbsRdbPredicates** has the following classes: <ul><li> **RdbPredicates**: specifies delete conditions by calling its methods, such as **equalTo**. </li><li> **RawRdbPredicates**: specifies the table name, **whereClause** and **whereArgs** only. </li></ul></li></ul> |
 
 - Updating data
 
