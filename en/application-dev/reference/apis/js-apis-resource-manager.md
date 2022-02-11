@@ -446,7 +446,7 @@ Provides the device capability.
 
 Provides the capability of accessing application resources.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   The methods involved in  **ResourceManager**  are applicable only to the TypeScript-based declarative development paradigm.
 >-   Resource files are defined in the  **resources**  directory of the project. You can obtain the resource ID from  **$r\(resource address\).id**, for example,  **$r\(?app.string.test?\).id**.
 
