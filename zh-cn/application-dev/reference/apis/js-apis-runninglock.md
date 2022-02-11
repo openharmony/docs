@@ -11,9 +11,9 @@ import runninglock from '@ohos.runningLock';
 ```
 
 
-## 权限
+## 系统能力
 
-申请、使用锁的权限：ohos.permission.RUNNING_LOCK
+SystemCapability.PowerManager.PowerManager
 
 
 ## RunningLockType
@@ -84,6 +84,8 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 
 创建RunningLock锁。
 
+需要权限：ohos.permission.RUNNING_LOCK
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -112,6 +114,8 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 创建Runninglock锁。
+
+需要权限：ohos.permission.RUNNING_LOCK
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
