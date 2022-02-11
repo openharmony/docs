@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {LightWeightMap} from '@ohos.util.LightWeightMap'  
+import LightWeightMap from '@ohos.util.LightWeightMap'  
 ```
 
 

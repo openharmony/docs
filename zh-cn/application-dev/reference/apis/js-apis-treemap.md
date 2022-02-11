@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {TreeMap} from '@ohos.util.TreeMap'  
+import TreeMap from '@ohos.util.TreeMap'  
 ```
 
 

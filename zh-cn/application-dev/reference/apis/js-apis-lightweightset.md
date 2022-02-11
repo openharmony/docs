@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {LightWeightSet} from '@ohos.util.LightWeightSet'  
+import LightWeightSet from '@ohos.util.LightWeightSet'  
 ```
 
 

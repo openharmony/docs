@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {HashMap} from '@ohos.util.HashMap'  
+import HashMap from '@ohos.util.HashMap'  
 ```
 
 

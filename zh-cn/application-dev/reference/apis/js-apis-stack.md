@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {Stack} from '@ohos.util.Stack'  
+import Stack from '@ohos.util.Stack'  
 ```
 
 

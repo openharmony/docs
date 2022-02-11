@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {Queue} from '@ohos.util.Queue'  
+import Queue from '@ohos.util.Queue'  
 ```
 
 
