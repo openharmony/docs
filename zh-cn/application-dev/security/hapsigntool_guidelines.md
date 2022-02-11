@@ -248,7 +248,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 - [对profile文件进行签名](#对profile文件进行签名)
 - [对Hap包进行签名](#对Hap包进行签名)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**注意事项：**
+> ![icon-note.gif](../public_sys-resources/icon-note.gif)**注意事项：**
  1.步骤一中的密钥对算法推荐使用ECC，出于安全性考虑，应用签名暂不使用RSA算法
  2.建议将待签名hap包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、子CA证书、签名工具放在同一个目录下，方便操作。
  3. OpenHarmony密钥库文件所在路径：developtools_hapsigner/autosign/result/OpenHarmony.p12；
@@ -264,7 +264,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 ```shell
 java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg "ECC"  -keySize "NIST-P-256" -keystoreFile "OpenHarmony.p12" -keyPwd "123456" -keystorePwd "123456"
 ```
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续[生成应用签名证书](#生成应用签名证书)和[对Hap包进行签名](#对Hap包进行签名)操作会使用到。
+  > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续[生成应用签名证书](#生成应用签名证书)和[对Hap包进行签名](#对Hap包进行签名)操作会使用到。
 
  &emsp; &emsp;该命令的参数说明：
  
