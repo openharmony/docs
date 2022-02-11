@@ -10,6 +10,9 @@
 import batteryInfo from '@ohos.batteryInfo';
 ```
 
+## 系统能力
+
+SystemCapability.PowerManager.BatteryManager
 
 ## 属性
 

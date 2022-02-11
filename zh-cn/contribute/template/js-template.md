@@ -66,6 +66,12 @@
 ```js
 import call from '@ohos.telephony.call';
 ```
+## 系统能力
+> *写作说明*
+>
+> 3.1 - 必选。
+>
+示例：SystemCapability.BundleManager.BundleFramework
 
 ## 属性
 

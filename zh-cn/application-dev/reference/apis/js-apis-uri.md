@@ -10,12 +10,6 @@
 import uri from '@ohos.uri'  
 ```
 
-
-## 权限
-
-无
-
-
 ## URI
 
 
@@ -64,7 +58,7 @@ toString(): string
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | string | 用于返回网址的字符串序列化。 |
+  | string | 返回网址的字符串序列化。 |
 
 - 示例:
   ```
@@ -87,7 +81,7 @@ equals(other: URI): boolean
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 用于测试此URI是否与其他URI对象相等。 |
+  | boolean | 返回true表示相等，否则返回false。 |
 
 - 示例:
   ```
@@ -96,15 +90,16 @@ equals(other: URI): boolean
   uriInstance.equals(uriInstance1);
   ```
 
-
 ### checkIsAbsolute
 
-判断此URI是否为绝对URI。
+checkIsAbsolute(): boolean
+
+判断此URI是否为绝对URI（是否定义了scheme组件）。
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 用于说明此URI是否为绝对URI（是否定义了scheme组件）。 |
+  | boolean | 返回true表示该URI是否为绝对URI。 |
 
 - 示例:
   ```
@@ -122,7 +117,7 @@ normalize(): URI
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | URI | 用于规范化此URI的路径，并返回一个path被规范化后的URI对象。 |
+  | URI | 返回一个path被规范化后的URI对象。 |
 
 - 示例:
   ```

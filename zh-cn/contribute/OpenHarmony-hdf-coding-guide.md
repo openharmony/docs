@@ -16,7 +16,7 @@ HDF（Hardware Driver Foundation）驱动框架，为开发者提供驱动框架
 
 #### 【规则】OpenHarmony的驱动程序，应当使用HDF框架提供的能力实现
 
-【说明】HDF驱动框架提供了驱动加载、驱动服务管理和驱动消息机制，同时还提供了操作系统抽象层(OSAL, Operating System Abstract Layer)和平台抽象层(PAL, Platform Abstract Layer)来保证驱动程序的跨系统跨平台部署的特性。除此之外，HDF提供了驱动模型的抽象、公共工具、外围器件框架等能力。开发者应该基于HDF提供的这些能力开发驱动，从而保证驱动程序可以在各种形态的OpenHarmony上进行部署。
+【说明】HDF驱动框架提供了驱动加载、驱动服务管理和驱动消息机制，同时还提供了操作系统抽象层(OSAL, Operating System Abstraction Layer)和平台抽象层(PAL, Platform Abstraction Layer)来保证驱动程序的跨系统跨平台部署的特性。除此之外，HDF提供了驱动模型的抽象、公共工具、外围器件框架等能力。开发者应该基于HDF提供的这些能力开发驱动，从而保证驱动程序可以在各种形态的OpenHarmony上进行部署。
 
 #### 【规则】开发者应当遵循此规范要求，开发能够同时满足内核态和用户态的驱动
 
@@ -332,7 +332,7 @@ root {
 
 #### 【建议】当preload字段配置为默认加载时，应当根据业务要求配置按序加载的优先级
 
-【说明】在HDF框架定义的device_info.hcs配置文件中，priority字段（取值范围为整数0到200）是用来表示Host和驱动的优先级。不同的Host内的驱动，Host的priority值越小，驱动加载优先级越高；同一个Host内驱动的priority值越小，加载优先级越高。priority字段的默认值为100，当未配置或字段值相同时，HDF框架将不保证驱动的加载顺序。开发者应当根据业务场景的要求，配置preority字段，保证各个驱动的启动顺序。
+【说明】在HDF框架定义的device_info.hcs配置文件中，priority字段（取值范围为整数0到200）是用来表示Host和驱动的优先级。不同的Host内的驱动，Host的priority值越小，驱动加载优先级越高；同一个Host内驱动的priority值越小，加载优先级越高。priority字段的默认值为100，当未配置或字段值相同时，HDF框架将不保证驱动的加载顺序。开发者应当根据业务场景的要求，配置priority字段，保证各个驱动的启动顺序。
 
 【样例】
 

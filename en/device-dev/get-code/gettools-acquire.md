@@ -30,7 +30,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </td>
 <td class="cellrowborder" valign="top" width="35.8935893589359%" headers="mcps1.2.6.1.4 "><p id="p12667431305"><a name="p12667431305"></a><a name="p12667431305"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>0.0.5</p>
+<td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>0.0.6</p>
 </td>
 </tr>
 <tr id="row998612174129"><td class="cellrowborder" valign="top" headers="mcps1.2.6.1.1 "><p id="p1998617172126"><a name="p1998617172126"></a><a name="p1998617172126"></a>Standard system</p>
@@ -60,6 +60,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 
 
 
+
 ## Preparations<a name="section7337134183512"></a>
 
 Before using the Docker environment, perform the following operations:
@@ -77,12 +78,10 @@ The Docker image of OpenHarmony is hosted on  [HUAWEI CLOUD SWR](https://console
 
 ### Setting Up the Docker Environment for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\)<a name="section319412277287"></a>
 
-**Method 1: Obtaining the Docker image from HUAWEI CLOUD SWR**
-
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
@@ -90,43 +89,13 @@ The Docker image of OpenHarmony is hosted on  [HUAWEI CLOUD SWR](https://console
     Run the following command in Ubuntu:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
     ```
 
     Run the following command in Windows \(assuming that the source code directory is  **D:\\OpenHarmony**\):
 
     ```
-    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
-    ```
-
-
-**Method 2: Using the Dockerfile to Build a Local Docker Image**
-
-1.  Obtain the Dockerfile script for a local Docker image.
-
-    ```
-    git clone https://gitee.com/openharmony/docs.git
-    ```
-
-2.  Go to the directory of the Dockerfile code and run the following command to build the Docker image:
-
-    ```
-    cd docs/docker
-    ./build.sh
-    ```
-
-3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
-
-    Run the following command in Ubuntu:
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
-    ```
-
-    Run the following command in Windows \(assuming that the source code directory is  **D:\\OpenHarmony**\):
-
-    ```
-    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.5
+    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
     ```
 
 
@@ -164,8 +133,6 @@ hb set
 
 ### Setting Up the Docker Environment for Standard-System Devices \(reference memory ≥ 128 MB\)<a name="section13585262391"></a>
 
-**Method 1: Obtaining the Docker image from HUAWEI CLOUD SWR**
-
 1.  Obtain the Docker image.
 
     ```
@@ -179,28 +146,6 @@ hb set
     ```
 
 
-**Method 2: Using the Dockerfile to Build a Local Docker Image**
-
-1.  Obtain the Dockerfile script for a local Docker image.
-
-    ```
-    git clone https://gitee.com/openharmony/docs.git
-    ```
-
-2.  Go to the directory of the Dockerfile code and run the following command to build the Docker image:
-
-    ```
-    cd docs/docker/standard
-    ./build.sh
-    ```
-
-3.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
-    ```
-
-
 ### Building for Standard-System Devices \(reference memory ≥ 128 MB\)<a name="section193711513406"></a>
 
 Run the following script to start building for standard-system devices \(reference memory ≥ 128 MB\).
@@ -209,7 +154,7 @@ Run the following script to start building for standard-system devices \(referen
 ./build.sh --product-name {product_name} --ccache
 ```
 
-**product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300 and RK3568.
+**product\_name**  indicates the platform supported by the current distribution, for example, Hi3516DV300 and rk3568.
 
 Files generated during building are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 

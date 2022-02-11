@@ -10,6 +10,9 @@
 import brightness from '@ohos.brightness';
 ```
 
+## 系统能力
+
+SystemCapability.PowerManager.DisplayPowerManager
 
 ## brightness.setValue
 

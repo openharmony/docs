@@ -1,4 +1,4 @@
-# OpenHarmony C&C++ Secure Coding Guide
+# C&C++ Secure Coding Guide
 
 This document provides some secure coding suggestions based on the C\&C++ language to guide development.
 

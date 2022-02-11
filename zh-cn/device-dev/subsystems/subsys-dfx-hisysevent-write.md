@@ -1,14 +1,27 @@
 # HiSysEvent打点指导<a name="ZH-CN_TOPIC_0000001231373947"></a>
 
 -   [概述](#section77571101789)
--   [接口说明](#section13480315886)
--   [开发实例](#section112771171317)
+    -   [功能简介](#section123133332175224)
+	-   [约束与限制](#section123181432175224)
+-   [开发指导](#section314416685113)
+    -   [接口说明](#section13480315886)
+    -   [开发实例](#section112771171317)
 
 ## 概述<a name="section77571101789"></a>
 
+### 功能简介<a name="section123133332175224"></a>
+
 HiSysEvent提供OpenHarmony打点接口，通过在关键路径打点记录系统在运行过程中的重要信息，辅助开发者定位问题，此外还支持开发者将数据上传到云进行大数据质量度量。
 
-## 接口说明<a name="section13480315886"></a>
+### 约束与限制<a name="section123181432175224"></a>
+
+**HiSysEvent事件打点条件约束：**
+
+- 在进行HiSysEvent事件打点之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-write-config.md)。
+
+## 开发指导<a name="section314416685113"></a>
+
+### 接口说明<a name="section13480315886"></a>
 
 C++打点接口如下：
 
@@ -258,7 +271,7 @@ HiSysEvent类，具体的API详见接口文档 。
 </tbody>
 </table>
 
-## 开发实例<a name="section112771171317"></a>
+### 开发实例<a name="section112771171317"></a>
 
 C++接口实例
 
@@ -281,5 +294,3 @@ C++接口实例
     ```
     external_deps = [ "hisysevent_native:libhisysevent" ]
     ```
-
-

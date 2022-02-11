@@ -20,6 +20,7 @@
     - [媒体服务](js-apis-media.md)
 - 安全
     - [用户认证](js-apis-useriam-userauth.md)
+    - [访问控制](js-apis-security-accessToken.md)
 - 数据管理
     - [轻量级存储](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
@@ -31,6 +32,7 @@
     - [文件管理](js-apis-fileio.md)
     - [Statfs](js-apis-statfs.md)
     - [目录环境](js-apis-environment.md)
+    - [公共文件访问与管理](js-apis-filemanager.md)
 - 账号管理
     - [分布式帐号管理](js-apis-distributed-account.md)
     - [应用帐号管理](js-apis-appAccount.md)
@@ -75,4 +77,18 @@
     - [xml解析与生成](js-apis-xml.md)
     - [xml转换JavaScript](js-apis-convertxml.md)
     - [启动一个worker](js-apis-worker.md)
+    - [线性容器ArrayList](js-apis-arraylist.md)
+    - [线性容器Deque](js-apis-deque.md)
+    - [线性容器List](js-apis-list.md)
+    - [线性容器LinkedList](js-apis-linkedlist.md)
+    - [线性容器Queue](js-apis-queue.md)
+    - [线性容器Stack](js-apis-stack.md)
+    - [线性容器Vector](js-apis-vector.md)
+    - [非线性容器HashSet](js-apis-hashset.md)
+    - [非线性容器HashMap](js-apis-hashmap.md)
+    - [非线性容器PlainArray](js-apis-plainarray.md)
+    - [非线性容器TreeMap](js-apis-treemap.md)
+    - [非线性容器TreeSet](js-apis-treeset.md)
+    - [非线性容器LightWeightMap](js-apis-lightweightmap.md)
+    - [非线性容器LightWeightSet](js-apis-lightweightset.md)
 
