@@ -258,10 +258,10 @@ format '%p' expects argument of type 'void *', but argument 2 has type 'uint64_t
 | 0x7FFFFFFFL    | **4**     | **8** | The length is not fixed. Do not use this constant.|
 | 0x7FFFFFFFLL   | 8         | 8     | The length is fixed.|
 | 0x80000000     | 4         | 4     | It can be used within the value range of uint32\_t. The type is uint32\_t.|
-| 0x80000000L    | **4**     | **8** | The suffix is L. It can be used within the value range of uint32\_t. This constant is meaningless and should be avoided.|
+| 0x80000000L    | **4**     | **8** | The suffix is L. It can be used within the value range of uint32\_t. This constant is meaningless. Do not use it.|
 | 0x80000000LL   | 8         | 8     | The suffix is LL. It can be used within the value range of uint32\_t. The length is fixed.|
 | 0x8000000000   | **NA or 8**| **8** | No prefix. It can be used when the value range of uint32\_t is exceeded. The compiler uses LL by default or considers the value invalid. On a 64-bit OS, the type is fixed at uint64\_t.|
-| 0x8000000000L  | **NA or 8**| **8** | The suffix is L. It can be used when the value range of uint32_t is exceeded. This constant is meaningless and should be avoided.|
+| 0x8000000000L  | **NA or 8**| **8** | The suffix is L. It can be used when the value range of uint32_t is exceeded. This constant is meaningless. Do not use it.|
 | 0x8000000000LL | 8         | 8     | The suffix is LL. The type is uint64_t.|
 
 As shown in the preceding table, a constant with the L or UL suffix has different lengths in the 32- and 64-bit environments. This hinders code portability. Therefore, do not use the L or UL suffix.
