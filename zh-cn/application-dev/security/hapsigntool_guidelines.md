@@ -335,7 +335,7 @@ java -jar hap-sign-tool.jar  sign-profile -keyAlias "openharmony application pro
 java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "app1.pem" -profileFile "app1-profile.p7b" -inFile "app1-unsigned.zip" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
 ```
 
- > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明**：以下参数说明默认开发场景为场景一，当开发场景为场景二时，下列参数需要修改：
+ > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明**：以下参数说明默认开发场景为场景一，当开发场景为场景二时，下列参数需要修改：
  &emsp;&emsp;&emsp;-keyAlias：密钥别名，填写已有应用签名证书对应的密钥别名，参数必填
  &emsp;&emsp;&emsp;-appCertFile：应用签名证书，填写已有的应用签名证书，参数必填
  &emsp;&emsp;&emsp;-keystoreFile：密钥库文件，填写已有应用签名证书对应的密钥库文件，参数必填
