@@ -9,6 +9,10 @@
 import batteryInfo from '@ohos.batteryInfo';
 ```
 
+## System Capabilities
+
+SystemCapability.PowerManager.BatteryManager
+
 ## Attributes<a name="section0536924123914"></a>
 
 Describes battery information.
