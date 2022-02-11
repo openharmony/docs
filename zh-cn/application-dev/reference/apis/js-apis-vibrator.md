@@ -10,6 +10,9 @@
 import vibrator from '@ohos.vibrator';
 ```
 
+## 系统能力
+
+SystemCapability.Sensors.MiscDevice
 
 ## 权限列表
 
