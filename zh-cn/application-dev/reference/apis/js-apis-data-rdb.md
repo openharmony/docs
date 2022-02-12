@@ -91,7 +91,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
   ```
   import dataRdb from '@ohos.data.rdb'
   const context = this.context;
-  dataRdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
+  dataRdb.deleteRdbStore(context, "RdbTest.db", function (err, rdbStore) {
       console.info(TAG + 'delete store done.')})
   ```
 
@@ -116,8 +116,10 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
   ```
   import dataRdb from '@ohos.data.rdb'
   const context = this.context;
-  dataRdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
-      console.info(TAG + 'delete store done.')})
+  let promise = dataRdb.deleteRdbStore(context, "RdbTest.db")
+  promise.then(()=>{
+      console.info(TAG + 'delete store done.')
+  })
   ```
 
 ## RdbPredicates
