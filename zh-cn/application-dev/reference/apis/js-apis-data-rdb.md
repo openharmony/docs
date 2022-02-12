@@ -18,13 +18,14 @@ import dataRdb from '@ohos.data.rdb'
 
 ## dataRdb.getRdbStore
 
-getRdbStore(config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
+getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用程序或功能的上下文 |
   | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
   | version | number | 是 | 数据库版本。 |
   | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数。返回一个RdbStore。 |
@@ -34,22 +35,23 @@ getRdbStore(config: StoreConfig, version: number, callback: AsyncCallback&lt;Rdb
   import dataRdb from '@ohos.data.rdb'
   const STORE_CONFIG = { name: "RdbTest.db"}
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-  dataRdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
+  const context = this.context;
+  dataRdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
       rdbStore.executeSql(SQL_CREATE_TABLE)
       console.info(TAG + 'create table done.')
   })
   ```
 
-
 ## dataRdb.getRdbStore
 
-getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
+getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用程序或功能的上下文 |
   | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
   | version | number | 是 | 数据库版本。 |
 
@@ -63,7 +65,8 @@ getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
   import dataRdb from '@ohos.data.rdb'
   const STORE_CONFIG = { name: "RdbTest.db" }
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-  let promise = dataRdb.getRdbStore(STORE_CONFIG, 1);
+  const context = this.context;
+  let promise = dataRdb.getRdbStore(context, STORE_CONFIG, 1);
   promise.then(async (rdbStore) => {
       await rdbStore.executeSql(SQL_CREATE_TABLE, null)
   }).catch((err) => {
@@ -71,36 +74,37 @@ getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
   })
   ```
 
-
 ## dataRdb.deleteRdbStore
 
-deleteRdbStore(name: string, callback: AsyncCallback&lt;void&gt;): void
+deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除数据库，结果以callback形式返回。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用程序或功能的上下文 |
   | name | string | 是 | 数据库名称。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。如果数据库已删除，则为true；否则返回false。 |
 
 - 示例：
   ```
   import dataRdb from '@ohos.data.rdb'
+  const context = this.context;
   dataRdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
       console.info(TAG + 'delete store done.')})
   ```
 
-
 ## dataRdb.deleteRdbStore
 
-deleteRdbStore(name: string): Promise&lt;void&gt;
+deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，结果以Promise形式返回。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用程序或功能的上下文 |
   | name | string | 是 | 数据库名称。 |
 
 - 返回值：
@@ -111,12 +115,10 @@ deleteRdbStore(name: string): Promise&lt;void&gt;
 - 示例：
   ```
   import dataRdb from '@ohos.data.rdb'
-  let promise = dataRdb.deleteRdbStore("RdbTest.db")
-  promise.then(()=>{
-      console.info(TAG + 'delete store done.')
-  })
+  const context = this.context;
+  dataRdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
+      console.info(TAG + 'delete store done.')})
   ```
-
 
 ## RdbPredicates
 
