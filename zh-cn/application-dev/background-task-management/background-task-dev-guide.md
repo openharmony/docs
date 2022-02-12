@@ -33,32 +33,32 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 
 1. 申请延迟挂起
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-let myReason = 'test requestSuspendDelay';
-let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-    console.info("Request suspension delay will time out.");
-});
-var id = delayInfo.requestId;console.info("requestId is: " + id);
-```
+   ```js
+   import backgroundTaskManager from '@ohos.backgroundTaskManager';
+   let myReason = 'test requestSuspendDelay';
+   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+       console.info("Request suspension delay will time out.");
+   });
+   var id = delayInfo.requestId;console.info("requestId is: " + id);
+   ```
 
 
 2. 获取进入挂起前的剩余时间
 
-```js
-backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-    console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
-}).catch( err => {
-    console.log('promise => Operation failed. Cause: ' + err.data);
-});
-```
+    ```js
+    backgroundTaskManager.getRemainingDelayTime(id).then( res => {
+        console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('promise => Operation failed. Cause: ' + err.data);
+    });
+    ```
 
 
 3. 取消延迟挂起
 
-```js
-backgroundTaskManager.cancelSuspendDelay(id);
-```
+    ```js
+    backgroundTaskManager.cancelSuspendDelay(id);
+    ```
 
 
 ## 开发实例
