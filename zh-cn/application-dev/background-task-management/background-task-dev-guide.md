@@ -33,6 +33,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 
 1. 申请延迟挂起
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
@@ -46,6 +47,7 @@ var id = delayInfo.requestId;console.info("requestId is: " + id);
 
 
 2. 获取进入挂起前的剩余时间
+
 ```js
 backgroundTaskManager.getRemainingDelayTime(id).then( res => {
     console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
@@ -56,6 +58,7 @@ backgroundTaskManager.getRemainingDelayTime(id).then( res => {
 
 
 3. 取消延迟挂起
+
 ```js
 backgroundTaskManager.cancelSuspendDelay(id);
 ```
@@ -102,7 +105,8 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void;<br/>function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;; | 服务启动后，向系统申请长时任务，使服务一直保持后台运行 |
 | function stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;<br/>function stopBackgroundRunning(context: Context): Promise&lt;void&gt;; | 停止后台长时任务的运行 |
 
-**表4** 长时任务BackgroundMode参数
+
+**表4** 后台模式类型
 | 参数名 | id值 | 描述 |
 | -------- | -------- | -------- |
 | DATA_TRANSFER           | 1 | 数据传输 |
@@ -117,6 +121,36 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 
 ## 开发步骤
+
+1. 在config.json文件中配置后台模式参数和权限
+
+```json
+"abilities": [
+    {
+        "visible": true,
+        "backgroundModes": [
+          "dataTransfer",
+          "audioPlayback"
+        ],
+        "srcPath": "Service",
+        "name": ".Service",
+        "icon": "$media:icon",
+        "srcLanguage": "js",
+        "description": "$string:description_service",
+        "type": "service"
+    },
+],
+"defPermissions": [
+    {
+    "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+    }
+],
+"reqPermissions": [
+    {
+    "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+    }
+]
+```
 
 1. 申请长时任务
 
@@ -137,6 +171,7 @@ let wantAgentInfo = {
     wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
 };
 
+// 通过wantAgent模块的getWantAgent方法获取WantAgent对象
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
         backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
@@ -184,7 +219,7 @@ function startBackgroundRunning() {
         wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
     };
 
-    // 通过getWantAgent方法获取WantAgent对象
+    // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
             backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
