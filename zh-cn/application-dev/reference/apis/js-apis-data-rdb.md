@@ -33,10 +33,10 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 - 示例：
   ```
   import dataRdb from '@ohos.data.rdb'
+  import Context from "./application/Context";
   const STORE_CONFIG = { name: "RdbTest.db"}
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-  const context = this.context;
-  dataRdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
+  dataRdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
       rdbStore.executeSql(SQL_CREATE_TABLE)
       console.info(TAG + 'create table done.')
   })
@@ -63,10 +63,10 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 - 示例：
   ```
   import dataRdb from '@ohos.data.rdb'
+  import Context from "./application/Context";
   const STORE_CONFIG = { name: "RdbTest.db" }
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-  const context = this.context;
-  let promise = dataRdb.getRdbStore(context, STORE_CONFIG, 1);
+  let promise = dataRdb.getRdbStore(this.context, STORE_CONFIG, 1);
   promise.then(async (rdbStore) => {
       await rdbStore.executeSql(SQL_CREATE_TABLE, null)
   }).catch((err) => {
@@ -90,8 +90,8 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 - 示例：
   ```
   import dataRdb from '@ohos.data.rdb'
-  const context = this.context;
-  dataRdb.deleteRdbStore(context, "RdbTest.db", function (err, rdbStore) {
+  import Context from "./application/Context";
+  dataRdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
       console.info(TAG + 'delete store done.')})
   ```
 
@@ -115,8 +115,8 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 - 示例：
   ```
   import dataRdb from '@ohos.data.rdb'
-  const context = this.context;
-  let promise = dataRdb.deleteRdbStore(context, "RdbTest.db")
+  import Context from "./application/Context";
+  let promise = dataRdb.deleteRdbStore(this.context, "RdbTest.db")
   promise.then(()=>{
       console.info(TAG + 'delete store done.')
   })
