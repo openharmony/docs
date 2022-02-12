@@ -7,7 +7,8 @@
 ## 导入模块
 
 ```
-import dataRdb from '@ohos.data.rdb'
+import data_rdb from '@ohos.data.rdb'
+import Context from "./application/Context";
 ```
 
 
@@ -16,7 +17,7 @@ import dataRdb from '@ohos.data.rdb'
 无
 
 
-## dataRdb.getRdbStore
+## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
 
@@ -32,17 +33,15 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 - 示例：
   ```
-  import dataRdb from '@ohos.data.rdb'
-  import Context from "./application/Context";
   const STORE_CONFIG = { name: "RdbTest.db"}
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-  dataRdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+  data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
       rdbStore.executeSql(SQL_CREATE_TABLE)
       console.info(TAG + 'create table done.')
   })
   ```
 
-## dataRdb.getRdbStore
+## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
@@ -62,11 +61,9 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 - 示例：
   ```
-  import dataRdb from '@ohos.data.rdb'
-  import Context from "./application/Context";
   const STORE_CONFIG = { name: "RdbTest.db" }
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-  let promise = dataRdb.getRdbStore(this.context, STORE_CONFIG, 1);
+  let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
   promise.then(async (rdbStore) => {
       await rdbStore.executeSql(SQL_CREATE_TABLE, null)
   }).catch((err) => {
@@ -74,7 +71,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
   })
   ```
 
-## dataRdb.deleteRdbStore
+## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -89,13 +86,11 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 - 示例：
   ```
-  import dataRdb from '@ohos.data.rdb'
-  import Context from "./application/Context";
-  dataRdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+  data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
       console.info(TAG + 'delete store done.')})
   ```
 
-## dataRdb.deleteRdbStore
+## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
@@ -114,9 +109,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  import dataRdb from '@ohos.data.rdb'
-  import Context from "./application/Context";
-  let promise = dataRdb.deleteRdbStore(this.context, "RdbTest.db")
+  let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
   promise.then(()=>{
       console.info(TAG + 'delete store done.')
   })
@@ -142,8 +135,7 @@ constructor(name: string)
 
 - 示例：
   ```
-  import dataRdb from '@ohos.data.rdb'
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   ```
 
 
@@ -168,7 +160,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
   ```
 
@@ -194,7 +186,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notEqualTo("NAME", "lisi")
   ```
 
@@ -214,7 +206,7 @@ beginWrap(): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
       .beginWrap()
       .equalTo("AGE", 18)
@@ -239,7 +231,7 @@ endWrap(): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
       .beginWrap()
       .equalTo("AGE", 18)
@@ -264,7 +256,7 @@ or(): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
       .or()
       .equalTo("NAME", "Rose")
@@ -286,7 +278,7 @@ and(): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
       .and()
       .equalTo("SALARY", 200.5)
@@ -314,7 +306,7 @@ contains(field: string, value: string): RdbPredicat
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.contains("NAME", "os")
   ```
 
@@ -340,7 +332,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.beginsWith("NAME", "os")
   ```
 
@@ -366,7 +358,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.endsWith("NAME", "se")
   ```
 
@@ -391,7 +383,7 @@ isNull(field: string): RdbPredicates
 
 - 示例
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.isNull("NAME")
   ```
 
@@ -416,7 +408,7 @@ isNotNull(field: string): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.isNotNull("NAME")
   ```
 
@@ -442,7 +434,7 @@ like(field: string, value: string): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.like("NAME", "%os%")
   ```
 
@@ -468,7 +460,7 @@ glob(field: string, value: string): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.glob("NAME", "?h*g")
   ```
 
@@ -495,7 +487,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.between("AGE", 10, 50)
   ```
 
@@ -522,7 +514,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notBetween("AGE", 10, 50)
   ```
 
@@ -548,7 +540,7 @@ greaterThan(field: string, value: ValueType): RdbPredicatesgr
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.greaterThan("AGE", 18)
   ```
 
@@ -574,7 +566,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.lessThan("AGE", 20)
   ```
 
@@ -601,7 +593,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.greaterThanOrEqualTo("AGE", 18)
   ```
 
@@ -628,7 +620,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.lessThanOrEqualTo("AGE", 20)
   ```
 
@@ -654,7 +646,7 @@ orderByAsc(field: string): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.orderByAsc("NAME")
   ```
 
@@ -680,7 +672,7 @@ orderByDesc(field: string): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.orderByDesc("AGE")
   ```
 
@@ -700,7 +692,7 @@ distinct(): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
   let resultSet = await rdbStore.query(predicates, ["NAME"])
   ```
@@ -726,7 +718,7 @@ limitAs(value: number): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").limitAs(3)
   ```
 
@@ -751,7 +743,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").offsetAs(3)
   ```
 
@@ -776,7 +768,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.groupBy(["AGE", "NAME"])
   ```
 
@@ -801,7 +793,7 @@ indexedBy(indexName: string): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.indexedBy("SALARY_INDEX")
   ```
 
@@ -828,7 +820,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.in("AGE", [18, 20])
   ```
 
@@ -855,7 +847,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notIn("NAME", ["Lisa", "Rose"])
   ```
 
@@ -945,7 +937,7 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates, callback: AsyncCallba
       "SALARY": 200.5,
       "CODES": new Uint8Array([1, 2, 3, 4, 5]),
   }
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   rdbStore.update(valueBucket, predicates, function (err, ret) {
       console.log(TAG + "updated row count: " + changedRows)})
@@ -977,7 +969,7 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
       "SALARY": 200.5,
       "CODES": new Uint8Array([1, 2, 3, 4, 5]),
   }
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   let promise = rdbStore.update(valueBucket, predicates)
   promise.then(async (ret) => {
@@ -1002,7 +994,7 @@ delete(rdbPredicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   rdbStore.delete(predicates, function (err, rows) {
       console.log(TAG + "delete rows: " + rows)})
@@ -1027,7 +1019,7 @@ delete(rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   let promise = rdbStore.delete(predicates)
   promise.then((rows) => {
@@ -1051,7 +1043,7 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: Asyn
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
   rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
       console.log(TAG + "resultSet column names:" + resultSet.columnNames)
@@ -1078,7 +1070,7 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
   let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promise.then((resultSet) => {
