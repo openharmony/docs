@@ -33,15 +33,12 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 
 1. 申请延迟挂起
-
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-
 let myReason = 'test requestSuspendDelay';
 let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
     console.info("Request suspension delay will time out.");
 });
-
 var id = delayInfo.requestId;console.info("requestId is: " + id);
 ```
 
@@ -54,7 +51,7 @@ backgroundTaskManager.getRemainingDelayTime(id).then( res => {
 }).catch( err => {
     console.log('promise => Operation failed. Cause: ' + err.data);
 });
-   ```
+```
 
 
 3. 取消延迟挂起
