@@ -106,6 +106,9 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | function stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;<br/>function stopBackgroundRunning(context: Context): Promise&lt;void&gt;; | 停止后台长时任务的运行 |
 
 
+其中，wantAgent的信息详见（[WantAgent](#zh-cn/application-dev/reference/apis/js-apis-notification.md#WantAgent接口)）
+
+
 **表4** 后台模式类型
 | 参数名 | id值 | 描述 |
 | -------- | -------- | -------- |
@@ -122,34 +125,18 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 ## 开发步骤
 
-1. 在config.json文件中配置后台模式参数和权限
+1. 在config.json文件中配置长时任务权限
 
 ```json
-"abilities": [
+"module": {
+  "package": "com.example.myapplication",
+  ...,
+  "reqPermissions": [
     {
-        "visible": true,
-        "backgroundModes": [
-          "dataTransfer",
-          "audioPlayback"
-        ],
-        "srcPath": "Service",
-        "name": ".Service",
-        "icon": "$media:icon",
-        "srcLanguage": "js",
-        "description": "$string:description_service",
-        "type": "service"
-    },
-],
-"defPermissions": [
-    {
-    "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+      "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
     }
-],
-"reqPermissions": [
-    {
-    "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
-    }
-]
+  ]
+}
 ```
 
 1. 申请长时任务
