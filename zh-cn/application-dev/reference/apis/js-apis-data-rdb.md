@@ -32,12 +32,16 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 - 示例：
   ```
-  const STORE_CONFIG = { name: "RdbTest.db"}
-  const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-  data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-      rdbStore.executeSql(SQL_CREATE_TABLE)
-      console.info(TAG + 'create table done.')
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_rdb from '@ohos.data.rdb'
+  export default class MainAbility extends Ability {
+      const STORE_CONFIG = { name: "RdbTest.db"}
+      const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+      data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+          rdbStore.executeSql(SQL_CREATE_TABLE)
+          console.info(TAG + 'create table done.')
+      })
+  }
   ```
 
 ## data_rdb.getRdbStore
@@ -60,14 +64,18 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 - 示例：
   ```
-  const STORE_CONFIG = { name: "RdbTest.db" }
-  const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-  let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
-  promise.then(async (rdbStore) => {
-      await rdbStore.executeSql(SQL_CREATE_TABLE, null)
-  }).catch((err) => {
-      expect(null).assertFail();
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_rdb from '@ohos.data.rdb'
+  export default class MainAbility extends Ability {
+      const STORE_CONFIG = { name: "RdbTest.db" }
+      const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+      let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
+      promise.then(async (rdbStore) => {
+          await rdbStore.executeSql(SQL_CREATE_TABLE, null)
+      }).catch((err) => {
+          expect(null).assertFail();
+      })
+  }
   ```
 
 ## data_rdb.deleteRdbStore
@@ -85,8 +93,12 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 - 示例：
   ```
-  data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
-      console.info(TAG + 'delete store done.')})
+  import Ability from '@ohos.application.Ability'
+  import data_rdb from '@ohos.data.rdb'
+  export default class MainAbility extends Ability {
+      data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+          console.info(TAG + 'delete store done.')})
+  }
   ```
 
 ## data_rdb.deleteRdbStore
@@ -108,10 +120,14 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
-  promise.then(()=>{
-      console.info(TAG + 'delete store done.')
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_rdb from '@ohos.data.rdb'
+  export default class MainAbility extends Ability {
+      let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+      promise.then(()=>{
+          console.info(TAG + 'delete store done.')
+      })
+  }
   ```
 
 ## RdbPredicates
