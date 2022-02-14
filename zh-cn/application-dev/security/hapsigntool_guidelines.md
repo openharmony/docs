@@ -1,21 +1,11 @@
 # Hap包签名工具开发指南
 
-* 概述
-  * 功能简介
-  * 基本概念
-  * 约束与限制
-* 编译构建
-* 开发指导
-  * 场景介绍
-  * 说明
-     * 命令说明
-  * 开发步骤
-* 常见问题
+
+
 ## 概述
 
-
 ### 功能简介
-为了保证OpenHarmony应用的完整性和来源可靠，在应用构建时需要对应用进行签名。经过签名的应用才能在真机设备上安装、运行、和调试。[本仓](https://gitee.com/openharmony/developtools_hapsigner)提供了签名工具的源码，包含密钥对生成、CSR文件生成、证书生成、Profile文件签名、Hap包签名等功能。
+为了保证OpenHarmony应用的完整性和来源可靠，在应用构建时需要对应用进行签名。经过签名的应用才能在真机设备上安装、运行、和调试。[developtools_hapsigner仓](https://gitee.com/openharmony/developtools_hapsigner)提供了签名工具的源码，包含密钥对生成、CSR文件生成、证书生成、Profile文件签名、Hap包签名等功能。
 
 
 ### 基本概念
@@ -43,15 +33,19 @@ hap包中的描述文件，该描述文件描述了已授权的证书权限和�
 ## 编译构建
 
  1. 该工具基于Gradle 7.1编译构建，请确认环境已安装配置Gradle环境，并且版本高于或等于7.1。
-  
+ 
+  ```shell 
         gradle -v
-
+  ```
+  
  2. 下载代码，命令行打开文件目录至developtools_hapsigner/hapsigntool，执行命令进行编译打包。
-            
+ 
+    ```shell    
         gradle build 
         或
         gradle jar
-
+    ```
+    
  3. 编译后得到二进制文件，目录为: ./hap_sign_tool/build/libs/hap-sign-tool.jar。
 
 ## 开发指导
@@ -388,6 +382,3 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
 
  **解决办法**
  三级证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA
-
-
-  [1]: www.baidu.com
