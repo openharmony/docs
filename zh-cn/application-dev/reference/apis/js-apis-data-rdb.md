@@ -698,7 +698,7 @@ distinct(): RdbPredicates
   ```
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
-  let resultSet = await rdbStore.query(predicates, ["NAME"])
+  rdbStore.query(predicates, ["NAME"])
   ```
 
 
