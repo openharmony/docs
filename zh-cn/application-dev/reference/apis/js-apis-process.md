@@ -251,24 +251,6 @@ getStartRealtime() :number
   var realtime = process.getStartRealtime();
   ```
 
-
-## process.getAvailableCores<sup>8+</sup>
-
-getAvailableCores() :number[]
-
-获取多核设备上当前进程可用的CPU内核。
-
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number[] | 返回可用内核数。 |
-
-- 示例：
-  ```
-  var result = getAvailableCores();
-  ```
-
-
 ## process.getPastCputime<sup>8+</sup>
 
 getPastCputime() :number
