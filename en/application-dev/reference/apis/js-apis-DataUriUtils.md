@@ -6,24 +6,25 @@
 import dataUriUtils from '@ohos.ability.dataUriUtils';
 ```
 
-## DataUriUtils.getId
+## dataUriUtils.getId
 
-- Functionality
+getId(uri: string): number
 
-  Obtains the ID attached to the end of a given URI.
+Obtains the ID attached to the end of a given URI.
 
-- Parameters
+**Parameters**
 
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---- | -------- | ------ | ---- | ------------------------- |
-| uri  | Read-only| string | Yes| URI object from which the ID is to be obtained.|
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | --------------------------- |
+| uri  | string | Yes| URI object from which the ID is to be obtained.|
 
-- Return values
+**Return value**
+| Type| Description|
+| ------ | ------------------------ |
+| number | ID obtained from the URI object.|
 
-  Returns the ID obtained from the URI object.
-
-- Example
+**Example**
 
 ```js
 import dataUriUtils from '@ohos.ability.datauriutils'
@@ -32,25 +33,26 @@ dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
 
 
 
-## DataUriUtils.attachId
+## dataUriUtils.attachId
 
-- Functionality
+attachId(uri: string, id: number): string
 
-  Attaches an ID to the end of a given URI.
+Attaches an ID to the end of a given URI.
 
-- Parameters
+**Parameters**
 
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---- | -------- | ------ | ---- | ------------------------- |
-| uri  | Read-only| string | Yes| URI object to which an ID is to be attached.|
-| id   | Read-only| number | Yes| ID to be attached.|
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | --------------------------- |
+| uri  | string | Yes| URI object to which an ID is to be attached.|
+| id   | number | Yes| ID to be attached.|
 
-- Return values
+**Return value**
+| Type| Description|
+| ------ | --------------------- |
+| string | URI object with the ID attached.|
 
-  Returns the URI object with the ID attached.
-
-- Example
+**Example**
 
 ```js
 import dataUriUtils from '@ohos.ability.datauriutils'
@@ -63,23 +65,24 @@ dataUriUtils.attachId(
 
 
 
-## DataUriUtils.deleteId
+## dataUriUtils.deleteId
 
-- Functionality
+deleteId(uri: string): string
 
-  Deletes the ID from the end of a given URI.
+Deletes the ID from the end of a given URI.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---- | -------- | ------ | ---- | ------------------------- |
-  | uri  | Read-only| string | Yes| URI object from which the ID is to be deleted.|
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | --------------------------- |
+| uri  | string | Yes| URI object from which the ID is to be deleted.|
 
-- Return values
+**Return value**
+| Type| Description|
+| ------ | ------------------- |
+| string | URI object with the ID deleted.|
 
-  Returns the URI object with the ID deleted.
-
-- Example
+**Example**
 
 ```js
 import dataUriUtils from '@ohos.ability.datauriutils'
@@ -88,24 +91,25 @@ dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 
 
 
-## DataUriUtils.updateId
+## dataUriUtils.updateId
 
-- Functionality
+updateId(uri: string, id: number): string
 
-  Updates the ID in a given URI.
+Updates the ID in a given URI.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---- | -------- | ------ | ---- | ------------------- |
-  | uri  | Read-only| string | Yes| URI object to be updated.|
-  | id   | Read-only| number | Yes| New ID.|
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | ------------------- |
+| uri  | string | Yes| URI object to be updated.|
+| id   | number | Yes| New ID.|
 
-- Return values
+**Return value**
+| Type| Description|
+| ------ | --------------- |
+| string | URI object with the new ID.|
 
-  Returns the URI object with the new ID.
-
-- Example
+**Example**
 
 ```js
 import dataUriUtils from '@ohos.ability.datauriutils'

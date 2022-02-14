@@ -333,12 +333,12 @@ var result = particleAbility.disconnectAbility(connId).then((void) => {
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权                                  |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权                                  |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给源能力                                           |
+| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给元能力                                           |
 | FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备                 |
 | FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS                                         |
 | FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力                                         |
 | FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权                                    |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 将结果返回到源能力                                         |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限                                         |
 | FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动                             |
 | FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能   |
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                                         |
