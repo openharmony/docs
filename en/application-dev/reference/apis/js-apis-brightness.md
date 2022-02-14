@@ -1,6 +1,6 @@
 # Brightness<a name="EN-US_TOPIC_0000001152548786"></a>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:** 
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
@@ -8,6 +8,10 @@
 ```
 import brightness from '@ohos.brightness';
 ```
+
+## System Capabilities
+
+SystemCapability.PowerManager.DisplayPowerManager
 
 ## brightness.setValue<a name="section1853612361618"></a>
 
