@@ -638,7 +638,7 @@ Obtains the mode of this window.
     ```
     window.getAbilityWindowMode((err, data) => {
         if (err) {
-            console.error(''Failed to obtain the window mode. Cause:' + JSON.stringify(err));
+            console.error('Failed to obtain the window mode. Cause:' + JSON.stringify(err));
             return;
         }
         console.info('Window mode obtained. Data:' + JSON.stringify(data))
