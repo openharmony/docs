@@ -1,28 +1,5 @@
 # Context Module
 
-## Applicable Devices
-
-| API                                                          | Phone| Tablet| Smart TV| Wearable| Lite Wearable| SmartVision Device|
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| Context.getOrCreateLocalDir(callback: AsyncCallback\<string>) | Yes| Yes| Yes| Yes| No| No|
-| Context.getOrCreateLocalDir()                                | Yes| Yes| Yes| Yes| No| No|
-| Context.verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>) | Yes| Yes| Yes| Yes| No| No|
-| Context.verifyPermission(permission: string, callback: AsyncCallback\<number>) | Yes| Yes| Yes| Yes| No| No|
-| Context.verifyPermission(permission: string, options?: PermissionOptions) | Yes| Yes| Yes| Yes| No| No|
-| Context.requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback\<PermissionRequestResult>) | Yes| Yes| Yes| Yes| No| No|
-| Context.getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>) | Yes| Yes| Yes| Yes| No| No|
-| Context.getApplicationInfo()                                 | Yes| Yes| Yes| Yes| No| No|
-| Context.getBundleName(callback: AsyncCallback\<string>)      | Yes| Yes| Yes| Yes| No| No|
-| Context.getBundleName()                                      | Yes| Yes| Yes| Yes| No| No|
-| Context.getProcessInfo(callback: AsyncCallback\<ProcessInfo>) | Yes| Yes| Yes| Yes| No| No|
-| Context.getProcessInfo()                                     | Yes| Yes| Yes| Yes| No| No|
-| Context.getElementName(callback: AsyncCallback\<ElementName>) | Yes| Yes| Yes| Yes| No| No|
-| Context.getElementName()                                     | Yes| Yes| Yes| Yes| No| No|
-| Context.getProcessName(callback: AsyncCallback\<string>)     | Yes| Yes| Yes| Yes| No| No|
-| Context.getProcessName()                                     | Yes| Yes| Yes| Yes| No| No|
-| Context.getCallingBundle(callback: AsyncCallback\<string>)   | Yes| Yes| Yes| Yes| No| No|
-| Context.getCallingBundle()                                   | Yes| Yes| Yes| Yes| No| No|
-
 ## Modules to Import
 
 ```js

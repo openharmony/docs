@@ -1,27 +1,5 @@
 # FeatureAbility Module (JavaScript)
 
-#### Applicable Devices
-
-| API                                                          | Phone| Tablet| Smart TV| Wearable| Lite Wearable| SmartVision Device|
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| FeatureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.startAbility(parameter: StartAbilityParameter): Promise\<number> | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult> | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.terminateSelfWithResult(parameter: AbilityResult): Promise\<void> | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.hasWindowFocus(callback: AsyncCallback\<boolean>): void | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.hasWindowFocus(): Promise\<boolean>           | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.getWant(callback: AsyncCallback\<Want>)       | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.getWant(): void                               | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.getContext(): Context                         | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.terminateSelf(callback: AsyncCallback\<void>): void | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.terminateSelf(): Promise\<void>               | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.connectAbility(request: Want, options:ConnectOptions): number | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void | Yes| Yes| Yes| Yes| No| No|
-| FeatureAbility.disconnectAbility(connection: number): Promise\<void> | Yes| Yes| Yes| Yes| No| No|
-
 #### Constraints
 
 APIs of the **FeatureAbility** module can be called only by Page abilities.

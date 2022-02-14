@@ -1,33 +1,4 @@
-### DataAbilityHelper Module (JavaScript SDK APIs)
-
-#### Applicable Devices
-
-| API                                                          | Phone| Tablet| Smart TV| Wearable| Lite Wearable| SmartVision Device|
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| DataAbilityHelper.openFile(uri: string, mode: string, callback: AsyncCallback\<number>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.openFile(uri: string, mode: string)        | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.getType(uri: string, callback: AsyncCallback\<string>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.getType(uri: string)                       | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.normalizeUri(uri: string)                  | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.denormalizeUri(uri: string, callback: AsyncCallback\<string>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.denormalizeUri(uri: string)                | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.notifyChange(uri: string, callback: AsyncCallback\<void>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.notifyChange(uri: string)                  | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>) | Yes| Yes| Yes| Yes| No| No|
-| DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates) | Yes| Yes| Yes| Yes| No| No|
+# DataAbilityHelper Module (JavaScript SDK APIs)
 
 #### Modules to Import
 

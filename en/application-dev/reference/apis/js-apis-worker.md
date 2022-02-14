@@ -1,6 +1,6 @@
 # Worker Startup<a name="EN-US_TOPIC_0000001172830331"></a>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>**NOTE:** 
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
@@ -131,13 +131,13 @@ A constructor used to create a worker instance.
 -   Return values
 
     <a name="table362855181117"></a>
-    <table><thead align="left"><tr id="row1462255191114"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p1621355121115"><a name="p1621355121115"></a><a name="p1621355121115"></a>Name</p>
+    <table><thead align="left"><tr id="row1462255191114"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p1621355121115"><a name="p1621355121115"></a><a name="p1621355121115"></a>Type</p>
     </th>
     <th class="cellrowborder" valign="top" width="79.01%" id="mcps1.1.3.1.2"><p id="p16295571119"><a name="p16295571119"></a><a name="p16295571119"></a>Description</p>
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row116275516110"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p76295515112"><a name="p76295515112"></a><a name="p76295515112"></a>worker</p>
+    <tbody><tr id="row116275516110"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p76295515112"><a name="p76295515112"></a><a name="p76295515112"></a>Worker</p>
     </td>
     <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p362195531112"><a name="p362195531112"></a><a name="p362195531112"></a>Returns the worker instance created; returns <strong id="b49535319421"><a name="b49535319421"></a><a name="b49535319421"></a>undefined</strong> if the worker instance fails to be created.</p>
     </td>
@@ -148,8 +148,7 @@ A constructor used to create a worker instance.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js", {name:"first worker"});
+    const workerInstance = new worker.Worker("workers/worker.js", {name:"first worker"});
     ```
 
 
@@ -196,13 +195,14 @@ Sends a message to the worker thread. The data is transferred using the structur
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js");
-    worker.postMessage("hello world");
-    
-    const worker = new worker.Worker("workers/worker.js");
+    const workerInstance = new worker.Worker("workers/worker.js");
+    workerInstance.postMessage("hello world");
+    ```
+
+    ```
+    const workerInstance = new worker.Worker("workers/worker.js");
     var buffer = new ArrayBuffer(8);
-    worker.postMessage(buffer, [buffer]);
+    workerInstance.postMessage(buffer, [buffer]);
     ```
 
 
@@ -249,9 +249,8 @@ Adds an event listener to the worker.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.on("alert", (e)=>{
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.on("alert", (e)=>{
         console.log("alert listener callback");
     })
     ```
@@ -300,9 +299,8 @@ Adds an event listener to the worker and removes the event listener automaticall
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js");
-    worker.once("alert", (e)=>{
+    const workerInstance = new worker.Worker("workers/worker.js");
+    workerInstance.once("alert", (e)=>{
         console.log("alert listener callback");
     })
     ```
@@ -351,9 +349,8 @@ Removes an event listener for the worker.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js");
-    worker.off("alert");
+    const workerInstance = new worker.Worker("workers/worker.js");
+    workerInstance.off("alert");
     ```
 
 
@@ -366,9 +363,8 @@ Terminates the worker thread to stop the worker from receiving messages.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.terminate()
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.terminate()
     ```
 
 
@@ -406,9 +402,8 @@ Defines the event handler to be called when the worker exits. The handler is exe
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.onexit = function(e) {
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.onexit = function(e) {
         console.log("onexit")
     }
     ```
@@ -448,9 +443,8 @@ Defines the event handler to be called when an exception occurs during worker ex
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.onerror = function(e) {
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.onerror = function(e) {
         console.log("onerror")
     }
     ```
@@ -490,9 +484,8 @@ Defines the event handler to be called when the host thread receives a message c
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.onmessage = function(e) {
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.onmessage = function(e) {
         console.log("onerror")
     }
     ```
@@ -532,9 +525,8 @@ Defines the event handler to be called when the worker receives a message that c
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.onmessageerror= function(e) {
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.onmessageerror= function(e) {
         console.log("onmessageerror")
     }
     ```
@@ -585,9 +577,8 @@ Adds an event listener to the worker.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.addEventListener("alert", (e)=>{
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.addEventListener("alert", (e)=>{
         console.log("alert listener callback");
     })
     ```
@@ -636,9 +627,8 @@ Removes an event listener for the worker.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.removeEventListener("alert")
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.removeEventListener("alert")
     ```
 
 
@@ -676,7 +666,7 @@ Dispatches the event defined for the worker.
 -   Return values
 
     <a name="table4536208105515"></a>
-    <table><thead align="left"><tr id="row25360810551"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p2536685552"><a name="p2536685552"></a><a name="p2536685552"></a>Name</p>
+    <table><thead align="left"><tr id="row25360810551"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p2536685552"><a name="p2536685552"></a><a name="p2536685552"></a>Type</p>
     </th>
     <th class="cellrowborder" valign="top" width="79.01%" id="mcps1.1.3.1.2"><p id="p185371287554"><a name="p185371287554"></a><a name="p185371287554"></a>Description</p>
     </th>
@@ -693,9 +683,8 @@ Dispatches the event defined for the worker.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.dispatchEvent({type:"alert"})
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.dispatchEvent({type:"alert"})
     ```
 
 
@@ -708,9 +697,8 @@ Removes all event listeners for the worker.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.removeAllListener({type:"alert"})
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.removeAllListener({type:"alert"})
     ```
 
 
@@ -762,13 +750,15 @@ Sends a message to the host thread from the worker.
 
     ```
     // main.js
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.postMessage("hello world")
-    worker.onmessage = function(e) {
+    import worker from "@ohos.worker";
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.postMessage("hello world")
+    workerInstance.onmessage = function(e) {
         console.log("receive data from worker.js")
     }
-    
+    ```
+
+    ```
     // worker.js
     import worker from "@ohos.worker";
     const parentPort = worker.parentPort;
@@ -789,8 +779,10 @@ Closes the worker thread to stop the worker from receiving messages.
     ```
     // main.js
     import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    
+    const workerInstance = new worker.Worker("workers/worker.js")
+    ```
+
+    ```
     // worker.js
     import worker from "@ohos.worker";
     const parentPort = worker.parentPort;
@@ -836,9 +828,11 @@ Defines the event handler to be called when the worker thread receives a message
     ```
     // main.js
     import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    worker.postMessage("hello world")
-    
+    const workerInstance = new worker.Worker("workers/worker.js")
+    workerInstance.postMessage("hello world")
+    ```
+
+    ```
     // worker.js
     import worker from "@ohos.worker";
     const parentPort = worker.parentPort;
@@ -884,8 +878,10 @@ Defines the event handler to be called when the worker receives a message that c
     ```
     // main.js
     import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    
+    const workerInstance = new worker.Worker("workers/worker.js")
+    ```
+
+    ```
     // worker.js
     import worker from "@ohos.worker";
     const parentPort = worker.parentPort;
@@ -1004,7 +1000,7 @@ Specifies the callback to invoke.
 -   Return values
 
     <a name="t3e93239d9b134b80957bcdd4acb05291"></a>
-    <table><thead align="left"><tr id="recc81d9f995d44aa87ba9d714b756569"><th class="cellrowborder" valign="top" width="21.84%" id="mcps1.1.3.1.1"><p id="aa3137ce511d140fba6cc93513a7a91e3"><a name="aa3137ce511d140fba6cc93513a7a91e3"></a><a name="aa3137ce511d140fba6cc93513a7a91e3"></a>Name</p>
+    <table><thead align="left"><tr id="recc81d9f995d44aa87ba9d714b756569"><th class="cellrowborder" valign="top" width="21.84%" id="mcps1.1.3.1.1"><p id="aa3137ce511d140fba6cc93513a7a91e3"><a name="aa3137ce511d140fba6cc93513a7a91e3"></a><a name="aa3137ce511d140fba6cc93513a7a91e3"></a>Type</p>
     </th>
     <th class="cellrowborder" valign="top" width="78.16%" id="mcps1.1.3.1.2"><p id="a4ba8ead9ee7b48298d9a6ed10659f13b"><a name="a4ba8ead9ee7b48298d9a6ed10659f13b"></a><a name="a4ba8ead9ee7b48298d9a6ed10659f13b"></a>Description</p>
     </th>
@@ -1021,9 +1017,8 @@ Specifies the callback to invoke.
 -   Example
 
     ```
-    import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js");
-    worker.addEventListener("alert", (e)=>{
+    const workerInstance = new worker.Worker("workers/worker.js");
+    workerInstance.addEventListener("alert", (e)=>{
         console.log("alert listener callback");
     })
     ```
@@ -1215,8 +1210,10 @@ Defines the event handler to be called when an exception occurs during worker ex
     ```
     // main.js
     import worker from '@ohos.worker';
-    const worker = new worker.Worker("workers/worker.js")
-    
+    const workerInstance = new worker.Worker("workers/worker.js")
+    ```
+
+    ```
     // worker.js
     import worker from "@ohos.worker";
     const parentPort = worker.parentPort

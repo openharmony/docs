@@ -1,4 +1,4 @@
-# Obtaining Process Information<a name="EN-US_TOPIC_0000001151456638"></a>
+# Obtaining Process Information<a name="EN-US_TOPIC_0000001237480785"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -80,7 +80,7 @@ None
 </td>
 <td class="cellrowborder" valign="top" width="8.110000000000001%" headers="mcps1.1.6.1.4 "><p id="p19456195718542"><a name="p19456195718542"></a><a name="p19456195718542"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="47.94%" headers="mcps1.1.6.1.5 "><p id="p12456257145411"><a name="p12456257145411"></a><a name="p12456257145411"></a>An array with supplementary group IDs.</p>
+<td class="cellrowborder" valign="top" width="47.94%" headers="mcps1.1.6.1.5 "><p id="p12456257145411"><a name="p12456257145411"></a><a name="p12456257145411"></a>Array with supplementary group IDs.</p>
 </td>
 </tr>
 <tr id="row2456155735410"><td class="cellrowborder" valign="top" width="14.399999999999999%" headers="mcps1.1.6.1.1 "><p id="p145695716545"><a name="p145695716545"></a><a name="p145695716545"></a>pid</p>
@@ -105,12 +105,23 @@ None
 <td class="cellrowborder" valign="top" width="47.94%" headers="mcps1.1.6.1.5 "><p id="p2050111216567"><a name="p2050111216567"></a><a name="p2050111216567"></a>Parent process ID (PPID) of a process.</p>
 </td>
 </tr>
+<tr id="row383373231019"><td class="cellrowborder" valign="top" width="14.399999999999999%" headers="mcps1.1.6.1.1 "><p id="p28339326100"><a name="p28339326100"></a><a name="p28339326100"></a>tid<sup id="sup515125418117"><a name="sup515125418117"></a><a name="sup515125418117"></a>8+</sup></p>
+</td>
+<td class="cellrowborder" valign="top" width="21.16%" headers="mcps1.1.6.1.2 "><p id="p1083318320102"><a name="p1083318320102"></a><a name="p1083318320102"></a>number</p>
+</td>
+<td class="cellrowborder" valign="top" width="8.39%" headers="mcps1.1.6.1.3 "><p id="p983433218101"><a name="p983433218101"></a><a name="p983433218101"></a>Yes</p>
+</td>
+<td class="cellrowborder" valign="top" width="8.110000000000001%" headers="mcps1.1.6.1.4 "><p id="p58341432121020"><a name="p58341432121020"></a><a name="p58341432121020"></a>No</p>
+</td>
+<td class="cellrowborder" valign="top" width="47.94%" headers="mcps1.1.6.1.5 "><p id="p16834532191011"><a name="p16834532191011"></a><a name="p16834532191011"></a>Thread ID (TID) of a process.</p>
+</td>
+</tr>
 </tbody>
 </table>
 
 ## ChildProcess<a name="section6521387200"></a>
 
-Allows a process to obtain the standard input and output of its child processes, send signals, and close its child processes.
+Provides methods for a process to obtain the standard input and output of its child processes, send signals, and close its child processes.
 
 ### Attributes<a name="section18482944113517"></a>
 
@@ -200,7 +211,6 @@ Waits until the child process ends. This method uses a promise to return the exi
 -   Example
 
     ```
-    import process from '@ohos.process';
     var child = process.runCmd('ls');
     var result = child.wait();
     result.then(val=>{
@@ -235,7 +245,6 @@ Obtains the standard output of the child process.
 -   Example
 
     ```
-    import process from '@ohos.process';
     var child = process.runCmd('ls');
     var result = child.wait();
     child.getOutput.then(val=>{
@@ -270,7 +279,6 @@ Obtains the standard error output of the child process.
 -   Example
 
     ```
-    import process from '@ohos.process';
     var child = process.runCmd('madir test.text');
     var result = child.wait();
     child.getErrorOutput.then(val=>{
@@ -288,7 +296,6 @@ Closes the child process in running.
 -   Example
 
     ```
-    import process from '@ohos.process';
     var child = process.runCmd('sleep 5; ls');
     child.close();
     ```
@@ -328,9 +335,440 @@ Sends a signal to the specified child process to terminate it.
 -   Example
 
     ```
-    import process from '@ohos.process';
     var child = process.runCmd('sleep 5; ls');
     child.kill(9);
+    ```
+
+
+## process.isIsolatedProcess<sup>8+</sup><a name="section18531656131211"></a>
+
+isIsolatedProcess\(\): boolean
+
+Checks whether the process is isolated.
+
+-   Return values
+
+    <a name="table16748145772610"></a>
+    <table><thead align="left"><tr id="row13748857132613"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p5748125722616"><a name="p5748125722616"></a><a name="p5748125722616"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.01%" id="mcps1.1.3.1.2"><p id="p8748155719267"><a name="p8748155719267"></a><a name="p8748155719267"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row16748135742613"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p6748757162618"><a name="p6748757162618"></a><a name="p6748757162618"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p16749057182614"><a name="p16749057182614"></a><a name="p16749057182614"></a>Returns <strong id="b1257840101118"><a name="b1257840101118"></a><a name="b1257840101118"></a>true</strong> if the process is isolated; returns <strong id="b295119021219"><a name="b295119021219"></a><a name="b295119021219"></a>false</strong> otherwise.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    var result = process.isIsolatedProcess();
+    ```
+
+
+## process.isAppUid<sup>8+</sup><a name="section3483872142"></a>
+
+isAppUid\(v:number\): boolean
+
+Checks whether a UID belongs to this app.
+
+-   Parameters
+
+    <a name="table1130031918288"></a>
+    <table><thead align="left"><tr id="row5300181932814"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p13300131917284"><a name="p13300131917284"></a><a name="p13300131917284"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p12301131912284"><a name="p12301131912284"></a><a name="p12301131912284"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p13011819122814"><a name="p13011819122814"></a><a name="p13011819122814"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p10301141922817"><a name="p10301141922817"></a><a name="p10301141922817"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1630116194285"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p438853552813"><a name="p438853552813"></a><a name="p438853552813"></a>v</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p530151916283"><a name="p530151916283"></a><a name="p530151916283"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p12301819172811"><a name="p12301819172811"></a><a name="p12301819172811"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p9302111962811"><a name="p9302111962811"></a><a name="p9302111962811"></a>UID.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table193021119132815"></a>
+    <table><thead align="left"><tr id="row630281915283"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p13303619192811"><a name="p13303619192811"></a><a name="p13303619192811"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.01%" id="mcps1.1.3.1.2"><p id="p93034196281"><a name="p93034196281"></a><a name="p93034196281"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row0303201917288"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p93031719172815"><a name="p93031719172815"></a><a name="p93031719172815"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p2044064714286"><a name="p2044064714286"></a><a name="p2044064714286"></a>Returns <strong id="b11496154718238"><a name="b11496154718238"></a><a name="b11496154718238"></a>true</strong> if the UID is the app's UID; returns <strong id="b1549674712316"><a name="b1549674712316"></a><a name="b1549674712316"></a>false</strong> otherwise.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    var result = process.isAppUid(688);
+    ```
+
+
+## process.is64Bit<sup>8+</sup><a name="section19430255141411"></a>
+
+is64Bit\(\): boolean
+
+Checks whether the operating environment is of 64-bit.
+
+-   Return values
+
+    <a name="table18430115511149"></a>
+    <table><thead align="left"><tr id="row4430165512148"><th class="cellrowborder" valign="top" width="21.02%" id="mcps1.1.3.1.1"><p id="p94301555141"><a name="p94301555141"></a><a name="p94301555141"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="78.97999999999999%" id="mcps1.1.3.1.2"><p id="p6430185515144"><a name="p6430185515144"></a><a name="p6430185515144"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row9430125531413"><td class="cellrowborder" valign="top" width="21.02%" headers="mcps1.1.3.1.1 "><p id="p14430655121410"><a name="p14430655121410"></a><a name="p14430655121410"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="78.97999999999999%" headers="mcps1.1.3.1.2 "><p id="p943075571418"><a name="p943075571418"></a><a name="p943075571418"></a>Returns <strong id="b542211113264"><a name="b542211113264"></a><a name="b542211113264"></a>true</strong> if the operating environment is of 64-bit; returns <strong id="b1142231110265"><a name="b1142231110265"></a><a name="b1142231110265"></a>false</strong> otherwise.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Example
+
+    ```
+    var ressult = process.is64Bit();
+    ```
+
+
+## process.getUidForName<sup>8+</sup><a name="section1727712617154"></a>
+
+getUidForName\(v:string\): number
+
+Obtains the process UID based on the process name.
+
+-   Parameters
+
+    <a name="table10277142671518"></a>
+    <table><thead align="left"><tr id="row1727719261158"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p17277122616159"><a name="p17277122616159"></a><a name="p17277122616159"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p11277172619159"><a name="p11277172619159"></a><a name="p11277172619159"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p1127732661515"><a name="p1127732661515"></a><a name="p1127732661515"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p102775264152"><a name="p102775264152"></a><a name="p102775264152"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row16277122631517"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p192771126131510"><a name="p192771126131510"></a><a name="p192771126131510"></a>v</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p827814265151"><a name="p827814265151"></a><a name="p827814265151"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p122783261158"><a name="p122783261158"></a><a name="p122783261158"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p22781526111515"><a name="p22781526111515"></a><a name="p22781526111515"></a>Process name.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table12278152615151"></a>
+    <table><thead align="left"><tr id="row1527842610155"><th class="cellrowborder" valign="top" width="21.02%" id="mcps1.1.3.1.1"><p id="p182781267158"><a name="p182781267158"></a><a name="p182781267158"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="78.97999999999999%" id="mcps1.1.3.1.2"><p id="p52781826161511"><a name="p52781826161511"></a><a name="p52781826161511"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row19278112681516"><td class="cellrowborder" valign="top" width="21.02%" headers="mcps1.1.3.1.1 "><p id="p927822691514"><a name="p927822691514"></a><a name="p927822691514"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="78.97999999999999%" headers="mcps1.1.3.1.2 "><p id="p18278426161512"><a name="p18278426161512"></a><a name="p18278426161512"></a>Process UID.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Example
+
+    ```
+    var pres = process.getUidForName("tool")
+    ```
+
+
+## process.getThreadPriority<sup>8+</sup><a name="section10468310163512"></a>
+
+getThreadPriority\(v:number\): number
+
+Obtains the thread priority based on the specified TID.
+
+-   Parameters
+
+    <a name="table1546841011357"></a>
+    <table><thead align="left"><tr id="row14469111063515"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p346951013359"><a name="p346951013359"></a><a name="p346951013359"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p246918103351"><a name="p246918103351"></a><a name="p246918103351"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p6469171013513"><a name="p6469171013513"></a><a name="p6469171013513"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p1446917101352"><a name="p1446917101352"></a><a name="p1446917101352"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row5469910143518"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1247011033512"><a name="p1247011033512"></a><a name="p1247011033512"></a>v</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p18470171083516"><a name="p18470171083516"></a><a name="p18470171083516"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p7470110113512"><a name="p7470110113512"></a><a name="p7470110113512"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p1327223011365"><a name="p1327223011365"></a><a name="p1327223011365"></a>TID.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table1947018103358"></a>
+    <table><thead align="left"><tr id="row134713108353"><th class="cellrowborder" valign="top" width="21.02%" id="mcps1.1.3.1.1"><p id="p84712101359"><a name="p84712101359"></a><a name="p84712101359"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="78.97999999999999%" id="mcps1.1.3.1.2"><p id="p44711910103519"><a name="p44711910103519"></a><a name="p44711910103519"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row154710105354"><td class="cellrowborder" valign="top" width="21.02%" headers="mcps1.1.3.1.1 "><p id="p1447181023517"><a name="p1447181023517"></a><a name="p1447181023517"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="78.97999999999999%" headers="mcps1.1.3.1.2 "><p id="p8471110183520"><a name="p8471110183520"></a><a name="p8471110183520"></a>Priority of the thread.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Example
+
+    ```
+    var tid = process.tid;
+    var pres = process.getThreadPriority(tid);
+    ```
+
+
+## process.getStartRealtime<sup>8+</sup><a name="section1336514287167"></a>
+
+getStartRealtime\(\) :number
+
+Obtains the duration, in milliseconds, from the time the system starts to the time the process starts.
+
+-   Return values
+
+    <a name="table191971559142420"></a>
+    <table><thead align="left"><tr id="row1119785919245"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p2197115962417"><a name="p2197115962417"></a><a name="p2197115962417"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.01%" id="mcps1.1.3.1.2"><p id="p1419713599243"><a name="p1419713599243"></a><a name="p1419713599243"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row10198175982415"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p719855942415"><a name="p719855942415"></a><a name="p719855942415"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p1119875918248"><a name="p1119875918248"></a><a name="p1119875918248"></a>Time duration obtained.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    var realtime = process.getStartRealtime();
+    ```
+
+
+## process.getAvailableCores<sup>8+</sup><a name="section168171781714"></a>
+
+getAvailableCores\(\) :number\[\]
+
+Obtains the number of CPU cores available for the current process on a multi-core device.
+
+-   Return values
+
+    <a name="table164412912250"></a>
+    <table><thead align="left"><tr id="row7441229172510"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p1144162952513"><a name="p1144162952513"></a><a name="p1144162952513"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.01%" id="mcps1.1.3.1.2"><p id="p194442942512"><a name="p194442942512"></a><a name="p194442942512"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row844142919253"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p364463482517"><a name="p364463482517"></a><a name="p364463482517"></a>number[]</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p104402911252"><a name="p104402911252"></a><a name="p104402911252"></a>Number of cores available for the process.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    var result = getAvailableCores();
+    ```
+
+
+## process.getPastCputime<sup>8+</sup><a name="section93991533201718"></a>
+
+getPastCputime\(\) :number
+
+Obtains the CPU time \(in milliseconds\) from the time the process starts to the current time.
+
+-   Return values
+
+    <a name="table935012126260"></a>
+    <table><thead align="left"><tr id="row12350111272614"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p1635081217266"><a name="p1635081217266"></a><a name="p1635081217266"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.01%" id="mcps1.1.3.1.2"><p id="p335014125263"><a name="p335014125263"></a><a name="p335014125263"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row835171215263"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p1914922192620"><a name="p1914922192620"></a><a name="p1914922192620"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p135118122264"><a name="p135118122264"></a><a name="p135118122264"></a>CPU time obtained.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    var result = process.getPastCputime() ;
+    ```
+
+
+## process.getSystemConfig<sup>8+</sup><a name="section872533219413"></a>
+
+getSystemConfig\(name:number\): number
+
+Obtains the system configuration.
+
+-   Parameters
+
+    <a name="table187251232124112"></a>
+    <table><thead align="left"><tr id="row1726153264119"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p187261932204117"><a name="p187261932204117"></a><a name="p187261932204117"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p19726163214110"><a name="p19726163214110"></a><a name="p19726163214110"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p472613325413"><a name="p472613325413"></a><a name="p472613325413"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p15726133284110"><a name="p15726133284110"></a><a name="p15726133284110"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row672763214419"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p12727432174114"><a name="p12727432174114"></a><a name="p12727432174114"></a>name</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p1372743216418"><a name="p1372743216418"></a><a name="p1372743216418"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p2727153213419"><a name="p2727153213419"></a><a name="p2727153213419"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p1572743215418"><a name="p1572743215418"></a><a name="p1572743215418"></a>System configuration parameter name.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table2727123213413"></a>
+    <table><thead align="left"><tr id="row117281232184114"><th class="cellrowborder" valign="top" width="21.02%" id="mcps1.1.3.1.1"><p id="p97281232104111"><a name="p97281232104111"></a><a name="p97281232104111"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="78.97999999999999%" id="mcps1.1.3.1.2"><p id="p1572853218415"><a name="p1572853218415"></a><a name="p1572853218415"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row14728732174120"><td class="cellrowborder" valign="top" width="21.02%" headers="mcps1.1.3.1.1 "><p id="p4728153254120"><a name="p4728153254120"></a><a name="p4728153254120"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="78.97999999999999%" headers="mcps1.1.3.1.2 "><p id="p3728193216419"><a name="p3728193216419"></a><a name="p3728193216419"></a>System configuration obtained.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Example
+
+    ```
+    var _SC_ARG_MAX = 0
+    var pres = process.getSystemConfig(_SC_ARG_MAX)
+    ```
+
+
+## process.getEnvironmentVar<sup>8+</sup><a name="section3554201415462"></a>
+
+getEnvironmentVar\(name:string\): string
+
+Obtains the value of an environment variable.
+
+-   Parameters
+
+    <a name="table1554101419462"></a>
+    <table><thead align="left"><tr id="row9555131415465"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p25559140465"><a name="p25559140465"></a><a name="p25559140465"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p65551014124619"><a name="p65551014124619"></a><a name="p65551014124619"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p55569142467"><a name="p55569142467"></a><a name="p55569142467"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p1855641454611"><a name="p1855641454611"></a><a name="p1855641454611"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row755681414469"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p145561714164615"><a name="p145561714164615"></a><a name="p145561714164615"></a>name</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p4556121444615"><a name="p4556121444615"></a><a name="p4556121444615"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p055681484619"><a name="p055681484619"></a><a name="p055681484619"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p755612143463"><a name="p755612143463"></a><a name="p755612143463"></a>Environment variable name.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table75571014164610"></a>
+    <table><thead align="left"><tr id="row75571914184619"><th class="cellrowborder" valign="top" width="21.02%" id="mcps1.1.3.1.1"><p id="p12557101474617"><a name="p12557101474617"></a><a name="p12557101474617"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="78.97999999999999%" id="mcps1.1.3.1.2"><p id="p9557191417469"><a name="p9557191417469"></a><a name="p9557191417469"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row8557121474617"><td class="cellrowborder" valign="top" width="21.02%" headers="mcps1.1.3.1.1 "><p id="p948123084713"><a name="p948123084713"></a><a name="p948123084713"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="78.97999999999999%" headers="mcps1.1.3.1.2 "><p id="p18558141494617"><a name="p18558141494617"></a><a name="p18558141494617"></a>Value of the environment variable.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Example
+
+    ```
+    var pres = process.getEnvironmentVar("PATH")
     ```
 
 
@@ -437,12 +875,11 @@ Forks a new process to run a shell command and returns the  **ChildProcess**  ob
 -   Example
 
     ```
-    import process from '@ohos.process';
     var child = process.runCmd('ls', { maxBuffer : 2 });
     var result = child.wait();
     child.getOutput.then(val=>{
         console.log("child.getOutput = " + val);
-    }
+    })
     ```
 
 
@@ -455,7 +892,6 @@ Aborts a process and generates a core file. This method will cause a process to 
 -   Example
 
     ```
-    import process from '@ohos.process';
     process.abort();
     ```
 
@@ -520,7 +956,6 @@ Stores the events triggered by the user.
 -   Example
 
     ```
-    import process from '@ohos.process';
     process.on("data", (e)=>{
         console.log("data callback");
     })
@@ -569,7 +1004,7 @@ Deletes the event stored by the user.
     </thead>
     <tbody><tr id="row322716540586"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p4227105415813"><a name="p4227105415813"></a><a name="p4227105415813"></a>boolean</p>
     </td>
-    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p20227155415582"><a name="p20227155415582"></a><a name="p20227155415582"></a>Whether the event is deleted.</p>
+    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p20227155415582"><a name="p20227155415582"></a><a name="p20227155415582"></a>Returns <strong id="b9330203617455"><a name="b9330203617455"></a><a name="b9330203617455"></a>true</strong> if the event is deleted; returns <strong id="b1815112412453"><a name="b1815112412453"></a><a name="b1815112412453"></a>false</strong> otherwise.</p>
     </td>
     </tr>
     </tbody>
@@ -578,7 +1013,6 @@ Deletes the event stored by the user.
 -   Example
 
     ```
-    import process from '@ohos.process';
     process.on("data", (e)=>{
         console.log("data callback");
     })
@@ -590,7 +1024,7 @@ Deletes the event stored by the user.
 
 exit\(code: number\): void
 
-Terminates a process.
+Terminates this process.
 
 -   Parameters
 
@@ -620,7 +1054,6 @@ Terminates a process.
 -   Example
 
     ```
-    import process from '@ohos.process';
     process.exit(0);
     ```
 
@@ -629,12 +1062,11 @@ Terminates a process.
 
 cwd\(\): string
 
-Obtains the working directory of the process.
+Obtains the working directory of this process.
 
 -   Example
 
     ```
-    import process from '@ohos.process';
     var path = process.cwd();
     ```
 
@@ -643,7 +1075,7 @@ Obtains the working directory of the process.
 
 chdir\(dir: string\): void
 
-Changes the working directory of the process.
+Changes the working directory of this process.
 
 -   Parameters
 
@@ -673,7 +1105,6 @@ Changes the working directory of the process.
 -   Example
 
     ```
-    import process from '@ohos.process';
     process.chdir('/system');
     ```
 
@@ -682,7 +1113,7 @@ Changes the working directory of the process.
 
 uptime\(\): number
 
-Obtains the running time of the process.
+Obtains the running time of this process.
 
 -   Return values
 
@@ -704,7 +1135,6 @@ Obtains the running time of the process.
 -   Example
 
     ```
-    import process from '@ohos.process';
     var time = process.uptime();
     ```
 
@@ -760,7 +1190,7 @@ Sends a signal to the specified process to terminate it.
     </thead>
     <tbody><tr id="row15207741141911"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p1620714412197"><a name="p1620714412197"></a><a name="p1620714412197"></a>boolean</p>
     </td>
-    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p7207194141914"><a name="p7207194141914"></a><a name="p7207194141914"></a>Whether the signal is sent successfully.</p>
+    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p7207194141914"><a name="p7207194141914"></a><a name="p7207194141914"></a>Returns <strong id="b5691160144712"><a name="b5691160144712"></a><a name="b5691160144712"></a>true</strong> if the signal is sent successfully; returns <strong id="b5409191810479"><a name="b5409191810479"></a><a name="b5409191810479"></a>false</strong> otherwise.</p>
     </td>
     </tr>
     </tbody>
@@ -769,7 +1199,6 @@ Sends a signal to the specified process to terminate it.
 -   Example
 
     ```
-    import process from '@ohos.process'
     var pres = process.pid
     var result = that.kill(pres, 28)
     ```

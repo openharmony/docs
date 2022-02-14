@@ -11,9 +11,9 @@ import hiAppEvent from '@ohos.hiAppEvent';
 ```
 
 
-## 权限
+## 系统能力
 
-无
+SystemCapability.HiviewDFX.HiAppEvent
 
 
 ## hiAppEvent.write
