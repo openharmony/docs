@@ -7,9 +7,8 @@
 ## 导入模块
 
 ```
-import {HashSet} from '@ohos.util.HashSet'  
+import HashSet from '@ohos.util.HashSet';
 ```
-
 
 ## 权限
 

@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {LinkedList} from '@ohos.util.LinkedList'  
+import LinkedList from '@ohos.util.LinkedList'  
 ```
 
 

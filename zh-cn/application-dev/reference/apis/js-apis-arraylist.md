@@ -6,7 +6,7 @@
 ## 导入模块
 
 ```
-import {ArrayList} from '@ohos.util.ArrayList'
+import ArrayList from '@ohos.util.ArrayList'
 ```
 
 ## 权限

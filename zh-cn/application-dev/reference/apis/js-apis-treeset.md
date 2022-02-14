@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {TreeSet} from '@ohos.util.TreeSet'  
+import TreeSet from '@ohos.util.TreeSet'  
 ```
 
 

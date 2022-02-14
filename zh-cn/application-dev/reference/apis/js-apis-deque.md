@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {Deque} from '@ohos.util.Deque'  
+import Deque from '@ohos.util.Deque'  
 ```
 
 ## 权限
@@ -30,7 +30,7 @@ Deque的构造函数。
 
 - 示例：
   ```
-  let queue = new Queue();
+  let deque = new Deque();
   ```
 
 ### insertFront

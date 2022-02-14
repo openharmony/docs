@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {Vector} from '@ohos.util.Vector'  
+import Vector from '@ohos.util.Vector'  
 ```
 
 

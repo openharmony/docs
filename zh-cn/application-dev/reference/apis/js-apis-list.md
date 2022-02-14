@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {List} from '@ohos.util.List'  
+import List from '@ohos.util.List'  
 ```
 
 

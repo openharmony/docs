@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```
-import {PlainArray} from '@ohos.util.PlainArray'  
+import PlainArray from '@ohos.util.PlainArray'  
 ```
 
 
