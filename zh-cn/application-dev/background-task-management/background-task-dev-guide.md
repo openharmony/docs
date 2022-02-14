@@ -34,34 +34,34 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 1. 申请延迟挂起
 
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    ```js
+    import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
-let myReason = 'test requestSuspendDelay';
-let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-    console.info("Request suspension delay will time out.");
-});
+    let myReason = 'test requestSuspendDelay';
+    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+        console.info("Request suspension delay will time out.");
+    });
 
-var id = delayInfo.requestId;console.info("requestId is: " + id);
-```
+    var id = delayInfo.requestId;console.info("requestId is: " + id);
+    ```
 
 
 2. 获取进入挂起前的剩余时间
 
-```js
-backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-    console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
-}).catch( err => {
-    console.log('promise => Operation failed. Cause: ' + err.data);
-});
-```
+    ```js
+    backgroundTaskManager.getRemainingDelayTime(id).then( res => {
+        console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('promise => Operation failed. Cause: ' + err.data);
+    });
+    ```
 
 
 3. 取消延迟挂起
 
-```js
-backgroundTaskManager.cancelSuspendDelay(id);
-```
+    ```js
+    backgroundTaskManager.cancelSuspendDelay(id);
+    ```
 
 
 ## 开发实例
@@ -127,67 +127,67 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 1. 在config.json文件中配置长时任务权限
 
-```json
-"module": {
-  "package": "com.example.myapplication",
-  ...,
-  "reqPermissions": [
-    {
-      "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+    ```json
+    "module": {
+        "package": "com.example.myapplication",
+        ...,
+        "reqPermissions": [
+            {
+            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+            }
+        ]
     }
-  ]
-}
-```
+    ```
 
-1. 申请长时任务
+2. 申请长时任务
 
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
+    ```js
+    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    import featureAbility from '@ohos.ability.featureAbility';
+    import wantAgent from '@ohos.wantAgent';
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
-};
+    let wantAgentInfo = {
+        wants: [
+            {
+                bundleName: "com.example.myapplication",
+                abilityName: "com.example.myapplication.MainAbility"
+            }
+        ],
+        operationType: wantAgent.OperationType.START_ABILITY,
+        requestCode: 0,
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    };
 
-// 通过wantAgent模块的getWantAgent方法获取WantAgent对象
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+    // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+            console.info("Operation succeeded");
+        }).catch((err) => {
+            console.error("Operation failed Cause: " + err);
+        });
+    });
+    ```
+
+3. 停止长时任务
+
+    ```js
+    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    import featureAbility from '@ohos.ability.featureAbility';
+
+    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
         console.info("Operation succeeded");
     }).catch((err) => {
         console.error("Operation failed Cause: " + err);
     });
-});
 
-```
-
-2. 停止长时任务
-
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import featureAbility from '@ohos.ability.featureAbility';
-
-backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-    console.info("Operation succeeded");
-}).catch((err) => {
-    console.error("Operation failed Cause: " + err);
-});
-
-```
+    ```
 
 ## 开发实例
 
 当服务启动后，在serviceAbility的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。在onStop回调方法里，调用长时任务取消接口，声明取消长时任务。
-在service.js文件中：
+在service.js文件中:
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
