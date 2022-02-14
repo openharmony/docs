@@ -235,6 +235,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 - [对profile文件进行签名](#对profile文件进行签名)
 - [对Hap包进行签名](#对Hap包进行签名)
 
+
 > **注意事项：**
  1.步骤一中的密钥对算法推荐使用ECC，出于安全性考虑，应用签名暂不使用RSA算法
  2.建议将待签名hap包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、子CA证书、签名工具放在同一个目录下，方便操作。
@@ -370,7 +371,7 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
 - 对应现象描述的可能原因：
   1.profile签名证书（三级证书）证书链顺序不正确。
   2.profile签名证书（三级证书）不是证书链。
-  3.证书主题顺序不正确或者 生成应用签名证书时“-issuerKeyAlias”参数填写错误
+  3.证书主题顺序不正确 或者 生成应用签名证书时“-issuerKeyAlias”参数填写错误
 
 **解决办法**
   1.检查并修正证书链顺序，只能正序或反序，不可乱序。
