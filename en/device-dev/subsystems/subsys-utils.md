@@ -1,9 +1,9 @@
 # Utils<a name="EN-US_TOPIC_0000001157319385"></a>
 
--   **[Utils Overview](oem_subsys_utils_des.md)**  
+-   **[Utils Overview](subsys_utils_overview.md)**  
 
--   **[Utils Development Guidelines](oem_subsys_utils_guide.md)**  
+-   **[Utils Development Guidelines](subsys_utils_guide.md)**  
 
--   **[Utils FAQ](oem_subsys_utils_faq.md)**  
+-   **[Utils FAQ](subsys_utils_faqs.md)**  
 
 
