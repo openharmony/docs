@@ -11,6 +11,11 @@ import account_appAccount from '@ohos.account.appAccount';
 ```
 
 
+## 系统能力
+
+SystemCapability.Account.AppAccount
+
+
 ## account_appAccount.createAppAccountManager
 
 createAppAccountManager(): AppAccountManager;
@@ -111,6 +116,47 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;;
       console.log('addAccount Success');
   }).catch((err) => {
       console.log("addAccount err: "  + JSON.stringify(err));
+  });
+  ```
+
+### addAccountImplicitly<sup>8+</sup>
+
+addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+根据指定的帐号所有者、鉴权类型和可选项，隐式地添加应用帐号，并使用callback回调异步返回结果。
+
+需要权限：无。
+
+- 参数：
+
+  | 参数名    | 类型                  | 必填 | 说明                        |
+  | -------- | --------------------- | ---  | --------------------------  |
+  | owner    | string                | 是   | 要添加的应用帐户的所有者包名。 |
+  | authType | string                | 是   | 要添加的应用帐户的鉴权类型。   |
+  | options  | {[key: string]: any}  | 是   | 鉴权所需要的可选项。          |
+  | callback | AuthenticatorCallback | 是   | 认证器回调，用于返回鉴权结果。 |
+
+- 示例：
+
+  ```
+  import featureAbility from '@ohos.ability.featureAbility';
+
+  function onResultCallback(code, result) {
+      console.log("resultCode: "  + code);
+      console.log("result: "  + JSON.stringify(result));
+  }
+
+  function onRequestRedirectedCallback(request) {
+      let abilityStartSetting = {want: request};
+      featureAbility.startAbility(abilityStartSetting, (err)=>{
+          console.log("startAbility err: " + JSON.stringify(err));
+      });
+  }
+
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.addAccountImplicitly("LiSi", "readAge", {}, {
+      onResult: onResultCallback,
+      onRequestRedirected: onRequestRedirectedCallback
   });
   ```
 
@@ -872,12 +918,739 @@ off(type: 'change', callback?: Callback&lt;void&gt;): void;
   }
   ```
 
+### authenticate<sup>8+</sup>
+
+authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+鉴权应用帐户以获取OAuth令牌，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型                   | 必填 | 说明                        |
+  | -------- | --------------------- | ---- | --------------------------- |
+  | name     | string                | 是   | 要鉴权的应用帐户的名称。      |
+  | owner    | string                | 是   | 要鉴权的应用帐户的所有者包名。 |
+  | authType | string                | 是   | 鉴权类型。                   |
+  | options  | {[key: string]: any}  | 是   | 鉴权所需的可选项。            |
+  | callback | AuthenticatorCallback | 是   | 认证器回调，用于返回鉴权结果。 |
+
+- 示例：
+
+  ```
+  import featureAbility from '@ohos.ability.featureAbility';
+
+  function onResultCallback(code, result) {
+      console.log("resultCode: "  + code);
+      console.log("result: "  + JSON.stringify(result));
+  }
+
+  function onRequestRedirectedCallback(request) {
+      let abilityStartSetting = {want: request};
+      featureAbility.startAbility(abilityStartSetting, (err)=>{
+          console.log("startAbility err: " + JSON.stringify(err));
+      });
+  }
+
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.authenticate("LiSi", "com.example.ohos.accountjsdemo", "readAge", {}, {
+    onResult: onResultCallback,
+    onRequestRedirected: onRequestRedirectedCallback
+  });
+  ```
+
+### getOAuthToken<sup>8+</sup>
+
+getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback&lt;string&gt;): void;
+
+获取指定应用帐户和鉴权类型的OAuth令牌，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型                         | 必填 | 说明                 |
+  | -------- | --------------------------- | ---- | -------------------- |
+  | name     | string                      | 是   | 应用帐户的名称。      |
+  | owner    | string                      | 是   | 应用帐户的所有者包名。 |
+  | authType | string                      | 是   | 鉴权类型。            |
+  | callback | AsyncCallback&lt;string&gt; | 是   | 查询结果的回调。      |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", (err, data) => {
+       console.log('getOAuthToken err: ' + JSON.stringify(err));
+       console.log('getOAuthToken token: ' + data);
+  });
+  ```
+
+### getOAuthToken<sup>8+</sup>
+
+getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&gt;;
+
+获取指定应用帐户和鉴权类型的OAuth令牌，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型    | 必填 | 说明                 |
+  | -------- | ------ | ---- | -------------------- |
+  | name     | string | 是   | 应用帐户的名称。      |
+  | owner    | string | 是   | 应用帐户的所有者包名。 |
+  | authType | string | 是   | 鉴权类型。            |
+
+- 参数：
+
+  | 类型                  | 说明                              |
+  | --------------------- | -------------------------------- |
+  | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge").then((data) => {
+       console.log('getOAuthToken token: ' + data);
+  }).catch((err) => {
+      console.log("getOAuthToken err: "  + JSON.stringify(err));
+  });
+  ```
+
+### setOAuthToken<sup>8+</sup>
+
+setOAuthToken(name: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void;
+
+设置指定应用帐户和鉴权类型的OAuth令牌，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型                       | 必填 | 说明            |
+  | -------- | ------------------------- | ---- | -------------  |
+  | name     | string                    | 是   | 应用帐户的名称。 |
+  | authType | string                    | 是   | 鉴权类型。      |
+  | token    | string                    | 是   | OAuth令牌。     |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 设置结果的回调。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx", (err) => {
+      console.log('setOAuthToken err: ' + JSON.stringify(err));
+  });
+  ```
+
+### setOAuthToken<sup>8+</sup>
+
+setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;;
+
+设置指定应用帐户和鉴权类型的OAuth令牌，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型    | 必填 | 说明            |
+  | -------- | ------ | ---- | -------------  |
+  | name     | string | 是   | 应用帐户的名称。 |
+  | authType | string | 是   | 鉴权类型。      |
+  | token    | string | 是   | OAuth令牌。     |
+
+- 参数：
+
+  | 类型                | 说明                              |
+  | ------------------- | -------------------------------- |
+  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx").then(() => {
+      console.log('setOAuthToken successfully');
+  }).catch((err) => {
+      console.log('setOAuthToken err: ' + JSON.stringify(err));
+  });
+  ```
+
+### deleteOAuthToken<sup>8+</sup>
+
+deleteOAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void;
+
+删除指定应用帐户和鉴权类型的OAuth令牌，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型                       | 必填 | 说明                 |
+  | -------- | ------------------------- | ---- | ------------------  |
+  | name     | string                    | 是   | 应用帐户的名称。      |
+  | owner    | string                    | 是   | 应用帐户的所有者包名。 |
+  | authType | string                    | 是   | 鉴权类型。            |
+  | token    | string                    | 是   | 要删除的OAuth令牌。   |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 删除结果的回调。      |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx", (err) => {
+       console.log('deleteOAuthToken err: ' + JSON.stringify(err));
+  });
+  ```
+
+### deleteOAuthToken<sup>8+</sup>
+
+deleteOAuthToken(name: string, owner: string, authType: string, token: string): Promise&lt;void&gt;;
+
+删除指定应用帐户和鉴权类型的OAuth令牌，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型    | 必填 | 说明                 |
+  | -------- | ------ | ---- | ------------------  |
+  | name     | string | 是   | 应用帐户的名称。      |
+  | owner    | string | 是   | 应用帐户的所有者包名。 |
+  | authType | string | 是   | 鉴权类型。            |
+  | token    | string | 是   | 要删除的OAuth令牌。   |
+
+- 参数：
+
+  | 类型                           | 说明                   |
+  | ------------------------------ | --------------------- |
+  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx").then(() => {
+       console.log('deleteOAuthToken successfully');
+  }).catch((err) => {
+      console.log("deleteOAuthToken err: "  + JSON.stringify(err));
+  });
+  ```
+
+### setOAuthTokenVisibility<sup>8+</sup>
+
+setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+设置指定鉴权类型的OAuth令牌对特定应用的可见性，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名     | 类型                       | 必填 | 说明                  |
+  | ---------- | ------------------------- | ---- | -------------------  |
+  | name       | string                    | 是   | 应用帐户的名称。       |
+  | authType   | string                    | 是   | 鉴权类型。             |
+  | bundleName | string                    | 是   | 被设置可见性的应用包名。|
+  | isVisible  | boolean                   | 是   | 是否可见。             |
+  | callback   | AsyncCallback&lt;void&gt; | 是   | 设置结果的回调。       |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err) => {
+       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+  });
+  ```
+
+### setOAuthTokenVisibility<sup>8+</sup>
+
+setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise&lt;void&gt;;
+
+设置指定鉴权类型的OAuth令牌对特定应用的可见性，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名     | 类型                       | 必填 | 说明                  |
+  | ---------- | ------------------------- | ---- | -------------------  |
+  | name       | string                    | 是   | 应用帐户的名称。       |
+  | authType   | string                    | 是   | 鉴权类型。             |
+  | bundleName | string                    | 是   | 被设置可见性的应用包名。|
+  | isVisible  | boolean                   | 是   | 是否可见。             |
+
+- 参数：
+
+  | 类型                           | 说明                   |
+  | ------------------------------ | --------------------- |
+  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then(() => {
+      console.log('setOAuthTokenVisibility successfully');
+  }).catch((err) => {
+      console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+  });
+  ```
+
+### checkOAuthTokenVisibility<sup>8+</sup>
+
+checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void;
+
+检查指定鉴权类型的OAuth令牌对特定应用的可见性，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名     | 类型                          | 必填 | 说明                     |
+  | ---------- | ---------------------------- | ---- | ----------------------  |
+  | name       | string                       | 是   | 应用帐户的名称。          |
+  | authType   | string                       | 是   | 鉴权类型。               |
+  | bundleName | string                       | 是   | 用于检查可见性的应用包名。 |
+  | callback   | AsyncCallback&lt;boolean&gt; | 是   | 检查结果的回调。          |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err, data) => {
+      console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+      console.log('checkOAuthTokenVisibility isVisible: ' + data);
+  });
+  ```
+
+### checkOAuthTokenVisibility<sup>8+</sup>
+
+checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise&lt;boolean&gt;;
+
+检查指定鉴权类型的OAuth令牌对特定应用的可见性，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名     | 类型                       | 必填 | 说明                     |
+  | ---------- | ------------------------- | ---- | ----------------------  |
+  | name       | string                    | 是   | 应用帐户的名称。          |
+  | authType   | string                    | 是   | 鉴权类型。               |
+  | bundleName | string                    | 是   | 用于检查可见性的应用包名。 |
+
+- 参数：
+
+  | 类型                           | 说明                      |
+  | ------------------------------ | ------------------------ |
+  | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then((data) => {
+      console.log('checkOAuthTokenVisibility isVisible: ' + data);
+  }).catch((err) => {
+      console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+  });
+  ```
+
+### getAllOAuthTokens<sup>8+</sup>
+
+getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&lt;OAuthTokenInfo&gt;&gt;): void;
+
+获取指定应用对调用方全部可见的OAuth令牌，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型                                              | 必填 | 说明                 |
+  | -------- | ------------------------------------------------ | ---- | -------------------  |
+  | name     | string                                           | 是   | 应用帐户的名称。      |
+  | owner    | string                                           | 是   | 应用帐户的所有者包名。 |
+  | callback | AsyncCallback&lt;Array&lt;OAuthTokenInfo&gt;&gt; | 是   | 查询结果的回调。      |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.getAllOAuthTokens("LiSi", "com.example.ohos.accountjsdemo", (err, data) => {
+      console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
+      console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+  });
+  ```
+
+### getAllOAuthTokens<sup>8+</sup>
+
+getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenInfo&gt;&gt;;
+
+获取指定应用帐户对调用方可见的全部OAuth令牌，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型    | 必填 | 说明                 |
+  | -------- | ------ | ---- | -------------------  |
+  | name     | string | 是   | 应用帐户的名称。      |
+  | owner    | string | 是   | 应用帐户的所有者包名。 |
+
+- 参数：
+
+  | 类型                           | 说明                                |
+  | ------------------------------ | ----------------------------------- |
+  | Promise&lt;Array&lt;OAuthTokenInfo&gt;&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.getAllOAuthTokens("LiSi", "com.example.ohos.accountjsdemo").then((data) => {
+       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+  }).catch((err) => {
+      console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
+  });
+  ```
+
+### getOAuthList<sup>8+</sup>
+
+getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+
+获取指定应用帐户和鉴权类型的OAuth令牌的授权列表，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型                                      | 必填 | 说明                 |
+  | -------- | ---------------------------------------- | ---- | ------------------  |
+  | name     | string                                   | 是   | 应用帐户的名称。      |
+  | owner    | string                                   | 是   | 应用帐户的所有者包名。 |
+  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 查询结果的回调。      |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge", (err, data) => {
+       console.log('getOAuthList err: ' + JSON.stringify(err));
+       console.log('getOAuthList data: ' + JSON.stringify(data));
+  });
+  ```
+
+### getOAuthList<sup>8+</sup>
+
+getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;;
+
+获取指定应用帐户和鉴权类型的OAuth令牌的授权列表，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型    | 必填 | 说明                 |
+  | -------- | ------ | ---- | -------------------  |
+  | name     | string | 是   | 应用帐户的名称。      |
+  | owner    | string | 是   | 应用帐户的所有者包名。 |
+
+- 参数：
+
+  | 类型                           | 说明                                  |
+  | ------------------------------ | ------------------------------------ |
+  | Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge").then((data) => {
+       console.log('getOAuthList data: ' + JSON.stringify(data));
+  }).catch((err) => {
+      console.log("getOAuthList err: "  + JSON.stringify(err));
+  });
+  ```
+
+### getAuthenticatorCallback<sup>8+</sup>
+
+getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;AuthenticatorCallback&gt;): void;
+
+获取鉴权会话的认证器回调，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名 | 类型                                           | 必填 | 说明            |
+  | --------- | ------------------------------------------ | ---- | -------------- |
+  | sessionId | string                                     | 是   | 鉴权会话的标识。 |
+  | callback  | AsyncCallback&lt;AuthenticatorCallback&gt; | 是   | 查询结果的回调。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  featureAbility.getWant((err, want) => {
+    var sessionId = want.parameters[Constants.KEY_SESSION_ID];
+    appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
+        if (err.code != ResultCode.SUCCESS) {
+            console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+            return;
+        }
+        var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
+                      Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
+        callback.OnResult(ResultCode.SUCCESS, result);
+    });
+  });
+  ```
+
+### getAuthenticatorCallback<sup>8+</sup>
+
+getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt;;
+
+获取鉴权会话的认证器回调，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名      | 类型   | 必填 | 说明            |
+  | ---------- | ------ | ---- | -------------- |
+  | sessionId  | string | 是   | 鉴权会话的标识。 |
+
+- 参数：
+
+  | 类型                                 | 说明                              |
+  | ------------------------------------ | -------------------------------- |
+  | Promise&lt;AuthenticatorCallback&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  featureAbility.getWant().then((want) => {
+      var sessionId = want.parameters[Constants.KEY_SESSION_ID];
+      appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
+          var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
+                        Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
+          callback.OnResult(ResultCode.SUCCESS, result);
+      }).catch((err) => {
+          console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+      });
+  }).catch((err) => {
+      console.log("getWant err: "  + JSON.stringify(err));
+  });
+  ```
+
+### getAuthenticatorInfo<sup>8+</sup>
+
+getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo&gt;): void;
+
+获取指定应用帐户的认证器信息，使用callback回调异步返回结果。
+
+- 参数：
+
+  | 参数名   | 类型                                    | 必填 | 说明                 |
+  | -------- | -------------------------------------- | ---- | ------------------- |
+  | owner    | string                                 | 是   | 应用帐户的所有者包名。 |
+  | callback | AsyncCallback&lt;AuthenticatorInfo&gt; | 是   | 查询结果的回调。      |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.getAuthenticatorInfo("com.example.ohos.accountjsdemo", (err, data) => {
+      console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
+      console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
+  });
+  ```
+
+### getAuthenticatorInfo<sup>8+</sup>
+
+getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;;
+
+获取指定应用帐户的认证器信息，使用Promise方式异步返回结果。
+
+- 参数：
+
+  | 参数名 | 类型   | 必填 | 说明                 |
+  | ----- | ------ | ---- | -------------------- |
+  | owner | string | 是   | 应用帐户的所有者包名。 |
+
+- 参数：
+
+  | 类型                           | 说明                                |
+  | ------------------------------ | ----------------------------------- |
+  | Promise&lt;AuthenticatorInfo&gt; | Promise实例，用于获取异步返回结果。 |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.getAuthenticatorInfo("com.example.ohos.accountjsdemo").then((data) => { 
+       console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
+  }).catch((err) => {
+      console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
+  });
+  ```
+
 ## AppAccountInfo
 
+表示应用帐号信息。
 
+| 参数名 | 类型   | 必填 | 说明              |
+| ----- | ------ | ---- | ---------------- |
+| owner | string | 是   | 应用帐户的所有者包名。 |
+| name  | string | 是   | 应用帐户的名称。      |
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| owner  | string | 是   | 所有者是应用帐户。 |
-| name   | string | 是   | 应用帐户的名称。   |
+## OAuthTokenInfo<sup>8+</sup>
 
+表示OAuth令牌信息。
+
+| 参数名   | 类型    | 必填 | 说明            |
+| -------- | ------ | ---- | -------------- |
+| authType | string | 是   | 令牌的鉴权类型。 |
+| token    | string | 是   | 令牌的取值。    |
+
+## AuthenticatorInfo<sup>8+</sup>
+
+表示OAuth认证器信息。
+
+| 参数名  | 类型    | 必填 | 说明                |
+| ------- | ------ | ---- | ------------------ |
+| owner   | string | 是   | 认证器的所有者包名。 |
+| iconId  | string | 是   | 认证器的图标标识。   |
+| labelId | string | 是   | 认证器的标签标识。   |
+
+## Constants<sup>8+</sup>
+
+表示常量的枚举。
+
+| 名称                          | 默认值                  | 描述                    |
+| ----------------------------- | ---------------------- | ----------------------- |
+| ACTION_ADD_ACCOUNT_IMPLICITLY | "addAccountImplicitly" | 表示操作_隐式添加帐号。   |
+| ACTION_AUTHENTICATE           | "authenticate"         | 表示操作_鉴权。          |
+| KEY_NAME                      | "name"                 | 表示键名_应用帐户名称。   |
+| KEY_OWNER                     | "owner"                | 表示键名_应用帐户所有者。 |
+| KEY_TOKEN                     | "token"                | 表示键名_令牌。          |
+| KEY_ACTION                    | "action"               | 表示键名_操作。          |
+| KEY_AUTH_TYPE                 | "authType"             | 表示键名_鉴权类型。      |
+| KEY_SESSION_ID                | "sessionId"            | 表示键名_会话标识。      |
+| KEY_CALLER_PID                | "callerPid"            | 表示键名_调用方PID。     |
+| KEY_CALLER_UID                | "callerUid"            | 表示键名_调用方UID。     |
+| KEY_CALLER_BUNDLE_NAME        | "callerBundleName"     | 表示键名_调用方包名。     |
+
+## ResultCode<sup>8+</sup>
+
+表示返回码的枚举。
+
+| 名称                                | 默认值 | 描述                   |
+| ----------------------------------- | ----- | ---------------------- |
+| SUCCESS                             | 0     | 表示操作成功。          |
+| ERROR_ACCOUNT_NOT_EXIST             | 10001 | 表示应用帐户不存在。     |
+| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002 | 表示应用帐户服务异常。   |
+| ERROR_INVALID_PASSWORD              | 10003 | 表示密码无效。          |
+| ERROR_INVALID_REQUEST               | 10004 | 表示请求无效。          |
+| ERROR_INVALID_RESPONSE              | 10005 | 表示响应无效。          |
+| ERROR_NETWORK_EXCEPTION             | 10006 | 表示网络异常。          |
+| ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST | 10007 | 表示认证器不存在。      |
+| ERROR_OAUTH_CANCELED                | 10008 | 表示鉴权取消。          |
+| ERROR_OAUTH_LIST_TOO_LARGE          | 10009 | 表示开放授权列表过大。   |
+| ERROR_OAUTH_SERVICE_BUSY            | 10010 | 表示开放授权服务忙碌。   |
+| ERROR_OAUTH_SERVICE_EXCEPTION       | 10011 | 表示开放授权服务异常。   |
+| ERROR_OAUTH_SESSION_NOT_EXIST       | 10012 | 表示鉴权会话不存在。     |
+| ERROR_OAUTH_TIMEOUT                 | 10013 | 表示鉴权超时。          |
+| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014 | 表示开放授权令牌不存在。 |
+| ERROR_OAUTH_TOKEN_TOO_MANY          | 10015 | 表示开放授权令牌过多。   |
+| ERROR_OAUTH_UNSUPPORT_ACTION        | 10016 | 表示不支持的鉴权操作。   |
+| ERROR_OAUTH_UNSUPPORT_AUTH_TYPE     | 10017 | 表示不支持的鉴权类型。   |
+| ERROR_PERMISSION_DENIED             | 10018 | 表示权限不足。          |
+
+## AuthenticatorCallback<sup>8+</sup>
+
+OAuth认证器回调接口。
+
+### onResult<sup>8+</sup>
+
+onResult: (code: number, result: {[key: string]: any}) =&gt; void;
+
+通知鉴权结果。
+
+- 参数：
+  | 参数名  | 类型                 | 必填 | 说明        |
+  | ------ | -------------------- | ---- | ----------- |
+  | code   | number               | 是   | 鉴权结果码。 |
+  | result | {[key: string]: any} | 是   | 鉴权结果。   |
+
+- 示例：
+
+  ```
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  var sessionId = "1234";
+  appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
+      var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
+                    Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
+      callback.OnResult(ResultCode.SUCCESS, result);
+  }).catch((err) => {
+      console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+  });
+  ```
+
+### onRequestRedirected<sup>8+</sup>
+
+onRequestRedirected: (request: Want) =&gt; void;
+
+通知鉴权请求被跳转。
+
+- 参数：
+  | 参数名  | 类型  | 必填 | 说明                |
+  | ------- | ---- | ---- | ------------------ |
+  | request | Want | 是   | 用于跳转的请求信息。 |
+
+- 示例：
+
+  ```
+  class MyAuthenticator extends account_appAccount.Authenticator {
+      addAccountImplicitly(authType, callerBundleName, options, callback) {
+          callback.onRequestRedirected({
+              bundleName: "com.example.ohos.accountjsdemo",
+              abilityName: "com.example.ohos.accountjsdemo.LoginAbility",
+          });
+      }
+
+      authenticate(name, authType, callerBundleName, options, callback) {
+          var result = {Constants.KEY_NAME: name, Constants.KEY_AUTH_TYPE: authType, Constants.KEY_TOKEN: "xxxxxx"};
+          callback.onResult(ResultCode.SUCCESS, result);
+      }
+  }
+  ```
+
+## Authenticator<sup>8+</sup>
+
+OAuth认证器基类。
+
+### addAccountImplicitly<sup>8+</sup>
+
+addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+根据指定的鉴权类型和可选项，隐式地添加应用帐户，并使用callback回调异步返回结果。
+
+- 参数：
+  | 参数名           | 类型                   | 必填 | 说明                         |
+  | ---------------- | --------------------- | ---  | --------------------------  |
+  | authType         | string                | 是   | 应用帐户的鉴权类型。          |
+  | callerBundleName | string                | 是   | 鉴权请求方的包名。            |
+  | options          | {[key: string]: any}  | 是   | 鉴权所需要的可选项。          |
+  | callback         | AuthenticatorCallback | 是   | 认证器回调，用于返回鉴权结果。 |
+
+### authenticate<sup>8+</sup>
+
+authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+
+对应用帐户进行鉴权，获取OAuth令牌，并使用callback回调异步返回结果。
+
+- 参数：
+  | 接口名            | 类型                  | 必填 | 说明                        |
+  | ---------------- | --------------------- | ---- | --------------------------  |
+  | name             | string                | 是   | 应用帐户的名称。              |
+  | authType         | string                | 是   | 应用帐户的鉴权类型。          |
+  | callerBundleName | string                | 是   | 鉴权请求方的包名。            |
+  | options          | {[key: string]: any}  | 是   | 鉴权所需要的可选项。          |
+  | callback         | AuthenticatorCallback | 是   | 认证器回调，用于返回鉴权结果。 |
+
+- 示例：
+
+  ```
+  class MyAuthenticator extends account_appAccount.Authenticator {
+      addAccountImplicitly(authType, callerBundleName, options, callback) {
+          callback.onRequestRedirected({
+              bundleName: "com.example.ohos.accountjsdemo",
+              abilityName: "com.example.ohos.accountjsdemo.LoginAbility",
+          });
+      }
+
+      authenticate(name, authType, callerBundleName, options, callback) {
+          var result = {Constants.KEY_NAME: name, Constants.KEY_AUTH_TYPE: authType, Constants.KEY_TOKEN: "xxxxxx"};
+          callback.onResult(ResultCode.SUCCESS, result);
+      }
+  }
+
+  export default {
+      onConnect(want) {
+          return new MyAuthenticator();
+      }
+  }
+  ```
