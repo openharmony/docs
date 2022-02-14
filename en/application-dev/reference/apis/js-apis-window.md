@@ -9,6 +9,10 @@
 import window from '@ohos.window';
 ```
 
+## System Capabilities
+SystemCapability.WindowManager.WindowManager.Core
+
+
 ## Required Permissions<a name="section11257113618419"></a>
 
 ohos.permission.SYSTEM\_FLOAT\_WINDOW
