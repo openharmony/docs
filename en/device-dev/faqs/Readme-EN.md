@@ -1,11 +1,11 @@
 # FAQs
 
--   [Overview of FAQs](overview-of-faqs.md)
--   [Environment Setup](environment-setup.md)
--   [Compilation and Building Subsystem](compilation-and-building-subsystem.md)
--   [Burning](burning.md)
--   [Kernel](kernel.md)
--   [Porting](porting.md)
--   [Startup and Recovery](startup-and-recovery.md)
--   [System Applications](system-applications.md)
+-   [Overview of FAQs](faqs-overview.md)
+-   [Environment Setup](faqs-environment-setup.md)
+-   [Compilation and Building Subsystem](faqs-building)
+-   [Burning](faqs-burning.md)
+-   [Kernel](faqs-kernel.md)
+-   [Porting](faqs-porting)
+-   [Startup and Recovery](faqs-startup-and-recovery.md)
+-   [System Applications](faqs-system-applications)
 
