@@ -9,6 +9,10 @@
 import window from '@ohos.window';
 ```
 
+## System Capabilities
+SystemCapability.WindowManager.WindowManager.Core
+
+
 ## Required Permissions<a name="section11257113618419"></a>
 
 ohos.permission.SYSTEM\_FLOAT\_WINDOW
@@ -638,7 +642,7 @@ Obtains the mode of this window.
     ```
     window.getAbilityWindowMode((err, data) => {
         if (err) {
-            console.error(''Failed to obtain the window mode. Cause:' + JSON.stringify(err));
+            console.error('Failed to obtain the window mode. Cause:' + JSON.stringify(err));
             return;
         }
         console.info('Window mode obtained. Data:' + JSON.stringify(data))
