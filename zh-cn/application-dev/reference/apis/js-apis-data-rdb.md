@@ -8,7 +8,6 @@
 
 ```
 import data_rdb from '@ohos.data.rdb'
-import Context from "./application/Context";
 ```
 
 
