@@ -67,6 +67,13 @@ Describe the module from its functionalities, use cases, and use suggestions in 
 import call from '@ohos.telephony.call';
 ```
 
+## System Capabilities
+> *Writing Instructions*
+>
+> 3.1 - Mandatory.
+>
+Example: SystemCapability.BundleManager.BundleFramework
+
 ## Attributes
 
 > *Writing Instructions*
@@ -135,7 +142,7 @@ Required permission: ohos.permission.XXX (Delete this part if no permission is i
 | parameterOne | number \| string \| [CustomType](#CustomType) | Yes| Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI. <br>Provide a link for any custom parameter type.|
 | callback     | Callback\<Array<[CustomType](#CustomType)>>   | No| Describe the parameter. For an optional parameter, describe the consequences if it is not specified. <br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return values**: (Optional. Delete this heading if there is no return value.)
+**Return value**: (Optional. Delete this heading if there is no return value.)
 
 | Type| Description|
 | ------------------------------------------ | -------------------------------------------- |
@@ -199,7 +206,7 @@ Required permission: ohos.permission.XXX (Delete this part if no permission is i
 | parameterOne | number \| string \| [CustomType](#CustomType) | Yes| Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI. <br>Provide a link for any custom parameter type.|
 | callback     | Callback\<Array<[CustomType](#CustomType)>>   | No| Describe the parameter. For an optional parameter, describe the consequences if it is not specified. <br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return values**: (Optional. Delete this heading if there is no return value.)
+**Return value**: (Optional. Delete this heading if there is no return value.)
 
 | Type| Description|
 | ------------------------------------------ | -------------------------------------------- |
