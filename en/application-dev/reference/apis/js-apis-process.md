@@ -599,36 +599,6 @@ Obtains the duration, in milliseconds, from the time the system starts to the ti
     ```
 
 
-## process.getAvailableCores<sup>8+</sup><a name="section168171781714"></a>
-
-getAvailableCores\(\) :number\[\]
-
-Obtains the number of CPU cores available for the current process on a multi-core device.
-
--   Return values
-
-    <a name="table164412912250"></a>
-    <table><thead align="left"><tr id="row7441229172510"><th class="cellrowborder" valign="top" width="20.990000000000002%" id="mcps1.1.3.1.1"><p id="p1144162952513"><a name="p1144162952513"></a><a name="p1144162952513"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="79.01%" id="mcps1.1.3.1.2"><p id="p194442942512"><a name="p194442942512"></a><a name="p194442942512"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row844142919253"><td class="cellrowborder" valign="top" width="20.990000000000002%" headers="mcps1.1.3.1.1 "><p id="p364463482517"><a name="p364463482517"></a><a name="p364463482517"></a>number[]</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="79.01%" headers="mcps1.1.3.1.2 "><p id="p104402911252"><a name="p104402911252"></a><a name="p104402911252"></a>Number of cores available for the process.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
--   Example
-
-    ```
-    var result = getAvailableCores();
-    ```
-
 
 ## process.getPastCputime<sup>8+</sup><a name="section93991533201718"></a>
 
