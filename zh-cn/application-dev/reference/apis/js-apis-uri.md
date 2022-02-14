@@ -18,7 +18,7 @@ import uri from '@ohos.uri'
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | scheme | string | 是 | 否 | 获取URI&nbsp;的协议部分。 |
-| userinfo | string | 是 | 否 | 获取&nbsp;URI&nbsp;的用户信息部分。 |
+| userInfo | string | 是 | 否 | 获取&nbsp;URI&nbsp;的用户信息部分。 |
 | host | string | 是 | 否 | 获取&nbsp;URI&nbsp;的主机名部分（不带端口）。 |
 | port | string | 是 | 否 | 获取&nbsp;URI&nbsp;的端口部分。 |
 | path | string | 是 | 否 | 获取&nbsp;URI&nbsp;的路径部分。 |
