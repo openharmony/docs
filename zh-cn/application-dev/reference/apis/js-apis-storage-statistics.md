@@ -1,7 +1,7 @@
 # 应用空间统计
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -15,7 +15,7 @@ SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 ## storagestatistics.getTotalSizeOfVolume
 
-getTotalSizeOfVolume(volumeUuid: string): Promise\<number\>
+getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 异步获取指定卷的总空间大小，以promise方式返回。
 
@@ -27,31 +27,33 @@ getTotalSizeOfVolume(volumeUuid: string): Promise\<number\>
 
 - 返回值
 
-  | 类型              | 说明             |
-  | ----------------- | ---------------- |
-  | Promise\<number\> | 返回指定卷总空间 |
+  | 类型                  | 说明             |
+  | --------------------- | ---------------- |
+  | Promise&lt;number&gt; | 返回指定卷总空间 |
 
 - 示例
 
   ```js
   let uuid = "";
   storagestatistics.getTotalSizeOfVolume(uuid).then(function(number){
-      // do something
+      console.info("getTotalSizeOfVolume successfully:"+ number);
+  }).catch(function(err){
+      console.info("getTotalSizeOfVolume failed with error:"+ err);
   });
   ```
 
 ## storagestatistics.getTotalSizeOfVolume
 
-getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback\<number\>):void
+getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):void
 
 异步获取指定卷的总空间大小，以callback方式返回。
 
 - 参数
 
-  | 参数名     | 类型                             | 必填 | 说明                       |
-  | ---------- | -------------------------------- | ---- | -------------------------- |
-  | volumeUuid | string                           | 是   | 卷id                       |
-  | callback   | callback:AsyncCallback\<number\> | 是   | 获取指定卷总空间之后的回调 |
+  | 参数名     | 类型                                 | 必填 | 说明                       |
+  | ---------- | ------------------------------------ | ---- | -------------------------- |
+  | volumeUuid | string                               | 是   | 卷id                       |
+  | callback   | callback:AsyncCallback&lt;number&gt; | 是   | 获取指定卷总空间之后的回调 |
 
 - 示例
 
@@ -66,7 +68,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback\<number\>):void
 
 ## storagestatistics.getFreeSizeOfVolume
 
-getFreeSizeOfVolume(volumeUuid: string): Promise\<number\>
+getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 异步获取指定卷的可用空间大小，以promise方式返回。
 
@@ -78,31 +80,34 @@ getFreeSizeOfVolume(volumeUuid: string): Promise\<number\>
 
 - 返回值
 
-  | 类型              | 说明               |
-  | ----------------- | ------------------ |
-  | Promise\<number\> | 返回指定卷可用空间 |
+  | 类型                  | 说明               |
+  | --------------------- | ------------------ |
+  | Promise&lt;number&gt; | 返回指定卷可用空间 |
 
 - 示例
 
   ```js
   let uuid = "";
   storagestatistics.getFreeSizeOfVolume(uuid).then(function(number){
-      // do something
+      console.info("getFreeSizeOfVolume successfully:"+ number);
+  }).catch(function(err){
+      console.info("getFreeSizeOfVolume failed with error:"+ err);
   });
+  
   ```
 
 ## storagestatistics.getFreeSizeOfVolume
 
-getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback\<number\>):void
+getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):void
 
 异步获取指定卷的可用空间大小，以callback方式返回。
 
 - 参数
 
-  | 参数名     | 类型                             | 必填 | 说明                         |
-  | ---------- | -------------------------------- | ---- | ---------------------------- |
-  | volumeUuid | string                           | 是   | 卷id                         |
-  | callback   | callback:AsyncCallback\<number\> | 是   | 获取指定卷可用空间之后的回调 |
+  | 参数名     | 类型                                 | 必填 | 说明                         |
+  | ---------- | ------------------------------------ | ---- | ---------------------------- |
+  | volumeUuid | string                               | 是   | 卷id                         |
+  | callback   | callback:AsyncCallback&lt;number&gt; | 是   | 获取指定卷可用空间之后的回调 |
 
 - 示例
 
@@ -115,7 +120,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback\<number\>):void
 
 ## storagestatistics.getBundleStats
 
-getBundleStats(volumeUuid: string,  packageName:String, ): Promise\<BundleStats\>
+getBundleStats(volumeUuid: string,  packageName:String, ): Promise&lt;BundleStats&gt;
 
 异步获取指定卷上的应用存储状态，以promise方式返回。
 
@@ -138,22 +143,24 @@ getBundleStats(volumeUuid: string,  packageName:String, ): Promise\<BundleStats\
   let uuid = "";
   let packageName = "";
   storagestatistics.getBundleStats(uuid, packageName).then(function(BundleStats){
-      // do something
+      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
+  }).catch(function(err){
+      console.info("getBundleStats failed with error:"+ err);
   });
   ```
 
 ## storagestatistics.getBundleStats
 
-getBundleStats(volumeUuid: string, callback:AsyncCallback\<BundleStats\>):void
+getBundleStats(volumeUuid: string, callback:AsyncCallback&lt;BundleStats&gt;):void
 
 异步获取指定卷上的应用存储状态，以callback方式返回。
 
 - 参数
 
-  | 参数名     | 类型                                                  | 必填 | 说明                                 |
-  | ---------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-  | volumeUuid | string                                                | 是   | 卷id                                 |
-  | callback   | callback:AsyncCallback\<[Bundlestats](#bundlestats)\> | 是   | 获取指定卷上的应用存储状态之后的回调 |
+  | 参数名     | 类型                                                      | 必填 | 说明                                 |
+  | ---------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+  | volumeUuid | string                                                    | 是   | 卷id                                 |
+  | callback   | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储状态之后的回调 |
 
 - 示例
 

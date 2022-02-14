@@ -1,7 +1,7 @@
 # 卷管理
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -15,15 +15,15 @@ SystemCapability.FileManagement.StorageService.Volume
 
 ## volumemanager.getAllVolumes
 
-getAllVolumes(): Promise\<Volume[]\>
+getAllVolumes(): Promise&lt;Volume[]&gt;
 
 异步获取当前所有可获得的卷信息，以promise方式返回。
 
 - 返回值
 
-  | 类型                           | 说明                       |
-  | ------------------------------ | -------------------------- |
-  | Promise\<[Volume](#volume)[]\> | 返回当前所有可获得的卷信息 |
+  | 类型                               | 说明                       |
+  | ---------------------------------- | -------------------------- |
+  | Promise&lt;[Volume](#volume)[]&gt; | 返回当前所有可获得的卷信息 |
 
 - 示例
 
@@ -35,15 +35,15 @@ getAllVolumes(): Promise\<Volume[]\>
 
 ## volumemanager.getAllVolumes
 
-getAllVolumes(callback:AsyncCallback\<Volume[]\>):void
+getAllVolumes(callback:AsyncCallback&lt;Volume[]&gt;):void
 
 异步获取当前所有可获得的卷信息，以callback方式返回。
 
 - 参数
 
-  | 参数名   | 类型                                          | 必填 | 说明                                 |
-  | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback:AsyncCallback\<[Volume](#volume)[]\> | 是   | 获取当前所有可获得的卷信息之后的回调 |
+  | 参数名   | 类型                                              | 必填 | 说明                                 |
+  | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
+  | callback | callback:AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷信息之后的回调 |
   
 - 示例
 
@@ -57,7 +57,7 @@ getAllVolumes(callback:AsyncCallback\<Volume[]\>):void
 
 ## volumemanager.mount
 
-mount(volumeId: string): Promise\<boolean\>
+mount(volumeId: string): Promise&lt;boolean&gt;
 
 异步挂载指定卷，以promise方式返回。
 
@@ -69,9 +69,9 @@ mount(volumeId: string): Promise\<boolean\>
 
 - 返回值
 
-  | 类型               | 说明       |
-  | ------------------ | ---------- |
-  | Promise\<boolean\> | 挂载指定卷 |
+  | 类型                   | 说明       |
+  | ---------------------- | ---------- |
+  | Promise&lt;boolean&gt; | 挂载指定卷 |
 
 - 示例
 
@@ -84,16 +84,16 @@ mount(volumeId: string): Promise\<boolean\>
 
 ## volumemanager.mount
 
-mount(volumeId: string, callback:AsyncCallback\<boolean\>):void
+mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 异步获取指定卷的可用空间大小，以callback方式返回。
 
 - 参数
 
-  | 参数名   | 类型                              | 必填 | 说明                 |
-  | -------- | --------------------------------- | ---- | -------------------- |
-  | volumeId | string                            | 是   | 卷id                 |
-  | callback | callback:AsyncCallback\<boolean\> | 是   | 挂载指定卷之后的回调 |
+  | 参数名   | 类型                                  | 必填 | 说明                 |
+  | -------- | ------------------------------------- | ---- | -------------------- |
+  | volumeId | string                                | 是   | 卷id                 |
+  | callback | callback:AsyncCallback&lt;boolean&gt; | 是   | 挂载指定卷之后的回调 |
 
 - 示例
 
@@ -106,7 +106,7 @@ mount(volumeId: string, callback:AsyncCallback\<boolean\>):void
 
 ## volumemanager.unmount
 
-unmount(volumeId: string): Promise\<boolean\>
+unmount(volumeId: string): Promise&lt;boolean&gt;
 
 异步卸载指定卷，以promise方式返回。
 
@@ -118,9 +118,9 @@ unmount(volumeId: string): Promise\<boolean\>
 
 - 返回值
 
-  | 类型               | 说明       |
-  | ------------------ | ---------- |
-  | Promise\<boolean\> | 卸载指定卷 |
+  | 类型                   | 说明       |
+  | ---------------------- | ---------- |
+  | Promise&lt;boolean&gt; | 卸载指定卷 |
 
 - 示例
 
@@ -133,16 +133,16 @@ unmount(volumeId: string): Promise\<boolean\>
 
 ## volumemanager.unmount
 
-unmount(volumeId: string, callback:AsyncCallback\<boolean\>):void
+unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 异步卸载指定卷，以callback方式返回。
 
 - 参数
 
-  | 参数名   | 类型                              | 必填 | 说明                 |
-  | -------- | --------------------------------- | ---- | -------------------- |
-  | volumeId | string                            | 是   | 卷id                 |
-  | callback | callback:AsyncCallback\<boolean\> | 是   | 卸载指定卷之后的回调 |
+  | 参数名   | 类型                                  | 必填 | 说明                 |
+  | -------- | ------------------------------------- | ---- | -------------------- |
+  | volumeId | string                                | 是   | 卷id                 |
+  | callback | callback:AsyncCallback&lt;boolean&gt; | 是   | 卸载指定卷之后的回调 |
 
 - 示例
 
