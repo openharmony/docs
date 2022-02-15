@@ -193,8 +193,8 @@ Calls back an asynchronous function. In the callback, the first parameter indica
     }
     var cb = util.callbackWrapper(promiseFn);
     cb((err, ret) => {
-        expect(err).strictEqual('value');
-        expect(ret).strictEqual(undefined);
+        console.log(err);
+        console.log(ret);
     })
     ```
 
@@ -259,7 +259,7 @@ Processes an asynchronous function and returns a promise version.
     }
     let newPromiseObj = util.promiseWrapper(aysnFun)("Hello", 'World');
     newPromiseObj.then(res => {
-        expect(res).strictEqual('HelloWorld');
+        console.log(res);
     })
     ```
 
@@ -3054,7 +3054,7 @@ Encodes the input content asynchronously.
     var rarray = new Uint8Array([99,122,69,122]);
     await that.encode(array).then(val=>{    
         for (var i = 0; i < rarray.length; i++) {        
-            expect(val[i]).assertEqual(rarray[i])
+            console.log(val[i])
         }
     })
     done();
@@ -3115,7 +3115,7 @@ Encodes the input content asynchronously into a string.
     var that = new util.Base64();
     var array = new Uint8Array([115,49,51]);
     await that.encodeToString(array).then(val=>{    
-        expect(val).assertEqual('czEz')
+        console.log(val)
     })
     done();
     ```
@@ -3177,7 +3177,7 @@ Decodes the input content asynchronously.
     var rarray = new Uint8Array([115,49,51]);
     await that.decode(array).then(val=>{    
         for (var i = 0; i < rarray.length; i++) {        
-            expect(val[i]).assertEqual(rarray[i])
+            console.log(val[i])
         }
     })
     done();
@@ -5173,5 +5173,4 @@ Checks whether the input value is of the  **WeakSet**  type.
     var that = new util.Types();
     var result = that.isWeakSet(new WeakSet());
     ```
-
 
