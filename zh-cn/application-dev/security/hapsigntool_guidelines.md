@@ -42,7 +42,9 @@ hap包中的描述文件，该描述文件描述了已授权的证书权限和�
  
     ```shell    
         gradle build 
-        或
+    ```
+     或
+    ```shell
         gradle jar
     ```
     
