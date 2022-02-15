@@ -86,8 +86,8 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
   }
   var cb = util.callbackWrapper(promiseFn);
   cb((err, ret) => {
-      expect(err).strictEqual('value');
-      expect(ret).strictEqual(undefined);
+      console.log(err);
+      console.log(ret);
   })
   ```
 
@@ -119,7 +119,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
   }
   let newPromiseObj = util.promiseWrapper(aysnFun)("Hello", 'World');
   newPromiseObj.then(res => {
-      expect(res).strictEqual('HelloWorld');
+      console.log(res);
   })
   ```
 
@@ -1426,7 +1426,7 @@ encode(src:Uint8Array):Promise&lt;Uint8Array&gt;
   var rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
-          expect(val[i]).assertEqual(rarray[i])
+          console.log(val[i])
       }
   })
   ```
@@ -1453,7 +1453,7 @@ encodeToString(src:Uint8Array):Promise&lt;string&gt;
   var that = new util.Base64();
   var array = new Uint8Array([115,49,51]);
   that.encodeToString(array).then(val=>{    
-      expect(val).assertEqual('czEz')
+      console.log(val)
   })
   ```
 
@@ -1481,7 +1481,7 @@ decode(src:Uint8Array | string):Promise&lt;Uint8Array&gt;
   var rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
-          expect(val[i]).assertEqual(rarray[i])
+          console.log(val[i])
       }
   })
   ```
