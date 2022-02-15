@@ -71,6 +71,7 @@
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-bytrace.md)
     - [故障日志获取](js-apis-faultLogger.md)
+    - [日志打印](js-apis-hilog.md)
 - 语言基础类库
     - [获取进程相关的信息](js-apis-process.md)
     - [URL字符串解析](js-apis-url.md)
