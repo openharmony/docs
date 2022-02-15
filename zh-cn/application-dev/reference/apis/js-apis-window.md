@@ -11,6 +11,11 @@ import window from '@ohos.window';
 ```
 
 
+## 系统能力
+SystemCapability.WindowManager.WindowManager.Core
+
+
+
 ## 权限列表
 
 ohos.permission.SYSTEM_FLOAT_WINDOW
@@ -189,7 +194,7 @@ getAbilityWindowMode(callback: AsyncCallback&lt;WindowMode&gt;): void
   ```
   window.getAbilityWindowMode((err, data) => {
       if (err) {
-          console.error(''Failed to obtain the window mode. Cause:' + JSON.stringify(err));
+          console.error('Failed to obtain the window mode. Cause:' + JSON.stringify(err));
           return;
       }
       console.info('Window mode obtained. Data:' + JSON.stringify(data))

@@ -1,18 +1,17 @@
 # 目录环境能力
 
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
-```
+```js
 import environment from '@ohos.environment';
 ```
 
+## 系统能力
 
-
-## 权限列表
-
-无
+SystemCapability.FileManagement.File.Environment
 
 ## environment.getStorageDataDir
 
@@ -28,11 +27,11 @@ getStorageDataDir():Promise&lt;string&gt;
 
 - 示例：
 
-  ```
+  ```js
   environment.getStorageDataDir().then(function(path){
-  	// do something
+      console.info("getStorageDataDir successfully:"+ path);
   }).catch(function(error){
-      
+      console.info("getStorageDataDir failed with error:"+ error);
   });
   ```
 
@@ -50,7 +49,7 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 
 - 示例：
 
-  ```
+  ```js
   environment.getStorageDataDir(function(error, path){
       // do something
   });
@@ -70,11 +69,11 @@ getUserDataDir():Promise&lt;string&gt;
 
 - 示例：
 
-  ```
+  ```js
   environment.getUserDataDir().then(function(path){
-  	// do something
+      console.info("getUserDataDir successfully:"+ path);
   }).catch(function(error){
-      
+      console.info("getUserDataDir failed with error:"+ error);
   });
   ```
 
@@ -92,7 +91,7 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
   
 - 示例：
 
-  ```
+  ```js
   environment.getUserDataDir(function(error, path){
       // do something
   });

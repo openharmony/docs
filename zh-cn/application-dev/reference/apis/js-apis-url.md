@@ -11,11 +11,6 @@ import Url from '@ohos.url'
 ```
 
 
-## 权限
-
-无
-
-
 ## URLSearchParams
 
 

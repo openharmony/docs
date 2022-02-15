@@ -1,11 +1,12 @@
 # statfs
 
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
-```
-import statfs from '@ohos.statfs'
+```js
+import statfs from '@ohos.statfs';
 ```
 
 ## 使用说明
@@ -16,13 +17,13 @@ import statfs from '@ohos.statfs'
 
 通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在绝对路径为：
 
-```
-let path = dir + "xxx.txt"
+```js
+let path = dir + "xxx.txt";
 ```
 
-## 权限列表
+## 系统能力
 
-无
+SystemCapability.FileManagement.File.FileIO
 
 ## statfs.getFreeBytes
 
@@ -44,8 +45,13 @@ getFreeBytes(path:string):Promise&lt;number&gt;
 
 - 示例：
 
-  ```
-  let num = await statfs.getFreeBytes(path);
+  ```js
+  let path = "/data";
+  statfs.getFreeBytes(path).then(function (number){
+      console.info("getFreeBytes successfully:"+ number);
+  }).catch(function(err){
+      console.info("getFreeBytes failed with error:"+ err);
+  });
   ```
 
 ## statfs.getFreeBytes
@@ -63,7 +69,7 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 - 示例：
 
-  ```
+  ```js
   statfs.getFreeBytes(path, function(err, number){
       //do something
   });
@@ -89,8 +95,13 @@ getTotalBytes.(path:string):Promise&lt;number&gt;
 
 - 示例：
 
-  ```
-  let num = await statfs.getTotalBytes(path);
+  ```js
+  let path = "/data";
+  statfs.getTotalBytes(path).then(function (number){
+      console.info("getTotalBytes successfully:"+ number);
+  }).catch(function(err){
+      console.info("getTotalBytes failed with error:"+ err);
+  });
   ```
 
 ## statfs.getTotalBytes
@@ -108,7 +119,7 @@ getTotalBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 - 示例：
 
-  ```
+  ```js
   statfs.getTotalBytes(path, function(err, number){
       //do something
   });

@@ -1,18 +1,5 @@
 # ParticleAbility Module
 
-## Applicable Devices
-
-| API                                                          | Phone| Tablet| Smart TV| Wearable| Lite Wearable| SmartVision Device|
-| ------------------------------------------------------------ | ---- | ---- | ------ | -------- | -------------- | ------------ |
-| particleAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void | Yes| Yes| Yes| Yes| No| No|
-| particleAbility.startAbility(parameter: StartAbilityParameter): Promise\<number> | Yes| Yes| Yes| Yes| No| No|
-| particleAbility.terminateSelf(callback: AsyncCallback\<void>): void | Yes| Yes| Yes| Yes| No| No|
-| particleAbility.terminateSelf(): Promise\<void>              | Yes| Yes| Yes| Yes| No| No|
-| particleAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper | Yes| Yes| Yes| Yes| No| No|
-| particleAbility.connectAbility(request: Want, options:ConnectOptions): number | Yes| Yes| Yes| Yes| No| No|
-| particleAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void | Yes| Yes| Yes| Yes| No| No|
-| particleAbility.disconnectAbility(connection: number): Promise\<void> | Yes| Yes| Yes| Yes| No| No|
-
 ## Constraints
 
 The ParticleAbility module is used to perform operations on abilities of the Data and Service types.

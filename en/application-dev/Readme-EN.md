@@ -8,8 +8,13 @@
     -   [JavaScript-based Web-like Development Paradigm](ui/ui-arkui-js.md)
 
     -   [TypeScript-based Declarative Development Paradigm](ui/ui-arkui-ts.md)
+-   [Agent-Powered Scheduled Reminders ](background-agent-scheduled-reminder/Readme-EN.md)
+-   [Background Task Management ](background-task-management/Readme-EN.md)
 -   [Media](media/Readme-EN.md)
+-   [Security](security/Readme-EN.md)
 -   [IPC & RPC](connectivity/ipc-rpc.md)
+-   [Data Management](database/Readme-EN.md)
+-   [USB Service](usb/Readme-EN.md)
 -   [DFX](dfx/Readme-EN.md)
 -   [Development References](reference/Readme-EN.md)
     -   [JavaScript-based Web-like Development Paradigm](reference/arkui-js/Readme-EN.md)

@@ -337,13 +337,6 @@ Enumerates the audio channels.
 | :----- | :------------ | :--------------- |
 | CHANNEL_1 | 0x1 << 0   | Channel count 1. |
 | CHANNEL_2 | 0x1 << 1   | Channel count 2. |
-| CHANNEL_3 | 0x1 << 2   | Channel count 3. |
-| CHANNEL_4 | 0x1 << 3   | Channel count 4. |
-| CHANNEL_5 | 0x1 << 4   | Channel count 5. |
-| CHANNEL_6 | 0x1 << 5   | Channel count 6. |
-| CHANNEL_7 | 0x1 << 6   | Channel count 7. |
-| CHANNEL_8 | 0x1 << 7   | Channel count 8. |
-
 
 ## AudioSamplingRate<sup>8+</sup><a name="audiosamplingrate"></a>
 Enumerates the audio sampling rates.

@@ -575,6 +575,7 @@ prepare(config: AudioRecorderConfig): void
 **示例：**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 let audioRecorderConfig = {
     audioEncoder : AAC_LC ,
     audioEncodeBitRate : 22050,
@@ -596,6 +597,7 @@ start(): void
 **示例：**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.start();
 ```
 
@@ -608,6 +610,7 @@ stop(): void
 **示例：**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.stop();
 ```
 
@@ -620,6 +623,7 @@ release(): void
 **示例：**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.release();
 ```
 
@@ -634,6 +638,7 @@ reset(): void
 **示例：**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.reset();
 ```
 
@@ -653,6 +658,7 @@ on(type: 'prepare' | 'start' | 'stop' | 'release' | 'reset', callback: () => voi
 **示例：**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.on('prepare', () => {
   console.log('Preparation succeeded.');
   audiorecorder.start();

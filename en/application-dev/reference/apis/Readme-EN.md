@@ -9,13 +9,14 @@
 - Event Notification
     -   [CommonEvent Module](js-apis-commonEvent.md)
     -   [Notification Module](js-apis-notification.md)
+    -   [Reminder Agent](js-apis-reminderAgent.md)
 -   Resource Management
     -   [Resource Manager](js-apis-resource-manager.md)
     -   [Internationalization \(intl\) ](js-apis-intl.md)
     -   [Internationalization \(i18n\) ](js-apis-i18n.md)
 -   Media
     -   [Audio Management](js-apis-audio.md)
-    -   [Media Playback and Recording](js-apis-media.md)
+    -   [Media](js-apis-media.md)
 -   Security
     - [User Authentication](js-apis-useriam-userauth.md)
 -   Data Management
@@ -63,6 +64,9 @@
 -   Language Base Class Library
     -   [Obtaining Process Information](js-apis-process.md)
     -   [URL String Parsing](js-apis-url.md)
+    -   [URI String Parsing](js-apis-uri.md)
     -   [Util](js-apis-util.md)
+    -   [XML Parsing and Generation](js-apis-xml.md)
+    -   [XML-to-JavaScript Conversion](js-apis-convertxml.md)
     -   [Worker Startup](js-apis-worker.md)
 

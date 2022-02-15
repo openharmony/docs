@@ -10,6 +10,9 @@
 import sensor from '@ohos.sensor';
 ```
 
+## 系统能力
+
+SystemCapability.Sensors.Sensor
 
 ## 权限列表
 

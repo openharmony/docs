@@ -15,11 +15,6 @@ import util from '@ohos.util';
 ```
 
 
-## 权限
-
-无
-
-
 ## util.printf
 
 printf(format: string,  ...args: Object[]): string
@@ -91,8 +86,8 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
   }
   var cb = util.callbackWrapper(promiseFn);
   cb((err, ret) => {
-      expect(err).strictEqual('value');
-      expect(ret).strictEqual(undefined);
+      console.log(err);
+      console.log(ret);
   })
   ```
 
@@ -124,7 +119,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
   }
   let newPromiseObj = util.promiseWrapper(aysnFun)("Hello", 'World');
   newPromiseObj.then(res => {
-      expect(res).strictEqual('HelloWorld');
+      console.log(res);
   })
   ```
 
@@ -296,7 +291,7 @@ RationalNumber的构造函数。
 
 - 示例：
   ```
-  var rationalNumber = new util.RationalNumber(1,2)；
+  var rationalNumber = new util.RationalNumber(1,2);
   ```
 
 
@@ -551,7 +546,7 @@ constructor(capacity?:number)
 
 - 示例：
   ```
-  var lrubuffer= new util.LruBuffer()；
+  var lrubuffer= new util.LruBuffer();
   ```
 
 
@@ -661,7 +656,7 @@ getMissCount():number
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
-  pro.get(2)
+  pro.get(2);
   var result = pro.getMissCount();
   ```
 
@@ -896,7 +891,7 @@ afterRemoval(isEvict:boolean,key:K,value:V,newValue:V):void
   		}
   	}
   }
-  ChildLruBuffer.getInstance().afterRemoval(false,10,30,null)；
+  ChildLruBuffer.getInstance().afterRemoval(false,10,30,null);
   ```
 
 
@@ -1115,7 +1110,7 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
   var tempMiDF = new Temperature(35);
   var tempMidS = new Temperature(39);
   var range = new util.Scope(tempLower, tempUpper);
-  var result = range.intersect(tempMiDF, tempMidS)；
+  var result = range.intersect(tempMiDF, tempMidS);
   ```
 
 
@@ -1135,7 +1130,7 @@ getUpper():ScopeType
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
   var range = new util.Scope(tempLower, tempUpper);
-  var result = range.getUpper()；
+  var result = range.getUpper();
   ```
 
 
@@ -1155,7 +1150,7 @@ getLower():ScopeType
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
   var range = new util.Scope(tempLower, tempUpper);
-  var result = range.getLower()；
+  var result = range.getLower();
   ```
 
 
@@ -1183,7 +1178,7 @@ expand(lowerObj:ScopeType,upperObj:ScopeType):Scope
   var tempMiDF = new Temperature(35);
   var tempMidS = new Temperature(39);
   var range = new util.Scope(tempLower, tempUpper);
-  var result = range.expand(tempMiDF, tempMidS)； 
+  var result = range.expand(tempMiDF, tempMidS);
   ```
 
 
@@ -1211,7 +1206,7 @@ expand(range:Scope):Scope
   var tempMidS = new Temperature(39);
   var range = new util.Scope(tempLower, tempUpper);
   var rangeFir = new util.Scope(tempMiDF, tempMidS);
-  var result = range.expand(rangeFir)；
+  var result = range.expand(rangeFir);
   ```
 
 
@@ -1237,7 +1232,7 @@ expand(value:ScopeType):Scope
   var tempUpper = new Temperature(40);
   var tempMiDF = new Temperature(35);
   var range = new util.Scope(tempLower, tempUpper);
-  var result = range.expand(tempMiDF)； 
+  var result = range.expand(tempMiDF);
   ```
 
 
@@ -1263,7 +1258,7 @@ contains(value:ScopeType):boolean
   var tempUpper = new Temperature(40);
   var tempMiDF = new Temperature(35);
   var range = new util.Scope(tempLower, tempUpper);
-  range.contains(tempMiDF)；
+  range.contains(tempMiDF);
   ```
 
 
@@ -1291,7 +1286,7 @@ contains(range:Scope):boolean
   var tempLess = new Temperature(20);
   var tempMore = new Temperature(45);
   var rangeSec = new util.Scope(tempLess, tempMore);
-  var result = range.contains(rangeSec)；
+  var result = range.contains(rangeSec);
   ```
 
 
@@ -1309,7 +1304,7 @@ clamp(value:ScopeType):ScopeType
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | [ScopeType](#scopetype8) | 如果传入的value小于下限，则返回lowerObj；如果大于上限值则返回upperObj；如果在当前范围内，则返回value |
+  | [ScopeType](#scopetype8) | 如果传入的value小于下限，则返回lowerObj；如果大于上限值则返回upperObj；如果在当前范围内，则返回value。 |
 
 - 示例：
   ```
@@ -1317,7 +1312,7 @@ clamp(value:ScopeType):ScopeType
   var tempUpper = new Temperature(40);
   var tempMiDF = new Temperature(35);
   var range = new util.Scope(tempLower, tempUpper);
-  var result = range.clamp(tempMiDF)；
+  var result = range.clamp(tempMiDF);
   ```
 
 
@@ -1332,7 +1327,7 @@ Base64的构造函数。
 
 - 示例：
   ```
-  var base64 = new  util.Base64()；
+  var base64 = new  util.Base64();
   ```
 
 
@@ -1429,12 +1424,11 @@ encode(src:Uint8Array):Promise&lt;Uint8Array&gt;
   var that = new util.Base64();
   var array = new Uint8Array([115,49,51]);
   var rarray = new Uint8Array([99,122,69,122]);
-  await that.encode(array).then(val=>{    
+  that.encode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
-          expect(val[i]).assertEqual(rarray[i])
+          console.log(val[i])
       }
   })
-  done();
   ```
 
 
@@ -1458,10 +1452,9 @@ encodeToString(src:Uint8Array):Promise&lt;string&gt;
   ```
   var that = new util.Base64();
   var array = new Uint8Array([115,49,51]);
-  await that.encodeToString(array).then(val=>{    
-      expect(val).assertEqual('czEz')
+  that.encodeToString(array).then(val=>{    
+      console.log(val)
   })
-  done();
   ```
 
 
@@ -1486,12 +1479,11 @@ decode(src:Uint8Array | string):Promise&lt;Uint8Array&gt;
   var that = new util.Base64();
   var array = new Uint8Array([99,122,69,122]);
   var rarray = new Uint8Array([115,49,51]);
-  await that.decode(array).then(val=>{    
+  that.decode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
-          expect(val[i]).assertEqual(rarray[i])
+          console.log(val[i])
       }
   })
-  done();
   ```
 
 
@@ -1588,7 +1580,7 @@ isArgumentsObject(value: Object):boolean
 
 isArrayBuffer(value: Object):boolean
 
-检查输入的value是否是ArrayBuffer对象类型。
+检查输入的value是否是ArrayBuffer类型。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |

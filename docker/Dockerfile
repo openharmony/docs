@@ -43,16 +43,17 @@ RUN apt-get update -y \
 	&& apt-get install gcc-arm-linux-gnueabi -y \
 	&& apt-get install build-essential \
 	&& apt-get install locales \
+	&& apt-get install ruby -y \
 	&& locale-gen "en_US.UTF-8" \
 	&& rm -rf /bin/sh /usr/bin/python /usr/bin/python3 \
 	&& ln -s /bin/bash /bin/sh \
 	&& ln -s /usr/bin/python3.8 /usr/bin/python3 \
 	&& ln -s /usr/bin/python3.8 /usr/bin/python \
-	&& pip3 install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple setuptools \
-	&& pip3 install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple kconfiglib \
-	&& pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple pycryptodome \
-	&& pip3 install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple ecdsa \
-	&& python3 -m pip install --user ohos-build \
+	&& pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple setuptools \
+	&& pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple kconfiglib \
+	&& pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple pycryptodome \
+	&& pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple ecdsa \
+	&& pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple ohos-build \
 	&& mkdir -p /home/tools \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar \

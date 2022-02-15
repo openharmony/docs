@@ -61,8 +61,6 @@ By default, the downloaded prebuilts binary file is stored in  **OpenHarmony\_2.
 
 ## Obtaining the Docker Environment<a name="section181431248132513"></a>
 
-**Method 1: Obtaining the Docker image from HUAWEI CLOUD SWR**
-
 1.  Obtain the Docker image.
 
     ```
@@ -76,28 +74,6 @@ By default, the downloaded prebuilts binary file is stored in  **OpenHarmony\_2.
     ```
 
 
-**Method 2: Using the Dockerfile to Build a Local Docker Image**
-
-1.  Obtain the Dockerfile script for a local Docker image.
-
-    ```
-    git clone https://gitee.com/openharmony/docs.git
-    ```
-
-2.  Go to the directory of the Dockerfile code and run the following command to build the Docker image:
-
-    ```
-    cd docs/docker/standard
-    ./build.sh
-    ```
-
-3.  Go to the root directory of source code and run the following command to access the Docker build environment:
-
-    ```
-    docker run -it -v $(pwd):/home/openharmony openharmony-docker-standard:0.0.7
-    ```
-
-
 ## Building Source Code<a name="section92391739152318"></a>
 
 1.  Run the following script to start building for standard-system devices \(reference memory ≥ 128 MB\).
@@ -106,7 +82,7 @@ By default, the downloaded prebuilts binary file is stored in  **OpenHarmony\_2.
     ./build.sh --product-name {product_name} --ccache
     ```
 
-    **product\_name**  indicates the platform supported by the current distribution, for example, Hi3516D V300, rk3568.
+    **product\_name**  indicates the platform supported by the current distribution, for example, Hi3516DV300, rk3568.
 
     Files generated during building are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 

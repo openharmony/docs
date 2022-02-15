@@ -1,4 +1,11 @@
-# Distributed Data Service
+# Data Management
 
-- [Distributed Data Service Overview](database-mdds-overview.md)
-- [Distributed Data Service Development](database-mdds-guidelines.md)
+- Distributed Data Service
+  - [Distributed Data Service Overview](database-mdds-overview.md)
+  - [Distributed Data Service Development](database-mdds-guidelines.md)
+- Relational Database Overview
+  - [RDB Overview](database-relational-overview.md)
+  - [RDB Development](database-relational-guidelines.md)
+- Lightweight Data Store
+  - [Lightweight Data Store Overview](database-preference-overview.md)
+  - [Lightweight Data Store Development](database-preference-guidelines.md)

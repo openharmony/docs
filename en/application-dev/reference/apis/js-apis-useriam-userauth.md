@@ -3,30 +3,6 @@
 >**NOTE:** 
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Applicable Devices<a name="section16881239114912"></a>
-
-<a name="table857714145377"></a>
-<table><thead align="left"><tr id="row55778146373"><th class="cellrowborder" valign="top" width="25%" id="mcps1.1.5.1.1"><p id="p7577141417376"><a name="p7577141417376"></a><a name="p7577141417376"></a>Phone</p>
-</th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.1.5.1.2"><p id="p487719816463"><a name="p487719816463"></a><a name="p487719816463"></a>Tablet</p>
-</th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.1.5.1.3"><p id="p135771614203720"><a name="p135771614203720"></a><a name="p135771614203720"></a>Smart TV</p>
-</th>
-<th class="cellrowborder" valign="top" width="25%" id="mcps1.1.5.1.4"><p id="p25772014133712"><a name="p25772014133712"></a><a name="p25772014133712"></a>Wearable</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row8578151423715"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p65782014203718"><a name="p65782014203718"></a><a name="p65782014203718"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p148771182469"><a name="p148771182469"></a><a name="p148771182469"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.3 "><p id="p45783141377"><a name="p45783141377"></a><a name="p45783141377"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.4 "><p id="p11578161443718"><a name="p11578161443718"></a><a name="p11578161443718"></a>No</p>
-</td>
-</tr>
-</tbody>
-</table>
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 

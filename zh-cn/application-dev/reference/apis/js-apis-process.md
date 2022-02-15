@@ -11,11 +11,6 @@ import process from '@ohos.process';
 ```
 
 
-## 权限
-
-无
-
-
 ## 属性
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -143,12 +138,12 @@ kill函数用来发送信号给子进程，结束指定进程。
 
 isIsolatedProcess(): boolean
 
-检查进程是否被隔离。
+判断进程是否被隔离。
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 进程是否隔离 |
+  | boolean | 返回判断结果，如果返回true表示进程被隔离。 |
 
 - 示例：
   ```
@@ -160,17 +155,17 @@ isIsolatedProcess(): boolean
 
 isAppUid(v:number): boolean
 
-判断是否特定程序的uid。
+判断uid是否属于应用程序。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | v | number | 是 | 进程的id。 |
+  | v | number | 是 | 应用程序的uid。 |
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 是否是当前app的uid |
+  | boolean | 返回判断结果，如果返回true表示为应用程序的uid。|
 
 - 示例：
   ```
@@ -182,12 +177,12 @@ isAppUid(v:number): boolean
 
 is64Bit(): boolean
 
-判断运行环境是不是64位。
+判断运行环境是否64位。
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 是不是64位环境 |
+  | boolean | 返回判断结果，如果返回true表示为64位环境。 |
 
 - 示例：
   ```
@@ -204,12 +199,12 @@ getUidForName(v:string): number
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | v | string | 是 | 进程name |
+  | v | string | 是 | 进程名。 |
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 进程的uid |
+  | number | 返回进程uid。|
 
 - 示例：
   ```
@@ -221,17 +216,17 @@ getUidForName(v:string): number
 
 getThreadPriority(v:number): number
 
-根据指定的 TID 获取线程优先级。
+根据指定的tid获取线程优先级。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | v | number | 是 | 进程的id |
+  | v | number | 是 | 指定的线程tid。 |
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 进程的优先级 |
+  | number | 返回线程的优先级。 |
 
 - 示例：
   ```
@@ -249,30 +244,12 @@ getStartRealtime() :number
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 时间 |
+  | number | 返回经过的实时时间。|
 
 - 示例：
   ```
   var realtime = process.getStartRealtime();
   ```
-
-
-## process.getAvailableCores<sup>8+</sup>
-
-getAvailableCores() :number[]
-
-获取多核设备上当前进程可用的 CPU 内核。
-
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number[] | 可用内核数 |
-
-- 示例：
-  ```
-  var result = getAvailableCores();
-  ```
-
 
 ## process.getPastCputime<sup>8+</sup>
 
@@ -283,7 +260,7 @@ getPastCputime() :number
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 时间 |
+  | number | 返回经过的CPU时间。 |
 
 - 示例：
   ```
@@ -295,17 +272,17 @@ getPastCputime() :number
 
 getSystemConfig(name:number): number
 
-用该方法发送signal到指定的进程。
+获取系统配置信息。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | name | number | 是 | 系统配置参数名 |
+  | name | number | 是 | 指定系统配置参数名。 |
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 配置信息 |
+  | number | 返回系统配置信息。 |
 
 - 示例：
   ```
@@ -323,12 +300,12 @@ getEnvironmentVar(name:string): string
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | name | string | 是 | 环境名 |
+  | name | string | 是 | 环境变量名。 |
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | string | 环境名对应的value |
+  | string | 返回环境变量名对应的value。 |
 
 - 示例：
   ```
@@ -367,7 +344,7 @@ runCmd(command: string, options?: { timeout : number, killSignal ：number | str
   var result = child.wait();
   child.getOutput.then(val=>{
       console.log("child.getOutput = " + val);
-  }
+  })
   ```
 
 

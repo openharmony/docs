@@ -1,5 +1,13 @@
 ### 0.0.5 (2021/06/21)
 
+1\. Updated hb.
+
+2\. Added the installation of ruby.
+
+
+
+### 0.0.5 (2021/06/21)
+
 1\. Updated LLVM from 10.0.1-53907 to 10.0.1-62608. Introduced support for ipcamera\_hispark\_taurus\_linux.
 
 2\. Added the installation of Bison, Flex, bc, u-boot-tools, and gcc-arm-linux-gnueabi.

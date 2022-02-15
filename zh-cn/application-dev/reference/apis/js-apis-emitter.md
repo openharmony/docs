@@ -8,6 +8,12 @@
 import emitter from '@ohos.events.emitter'
 ```
 
+## 系统能力
+
+```javascript
+SystemCapability.Notification.Emitter
+```
+
 ## 权限列表
 
 无

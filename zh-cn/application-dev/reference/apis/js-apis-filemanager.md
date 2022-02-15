@@ -1,16 +1,18 @@
 # 公共文件访问与管理
-
+>![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 ## 导入模块
 
-```
-import filemanager from 'ohos.filemanager'
+```js
+import filemanager from 'ohos.filemanager';
 ```
 
-## 权限
+## 系统能力
 
-应用需要拥有SystemCapability.FileManagement.FileManagerService权限
+SystemCapability.FileManagement.FileManagerService
 
 ## filemanager.getRoot
+
 getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
 以异步方法获取第一层相册，目录信息。使用promise形式返回结果。
@@ -18,28 +20,26 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | dev | DevInfo | 否 | 设备名, 当前仅支持设备'local' |
+  | dev | [DevInfo](#devinfo) | 否 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
 
 - 返回值
 
   | 类型 | 说明 |
   | --- | -- |
-  | Promise&lt;FileInfo[]&gt; | 第一层目录相册信息 |
+  | Promise&lt;[FileInfo](#fileinfo)[]&gt; | 第一层目录相册信息 |
 
 - 示例
 
 ```js
-filemanager.getRoot()
-.then((fileInfo) => {
+filemanager.getRoot().then((fileInfo) => {
     if(Array.isArray(fileInfo)) {
         for (var i = 0; i < fileInfo.length; i++) {
             console.log(JSON.Stringify(fileInfo))
         }
     }
-})
-.catch((err) => {
+}).catch((err) => {
     console.log(err)
-})
+});
 ```
 
 ## filemanager.getRoot
@@ -52,8 +52,8 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | dev      | DevInfo              | 否   | 设备名, 当前仅支持设备'local' |
-  | callback | AsyncCallback&lt;FileInfo[]&gt; | 是   | 异步获取文件的信息之后的回调  |
+  | dev      | [DevInfo](#devinfo)              | 否   | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
+  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调  |
 
 - 示例
 
@@ -78,10 +78,10 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   | --- | --- | --- | -- |
   | type | string | 是 | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
   | path | string | 是 | 待查询目录uri |
-  | dev | DevInfo | 是 | 设备名, 当前仅支持设备'local' |
+  | dev | [DevInfo](#devinfo) | 是 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
   | offset | number | 否 | 待查询文件偏移 |
   | count | number | 否 | 待查询文件个数 |
-  
+
 - 返回值
 
   | 类型 | 说明 |
@@ -123,10 +123,10 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                    | 是   | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
   | path     | string                    | 是   | 待查询目录uri                                                |
-  | dev | DevInfo | 否 | 设备名, 当前仅支持设备'local' |
+  | dev | [DevInfo](#devinfo) | 否 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
   | offset | number | 否 | 待查询文件偏移 |
   | count | number | 否 | 待查询文件个数 |
-  | callback | AsyncCallback&lt;FileInfo[]&gt; | 是   | 异步获取文件的信息之后的回调                                 |
+  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调                                 |
 - 异常
 
   | 错误名称                  | 错误类型                  | 错误码 | 说明                      |
@@ -158,7 +158,7 @@ filemanager.createFile(path : string, filename : string, options? : {dev? : DevI
   | --- | --- | --- | -- |
   | filename | string | 是 | 待创建的文件名 |
   | path | string | 是 | 待保存目的相册uri |
-  | dev | DevInfo | 否 | 设备名, 当前仅支持设备'local' |
+  | dev | [DevInfo](#devinfo) | 否 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
 
 - 返回值
 
@@ -199,8 +199,8 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   | -------- | ------------------------- | ---- | ----------------------------- |
   | filename | string                    | 是   | 待创建的文件名                |
   | path     | string                    | 是   | 待保存目的相册uri             |
-  | dev | DevInfo | 否 | 设备名, 当前仅支持设备'local' |
-  | callback | AsyncCallback&lt;FileInfo[]&gt; | 是   | 异步获取文件的信息之后的回调  |
+  | dev | [DevInfo](#devinfo) | 否 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
+  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调  |
 
 - 异常
 
@@ -225,6 +225,8 @@ filemanager.createFile(media_path, name, (err, uri) => {
 ## FileInfo
 文件信息类型，通过getRoot, listFile等接口返回的类型。
 
+### 属性
+
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
 | --- | -- | -- | -- | -- |
 | name | string | 是 | 否 | 文件名称 |
@@ -236,6 +238,8 @@ filemanager.createFile(media_path, name, (err, uri) => {
 
 ## DevInfo
 设备类型，配置接口访问的设备类型。
+
+### 属性
 
   | 参数名 | 类型 | 可读 | 可写 | 说明 |
   | --- | -- | -- | -- | -- |

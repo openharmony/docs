@@ -371,3 +371,170 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 | WINDOW_MODE_SPLIT_PRIMARY   | 100  | 分屏主屏。 |
 | WINDOW_MODE_SPLIT_SECONDARY | 101  | 分屏次屏。 |
 | WINDOW_MODE_FLOATING        | 102  | 悬浮窗。   |
+
+
+## particleAbility.startBackgroundRunning
+
+startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void;
+
+向系统申请长时任务，使用callback形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的api8接口）
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | number | 是 | 长时任务通知id号 |
+  | request | NotificationRequest | 是 | 通知参数，用于显示通知栏的信息 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+
+- **示例**：
+```js
+import notification from '@ohos.notification';
+import particleAbility from '@ohos.ability.particleAbility';
+import wantAgent from '@ohos.wantAgent';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation failed Cause: " + err);
+    } else {
+        console.info("Operation succeeded");
+    }
+}
+
+let wantAgentInfo = {
+    wants: [
+        {
+            bundleName: "com.example.myapplication",
+            abilityName: "com.example.myapplication.MainAbility"
+        }
+    ],
+    operationType: wantAgent.OperationType.START_ABILITY,
+    requestCode: 0,
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+};
+
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+    let basicContent = {
+        title: "title",
+        text: "text"
+    };
+    let notificationContent = {
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        normal: basicContent
+    };
+    let request = {
+        content: notificatonContent,
+        wantAgent: wantAgentObj
+    };
+    let id = 1;
+    particleAbility.startBackgroundRunning(id, request, callback);
+});
+
+```
+
+## particleAbility.startBackgroundRunning
+
+startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;void&gt;
+
+向系统申请长时任务，使用promise形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的api8接口）
+
+**参数**：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id | number | 是 | 长时任务通知id号 |
+| request | NotificationRequest | 是 | 通知参数，用于显示通知栏的信息 |
+
+**返回值**
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 使用Promise形式返回结果。 |
+
+- **示例**：
+```js
+import notification from '@ohos.notification';
+import particleAbility from '@ohos.ability.particleAbility';
+import wantAgent from '@ohos.wantAgent';
+
+let wantAgentInfo = {
+    wants: [
+        {
+            bundleName: "com.example.myapplication",
+            abilityName: "com.example.myapplication.MainAbility"
+        }
+    ],
+    operationType: wantAgent.OperationType.START_ABILITY,
+    requestCode: 0,
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+};
+
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+    let basicContent = {
+        title: "title",
+        text: "text"
+    };
+    let notificationContent = {
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        normal: basicContent
+    };
+    let request = {
+        content: notificatonContent,
+        wantAgent: wantAgentObj
+    };
+    let id = 1;
+    particleAbility.startBackgroundRunning(id, request).then(() => {
+        console.info("Operation succeeded");
+    }).catch((err) => {
+        console.error("Operation failed Cause: " + err);
+    });
+});
+
+```
+
+## particleAbility.cancelBackgroundRunning
+
+cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
+
+向系统申请取消长时任务，使用callback形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的api8接口）
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+
+- **示例**：
+```js
+import particleAbility from '@ohos.ability.particleAbility';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation failed Cause: " + err);
+    } else {
+        console.info("Operation succeeded");
+    }
+}
+
+particleAbility.cancelBackgroundRunning(callback);
+
+```
+
+## particleAbility.cancelBackgroundRunning
+
+cancelBackgroundRunning(): Promise&lt;void&gt;;
+
+向系统申请取消长时任务，使用promise形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的api8接口）
+
+**返回值**
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 使用Promise形式返回结果。 |
+
+- **示例**：
+```js
+import particleAbility from '@ohos.ability.particleAbility';
+
+particleAbility.cancelBackgroundRunning().then(() => {
+    console.info("Operation succeeded");
+}).catch((err) => {
+    console.error("Operation failed Cause: " + err);
+});
+
+```

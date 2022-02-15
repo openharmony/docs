@@ -1,0 +1,518 @@
+# 线性容器ArrayList
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+## 导入模块
+
+```
+import ArrayList from '@ohos.util.ArrayList'
+```
+
+## 权限
+
+无
+
+## ArrayList
+
+### 属性
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | 是 | 否 | ArrayList的元素个数 |
+
+
+### constructor
+
+constructor();
+
+ArrayList的构造函数。
+
+- 示例：
+  ```
+  let arrayList = new ArrayList();
+  ```
+
+
+### add
+
+add(element: T): boolean;
+
+在ArrayList尾部插入元素。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | element | T | 是 | 添加进去的元素 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 插入成功返回true,失败返回false |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add("a");
+  arrayList.add(1);
+  let b = [1, 2, 3];
+  arrayList.add(b);
+  let c = {name: "lala", age: "13"};
+  arrayList.add(false);
+  ```
+
+### insert
+
+insert(element: T, index: number): void;
+
+在长度范围内任意位置插入指定元素。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | element | T | 是 | 被插入的元素 |
+  | index | number | 是 | 被插入的位置索引 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.insert("A", 0);
+  arrayList.insert(0, 1);
+  arrayList.insert(true, 2);
+  ```
+
+### has
+
+has(element: T): boolean;
+
+判断此ArrayList中是否含有该指定元素。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | element | T | 是 | 指定元素 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 是否包含指定元素 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+  arrayList.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+  arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+  ```
+
+### getIndexOf
+
+getIndexOf(element: T): number;
+
+返回指定元素第一次出现时的下标值，查找失败返回-1。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | element | T | 是 | 指定元素 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 返回指定元素第一次出现时的下标值，查找失败返回-1 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(2);
+  arrayList.add(1);
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.getIndexOf(2);
+  ```
+### getLastIndexOf
+
+getLastIndexOf(element: T): number;
+
+返回指定元素最后一次出现时的下标值，查找失败返回-1。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | element | T | 是 | 指定元素 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 返回指定元素最后一次出现时的下标值，查找失败返回-1 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(2);
+  arrayList.add(1);
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.getLastIndexOf(2);
+  ```
+### removeByIndex
+
+removeByIndex(index: number): T;
+
+根据元素的下标值查找元素，返回元素后将其删除。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | index | number | 是 | 指定元素的下标值 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | T | 返回删除的元素 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.removeByIndex(2);
+  ```
+
+### remove
+
+remove(element: T): boolean;
+
+删除查找到的第一个指定的元素。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | element | T | 是 | 指定元素 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 删除成功返回true,失败返回false |
+
+- 示例：
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.remove(2);
+  ```
+
+### removeByRange
+
+removeByRange(fromIndex: number, toIndex: number): void;
+
+从一段范围内删除元素，包括起始值但不包括终止值。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fromIndex | number | 是 | 起始下标 |
+  | toIndex | number | 是 | 终止下标 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.removeByRange(2, 4);
+  arrayList.removeByRange(4, 3);
+  arrayList.removeByRange(2, 6);
+  ```
+### replaceAllElements
+replaceAllElements(callbackfn: (value: T, index?: number, arraylist?: ArrayList&lt;T&gt;) => T,
+thisArg?: Object): void;
+
+用户操作ArrayList中的元素,用操作后的元素替换原元素并返回操作后的元素。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callbackfn | function | 是 | 回调函数 |
+  | thisArg | Object | 否 | callbackfn被调用时用作this值 |
+
+- callbackfn的参数说明
+  
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | value | T | 是 | 当前遍历到的元素 |
+  | index | number | 否 | 当前遍历到的下标值 |
+  | arraylist | ArrayList&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.replaceAllElements((value, index) => {
+    return value = 2 * value;
+  });
+  arrayList.replaceAllElements((value, index) => {
+    return value = value - 2;
+  });
+  ```
+### forEach
+forEach(callbackfn: (value: T, index?: number, arraylist?: ArrayList&lt;T&gt;) => void,
+thisArg?: Object): void;
+
+通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callbackfn | function | 是 | 回调函数。 |
+  | thisArg | Object | 否 | callbackfn被调用时用作this值 |
+
+- callbackfn的参数说明
+  
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | value | T | 是 | 当前遍历到的元素。 |
+  | index | number | 否 | 当前遍历到的下标值。 |
+  | arraylist | ArrayList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.forEach((value, index) => {
+    console.log(value, index);
+  });
+  ```
+### sort
+sort(comparator?: (firstValue: T, secondValue: T) => number): void;
+ 
+对ArrayList中的元素进行一个排序操作
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | comparator | function | 否 | 回调函数 |
+
+- comparator的参数说明
+  
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | firstValue | T | 是 | 前一项元素 |
+  | secondValue | T | 是 | 后一项元素 |
+ 
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.sort(a, (b => a - b));
+  arrayList.sort(a, (b => b - a));
+  arrayList.sort();
+  ```
+### subArrayList
+subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;;
+
+根据下标截取ArrayList中的一段元素,并返回这一段ArrayList实例, 包括起始值但不包括终止值
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fromIndex | number | 是 | 起始下标 |
+  | toIndex | number | 是 | 终止下标 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | ArrayList&lt;T&gt; | 返回ArrayList对象实例 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.subArrayList(2, 4);
+  arrayList.subArrayList(4, 3);
+  arrayList.subArrayList(2, 6);
+  ```
+
+### clear
+clear(): void;
+
+清除ArrayList中的所有元素,并把length置为0。
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.clear();
+  ```
+### clone
+clone(): ArrayList&lt;T&gt; ;
+
+克隆一个与ArrayList一模一样的实例,并返回克隆后的实例,修改克隆后的实例并不会影响原实例。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | ArrayList&lt;T&gt; | 返回ArrayList对象实例 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.clone();
+  ```
+### getCapacity
+getCapacity(): number;
+
+获取当前实例的容量大小。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 返回arraylist的容量大小 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.getCapacity();
+  ```
+### convertToArray
+convertToArray(): Array&lt;T&gt;;
+
+把当前ArrayList实例转换成数组,并返回转换后的数组。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array&lt;T&gt; | 返回数组类型 |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.convertToArray();
+  ```
+### isEmpty
+isEmpty(): boolean;
+
+判断该ArrayList是否为空。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 为空返回true, 不为空返回false |
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.isEmpty();
+  ```
+### increaseCapacityTo
+increaseCapacityTo(newCapacity: number): void;
+
+如果传入的新容量大于或等于ArrayList中的元素个数，将容量变更为新容量。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | newCapacity | number | 是 | 新容量 |
+
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.increaseCapacityTo(2);
+  arrayList.increaseCapacityTo(8);
+  ```
+### trimToCurrentLength
+trimToCurrentLength(): void;
+
+把容量限制为当前的length大小。
+
+- 示例:
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+  arrayList.trimToCurrentLength(2);
+  ```
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | IterableIterator&lt;T&gt; | 返回一个迭代器 |
+
+- 示例：
+  ```
+  let arrayList = new ArrayList();
+  arrayList.add(2);
+  arrayList.add(4);
+  arrayList.add(5);
+  arrayList.add(4);
+
+  // 使用方法一：
+  for (let item of arrayList) { 
+    console.log(item); 
+  } 
+
+  // 使用方法二：
+  let iter = arrayList[Symbol.iterator]();
+  let temp = iter.next().value;
+  while(temp != undefined) {
+    console.log(temp);
+    temp = iter.next().value;
+  }
+  ```
