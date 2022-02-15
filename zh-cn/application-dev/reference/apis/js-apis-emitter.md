@@ -31,7 +31,7 @@ SystemCapability.Notification.Emitter
 
 ## emitter.on
 
-on(event: [InnerEvent](#InnerEvent), callback: Callback\<[EventData](#EventData)\>): void
+on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
 
 持续订阅某个事件以及接收事件的回调处理。
 
@@ -39,14 +39,14 @@ on(event: [InnerEvent](#InnerEvent), callback: Callback\<[EventData](#EventData)
 
 | 参数名   | 类型                                | 必填 | 说明                     |
 | -------- | ----------------------------------- | ---- | ------------------------ |
-| event    | [InnerEvent](#InnerEvent)           | 是   | 持续订阅的事件           |
-| callback | Callback\<[EventData](#EventData)\> | 是   | 接收订阅事件时的回调处理 |
+| event    | [InnerEvent](#innerevent)           | 是   | 持续订阅的事件           |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理 |
 
 **示例：**
 
 ```javascript
 var innerEvent = {
-    eventId : 1
+    eventId: 1
 };
 var callback = (eventData) => {
     console.info('callback');
@@ -56,7 +56,7 @@ emitter.on(innerEvent, callback);
 
 ## emitter.once
 
-once(event: [InnerEvent](#InnerEvent), callback: Callback\<[EventData](#EventData)\>): void
+once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
 
 单次订阅某个事件以及接收事件的回调处理，接收到回调处理后自动取消订阅。
 
@@ -64,14 +64,14 @@ once(event: [InnerEvent](#InnerEvent), callback: Callback\<[EventData](#EventDat
 
 | 参数名   | 类型                                | 必填 | 说明                     |
 | -------- | ----------------------------------- | ---- | ------------------------ |
-| event    | [InnerEvent](#InnerEvent)           | 是   | 单次订阅的事件           |
-| callback | Callback\<[EventData](#EventData)\> | 是   | 接收订阅事件时的回调处理 |
+| event    | [InnerEvent](#innerevent)           | 是   | 单次订阅的事件           |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理 |
 
 **示例：**
 
 ```javascript
 var innerEvent = {
-    eventId : 1
+    eventId: 1
 };
 var callback = (eventData) => {
     console.info('once callback');
@@ -87,9 +87,9 @@ off(eventId: number): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明           |
-| ------- | ------ | ---- | -------------- |
-| eventId | number | 是   | 单次订阅的事件 |
+| 参数名  | 类型   | 必填 | 说明   |
+| ------- | ------ | ---- | ------ |
+| eventId | number | 是   | 事件ID |
 
 **示例：**
 
@@ -107,20 +107,19 @@ emit(event: InnerEvent, data?: EventData): void
 
 | 参数名 | 类型                      | 必填 | 说明           |
 | ------ | ------------------------- | ---- | -------------- |
-| event  | [InnerEvent](#InnerEvent) | 是   | 发送的事件     |
-| data   | [EventData](#EventData)   | 否   | 事件携带的数据 |
+| event  | [InnerEvent](#innerevent) | 是   | 发送的事件     |
+| data   | [EventData](#eventdata)   | 否   | 事件携带的数据 |
 
 **示例：**
 
 ```javascript
 var eventData = {
     data: {
-        1:"t",
-        'content':"c",
-        "id":1,
+        "content": "c",
+        "id": 1,
     }};
 var innerEvent = {
-    eventId : 1,
+    eventId: 1,
     priority: emitter.EventPriority.HIGH
 };
 emitter.emit(innerEvent, eventData);
@@ -133,7 +132,7 @@ emitter.emit(innerEvent, eventData);
 | 名称     | 参数类型                        | 可读 | 可写 | 说明                               |
 | -------- | ------------------------------- | ---- | ---- | ---------------------------------- |
 | eventId  | number                          | 是   | 是   | 事件的ID，由开发者定义用来辨别事件 |
-| priority | [EventPriority](#EventPriority) | 是   | 是   | 事件被投递的优先级                 |
+| priority | [EventPriority](#eventpriority) | 是   | 是   | 事件被投递的优先级                 |
 
 ## EventData
 
