@@ -152,7 +152,7 @@ Stops the vibration based on the specified **stopMode**. This method uses a prom
 
 stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
-Stops the vibration based on the specified **stopMode**. This method uses a callback to return the execution result. If the specified **stopMode** is different from the mode used to trigger the vibration, this method fails to be called.
+Stops the vibration based on the specified **stopMode**. This method uses an asynchronous callback to return the execution result. If the specified **stopMode** is different from the mode used to trigger the vibration, this method fails to be called.
 
 - Parameters
   | Name| Type| Mandatory| Description|
