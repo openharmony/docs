@@ -117,6 +117,8 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -basicConstraintsPathLen         # 路径长度，可选项，默认为0
          ├── -keystoreFile                    # 密钥库文件，必填项，JKS或P12格式
          ├── -keystorePwd                     # 密钥库口令，可选项
+         ├── -issuerKeystoreFile              # 签发者密钥库文件，可选项，JKS或P12格式
+         ├── -issuerKeystorePwd               # 签发者密钥库口令，可选项
          ├── -outFile                         # 输出文件，可选项，如果不填，则直接输出到控制台
 
 6.生成应用调试/发布证书
@@ -130,6 +132,8 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -subject                         # 证书主题，必填项
          ├── -validity                        # 证书有效期，可选项，默认为3650天
          ├── -signAlg                         # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA；
+         ├── -issuerKeystoreFile              # 签发者密钥库文件，可选项，JKS或P12格式
+         ├── -issuerKeystorePwd               # 签发者密钥库口令，可选项
          ├── -keystoreFile                    # 密钥库文件，必填项，JKS或P12格式
          ├── -keystorePwd                     # 密钥库口令，可选项
          ├── -outForm                         # 输出证书文件的格式，包括 cert / certChain，可选项，默认为certChain
@@ -148,6 +152,8 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -subject                         # 证书主题，必填项
          ├── -validity                        # 证书有效期，可选项，默认为3650天
          ├── -signAlg                         # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA；
+         ├── -issuerKeystoreFile              # 签发者密钥库文件，可选项，JKS或P12格式
+         ├── -issuerKeystorePwd               # 签发者密钥库口令，可选项
          ├── -keystoreFile                    # 密钥库文件，必填项，JKS或P12格式
          ├── -keystorePwd                     # 密钥库口令，可选项
          ├── -outForm                         # 输出证书文件的格式，包括 cert / certChain，可选项，默认为certChain
@@ -173,11 +179,12 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├                                        codeSignature，emailProtection，smartCardLogin，timestamp，ocspSignature
           ├── -extKeyUsageCritical               # extKeyUsage是否为关键项，可选项，默认为否
           ├── -signAlg                           # 签名算法，必填项，包括SHA256withRSA/SHA384withRSA/SHA256withECDSA/SHA384withECDSA 
-                                                  
           ├── -basicConstraints                  # 是否包含basicConstraints，可选项，默认为否
           ├── -basicConstraintsCritical          # basicConstraints是否包含为关键项，可选项，默认为否
           ├── -basicConstraintsCa                # 是否为CA，可选项，默认为否
           ├── -basicConstraintsPathLen           # 路径长度，可选项，默认为0
+          ├── -issuerKeystoreFile                # 签发者密钥库文件，可选项，JKS或P12格式
+          ├── -issuerKeystorePwd                 # 签发者密钥库口令，可选项
           ├── -keystoreFile                      # 密钥库文件，必填项，JKS或P12格式
           ├── -keystorePwd                       # 密钥库口令，可选项
           ├── -outFile                           # 输出证书文件，可选项，如果不填，则直接输出到控制台
@@ -244,6 +251,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 **<p id="生成应用签名证书密钥对">1.生成应用签名证书密钥对</p>**
  
 调用密钥对生成接口，生成签名密钥并保存到密钥库。
+
 命令实例：
 ```shell
 java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg "ECC"  -keySize "NIST-P-256" -keystoreFile "OpenHarmony.p12" -keyPwd "123456" -keystorePwd "123456"
@@ -265,7 +273,8 @@ java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg 
 **<p id="生成应用签名证书">2.生成应用签名证书</p>**
 
 调用应用签名证书生成接口，使用本地二级CA证书签发应用签名证书。
-  命令实例：
+
+命令实例：
     
 ```shell
 java -jar hap-sign-tool.jar generate-app-cert -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA"  -issuer "C=CN,O=OpenHarmony,OU=OpenHarmony Team,CN= OpenHarmony Application CA" -issuerKeyAlias "openharmony application ca" -subject "C=CN,O=OpenHarmony,OU=OpenHarmony Team,CN=OpenHarmony Application Release" -keystoreFile "OpenHarmony.p12" -subCaCertFile "subCA.cer" -rootCaCertFile "rootCA.cer" -outForm "certChain" -outFile "app1.pem" -keyPwd "123456" -keystorePwd "123456" -issuerKeyPwd "123456" -validity "365"
@@ -291,7 +300,8 @@ java -jar hap-sign-tool.jar generate-app-cert -keyAlias "oh-app1-key-v1" -signAl
 
 **<p id="对profile文件进行签名">3.对profile文件进行签名</p>**
 
-调用Profile文件签名接口，使用Profile签名密钥对Profile文件进行签名
+调用Profile文件签名接口，使用Profile签名密钥对Profile文件进行签名。
+
 命令实例：
 
 ```shell
@@ -314,6 +324,7 @@ java -jar hap-sign-tool.jar  sign-profile -keyAlias "openharmony application pro
 **<p id="对Hap包进行签名">4.对Hap包进行签名</p>**
 
 调用Hap包签名接口，使用应用签名密钥为Hap包签名。
+
 命令实例：
 ```shell
 java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "app1.pem" -profileFile "app1-profile.p7b" -inFile "app1-unsigned.zip" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
