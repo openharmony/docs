@@ -24,7 +24,7 @@ SystemCapability.HiviewDFX.HiTrace
 | DONOT_CREATE_SPAN | 1 << 1 | 无分支标志     |
 | TP_INFO           | 1 << 2 | 埋点标志       |
 | NO_BE_INFO        | 1 << 3 | 无起始结束标志 |
-| DONOT_ENABLE_LOG  | 1 << 4 | 日志关联标志   |
+| DISABLE_LOG       | 1 << 4 | 日志关联标志   |
 | FAILURE_TRIGGER   | 1 << 5 | 故障触发标志   |
 | D2D_TP_INFO       | 1 << 6 | 设备间埋点标志 |
 
