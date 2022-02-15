@@ -34,9 +34,9 @@ hap包中的描述文件，该描述文件描述了已授权的证书权限和�
 
  1. 该工具基于Gradle 7.1编译构建，请确认环境已安装配置Gradle环境，并且版本高于或等于7.1。
  
-  ```shell 
+    ```shell 
         gradle -v
-  ```
+    ```
   
  2. 下载代码，命令行打开文件目录至developtools_hapsigner/hapsigntool，执行命令进行编译打包。
  
