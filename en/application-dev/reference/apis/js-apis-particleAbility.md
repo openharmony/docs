@@ -64,7 +64,7 @@ Starts a Service ability. This method uses a promise to return the result.
 **Return value**
 | Type| Description|
 | -------------- | ------------------------- |
-| Promise\<void> | Promise returned with the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -125,7 +125,7 @@ Terminates this Service ability. This method uses a promise to return the result
 **Return value**
 | Type| Description|
 | -------------- | ------------------------- |
-| Promise\<void> | Promise returned with the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -275,7 +275,7 @@ Disconnects this ability from a specific Service ability. This method uses a pro
 **Return value**
 | Type| Description|
 | -------------- | ------------------------- |
-| Promise\<void> | Promise returned with the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 

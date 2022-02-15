@@ -227,7 +227,7 @@ Creates a subscriber. This method uses a promise to return the result.
 **Return value**
 | Type| Description|
 | --------------------------------------------------------- | ---------------- |
-| Promise\<[CommonEventSubscriber](#commoneventsubscriber)> | Promise returned with the subscriber object.|
+| Promise\<[CommonEventSubscriber](#commoneventsubscriber)> | Promise used to return the subscriber object.|
 
 **Example**
 
@@ -440,7 +440,7 @@ Obtains the result code of this common event. This method uses a promise to retu
 
 | Type| Description|
 | ---------------- | -------------------- |
-| Promise\<number> | Promise returned with the result code.|
+| Promise\<number> | Promise used to return the result code.|
 
 **Example**
 
@@ -533,7 +533,7 @@ Obtains the result data of this common event. This method uses a promise to retu
 
 | Type| Description|
 | ---------------- | ------------------ |
-| Promise\<string> | Promise returned with the result data.|
+| Promise\<string> | Promise used to return the result data.|
 
 **Example**
 
@@ -845,7 +845,7 @@ Obtains the subscriber information. This method uses a promise to return the res
 
 | Type| Description|
 | ------------------------------------------------------------ | ---------------------- |
-| Promise\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | Promise returned with the subscriber information.|
+| Promise\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | Promise used to return the subscriber information.|
 
 **Example**
 

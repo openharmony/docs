@@ -56,7 +56,7 @@ If this method is called for the first time, a root directory is created.
 
 | Type| Description|
 | ---------------- | ---------------------- |
-| Promise\<string> | Promise returned with the local root directory of the application.|
+| Promise\<string> | Promise used to return the local root directory of the application.|
 
 **Example**
 
@@ -358,7 +358,7 @@ This method is available only to Page abilities.
 
 | Type| Description|
 | --------------------- | ------------------------------------------ |
-| Promise\<ElementName> | Promise returned with the **ohos.bundle.ElementName** object.|
+| Promise\<ElementName> | Promise used to return the **ohos.bundle.ElementName** object.|
 
 **Example**
 
@@ -400,7 +400,7 @@ Obtains the name of the current process. This method uses a promise to return th
 
 | Type| Description|
 | ---------------- | -------------------- |
-| Promise\<string> | Promise returned with the process name.|
+| Promise\<string> | Promise used to return the process name.|
 
 **Example**
 

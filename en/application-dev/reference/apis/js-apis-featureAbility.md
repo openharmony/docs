@@ -255,7 +255,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 **Return value**
 | Type| Description|
 | -------------- | ----------------------- |
-| Promise\<void> | Promise returned with the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -367,7 +367,7 @@ Obtains the **Want** object sent from this ability. This method uses a promise t
 **Return value**
 | Type| Description|
 | ----------------------- | ------------------------- |
-| Promise\<[Want](#want)> | Promise returned with the result.|
+| Promise\<[Want](#want)> | Promise used to return the result.|
 
 **Example**
 
@@ -429,7 +429,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 **Return value**
 | Type| Description|
 | -------------- | ------------------------- |
-| Promise\<void> | Promise returned with the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -559,7 +559,7 @@ Disconnects this ability from a specific Service ability. This method uses a pro
 **Return value**
 | Type| Description|
 | -------------- | ----------------------- |
-| Promise\<void> | Promise returned with the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
