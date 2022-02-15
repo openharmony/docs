@@ -33,6 +33,8 @@
     - [Statfs](js-apis-statfs.md)
     - [目录环境](js-apis-environment.md)
     - [公共文件访问与管理](js-apis-filemanager.md)
+    - [应用空间统计](js-apis-storage-statistics.md)
+    - [卷管理](js-apis-volumemanager.md)
 - 账号管理
     - [分布式帐号管理](js-apis-distributed-account.md)
     - [应用帐号管理](js-apis-appAccount.md)
