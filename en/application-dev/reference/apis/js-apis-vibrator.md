@@ -166,7 +166,7 @@ Stops the vibration based on the specified **stopMode**. This method uses an asy
       if(error){
           console.log("error.code"+error.code+"error.message"+error.message);
       }else{
-          console.log("Callback returned to indicate successful.");
+          console.log("Callback returned to indicate a successful stop.");
       }
   })
   ```
