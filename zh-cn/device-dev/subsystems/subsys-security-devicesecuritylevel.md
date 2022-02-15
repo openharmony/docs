@@ -1,39 +1,5 @@
 # 设备安全等级管理开发指南
 
-- [设备安全等级管理开发指南](#设备安全等级管理开发指南)
-  - [概述](#概述)
-    - [功能简介](#功能简介)
-    - [基本概念](#基本概念)
-      - [设备安全等级](#设备安全等级)
-      - [DSLM](#dslm)
-    - [运作机制](#运作机制)
-    - [约束与限制](#约束与限制)
-  - [开发指导](#开发指导)
-    - [场景介绍](#场景介绍)
-    - [接口说明](#接口说明)
-    - [开发步骤](#开发步骤)
-    - [开发示例](#开发示例)
-  - [设备安全等级定制](#设备安全等级定制)
-    - [设备安全等级凭据](#设备安全等级凭据)
-    - [默认实现](#默认实现)
-    - [凭据文件生成步骤](#凭据文件生成步骤)
-      - [1. 构造header](#1-构造header)
-      - [2. 构造payload](#2-构造payload)
-      - [3. 构造signature](#3-构造signature)
-        - [3.1 构造构建待签名的原始数据](#31-构造构建待签名的原始数据)
-        - [3.2 生成签名私钥](#32-生成签名私钥)
-        - [3.3 对原始数据进行签名](#33-对原始数据进行签名)
-      - [4. 构造attestation](#4-构造attestation)
-        - [4.1 生成三级签名验证信息](#41-生成三级签名验证信息)
-        - [4.2 生成二级签名验证信息](#42-生成二级签名验证信息)
-        - [4.3 生成根签名验证信息](#43-生成根签名验证信息)
-        - [4.4 合并生成attestation](#44-合并生成attestation)
-      - [5. 构造完整的凭据](#5-构造完整的凭据)
-    - [凭据交换协议](#凭据交换协议)
-    - [工具使用介绍](#工具使用介绍)
-  - [常见问题](#常见问题)
-  - [参考资料](#参考资料)
-
 ## 概述
 
 ### 功能简介
@@ -44,31 +10,31 @@ OpenHarmony设备安全等级管理（DSLM）模块，负责管理各种不同�
 
 ### 基本概念
 
-#### 设备安全等级
+- 设备安全等级
 
-OpenHarmony设备的安全等级取决于设备的系统安全能力。OpenHarmony系统安全能力，根植于硬件实现的三个可信根：启动、存储、计算。基于基础安全工程能力，重点围绕以下三点构建相关的安全技术和能力：设备完整性保护、数据机密性保护、漏洞攻防对抗。
+  OpenHarmony设备的安全等级取决于设备的系统安全能力。OpenHarmony系统安全能力，根植于硬件实现的三个可信根：启动、存储、计算。基于基础安全工程能力，重点围绕以下三点构建相关的安全技术和能力：设备完整性保护、数据机密性保护、漏洞攻防对抗。
 
-OpenHarmony系统安全架构如下图所示：
+  OpenHarmony系统安全架构如下图所示：
 
-![OpenHarmony系统安全架构](figure/ohos_system_security_architecture.png)
+  ![OpenHarmony系统安全架构](figure/ohos_system_security_architecture.png)
 
-上图为典型的OpenHarmony单设备系统安全架构，在不同种类OpenHarmony设备上的实现可以存在差异，取决于设备的威胁分析（风险高低）和设备的软硬件资源。OpenHarmony在参考业界权威的安全分级模型基础上，结合OpenHarmony实际的业务场景和设备分类，将OpenHarmony设备的安全能力划分为 5 个安全等级：SL1 ~ SL5。OpenHarmony操作系统生态体系中，要求高一级的设备安全能力默认包含低一级的设备安全能力。分级概要可参考下图：
+  上图为典型的OpenHarmony单设备系统安全架构，在不同种类OpenHarmony设备上的实现可以存在差异，取决于设备的威胁分析（风险高低）和设备的软硬件资源。OpenHarmony在参考业界权威的安全分级模型基础上，结合OpenHarmony实际的业务场景和设备分类，将OpenHarmony设备的安全能力划分为 5 个安全等级：SL1 ~ SL5。OpenHarmony操作系统生态体系中，要求高一级的设备安全能力默认包含低一级的设备安全能力。分级概要可参考下图：
 
-![OpenHarmony设备安全等级](figure/ohos_device_security_level.png)
+  ![OpenHarmony设备安全等级](figure/ohos_device_security_level.png)
 
-- SL1为OpenHarmony设备中最低的安全等级。这类设备通常搭载轻量级系统和使用低端微处理器，业务形态较为单一，不涉及敏感数据的处理。本安全等级要求消除常见的错误，支持软件的完整性保护。若无法满足本等级的要求，则只能作为配件受OpenHarmony设备操控，无法反向操控OpenHarmony设备并进行更复杂的业务协同。
+  - SL1为OpenHarmony设备中最低的安全等级。这类设备通常搭载轻量级系统和使用低端微处理器，业务形态较为单一，不涉及敏感数据的处理。本安全等级要求消除常见的错误，支持软件的完整性保护。若无法满足本等级的要求，则只能作为配件受OpenHarmony设备操控，无法反向操控OpenHarmony设备并进行更复杂的业务协同。
 
-- SL2安全等级的OpenHarmony设备，可对自身数据进行标记并定义访问控制规则，实现自主的访问控制，需要具备基础的抗渗透能力。此级别设备可支持轻量化的可安全隔离环境，用于部署少量必需的安全业务。
+  - SL2安全等级的OpenHarmony设备，可对自身数据进行标记并定义访问控制规则，实现自主的访问控制，需要具备基础的抗渗透能力。此级别设备可支持轻量化的可安全隔离环境，用于部署少量必需的安全业务。
 
-- SL3安全等级的OpenHarmony设备，具备较为完善的安全保护能力。其操作系统具有较为完善的安全语义，可支持强制访问控制。系统可结构化为关键保护元素和非关键保护元素，其关键保护元素被明确定义的安全策略模型保护。此级别设备应具备一定的抗渗透能力，可对抗常见的漏洞利用方法。
+  - SL3安全等级的OpenHarmony设备，具备较为完善的安全保护能力。其操作系统具有较为完善的安全语义，可支持强制访问控制。系统可结构化为关键保护元素和非关键保护元素，其关键保护元素被明确定义的安全策略模型保护。此级别设备应具备一定的抗渗透能力，可对抗常见的漏洞利用方法。
 
-- SL4安全等级的OpenHarmony设备，可信基应保持足够的精简，具备防篡改的能力。SL4的实现应足够精简和安全，可对关键保护元素的访问控制进行充分的鉴定和仲裁。此级别设备具备相当的抗渗透能力，可抑制绝大多数软件攻击。
+  - SL4安全等级的OpenHarmony设备，可信基应保持足够的精简，具备防篡改的能力。SL4的实现应足够精简和安全，可对关键保护元素的访问控制进行充分的鉴定和仲裁。此级别设备具备相当的抗渗透能力，可抑制绝大多数软件攻击。
 
-- SL5安全等级的OpenHarmony设备，为OpenHarmony设备中具备最高等级安全防护能力的设备。系统核心软件模块应进行形式化验证。关键硬件模块如可信根、密码计算引擎等应具备防物理攻击能力，可应对实验室级别的攻击。此级别设备应具备高安全单元，如专用的安全芯片，用于强化设备的启动可信根、存储可信根、运行可信根。
+  - SL5安全等级的OpenHarmony设备，为OpenHarmony设备中具备最高等级安全防护能力的设备。系统核心软件模块应进行形式化验证。关键硬件模块如可信根、密码计算引擎等应具备防物理攻击能力，可应对实验室级别的攻击。此级别设备应具备高安全单元，如专用的安全芯片，用于强化设备的启动可信根、存储可信根、运行可信根。
 
-#### DSLM
+- DSLM
 
-DSLM(Device Security Level Managerment), 是OpenHarmony设备安全等级管理的管理模块。负责各OpenHarmony设备之间的设备安全等级信息的同步和验证。并对外提供查询各设备的安全等级的接口。
+  DSLM(Device Security Level Managerment), 是OpenHarmony设备安全等级管理的管理模块。负责各OpenHarmony设备之间的设备安全等级信息的同步和验证。并对外提供查询各设备的安全等级的接口。
 
 ### 运作机制
 
@@ -315,6 +281,10 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 
 #### 4. 构造attestation
 
+> ![notice](../public_sys-resources/icon-notice.gif)**注意：**
+> 本流程需要在安全可靠的环境中执行，例如符合相关安全要求的服务器密码机中，以确保用于签名的密钥不被泄露
+> 本流程涉及到的各密钥对不需要每次都重复生成，在确保密钥安全的前提下，后续可以直接复用。
+
 ##### 4.1 生成三级签名验证信息
 
 1. 首先生成二级签名用ECDSA密钥对：`<ecc-l2-pk>`和`<ecc-l2-sk>`
@@ -379,10 +349,6 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
     ```undefined
     W3sidXNlclB1YmxpY0tleSI6ICJNSG93RkFZSEtvWkl6ajBDQVFZSkt5UURBd0lJQVFFTEEySUFCREdOMU9xYWZrWFc2a0l1SEZrMVQ0TS84RVJUY3p0eWRDaGtramFROEkzNEc2Q3E1aTNJcnczVnRhQS9KTTF2a0lHOUZDVWRUaHZFUlJFUTFUdG9xemdxZW9SUzVwQW1EYUUyalEwYzdDem8rOHVUWTRIYW1weXZ1TENtenlYUXFnPT0iLCAic2lnbmF0dXJlIjogIk1HTUNMeHVjUnoyZndKZ092QkxyU1U3K1hlVTA3R0EyVXhZbDFMbEJLUnVIUS9wZlNWVHBEd0ZHSTNTb3h5ODR3NThIQWpBeGRtNEY3b3YvYUtEL0NFZi9QZlZDWHVlbE1mQys1L3pkUExXUUJEVnlGdWQrNVdYL3g4U083VXM5UGFhRW1mZz0ifSwgeyJ1c2VyUHVibGljS2V5IjogIk1Ib3dGQVlIS29aSXpqMENBUVlKS3lRREF3SUlBUUVMQTJJQUJHMWU3TDJVd1AyWWxTajB2RWViUGJpNVpLMDh5NS9UeHRWb3VrRFpIUGtSNlRtb2JoVGpyMVRVNzZpUkU4bDlWQlhuU1h1QVB6cjBuSHdKVkdVZVJMdmp4MVh0YUZReE9QNjhjNlIvRTdFWkZ2STdRUFg1N0tvRkhYdkEvVlJaNnc9PSIsICJzaWduYXR1cmUiOiAiTUdRQ01FUVdFNnk0Rm42SFg1ekFvTzNkYzl5cG1Sd2lBclplc2o5aVBROTZEaEhuNXJkRTdNaGFMdWNRZ0MvaXhjSWJsZ0l3QkN5aFBvRUg2RjFITFlwM2xqbWVncVlZQ1E5NHEyZm1kbDB6dHhrWEVTOVpPOVRNSUZQRVpKYlpmUnU5ZHcyOSJ9LCB7InVzZXJQdWJsaWNLZXkiOiAiTUhvd0ZBWUhLb1pJemowQ0FRWUpLeVFEQXdJSUFRRUxBMklBQkZRUUlDWmpWUTV4bkE0c2RMbUJzUmVaMzRJeWdkSmZhanA3SnRReFBzU2RwWTJXV0FneXp6Rm40OFFRRWhoU1BtdzhJYUU3VlJKRENBT3FYRnhGektJbFBFTDFvcFJDUmhhWmJrRzc5Y3ZrWC9HVVhlaFVYc2V2ZGhyb2VRVERFdz09IiwgInNpZ25hdHVyZSI6ICJNR1FDTUdQRndvSDJLbHhwbVZhWXRWV1ViMHpDSUJxYXFXY2F6czFqOVp4YklLUmVkR2tJY0VJdHN0UFoxdnVTanYvNDJnSXdSeGZPcTRoQTdNMHlGV2ZPSndqRTlTc2JsYXhvRDNiRTZCYzN2QjUyMmsyQ0ZJNWJqelpkeUFTVW04d2J2TW5WIn1d
     ```
-
-> ![notice](../public_sys-resources/icon-notice.gif)**注意：**
-> 本流程需要在安全可靠的环境中执行，例如符合相关安全要求的服务器密码机中，以确保用于签名的密钥不被泄露
-> 本流程涉及到的各密钥对不需要每次都重复生成，在确保密钥安全的前提下，后续可以直接复用。
 
 #### 5. 构造完整的凭据
 
@@ -452,7 +418,7 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
 
 1. 签名密钥初始化：
 
-    ``` bash
+    ``` undefined
     ./dslm_cred_tool.py init
     ```
 
@@ -460,40 +426,40 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
 
    生成一个名为cred.txt的凭据文件，并指定设备型号为rk3568、设备版本号为3.0.0、设备安全等级为SL3等payload信息。
 
-    ``` bash
+    ``` undefined
     ./dslm_cred_tool.py create --field-manufacture OHOS --field-brand rk3568  --field-model rk3568 --field-software-version 3.0.0 --field-security-level SL3 --cred-file cred.txt
     ```
 
     上述命令可以生成一个凭据示例文件如下：
 
-    ``` bash
+    ``` undefined
     cat cred.txt
     eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIk9IT1MiLCAiYnJhbmQiOiAicmszNTY4IiwgIm1vZGVsIjogInJrMzU2OCIsICJzb2Z0d2FyZVZlcnNpb24iOiAiMy4wLjAiLCAic2VjdXJpdHlMZXZlbCI6ICJTTDMiLCAic2lnblRpbWUiOiAiMjAyMjAyMDkxNTUzMDMiLCAidmVyc2lvbiI6ICIxLjAuMSJ9.MGQCMEqZy/snsRyjMupnEvTpQfhQn+IcdCc5Q3NGxllNQVhoZX8PNyw6ATTgyx+26ghmtQIwVH5KwQ4/VejxckeHmtkBVhofhgmRapzvyVnyiB3PdsU7nvHk8A/zC7PFy1CWBG3z.W3sidXNlclB1YmxpY0tleSI6ICJNSG93RkFZSEtvWkl6ajBDQVFZSkt5UURBd0lJQVFFTEEySUFCQzFXRUxSVlU1NGp1U1ZXWlUrT29CM3hacFd5MWg3QW5uSFdKWm5QbTB3S2l0ZlJZelJKZ3FiUGQyZ3ltVXBUWVl1cmhyRDQxbFdPbUNzcmt0VWdaNTFXdGNCTmc5SG1GODkzc2ZHVFM5eUJNS0JoMGcxSHZaSVFSN1k0S3FXaWpnPT0iLCAic2lnbmF0dXJlIjogIk1HUUNNRFVicTZ2Z2R1YVF0bFVwOTR0azd4VjRJcEx2WVZWY3Y4aFNOTkw0azdPRHhmbEVGTHJFaUdPRWhwMUcweGFGYlFJd1pUbTk1cWx4OTBFZnptV3VIOGlEY2ZWYVlQS2N5SEYwR2ZFcEUzb1NESzQwZEFOZ0FJMWVQY09rTzBPOTdnTFAifSwgeyJ1c2VyUHVibGljS2V5IjogIk1Ib3dGQVlIS29aSXpqMENBUVlKS3lRREF3SUlBUUVMQTJJQUJGKzY1a0lSYTM2dkE4QVZWNXFrcUozYXpXTkdGQy9oaVdPL0tFNHR0S1pMOUsyNlhzQ2hQbjVNc3BlT2F3b1dqSU02bTVLOFZTcU1DYlZNN0svY0VRU0tYdDJTeVJGZERVZU9TaFZmQm9YVmxqaXRUU2puN0V5Q2pERVZiWjFRNEE9PSIsICJzaWduYXR1cmUiOiAiTUdRQ01HanF2cnZ5VW1YNVZLVVc1UkFkUTNkZ2hBYmNBazBRQnppQlFWMVFZUTNQMVFPSzdMckM1b0RObXh6T2Y0QUtmd0l3SzVWU2x3ZG5JSUR6Zm9PUXBEUVAycGhTVGgxSGVjbXJRK1F4VGxWelo0aHJsdnJyd2xCNnp0T3pWRFdNblRELyJ9LCB7InVzZXJQdWJsaWNLZXkiOiAiTUhvd0ZBWUhLb1pJemowQ0FRWUpLeVFEQXdJSUFRRUxBMklBQkZCa2FDNE9mc2VTREt2cW8vbU5VaUtXQ3JtK1VDNGFQcjVsODRNM2tMVCtDdkd3OWhqOGJ6d2I1MzNtVVlFZVhWWWtUdFlRYWRURkRJZXV1dGIzNU1QZDlEKytNMFRFWnZvcTY4NFhoYTVQMzBUbVRhK0ZvOG02UWliZWc3TmFQdz09IiwgInNpZ25hdHVyZSI6ICJNR1FDTURJcmpNYzhvODVPRHFZT0R4c05PcmpYdUhvWjM5endpZlhVTkdDc0lkN2xjU2FWcnhCVlNqRjRyaWg5Y1R6T3dRSXdWQXA3RUF5c1pucEI5REJWVWczQzlMeGQ3eTQxWEMwYVVPcGZUKzI3REVvWmM1WVVldDFGa1FwdmFQckduaFhVIn1d
     ```
 
 3. 凭据文件的校验：
 
-    ``` bash
+    ``` undefined
     ./dslm_cred_tool.py verify --cred-file cred.txt
     ```
 
     验证回显如下：
 
-    ``` bash
+    ``` undefined
     head:
     {
-    "typ": "DSL"
+      "typ": "DSL"
     }
     payload:
     {
-    "type": "debug",
-    "manufacture": "OHOS",
-    "brand": "rk3568",
-    "model": "rk3568",
-    "softwareVersion": "3.0.0",
-    "securityLevel": "SL3",
-    "signTime": "20220209155303",
-    "version": "1.0.1"
+      "type": "debug",
+      "manufacture": "OHOS",
+      "brand": "rk3568",
+      "model": "rk3568",
+      "softwareVersion": "3.0.0",
+      "securityLevel": "SL3",
+      "signTime": "20220209155303",
+      "version": "1.0.1"
     }
     verify success!
     ```
