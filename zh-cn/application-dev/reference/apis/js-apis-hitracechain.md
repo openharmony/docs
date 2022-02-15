@@ -170,7 +170,7 @@ createSpan(): HiTraceId
 
 ## hiTraceChain.tracepoint
 
-tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTraceId, msg?: string): void
+tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTraceId, msg?: string): void
 
 信息埋点，同步接口。
 
@@ -178,7 +178,7 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTr
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | mode | [HiTraceCommunicationMode](#hitracecommunicationmode) | 是 | 信息埋点需要指定的跟踪通信模式。 |
-  | type | [HiTraceTracePointType](#hitracetracepointtype)| 是 | 信息埋点需要指定的跟踪埋点类型。 |
+  | type | [HiTraceTracepointType](#hitracetracepointtype)| 是 | 信息埋点需要指定的跟踪埋点类型。 |
   | id   | [HiTraceId](#hitraceid) | 是 | 实施信息埋点操作的HiTraceId实例。 |
   | msg  | string | 否 | 信息埋点操作传入的trace说明信息。 |
 
@@ -186,7 +186,7 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracePointType, id: HiTr
   ```
   let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
   // 若干业务逻辑完成后，触发信息埋点操作。
-  hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceChain.HiTraceTracePointType.SS, asyncTraceId, "Just a example");
+  hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceChain.HiTraceTracepointType.SS, asyncTraceId, "Just a example");
   ```
 
 ## hiTraceChain.isValid
