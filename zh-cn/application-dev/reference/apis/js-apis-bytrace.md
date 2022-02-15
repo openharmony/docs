@@ -1,3 +1,5 @@
+- 从API Version 8开始，该接口不再维护，推荐使用新接口[hiTraceMeter](js-apis-hitracemeter.md)。具体新接口在接口描述中说明。
+
 # 性能打点
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
