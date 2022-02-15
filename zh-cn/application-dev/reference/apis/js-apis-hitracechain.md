@@ -28,7 +28,7 @@ SystemCapability.HiviewDFX.HiTrace
 | FAILURE_TRIGGER   | 1 << 5 | 故障触发标志   |
 | D2D_TP_INFO       | 1 << 6 | 设备间埋点标志 |
 
-## HiTraceTracePointType
+## HiTraceTracepointType
 
 跟踪埋点类型枚举。
 
