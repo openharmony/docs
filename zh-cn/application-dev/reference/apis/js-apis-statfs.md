@@ -6,7 +6,7 @@
 ## 导入模块
 
 ```js
-import statfs from '@ohos.statfs'
+import statfs from '@ohos.statfs';
 ```
 
 ## 使用说明
@@ -18,7 +18,7 @@ import statfs from '@ohos.statfs'
 通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在绝对路径为：
 
 ```js
-let path = dir + "xxx.txt"
+let path = dir + "xxx.txt";
 ```
 
 ## 系统能力
@@ -46,7 +46,12 @@ getFreeBytes(path:string):Promise&lt;number&gt;
 - 示例：
 
   ```js
-  let num = await statfs.getFreeBytes(path);
+  let path = "/data";
+  statfs.getFreeBytes(path).then(function (number){
+      console.info("getFreeBytes successfully:"+ number);
+  }).catch(function(err){
+      console.info("getFreeBytes failed with error:"+ err);
+  });
   ```
 
 ## statfs.getFreeBytes
@@ -91,7 +96,12 @@ getTotalBytes.(path:string):Promise&lt;number&gt;
 - 示例：
 
   ```js
-  let num = await statfs.getTotalBytes(path);
+  let path = "/data";
+  statfs.getTotalBytes(path).then(function (number){
+      console.info("getTotalBytes successfully:"+ number);
+  }).catch(function(err){
+      console.info("getTotalBytes failed with error:"+ err);
+  });
   ```
 
 ## statfs.getTotalBytes

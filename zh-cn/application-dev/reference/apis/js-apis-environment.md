@@ -29,9 +29,9 @@ getStorageDataDir():Promise&lt;string&gt;
 
   ```js
   environment.getStorageDataDir().then(function(path){
-  	// do something
+      console.info("getStorageDataDir successfully:"+ path);
   }).catch(function(error){
-      
+      console.info("getStorageDataDir failed with error:"+ error);
   });
   ```
 
@@ -71,9 +71,9 @@ getUserDataDir():Promise&lt;string&gt;
 
   ```js
   environment.getUserDataDir().then(function(path){
-  	// do something
+      console.info("getUserDataDir successfully:"+ path);
   }).catch(function(error){
-      
+      console.info("getUserDataDir failed with error:"+ error);
   });
   ```
 
