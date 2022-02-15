@@ -73,6 +73,8 @@
     - [故障日志获取](js-apis-faultLogger.md)
     - [分布式跟踪](js-apis-hitracechain.md)
     - [日志打印](js-apis-hilog.md)
+    - [WebGL](js-apis-webgl.md)
+    - [WebGL2](js-apis-webgl2.md)
 - 语言基础类库
     - [获取进程相关的信息](js-apis-process.md)
     - [URL字符串解析](js-apis-url.md)
