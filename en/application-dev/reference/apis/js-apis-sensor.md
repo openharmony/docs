@@ -27,7 +27,7 @@ To use the gyroscope sensor, you must declare the **ohos.permission.GYROSCOPE** 
 on(type:  sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;,options?: Options): void
 
 
-Subscribes to acceleration sensor data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 
 - Parameters
@@ -118,7 +118,7 @@ Subscribes to data changes of the uncalibrated acceleration sensor. If this API 
 
 on(type: sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityResponse&gt;,options?: Options): void
 
-Subscribes to gravity sensor data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the gravity sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -147,7 +147,7 @@ Subscribes to gravity sensor data changes. If this API is called multiple times 
 
 on(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;GyroscopeResponse&gt;, options?: Options): void
 
-Subscribes to gyroscope sensor data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the gyroscope sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -262,7 +262,7 @@ Subscribes to data changes of the pedometer detection sensor. If this API is cal
 
 on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;, options?: Options): void
 
-Subscribes to pedometer sensor data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the pedometer sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -377,7 +377,7 @@ Subscribes to data changes of the uncalibrated magnetic field sensor. If this AP
 
 on(type:sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;ProximityResponse&gt;,options?: Options): void
 
-Subscribes to proximity sensor data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the proximity sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -404,7 +404,7 @@ Subscribes to proximity sensor data changes. If this API is called multiple time
 
 on(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;,options?: Options): void
 
-Subscribes to humidity sensor data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the humidity sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -431,7 +431,7 @@ Subscribes to humidity sensor data changes. If this API is called multiple times
 
 on(type:sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;BarometerResponse&gt;,options?: Options): void
 
-Subscribes to barometer sensor data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the barometer sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -512,7 +512,7 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 
 on(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;, options?: Options): void
 
-Subscribes to orientation sensor data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the orientation sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -541,7 +541,7 @@ Subscribes to orientation sensor data changes. If this API is called multiple ti
 
 on(type:sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback:AsyncCallback&lt;RotationVectorResponse&gt;,options?: Options): void
 
-Subscribes to rotation vector data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the rotation vector sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -570,7 +570,7 @@ Subscribes to rotation vector data changes. If this API is called multiple times
 
 on(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;WearDetectionResponse&gt;,options?: Options): void
 
-Subscribes to wear detection data changes. If this API is called multiple times for the same application, the last call takes effect.
+Subscribes to data changes of the wear detection sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -597,7 +597,7 @@ Subscribes to wear detection data changes. If this API is called multiple times 
 
 once(type: sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;): void
 
-Subscribes to only one acceleration sensor data change.
+Subscribes to only one data change of the acceleration sensor.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -815,7 +815,7 @@ Subscribes to only one data change of the pedometer detection sensor.
 
 once(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;): void
 
-Subscribes to only one pedometer sensor data change.
+Subscribes to only one data change of the pedometer sensor.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -922,7 +922,7 @@ Subscribes to only one data change of the uncalibrated magnetic field sensor.
 
 once(type: sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;ProximityResponse&gt;): void
 
-Subscribes to only one proximity sensor data change.
+Subscribes to only one data change of the proximity sensor.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -947,7 +947,7 @@ Subscribes to only one proximity sensor data change.
 
 once(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;): void
 
-Subscribes to only one humidity sensor data change.
+Subscribes to only one data change of the humidity sensor.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1074,7 +1074,7 @@ Subscribes to only one data change of the orientation sensor.
 
 once(type: sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: AsyncCallback&lt;RotationVectorResponse&gt;): void
 
-Subscribes to only one rotation vector data change.
+Subscribes to only one data change of the rotation vector sensor.
 
 - Parameters
   | Name| Type| Mandatory| Description|
