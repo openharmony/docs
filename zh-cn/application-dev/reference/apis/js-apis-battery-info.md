@@ -20,13 +20,13 @@ SystemCapability.PowerManager.BatteryManager
 
 | 名称 | 类型 | 可读 | 可写 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| batterySOC | number | 是 | 否 | 表示当前设备剩余电池容量。 |
+| batterySOC | number | 是 | 否 | 表示当前设备剩余电池电量百分比。 |
 | chargingStatus | [BatteryChargeState](#batterychargestate) | 是 | 否 | 表示当前设备电池的充电状态。 |
 | healthStatus | [BatteryHealthState](#batteryhealthstate) | 是 | 否 | 表示当前设备电池的健康状态。 |
 | pluggedType | [BatteryPluggedType](#batterypluggedtype) | 是 | 否 | 表示当前设备连接的充电器类型。 |
-| voltage | number | 是 | 否 | 表示当前设备电池的电压。 |
+| voltage | number | 是 | 否 | 表示当前设备电池的电压，单位微伏。 |
 | technology | string | 是 | 否 | 表示当前设备电池的技术型号。 |
-| batteryTemperature | number | 是 | 否 | 表示当前设备电池的温度。 |
+| batteryTemperature | number | 是 | 否 | 表示当前设备电池的温度，单位0.1摄氏度。 |
 | isBatteryPresent<sup>7+</sup> | boolean | 是 | 否 | 表示当前设备是否支持电池或者电池是否在位。 |
 
 - 示例：
