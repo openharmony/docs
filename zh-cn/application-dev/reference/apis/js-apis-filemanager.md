@@ -4,7 +4,7 @@
 ## 导入模块
 
 ```js
-import filemanager from 'ohos.filemanager'
+import filemanager from 'ohos.filemanager';
 ```
 
 ## 系统能力
@@ -31,17 +31,15 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 - 示例
 
 ```js
-filemanager.getRoot()
-.then((fileInfo) => {
+filemanager.getRoot().then((fileInfo) => {
     if(Array.isArray(fileInfo)) {
         for (var i = 0; i < fileInfo.length; i++) {
             console.log(JSON.Stringify(fileInfo))
         }
     }
-})
-.catch((err) => {
+}).catch((err) => {
     console.log(err)
-})
+});
 ```
 
 ## filemanager.getRoot
