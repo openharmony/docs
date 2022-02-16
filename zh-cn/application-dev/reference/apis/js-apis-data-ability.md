@@ -10,6 +10,8 @@
 import dataAbility from '@ohos.data.dataAbility'
 ```
 
+## 系统能力
+SystemCapability.DistributedDataManager.DataShare.Consumer
 
 ## 权限
 
@@ -622,7 +624,7 @@ distinct(): DataAbilityPredicates
   ```
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
-  rdbStore.query(predicates, ["NAME"])
+  let resultSet = await rdbStore.query(predicates, ["NAME"])
   ```
 
 

@@ -3,6 +3,9 @@
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
 >本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 系统能力
+SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
+
 ## 导入模块<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
 ```

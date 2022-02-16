@@ -3,6 +3,8 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 系统能力
+SystemCapability.DistributedDataManager.RelationalStore.Core
 
 ## 使用说明
 
@@ -14,9 +16,8 @@ let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("AGE", 18)
 let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
 promise.then((resultSet) => {
-    console.log("resultSet columnNames:" + resultSet.columnNames);
-    console.log("resultSet columnCount:" + resultSet.columnCount);
-})
+    await console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
+    await console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
 ```
 
 
@@ -115,11 +116,10 @@ goTo(offset:number): boolean
 - 示例：
   ```
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
-    resultSet.goTo(1);
-    resultSet.close();
-    resultSet = null;
-  })
+  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  resultSet.goTo(1)
+  resultSet.close()
+  resultSet = null
   ```
 
 
@@ -142,11 +142,10 @@ goToRow(position: number): boolean
 - 示例：
   ```
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
-    resultSet.goToRow(1);
-    resultSet.close();
-    resultSet = null
-  })
+  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  resultSet.goToRow(1)
+  resultSet.close()
+  resultSet = null
   ```
 
 
@@ -166,11 +165,10 @@ goToFirstRow(): boolean
 - 示例：
   ```
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
-    resultSet.goToFirstRow();
-    resultSet.close();
-    resultSet = null;
-  })
+  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  resultSet.goToFirstRow()
+  resultSet.close()
+  resultSet = null;
   ```
 
 
@@ -188,11 +186,10 @@ goToLastRow(): boolean
 - 示例：
   ```
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
-    resultSet.goToLastRow();
-    resultSet.close();
-    resultSet = null;
-  })
+  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  resultSet.goToLastRow()
+  resultSet.close()
+  resultSet = null;
   ```
 
 
@@ -210,11 +207,10 @@ goToNextRow(): boolean
 - 示例：
   ```
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
-    resultSet.goToNextRow()
-    resultSet.close()
-    resultSet = null;
-  })
+  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  resultSet.goToNextRow()
+  resultSet.close()
+  resultSet = null;
   ```
 
 
@@ -232,11 +228,10 @@ goToPreviousRow(): boolean
 - 示例：
   ```
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
-    resultSet.goToPreviousRow();
-    resultSet.close();
-    resultSet = null
-  })
+  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  resultSet.goToPreviousRow()
+  resultSet.close()
+  resultSet = null
   ```
 
 
@@ -360,8 +355,7 @@ close(): void
 - 示例：
   ```
   let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
-    resultSet.close();
-    resultSet = null
-  })
+  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  resultSet.close()
+  resultSet = null
   ```
