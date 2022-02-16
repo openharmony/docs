@@ -30,7 +30,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </td>
 <td class="cellrowborder" valign="top" width="35.8935893589359%" headers="mcps1.2.6.1.4 "><p id="p12667431305"><a name="p12667431305"></a><a name="p12667431305"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>0.0.6</p>
+<td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>0.0.7</p>
 </td>
 </tr>
 <tr id="row998612174129"><td class="cellrowborder" valign="top" headers="mcps1.2.6.1.1 "><p id="p1998617172126"><a name="p1998617172126"></a><a name="p1998617172126"></a>Standard system</p>
@@ -39,7 +39,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.6.1.3 "><p id="p552616549297"><a name="p552616549297"></a><a name="p552616549297"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.7</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.8</p>
 </td>
 </tr>
 <tr id="row5986201731214"><td class="cellrowborder" align="center" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p136981216143"><a name="p136981216143"></a><a name="p136981216143"></a>HPM-based Docker environment</p>
@@ -55,6 +55,7 @@ OpenHarmony provides the following two types of Docker environments for you to q
 </tr>
 </tbody>
 </table>
+
 
 
 
@@ -81,7 +82,7 @@ The Docker image of OpenHarmony is hosted on  [HUAWEI CLOUD SWR](https://console
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.7
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
@@ -89,13 +90,13 @@ The Docker image of OpenHarmony is hosted on  [HUAWEI CLOUD SWR](https://console
     Run the following command in Ubuntu:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.7
     ```
 
     Run the following command in Windows \(assuming that the source code directory is  **D:\\OpenHarmony**\):
 
     ```
-    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
+    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.7
     ```
 
 
@@ -136,13 +137,13 @@ hb set
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.8
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.8
     ```
 
 

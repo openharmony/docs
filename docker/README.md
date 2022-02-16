@@ -8,7 +8,7 @@ OpenHarmony的Docker镜像托管在**HuaweiCloud SWR**上，开发者可以通�
 
 | Docker镜像仓库                                               | 标签    | 说明                                                         |
 | :----------------------------------------------------------- | :------ | :----------------------------------------------------------- |
-| `swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker` | `0.0.6` | 已经预安装OpenHarmony版本的编译环境，支持轻量系统类设备（参考内存≥128KB）和小型系统类设备（参考内存≥1MB）的版本构建。 |
+| `swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker` | `0.0.7` | 已经预安装OpenHarmony版本的编译环境，支持轻量系统类设备（参考内存≥128KB）和小型系统类设备（参考内存≥1MB）的版本构建。 |
 
 ### 使用方式及步骤
 
@@ -16,11 +16,11 @@ OpenHarmony的Docker镜像托管在**HuaweiCloud SWR**上，开发者可以通�
 
 1. 获取Docker镜像
      ```
-     docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
+     docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.7
      ```
 2. 进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境
      ```
-     docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.6
+     docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.7
      ```
 3. 通过如下命令启动不同平台的编译
      ```

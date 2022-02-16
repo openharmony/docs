@@ -8,11 +8,11 @@ OpenHarmony的Docker镜像托管在HuaweiCloud SWR上。开发者可以通过该
 
 1. 获取Docker镜像。
 ```
-docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
+docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.8
 ```
 2. 进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 ```
-docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
+docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.8
 ```
 
 ### 编译源码-标准系统类设备（参考内存≥128MB）

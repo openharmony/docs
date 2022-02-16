@@ -8,11 +8,11 @@ The Docker image of OpenHarmony is hosted on [HUAWEI Cloud SWR](https://auth.hua
 
 1. Obtain the Docker image.
 ```
-docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
+docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.8
 ```
 2. Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:
 ```
-docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.7
+docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.8
 ```
 
 ### Building for Standard-System Devices (reference memory ≥ 128 MB)
