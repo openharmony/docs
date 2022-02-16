@@ -1,6 +1,6 @@
 # 检测模式
 
-> ![icon-note.gif](C:\Users\Administrator\Desktop\doc\docs\zh-cn\application-dev\reference\apis\public_sys-resources\icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -59,9 +59,9 @@ removeRule(rule: BigInt): void
 
 - 参数：
 
-  | 参数名 | 类型   | 必填 | 说明           |
-  | ------ | ------ | ---- | -------------- |
-  | rule   | BigInt | 是   | 需要删除的规则 |
+  | 参数名 | 类型   | 必填 | 说明             |
+  | ------ | ------ | ---- | ---------------- |
+  | rule   | BigInt | 是   | 需要删除的规则。 |
 
 - 示例：
 
@@ -82,9 +82,9 @@ getRule(): BigInt
 
 - 返回值：
 
-  | 类型   | 说明                 |
-  | ------ | -------------------- |
-  | BigInt | 当前系统中添加的规则 |
+  | 类型   | 说明                   |
+  | ------ | ---------------------- |
+  | BigInt | 当前系统中添加的规则。 |
 
 - 示例：
 
@@ -100,7 +100,7 @@ getRule(): BigInt
 
 contains(rule: BigInt): boolean
 
-当前已添加的规则集中是否包含了某一个特定的规则，如果传入的rule时线程级别的rule，仅查询当前线程中是否包含。
+当前已添加的规则集中是否包含了某一个特定的规则，如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
 
 - 参数：
 
@@ -124,5 +124,3 @@ contains(rule: BigInt): boolean
   hichecker.contains(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
   hichecker.contains(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
   ```
-
-## 
