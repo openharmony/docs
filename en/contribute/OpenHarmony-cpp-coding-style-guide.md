@@ -44,7 +44,7 @@ There are two conventions: UpperCamelCase and lowerCamelCase.
 | Type                                     | Naming Style                             |
 | ---------------------------------------- | ---------------------------------------- |
 | Class, struct, enumeration, union, scope name| UpperCamelCase                           |
-| unctions (including global functions, scope functions, and member functions) | UpperCamelCase                           |
+| Functions (including global functions, scope functions, and member functions) | UpperCamelCase                           |
 | Global variables (including variables of the global and namespace scopes, and class static variables), local variables, function parameters, and class, struct, and union member variables | lowerCamelCase                           |
 | Macro, constant, enumerated value, goto tag| All capitalized, separated by underscores (\_)|
 

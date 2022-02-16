@@ -12,7 +12,7 @@ import faultLogger from '@ohos.faultLogger'
 
 None
 
-## faultLogger.FaultType
+## FaultType
 
 Enumerates the fault types.
 
@@ -23,7 +23,7 @@ Enumerates the fault types.
 | JS_CRASH | 3 | JS program crash.|
 | APP_FREEZE | 4 | Application freezing.|
 
-## faultLogger.FaultLogInfo
+## FaultLogInfo
 
 Defines the data structure of the fault log information.
 
@@ -31,7 +31,7 @@ Defines the data structure of the fault log information.
 | -------- | -------- | -------- |
 | pid | number | Process ID of the faulty process.|
 | uid | number | User ID of the faulty process.|
-| type | [FaultType](#faultloggerfaulttype) | Fault type.|
+| type | [FaultType](#faulttype) | Fault type.|
 | timestamp | number | Second-level timestamp when the log was generated.|
 | reason | string | Reason for the fault.|
 | module | string | Module on which the fault occurred.|
@@ -47,8 +47,8 @@ Obtains the fault information about the current process. This method uses a call
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | faultType | [FaultType](#faultloggerfaulttype) | Yes| Fault type.|
-  | callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloggerfaultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array. <br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+  | faultType | [FaultType](#faulttype) | Yes| Fault type.|
+  | callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array. <br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
 
 - Example
 ```
@@ -83,12 +83,12 @@ Obtains the fault information about the current process. This method uses a prom
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | faultType | [FaultType](#faultloggerfaulttype) | Yes| Fault type.|
+  | faultType | [FaultType](#faulttype) | Yes| Fault type.|
 
-- Return values
+- Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;Array&lt;[FaultLogInfo](#faultloggerfaultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**. <br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval.|
+  | Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**. <br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval.|
 
 - Example
 ```

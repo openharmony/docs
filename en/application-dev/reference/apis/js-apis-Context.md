@@ -15,24 +15,24 @@ var context = featureAbility.getContext();
 context.getOrCreateLocalDir()
 ```
 
-## Context.getOrCreateLocalDir(callback: AsyncCallback<string>)
+## Context
 
-- Functionality
+### getOrCreateLocalDir
 
-  Obtains the local root directory of the application. If this method is called for the first time, a root directory is created. This method uses a callback to return the result.
+getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
-- Parameters
+Obtains the local root directory of the application. This method uses a callback to return the result.
+
+If this method is called for the first time, a root directory is created.
+
+**Parameters**
 
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| -------- | -------- | ---------------------- | ---- | ------------------------ |
-| callback | Read-only| AsyncCallback\<string> | Yes| Callback used to return the local root directory of the application.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | -------------------------- |
+| callback | AsyncCallback\<string> | Yes| Callback used to return the local root directory of the application.|
 
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -44,23 +44,21 @@ context.getOrCreateLocalDir((err, data)=>{
 
 
 
-## Context.getOrCreateLocalDir()
+### getOrCreateLocalDir
 
-- Functionality
+getOrCreateLocalDir(): Promise\<string>
 
-  Obtains the local root directory of the application. If this method is called for the first time, a root directory is created. This method uses a promise to return the result.
+Obtains the local root directory of the application. This method uses a promise to return the result.
 
-- Parameters
+If this method is called for the first time, a root directory is created.
 
-  None
+**Return value**
 
-- Return values
+| Type| Description|
+| ---------------- | ---------------------- |
+| Promise\<string> | Promise used to return the local root directory of the application.|
 
-  | Type| Description|
-  | --------------- | -------------------- |
-  | Promise<string> | Promise used to return the local root directory of the application.|
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -70,33 +68,24 @@ context.getOrCreateLocalDir().then((void) => {
 });
 ```
 
-## PermissionOptions
-
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---- | -------- | ------ | ---- | ------ |
-| pid  | Read-only| number | No| PID.|
-| uid  | Read-only| number | No| UID.|
-
-## Context.verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback<number>)
-
-- Functionality
-
-  Verifies whether a specific PID and UID have the given permission. This method uses a callback to return the result.
-
-- Parameters
 
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---------- | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
-| permission | Read-only| string                                          | Yes| Name of the permission to verify.|
-| options    | Read-only| [PermissionOptions](#PermissionOptions)| Yes| Permission options.|
-| callback   | Read-only| AsyncCallback\<number>                          | Yes| Callback used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
+### verifyPermission
 
-- Return values
+verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>): void
 
-  void
+Verifies whether a specific PID and UID have the given permission. This method uses a callback to return the result.
 
-- Example
+**Parameters**
+
+
+| Name| Type| Mandatory| Description|
+| ---------- | --------------------------------------- | ---- | ------------------------------------- |
+| permission | string                                  | Yes| Name of the permission to verify.|
+| options    | [PermissionOptions](#permissionoptions) | Yes| Permission options.|
+| callback   | AsyncCallback\<number>                  | Yes| Callback used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
+
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -109,25 +98,21 @@ context.verifyPermission("com.example.permission",datainfo.uid)
 
 
 
-## Context.verifyPermission(permission: string, callback: AsyncCallback<number>)
+### verifyPermission
 
-- Functionality
+verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 
-  Verifies whether the current PID and UID have the given permission. This method uses a callback to return the result.
+Verifies whether the current PID and UID have the given permission. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---------- | -------- | ---------------------- | ---- | ----------------------------------- |
-| permission | Read-only| string                 | Yes| Name of the permission to verify.|
-| callback   | Read-only| AsyncCallback\<number> | Yes| Callback used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
+| Name| Type| Mandatory| Description|
+| ---------- | ---------------------- | ---- | ------------------------------------- |
+| permission | string                 | Yes| Name of the permission to verify.|
+| callback   | AsyncCallback\<number> | Yes| Callback used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
 
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -135,29 +120,27 @@ var context = featureAbility.getContext();
 context.verifyPermission("com.example.permission")
 ```
 
+### verifyPermission
+
+verifyPermission(permission: string, options?: PermissionOptions): Promise\<number>
+
+Verifies whether a specific PID and UID have the given permission. This method uses a promise to return the result.
+
+**Parameters**
 
 
-## Context.verifyPermission(permission: string, options?: PermissionOptions)
+| Name| Type| Mandatory| Description|
+| ---------- | --------------------------------------- | ---- | ---------------- |
+| permission | string                                  | Yes| Name of the permission to verify.|
+| options    | [PermissionOptions](#permissionoptions) | No| Permission options.|
 
-- Functionality
+**Return value**
 
-  Verifies whether a specific PID and UID have the given permission. This method uses a promise to return the result.
+| Type| Description|
+| ---------------- | ----------------------------------------------------------- |
+| Promise\<number> | Promise used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
 
-- Parameters
-
-
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---------- | -------- | ----------------------------------------------- | ---- | -------------- |
-| permission | Read-only| string                                          | Yes| Name of the permission to verify.|
-| options    | Read-only| [PermissionOptions](#PermissionOptions)| No| Permission options.|
-
-- Return values
-
-  | Type| Description|
-  | --------------- | ------------------------------------------------------------ |
-  | Promise<number> | Promise used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -168,35 +151,23 @@ context.getOrCreateLocalDir('com.context.permission',Permission).then((void) => 
 });
 ```
 
-## PermissionRequestResult
-
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ----------- | -------- | -------------- | ---- | ------------------ |
-| requestCode | Read-only| number         | Yes| Request code passed.|
-| permissions | Read-only| Array\<string> | Yes| Permissions passed.|
-| authResults | Read-only| Array\<number> | Yes| Permission request result.|
 
 
+### requestPermissionsFromUser
 
-## Context.requestPermissionsFromUser(permissions: Array<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#PermissionRequestResult)>)
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>)
 
-- Functionality
+Requests certain permissions from the system. This method uses a callback to return the result.
 
-  Requests certain permissions from the system. This method uses a callback to return the result.
-
-- Parameters
+**Parameters**
 
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| -------------- | -------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| permissions    | Read-only| Array\<string>                                               | Yes| Permissions to request. This parameter cannot be **null**.|
-| requestCode    | Read-only| number                                                       | Yes| Request code to be passed to **PermissionRequestResult**.|
-| resultCallback | Read-only| AsyncCallback\<[PermissionRequestResult](#PermissionRequestResult)> | Yes| Permission request result.|
-- Return values
-
-  void
-
-- Example
+| Name| Type| Mandatory| Description|
+| -------------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| permissions    | Array\<string>                                               | Yes| Permissions to request. This parameter cannot be **null**.|
+| requestCode    | number                                                       | Yes| Request code to be passed to **PermissionRequestResult**.|
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | Yes| Permission request result.|
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -213,23 +184,19 @@ context.getOrCreateLocalDir(
 
 
 
-## Context.getApplicationInfo(callback: AsyncCallback<ApplicationInfo>)
+### getApplicationInfo
 
-- Functionality
+getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>)
 
-  Obtains information about the current application. This method uses a callback to return the result.
+Obtains information about the current application. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | ------------------------------- | ---- | ---------------------- |
-  | callback | Read-only| AsyncCallback\<ApplicationInfo> | Yes| Callback used to return the application information.|
+| Name| Type| Mandatory| Description|
+| -------- | ------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<ApplicationInfo> | Yes| Callback used to return the application information.|
 
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -239,23 +206,19 @@ context.getApplicationInfo()
 
 
 
-## Context.getApplicationInfo
+### getApplicationInfo
 
-- Functionality
+getApplicationInfo(): Promise\<ApplicationInfo>
 
-  Obtains information about the current application. This method uses a promise to return the result.
+Obtains information about the current application. This method uses a promise to return the result.
 
-- Parameters
+**Return value**
 
-  None
+| Type| Description|
+| ------------------------- | ------------------ |
+| Promise\<ApplicationInfo> | Promise used to return the application information.|
 
-- Return values
-
-  | Type| Description|
-  | ------------------------ | ------------------ |
-  | Promise<ApplicationInfo> | Promise used to return the application information.|
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -267,23 +230,19 @@ context.getApplicationInfo().then((void) => {
 
 
 
-##  Context.getBundleName(callback: AsyncCallback<string>)
+### getBundleName
 
-- Functionality
+getBundleName(callback: AsyncCallback\<string>): void
 
-  Obtains the bundle name of the current ability. This method uses a callback to return the result.
+Obtains the bundle name of the current ability. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | ---------------------- | ---- | --------------------------- |
-  | callback | Read-only| AsyncCallback\<string> | Yes| Callback used to return the bundle name.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | ----------------------------- |
+| callback | AsyncCallback\<string> | Yes| Callback used to return the bundle name.|
 
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -293,23 +252,19 @@ context.getBundleName()
 
 
 
-## Context.getBundleName
+### getBundleName
 
-- Functionality
+getBundleName(): Promise\<string>
 
-  Obtains the bundle name of the current ability. This method uses a promise to return the result.
+Obtains the bundle name of the current ability. This method uses a promise to return the result.
 
-- Parameters
+**Return value**
 
-  None
+| Type| Description|
+| ---------------- | ------------------------- |
+| Promise\<string> | Promise used to return the bundle name.|
 
-- Return values
-
-  | Type| Description|
-  | --------------- | ----------------------- |
-  | Promise<string> | Promise used to return the bundle name.|
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -321,23 +276,19 @@ context.getBundleName().then((void) => {
 
 
 
-##  Context.getProcessInfo(callback: AsyncCallback<ProcessInfo>)
+### getProcessInfo
 
-- Functionality
+getProcessInfo(callback: AsyncCallback\<ProcessInfo>)
 
-  Obtains information about the current process, including the PID and process name. This method uses a callback to return the result.
+Obtains information about the current process, including the PID and process name. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | --------------------------- | ---- | ------------------ |
-  | callback | Read-only| AsyncCallback\<ProcessInfo> | Yes| Callback used to return the process information.|
+| Name| Type| Mandatory| Description|
+| -------- | --------------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<ProcessInfo> | Yes| Callback used to return the process information.|
 
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -347,23 +298,19 @@ context.getProcessInfo()
 
 
 
-## Context.getProcessInfo
+### getProcessInfo
 
-- Functionality
+getProcessInfo(): Promise\<ProcessInfo>
 
-  Obtains information about the current process, including the PID and process name. This method uses a promise to return the result.
+Obtains information about the current process, including the PID and process name. This method uses a promise to return the result.
 
-- Parameters
+**Return value**
 
-  None
+| Type| Description|
+| --------------------- | -------------- |
+| Promise\<ProcessInfo> | Promise used to return the process information.|
 
-- Return values
-
-  | Type| Description|
-  | -------------------- | -------------- |
-  | Promise<ProcessInfo> | Promise used to return the process information.|
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -375,23 +322,21 @@ context.getProcessInfo().then((void) => {
 
 
 
-##  Context.getElementName(callback: AsyncCallback<ElementName>)
+### getElementName
 
-- Functionality
+getElementName(callback: AsyncCallback\<ElementName>): void
 
-  Obtains the **ohos.bundle.ElementName** object of the current ability. This method is available only to Page abilities. It uses a callback to return the result.
+Obtains the **ohos.bundle.ElementName** object of the current ability. This method uses a callback to return the result.
 
-- Parameters
+This method is available only to Page abilities.
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | --------------------------- | ---- | -------------------------------------------- |
-  | callback | Read-only| AsyncCallback\<ElementName> | Yes| Callback used to return the **ohos.bundle.ElementName** object.|
+**Parameters**
 
-- Return values
+| Name| Type| Mandatory| Description|
+| -------- | --------------------------- | ---- | ---------------------------------------------- |
+| callback | AsyncCallback\<ElementName> | Yes| Callback used to return the **ohos.bundle.ElementName** object.|
 
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -401,23 +346,21 @@ context.getElementName()
 
 
 
-## Context.getElementName
+### getElementName
 
-- Functionality
+getElementName(): Promise\<ElementName>
 
-  Obtains the **ohos.bundle.ElementName** object of the current ability. This method is available only to Page abilities. It uses a promise to return the result.
+Obtains the **ohos.bundle.ElementName** object of the current ability. This method uses a promise to return the result.
 
-- Parameters
+This method is available only to Page abilities.
 
-  None
+**Return value**
 
-- Return values
+| Type| Description|
+| --------------------- | ------------------------------------------ |
+| Promise\<ElementName> | Promise used to return the **ohos.bundle.ElementName** object.|
 
-  | Type| Description|
-  | -------------------- | ---------------------------------------- |
-  | Promise<ElementName> | Promise used to return the **ohos.bundle.ElementName** object.|
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -427,23 +370,17 @@ context.getElementName().then((void) => {
 });
 ```
 
-##   **Context.getProcessName(callback: AsyncCallback<string>)**
+### getProcessName
 
-- Functionality
+getProcessName(callback: AsyncCallback\<string>): void
 
-  Obtains the name of the current process. This method uses a callback to return the result.
+Obtains the name of the current process. This method uses a callback to return the result.
 
-- Parameters
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<string> | Yes| Callback used to return the process name.|
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | ---------------------- | ---- | ------------------ |
-  | callback | Read-only| AsyncCallback\<string> | Yes| Callback used to return the process name.|
-
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -453,23 +390,19 @@ context.getProcessName()
 
 
 
-## Context.getProcessName
+### getProcessName
 
-- Functionality
+getProcessName(): Promise\<string>
 
-  Obtains the name of the current process. This method uses a promise to return the result.
+Obtains the name of the current process. This method uses a promise to return the result.
 
-- Parameters
+**Return value**
 
-  None
+| Type| Description|
+| ---------------- | -------------------- |
+| Promise\<string> | Promise used to return the process name.|
 
-- Return values
-
-  | Type| Description|
-  | --------------- | -------------- |
-  | Promise<string> | Promise used to return the process name.|
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -481,23 +414,19 @@ context.getProcessName().then((void) => {
 
 
 
-## Context.getCallingBundle(callback: AsyncCallback<string>)
+### getCallingBundle
 
-- Functionality
+getCallingBundle(callback: AsyncCallback\<string>): void
 
-  Obtains the bundle name of the calling ability. This method uses a callback to return the result.
+Obtains the bundle name of the calling ability. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | ---------------------- | ---- | ------------------------- |
-  | callback | Read-only| AsyncCallback\<string> | Yes| Callback used to return the bundle name.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | Yes| Callback used to return the bundle name.|
 
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -507,25 +436,19 @@ context.getCallingBundle()
 
 
 
-## Context.getCallingBundle
+### getCallingBundle
 
-- Functionality
+getCallingBundle(): Promise\<string>
 
-  Obtains the bundle name of the calling ability. This method uses a promise to return the result.
+Obtains the bundle name of the calling ability. This method uses a promise to return the result.
 
-- Parameters
+**Return value**
 
-  None
+| Type| Description|
+| --------------- | ------------------------- |
+| Promise\<string> | Promise used to return the bundle name.|
 
-- Return values
-
-  | Type| Description|
-  | --------------- | ------------------------- |
-  | Promise<string> | Promise used to return the bundle name.|
-
-  
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -534,3 +457,18 @@ context.getCallingBundle().then((void) => {
 	console.info("==========================>getCallingBundleCallback=======================>");
 });
 ```
+
+## PermissionOptions
+
+| Name| Readable/Writable| Type| Mandatory| Description|
+| ---- | -------- | ------ | ---- | ------ |
+| pid  | Read-only| number | No| PID.|
+| uid  | Read-only| number | No| UID.|
+
+## PermissionRequestResult
+
+| Name| Readable/Writable| Type| Mandatory| Description|
+| ----------- | -------- | -------------- | ---- | ------------------ |
+| requestCode | Read-only| number         | Yes| Request code passed.|
+| permissions | Read-only| Array\<string> | Yes| Permissions passed.|
+| authResults | Read-only| Array\<number> | Yes| Permission request result.|

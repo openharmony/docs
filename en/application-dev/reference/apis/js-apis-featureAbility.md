@@ -1,30 +1,29 @@
 # FeatureAbility Module (JavaScript)
 
-#### Constraints
+## Constraints
 
 APIs of the **FeatureAbility** module can be called only by Page abilities.
 
-#### Modules to Import
+## Modules to Import
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
 ```
 
-#### FeatureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
+## featureAbility.startAbility
 
-* Functionality
+startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
-  Starts an ability. This method uses a callback to return the result.
+Starts an ability. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| --------- | -------- | --------------------- | ---- | ------------------- |
-| parameter | Read-only| [StartAbilityParameter](#StartAbilityParameter)| Yes| Ability to start.|
-| callback  | Read-only| AsyncCallback\<number>         | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| --------- | --------------------- | ---- | ------------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes| Ability to start.|
+| callback  | AsyncCallback\<number>         | Yes| Callback used to return the result.|
 
-
-- Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -48,20 +47,19 @@ featureAbility.startAbility(
 
 
 
-#### FeatureAbility.startAbility(parameter: StartAbilityParameter): Promise\<number>
+## featureAbility.startAbility
 
-* Functionality
+startAbility(parameter: StartAbilityParameter): Promise\<number>
 
-  Starts an ability. This method uses a promise to return the result.
+Starts an ability. This method uses a promise to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| --------- | -------- | ------------------------------------------------------- | ---- | ------------------- |
-| parameter | Read-only| [StartAbilityParameter](#StartAbilityParameter)| Yes| Ability to start.|
+| Name| Type| Mandatory| Description|
+| --------- | ----------------------------------------------- | ---- | --------------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes| Ability to start.|
 
-
-- Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -84,27 +82,25 @@ featureAbility.startAbility(
 });
 ```
 
+## featureAbility.acquireDataAbilityHelper
 
+acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
-#### FeatureAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper
+Obtains a **dataAbilityHelper** object.
 
-* Functionality
+**Parameters**
 
-  Obtains a **dataAbilityHelper**.
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | ------------------------ |
+| uri  | string | Yes| URI of the file to open.|
 
-* Parameters
-
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---- | -------- | ------ | ---- | ---------------------- |
-| uri  | Read-only| string | Yes| URI of the file to open.|
-
-* Return values
+**Return value**
 
 | Type| Description|
-| ----------------- | ------------------------------------------ |
+| ----------------- | -------------------------------------------- |
 | DataAbilityHelper | A utility class used to help other abilities access the Data ability.|
 
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -113,26 +109,20 @@ featureAbility.acquireDataAbilityHelper(
 )
 ```
 
+## featureAbility.startAbilityForResult
 
+startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-#### FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
+Starts an ability. This method uses a callback to return the execution result when the ability is destroyed.
 
-* Functionality
+**Parameters**
 
-  Starts an ability. This method uses a callback to return the execution result when the ability is destroyed.
+| Name| Type| Mandatory| Description|
+| --------- | ----------------------------------------------- | ---- | --------------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes| Ability to start.|
+| callback  | AsyncCallback\<[AbilityResult](#abilityresult)> | Yes| Callback used to return the result.|
 
-* Parameters
-
-| Name| Readable/Writable| Type| Mandatory| Description|
-| --------- | -------- | ---------------------- | ---- | ------------------- |
-| parameter | Read-only| [StartAbilityParameter](#StartAbilityParameter)| Yes| Ability to start.|
-| callback  | Read-only| AsyncCallback\<[AbilityResult](#AbilityResult)>| Yes| Callback used to return the result.|
-
-* Return values
-
-  Returns [AbilityResult](#AbilityResult).
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -153,25 +143,24 @@ featureAbility.startAbilityForResult(
 )
 ```
 
+## featureAbility.startAbilityForResult
 
+startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-#### FeatureAbility.startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
+Starts an ability. This method uses a promise to return the execution result when the ability is destroyed.
 
-* Functionality
+**Parameters**
 
-  Starts an ability. This method uses a promise to return the execution result when the ability is destroyed.
+| Name| Type| Mandatory| Description|
+| --------- | ----------------------------------------------- | ---- | ------------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes| Ability to start.|
 
-* Parameters
+**Return value**
+| Type| Description|
+| ----------------------------------------- | -------------- |
+| Promise\<[AbilityResult](#abilityresult)> | Promised returned with the execution result.|
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| --------- | -------- | ------------------------------------------------------- | ---- | ------------------- |
-| parameter | Read-only| [StartAbilityParameter](#StartAbilityParameter)| Yes| Ability to start.|
-
-* Return values
-
-  Returns [AbilityResult](#AbilityResult).
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -206,24 +195,20 @@ featureAbility.startAbilityForResult(
 });
 ```
 
+## featureAbility.terminateSelfWithResult
 
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-#### FeatureAbility.terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
+Destroys this Page ability, with the result code and data sent to the caller. This method uses a callback to return the result.
 
-* Functionality
+**Parameters**
 
-  Destroys this Page ability, with the result code and data sent to the caller. This method uses a callback to return the result.
+| Name| Type| Mandatory| Description|
+| --------- | ------------- | ---- | ------------------- |
+| parameter | [AbilityResult](#abilityresult) | Yes| Ability to start.|
+| callback  | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-
-* Parameters
-
-| Name| Readable/Writable| Type| Mandatory| Description|
-| --------- | -------- | ------------- | ---- | ------------------- |
-| parameter | Read-only| [AbilityResult](#AbilityResult)| Yes| Ability to start.|
-| callback  | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
-
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -255,22 +240,24 @@ featureAbility.terminateSelfWithResult(
 );
 ```
 
+## featureAbility.terminateSelfWithResult
 
+terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
-#### FeatureAbility.terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
+Destroys this Page ability, with the result code and data sent to the caller. This method uses a promise to return the result.
 
-* Functionality
+**Parameters**
 
-  Destroys this Page ability, with the result code and data sent to the caller. This method uses a promise to return the result.
+| Name| Type| Mandatory| Description|
+| --------- | ------------------------------- | ---- | ------------------- |
+| parameter | [AbilityResult](#abilityresult) | Yes| Ability to start.|
 
-* Parameters
+**Return value**
+| Type| Description|
+| -------------- | ----------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| --------- | -------- | --------------------------------------- | ---- | ------------------- |
-| parameter | Read-only| [AbilityResult](#AbilityResult)| Yes| Ability to start.|
-
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -306,23 +293,19 @@ featureAbility.terminateSelfWithResult(
 
 
 
-#### FeatureAbility.hasWindowFocus(callback: AsyncCallback\<boolean>): void
+## featureAbility.hasWindowFocus
 
-* Functionality
+hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
-  Checks whether the main window of this ability has the focus. This method uses a callback to return the result.
+Checks whether the main window of this ability has the focus. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| -------- | -------- | ----------------------- | ---- | ---------------- |
-| callback | Read-only| AsyncCallback\<boolean> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<boolean> | Yes| Callback used to return the result. <br>Returns **true** if the main window of this ability has the focus; returns **false** otherwise.|
 
-* Return values
-
-  Returns **true** if the main window of this ability has the focus; returns **false** otherwise.
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -331,21 +314,19 @@ featureAbility.hasWindowFocus()
 
 
 
-#### FeatureAbility.hasWindowFocus(): Promise\<boolean>
+## featureAbility.hasWindowFocus
 
-* Functionality
+hasWindowFocus(): Promise\<boolean>
 
-  Checks whether the main window of this ability has the focus. This method uses a promise to return the result.
+Checks whether the main window of this ability has the focus. This method uses a promise to return the result.
 
-* Parameters
+**Return value**
 
-  None
+| Type| Description|
+| ----------------- | ---------------------------------------------------------- |
+| Promise\<boolean> | Returns **true** if the main window of this ability has the focus; returns **false** otherwise.|
 
-* Return values
-
-  Returns **true** if the main window of this ability has the focus; returns **false** otherwise.
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -356,20 +337,19 @@ featureAbility.hasWindowFocus().then((void) => {
 
 
 
-#### FeatureAbility.getWant(callback: AsyncCallback\<Want>)
+## featureAbility.getWant
 
-* Functionality
+getWant(callback: AsyncCallback\<Want>): void
 
-  Obtains the **Want** object sent from this ability. This method uses a callback to return the result.
+Obtains the **Want** object sent from this ability. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| -------- | -------- | -------------------- | ---- | ---------------- |
-| callback | Read-only| AsyncCallback\<Want> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ----------------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<[Want](#want)> | Yes| Callback used to return the result.|
 
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -378,17 +358,18 @@ featureAbility.getWant()
 
 
 
-#### FeatureAbility.getWant(): void
+## featureAbility.getWant
 
-* Functionality
+getWant(): Promise\<Want>
 
-  Obtains the **Want** object sent from this ability. This method uses a promise to return the result.
+Obtains the **Want** object sent from this ability. This method uses a promise to return the result.
 
-* Parameters
+**Return value**
+| Type| Description|
+| ----------------------- | ------------------------- |
+| Promise\<[Want](#want)> | Promise used to return the result.|
 
-  None
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -397,19 +378,18 @@ featureAbility.getWant().then((void) => {
 });
 ```
 
+## featureAbility.getContext
 
+getContext(): Context
 
-#### FeatureAbility.getContext(): Context
+Obtains the application context.
 
-* Functionality
+**Return value**
+| Type| Description|
+| ------- | -------------------- |
+| Context | Application context returned.|
 
-  Obtains the application context.
-
-* Return values
-
-  Returns the application context.
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -419,19 +399,19 @@ context.getBundleName()
 
 
 
-#### FeatureAbility.terminateSelf(callback: AsyncCallback\<void>): void
+## featureAbility.terminateSelf
 
-* Functionality
+terminateSelf(callback: AsyncCallback\<void>): void
 
-  Destroys this Page ability, with the result code and data sent to the caller. This method uses a callback to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| -------- | -------- | -------------------- | ---- | ---------------- |
-| callback | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -440,17 +420,18 @@ featureAbility.terminateSelf()
 
 
 
-#### FeatureAbility.terminateSelf(): Promise\<void>
+## featureAbility.terminateSelf
 
-* Functionality
+terminateSelf(): Promise\<void>
 
-  Destroys this Page ability, with the result code and data sent to the caller. This method uses a promise to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This method uses a promise to return the result.
 
-* Parameters
+**Return value**
+| Type| Description|
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-  None
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
@@ -458,20 +439,20 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 });
 ```
 
-#### FeatureAbility.connectAbility(request: Want, options:ConnectOptions): number
+## featureAbility.connectAbility
 
-* Functionality
+connectAbility(request: Want, options:ConnectOptions): number
 
-  Connects this ability to a specific Service ability. This method uses a callback to return the result.
+Connects this ability to a specific Service ability. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ------- | -------- | -------------- | ---- | -------------------------- |
-| request | Read-only| Want           | Yes| Service ability to connect.|
-| options | Read-only| ConnectOptions | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ------- | -------------- | ---- | ---------------------------- |
+| request | [Want](#want)           | Yes| Service ability to connect.|
+| options | ConnectOptions | Yes| Callback used to return the result.|
 
-* Want parameters
+Want
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | ------------ | -------- | -------- | ---- | ----------------------------------                               |
@@ -479,7 +460,7 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 | bundleName   | Read-only| string   | Yes| Bundle name of the Service ability to connect.|
 | abilityName  | Read-only| string   | Yes| Class name of the Service ability to connect.|
 
-- ConnectOptions
+ConnectOptions
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | ------------ | -------- | -------- | ---- | ---------------------------------- |
@@ -487,11 +468,12 @@ featureAbility.terminateSelf().then((void) => {		    console.info("=============
 | onDisconnect | Read-only| function | Yes| Callback invoked when the connection fails.|
 | onFailed     | Read-only| function | Yes| Callback invoked when **connectAbility** fails to be called.|
 
-* Return values
+**Return value**
+| Type| Description|
+| ------ | ------------------------ |
+| number | Returns the ID of the Service ability connected.|
 
-  Returns the ID of the Service ability connected.
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -518,20 +500,20 @@ var connId = featureAbility.connectAbility(
 );
 ```
 
-#### FeatureAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
+## featureAbility.disconnectAbility
 
-* Functionality
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-  Disconnects this ability from a specific Service ability. This method uses a callback to return the result.
+Disconnects this ability from a specific Service ability. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---------- | -------- | ------------- | ---- | ------------------------------ |
-| connection | Read-only| number        | Yes| ID of the Service ability to disconnect.|
-| callback   | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ---------- | ------------- | ---- | ------------------------------ |
+| connection | number        | Yes| ID of the Service ability to disconnect.|
+| callback   | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -562,19 +544,24 @@ var result = featureAbility.disconnectAbility(connId,
 );
 ```
 
-#### FeatureAbility.disconnectAbility(connection: number): Promise\<void>
+## featureAbility.disconnectAbility
 
-* Functionality
+disconnectAbility(connection: number): Promise\<void>
 
-  Disconnects this ability from a specific Service ability. This method uses a promise to return the result.
+Disconnects this ability from a specific Service ability. This method uses a promise to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---------- | -------- | ------ | ---- | ------------------------------ |
-| connection | Read-only| number | Yes| ID of the Service ability to disconnect.|
+| Name| Type| Mandatory| Description|
+| ---------- | ------ | ---- | ------------------------------ |
+| connection | number | Yes| ID of the Service ability to disconnect.|
 
-* Example
+**Return value**
+| Type| Description|
+| -------------- | ----------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -601,28 +588,27 @@ var connId = featureAbility.connectAbility(
 var result = await featureAbility.disconnectAbility(connId);
 ```
 
+## featureAbility.continueAbility
 
-#### FeatureAbility.continueAbility(options: ContinueAbilityOptions, callback: AsyncCallback\<void>): void;
+continueAbility(options: ContinueAbilityOptions, callback: AsyncCallback\<void>): void
 
-* Functionality
+Migrates an ability to another device. This method uses a callback to return the execution result.
 
-  Migrates an ability to another device. This method uses a callback to return the execution result.
+**Parameters**
 
-* Parameters
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | ------------------- |
+| options  | ContinueAbilityOptions | Yes| Ability to migrate.|
+| callback | AsyncCallback\<void>   | Yes| Callback used to return the result.|
+
+ContinueAbilityOptions
 
 | Name| Readable/Writable| Type| Mandatory| Description|
-| -------- | -------- | ---------------------- | ---- | ------------------- |
-| options  | Read-only| ContinueAbilityOptions | Yes| Ability to migrate.|
-| callback | Read-only| AsyncCallback\<void>   | Yes| Callback used to return the result.|
-
-- ContinueAbilityOptions
-
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---------- | -------- | ------- | ---- | ----------------------------------------------------------- |
+| ---------- | -------- | ------- | ---- | ------------------------------------------------------------ |
 | deviceId   | Read-only| string  | Yes| Information about the ability to migrate.|
 | reversible | Read-only| boolean | Yes| Whether migration back is supported. Currently, this feature is not supported. This parameter is reserved and can be set to **false**.|
 
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -642,21 +628,21 @@ async StartContinueAbility(deviceId) {
 this.StartContinueAbility(remoteDeviceId); //remoteDeviceId is acquired from DeviceManager
 ```
 
-#### AbilityResult
+## AbilityResult
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | ---------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | resultCode | Read-only| number                | Yes| Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon.|
-| want       | Read-only| [Want](#Want)| No| Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**.|
+| want       | Read-only| [Want](#want) | No| Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**.|
 
-#### StartAbilityParameter
+## StartAbilityParameter
 
 | Name| Readable/Writable| Type| Mandatory| Description|
-| ------------------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| want                | Read-only| [Want](#Want)| Yes| Information about the ability to start.|
-| abilityStartSetting | Read-only| {[key: string]: any}  | No| Special attribute of the ability to start. This attribute can be passed in the method call.|
+| ------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| want                | Read-only| [Want](#want)        | Yes| Information about the ability to start.|
+| abilityStartSetting | Read-only| {[key: string]: any} | No| Special attribute of the ability to start. This attribute can be passed in the method call.|
 
-#### Want
+## Want
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |

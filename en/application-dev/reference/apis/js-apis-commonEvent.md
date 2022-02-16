@@ -1,12 +1,12 @@
 # CommonEvent Module
 
-**Note:**
-The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **Note:**
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
 | Common Event Macro| Common Event Name| Subscriber Permissions|
-| ------------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------ |
+| ------------ | ------------------ | ---------------------- |
 | COMMON_EVENT_BOOT_COMPLETED                                  | usual.event.BOOT_COMPLETED                                  | ohos.permission.RECEIVER_STARTUP_COMPLETED                   |
 | COMMON_EVENT_SHUTDOWN                                        | usual.event.SHUTDOWN                                        | N/A|
 | COMMON_EVENT_BATTERY_CHANGED                                 | usual.event.BATTERY_CHANGED                                 | N/A|
@@ -103,11 +103,11 @@ The initial APIs of this module are supported since API version 7. Newly added A
 | COMMON_EVENT_USB_DEVICE_DETACHED                             | usual.event.hardware.usb.action.USB_DEVICE_DETACHED         | N/A|
 | COMMON_EVENT_USB_ACCESSORY_ATTACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED      | N/A|
 | COMMON_EVENT_USB_ACCESSORY_DETACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED      | N/A|
-| COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
-| COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGEor ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | N/A|
 
 ## Modules to Import
@@ -118,20 +118,20 @@ import CommonEvent from '@ohos.commonevent';
 
 
 
-## CommonEvent.publish(event: string, callback: AsyncCallback\<void>): void
+## CommonEvent.publish
 
-- Functionality
+publish(event: string, callback: AsyncCallback\<void>): void
 
-  Publishes a common event. This method uses a callback to return the result.
+Publishes a common event. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | -------------------- | ---- | -------------------- |
-  | event    | Read-only| string               | Yes| Name of the common event to publish.|
-  | callback | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Readable/Writable| Type| Mandatory| Description|
+| -------- | -------- | -------------------- | ---- | ---------------------- |
+| event    | Read-only| string               | Yes| Name of the common event to publish.|
+| callback | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-* Example
+**Example**
 
 ```js
 // Callback for common event publication
@@ -145,21 +145,21 @@ CommonEvent.publish("publish_event", PublishCallBack);
 
 
 
-## CommonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
+## CommonEvent.publish
 
-- Functionality
+publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
-  Publishes a common event with given attributes. This method uses a callback to return the result.
+Publishes a common event with given attributes. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | ---------------------- | ---- | ---------------------- |
-  | event    | Read-only| string                 | Yes| Name of the common event to publish.|
-  | options  | Read-only| [CommonEventPublishData](#publishData) | Yes| Attributes of the common event to publish.|
-  | callback | Read-only| AsyncCallback\<void>   | Yes| Callback used to return the result.|
+| Name| Readable/Writable| Type| Mandatory| Description|
+| -------- | -------- | ---------------------- | ---- | ---------------------- |
+| event    | Read-only| string                 | Yes| Name of the common event to publish.|
+| options  | Read-only| [CommonEventPublishData](#commoneventpublishdata) | Yes| Attributes of the common event to publish.|
+| callback | Read-only| AsyncCallback\<void>   | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
 
 ```js
@@ -179,20 +179,20 @@ CommonEvent.publish("publish_event", options, PublishCallBack);
 
 
 
-## CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
+## CommonEvent.createSubscriber
 
-- Functionality
+createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
-  Creates a subscriber. This method uses a callback to return the result.
+Creates a subscriber. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------- | -------- | ---------------------------------------------------- | ---- | ------------------------ |
-  | subscribeInfo | Read-only| [CommonEventSubscribeInfo](#SubscribeInfo)           | Yes| Subscriber information.|
-  | callback      | Read-only| AsyncCallback\<[CommonEventSubscriber](#Subscriber)> | Yes| Callback used to return the result.|
+| Name| Readable/Writable| Type| Mandatory| Description|
+| ------------- | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| subscribeInfo | Read-only| [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | Yes| Subscriber information.|
+| callback      | Read-only| AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
 
 ```js
@@ -212,25 +212,24 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 
 
 
-## CommonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
+## CommonEvent.createSubscriber
 
-- Functionality
+createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
-  Creates a subscriber. This method uses a promise to return the result.
+Creates a subscriber. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------- | -------- | ------------------------------------------ | ---- | ------------ |
-  | subscribeInfo | Read-only| [CommonEventSubscribeInfo](#SubscribeInfo) | Yes| Subscriber information.|
+| Name| Readable/Writable| Type| Mandatory| Description|
+| ------------- | -------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | Read-only| [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | Yes| Subscriber information.|
 
-- Return values
+**Return value**
+| Type| Description|
+| --------------------------------------------------------- | ---------------- |
+| Promise\<[CommonEventSubscriber](#commoneventsubscriber)> | Promise used to return the subscriber object.|
 
-  Promise\<[CommonEventSubscriber](#Subscriber)>
-  
-  Returns a subscriber object.
-  
-- Example
+**Example**
 
 ```js
 var subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
@@ -247,23 +246,22 @@ CommonEvent.createSubscriber(subscribeInfo).then((data) => {
 
 
 
-## CommonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
+## CommonEvent.subscribe
 
-- Functionality
+subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
-  Subscribes to common events. This method uses a callback to return the result.
+Subscribes to common events. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---------- | -------- | --------------------------------------------------- | ---- | ------------------------------ |
-  | subscriber | Read-only| [CommonEventSubscriber](#Subscriber)                | Yes| Subscriber object.|
-  | callback   | Read-only| AsyncCallback\<[CommonEventData](#CommonEventData)> | Yes| Callback used to return the result.|
+| Name| Readable/Writable| Type| Mandatory| Description|
+| ---------- | -------- | --------------------------------------------------- | ---- | -------------------------------- |
+| subscriber | Read-only| [CommonEventSubscriber](#commoneventsubscriber)     | Yes| Subscriber object.|
+| callback   | Read-only| AsyncCallback\<[CommonEventData](#commoneventdata)> | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
-  Unordered common event:
-  
+Unordered common event:
 
 ```js
 var subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
@@ -286,7 +284,7 @@ function CreateSubscriberCallBack(err, data) {
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
 
-​    Ordered common event:
+ Ordered common event:
 
 ```js
 var subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
@@ -330,22 +328,22 @@ function CreateSubscriberCallBack(err, data) {
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
 
-​    
+ 
 
-## CommonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
+## CommonEvent.unsubscribe
 
-- Functionality
+unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
-  Unsubscribes from common events. This method uses a callback to return the result.
+Unsubscribes from common events. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---------- | -------- | --------------------- | ---- | ---------------------- |
-  | subscriber | Read-only| CommonEventSubscriber | Yes| Subscriber object.|
-  | callback   | Read-only| AsyncCallback\<void>  | Yes| Callback used to return the result.|
+| Name| Readable/Writable| Type| Mandatory| Description|
+| ---------- | -------- | --------------------- | ---- | ------------------------ |
+| subscriber | Read-only| CommonEventSubscriber | Yes| Subscriber object.|
+| callback   | Read-only| AsyncCallback\<void>  | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
 ```js
 var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
@@ -374,7 +372,7 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 ```
 
-## <span id = "publishData">CommonEventPublishData</span>
+## CommonEventPublishData
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | --------------------- | -------- | -------------------- | ---- | ---------------------------- |
@@ -385,7 +383,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 | isOrdered             | Read-only| boolean              | No| Whether the common event is an ordered one.|
 | parameters            | Read-only| {[key: string]: any} | No| Additional information about the common event.|
 
-## <span id = "SubscribeInfo">CommonEventSubscribeInfo</span>
+## CommonEventSubscribeInfo
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
@@ -395,7 +393,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 | userId              | Read-only| number         | No| User ID. The default value is the ID of the current user. If this parameter is specified, the value must be an existing user ID in the system.|
 | priority            | Read-only| number         | No| Subscriber priority. The value ranges from -100 to 1000.|
 
-## <span id = "CommonEventData">CommonEventData</span>
+## CommonEventData
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | ---------- | -------- | -------------------- | ---- | ------------------------------------------------------ |
@@ -405,456 +403,456 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 | data       | Read-only| string               | No| Custom result data of the common event, which is used to transfer data of the string type.|
 | parameters | Read-only| {[key: string]: any} | No| Additional information about the common event.|
 
-## <span id = "Subscriber">CommonEventSubscriber</span>
+## CommonEventSubscriber
 
-### getCode (callback)
+### getCode
 
-- Functionality
+getCode(callback: AsyncCallback\<number>): void
 
-  Obtains the result code of this common event. This method uses a callback to return the result.
+Obtains the result code of this common event. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ---------------------- | ---- | ------------------ |
-  | callback | AsyncCallback\<number> | Yes| Callback used to return the result code.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<number> | Yes| Callback used to return the result code.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function getCodeCallback(err, data) {
-      console.info("==========================>getCodeCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>code:=======================>", data);
-  }
-  subscriber.getCode(getCodeCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function getCodeCallback(err, data) {
+    console.info("==========================>getCodeCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>code:=======================>", data);
+}
+subscriber.getCode(getCodeCallback);
+```
 
-### getCode (promise)
+### getCode
 
-- Functionality
+getCode(): Promise\<number>
 
-  Obtains the result code of this common event. This method uses a promise to return the result.
+Obtains the result code of this common event. This method uses a promise to return the result.
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ---------------- | ------------------ |
-  | Promise\<number> | A promise used to return the result code.|
+| Type| Description|
+| ---------------- | -------------------- |
+| Promise\<number> | Promise used to return the result code.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.getCode().then((data) => {
-  	console.info("==========================>getCodePromise=======================>");
-      console.info("==========================>code:=======================>", data);
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.getCode().then((data) => {
+	console.info("==========================>getCodePromise=======================>");
+    console.info("==========================>code:=======================>", data);
+});
+```
 
-### setCode (callback)
+### setCode
 
-- Functionality
+setCode(code: number, callback: AsyncCallback\<void>): void
 
-  Sets the result code for this common event. This method uses a callback to return the result.
+Sets the result code for this common event. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------------------- | ---- | -------------------- |
-  | code     | number               | Yes| Result code of the common event.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | ---------------------- |
+| code     | number               | Yes| Result code of the common event.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function setCodeCallback(err) {
-      console.info("==========================>setCodeCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.setCode(1, setCodeCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function setCodeCallback(err) {
+    console.info("==========================>setCodeCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+}
+subscriber.setCode(1, setCodeCallback);
+```
 
-### setCode (promise)
+### setCode
 
-- Functionality
+setCode(code: number): Promise\<void>
 
-  Sets the result code for this common event. This method uses a promise to return the result.
+Sets the result code for this common event. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ------------------ |
-  | code   | number | Yes| Result code of the common event.|
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | ------------------ |
+| code   | number | Yes| Result code of the common event.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.setCode(1).then(() => {
-  	console.info("==========================>setCodePromise=======================>");
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.setCode(1).then(() => {
+	console.info("==========================>setCodePromise=======================>");
+});
+```
 
-### getData (callback)
+### getData
 
-- Functionality
+getData(callback: AsyncCallback\<string>): void
 
-  Obtains the result data of this common event. This method uses a callback to return the result.
+Obtains the result data of this common event. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ---------------------- | ---- | ------------------ |
-  | callback | AsyncCallback\<string> | Yes| Callback used to return the result data.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<string> | Yes| Callback used to return the result data.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function getDataCallback(err, data) {
-      console.info("==========================>getDataCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>data:=======================>", data);
-  }
-  subscriber.getData(getDataCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function getDataCallback(err, data) {
+    console.info("==========================>getDataCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>data:=======================>", data);
+}
+subscriber.getData(getDataCallback);
+```
 
-### getData (promise)
+### getData
 
-- Functionality
+getData(): Promise\<string>
 
-  Obtains the result data of this common event. This method uses a promise to return the result.
+Obtains the result data of this common event. This method uses a promise to return the result.
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ---------------- | ------------------ |
-  | Promise\<string> | A promise used to return the result data.|
+| Type| Description|
+| ---------------- | ------------------ |
+| Promise\<string> | Promise used to return the result data.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.getData().then((data) => {
-  	console.info("==========================>getDataPromise=======================>");
-      console.info("==========================>data:=======================>", data);
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.getData().then((data) => {
+	console.info("==========================>getDataPromise=======================>");
+    console.info("==========================>data:=======================>", data);
+});
+```
 
-### setData (callback)
+### setData
 
-- Functionality
+setData(data: string, callback: AsyncCallback\<void>): void
 
-  Sets the result data for this common event. This method uses a callback to return the result.
+Sets the result data for this common event. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------------------- | ---- | -------------------- |
-  | data     | string               | Yes| Result data of the common event.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | -------------------- |
+| data     | string               | Yes| Result data of the common event.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function setDataCallback(err) {
-      console.info("==========================>setDataCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.setData("publish_data_changed", setDataCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function setDataCallback(err) {
+    console.info("==========================>setDataCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+}
+subscriber.setData("publish_data_changed", setDataCallback);
+```
 
-### setData (promise)
+### setData
 
-- Functionality
+setData(data: string): Promise\<void>
 
-  Sets the result data for this common event. This method uses a promise to return the result.
+Sets the result data for this common event. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ------------------ |
-  | data   | string | Yes| Result data of the common event.|
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | -------------------- |
+| data   | string | Yes| Result data of the common event.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.setData("publish_data_changed").then(() => {
-  	console.info("==========================>setDataPromise=======================>");
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.setData("publish_data_changed").then(() => {
+	console.info("==========================>setDataPromise=======================>");
+});
+```
 
-### setCodeAndData (callback)
+### setCodeAndData
 
-- Functionality
+setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
-  Sets the result code and result data for this common event. This method uses a callback to return the result.
+Sets the result code and result data for this common event. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------------------- | ---- | -------------------- |
-  | code     | number               | Yes| Result code of the common event.|
-  | data     | string               | Yes| Result data of the common event.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | ---------------------- |
+| code     | number               | Yes| Result code of the common event.|
+| data     | string               | Yes| Result data of the common event.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function setCodeDataCallback(err) {
-      console.info("==========================>setCodeDataCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function setCodeDataCallback(err) {
+    console.info("==========================>setCodeDataCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+}
+subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
+```
 
-### setCodeAndData (promise)
+### setCodeAndData
 
-- Functionality
+setCodeAndData(code: number, data: string): Promise\<void>
 
-  Sets the result code and result data for this common event. This method uses a promise to return the result.
+Sets the result code and result data for this common event. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ------------------ |
-  | code   | number | Yes| Result code of the common event.|
-  | data   | string | Yes| Result data of the common event.|
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | -------------------- |
+| code   | number | Yes| Result code of the common event.|
+| data   | string | Yes| Result data of the common event.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
-  	console.info("==========================>setCodeAndData=======================>");
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
+	console.info("==========================>setCodeAndData=======================>");
+});
+```
 
-### isOrderedCommonEvent (callback)
+### isOrderedCommonEvent
 
-- Functionality
+isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
-  Checks whether this common event is an ordered one. This method uses a callback to return the result.
+Checks whether this common event is an ordered one. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ----------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback\<boolean> | Yes| Returns **true** if the common event is an ordered one; returns **false** otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | ----------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<boolean> | Yes| Returns **true** if the common event is an ordered one; returns **false** otherwise.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function isOrderedCallback(err, data) {
-      console.info("==========================>isOrderedCallback=======================>");
-      console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>isOrdered:=======================>", data);
-  }
-  subscriber.isOrderedCommonEvent(isOrderedCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function isOrderedCallback(err, data) {
+    console.info("==========================>isOrderedCallback=======================>");
+    console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>isOrdered:=======================>", data);
+}
+subscriber.isOrderedCommonEvent(isOrderedCallback);
+```
 
-### isOrderedCommonEvent (promise)
+### isOrderedCommonEvent
 
-- Functionality
+isOrderedCommonEvent(): Promise\<boolean>
 
-  Checks whether this common event is an ordered one. This method uses a promise to return the result.
+Checks whether this common event is an ordered one. This method uses a promise to return the result.
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ----------------- | -------------------------------- |
-  | Promise\<boolean> | Returns **true** if the common event is an ordered one; returns **false** otherwise.|
+| Type| Description|
+| ----------------- | -------------------------------- |
+| Promise\<boolean> | Returns **true** if the common event is an ordered one; returns **false** otherwise.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.isOrderedCommonEvent().then((data) => {
-  	console.info("==========================>isOrdered:=======================>", data);
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.isOrderedCommonEvent().then((data) => {
+	console.info("==========================>isOrdered:=======================>", data);
+});
+```
 
-### abortCommonEvent (callback)
+### abortCommonEvent
 
-- Functionality
+abortCommonEvent(callback: AsyncCallback\<void>): void
 
-  Aborts this common event. After the abort, the common event is not sent to the next subscriber. This method takes effect only for ordered common events. It uses a callback to return the result.
+Aborts this common event. After the abort, the common event is not sent to the next subscriber. This method takes effect only for ordered common events. It uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ----------------------- | ---- | ------------------ |
-  | callback | AsyncCallback\<boolean> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function abortCallback(err) {
-      console.info("==========================>abortCallback=======================>");
-   	console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.abortCommonEvent(abortCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function abortCallback(err) {
+    console.info("==========================>abortCallback=======================>");
+ 	console.info("==========================>err:=======================>", err.code);
+}
+subscriber.abortCommonEvent(abortCallback);
+```
 
-### abortCommonEvent (promise)
+### abortCommonEvent
 
-- Functionality
+abortCommonEvent(): Promise\<void>
 
-  Aborts this common event. After the abort, the common event is not sent to the next subscriber. This method takes effect only for ordered common events. It uses a promise to return the result.
+Aborts this common event. After the abort, the common event is not sent to the next subscriber. This method takes effect only for ordered common events. It uses a promise to return the result.
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.abortCommonEvent().then(() => {
-  	console.info("==========================>abortCommonEvent:=======================>");
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.abortCommonEvent().then(() => {
+	console.info("==========================>abortCommonEvent:=======================>");
+});
+```
 
-### clearAbortCommonEvent (callback)
+### clearAbortCommonEvent
 
-- Functionality
+clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
-  Clears the aborted state of this common event. This method takes effect only for ordered common events. It uses a callback to return the result.
+Clears the aborted state of this common event. This method takes effect only for ordered common events. It uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------------------- | ---- | -------------------- |
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function clearAbortCallback(err) {
-      console.info("==========================>clearAbortCallback=======================>");
-   	console.info("==========================>err:=======================>", err.code);
-  }
-  subscriber.clearAbortCommonEvent(clearAbortCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function clearAbortCallback(err) {
+    console.info("==========================>clearAbortCallback=======================>");
+ 	console.info("==========================>err:=======================>", err.code);
+}
+subscriber.clearAbortCommonEvent(clearAbortCallback);
+```
 
-### clearAbortCommonEvent (promise)
+### clearAbortCommonEvent
 
-- Functionality
+clearAbortCommonEvent(): Promise\<void>
 
-  Clears the aborted state of this common event. This method takes effect only for ordered common events. It uses a promise to return the result.
+Clears the aborted state of this common event. This method takes effect only for ordered common events. It uses a promise to return the result.
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.clearAbortCommonEvent().then(() => {
-  	console.info("==========================>clearAbortCommonEvent:=======================>");
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.clearAbortCommonEvent().then(() => {
+	console.info("==========================>clearAbortCommonEvent:=======================>");
+});
+```
 
-### getAbortCommonEvent (callback)
+### getAbortCommonEvent
 
-- Functionality
+getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
-  Checks whether this common event is in the aborted state. This method takes effect only for ordered common events. It uses a callback to return the result.
+Checks whether this common event is in the aborted state. This method takes effect only for ordered common events. It uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ----------------------- | ---- | ---------------------------------- |
-  | callback | AsyncCallback\<boolean> | Yes| Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | ----------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<boolean> | Yes| Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function getAbortCallback(err, data) {
-      console.info("==========================>getAbortCallback=======================>");
-   	console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>abort:=======================>", data);
-  }
-  subscriber.getAbortCommonEvent(getAbortCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function getAbortCallback(err, data) {
+    console.info("==========================>getAbortCallback=======================>");
+ 	console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>abort:=======================>", data);
+}
+subscriber.getAbortCommonEvent(getAbortCallback);
+```
 
-### getAbortCommonEvent (promise)
+### getAbortCommonEvent
 
-- Functionality
+getAbortCommonEvent(): Promise\<void>
 
-  Checks whether this common event is in the aborted state. This method takes effect only for ordered common events. It uses a promise to return the result.
+Checks whether this common event is in the aborted state. This method takes effect only for ordered common events. It uses a promise to return the result.
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ----------------- | ---------------------------------- |
-  | Promise\<boolean> | Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
+| Type| Description|
+| ----------------- | ---------------------------------- |
+| Promise\<boolean> | Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.getAbortCommonEvent().then((data) => {
-  	console.info("==========================>getAbortCommonEvent:=======================>");
-      console.info("==========================>abort:=======================>", data);
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.getAbortCommonEvent().then((data) => {
+	console.info("==========================>getAbortCommonEvent:=======================>");
+    console.info("==========================>abort:=======================>", data);
+});
+```
 
-### getSubscribeInfo (callback)
+### getSubscribeInfo
 
-- Functionality
+getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
-  Obtains the subscriber information. This method uses a callback to return the result.
+Obtains the subscriber information. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ---------------------------------------- | ---- | -------------------- |
-  | callback | AsyncCallback\<CommonEventSubscribeInfo> | Yes| Callback used to return the subscriber information.|
+| Name| Type| Mandatory| Description|
+| -------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| callback | AsyncCallback\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | Yes| Callback used to return the subscriber information.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  // Callback for result data setting of an ordered common event
-  function getSubscribeInfoCallback(err, data) {
-      console.info("==========================>getSubscribeInfoCallback=======================>");
-   	console.info("==========================>err:=======================>", err.code);
-      console.info("==========================>priority:=======================>", data.priority);
-  }
-  subscriber.getSubscribeInfo(getSubscribeInfoCallback);
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Callback for result data setting of an ordered common event
+function getSubscribeInfoCallback(err, data) {
+    console.info("==========================>getSubscribeInfoCallback=======================>");
+ 	console.info("==========================>err:=======================>", err.code);
+    console.info("==========================>priority:=======================>", data.priority);
+}
+subscriber.getSubscribeInfo(getSubscribeInfoCallback);
+```
 
-### getSubscribeInfo (promise)
+### getSubscribeInfo
 
-- Functionality
+getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
-  Obtains the subscriber information. This method uses a promise to return the result.
+Obtains the subscriber information. This method uses a promise to return the result.
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ---------------------------------- | -------------------- |
-  | Promise\<CommonEventSubscribeInfo> | A promise used to return the subscriber information.|
+| Type| Description|
+| ------------------------------------------------------------ | ---------------------- |
+| Promise\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | Promise used to return the subscriber information.|
 
-- Example
+**Example**
 
-  ```js
-  var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
-  subscriber.getSubscribeInfo().then((data) => {
-  	console.info("==========================>getSubscribeInfo:=======================>");
-      console.info("==========================>priority:=======================>", data.priority);
-  });
-  ```
+```js
+var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+subscriber.getSubscribeInfo().then((data) => {
+	console.info("==========================>getSubscribeInfo:=======================>");
+    console.info("==========================>priority:=======================>", data.priority);
+});
+```

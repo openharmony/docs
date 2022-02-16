@@ -10,25 +10,21 @@ The ParticleAbility module is used to perform operations on abilities of the Dat
 import particleAbility from '@ohos.ability.particleAbility'
 ```
 
-## particleAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void
+## particleAbility.startAbility
 
-- Functionality
+startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void
 
-  Starts a Service ability. This method uses a callback to return the result.
+Starts a Service ability. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| --------- | -------- | ------------------------------------------------------- | ---- | ----------------- |
-| parameter | Read-only| [StartAbilityParameter](#StartAbilityParameter)| Yes| Ability to start.|
-| callback  | Read-only| AsyncCallback\<void>                                    | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| --------- | ----------------------------------------------- | ---- | ----------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes| Ability to start.|
+| callback  | AsyncCallback\<void>                            | Yes| Callback used to return the result.|
 
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
@@ -54,22 +50,23 @@ particleAbility.startAbility(
 
 
 
-## particleAbility.startAbility(parameter: StartAbilityParameter): Promise\<number>
+## particleAbility.startAbility
 
-- Functionality
+startAbility(parameter: StartAbilityParameter): Promise\<number>
 Starts a Service ability. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| --------- | -------- | ------------------------------------------------------- | ---- | ----------------- |
-| parameter | Read-only| [StartAbilityParameter](#StartAbilityParameter)| Yes| Ability to start.|
-- Return values
+| Name| Type| Mandatory| Description|
+| --------- | ----------------------------------------------- | ---- | ----------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes| Ability to start.|
+**Return value**
+| Type| Description|
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-  Promise\<void>
-
-- Example
+**Example**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
@@ -94,23 +91,19 @@ particleAbility.startAbility(
 
 
 
-## particleAbility.terminateSelf(callback: AsyncCallback\<void>): void
+## particleAbility.terminateSelf
 
-- Functionality
+terminateSelf(callback: AsyncCallback\<void>): void
 
-  Terminates this Service ability. This method uses a callback to return the result.
+Terminates this Service ability. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| -------- | -------- | -------------------- | ---- | -------------------- |
-| callback | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-- Return values
-
-  void
-
-- Example
+**Example**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
@@ -123,17 +116,18 @@ particleAbility.terminateSelf(
 
 
 
-## particleAbility.terminateSelf(): Promise\<void>
+## particleAbility.terminateSelf
 
-- Functionality
+terminateSelf(): Promise\<void>
 
-  Terminates this Service ability. This method uses a promise to return the result.
+Terminates this Service ability. This method uses a promise to return the result.
 
-- Return values
+**Return value**
+| Type| Description|
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-  Promise\<void>
-
-- Example
+**Example**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
@@ -144,25 +138,25 @@ particleAbility.terminateSelf().then((void) => {
 
 
 
-## particleAbility.acquireDataAbilityHelper(uri: string): DataAbilityHelper
+## particleAbility.acquireDataAbilityHelper
 
-- Functionality
+acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
-  Obtains a **dataAbilityHelper** object.
+Obtains a **dataAbilityHelper** object.
 
-- Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| :--- | -------- | ------ | ---- | ---------------------- |
-| uri  | Read-only| string | Yes| URI of the file to open.|
+| Name| Type| Mandatory| Description|
+| :--- | ------ | ---- | ------------------------ |
+| uri  | string | Yes| URI of the file to open.|
 
-- Return values
+**Return value**
 
 | Type| Description|
-| ----------------- | ------------------------------------------ |
+| ----------------- | -------------------------------------------- |
 | DataAbilityHelper | A utility class used to help other abilities access a Data ability.|
 
-- Example
+**Example**
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'     
@@ -170,20 +164,20 @@ var uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
 ```
 
-## particleAbility.connectAbility(request: Want, options:ConnectOptions): number
+## particleAbility.connectAbility
 
-* Functionality
+connectAbility(request: Want, options:ConnectOptions): number
 
-  Connects this ability to a specific Service ability. This method uses a callback to return the result.
+Connects this ability to a specific Service ability. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ------- | -------- | -------------- | ---- | -------------------------- |
-| request | Read-only| Want           | Yes| Service ability to connect.|
-| options | Read-only| ConnectOptions | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ------- | -------------- | ---- | -------------------------- |
+| request | [Want](#want)           | Yes| Service ability to connect.|
+| options | ConnectOptions | Yes| Callback used to return the result.|
 
-- ConnectOptions
+ConnectOptions
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | ------------ | -------- | -------- | ---- | ---------------------------------- |
@@ -191,11 +185,12 @@ particleAbility.acquireDataAbilityHelper(uri)
 | onDisconnect | Read-only| function | Yes| Callback invoked when the connection is interrupted.|
 | onFailed     | Read-only| function | Yes| Callback invoked when the connection fails.|
 
-* Return values
+**Return value**
+| Type| Description|
+| ------ | -------------------------- |
+| number | Unique identifier of the connection between the client and the service side.|
 
-  Returns the unique identifier of the connection.
-
-* Example
+**Example**
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
@@ -221,24 +216,20 @@ var connId = particleAbility.connectAbility(
 );
 ```
 
-## particleAbility.disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
+## particleAbility.disconnectAbility
 
-* Functionality
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-  Disconnects this ability from a specific Service ability. This method uses a callback to return the result.
+Disconnects this ability from a specific Service ability. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---------- | -------- | ------------- | ---- | ------------------------------ |
-| connection | Read-only| number        | Yes| ID of the Service ability to disconnect.|
-| callback   | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ---------- | ------------- | ---- | ------------------------------ |
+| connection | number        | Yes| ID of the Service ability to disconnect.|
+| callback   | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-* Return values
-
-  void
-
-* Example
+**Example**
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
@@ -269,23 +260,24 @@ var result = particleAbility.disconnectAbility(connId,
 );
 ```
 
-## particleAbility.disconnectAbility(connection: number): Promise\<void>
+## particleAbility.disconnectAbility
 
-* Functionality
+disconnectAbility(connection: number): Promise\<void>
 
-  Disconnects this ability from a specific Service ability. This method uses a promise to return the result.
+Disconnects this ability from a specific Service ability. This method uses a promise to return the result.
 
-* Parameters
+**Parameters**
 
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ---------- | -------- | ------ | ---- | ------------------------------ |
-| connection | Read-only| number | Yes| ID of the Service ability to disconnect.|
+| Name| Type| Mandatory| Description|
+| ---------- | ------ | ---- | ------------------------------ |
+| connection | number | Yes| ID of the Service ability to disconnect.|
 
-* Return values
+**Return value**
+| Type| Description|
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-  Promise\<void>
-
-* Example
+**Example**
 
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
@@ -318,7 +310,7 @@ var result = particleAbility.disconnectAbility(connId).then((void) => {
 
 | Name| Readable/Writable| Type| Mandatory| Description|
 | ------------------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| want                | Read-only| [Want](#Want)| Yes| Information about the ability to start.|
+| want                | Read-only| [Want](#want) | Yes| Information about the ability to start.|
 | abilityStartSetting | Read-only| {[key: string]: any}  | No| Special attribute of the ability to start. This attribute can be passed in the method call.|
 
 ## Want
@@ -358,9 +350,9 @@ var result = particleAbility.disconnectAbility(connId).then((void) => {
 
 ## AbilityStartSetting
 
-Defines special attributes of an ability, for example, **featureAbility.AbilityStartSetting.BOUNDS_KEY**.
-
 The **AbilityStartSetting** attribute is an object defined as [key: string]: any. The key is a type of **AbilityStartSetting**, and the value is a type of **AbilityWindowConfiguration**.
+
+Defines special attributes of an ability, for example, **featureAbility.AbilityStartSetting.BOUNDS_KEY**.
 
 | Name| Value| Description|
 | --------------- | --------------- | -------------------------- |
