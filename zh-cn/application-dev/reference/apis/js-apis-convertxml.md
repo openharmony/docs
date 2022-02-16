@@ -10,6 +10,10 @@
 import convertxml from '@ohos.convertxml';
 ```
 
+## 系统能力
+
+SystemCapability.Utils.Lang
+
 ## ConvertXML
 
 

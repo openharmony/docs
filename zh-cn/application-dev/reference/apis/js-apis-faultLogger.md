@@ -14,7 +14,7 @@ SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 ## FaultType
 
-故障类型枚举
+故障类型枚举。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -25,7 +25,7 @@ SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 ## FaultLogInfo
 
-故障信息数据结构，获取到的故障信息的数据结构
+故障信息数据结构，获取到的故障信息的数据结构。
 
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
@@ -44,13 +44,15 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 
 获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
-  | callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
+**参数：**
 
-- 示例：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
+| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串
+
+**示例：**
+
 ```
 function queryFaultLogCallback(error, value) {
     if (error) {
@@ -80,17 +82,20 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 
 获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
 
-- 示例：
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise实例，可以在其then()方法中获取故障信息实例，也可以使用await。 <br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常 |
+
+**示例：**
+
 ```
 let value = await faultLogger.querySelfFaultLog(faultlogger.FaultType.JS_CRASH);
 if (value) {

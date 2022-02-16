@@ -10,6 +10,10 @@
 import uri from '@ohos.uri'  
 ```
 
+## 系统能力
+
+SystemCapability.Utils.Lang
+
 ## URI
 
 
@@ -34,19 +38,21 @@ constructor(uri: string)
 
 constructor是URI的构造函数。
 
-- 参数：
-  | 参数名 | 类型 | 可读 | 可写 | 说明 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | url | string | 是 | 是 | 入参对象。 |
+**参数：**
 
-- 示例：
-  ```
-  var mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
-  new uri.URI(mm); // Output 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
-  ```
-  ```
-  new uri.URI('http://username:password@host:8080'); // Output 'http://username:password@host:8080';
-  ```
+| 参数名 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| url | string | 是 | 是 | 入参对象。 |
+
+**示例：**
+
+```
+var mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
+new uri.URI(mm); // Output 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
+```
+```
+new uri.URI('http://username:password@host:8080'); // Output 'http://username:password@host:8080';
+```
 
 
 ### toString
@@ -55,16 +61,18 @@ toString(): string
 
 返回适用于URL中的查询字符串。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 返回网址的字符串序列化。 |
+**返回值：**
 
-- 示例:
-  ```
-  const url = new uri.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-  url.toString()
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回网址的字符串序列化。 |
+
+**示例：**
+
+```
+const url = new uri.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+url.toString()
+```
 
 
 ### equals
@@ -73,22 +81,25 @@ equals(other: URI): boolean
 
 判断此URI是否与其他URI对象相等。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | other | [URI](#uri) | 是 | 需要比较的URI对象。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示相等，否则返回false。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| other | [URI](#uri) | 是 | 需要比较的URI对象。 |
 
-- 示例:
-  ```
-  const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-  const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
-  uriInstance.equals(uriInstance1);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回true表示相等，否则返回false。 |
+
+**示例：**
+
+```
+const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
+uriInstance.equals(uriInstance1);
+```
 
 ### checkIsAbsolute
 
@@ -96,16 +107,18 @@ checkIsAbsolute(): boolean
 
 判断此URI是否为绝对URI（是否定义了scheme组件）。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示该URI是否为绝对URI。 |
+**返回值：**
 
-- 示例:
-  ```
-  const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080?query=pppppp');
-  uriInstance.checkIsAbsolute();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回true表示该URI是否为绝对URI。 |
+
+**示例：**
+
+```
+const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080?query=pppppp');
+uriInstance.checkIsAbsolute();
+```
 
 
 ### normalize
@@ -114,14 +127,15 @@ normalize(): URI
 
 规范化此URI的路径。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | URI | 返回一个path被规范化后的URI对象。 |
+**返回值：**
 
-- 示例:
-  ```
-  const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
-  let uriInstance1 = uriInstance.normalize();
-  uriInstance1.path;
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| URI | 返回一个path被规范化后的URI对象。 |
+
+**示例：**
+```
+const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
+let uriInstance1 = uriInstance.normalize();
+uriInstance1.path;
+```

@@ -23,16 +23,18 @@ shutdownDevice(reason: string): void
 
 需要权限：ohos.permission.SHUTDOWN
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | reason | string | 是 | 关机原因。 |
+**参数：**
 
-- 示例：
-  ```
-  power.shutdownDevice("shutdown_test");
-  console.info('power_shutdown_device_test success')
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| reason | string | 是 | 关机原因。 |
+
+**示例：**
+
+```
+power.shutdownDevice("shutdown_test");
+console.info('power_shutdown_device_test success')
+```
 
 
 ## power.rebootDevice
@@ -43,16 +45,18 @@ rebootDevice(reason: string): void
 
 需要权限：ohos.permission.REBOOT（重启权限）、ohos.permission.REBOOT_RECOVERY（重启并进入recovery模式的权限）
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | reason | string | 是 | 重启原因。 |
+**参数：**
 
-- 示例：
-  ```
-  power.rebootDevice("reboot_test");
-  console.info('power_reboot_device_test success')
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| reason | string | 是 | 重启原因。 |
+
+**示例：**
+
+```
+power.rebootDevice("reboot_test");
+console.info('power_reboot_device_test success')
+```
 
 
 ## power.isScreenOn
@@ -61,21 +65,23 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
 检测当前设备的亮灭屏状态。
 
-- 参数：
-  | 类型 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 指定的callback回调方法，用于获取返回值。<br/>callback返回值：亮屏返回true，灭屏返回false。 |
+**参数：**
 
-- 示例：
-  ```
-  power.isScreenOn((error, screenOn) => {
-      if (typeof error === "undefined") {
-          console.info('screenOn status is ' + screenOn);
-      } else {
-          console.log('error: ' + error);
-      }
-  })
-  ```
+| 类型 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 指定的callback回调方法，用于获取返回值。<br/>callback返回值：亮屏返回true，灭屏返回false。 |
+
+**示例：**
+
+```
+power.isScreenOn((error, screenOn) => {
+    if (typeof error === "undefined") {
+        console.info('screenOn status is ' + screenOn);
+    } else {
+        console.log('error: ' + error);
+    }
+})
+```
 
 
 ## power.isScreenOn
@@ -84,18 +90,19 @@ isScreenOn(): Promise&lt;boolean&gt;
 
 检测当前设备的亮灭屏状态。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于异步获取返回值，亮屏返回true，灭屏返回false。 |
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise实例，用于异步获取返回值，亮屏返回true，灭屏返回false。 |
 
-- 示例：
-  ```
-  power.isScreenOn()
-  .then(screenOn => {
-      console.info('screenOn status is ' + screenOn);
-  })
-  .catch(error => {
-      console.log('error: ' + error);
-  })
-  ```
+**示例：**
+
+```
+power.isScreenOn()
+.then(screenOn => {
+    console.info('screenOn status is ' + screenOn);
+})
+.catch(error => {
+    console.log('error: ' + error);
+})
+```

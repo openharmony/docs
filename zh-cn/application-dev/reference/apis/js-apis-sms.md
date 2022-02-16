@@ -16,24 +16,24 @@ createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallba
 
 根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名        | 类型                                               | 必填 | 说明                                                         |
-  | ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | pdu           | Array&lt;number&gt;                                | 是   | 协议数据单元，从收到的信息中获取。                           |
-  | specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
-  | callback      | AsyncCallback&lt;[ShortMessage](#ShortMessage)&gt; | 是   | 回调函数。                                                   |
+| 参数名        | 类型                                               | 必填 | 说明                                                         |
+| ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| pdu           | Array&lt;number&gt;                                | 是   | 协议数据单元，从收到的信息中获取。                           |
+| specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
+| callback      | AsyncCallback&lt;[ShortMessage](#ShortMessage)&gt; | 是   | 回调函数。                                                   |
 
--   示例
+**示例：**
 
-    ```
-    const specification = '3gpp';
-    // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
-    const pdu = [0x08, 0x91];
-    sms.createMessage(pdu, specification, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+const specification = '3gpp';
+// 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
+const pdu = [0x08, 0x91];
+sms.createMessage(pdu, specification, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## sms.createMessage<a name=sms.createMessage-promise></a>
@@ -42,32 +42,32 @@ createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessag
 
 根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用Promise方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名        | 类型                | 必填 | 说明                                                         |
-  | ------------- | ------------------- | ---- | ------------------------------------------------------------ |
-  | pdu           | Array&lt;number&gt; | 是   | 协议数据单元，从收到的信息中获取。                           |
-  | specification | string              | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
+| 参数名        | 类型                | 必填 | 说明                                                         |
+| ------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| pdu           | Array&lt;number&gt; | 是   | 协议数据单元，从收到的信息中获取。                           |
+| specification | string              | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
 
-- 返回值
+**返回值：**
 
-  | 类型                                         | 说明                              |
-  | -------------------------------------------- | --------------------------------- |
-  | Promise&lt;[ShortMessage](#ShortMessage)&gt; | 以Promise形式返回创建的短信实例。 |
+| 类型                                         | 说明                              |
+| -------------------------------------------- | --------------------------------- |
+| Promise&lt;[ShortMessage](#ShortMessage)&gt; | 以Promise形式返回创建的短信实例。 |
 
--   示例
+**示例：**
 
-    ```
-    const specification = '3gpp';
-    // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
-    const pdu = [0x08, 0x91];
-    let promise = sms.createMessage(pdu, specification);
-    promise.then(data => {
-        console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`createMessage fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+const specification = '3gpp';
+// 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
+const pdu = [0x08, 0x91];
+let promise = sms.createMessage(pdu, specification);
+promise.then(data => {
+    console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`createMessage fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## sms.sendMessage
 
@@ -77,29 +77,29 @@ sendMessage(options: SendMessageOptions): void
 
 需要ohos.permission.SEND_MESSAGES权限。
 
-- 参数
+**参数：**
 
-  | 参数名  | 类型                                      | 必填 | 说明                                                         |
-  | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options | [SendMessageOptions](#SendMessageOptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#SendMessageOptions)。 |
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [SendMessageOptions](#SendMessageOptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#SendMessageOptions)。 |
 
-- 示例
+**示例：**
 
-  ```
-  let sendCallback = function (err, data) {    
-      console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
-  }
-  let deliveryCallback = function (err, data) {    
-      console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
-  }
-  let slotId = 0;
-  let content = '短信内容';
-  let destinationHost = '+861xxxxxxxxxx';
-  let serviceCenter = '+861xxxxxxxxxx';
-  let destinationPort = 1000;
-  let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
-  sms.sendMessage(options);
-  ```
+```
+let sendCallback = function (err, data) {    
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+}
+let deliveryCallback = function (err, data) {    
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+}
+let slotId = 0;
+let content = '短信内容';
+let destinationHost = '+861xxxxxxxxxx';
+let serviceCenter = '+861xxxxxxxxxx';
+let destinationPort = 1000;
+let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+sms.sendMessage(options);
+```
 
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup><a name=sms.getDefaultSmsSlotId-callback></a>
@@ -108,19 +108,19 @@ getDefaultSmsSlotId\(callback: AsyncCallback<number\>\): void
 
 获取发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                        | 必填 | 说明                                     |
-  | -------- | --------------------------- | ---- | ---------------------------------------- |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
--   示例
+**示例：**
 
-    ```
-    sms.getDefaultSmsSlotId((err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+sms.getDefaultSmsSlotId((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup><a name=sms.getDefaultSmsSlotId-promise></a>
@@ -129,22 +129,22 @@ getDefaultSmsSlotId\(\): Promise<number\>
 
 获取发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
 
-- 返回值
+**返回值：**
 
-  | 类型            | 说明                                                         |
-  | --------------- | ------------------------------------------------------------ |
-  | Promise<number> | 以Promise形式返回发送短信的默认SIM卡：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 类型            | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Promise<number> | 以Promise形式返回发送短信的默认SIM卡：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
--   示例
+**示例：**
 
-    ```
-    let promise = call.getDefaultSmsSlotId();
-    promise.then(data => {
-        console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`getDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = call.getDefaultSmsSlotId();
+promise.then(data => {
+    console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## sms.setSmscAddr<sup>7+</sup><a name=sms.setSmscAddr-callback></a>
@@ -155,23 +155,23 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 需要ohos.permission.SET\_TELEPHONY\_STATE权限，该权限为系统权限。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                      | 必填 | 说明                                      |
-  | -------- | ------------------------- | ---- | ----------------------------------------- |
-  | slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-  | smscAddr | string                    | 是   | 短信服务中心地址。                        |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
+| 参数名   | 类型                      | 必填 | 说明                                      |
+| -------- | ------------------------- | ---- | ----------------------------------------- |
+| slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| smscAddr | string                    | 是   | 短信服务中心地址。                        |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    let smscAddr = '+861xxxxxxxxxx';
-    sms.setSmscAddr(slotId, smscAddr, (err,data) => {
-          console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+let smscAddr = '+861xxxxxxxxxx';
+sms.setSmscAddr(slotId, smscAddr, (err,data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## sms.setSmscAddr<sup>7+</sup><a name=sms.setSmscAddr-promise></a>
@@ -182,31 +182,31 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise<void\>
 
 需要ohos.permission.SET\_TELEPHONY\_STATE权限，该权限为系统权限。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型   | 必填 | 说明                                      |
-  | -------- | ------ | ---- | ----------------------------------------- |
-  | slotId   | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-  | smscAddr | string | 是   | 短信服务中心地址。                        |
+| 参数名   | 类型   | 必填 | 说明                                      |
+| -------- | ------ | ---- | ----------------------------------------- |
+| slotId   | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| smscAddr | string | 是   | 短信服务中心地址。                        |
 
-- 返回值
+**返回值：**
 
-  | 类型                | 说明                            |
-  | ------------------- | ------------------------------- |
-  | Promise&lt;void&gt; | 以Promise形式异步返回设置结果。 |
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回设置结果。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    let smscAddr = '+861xxxxxxxxxx';
-    let promise = sms.setSmscAddr(slotId, smscAddr);
-    promise.then(data => {
-        console.log(`setSmscAddr success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`setSmscAddr fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let smscAddr = '+861xxxxxxxxxx';
+let promise = sms.setSmscAddr(slotId, smscAddr);
+promise.then(data => {
+    console.log(`setSmscAddr success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`setSmscAddr fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## sms.getSmscAddr<sup>7+</sup><a name=sms.getSmscAddr-callback></a>
@@ -217,21 +217,21 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                        | 必填 | 说明                                      |
-  | -------- | --------------------------- | ---- | ----------------------------------------- |
-  | slotId   | number                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-  | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                                |
+| 参数名   | 类型                        | 必填 | 说明                                      |
+| -------- | --------------------------- | ---- | ----------------------------------------- |
+| slotId   | number                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                                |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    sms.getSmscAddr(slotId, (err, data) => {
-          console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+sms.getSmscAddr(slotId, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## sms.getSmscAddr<sup>7+</sup><a name=sms.getSmscAddr-promise></a>
@@ -242,29 +242,29 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                                      |
-  | ------ | ------ | ---- | ----------------------------------------- |
-  | slotId | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| slotId | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
-- 返回值
+**返回值：**
 
-  | 类型                  | 说明                                          |
-  | --------------------- | --------------------------------------------- |
-  | Promise&lt;string&gt; | 以Promise形式返回获取短信服务中心地址的结果。 |
+| 类型                  | 说明                                          |
+| --------------------- | --------------------------------------------- |
+| Promise&lt;string&gt; | 以Promise形式返回获取短信服务中心地址的结果。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    let promise = sms.getSmscAddr(slotId);
-    promise.then(data => {
-        console.log(`getSmscAddr success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`getSmscAddr fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = sms.getSmscAddr(slotId);
+promise.then(data => {
+    console.log(`getSmscAddr success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getSmscAddr fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## ShortMessage<a name=ShortMessage></a>

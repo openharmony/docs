@@ -19,20 +19,20 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 需要权限：ohos.permission.PLACE\_CALL权限，该权限为系统权限。
 
-- 参数
-  
-  | 参数        | 类型                         | 必填 | 说明                                              |
-  | ----------- | ---------------------------- | ---- | ------------------------------------------------- |
-  | phoneNumber | string                       | 是   | 电话号码。                                        |
-  | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：成功。<br/>- false：失败。 |
-  
--   示例
+**参数：**
 
-    ```
-    call.dial("138xxxxxxxx", (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+| 参数        | 类型                         | 必填 | 说明                                              |
+| ----------- | ---------------------------- | ---- | ------------------------------------------------- |
+| phoneNumber | string                       | 是   | 电话号码。                                        |
+| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：成功。<br/>- false：失败。 |
+
+**示例：**
+
+```
+call.dial("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.dial<a name=call.dial-callback2></a>
@@ -43,24 +43,23 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean
 
 需要权限：ohos.permission.PLACE\_CALL权限，该权限为系统权限。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型                         | 必填 | 说明                                              |
-  | ----------- | ---------------------------- | ---- | ------------------------------------------------- |
-  | phoneNumber | string                       | 是   | 电话号码。                                        |
-  | options     | DialOptions                  | 是   | 通话参数，参考[DialOptions](#DialOptions)。       |
-  | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：成功。<br/>- false：失败。 |
+| 参数        | 类型                         | 必填 | 说明                                              |
+| ----------- | ---------------------------- | ---- | ------------------------------------------------- |
+| phoneNumber | string                       | 是   | 电话号码。                                        |
+| options     | DialOptions                  | 是   | 通话参数，参考[DialOptions](#DialOptions)。       |
+| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：成功。<br/>- false：失败。 |
 
+**示例：**
 
--   示例
-
-    ```
-    call.dial("138xxxxxxxx", {
-        extras: false
-    }, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+call.dial("138xxxxxxxx", {
+    extras: false
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.dial<a name=call.dial-promise></a>
@@ -71,31 +70,31 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 需要权限：ohos.permission.PLACE\_CALL权限，该权限为系统权限。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型        | 必填 | 说明                                        |
-  | ----------- | ----------- | ---- | ------------------------------------------- |
-  | phoneNumber | string      | 是   | 电话号码。                                  |
-  | options     | DialOptions | 是   | 通话参数，参考[DialOptions](#DialOptions)。 |
+| 参数        | 类型        | 必填 | 说明                                        |
+| ----------- | ----------- | ---- | ------------------------------------------- |
+| phoneNumber | string      | 是   | 电话号码。                                  |
+| options     | DialOptions | 是   | 通话参数，参考[DialOptions](#DialOptions)。 |
 
-- 返回值
+**返回值：**
 
-  | 类型                   | 说明                              |
-  | ---------------------- | --------------------------------- |
-  | Promise&lt;boolean&gt; | 以Promise形式返回拨打电话的结果。 |
+| 类型                   | 说明                              |
+| ---------------------- | --------------------------------- |
+| Promise&lt;boolean&gt; | 以Promise形式返回拨打电话的结果。 |
 
--   示例
+**示例：**
 
-    ```
-    let promise = call.dial("138xxxxxxxx", {
-        extras: false
-    });
-    promise.then(data => {
-        console.log(`dial success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = call.dial("138xxxxxxxx", {
+    extras: false
+});
+promise.then(data => {
+    console.log(`dial success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.hasCall<a name=call.hasCall-callback></a>
 
@@ -103,19 +102,19 @@ hasCall\(callback: AsyncCallback<boolean\>\): void
 
 判断是否存在通话，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数     | 类型                         | 必填 | 说明                                                         |
-  | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-  | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：当前存在通话。<br/>- false：当前不存在通话。 |
+| 参数     | 类型                         | 必填 | 说明                                                         |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：当前存在通话。<br/>- false：当前不存在通话。 |
 
--   示例
+**示例：**
 
-    ```
-    call.hasCall((err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+call.hasCall((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.hasCall<a name=call.hasCall-promise></a>
@@ -124,22 +123,22 @@ hasCall\(\): Promise<boolean\>
 
 判断是否存在通话，使用Promise方式作为异步方法。
 
-- 返回值
+**返回值：**
 
-  | 类型                   | 说明                                    |
-  | ---------------------- | --------------------------------------- |
-  | Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否存在通话。 |
+| 类型                   | 说明                                    |
+| ---------------------- | --------------------------------------- |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否存在通话。 |
 
--   示例
+**示例：**
 
-    ```
-    let promise = call.hasCall();
-    promise.then(data => {
-        console.log(`hasCall success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`hasCall fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = call.hasCall();
+promise.then(data => {
+    console.log(`hasCall success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`hasCall fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## call.getCallState<a name=call.getCallState-callback></a>
@@ -148,19 +147,19 @@ getCallState\(callback: AsyncCallback<CallState\>\): void
 
 获取通话状态，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数     | 类型                                         | 必填 | 说明                                 |
-  | -------- | -------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[CallState](#CallState)&gt; | 是   | 回调函数：异步返回获取到的通话状态。 |
+| 参数     | 类型                                         | 必填 | 说明                                 |
+| -------- | -------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;[CallState](#CallState)&gt; | 是   | 回调函数：异步返回获取到的通话状态。 |
 
--   示例
+**示例：**
 
-    ```
-    call.getCallState((err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+call.getCallState((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.getCallState<a name="call.getCallState-promise"></a>
@@ -169,22 +168,22 @@ getCallState\(\): Promise<CallState\>
 
 获取通话状态，使用Promise方式作为异步方法。
 
-- 返回值
+**返回值：**
 
-  | 类型                                   | 说明                                      |
-  | -------------------------------------- | ----------------------------------------- |
-  | Promise&lt;[CallState](#CallState)&gt; | 以Promise形式异步返回获取通话状态的结果。 |
+| 类型                                   | 说明                                      |
+| -------------------------------------- | ----------------------------------------- |
+| Promise&lt;[CallState](#CallState)&gt; | 以Promise形式异步返回获取通话状态的结果。 |
 
--   示例
+**示例：**
 
-    ```
-    let promise = call.getCallState();
-    promise.then(data => {
-        console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`getCallState fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = call.getCallState();
+promise.then(data => {
+    console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getCallState fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.isEmergencyPhoneNumber<sup>7+</sup><a name=call.isEmergencyPhoneNumber-callback1></a>
 
@@ -192,20 +191,20 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\)
 
 判断是否是紧急电话号码，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型                         | 必填 | 说明                                                         |
-  | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-  | phoneNumber | string                       | 是   | 电话号码。                                                   |
-  | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回判断是否是紧急电话号码的结果：<br/>- true：是紧急电话号码。<br/>- false：不是紧急电话号码。 |
+| 参数        | 类型                         | 必填 | 说明                                                         |
+| ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                       | 是   | 电话号码。                                                   |
+| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回判断是否是紧急电话号码的结果：<br/>- true：是紧急电话号码。<br/>- false：不是紧急电话号码。 |
 
--   示例
+**示例：**
 
-    ```
-    call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.isEmergencyPhoneNumber<sup>7+</sup><a name=call.isEmergencyPhoneNumber-callback2></a>
@@ -214,21 +213,21 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 
 判断是否是紧急电话号码，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-    | 参数        | 类型                         | 必填 | 说明                                                         |
-    | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-    | phoneNumber | string                       | 是   | 电话号码。                                                   |
-    | options     | EmergencyNumberOptions       | 是   | 手机参数，参考[EmergencyNumberOptions](#EmergencyNumberOptions)。 |
-    | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回判断是否是紧急电话号码的结果：<br/>- true：是紧急电话号码。<br/>- false：不是紧急电话号码。 |
+| 参数        | 类型                         | 必填 | 说明                                                         |
+| ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                       | 是   | 电话号码。                                                   |
+| options     | EmergencyNumberOptions       | 是   | 手机参数，参考[EmergencyNumberOptions](#EmergencyNumberOptions)。 |
+| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回判断是否是紧急电话号码的结果：<br/>- true：是紧急电话号码。<br/>- false：不是紧急电话号码。 |
 
--   示例
+**示例：**
 
-    ```
-    call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.isEmergencyPhoneNumber<sup>7+</sup><a name=call.isEmergencyPhoneNumber-promise></a>
@@ -237,29 +236,29 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 
 判断是否是紧急电话号码，使用promise方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型                   | 必填 | 说明                                                         |
-  | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
-  | phoneNumber | string                 | 是   | 电话号码。                                                   |
-  | options     | EmergencyNumberOptions | 是   | 手机参数，参考[EmergencyNumberOptions](#EmergencyNumberOptions)。 |
+| 参数        | 类型                   | 必填 | 说明                                                         |
+| ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                 | 是   | 电话号码。                                                   |
+| options     | EmergencyNumberOptions | 是   | 手机参数，参考[EmergencyNumberOptions](#EmergencyNumberOptions)。 |
 
-- 返回值
+**返回值：**
 
-    | 类型                   | 说明                                                |
-    | ---------------------- | --------------------------------------------------- |
-    | Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。 |
+| 类型                   | 说明                                                |
+| ---------------------- | --------------------------------------------------- |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。 |
 
--   示例
+**示例：**
 
-    ```
-    let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", {slotId: 1});
-    promise.then(data => {
-        console.log(`isEmergencyPhoneNumber success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`isEmergencyPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", {slotId: 1});
+promise.then(data => {
+    console.log(`isEmergencyPhoneNumber success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`isEmergencyPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.formatPhoneNumber<sup>7+</sup><a name=call.formatPhoneNumber-callback1></a>
 
@@ -267,20 +266,20 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 
 格式化电话号码，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型                        | 必填 | 说明                                 |
-  | ----------- | --------------------------- | ---- | ------------------------------------ |
-  | phoneNumber | string                      | 是   | 电话号码。                           |
-  | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回格式化电话号码的结果。 |
+| 参数        | 类型                        | 必填 | 说明                                 |
+| ----------- | --------------------------- | ---- | ------------------------------------ |
+| phoneNumber | string                      | 是   | 电话号码。                           |
+| callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回格式化电话号码的结果。 |
 
--   示例
+**示例：**
 
-    ```
-    call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.formatPhoneNumber<sup>7+</sup><a name=call.formatPhoneNumber-callback2></a>
@@ -289,23 +288,23 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 
 格式化电话号码，可设置格式化参数，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型                        | 必填 | 说明                                                         |
-  | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-  | phoneNumber | string                      | 是   | 电话号码。                                                   |
-  | options     | NumberFormatOptions         | 是   | 格式化参数，参考[NumberFormatOptions](#NumberFormatOptions)。 |
-  | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回格式化电话号码的结果。                         |
+| 参数        | 类型                        | 必填 | 说明                                                         |
+| ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                      | 是   | 电话号码。                                                   |
+| options     | NumberFormatOptions         | 是   | 格式化参数，参考[NumberFormatOptions](#NumberFormatOptions)。 |
+| callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回格式化电话号码的结果。                         |
 
--   示例
+**示例：**
 
-    ```
-    call.formatPhoneNumber("138xxxxxxxx",{
-        countryCode: "CN"
-    }, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+call.formatPhoneNumber("138xxxxxxxx",{
+    countryCode: "CN"
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.formatPhoneNumber<sup>7+</sup><a name=call.formatPhoneNumber-promise></a>
@@ -314,31 +313,31 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 
 格式化电话号码，可设置格式化参数，使用promise方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型                | 必填 | 说明                                                         |
-  | ----------- | ------------------- | ---- | ------------------------------------------------------------ |
-  | phoneNumber | string              | 是   | 电话号码。                                                   |
-  | options     | NumberFormatOptions | 是   | 格式化参数，参考[NumberFormatOptions](#NumberFormatOptions)。 |
+| 参数        | 类型                | 必填 | 说明                                                         |
+| ----------- | ------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string              | 是   | 电话号码。                                                   |
+| options     | NumberFormatOptions | 是   | 格式化参数，参考[NumberFormatOptions](#NumberFormatOptions)。 |
 
-- 返回值
+**返回值：**
 
-  | 类型                  | 说明                                        |
-  | --------------------- | ------------------------------------------- |
-  | Promise&lt;string&gt; | 以Promise形式异步返回格式化电话号码的结果。 |
+| 类型                  | 说明                                        |
+| --------------------- | ------------------------------------------- |
+| Promise&lt;string&gt; | 以Promise形式异步返回格式化电话号码的结果。 |
 
--   示例
+**示例：**
 
-    ```
-    let promise = call.formatPhoneNumber("138xxxxxxxx", {
-        countryCode: "CN"
-    });
-    promise.then(data => {
-        console.log(`formatPhoneNumber success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`formatPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = call.formatPhoneNumber("138xxxxxxxx", {
+    countryCode: "CN"
+});
+promise.then(data => {
+    console.log(`formatPhoneNumber success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`formatPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.formatPhoneNumberToE164<sup>7+</sup><a name=call.formatPhoneNumberToE164-callback></a>
 
@@ -350,23 +349,23 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 
 支持所有国家码。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型                        | 必填 | 说明                                                  |
-  | ----------- | --------------------------- | ---- | ----------------------------------------------------- |
-  | phoneNumber | string                      | 是   | 电话号码。                                            |
-  | countryCode | string                      | 是   | 国家码，支持所有国家码，如：中国（CN）。              |
-  | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回将电话号码格式化为E.164表示形式的结果。 |
+| 参数        | 类型                        | 必填 | 说明                                                  |
+| ----------- | --------------------------- | ---- | ----------------------------------------------------- |
+| phoneNumber | string                      | 是   | 电话号码。                                            |
+| countryCode | string                      | 是   | 国家码，支持所有国家码，如：中国（CN）。              |
+| callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回将电话号码格式化为E.164表示形式的结果。 |
 
--   示例
+**示例：**
 
-    ```
-    call.formatPhoneNumberToE164("138xxxxxxxx",{
-        countryCode: "CN"
-    }, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+call.formatPhoneNumberToE164("138xxxxxxxx",{
+    countryCode: "CN"
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## call.formatPhoneNumberToE164<sup>7+</sup><a name=call.formatPhoneNumberToE164-promise></a>
@@ -379,31 +378,31 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 
 支持所有国家码。
 
-- 参数
+**参数：**
 
-  | 参数        | 类型   | 必填 | 说明                                     |
-  | ----------- | ------ | ---- | ---------------------------------------- |
-  | phoneNumber | string | 是   | 电话号码。                               |
-  | countryCode | string | 是   | 国家码，支持所有国家码，如：中国（CN）。 |
+| 参数        | 类型   | 必填 | 说明                                     |
+| ----------- | ------ | ---- | ---------------------------------------- |
+| phoneNumber | string | 是   | 电话号码。                               |
+| countryCode | string | 是   | 国家码，支持所有国家码，如：中国（CN）。 |
 
-- 返回值
+**返回值：**
 
-  | 类型                  | 说明                                                         |
-  | --------------------- | ------------------------------------------------------------ |
-  | Promise&lt;string&gt; | 以Promise形式异步返回将电话号码格式化为E.164表示形式的结果。 |
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;string&gt; | 以Promise形式异步返回将电话号码格式化为E.164表示形式的结果。 |
 
--   示例
+**示例：**
 
-    ```
-    let promise = call.formatPhoneNumberToE164("138xxxxxxxx", {
-        countryCode: "CN"
-    });
-    promise.then(data => {
-        console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`formatPhoneNumberToE164 fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = call.formatPhoneNumberToE164("138xxxxxxxx", {
+    countryCode: "CN"
+});
+promise.then(data => {
+    console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`formatPhoneNumberToE164 fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## DialOptions<a name=DialOptions></a>
 

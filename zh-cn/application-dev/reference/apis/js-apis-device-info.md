@@ -7,9 +7,9 @@ import deviceInfo from '@ohos.deviceInfo'
 ```
 
 
-## 权限列表
+## 系统能力
 
-无
+SystemCapability.Startup.SysInfo
 
 
 ## 属性

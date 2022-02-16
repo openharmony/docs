@@ -10,6 +10,9 @@
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
+## 系统能力
+
+SystemCapability.UserIAM.UserAuth
 
 ## 权限列表
 

@@ -10,10 +10,9 @@
 import TreeSet from '@ohos.util.TreeSet'  
 ```
 
+## 系统能力
 
-## 权限
-
-无
+SystemCapability.Utils.Lang
 
 ## TreeSet
 
@@ -22,372 +21,408 @@ import TreeSet from '@ohos.util.TreeSet'
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | 是 | 否 | TreeSet的元素个数 |
+| length | number | 是 | 否 | TreeSet的元素个数。 |
 
 
 ### constructor
 
-constructor(comparator?:(firstValue: T, secondValue: T) => boolean);
+constructor(comparator?:(firstValue: T, secondValue: T) => boolean)
 
 TreeSet的构造函数。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | comparator | function | 否 | 用户自定义的比较函数 |
+**参数：**
 
-- 示例：
-  ```
-  let treeSet = new TreeSet();
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| comparator | function | 否 | 用户自定义的比较函数。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+```
 
 
 ### isEmpty
 
-isEmpty(): boolean;
+isEmpty(): boolean
 
 判断该容器是否为空。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 为空返回true, 不为空返回false |
+**返回值：**
 
-- 示例:
-  ```
-  const treeSet = new TreeSet();
-  treeSet.isEmpty();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 为空返回true，不为空返回false。 |
+
+**示例：**
+
+```
+const treeSet = new TreeSet();
+treeSet.isEmpty();
+```
 
 
 ### has
 
-has(value: T): boolean;
+has(value: T): boolean
 
 判断此容器中是否含有该指定value。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | T | 是 | 指定元素 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 是否包含指定元素 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 指定元素。 |
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.has(123);
-  treeSet.add(123);
-  treeSet.has(123);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 包含指定元素返回true，否则返回false。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.has(123);
+treeSet.add(123);
+treeSet.has(123);
+```
 
 
 ### getFirstValue
 
-getFirstValue(): T;
+getFirstValue(): T
 
 获取容器中排序第一的数据。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | T | 返回排序第一的数据 |
+**返回值：**
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  let result = treeSet.getFirstValue();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回排序第一的数据。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+let result = treeSet.getFirstValue();
+```
 
 
 ### getLastValue
 
-getLastValue(): T;
+getLastValue(): T
 
 获取容器中排序最后的数据。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | T | 返回排序最后的数据 |
+**返回值：**
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  let result = treeSet.getLastValue();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回排序最后的数据。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+let result = treeSet.getLastValue();
+```
 
 
 ### add
-add(value: T): boolean;
+add(value: T): boolean
 
 向TreeSet中添加一组数据。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | T | 是 | 添加的成员数据 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 是否成功添加新数据至容器 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 添加的成员数据。 |
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 成功添加新数据至容器返回true，否则返回false。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+```
 
 
 ### remove
 
-remove(key: T): boolean;
+remove(key: T): boolean
 
 删除指定的元素。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | T | 是 | 指定的元素 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 判断是否成功删除元素 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | T | 是 | 指定的元素。 |
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  treeSet.remove("sdfs");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 成功删除元素返回true，否则返回false。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+treeSet.remove("sdfs");
+```
 
 
 ### getLowerValue
 
-getLowerValue(key: T): T;
+getLowerValue(key: T): T
 
 获取容器中比传入元素排序靠前一位的元素。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | T | 是 | 对比的元素值 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | T | 返回排序中对比元素前一位的数据 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | T | 是 | 对比的元素值。 |
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  treeSet.add("zdfgsd");
-  let result = treeSet.getLowerValue("sdfs");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回排序中对比元素前一位的数据。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+treeSet.add("zdfgsd");
+let result = treeSet.getLowerValue("sdfs");
+```
 
 
 ### getHigherValue
 
-getHigherValue(key: T): T;
+getHigherValue(key: T): T
 
 获取容器中比传入元素排序靠后一位的元素。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | T | 是 | 对比的元素 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | T | 返回排序中传入元素后一位的数据 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | T | 是 | 对比的元素。 |
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  treeSet.add("zdfgsd");
-  let result = treeSet.getHigherValue("sdfs");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回排序中传入元素后一位的数据 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+treeSet.add("zdfgsd");
+let result = treeSet.getHigherValue("sdfs");
+```
 
 
 ### popFirst
 
-popFirst(): T;
+popFirst(): T
 
 删除容器中排序最前的数据。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | T | 返回删除的数据 |
+**返回值：**
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  let result = treeSet.popFirst();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回删除的数据。 |
+
+**返回值：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+let result = treeSet.popFirst();
+```
 
 
 ### popLast
 
-popLast(): T;
+popLast(): T
 
 删除容器中排序最后的数据。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | T | 返回删除的数据 |
+**返回值：**
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  let result = treeSet.popLast();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回删除的数据 |
+
+**返回值：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+let result = treeSet.popLast();
+```
 
 
 ### clear
 
-clear(): void;
+clear(): void
 
-清除容器中的所有元素,并把length置为0。
+清除容器中的所有元素，并把length置为0。
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  treeSet.clear();
-  ```
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+treeSet.clear();
+```
 
 
 ### values
 
-values(): IterableIterator&lt;T&gt;;
+values(): IterableIterator&lt;T&gt;
 
 返回包含此映射中包含的键的新迭代器对象。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | IterableIterator&lt;T&gt; | 返回一个迭代器 |
+**返回值：**
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  let iter = treeSet.values();
-  let temp = iter.next().value;
-  while(temp != undefined) {
-    console.log(temp);
-    temp = iter.next().value;
-  } 
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+let iter = treeSet.values();
+let temp = iter.next().value;
+while(temp != undefined) {
+  console.log(temp);
+  temp = iter.next().value;
+} 
+```
 
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: T, treeSet?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void;
+forEach(callbackfn: (value: T, key?: T, treeSet?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callbackfn | function | 是 | 回调函数 |
-  | thisArg | Object | 否 | callbackfn被调用时用作this值 |
+**参数：**
 
-- callbackfn的参数说明
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | T | 是 | 当前遍历到的元素 |
-  | key | T | 否 | 当前遍历到的元素（和value相同）. |
-  | treeSet | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackfn | function | 是 | 回调函数。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("sdfs");
-  treeSet.add("dfsghsf");
-  treeSet.forEach((value, key) => {
-    console.log(value, key)
-  });
-  ```
+callbackfn的参数说明：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素。 |
+| key | T | 否 | 当前遍历到的元素（和value相同）。 |
+| treeSet | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("sdfs");
+treeSet.add("dfsghsf");
+treeSet.forEach((value, key) => {
+  console.log(value, key)
+});
+```
 
 
 ### entries
 
-entries(): IterableIterator<[T, T]>;
+entries(): IterableIterator<[T, T]>
 
 返回包含此映射中包含的键的新迭代器对象。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | IterableIterator<[T, T]> | 返回一个迭代器 |
+**返回值：**
 
-- 示例:
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-  let iter = treeSet.entries();
-  let temp = iter.next().value;
-  while(temp != undefined) {
-    console.log(temp[0]);
-    console.log(temp[1]);
-    temp = iter.next().value;
-  }
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[T, T]> | 返回一个迭代器。 |
+
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+let iter = treeSet.entries();
+let temp = iter.next().value;
+while(temp != undefined) {
+  console.log(temp[0]);
+  console.log(temp[1]);
+  temp = iter.next().value;
+}
+```
 
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;T&gt;;
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | IterableIterator&lt;T&gt; | 返回一个迭代器 |
+**返回值：**
 
-- 示例：
-  ```
-  let treeSet = new TreeSet();
-  treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  treeSet.add("sdfs");
-    
-  // 使用方法一：
-  for (let item of treeSet) { 
-    console.log("value: " + item);
-  }
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器 |
 
-  // 使用方法二：
-  let iter = treeSet[Symbol.iterator]();
-  let temp = iter.next().value;
-  while(temp != undefined) {
-    console.log(temp);
-    temp = iter.next().value;
-  }
-  ```
+**示例：**
+
+```
+let treeSet = new TreeSet();
+treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+treeSet.add("sdfs");
+  
+// 使用方法一：
+for (let item of treeSet) { 
+  console.log("value: " + item);
+}
+
+// 使用方法二：
+let iter = treeSet[Symbol.iterator]();
+let temp = iter.next().value;
+while(temp != undefined) {
+  console.log(temp);
+  temp = iter.next().value;
+}
+```
