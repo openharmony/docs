@@ -12,9 +12,9 @@ import bytrace from '@ohos.bytrace';
 ```
 
 
-## 权限
+## 系统能力
 
-无
+SystemCapability.Developtools.Bytrace
 
 
 ## bytrace.startTrace
