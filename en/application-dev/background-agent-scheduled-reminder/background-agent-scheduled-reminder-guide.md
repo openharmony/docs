@@ -562,12 +562,12 @@ Publish a 10-second countdown reminder.
                 }
             ],
             wantAgent: {
-                pkgName: "com.huawei.phone",
-                abilityName: "com.huawei.phone.MainAbility"
+                pkgName: "com.example.phone",
+                abilityName: "com.example.phone.MainAbility"
             },
             maxScreenWantAgent: {
-                pkgName: "com.huawei.phone",
-                abilityName: "com.huawei.phone.MainAbility"
+                pkgName: "com.example.phone",
+                abilityName: "com.example.phone.MainAbility"
             },
             title: "this is title",
             content: "this is content",
@@ -624,12 +624,12 @@ calendar: {
         },
     ],
     wantAgent: {
-        pkgName: "com.huawei.phone",
-        abilityName: "com.huawei.phone.MainAbility"
+        pkgName: "com.example.phone",
+        abilityName: "com.example.phone.MainAbility"
     },
     maxScreenWantAgent: {
-        pkgName: "com.huawei.phone",
-        abilityName: "com.huawei.phone.MainAbility"
+        pkgName: "com.example.phone",
+        abilityName: "com.example.phone.MainAbility"
     },
     ringDuration: 5,
     snoozeTimes: 2,
@@ -662,12 +662,12 @@ alarm: {
         },
     ],
     wantAgent: {
-        pkgName: "com.huawei.phone",
-        abilityName: "com.huawei.phone.MainAbility"
+        pkgName: "com.example.phone",
+        abilityName: "com.example.phone.MainAbility"
     },
     maxScreenWantAgent: {
-        pkgName: "com.huawei.phone",
-        abilityName: "com.huawei.phone.MainAbility"
+        pkgName: "com.example.phone",
+        abilityName: "com.example.phone.MainAbility"
     },
     ringDuration: 5,
     snoozeTimes: 2,
