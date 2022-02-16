@@ -8,9 +8,9 @@
 import faultLogger from '@ohos.faultLogger'
 ```
 
-## 权限
+## 系统能力
 
-无
+SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 ## FaultType
 
