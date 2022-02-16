@@ -2,6 +2,6 @@
 
 -   **[bytrace Usage Guidelines](subsys-toolchain-bytrace-guide.md)**  
 
--   **[hdc\_std Usage Guidelines](oem_subsys_toolchain_hdc_guide.md)**  
+-   **[hdc\_std Usage Guidelines](subsys-toolchain-hdc-guide.md)**  
 
 
