@@ -9,13 +9,10 @@
 import power from '@ohos.power';
 ```
 
-## Required Permissions<a name="section11257113618419"></a>
+## System Capabilities
 
-Shutdown: ohos.permission.SHUTDOWN
+SystemCapability.PowerManager.PowerManager
 
-Reboot: ohos.permission.REBOOT
-
-Reboot and entering the recovery mode: ohos.permission.REBOOT\_RECOVERY
 
 ## power.shutdownDevice<a name="section192192415554"></a>
 
