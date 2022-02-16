@@ -46,7 +46,7 @@ Adds a path to this path.
     @Entry
     @Component
     struct AddPath {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     
       private path2Da: Path2D = new Path2D("M250 150 L150 350 L350 350 Z")
@@ -84,7 +84,7 @@ Moves the current point of the path back to the start point of the path, and dra
     @Entry
     @Component
     struct ClosePath {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -163,7 +163,7 @@ Moves the current coordinate point of the path to the target point, without draw
     @Entry
     @Component
     struct MoveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -242,7 +242,7 @@ Draws a straight line from the current point to the target point.
     @Entry
     @Component
     struct LineTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -367,7 +367,7 @@ Draws a cubic bezier curve on the canvas.
     @Entry
     @Component
     struct BezierCurveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -465,7 +465,7 @@ Draws a quadratic curve on the canvas.
     @Entry
     @Component
     struct QuadraticCurveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -586,7 +586,7 @@ Draws an arc on the canvas.
     @Entry
     @Component
     struct Arc {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -694,7 +694,7 @@ Draws an arc based on the radius and points on the arc.
     @Entry
     @Component
     struct ArcTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -835,8 +835,8 @@ Draws an ellipse in the specified rectangular region.
     ```
     @Entry
     @Component
-    struct Ellipse {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+    struct CanvasExample {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -933,8 +933,8 @@ Creates a rectangle.
     ```
     @Entry
     @Component
-    struct Rect {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+    struct CanvasExample {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private path2Db: Path2D = new Path2D()
     
@@ -955,5 +955,4 @@ Creates a rectangle.
     ```
 
     ![](figures/en-us_image_0000001192755174.png)
-
 

@@ -57,7 +57,7 @@ Adds a color stop for the  **CanvasGradient**  object based on the specified off
     @Entry
     @Component
     struct Page45 {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private gra:CanvasGradient = new CanvasGradient()
     
@@ -69,9 +69,9 @@ Adds a color stop for the  **CanvasGradient**  object based on the specified off
             .backgroundColor('#ffff00')
             .onReady(() =>{
               var grad = this.context.createLinearGradient(50,0, 300,100)
-              this.gra.addColorStop(0.0, 'red')
-              this.gra.addColorStop(0.5, 'white')
-              this.gra.addColorStop(1.0, 'green')
+              gra.addColorStop(0.0, 'red')
+              gra.addColorStop(0.5, 'white')
+              gra.addColorStop(1.0, 'green')
               this.context.fillStyle = grad
               this.context.fillRect(0, 0, 500, 500)
             })
@@ -83,5 +83,4 @@ Adds a color stop for the  **CanvasGradient**  object based on the specified off
     ```
 
     ![](figures/en-us_image_0000001192915130.png)
-
 
