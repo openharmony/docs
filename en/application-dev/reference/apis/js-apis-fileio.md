@@ -508,7 +508,7 @@ Asynchronously opens a file. This method uses a promise to return the result.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | File descriptor of the file opened.|
+  | Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
 
 - Example
   ```js
@@ -582,7 +582,7 @@ Asynchronously reads data from a file. This method uses a promise to return the 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | Data read.|
+  | Promise&lt;[Readout](#readout)&gt; | Promise used to return the data read.|
 
 - Example
   ```js
@@ -792,7 +792,7 @@ Asynchronously writes data into a file. This method uses a promise to return the
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Length of the data written in the file.|
+  | Promise&lt;number&gt; | Promise used to return the length of the data written in the file.|
 
 - Example
   ```js
@@ -1259,7 +1259,7 @@ Asynchronously obtains link status information. This method uses a promise to re
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Stat](#stat)&gt; | Link status information.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the link status.|
 
 - Example
   ```js
@@ -1328,7 +1328,7 @@ Asynchronously reads data from a file. This method uses a promise to return the 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | Data read.|
+  | Promise&lt;[Readout](#readout)&gt; | Promise used to return the data read.|
 
 - Example
   ```js
@@ -1707,7 +1707,7 @@ Asynchronously creates a temporary directory. This method uses a promise to retu
 - Return value
   | Name| Description|
   | -------- | -------- |
-  | Promise&lt;string&gt; | Unique path generated.|
+  | Promise&lt;string&gt; | Promise used to return the unique path generated.|
 
 - Example
   ```js
@@ -2456,7 +2456,7 @@ Asynchronously writes data into the stream. This method uses a promise to return
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Length of the data written in the file.|
+  | Promise&lt;number&gt; | Promise used to return the length of the data written in the file.|
 
 - Example
   ```js
@@ -2533,7 +2533,7 @@ Asynchronously reads data from the stream. This method uses a promise to return 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | Data read.|
+  | Promise&lt;[Readout](#readout)&gt; | Promise used to return the data read.|
 
 - Example
   ```js
