@@ -23,7 +23,7 @@ HCS\(**H**DF  **C**onfiguration  **S**ource\)是HDF驱动框架的配置描述�
 
 HC-GEN**\(H**DF  **C**onfiguration  **G**enerator**\)**是HCS配置转换工具，可以将HDF配置文件转换为软件可读取的文件格式：
 
--   在弱性能环境中，转换为配置树源码，驱动可直接调用C代码获取配置。
+-   在弱性能环境中，转换为配置树源码或配置树宏定义，驱动可直接调用C代码或宏式APIs获取配置。
 -   在高性能环境中，转换为HCB\(**H**DF  **C**onfiguration  **B**inary\)二进制文件，驱动可使用HDF框架提供的配置解析接口获取配置。
 
 以下是使用HCB模式的典型应用场景：
@@ -409,6 +409,7 @@ options:
   -a          hcb align with four bytes
   -b          output binary output, default enable
   -t          output config in C language source file style
+  -m          output config in macro source file style
   -i          output binary hex dump in C language source file style
   -p <prefix> prefix of generated symbol name
   -d          decompile hcb to hcs
@@ -427,6 +428,12 @@ hc-gen -o [OutputCFileName] -t [SourceHcsFileName]
 
 ```
 hc-gen -o [OutputHcbFileName] -b [SourceHcsFileName]
+```
+
+生成宏定义配置文件方法：
+
+```
+hc-gen -o [OutputMacroFileName] -m [SourceHcsFileName]
 ```
 
 反编译HCB文件为HCS方法：
