@@ -9,6 +9,7 @@
 -   [OpenHarmony v2.2 beta2 (2021-08-04)](OpenHarmony-v2.2-beta2.md)
 -   [OpenHarmony 2.0 Canary (2021-06-02)](OpenHarmony-2-0-Canary.md)
 ## OpenHarmony 1.x Releases
+-   [OpenHarmony v1.1.4 LTS (2022-02-11)](OpenHarmony-v1-1-4-LTS.md)
 -   [OpenHarmony v1.1.3 LTS (2021-09-30)](OpenHarmony-v1-1-3-LTS.md)
 -   [OpenHarmony v1.1.2 LTS (2021-08-04)](OpenHarmony-v1.1.2-LTS.md)
 -   [OpenHarmony 1.1.1 LTS (2021-06-22)](OpenHarmony-1-1-1-LTS.md)
