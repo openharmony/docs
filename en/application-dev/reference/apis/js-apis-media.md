@@ -21,7 +21,7 @@ createAudioPlayer(): [AudioPlayer](#audioplayer)
 
 Creates an **AudioPlayer** instance in synchronous mode.
 
-**Return values**
+**Return value**
 
 | Type| Description|
 | --------------------------- | ------------------------------------------------------------ |
@@ -64,7 +64,7 @@ createAudioPlayerAsync: Promise<[AudioPlayer](#audioplayer)>
 
 Creates an **AudioPlayer** instance in asynchronous mode. This method uses a promise to return the result.
 
-**Return values**
+**Return value**
 
 | Type| Description|
 | ------------------------------------ | ----------------------------------- |
@@ -95,7 +95,7 @@ createAudioRecorder(): AudioRecorder
 
 Creates an **AudioRecorder** instance to control audio recording.
 
-**Return values**
+**Return value**
 
 | Type| Description|
 | ------------------------------- | ----------------------------------------- |
@@ -348,7 +348,7 @@ getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
 
 Obtains the audio track information. This method uses a promise to return the result.
 
-**Return values**
+**Return value**
 
 | Type| Description|
 | ------------------------------------------------------ | ------------------------------- |
@@ -415,7 +415,7 @@ Subscribes to the audio playback events.
 
 | Name| Type| Mandatory| Description|
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes| Type of the event to subscribe to. The following events are supported: 'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange' <br>- The 'play' event is triggered when the [play()](#audioplayer_play) method is called and audio playback starts. <br>- The 'pause' event is triggered when the [pause()](#audioplayer_pause) method is called and audio playback is paused. <br>- The 'stop' event is triggered when the [stop()](#audioplayer_stop) method is called and audio playback stops. <br>- The 'reset' event is triggered when the [reset()](#audioplayer_reset) method is called and audio playback is reset. <br>- The 'dataLoad' event is triggered when the audio data is loaded, that is, when the **src** attribute is configured. <br>- The 'finish' event is triggered when the audio playback is finished. <br>- The 'volumeChange' event is triggered when the [setVolume()](#audioplayer_setvolume) method is called and the playback volume is changed.|
+| type     | string     | Yes| Type of the event to subscribe to. The following events are supported: 'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange' <br>- The 'play' event is triggered when the [play()](#play) method is called and audio playback starts. <br>- The 'pause' event is triggered when the [pause()](#pause) method is called and audio playback is paused. <br>- The 'stop' event is triggered when the [stop()](#stop) method is called and audio playback stops. <br>- The 'reset' event is triggered when the [reset()](#reset7) method is called and audio playback is reset. <br>- The 'dataLoad' event is triggered when the audio data is loaded, that is, when the **src** attribute is configured. <br>- The 'finish' event is triggered when the audio playback is finished. <br>- The 'volumeChange' event is triggered when the [setVolume()](#setvolume) method is called and the playback volume is changed.|
 | callback | () => void | Yes| Callback invoked when the event is triggered.|
 
 **Example**
@@ -467,13 +467,13 @@ audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';  // Set the s
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-Subscribes to the 'timeUpdate' event.
+Subscribes to the [seek()](#seek) event.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| type     | string            | Yes| Type of the event to subscribe to, which is 'timeUpdate' in this method. <br>The 'timeUpdate' event is triggered when the [seek()](#audioplayer_seek) method is called.|
+| type     | string            | Yes| Type of the event to subscribe to, which is 'timeUpdate' in this method. <br>The 'timeUpdate' event is triggered when the [seek()](#seek) method is called.|
 | callback | Callback\<number> | Yes| Callback invoked when the event is triggered. The input parameter of the callback is the time when the seek operation is successful.|
 
 **Example**
@@ -558,7 +558,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ## AudioRecorder
 
-Implements audio recording. Before calling a method of the **AudioRecorder** class, you must call [createAudioRecorder()](#createaudiorecorder-audiorecorder) to create an **AudioRecorder** instance.
+Implements audio recording. Before calling a method of the **AudioRecorder** class, you must call [createAudioRecorder()](#mediacreateaudiorecorder) to create an **AudioRecorder** instance.
 
 ### prepare
 
@@ -575,6 +575,7 @@ Prepares for recording.
 **Example**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 let audioRecorderConfig = {
     audioEncoder : AAC_LC ,
     audioEncodeBitRate : 22050,
@@ -596,6 +597,7 @@ Starts audio recording.
 **Example**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.start();
 ```
 
@@ -608,6 +610,7 @@ Stops audio recording.
 **Example**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.stop();
 ```
 
@@ -620,6 +623,7 @@ Releases this **AudioRecorder** instance.
 **Example**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.release();
 ```
 
@@ -634,6 +638,7 @@ Before resetting audio recording, you must call **stop()** to stop recording. Af
 **Example**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.reset();
 ```
 
@@ -653,6 +658,7 @@ Subscribes to the audio recording events.
 **Example**
 
 ```
+var audiorecorder = media.createAudioRecorder(); 
 audiorecorder.on('prepare', () => {
   console.log('Preparation succeeded.');
   audiorecorder.start();
