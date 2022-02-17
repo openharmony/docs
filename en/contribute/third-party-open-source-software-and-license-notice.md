@@ -1,4 +1,4 @@
-#Third-Party Open-Source Software and License Notice
+# Third-Party Open-Source Software and License Notice
 
 The following table lists the licenses of the third-party open source software used by OpenHarmony.
 
