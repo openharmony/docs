@@ -11,13 +11,13 @@ This project stores OpenHarmony documentation, including the quick start guide, 
         - **overview**:  [device development overview](device-dev/Readme-EN.md)
         - **quick-start**:  [quick start guide](device-dev/quick-start/Readme-EN.md)  \(covering environment setup, source code acquisition, build, and burning\)
         - Basic development capabilities
-          - **Kernel**:  [Kernel for Mini Systems](device-dev/kernel/kernel-lite-mini.md)
-          - **Kernel：**[Kernel for Small Systems](device-dev/kernel/kernel-lite-small.md)
+          - **Kernel**:  [Kernel for Mini Systems](device-dev/kernel/kernel-mini.md)
+          - **Kernel：**[Kernel for Small Systems](device-dev/kernel/kernel-small.md)
           - **Drivers**:  [drivers](device-dev/driver/Readme-EN.md)
           - **Subsystems**:  [subsystems](device-dev/subsystems/Readme-EN.md)  \(such as compilation and building, graphics, DFX, and XTS\)
           - **Security**:  [privacy and security](device-dev/security/Readme-EN.md)
         - **guide**:  
-          - [WLAN-connected products](device-dev/guide/device-wifi.md)  \(LED peripheral control and third-party SDK integration\)
+          - [WLAN-connected products](device-dev/guide/device-wlan.md)  \(LED peripheral control and third-party SDK integration\)
           - [Screenless cameras](device-dev/guide/device-iotcamera-control.md)  \(camera control\)
           - [Cameras with a screen](device-dev/guide/device-camera.md)  \(screen and camera control, visual application development\)
         - **porting**:
@@ -52,11 +52,15 @@ This project stores OpenHarmony documentation, including the quick start guide, 
 
 
 -   App development
-    -   **Overview**:  [app development overview](application-dev/application-dev-guide.md)
-    -   **quick-start**:  [quick start guide](application-dev/quick-start/Readme-EN.md)
+    -   **Overview**:  [Application Development Overview](application-dev/application-dev-guide.md)
+    -   **quick-start**:  [Quick Start Basics](application-dev/quick-start/Readme-EN.md)
     -   **ui**:  [UI](application-dev/ui/Readme-EN.md)
-    -   **media**:  [media](application-dev/media/Readme-EN.md)
+    -   **media**:  [Media](application-dev/media/Readme-EN.md)
+    -   **security**: [Security](application-dev/security/Readme-EN.md)
     -   **connectivity**:  [networks and connectivity](application-dev/connectivity/Readme-EN.md)
+    -   **Database**：[Data Management](application-dev/database/Readme-CN.md)
+    -   **usb**: [USB Service](application-dev//usb/Readme-EN.md)
+    -   **dfx**:  [DFX](application-dev/dfx/Readme-EN.md)
     -   **reference**:  [Development References](application-dev/reference/Readme-EN.md)
 -   **glossary**:  [glossary](device-dev/glossary/glossary.md)
 
@@ -66,7 +70,8 @@ For details, see  [Release Notes](release-notes/Readme.md).
 
 ## Third-Party Open-Source Software and License Notice
 
-None.
+3rd-Party-License: [Third-Party Open-Source Software and License Notice](contribute/third-party-open-source-software-and-license-notice.md)
+
 
 ## How to Contribute
 
