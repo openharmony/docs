@@ -5,6 +5,7 @@
     -   [ParticleAbility Module](js-apis-particleAbility.md)
     -   [DataAbilityHelper Module](js-apis-dataAbilityHelper.md)
     -   [DataUriUtils Module](js-apis-DataUriUtils.md)
+    -   [Bundle Module](js-apis-Bundle.md)
     -   [Context Module](js-apis-Context.md)
 - Event Notification
     -   [CommonEvent Module](js-apis-commonEvent.md)
