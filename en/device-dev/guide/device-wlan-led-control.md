@@ -6,7 +6,7 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
 ## Development<a name="section13857170163412"></a>
 
-1.  Complete the operations described in  [Getting Started with Hi3861](../quick-start/oem_minitinier_des_3861.md#section19352114194115).
+1.  Complete the operations described in  [Getting Started with Hi3861](../quick-start/quickstart-lite-introduction-hi3861.md#section19352114194115).
 
     LED control examples are stored in the file  **applications/sample/wifi-iot/app/iothardware/led\_example.c**.
 

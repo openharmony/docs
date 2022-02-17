@@ -121,7 +121,7 @@ The following table describes the API for initializing a modem vendor library.
 
 ### Debugging and Verification<a name="section5351151517132"></a>
 
-1.  Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/oem_subsys_toolchain_hdc_guide.md#preparations)  tool to connect to a debugging device. Then, run the following command to send the generated  **libril\_vendor.z.so**  library file to the  **/system/lib/**  directory of the device. For details about how to integrate a library file, see  [Integrating Modem Vendor Libraries](#section590mcpsimp).
+1.  Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md#preparations)  tool to connect to a debugging device. Then, run the following command to send the generated  **libril\_vendor.z.so**  library file to the  **/system/lib/**  directory of the device. For details about how to integrate a library file, see  [Integrating Modem Vendor Libraries](#section590mcpsimp).
 
     ```
     hdc_std file send libril_vendor.z.so /system/lib/

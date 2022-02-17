@@ -8,11 +8,11 @@
 
 -   **[HiSysEvent开发指导](subsys-dfx-hisysevent.md)** 
 
-      - [HiSysEvent打点指导](subsys-dfx-hisysevent-write.md)
+      - [HiSysEvent打点指导](subsys-dfx-hisysevent-logging.md)
 
-      - [HiSysEvent订阅指导](subsys-dfx-hisysevent-read.md)
+      - [HiSysEvent订阅指导](subsys-dfx-hisysevent-listening.md)
 
-      - [HiSysEvent查询指导](subsys-dfx-hisysevent-select.md)
+      - [HiSysEvent查询指导](subsys-dfx-hisysevent-query.md)
 
       - [HiSysEvent工具使用指导](subsys-dfx-hisysevent-tool.md) 
 

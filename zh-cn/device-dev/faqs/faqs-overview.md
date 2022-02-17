@@ -30,16 +30,16 @@
 
 ### 轻量和小型系统<a name="section197234983111"></a>
 
--   [安装hb过程中出现乱码、段错误](faqs-environment-building.md#section36351051193919)
--   [安装hb过程中，提示"cannot import 'sysconfig' from 'distutils'"](faqs-environment-building.md#section48221013144011)
--   [安装hb过程中，提示"module 'platform' has no attribute 'linux\_distribution'"](faqs-environment-building.md#section8692735427)
--   [安装hb过程中，提示"Could not find a version that satisfies the requirement ohos-build"](faqs-environment-building.md#section8692735427)
--   [安装python3过程中，提示“configure: error: no acceptable C compiler found in $PATH”](faqs-environment-building.md#section870082884217)
--   [安装python3过程中，提示“-bash: make: command not found”](faqs-environment-building.md#section198707170455)
--   [安装python3过程中，提示“zlib not available”](faqs-environment-building.md#section85401445204518)
--   [安装python3过程中，提示“No module named '\_ctypes'”](faqs-environment-building.md#section12202694460)
--   [安装 kconfiglib时，遇到lsb\_release错误](faqs-environment-building.md#section5803174135115)
--   [Linux编译服务器终端输入不识别的命令时提示“ImportError: No module named apt\_pkg”](faqs-environment-building.md#section510820516515)
+-   [安装hb过程中出现乱码、段错误](faqs-environment-setup.md#section36351051193919)
+-   [安装hb过程中，提示"cannot import 'sysconfig' from 'distutils'"](faqs-environment-setup.md#section48221013144011)
+-   [安装hb过程中，提示"module 'platform' has no attribute 'linux\_distribution'"](faqs-environment-setup.md#section8692735427)
+-   [安装hb过程中，提示"Could not find a version that satisfies the requirement ohos-build"](faqs-environment-setup.md#section8692735427)
+-   [安装python3过程中，提示“configure: error: no acceptable C compiler found in $PATH”](faqs-environment-setup.md#section870082884217)
+-   [安装python3过程中，提示“-bash: make: command not found”](faqs-environment-setup.md#section198707170455)
+-   [安装python3过程中，提示“zlib not available”](faqs-environment-setup.md#section85401445204518)
+-   [安装python3过程中，提示“No module named '\_ctypes'”](faqs-environment-setup.md#section12202694460)
+-   [安装 kconfiglib时，遇到lsb\_release错误](faqs-environment-setup.md#section5803174135115)
+-   [Linux编译服务器终端输入不识别的命令时提示“ImportError: No module named apt\_pkg”](faqs-environment-setup.md#section510820516515)
 
 ## 编译构建子系统<a name="section18826114693810"></a>
 
@@ -98,41 +98,41 @@
 
 ## 移植<a name="section129331824154313"></a>
 
--   [如何将用户的堆内存挂载进内核](faqs-transplant.md#section21471536184914)
+-   [如何将用户的堆内存挂载进内核](faqs-porting.md#section21471536184914)
 
 ## 启动恢复<a name="section83501764443"></a>
 
--   [系统启动过程中打印“parse failed!”错误后停止启动](faqs-init.md#section835662214302)
--   [系统启动过程未结束就自动重启，如此反复持续](faqs-init.md#section3857921143117)
--   [参数正确的情况下调用SetParameter/GetParameter返回失败](faqs-init.md#section548818116328)
+-   [系统启动过程中打印“parse failed!”错误后停止启动](faqs-startup-and-recovery.md#section835662214302)
+-   [系统启动过程未结束就自动重启，如此反复持续](faqs-startup-and-recovery.md#section3857921143117)
+-   [参数正确的情况下调用SetParameter/GetParameter返回失败](faqs-startup-and-recovery.md#section548818116328)
 
 ## 系统服务<a name="section19567132114455"></a>
 
 ### 公共基础库<a name="section3214181711465"></a>
 
--   [LiteOS-A内核\(Hi3516、Hi3518平台\)KV存储路径设置错误，导致KV存储运行失败](faqs-system-using.md#section16520347131511)
+-   [LiteOS-A内核\(Hi3516、Hi3518平台\)KV存储路径设置错误，导致KV存储运行失败](faqs-system-applications.md#section16520347131511)
 
 ### 视觉应用常见问题<a name="section295651815466"></a>
 
--   [是否存在一个全局变量，所有的页面都可以访问？](faqs-system-using.md#section187297991718)
--   [如何获取dom中的元素](faqs-system-using.md#section1833493719175)
--   [如何在页面间传值？](faqs-system-using.md#section184283812183)
--   [list如何滚动到某个item？](faqs-system-using.md#section11897734131811)
--   [text支持多行吗？](faqs-system-using.md#section5872656121814)
--   [为什么控件不显示？](faqs-system-using.md#section7397125317107)
--   [如何实现页面滑动？](faqs-system-using.md#section338794422010)
--   [Left、Top为什么不生效？](faqs-system-using.md#section2597193611217)
--   [动态绑定为什么不生效？](faqs-system-using.md#section6939050172115)
--   [如何实现相对定位和绝对定位？](faqs-system-using.md#section5547311192215)
--   [如何控制控件的显示与隐藏？](faqs-system-using.md#section16107113352213)
--   [使用Margin时，有什么注意事项？](faqs-system-using.md#section1524910142314)
--   [使用事件订阅时，有什么注意事项？](faqs-system-using.md#section1537132012231)
--   [使用动态绑定时，有什么注意事项？](faqs-system-using.md#section96561452236)
--   [swiper loop属性如何生效？](faqs-system-using.md#section690166112414)
--   [使用数组时，有什么注意事项？](faqs-system-using.md#section1554552822414)
+-   [是否存在一个全局变量，所有的页面都可以访问？](faqs-system-applications.md#section187297991718)
+-   [如何获取dom中的元素](faqs-system-applications.md#section1833493719175)
+-   [如何在页面间传值？](faqs-system-applications.md#section184283812183)
+-   [list如何滚动到某个item？](faqs-system-applications.md#section11897734131811)
+-   [text支持多行吗？](faqs-system-applications.md#section5872656121814)
+-   [为什么控件不显示？](faqs-system-applications.md#section7397125317107)
+-   [如何实现页面滑动？](faqs-system-applications.md#section338794422010)
+-   [Left、Top为什么不生效？](faqs-system-applications.md#section2597193611217)
+-   [动态绑定为什么不生效？](faqs-system-applications.md#section6939050172115)
+-   [如何实现相对定位和绝对定位？](faqs-system-applications.md#section5547311192215)
+-   [如何控制控件的显示与隐藏？](faqs-system-applications.md#section16107113352213)
+-   [使用Margin时，有什么注意事项？](faqs-system-applications.md#section1524910142314)
+-   [使用事件订阅时，有什么注意事项？](faqs-system-applications.md#section1537132012231)
+-   [使用动态绑定时，有什么注意事项？](faqs-system-applications.md#section96561452236)
+-   [swiper loop属性如何生效？](faqs-system-applications.md#section690166112414)
+-   [使用数组时，有什么注意事项？](faqs-system-applications.md#section1554552822414)
 
 ### hdc<a name="section178081876506"></a>
 
--   [hdc\_std连接不到设备](faqs-system-using.md#section1965012223257)
--   [hdc\_std运行不了](faqs-system-using.md#section1157575212515)
+-   [hdc\_std连接不到设备](faqs-system-applications.md#section1965012223257)
+-   [hdc\_std运行不了](faqs-system-applications.md#section1157575212515)
 
