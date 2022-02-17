@@ -1,8 +1,15 @@
 # netstat<a name="EN-US_TOPIC_0000001179845939"></a>
 
+-   [Command Function](#section13469162113816)
+-   [Syntax](#section795712373812)
+-   [Parameters](#section17629431193817)
+-   [Usage](#section5277153519380)
+-   [Example](#section108141437163820)
+-   [Output](#section1357015107117)
+
 ## Command Function<a name="section13469162113816"></a>
 
-The  **netstat**  command is a console command and is used for monitoring the TCP/IP network. It can display the actual network connections and the status of each network interface device. It is used to display the statistics related to the TCP and UDP protocols and check the network connection to each port on the device \(board\).
+The  **netstat**  command is a console command and is used for monitoring the TCP/IP network. It can display the actual network connections and the status of each network interface device. This command displays statistics related to TCP and UDP and can be used to check the network connection to each port on the device \(board\).
 
 ## Syntax<a name="section795712373812"></a>
 
@@ -14,18 +21,31 @@ None
 
 ## Usage<a name="section5277153519380"></a>
 
-Run the command directly.
+netstat
 
 ## Example<a name="section108141437163820"></a>
 
 Run  **netstat**.
 
-**Figure  1**  Output information<a name="fig51865585412"></a>  
-
-
-![](figure/snipaste_2021-01-26_10-38-58-25.png)
-
 ## Output<a name="section1357015107117"></a>
+
+**netstat**  print information
+
+```
+OHOS # netstat
+========== total sockets 128 ======  unused sockets 119 ==========
+Proto   Recv-Q      Send-Q      Local Address           Foreign Address         State
+tcp     0           0           192.168.1.10:578        192.168.1.3:2049        ESTABLISHED
+tcp     0           0           192.168.1.10:58653      0.0.0.0:0               LISTEN
+tcp     0           0           192.168.1.10:58652      0.0.0.0:0               LISTEN
+tcp     0           0           192.168.1.10:58651      0.0.0.0:0               LISTEN
+Proto   Recv-Q      Send-Q      Local Address           Foreign Address
+udp     0           0           127.0.0.1:62177         127.0.0.1:62178
+udp     0           0           0.0.0.0:5684            0.0.0.0:0
+udp     0           0           127.0.0.1:62179         127.0.0.1:62180
+udp     0           0           127.0.0.1:62180         127.0.0.1:62179
+udp     0           0           127.0.0.1:62178         127.0.0.1:62177
+```
 
 **Table  1**  Output description
 

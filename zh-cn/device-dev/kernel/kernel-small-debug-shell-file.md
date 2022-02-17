@@ -1,45 +1,48 @@
-# 文件命令<a name="ZH-CN_TOPIC_0000001179845925"></a>
+# 文件命令
 
--   **[cat](kernel-small-debug-shell-file-cat.md)**  
 
--   **[cd](kernel-small-debug-shell-file-cd.md)**  
+- **[cat](kernel-small-debug-shell-file-cat.md)**
 
--   **[chgrp](kernel-small-debug-shell-file-chgrp.md)**  
+- **[cd](kernel-small-debug-shell-file-cd.md)**
 
--   **[chmod](kernel-small-debug-shell-file-chmod.md)**  
+- **[chgrp](kernel-small-debug-shell-file-chgrp.md)**
 
--   **[chown](kernel-small-debug-shell-file-chown.md)**  
+- **[chmod](kernel-small-debug-shell-file-chmod.md)**
 
--   **[cp](kernel-small-debug-shell-file-cp.md)**  
+- **[chown](kernel-small-debug-shell-file-chown.md)**
 
--   **[format](kernel-small-debug-shell-file-format.md)**  
+- **[cp](kernel-small-debug-shell-file-cp.md)**
 
--   **[ls](kernel-small-debug-shell-file-ls.md)**  
+- **[format](kernel-small-debug-shell-file-format.md)**
 
--   **[lsfd](kernel-small-debug-shell-file-lsfd.md)**  
+- **[ls](kernel-small-debug-shell-file-ls.md)**
 
--   **[mkdir](kernel-small-debug-shell-file-mkdir.md)**  
+- **[lsfd](kernel-small-debug-shell-file-lsfd.md)**
 
--   **[mount](kernel-small-debug-shell-file-mount.md)**  
+- **[mkdir](kernel-small-debug-shell-file-mkdir.md)**
 
--   **[mv](kernel-small-debug-shell-file-mv.md)**  
+- **[mount](kernel-small-debug-shell-file-mount.md)**
 
--   **[partinfo](kernel-small-debug-shell-file-partinfo.md)**  
+- **[partinfo](kernel-small-debug-shell-file-partinfo.md)**
 
--   **[partition](kernel-small-debug-shell-file-partition.md)**  
+- **[partition](kernel-small-debug-shell-file-partition.md)**
 
--   **[pwd](kernel-small-debug-shell-file-pwd.md)**  
+- **[pwd](kernel-small-debug-shell-file-pwd.md)**
 
--   **[rm](kernel-small-debug-shell-file-rm.md)**  
+- **[rm](kernel-small-debug-shell-file-rm.md)**
 
--   **[rmdir](kernel-small-debug-shell-file-rmdir.md)**  
+- **[rmdir](kernel-small-debug-shell-file-rmdir.md)**
 
--   **[statfs](kernel-small-debug-shell-file-statfs.md)**  
+- **[statfs](kernel-small-debug-shell-file-statfs.md)**
 
--   **[sync](kernel-small-debug-shell-file-sync.md)**  
+- **[sync](kernel-small-debug-shell-file-sync.md)**
 
--   **[touch](kernel-small-debug-shell-file-touch.md)**  
+- **[touch](kernel-small-debug-shell-file-touch.md)**
 
--   **[writeproc](kernel-small-debug-shell-file-write.md)**  
+- **[writeproc](kernel-small-debug-shell-file-write.md)**
 
--   **[umount](kernel-small-debug-shell-file-umount.md)**  
+- **[umount](kernel-small-debug-shell-file-umount.md)**
+
+- **[du](kernel-small-debug-shell-file-du.md)**
+
+- **[mv](kernel-small-debug-shell-file-mv.md)**

@@ -1,12 +1,17 @@
 # Dying Gasp<a name="EN-US_TOPIC_0000001078588210"></a>
 
+-   [When to Use](#section158501652121514)
+-   [Available APIs](#section1186411122215)
+-   [Parameters](#section1083765723015)
+-   [How to Develop](#section783435801510)
+
 ## When to Use<a name="section158501652121514"></a>
 
-For a device without a serial port, save the exception information to a non-volatile storage medium to facilitate fault location during system running.
+For a device without a serial port, the dying gasp saves the exception information to a non-volatile storage medium to facilitate fault location during system running.
 
 ## Available APIs<a name="section1186411122215"></a>
 
-The system provides a mechanism to save printed exception information to a non-volatile storage medium. You can register the hook functions for printing information when the read and write operations are abnormal. In this way, fault information can be saved on different storage media, facilitating fault locating for devices without serial ports. The API is  **LOS\_ExcInfoRegHook**. This function is declared in  **los\_config.h**. The function prototype is as follows:
+The system provides a mechanism to save printed exception information to a non-volatile storage medium. You can register the hook function of the information printed when the read and write operations are abnormal. In this way, fault information can be saved on different storage media, facilitating fault locating for devices without serial ports. The API is  **LOS\_ExcInfoRegHook**. This function is declared in  **los\_config.h**. The function prototype is as follows:
 
 ```
 typedef VOID (*log_read_write_fn)(UINT32 startAddr, UINT32 space, UINT32 rwFlag, CHAR *buf);
@@ -85,7 +90,7 @@ VOID LOS_ExcInfoRegHook(UINT32 startAddr, UINT32 space, CHAR *buf, log_read_writ
 The dying gasp function depends on the macro  **LOSCFG\_SAVE\_EXCINFO**. Before using this function, choose  **Debug**-\>  **Enable Saving Exception Information**  in the configuration items to enable this macro. If this macro is disabled, this function cannot be used. Then, call  **LOS\_ExcInfoRegHook**  in  **SystemInit**  to register the position, size, memory buffer, and access function for accessing the exception information. When an exception occurs in the system, the system saves the exception information in the memory buffer passed in the registration, and then calls the registered access function to write the exception information to the physical storage medium.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The location registered to storing the exception information cannot overlap with other storage locations.
+>-   The location registered to store the exception information cannot overlap with other storage locations.
 >-   The registered memory buffer should be greater than or equal to 16 KiB. Otherwise, the exception information stored may be incomplete.
 >-   The exception information can be accessed successfully only when the driver of the storage medium corresponding to the registered read/write function is normal.
 

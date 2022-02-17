@@ -1,8 +1,14 @@
 # procfs<a name="EN-US_TOPIC_0000001123696719"></a>
 
+-   [Basic Concepts](#section146801917174017)
+-   [Working Principles](#section479762916408)
+-   [Development Guidelines](#section1221174524014)
+    -   [Development Example](#section52016575401)
+
+
 ## Basic Concepts<a name="section146801917174017"></a>
 
-The proc filesystem \(procfs\) is a virtual file system that displays process or other system information in a file-like structure. It is more convenient to obtain system information in file operation mode compared with API calling mode.
+The proc filesystem \(procfs\) is a virtual file system that displays process or other system information in a file-like structure. It is more convenient to obtain system information in file operation mode than API calling mode.
 
 ## Working Principles<a name="section479762916408"></a>
 
@@ -10,7 +16,7 @@ In the OpenHarmony kernel, procfs is automatically mounted to the  **/proc**  di
 
 ## Development Guidelines<a name="section1221174524014"></a>
 
-To create a procfs file, you need to use  **ProcMkdir**  to create a directory and use  **CreateProcEntry**  to create a file. The development of the file node function is to hook the read and write functions to the file created by  **CreateProcEntry**. When the procfs file is read or written, the hooked functions will be called to implement customized functions.
+To create a procfs file, you need to use  **ProcMkdir**  to create a directory and use  **CreateProcEntry**  to create a file. The development of the file node function is to hook the read and write functions to the file created by  **CreateProcEntry**. When the procfs file is read or written, the hooked functions will be called to implement custom functions.
 
 ### Development Example<a name="section52016575401"></a>
 
@@ -54,14 +60,14 @@ void HelloWorldInit(void)
         return;
     }
 
-    /*Create the world file. */
+    /* Create the world file. */
     struct ProcDirEntry *entry = CreateProcEntry("world", 0, dir);
     if (entry == NULL) {
         PRINT_ERR("create entry failed!\n");
         return;
     }
 
-    /* Hook the customized read and write APIs to the file. */
+    /* Hook the custom read and write APIs to the file. */
     entry->procFileOps = &HELLO_WORLD_OPS;
 }
 ```

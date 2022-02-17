@@ -1,5 +1,4 @@
-# 进程调测<a name="ZH-CN_TOPIC_0000001173350145"></a>
-
--   **[CPU占用率](kernel-small-debug-process-cpu.md)**  
+# 进程调测
 
 
+- **[CPU占用率](kernel-small-debug-process-cpu.md)**

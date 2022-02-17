@@ -1,8 +1,15 @@
 # format<a name="EN-US_TOPIC_0000001134006262"></a>
 
+-   [Command Function](#section1922331919169)
+-   [Syntax](#section249226169)
+-   [Parameters](#section985173416177)
+-   [Usage](#section1510162714162)
+-   [Example](#section25691431161611)
+-   [Output](#section17368112365920)
+
 ## Command Function<a name="section1922331919169"></a>
 
-This command is used to format a disk.
+This command is used for disk formatting.
 
 ## Syntax<a name="section249226169"></a>
 
@@ -26,14 +33,14 @@ format <_dev\_inodename_\> <_sectors_\> <_option_\> \[_label_\]
 </tr>
 <tr id="row1203mcpsimp"><td class="cellrowborder" valign="top" width="34%" headers="mcps1.2.3.1.1 "><p id="p1205mcpsimp"><a name="p1205mcpsimp"></a><a name="p1205mcpsimp"></a>sectors</p>
 </td>
-<td class="cellrowborder" valign="top" width="66%" headers="mcps1.2.3.1.2 "><p id="p1207mcpsimp"><a name="p1207mcpsimp"></a><a name="p1207mcpsimp"></a>Specifies the size of the allocated memory unit or sector. The value <strong id="b1574273871018"><a name="b1574273871018"></a><a name="b1574273871018"></a>0</strong> indicates that the parameter is null. (The value must be <strong id="b16428721113"><a name="b16428721113"></a><a name="b16428721113"></a>0</strong> or a power of <strong id="b1053419931111"><a name="b1053419931111"></a><a name="b1053419931111"></a>2</strong>. For FAT32, the maximum value is <strong id="b51473841110"><a name="b51473841110"></a><a name="b51473841110"></a>128</strong>. If the parameter is set to <strong id="b99547931214"><a name="b99547931214"></a><a name="b99547931214"></a>0</strong>, a proper cluster size is automatically selected. The available cluster size range varies depending on the partition size. If the cluster size is incorrectly specified, the formatting may fail.)</p>
+<td class="cellrowborder" valign="top" width="66%" headers="mcps1.2.3.1.2 "><p id="p1207mcpsimp"><a name="p1207mcpsimp"></a><a name="p1207mcpsimp"></a>Specifies the size of the allocated memory unit or sector. The value <strong id="b1574273871018"><a name="b1574273871018"></a><a name="b1574273871018"></a>0</strong> indicates null. (The value must be <strong id="b16428721113"><a name="b16428721113"></a><a name="b16428721113"></a>0</strong> or a power of <strong id="b1053419931111"><a name="b1053419931111"></a><a name="b1053419931111"></a>2</strong>. For FAT32, the maximum value is <strong id="b51473841110"><a name="b51473841110"></a><a name="b51473841110"></a>128</strong>. If the parameter is set to <strong id="b99547931214"><a name="b99547931214"></a><a name="b99547931214"></a>0</strong>, a proper cluster size is automatically selected. The available cluster size range varies depending on the partition size. If the cluster size is incorrectly specified, the formatting may fail.)</p>
 </td>
 </tr>
 <tr id="row1208mcpsimp"><td class="cellrowborder" valign="top" width="34%" headers="mcps1.2.3.1.1 "><p id="p1210mcpsimp"><a name="p1210mcpsimp"></a><a name="p1210mcpsimp"></a>option</p>
 </td>
-<td class="cellrowborder" valign="top" width="66%" headers="mcps1.2.3.1.2 "><div class="p" id="p1212mcpsimp"><a name="p1212mcpsimp"></a><a name="p1212mcpsimp"></a>Specifies the formatting option for selecting the file system type. The options are as follows:<a name="ul10971366369"></a><a name="ul10971366369"></a><ul id="ul10971366369"><li><strong id="b169384514517"><a name="b169384514517"></a><a name="b169384514517"></a>0x01</strong>: FMT_FAT</li><li><strong id="b143061510125114"><a name="b143061510125114"></a><a name="b143061510125114"></a>0x02</strong>: FMT_FAT32</li><li><strong id="b3245614165116"><a name="b3245614165116"></a><a name="b3245614165116"></a>0x07</strong>: FMT_ANY</li><li><strong id="b018121813512"><a name="b018121813512"></a><a name="b018121813512"></a>0x08</strong>: FMT_ERASE (not supported by the USB flash drive)</li></ul>
+<td class="cellrowborder" valign="top" width="66%" headers="mcps1.2.3.1.2 "><div class="p" id="p1212mcpsimp"><a name="p1212mcpsimp"></a><a name="p1212mcpsimp"></a>Specifies the file system type. The options are as follows:<a name="ul10971366369"></a><a name="ul10971366369"></a><ul id="ul10971366369"><li><strong id="b169384514517"><a name="b169384514517"></a><a name="b169384514517"></a>0x01</strong>: FMT_FAT</li><li><strong id="b143061510125114"><a name="b143061510125114"></a><a name="b143061510125114"></a>0x02</strong>: FMT_FAT32</li><li><strong id="b3245614165116"><a name="b3245614165116"></a><a name="b3245614165116"></a>0x07</strong>: FMT_ANY</li><li><strong id="b018121813512"><a name="b018121813512"></a><a name="b018121813512"></a>0x08</strong>: FMT_ERASE (not supported by the USB flash drive)</li></ul>
 </div>
-<p id="p28366459374"><a name="p28366459374"></a><a name="p28366459374"></a>Other values are invalid. The system will automatically select the formatting mode. If the low-level formatting bit is 1 during the formatting of a USB flash drive, an error message is printed.</p>
+<p id="p28366459374"><a name="p28366459374"></a><a name="p28366459374"></a>If an invalid value is specified, the system automatically selects the formatting mode. If the low-level formatting bit is <strong id="b4634562520"><a name="b4634562520"></a><a name="b4634562520"></a>1</strong> during the formatting of a USB flash drive, an error message is printed.</p>
 </td>
 </tr>
 <tr id="row1213mcpsimp"><td class="cellrowborder" valign="top" width="34%" headers="mcps1.2.3.1.1 "><p id="p1215mcpsimp"><a name="p1215mcpsimp"></a><a name="p1215mcpsimp"></a>label</p>
@@ -46,9 +53,9 @@ format <_dev\_inodename_\> <_sectors_\> <_option_\> \[_label_\]
 
 ## Usage<a name="section1510162714162"></a>
 
--   The  **format**  command is used to format a disk. You can find the device name in the  **dev**  directory. A storage card must be installed before the formatting.
--   This command can be used to format only the USB flash drive, SD card, and MMC, but not the NAND flash and NOR flash.
--   The  **sectors**  parameter must be set to a valid value. An invalid value may cause exceptions.
+-   The  **format**  command is used for disk formatting. You can find the device name in the  **dev**  directory. A storage card must be installed before the formatting.
+-   The  **format**  command can be used to format the USB flash drive, SD card, and MMC, but not the NAND flash or NOR flash.
+-   An invalid  **sectors**  value may cause exceptions.
 
 ## Example<a name="section25691431161611"></a>
 
@@ -56,7 +63,11 @@ Run  **format /dev/mmcblk0 128 2**.
 
 ## Output<a name="section17368112365920"></a>
 
-Formatting result
+Formatting an MMC:
 
-![](figure/en-us_image_0000001134008686.png)
+```
+OHOS # format /dev/mmcblk1 128 2
+Format to FAT32, 128 sectors per cluster.
+format /dev/mmcblk1 Success 
+```
 

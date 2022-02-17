@@ -1,8 +1,15 @@
 # pmm<a name="EN-US_TOPIC_0000001179965839"></a>
 
+-   [Command Function](#section445335110416)
+-   [Syntax](#section1795712553416)
+-   [Parameters](#section92544592410)
+-   [Usage](#section104151141252)
+-   [Example](#section11545171957)
+-   [Output](#section075617368542)
+
 ## Command Function<a name="section445335110416"></a>
 
-This command is used to check the usage of the physical pages and page cache of the system memory.
+This command is used to check the usage of the physical pages of the system memory and the page cache.
 
 ## Syntax<a name="section1795712553416"></a>
 
@@ -22,13 +29,37 @@ Run  **pmm**.
 
 ## Output<a name="section075617368542"></a>
 
-**Figure  1**  Viewing the usage of physical pages<a name="fig19209202618618"></a>  
-![](figure/viewing-the-usage-of-physical-pages.png "viewing-the-usage-of-physical-pages")
+Usage of physical pages:
+
+```
+OHOS # pmm
+ phys_seg      base         size        free_pages
+ --------      -------      ----------  ---------
+ 0x4065552c    0x809b0000   0x07550000      22344
+order = 0, free_count = 16
+order = 1, free_count = 12
+order = 2, free_count = 8
+order = 3, free_count = 6
+order = 4, free_count = 13
+order = 5, free_count = 16
+order = 6, free_count = 12
+order = 7, free_count = 4
+order = 8, free_count = 79
+active   anon   0
+inactive anon   0
+active   file   1385
+inactice file   84
+pmm pages: total = 30032, used = 7688, free = 22344
+pathCache number = 325
+pathCache memory size = 17621(B)
+Vnode number = 67
+Vnode memory size = 10720(B)
+```
 
 **Table  1**  Output
 
 <a name="table5579102611579"></a>
-<table><thead align="left"><tr id="row12579162613572"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p18579122619578"><a name="p18579122619578"></a><a name="p18579122619578"></a>Output</p>
+<table><thead align="left"><tr id="row12579162613572"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p18579122619578"><a name="p18579122619578"></a><a name="p18579122619578"></a>Parameter</p>
 </th>
 <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p11579182635718"><a name="p11579182635718"></a><a name="p11579182635718"></a>Description</p>
 </th>
@@ -76,9 +107,9 @@ Run  **pmm**.
 </tr>
 <tr id="row13183445101"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p318394514018"><a name="p318394514018"></a><a name="p318394514018"></a>pmm pages</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1616375952018"><a name="p1616375952018"></a><a name="p1616375952018"></a><strong id="b161631659162014"><a name="b161631659162014"></a><a name="b161631659162014"></a>total</strong>: indicates the total number of physical pages. </p>
-<p id="p2029802122113"><a name="p2029802122113"></a><a name="p2029802122113"></a><strong id="b429822122113"><a name="b429822122113"></a><a name="b429822122113"></a>used</strong>: indicates the number of used physical pages. </p>
-<p id="p1218312452014"><a name="p1218312452014"></a><a name="p1218312452014"></a><strong id="b132798755433826"><a name="b132798755433826"></a><a name="b132798755433826"></a>free</strong>: indicates the number of free physical pages.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1616375952018"><a name="p1616375952018"></a><a name="p1616375952018"></a><strong id="b161631659162014"><a name="b161631659162014"></a><a name="b161631659162014"></a>total</strong>: total number of physical pages.</p>
+<p id="p2029802122113"><a name="p2029802122113"></a><a name="p2029802122113"></a><strong id="b429822122113"><a name="b429822122113"></a><a name="b429822122113"></a>used</strong>: number of used physical pages.</p>
+<p id="p1218312452014"><a name="p1218312452014"></a><a name="p1218312452014"></a><strong id="b132798755433826"><a name="b132798755433826"></a><a name="b132798755433826"></a>free</strong>: number of free physical pages.</p>
 </td>
 </tr>
 </tbody>

@@ -1,12 +1,20 @@
 # CPUP<a name="EN-US_TOPIC_0000001123188477"></a>
 
+-   [Basic Concepts](#section17683419227)
+-   [Working Principles](#section593718536227)
+-   [Development Guidelines](#section11284210152311)
+    -   [Available APIs](#section3745151592312)
+    -   [How to Develop](#section122901429182316)
+    -   [Development Example](#section1765785212310)
+
+
 ## Basic Concepts<a name="section17683419227"></a>
 
-The central processing unit percent \(CPUP\) includes the system CPUP, process CPUP, task CPUP, and interrupt CPUP. With the system CPUP, you can determine whether the current system load exceeds the designed specifications. With the CPUP of each task/process/interrupt, you can determine whether the CPU usage of each task/process/interrupt meets expectations of the design.
+The central processing unit percent \(CPUP\) includes the system CPUP, process CPUP, task CPUP, and interrupt CPUP. With the system CPUP, you can determine whether the current system load exceeds the designed specifications. With the CPUP of each task/process/interrupt, you can determine whether their CPU usage meets expectations of the design.
 
 -   System CPUP
 
-    The system CPUP is the CPU usage of the system within a period of time. It reflects the CPU load and the system running status \(idle or busy\) in a period of time. The valid range of the system CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the system runs with full load.
+    System CPUP is the CPU usage of the system within a period of time. It reflects the CPU load and the system running status \(idle or busy\) in the given period of time. The valid range of the system CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the system runs with full load.
 
 -   Process CPUP
 
@@ -14,25 +22,25 @@ The central processing unit percent \(CPUP\) includes the system CPUP, process C
 
 -   Task CPUP
 
-    Task CPUP refers to the CPU usage of a single task. It reflects the task status, busy or idle, in a period of time. The valid range of task CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the task is being executed for a period of time.
+    Task CPUP refers to the CPU usage of a single task. It reflects the task status, busy or idle, in a period of time. The valid range of task CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the task is being executed for the given period of time.
 
 -   Interrupt CPUP
 
-    Task CPUP refers to the CPU usage of a single interrupt. It reflects the interrupt status, busy or idle, in a period of time. The valid range of the interrupt CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the interrupt is being executed for a period of time.
+    Interrupt CPUP refers to the CPU usage of a single interrupt. It reflects the interrupt status, busy or idle, in a period of time. The valid range of the interrupt CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the interrupt is being executed for a period of time.
 
 
 ## Working Principles<a name="section593718536227"></a>
 
 The OpenHarmony LiteOS-A kernel CPUP module records the CPU usage by process, task, and interrupt. When a process or task is switched, the start time of the process or task is recorded. When the process or task is switched out or exits, the system accumulates the CPU time of the entire process or task. When an interrupt is executed, the system accumulates and records the execution time of each interrupt.
 
-The OpenHarmony provides the following types of CPUP information:
+OpenHarmony provides the following types of CPUP information:
 
 -   System CPUP
 -   Process CPUP
 -   Task CPUP
 -   Interrupt CPUP
 
-You can calculate the CPUP as follows:
+The CPUP is calculated as follows:
 
 System CPUP = Total running time of all tasks except idle tasks/Total running time of the system
 
@@ -49,7 +57,7 @@ Interrupt CPUP = Total running time of the interrupt/Total running time of the s
 **Table  1**  CPUP module APIs
 
 <a name="table147491853163018"></a>
-<table><thead align="left"><tr id="row10807205323013"><th class="cellrowborder" valign="top" width="28.3971602839716%" id="mcps1.2.4.1.1"><p id="p980714539304"><a name="p980714539304"></a><a name="p980714539304"></a>Category</p>
+<table><thead align="left"><tr id="row10807205323013"><th class="cellrowborder" valign="top" width="28.3971602839716%" id="mcps1.2.4.1.1"><p id="p980714539304"><a name="p980714539304"></a><a name="p980714539304"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="36.47635236476353%" id="mcps1.2.4.1.2"><p id="p1780715533305"><a name="p1780715533305"></a><a name="p1780715533305"></a>API</p>
 </th>
@@ -103,7 +111,7 @@ The typical CPUP development process is as follows.
     -   If the process is not created, return an error code.
 
 3.  Call  **LOS\_GetAllProcessCpuUsage**  to obtain the CPUP of all processes.
-    -   If the CPUP is initialized, disable interrupt, obtain the CPUP in different modes, and then enable interrupt.
+    -   If the CPUP has been initialized, disable interrupt, obtain the CPUP in different modes, and then enable interrupt.
     -   If CPUP is not initialized or has invalid input parameters, return an error code.
 
 4.  Call  **LOS\_HistoryTaskCpuUsage**  to obtain the historical CPUP of a specified task.
@@ -111,8 +119,8 @@ The typical CPUP development process is as follows.
     -   If the task is not created, return an error code.
 
 5.  Call  **LOS\_GetAllIrqCpuUsage**  to obtain the CPUP of all interrupts.
-    -   If the CPUP is initialized, disable interrupt, obtain the CPUP in different modes, and then enable interrupt.
-    -   If CPUP is not initialized or has invalid input parameters, return an error code.
+    -   If the CPUP has been initialized, disable interrupt, obtain the CPUP in different modes, and then enable interrupt.
+    -   If CPUP has not been initialized or has invalid input parameters, return an error code.
 
 
 ### Development Example<a name="section1765785212310"></a>
@@ -123,11 +131,11 @@ This example implements the following:
 2.  Obtain the CPUP of the current system.
 3.  Obtain the historical system CPUP in different modes.
 4.  Obtain the CPUP of the created test task.
-5.  Obtains the CPUP of the created test task in different modes.
+5.  Obtain the CPUP of the created test task in different modes.
 
 Prerequisites
 
-Enable the cpup control switch in the  **menuconfig**  configuration.
+The CPUP control is enabled in the  **menuconfig**  configuration.
 
 **Sample Code**
 

@@ -1,8 +1,15 @@
 # Bitwise Operation<a name="EN-US_TOPIC_0000001078588212"></a>
 
+-   [Basic Concepts](#section1990715203418)
+-   [Available APIs](#section848334511411)
+-   [Development Example](#section67569495514)
+    -   [Example Description](#section33551554391)
+    -   [Verification](#section8931859194)
+
+
 ## Basic Concepts<a name="section1990715203418"></a>
 
-A bitwise operation operates on a binary number at the level of its individual bits. For example, a variable can be set as a program PSW \(PSW\), and each bit \(flag bit\) in the PSW can have a self-defined meaning.
+A bitwise operation operates on a binary number at the level of its individual bits. For example, a variable can be set as a program status word \(PSW\), and each bit \(flag bit\) in the PSW can have a self-defined meaning.
 
 ## Available APIs<a name="section848334511411"></a>
 
@@ -11,7 +18,7 @@ The system provides operations for setting the flag bit to  **1**  or  **0**, ch
 **Table  1**  Bitwise operation module APIs
 
 <a name="table148791521769"></a>
-<table><thead align="left"><tr id="row13880624615"><th class="cellrowborder" valign="top" width="16.89168916891689%" id="mcps1.2.4.1.1"><p id="p1587119571763"><a name="p1587119571763"></a><a name="p1587119571763"></a>Category</p>
+<table><thead align="left"><tr id="row13880624615"><th class="cellrowborder" valign="top" width="16.89168916891689%" id="mcps1.2.4.1.1"><p id="p1587119571763"><a name="p1587119571763"></a><a name="p1587119571763"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="35.54355435543554%" id="mcps1.2.4.1.2"><p id="p38714577610"><a name="p38714577610"></a><a name="p38714577610"></a>API</p>
 </th>
@@ -72,7 +79,7 @@ This example implements the following:
 1.  Set a flag bit to  **1**.
 2.  Obtain the most significant bit of flag bit 1.
 3.  Set a flag bit to  **0**.
-4.  Obtains the least significant bit of the flag bit 1.
+4.  Obtain the least significant bit of the flag bit 1.
 
 ```
 #include "los_bitmap.h"

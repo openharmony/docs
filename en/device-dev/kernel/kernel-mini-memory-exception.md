@@ -1,5 +1,13 @@
 # Exception Debugging<a name="EN-US_TOPIC_0000001124786041"></a>
 
+-   [Basic Concepts](#section2741911123412)
+-   [Working Principles](#section16618124317346)
+-   [Available APIs](#section16111931351)
+-   [Usage Guidelines](#section16317163520350)
+    -   [How to Develop](#section13457839133618)
+    -   [How to Locate Exceptions](#section197332323815)
+
+
 ## Basic Concepts<a name="section2741911123412"></a>
 
 The OpenHarmony LiteOS-M provides exception handling and debugging measures to help locate and analyze problems. Exception handling involves a series of actions taken by the OS to respond to exceptions occurred during the OS running, for example, printing the exception type, system status, call stack information of the current function, CPU information, and call stack information of tasks.
@@ -13,7 +21,7 @@ When an exception occurs in the system, the system prints the register informati
 The following figure illustrates the stack analysis mechanism for your reference. The actual stack information varies depending on the CPU architecture.
 
 **Figure  1**  Stack analysis mechanism<a name="fig5280123462820"></a>  
-![](figure/stack-analysis-mechanism.png "stack-analysis-mechanism")
+![](figures/stack-analysis-mechanism.png "stack-analysis-mechanism")
 
 In the figure, the registers in different colors indicate different functions. The registers save related data when functions are called. The FP register helps track the stack to the parent function of the abnormal function and further presents the relationships between the functions called.
 
@@ -24,7 +32,7 @@ The following table describes APIs available for the OpenHarmony LiteOS-M stack 
 **Table  1**  APIs of the stack trace module
 
 <a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Category</p>
+<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>API</p>
 </th>
@@ -101,7 +109,7 @@ The typical process for enabling exception debugging is as follows:
     #define TSK_PRIOR 4
     
     /* Simulate an abnormal function. */
-    	
+    
     UINT32 Get_Result_Exception_0(UINT16 dividend){
         UINT32 divisor = 0;
         UINT32 result = dividend / divisor;
@@ -271,21 +279,21 @@ The procedure for locating the exception is as follows:
 
     ```
     UINT32 Get_Result_Exception_0(UINT16 dividend){
-     80037c8:	b480      	push	{r7}
-     80037ca:	b085      	sub	sp, #20
-     80037cc:	af00      	add	r7, sp, #0
-     80037ce:	4603      	mov	r3, r0
-     80037d0:	80fb      	strh	r3, [r7, #6]
+     80037c8: b480       push {r7}
+     80037ca: b085       sub sp, #20
+     80037cc: af00       add r7, sp, #0
+     80037ce: 4603       mov r3, r0
+     80037d0: 80fb       strh r3, [r7, #6]
     kernel_liteos_m\targets\cortex-m7_nucleo_f767zi_gcc/Core/Src/exc_example.c:10
         UINT32 divisor = 0;
-     80037d2:	2300      	movs	r3, #0
-     80037d4:	60fb      	str	r3, [r7, #12]
+     80037d2: 2300       movs r3, #0
+     80037d4: 60fb       str r3, [r7, #12]
     kernel_liteos_m\targets\cortex-m7_nucleo_f767zi_gcc/Core/Src/exc_example.c:11
         UINT32 result = dividend / divisor;
-     80037d6:	88fa      	ldrh	r2, [r7, #6]
-     80037d8:	68fb      	ldr	r3, [r7, #12]
-     80037da:	fbb2 f3f3 	udiv	r3, r2, r3
-     80037de:	60bb      	str	r3, [r7, #8]
+     80037d6: 88fa       ldrh r2, [r7, #6]
+     80037d8: 68fb       ldr r3, [r7, #12]
+     80037da: fbb2 f3f3  udiv r3, r2, r3
+     80037de: 60bb       str r3, [r7, #8]
     ```
 
 
@@ -302,17 +310,17 @@ The procedure for locating the exception is as follows:
     Get_Result_Exception_1():
     kernel_liteos_m\targets\cortex-m7_nucleo_f767zi_gcc/Core/Src/exc_example.c:15
     UINT32 Get_Result_Exception_1(UINT16 dividend){
-     80037ec:	b580      	push	{r7, lr}
-     80037ee:	b082      	sub	sp, #8
-     80037f0:	af00      	add	r7, sp, #0
-     80037f2:	4603      	mov	r3, r0
-     80037f4:	80fb      	strh	r3, [r7, #6]
+     80037ec: b580       push {r7, lr}
+     80037ee: b082       sub sp, #8
+     80037f0: af00       add r7, sp, #0
+     80037f2: 4603       mov r3, r0
+     80037f4: 80fb       strh r3, [r7, #6]
     kernel_liteos_m\targets\cortex-m7_nucleo_f767zi_gcc/Core/Src/exc_example.c:16
         return Get_Result_Exception_0(dividend);
-     80037f6:	88fb      	ldrh	r3, [r7, #6]
-     80037f8:	4618      	mov	r0, r3
-     80037fa:	f7ff ffe5 	bl	80037c8 <Get_Result_Exception_0>
-     80037fe:	4603      	mov	r3, r0
+     80037f6: 88fb       ldrh r3, [r7, #6]
+     80037f8: 4618       mov r0, r3
+     80037fa: f7ff ffe5  bl 80037c8 <Get_Result_Exception_0>
+     80037fe: 4603       mov r3, r0
     ```
 
 

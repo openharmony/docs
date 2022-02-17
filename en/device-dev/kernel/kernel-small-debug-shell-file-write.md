@@ -1,5 +1,12 @@
 # writeproc<a name="EN-US_TOPIC_0000001179845935"></a>
 
+-   [Command Function](#section366714216619)
+-   [Syntax](#section8833164614615)
+-   [Parameters](#section12809111019453)
+-   [Usage](#section15935131220717)
+-   [Example](#section79281818476)
+-   [Output](#section12742311179)
+
 ## Command Function<a name="section366714216619"></a>
 
 This command is used to write data to a specified proc file system. The proc file system supports the input of string parameters. Each file needs to implement its own method.
@@ -40,7 +47,7 @@ writeproc <_data_\>  \>\>  /proc/<_filename_\>
 
 ## Usage<a name="section15935131220717"></a>
 
-The proc file implements its own  **write**  command. Calling the  **writeproc**  command will pass the input parameter to the  **write**  command.
+The proc file implements its own  **write**  command. Calling the  **writeproc**  command will pass the input parameters to the  **write**  command.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >The procfs file system does not support multi-thread access.

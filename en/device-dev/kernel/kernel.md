@@ -4,6 +4,6 @@
 
 -   **[Kernel for Small Systems](kernel-small.md)**  
 
--   **[Kernel for Standard Systems](kernel-standard.md)**  
+-   **[User-Mode Memory Debugging](kernel-small-debug-user.md)**  
 
 

@@ -1,24 +1,26 @@
-# Procfs<a name="ZH-CN_TOPIC_0000001123696719"></a>
+# Procfs
 
--   [基本概念](#section146801917174017)
--   [运行机制](#section479762916408)
--   [开发指导](#section1221174524014)
-    -   [编程实例](#section52016575401)
+- [基本概念](#基本概念)
+- [运行机制](#运行机制)
+- [开发指导](#开发指导)
+  - [编程实例](#编程实例)
 
-
-## 基本概念<a name="section146801917174017"></a>
+## 基本概念
 
 procfs是进程文件系统的简称，是一种虚拟文件系统，他用文件的形式，展示进程或其他系统信息。相比调用接口的方式获取信息，以文件操作的方式获取系统信息更为方便。
 
-## 运行机制<a name="section479762916408"></a>
+
+## 运行机制
 
 OpenHarmony内核中，procfs在开机时会自动挂载到/proc目录下，仅支持内核模块创建文件节点来提供查询服务。
 
-## 开发指导<a name="section1221174524014"></a>
+
+## 开发指导
 
 procfs文件的创建无法使用一般的文件系统接口，需要使用ProcMkdir接口创建目录，使用CreateProcEntry接口创建文件。文件节点功能的开发就是实现read和write函数的钩子挂到CreateProcEntry创建的文件中。当用户使用读写procfs的文件时，就会调用到钩子函数来实现自定义的功能。
 
-### 编程实例<a name="section52016575401"></a>
+
+### 编程实例
 
 下面我们以创建/proc/hello/world文件为例，实现如下功能：
 
@@ -82,4 +84,3 @@ OHOS # Hello World!
 OHOS # echo "yo" > /proc/hello/world
 OHOS # your input is: yo
 ```
-

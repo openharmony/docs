@@ -1,5 +1,8 @@
 # Signal<a name="EN-US_TOPIC_0000001078912742"></a>
 
+-   [Basic Concepts](#section172788254307)
+-   [Working Principles](#section1249693812301)
+
 ## Basic Concepts<a name="section172788254307"></a>
 
 Signal is a common inter-process asynchronous communication mechanism. It uses software-simulated interrupt signals. When a process needs to communicate with another process, it sends a signal to the kernel. The kernel then transfers the signal to the destination process. The destination process does not need to wait for the signal.
@@ -8,10 +11,10 @@ Signal is a common inter-process asynchronous communication mechanism. It uses s
 
 The following table describes the APIs available for signal operations.
 
-**Table  1**  Signal operation process and APIs \(user-space APIs\)
+**Table  1**  Signal operation process and APIs \(user-mode APIs\)
 
 <a name="table1316220185211"></a>
-<table><thead align="left"><tr id="row191622182021"><th class="cellrowborder" valign="top" width="27.09270927092709%" id="mcps1.2.4.1.1"><p id="p13162121815218"><a name="p13162121815218"></a><a name="p13162121815218"></a>Category</p>
+<table><thead align="left"><tr id="row191622182021"><th class="cellrowborder" valign="top" width="27.09270927092709%" id="mcps1.2.4.1.1"><p id="p13162121815218"><a name="p13162121815218"></a><a name="p13162121815218"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="26.49264926492649%" id="mcps1.2.4.1.2"><p id="p12162618623"><a name="p12162618623"></a><a name="p12162618623"></a>API</p>
 </th>
@@ -54,14 +57,14 @@ The following table describes the APIs available for signal operations.
 </td>
 <td class="cellrowborder" valign="top" width="26.49264926492649%" headers="mcps1.2.4.1.2 "><p id="p71633181125"><a name="p71633181125"></a><a name="p71633181125"></a>None</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.41464146414641%" headers="mcps1.2.4.1.3 "><p id="p1126941694213"><a name="p1126941694213"></a><a name="p1126941694213"></a>Triggered by a system call or an interrupt. Before the switching between the kernel space and user space, the specified function in user space is entered, and the corresponding callbacks are processed. After that, the original user-space program continues to run.</p>
+<td class="cellrowborder" valign="top" width="46.41464146414641%" headers="mcps1.2.4.1.3 "><p id="p1126941694213"><a name="p1126941694213"></a><a name="p1126941694213"></a>Triggered by a system call or an interrupt. Before the switching between the kernel mode and user mode, the specified function in user mode is entered, and the corresponding callbacks are processed. After that, the original user-mode program continues to run.</p>
 </td>
 </tr>
 </tbody>
 </table>
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The signal mechanism enables communication between user-space programs. The user-space POSIX APIs listed in the above table are recommended.
+>The signal mechanism enables communication between user-mode programs. The user-mode POSIX APIs listed in the above table are recommended.
 >Register a callback function.
 >```
 >void *signal(int sig, void (*func)(int))(int);
@@ -75,7 +78,7 @@ The following table describes the APIs available for signal operations.
 >You can obtain and modify the configuration of signal registration. Currently, only the  **SIGINFO**  options are supported. For details, see the description of the  **sigtimedwait**  API.
 >Transmit a signal.
 >a. Among the default signal-receiving behaviors, the process does not support  **STOP**,  **COTINUE**, and  **COREDUMP**  defined in the POSIX standard.
->b. The SIGSTOP, SIGKILL, and SIGCONT signals cannot be shielded.
+>b. The  **SIGSTOP**,  **SIGKILL**, and  **SIGCONT**  signals cannot be shielded.
 >c. If a process killed is not reclaimed by its parent process, the process becomes a zombie process.
 >d. A process will not call back the signal received until the process is scheduled.
 >e. When a process is killed,  **SIGCHLD**  is sent to its parent process. The signal sending action cannot be canceled.

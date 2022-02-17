@@ -6,7 +6,7 @@
 
 -   **[Basic Kernel](kernel-small-basics.md)**  
 
--   **[Extension Components](kernel-small-bundles.md)**  
+-   **[Extended Components](kernel-small-bundles.md)**  
 
 -   **[Debugging and Tools](kernel-small-debug.md)**  
 

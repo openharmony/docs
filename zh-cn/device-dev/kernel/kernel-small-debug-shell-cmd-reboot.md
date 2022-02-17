@@ -1,33 +1,37 @@
-# reboot<a name="ZH-CN_TOPIC_0000001133846477"></a>
+# reboot
 
--   [命令功能](#section01)
--   [命令格式](#section02)
--   [参数说明](#section03)
--   [使用指南](#section04)
--   [使用实例](#section05)
--   [输出说明](#section06)
+- [命令功能](#命令功能)
+- [命令格式](#命令格式)
+- [参数说明](#参数说明)
+- [使用指南](#使用指南)
+- [使用实例](#使用实例)
+- [输出说明](#输出说明)
 
-## 命令功能<a name="section01"></a>
+## 命令功能
 
 reboot命令用于重启设备。
 
-## 命令格式<a name="section02"></a>
+
+## 命令格式
 
 reboot
 
-## 参数说明<a name="section03"></a>
+
+## 参数说明
 
 无。
 
-## 使用指南<a name="section04"></a>
+
+## 使用指南
 
 reboot命令输入后，设备会立刻重启。
 
-## 使用实例<a name="section05"></a>
+
+## 使用实例
 
 reboot
 
-## 输出说明<a name="section06"></a>
+
+## 输出说明
 
 无。
-

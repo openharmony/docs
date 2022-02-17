@@ -1,5 +1,12 @@
 # CMSIS Support<a name="EN-US_TOPIC_0000001124074753"></a>
 
+-   [Basic Concepts](#section131091144111615)
+-   [Development Guidelines](#section57653573161)
+    -   [Available APIs](#section1795910417173)
+    -   [How to Develop](#section48301225131720)
+    -   [Development Example](#section524434761713)
+
+
 ## Basic Concepts<a name="section131091144111615"></a>
 
 The Cortex Microcontroller Software Interface Standard \([CMSIS](https://developer.arm.com/tools-and-software/embedded/cmsis)\) is a vendor-independent hardware abstraction layer for microcontrollers based on Arm Cortex processors. Of the CMSIS components, the Real Time Operating System \(RTOS\) defines a set of universal and standardized APIs to reduce the dependency of application developers on specific RTOS and facilitate software porting and reuse. The CMSIS provides CMSIS-RTOS v1 and CMSIS-RTOS v2. The OpenHarmony LiteOS-M supports only the implementation of CMSIS-RTOS v2.
@@ -13,7 +20,7 @@ The following table describes CMSIS-RTOS v2 APIs. For more details about the API
 **Table  1**  CMSIS-RTOS v2 APIs
 
 <a name="table14277123518139"></a>
-<table><thead align="left"><tr id="row152771935131315"><th class="cellrowborder" valign="top" width="18%" id="mcps1.2.4.1.1"><p id="p1127733591316"><a name="p1127733591316"></a><a name="p1127733591316"></a>Category</p>
+<table><thead align="left"><tr id="row152771935131315"><th class="cellrowborder" valign="top" width="18%" id="mcps1.2.4.1.1"><p id="p1127733591316"><a name="p1127733591316"></a><a name="p1127733591316"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="24%" id="mcps1.2.4.1.2"><p id="p22771357138"><a name="p22771357138"></a><a name="p22771357138"></a>API</p>
 </th>
@@ -260,7 +267,7 @@ The following table describes CMSIS-RTOS v2 APIs. For more details about the API
 </tr>
 <tr id="row14475617321"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p11449566322"><a name="p11449566322"></a><a name="p11449566322"></a>osTimerIsRunning</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p15171191510401"><a name="p15171191510401"></a><a name="p15171191510401"></a>Check whether a timer is running.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p15171191510401"><a name="p15171191510401"></a><a name="p15171191510401"></a>Checks whether a timer is running.</p>
 </td>
 </tr>
 <tr id="row18451856123216"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p9452565322"><a name="p9452565322"></a><a name="p9452565322"></a>osTimerNew</p>
@@ -450,7 +457,7 @@ The CMSIS-RTOS v2 component can be provided as a library \(shown in the figure\)
 
 The RTOS object control block definition needs to be called for static object allocation. The implementation-specific header file \(**os\_xx.h**  in the following figure\) provides access to such control block definitions. In the OpenHarmony LiteOS-M kernel, the header files whose names start with  **los\_**  provide the definitions of the kernel.
 
-![](figure/en-us_image_0000001132778524.png)
+![](figures/how-to-develop.png)
 
 ### Development Example<a name="section524434761713"></a>
 

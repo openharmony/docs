@@ -1,14 +1,20 @@
 # LiteIPC<a name="EN-US_TOPIC_0000001123520161"></a>
 
+-   [Basic Concepts](#section1980994712918)
+-   [Working Principles](#section849811592918)
+-   [Development Guidelines](#section17571315171017)
+    -   [Available APIs](#section725022011103)
+
+
 ## Basic Concepts<a name="section1980994712918"></a>
 
 LiteIPC is a new inter-process communication \(IPC\) mechanism provided by the OpenHarmony LiteOS-A kernel. Different from the traditional System V IPC, LiteIPC is designed for Remote Procedure Call \(RPC\). In addition, it provides APIs for the upper layer through device files, not through traditional API functions.
 
-LiteIPC has two important concepts: ServiceManager and Service. The entire system can have one ServiceManager and multiple Services. ServiceManager is responsible for registering and unregistering services, and managing Service access permission \(only authorized tasks can send IPC messages to corresponding Services\).
+LiteIPC has two important concepts: ServiceManager and Service. The entire system can have one ServiceManager and multiple Services. ServiceManager is responsible for registering and unregistering Services, and managing Service access permission \(only authorized tasks can send IPC messages to corresponding Services\).
 
 ## Working Principles<a name="section849811592918"></a>
 
-ServiceManager registers the task that needs to receive IPC messages as a Service, and sets the access permission for the Service task \(specifies the tasks that can send IPC messages to the Service\). LiteIPC maintains an IPC message queue for each Service task in kernel space. The message queue provides the upper-layer user-space programs with the read operation \(receiving IPC messages\) and the write operations \(sending IPC messages\) through LiteIPC device files.
+ServiceManager registers the task that needs to receive IPC messages as a Service, and sets the access permission for the Service task \(specifies the tasks that can send IPC messages to the Service\). LiteIPC maintains an IPC message queue for each Service task in kernel mode. The message queue provides the upper-layer user-mode programs with the read operation \(receiving IPC messages\) and the write operations \(sending IPC messages\) through LiteIPC device files.
 
 ## Development Guidelines<a name="section17571315171017"></a>
 
@@ -17,7 +23,7 @@ ServiceManager registers the task that needs to receive IPC messages as a Servic
 **Table  1**  LiteIPC module APIs \(for LiteOS-A internal use only\)
 
 <a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Category</p>
+<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>API</p>
 </th>

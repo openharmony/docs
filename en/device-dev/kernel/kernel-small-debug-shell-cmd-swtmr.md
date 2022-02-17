@@ -1,5 +1,12 @@
 # swtmr<a name="EN-US_TOPIC_0000001133846478"></a>
 
+-   [Command Function](#section166171064814)
+-   [Syntax](#section424011111682)
+-   [Parameters](#section1268410459465)
+-   [Usage](#section169806213815)
+-   [Example](#section16676026389)
+-   [Output](#section1541991614710)
+
 ## Command Function<a name="section166171064814"></a>
 
 This command is used to query information about system software timers.
@@ -38,15 +45,42 @@ swtmr \[_ID_\]
 
 ## Example<a name="section16676026389"></a>
 
-Run  **swtmr**  and  **swtmr 1**.
+Run the following commands:
+
+-   swtmr
+-   swtmr 1
 
 ## Output<a name="section1541991614710"></a>
 
-**Figure  1**  Querying information about all software timers<a name="fig9860611451"></a>  
-![](figure/querying-information-about-all-software-timers.png "querying-information-about-all-software-timers")
+Example 1: information about all software timers
 
-**Figure  2**  Querying information about software timer 1<a name="fig22051415124512"></a>  
-![](figure/querying-information-about-software-timer-1.png "querying-information-about-software-timer-1")
+```
+OHOS # swtmr
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000000  Ticking  Period   100      77      0x40802a50  0x4037b8a0
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000001  Ticking  Period   1000     876     0x00000000  0x4037fc04
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000002  Ticking  Period   100      76      0x00000000  0x403727f4
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000016  Ticking  NSD      10       6       0x8021e000  0x401fe7d8
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000079  Ticking  NSD      30000    1749    0x406189d8  0x40160e1c
+```
+
+Example 2: information about software timer 1
+
+```
+OHOS # swtmr 1
+SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
+----------  -------  ------- --------- ------- ----------  --------
+0x00000001  Ticking  Period   1000     841     0x00000000  0x4037fc04
+```
 
 **Table  2**  Output
 
@@ -76,7 +110,7 @@ Run  **swtmr**  and  **swtmr 1**.
 </tr>
 <tr id="row576mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p578mcpsimp"><a name="p578mcpsimp"></a><a name="p578mcpsimp"></a>Interval</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p580mcpsimp"><a name="p580mcpsimp"></a><a name="p580mcpsimp"></a>Number of ticks used by the software timer</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p580mcpsimp"><a name="p580mcpsimp"></a><a name="p580mcpsimp"></a>Number of ticks for the software timer</p>
 </td>
 </tr>
 <tr id="row581mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p583mcpsimp"><a name="p583mcpsimp"></a><a name="p583mcpsimp"></a>Count</p>
@@ -86,12 +120,12 @@ Run  **swtmr**  and  **swtmr 1**.
 </tr>
 <tr id="row586mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p588mcpsimp"><a name="p588mcpsimp"></a><a name="p588mcpsimp"></a>Arg</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p590mcpsimp"><a name="p590mcpsimp"></a><a name="p590mcpsimp"></a>Input parameter passed</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p590mcpsimp"><a name="p590mcpsimp"></a><a name="p590mcpsimp"></a>Input parameter</p>
 </td>
 </tr>
 <tr id="row591mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p593mcpsimp"><a name="p593mcpsimp"></a><a name="p593mcpsimp"></a>handlerAddr</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p595mcpsimp"><a name="p595mcpsimp"></a><a name="p595mcpsimp"></a>Callback address</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p595mcpsimp"><a name="p595mcpsimp"></a><a name="p595mcpsimp"></a>Address of the callback</p>
 </td>
 </tr>
 </tbody>

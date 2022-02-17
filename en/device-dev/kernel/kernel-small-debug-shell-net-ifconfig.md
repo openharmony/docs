@@ -1,27 +1,31 @@
 # ifconfig<a name="EN-US_TOPIC_0000001133846494"></a>
 
+-   [Command Function](#section174940284379)
+-   [Syntax](#section136073203715)
+-   [Parameters](#section6493235203710)
+-   [Usage](#section05763403371)
+-   [Example](#section168802042123717)
+-   [Output](#section124638211109)
+
 ## Command Function<a name="section174940284379"></a>
 
 This command can be used to:
 
--   Query and set network interface card \(NIC\) parameters, such as the IP address, network mask, gateway, and MAC address.
--   Disable or enable a NIC.
+-   Query and set parameters of a network interface card \(NIC\), such as the IP address, network mask, gateway, and MAC address.
+-   Enable or disable a NIC.
 
 ## Syntax<a name="section136073203715"></a>
 
-ifconfig
+ifconfig \[option\]
 
-\[_-a_\]
+option:
 
-<_interface_\> <_address_\> \[_netmask <mask\>_\] \[_gateway <address\>_\]
-
-\[_hw ether <address\>_\] \[_mtu <size\>_\]
-
-\[_inet6 add <address\>_\]
-
-\[_inet6 del <address\>_\]
-
-\[_up|down_\]
+-   \[_-a_\]
+-   <_interface_\> <_address_\> \[_netmask <mask\>_\] \[_gateway <address\>_\]
+-   \[_hw ether <address\>_\] \[_mtu <size\>_\]
+-   \[_inet6 add <address\>_\]
+-   \[_inet6 del <address\>_\]
+-   \[_up|down_\]
 
 ## Parameters<a name="section6493235203710"></a>
 
@@ -36,90 +40,90 @@ ifconfig
 </th>
 </tr>
 </thead>
-<tbody><tr id="row2018mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2020mcpsimp"><a name="p2020mcpsimp"></a><a name="p2020mcpsimp"></a>No parameter</p>
+<tbody><tr id="row71475414535"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p11941141534"><a name="p11941141534"></a><a name="p11941141534"></a>No parameter</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2022mcpsimp"><a name="p2022mcpsimp"></a><a name="p2022mcpsimp"></a>Displays the IP addresses, network masks, gateway, MAC addresses, MTU, and running status of all NICs.</p>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p1594124175315"><a name="p1594124175315"></a><a name="p1594124175315"></a>Displays all NIC information, which includes the IP address, network mask, gateway, MAC address, maximum transmission unit (MTUs), and running status of each NIC.</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2025mcpsimp"><a name="p2025mcpsimp"></a><a name="p2025mcpsimp"></a>N/A</p>
-</td>
-</tr>
-<tr id="row2026mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2028mcpsimp"><a name="p2028mcpsimp"></a><a name="p2028mcpsimp"></a>-a</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2030mcpsimp"><a name="p2030mcpsimp"></a><a name="p2030mcpsimp"></a>Displays data sent and received by the protocol stack.</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2032mcpsimp"><a name="p2032mcpsimp"></a><a name="p2032mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p1194174145311"><a name="p1194174145311"></a><a name="p1194174145311"></a>N/A</p>
 </td>
 </tr>
-<tr id="row2033mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2035mcpsimp"><a name="p2035mcpsimp"></a><a name="p2035mcpsimp"></a>interface</p>
+<tr id="row1814615495314"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p194144135316"><a name="p194144135316"></a><a name="p194144135316"></a>-a</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2037mcpsimp"><a name="p2037mcpsimp"></a><a name="p2037mcpsimp"></a>Specifies the NIC name, for example, <strong id="b1368975571410"><a name="b1368975571410"></a><a name="b1368975571410"></a>eth0</strong>.</p>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p13941445534"><a name="p13941445534"></a><a name="p13941445534"></a>Displays data sent and received by the protocol stack.</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2039mcpsimp"><a name="p2039mcpsimp"></a><a name="p2039mcpsimp"></a>N/A</p>
-</td>
-</tr>
-<tr id="row2040mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2042mcpsimp"><a name="p2042mcpsimp"></a><a name="p2042mcpsimp"></a>address</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2044mcpsimp"><a name="p2044mcpsimp"></a><a name="p2044mcpsimp"></a>Specifies the IP address, for example, <strong id="b530715731519"><a name="b530715731519"></a><a name="b530715731519"></a>192.168.1.10</strong>. The NIC name must be specified.</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2046mcpsimp"><a name="p2046mcpsimp"></a><a name="p2046mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p1294154155314"><a name="p1294154155314"></a><a name="p1294154155314"></a>N/A</p>
 </td>
 </tr>
-<tr id="row2047mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2049mcpsimp"><a name="p2049mcpsimp"></a><a name="p2049mcpsimp"></a>netmask</p>
+<tr id="row31466417533"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p199410445319"><a name="p199410445319"></a><a name="p199410445319"></a>interface</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2051mcpsimp"><a name="p2051mcpsimp"></a><a name="p2051mcpsimp"></a>Specifies the subnet mask, for example, <strong id="b1625513191514"><a name="b1625513191514"></a><a name="b1625513191514"></a>255.255.255.0</strong>.</p>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p139415485312"><a name="p139415485312"></a><a name="p139415485312"></a>Specifies the NIC name, for example, <strong id="b1368975571410"><a name="b1368975571410"></a><a name="b1368975571410"></a>eth0</strong>.</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2054mcpsimp"><a name="p2054mcpsimp"></a><a name="p2054mcpsimp"></a>N/A</p>
-</td>
-</tr>
-<tr id="row2055mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2057mcpsimp"><a name="p2057mcpsimp"></a><a name="p2057mcpsimp"></a>gateway</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2059mcpsimp"><a name="p2059mcpsimp"></a><a name="p2059mcpsimp"></a>Specifies the gateway, for example, <strong id="b52931945195112"><a name="b52931945195112"></a><a name="b52931945195112"></a>192.168.1.1</strong>.</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2062mcpsimp"><a name="p2062mcpsimp"></a><a name="p2062mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p9944415315"><a name="p9944415315"></a><a name="p9944415315"></a>N/A</p>
 </td>
 </tr>
-<tr id="row2063mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2065mcpsimp"><a name="p2065mcpsimp"></a><a name="p2065mcpsimp"></a>hw ether</p>
+<tr id="row9145114165319"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p7947412538"><a name="p7947412538"></a><a name="p7947412538"></a>address</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2067mcpsimp"><a name="p2067mcpsimp"></a><a name="p2067mcpsimp"></a>Specifies the MAC address, for example, <strong id="b85669109525"><a name="b85669109525"></a><a name="b85669109525"></a>00:11:22:33:44:55</strong>. Currently, only the ether hardware type is supported.</p>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p119454165313"><a name="p119454165313"></a><a name="p119454165313"></a>Specifies the IP address, for example, <strong id="b530715731519"><a name="b530715731519"></a><a name="b530715731519"></a>192.168.1.10</strong>. The NIC name must be specified.</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2071mcpsimp"><a name="p2071mcpsimp"></a><a name="p2071mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p99424185316"><a name="p99424185316"></a><a name="p99424185316"></a>N/A</p>
 </td>
 </tr>
-<tr id="row2072mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2074mcpsimp"><a name="p2074mcpsimp"></a><a name="p2074mcpsimp"></a>mtu</p>
+<tr id="row1614415418534"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p1694942532"><a name="p1694942532"></a><a name="p1694942532"></a>netmask</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2076mcpsimp"><a name="p2076mcpsimp"></a><a name="p2076mcpsimp"></a>Specifies the maximum transmission unit (MTU) size, for example, <strong id="b2852192012261"><a name="b2852192012261"></a><a name="b2852192012261"></a>1000</strong>.</p>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p194749536"><a name="p194749536"></a><a name="p194749536"></a>Specifies the subnet mask, for example, <strong id="b1625513191514"><a name="b1625513191514"></a><a name="b1625513191514"></a>255.255.255.0</strong>.</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><a name="ul10290630142713"></a><a name="ul10290630142713"></a><ul id="ul10290630142713"><li>For IPv4:<p id="p7324133522720"><a name="p7324133522720"></a><a name="p7324133522720"></a>[68,1500]</p>
-</li><li>For IPv6:<p id="p15794114813278"><a name="p15794114813278"></a><a name="p15794114813278"></a>[1280, 1500]</p>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p094124175316"><a name="p094124175316"></a><a name="p094124175316"></a>N/A</p>
+</td>
+</tr>
+<tr id="row13144942537"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p1494174125316"><a name="p1494174125316"></a><a name="p1494174125316"></a>gateway</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p109413413534"><a name="p109413413534"></a><a name="p109413413534"></a>Specifies the gateway, for example, <strong id="b52931945195112"><a name="b52931945195112"></a><a name="b52931945195112"></a>192.168.1.1</strong>.</p>
+</td>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p19946465313"><a name="p19946465313"></a><a name="p19946465313"></a>N/A</p>
+</td>
+</tr>
+<tr id="row914313405310"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p169415455310"><a name="p169415455310"></a><a name="p169415455310"></a>hw ether</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p20946412532"><a name="p20946412532"></a><a name="p20946412532"></a>Specifies the MAC address, for example, <strong id="b85669109525"><a name="b85669109525"></a><a name="b85669109525"></a>00:11:22:33:44:55</strong>. Currently, only the <strong id="b534492414613"><a name="b534492414613"></a><a name="b534492414613"></a>ether</strong> hardware type is supported.</p>
+</td>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p19948418537"><a name="p19948418537"></a><a name="p19948418537"></a>N/A</p>
+</td>
+</tr>
+<tr id="row141421142532"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p13941049535"><a name="p13941049535"></a><a name="p13941049535"></a>mtu</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p159418414536"><a name="p159418414536"></a><a name="p159418414536"></a>Specifies the MTU size, for example, <strong id="b2852192012261"><a name="b2852192012261"></a><a name="b2852192012261"></a>1000</strong>.</p>
+</td>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><a name="ul7956417536"></a><a name="ul7956417536"></a><ul id="ul7956417536"><li>IPv4:<p id="p29519485319"><a name="p29519485319"></a><a name="p29519485319"></a>[68,1500]</p>
+</li><li>IPv6:<p id="p69524195316"><a name="p69524195316"></a><a name="p69524195316"></a>[1280, 1500]</p>
 </li></ul>
 </td>
 </tr>
-<tr id="row2079mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2081mcpsimp"><a name="p2081mcpsimp"></a><a name="p2081mcpsimp"></a>add</p>
+<tr id="row1914214419532"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p119554125313"><a name="p119554125313"></a><a name="p119554125313"></a>add</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2083mcpsimp"><a name="p2083mcpsimp"></a><a name="p2083mcpsimp"></a>Specifies the IPv6 address, for example, <strong id="b12509153516279"><a name="b12509153516279"></a><a name="b12509153516279"></a>2001:a:b:c:d:e:f:d</strong>. The NIC name and <strong id="b912123842916"><a name="b912123842916"></a><a name="b912123842916"></a>inet6</strong> must be specified.</p>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p1952046539"><a name="p1952046539"></a><a name="p1952046539"></a>Specifies the IPv6 address, for example, <strong id="b12509153516279"><a name="b12509153516279"></a><a name="b12509153516279"></a>2001:a:b:c:d:e:f:d</strong>. The NIC name and <strong id="b912123842916"><a name="b912123842916"></a><a name="b912123842916"></a>inet6</strong> must be specified.</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2085mcpsimp"><a name="p2085mcpsimp"></a><a name="p2085mcpsimp"></a>N/A</p>
-</td>
-</tr>
-<tr id="row2086mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2088mcpsimp"><a name="p2088mcpsimp"></a><a name="p2088mcpsimp"></a>del</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2090mcpsimp"><a name="p2090mcpsimp"></a><a name="p2090mcpsimp"></a>Deletes an IPv6 address. The NIC name and <strong id="b81833812319"><a name="b81833812319"></a><a name="b81833812319"></a>inet6</strong> must be specified.</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2092mcpsimp"><a name="p2092mcpsimp"></a><a name="p2092mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p49516418533"><a name="p49516418533"></a><a name="p49516418533"></a>N/A</p>
 </td>
 </tr>
-<tr id="row2100mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2102mcpsimp"><a name="p2102mcpsimp"></a><a name="p2102mcpsimp"></a>up</p>
+<tr id="row17141144175319"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p4952445318"><a name="p4952445318"></a><a name="p4952445318"></a>del</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2104mcpsimp"><a name="p2104mcpsimp"></a><a name="p2104mcpsimp"></a>Enables the data processing function of the NIC. The NIC name must be specified.</p>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p1556618562119"><a name="p1556618562119"></a><a name="p1556618562119"></a>Deletes an IPv6 address. You need to specify the NIC name and add the <strong id="b166212197409"><a name="b166212197409"></a><a name="b166212197409"></a>inet6</strong> option. For details, see the example.</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2106mcpsimp"><a name="p2106mcpsimp"></a><a name="p2106mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p1995248536"><a name="p1995248536"></a><a name="p1995248536"></a>N/A</p>
 </td>
 </tr>
-<tr id="row2107mcpsimp"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p2109mcpsimp"><a name="p2109mcpsimp"></a><a name="p2109mcpsimp"></a>down</p>
+<tr id="row714064175312"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p12951849536"><a name="p12951849536"></a><a name="p12951849536"></a>up</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p2111mcpsimp"><a name="p2111mcpsimp"></a><a name="p2111mcpsimp"></a>Disables the data processing function of the NIC. The NIC name must be specified.</p>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p119510455314"><a name="p119510455314"></a><a name="p119510455314"></a>Enables the data processing function of the NIC. The NIC name must be specified.</p>
 </td>
-<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p2113mcpsimp"><a name="p2113mcpsimp"></a><a name="p2113mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p695944533"><a name="p695944533"></a><a name="p695944533"></a>N/A</p>
+</td>
+</tr>
+<tr id="row31405465313"><td class="cellrowborder" valign="top" width="17.93%" headers="mcps1.2.4.1.1 "><p id="p49516455316"><a name="p49516455316"></a><a name="p49516455316"></a>down</p>
+</td>
+<td class="cellrowborder" valign="top" width="53.669999999999995%" headers="mcps1.2.4.1.2 "><p id="p1795164105312"><a name="p1795164105312"></a><a name="p1795164105312"></a>Disables the data processing function of the NIC. The NIC name must be specified.</p>
+</td>
+<td class="cellrowborder" valign="top" width="28.4%" headers="mcps1.2.4.1.3 "><p id="p12951644532"><a name="p12951644532"></a><a name="p12951644532"></a>N/A</p>
 </td>
 </tr>
 </tbody>
@@ -127,28 +131,28 @@ ifconfig
 
 ## Usage<a name="section05763403371"></a>
 
--   This command can be used only after the TCP/IP protocol stack is enabled.
--   Detecting the IP address conflict takes a period of time. Each time you run the  **ifconfig**  command to set an IP address, there is a delay of about 2 seconds.
+-   The  **ifconfig**  command can be used only after the TCP/IP stack is enabled.
+-   Detecting an IP address conflict takes time. Each time you run the  **ifconfig**  command to set an IP address, there is a delay of about 2 seconds.
 
 ## Example<a name="section168802042123717"></a>
 
-1.  ifconfig eth0 192.168.100.31 netmask 255.255.255.0 gateway 192.168.100.1 hw ether 00:49:cb:6c:a1:31
-2.  ifconfig -a
-3.  ifconfig eth0 inet6 add 2001:a:b:c:d:e:f:d
-4.  ifconfig eth0 inet6 del 2001:a:b:c:d:e:f:d
+-   ifconfig eth0 192.168.100.31 netmask 255.255.255.0 gateway 192.168.100.1 hw ether 00:49:cb:6c:a1:31
+-   ifconfig -a
+-   ifconfig eth0 inet6 add 2001:a:b:c:d:e:f:d
+-   ifconfig eth0 inet6 del 2001:a:b:c:d:e:f:d
 
 ## Output<a name="section124638211109"></a>
 
-1.  Set network parameters.
+-   Example 1: setting network parameters
 
     ```
-    OHOS # ifconfig eth0 192.168.100.31 netmask 255.255.255.0 gateway 192.168.100.1 hw ether 00:49:cb:6c:a1:31
-    OHOS # ifconfig
-    eth0     ip:192.168.100.31 netmask:255.255.255.0 gateway:192.168.100.1
-    HWaddr 00:49:cb:6c:a1:31 MTU:1500 Running Default Link UP
-    lo         ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
-    ip6: ::1/64
-    HWaddr 00 MTU:0 Running Link UP
+    OHOS:/$ ifconfig eth0 192.168.100.31 netmask 255.255.255.0 gateway 192.168.100.1 hw ether 00:49:cb:6c:a1:31
+    OHOS:/$ ifconfig
+    lo      ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
+            ip6: ::1/64
+            HWaddr 00 MTU:0 Running Link UP
+    eth0    ip:192.168.100.31 netmask:255.255.255.0 gateway:192.168.100.1
+            HWaddr 00:49:cb:6c:a1:31 MTU:1500 Running Default Link UP
     ```
 
     The following table describes the output parameters.
@@ -162,50 +166,50 @@ ifconfig
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row2157mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p2159mcpsimp"><a name="p2159mcpsimp"></a><a name="p2159mcpsimp"></a>ip</p>
+    <tbody><tr id="row17361516205420"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p107151611546"><a name="p107151611546"></a><a name="p107151611546"></a>ip</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2161mcpsimp"><a name="p2161mcpsimp"></a><a name="p2161mcpsimp"></a>IP address of the board</p>
-    </td>
-    </tr>
-    <tr id="row2162mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p2164mcpsimp"><a name="p2164mcpsimp"></a><a name="p2164mcpsimp"></a>netmask</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2166mcpsimp"><a name="p2166mcpsimp"></a><a name="p2166mcpsimp"></a>Subnet mask</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p117111610549"><a name="p117111610549"></a><a name="p117111610549"></a>IP address of the board</p>
     </td>
     </tr>
-    <tr id="row2167mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p2169mcpsimp"><a name="p2169mcpsimp"></a><a name="p2169mcpsimp"></a>gateway</p>
+    <tr id="row4363166543"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p15731635412"><a name="p15731635412"></a><a name="p15731635412"></a>netmask</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2171mcpsimp"><a name="p2171mcpsimp"></a><a name="p2171mcpsimp"></a>Gateway</p>
-    </td>
-    </tr>
-    <tr id="row2177mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p2179mcpsimp"><a name="p2179mcpsimp"></a><a name="p2179mcpsimp"></a>HWaddr</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2181mcpsimp"><a name="p2181mcpsimp"></a><a name="p2181mcpsimp"></a>MAC address of the board</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p187161616540"><a name="p187161616540"></a><a name="p187161616540"></a>Subnet mask</p>
     </td>
     </tr>
-    <tr id="row2182mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p2184mcpsimp"><a name="p2184mcpsimp"></a><a name="p2184mcpsimp"></a>MTU</p>
+    <tr id="row435161665419"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1714162546"><a name="p1714162546"></a><a name="p1714162546"></a>gateway</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2186mcpsimp"><a name="p2186mcpsimp"></a><a name="p2186mcpsimp"></a>Maximum transmission unit</p>
-    </td>
-    </tr>
-    <tr id="row2187mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p2189mcpsimp"><a name="p2189mcpsimp"></a><a name="p2189mcpsimp"></a>Running/Stop</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2191mcpsimp"><a name="p2191mcpsimp"></a><a name="p2191mcpsimp"></a>Indicates whether the NIC is running.</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1471216175420"><a name="p1471216175420"></a><a name="p1471216175420"></a>Gateway</p>
     </td>
     </tr>
-    <tr id="row2192mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p2194mcpsimp"><a name="p2194mcpsimp"></a><a name="p2194mcpsimp"></a>Default</p>
+    <tr id="row93541615542"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p671167547"><a name="p671167547"></a><a name="p671167547"></a>HWaddr</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2196mcpsimp"><a name="p2196mcpsimp"></a><a name="p2196mcpsimp"></a>The NIC is connected to the default gateway.</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p157111665412"><a name="p157111665412"></a><a name="p157111665412"></a>MAC address of the board</p>
     </td>
     </tr>
-    <tr id="row2197mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p2199mcpsimp"><a name="p2199mcpsimp"></a><a name="p2199mcpsimp"></a>Link UP/Down</p>
+    <tr id="row13421645418"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p487161543"><a name="p487161543"></a><a name="p487161543"></a>MTU</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p2201mcpsimp"><a name="p2201mcpsimp"></a><a name="p2201mcpsimp"></a>Connection status of the NIC</p>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p78016195415"><a name="p78016195415"></a><a name="p78016195415"></a>Maximum transmission unit</p>
+    </td>
+    </tr>
+    <tr id="row433181615412"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p10821612543"><a name="p10821612543"></a><a name="p10821612543"></a>Running/Stop</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p281516205410"><a name="p281516205410"></a><a name="p281516205410"></a>Indicates whether the NIC is running.</p>
+    </td>
+    </tr>
+    <tr id="row33320167543"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p5821685419"><a name="p5821685419"></a><a name="p5821685419"></a>Default</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p881516145415"><a name="p881516145415"></a><a name="p881516145415"></a>Indicates that the NIC is connected to the default gateway.</p>
+    </td>
+    </tr>
+    <tr id="row1321166546"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p3881695417"><a name="p3881695417"></a><a name="p3881695417"></a>Link UP/Down</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p18201614546"><a name="p18201614546"></a><a name="p18201614546"></a>Connection status of the NIC</p>
     </td>
     </tr>
     </tbody>
     </table>
 
-2.  Obtain protocol stack statistics.
+-   Example 2: obtaining protocol stack statistics
 
     ```
     OHOS # ifconfig -a
@@ -226,86 +230,90 @@ ifconfig
     </th>
     </tr>
     </thead>
-    <tbody><tr id="row2219mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2221mcpsimp"><a name="p2221mcpsimp"></a><a name="p2221mcpsimp"></a>RX packets</p>
+    <tbody><tr id="row6921834553"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p117413375517"><a name="p117413375517"></a><a name="p117413375517"></a>RX packets</p>
     </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2223mcpsimp"><a name="p2223mcpsimp"></a><a name="p2223mcpsimp"></a>Number of normal packets received at the IP layer.</p>
-    </td>
-    </tr>
-    <tr id="row2224mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2226mcpsimp"><a name="p2226mcpsimp"></a><a name="p2226mcpsimp"></a>RX error</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2228mcpsimp"><a name="p2228mcpsimp"></a><a name="p2228mcpsimp"></a>Number of error packets received at the IP layer. The errors include the length, verification, IP option, and IP header protocol errors.</p>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p1174183145516"><a name="p1174183145516"></a><a name="p1174183145516"></a>Number of normal packets received at the IP layer.</p>
     </td>
     </tr>
-    <tr id="row2229mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2231mcpsimp"><a name="p2231mcpsimp"></a><a name="p2231mcpsimp"></a>RX dropped</p>
+    <tr id="row209212315518"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p274938554"><a name="p274938554"></a><a name="p274938554"></a>RX error</p>
     </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2233mcpsimp"><a name="p2233mcpsimp"></a><a name="p2233mcpsimp"></a>Number of packets discarded at the IP layer. Packets are discarded due to packet errors, packet forwarding failures, and disabled local NICs.</p>
-    </td>
-    </tr>
-    <tr id="row2234mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2236mcpsimp"><a name="p2236mcpsimp"></a><a name="p2236mcpsimp"></a>RX overrun</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2238mcpsimp"><a name="p2238mcpsimp"></a><a name="p2238mcpsimp"></a>Number of packets that the MAC layer fails to deliver to the upper-layer protocol stack. The failure is mainly caused by resource insufficiency at the protocol stack.</p>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p1274133195513"><a name="p1274133195513"></a><a name="p1274133195513"></a>Number of error packets received at the IP layer. The errors include the length error, verification error, IP option error, and IP header protocol error.</p>
     </td>
     </tr>
-    <tr id="row2239mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2241mcpsimp"><a name="p2241mcpsimp"></a><a name="p2241mcpsimp"></a>RX bytes</p>
+    <tr id="row692832556"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p474234551"><a name="p474234551"></a><a name="p474234551"></a>RX dropped</p>
     </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2243mcpsimp"><a name="p2243mcpsimp"></a><a name="p2243mcpsimp"></a>Total length of normal packets received at the IP layer, excluding the length of the fragments that are not reassembled.</p>
-    </td>
-    </tr>
-    <tr id="row2244mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2246mcpsimp"><a name="p2246mcpsimp"></a><a name="p2246mcpsimp"></a>TX packets</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2248mcpsimp"><a name="p2248mcpsimp"></a><a name="p2248mcpsimp"></a>Number of packets that have been normally sent or forwarded at the IP layer.</p>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p13741637551"><a name="p13741637551"></a><a name="p13741637551"></a>Number of packets discarded at the IP layer. Packets are discarded due to packet errors, packet forwarding failures, and disabled local NICs.</p>
     </td>
     </tr>
-    <tr id="row2249mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2251mcpsimp"><a name="p2251mcpsimp"></a><a name="p2251mcpsimp"></a>TX error</p>
+    <tr id="row199215312556"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p1674530552"><a name="p1674530552"></a><a name="p1674530552"></a>RX overrun</p>
     </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2253mcpsimp"><a name="p2253mcpsimp"></a><a name="p2253mcpsimp"></a>Number of packets that the IP layer fails to send. Packets may fail to be sent because the packets cannot be routed or the packets fail to be processed in the protocol stack.</p>
-    </td>
-    </tr>
-    <tr id="row2254mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2256mcpsimp"><a name="p2256mcpsimp"></a><a name="p2256mcpsimp"></a>TX dropped</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2258mcpsimp"><a name="p2258mcpsimp"></a><a name="p2258mcpsimp"></a>Number of packets that the MAC layer discards due to sending failures, for example, the NIC driver fails to process the packets.</p>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p17742305517"><a name="p17742305517"></a><a name="p17742305517"></a>Number of packets that the MAC layer fails to deliver to the upper-layer protocol stack. The failure is caused by resource insufficiency at the protocol stack.</p>
     </td>
     </tr>
-    <tr id="row2259mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2261mcpsimp"><a name="p2261mcpsimp"></a><a name="p2261mcpsimp"></a>TX overrun</p>
+    <tr id="row69193145519"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p157417310551"><a name="p157417310551"></a><a name="p157417310551"></a>RX bytes</p>
     </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2263mcpsimp"><a name="p2263mcpsimp"></a><a name="p2263mcpsimp"></a>Reserved.</p>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p9741385519"><a name="p9741385519"></a><a name="p9741385519"></a>Total length of normal packets received at the IP layer, excluding the length of the fragments that are not reassembled.</p>
     </td>
     </tr>
-    <tr id="row2264mcpsimp"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p2266mcpsimp"><a name="p2266mcpsimp"></a><a name="p2266mcpsimp"></a>TX bytes</p>
+    <tr id="row091333559"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p1741336554"><a name="p1741336554"></a><a name="p1741336554"></a>TX packets</p>
     </td>
-    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p2268mcpsimp"><a name="p2268mcpsimp"></a><a name="p2268mcpsimp"></a>Total length of the packets successfully sent or forwarded at the IP layer.</p>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p19745375513"><a name="p19745375513"></a><a name="p19745375513"></a>Number of packets that have been normally sent or forwarded at the IP layer.</p>
+    </td>
+    </tr>
+    <tr id="row5914345515"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p147443125513"><a name="p147443125513"></a><a name="p147443125513"></a>TX error</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p9756312553"><a name="p9756312553"></a><a name="p9756312553"></a>Number of packets that the IP layer fails to send. Packets may fail to be sent because the packets cannot be routed or the packets fail to be processed in the protocol stack.</p>
+    </td>
+    </tr>
+    <tr id="row7911032557"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p13752316555"><a name="p13752316555"></a><a name="p13752316555"></a>TX dropped</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p87519395520"><a name="p87519395520"></a><a name="p87519395520"></a>Number of packets that the MAC layer discards due to delivery failures, for example, the NIC driver fails to process the packets.</p>
+    </td>
+    </tr>
+    <tr id="row9901345510"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p27523205513"><a name="p27523205513"></a><a name="p27523205513"></a>TX overrun</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p107512325514"><a name="p107512325514"></a><a name="p107512325514"></a>Reserved.</p>
+    </td>
+    </tr>
+    <tr id="row39016318552"><td class="cellrowborder" valign="top" width="28.999999999999996%" headers="mcps1.2.3.1.1 "><p id="p1475933554"><a name="p1475933554"></a><a name="p1475933554"></a>TX bytes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="71%" headers="mcps1.2.3.1.2 "><p id="p7759375512"><a name="p7759375512"></a><a name="p7759375512"></a>Total length of the packets successfully sent or forwarded at the IP layer.</p>
     </td>
     </tr>
     </tbody>
     </table>
 
-3.  Set the IPv6 address information.
+-   Example 3: setting an IPv6 address
 
     ```
-    OHOS # ifconfig eth0 inet6 add 2001:a:b:c:d:e:f:d
-    OHOS # ifconfig
-    eth1    ip:192.168.3.60 netmask:255.255.255.0 gateway:0.0.0.0
-    HWaddr 00:0e:c6:a8:5a:c2 MTU:1500 Running Link UP
-    eth0    ip:192.168.2.60 netmask:255.255.255.0 gateway:0.0.0.0
-    ip6: 2001:A:B:C:D:E:F:D/64
-    HWaddr 46:44:02:02:03:03 MTU:1500 Running Link UP
-    lo        ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
-    ip6: ::1/64
-    HWaddr 00 MTU:16436 Running Link UP
+    OHOS:/$ ifconfig eth0 inet6 add 2001:a:b:c:d:e:f:d
+    NetifStatusCallback(eth0): nsc event: 0x8
+    NetifStatusCallback(eth0): nsc status changed: 0
+    NetifStatusCallback(eth0): nsc event: 0x200
+    NetifStatusCallback(eth0): nsc event: 0x8
+    NetifStatusCallback(eth0): nsc status changed: 1
+    NetifStatusCallback(eth0): nsc event: 0x200
+    NetifStatusCallback(eth0): nsc event: 0x200
+    OHOS:/$ ifconfig
+    lo      ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
+            ip6: ::1/64
+            HWaddr 00 MTU:0 Running Link UP
+    eth0    ip:192.168.1.10 netmask:255.255.255.0 gateway:192.168.1.1
+            ip6: 2001:A:B:C:D:E:F:D/64
+            HWaddr 66:2f:e5:bd:24:e6 MTU:1500 Running Default Link UP
     ```
 
-4.  Delete the IPv6 address information.
+-   Example 4: deleting an IPv6 address
 
     ```
-    OHOS # ifconfig eth0 inet6 del 2001:a:b:c:d:e:f:d
-    OHOS # ifconfig
-    eth1    ip:192.168.3.60 netmask:255.255.255.0 gateway:0.0.0.0
-    HWaddr 00:0e:c6:a8:5a:c2 MTU:1500 Running Link UP
-    eth0    ip:192.168.2.60 netmask:255.255.255.0 gateway:0.0.0.0
-    HWaddr 46:44:02:02:03:03 MTU:1500 Running Link UP
-    lo        ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
-    ip6: ::1/64
-    HWaddr 00 MTU:16436 Running Link UP
+    OHOS:/$ ifconfig eth0 inet6 del 2001:a:b:c:d:e:f:d
+    NetifStatusCallback(eth0): nsc event: 0x200
+    OHOS:/$ ifconfig
+    lo      ip:127.0.0.1 netmask:255.0.0.0 gateway:127.0.0.1
+            ip6: ::1/64
+            HWaddr 00 MTU:0 Running Link UP
+    eth0    ip:192.168.1.10 netmask:255.255.255.0 gateway:192.168.1.1
+            HWaddr 66:2f:e5:bd:24:e6 MTU:1500 Running Default Link UP
     ```
 
 

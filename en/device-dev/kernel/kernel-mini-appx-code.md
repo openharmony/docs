@@ -1,5 +1,17 @@
 # Kernel Coding Specification<a name="EN-US_TOPIC_0000001079036432"></a>
 
+-   [Principle](#section9512812145915)
+-   [Directory Structure](#section1355317267017)
+-   [Naming](#section1375364815017)
+-   [Comments](#section1692516179119)
+-   [Format](#section10888536113)
+-   [Macros](#section12276501124)
+-   [Header Files](#section158507231319)
+-   [Data Types](#section91351731446)
+-   [Variables](#section575493915417)
+-   [Assertions](#section13864440410)
+-   [Functions](#section671919481745)
+
 This kernel coding specification is developed based on the general programming specifications in the industry. It defines the programming styles for kernel developers to follow.
 
 ## Principle<a name="section9512812145915"></a>
@@ -144,14 +156,13 @@ Example:
 struct MyType {  // Add a comment here, and leave a space between the comment sign (//) and the comment.
     ...
 };               // The right brace is followed by a semicolon (;).
-int Foo(int a) 
-{                // The left brace of the function is placed at the beginning of a line and occupies one line.
+int Foo(int a) {// The left brace of the function is placed at the beginning of a line and occupies one line.
     if (a > 0) {
         Foo();   // There is only one statement in a line.
         Bar();         
      } else {    // The right brace, else, and the subsequent left brace are in the same line.
         ...         
-     }           // The right brace occupies one line exclusively.
+     } // The right brace occupies one line exclusively.
      ... 
 }
 ```

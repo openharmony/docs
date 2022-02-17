@@ -1,5 +1,7 @@
 # Shell Command Development Guidelines<a name="EN-US_TOPIC_0000001133846468"></a>
 
+-   [Development Guidelines](#section13408945163812)
+
 ## Development Guidelines<a name="section13408945163812"></a>
 
 You can perform the following operations to add shell commands:

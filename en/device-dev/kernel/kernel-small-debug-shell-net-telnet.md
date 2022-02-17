@@ -1,5 +1,12 @@
 # telnet<a name="EN-US_TOPIC_0000001179845941"></a>
 
+-   [Command Function](#section3551830123913)
+-   [Syntax](#section14897133233918)
+-   [Parameters](#section977718353392)
+-   [Usage](#section134991538183916)
+-   [Example](#section1097414426398)
+-   [Output](#section11846624191310)
+
 ## Command Function<a name="section3551830123913"></a>
 
 This command is used to enable or disable the Telnet server service.
@@ -44,7 +51,7 @@ telnet \[_on | off_\]
 -   Currently, multiple clients \(Telnet + IP\) cannot connect to the development board at the same time.
 
     >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
-    >Telnet is used for debugging and disabled by default. Do not use it in formal products.
+    >Telnet is used for debugging and is disabled by default. Do not use it in formal products.
 
 
 ## Example<a name="section1097414426398"></a>
@@ -53,6 +60,10 @@ Run  **telnet on**.
 
 ## Output<a name="section11846624191310"></a>
 
-**Figure  1**  Output of  **telnet on**<a name="fig127221042155418"></a>  
-![](figure/output-of-telnet-on.png "output-of-telnet-on")
+Command output:
+
+```
+OHOS # telnet on
+OHOS # start telnet server successfully, waiting for connection.
+```
 

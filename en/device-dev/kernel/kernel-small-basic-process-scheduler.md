@@ -1,8 +1,15 @@
 # Scheduler<a name="EN-US_TOPIC_0000001078863798"></a>
 
+-   [Basic Concepts](#section123882355719)
+-   [Working Principles](#section143015396572)
+-   [Development Guidelines](#section10604192145816)
+    -   [Available APIs](#section207985910582)
+    -   [How to Develop](#section1015110331584)
+
+
 ## Basic Concepts<a name="section123882355719"></a>
 
-The OpenHarmony LiteOS-A kernel uses the preemptive scheduling mechanism for tasks. The task with a higher priority is scheduled over the task with a lower priority. Time slice round-robin is used to schedule tasks with the same priority. The system runs based on the real-time timeline from the startup, which ensures good real-time performance of the scheduling algorithm.
+The OpenHarmony LiteOS-A kernel uses the preemptive scheduling mechanism for tasks. The tasks with a higher priority are scheduled first, and the tasks with the same priority are scheduled using the time slice polling. The system runs based on the real-time timeline from the startup, which ensures good real-time performance of the scheduling algorithm.
 
 The OpenHarmony scheduling algorithm is embedded with the tickless mechanism, which ensures lower power consumption and on-demand response to tick interrupts. This minimizes useless tick interrupt response time and further improves the real-time performance of the system.
 
@@ -14,24 +21,20 @@ Threads are the minimum scheduling units in the OpenHarmony.
 
 The OpenHarmony uses process priority queue and thread priority queue for scheduling. The process priority ranges from 0 to 31, and there are 32 process priority bucket queues. Each bucket queue corresponds to a thread priority bucket queue. The thread priority ranges from 0 to 31, and a thread priority bucket queue also has 32 priority queues.
 
-**Figure  1**  Schematic diagram of scheduling priority bucket queues<a name="fig623133213389"></a>  
-
-
-![](figure/en-us_image_0000001127520662.png)
+**Figure  1**  Scheduling priority bucket queue<a name="fig124425991619"></a>  
+![](figures/scheduling-priority-bucket-queue.png "scheduling-priority-bucket-queue")
 
 The OpenHarmony system starts scheduling after the kernel initialization is complete. The processes or threads created during running are added to the scheduling queues. The system selects the optimal thread for scheduling based on the priorities of the processes and threads and the time slice consumption of the threads. Once a thread is scheduled, it is deleted from the scheduling queue. If a thread is blocked during running, the thread is added to the corresponding blocking queue and triggers scheduling of another thread. If no thread in the scheduling queue can be scheduled, the system selects the thread of the KIdle process for scheduling.
 
-**Figure  2**  Scheduling process<a name="fig5251243193113"></a>  
-
-
-![](figure/en-us_image_0000001176974089.png)
+**Figure  2**  Scheduling process<a name="fig1163494931810"></a>  
+![](figures/scheduling-process.png "scheduling-process")
 
 ## Development Guidelines<a name="section10604192145816"></a>
 
 ### Available APIs<a name="section207985910582"></a>
 
 <a name="table687929113814"></a>
-<table><thead align="left"><tr id="row513082983812"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p id="p121309298384"><a name="p121309298384"></a><a name="p121309298384"></a><strong id="b149641422144511"><a name="b149641422144511"></a><a name="b149641422144511"></a>Category</strong></p>
+<table><thead align="left"><tr id="row513082983812"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p id="p121309298384"><a name="p121309298384"></a><a name="p121309298384"></a><strong id="b1684811125913"><a name="b1684811125913"></a><a name="b1684811125913"></a>Function</strong></p>
 </th>
 <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.2"><p id="p713082933817"><a name="p713082933817"></a><a name="p713082933817"></a>API</p>
 </th>

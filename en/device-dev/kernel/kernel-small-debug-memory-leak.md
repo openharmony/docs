@@ -1,8 +1,15 @@
 # Memory Leak Check<a name="EN-US_TOPIC_0000001078876382"></a>
 
+-   [Basic Concepts](#section1026719436293)
+-   [Function Configuration](#section13991354162914)
+-   [Development Guidelines](#section95828159308)
+    -   [How to Develop](#section369844416304)
+    -   [Development Example](#section460801313313)
+
+
 ## Basic Concepts<a name="section1026719436293"></a>
 
-As an optional function of the kernel, memory leak check is used to locate dynamic memory leak problems. After this function is enabled, the dynamic memory automatically records the link registers \(LRs\) used when memory is allocated. If a memory leak occurs, the recorded information helps locate the memory allocated for further analysis.
+As an optional function of the kernel, memory leak check is used to locate dynamic memory leak problems. After this function is enabled, the dynamic memory mechanism automatically records the link registers \(LRs\) used when memory is allocated. If a memory leak occurs, the recorded information helps locate the memory allocated for further analysis.
 
 ## Function Configuration<a name="section13991354162914"></a>
 
@@ -22,7 +29,14 @@ Correctly setting this macro can ignore invalid LRs and reduce memory consumptio
 
 Memory leak check provides a method to check for memory leak in key code logic. If this function is enabled, LR information is recorded each time when memory is allocated. When  **LOS\_MemUsedNodeShow**  is called before and after the code snippet is checked, information about all nodes that have been used in the specified memory pool is printed. You can compare the node information. The newly added node information indicates the node where the memory leak may occur. You can locate the code based on the LR and further check whether a memory leak occurs.
 
-The node information output by calling  **LOS\_MemUsedNodeShow**  is in the following format: Each line contains information about a node. The first column indicates the node address, based on which you can obtain complete node information using a tool such as a GNU Debugger \(GDB\). The second column indicates the node size, which is equal to the node header size plus the data field size. Columns 3 to 5 list the LR addresses. You can determine the specific memory location of the node based on the LR addresses and the assembly file.
+The node information output by calling  **LOS\_MemUsedNodeShow**  is in the following format: 
+
+-   Each line contains information about a node. 
+-   The first column indicates the node address, based on which you can obtain complete node information using a tool such as a GNU Debugger \(GDB\). 
+-   The second column indicates the node size, which is equal to the node header size plus the data field size. 
+-   Columns 3 to 5 list the LR addresses. 
+
+You can determine the specific memory location of the node based on the LR addresses and the assembly file.
 
 ```
 node        size   LR[0]      LR[1]       LR[2]  
@@ -41,9 +55,9 @@ node        size   LR[0]      LR[1]       LR[2]
 
 This example implements the following:
 
-1.  Calls  **OsMemUsedNodeShow**  to print information about all nodes.
-2.  Simulates a memory leak by requesting memory without releasing it.
-3.  Calls  **OsMemUsedNodeShow**  to print information about all nodes.
+1.  Call  **OsMemUsedNodeShow**  to print information about all nodes.
+2.  Simulate a memory leak by requesting memory without releasing it.
+3.  Call  **OsMemUsedNodeShow**  to print information about all nodes.
 4.  Compare the logs to obtain information about the node where a memory leak occurred.
 5.  Locate the code based on the LR address.
 

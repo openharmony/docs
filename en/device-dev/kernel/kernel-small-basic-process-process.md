@@ -1,37 +1,44 @@
 # Process<a name="EN-US_TOPIC_0000001078704186"></a>
 
+-   [Basic Concepts](#section89346055119)
+-   [Working Principles](#section174514474512)
+-   [Development Guidelines](#section159637182521)
+    -   [Available APIs](#section1153124135212)
+    -   [How to Develop](#section1533674618526)
+
+
 ## Basic Concepts<a name="section89346055119"></a>
 
-A process is the minimum unit for system resource management. The process module provided by the OpenHarmony LiteOS-A kernel is used to isolate user-space processes. The kernel space is considered as a process space and does not have other processes except KIdle, which is an idle process provided by the system and shares the same process space with KProcess.
+A process is the minimum unit for system resource management. The process module provided by the OpenHarmony LiteOS-A kernel is used to isolate user-mode processes. The kernel mode is considered as a process space and does not have other processes except KIdle, which is an idle process provided by the system and shares the same process space with KProcess.
 
--   The OpenHarmony process module allows multiple processes to run simultaneously, switch, and communicate, facilitating your management over service programs.
--   The OpenHarmony processes use the preemption scheduling mechanism. The process with a higher priority is scheduled over the process with a lower priority. Time slice round-robin is used to schedule processes with the same priority.
--   The OpenHarmony processes are assigned 32 priorities \(**0**  to  **31**\). Among them, user processes can be configured with 22 priorities from  **10**  \(highest\) to  **31**  \(lowest\).
+-   The process module provides multiple processes for users and implements switching and communication between processes, facilitating your management over service programs.
+-   The processes use the preemption scheduling mechanism. The processes with a higher priority are scheduled first, and the processes with the same priority are scheduled using the time slice polling.
+-   The processes are assigned 32 priorities \(**0**  to  **31**\). Among them, user processes can be configured with 22 priorities from  **10**  \(highest\) to  **31**  \(lowest\).
 -   A higher-priority process can preempt the resources of a lower-priority process. The lower-priority process can be scheduled only after the higher-priority process is blocked or terminated.
--   Each user-space process has its own memory space, which is invisible to other processes. In this way, processes are isolated from each other.
--   The user-space root process  **init**  is created by the kernel. Other user-space processes are created by the  **init**  process via the  **fork**  call.
+-   Each user-mode process has its own memory space, which is invisible to other processes. In this way, processes are isolated from each other.
+-   The user-mode root process  **init**  is created by the kernel. Other user-mode processes are created by the  **init**  process via the  **fork**  call.
 
 **Process States:**
 
 -   Init: The process is being created.
 
--   Ready: The process is in the Ready queue and waits for being scheduled by the CPU.
+-   Ready: The process is in the Ready queue and waits for scheduling by the CPU.
 -   Running: The process is running.
 -   Pending: The process is blocked and suspended. When all threads in a process are blocked, the process is blocked and suspended.
 -   Zombies: The process stops running and waits for the parent process to reclaim its control block resources.
 
-**Figure  1**  Process state transition<a name="fig13604525122919"></a>  
-![](figure/process-state-transition.png "process-state-transition")
+**Figure  1**  Process state transition<a name="fig536823565718"></a>  
+![](figures/process-state-transition.png "process-state-transition")
 
 **Process State Transition:**
 
 -   Init→Ready:
 
-    When a process is created, the process enters the Init state to start initialization after obtaining the process control block. After the process is initialized, the process is inserted into the scheduling queue and therefore enters the Ready state.
+    When a process is created, the process enters the Init state after obtaining the process control block to start initialization. After the process is initialized, the process is inserted into the scheduling queue and therefore enters the Ready state.
 
 -   Ready→Running:
 
-    When a process switchover is triggered, the process with the highest priority in the Ready queue is executed and enters the Running state. If this process has no thread in the Ready state, the process is deleted from the Ready queue and resides only in the Running state. However, if it has threads in the Ready state, the process still stays in the Ready queue. In this case, the process is in both the Ready and Running states, but presented as the Running state.
+    When a process switchover is triggered, the process with the highest priority in the Ready queue is executed and enters the Running state. If this process has no thread in the Ready state, the process is deleted from the Ready queue and resides only in the Running state. If it has threads in the Ready state, the process still stays in the Ready queue. In this case, the process is in both the Ready and Running states, but presented as the Running state.
 
 -   Running→Pending:
 
@@ -50,7 +57,7 @@ A process is the minimum unit for system resource management. The process module
     A process may change from the Running state to the Ready state in either of the following scenarios:
 
     1.  After a process with a higher priority is created or restored, processes will be scheduled. The process with the highest priority in the Ready queue will change to the Running state, and the originally running process will change from the Running state to the Ready state.
-    2.  If a process has the  **LOS\_SCHED\_RR**  scheduling policy and shares the same priority with another process in the Ready state, this process will change from the Running state to the Ready state after its time slices are used up, and the other process with the same priority will change from the Ready state to the Running state.
+    2.  If scheduling policy for a process is  **LOS\_SCHED\_RR**  and its priority is the same as that of another process in the Ready state, this process will change from the Running state to the Ready state after its time slices are used up, and the other process with the same priority will change from the Ready state to the Running state.
 
 -   Running→Zombies:
 
@@ -59,16 +66,14 @@ A process is the minimum unit for system resource management. The process module
 
 ## Working Principles<a name="section174514474512"></a>
 
-The OpenHarmony process module is used to isolate user-space processes and supports the following functions: creating and exiting user-space processes, reclaiming process resources, setting and obtaining scheduling parameters and process group IDs, and obtaining process IDs.
+The OpenHarmony process module is used to isolate user-mode processes and supports the following functions: creating and exiting user-mode processes, reclaiming process resources, setting and obtaining scheduling parameters and process group IDs, and obtaining process IDs.
 
-A user-space process is created by forking a parent process. During forking, the virtual memory space of the parent process is cloned to the child process. When the child process is running, the content of the parent process is copied to the virtual memory space of the child process as required through the copy-on-write mechanism.
+A user-mode process is created by forking a parent process. During forking, the virtual memory space of the parent process is cloned to the child process. When the child process is running, the content of the parent process is copied to the virtual memory space of the child process as required through the copy-on-write mechanism.
 
-A process is only a resource management unit, and the actual running is executed by threads in the process. When threads in different processes switch with each other, the process space is switched.
+A process is only a resource management unit, and the actual running is executed by threads in the process. When switching occurs between threads in different processes, the process space will be switched.
 
-**Figure  2**  Process management<a name="fig5251243193113"></a>  
-
-
-![](figure/en-us_image_0000001127519136.png)
+**Figure  2**  Process management<a name="fig123709256334"></a>  
+![](figures/process-management.png "process-management")
 
 ## Development Guidelines<a name="section159637182521"></a>
 
@@ -77,7 +82,7 @@ A process is only a resource management unit, and the actual running is executed
 **Table  1**  Process management module APIs
 
 <a name="table359914125718"></a>
-<table><thead align="left"><tr id="row85991712770"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p13162121815218"><a name="p13162121815218"></a><a name="p13162121815218"></a><strong id="b39614238211"><a name="b39614238211"></a><a name="b39614238211"></a>Category</strong></p>
+<table><thead align="left"><tr id="row85991712770"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p13162121815218"><a name="p13162121815218"></a><a name="p13162121815218"></a><strong id="b1498913473"><a name="b1498913473"></a><a name="b1498913473"></a>Function</strong></p>
 </th>
 <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p12162618623"><a name="p12162618623"></a><a name="p12162618623"></a><strong id="b3249144342911"><a name="b3249144342911"></a><a name="b3249144342911"></a>API</strong></p>
 </th>
@@ -111,7 +116,7 @@ A process is only a resource management unit, and the actual running is executed
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p165754410812"><a name="p165754410812"></a><a name="p165754410812"></a>LOS_Wait</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p5578441687"><a name="p5578441687"></a><a name="p5578441687"></a>Waits for the specified child process to terminate and reclaims its resources.</p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p5578441687"><a name="p5578441687"></a><a name="p5578441687"></a>Waits for the specified child process to terminate, and reclaims its resources.</p>
 </td>
 </tr>
 <tr id="row81051920589"><td class="cellrowborder" rowspan="2" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p4571844289"><a name="p4571844289"></a><a name="p4571844289"></a>Process group</p>
@@ -162,10 +167,10 @@ A process is only a resource management unit, and the actual running is executed
 
 ### How to Develop<a name="section1533674618526"></a>
 
-Kernel-space processes cannot be created. Therefore, kernel-space process development is not involved.
+Kernel-mode processes cannot be created. Therefore, kernel-mode process development is not involved.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   The number of idle threads depends on the number of CPU cores. Each CPU has a corresponding idle thread.
->-   Except KProcess and KIdle, other kernel-space processes cannot be created.
->-   The thread created by calling a user-space process in the kernel space is a KProcess, not a user-space process.
+>-   Except KProcess and KIdle, other kernel-mode processes cannot be created.
+>-   If a thread is created after a user-mode process enters the kernel mode by a system call, the thread belongs to a KProcess not a user-mode process.
 

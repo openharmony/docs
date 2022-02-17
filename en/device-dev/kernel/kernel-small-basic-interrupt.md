@@ -1,24 +1,30 @@
 # Interrupt and Exception Handling<a name="EN-US_TOPIC_0000001123638623"></a>
 
+-   [Basic Concepts](#section439816296117)
+-   [Working Principles](#section2792838318)
+-   [Development Guidelines](#section15415165510110)
+    -   [Available APIs](#section57441612024)
+    -   [How to Develop](#section64332181221)
+    -   [Development Example](#section204698276478)
+    -   [Verification](#section1466144215476)
+
 
 ## Basic Concepts<a name="section439816296117"></a>
 
-An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. An interrupt alerts the processor to a high-priority condition requiring the interruption of the current code being executed by the processor. In this way, the CPU does not need to spend a lot of time in waiting and querying the peripheral status, which effectively improves the real-time performance and execution efficiency of the system.
+An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. An interrupt alerts the processor of a high-priority condition requiring interruption of the code being executed by the processor. In this way, the CPU does not need to spend a lot of time in waiting and querying the peripheral status, which effectively improves the real-time performance and execution efficiency of the system.
 
-Exception handling involves a series of actions taken by the OS to respond to exceptions \(chip hardware faults\) occurred during the OS running, for example, printing the call stack information of the current function, CPU information, and call stack information of tasks when the virtual memory page is missing.
+Exception handling involves a series of actions taken by the OS to respond to exceptions \(chip hardware faults\) that occurred during the OS running, for example, printing the call stack information of the current function, CPU information, and call stack information of tasks when the virtual memory page is missing.
 
 ## Working Principles<a name="section2792838318"></a>
 
-Peripherals can complete certain work without the intervention of the CPU. In some cases, however, the CPU needs to perform certain work for peripherals. By using the interrupt mechanism, the CPU responds to the interrupt request from a peripheral only when required, and execute other tasks when the peripherals do not require the CPU. The interrupt controller receives the input of other peripheral interrupt pins and sends interrupt signals to the CPU. You can enable or disable the interrupt source and set the priority and trigger mode of the interrupt source by programming the interrupt controller. Common interrupt controllers include vector interrupt controllers \(VICs\) and general interrupt controllers \(GICs\). The ARM Cortex-A7 uses GICs. After receiving an interrupt signal sent by the interrupt controller, the CPU interrupts the current task to respond to the interrupt request.
+Peripherals can complete certain work without the intervention of the CPU. In some cases, however, the CPU needs to perform certain work for peripherals. With the interrupt mechanism, the CPU responds to the interrupt request from a peripheral only when required, and execute other tasks when the peripherals do not require the CPU. The interrupt controller receives the input of other peripheral interrupt pins and sends interrupt signals to the CPU. You can enable or disable the interrupt source and set the priority and trigger mode of the interrupt source by programming the interrupt controller. Common interrupt controllers include vector interrupt controllers \(VICs\) and general interrupt controllers \(GICs\). The ARM Cortex-A7 uses GICs. After receiving an interrupt signal sent by the interrupt controller, the CPU interrupts the current task to respond to the interrupt request.
 
-Exception handling interrupts the normal running process of the CPU to handle exceptions, such as, undefined instruction exception, an attempt to modify read-only data, and unaligned address access. When an exception occurs, the CPU suspends the current program, handles the exception, and then continues to execute the program interrupted by the exception.
+Exception handling interrupts the normal running process of the CPU to handle exceptions, such as, undefined instructions, an attempt to modify read-only data, and unaligned address access. When an exception occurs, the CPU suspends the current program, handles the exception, and then continues to execute the program interrupted by the exception.
 
 The following uses the ARMv7-a architecture as an example. The interrupt vector table is the entry for interrupt and exception handling. The interrupt vector table contains the entry function for each interrupt and exception handling.
 
-**Figure  1**  Interrupt vector table<a name="fig105771014134715"></a>  
-
-
-![](figure/en-us_image_0000001173449871.png)
+**Figure  1**  Interrupt vector table<a name="fig1552753243714"></a>  
+![](figures/interrupt-vector-table.png "interrupt-vector-table")
 
 ## Development Guidelines<a name="section15415165510110"></a>
 
@@ -27,7 +33,7 @@ The following uses the ARMv7-a architecture as an example. The interrupt vector 
 Exception handling is an internal mechanism and does not provide external APIs. The following table describes APIs available for the interrupt module.
 
 <a name="table11657113333110"></a>
-<table><thead align="left"><tr id="row1170612337312"><th class="cellrowborder" valign="top" width="19.900000000000002%" id="mcps1.1.4.1.1"><p id="p4706133373112"><a name="p4706133373112"></a><a name="p4706133373112"></a><strong id="b7792162213202"><a name="b7792162213202"></a><a name="b7792162213202"></a>Category</strong></p>
+<table><thead align="left"><tr id="row1170612337312"><th class="cellrowborder" valign="top" width="19.900000000000002%" id="mcps1.1.4.1.1"><p id="p4706133373112"><a name="p4706133373112"></a><a name="p4706133373112"></a><strong id="b7792162213202"><a name="b7792162213202"></a><a name="b7792162213202"></a>Function</strong></p>
 </th>
 <th class="cellrowborder" valign="top" width="18.43%" id="mcps1.1.4.1.2"><p id="p1070653343117"><a name="p1070653343117"></a><a name="p1070653343117"></a><strong id="b19958356201"><a name="b19958356201"></a><a name="b19958356201"></a>API</strong></p>
 </th>
@@ -51,12 +57,12 @@ Exception handling is an internal mechanism and does not provide external APIs. 
 </td>
 <td class="cellrowborder" valign="top" width="18.43%" headers="mcps1.1.4.1.2 "><p id="p147061033103117"><a name="p147061033103117"></a><a name="p147061033103117"></a>LOS_IntUnLock</p>
 </td>
-<td class="cellrowborder" valign="top" width="61.67%" headers="mcps1.1.4.1.3 "><p id="p167061333193114"><a name="p167061333193114"></a><a name="p167061333193114"></a>Enables all interrupts of the current processor.</p>
+<td class="cellrowborder" valign="top" width="61.67%" headers="mcps1.1.4.1.3 "><p id="p93681327171713"><a name="p93681327171713"></a><a name="p93681327171713"></a>Enables all interrupts of the current processor.</p>
 </td>
 </tr>
 <tr id="row1270603314312"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p1970623343114"><a name="p1970623343114"></a><a name="p1970623343114"></a>LOS_IntLock</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1370623373115"><a name="p1370623373115"></a><a name="p1370623373115"></a>Disables all interrupts for the current processor.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1161283971712"><a name="p1161283971712"></a><a name="p1161283971712"></a>Disables all interrupts for the current processor.</p>
 </td>
 </tr>
 <tr id="row8706233173113"><td class="cellrowborder" valign="top" headers="mcps1.1.4.1.1 "><p id="p1770620337313"><a name="p1770620337313"></a><a name="p1770620337313"></a>LOS_IntRestore</p>
@@ -113,7 +119,7 @@ static UINT32 Example_Interrupt(VOID)
         return LOS_NOK;
     }
 
-    /* Delay 50 ticks. When a hardware interrupt occurs, the HwiUsrIrq function will be called.*/
+    /* Delay 50 ticks. When a hardware interrupt occurs, call the HwiUsrIrq function.*/
     LOS_TaskDelay(50);
 
     /* Delete an interrupt./

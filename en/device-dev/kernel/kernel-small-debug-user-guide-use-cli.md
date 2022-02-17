@@ -1,5 +1,11 @@
 # Using the CLI<a name="EN-US_TOPIC_0000001119236568"></a>
 
+-   [Sample Code](#section13793104782316)
+-   [Compilation](#section1676431122320)
+-   [Running the mwatch Command](#section1703415132311)
+-   [Call Stack Parsing](#section1880675510221)
+-   [Running the mrecord Command](#section071022822210)
+
 In addition to calling APIs to check the memory used by user-mode processes, you can run CLI commands to collect memory statistics, check for memory leaks, and check memory integrity.
 
 ```

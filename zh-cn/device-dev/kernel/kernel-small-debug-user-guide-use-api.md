@@ -1,11 +1,11 @@
-# 接口调用方式<a name="ZH-CN_TOPIC_0000001166036359"></a>
+# 接口调用方式
 
--   [示例代码](#section5490173592518)
--   [编译](#section534302242515)
--   [调测信息](#section1017419992515)
--   [调用栈解析](#section1485163282417)
+- [示例代码](#示例代码)
+- [编译](#编译)
+- [调测信息](#调测信息)
+- [调用栈解析](#调用栈解析)
 
-## 示例代码<a name="section5490173592518"></a>
+## 示例代码
 
 代码功能：显式调用调测模块的相关接口对用户代码进行内存校验。
 
@@ -37,21 +37,29 @@ int main()
 }
 ```
 
-## 编译<a name="section534302242515"></a>
+
+## 编译
 
 ```
 $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos --sysroot=/home/<user-name>/harmony/out/hispark_taurus/ipcamera_hispark_taurus/sysroot $(clang -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos -print-file-name=libunwind.a)
 ```
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->-   本编译示例基于将编译器的路径写入环境变量中，即.bashrc文件中。
->-   编译用户程序及所需的lib库时，需要添加编译选项-funwind-tables，-rdynamic，-g，用于栈回溯。
->-   -mfloat-abi=softfp，-mcpu=cortex-a7，-mfpu=neon-vfpv4编译选项用于指定具体的芯片架构、浮点数计算优化、fpu，与具体的libc库使用的编译选项保持一致，否则链接时可能出现找不到libc库文件。
->-   -target arm-liteos用于指定编译器相关库文件路径。
->-   --sysroot=/home/<user-name\>/harmony/out/hispark\_taurus/ipcamera\_hispark\_taurus/sysroot用于指定编译器库文件搜索根目录，假设OpenHarmony工程代码存放路径为/home/<user-name\>/harmony。其中out/hispark\_taurus/ipcamera\_hispark\_taurus路径为在编译时，hb set命令指定的具体产品，本示例选择的是ipcamera\_hispark\_taurus产品。
->-   $\(clang -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos -print-file-name=libunwind.a\)用于指定相应的unwind库的路径。
 
-## 调测信息<a name="section1017419992515"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 本编译示例基于将编译器的路径写入环境变量中，即.bashrc文件中。
+> 
+> - 编译用户程序及所需的lib库时，需要添加编译选项-funwind-tables，-rdynamic，-g，用于栈回溯。
+> 
+> - -mfloat-abi=softfp，-mcpu=cortex-a7，-mfpu=neon-vfpv4编译选项用于指定具体的芯片架构、浮点数计算优化、fpu，与具体的libc库使用的编译选项保持一致，否则链接时可能出现找不到libc库文件。
+> 
+> - -target arm-liteos用于指定编译器相关库文件路径。
+> 
+> - --sysroot=/home/&lt;user-name&gt;/harmony/out/hispark_taurus/ipcamera_hispark_taurus/sysroot用于指定编译器库文件搜索根目录，假设OpenHarmony工程代码存放路径为/home/&lt;user-name&gt;/harmony。其中out/hispark_taurus/ipcamera_hispark_taurus路径为在编译时，hb set命令指定的具体产品，本示例选择的是ipcamera_hispark_taurus产品。
+> 
+> - $(clang -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos -print-file-name=libunwind.a)用于指定相应的unwind库的路径。
+
+
+## 调测信息
 
 ```
 OHOS # ./mem_check
@@ -102,9 +110,10 @@ Check heap integrity ok! // 堆内存完整性检查
 Check heap integrity ok!
 ```
 
-## 调用栈解析<a name="section1485163282417"></a>
 
-提供parse\_mem\_info.sh脚本可以对调用栈进行解析，解析脚本存放的路径：kernel/liteos\_a/tools/scripts/parse\_memory/parse\_mem\_info.sh。利用脚本可以将相应的调测信息转换成具体的源码行号，如下命令所示，mem\_debug.txt保存的是内存调测信息，elf1、elf2等文件是需要解析的elf文件。
+## 调用栈解析
+
+提供parse_mem_info.sh脚本可以对调用栈进行解析，解析脚本存放的路径：kernel/liteos_a/tools/scripts/parse_memory/parse_mem_info.sh。利用脚本可以将相应的调测信息转换成具体的源码行号，如下命令所示，mem_debug.txt保存的是内存调测信息，elf1、elf2等文件是需要解析的elf文件。
 
 ```
 $ ./parse_mem_info.sh mem_debug.txt elf1 elf2 elf3 ...
@@ -144,4 +153,3 @@ Check heap integrity ok!
 
 ==PID:4== SUMMARY: 0x640 byte(s) leaked in 2 allocation(s).
 ```
-

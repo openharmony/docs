@@ -1,27 +1,37 @@
 # Heap Memory Management<a name="EN-US_TOPIC_0000001123795191"></a>
 
+-   [Basic Concepts](#section449414395916)
+-   [Working Principles](#section465085575911)
+-   [Development Guidelines](#section577019272015)
+    -   [When to Use](#section326917198583)
+    -   [Available APIs](#section1032331584)
+    -   [How to Develop](#section07271773592)
+    -   [Development Example](#section84931234145913)
+    -   [Verification](#section165233233917)
+
+
 ## Basic Concepts<a name="section449414395916"></a>
 
 Memory management module, one of the core modules of the OS, manages the memory resources of the system. Memory management involves memory initialization, allocation, and release. The heap memory management of the OpenHarmony LiteOS-A provides functions such as memory initialization, allocation, and release. While the OS is running, the heap memory management module manages the memory usage of users and the OS by allocating and releasing memory. This helps achieve the optimal memory usage and usage efficiency and minimize memory fragments.
 
 ## Working Principles<a name="section465085575911"></a>
 
-Heap memory management allows memory blocks of any size to be allocated from a large contiguous memory \(memory pool or heap memory\) configured in the system based on user demands when memory resources are sufficient. The memory block can be released for further use when not required. Heap memory management is a type of dynamic memory management. Compared with static memory management, dynamic memory management allows memory allocation on demand but causes fragmentation of memory. The heap memory of the OpenHarmony LiteOS-A has optimized the memory space partitioning based on the Two-Level Segregate Fit \(TLSF\) algorithm to achieve higher performance and minimize fragmentation.  [Figure 1](#fig14558185217397)  shows the core algorithm of the heap memory management.
+Heap memory management, a type of dynamic memory management, allows memory blocks of any size to be allocated from a large contiguous memory \(memory pool or heap memory\) configured in the system based on user demands when memory resources are sufficient. The memory block can be released for further use when not required. Compared with static memory management, dynamic memory management allows memory allocation on demand but causes fragmentation of memory. The heap memory of the OpenHarmony LiteOS-A has optimized the memory space partitioning based on the Two-Level Segregate Fit \(TLSF\) algorithm to achieve higher performance and minimize fragmentation.  [Figure 1](#fig14558185217397)  shows the core algorithm of the heap memory management.
 
-**Figure  1**  Heap memory core algorithm<a name="fig14558185217397"></a>  
-![](figure/heap-memory-core-algorithm.png "heap-memory-core-algorithm")
+**Figure  1**  Dynamic memory algorithm for small systems<a name="fig14558185217397"></a>  
+![](figures/dynamic-memory-algorithm-for-small-systems.png "dynamic-memory-algorithm-for-small-systems")
 
 Multiple free lists are used for management based on the size of the free memory block. The free memory blocks are divided into two parts: \[4, 127\] and \[2<sup>7</sup>, 2<sup>31</sup>\], as indicated by the size class in the above figure.
 
-1.  The memory in the range of \[4, 127\] \(lower part in the figure\) is equally divided into 31 parts. The size of the memory block corresponding to each part is a multiple of 4 bytes. Each part corresponds to a free list and a bit that indicates whether the free list is empty. The value  **1**  indicates that the free list is not empty. There are 31 bits corresponding to the 31 memory parts in the range of \[4, 127\].
-2.  The memory greater than 127 bytes is managed in power of two increments. The size of each range is \[2^n, 2^\(n+1\) -1\], where n is an integer in \[7, 30\]. This range is divided into 24 parts, each of which is further divided into 8 second-level \(L2\) ranges, as shown in Size Class and Size SubClass in the upper part of the figure. Each L2 range corresponds to a free list and a bit that indicates whether the free list is empty. There are a total of 192 \(24 x 8\) L2 ranges, corresponding to 192 free lists and 192 bits.
+1.  The memory in the range of \[4, 127\] \(lower part in  [Figure 1](#fig14558185217397)\) is equally divided into 31 parts. The size of the memory block corresponding to each part is a multiple of 4 bytes. Each part corresponds to a free list and a bit that indicates whether the free list is empty. The value  **1**  indicates that the free list is not empty. There are 31 bits corresponding to the 31 memory parts in the range of \[4, 127\].
+2.  The memory greater than 127 bytes is managed in power of two increments. The size of each range is \[2^n, 2^\(n+1\) -1\], where n is an integer in \[7, 30\]. This range is divided into 24 parts, each of which is further divided into 8 second-level \(L2\) ranges, as shown in Size Class and Size SubClass in the upper part of  [Figure 1](#fig14558185217397). Each L2 range corresponds to a free list and a bit that indicates whether the free list is empty. There are a total of 192 \(24 x 8\) L2 ranges, corresponding to 192 free lists and 192 bits.
 
 For example, insert 40-byte free memory to a free list. The 40-byte free memory corresponds to the 10th free list in the range of \[40, 43\], and the 10th bit indicates the use of the free list. The system inserts the 40-byte free memory to the 10th free list and determines whether to update the bitmap flag. When 40-byte memory is requested, the system obtains the free list corresponding to the memory block of the requested size based on the bitmap flag, and then obtains a free memory node from the free list. If the size of the allocated node is greater than the memory requested, the system splits the node and inserts the remaining node to the free list. If 580-byte free memory needs to be inserted to a free list, the 580-byte free memory corresponds to the 47th \(31 + 2 x 8\) free list in L2 range \[2^9, 2^9+2^6\], and the 47th bit indicates the use of the free list. The system inserts the 580-byte free memory to the 47th free list and determines whether to update the bitmap flag. When 580-byte memory is requested, the system obtains the free list corresponding to the memory block of the requested size based on the bitmap flag, and then obtains a free memory node from the free list. If the size of the allocated node is greater than the memory requested, the system splits the node and inserts the remaining node to the free list. If the corresponding free list is empty, the system checks for a free list meeting the requirements in a larger memory range. In actual application, the system can locate the free list that meets the requirements at a time.
 
-The following figure shows the memory management structure.
+[Figure 2](#fig5395115964114)  shows the memory management structure.
 
-**Figure  2**  Dynamic memory management structure<a name="fig5395115964114"></a>  
-![](figure/dynamic-memory-management-structure-20.png "dynamic-memory-management-structure-20")
+**Figure  2**  Dynamic memory management structure for system systems<a name="fig5395115964114"></a>  
+![](figures/dynamic-memory-management-structure-for-system-systems.png "dynamic-memory-management-structure-for-system-systems")
 
 -   Memory pool header
 
@@ -36,7 +46,7 @@ The following figure shows the memory management structure.
 
 ### When to Use<a name="section326917198583"></a>
 
-Heap memory management is mainly used to dynamically allocate and manage memory ranges requested by users. Heap memory management is mainly used in scenarios where users need to use memory blocks of different sizes. You can obtain a memory block of a specified size by using a dynamic memory application function of the operating system. Once the memory is used up, the memory release function is used to release the occupied memory so that the memory can be reused.
+Heap memory management is mainly used to dynamically allocate and manage memory ranges requested by users. Heap memory management is mainly used in scenarios where users need to use memory blocks of different sizes. You can obtain a memory block of a specified size by using a dynamic memory application function of the OS. Once the memory is used up, the memory release function is used to release the occupied memory so that the memory can be reused.
 
 ### Available APIs<a name="section1032331584"></a>
 
@@ -45,7 +55,7 @@ The following table describes APIs available for OpenHarmony LiteOS-A heap memor
 **Table  1**  Heap memory management APIs
 
 <a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Category</p>
+<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a><strong id="b01375614711"><a name="b01375614711"></a><a name="b01375614711"></a>Function</strong></p>
 </th>
 <th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a><strong id="b132706141086"><a name="b132706141086"></a><a name="b132706141086"></a>API</strong></p>
 </th>
@@ -151,7 +161,7 @@ The typical development process of dynamic memory is as follows:
 
 ### Development Example<a name="section84931234145913"></a>
 
-The example below implements the following:
+This example implements the following:
 
 1.  Initialize a dynamic memory pool.
 2.  Allocate a memory block from the dynamic memory pool.

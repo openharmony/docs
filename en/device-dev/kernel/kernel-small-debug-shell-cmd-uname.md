@@ -1,12 +1,18 @@
 # uname<a name="EN-US_TOPIC_0000001179965843"></a>
 
+-   [Command Function](#section107697383115)
+-   [Syntax](#section162824341116)
+-   [Usage](#section2652124861114)
+-   [Example](#section0107995132)
+-   [Output](#section1215113245511)
+
 ## Command Function<a name="section107697383115"></a>
 
-This command is used to display the name, version creation time, system name, and version information of the current OS.
+This command is used to display the name, version creation time, system name, and version information of the current operating system.
 
 ## Syntax<a name="section162824341116"></a>
 
-uname \[_-a | -s | -t | -v | --help_\]
+uname \[_-a | -s | -r | -m | -n | -v | --help_\]
 
 **Table  1**  Parameters
 
@@ -17,34 +23,44 @@ uname \[_-a | -s | -t | -v | --help_\]
 </th>
 </tr>
 </thead>
-<tbody><tr id="row119816412718"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p1384693214813"><a name="p1384693214813"></a><a name="p1384693214813"></a>No parameter</p>
+<tbody><tr id="row7659172561412"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p9648112519147"><a name="p9648112519147"></a><a name="p9648112519147"></a>--help</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p18199114113719"><a name="p18199114113719"></a><a name="p18199114113719"></a>Displays the OS name by default.</p>
-</td>
-</tr>
-<tr id="row919mcpsimp"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p921mcpsimp"><a name="p921mcpsimp"></a><a name="p921mcpsimp"></a>-a</p>
-</td>
-<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p923mcpsimp"><a name="p923mcpsimp"></a><a name="p923mcpsimp"></a>Displays all information.</p>
+<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p1664862551411"><a name="p1664862551411"></a><a name="p1664862551411"></a>Displays help information.</p>
 </td>
 </tr>
-<tr id="row924mcpsimp"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p926mcpsimp"><a name="p926mcpsimp"></a><a name="p926mcpsimp"></a>-t</p>
+<tr id="row365962510147"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p26489259149"><a name="p26489259149"></a><a name="p26489259149"></a>No parameter</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p928mcpsimp"><a name="p928mcpsimp"></a><a name="p928mcpsimp"></a>Displays the time when the version was created.</p>
-</td>
-</tr>
-<tr id="row929mcpsimp"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p931mcpsimp"><a name="p931mcpsimp"></a><a name="p931mcpsimp"></a>-s</p>
-</td>
-<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p933mcpsimp"><a name="p933mcpsimp"></a><a name="p933mcpsimp"></a>Displays the OS name.</p>
+<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p186484252141"><a name="p186484252141"></a><a name="p186484252141"></a>Displays the operating system name by default.</p>
 </td>
 </tr>
-<tr id="row934mcpsimp"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p936mcpsimp"><a name="p936mcpsimp"></a><a name="p936mcpsimp"></a>-v</p>
+<tr id="row12659142511413"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p156481253140"><a name="p156481253140"></a><a name="p156481253140"></a>-a</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p938mcpsimp"><a name="p938mcpsimp"></a><a name="p938mcpsimp"></a>Displays the version information.</p>
+<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p864872512145"><a name="p864872512145"></a><a name="p864872512145"></a>Displays all information.</p>
 </td>
 </tr>
-<tr id="row944mcpsimp"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p946mcpsimp"><a name="p946mcpsimp"></a><a name="p946mcpsimp"></a>--help</p>
+<tr id="row365917254143"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p136481625131417"><a name="p136481625131417"></a><a name="p136481625131417"></a>-s</p>
 </td>
-<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p948mcpsimp"><a name="p948mcpsimp"></a><a name="p948mcpsimp"></a>Displays the help information.</p>
+<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p1064852514149"><a name="p1064852514149"></a><a name="p1064852514149"></a>Displays the operating system name.</p>
+</td>
+</tr>
+<tr id="row196591425101413"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p364814255144"><a name="p364814255144"></a><a name="p364814255144"></a>-r</p>
+</td>
+<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p1564872515145"><a name="p1564872515145"></a><a name="p1564872515145"></a>Displays the kernel release version.</p>
+</td>
+</tr>
+<tr id="row10659202591419"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p11648162520146"><a name="p11648162520146"></a><a name="p11648162520146"></a>-m</p>
+</td>
+<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p136489251143"><a name="p136489251143"></a><a name="p136489251143"></a>Displays the operating system architecture name.</p>
+</td>
+</tr>
+<tr id="row126582025111417"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p13648102551411"><a name="p13648102551411"></a><a name="p13648102551411"></a>-n</p>
+</td>
+<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p6648132512141"><a name="p6648132512141"></a><a name="p6648132512141"></a>Displays the network domain name of the host.</p>
+</td>
+</tr>
+<tr id="row3658925151415"><td class="cellrowborder" valign="top" width="33.989999999999995%" headers="mcps1.2.3.1.1 "><p id="p9648152501414"><a name="p9648152501414"></a><a name="p9648152501414"></a>-v</p>
+</td>
+<td class="cellrowborder" valign="top" width="66.01%" headers="mcps1.2.3.1.2 "><p id="p46489250149"><a name="p46489250149"></a><a name="p46489250149"></a>Displays version information.</p>
 </td>
 </tr>
 </tbody>
@@ -52,15 +68,31 @@ uname \[_-a | -s | -t | -v | --help_\]
 
 ## Usage<a name="section2652124861114"></a>
 
-The  **uname**  command displays the name of the current OS by default. The  **uname -a | -t| -s| -v**  command displays the name of the in-use OS in the standard output. These parameters are mutually exclusive.
+-   The  **uname**  command displays the name of the current operating system by default.
+-   Except  **--help**  and  **-a**, other parameters can be used together.  **uname -a**  is equivalent to  **uname -srmnv**.
 
 ## Example<a name="section0107995132"></a>
 
-Run  **uname -a**.
+Run the following commands:
+
+-   uname -a
+-   uname -ms
 
 ## Output<a name="section1215113245511"></a>
 
-Querying system information
+Example 1: all information of the operating system
 
-![](figure/en-us_image_0000001179967909.png)
+```
+OHOS:/$ uname -a
+Huawei LiteOS hisilicon 2.0.0.37 Huawei LiteOS 2.0.0.37 Oct 21 2021 17:39:32 Cortex-A7
+OHOS:/$
+```
+
+Example 2: operating system name and architecture
+
+```
+OHOS:/$ uname -ms
+Huawei LiteOS Cortex-A7
+OHOS:/$
+```
 

@@ -1,8 +1,12 @@
 # Ramfs<a name="EN-US_TOPIC_0000001078864272"></a>
 
+-   [Basic Concepts](#section9507151014420)
+-   [Working Principles](#section1859711263447)
+-   [Development Guidelines](#section163554380448)
+
 ## Basic Concepts<a name="section9507151014420"></a>
 
-Ramfs is a RAM-based file system whose size can be dynamically adjusted. Ramfs does not have a backing store. Directory entries and page caches are allocated when files are written into ramfs. However, data is not written back to any other storage medium, and data is lost after a power outage.
+Ramfs is a RAM-based file system whose size can be dynamically adjusted. Ramfs does not have a backing store. Directory entries and page caches are allocated when files are written into ramfs. However, data is not written back to any other storage medium. This means that data will be lost after a power outage.
 
 ## Working Principles<a name="section1859711263447"></a>
 
@@ -42,7 +46,7 @@ Delete a file:
 unlink(pathname)
 ```
 
-Deletes a directory:
+Delete a directory:
 
 ```
 rmdir(pathname)

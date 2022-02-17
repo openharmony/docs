@@ -1,21 +1,28 @@
 # System Call<a name="EN-US_TOPIC_0000001123520159"></a>
 
+-   [Basic Concepts](#section889710401734)
+-   [Working Principles](#section195177541314)
+-   [Development Guidelines](#section193492047135419)
+    -   [How to Develop](#section7165741122210)
+    -   [Development Example](#section107131418224)
+
+
 ## Basic Concepts<a name="section889710401734"></a>
 
-The OpenHarmony LiteOS-A isolates the user space and kernel space. User-space programs cannot directly access kernel resources. System calls provide a channel for user-space programs to access kernel resources and interact with the kernel.
+The OpenHarmony LiteOS-A isolates the user space and kernel space. User-mode programs cannot directly access kernel resources. System calls provide a channel for user-mode programs to access kernel resources and interact with the kernel.
 
 ## Working Principles<a name="section195177541314"></a>
 
-As shown in the following figure, a user program calls the System API \(a POSIX interface provided by the system\) to access kernel resources and interacts with the kernel. An SVC/SWI exception is triggered inside the POSIX interface to complete switching of the system from the user space to the kernel space. Then, the kernel Syscall Handler \(unified system call interface\) parses parameters received and distributes the parameters to the specific kernel functions for processing.
+As shown in the following figure, a user-space program calls the System API \(a POSIX interface provided by the system\) to access kernel resources and interacts with the kernel. An SVC/SWI exception is triggered inside the POSIX interface to complete switching of the system from the user mode to the kernel mode. Then, the kernel Syscall Handler \(unified system call interface\) parses parameters received and distributes the parameters to the specific kernel functions for processing.
 
 **Figure  1**  System call<a name="fig165662915310"></a>  
-![](figure/system-call.png "system-call")
+![](figures/system-call.png "system-call")
 
 The Syscall Handler is implemented by the  **OsArmA32SyscallHandle**  function in  **kernel/liteos\_a/syscall/los\_syscall.c**. This function is called when a system software interrupt occurs. The input parameters of system calls are parsed according to the list in  **kernel/liteos\_a/syscall/syscall\_lookup.h**  so that the specific kernel functions are executed.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   System calls implement basic interaction between user-space programs and the kernel. You are advised to use the POSIX APIs provided by the kernel instead of system call APIs. If you want to add system call APIs, see the development guide.
->-   For details about the system call APIs provided by the kernel for the user space, see  **kernel/liteos\_a/syscall/syscall\_lookup.h**. For details about the system call functions provided by the kernel, see  **kernel/liteos\_a/syscall/los\_syscall.h**.
+>-   System calls implement basic interaction between user-mode programs and the kernel. You are advised to use the POSIX APIs provided by the kernel instead of system call APIs. If you want to add system call APIs, see the development guide.
+>-   For details about the system call APIs provided by the kernel for the user mode, see  **kernel/liteos\_a/syscall/syscall\_lookup.h**. For details about the system call functions provided by the kernel, see  **kernel/liteos\_a/syscall/los\_syscall.h**.
 
 ## Development Guidelines<a name="section193492047135419"></a>
 
@@ -24,7 +31,7 @@ The Syscall Handler is implemented by the  **OsArmA32SyscallHandle**  function i
 The typical development process of adding a system call API is as follows:
 
 1.  Determine and add the new system call number to the LibC library.
-2.  Add the declaration and implementation of the new user-space function API to the LibC library.
+2.  Add the declaration and implementation of the new user-mode function API to the LibC library.
 3.  Add the new system call number and the declaration of the corresponding kernel processing function to the kernel system call header file.
 4.  Add the kernel processing function corresponding to the system call to the kernel.
 
@@ -63,13 +70,13 @@ The typical development process of adding a system call API is as follows:
     ...
     ```
 
-2.  Add the declaration and implementation of the new user-space API to the LibC library.
+2.  Add the declaration and implementation of the new user-mode API to the LibC library.
 
     ```
     #include "stdio_impl.h"
     #include "syscall.h"
     ...
-    /* Add the implementation of the new user-space system call API.*/
+    /* Add the implementation of the new user-mode system call API.*/
     void newSyscallSample(int num)
     {
          printf("user mode: num = %d\n", num);
@@ -159,10 +166,10 @@ The typical development process of adding a system call API is as follows:
 
 **Verification**
 
-The user-space program calls the  **newSyscallSample\(10\)**  API. The output is as follows:
+The user-mode program calls the  **newSyscallSample\(10\)**  API. The output is as follows:
 
 ```
-/* The output in both user-space and kernel-space APIs indicates that the new system call is enabled. */
+/* The output in both user-mode and kernel-mode APIs indicates that the new system call is enabled. */
 user mode: num = 10
 kernel mode: num = 10
 ```

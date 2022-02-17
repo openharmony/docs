@@ -1,5 +1,12 @@
 # POSIX Support<a name="EN-US_TOPIC_0000001078589734"></a>
 
+-   [Basic Concepts](#section1757915134139)
+-   [Development Guidelines](#section1573664211318)
+    -   [Available APIs](#section10429150121317)
+    -   [Important Notes](#section109174418147)
+    -   [Development Example](#section206149278155)
+
+
 ## Basic Concepts<a name="section1757915134139"></a>
 
 The OpenHarmony kernel uses the  **musl libc**  library and self-developed APIs and supports the Portable Operating System Interface \(POSIX\). You can develop components and applications working on the kernel based on the POSIX.
@@ -188,7 +195,7 @@ The OpenHarmony kernel uses the  **musl libc**  library and self-developed APIs 
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.5.1.2 "><p id="p947235062010"><a name="p947235062010"></a><a name="p947235062010"></a>int pthread_setname_np(pthread_t pthread, const char *name);</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="p7201217144"><a name="p7201217144"></a><a name="p7201217144"></a>Set the thread name.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="p7201217144"><a name="p7201217144"></a><a name="p7201217144"></a>Sets the thread name.</p>
 </td>
 </tr>
 <tr id="row1960111113212"><td class="cellrowborder" valign="top" headers="mcps1.2.5.1.1 "><p id="p1997610185414"><a name="p1997610185414"></a><a name="p1997610185414"></a>#include &lt;pthread.h&gt;</p>
@@ -243,8 +250,7 @@ The OpenHarmony kernel uses the  **musl libc**  library and self-developed APIs 
 <td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="p5747174219504"><a name="p5747174219504"></a><a name="p5747174219504"></a>Deletes a file.</p>
 </td>
 </tr>
-<tr id="row117941848155011"><td class="cellrowborder" valign="top" headers="mcps1.2.5.1.1 "><p id="p157951148105019"><a
-name="p157951148105019"></a><a name="p157951148105019"></a>#include &lt;fcntl.h&gt;</p>
+<tr id="row117941848155011"><td class="cellrowborder" valign="top" headers="mcps1.2.5.1.1 "><p id="p157951148105019"><a name="p157951148105019"></a><a name="p157951148105019"></a>#include &lt;fcntl.h</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.5.1.2 "><p id="p1086884114190"><a name="p1086884114190"></a><a name="p1086884114190"></a>int open(const char *path, int oflags, ...);</p>
 </td>
@@ -262,7 +268,7 @@ name="p157951148105019"></a><a name="p157951148105019"></a>#include &lt;fcntl.h&
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.5.1.2 "><p id="p711391141911"><a name="p711391141911"></a><a name="p711391141911"></a>int rename(const char *oldpath, const char *newpath);</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="p1764122081011"><a name="p1764122081011"></a><a name="p1764122081011"></a>Rename the specified file.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="p1764122081011"><a name="p1764122081011"></a><a name="p1764122081011"></a>Renames the specified file.</p>
 </td>
 </tr>
 <tr id="row164172013105"><td class="cellrowborder" valign="top" headers="mcps1.2.5.1.1 "><p id="p1763192712281"><a name="p1763192712281"></a><a name="p1763192712281"></a>#include &lt;dirent.h&gt;</p>
@@ -795,7 +801,7 @@ name="p157951148105019"></a><a name="p157951148105019"></a>#include &lt;fcntl.h&
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.5.1.2 "><p id="p98310498214"><a name="p98310498214"></a><a name="p98310498214"></a>FILE *fopen(const char *path, const char *mode);</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="p883174917217"><a name="p883174917217"></a><a name="p883174917217"></a>Open a stream.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.5.1.3 "><p id="p883174917217"><a name="p883174917217"></a><a name="p883174917217"></a>Opens a stream.</p>
 </td>
 </tr>
 <tr id="row128311449152119"><td class="cellrowborder" valign="top" headers="mcps1.2.5.1.1 "><p id="p208321449152111"><a name="p208321449152111"></a><a name="p208321449152111"></a>#include &lt;stdio.h&gt;</p>

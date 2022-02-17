@@ -1,8 +1,15 @@
 # systeminfo<a name="EN-US_TOPIC_0000001134006256"></a>
 
+-   [Command Function](#section863016434820)
+-   [Syntax](#section139791817795)
+-   [Parameters](#section19472339164813)
+-   [Usage](#section285522592)
+-   [Example](#section9471171015105)
+-   [Output](#section1657011114915)
+
 ## Command Function<a name="section863016434820"></a>
 
-This command is used to display the resource usage of the current OS, including tasks, semaphores, mutexes, queues, and timers.
+This command is used to display the resource usage of the current operating system, including tasks, semaphores, mutexes, queues, and software timers.
 
 ## Syntax<a name="section139791817795"></a>
 
@@ -22,13 +29,22 @@ Run  **systeminfo**.
 
 ## Output<a name="section1657011114915"></a>
 
-**Figure  1**  Usage of system resources<a name="fig15631172415455"></a>  
-![](figure/usage-of-system-resources.png "usage-of-system-resources")
+Usage of system resources:
+
+```
+OHOS:/$ systeminfo
+   Module    Used      Total     Enabled
+--------------------------------------------
+   Task      96        256       YES
+   Sem       435       1024      YES
+   Queue     13        1024      YES
+   SwTmr     20        1024      YES
+```
 
 **Table  1**  Output
 
 <a name="table633mcpsimp"></a>
-<table><thead align="left"><tr id="row638mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p640mcpsimp"><a name="p640mcpsimp"></a><a name="p640mcpsimp"></a>Output</p>
+<table><thead align="left"><tr id="row638mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p640mcpsimp"><a name="p640mcpsimp"></a><a name="p640mcpsimp"></a>Parameter</p>
 </th>
 <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p642mcpsimp"><a name="p642mcpsimp"></a><a name="p642mcpsimp"></a>Description</p>
 </th>

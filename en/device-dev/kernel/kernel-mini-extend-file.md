@@ -1,11 +1,11 @@
 # File System<a name="EN-US_TOPIC_0000001079036460"></a>
 
-The OpenHarmony LiteOS-M kernel supports the FAT file system \(FATFS\) and LittleFS.  [Table 1](#table147491853163018)  lists the comparison of the functions supported by these two file systems.
+The OpenHarmony LiteOS-M kernel supports File Allocation Table file system \(FATFS\) and LittleFS file systems. Like the OpenHarmony LiteOS-A kernel, the OpenHarmony LiteOS-M kernel provides POSIX over the virtual file system \(VFS\) to ensure interface consistency. However, the VFS of the LiteOS-M kernel is light due to insufficient resources and does not provide advanced functions \(such as pagecache\). Therefore, the VFS of the LiteOS-M kernel implements only API standardization and adaptation. The file systems handle specific transactions. The following table lists the functions supported by the file systems.
 
 **Table  1**  Function list
 
 <a name="table147491853163018"></a>
-<table><thead align="left"><tr id="row10807205323013"><th class="cellrowborder" valign="top" width="12.738726127387261%" id="mcps1.2.6.1.1"><p id="p980714539304"><a name="p980714539304"></a><a name="p980714539304"></a>Category</p>
+<table><thead align="left"><tr id="row10807205323013"><th class="cellrowborder" valign="top" width="12.738726127387261%" id="mcps1.2.6.1.1"><p id="p980714539304"><a name="p980714539304"></a><a name="p980714539304"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="12.418758124187582%" id="mcps1.2.6.1.2"><p id="p1780715533305"><a name="p1780715533305"></a><a name="p1780715533305"></a>API</p>
 </th>
@@ -13,7 +13,7 @@ The OpenHarmony LiteOS-M kernel supports the FAT file system \(FATFS\) and Littl
 </th>
 <th class="cellrowborder" valign="top" width="14.87851214878512%" id="mcps1.2.6.1.4"><p id="p12498884271"><a name="p12498884271"></a><a name="p12498884271"></a>FATFS</p>
 </th>
-<th class="cellrowborder" valign="top" width="15.358464153584642%" id="mcps1.2.6.1.5"><p id="p348021419272"><a name="p348021419272"></a><a name="p348021419272"></a>LittleFS</p>
+<th class="cellrowborder" valign="top" width="15.358464153584642%" id="mcps1.2.6.1.5"><p id="p348021419272"><a name="p348021419272"></a><a name="p348021419272"></a>LITTLEFS</p>
 </th>
 </tr>
 </thead>

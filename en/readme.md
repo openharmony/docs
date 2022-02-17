@@ -11,8 +11,8 @@ This project stores OpenHarmony documentation, including the quick start guide, 
         - **overview**:  [device development overview](device-dev/Readme-EN.md)
         - **quick-start**:  [quick start guide](device-dev/quick-start/Readme-EN.md)  \(covering environment setup, source code acquisition, build, and burning\)
         - Basic development capabilities
-          - **Kernel**:  [Kernel for Mini Systems](device-dev/kernel/kernel-lite-mini.md)
-          - **Kernel：**[Kernel for Small Systems](device-dev/kernel/kernel-lite-small.md)
+          - **Kernel**:  [Kernel for Mini Systems](device-dev/kernel/kernel-mini.md)
+          - **Kernel：**[Kernel for Small Systems](device-dev/kernel/kernel-small.md)
           - **Drivers**:  [drivers](device-dev/driver/Readme-EN.md)
           - **Subsystems**:  [subsystems](device-dev/subsystems/Readme-EN.md)  \(such as compilation and building, graphics, DFX, and XTS\)
           - **Security**:  [privacy and security](device-dev/security/Readme-EN.md)

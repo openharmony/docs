@@ -1,22 +1,22 @@
-# 网络命令<a name="ZH-CN_TOPIC_0000001133846492"></a>
+# 网络命令
 
--   **[arp](kernel-small-debug-shell-net-arp.md)**  
 
--   **[dhclient](kernel-small-debug-shell-net-dhclient.md)**  
+- **[arp](kernel-small-debug-shell-net-arp.md)**
 
--   **[ifconfig](kernel-small-debug-shell-net-ifconfig.md)**  
+- **[dhclient](kernel-small-debug-shell-net-dhclient.md)**
 
--   **[ipdebug](kernel-small-debug-shell-net-ipdebug.md)**  
+- **[ifconfig](kernel-small-debug-shell-net-ifconfig.md)**
 
--   **[netstat](kernel-small-debug-shell-net-netstat.md)**  
+- **[ipdebug](kernel-small-debug-shell-net-ipdebug.md)**
 
--   **[ntpdate](kernel-small-debug-shell-net-ntpdate.md)**  
+- **[netstat](kernel-small-debug-shell-net-netstat.md)**
 
--   **[ping](kernel-small-debug-shell-net-ping.md)**  
+- **[ntpdate](kernel-small-debug-shell-net-ntpdate.md)**
 
--   **[ping6](kernel-small-debug-shell-net-ping6.md)**  
+- **[ping](kernel-small-debug-shell-net-ping.md)**
 
--   **[telnet](kernel-small-debug-shell-net-telnet.md)**  
+- **[ping6](kernel-small-debug-shell-net-ping6.md)**
 
--   **[tftp](kernel-small-debug-shell-net-tftp.md)**  
+- **[telnet](kernel-small-debug-shell-net-telnet.md)**
 
+- **[tftp](kernel-small-debug-shell-net-tftp.md)**

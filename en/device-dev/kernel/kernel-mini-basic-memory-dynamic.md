@@ -1,25 +1,34 @@
 # Dynamic Memory<a name="EN-US_TOPIC_0000001123763647"></a>
 
+-   [Working Principles](#section328282013571)
+-   [Development Guidelines](#section7921151015814)
+    -   [When to Use](#section326917198583)
+    -   [Available APIs](#section1032331584)
+    -   [How to Develop](#section07271773592)
+    -   [Development Example](#section84931234145913)
+    -   [Verification](#section165233233917)
+
+
 ## Working Principles<a name="section328282013571"></a>
 
 Dynamic memory management allows memory blocks of any size to be allocated from a large contiguous memory \(memory pool or heap memory\) configured in the system based on user demands when memory resources are sufficient. The memory block can be released for further use when not required. Compared with static memory management, dynamic memory management allows memory allocation on demand but causes fragmentation of memory.
 
-The dynamic memory of the OpenHarmony LiteOS-M has optimized the memory space partitioning based on the Two-Level Segregate Fit \(TLSF\) algorithm to achieve higher performance and minimize fragmentation.  [Figure 1](#fig14558185217397)  shows the core algorithm of the dynamic memory.
+The dynamic memory of the OpenHarmony LiteOS-M has optimized the memory space partitioning based on the Two-Level Segregate Fit \(TLSF\) algorithm to achieve higher performance and minimize fragmentation.  [Figure 1](#fig1179964042818)  shows the core algorithm of the dynamic memory.
 
-**Figure  1**  Dynamic memory core algorithm<a name="fig14558185217397"></a>  
-![](figure/dynamic-memory-core-algorithm.png "dynamic-memory-core-algorithm")
+**Figure  1**  Dynamic memory algorithm for mini systems<a name="fig1179964042818"></a>  
+![](figures/dynamic-memory-algorithm-for-mini-systems.png "dynamic-memory-algorithm-for-mini-systems")
 
-Multiple free lists are used for management based on the size of the free memory block. The free memory blocks are divided into two parts: \[4, 127\] and \[2<sup>7</sup>, 2<sup>31</sup>\], as indicated by the size class in  [Figure 1](#fig14558185217397).
+Multiple free lists are used for management based on the size of the free memory block. The free memory blocks are divided into two parts: \[4, 127\] and \[2<sup>7</sup>, 2<sup>31</sup>\], as indicated by the size class in  [Figure 1](#fig1179964042818).
 
-1.  The memory in the range of \[4, 127\] \(lower part in  [Figure 1](#fig14558185217397)\) is divided into 31 parts. The size of the memory block corresponding to each part is a multiple of 4 bytes. Each part corresponds to a free list and a bit that indicates whether the free list is empty. The value  **1**  indicates that the free list is not empty. There are 31 bits corresponding to the 31 memory parts in the range of \[4, 127\].
-2.  The memory greater than 127 bytes is managed in power of two increments. The size of each range is \[2^n, 2^\(n+1\)-1\], where n is an integer in \[7, 30\]. This range is divided into 24 parts, each of which is further divided into 8 second-level \(L2\) ranges, as shown in Size Class and Size SubClass in the upper part of  [Figure 1](#fig14558185217397). Each L2 range corresponds to a free list and a bit that indicates whether the free list is empty. There are a total of 192 \(24 x 8\) L2 ranges, corresponding to 192 free lists and 192 bits.
+1.  The memory in the range of \[4, 127\] \(lower part in  [Figure 1](#fig1179964042818)\) is divided into 31 parts. The size of the memory block corresponding to each part is a multiple of 4 bytes. Each part corresponds to a free list and a bit that indicates whether the free list is empty. The value  **1**  indicates that the free list is not empty. There are 31 bits corresponding to the 31 memory parts in the range of \[4, 127\].
+2.  The memory greater than 127 bytes is managed in power of two increments. The size of each range is \[2^n, 2^\(n+1\)-1\], where n is an integer in \[7, 30\]. This range is divided into 24 parts, each of which is further divided into 8 second-level \(L2\) ranges, as shown in Size Class and Size SubClass in the upper part of  [Figure 1](#fig1179964042818). Each L2 range corresponds to a free list and a bit that indicates whether the free list is empty. There are a total of 192 \(24 x 8\) L2 ranges, corresponding to 192 free lists and 192 bits.
 
 For example, insert 40-byte free memory to a free list. The 40-byte free memory corresponds to the 10th free list in the range of \[40, 43\], and the 10th bit indicates the use of the free list. The system inserts the 40-byte free memory to the 10th free list and determines whether to update the bitmap flag. When 40-byte memory is requested, the system obtains the free list corresponding to the memory block of the requested size based on the bitmap flag, and then obtains a free memory node from the free list. If the size of the allocated node is greater than the memory requested, the system splits the node and inserts the remaining node to the free list. If 580-byte free memory needs to be inserted to a free list, the 580-byte free memory corresponds to the 47th \(31 + 2 x 8\) free list in L2 range \[2^9, 2^9+2^6\], and the 47th bit indicates the use of the free list. The system inserts the 580-byte free memory to the 47th free list and determines whether to update the bitmap flag. When 580-byte memory is requested, the system obtains the free list corresponding to the memory block of the requested size based on the bitmap flag, and then obtains a free memory node from the free list. If the size of the allocated node is greater than the memory requested, the system splits the node and inserts the remaining node to the free list. If the corresponding free list is empty, the system checks for a free list meeting the requirements in a larger memory range. In actual application, the system can locate the free list that meets the requirements at a time.
 
-[Figure 2](#fig5395115964114)  shows the memory management structure.
+[Figure 2](#fig10997102213017)  shows the memory management structure.
 
-**Figure  2**  Dynamic memory management structure<a name="fig5395115964114"></a>  
-![](figure/dynamic-memory-management-structure.png "dynamic-memory-management-structure")
+**Figure  2**  Dynamic memory management structure for mini systems<a name="fig10997102213017"></a>  
+![](figures/dynamic-memory-management-structure-for-mini-systems.png "dynamic-memory-management-structure-for-mini-systems")
 
 -   Memory pool header
 
@@ -29,6 +38,19 @@ For example, insert 40-byte free memory to a free list. The 40-byte free memory 
 
     There are three types of nodes: free node, used node, and end node. Each memory node maintains the size and use flag of the memory node and a pointer to the previous memory node in the memory pool. The free nodes and used nodes have a data area, but the end node has no data area.
 
+
+The off-chip physical memory needs to be used because the on-chip RAMs of some chips cannot meet requirements. The OpenHarmony LiteOS-M kernel can logically combine multiple discontiguous memory regions so that users are unaware of the discontiguous memory regions in the underlying layer. The OpenHarmony LiteOS-M kernel memory module inserts discontiguous memory regions into a free list as free memory nodes and marks the discontiguous parts as virtual memory nodes that have been used. In this way, the discontinuous memory regions are logically combined as a unified memory pool.  [Figure 3](#fig18471556115917)  shows how the discontiguous memory regions are logically integrated.
+
+**Figure  3**  Integrating discontiguous memory regions<a name="fig18471556115917"></a>  
+![](figures/integrating-discontiguous-memory-regions.png "integrating-discontiguous-memory-regions")
+
+The discontiguous memory regions are integrated into a unified memory pool as follows:
+
+1.  Call  **LOS\_MemInit**  to initialize the first memory region of multiple discontiguous memory regions.
+2.  <a name="li26042441209"></a>Obtain the start address and length of the next memory region, and calculate the  **gapSize**  between the current memory region and its previous memory region. The  **gapSize**  is considered as a used virtual node.
+3.  Set the size of the end node of the previous memory region to the sum of  **gapSize**  and  **OS\_MEM\_NODE\_HEAD\_SIZE**.
+4.  <a name="li10604194419014"></a>Divide the current memory region into a free memory node and an end node, insert the free memory node to the free list, and set the link relationship between the nodes.
+5.  Repeat  [2](#li26042441209)  to  [4](#li10604194419014)  to integrate more discontiguous memory regions.
 
 ## Development Guidelines<a name="section7921151015814"></a>
 
@@ -43,7 +65,7 @@ The following table describes APIs available for OpenHarmony LiteOS-M dynamic me
 **Table  1**  APIs of the dynamic memory module
 
 <a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Category</p>
+<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>API</p>
 </th>
@@ -126,12 +148,20 @@ The following table describes APIs available for OpenHarmony LiteOS-M dynamic me
 <td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p15644611153"><a name="p15644611153"></a><a name="p15644611153"></a>Checks the integrity of the specified memory pool. It is valid only when <strong id="b1215338788"><a name="b1215338788"></a><a name="b1215338788"></a>LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK</strong> is enabled.</p>
 </td>
 </tr>
+<tr id="row179965317318"><td class="cellrowborder" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p205321491738"><a name="p205321491738"></a><a name="p205321491738"></a>Adding discontiguous memory regions</p>
+</td>
+<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p1532399316"><a name="p1532399316"></a><a name="p1532399316"></a>LOS_MemRegionsAdd</p>
+</td>
+<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p20532149635"><a name="p20532149635"></a><a name="p20532149635"></a>Logically integrates multiple discontiguous memory regions into a unified memory pool. It is valid only when <strong id="b139814570571"><a name="b139814570571"></a><a name="b139814570571"></a>LOSCFG_MEM_MUL_REGIONS</strong> is enabled. If the memory pool pointer parameter <strong id="b193777151040"><a name="b193777151040"></a><a name="b193777151040"></a>pool</strong> is empty, initialize the first of the multiple memory regions in the memory pool and insert other memory regions as free nodes. If <strong id="b12330104011612"><a name="b12330104011612"></a><a name="b12330104011612"></a>pool</strong> is not empty, insert the multiple memory regions into the specified memory pool as free nodes.</p>
+</td>
+</tr>
 </tbody>
 </table>
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   The dynamic memory module manages memory through control block structures, which consume extra memory. Therefore, the actual memory space available to users is less than the value of  **OS\_SYS\_MEM\_SIZE**.
 >-   The  **LOS\_MemAllocAlign**  and  **LOS\_MemMallocAlign**  APIs consume extra memory for memory alignment, which may cause memory loss. When the memory used for alignment is freed up, the lost memory will be reclaimed.
+>-   The discontiguous memory regions passed by the  **LosMemRegion**  array to the  **LOS\_MemRegionsAdd**  API must be sorted in ascending order by memory start address in memory regions, and the memory regions cannot overlap.
 
 ### How to Develop<a name="section07271773592"></a>
 
@@ -154,7 +184,7 @@ The typical development process of dynamic memory is as follows:
 
 ### Development Example<a name="section84931234145913"></a>
 
-The example below implements the following:
+This example implements the following:
 
 1.  Initialize a dynamic memory pool.
 2.  Allocate a memory block from the dynamic memory pool.
@@ -166,10 +196,8 @@ The sample code is as follows:
 
 ```
 #include "los_memory.h"
-
 #define TEST_POOL_SIZE (2*1024)
 __attribute__((aligned(4))) UINT8 g_testPool[TEST_POOL_SIZE];
-
 VOID Example_DynMem(VOID)
 {
     UINT32 *mem = NULL;
@@ -178,19 +206,19 @@ VOID Example_DynMem(VOID)
  /* Initialize the memory pool. */
     ret = LOS_MemInit(g_testPool, TEST_POOL_SIZE);
     if (LOS_OK  == ret) {
-        printf("Memory pool initialized.\n");
+        printf("Mem init success!\n");
     } else {
-        printf("Memory pool initialization failed.\n");
+        printf("Mem init failed!\n");
         return;
     }
 
     /* Allocate memory.*/
     mem = (UINT32 *)LOS_MemAlloc(g_testPool, 4);
     if (NULL == mem) {
-        printf("Memory allocation failed.\n");
+        printf("Mem alloc failed!\n");
         return;
     }
-    printf("Memory allocated.\n");
+    printf("Mem alloc success!\n");
 
     /* Assign a value.*/
     *mem = 828;
@@ -199,9 +227,9 @@ VOID Example_DynMem(VOID)
     /* Release memory.*/
     ret = LOS_MemFree(g_testPool, mem);
     if (LOS_OK == ret) {
-        printf("Memory released.\n");
+        printf("Mem free success!\n");
     } else {
-        printf("Memory release failed.\n");
+        printf("Mem free failed!\n");
     }
 
     return;
@@ -213,9 +241,9 @@ VOID Example_DynMem(VOID)
 The output is as follows:
 
 ```
-Memory pool initialized.
-Memory allocated.
+Mem init success!
+Mem alloc success!
 *mem = 828
-Memory released.
+Mem free success!
 ```
 

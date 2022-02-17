@@ -1,40 +1,46 @@
-# 事件<a name="ZH-CN_TOPIC_0000001078753124"></a>
+# 事件
 
--   [基本概念](#section122115620816)
--   [运行机制](#section94611116593)
-    -   [事件控制块](#section1161415384467)
-    -   [事件运作原理](#section187761153144617)
+- [基本概念](#基本概念)
+- [运行机制](#运行机制)
+  - [事件控制块](#事件控制块)
+  - [事件运作原理](#事件运作原理)
+- [开发指导](#开发指导)
+  - [接口说明](#接口说明)
+  - [开发流程](#开发流程)
+- [编程实例](#编程实例)
+  - [实例描述](#实例描述)
+  - [编程示例](#编程示例)
+  - [结果验证](#结果验证)
 
--   [开发指导](#section44744471891)
-    -   [接口说明](#section172373513919)
-    -   [开发流程](#section1118215161013)
-    -   [编程实例](#section19986143311020)
-    -   [实例描述](#section128221510145718)
-    -   [编程示例](#section71507479577)
-    -   [结果验证](#section16570171645813)
-
-
-## 基本概念<a name="section122115620816"></a>
+## 基本概念
 
 事件（Event）是一种任务间通信的机制，可用于任务间的同步。
 
 多任务环境下，任务之间往往需要同步操作，一个等待即是一个同步。事件可以提供一对多、多对多的同步操作。
 
--   一对多同步模型：一个任务等待多个事件的触发。可以是任意一个事件发生时唤醒任务处理事件，也可以是几个事件都发生后才唤醒任务处理事件。
--   多对多同步模型：多个任务等待多个事件的触发。
+- 一对多同步模型：一个任务等待多个事件的触发。可以是任意一个事件发生时唤醒任务处理事件，也可以是几个事件都发生后才唤醒任务处理事件。
+
+- 多对多同步模型：多个任务等待多个事件的触发。
 
 OpenHarmony LiteOS-A的事件模块提供的事件，具有如下特点：
 
--   任务通过创建事件控制块来触发事件或等待事件。
--   事件间相互独立，内部实现为一个32位无符号整型，每一位标识一种事件类型。第25位不可用，因此最多可支持31种事件类型。
--   事件仅用于任务间的同步，不提供数据传输功能。
--   多次向事件控制块写入同一事件类型，在被清零前等效于只写入一次。
--   多个任务可以对同一事件进行读写操作。
--   支持事件读写超时机制。
+- 任务通过创建事件控制块来触发事件或等待事件。
 
-## 运行机制<a name="section94611116593"></a>
+- 事件间相互独立，内部实现为一个32位无符号整型，每一位标识一种事件类型。第25位不可用，因此最多可支持31种事件类型。
 
-### 事件控制块<a name="section1161415384467"></a>
+- 事件仅用于任务间的同步，不提供数据传输功能。
+
+- 多次向事件控制块写入同一事件类型，在被清零前等效于只写入一次。
+
+- 多个任务可以对同一事件进行读写操作。
+
+- 支持事件读写超时机制。
+
+
+## 运行机制
+
+
+### 事件控制块
 
 ```
 /**
@@ -46,7 +52,8 @@ typedef struct tagEvent {
 } EVENT_CB_S, *PEVENT_CB_S;
 ```
 
-### 事件运作原理<a name="section187761153144617"></a>
+
+### 事件运作原理
 
 **事件初始化**：会创建一个事件控制块，该控制块维护一个已处理的事件集合，以及等待特定事件的任务链表。
 
@@ -56,105 +63,80 @@ typedef struct tagEvent {
 
 读事件条件满足与否取决于入参eventMask和mode，eventMask即需要关注的事件类型掩码。mode是具体处理方式，分以下三种情况：
 
--   LOS\_WAITMODE\_AND：逻辑与，基于接口传入的事件类型掩码eventMask，只有这些事件都已经发生才能读取成功，否则该任务将阻塞等待或者返回错误码。
--   LOS\_WAITMODE\_OR：逻辑或，基于接口传入的事件类型掩码eventMask，只要这些事件中有任一种事件发生就可以读取成功，否则该任务将阻塞等待或者返回错误码。
--   LOS\_WAITMODE\_CLR：这是一种附加读取模式，需要与所有事件模式或任一事件模式结合使用（LOS\_WAITMODE\_AND | LOS\_WAITMODE\_CLR或 LOS\_WAITMODE\_OR | LOS\_WAITMODE\_CLR）。在这种模式下，当设置的所有事件模式或任一事件模式读取成功后，会自动清除事件控制块中对应的事件类型位。
+- LOS_WAITMODE_AND：逻辑与，基于接口传入的事件类型掩码eventMask，只有这些事件都已经发生才能读取成功，否则该任务将阻塞等待或者返回错误码。
+
+- LOS_WAITMODE_OR：逻辑或，基于接口传入的事件类型掩码eventMask，只要这些事件中有任一种事件发生就可以读取成功，否则该任务将阻塞等待或者返回错误码。
+
+- LOS_WAITMODE_CLR：这是一种附加读取模式，需要与所有事件模式或任一事件模式结合使用（LOS_WAITMODE_AND | LOS_WAITMODE_CLR或 LOS_WAITMODE_OR | LOS_WAITMODE_CLR）。在这种模式下，当设置的所有事件模式或任一事件模式读取成功后，会自动清除事件控制块中对应的事件类型位。
 
 **事件清零**：根据指定掩码，去对事件控制块的事件集合进行清零操作。当掩码为0时，表示将事件集合全部清零。当掩码为0xffff时，表示不清除任何事件，保持事件集合原状。
 
 **事件销毁**：销毁指定的事件控制块。
 
-**图 1**  事件运作原理图<a name="fig17799175324612"></a>  
-![](figure/事件运作原理图-21.png "事件运作原理图-21")
+**图1** 小型系统事件运作原理图
+![zh-cn_image_0000001180952545](figures/zh-cn_image_0000001180952545.png)
 
-## 开发指导<a name="section44744471891"></a>
 
-### 接口说明<a name="section172373513919"></a>
+## 开发指导
+
+
+### 接口说明
 
 OpenHarmony LiteOS-A内核的事件模块提供下面几种功能。
 
-**表 1**  事件模块接口
+**表1** 事件模块接口
 
-<a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>功能分类</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>接口<strong id="b197068338312"><a name="b197068338312"></a><a name="b197068338312"></a>名称</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="57.34573457345735%" id="mcps1.2.4.1.3"><p id="p1641533755612"><a name="p1641533755612"></a><a name="p1641533755612"></a>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row0415737175610"><td class="cellrowborder" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p9598124913544"><a name="p9598124913544"></a><a name="p9598124913544"></a>初始化事件</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p77891354175812"><a name="p77891354175812"></a><a name="p77891354175812"></a>LOS_EventInit</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p2334141425515"><a name="p2334141425515"></a><a name="p2334141425515"></a>初始化一个事件控制块</p>
-</td>
-</tr>
-<tr id="row421753455514"><td class="cellrowborder" rowspan="2" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p13441112105813"><a name="p13441112105813"></a><a name="p13441112105813"></a>读/写事件</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p17234205011559"><a name="p17234205011559"></a><a name="p17234205011559"></a>LOS_EventRead</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p1621275475517"><a name="p1621275475517"></a><a name="p1621275475517"></a>读取指定事件类型，超时时间为相对时间：单位为Tick</p>
-</td>
-</tr>
-<tr id="row13129193718555"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p17477615564"><a name="p17477615564"></a><a name="p17477615564"></a>LOS_EventWrite</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p10271958567"><a name="p10271958567"></a><a name="p10271958567"></a>写指定的事件类型</p>
-</td>
-</tr>
-<tr id="row1831124035511"><td class="cellrowborder" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p1313401559"><a name="p1313401559"></a><a name="p1313401559"></a>清除事件</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p7788152419567"><a name="p7788152419567"></a><a name="p7788152419567"></a>LOS_EventClear</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p14862153525620"><a name="p14862153525620"></a><a name="p14862153525620"></a>清除指定的事件类型</p>
-</td>
-</tr>
-<tr id="row1525316428553"><td class="cellrowborder" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p4253144265519"><a name="p4253144265519"></a><a name="p4253144265519"></a>校验事件掩码</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p768611115563"><a name="p768611115563"></a><a name="p768611115563"></a>LOS_EventPoll</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p13998115465617"><a name="p13998115465617"></a><a name="p13998115465617"></a>根据用户传入的事件ID、事件掩码及读取模式，返回用户传入的事件是否符合预期</p>
-</td>
-</tr>
-<tr id="row6447135825614"><td class="cellrowborder" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p104471658155615"><a name="p104471658155615"></a><a name="p104471658155615"></a>销毁事件</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p15259169573"><a name="p15259169573"></a><a name="p15259169573"></a>LOS_EventDestroy</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p32592615573"><a name="p32592615573"></a><a name="p32592615573"></a>销毁指定的事件控制块</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 功能分类 | 接口**名称** | 描述 |
+| -------- | -------- | -------- |
+| 初始化事件 | LOS_EventInit | 初始化一个事件控制块 |
+| 读/写事件 | LOS_EventRead | 读取指定事件类型，超时时间为相对时间：单位为Tick |
+|  | LOS_EventWrite |写指定的事件类型|
+| 清除事件 | LOS_EventClear | 清除指定的事件类型 |
+| 校验事件掩码 | LOS_EventPoll | 根据用户传入的事件ID、事件掩码及读取模式，返回用户传入的事件是否符合预期 |
+| 销毁事件 | LOS_EventDestroy | 销毁指定的事件控制块 |
 
-### 开发流程<a name="section1118215161013"></a>
+
+### 开发流程
 
 事件的典型开发流程：
 
-1.  初始化事件控制块
-2.  阻塞读事件控制块
-3.  写入相关事件
-4.  阻塞任务被唤醒，读取事件并检查是否满足要求
-5.  处理事件控制块
-6.  事件控制块销毁
+1. 初始化事件控制块
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->-   进行事件读写操作时，事件的第25位为保留位，不可以进行位设置。
->-   对同一事件反复写入，算作一次写入。
+2. 阻塞读事件控制块
 
-### 编程实例<a name="section19986143311020"></a>
+3. 写入相关事件
 
-### 实例描述<a name="section128221510145718"></a>
+4. 阻塞任务被唤醒，读取事件并检查是否满足要求
 
-示例中，任务Example\_TaskEntry创建一个任务Example\_Event，Example\_Event读事件阻塞，Example\_TaskEntry向该任务写事件。可以通过示例日志中打印的先后顺序理解事件操作时伴随的任务切换。
+5. 处理事件控制块
 
-1.  在任务Example\_TaskEntry创建任务Example\_Event，其中任务Example\_Event优先级高于Example\_TaskEntry。
-2.  在任务Example\_Event中读事件0x00000001，阻塞，发生任务切换，执行任务Example\_TaskEntry。
-3.  在任务Example\_TaskEntry向任务Example\_Event写事件0x00000001，发生任务切换，执行任务Example\_Event。
-4.  Example\_Event得以执行，直到任务结束。
-5.  Example\_TaskEntry得以执行，直到任务结束。
+6. 事件控制块销毁
 
-### 编程示例<a name="section71507479577"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 进行事件读写操作时，事件的第25位为保留位，不可以进行位设置。
+> 
+> - 对同一事件反复写入，算作一次写入。
+
+
+## 编程实例
+
+
+### 实例描述
+
+示例中，任务Example_TaskEntry创建一个任务Example_Event，Example_Event读事件阻塞，Example_TaskEntry向该任务写事件。可以通过示例日志中打印的先后顺序理解事件操作时伴随的任务切换。
+
+1. 在任务Example_TaskEntry创建任务Example_Event，其中任务Example_Event优先级高于Example_TaskEntry。
+
+2. 在任务Example_Event中读事件0x00000001，阻塞，发生任务切换，执行任务Example_TaskEntry。
+
+3. 在任务Example_TaskEntry向任务Example_Event写事件0x00000001，发生任务切换，执行任务Example_Event。
+
+4. Example_Event得以执行，直到任务结束。
+
+5. Example_TaskEntry得以执行，直到任务结束。
+
+
+### 编程示例
 
 示例代码如下：
 
@@ -237,7 +219,8 @@ UINT32 Example_EventEntry(VOID)
 }
 ```
 
-### 结果验证<a name="section16570171645813"></a>
+
+### 结果验证
 
 编译运行得到的结果为：
 
@@ -248,4 +231,3 @@ Example_Event,read event :0x1
 EventMask:1
 EventMask:0
 ```
-

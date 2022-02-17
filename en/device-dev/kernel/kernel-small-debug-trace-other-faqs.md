@@ -1,16 +1,19 @@
 # Common Fault Locating Methods<a name="EN-US_TOPIC_0000001079096842"></a>
 
-## Locating the Fault based on Exception Information<a name="section695838161711"></a>
+-   [Locating the Fault Based on Exception Information](#section695838161711)
+-   [Checking Memory Pool Integrity](#section362917569179)
+-   [Locating Memory Overwriting for a Global Variable](#section18971311121816)
+
+## Locating the Fault Based on Exception Information<a name="section695838161711"></a>
 
 When the system is suspended unexpectedly, information about key registers is displayed on the serial port, as shown in the following figure. The information can be used to locate the function where the exception occurs and the related call stack.
 
-Exception information
-
-![](figure/en-us_image_0000001173429547.png)
+**Figure  1**  Exception information<a name="fig145320227816"></a>  
+![](figures/exception-information.png "exception-information")
 
 The exception information in the preceding figure is described as follows:
 
-①: indicates that the exception occurs in the kernel space.
+①: indicates that the exception is in kernel mode.
 
 ②: indicates the exception type. The value of  **far**  is the address accessed by the CPU when the exception occurs.
 
@@ -24,7 +27,7 @@ You also need to check the  **OHOS\_Image.asm**  file \(assembly file correspond
 
 You may not directly locate the fault only with the exception information. Sometimes, the fault cannot be located due to incorrect register values. If you suspect that the fault is caused by heap memory overwriting, you can call  **LOS\_MemIntegrityCheck**  to check the memory pool integrity. The  **LOS\_MemIntegrityCheck**  function traverses all nodes in the dynamic memory pool of the system. If all nodes are normal, the function returns  **0**  and no information is printed. Otherwise, error information is printed. This function uses  **\(VOID \*\)OS\_SYS\_MEM\_ADDR**  as the input parameter.
 
-Generally,  **LOS\_MemIntegrityCheck**  is called before and after the suspected service logic code to locate the heap memory overwriting. If the service code is correct,  **LOS\_MemIntegrityCheck**  can be called successfully. By doing this, you can narrow down and locate the fault.
+Generally,  **LOS\_MemIntegrityCheck**  is called before and after the suspected service logic code to locate the heap memory overwriting. If the service code is correct,  **LOS\_MemIntegrityCheck**  can be called successfully. By doing this, you can improve the troubleshooting efficiency.
 
 ## Locating Memory Overwriting for a Global Variable<a name="section18971311121816"></a>
 

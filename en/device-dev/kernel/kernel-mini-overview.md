@@ -1,15 +1,18 @@
 # Kernel Overview<a name="EN-US_TOPIC_0000001123863153"></a>
 
+-   [Overview](#section1429342661510)
+    -   [CPU Architecture Support](#section48891456112819)
+    -   [Working Principles](#section4599142312817)
+
+
 ## Overview<a name="section1429342661510"></a>
 
-The OpenHarmony LiteOS-M kernel is a lightweight operating system \(OS\) kernel designed for the IoT field. It features small size, low power consumption, and high performance. The LiteOS-M kernel has simple code structure, including the minimum function set, kernel abstraction layer, optional components, and project directory.
+The OpenHarmony LiteOS-M kernel is a lightweight operating system \(OS\) kernel designed for the IoT field. It features small size, low power consumption, and high performance. The LiteOS-M kernel has simple code structure, including the minimum function set, kernel abstraction layer \(KAL\), optional components, and project directory. It supports the Hardware Driver Foundation \(HDF\), which provides unified driver standards and access mode for device vendors to simplify porting of drivers and allow one-time development for multi-device deployment.
 
-The OpenHarmony LiteOS-M kernel architecture consists of the  hardware layer and the hardware-irrelevant layers, as shown in  [Figure Kernel architecture](#fig17231457191415).
+The OpenHarmony LiteOS-M kernel architecture consists of the hardware layer and hardware-irrelevant layers, as shown in  [Figure 1](#fig1287712172318). The hardware layer is classified based on the compiler toolchain and chip architecture, and provides a unified Hardware Abstraction Layer \(HAL\) interface to improve hardware adaptation and facilitate the expansion of various types of AIoT hardware and compilation toolchains. The other modules are irrelevant to the hardware. The basic kernel module provides basic kernel capabilities. The extended modules provide capabilities of components, such as the network and file systems, as well as exception handling and debug tools. The KAL provides unified standard APIs.
 
-The hardware layer is classified based on the compilation toolchain and chip architecture, and provides a unified Hardware Abstraction Layer \(HAL\) interface to improve hardware adaptation and facilitate the expansion of various types of &IoT hardware and compilation toolchains. The basic kernel provides basic kernel capabilities. The extended modules provide capabilities of components, such as network and file systems, as well as exception handling and debug tools. The Kernel Abstraction Layer \(**KAL**\) provides unified standard APIs.
-
-**Figure  1**  Kernel architecture<a name="fig17231457191415"></a>  
-![](figure/kernel-architecture.png "kernel-architecture")
+**Figure  1**  Kernel architecture<a name="fig1287712172318"></a>  
+![](figures/kernel-architecture.png "kernel-architecture")
 
 ### CPU Architecture Support<a name="section48891456112819"></a>
 
@@ -54,8 +57,8 @@ LiteOS-M supports mainstream architectures, such as ARM Cortex-M3, ARM Cortex-M4
 
 ### Working Principles<a name="section4599142312817"></a>
 
-Configure the system clock and number of ticks per second in the  **target\_config.h**  file of the development board. Configure the task, memory, inter-process communication \(IPC\), and exception handling modules based on service requirements. When the system boots, the modules are initialized based on the configuration. The kernel startup process includes peripheral initialization, system clock configuration, kernel initialization, and OS boot. For details, see  [Figure 2](#fig19742101817344).
+Configure the system clock and number of ticks per second in the  **target\_config.h**  file of the development board. Configure the task, memory, inter-process communication \(IPC\), and exception handling modules based on service requirements. When the system boots, the modules are initialized based on the configuration. The kernel startup process includes peripheral initialization, system clock configuration, kernel initialization, and OS boot. For details, see  [Figure 2](#fig74259220441).
 
-**Figure  2**  Kernel startup process<a name="fig19742101817344"></a>  
-![](figure/kernel-startup-process.png "kernel-startup-process")
+**Figure  2**  Kernel startup process<a name="fig74259220441"></a>  
+![](figures/kernel-startup-process.png "kernel-startup-process")
 

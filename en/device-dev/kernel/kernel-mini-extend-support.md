@@ -1,5 +1,13 @@
 # C++ Support<a name="EN-US_TOPIC_0000001079036442"></a>
 
+-   [Basic Concepts](#section11374125415814)
+-   [Working Principles](#section189351319134418)
+-   [Development Guidelines](#section166302407911)
+    -   [Available APIs](#section1881825119919)
+    -   [How to Develop](#section76371145108)
+    -   [Development Example](#section994427141111)
+
+
 ## Basic Concepts<a name="section11374125415814"></a>
 
 As one of the most widely used programming languages, C++ supports features, such as classes, encapsulation, and overloading. It is an object-oriented programming language developed based on the C language.
@@ -15,7 +23,7 @@ The compiler supports C++ code identification. The system calls the constructors
 **Table  1**  APIs supported by C++
 
 <a name="table14277123518139"></a>
-<table><thead align="left"><tr id="row152771935131315"><th class="cellrowborder" valign="top" width="23.792379237923793%" id="mcps1.2.4.1.1"><p id="p1127733591316"><a name="p1127733591316"></a><a name="p1127733591316"></a>Category</p>
+<table><thead align="left"><tr id="row152771935131315"><th class="cellrowborder" valign="top" width="23.792379237923793%" id="mcps1.2.4.1.1"><p id="p1127733591316"><a name="p1127733591316"></a><a name="p1127733591316"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="33.02330233023302%" id="mcps1.2.4.1.2"><p id="p22771357138"><a name="p22771357138"></a><a name="p22771357138"></a>API</p>
 </th>

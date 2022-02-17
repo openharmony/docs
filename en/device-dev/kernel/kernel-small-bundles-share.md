@@ -1,14 +1,17 @@
 # Virtual Dynamic Shared Object<a name="EN-US_TOPIC_0000001078863800"></a>
 
+-   [Basic Concepts](#section174577181688)
+-   [Working Principles](#section546363114810)
+
 ## Basic Concepts<a name="section174577181688"></a>
 
-Different from a common dynamic shared library, which stores its so files in the file system, the virtual dynamic shared object \(VDSO\) has its so files stored in the system image. The kernel determines the so files and provides them to the application program. That is why the VDSO is called a virtual dynamic shared library.
+Different from a common dynamic shared library, which stores its .so files in the file system, the virtual dynamic shared object \(VDSO\) has its .so files stored in the system image. The kernel determines the .so files needed and provides them to the application program. That is why the VDSO is called a virtual dynamic shared library.
 
-The VDSO mechanism allows OpenHarmony user-space programs to quickly obtain kernel-related data. It can accelerate certain system calls and implement quick read of non-sensitive data \(hardware and software configuration\).
+The VDSO mechanism allows OpenHarmony user-mode programs to quickly obtain kernel-related data. It can accelerate certain system calls and implement quick read of non-sensitive data \(hardware and software configuration\).
 
 ## Working Principles<a name="section546363114810"></a>
 
-The VDSO can be regarded as a section of memory \(read-only\) maintained by the kernel and mapped to the address space of the user-space applications. By linking  **vdso.so**, the applications can directly access this mapped memory instead of invoking system calls, accelerating application execution.
+The VDSO can be regarded as a section of memory \(read-only\) maintained by the kernel and mapped to the address space of the user-mode applications. By linking  **vdso.so**, the applications can directly access this mapped memory instead of invoking system calls, accelerating application execution.
 
 VDSO can be divided into:
 
@@ -16,7 +19,7 @@ VDSO can be divided into:
 -   Code page: provides the logic for shielding system calls.
 
 **Figure  1**  VDSO system design<a name="fig1986131094711"></a>  
-![](figure/vdso-system-design.jpg "vdso-system-design")
+![](figures/vdso-system-design.jpg "vdso-system-design")
 
 The VDSO mechanism involves the following steps:
 

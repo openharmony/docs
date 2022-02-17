@@ -1,5 +1,12 @@
 # partinfo<a name="EN-US_TOPIC_0000001179845931"></a>
 
+-   [Command Function](#section1777503617199)
+-   [Syntax](#section185501447132114)
+-   [Parameters](#section1304151212252)
+-   [Usage](#section4566131982520)
+-   [Example](#section4351134942514)
+-   [Output](#section66689331412)
+
 ## Command Function<a name="section1777503617199"></a>
 
 This command is used to query information about the partitions of a hard disk or SD card identified by the system.
@@ -41,5 +48,17 @@ Run  **partinfo /dev/mmcblk0p0**.
 
 ## Output<a name="section66689331412"></a>
 
-![](figure/en-us_image_0000001133848906.png)
+System partition information:
+
+```
+OHOS # partinfo /dev/mmcblk0p0
+part info :
+disk id          : 0
+part_id in system: 1
+part no in disk  : 0
+part no in mbr   : 0
+part filesystem  : 00
+part sec start   : 20480
+part sec count   : 102400
+```
 

@@ -1,12 +1,19 @@
 # rm<a name="EN-US_TOPIC_0000001134006266"></a>
 
+-   [Command Function](#section181141523142613)
+-   [Syntax](#section8800926132619)
+-   [Parameters](#section15476229152617)
+-   [Usage](#section10578163215262)
+-   [Example](#section18548133511263)
+-   [Output](#section1565323814265)
+
 ## Command Function<a name="section181141523142613"></a>
 
 This command is used to delete a file or folder.
 
 ## Syntax<a name="section8800926132619"></a>
 
-rm \[_-r_\] \[_dirname / filename_\]
+rm \[_-fv_\]  _FILE or rm_  \[_-rv_\] \[_PATH_  |  _filename_\]...
 
 ## Parameters<a name="section15476229152617"></a>
 
@@ -21,18 +28,32 @@ rm \[_-r_\] \[_dirname / filename_\]
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1520mcpsimp"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p1522mcpsimp"><a name="p1522mcpsimp"></a><a name="p1522mcpsimp"></a>-r</p>
+<tbody><tr id="row231513373307"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p73091437173016"><a name="p73091437173016"></a><a name="p73091437173016"></a>-r</p>
 </td>
-<td class="cellrowborder" valign="top" width="51.519999999999996%" headers="mcps1.2.4.1.2 "><p id="p1524mcpsimp"><a name="p1524mcpsimp"></a><a name="p1524mcpsimp"></a>Deletes a directory. This parameter is optional. It is required if a directory is to be deleted.</p>
+<td class="cellrowborder" valign="top" width="51.519999999999996%" headers="mcps1.2.4.1.2 "><p id="p630917373307"><a name="p630917373307"></a><a name="p630917373307"></a>Deletes empty or non-empty directories.</p>
 </td>
-<td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.2.4.1.3 "><p id="p1526mcpsimp"><a name="p1526mcpsimp"></a><a name="p1526mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.2.4.1.3 "><p id="p1430943753016"><a name="p1430943753016"></a><a name="p1430943753016"></a>N/A</p>
 </td>
 </tr>
-<tr id="row1527mcpsimp"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p1529mcpsimp"><a name="p1529mcpsimp"></a><a name="p1529mcpsimp"></a>dirname/filename</p>
+<tr id="row1231583773013"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p19309203763010"><a name="p19309203763010"></a><a name="p19309203763010"></a>-f</p>
 </td>
-<td class="cellrowborder" valign="top" width="51.519999999999996%" headers="mcps1.2.4.1.2 "><p id="p1531mcpsimp"><a name="p1531mcpsimp"></a><a name="p1531mcpsimp"></a>Specifies the name of the file or directory to be deleted. The value can be a path.</p>
+<td class="cellrowborder" valign="top" width="51.519999999999996%" headers="mcps1.2.4.1.2 "><p id="p53092373308"><a name="p53092373308"></a><a name="p53092373308"></a>Deletes a file or directory forcibly without confirmation. No error will be reported when a file that does not exist is to be deleted.</p>
 </td>
-<td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.2.4.1.3 "><p id="p1533mcpsimp"><a name="p1533mcpsimp"></a><a name="p1533mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.2.4.1.3 "><p id="p8309937153018"><a name="p8309937153018"></a><a name="p8309937153018"></a>N/A</p>
+</td>
+</tr>
+<tr id="row331513719302"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p5309103733013"><a name="p5309103733013"></a><a name="p5309103733013"></a>-v</p>
+</td>
+<td class="cellrowborder" valign="top" width="51.519999999999996%" headers="mcps1.2.4.1.2 "><p id="p1830913711300"><a name="p1830913711300"></a><a name="p1830913711300"></a>Displays the deletion process.</p>
+</td>
+<td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.2.4.1.3 "><p id="p230933703015"><a name="p230933703015"></a><a name="p230933703015"></a>N/A</p>
+</td>
+</tr>
+<tr id="row173147371301"><td class="cellrowborder" valign="top" width="22.220000000000002%" headers="mcps1.2.4.1.1 "><p id="p14309143753012"><a name="p14309143753012"></a><a name="p14309143753012"></a>PATH/filename</p>
+</td>
+<td class="cellrowborder" valign="top" width="51.519999999999996%" headers="mcps1.2.4.1.2 "><p id="p193091637183016"><a name="p193091637183016"></a><a name="p193091637183016"></a>Specifies the name of the file or directory to delete. The value can be a path.</p>
+</td>
+<td class="cellrowborder" valign="top" width="26.26%" headers="mcps1.2.4.1.3 "><p id="p10309173711309"><a name="p10309173711309"></a><a name="p10309173711309"></a>N/A</p>
 </td>
 </tr>
 </tbody>
@@ -40,21 +61,40 @@ rm \[_-r_\] \[_dirname / filename_\]
 
 ## Usage<a name="section10578163215262"></a>
 
--   The  **rm**  command deletes only one file or directory at a time.
--   The  **rm -r**  command can be used to delete a non-empty directory.
+-   The  **rm**  command can be used to delete multiple files or folders at a time.
+-   You can run  **rm -r**  to delete a non-empty directory.
+-   If the  **rm**  command without  **-f**  is used to delete a file that does not exist, an error will be reported.
 
 ## Example<a name="section18548133511263"></a>
 
-Example:
+Run the following commands:
 
-1.  Run  **rm log1.txt**.
-2.  Run  **rm -r sd**.
+-   rm testfile
+-   rm -r testpath/
 
 ## Output<a name="section1565323814265"></a>
 
-**Figure  1**  Deleting the  **log1.txt**  file<a name="fig886111415523"></a>  
-![](figure/deleting-the-log1-txt-file.png "deleting-the-log1-txt-file")
+Example 1: deleting  **testfile**
 
-**Figure  2**  Deleting the  **sd**  directory<a name="fig20659194885211"></a>  
-![](figure/deleting-the-sd-directory.png "deleting-the-sd-directory")
+```
+OHOS:/$ ls
+bin  etc  proc    storage  testfile  usr
+dev  lib  sdcard  system   userdata  vendor
+OHOS:/$ rm testfile
+OHOS:/$ ls
+bin  etc  proc    storage  userdata  vendor
+dev  lib  sdcard  system   usr
+```
+
+Example 2: deleting  **testpath**, a non-empty directory
+
+```
+OHOS:/$ ls
+bin  etc  proc    storage  testpath  usr
+dev  lib  sdcard  system   userdata  vendor
+OHOS:/$ rm -r testpath/
+OHOS:/$ ls
+bin  etc  proc    storage  userdata  vendor
+dev  lib  sdcard  system   usr
+```
 

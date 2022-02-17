@@ -1,5 +1,12 @@
 # Memory Corruption Check<a name="EN-US_TOPIC_0000001079036352"></a>
 
+-   [Basic Concepts](#section17368154517335)
+-   [Function Configuration](#section4696190123420)
+-   [Development Guidelines](#section672362973417)
+    -   [How to Develop](#section026014863416)
+    -   [Development Example](#section186311302356)
+
+
 ## Basic Concepts<a name="section17368154517335"></a>
 
 As an optional function of the kernel, memory corruption check is used to check the integrity of a dynamic memory pool. This mechanism can detect memory corruption errors in the memory pool in a timely manner and provide alerts. It helps reduce problem locating costs and increase troubleshooting efficiency.
@@ -21,7 +28,7 @@ This check only detects the corrupted memory node and provides information about
 
 ### How to Develop<a name="section026014863416"></a>
 
-Check for memory corruption by calling  **LOS\_MemIntegrityCheck**. If no memory corruption occurs,  **0**  is returned and no log is output. If memory corruption occurs, related log is output. For details, see the output of the following example.
+Check for memory corruption by calling  **LOS\_MemIntegrityCheck**. If no memory corruption occurs,  **0**  is returned and no log is output. If memory corruption occurs, the related log is output. For details, see the output of the following example.
 
 ### Development Example<a name="section186311302356"></a>
 

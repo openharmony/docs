@@ -1,6 +1,6 @@
-# User-Space Exception Information<a name="EN-US_TOPIC_0000001134006276"></a>
+# User-Mode Exception Information<a name="EN-US_TOPIC_0000001134006276"></a>
 
-During the running of the user space, the following system exception may occur:
+During the running of the user mode, the following system exception may occur:
 
 ```
 ##################excFrom: User!####################
@@ -58,7 +58,7 @@ traceback 0 -- lr = 0x229123a4    fp = 0x0 lr in /lib/libc.so --> 0x213a4
 system memcheck over, all passed!
 ```
 
-The following information is included:
+The system exception includes the following information:
 
 1.  Basic information about the user-mode exception:
 
@@ -131,6 +131,6 @@ The following information is included:
     system memcheck over, all passed!
     ```
 
-    Based on the preceding information, you can analyze the causes of the user-space exception.
+    Based on the preceding information, you can analyze the causes of the user-mode exception.
 
 
