@@ -5,6 +5,7 @@
     -   [ParticleAbility Module](js-apis-particleAbility.md)
     -   [DataAbilityHelper Module](js-apis-dataAbilityHelper.md)
     -   [DataUriUtils Module](js-apis-DataUriUtils.md)
+    -   [Bundle Module](js-apis-Bundle.md)
     -   [Context Module](js-apis-Context.md)
 - Event Notification
     -   [CommonEvent Module](js-apis-commonEvent.md)
@@ -20,14 +21,16 @@
 -   Security
     - [User Authentication](js-apis-useriam-userauth.md)
 -   Data Management
-    -   [File Management](js-apis-fileio.md)
     -   [Lightweight Storage](js-apis-data-storage.md)
     -   [Distributed Data Management](js-apis-distributed-data.md)
     -   [Relational Database](js-apis-data-rdb.md)
     -   [Result Set](js-apis-data-resultset.md)
     -   [DataAbilityPredicates](js-apis-data-ability.md)
+-   File Management
+    -   [File Management](js-apis-fileio.md)
 -   Account Management
     -   [Distributed Account Management](js-apis-distributed-account.md)
+    -   [Application Account Management](js-apis-appAccount.md)
 -   Telephony Service
     -   [Call](js-apis-call.md)
     -   [SMS](js-apis-sms.md)
@@ -61,6 +64,8 @@
     -   [HiAppEvent](js-apis-hiappevent.md)
     -   [Performance Tracing](js-apis-bytrace.md)
     -   [Fault Logger](js-apis-faultLogger.md)
+    -   [WebGL](js-apis-webgl.md)
+    -   [WebGL2](js-apis-webgl2.md)
 -   Language Base Class Library
     -   [Obtaining Process Information](js-apis-process.md)
     -   [URL String Parsing](js-apis-url.md)
