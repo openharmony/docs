@@ -8,9 +8,9 @@
 import faultLogger from '@ohos.faultLogger'
 ```
 
-## Required Permissions
+## System Capabilities
 
-None
+SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 ## FaultType
 
