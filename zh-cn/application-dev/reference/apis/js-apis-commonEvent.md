@@ -113,7 +113,7 @@
 ## 导入模块
 
 ```js
-import CommonEvent from '@ohos.commonevent';
+import CommonEvent from '@ohos.commonEvent';
 ```
 
 ## 系统能力
@@ -179,6 +179,79 @@ function PublishCallBack(err) {
 }
 //发布公共事件
 CommonEvent.publish("publish_event", options, PublishCallBack);
+```
+
+
+
+## CommonEvent.publishAsUser
+
+publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
+
+向指定用户发布公共事件（callback形式）。
+
+**参数：**
+
+| 名称     | 读写属性 | 类型                 | 必填 | 描述                               |
+| -------- | -------- | -------------------- | ---- | ---------------------------------- |
+| event    | 只读     | string               | 是   | 表示要发送的公共事件。             |
+| userId   | 只读     | number               | 是   | 表示指定向该用户ID发送此公共事件。 |
+| callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法。             |
+
+**示例：**
+
+```js
+//发布公共事件回调
+function PublishAsUserCallBack(err) {
+	if (err.code) {
+        console.info("publishAsUser failed " + JSON.stringify(err));
+    } else {
+        console.info("publishAsUser");
+    }
+}
+//指定发送的用户
+var userId = 100;
+//发布公共事件
+CommonEvent.publish("publish_event", userId, PublishAsUserCallBack);
+```
+
+
+
+## CommonEvent.publishAsUser
+
+publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
+
+向指定用户发布公共事件并指定发布信息（callback形式）。
+
+**参数：**
+
+| 名称     | 读写属性 | 类型                   | 必填 | 描述                   |
+| -------- | -------- | ---------------------- | ---- | ---------------------- |
+| event    | 只读     | string                 | 是   | 表示要发布的公共事件。  |
+| userId | 只读 | number | 是 | 表示指定向该用户ID发送此公共事件。 |
+| options  | 只读     | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
+| callback | 只读     | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
+
+**示例：**
+
+
+```js
+//公共事件相关信息
+var options = {
+	code: 0;			 //公共事件的初始代码
+	data: "initial data";//公共事件的初始数据
+}
+//发布公共事件回调
+function PublishAsUserCallBack(err) {
+	if (err.code) {
+        console.info("publishAsUser failed " + JSON.stringify(err));
+    } else {
+        console.info("publishAsUser");
+    }
+}
+//指定发送的用户
+var userId = 100;
+//发布公共事件
+CommonEvent.publish("publish_event", userId, options, PublishAsUserCallBack);
 ```
 
 
