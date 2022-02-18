@@ -38,7 +38,7 @@ Describes battery information.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p188058527352"><a name="p188058527352"></a><a name="p188058527352"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="42.6%" headers="mcps1.1.6.1.5 "><p id="p103961315181818"><a name="p103961315181818"></a><a name="p103961315181818"></a>Battery state of charge (SoC) of the current device.</p>
+<td class="cellrowborder" valign="top" width="42.6%" headers="mcps1.1.6.1.5 "><p id="p103961315181818"><a name="p103961315181818"></a><a name="p103961315181818"></a>Battery state of charge (SoC) of the current device, in unit of percentage.</p>
 </td>
 </tr>
 <tr id="row0461622112513"><td class="cellrowborder" valign="top" width="21.58%" headers="mcps1.1.6.1.1 "><p id="p5354124120158"><a name="p5354124120158"></a><a name="p5354124120158"></a>chargingStatus</p>
@@ -82,7 +82,7 @@ Describes battery information.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p1580585263519"><a name="p1580585263519"></a><a name="p1580585263519"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="42.6%" headers="mcps1.1.6.1.5 "><p id="p127111826172018"><a name="p127111826172018"></a><a name="p127111826172018"></a>Battery voltage of the current device.</p>
+<td class="cellrowborder" valign="top" width="42.6%" headers="mcps1.1.6.1.5 "><p id="p127111826172018"><a name="p127111826172018"></a><a name="p127111826172018"></a>Battery voltage of the current device, in unit of microvolt.</p>
 </td>
 </tr>
 <tr id="row597319245451"><td class="cellrowborder" valign="top" width="21.58%" headers="mcps1.1.6.1.1 "><p id="p153551941141517"><a name="p153551941141517"></a><a name="p153551941141517"></a>technology</p>
@@ -104,7 +104,7 @@ Describes battery information.
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p980518523359"><a name="p980518523359"></a><a name="p980518523359"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="42.6%" headers="mcps1.1.6.1.5 "><p id="p7843573202"><a name="p7843573202"></a><a name="p7843573202"></a>Battery temperature of the current device.</p>
+<td class="cellrowborder" valign="top" width="42.6%" headers="mcps1.1.6.1.5 "><p id="p7843573202"><a name="p7843573202"></a><a name="p7843573202"></a>Battery temperature of the current device, in unit of 0.1°C.</p>
 </td>
 </tr>
 <tr id="row115952572810"><td class="cellrowborder" valign="top" width="21.58%" headers="mcps1.1.6.1.1 "><p id="p959152510281"><a name="p959152510281"></a><a name="p959152510281"></a>isBatteryPresent<sup id="sup15407935624"><a name="sup15407935624"></a><a name="sup15407935624"></a>7+</sup></p>
