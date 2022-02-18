@@ -1,8 +1,15 @@
 # RW Lock<a name="EN-US_TOPIC_0000001078912738"></a>
 
+-   [Basic Concepts](#section4692105214260)
+-   [Working Principles](#section1239111562720)
+-   [Development Guidelines](#section11643194275)
+    -   [Available APIs](#section15335332122717)
+    -   [How to Develop](#section14774114882714)
+
+
 ## Basic Concepts<a name="section4692105214260"></a>
 
-Similar to a mutex, a read-write lock \(RW lock\) can be used to synchronize tasks in the same process. Different from a mutex, an RW lock allows concurrent access for read operations, while write operations require exclusive access.
+Similar to a mutex, a read-write lock \(RW lock\) can be used to synchronize tasks in the same process. Different from a mutex, an RW lock allows concurrent access for read operations and exclusive access for write operations.
 
 An RW lock has three states: locked in read mode, locked in write mode, and unlocked.
 
@@ -30,7 +37,7 @@ How does an RW lock implement lock in read mode and lock in write mode to contro
 **Table  1**  Read/write lock module APIs
 
 <a name="table37108292611"></a>
-<table><thead align="left"><tr id="row8711112919610"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p3711102912617"><a name="p3711102912617"></a><a name="p3711102912617"></a>Category</p>
+<table><thead align="left"><tr id="row8711112919610"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p3711102912617"><a name="p3711102912617"></a><a name="p3711102912617"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p1671110293610"><a name="p1671110293610"></a><a name="p1671110293610"></a>API</p>
 </th>
@@ -107,7 +114,7 @@ If a lock in read mode is requested:
 
 If a lock in write mode is requested:
 
--   If the lock is not held or if the task that holds the lock in read mode is the same as the task that requests the lock in write mode, the task acquires the lock in write mode immediately.
+-   If the lock is not held or if the task that holds the lock in read mode is the one that requests the lock in write mode, the task acquires the lock in write mode immediately.
 -   If the lock already has a lock in read mode and the read task has a higher priority, the current task is suspended until the lock in read mode is released.
 
 3. There are three types of locks in read mode and write mode: non-block mode, permanent block mode, and scheduled block mode. The difference lies in the task suspension time.

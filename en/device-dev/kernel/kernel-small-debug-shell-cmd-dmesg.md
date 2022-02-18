@@ -1,8 +1,15 @@
 # dmesg<a name="EN-US_TOPIC_0000001179845915"></a>
 
+-   [Command Function](#section4643204919313)
+-   [Syntax](#section6553153635)
+-   [Parameters](#section208971157532)
+-   [Usage](#section213115219413)
+-   [Example](#section13736564418)
+-   [Output](#section194005101413)
+
 ## Command Function<a name="section4643204919313"></a>
 
-This command is used to control the dmesg buffer of the kernel.
+This command is used to display system boot and running information.
 
 ## Syntax<a name="section6553153635"></a>
 
@@ -45,14 +52,14 @@ dmesg \> \[_fileA_\]
 </tr>
 <tr id="row3927mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p3929mcpsimp"><a name="p3929mcpsimp"></a><a name="p3929mcpsimp"></a>-D/-E</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p3931mcpsimp"><a name="p3931mcpsimp"></a><a name="p3931mcpsimp"></a>Enables or disables printing to the console.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p3931mcpsimp"><a name="p3931mcpsimp"></a><a name="p3931mcpsimp"></a>Disables or enables printing to the console.</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p3933mcpsimp"><a name="p3933mcpsimp"></a><a name="p3933mcpsimp"></a>N/A</p>
 </td>
 </tr>
 <tr id="row3934mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p3936mcpsimp"><a name="p3936mcpsimp"></a><a name="p3936mcpsimp"></a>-L/-U</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p3938mcpsimp"><a name="p3938mcpsimp"></a><a name="p3938mcpsimp"></a>Enables or disables printing via the serial port.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p3938mcpsimp"><a name="p3938mcpsimp"></a><a name="p3938mcpsimp"></a>Disables or enables printing via the serial port.</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p3940mcpsimp"><a name="p3940mcpsimp"></a><a name="p3940mcpsimp"></a>N/A</p>
 </td>
@@ -73,7 +80,7 @@ dmesg \> \[_fileA_\]
 </tr>
 <tr id="row3955mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p3957mcpsimp"><a name="p3957mcpsimp"></a><a name="p3957mcpsimp"></a>&gt; fileA</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p3959mcpsimp"><a name="p3959mcpsimp"></a><a name="p3959mcpsimp"></a>Writes the content in the buffer to a file.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p717417317512"><a name="p717417317512"></a><a name="p717417317512"></a>Writes the content in the buffer to the specified file.</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p3961mcpsimp"><a name="p3961mcpsimp"></a><a name="p3961mcpsimp"></a>N/A</p>
 </td>
@@ -87,20 +94,22 @@ dmesg \> \[_fileA_\]
 
     Debug  ---\> Enable a Debug Version ---\> Enable Shell ---\> Enable Shell dmesg
 
--   If the parameters are not specified, all content in the buffer is printed.
+-   If no parameter is specified, all content in the buffer is printed.
 -   The parameters followed by hyphens \(-\) are mutually exclusive.
     1.  Before writing content to a file, ensure that the file system has been mounted.
-    2.  Disabling the serial port printing will adversely affect the shell. You are advised to set up a connection using Telnet before disabling the serial port.
+    2.  Disabling the serial port printing will adversely affect shell. You are advised to set up a connection using Telnet before disabling the serial port.
 
 
 ## Example<a name="section13736564418"></a>
 
-Example:
-
-Run  **dmesg \> /usr/dmesg.log**.
+Run  **dmesg\> dmesg.log**.
 
 ## Output<a name="section194005101413"></a>
 
-**Figure  1**  Writing dmesg content to a file<a name="fig11150135113566"></a>  
-![](figure/writing-dmesg-content-to-a-file.png "writing-dmesg-content-to-a-file")
+Writing the content in the buffer to the  **dmesg.log**  file:
+
+```
+OHOS # dmesg > dmesg.log
+Dmesg write log to dmesg.log success
+```
 

@@ -1,5 +1,11 @@
 # Doubly Linked List<a name="EN-US_TOPIC_0000001123753381"></a>
 
+-   [Basic Concepts](#section1990715203418)
+-   [Available APIs](#section848334511411)
+-   [How to Develop](#section01781261552)
+    -   [Development Example](#section8354175218128)
+
+
 ## Basic Concepts<a name="section1990715203418"></a>
 
 A doubly linked list is a linked data structure that consists of a set of sequentially linked records called nodes. Each node contains a pointer to the previous node and a pointer to the next node in the sequence of nodes. The pointer head is unique. A doubly linked list allows access from a list node to its next node and also the previous node on the list. This data structure facilitates data search, especially traversal of a large amount of data. The symmetry of the doubly linked list also makes operations, such as insertion and deletion, easy. However, pay attention to the pointer direction when performing operations.
@@ -9,7 +15,7 @@ A doubly linked list is a linked data structure that consists of a set of sequen
 The following table describes APIs available for the doubly linked list. For more details about the APIs, see the API reference.
 
 <a name="table9827162254713"></a>
-<table><tbody><tr id="row2089515228470"><td class="cellrowborder" valign="top" width="8.14%"><p id="p4895182214473"><a name="p4895182214473"></a><a name="p4895182214473"></a>Category</p>
+<table><tbody><tr id="row2089515228470"><td class="cellrowborder" valign="top" width="8.14%"><p id="p4895182214473"><a name="p4895182214473"></a><a name="p4895182214473"></a>Function</p>
 </td>
 <td class="cellrowborder" valign="top" width="32.09%"><p id="p58951922124713"><a name="p58951922124713"></a><a name="p58951922124713"></a>API</p>
 </td>
@@ -88,7 +94,7 @@ The following table describes APIs available for the doubly linked list. For mor
 </tr>
 <tr id="row893214104211"><td class="cellrowborder" valign="top"><p id="p149321243429"><a name="p149321243429"></a><a name="p149321243429"></a>LOS_DL_LIST_IS_ON_QUEUE</p>
 </td>
-<td class="cellrowborder" valign="top"><p id="p393211444212"><a name="p393211444212"></a><a name="p393211444212"></a>Check whether the linked list node is in a doubly linked list.</p>
+<td class="cellrowborder" valign="top"><p id="p393211444212"><a name="p393211444212"></a><a name="p393211444212"></a>Checks whether the linked list node is in a doubly linked list.</p>
 </td>
 </tr>
 <tr id="row128977221474"><td class="cellrowborder" rowspan="5" valign="top" width="8.14%"><p id="p138971322174717"><a name="p138971322174717"></a><a name="p138971322174717"></a>Obtaining structure information</p>
@@ -163,14 +169,14 @@ The typical development process of the doubly linked list is as follows:
 
 ### Development Example<a name="section8354175218128"></a>
 
-Example Description
+**Example Description**
 
 This example implements the following:
 
 1.  Initialize a doubly linked list.
 2.  Add nodes.
-3.  Delete a node.
-4.  Check whether the operation is performed successfully.
+3.  Delete nodes.
+4.  Check the operation result.
 
 ```
 #include "stdio.h"

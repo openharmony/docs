@@ -1,5 +1,12 @@
 # cd<a name="EN-US_TOPIC_0000001133846482"></a>
 
+-   [Command Function](#section11690184921316)
+-   [Syntax](#section75695409569)
+-   [Parameters](#section71961353181311)
+-   [Usage](#section3629759111317)
+-   [Example](#section211620301412)
+-   [Output](#section1968117214577)
+
 ## Command Function<a name="section11690184921316"></a>
 
 This command is used to change the current working directory.
@@ -23,7 +30,7 @@ cd \[_path_\]
 </thead>
 <tbody><tr id="row1100mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1102mcpsimp"><a name="p1102mcpsimp"></a><a name="p1102mcpsimp"></a>path</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1104mcpsimp"><a name="p1104mcpsimp"></a><a name="p1104mcpsimp"></a>Specifies the file path.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1104mcpsimp"><a name="p1104mcpsimp"></a><a name="p1104mcpsimp"></a>Specifies the target file path.</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1106mcpsimp"><a name="p1106mcpsimp"></a><a name="p1106mcpsimp"></a>You must have the execution (search) permission for the specified directory.</p>
 </td>
@@ -33,18 +40,25 @@ cd \[_path_\]
 
 ## Usage<a name="section3629759111317"></a>
 
--   If the  **path**  parameter is not specified, the system switches to the root directory.
--   If the  **path**  parameter is specified, the system switches to the specified path.
+-   If  **path**  is not specified, this command switches to the root directory.
+-   If  **path**  is specified, this command switches to the specified directory.
 -   The  **path**  value starting with a slash \(/\) represents the root directory.
 -   The  **path**  value starting with a dot \(.\) represents the current directory.
 -   The  **path**  value starting with two dots \(..\) represents the parent directory.
+-   You can run  **cd -**  to alternate between two directories that are recently accessed.
 
 ## Example<a name="section211620301412"></a>
 
-Run  **cd**.
+Run  **cd ..**.
 
 ## Output<a name="section1968117214577"></a>
 
-**Figure  1**  Changing the directory<a name="fig16500959144812"></a>  
-![](figure/changing-the-directory.png "changing-the-directory")
+Parent directory information:
+
+```
+OHOS:/nfs$ cd ../
+OHOS:/$ ls
+bin  etc  nfs   sdcard   system  tmp  vendor
+dev  lib  proc  storage  test    usr
+```
 

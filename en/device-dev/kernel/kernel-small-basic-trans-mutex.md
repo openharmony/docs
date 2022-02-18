@@ -1,8 +1,16 @@
 # Mutex<a name="EN-US_TOPIC_0000001078912734"></a>
 
+-   [Basic Concepts](#section85865329185)
+-   [Working Principles](#section8547454201819)
+-   [Development Guidelines](#section2038861117194)
+    -   [Available APIs](#section11168318131917)
+    -   [How to Develop](#section4201191122116)
+    -   [Development Example](#section10679328202117)
+
+
 ## Basic Concepts<a name="section85865329185"></a>
 
-A mutual exclusion \(mutex\) is a special binary semaphore used for exclusive access to shared resources. When a task holds the mutex, the task obtains the ownership of the mutex. When the task releases the mutex, the task will lose the ownership of the mutex. When a task holds a mutex, other tasks cannot hold the mutex. In an environment where multiple tasks compete for shared resources, the mutex can protect the shared resources via exclusive access.
+A mutual exclusion \(mutex\) is a special binary semaphore used for exclusive access to shared resources. When a task holds the mutex, the task obtains the ownership of the mutex. When the task releases the mutex, the task will lose the ownership of the mutex. When a task holds a mutex, other tasks cannot hold the mutex. In an environment where multiple tasks compete for shared resources, the mutex ensures exclusive access to the shared resources.
 
 A mutex has three attributes: protocol attribute, priority upper limit attribute, and type attribute. The protocol attribute is used to handle a mutex requested by tasks of different priorities. The protocol attribute can be any of the following:
 
@@ -12,7 +20,7 @@ A mutex has three attributes: protocol attribute, priority upper limit attribute
 
 -   LOS\_MUX\_PRIO\_INHERIT
 
-    Inherits the priority of the task that requests the mutex. This is the default protocol attribute. When the mutex protocol attribute is set to this value: If a task with a higher priority is blocked because the mutex is already held by a task, the priority of the task holding the mutex will be copied to the priority bitmap of the task control block, and then set to be the same as that of the task of a higher priority. When the task holding the mutex releases the mutex, the task priority is restored to its original value.
+    Inherits the priority of the task that requests the mutex. This is the default protocol attribute. When the mutex protocol attribute is set to this value: If a task with a higher priority is blocked because the mutex is already held by a task, the priority of the task holding the mutex will be backed up to the priority bitmap of the task control block, and then set to be the same as that of the task of a higher priority. When the task holding the mutex releases the mutex, its task priority is restored to its original value.
 
 -   LOS\_MUX\_PRIO\_PROTECT
 
@@ -27,7 +35,7 @@ The type attribute of a mutex specifies whether to check for deadlocks and wheth
 
 -   LOS\_MUX\_RECURSIVE
 
-    Recursive mutex, which is the default attribute. If the type attribute of a mutex is set to this value, a task can hold the mutex for multiple times. Another task can hold this mutex only when the number of lock holding times is the same as the number of lock release times. However, any attempt to hold a mutex held by another task or attempt to release a mutex that has been released will cause an error code.
+    Recursive mutex, which is the default attribute. If the type attribute of a mutex is set to this value, a task can hold the mutex for multiple times. Another task can hold this mutex only when the number of lock holding times is the same as the number of lock release times. However, any attempt to hold a mutex held by another task or attempt to release a mutex that has been released will return an error code.
 
 -   LOS\_MUX\_ERRORCHECK
 
@@ -40,8 +48,8 @@ In a multi-task environment, multiple tasks may access the same shared resource.
 
 When non-shared resources are accessed by a task, the mutex is locked. Other tasks will be blocked until the mutex is released by the task. The mutex allows only one task to access the shared resources at a time, ensuring integrity of operations on the shared resources.
 
-**Figure  1**  Mutex working mechanism<a name="fig16821181173811"></a>  
-![](figure/mutex-working-mechanism-23.png "mutex-working-mechanism-23")
+**Figure  1**  Mutex working mechanism for small systems<a name="fig16821181173811"></a>  
+![](figures/mutex-working-mechanism-for-small-systems.png "mutex-working-mechanism-for-small-systems")
 
 ## Development Guidelines<a name="section2038861117194"></a>
 
@@ -50,7 +58,7 @@ When non-shared resources are accessed by a task, the mutex is locked. Other tas
 **Table  1**  Mutex module APIs
 
 <a name="table37108292611"></a>
-<table><thead align="left"><tr id="row8711112919610"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p3711102912617"><a name="p3711102912617"></a><a name="p3711102912617"></a>Category</p>
+<table><thead align="left"><tr id="row8711112919610"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p3711102912617"><a name="p3711102912617"></a><a name="p3711102912617"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="33.31333133313331%" id="mcps1.2.4.1.2"><p id="p1671110293610"><a name="p1671110293610"></a><a name="p1671110293610"></a>API</p>
 </th>
@@ -79,7 +87,7 @@ When non-shared resources are accessed by a task, the mutex is locked. Other tas
 </tr>
 <tr id="row5711192912616"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p7974187183520"><a name="p7974187183520"></a><a name="p7974187183520"></a>LOS_MuxTrylock</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1271110291969"><a name="p1271110291969"></a><a name="p1271110291969"></a>Attempts to request the specified mutex without blocking.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1271110291969"><a name="p1271110291969"></a><a name="p1271110291969"></a>Attempts to request the specified mutex in non-block mode.</p>
 </td>
 </tr>
 <tr id="row1571162918615"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p13021319143515"><a name="p13021319143515"></a><a name="p13021319143515"></a>LOS_MuxUnlock</p>

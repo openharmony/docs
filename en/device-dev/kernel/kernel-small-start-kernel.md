@@ -1,13 +1,16 @@
-# Startup in Kernel Space<a name="EN-US_TOPIC_0000001127506594"></a>
+# Startup in Kernel Mode<a name="EN-US_TOPIC_0000001127506594"></a>
+
+-   [Kernel Startup Process](#section9882154318299)
+-   [Programming Example](#section19145114703217)
+    -   [Example Description](#section1045483642518)
+
 
 ## Kernel Startup Process<a name="section9882154318299"></a>
 
-The kernel startup process consists of the assembly startup and C language startup, as shown in the following figure. The assembly startup involves initializing CPU settings, disabling dCache/iCache, enabling the FPU and NEON, setting the MMU to establish the virtual-physical address mapping, setting the system stack, clearing the BSS segment, and calling the main function of the C language. The C language startup involves starting the OsMain function and starting scheduling. As shown in the following figure, the OsMain function is used for basic kernel initialization and architecture- and board-level initialization. The kernel startup framework leads the initialization process. The right part of the figure shows the phase in which external modules can register with the kernel startup framework and starts. The following table describes each phase.
+The kernel startup process consists of the assembly startup and C language startup, as shown in the following figure. The assembly startup involves the following operations: initializing CPU settings, disabling dCache/iCache, enabling the FPU and NEON, setting the MMU to establish the virtual-physical address mapping, setting the system stack, clearing the BSS segment, and calling the main function of the C language. The C language startup involves the following operations: starting the OsMain function and starting scheduling. As shown in the following figure, the OsMain function is used for basic kernel initialization and architecture- and board-level initialization. The kernel startup framework leads the initialization process. The right part of the figure shows the phase in which external modules can register with the kernel startup framework and starts.  [Table 1](#table38544719428)  describes each phase.
 
-**Figure  1**  Kernel startup process<a name="fig1372861419385"></a>  
-
-
-![](figure/en-us_image_0000001178856385.png)
+**Figure  1**  Kernel startup process<a name="fig983731153511"></a>  
+![](figures/kernel-startup-process-2.png "kernel-startup-process-2")
 
 **Table  1**  Startup framework levels
 
@@ -92,7 +95,7 @@ The kernel startup process consists of the assembly startup and C language start
 
 ### Example Description<a name="section1045483642518"></a>
 
-Add a kernel module and register the initialization function of the module to the kernel startup process to complete the module initialization during the kernel initialization process.
+Add a kernel module and register the initialization function of the module to the kernel startup process through the kernel startup framework, so as to complete the module initialization during the kernel initialization process.
 
 **Sample Code**
 
@@ -108,7 +111,7 @@ unsigned int OsSampleModInit(void)
     ......
 }
 ...
-/* Register the new module at the target level of the startup framework. */
+/* Register the new module at the target level of the kernel startup framework. */
 LOS_MODULE_INIT(OsSampleModInit, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ```
 
@@ -122,9 +125,9 @@ cpu 1 entering scheduler
 cpu 0 entering scheduler
 ```
 
-According to the information displayed during the system startup, the kernel calls the initialization function of the registered module during the startup to initialize the module.
+According to the information displayed during the system startup, the kernel has called the initialization function of the registered module during the startup to initialize the module.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >Modules at the same level cannot depend on each other. It is recommended that a new module be split based on the preceding startup phase and be registered and started as required.
->You can view the symbol table in the  **.rodata.init.kernel.\***  segment of the  **OHOS\_Image.map**  file generated after the build is complete, so as to learn about the initialization entry of each module that has been registered with the kernel startup framework and check whether the newly registered initialization entry takes effect.
+>You can view the symbol table in the  **.rodata.init.kernel.\***  segment of the  **OHOS\_Image.map**  file generated after the build is complete, so as to learn about the initialization entry of each module that has been registered with the kernel startup framework and check whether the newly registered initialization entry has taken effect.
 

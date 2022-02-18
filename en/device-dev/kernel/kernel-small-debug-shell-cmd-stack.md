@@ -1,5 +1,12 @@
 # stack<a name="EN-US_TOPIC_0000001179845921"></a>
 
+-   [Command Function](#section445335110416)
+-   [Syntax](#section1795712553416)
+-   [Parameters](#section92544592410)
+-   [Usage](#section104151141252)
+-   [Example](#section11545171957)
+-   [Output](#section075617368542)
+
 ## Command Function<a name="section445335110416"></a>
 
 This command is used to check the usage of each stack in the system.
@@ -22,15 +29,22 @@ Run  **stack**.
 
 ## Output<a name="section075617368542"></a>
 
-**Figure  1**  System stack usage<a name="fig478715471421"></a>  
+System stack usage:
 
-
-![](figure/en-us_image_0000001133848370.png)
+```
+OHOS # stack
+ stack name    cpu id     stack addr     total size   used size
+ ----------    ------     ---------      --------     --------
+  svc_stack      1        0x405c4000     0x2000       0x484
+  svc_stack      0        0x405c6000     0x2000       0xae4
+  exc_stack      1        0x405c8000     0x1000       0x0
+  exc_stack      0        0x405c9000     0x1000       0x0
+```
 
 **Table  1**  Output
 
 <a name="table633mcpsimp"></a>
-<table><thead align="left"><tr id="row638mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p640mcpsimp"><a name="p640mcpsimp"></a><a name="p640mcpsimp"></a>Output</p>
+<table><thead align="left"><tr id="row638mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p640mcpsimp"><a name="p640mcpsimp"></a><a name="p640mcpsimp"></a>Parameter</p>
 </th>
 <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p642mcpsimp"><a name="p642mcpsimp"></a><a name="p642mcpsimp"></a>Description</p>
 </th>

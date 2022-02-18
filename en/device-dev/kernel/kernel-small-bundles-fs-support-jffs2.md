@@ -1,16 +1,20 @@
 # JFFS2<a name="EN-US_TOPIC_0000001123521625"></a>
 
+-   [Basic Concepts](#section11411110155919)
+-   [Working Principles](#section23911025195913)
+-   [Development Guidelines](#section179711119014)
+
 ## Basic Concepts<a name="section11411110155919"></a>
 
 Journalling Flash File System Version 2 \(JFFS2\) is a log-structured file system designed for Memory Technology Devices \(MTDs\).
 
-JFFS2 is used on the NOR flash memory of the OpenHarmony. JFFS2 is readable and writable, supports data compression, provides crash/power failure protection, and supports wear leveling. There are many differences between flash memory and disk media. Running a disk file system on a flash memory device will lead to performance and security problems. JFFS2 is a file system optimized for flash memory.
+JFFS2 is used on the NOR flash memory of the OpenHarmony. JFFS2 is readable and writable, supports data compression, provides crash/power failure protection, and supports wear leveling. There are many differences between flash memory and disk media. Running a disk file system on a flash memory device will cause performance and security problems. JFFS2 is a file system optimized for flash memory.
 
 ## Working Principles<a name="section23911025195913"></a>
 
 This document does not include the physical layout of JFFS2 on storage devices and JFFS2 specifications. For details, see the  [official JFFS2 specification document](https://sourceware.org/jffs2/).
 
-The following describes several important mechanisms and features of JFFS2 that developers may concern.
+The following describes several important mechanisms and features of JFFS2 that you may concern.
 
 1.  Mount mechanism and speed: According to the JFFS2 design, all files are divided into nodes of different sizes based on certain rules and stored on the flash memory device in sequence. In the mount process, all node information needs to be obtained and cached in the memory. Therefore, the mount speed is in linear proportion to the flash device capacity and the number of files. This is a native design issue of JFFS2. To increase the mount speed, you can select  **Enable JFFS2 SUMMARY**  during kernel compilation. If this option is selected, information required by the mount operation will be stored to the flash memory in advance. When the mount operation is performed, this information can be read and parsed quickly, ensuring relatively constant mount speed. However, this space-for-time practice consumes about 8% extra space.
 2.  Wear leveling: Due to the physical attributes of flash memory devices, read and write operations can be performed only on blocks of a specific size. To prevent certain blocks from being severely worn, wear leveling is used on written blocks in JFFS2 to ensure relatively balanced writes on all blocks. This prolongs the overall service life of the flash memory devices.
@@ -81,7 +85,7 @@ This function has the following parameters:
 -   **unsigned long mountflags**  specifies the mount flag, which is  **0**  by default. 
 -   **const void \*data**  specifies the data, which is  **NULL**  by default. 
 
-You can also run the  **mount**  command in  **shell**  to mount a JFFS2 partition. You do not need to specify the last two parameters.
+You can also run the  **mount**  command in  **shell**  to mount a JFFS2 partition. In this case, you do not need to specify the last two parameters.
 
 Run the following command:
 

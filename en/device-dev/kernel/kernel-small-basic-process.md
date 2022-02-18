@@ -2,7 +2,7 @@
 
 -   **[Process](kernel-small-basic-process-process.md)**  
 
--   **[Thread](kernel-small-basic-process-thread.md)**  
+-   **[Task](kernel-small-basic-process-thread.md)**  
 
 -   **[Scheduler](kernel-small-basic-process-scheduler.md)**  
 

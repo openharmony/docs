@@ -1,14 +1,20 @@
 # vmm<a name="EN-US_TOPIC_0000001133846480"></a>
 
+-   [Command Function](#section445335110416)
+-   [Syntax](#section1795712553416)
+-   [Parameters](#section92544592410)
+-   [Usage](#section104151141252)
+-   [Example](#section11545171957)
+-   [Output](#section075617368542)
+
 ## Command Function<a name="section445335110416"></a>
 
-This command is used to query the virtual memory usage of a process.
+This command is used to query the virtual memory used by a process.
 
 ## Syntax<a name="section1795712553416"></a>
 
-vmm \[_-a / -h / --help_\]
-
-vmm \[_pid_\]
+-   vmm \[_-a / -h / --help_\]
+-   vmm \[_pid_\]
 
 ## Parameters<a name="section92544592410"></a>
 
@@ -49,7 +55,7 @@ vmm \[_pid_\]
 
 ## Usage<a name="section104151141252"></a>
 
-By default, the virtual memory usage of all processes is displayed.
+By default, this command displays the virtual memory usage of all processes.
 
 ## Example<a name="section11545171957"></a>
 
@@ -57,8 +63,31 @@ Run  **vmm 3**.
 
 ## Output<a name="section075617368542"></a>
 
-**Figure  1**  Virtual memory usage of the process with PID 3<a name="fig17645956122214"></a>  
-![](figure/virtual-memory-usage-of-the-process-with-pid-3.png "virtual-memory-usage-of-the-process-with-pid-3")
+Virtual memory usage of process 3:
+
+```
+OHOS # vmm 3
+ PID    aspace     name       base       size     pages
+ ----   ------     ----       ----       -----     ----
+ 3    0x408c0118 foundation 0x01000000 0x3e000000     800
+         region      name                base       size       mmu_flags      pages   pg/ref
+         ------      ----                ----       ----       ---------      -----   -----
+         0x408cb364  /bin/foundation                  0x06da3000 0x00001000  CH US RD          1       1
+         0x408cb80c  /bin/foundation                  0x06da4000 0x00001000  CH US RD EX       1       1
+         0x408cb720  /bin/foundation                  0x06da5000 0x00001000  CH US RD          1       1
+         0x408cb9a8  /bin/foundation                  0x06da6000 0x00001000  CH US RD WR       1       1
+         0x413efde4  HEAP                             0x12b43000 0x00015000  CH US RD WR      19      19
+         0x408c3d34  /lib/libc.so                     0x23b08000 0x0004a000  CH US RD         25       2
+         0x408cbd44  /lib/libc.so                     0x23b52000 0x00068000  CH US RD EX      58      10
+         0x408c3dc0  /lib/libc.so                     0x23bba000 0x00002000  CH US RD WR       2       2
+         0x408cc128  /lib/libc.so                     0x23bbc000 0x00002000  CH US RD WR       2       2
+         0x408d1634  MMAP                             0x23bbe000 0x00005000  CH US RD WR       5       5
+         0x408c4e10  VDSO                             0x23bc3000 0x00002000  CH US RD EX       2       2
+         0x408dbaec  /lib/libc++.so                   0x23bc5000 0x00046000  CH US RD         51       5
+         0x408deba8  /lib/libc++.so                   0x23c0b000 0x0009f000  CH US RD EX      29      10
+         0x408debf4  /lib/libc++.so                   0x23caa000 0x00006000  CH US RD          6       6
+         0x408c3ce0  /lib/libc++.so                   0x23cb0000 0x00001000  CH US RD WR       1       1
+```
 
 **Table  2**  Basic process information
 
@@ -105,7 +134,7 @@ Run  **vmm 3**.
 **Table  3**  Virtual memory region information
 
 <a name="table1195314682418"></a>
-<table><thead align="left"><tr id="row14953144632413"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1195314617242"><a name="p1195314617242"></a><a name="p1195314617242"></a>Output</p>
+<table><thead align="left"><tr id="row14953144632413"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1195314617242"><a name="p1195314617242"></a><a name="p1195314617242"></a>Parameter</p>
 </th>
 <th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p13953174614243"><a name="p13953174614243"></a><a name="p13953174614243"></a>Description</p>
 </th>

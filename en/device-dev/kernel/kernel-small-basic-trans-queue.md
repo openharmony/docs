@@ -1,5 +1,20 @@
 # Queue<a name="EN-US_TOPIC_0000001078912736"></a>
 
+-   [Basic Concepts](#section81171363232)
+-   [Working Principles](#section1074515132316)
+    -   [Queue Control Block](#section194431851201315)
+    -   [Working Principles](#section89875741418)
+
+-   [Development Guidelines](#section827981242419)
+    -   [Available APIs](#section19327151642413)
+    -   [How to Develop](#section1390154210243)
+
+-   [Development Example](#section27132341285)
+    -   [Example Description](#section197311443141017)
+    -   [Sample Code](#section972214490107)
+    -   [Verification](#section19287165416106)
+
+
 ## Basic Concepts<a name="section81171363232"></a>
 
 A queue, also called a message queue, is a data structure used for communication between tasks. The queue receives messages of unfixed length from tasks or interrupts, and determines whether to store the transferred messages in the queue based on different APIs.
@@ -10,7 +25,7 @@ You can adjust the timeout period of the read queue and write queue to adjust th
 
 An asynchronous processing mechanism is provided to allow messages in a queue not to be processed immediately. In addition, queues can be used to buffer messages and implement asynchronous task communication. Queues have the following features:
 
--   Messages are queued in first-in-first-out \(FIFO\) mode and can be read and written asynchronously.
+-   Messages are queued in FIFO mode and can be read and written asynchronously.
 -   Both the read queue and write queue support the timeout mechanism.
 -   Each time a message is read, the message node becomes available.
 -   The types of messages to be sent are determined by the parties involved in communication. Messages of different lengths \(not exceeding the message node size of the queue\) are allowed.
@@ -54,7 +69,7 @@ Each queue control block contains information about the queue status.
 -   When a queue is to be deleted, the system locates the queue based on the queue ID, sets the queue status to  **OS\_QUEUE\_UNUSED**, sets the queue control block to the initial state, and releases the memory occupied by the queue.
 
 **Figure  1**  Reading and writing data in a queue<a name="fig139854471119"></a>  
-![](figure/reading-and-writing-data-in-a-queue.png "reading-and-writing-data-in-a-queue")
+![](figures/reading-and-writing-data-in-a-queue-3.png "reading-and-writing-data-in-a-queue-3")
 
 The preceding figure illustrates how to write data to the tail node only. Writing data to the head node is similar.
 
@@ -63,7 +78,7 @@ The preceding figure illustrates how to write data to the tail node only. Writin
 ### Available APIs<a name="section19327151642413"></a>
 
 <a name="table10903105695114"></a>
-<table><thead align="left"><tr id="row1293645645110"><th class="cellrowborder" valign="top" width="23.56%" id="mcps1.1.4.1.1"><p id="p59361562512"><a name="p59361562512"></a><a name="p59361562512"></a>Category</p>
+<table><thead align="left"><tr id="row1293645645110"><th class="cellrowborder" valign="top" width="23.56%" id="mcps1.1.4.1.1"><p id="p59361562512"><a name="p59361562512"></a><a name="p59361562512"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="24.29%" id="mcps1.1.4.1.2"><p id="p1393665645118"><a name="p1393665645118"></a><a name="p1393665645118"></a>API</p>
 </th>

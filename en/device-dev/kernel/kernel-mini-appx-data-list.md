@@ -1,5 +1,14 @@
 # Doubly Linked List<a name="EN-US_TOPIC_0000001078588390"></a>
 
+-   [Basic Concepts](#section1990715203418)
+-   [Available APIs](#section848334511411)
+-   [How to Develop](#section01781261552)
+-   [Development Example](#section67569495514)
+    -   [Example Description](#section48761994551)
+    -   [Sample Code](#section1280202685519)
+    -   [Verification](#section5811249105512)
+
+
 ## Basic Concepts<a name="section1990715203418"></a>
 
 A doubly linked list is a linked data structure that consists of a set of sequentially linked records called nodes. Each node contains a pointer to the previous node and a pointer to the next node in the sequence of nodes. The pointer head is unique.
@@ -11,7 +20,7 @@ A doubly linked list allows access from a list node to its next node and also th
 The doubly linked list module provides the following APIs. For more details about the APIs, see the API reference.
 
 <a name="table9827162254713"></a>
-<table><tbody><tr id="row2089515228470"><td class="cellrowborder" valign="top" width="8.14%"><p id="p4895182214473"><a name="p4895182214473"></a><a name="p4895182214473"></a>Category</p>
+<table><tbody><tr id="row2089515228470"><td class="cellrowborder" valign="top" width="8.14%"><p id="p4895182214473"><a name="p4895182214473"></a><a name="p4895182214473"></a>Function</p>
 </td>
 <td class="cellrowborder" valign="top" width="32.09%"><p id="p58951922124713"><a name="p58951922124713"></a><a name="p58951922124713"></a>API</p>
 </td>

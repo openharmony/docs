@@ -1,8 +1,15 @@
 # log<a name="EN-US_TOPIC_0000001133846474"></a>
 
+-   [Command Function](#section128219131856)
+-   [Syntax](#section3894181710519)
+-   [Parameters](#section7693122310515)
+-   [Usage](#section1982111281512)
+-   [Example](#section176301333259)
+-   [Output](#section14354765415)
+
 ## Command Function<a name="section128219131856"></a>
 
-This command is used to modify and query log configurations.
+This command is used to set and query log configuration.
 
 ## Syntax<a name="section3894181710519"></a>
 
@@ -23,9 +30,9 @@ log level \[_levelNum_\]
 </thead>
 <tbody><tr id="row250mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p252mcpsimp"><a name="p252mcpsimp"></a><a name="p252mcpsimp"></a>levelNum</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p254mcpsimp"><a name="p254mcpsimp"></a><a name="p254mcpsimp"></a>Specifies the print level of logs.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p254mcpsimp"><a name="p254mcpsimp"></a><a name="p254mcpsimp"></a>Specifies the level of logs to print.</p>
 </td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p256mcpsimp"><a name="p256mcpsimp"></a><a name="p256mcpsimp"></a>[0x0, 0x5]</p>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p2270121719813"><a name="p2270121719813"></a><a name="p2270121719813"></a>[0,5]</p>
 </td>
 </tr>
 </tbody>
@@ -35,9 +42,9 @@ log level \[_levelNum_\]
 
 -   This command depends on  **LOSCFG\_SHELL\_LK**. Before using this command, select  **Enable Shell lk**  on  **menuconfig**.
 
-    Debug ---\> Enable a Debug Version ---\> Enable Shell ---\> Enable Shell lK
+    **Debug**  ---\>  **Enable a Debug Version**  ---\>  **Enable Shell**  ---\>  **Enable Shell lK**
 
--   The  **log level**  command is used to configure log levels, which can be:
+-   The  **log level**  command is used to set the log level, which can be any of the following:
 
     TRACE\_EMG = 0,
 
@@ -51,17 +58,21 @@ log level \[_levelNum_\]
 
     TRACE\_DEBUG = 5
 
-    If the level is not within the valid range, a message will be displayed.
+    If the log level specified is not within the value range, a message will be displayed.
 
--   If the  **\[levelNum\]**  parameter is not specified, the current log level and its usage are printed by default.
+-   If  **\[levelNum\]**  is not specified, this command queries the current log level. The usage method is also displayed.
+-   If the log level is set to  **4**  or  **5**  in the source code of the open-source small system, a large number of logs will be printed.
 
 ## Example<a name="section176301333259"></a>
 
-Example:
-
-Run  **log level 4**.
+Run  **log level 3**.
 
 ## Output<a name="section14354765415"></a>
 
-![](figure/en-us_image_0000001179847649.png)
+Setting the log print level to WARN:
+
+```
+OHOS # log level 3
+Set current log level WARN
+```
 

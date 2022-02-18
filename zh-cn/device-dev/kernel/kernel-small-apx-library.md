@@ -1,29 +1,30 @@
-# 标准库<a name="ZH-CN_TOPIC_0000001126847658"></a>
+# 标准库
 
--   [标准库接口框架](#section149319478561)
--   [操作实例](#section20874620185915)
--   [与Linux标准库差异](#section6555642165713)
-    -   [进程](#section11299104511409)
-    -   [内存](#section175754484116)
-    -   [文件系统](#section118191113134220)
-    -   [信号](#section195939264421)
-    -   [Time](#section20825124304213)
-
+- [标准库接口框架](#标准库接口框架)
+- [操作实例](#操作实例)
+- [与Linux标准库差异](#与linux标准库差异)
+  - [进程](#进程)
+  - [内存](#内存)
+  - [文件系统](#文件系统)
+  - [信号](#信号)
+  - [Time](#time)
 
 OpenHarmony内核使用musl libc库，支持标准POSIX接口，开发者可基于POSIX标准接口开发内核之上的组件及应用。
 
-## 标准库接口框架<a name="section149319478561"></a>
 
-**图 1**  POSIX接口框架<a name="fig153258541429"></a>  
-![](figure/POSIX接口框架.png "POSIX接口框架")
+## 标准库接口框架
+
+**图1** POSIX接口框架
+![zh-cn_image_0000001172904117](figures/zh-cn_image_0000001172904117.png)
 
 musl libc库支持POSIX标准，涉及的系统调用相关接口由OpenHarmony内核适配支持 ，以满足接口对外描述的功能要求。
 
 标准库支持接口的详细情况请参考C库的API文档，其中也涵盖了与POSIX标准之间的差异说明。
 
-## 操作实例<a name="section20874620185915"></a>
 
-在本示例中，主线程创建了THREAD\_NUM个子线程，每个子线程启动后等待被主线程唤醒，主线程成功唤醒所有子线程后，子线程继续执行直至生命周期结束，同时主线程通过pthread\_join方法等待所有线程执行结束。
+## 操作实例
+
+在本示例中，主线程创建了THREAD_NUM个子线程，每个子线程启动后等待被主线程唤醒，主线程成功唤醒所有子线程后，子线程继续执行直至生命周期结束，同时主线程通过pthread_join方法等待所有线程执行结束。
 
 ```
 #include <stdio.h>
@@ -197,27 +198,35 @@ int main(int argc, char *argv[])
 #endif /* __cplusplus */
 ```
 
-## 与Linux标准库差异<a name="section6555642165713"></a>
+
+## 与Linux标准库差异
 
 本节描述了OpenHarmony内核承载的标准库与Linux标准库之间存在的关键差异。更多差异详见C库API文档说明。
 
-### 进程<a name="section11299104511409"></a>
 
-1.  OpenHarmony用户态**进程**优先级只支持静态优先级且用户态可配置的优先级范围为10\(最高优先级\)-31\(最低优先级）。
-2.  OpenHarmony用户态**线程**优先级只支持静态优先级且用户态可配置的优先级范围为0\(最高优先级\)-31\(最低优先级）。
-3.  OpenHarmony进程调度策略只支持SCHED\_RR， 线程调度策略支持SCHED\_RR和SCHED\_FIFO。
+### 进程
 
-### 内存<a name="section175754484116"></a>
+1. OpenHarmony用户态**进程**优先级只支持静态优先级且用户态可配置的优先级范围为10(最高优先级)-31(最低优先级）。
 
-**h2****与Linux mmap的差异**
+2. OpenHarmony用户态**线程**优先级只支持静态优先级且用户态可配置的优先级范围为0(最高优先级)-31(最低优先级）。
 
-mmap接口原型为：void \*mmap \(void \*addr, size\_t length, int prot, int flags, int fd, off\_t offset\)。
+3. OpenHarmony进程调度策略只支持SCHED_RR， 线程调度策略支持SCHED_RR和SCHED_FIFO。
+
+
+### 内存
+
+**h2与Linux mmap的差异**
+
+mmap接口原型为：void \*mmap (void \*addr, size_t length, int prot, int flags, int fd, off_t offset)。
 
 其中，参数fd的生命周期实现与Linux glibc存在差异。具体体现在，glibc在成功调用mmap进行映射后，可以立即释放fd句柄。在OpenHarmony内核中，不允许用户在映射成功后立即关闭相关fd，只允许在取消映射munmap后再进行fd的close操作。如果用户不进行fd的close操作，操作系统将在进程退出时对该fd进行回收。
 
-**h2****代码举例**
+
+**h2代码举例**
+
 
 Linux目前支持的情况如下：
+
 
 ```
 int main(int argc, char *argv[])
@@ -241,8 +250,8 @@ int main(int argc, char *argv[])
 }
 ```
 
-OpenHarmony支持的情况如下：
 
+OpenHarmony支持的情况如下：
 ```
 int main(int argc, char *argv[])
 {
@@ -266,7 +275,8 @@ int main(int argc, char *argv[])
 }
 ```
 
-### 文件系统<a name="section118191113134220"></a>
+
+### 文件系统
 
 **系统目录**：用户无权限修改系统目录和设备挂载目录。包含/dev，/proc，/app，/bin，/data，/etc，/lib，/system，/usr目录。
 
@@ -274,14 +284,18 @@ int main(int argc, char *argv[])
 
 除**系统目录**与**用户目录**之外，用户可以自行创建文件夹进行设备的挂载。但是要注意，已挂载的文件夹及其子文件夹不允许重复或者嵌套挂载，非空文件夹不允许挂载。
 
-### 信号<a name="section195939264421"></a>
 
--   信号默认行为不支持STOP、CONTINUE、COREDUMP功能。
--   无法通过信号唤醒正在睡眠状态（举例：进程调用sleep函数进入睡眠）的进程。原因：信号机制无唤醒功能，当且仅当进程被CPU调度运行时才能处理信号内容。
--   进程退出后会发送SIGCHLD给父进程，发送动作无法取消。
--   信号仅支持1-30号信号，接收方收到多次同一信号，仅执行一次回调函数。
+### 信号
 
-### Time<a name="section20825124304213"></a>
+- 信号默认行为不支持STOP、CONTINUE、COREDUMP功能。
 
-OpenHarmony当前时间精度以tick计算，系统默认10ms/tick。sleep、timeout系列函数时间误差<=20ms。
+- 无法通过信号唤醒正在睡眠状态（举例：进程调用sleep函数进入睡眠）的进程。原因：信号机制无唤醒功能，当且仅当进程被CPU调度运行时才能处理信号内容。
 
+- 进程退出后会发送SIGCHLD给父进程，发送动作无法取消。
+
+- 信号仅支持1-30号信号，接收方收到多次同一信号，仅执行一次回调函数。
+
+
+### Time
+
+OpenHarmony当前时间精度以tick计算，系统默认10ms/tick。sleep、timeout系列函数时间误差&lt;=20ms。

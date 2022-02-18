@@ -1,13 +1,22 @@
 # Static Memory<a name="EN-US_TOPIC_0000001078876516"></a>
 
+-   [Working Principles](#section165473517522)
+-   [Development Guidelines](#section57511620165218)
+    -   [When to Use](#section215474911529)
+    -   [Available APIs](#section79231214539)
+    -   [How to Develop](#section1388511316548)
+    -   [Development Example](#section17801515105519)
+    -   [Verification](#section11818154112319)
+
+
 ## Working Principles<a name="section165473517522"></a>
 
 The static memory is a static array. The block size in the static memory pool is set during initialization and cannot be changed after initialization.
 
 The static memory pool consists of a control block  **LOS\_MEMBOX\_INFO**  and several memory blocks  **LOS\_MEMBOX\_NODE**  of the same size. The control block is located at the head of the memory pool and used for memory block management. It contains the memory block size \(**uwBlkSize**\), number of memory blocks \(**uwBlkNum**\), number of allocated memory blocks \(**uwBlkCnt**\), and free list \(**stFreeList**\). Memory is allocated and released by block size. Each memory block contains the pointer  **pstNext**  that points to the next memory block.
 
-**Figure  1**  Static memory<a name="fig1081017327364"></a>  
-![](figure/static-memory.png "static-memory")
+**Figure  1**  Static memory<a name="fig11343112011276"></a>  
+![](figures/static-memory.png "static-memory")
 
 ## Development Guidelines<a name="section57511620165218"></a>
 
@@ -22,7 +31,7 @@ The following table describes APIs available for OpenHarmony LiteOS-M static mem
 **Table  1**  APIs of the static memory module
 
 <a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="16.19161916191619%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Category</p>
+<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="16.19161916191619%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="22.472247224722473%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>API</p>
 </th>
@@ -98,7 +107,7 @@ The typical development process of static memory is as follows:
 
 ### Development Example<a name="section17801515105519"></a>
 
-The example below implements the following:
+This example implements the following:
 
 1.  Initialize a static memory pool.
 2.  Allocate a memory block from the static memory pool.

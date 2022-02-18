@@ -1,5 +1,13 @@
 # Virtual File System<a name="EN-US_TOPIC_0000001123796667"></a>
 
+-   [Basic Concepts](#section1253851143520)
+-   [Working Principles](#section14915913123510)
+-   [Development Guidelines](#section1759563620358)
+    -   [Available APIs](#section17865142133511)
+    -   [How to Develop](#section64113023616)
+    -   [Development Example](#section236041883618)
+
+
 ## Basic Concepts<a name="section1253851143520"></a>
 
 The Virtual File System \(VFS\) is not a real file system. It is an abstract layer on top of a heterogeneous file system and provides you with a unified Unix-like file operation interface. Different types of file systems provide different interfaces. If there are multiple types of file systems in the system, different and non-standard interfaces are required for accessing these file systems. The VFS can be introduced as an abstract layer in the system to harmonize the differences between these heterogeneous file systems. In this way, the system does not need to care about the storage medium and file system type at the bottom layer when accessing a file system.
@@ -17,23 +25,23 @@ The VFS layer uses function pointers to call different interfaces for different 
 2.  Vnode: A Vnode is an abstract encapsulation of a specific file or directory at the VFS layer. It shields the differences between different file systems and implements unified resource management. Vnodes include the following types:
 
     -   Mount point: used to mount a specific file system, for example,  **/**  and  **/storage**.
-    -   Device node: mapping to a device in the  **/dev**  directory, for example,  **/dev/mmcblk0**
+    -   Device node: mapping to a device in the  **/dev**  directory, for example,  **/dev/mmcblk0**.
     -   File/Directory node: corresponds to a file or directory in a file system, for example,  **/bin/init**.
 
-    Vnodes are managed using the hash and least recently used \(LRU\) mechanisms. After a system is started, the Vnode cache is preferentially searched in the hash linked list for an access request for a file or directory. If the cache is not hit, the target file or directory is searched in the corresponding file system, and the corresponding Vnode is created and cached. When the number of cached Vnodes reaches the upper limit, the Vnodes that are not accessed for a long time will be deleted. The mount point Vnodes and device node Vnodes are not deleted. The default number of Vnodes in the system is 512. You can configure the value in  **LOSCFG\_MAX\_VNODE\_SIZE**. Increasing the value can improve search performance but cause high memory usage. The following figure shows the process of creating a Vnode.
+    Vnodes are managed using the hash and least recently used \(LRU\) mechanisms. After a system is started, the Vnode cache is preferentially searched in the hash linked list for an access request for a file or directory. If the cache is not hit, the target file or directory is searched in the corresponding file system, and the corresponding Vnode is created and cached. When the number of cached Vnodes reaches the upper limit, the Vnodes that are not accessed for a long time will be deleted. The mount point Vnodes and device node Vnodes are not deleted. The default number of Vnodes in the system is 512. You can configure the number in  **LOSCFG\_MAX\_VNODE\_SIZE**. Increasing the value can improve search performance but causes high memory usage. The following figure shows the process of creating a Vnode.
 
     **Figure  1**  Process of creating a Vnode<a name="fig1453197573"></a>  
-    ![](figure/process-of-creating-a-vnode.png "process-of-creating-a-vnode")
+    ![](figures/process-of-creating-a-vnode.png "process-of-creating-a-vnode")
 
 
 1.  PathCache: The PathCache is a path cache. It is stored in a hash table. Based on the address of the parent Vnode and the file name of the child node in the PathCache, the Vnode corresponding to the child node can be quickly found. The following figure shows how a file or directory is located.
 
     **Figure  2**  Process of locating a file<a name="fig1881815597396"></a>  
-    ![](figure/process-of-locating-a-file.png "process-of-locating-a-file")
+    ![](figures/process-of-locating-a-file.png "process-of-locating-a-file")
 
 
-1.  PageCache: The PageCache is a cache of files in the kernel. Currently, the PageCache can cache only binary files. When a file is accessed for the first time, the file is mapped to the memory using  **mmap**. When the file is accessed the next time, the file can be directly read from the PageCache, accelerating the read and write speed of the file. In addition, page cache helps implement IPC based on files.
-2.  FD management: A FD uniquely identifies an open file or directory in an OS. The OpenHarmony has 896 FDs, which include the following:
+1.  PageCache: The PageCache is a cache of files in the kernel. Currently, the PageCache can cache only binary files. When a file is accessed for the first time, the file is mapped to the memory using  **mmap**. When the file is accessed the next time, the file can be directly read from the PageCache. This accelerates the file read and write speed. In addition, PageCache helps implement IPC based on files.
+2.  FD management: An FD uniquely identifies an open file or directory in an OS. The OpenHarmony has 896 FDs in the following categories:
 
     -   512 file descriptors
     -   128 socket descriptors
@@ -47,12 +55,12 @@ The VFS layer uses function pointers to call different interfaces for different 
 
 ### Available APIs<a name="section17865142133511"></a>
 
-In the following table, "×" indicates that the corresponding file system does not support the API.
+In the following table, "√" indicates that the corresponding file system supports the API, and "×" indicates that the corresponding file system does not support the API.
 
 **Table  1**  File system APIs
 
 <a name="table17301515163415"></a>
-<table><thead align="left"><tr id="row1730115183416"><th class="cellrowborder" valign="top" width="22.547745225477453%" id="mcps1.2.9.1.1"><p id="p830131563412"><a name="p830131563412"></a><a name="p830131563412"></a>Category</p>
+<table><thead align="left"><tr id="row1730115183416"><th class="cellrowborder" valign="top" width="22.547745225477453%" id="mcps1.2.9.1.1"><p id="p830131563412"><a name="p830131563412"></a><a name="p830131563412"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="22.547745225477453%" id="mcps1.2.9.1.2"><p id="p43011512345"><a name="p43011512345"></a><a name="p43011512345"></a>API</p>
 </th>
@@ -224,7 +232,7 @@ In the following table, "×" indicates that the corresponding file system does n
 </tr>
 <tr id="row131151523420"><td class="cellrowborder" valign="top" headers="mcps1.2.9.1.1 "><p id="p113251513342"><a name="p113251513342"></a><a name="p113251513342"></a>symlink</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.9.1.2 "><p id="p1832215133420"><a name="p1832215133420"></a><a name="p1832215133420"></a>Creates a soft link.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.9.1.2 "><p id="p1832215133420"><a name="p1832215133420"></a><a name="p1832215133420"></a>Creates a soft link (also called symbolic link).</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.9.1.3 "><p id="p5780143585510"><a name="p5780143585510"></a><a name="p5780143585510"></a>√</p>
 </td>

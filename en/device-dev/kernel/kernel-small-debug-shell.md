@@ -10,6 +10,6 @@
 
 -   **[Magic Key](kernel-small-debug-shell-magickey.md)**  
 
--   **[User-Space Exception Information](kernel-small-debug-shell-error.md)**  
+-   **[User-Mode Exception Information](kernel-small-debug-shell-error.md)**  
 
 

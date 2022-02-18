@@ -1,5 +1,11 @@
 # statfs<a name="EN-US_TOPIC_0000001179965853"></a>
 
+-   [Command Function](#section153921657152613)
+-   [Syntax](#section135391102717)
+-   [Parameters](#section074312314279)
+-   [Usage](#section133816772712)
+-   [Example](#section526149182717)
+
 ## Command Function<a name="section153921657152613"></a>
 
 This command is used to print information about a file system, such as the type, total size, and available size.
@@ -25,7 +31,7 @@ statfs \[_directory_\]
 </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p1615mcpsimp"><a name="p1615mcpsimp"></a><a name="p1615mcpsimp"></a>Specifies the file system directory.</p>
 </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1617mcpsimp"><a name="p1617mcpsimp"></a><a name="p1617mcpsimp"></a>The file system must exist and support the <strong id="b1635148125717"><a name="b1635148125717"></a><a name="b1635148125717"></a>statfs</strong> command. Currently, the file systems JFFS2, FAT, and NFS are supported.</p>
+<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1617mcpsimp"><a name="p1617mcpsimp"></a><a name="p1617mcpsimp"></a>The file system must exist and support the <strong id="b1635148125717"><a name="b1635148125717"></a><a name="b1635148125717"></a>statfs</strong> command. The supported file systems include JFFS2, FAT, and NFS.</p>
 </td>
 </tr>
 </tbody>
@@ -41,6 +47,19 @@ The following uses the NFS as an example:
 
 Run  **statfs /nfs**.
 
-**Figure  1**  Output of the statfs command<a name="fig1810654276"></a>  
-![](figure/output-of-the-statfs-command.png "output-of-the-statfs-command")
+**statfs**  command output
+
+```
+OHOS # statfs ./nfs
+statfs got:
+ f_type     = 26985
+ cluster_size   = 512
+ total_clusters = 1579575176
+ free_clusters  = 499254808
+ avail_clusters = 499254808
+ f_namelen    = 255
+./nfs
+ total size: 808742490112 Bytes
+ free  size: 255618461696 Bytes
+```
 

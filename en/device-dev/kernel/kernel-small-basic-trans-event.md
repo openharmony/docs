@@ -1,15 +1,30 @@
 # Event<a name="EN-US_TOPIC_0000001078753124"></a>
 
+-   [Basic Concepts](#section122115620816)
+-   [Working Principles](#section94611116593)
+    -   [Event Control Block](#section1161415384467)
+    -   [Working Principles](#section187761153144617)
+
+-   [Development Guidelines](#section44744471891)
+    -   [Available APIs](#section172373513919)
+    -   [How to Develop](#section1118215161013)
+
+-   [Development Example](#section5837165132911)
+    -   [Example Description](#section128221510145718)
+    -   [Sample Code](#section71507479577)
+    -   [Verification](#section16570171645813)
+
+
 ## Basic Concepts<a name="section122115620816"></a>
 
 An event is a mechanism for communication between tasks. It can be used to synchronize tasks.
 
-In multi-task environment, synchronization is required between tasks. Events implement the following types of synchronization:
+In multi-task environment, synchronization is required between tasks. Events can be used for synchronization in the following cases:
 
 -   One-to-many synchronization: A task waits for the triggering of multiple events. A task is woken up by one or multiple events.
 -   Many-to-many synchronization: Multiple tasks wait for the triggering of multiple events.
 
-The events provided by the OpenHarmony LiteOS-A event module have the following features:
+The event mechanism provided by the OpenHarmony LiteOS-A event module has the following features:
 
 -   A task triggers or waits for an event by creating an event control block.
 -   Events are independent of each other. The internal implementation is a 32-bit unsigned integer, and each bit indicates an event type. The 25th bit is unavailable. Therefore, a maximum of 31 event types are supported.
@@ -27,8 +42,8 @@ The events provided by the OpenHarmony LiteOS-A event module have the following 
 * Event control block data structure
   */
 typedef struct tagEvent {
-    UINT32 uwEventID;        /* Event set, which is a collection of events processed (written and cleared).*/
-    LOS_DL_LIST stEventList; /* List of tasks waiting for specific events*/
+    UINT32 uwEventID;        /* Event set, which is a collection of events processed (written and cleared). */
+    LOS_DL_LIST stEventList; /* List of tasks waiting for specific events */
 } EVENT_CB_S, *PEVENT_CB_S;
 ```
 
@@ -43,15 +58,15 @@ typedef struct tagEvent {
 The input parameters  **eventMask**  and  **mode**  determine whether the condition for reading an event is met.  **eventMask**  indicates the mask of the event.  **mode**  indicates the handling mode, which can be any of the following:
 
 -   **LOS\_WAITMODE\_AND**: Event reading is successful only when all the events corresponding to  **eventMask**  occur. Otherwise, the task will be blocked, or an error code will be returned.
--   **LOS\_WAITMODE\_OR**: Event reading is successful when any of the events corresponding to  **eventMask**  occur. Otherwise, the task will be blocked, or an error code will be returned.
+-   **LOS\_WAITMODE\_OR**: Event reading is successful when any of the events corresponding to  **eventMask**  occurs. Otherwise, the task will be blocked, or an error code will be returned.
 -   **LOS\_WAITMODE\_CLR**: This mode must be used with  **LOS\_WAITMODE\_AND**  or  **LOS\_WAITMODE\_OR**  \(LOS\_WAITMODE\_AND | LOS\_WAITMODE\_CLR or LOS\_WAITMODE\_OR | LOS\_WAITMODE\_CLR\). In this mode, if  **LOS\_WAITMODE\_AND**  or  **LOS\_WAITMODE\_OR**  is successful, the corresponding event type bit in the event control block will be automatically cleared.
 
-**Clearing event**: Clear the event set of the event control block based on the specified mask. If the mask is  **0**, the event set will be cleared. If the mask is  **0xffff**, no event will be cleared, and the event set remains unchanged.
+**Clearing events**: Clear the event set of the event control block based on the specified mask. If the mask is  **0**, the event set will be cleared. If the mask is  **0xffff**, no event will be cleared, and the event set remains unchanged.
 
 **Destroying an event**: Destroy the specified event control block.
 
-**Figure  1**  Event working mechanism<a name="fig17799175324612"></a>  
-![](figure/event-working-mechanism-21.png "event-working-mechanism-21")
+**Figure  1**  Event working mechanism for small systems<a name="fig17799175324612"></a>  
+![](figures/event-working-mechanism-for-small-systems.png "event-working-mechanism-for-small-systems")
 
 ## Development Guidelines<a name="section44744471891"></a>
 
@@ -62,7 +77,7 @@ The following table describes APIs available for the OpenHarmony LiteOS-A event 
 **Table  1**  Event module APIs
 
 <a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Category</p>
+<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>API</p>
 </th>
@@ -74,7 +89,7 @@ The following table describes APIs available for the OpenHarmony LiteOS-A event 
 </td>
 <td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p77891354175812"><a name="p77891354175812"></a><a name="p77891354175812"></a>LOS_EventInit</p>
 </td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p2334141425515"><a name="p2334141425515"></a><a name="p2334141425515"></a>Initialize an event control block.</p>
+<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p2334141425515"><a name="p2334141425515"></a><a name="p2334141425515"></a>Initializes an event control block.</p>
 </td>
 </tr>
 <tr id="row421753455514"><td class="cellrowborder" rowspan="2" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p13441112105813"><a name="p13441112105813"></a><a name="p13441112105813"></a>Reading/Writing events</p>
@@ -128,15 +143,15 @@ The typical event development process is as follows:
 >-   When an event is read or written, the 25th bit of the event is reserved and cannot be set.
 >-   Repeated writes of the same event are treated as one write.
 
-### Development Example<a name="section19986143311020"></a>
+## Development Example<a name="section5837165132911"></a>
 
 ### Example Description<a name="section128221510145718"></a>
 
-In this example, run the  **Example\_TaskEntry**  task to create the  **Example\_Event**  task. Run the  **Example\_Event**  task to read an event to trigger task switching. Run the  **Example\_TaskEntry**  task to write an event. You can understand the task switching during event operations based on the sequence in which logs are recorded.
+In this example, run the  **Example\_TaskEntry**  task to create the  **Example\_Event**  task, run the  **Example\_Event**  task to read an event to trigger task switching, and run the  **Example\_TaskEntry**  task to write an event. You can understand the task switching during event operations based on the sequence in which logs are recorded.
 
 1.  Create the  **Example\_Event**  task in the  **Example\_TaskEntry**  task with a higher priority than the  **Example\_TaskEntry**  task.
-2.  Run the  **Example\_Event**  task to read event  **0x00000001**. Task switching occurs to execute the  **Example\_TaskEntry**  task.
-3.  Run the  **Example\_TaskEntry**  task to write event  **0x00000001**. Task switching occurs to execute the  **Example\_Event**  task.
+2.  Run the  **Example\_Event**  task to read event  **0x00000001**. Task switching is triggered to execute the  **Example\_TaskEntry**  task.
+3.  Run the  **Example\_TaskEntry**  task to write event  **0x00000001**. Task switching is triggered to execute the  **Example\_Event**  task.
 4.  The  **Example\_Event**  task is executed.
 5.  The  **Example\_TaskEntry**  task is executed.
 

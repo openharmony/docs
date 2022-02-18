@@ -1,147 +1,114 @@
-# 信号量<a name="ZH-CN_TOPIC_0000001078912740"></a>
+# 信号量
 
--   [基本概念](#section1577111168131)
--   [运行机制](#section118423019134)
--   [开发指导](#section01419503131)
-    -   [接口说明](#section1232345431312)
-    -   [开发流程](#section154261711141419)
-    -   [编程实例](#section658135571417)
-    -   [实例描述](#section125244411653)
-    -   [编程示例](#section1742105514512)
-    -   [结果验证](#section11297301617)
+- [基本概念](#基本概念)
+- [运行机制](#运行机制)
+- [开发指导](#开发指导)
+  - [接口说明](#接口说明)
+  - [开发流程](#开发流程)
+  - [编程实例](#编程实例)
+  - [实例描述](#实例描述)
+  - [编程示例](#编程示例)
+  - [结果验证](#结果验证)
 
-
-## 基本概念<a name="section1577111168131"></a>
+## 基本概念
 
 信号量（Semaphore）是一种实现任务间通信的机制，可以实现任务间同步或共享资源的互斥访问。
 
 一个信号量的数据结构中，通常有一个计数值，用于对有效资源数的计数，表示剩下的可被使用的共享资源数，其值的含义分两种情况：
 
--   0，表示该信号量当前不可获取，因此可能存在正在等待该信号量的任务。
--   正值，表示该信号量当前可被获取。
+- 0，表示该信号量当前不可获取，因此可能存在正在等待该信号量的任务。
+
+- 正值，表示该信号量当前可被获取。
 
 以同步为目的的信号量和以互斥为目的的信号量在使用上有如下不同：
 
--   用作互斥时，初始信号量计数值不为0，表示可用的共享资源个数。在需要使用共享资源前，先获取信号量，然后使用一个共享资源，使用完毕后释放信号量。这样在共享资源被取完，即信号量计数减至0时，其他需要获取信号量的任务将被阻塞，从而保证了共享资源的互斥访问。另外，当共享资源数为1时，建议使用二值信号量，一种类似于互斥锁的机制。
--   用作同步时，初始信号量计数值为0。任务1获取信号量而阻塞，直到任务2或者某中断释放信号量，任务1才得以进入Ready或Running态，从而达到了任务间的同步。
+- 用作互斥时，初始信号量计数值不为0，表示可用的共享资源个数。在需要使用共享资源前，先获取信号量，然后使用一个共享资源，使用完毕后释放信号量。这样在共享资源被取完，即信号量计数减至0时，其他需要获取信号量的任务将被阻塞，从而保证了共享资源的互斥访问。另外，当共享资源数为1时，建议使用二值信号量，一种类似于互斥锁的机制。
 
-## 运行机制<a name="section118423019134"></a>
+- 用作同步时，初始信号量计数值为0。任务1因获取不到信号量而阻塞，直到任务2或者某中断释放信号量，任务1才得以进入Ready或Running态，从而达到了任务间的同步。
+
+
+## 运行机制
 
 **信号量控制块**
 
 ```
-/**
- * 信号量控制块数据结构
- */
-typedef struct {
-    UINT16            semStat;          /* 信号量状态 */
-    UINT16            semType;          /* 信号量类型 */
-    UINT16            semCount;         /* 信号量计数 */
-    UINT16            semId;            /* 信号量索引号 */
-    LOS_DL_LIST       semList;          /* 挂接阻塞于该信号量的任务 */
-} LosSemCB;
+/** * 信号量控制块数据结构*/typedefstruct {    UINT16            semStat;          /*信号量状态 */    UINT16            semType;          /*信号量类型 */    UINT16            semCount;         /*信号量计数 */    UINT16            semId;            /*信号量索引号 */    LOS_DL_LIST       semList;          /*用于插入阻塞于信号量的任务 */} LosSemCB;
 ```
 
 **信号量运作原理**
 
 信号量允许多个任务在同一时刻访问共享资源，但会限制同一时刻访问此资源的最大任务数目。当访问资源的任务数达到该资源允许的最大数量时，会阻塞其他试图获取该资源的任务，直到有任务释放该信号量。
 
--   信号量初始化
+- 信号量初始化
+  初始化时为配置的N个信号量申请内存（N值可以由用户自行配置，通过LOSCFG_BASE_IPC_SEM_LIMIT宏实现），并把所有信号量初始化成未使用，加入到未使用链表中供系统使用
 
-    初始化时为配置的N个信号量申请内存（N值可以由用户自行配置，通过LOSCFG\_BASE\_IPC\_SEM\_LIMIT宏实现），并把所有信号量初始化成未使用，加入到未使用链表中供系统使用
+- 信号量创建
+  从未使用的信号量链表中获取一个信号量，并设定初值。
 
--   信号量创建
+- 信号量申请
+  若其计数器值大于0，则直接减1返回成功。否则任务阻塞，等待其它任务释放该信号量，等待的超时时间可设定。当任务被一个信号量阻塞时，将该任务挂到信号量等待任务队列的队尾。
 
-    从未使用的信号量链表中获取一个信号量，并设定初值。
+- 信号量释放
+  若没有任务等待该信号量，则直接将计数器加1返回。否则唤醒该信号量等待任务队列上的第一个任务。
 
--   信号量申请
-
-    若其计数器值大于0，则直接减1返回成功。否则任务阻塞，等待其它任务释放该信号量，等待的超时时间可设定。当任务被一个信号量阻塞时，将该任务挂到信号量等待任务队列的队尾。
-
--   信号量释放
-
-    若没有任务等待该信号量，则直接将计数器加1返回。否则唤醒该信号量等待任务队列上的第一个任务。
-
--   信号量删除
-
-    将正在使用的信号量置为未使用信号量，并挂回到未使用链表。
-
+- 信号量删除
+  将正在使用的信号量置为未使用信号量，并挂回到未使用链表。
 
 运行示意图如下图所示:
 
-**图 1**  信号量运作示意图<a name="fig467314634214"></a>  
-![](figure/信号量运作示意图-22.png "信号量运作示意图-22")
+**图1** 小型系统信号量运作示意图
+![zh-cn_image_0000001132774752](figures/zh-cn_image_0000001132774752.png)
 
-## 开发指导<a name="section01419503131"></a>
 
-### 接口说明<a name="section1232345431312"></a>
+## 开发指导
 
-**表 1**  信号量模块接口
 
-<a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>功能分类</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>接口<strong id="b197068338312"><a name="b197068338312"></a><a name="b197068338312"></a>名称</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="57.34573457345735%" id="mcps1.2.4.1.3"><p id="p1641533755612"><a name="p1641533755612"></a><a name="p1641533755612"></a>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row0415737175610"><td class="cellrowborder" rowspan="3" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p8866127195914"><a name="p8866127195914"></a><a name="p8866127195914"></a>创建/删除信号量</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p58621910185914"><a name="p58621910185914"></a><a name="p58621910185914"></a>LOS_SemCreate</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p48623102592"><a name="p48623102592"></a><a name="p48623102592"></a>创建信号量，返回信号量ID</p>
-</td>
-</tr>
-<tr id="row1213865218584"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p20862510115911"><a name="p20862510115911"></a><a name="p20862510115911"></a>LOS_BinarySemCreate</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1886211011599"><a name="p1886211011599"></a><a name="p1886211011599"></a>创建二值信号量，其计数值最大为1</p>
-</td>
-</tr>
-<tr id="row3231257145813"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p38621410205919"><a name="p38621410205919"></a><a name="p38621410205919"></a>LOS_SemDelete</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p586261085913"><a name="p586261085913"></a><a name="p586261085913"></a>删除指定的信号量</p>
-</td>
-</tr>
-<tr id="row73651459105815"><td class="cellrowborder" rowspan="2" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p16927183515593"><a name="p16927183515593"></a><a name="p16927183515593"></a>申请/释放信号量</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p955271555916"><a name="p955271555916"></a><a name="p955271555916"></a>LOS_SemPend</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p555221518598"><a name="p555221518598"></a><a name="p555221518598"></a>申请指定的信号量，并设置超时时间</p>
-</td>
-</tr>
-<tr id="row178321454145812"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p17552101519596"><a name="p17552101519596"></a><a name="p17552101519596"></a>LOS_SemPost</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1555261595915"><a name="p1555261595915"></a><a name="p1555261595915"></a>释放指定的信号量</p>
-</td>
-</tr>
-</tbody>
-</table>
+### 接口说明
 
-### 开发流程<a name="section154261711141419"></a>
+**表1** 信号量模块接口
 
-1.  创建信号量LOS\_SemCreate，若要创建二值信号量则调用LOS\_BinarySemCreate。
-2.  申请信号量LOS\_SemPend。
-3.  释放信号量LOS\_SemPost。
-4.  删除信号量LOS\_SemDelete。
+| 功能分类 | 接口**名称** | 描述 |
+| -------- | -------- | -------- |
+| 创建/删除信号量 | LOS_SemCreate | 创建信号量，返回信号量ID |
+|  | LOS_BinarySemCreate |创建二值信号量，其计数值最大为1|
+|  | LOS_SemDelete |删除指定的信号量|
+| 申请/释放信号量 | LOS_SemPend | 申请指定的信号量，并设置超时时间 |
+|  | LOS_SemPost |释放指定的信号量|
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->由于中断不能被阻塞，因此不能在中断中使用阻塞模式申请信号量。
 
-### 编程实例<a name="section658135571417"></a>
+### 开发流程
 
-### 实例描述<a name="section125244411653"></a>
+1. 创建信号量LOS_SemCreate，若要创建二值信号量则调用LOS_BinarySemCreate。
+
+2. 申请信号量LOS_SemPend。
+
+3. 释放信号量LOS_SemPost。
+
+4. 删除信号量LOS_SemDelete。
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 由于中断不能被阻塞，因此不能在中断中使用阻塞模式申请信号量。
+
+
+### 编程实例
+
+
+### 实例描述
 
 本实例实现如下功能：
 
-1.  测试任务ExampleSem创建一个信号量，锁任务调度，创建两个任务ExampleSemTask1、ExampleSemTask2, ExampleSemTask2优先级高于ExampleSemTask1，两个任务中申请同一信号量，解锁任务调度后两任务阻塞，测试任务ExampleSem释放信号量。
-2.  ExampleSemTask2得到信号量，被调度，然后任务休眠20Ticks，ExampleSemTask2延迟，ExampleSemTask1被唤醒。
-3.  ExampleSemTask1定时阻塞模式申请信号量，等待时间为10Ticks，因信号量仍被ExampleSemTask2持有，ExampleSemTask1挂起，10Ticks后仍未得到信号量，ExampleSemTask1被唤醒，试图以永久阻塞模式申请信号量，ExampleSemTask1挂起。
-4.  20Tick后ExampleSemTask2唤醒， 释放信号量后，ExampleSemTask1得到信号量被调度运行，最后释放信号量。
-5.  ExampleSemTask1执行完，400Ticks后任务ExampleSem被唤醒，执行删除信号量。
+1. 测试任务ExampleSem创建一个信号量，锁任务调度，创建两个任务ExampleSemTask1、ExampleSemTask2, ExampleSemTask2优先级高于ExampleSemTask1，两个任务中申请同一信号量，解锁任务调度后两任务阻塞，测试任务ExampleSem释放信号量。
 
-### 编程示例<a name="section1742105514512"></a>
+2. ExampleSemTask2得到信号量，被调度，然后任务休眠20Ticks，ExampleSemTask2延迟，ExampleSemTask1被唤醒。
+
+3. ExampleSemTask1定时阻塞模式申请信号量，等待时间为10Ticks，因信号量仍被ExampleSemTask2持有，ExampleSemTask1挂起，10Ticks后仍未得到信号量，ExampleSemTask1被唤醒，试图以永久阻塞模式申请信号量，ExampleSemTask1挂起。
+
+4. 20Tick后ExampleSemTask2唤醒， 释放信号量后，ExampleSemTask1得到信号量被调度运行，最后释放信号量。
+
+5. ExampleSemTask1执行完，400Ticks后任务ExampleSem被唤醒，执行删除信号量。
+
+
+### 编程示例
 
 示例代码如下：
 
@@ -258,7 +225,8 @@ UINT32 ExampleSem(VOID)
 }
 ```
 
-### 结果验证<a name="section11297301617"></a>
+
+### 结果验证
 
 编译运行得到的结果为：
 
@@ -270,4 +238,3 @@ ExampleSemTask1 timeout and try get sem g_semId wait forever.
 ExampleSemTask2 post sem g_semId.
 ExampleSemTask1 wait_forever and get sem g_semId.
 ```
-

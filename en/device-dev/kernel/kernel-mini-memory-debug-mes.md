@@ -1,5 +1,14 @@
 # Memory Information Statistics<a name="EN-US_TOPIC_0000001078916690"></a>
 
+-   [Basic Concepts](#section52691565235)
+-   [Function Configuration](#section470611682411)
+-   [Development Guidelines](#section9368374243)
+    -   [How to Develop](#section679912407257)
+    -   [Development Example](#section1025453412611)
+    -   [Sample Code](#section165277971315)
+    -   [Verification](#section3460102414271)
+
+
 ## Basic Concepts<a name="section52691565235"></a>
 
 Memory information includes the memory pool size, memory usage, remaining memory size, maximum free memory, memory waterline, number of memory nodes, and fragmentation rate.
@@ -47,11 +56,11 @@ typedef struct {
 
 This example implements the following:
 
-1. Creates a monitoring task to obtain information about the memory pool.
+1. Create a monitoring task to obtain information about the memory pool.
 
-2. Calls  **LOS\_MemInfoGet**  to obtain the basic information about the memory pool.
+2. Call  **LOS\_MemInfoGet**  to obtain the basic information about the memory pool.
 
-3. Calculates the memory usage and fragmentation rate.
+3. Calculate the memory usage and fragmentation rate.
 
 ### Sample Code<a name="section165277971315"></a>
 
@@ -63,6 +72,7 @@ The sample code is as follows:
 #include "los_task.h"
 #include "los_memory.h"
 #include "los_config.h"
+
 
 void MemInfoTaskFunc(void)
 {

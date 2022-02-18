@@ -42,4 +42,8 @@
 
 -   **[umount](kernel-small-debug-shell-file-umount.md)**  
 
+-   **[du](kernel-small-debug-shell-file-du.md)**  
+
+-   **[mv](kernel-small-debug-shell-file-mv.md)**  
+
 

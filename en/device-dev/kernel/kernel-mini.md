@@ -4,9 +4,9 @@
 
 -   **[Basic Kernel](kernel-mini-basic.md)**  
 
--   **[Extension Components](kernel-mini-extend.md)**  
+-   **[Extended Components](kernel-mini-extend.md)**  
 
--   **[Kernel Debugging](kernel-memory-inner.md)**  
+-   **[Kernel Debugging](kernel-mini-debug.md)**  
 
 -   **[Appendix](kernel-mini-app.md)**  
 

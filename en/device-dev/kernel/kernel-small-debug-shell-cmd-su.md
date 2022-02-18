@@ -1,8 +1,15 @@
 # su<a name="EN-US_TOPIC_0000001179965841"></a>
 
+-   [Command Function](#section297810431676)
+-   [Syntax](#section157131147876)
+-   [Parameters](#section04145521671)
+-   [Usage](#section14615155610719)
+-   [Example](#section13338150985)
+-   [Output](#section125021924194613)
+
 ## Command Function<a name="section297810431676"></a>
 
-This command is used to switch the user.
+This command is used to switch the user account.
 
 ## Syntax<a name="section157131147876"></a>
 
@@ -40,8 +47,8 @@ su \[_uid_\] \[_gid_\]
 
 ## Usage<a name="section14615155610719"></a>
 
--   The  **su**  command is used to switch to user  **root**  by default. The default value for both  **uid**  and  **gid**  is  **0**.
--   If the  **uid**  and  **gid**  parameters are specified, this command can switch to the user with the specified  **uid**  and  **gid**.
+-   If no parameter is specified, the  **su**  command switches to user  **root**  by default. The  **uid**  and  **gid**  for user  **root**  are both  **0**.
+-   If  **uid**  and  **gid**  are specified, this command allows commands to be executed as the user with the specified  **uid**  and  **gid**.
 -   If the input parameter is out of the range, an error message will be printed.
 
 ## Example<a name="section13338150985"></a>
@@ -50,6 +57,17 @@ Run  **su 1000 1000**.
 
 ## Output<a name="section125021924194613"></a>
 
-**Figure  1**  Switching to the user whose  **uid**  and  **gid**  are both  **1000**<a name="fig666918538448"></a>  
-![](figure/switching-to-the-user-whose-uid-and-gid-are-both-1000.png "switching-to-the-user-whose-uid-and-gid-are-both-1000")
+Switching to the user with both  **uid**  and  **gid**  of  **1000**:
+
+```
+OHOS # ls
+Directory /data/system/param:
+-rw-r--r-- 0 u:0 g:0 hello_1.txt
+OHOS # su 1000 1000
+OHOS # touch hello 2.txt
+OHOS # ls
+Directory /data/system/param:
+-rw-r--r-- O u:1000 g:1000 hello 2.txt
+-гw-r--r-- 0 u:0 g:0 hello_1.txt
+```
 

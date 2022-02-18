@@ -1,8 +1,16 @@
 # Software Timer<a name="EN-US_TOPIC_0000001078575728"></a>
 
+-   [Basic Concepts](#section4118241563)
+-   [Working Principles](#section31079397569)
+-   [Development Guidelines](#section18576131520577)
+    -   [Available APIs](#section3138019145719)
+    -   [How to Develop](#section1344817403575)
+    -   [Development Example](#section114416313585)
+
+
 ## Basic Concepts<a name="section4118241563"></a>
 
-The software timer is a software-simulated timer based on system tick interrupts. When the preset tick counter value has elapsed, the user-defined callback will be invoked. The timing precision is related to the cycle of the system tick clock. Due to the limitation in hardware, the number of hardware timers cannot meet users' requirements. Therefore, the Huawei LiteOS provides the software timer function. The software timer allows more timing services to be created, increasing the number of timers.
+The software timer is a software-simulated timer based on system tick interrupts. When the preset tick counter value has elapsed, the user-defined callback will be invoked. The timing precision is related to the cycle of the system tick clock. Due to the limitation in hardware, the number of hardware timers cannot meet users' requirements. Therefore, the OpenHarmony LiteOS-A kernel provides the software timer function. The software timer allows more timing services to be created, increasing the number of timers.
 
 The software timer supports the following functions:
 
@@ -53,7 +61,7 @@ The following table describes APIs available for the OpenHarmony LiteOS-A softwa
 **Table  1**  Software timer APIs
 
 <a name="table107038227425"></a>
-<table><thead align="left"><tr id="row2704122217420"><th class="cellrowborder" valign="top" width="20.6020602060206%" id="mcps1.2.4.1.1"><p id="p57041622144212"><a name="p57041622144212"></a><a name="p57041622144212"></a>Category</p>
+<table><thead align="left"><tr id="row2704122217420"><th class="cellrowborder" valign="top" width="20.6020602060206%" id="mcps1.2.4.1.1"><p id="p57041622144212"><a name="p57041622144212"></a><a name="p57041622144212"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="29.542954295429542%" id="mcps1.2.4.1.2"><p id="p19704142216424"><a name="p19704142216424"></a><a name="p19704142216424"></a>API</p>
 </th>
@@ -126,7 +134,7 @@ Prerequisites:
 
 -   In  **los\_config.h**,  **LOSCFG\_BASE\_CORE\_SWTMR**  is enabled.
 -   The maximum number of software timers supported by the system \(**LOSCFG\_BASE\_CORE\_SWTMR\_LIMIT**\) is configured.
--   The maximum length of the software timer queue \(OS\_SWTMR\_HANDLE\_QUEUE\_SIZE\) is configured.
+-   The maximum length of the software timer queue \(**OS\_SWTMR\_HANDLE\_QUEUE\_SIZE**\) is configured.
 
 **Sample Code**
 
@@ -165,7 +173,7 @@ void Timer_example(void)
 
     /* Create a one-shot software timer, with the number of ticks set to 1000. When the number of ticks reaches 1000, callback function 1 is executed. */
     LOS_SwtmrCreate (1000, LOS_SWTMR_MODE_ONCE, Timer1_Callback, &id1, 1);
-    
+
     /* Create a periodic software timer and execute callback function 2 every 100 ticks. */
     LOS_SwtmrCreate(100, LOS_SWTMR_MODE_PERIOD, Timer2_Callback, &id2, 1);
     PRINTK("create Timer1 success\n");

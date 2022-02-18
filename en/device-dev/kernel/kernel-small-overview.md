@@ -1,10 +1,16 @@
 # Kernel Overview<a name="EN-US_TOPIC_0000001122933245"></a>
 
+-   [Overview](#section6614133913129)
+-   [Kernel Architecture](#section827143517385)
+
 ## Overview<a name="section6614133913129"></a>
 
-The OpenHarmony lightweight kernel is a next-generation kernel developed based on the lightweight IoT operating system Huawei LiteOS. Two types of kernels are available: LiteOS-M and LiteOS-A. The LiteOS-M kernel is designed for lightweight systems, which support MCU memory of hundreds of KB and MPU isolation. FreeRTOS and ThreadX are counterparts in the industry. The LiteOS-A kernel is ideal for small systems, which support memory in MB and MMU isolation. Similar kernels include Zircon and Darwin. This development guide applies to the LiteOS-A kernel.
+The OpenHarmony lightweight kernel is a next-generation kernel that evolved from the kernel of Huawei LiteOS, a lightweight IoT operating system. The kernel comes with two patterns: LiteOS-M and LiteOS-A. The LiteOS-M kernel is designed for the mini system, which supports KB-level MCU memory and MPU isolation. Typical counterparts in the industry include FreeRTOS and ThreadX. The LiteOS-A kernel is ideal for the small system, which supports MB-level memory and MMU isolation. Equivalent kernels include Zircon and Darwin.
 
-To adapt to the rapid development of the IoT industry, the OpenHarmony lightweight kernel is continuously optimized and expanded to provide application developers with friendly development experience and unified and open ecosystem capabilities. The LiteOS-A has the following new features:
+>![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>OpenHarmony provides different kernels for different systems. The small system supports LiteOS and Linux. This document applies to the LiteOS-A kernel. For details about operations related to the Linux kernel, see  [Linux Kernel Overview](kernel-standard-overview.md).
+
+To keep pace with the rapid development of the IoT industry, the OpenHarmony lightweight kernel is continuously optimized and expanded to provide application developers with friendly development experience and unified and open ecosystem capabilities. The LiteOS-A has the following new features:
 
 -   Diversified kernel mechanisms
 
@@ -25,37 +31,35 @@ To adapt to the rapid development of the IoT industry, the OpenHarmony lightweig
 
 ## Kernel Architecture<a name="section827143517385"></a>
 
-The lightweight kernel consists of the basic kernel, extension components, HDF, and POSIX interface. Different from the microkernel which is running in the user space, the extended functions, such as file system and network protocols, of the lightweight kernel are running in the kernel address space. The direct function calling between components is much faster than inter-process communication \(IPC\) or remote procedure calls \(RPCs\).
+The lightweight kernel consists of the basic kernel, extended components, HDF, and POSIX APIs. Different from the microkernel which is running in the user mode, the extended functions, such as the file system and network protocols, of the lightweight kernel are running in the kernel address space. The direct function calling between components is much faster than inter-process communication \(IPC\) or remote procedure calls \(RPCs\).
 
-**Figure  1**  Architecture of the OpenHarmony LiteOS-A kernel<a name="fig1216111597122"></a>  
-
-
-![](figure/en-us_image_0000001191018697.png)
+**Figure  1**  Architecture of the OpenHarmony LiteOS-A kernel<a name="fig10235830103519"></a>  
+![](figures/architecture-of-the-openharmony-liteos-a-kernel.png "architecture-of-the-openharmony-liteos-a-kernel")
 
 -   The basic kernel implements basic kernel mechanisms, such as scheduling, memory management, and interrupts.
--   Extended components include file systems, network protocols, and security functions.
+-   Extended components include file systems, network protocols, permission management, and more.
 -   The HDF provides a unified standard framework for peripheral drivers.
--   The POSIX interface allows POSIX-compliant applications to be easily ported to the OpenHarmony.
+-   The POSIX APIs allow POSIX-compliant applications to be easily ported to the OpenHarmony.
 
 **Basic Kernel**
 
 The basic kernel implements the following mechanisms:
 
--   Process management: supports processes and threads and task-based process implementation. Processes have independent 4 GiB address space.
--   Multi-core scheduling: supports task and affinity-based interrupt-core binding settings.
--   Real-time scheduling: Tasks are scheduled based on priorities. The tasks of the same priority are scheduled by using the time slice round-robin.
--   Virtual memory: supports page fault. The kernel space is statically mapped to 0-1 GiB addresses, and the user space is mapped to 1-4 GiB addresses.
+-   Process management: manages processes and threads and supports task-based process implementation. Processes have independent 4 GiB address space.
+-   Multi-core scheduling: supports CPU affinity settings, allowing the binding and unbinding of a task or interrupt to one or more CPU cores.
+-   Real-time scheduling: schedules tasks based on priorities. The tasks of the same priority are scheduled by using the time slice polling.
+-   Virtual memory: supports static mapping of the kernel space to 0-1 GiB addresses, and mapping of the user space to 1-4 GiB addresses.
 -   Kernel communication: supports events, semaphores, mutexes, and queues.
--   Time management: supports software timers and system clock.
+-   Time management: supports software timers and the system clock.
 
 **File systems**
 
-The LiteOS-A supports multiple file systems, such as FAT, JFFS2, NFS, ramfs, and procfs, and provides complete POSIX standard APIs externally. The VFS layer is used as the unified adaptation layer framework, which facilitates the porting of new file systems. Each file system can automatically use the rich functions provided by the VFS layer.
+The LiteOS-A supports multiple file systems, such as FAT, JFFS2, NFS, ramfs, and procfs, and provides complete standard POSIX APIs. The VFS layer is used as the unified adaptation layer framework, which facilitates the porting of new file systems. Each file system can automatically use the rich functions provided by the VFS layer.
 
 The following features are supported:
 
 -   Complete POSIX API support
--   File-level cache \(page cache\)
+-   File-level cache \(PageCache\)
 -   Disk-level cache \(Bcache\)
 -   Directory cache \(path cache\)
 -   DAC capability
@@ -64,7 +68,7 @@ The following features are supported:
 
 **Network Protocols**
 
-The LiteOS-A network protocols are constructed based on the open-source lightweight IP \(lwIP\) and have also optimized the RAM usage and improved the transmission performance over LWIP.
+The LiteOS-A network protocols are constructed based on the open-source lightweight IP \(lwIP\), optimizing the RAM usage while improving the transmission performance over lwIP.
 
 -   Protocols: IP, IPv6, ICMP, ND, MLD, UDP, TCP, IGMP, ARP, PPPoS, and PPPoE
 -   API: socket API
@@ -83,12 +87,12 @@ The LiteOS-A integrates the HDF framework. The HDF framework provides a more pre
 -   Unified hardware driver interface \(HDI\)
 -   Power management and plug and play \(PnP\)
 
-**Extension Components**
+**Extended Components**
 
-Extension components provide optional but important mechanism for extending kernel functions.
+Extended components provide optional but important mechanism for extending kernel functions.
 
 -   Dynamic linking: supports standard Executable and Linkable Format \(ELF\) execution and randomization of loading addresses.
--   IPC: supports LiteIPC and standard mechanisms such as Mqueue, Pipe, Fifo, and Signal.
+-   IPC: supports LiteIPC and standard mechanisms such as Mqueue, Pipe, FIFO, and Signal.
 -   System calling: supports 170+ system calls and the virtual dynamic shared object \(vDSO\) mechanism.
--   Permission management: supports process-based privilege division and control, and file owner, group, and owner \(UGO\) permission configuration.
+-   Permission management: supports process-based privilege division and control, and file user, group, and other \(UGO\) permission configuration.
 

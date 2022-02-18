@@ -1,12 +1,19 @@
 # chown<a name="EN-US_TOPIC_0000001179965847"></a>
 
+-   [Command Function](#section247414691513)
+-   [Syntax](#section14773151018159)
+-   [Parameters](#section598731391517)
+-   [Usage](#section16524152071510)
+-   [Example](#section17901152561510)
+-   [Output](#section15513163115816)
+
 ## Command Function<a name="section247414691513"></a>
 
-This command is used to change the owner and group of a specified file.
+This command is used to change the owner of a file.
 
 ## Syntax<a name="section14773151018159"></a>
 
-chown \[_owner_\] \[_group_\] \[_pathname_\]
+chown \[_owner_\] \[_pathname_\]
 
 ## Parameters<a name="section598731391517"></a>
 
@@ -21,26 +28,18 @@ chown \[_owner_\] \[_group_\] \[_pathname_\]
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1062mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1064mcpsimp"><a name="p1064mcpsimp"></a><a name="p1064mcpsimp"></a>owner</p>
+<tbody><tr id="row1541931122113"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p84121716217"><a name="p84121716217"></a><a name="p84121716217"></a>owner</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p13519122819294"><a name="p13519122819294"></a><a name="p13519122819294"></a>Specifies the file owner.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p14126172111"><a name="p14126172111"></a><a name="p14126172111"></a>Specifies the file owner.</p>
 </td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p182181026104214"><a name="p182181026104214"></a><a name="p182181026104214"></a>[0, 0xFFFFFFFF]</p>
-</td>
-</tr>
-<tr id="row172161126124218"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p68901524203516"><a name="p68901524203516"></a><a name="p68901524203516"></a>group</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1066mcpsimp"><a name="p1066mcpsimp"></a><a name="p1066mcpsimp"></a>Specifies the file group.</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p81831811183618"><a name="p81831811183618"></a><a name="p81831811183618"></a>Left blank</p>
-<p id="p1068mcpsimp"><a name="p1068mcpsimp"></a><a name="p1068mcpsimp"></a>[0, 0xFFFFFFFF]</p>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p24129113218"><a name="p24129113218"></a><a name="p24129113218"></a>[0,0xFFFFFFFF]</p>
 </td>
 </tr>
-<tr id="row10616101153510"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p12217026154215"><a name="p12217026154215"></a><a name="p12217026154215"></a>pathname</p>
+<tr id="row12419191192111"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p141215115212"><a name="p141215115212"></a><a name="p141215115212"></a>pathname</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p4218826194210"><a name="p4218826194210"></a><a name="p4218826194210"></a>Specifies the file path.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p7412315218"><a name="p7412315218"></a><a name="p7412315218"></a>Specifies the file path.</p>
 </td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p13872195215290"><a name="p13872195215290"></a><a name="p13872195215290"></a>An existing file</p>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p134126102118"><a name="p134126102118"></a><a name="p134126102118"></a>An existing file</p>
 </td>
 </tr>
 </tbody>
@@ -48,16 +47,22 @@ chown \[_owner_\] \[_group_\] \[_pathname_\]
 
 ## Usage<a name="section16524152071510"></a>
 
--   By specifying the  **owner**  and  **group**  parameters in this command, you can change the owner and group of the file.
--   If  **owner**  or  **group**  is  **-1**, the owner or group of the file will not be changed.
--   The  **group**  parameter can be left blank.
+This command does not apply to the FAT file system.
 
 ## Example<a name="section17901152561510"></a>
 
-Run  **chown 100 200 hello-harmony.txt**.
+Run  **chown 100 testfile**.
 
 ## Output<a name="section15513163115816"></a>
 
-**Figure  1**  Changing the owner and group of the hello-harmony.txt file to 100 and 200 respectively<a name="fig518593394920"></a>  
-![](figure/changing-the-owner-and-group-of-the-hello-harmony-txt-file-to-100-and-200-respectively.png "changing-the-owner-and-group-of-the-hello-harmony-txt-file-to-100-and-200-respectively")
+Changing the UID of the  **testfile**  file in  **/dev**  to  **100**:
+
+```
+OHOS:/dev$ touch testfile
+OHOS:/dev$ ll testfile
+-rw-r--r-- 0 0 100 0 1970-01-01 00:00 testfile
+OHOS:/dev$ chown 100 testfile
+OHOS:/dev$ ll testfile
+-rw-r--r-- 0 100 100 0 1970-01-01 00:00 testfile
+```
 

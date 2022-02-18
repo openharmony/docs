@@ -1,10 +1,18 @@
 # Atomic Operation<a name="EN-US_TOPIC_0000001078876272"></a>
 
+-   [Basic Concepts](#section1792118384594)
+-   [Working Principles](#section1786635117596)
+-   [Development Guidelines](#section2911115308)
+    -   [Available APIs](#section335914201010)
+    -   [How to Develop](#section12207371304)
+    -   [Development Example](#section8538651511)
+
+
 ## Basic Concepts<a name="section1792118384594"></a>
 
-In an OS that supports multiple tasks, modifying data in a memory area requires three steps: read data, modify data, and write data. However, data in a same memory area may be simultaneously accessed by multiple tasks. If the data modification is interrupted by another task, the execution result of the operation is unpredictable.
+In an OS that supports multiple tasks, modifying data in a memory area requires three steps: read data, modify data, and write data. However, data in a memory area may be simultaneously accessed by multiple tasks. If the data modification is interrupted by another task, the execution result of the operation is unpredictable.
 
-Although you can enable or disable interrupts to ensure that the multi-task execution results meet expectation, the system performance is affected.
+Although you can enable or disable interrupts to ensure that the multi-task execution results meet expectations, the system performance is affected.
 
 The ARMv6 architecture has introduced the  **LDREX**  and  **STREX**  instructions to support more discreet non-blocking synchronization of the shared memory. The atomic operations implemented thereby can ensure that the "read-modify-write" operations on the same data will not be interrupted, that is, the operation atomicity is ensured.
 
@@ -46,7 +54,7 @@ The following table describes the APIs available for the OpenHarmony LiteOS-A ke
 **Table  1**  Atomic operation APIs
 
 <a name="table29217519171"></a>
-<table><thead align="left"><tr id="row79375119172"><th class="cellrowborder" valign="top" width="21.21212121212121%" id="mcps1.2.4.1.1"><p id="p159375113174"><a name="p159375113174"></a><a name="p159375113174"></a>Category</p>
+<table><thead align="left"><tr id="row79375119172"><th class="cellrowborder" valign="top" width="21.21212121212121%" id="mcps1.2.4.1.1"><p id="p159375113174"><a name="p159375113174"></a><a name="p159375113174"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="33.39333933393339%" id="mcps1.2.4.1.2"><p id="p199385118173"><a name="p199385118173"></a><a name="p199385118173"></a>API</p>
 </th>

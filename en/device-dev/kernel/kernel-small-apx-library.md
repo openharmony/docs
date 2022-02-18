@@ -1,15 +1,25 @@
 # Standard Library<a name="EN-US_TOPIC_0000001126847658"></a>
 
+-   [Standard Library API Framework](#section149319478561)
+-   [Development Example](#section20874620185915)
+-   [Differences from the Linux Standard Library](#section6555642165713)
+    -   [Process](#section11299104511409)
+    -   [Memory](#section175754484116)
+    -   [File System](#section118191113134220)
+    -   [Signal](#section195939264421)
+    -   [Time](#section20825124304213)
+
+
 The OpenHarmony kernel uses the musl libc library that supports the Portable Operating System Interface \(POSIX\). You can develop components and applications working on the kernel based on the POSIX.
 
 ## Standard Library API Framework<a name="section149319478561"></a>
 
 **Figure  1**  POSIX framework<a name="fig153258541429"></a>  
-![](figure/posix-framework.png "posix-framework")
+![](figures/posix-framework.png "posix-framework")
 
 The musl libc library supports POSIX standards. The OpenHarmony kernel adapts the related system call APIs to implement external functions.
 
-For details about the APIs supported by the standard library, see the API document of the C library, which also covers the differences between the standard library and the POSIX standard.
+For details about the APIs supported by the standard library, see the API document of the C library, which also covers the differences between the standard library and the POSIX standard library.
 
 ## Development Example<a name="section20874620185915"></a>
 
@@ -166,7 +176,7 @@ ERROROUT:
 }
 
 /*
- * Sample code main function
+ * Main function
  */
 int main(int argc, char *argv[])
 {
@@ -193,9 +203,9 @@ This section describes the key differences between the standard library carried 
 
 ### Process<a name="section11299104511409"></a>
 
-1.  The OpenHarmony user-space processes support only static priorities, which range from 10 \(highest\) to 31 \(lowest\).
-2.  The OpenHarmony user-space threads support only static priorities, which range from 0 \(highest\) to 31 \(lowest\).
-3.  The OpenHarmony process scheduling support  **SCHED\_RR**  only, and thread scheduling support  **SCHED\_RR**  or  **SCHED\_FIFO**.
+1.  The OpenHarmony user-mode processes support only static priorities, which range from 10 \(highest\) to 31 \(lowest\).
+2.  The OpenHarmony user-mode threads support only static priorities, which range from 0 \(highest\) to 31 \(lowest\).
+3.  The OpenHarmony process scheduling supports  **SCHED\_RR**  only, and thread scheduling supports  **SCHED\_RR**  or  **SCHED\_FIFO**.
 
 ### Memory<a name="section175754484116"></a>
 
@@ -225,7 +235,7 @@ int main(int argc, char *argv[])
         perror("mmap");
         exit(EXIT_FAILURE);
     }
-    close(fd); /*  OpenHarmony does not support closing fd immediately after the mapping is successful. */ 
+    close(fd); /*  OpenHarmony does not support close fd immediately after the mapping is successful. */ 
     ...
     exit(EXIT_SUCCESS);
 }
@@ -262,7 +272,7 @@ int main(int argc, char *argv[])
 
 **User directory**: The user directory refers to the  **/storage**  directory. You can create, read, and write files in this directory, but cannot mount devices.
 
-Except the system and user directories, you can create directories and mount devices. Note that nested mount is not allowed, that is, a mounted folder and its subfolders cannot be mounted repeatedly. A non-empty folder cannot be mounted.
+Except in the system and user directories, you can create directories and mount devices. Note that nested mount is not allowed, that is, a mounted folder and its subfolders cannot be mounted repeatedly. A non-empty folder cannot be mounted.
 
 ### Signal<a name="section195939264421"></a>
 

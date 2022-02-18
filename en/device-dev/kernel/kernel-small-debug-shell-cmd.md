@@ -44,4 +44,8 @@
 
 -   **[watch](kernel-small-debug-shell-cmd-watch.md)**  
 
+-   **[reboot](kernel-small-debug-shell-cmd-reboot.md)**  
+
+-   **[top](kernel-small-debug-shell-cmd-top.md)**  
+
 

@@ -1,5 +1,12 @@
 # partition<a name="EN-US_TOPIC_0000001179965851"></a>
 
+-   [Command Function](#section255095212257)
+-   [Syntax](#section10258056122515)
+-   [Parameters](#section177200581256)
+-   [Usage](#section17866411262)
+-   [Example](#section1927174202610)
+-   [Output](#section11321011223)
+
 ## Command Function<a name="section255095212257"></a>
 
 This command is used to query flash partition information.
@@ -30,7 +37,7 @@ partition \[_nand / spinor_\]
 </tr>
 <tr id="row1445mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1447mcpsimp"><a name="p1447mcpsimp"></a><a name="p1447mcpsimp"></a>spinor</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1449mcpsimp"><a name="p1449mcpsimp"></a><a name="p1449mcpsimp"></a>Displays information about the spinor flash partition.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1449mcpsimp"><a name="p1449mcpsimp"></a><a name="p1449mcpsimp"></a>Displays information about the SPI NOR flash partition.</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1451mcpsimp"><a name="p1451mcpsimp"></a><a name="p1451mcpsimp"></a>N/A</p>
 </td>
@@ -41,7 +48,7 @@ partition \[_nand / spinor_\]
 ## Usage<a name="section17866411262"></a>
 
 -   The  **partition**  command is used to query flash partition information.
--   The NAND flash partition information can be viewed only when the YAFFS file system is enabled. The spinor flash partition information can be viewed only when the JFFS or ROMFS file system is enabled.
+-   The NAND flash partition information can be queried only when the Yet Another Flash File System \(YAFFS\) is enabled. The SPI NOR flash partition information can be queried only when the Journaling Flash File System \(JFFS\) or ROM filesystem \(romfs\) is enabled.
 
 ## Example<a name="section1927174202610"></a>
 
@@ -49,7 +56,10 @@ Run  **partition spinor**.
 
 ## Output<a name="section11321011223"></a>
 
-Viewing spinor flash partition information
+SPI NOR flash partition information:
 
-![](figure/en-us_image_0000001179848349.png)
+```
+OHOS # partition spinor
+spinor partition num:0,  blkdev name:/dev/spinorblk0, mountpt:/, startaddr:0x00500000, length:0x00a00000
+```
 

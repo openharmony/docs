@@ -1,5 +1,10 @@
 # File System Adaptation<a name="EN-US_TOPIC_0000001078936814"></a>
 
+-   [Basic Concepts](#section19480121811422)
+-   [Adapting the Mount API](#section147051940104212)
+-   [Adapting the Lookup API](#section11930181394317)
+-   [Summary and Precautions](#section5617183014319)
+
 ## Basic Concepts<a name="section19480121811422"></a>
 
 The purpose of interconnecting with the VFS layer is to implement API functions defined by the VFS layer. You can adapt some APIs based on the file system features and service requirements. Basically, file read and write must be supported. The minimum file system adaptation is as follows:
@@ -24,7 +29,7 @@ FSMAP_ENTRY(yourfs_fsmap, "your fs name", g_yourFsMountOps, TRUE, TRUE); // Regi
 ```
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
->1.  The  **open**  and  **close**  APIs are not necessarily implemented because they are used to operate files and are imperceptible to the underlying file system. You need to implement these APIs only when special operations need to be performed during the open and close operations on the file system.
+>1.  The  **open**  and  **close**  APIs are not necessarily implemented because they are used to operate files and are imperceptible to the underlying file system. You need to implement them only when special operations need to be performed during the open and close operations on the file system.
 >2.  Basic file system knowledge is required for file system adaptation. You need to have a deep understanding of the principles and implementation of the target file system. This section does not include the file system basics in detail. If you have any questions during the adaptation process, refer to the code in the  **kernel/liteos\_a/fs**  directory.
 
 ## Adapting the Mount API<a name="section147051940104212"></a>
@@ -49,7 +54,7 @@ The parameter  **struct Vnode \*blkDriver**  specifies the driver node, which ca
 
 The parameter  **const void \*data**  specifies the data passed by the  **mount**  command and can be processed according to the requirements of the file system.
 
-The following uses JFFS2 as an example to describe how the adapt the  **mount**  API:
+The following uses JFFS2 as an example to describe how to adapt the  **mount**  API:
 
 ```
 int VfsJffs2Bind(struct Mount *mnt, struct Vnode *blkDriver, const void *data)
@@ -63,7 +68,7 @@ int VfsJffs2Bind(struct Mount *mnt, struct Vnode *blkDriver, const void *data)
 
     LOS_MuxLock(&g_jffs2FsLock, (uint32_t)JFFS2_WAITING_FOREVER);
 
-    /* Obtain information required by the file system from the driver node, for example, the partition ID for the JFFS2. */
+    /* Obtain information required by the file system from the driver node, for example, the partition ID for JFFS2. */
     p = (mtd_partition *)((struct drv_data *)blkDriver->data)->priv;
     mtd = (struct MtdDev *)(p->mtd_info);
 
@@ -127,7 +132,7 @@ Summary:
 
 ## Adapting the  **Lookup**  API<a name="section11930181394317"></a>
 
-**Lookup**  is used to search for files. The function prototype of  **Lookup**  is:
+**Lookup**  is used to search for files. The function prototype of  **Lookup**  is as follows:
 
 ```
 int (*Lookup)(struct Vnode *parent, const char *name, int len, struct Vnode **vnode);
@@ -157,7 +162,7 @@ int VfsJffs2Lookup(struct Vnode *parentVnode, const char *path, int len, struct 
         return -ENOENT;
     }
 
-    /* Check whether the located target has an existing vnode, which corresponds to VfsHashInsert mentioned earlier. */
+    /* Check whether the located target has an existing Vnode, which corresponds to VfsHashInsert mentioned earlier. */
     (void)VfsHashGet(parentVnode->originMount, node->i_ino, &newVnode, NULL, NULL);
     LOS_MuxUnlock(&g_jffs2FsLock);
     if (newVnode) {
@@ -208,10 +213,10 @@ The general adaptation procedure is as follows:
 2.  Implement the API based on the private data.
 3.  Encapsulate the result in the format required by the Vnode or other APIs and return the result to the upper layer.
 
-The core logic is how to use the private data to implement API functions. These APIs implement common functions of the file systems and are generally implemented before the files systems are ported. Therefore, the key is to determine the private data required by the file system and store the data in Vnode for later use. Generally, the private data is information that can uniquely locate a file on a storage medium. Most file systems have similar data structures, for example, the inode data structure in JFFS2.
+The core logic is how to use the private data to implement API functions. These APIs implement common functions of the file systems and are generally implemented before the files systems are ported. Therefore, the key is to determine the private data required by the file system and store the data in the Vnode for later use. Generally, the private data is information that can uniquely locate a file on a storage medium. Most file systems have similar data structures, for example, the inode data structure in JFFS2.
 
 >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
->1.  When a file is accessed, the  **Lookup**  API of the file system is not necessrily called. The  **Lookup**  API is called only when the path cache is invalid.
+>1.  When a file is accessed, the  **Lookup**  API of the file system is not necessarily called. The  **Lookup**  API is called only when the PathCache is invalid.
 >2.  Do not directly return the Vnode located by using  **VfsHashGet**  as the result. The information stored in the Vnode may be invalid. Update the fields and return it.
 >3.  Vnodes are automatically released in the background based on memory usage. If data needs to be stored persistently, do not save it only in Vnodes.
 >4.  The  **Reclaim**  API is automatically called when a Vnode is released. Release the resources used by the private data in this API.

@@ -1,5 +1,16 @@
 # Semaphore<a name="EN-US_TOPIC_0000001078912740"></a>
 
+-   [Basic Concepts](#section1577111168131)
+-   [Working Principles](#section118423019134)
+-   [Development Guidelines](#section01419503131)
+    -   [Available APIs](#section1232345431312)
+    -   [How to Develop](#section154261711141419)
+    -   [Development Example](#section658135571417)
+    -   [Example Description](#section125244411653)
+    -   [Sample Code](#section1742105514512)
+    -   [Verification](#section11297301617)
+
+
 ## Basic Concepts<a name="section1577111168131"></a>
 
 Semaphore is a mechanism for implementing inter-task communication. It implements synchronization between tasks or exclusive access to shared resources.
@@ -9,14 +20,14 @@ In the data structure of a semaphore, there is a value indicating the number of 
 -   **0**: The semaphore is unavailable. Tasks waiting for the semaphore may exist.
 -   Positive number: The semaphore is available.
 
-The semaphore for synchronization is different from the semaphore for mutex:
+The semaphore for exclusive access is different from the semaphore for synchronization:
 
--   Semaphore used for exclusive access: The initial semaphore counter value is not 0, indicating the number of shared resources available. The semaphore counter value must be acquired before a shared resource is used, and released after the resource is used. When all shared resources are used, the semaphore counter is reduced to 0 and the tasks that need to obtain the semaphores will be blocked. This ensures exclusive access to shared resources. In addition, when the number of shared resources is 1, a binary semaphore \(similar to the mutex mechanism\) is recommended.
--   Semaphore used for synchronization: The initial semaphore counter value is 0. Task 1 cannot acquire the semaphore and is blocked. Task 1 enters Ready or Running state only when the semaphore is released by task 2. In this way, task synchronization is implemented.
+-   Semaphore used for exclusive access: The initial semaphore counter value \(non-zero\) indicates the number of shared resources available. The semaphore counter value must be acquired before a shared resource is used, and released when the resource is no longer required. When all shared resources are used, the semaphore counter is reduced to 0 and the tasks that need to obtain the semaphores will be blocked. This ensures exclusive access to shared resources. In addition, when the number of shared resources is 1, a binary semaphore \(similar to the mutex mechanism\) is recommended.
+-   Semaphore used for synchronization: The initial semaphore counter value is  **0**. Task 1 cannot acquire the semaphore and is blocked. Task 1 enters Ready or Running state only when the semaphore is released by task 2 or an interrupt. In this way, task synchronization is implemented.
 
 ## Working Principles<a name="section118423019134"></a>
 
-Semaphore control block
+**Semaphore Control Block**
 
 ```
 /**
@@ -31,7 +42,7 @@ typedef struct {
 } LosSemCB;
 ```
 
-Working Principles
+**Working Principles**
 
 Semaphore allows only a specified number of tasks to access a shared resource at a time. When the number of tasks accessing the resource reaches the limit, other tasks will be blocked until the semaphore is released.
 
@@ -45,11 +56,11 @@ Semaphore allows only a specified number of tasks to access a shared resource at
 
 -   Semaphore request
 
-    If the counter value is greater than 0, the system allocates a semaphore, decreases the value by 1, and returns a success message. Otherwise, the system blocks the task and adds the task to the end of a task queue waiting for semaphores. The wait timeout period can be set.
+    If the counter value is greater than 0, the system allocates a semaphore, decreases the value by 1, and returns a success message. Otherwise, the system blocks the task and moves the task to the end of a task queue waiting for semaphores. The wait timeout period can be set.
 
 -   Semaphore release
 
-    When a semaphore is released, if there is no task waiting for it, the counter is increased by 1. Otherwise, the first task in the wait queue is woken up.
+    When a semaphore is released, if there is no task waiting for it, the counter value is increased by 1. Otherwise, the first task in the wait queue is woken up.
 
 -   Semaphore deletion
 
@@ -58,8 +69,8 @@ Semaphore allows only a specified number of tasks to access a shared resource at
 
 The following figure illustrates the semaphore working mechanism.
 
-**Figure  1**  Semaphore working mechanism<a name="fig467314634214"></a>  
-![](figure/semaphore-working-mechanism-22.png "semaphore-working-mechanism-22")
+**Figure  1**  Semaphore working mechanism for small systems<a name="fig467314634214"></a>  
+![](figures/semaphore-working-mechanism-for-small-systems.png "semaphore-working-mechanism-for-small-systems")
 
 ## Development Guidelines<a name="section01419503131"></a>
 
@@ -68,7 +79,7 @@ The following figure illustrates the semaphore working mechanism.
 **Table  1**  Semaphore module APIs
 
 <a name="table1415203765610"></a>
-<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Category</p>
+<table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Function</p>
 </th>
 <th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p11415163718562"><a name="p11415163718562"></a><a name="p11415163718562"></a>API</p>
 </th>

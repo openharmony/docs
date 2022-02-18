@@ -1,12 +1,19 @@
 # mount<a name="EN-US_TOPIC_0000001134006264"></a>
 
+-   [Command Function](#section11631837182)
+-   [Syntax](#section1697638111820)
+-   [Parameters](#section1650151221819)
+-   [Usage](#section124541520171912)
+-   [Example](#section7424625171917)
+-   [Output](#section14757018116)
+
 ## Command Function<a name="section11631837182"></a>
 
 This command is used to mount a device to a specified directory.
 
 ## Syntax<a name="section1697638111820"></a>
 
-mount <_device_\> <_path_\> <_name_\> \[_uid gid_\]
+mount \[_-f_\] \[_-t TYPE_\] \[_-o OPTION,_\] \[\[_DEVICE_\]  _DIR_\]
 
 ## Parameters<a name="section1650151221819"></a>
 
@@ -21,35 +28,47 @@ mount <_device_\> <_path_\> <_name_\> \[_uid gid_\]
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1351mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1353mcpsimp"><a name="p1353mcpsimp"></a><a name="p1353mcpsimp"></a>device</p>
+<tbody><tr id="row081413014400"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p080318303407"><a name="p080318303407"></a><a name="p080318303407"></a>--help</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1355mcpsimp"><a name="p1355mcpsimp"></a><a name="p1355mcpsimp"></a>Specifies the path of the device to be mounted. The format is the path of the device.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p8804113024018"><a name="p8804113024018"></a><a name="p8804113024018"></a>Displays the parameters supported by the <strong id="b07421044122514"><a name="b07421044122514"></a><a name="b07421044122514"></a>mount</strong> command.</p>
 </td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1357mcpsimp"><a name="p1357mcpsimp"></a><a name="p1357mcpsimp"></a>A device in the system</p>
-</td>
-</tr>
-<tr id="row1358mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1360mcpsimp"><a name="p1360mcpsimp"></a><a name="p1360mcpsimp"></a>path</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1362mcpsimp"><a name="p1362mcpsimp"></a><a name="p1362mcpsimp"></a>Specifies the directory of the device.</p>
-<p id="p1363mcpsimp"><a name="p1363mcpsimp"></a><a name="p1363mcpsimp"></a>You must have the execution (search) permission for the specified directory.</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1365mcpsimp"><a name="p1365mcpsimp"></a><a name="p1365mcpsimp"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p280418307406"><a name="p280418307406"></a><a name="p280418307406"></a>N/A</p>
 </td>
 </tr>
-<tr id="row1366mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1368mcpsimp"><a name="p1368mcpsimp"></a><a name="p1368mcpsimp"></a>name</p>
+<tr id="row1781443044019"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p1580410305409"><a name="p1580410305409"></a><a name="p1580410305409"></a>-f</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1370mcpsimp"><a name="p1370mcpsimp"></a><a name="p1370mcpsimp"></a>Specifies the file system type.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1980419305409"><a name="p1980419305409"></a><a name="p1980419305409"></a>Fakes mounting the file system (no mounting is actually performed).</p>
 </td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1372mcpsimp"><a name="p1372mcpsimp"></a><a name="p1372mcpsimp"></a>vfat, yaffs, jffs, ramfs, nfs, procfs, romfs</p>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p58041230114019"><a name="p58041230114019"></a><a name="p58041230114019"></a>N/A</p>
 </td>
 </tr>
-<tr id="row138821392219"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p15883891213"><a name="p15883891213"></a><a name="p15883891213"></a>uid gid</p>
+<tr id="row1981411307404"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p11804143024013"><a name="p11804143024013"></a><a name="p11804143024013"></a>-t</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p158834917217"><a name="p158834917217"></a><a name="p158834917217"></a><strong id="b1647703019395"><a name="b1647703019395"></a><a name="b1647703019395"></a>uid</strong> indicates the user ID.</p>
-<p id="p18500185615215"><a name="p18500185615215"></a><a name="p18500185615215"></a><strong id="b13341343114017"><a name="b13341343114017"></a><a name="b13341343114017"></a>gid</strong> indicates the group ID.</p>
-<p id="p519052614387"><a name="p519052614387"></a><a name="p519052614387"></a>This parameter is optional. The default values are <strong id="b586915244111"><a name="b586915244111"></a><a name="b586915244111"></a>uid:0</strong> and <strong id="b1471656417"><a name="b1471656417"></a><a name="b1471656417"></a>gid:0</strong>.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p680443010409"><a name="p680443010409"></a><a name="p680443010409"></a>Specifies the file system type.</p>
 </td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p178835919211"><a name="p178835919211"></a><a name="p178835919211"></a>N/A</p>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p13804193034020"><a name="p13804193034020"></a><a name="p13804193034020"></a>vfat, yaffs, jffs, ramfs, nfs, procfs, romfs</p>
+</td>
+</tr>
+<tr id="row20813330184020"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p168041330194012"><a name="p168041330194012"></a><a name="p168041330194012"></a>-o</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p280473015402"><a name="p280473015402"></a><a name="p280473015402"></a>Specifies the mount options.</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p4804193020407"><a name="p4804193020407"></a><a name="p4804193020407"></a>N/A</p>
+</td>
+</tr>
+<tr id="row0813730134015"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p38041030124019"><a name="p38041030124019"></a><a name="p38041030124019"></a>DEVICE</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p28045303401"><a name="p28045303401"></a><a name="p28045303401"></a>Specifies the device to mount (in the format of the device directory).</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p8804113084010"><a name="p8804113084010"></a><a name="p8804113084010"></a>A device in the system</p>
+</td>
+</tr>
+<tr id="row1381383044011"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p7804133012406"><a name="p7804133012406"></a><a name="p7804133012406"></a>DIR</p>
+</td>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p1380419308409"><a name="p1380419308409"></a><a name="p1380419308409"></a>Specifies the directory.</p>
+<p id="p14804153014011"><a name="p14804153014011"></a><a name="p14804153014011"></a>You must have the execution (search) permission on the specified directory.</p>
+</td>
+<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p1780403094017"><a name="p1780403094017"></a><a name="p1780403094017"></a>N/A</p>
 </td>
 </tr>
 </tbody>
@@ -57,15 +76,24 @@ mount <_device_\> <_path_\> <_name_\> \[_uid gid_\]
 
 ## Usage<a name="section124541520171912"></a>
 
-By specifying the device to be mounted, directory, and file system format in the  **mount**  command, you can successfully mount the file system to the specified directory.
+By specifying the device to mount, directory, and file system format in the  **mount**  command, you can successfully mount the file system to the specified directory.
 
 ## Example<a name="section7424625171917"></a>
 
-Run  **mount /dev/mmcblk0p0 /bin1/vs/sd vfat**.
+Run  **mount -t nfs 192.168.1.3:/nfs nfs**.
 
 ## Output<a name="section14757018116"></a>
 
-Mounting  **/dev/mmcblk0p0**  to the  **/bin1/vs/sd**  directory
+Mounting the  **nfs**  directory on the server with IP address of  **192.168.1.3**  to the newly created  **/nfs**  directory in the current system
 
-![](figure/en-us_image_0000001134008688.png)
+```
+OHOS:/$ mkdir nfs
+OHOS:/$ mount -t nfs 192.168.1.3:/nfs nfs
+Mount nfs on 192.168.1.3:/nfs, uid:0, gid:0
+Mount nfs finished.
+OHOS:/$ ls nfs/
+16d.xml         gpio_test             ohos_test.txt    userfs_vfat.img
+OHOS_Image.bin  hello                 rootfs_vfat.img
+dev_tools       mksh_rootfs_vfat.img  test_demo
+```
 

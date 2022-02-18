@@ -1,5 +1,14 @@
 # Memory Leak Check<a name="EN-US_TOPIC_0000001079076672"></a>
 
+-   [Basic Concepts](#section1026719436293)
+-   [Function Configuration](#section13991354162914)
+-   [Development Guidelines](#section95828159308)
+    -   [How to Develop](#section369844416304)
+    -   [Development Example](#section460801313313)
+    -   [Sample Code](#section96539275311)
+    -   [Verification](#section20527343183119)
+
+
 ## Basic Concepts<a name="section1026719436293"></a>
 
 As an optional function of the kernel, memory leak check is used to locate dynamic memory leak problems. After this function is enabled, the dynamic memory automatically records the link registers \(LRs\) used when memory is allocated. If a memory leak occurs, the recorded information helps locate the memory allocated for further analysis.
@@ -41,9 +50,9 @@ node        size   LR[0]      LR[1]       LR[2]
 
 This example implements the following:
 
-1.  Calls  **LOS\_MemUsedNodeShow**  to print information about all nodes.
-2.  Simulates a memory leak by requesting memory without releasing it.
-3.  Calls  **LOS\_MemUsedNodeShow**  to print information about all nodes.
+1.  Call  **LOS\_MemUsedNodeShow**  to print information about all nodes.
+2.  Simulate a memory leak by requesting memory without releasing it.
+3.  Call  **LOS\_MemUsedNodeShow**  to print information about all nodes.
 4.  Compare the logs to obtain information about the node where a memory leak occurred.
 5.  Locate the code based on the LR address.
 
