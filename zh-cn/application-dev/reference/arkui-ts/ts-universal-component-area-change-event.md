@@ -13,7 +13,7 @@
 
 | 名称 | 支持冒泡 | 功能描述 | 
 | -------- | -------- | -------- | 
-| onAreaChange(event:&nbsp;(oldValue:&nbsp;Area,&nbsp;newValue:&nbsp;Area)&nbsp;=&gt;&nbsp;void) | 否 | 组件区域变化时触发该回调，Area类型说明见[Area对象](../reference/arkui-ts/ts-universal-events-click.md)介绍。 | 
+| onAreaChange(event:&nbsp;(oldValue:&nbsp;Area,&nbsp;newValue:&nbsp;Area)&nbsp;=&gt;&nbsp;void) | 否 | 组件区域变化时触发该回调，Area类型说明见[Area对象](ts-universal-events-click.md)介绍。 | 
 
 
 ## 示例
