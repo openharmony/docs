@@ -11,9 +11,9 @@ import distributedObject from '@ohos.data.distributedDataObject'
 ```
 
 
-## 权限
+## 系统能力
 
-无
+SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 
 ## distributedDataObject.createDistributedObject
@@ -27,7 +27,6 @@ createDistributedObject(source: object): DistributedObject
   | -------- | -------- | -------- | -------- |
   | object | source | 是 | 设置distributedObject的属性。 |
   
-
 - 示例：
   ```js
   import distributedObject from '@ohos.data.distributedDataObject'
@@ -70,7 +69,6 @@ setSessionId(sessionId?: string): boolean
   | -------- | -------- | -------- | -------- |
   | sessionId | string | 是 | 分布式对象在可信组网中的标识ID。 |
   
-
 - 示例：
   ```js
   import distributedObject from '@ohos.data.distributedDataObject'
@@ -103,7 +101,7 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
                  parent:{mother:"jack mom",father:"jack Dad"}});
   changeCallback : function (sessionId, changeData) {
         console.info("change" + sessionId);
-
+  
         if (changeData != null && changeData != undefined) {
             changeData.forEach(element => {
                 console.info("changed !" + element + " " + g_object[element]);
@@ -126,7 +124,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
   | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 否 | 需要删除的变更回调，若不设置则删除该对象所有的变更回调。 |
 
 
-示例：
+- 示例：
   ```js
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
@@ -134,7 +132,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
   changeCallback : function (sessionId, changeData) {
         console.info("change" + sessionId);
   }
-
+  
   g_object.on("change", this.changeCallback);
   //删除变更回调changeCallback
   g_object.off("change", changeCallback);
@@ -152,9 +150,9 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \\| 'offline' }> | 是 | 监听上下线回调实例。 |
+  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | 是 | 监听上下线回调实例。 |
 
-示例：
+- 示例：
   ```js
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
@@ -162,7 +160,7 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
   statusCallback : function (sessionId, networkid, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
   }
-
+  
   g_object.on("status", this.changeCallback);
   ```
 
@@ -178,16 +176,16 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \\| 'offline' }> | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。 |
+  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。 |
 
 
-示例：
+- 示例：
   ```js
   import distributedObject from '@ohos.data.distributedDataObject'
   statusCallback : function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
   }
-
+  
   g_object.on("status", this.changeCallback);
   //删除上下线回调changeCallback
   g_object.off("status", changeCallback);

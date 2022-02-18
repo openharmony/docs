@@ -22,18 +22,18 @@
 创建一个随机的sessionId，可将其设置为一个分布式数据对象的sessionId。
 
 **表2** 分布式数据对象sessionId创建接口
-| 包名 | 接口名 | 描述 | 
+| 包名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个sessionId，可作为分布式数据对象的sessionId | 
+| ohos.data.distributedDataObject| genSessionId(): string | 创建一个sessionId，可作为分布式数据对象的sessionId |
 
 ### 设置分布式数据对象sessionId
 
 设置分布式数据对象的sessionId，sessionId是一次（多设备）协同的唯一标识，同步的多个数据对象需要关联同一个sessionId。
 
 **表3** 分布式数据对象sessionId设置接口
-| 包名 | 接口名 | 描述 | 
+| 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId | 
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId |
 
 ### 订阅数据变更
 
@@ -50,10 +50,10 @@
 订阅数据对象上下线需要指定Callback作为回调方法，订阅的数据对象上线/下线后，对端的数据对象会收到Callback回调。
 
 **表5** 分布式数据对象数据上下线订阅接口
-| 类名 | 接口名 | 描述 | 
+| 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| DistributedDataObject| on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' \\| 'offline' }>): void | 订阅数据对象上下线。 | 
-| DistributedDataObject| off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, status: 'online' \\| 'offline' }>): void | 注销订阅。 |
+| DistributedDataObject| on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }>): void | 订阅数据对象上下线。 |
+| DistributedDataObject| off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }>): void | 注销订阅。 |
 
 
 
@@ -70,8 +70,8 @@
 
    以下为创建分布式数据对象的代码示例：
    ```js
-   var local_object = distributedObject.createDistributedObject({{name:undefined, age:undefined, isVis:true, 
-                  parent:undefined, list:undefined}});
+   var local_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
+                  parent:undefined, list:undefined});
    ```
 
 
@@ -79,25 +79,27 @@
    
    以下为加入同步组网的代码示例:
 
-   发起方：
    ```js
-   local_object.setSessionId(distributedObject.genSessionId());
-   //将生成的local_object.__sessionId通过Intent传到对端设备
+   //发起方
+   var local_object = distributedObject.createDistributedObject({name:"jack", age:18, isVis:true, 
+       parent:{mother:"jack mom",father:"jack Dad"},[{mother:"jack mom"}, {father:"jack Dad"}]};
+   local_object.setsessionId(sessionId);
+   
+   //被发起方
+   var remote_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
+                  parent:undefined, list:undefined});
+   remote_object.setsessionId(sessionId);
+   //收到status上线后remote_object同步数据，即name变成jack,age是18
    ```
-   被拉起方：
-   ```js
-   //获取Intent中的sessionId
-   remote_object.setSessionId(sessionId);
-   ```
-
-4. 监听对象数据变更。可支持监听本地数据或对端数据的变更，以  callback作为变更回调实例。
+   
+4. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
 
    以下为监听对象数据变更的代码示例。
    
    ```js
    changeCallback : function (sessionId, changeData) {
         console.info("change" + sessionId);
-
+   
         if (changeData != null && changeData != undefined) {
             changeData.forEach(element => {
                 console.info("changed !" + element + " " + local_object[element]);
@@ -106,8 +108,7 @@
     } 
     local_object.on("change", this.changeCallback);
    ```
-    
-
+   
 5. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
    
    以下为修改分布式数据对象属性的代码示例：
@@ -149,11 +150,11 @@
     statusCallback : function (sessionId, networkid, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
     }
-
+   
     local_object.on("status", this.changeCallback);
    ```
 9. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
-    
+   
     以下为取消监听数据变更的代码示例：
    ```js
    //删除上下线回调changeCallback
@@ -162,12 +163,14 @@
    local_object.off("status");
    ```
 10. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
-  
-  以下为退出同步组网的代码示例：
-   ```js
-   local_object.setSessionId("");
-   ```
+
+     以下为退出同步组网的代码示例：
+       ```js
+       local_object.setSessionId("");
+       ```
+
    
+
    
 
 
