@@ -68,10 +68,10 @@ struct AspectRatioExample {
 }
 ```
 
-**图1** 竖屏显示
+**图1** 竖屏显示<br>
 ![zh-cn_image_0000001219744205](figures/zh-cn_image_0000001219744205.gif)
 
-**图2** 横屏显示
+**图2** 横屏显示<br>
 ![zh-cn_image_0000001174264382](figures/zh-cn_image_0000001174264382.gif)
 
 ```
