@@ -23,7 +23,7 @@ RotationGesture(options?: { fingers?: number, angle?: number })
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onActionStart((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功回调。 | 
 | onActionUpdate((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势移动过程中回调。 | 
 | onActionEnd((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 | 
