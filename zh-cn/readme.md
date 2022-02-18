@@ -28,7 +28,7 @@
             -   [小型系统芯片移植指导](device-dev/porting/porting-smallchip.md)
 
         -   bundles：HPM Bundle开发
-            -   [HPM Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
+            -   [HPM Bundle开发规范](device-dev/bundles/bundles-standard-rules.md)
             -   [HPM Bundle开发指南](device-dev/bundles/bundles-guide.md)
             -   [HPM Bundle开发示例](device-dev/bundles/bundles-demo.md)
 
@@ -51,7 +51,7 @@
             -   [一种快速移植OpenHarmony Linux内核的方法](device-dev/porting/porting-linux-kernel.md)
 
         -   bundles：HPM Bundle开发
-            -   [HPM Bundle开发规范](device-dev/bundles/oem_bundle_standard_des.md)
+            -   [HPM Bundle开发规范](device-dev/bundles/bundles-standard-rules.md)
             -   [HPM Bundle开发指南](device-dev/bundles/bundles-guide.md)
             -   [HPM Bundle开发示例](device-dev/bundles/bundles-demo.md)
     -   [常见问题](device-dev/faqs/Readme-CN.md)

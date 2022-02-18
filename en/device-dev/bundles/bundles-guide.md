@@ -1,4 +1,4 @@
-# Development Guidelines<a name="EN-US_TOPIC_0000001157319417"></a>
+# HPM Bundle Development Guidelines<a name="EN-US_TOPIC_0000001157319417"></a>
 
 -   **[Overview](bundles-guide-overview.md)**  
 
