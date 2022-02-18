@@ -12,7 +12,7 @@
 ## 事件
 
 | 名称 | 支持冒泡 | 功能描述 | 
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- |
 | onClick(callback:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否 | 点击动作触发该方法调用，event参数见ClickEvent介绍。 | 
 
 - ClickEvent对象说明
