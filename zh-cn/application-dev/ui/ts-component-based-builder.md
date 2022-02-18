@@ -1,6 +1,8 @@
-# @Builder<a name="ZH-CN_TOPIC_0000001134858596"></a>
+# @Builder
 
-@Builder装饰的方法用于定义组件的声明式UI描述，在一个自定义组件内快速生成多个布局内容。@Builder装饰方法的功能和语法规范与[build函数](ts-function-build.md)相同。
+
+@Builder装饰的方法用于定义组件的声明式UI描述，在一个自定义组件内快速生成多个布局内容。\@Builder装饰方法的功能和语法规范与[build函数](ts-function-build.md)相同。
+
 
 ```
 @Entry
@@ -39,4 +41,3 @@ struct CompA {
   }
 }
 ```
-

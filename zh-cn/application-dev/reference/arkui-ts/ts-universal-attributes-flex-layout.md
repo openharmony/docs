@@ -1,65 +1,28 @@
-# Flex布局<a name="ZH-CN_TOPIC_0000001192755122"></a>
+# Flex布局
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->-   从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->-   仅当父组件是Flex组件时生效。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> - 仅当父组件是Flex组件时生效。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 属性<a name="section414916171752"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="16.66%" id="mcps1.1.5.1.2"><p>参数说明</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.459999999999999%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.879999999999995%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>flexBasis</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.66%" headers="mcps1.1.5.1.2 "><p>'auto' | Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.459999999999999%" headers="mcps1.1.5.1.3 "><p>'auto'</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.879999999999995%" headers="mcps1.1.5.1.4 "><p>此属性所在的组件在Flex容器中主轴方向上基准尺寸。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>flexGrow</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.66%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.459999999999999%" headers="mcps1.1.5.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.879999999999995%" headers="mcps1.1.5.1.4 "><p>Flex容器的剩余空间分配给给此属性所在的组件的比例。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>flexShrink</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.66%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.459999999999999%" headers="mcps1.1.5.1.3 "><p>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.879999999999995%" headers="mcps1.1.5.1.4 "><p>Flex容器压缩尺寸分配给此属性所在的组件的比例。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>alignSelf</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.66%" headers="mcps1.1.5.1.2 "><p><a href="ts-appendix-enums.md#section14211428171612">ItemAlign</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="13.459999999999999%" headers="mcps1.1.5.1.3 "><p>Auto</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.879999999999995%" headers="mcps1.1.5.1.4 "><p>覆盖Flex布局容器中alignItems默认配置。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 示例<a name="section1976245813394"></a>
+
+| 名称 | 参数说明 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| flexBasis | 'auto'&nbsp;\|&nbsp;Length | 'auto' | 此属性所在的组件在Flex容器中主轴方向上基准尺寸。 |
+| flexGrow | number | 0 | Flex容器的剩余空间分配给给此属性所在的组件的比例。 |
+| flexShrink | number | 1 | Flex容器压缩尺寸分配给此属性所在的组件的比例。 |
+| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign枚举说明) | Auto | 覆盖Flex布局容器中alignItems默认配置。 |
+
+
+## 示例
 
 ```
 @Entry
@@ -121,5 +84,4 @@ struct FlexExample {
 }
 ```
 
-![](figures/flex.png)
-
+![zh-cn_image_0000001219744197](figures/zh-cn_image_0000001219744197.png)

@@ -38,6 +38,7 @@
     -   [Radio](js-apis-radio.md)
 -   Network and Connectivity
     -   [WLAN](js-apis-wifi.md)  
+    -   [Bluetooth](js-apis-bluetooth.md)
 -   Device Management
     -   [Sensors](js-apis-sensor.md)
     -   [Vibration](js-apis-vibrator.md)

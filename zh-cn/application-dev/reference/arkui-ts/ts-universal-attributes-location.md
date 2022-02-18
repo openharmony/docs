@@ -1,115 +1,35 @@
-# 位置设置<a name="ZH-CN_TOPIC_0000001193075116"></a>
+# 位置设置
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 属性<a name="section8832145623"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="17.341734173417343%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.672867286728675%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.35143514351435%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="39.63396339633963%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p>align</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p><a href="ts-appendix-enums.md#section1145418513159">Alignment</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p>Center</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p>设置元素内容的对齐方式，只有当设置的width和height大小超过元素本身内容大小时生效。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p>direction</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p><a href="#li12312485585">Direction</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p>Auto</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p>设置元素水平方向的布局，可选值参照<a href="#li12312485585">Direction</a>枚举说明。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p>position</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>x: Length,</p>
-<p>y: Length</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p>使用绝对定位，设置元素锚点相对于父容器顶部起点偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p>markAnchor</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>x: Length,</p>
-<p>y: Length</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p>{</p>
-<p>x: 0,</p>
-<p>y: 0</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p>设置元素在位置定位时的锚点，以元素顶部起点作为基准点进行偏移。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p>offset</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>x: Length,</p>
-<p>y: Length</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p>{</p>
-<p>x: 0,</p>
-<p>y: 0</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p>相对布局完成位置坐标偏移量，设置该属性，不影响父容器布局，仅在绘制时进行位置调整。</p>
-</td>
-</tr>
-</tbody>
-</table>
-
--   <a name="li12312485585"></a>Direction枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Ltr</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>元素从左到右布局。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Rtl</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>元素从右到左布局。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Auto</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>使用系统默认布局方向。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+## 属性
 
 
-## 示例<a name="section12073184715"></a>
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| align | [Alignment](ts-appendix-enums.md#alignment枚举说明) | Center | 设置元素内容的对齐方式，只有当设置的width和height大小超过元素本身内容大小时生效。 |
+| direction | Direction | Auto | 设置元素水平方向的布局，可选值参照Direction枚举说明。 |
+| position | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | - | 使用绝对定位，设置元素锚点相对于父容器顶部起点偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。 |
+| markAnchor | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | 设置元素在位置定位时的锚点，以元素顶部起点作为基准点进行偏移。 |
+| offset | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | 相对布局完成位置坐标偏移量，设置该属性，不影响父容器布局，仅在绘制时进行位置调整。 |
+
+
+- Direction枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Ltr | 元素从左到右布局。 | 
+  | Rtl | 元素从右到左布局。 | 
+  | Auto | 使用系统默认布局方向。 | 
+
+
+## 示例
 
 ```
 @Entry
@@ -142,7 +62,7 @@ struct PositionExample {
 }
 ```
 
-![](figures/position.gif)
+![zh-cn_image_0000001174264368](figures/zh-cn_image_0000001174264368.gif)
 
 ```
 @Entry
@@ -195,5 +115,4 @@ struct PositionExample2 {
 }
 ```
 
-![](figures/position2.gif)
-
+![zh-cn_image_0000001174104392](figures/zh-cn_image_0000001174104392.gif)

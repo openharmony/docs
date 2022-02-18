@@ -1,5 +1,3 @@
-# 附录<a name="ZH-CN_TOPIC_0000001237555099"></a>
+# 附录
 
--   **[文档中涉及到的内置枚举值](ts-appendix-enums.md)**  
-
-
+- **[文档中涉及到的内置枚举值](ts-appendix-enums.md)**

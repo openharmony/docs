@@ -1,252 +1,78 @@
-# Text<a name="ZH-CN_TOPIC_0000001192915102"></a>
+# Text
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 文本，用于呈现一段信息。
 
-## 权限列表<a name="section1895361713156"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section1444658131617"></a>
+
+## 子组件
 
 可以包含[Span](ts-basic-components-span.md)子组件。
 
-## 接口<a name="section1383178131719"></a>
 
-Text\(content?: string\)
+## 接口
 
--   参数
+Text(content?: string)
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="16.869999999999997%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="40.01%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>content</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p>''</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p>文本内容，包含子组件Span时不生效，显示Span内容。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | content | string | 否 | '' | 文本内容，包含子组件Span时不生效，显示Span内容。 | 
 
 
-## 属性<a name="section175320400172"></a>
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="24.14%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.35%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="26.51%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>textAlign</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.14%" headers="mcps1.1.5.1.2 "><p><a href="#li16164333289">TextAlign</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.35%" headers="mcps1.1.5.1.3 "><p>Start</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.51%" headers="mcps1.1.5.1.4 "><p>设置多行文本的文本对齐方式。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>textOverflow</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.14%" headers="mcps1.1.5.1.2 "><p>{overflow: <a href="#li3837144314284">TextOverflow</a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.35%" headers="mcps1.1.5.1.3 "><p>{overflow: TextOverflow.Clip}</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.51%" headers="mcps1.1.5.1.4 "><p>设置文本超长时的显示方式。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>maxLines</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.14%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.35%" headers="mcps1.1.5.1.3 "><p>Infinity</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.51%" headers="mcps1.1.5.1.4 "><p>设置文本的最大行数。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>lineHeight</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.14%" headers="mcps1.1.5.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.35%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.51%" headers="mcps1.1.5.1.4 "><p>设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>decoration</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.14%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>type: <a href="#li182215492284">TextDecorationType</a>,</p>
-<p>color?: Color</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.35%" headers="mcps1.1.5.1.3 "><p>{</p>
-<p>type: TextDecorationType.None,</p>
-<p>color：Color.Black</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.51%" headers="mcps1.1.5.1.4 "><p>设置文本装饰线样式及其颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>baselineOffset</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.14%" headers="mcps1.1.5.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.35%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.51%" headers="mcps1.1.5.1.4 "><p>设置文本基线的偏移量。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>textCase</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.14%" headers="mcps1.1.5.1.2 "><p><a href="#li6551155619287">TextCase</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="33.35%" headers="mcps1.1.5.1.3 "><p>Normal</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.51%" headers="mcps1.1.5.1.4 "><p>设置文本大小写。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| textAlign | TextAlign | TextAlign.Start | 设置多行文本的文本对齐方式。 |
+| textOverflow | {overflow:&nbsp;TextOverflow} | {overflow:&nbsp;TextOverflow.Clip} | 设置文本超长时的显示方式。 |
+| maxLines | number | Infinity | 设置文本的最大行数。 |
+| lineHeight | Length | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
+| decoration | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
+| baselineOffset | Length | - | 设置文本基线的偏移量。 |
+| textCase | TextCase | TextCase.Normal | 设置文本大小写。 |
 
--   <a name="li16164333289"></a>TextAlign枚举说明
+- TextAlign枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Center | 文本居中对齐。 | 
+  | Start | 根据文字书写相同的方向对齐。 | 
+  | End | 根据文字书写相反的方向对齐。 | 
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Center</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>文本居中对齐。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Start</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>根据文字书写相同的方向对齐。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>End</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>根据文字书写相反的方向对齐。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- TextOverflow枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Clip | 文本超长时进行裁剪显示。 | 
+  | Ellipsis | 文本超长时显示不下的文本用省略号代替。 | 
+  | None | 文本超长时不进行裁剪。 | 
+
+- TextDecorationType枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Underline | 文字下划线修饰。 | 
+  | LineThrough | 穿过文本的修饰线。 | 
+  | Overline | 文字上划线修饰。 | 
+  | None | 不使用文本装饰线。 | 
+
+- TextCase枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Normal | 保持文本原有大小写。 | 
+  | LowerCase | 文本采用全小写。 | 
+  | UpperCase | 文本采用全大写。 | 
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 不支持Text内同时存在文本内容和Span子组件。（如果同时存在，只显示Span内的内容)。
 
 
--   <a name="li3837144314284"></a>TextOverflow枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Clip</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>文本超长时进行裁剪显示。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Ellipsis</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>文本超长时显示不下的文本用省略号代替。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>None</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>文本超长时不进行裁剪。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
--   <a name="li182215492284"></a>TextDecorationType枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Underline</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>文字下划线修饰。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>LineThrough</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>穿过文本的修饰线。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Overline</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>文字上划线修饰。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>None</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>不使用文本装饰线。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
--   <a name="li6551155619287"></a>TextCase枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Normal</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>保持文本原有大小写。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>LowerCase</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>文本采用全小写。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>UpperCase</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>文本采用全大写。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->不支持Text内同时存在文本内容和Span子组件。（如果同时存在，只显示Span内的内容\)。
-
-## 示例<a name="section13800193662114"></a>
+## 示例
 
 ```
 @Entry
@@ -284,7 +110,7 @@ struct TextExample1 {
 }
 ```
 
-![](figures/Text1.gif)
+![zh-cn_image_0000001219864155](figures/zh-cn_image_0000001219864155.gif)
 
 ```
 @Entry
@@ -326,5 +152,4 @@ struct TextExample2 {
 }
 ```
 
-![](figures/Text2.gif)
-
+![zh-cn_image_0000001174422918](figures/zh-cn_image_0000001174422918.gif)

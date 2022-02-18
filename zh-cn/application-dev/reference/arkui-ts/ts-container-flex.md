@@ -1,198 +1,64 @@
-# Flex<a name="ZH-CN_TOPIC_0000001237475079"></a>
+# Flex
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 弹性布局组件。
 
-## 权限列表<a name="section11841179295"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section87974157296"></a>
+
+## 子组件
 
 可以包含子组件。
 
-## 接口<a name="section14196162892911"></a>
 
-Flex\(options?: \{ direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign \}\)
+## 接口
+
+Flex(options?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })
 
 标准Flex布局容器。
 
--   参数
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | direction | FlexDirection                                       | 否 | FlexDirection.Row | 子组件在Flex容器上排列的方向，即主轴的方向。 |
+  | wrap | FlexWrap | 否 | FlexWrap.NoWrap | Flex容器是单行/列还是多行/列排列。 |
+  | justifyContent | FlexAlign | 否 | FlexAlign.Start | 子组件在Flex容器主轴上的对齐格式。 |
+  | alignItems | [ItemAlign](ts-appendix-enums.md#itemalign枚举说明) | 否 | ItemAlign.Stretch | 子组件在Flex容器交叉轴上的对齐格式。 |
+  | alignContent | FlexAlign | 否 | FlexAlign.Start | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。 |
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="15.959999999999999%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="11.04%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="16.96%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="39.93%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>direction</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="15.959999999999999%" headers="mcps1.1.6.1.2 "><p><a href="#li1282804954411">FlexDirection</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.04%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.96%" headers="mcps1.1.6.1.4 "><p>Row</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="39.93%" headers="mcps1.1.6.1.5 "><p>子组件在Flex容器上排列的方向，即主轴的方向。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>wrap</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="15.959999999999999%" headers="mcps1.1.6.1.2 "><p><a href="#li8211359104415">FlexWrap</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.04%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.96%" headers="mcps1.1.6.1.4 "><p>NoWrap</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="39.93%" headers="mcps1.1.6.1.5 "><p>Flex容器是单行/列还是多行/列排列。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>justifyContent</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="15.959999999999999%" headers="mcps1.1.6.1.2 "><p><a href="#li1540916112452">FlexAlign</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.04%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.96%" headers="mcps1.1.6.1.4 "><p>Start</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="39.93%" headers="mcps1.1.6.1.5 "><p>子组件在Flex容器主轴上的对齐格式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>alignItems</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="15.959999999999999%" headers="mcps1.1.6.1.2 "><p><a href="ts-appendix-enums.md#section14211428171612">ItemAlign</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.04%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.96%" headers="mcps1.1.6.1.4 "><p>Stretch</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="39.93%" headers="mcps1.1.6.1.5 "><p>子组件在Flex容器交叉轴上的对齐格式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>alignContent</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="15.959999999999999%" headers="mcps1.1.6.1.2 "><p><a href="#li1540916112452">FlexAlign</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.04%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.96%" headers="mcps1.1.6.1.4 "><p>Start</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="39.93%" headers="mcps1.1.6.1.5 "><p>交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- FlexDirection枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Row | 主轴与行方向一致作为布局模式。 | 
+  | RowReverse | 与Row方向相反方向进行布局。 | 
+  | Column | 主轴与列方向一致作为布局模式。 | 
+  | ColumnReverse | 与Column相反方向进行布局。 | 
 
--   <a name="li1282804954411"></a>FlexDirection枚举说明
+- FlexWrap枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | NoWrap | Flex容器的元素单行/列布局，子项允许超出容器。 | 
+  | Wrap | Flex容器的元素多行/列排布，子项允许超出容器。 | 
+  | WrapReverse | Flex容器的元素反向多行/列排布，子项允许超出容器。 | 
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Row</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>主轴与行方向一致作为布局模式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>RowReverse</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>与Row方向相反方向进行布局。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Column</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>主轴与列方向一致作为布局模式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>ColumnReverse</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>与Column相反方向进行布局。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- FlexAlign枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Start | 元素在主轴方向首端对齐,&nbsp;第一个元素与行首对齐，同时后续的元素与前一个对齐。 | 
+  | Center | 元素在主轴方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。 | 
+  | End | 元素在主轴方向尾部对齐,&nbsp;&nbsp;最后一个元素与行尾对齐，其他元素与后一个对齐。 | 
+  | SpaceBetween | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。&nbsp;第一个元素与行首对齐，最后一个元素与行尾对齐。 | 
+  | SpaceAround | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。&nbsp;第一个元素到行首的距离和最后一个元素到行尾的距离时相邻元素之间距离的一半。 | 
+  | SpaceEvenly | Flex主轴方向元素等间距布局，&nbsp;相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。 | 
 
 
--   <a name="li8211359104415"></a>FlexWrap枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>NoWrap</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>Flex容器的元素单行/列布局，子项允许超出容器。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Wrap</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>Flex容器的元素多行/列排布，子项允许超出容器。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>WrapReverse</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>Flex容器的元素反向多行/列排布，子项允许超出容器。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
--   <a name="li1540916112452"></a>FlexAlign枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Start</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>元素在主轴方向首端对齐, 第一个元素与行首对齐，同时后续的元素与前一个对齐。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Center</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>元素在主轴方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>End</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>元素在主轴方向尾部对齐,  最后一个元素与行尾对齐，其他元素与后一个对齐。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>SpaceBetween</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。 第一个元素与行首对齐，最后一个元素与行尾对齐。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>SpaceAround</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。 第一个元素到行首的距离和最后一个元素到行尾的距离时相邻元素之间距离的一半。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>SpaceEvenly</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>Flex主轴方向元素等间距布局， 相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
-## 示例<a name="section14441203783118"></a>
+## 示例
 
 ```
 // Example 01
@@ -255,7 +121,7 @@ struct FlexExample1 {
 }
 ```
 
-![](figures/Flex01.gif)
+![zh-cn_image_0000001219744189](figures/zh-cn_image_0000001219744189.gif)
 
 ```
 // Example 02
@@ -301,7 +167,7 @@ struct FlexExample2 {
 }
 ```
 
-![](figures/flex02.png)
+![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.png)
 
 ```
 // Example 03
@@ -350,7 +216,7 @@ struct FlexExample3 {
 }
 ```
 
-![](figures/Flex03.gif)
+![zh-cn_image_0000001174582854](figures/zh-cn_image_0000001174582854.gif)
 
 ```
 // Example 04
@@ -399,9 +265,9 @@ struct FlexExample4 {
 }
 ```
 
-![](figures/Flex04.jpg)
+![zh-cn_image_0000001174422904](figures/zh-cn_image_0000001174422904.jpg)
 
-![](figures/Flex04-2.gif)
+![zh-cn_image_0000001219662653](figures/zh-cn_image_0000001219662653.gif)
 
 ```
 // Example 05
@@ -450,5 +316,4 @@ struct FlexExample5 {
 }
 ```
 
-![](figures/Flex05.gif)
-
+![zh-cn_image_0000001174422906](figures/zh-cn_image_0000001174422906.gif)

@@ -1,40 +1,23 @@
-# 挂载卸载事件<a name="ZH-CN_TOPIC_0000001192595164"></a>
+# 挂载卸载事件
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 事件<a name="section12538399584"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.2"><p>支持冒泡</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.3"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p>onAppear(callback: () =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p>组件挂载显示时触发此回调。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p>onDisappear(callback: () =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p>组件卸载消失时触发此回调。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 事件
 
-## 示例<a name="section13817013123017"></a>
+| 名称 | 支持冒泡 | 功能描述 | 
+| -------- | -------- | -------- | -------- |
+| onAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否 | 组件挂载显示时触发此回调。 | 
+| onDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否 | 组件卸载消失时触发此回调。 | 
+
+
+## 示例
 
 ```
 import prompt from '@system.prompt'
@@ -68,5 +51,4 @@ struct AppearExample {
 }
 ```
 
-![](figures/appear.gif)
-
+![zh-cn_image_0000001219864151](figures/zh-cn_image_0000001219864151.gif)

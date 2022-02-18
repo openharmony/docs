@@ -6,13 +6,13 @@
 
 **图1** 音频录制状态机
 
-![zh-ch_image_audio_recorder_state_machine](figures/zh-ch_image_audio_recorder_state_machine.jpg)
+![zh-ch_image_audio_recorder_state_machine](figures/zh-ch_image_audio_recorder_state_machine.png)
 
 ## 音频录制零层图
 
 **图2** 音频录制零层图
 
-![zh-ch_image_audio_recorder_zero](figures/zh-ch_image_audio_recorder_zero.jpg)
+![zh-ch_image_audio_recorder_zero](figures/zh-ch_image_audio_recorder_zero.png)
 
 ## 音频录制开发步骤
 

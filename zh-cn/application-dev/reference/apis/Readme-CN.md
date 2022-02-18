@@ -45,6 +45,7 @@
     -   [网络搜索](js-apis-radio.md)
 - 网络与连接
     -   [WLAN](js-apis-wifi.md)  
+    -   [Bluetooth](js-apis-bluetooth.md)
 - 设备管理
     - [传感器](js-apis-sensor.md)
     - [振动](js-apis-vibrator.md)
@@ -77,6 +78,7 @@
     - [分布式跟踪](js-apis-hitracechain.md)
     - [日志打印](js-apis-hilog.md)
     - [检测模式](js-apis-hichecker.md)
+    - [Debug调试](js-apis-hidebug.md)
 - 语言基础类库
     - [获取进程相关的信息](js-apis-process.md)
     - [URL字符串解析](js-apis-url.md)

@@ -1,46 +1,38 @@
-# ColumnSplit<a name="ZH-CN_TOPIC_0000001237475057"></a>
+# ColumnSplit
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 将子组件纵向布局，并在每个子组件之间插入一根横向的分割线。
 
-## 权限列表<a name="section53281531154915"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section5989144051714"></a>
+
+## 子组件
 
 可以包含子组件。
 
-## 接口<a name="section1643325819470"></a>
 
-ColumnSplit\(\)
+## 接口
 
-## 属性<a name="section945991855410"></a>
+ColumnSplit()
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.29332933293329%" id="mcps1.1.4.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.373337333733375%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>resizeable</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>分割线是否可拖拽，默认为false。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->与RowSplit相同，ColumnSplit的分割线最小能拖动到刚好包含子组件。
+## 属性
 
-## 示例<a name="section1078035104913"></a>
+| 名称 | 参数类型 | 描述 | 
+| -------- | -------- | -------- |
+| resizeable | boolean | 分割线是否可拖拽，默认为false。 | 
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 与RowSplit相同，ColumnSplit的分割线最小能拖动到刚好包含子组件。
+
+
+## 示例
 
 ```
 @Entry
@@ -63,5 +55,4 @@ struct ColumnSplitExample {
 }
 ```
 
-![](figures/ColumnSplit.gif)
-
+![zh-cn_image_0000001219982707](figures/zh-cn_image_0000001219982707.gif)

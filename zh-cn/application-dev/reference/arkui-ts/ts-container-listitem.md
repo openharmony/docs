@@ -1,78 +1,50 @@
-# ListItem<a name="ZH-CN_TOPIC_0000001192595148"></a>
+# ListItem
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 用来展示列表具体item，宽度默认充满List组件，必须配合List来使用。
 
-## 权限列表<a name="section19446161017538"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section3767111810531"></a>
+
+## 子组件
 
 可以包含单个子组件。
 
-## 接口<a name="section36922294535"></a>
 
-ListItem\(\)
+## 接口
 
-## 属性<a name="section83861522436"></a>
-
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="13%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.32%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.270000000000001%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.41%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>sticky</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.32%" headers="mcps1.1.5.1.2 "><p><a href="#li66453411182">Sticky</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="13.270000000000001%" headers="mcps1.1.5.1.3 "><p>None</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.41%" headers="mcps1.1.5.1.4 "><p>设置ListItem吸顶效果，参见Sticky枚举描述。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>editable</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.32%" headers="mcps1.1.5.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.270000000000001%" headers="mcps1.1.5.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.41%" headers="mcps1.1.5.1.4 "><p>声明当前ListItem元素是否可编辑，进入编辑模式后可删除。</p>
-</td>
-</tr>
-</tbody>
-</table>
-
--   <a name="li66453411182"></a>Sticky枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>None</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>无吸顶效果。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Normal</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>当前item吸顶，滑动消失。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+ListItem()
 
 
-## 示例<a name="section559995265311"></a>
+## 属性
+
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| sticky | Sticky | Sticky.None | 设置ListItem吸顶效果，参见Sticky枚举描述。 |
+| editable | boolean | false | 当前ListItem元素是否可编辑，进入编辑模式后可删除。 |
+| selectable<sup>8+</sup> | boolean | true | 当前ListItem元素是否可以被鼠标框选。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;外层List容器的鼠标框选开启时，ListItem的框选才生效。 |
+
+- Sticky枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | None | 无吸顶效果。 | 
+  | Normal | 当前item吸顶。 | 
+
+
+## 事件
+
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onSelect(callback:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;any)<sup>8+</sup> | ListItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
+
+
+## 示例
 
 ```
 @Entry
@@ -113,5 +85,4 @@ struct ListItemExample {
 }
 ```
 
-![](figures/ListItem.gif)
-
+![zh-cn_image_0000001219864159](figures/zh-cn_image_0000001219864159.gif)

@@ -1,237 +1,74 @@
-# Slider<a name="ZH-CN_TOPIC_0000001193075098"></a>
+# Slider
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 滑动条组件，用来快速调节设置值，如音量、亮度等。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section53281531154915"></a>
+
+## 子组件
 
 无
 
-## 接口<a name="section1989913519718"></a>
 
-Slider\(value:\{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis\}\)
+## 接口
 
--   参数
+Slider(value:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="11.99%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="11.709999999999999%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="46.18%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.99%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.18%" headers="mcps1.1.6.1.5 "><p>当前进度值。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>min</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.99%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.18%" headers="mcps1.1.6.1.5 "><p>设置最小值。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>max</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.99%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p>100</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.18%" headers="mcps1.1.6.1.5 "><p>设置最大值。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>step</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.99%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p>1</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.18%" headers="mcps1.1.6.1.5 "><p>设置Slider滑动跳动值，当设置相应的step时，Slider为间歇滑动。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>style</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p><a href="#li1754841215312">SliderStyle</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.99%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p>SliderStyle.OutSet</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.18%" headers="mcps1.1.6.1.5 "><p>设置Slider的滑块样式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>direction<sup>8+</sup></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p><a href="ts-appendix-enums.md#section1397918486200">Axis</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.99%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.709999999999999%" headers="mcps1.1.6.1.4 "><p>Axis.Horizontal</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.18%" headers="mcps1.1.6.1.5 "><p>设置滑动条滑动方向为水平或竖直方向。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | 否 | 0 | 当前进度值。 |
+  | min | number | 否 | 0 | 设置最小值。 |
+  | max | number | 否 | 100 | 设置最大值。 |
+  | step | number | 否 | 1 | 设置Slider滑动跳动值，当设置相应的step时，Slider为间歇滑动。 |
+  | style | SliderStyle | 否 | SliderStyle.OutSet | 设置Slider的滑块样式。 |
+  | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis枚举说明) | 否 | Axis.Horizontal | 设置滑动条滑动方向为水平或竖直方向。 |
+  | reverse<sup>8+</sup> | boolean | 否 | false | 设置滑动条取值范围是否反向。 |
 
--   <a name="li1754841215312"></a>SliderStyle枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>OutSet</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>滑块在滑轨上。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>InSet</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>滑块在滑轨内。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- SliderStyle枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | OutSet | 滑块在滑轨上。 | 
+  | InSet | 滑块在滑轨内。 | 
 
 
-## 属性<a name="section18430105671014"></a>
+## 属性
 
 不支持触摸热区设置。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.72%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="16.33%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="17.62%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="47.33%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="18.72%" headers="mcps1.1.5.1.1 "><p>blockColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.33%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.33%" headers="mcps1.1.5.1.4 "><p>设置滑块的颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.72%" headers="mcps1.1.5.1.1 "><p>trackColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.33%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.33%" headers="mcps1.1.5.1.4 "><p>设置滑轨的背景颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.72%" headers="mcps1.1.5.1.1 "><p>selectedColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.33%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.33%" headers="mcps1.1.5.1.4 "><p>设置滑轨的已滑动颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.72%" headers="mcps1.1.5.1.1 "><p>showSteps</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.33%" headers="mcps1.1.5.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.33%" headers="mcps1.1.5.1.4 "><p>设置当前是否显示步长刻度值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.72%" headers="mcps1.1.5.1.1 "><p>showTips</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.33%" headers="mcps1.1.5.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.33%" headers="mcps1.1.5.1.4 "><p>设置滑动时是否显示气泡提示百分比。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数类型 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- |
+| blockColor | Color | - | 设置滑块的颜色。 | 
+| trackColor | Color | - | 设置滑轨的背景颜色。 | 
+| selectedColor | Color | - | 设置滑轨的已滑动颜色。 | 
+| showSteps | boolean | false | 设置当前是否显示步长刻度值。 | 
+| showTips | boolean | false | 设置滑动时是否显示气泡提示百分比。 | 
 
-## 事件<a name="section449664852016"></a>
+
+## 事件
 
 通用事件仅支持：OnAppear，OnDisAppear。
 
-<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.4.1.2"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onChange(callback: (value: number, mode: <a href="#li164030311374">SliderChangeMode</a>) =&gt; void）</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>Slider滑动时触发事件回调。</p>
-<p>value：当前进度值。</p>
-<p>mode：拖动状态。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 功能描述 | 
+| -------- | -------- | -------- |
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void） | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 | 
 
--   <a name="li164030311374"></a>SliderChangeMode枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Begin</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>用户开始拖动滑块。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Moving</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>用户拖动滑块中。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>End</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>用户结束拖动滑块。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- SliderChangeMode枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Begin | 用户开始拖动滑块。 | 
+  | Moving | 用户拖动滑块中。 | 
+  | End | 用户结束拖动滑块。 | 
 
 
-## 示例<a name="section13800193662114"></a>
+## 示例
 
 ```
 @Entry
@@ -340,5 +177,4 @@ struct SliderExample {
 }
 ```
 
-![](figures/slider.gif)
-
+![zh-cn_image_0000001179613854](figures/zh-cn_image_0000001179613854.gif)

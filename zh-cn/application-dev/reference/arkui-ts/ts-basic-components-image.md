@@ -1,265 +1,85 @@
-# Image<a name="ZH-CN_TOPIC_0000001237555109"></a>
+# Image
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 图片组件，用来渲染展示图片。
 
-## 权限列表<a name="section1662116135572"></a>
+
+## 权限列表
 
 ohos.permission.INTERNET（使用网络图片）
 
-## 子组件<a name="section057112518574"></a>
+
+## 子组件
 
 无
 
-## 接口<a name="section15735153218576"></a>
 
-Image\(value: \{uri: string | PixelMap\}\)
+## 接口
 
--   参数
+Image(value: {uri: string | PixelMap})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="12.7%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="19.46%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.96%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.86%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="47.02%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="12.7%" headers="mcps1.1.6.1.1 "><p>uri</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="19.46%" headers="mcps1.1.6.1.2 "><p>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.96%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.86%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="47.02%" headers="mcps1.1.6.1.5 "><p>图片的uri，支持本地图片和网络路径。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | uri | string | 是 | - | 图片的uri，支持本地图片和网络路径。 | 
 
 
-## 属性<a name="section1749314421802"></a>
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="14.899999999999999%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="17.62%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="17.46%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.019999999999996%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="14.899999999999999%" headers="mcps1.1.5.1.1 "><p>alt</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.46%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p>加载时显示的占位图。支持本地图片和网络路径。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.899999999999999%" headers="mcps1.1.5.1.1 "><p>objectFit</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.2 "><p><a href="#li2939204152619">ImageFit</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="17.46%" headers="mcps1.1.5.1.3 "><p>Cover</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p>设置图片的缩放类型。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.899999999999999%" headers="mcps1.1.5.1.1 "><p>objectRepeat</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.2 "><p><a href="ts-appendix-enums.md#section5656191941718">ImageRepeat</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="17.46%" headers="mcps1.1.5.1.3 "><p>NoRepeat</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p>设置图片的重复样式。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><ul><li>SVG类型图源不支持该属性。</li></ul>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.899999999999999%" headers="mcps1.1.5.1.1 "><p>interpolation</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.2 "><p><a href="#li3882486263">ImageInterpolation</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="17.46%" headers="mcps1.1.5.1.3 "><p>None</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p>设置图片的插值效果，仅针对图片放大插值。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><ul><li>SVG类型图源不支持该属性。</li><li>PixelMap资源不支持该属性。</li></ul>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.899999999999999%" headers="mcps1.1.5.1.1 "><p>renderMode</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.2 "><p><a href="#li174151754162611">ImageRenderMode</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="17.46%" headers="mcps1.1.5.1.3 "><p>Original</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p>设置图片渲染的模式。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><ul><li>SVG类型图源不支持该属性。</li></ul>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.899999999999999%" headers="mcps1.1.5.1.1 "><p>sourceSize</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>width: number,</p>
-<p>height: number</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.46%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p>设置图片解码尺寸，将原始图片解码成指定尺寸的图片，number类型单位为px。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>PixelMap资源不支持该属性。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.899999999999999%" headers="mcps1.1.5.1.1 "><p>syncLoad<sup><span>8+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="17.62%" headers="mcps1.1.5.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="17.46%" headers="mcps1.1.5.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.019999999999996%" headers="mcps1.1.5.1.4 "><p>设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| alt | string | - | 加载时显示的占位图。支持本地图片和网络路径。 |
+| objectFit | ImageFit                                                | Cover | 设置图片的缩放类型。 |
+| objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat枚举说明) | NoRepeat | 设置图片的重复样式。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;SVG类型图源不支持该属性。 |
+| interpolation | ImageInterpolation | None | 设置图片的插值效果，仅针对图片放大插值。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;SVG类型图源不支持该属性。<br/>>&nbsp;<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
+| renderMode | ImageRenderMode | Original | 设置图片渲染的模式。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;SVG类型图源不支持该属性。 |
+| sourceSize | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | - | 设置图片解码尺寸，将原始图片解码成指定尺寸的图片，number类型单位为px。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;PixelMap资源不支持该属性。 |
+| syncLoad<sup>8+</sup> | boolean | false | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。 |
 
--   <a name="li2939204152619"></a>ImageFit枚举说明
+- ImageFit枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Cover | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 | 
+  | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。 | 
+  | Fill | 不保持宽高比进行放大缩小，使得图片填充满显示边界。 | 
+  | None | 保持原有尺寸显示。通常配合objectRepeat属性一起使用。 | 
+  | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。 | 
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Cover</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Contain</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Fill</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>不保持宽高比进行放大缩小，使得图片填充满显示边界。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>None</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>保持原有尺寸显示。通常配合objectRepeat属性一起使用。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>ScaleDown</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>保持宽高比显示，图片缩小或者保持不变。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- ImageInterpolation枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | None | 不使用插值图片数据。 | 
+  | High | 高度使用插值图片数据，可能会影响图片渲染的速度。 | 
+  | Medium | 中度使用插值图片数据。 | 
+  | Low | 低度使用插值图片数据。 | 
+
+- ImageRenderMode枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Original | 按照原图进行渲染，包括颜色。 | 
+  | Template | 将图像渲染为模板图像，忽略图片的颜色信息。 | 
 
 
--   <a name="li3882486263"></a>ImageInterpolation枚举说明
+## 事件
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>None</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>不使用插值图片数据。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>High</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>高度使用插值图片数据，可能会影响图片渲染的速度。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Medium</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>中度使用插值图片数据。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Low</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>低度使用插值图片数据。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| 名称 | 功能描述 | 
+| -------- | -------- | -------- |
+| onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图源尺寸。 | 
+| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。 | 
+| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 | 
 
 
--   <a name="li174151754162611"></a>ImageRenderMode枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Original</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>按照原图进行渲染，包括颜色。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Template</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>将图像渲染为模板图像，忽略图片的颜色信息。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
-## 事件<a name="section68973361117"></a>
-
-<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.4.1.2"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number }) =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>图片成功加载时触发该回调，返回成功加载的图源尺寸。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>图片加载出现异常时触发该回调。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onFinish(callback: () =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-## 示例<a name="section6664181981216"></a>
+## 示例
 
 ```
 // Image1
 @Entry
 @Component
 struct ImageExample1 {
-  private on: string = 'http://uxd.rnd.huawei.com/uxIcon/file/2021-08/d2d6e6c6-043f-471e-80e3-57199142201e.svg'
+  private on: string = 'www.example.com' 
   @State src: string = this.on
 
   build() {
@@ -319,7 +139,7 @@ struct ImageExample1 {
 }
 ```
 
-![](figures/Image1.gif)
+![zh-cn_image_0000001250492613](figures/zh-cn_image_0000001250492613.gif)
 
 ```
 // Image2
@@ -388,7 +208,7 @@ struct ImageExample2 {
 }
 ```
 
-![](figures/Image2.png)
+![zh-cn_image_0000001205812616](figures/zh-cn_image_0000001205812616.png)
 
 ```
 // Image3
@@ -450,4 +270,4 @@ struct ImageExample3 {
 }
 ```
 
-![](figures/Image3.gif)
+![zh-cn_image_0000001205972610](figures/zh-cn_image_0000001205972610.gif)

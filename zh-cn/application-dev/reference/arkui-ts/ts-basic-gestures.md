@@ -1,15 +1,13 @@
-# 基础手势<a name="ZH-CN_TOPIC_0000001192915098"></a>
+# 基础手势
 
--   **[TapGesture](ts-basic-gestures-tapgesture.md)**  
+- **[TapGesture](ts-basic-gestures-tapgesture.md)**
 
--   **[LongPressGesture](ts-basic-gestures-longpressgesture.md)**  
+- **[LongPressGesture](ts-basic-gestures-longpressgesture.md)**
 
--   **[PanGesture](ts-basic-gestures-pangesture.md)**  
+- **[PanGesture](ts-basic-gestures-pangesture.md)**
 
--   **[PinchGesture](ts-basic-gestures-pinchgesture.md)**  
+- **[PinchGesture](ts-basic-gestures-pinchgesture.md)**
 
--   **[RotationGesture](ts-basic-gestures-rotationgesture.md)**  
+- **[RotationGesture](ts-basic-gestures-rotationgesture.md)**
 
--   **[SwipeGesture](ts-basic-gestures-swipegesture.md)**  
-
-
+- **[SwipeGesture](ts-basic-gestures-swipegesture.md)**

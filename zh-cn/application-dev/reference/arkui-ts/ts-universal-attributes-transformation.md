@@ -1,98 +1,26 @@
-# 图形变换<a name="ZH-CN_TOPIC_0000001237355071"></a>
+# 图形变换
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 属性<a name="section6820191711316"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="13.87%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="32.28%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.449999999999996%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="25.4%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="13.87%" headers="mcps1.1.5.1.1 "><p>rotate</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.28%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>x?: number,</p>
-<p>y?: number,</p>
-<p>z?: number,</p>
-<p>angle?: Angle,</p>
-<p>centerX?: Length,</p>
-<p>centerY?: Length</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.449999999999996%" headers="mcps1.1.5.1.3 "><p>{</p>
-<p>x: 0,</p>
-<p>y: 0,</p>
-<p>z: 0,</p>
-<p>angle: 0,</p>
-<p>centerX: '50%',</p>
-<p>centerY: '50%'</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.4%" headers="mcps1.1.5.1.4 "><p>(x, y, z)指定一个矢量，表示旋转轴，正角度为顺时针转动，负角度为逆时针转动，默认值为0，同时可以通过centerX和centerY设置旋转的中心点。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="13.87%" headers="mcps1.1.5.1.1 "><p>translate</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.28%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>x?: Length,</p>
-<p>y?: Length,</p>
-<p>z? : Length</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.449999999999996%" headers="mcps1.1.5.1.3 "><p>{</p>
-<p>x: 0,</p>
-<p>y: 0,</p>
-<p>z: 0</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.4%" headers="mcps1.1.5.1.4 "><p>可以分别设置X轴、Y轴、Z轴的平移距离，距离的正负控制平移的方向，默认值为0。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="13.87%" headers="mcps1.1.5.1.1 "><p>scale</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.28%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>x?: number,</p>
-<p>y?: number,</p>
-<p>z?: number,</p>
-<p>centerX?: Length,</p>
-<p>centerY?: Length</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.449999999999996%" headers="mcps1.1.5.1.3 "><p>{</p>
-<p>x: 1,</p>
-<p>y: 1,</p>
-<p>z: 1,</p>
-<p>centerX:'50%',</p>
-<p>centerY:'50%'</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.4%" headers="mcps1.1.5.1.4 "><p>可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="13.87%" headers="mcps1.1.5.1.1 "><p>transform</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.28%" headers="mcps1.1.5.1.2 "><p>matrix: Matrix4</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.449999999999996%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.4%" headers="mcps1.1.5.1.4 "><p>设置当前组件的变换矩阵。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 示例<a name="section4278134412416"></a>
+
+| 名称 | 参数类型 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- |
+| rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle?:&nbsp;Angle,<br/>centerX?:&nbsp;Length,<br/>centerY?:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0,<br/>angle:&nbsp;0,<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>} | (x,&nbsp;y,&nbsp;z)指定一个矢量，表示旋转轴，正角度为顺时针转动，负角度为逆时针转动，默认值为0，同时可以通过centerX和centerY设置旋转的中心点。 | 
+| translate | {<br/>x?:&nbsp;Length,<br/>y?:&nbsp;Length,<br/>z?&nbsp;:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>} | 可以分别设置X轴、Y轴、Z轴的平移距离，距离的正负控制平移的方向，默认值为0。 | 
+| scale | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>centerX?:&nbsp;Length,<br/>centerY?:&nbsp;Length<br/>} | {<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>} | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。 | 
+| transform | matrix:&nbsp;Matrix4 | - | 设置当前组件的变换矩阵。 | 
+
+
+## 示例
 
 ```
 import Matrix4 from '@ohos.matrix4'
@@ -133,5 +61,4 @@ struct TransformExample {
 }
 ```
 
-![](figures/1111.png)
-
+![zh-cn_image_0000001219864137](figures/zh-cn_image_0000001219864137.png)

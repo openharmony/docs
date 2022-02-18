@@ -6,13 +6,13 @@
 
 图1 视频录制状态机
 
-![zh-ch_image_video_recorder_state_machine](figures/zh-ch_image_video_recorder_state_machine.jpg)
+![zh-ch_image_video_recorder_state_machine](figures/zh-ch_image_video_recorder_state_machine.png)
 
 ## 视频录制零层图
 
 **图2** 视频录制零层图
 
-![zh-ch_image_video_recorder_zero](figures/zh-ch_image_video_recorder_zero.jpg)
+![zh-ch_image_video_recorder_zero](figures/zh-ch_image_video_recorder_zero.png)
 
 ## 视频录制开发步骤
 

@@ -1,263 +1,141 @@
-# TextInput<a name="ZH-CN_TOPIC_0000001192595168"></a>
+# TextInput
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 提供单行文本输入组件。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section1037371523612"></a>
+
+## 子组件
 
 无
 
-## 接口<a name="section33135508"></a>
 
-TextInput\(value?: \{ placeholder?: string \}\)
+## 接口
 
--   参数
+TextInput(value?:{placeholder?: string controller?: TextInputController})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.499999999999998%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13.170000000000002%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>placeholder</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.499999999999998%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>无输入时的提示文本。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | placeholder | string | 否 | - | 无输入时的提示文本。 |
+  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8+) | 否 | - | 设置TextInput控制器。 |
 
 
-## 属性<a name="section18430105671014"></a>
+## 属性
 
 除支持[通用属性](ts-universal-attributes.md)外，还支持以下属性：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.98%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="27.500000000000004%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.239999999999998%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="43.28%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="15.98%" headers="mcps1.1.5.1.1 "><p>type</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.500000000000004%" headers="mcps1.1.5.1.2 "><p><a href="#li1018842194211">InputType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="13.239999999999998%" headers="mcps1.1.5.1.3 "><p>InputType.Normal</p>
-</td>
-<td class="cellrowborder" valign="top" width="43.28%" headers="mcps1.1.5.1.4 "><p>设置输入框类型。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.98%" headers="mcps1.1.5.1.1 "><p>placeholderColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.500000000000004%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.239999999999998%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="43.28%" headers="mcps1.1.5.1.4 "><p>设置placeholder颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.98%" headers="mcps1.1.5.1.1 "><p>placeholderFont</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.500000000000004%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>size?: Length,</p>
-<p>weight?: number | <a href="ts-universal-attributes-text-style.md#li24391125115311">FontWeight</a>,</p>
-<p>family?: string,</p>
-<p>style?: <a href="ts-basic-components-textarea.md#table952mcpsimp">FontStyle</a></p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.239999999999998%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="43.28%" headers="mcps1.1.5.1.4 "><p>设置placeholder文本样式：</p>
-<ul><li>size: 设置文本尺寸，Length为number类型时，使用fp单位。</li><li>weight: 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。</li><li>family: 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。</li><li>style: 设置文本的字体样式。</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.98%" headers="mcps1.1.5.1.1 "><p>enterKeyType</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.500000000000004%" headers="mcps1.1.5.1.2 "><p><a href="#li1231618102427">EnterKeyType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="13.239999999999998%" headers="mcps1.1.5.1.3 "><p>EnterKeyType.Done</p>
-</td>
-<td class="cellrowborder" valign="top" width="43.28%" headers="mcps1.1.5.1.4 "><p>设置输入法回车键类型。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.98%" headers="mcps1.1.5.1.1 "><p>caretColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.500000000000004%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.239999999999998%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="43.28%" headers="mcps1.1.5.1.4 "><p>设置输入框光标颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.98%" headers="mcps1.1.5.1.1 "><p>maxLength</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.500000000000004%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.239999999999998%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="43.28%" headers="mcps1.1.5.1.4 "><p>设置文本的最大输入字符数。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| type | InputType | InputType.Normal | 设置输入框类型。 |
+| placeholderColor | Color | - | 设置placeholder颜色。 |
+| placeholderFont | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
+| enterKeyType | EnterKeyType                                                 | EnterKeyType.Done | 设置输入法回车键类型。 |
+| caretColor | Color | - | 设置输入框光标颜色。 |
+| maxLength<sup>8+</sup> | number | - | 设置文本的最大输入字符数。 |
+| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md#resourcestr类型8-)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | - | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 
--   <a name="li1231618102427"></a>EnterKeyType枚举说明
+- EnterKeyType枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | EnterKeyType.Go | 显示Go文本。 | 
+  | EnterKeyType.Search | 显示为搜索样式。 | 
+  | EnterKeyType.Send | 显示为发送样式。 | 
+  | EnterKeyType.Next | 显示为下一个样式。 | 
+  | EnterKeyType.Done | 标准样式。 | 
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="26.13%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="73.87%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Go</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>显示Go文本。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Search</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>显示为搜索样式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Send</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>显示为发送样式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Next</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>显示为下一个样式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Done</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>标准样式。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- InputType枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | InputType.Normal | 基本输入模式。 | 
+  | InputType.Password | 密码输入模式。 | 
+  | InputType.Email | e-mail地址输入模式。 | 
+  | InputType.Number | 纯数字输入模式。 | 
 
 
--   <a name="li1018842194211"></a>InputType枚举说明
+### TextInputController<sup>8+</sup>
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="26.13%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="73.87%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Normal</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>基本输入模式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Password</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>密码输入模式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Email</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>e-mail地址输入模式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="26.13%" headers="mcps1.1.3.1.1 "><p>Number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="73.87%" headers="mcps1.1.3.1.2 "><p>纯数字输入模式。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+TextInput组件的控制器，通过它操作TextInput组件。
+
+| 接口名称 | 功能描述 | 
+| -------- | -------- |
+| caretPosition(value:&nbsp;number):void | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 | 
 
 
-## 事件<a name="section449664852016"></a>
+## 事件
 
-<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.4.1.2"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onChange(value: string) =&gt; void</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>输入发生变化时，触发回调。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onSubmit(callback: (enterKey: <a href="#li1231618102427">EnterKeyType</a>) =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>回车键或者软键盘回车键触发该回调，参数为当前软键盘回车键类型。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onEditChanged(callback: (isEditing: boolean) =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>输入状态变化时，触发回调。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 功能描述 | 
+| -------- | -------- | -------- |
+| onChange(value:&nbsp;string)&nbsp;=&gt;&nbsp;void | 输入发生变化时，触发回调。 | 
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 回车键或者软键盘回车键触发该回调，参数为当前软键盘回车键类型。 | 
+| onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | 输入状态变化时，触发回调。 | 
+| onCopy<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发回调。<br/>value：复制的文本内容。 | 
+| onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发回调。<br/>value：剪切的文本内容。 | 
+| onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发回调。<br/>value：粘贴的文本内容。 | 
 
-## 示例<a name="section3619717314"></a>
+
+## 示例
+
+
+### 单行文本输入
+
+```
+@Entry
+@Component
+struct TextAreaExample2 {
+  @State text: string = ''
+
+  build() {
+    Column() {
+      TextArea({ placeholder: 'input your word' })
+        .placeholderColor("rgb(0,0,225)")
+        .placeholderFont({ size: 30, weight: 100, family: 'cursive', style: FontStyle.Italic })
+        .textAlign(TextAlign.Center)
+        .caretColor(Color.Blue)
+        .height(50)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .fontFamily("sans-serif")
+        .fontStyle(FontStyle.Normal)
+        .fontColor(Color.Red)
+        .onChange((value: string) => {
+          this.text = value
+        })
+      Text(this.text).width('90%')
+    }
+  }
+}
+```
+
+
+![zh-cn_image_0000001252769643](figures/zh-cn_image_0000001252769643.gif)
+
+
+### 设置光标
 
 ```
 @Entry
 @Component
 struct TextInputTest {
     @State text: string = ''
-    @State text1: string = ''
-    @State text2: string = ''
+    controller: TextInputController = new TextInputController()
     build() {
-      Column() {
-        TextInput({ placeholder: 'input your word' })
-          .type(InputType.Normal)
-          .placeholderColor(Color.Blue)
-          .placeholderFont({ size: 40, weight: FontWeight.Normal, family: "sans-serif", style: FontStyle.Normal })
-          .enterKeyType(EnterKeyType.Next)
-          .caretColor(Color.Green)
-          .height(60)
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-          .fontFamily("cursive")
-          .fontStyle(FontStyle.Italic)
-          .fontColor(Color.Red)
-          .maxLength(20)
-          .onChange((value: string) => {
-            this.text = value
-          })
-          .onSubmit((enterKey) => {
-            this.text1 = 'onSubmit'
-          })
-          .onEditChanged((isEditing) => {
-            this.text2 = 'onEditChanged'
-          })
-          Text(this.text)
-          Text(this.text1)
-          Text(this.text2)
+        Column() {
+            TextInput({ placeholder: 'Please input your words.', controller:this.controller})
+            Button('caretPosition')
+                .onClick(() => {
+                this.controller.caretPosition(4)
+            })
         }
     }
 }
 ```
 
-![](figures/textinput1.gif)
-
+![zh-cn_image_0000001208256092](figures/zh-cn_image_0000001208256092.png)

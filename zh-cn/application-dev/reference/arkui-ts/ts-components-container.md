@@ -1,51 +1,45 @@
-# 容器组件<a name="ZH-CN_TOPIC_0000001192755116"></a>
+# 容器组件
 
--   **[AlphabetIndexer](ts-container-alphabet-indexer.md)**  
+- **[AlphabetIndexer](ts-container-alphabet-indexer.md)**
 
--   **[Badge](ts-container-badge.md)**  
+- **[Badge](ts-container-badge.md)**
 
--   **[Column](ts-container-column.md)**  
+- **[Column](ts-container-column.md)**
 
--   **[ColumnSplit](ts-container-columnsplit.md)**  
+- **[ColumnSplit](ts-container-columnsplit.md)**
 
--   **[Counter](ts-container-counter.md)**  
+- **[Counter](ts-container-counter.md)**
 
--   **[Flex](ts-container-flex.md)**  
+- **[Flex](ts-container-flex.md)**
 
--   **[GridContainer](ts-container-gridcontainer.md)**  
+- **[GridContainer](ts-container-gridcontainer.md)**
 
--   **[Grid](ts-container-grid.md)**  
+- **[Grid](ts-container-grid.md)**
 
--   **[GridItem](ts-container-griditem.md)**  
+- **[GridItem](ts-container-griditem.md)**
 
--   **[List](ts-container-list.md)**  
+- **[List](ts-container-list.md)**
 
--   **[ListItem](ts-container-listitem.md)**  
+- **[ListItem](ts-container-listitem.md)**
 
--   **[Navigator](ts-container-navigator.md)**  
+- **[Navigator](ts-container-navigator.md)**
 
--   **[Navigation](ts-container-navigation.md)**  
+- **[Navigation](ts-basic-components-navigation.md)**
 
--   **[Panel](ts-container-panel.md)**  
+- **[Panel](ts-container-panel.md)**
 
--   **[Row](ts-container-row.md)**  
+- **[Row](ts-container-row.md)**
 
--   **[RowSplit](ts-container-rowsplit.md)**  
+- **[RowSplit](ts-container-rowsplit.md)**
 
--   **[Scroll](ts-container-scroll.md)**  
+- **[Scroll](ts-container-scroll.md)**
 
--   **[ScrollBar](ts-container-scrollbar.md)**  
+- **[ScrollBar](ts-basic-components-scrollbar.md)**
 
--   **[Stack](ts-container-stack.md)**  
+- **[Stack](ts-container-stack.md)**
 
--   **[Swiper](ts-container-swiper.md)**  
+- **[Swiper](ts-container-swiper.md)**
 
--   **[Tabs](ts-container-tabs.md)**  
+- **[Tabs](ts-container-tabs.md)**
 
--   **[TabContent](ts-container-tabcontent.md)**  
-
--   **[Stepper](ts-container-stepper.md)**  
-
--   **[StepperItem](ts-container-stepperitem.md)**  
-
-
+- **[TabContent](ts-container-tabcontent.md)**

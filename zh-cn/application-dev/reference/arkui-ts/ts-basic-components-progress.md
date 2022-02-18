@@ -1,143 +1,97 @@
-# Progress<a name="ZH-CN_TOPIC_0000001193075086"></a>
+# Progress
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 进度条，用于显示内容加载或操作处理进度。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section53281531154915"></a>
+
+## 子组件
 
 无
 
-## 接口说明<a name="section1989913519718"></a>
 
-Progress\(value: \{value: number, total?: number, style?: ProgressStyle\}\)
+## 接口说明
 
-创建指定进度的进度条。
+Progress(value: {value: number, total?: number, style?: ProgressStyle})
 
--   参数
+创建进度组件，用于显示内容加载或操作处理进度。
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="16.3%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.71%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="16.869999999999997%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="40.01%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.3%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.71%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p>指定当前进度值。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>total</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.3%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.71%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p>100</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p>指定进度总长。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>style</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.3%" headers="mcps1.1.6.1.2 "><p><a href="#table12144170154116">ProgressStyle</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.71%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p>Linear</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p>指定进度条样式。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | 是 | - | 指定当前进度值。 |
+  | total | number | 否 | 100 | 指定进度总长。 |
+  | style | ProgressStyle | 否 | ProgressStyle.Linear | 指定进度条样式。 |
 
 
--   ProgressStyle枚举说明
-
-    <a name="table12144170154116"></a>
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.69%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="75.31%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="24.69%" headers="mcps1.1.3.1.1 "><p>Linear</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="75.31%" headers="mcps1.1.3.1.2 "><p>线性进度条样式。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- ProgressStyle枚举说明
+  | 名称 | 描述 |
+  | -------- | -------- |
+  | Linear | 线性样式。 |
+  | Ring<sup>8+</sup> | 环形无刻度样式，环形圆环逐渐填充完成过程。 |
+  | Eclipse | 圆形样式，展现类似月圆月缺的进度展示效果，从月牙逐渐到满月的这个过程代表了下载的进度。 |
+  | ScaleRing<sup>8+</sup> | 环形有刻度样式，类似时钟刻度形式加载进度。 |
+  | Capsule<sup>8+</sup> | 胶囊样式，头尾两端处，进度条由弧形变成直线和直线变成弧形的过程；中段处，进度条正常往右走的过程。 |
 
 
-## 属性<a name="section18430105671014"></a>
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.51%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.82%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="42.67%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.51%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.82%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.67%" headers="mcps1.1.5.1.4 "><p>设置当前进度值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p>color</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.51%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.82%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.67%" headers="mcps1.1.5.1.4 "><p>设置进度条前景色。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| value | number | - | 设置当前进度值。 |
+| color | Color | - | 设置进度条前景色。 |
+| circularStyle<sup>8+</sup> | {<br/>strokeWidth？:&nbsp;Length,<br/>scaleCount？:&nbsp;number,<br/>scaleWidth？:&nbsp;Length<br/>} | - | 定义style为ProgressStyle.ScaleRing时的样式，包括：宽度，总刻度数，刻度粗细。<br/>strokeWidth:&nbsp;设置环形进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
 
-## 示例<a name="section13800193662114"></a>
+
+## 示例
 
 ```
 @Entry
 @Component
 struct ProgressExample {
   build() {
-    Column({ space: 5 }) {
+    Column({ space: 15 }) {
       Text('Linear Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Progress({ value: 10, style: ProgressStyle.Linear }).width(200)
+      Progress({ value: 20, total: 150, style: ProgressStyle.Linear }).color(Color.Grey).value(50).width(200)
 
-      Text('Linear Progress Color').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Progress({ value: 20, total: 150, style: ProgressStyle.Linear }).color(Color.Red).value(50).width(200)
-    }.width('100%').margin({ top: 5 })
+      Text('Eclipse Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row({ space: 40 }) {
+        Progress({ value: 10, style: ProgressStyle.Eclipse }).width(100)
+        Progress({ value: 20, total: 150, style: ProgressStyle.Eclipse }).color(Color.Grey).value(50).width(100)
+      }
+
+      Text('ScaleRing Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row({ space: 40 }) {
+        Progress({ value: 10, style: ProgressStyle.ScaleRing }).width(100)
+        Progress({ value: 20, total: 150, style: ProgressStyle.ScaleRing })
+          .color(Color.Grey).value(50).width(100)
+          .circularStyle({ strokeWidth: 15, scaleCount: 15, scaleWidth: 5 })
+      }
+
+      Text('Ring Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row({ space: 40 }) {
+        Progress({ value: 10, style: ProgressStyle.Ring }).width(100)
+        Progress({ value: 20, total: 150, style: ProgressStyle.Ring })
+          .color(Color.Grey).value(50).width(100)
+          .circularStyle({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
+      }
+
+      Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row({ space: 40 }) {
+        Progress({ value: 10, style: ProgressStyle.Capsule }).width(100)
+        Progress({ value: 20, total: 150, style: ProgressStyle.Capsule }).color(Color.Grey).value(50).width(100)
+      }
+    }.width('100%').margin({ top: 30 })
   }
 }
 ```
 
-![](figures/progress.png)
-
+![zh-cn_image_0000001198839004](figures/zh-cn_image_0000001198839004.gif)
