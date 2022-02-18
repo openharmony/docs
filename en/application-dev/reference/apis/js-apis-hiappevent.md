@@ -9,9 +9,9 @@
 import hiAppEvent from '@ohos.hiAppEvent';
 ```
 
-## Required Permissions<a name="section11257113618419"></a>
+## System Capabilities
 
-None.
+SystemCapability.HiviewDFX.HiAppEvent
 
 ## hiAppEvent.write<a name="section570630172512"></a>
 
