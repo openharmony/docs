@@ -20,7 +20,7 @@ Video(value: VideoOption)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | src | string | 否 | - | 视频播放源的路径。 |
-  | currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否 | 1.0&nbsp;\|&nbsp;PlaybackSpeed.Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>>&nbsp;<br/>>&nbsp; |
+  | currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否 | 1.0&nbsp;\|&nbsp;PlaybackSpeed.<br>Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/> |
   | previewUri | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 否 | - | 预览图片的路径。 |
   | controller | [VideoController](#videocontroller) | 否 | - | 控制器。 |
 
@@ -49,7 +49,7 @@ Video(value: VideoOption)
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onStart()&nbsp;=&gt;&nbsp;void | 播放时触发该事件。 | 
 | onPause()&nbsp;=&gt;&nbsp;void | 暂停时触发该事件。 | 
 | onFinish()&nbsp;=&gt;&nbsp;void | 播放结束时触发该事件。 | 
