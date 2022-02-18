@@ -9,9 +9,9 @@
 import bytrace from '@ohos.bytrace';
 ```
 
-## Required Permissions<a name="section11257113618419"></a>
+## System Capabilities
 
-None
+SystemCapability.Developtools.Bytrace
 
 ## bytrace.startTrace<a name="section785191510485"></a>
 
