@@ -72,7 +72,7 @@ TextInput组件的控制器，通过它操作TextInput组件。
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onChange(value:&nbsp;string)&nbsp;=&gt;&nbsp;void | 输入发生变化时，触发回调。 | 
 | onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 回车键或者软键盘回车键触发该回调，参数为当前软键盘回车键类型。 | 
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | 输入状态变化时，触发回调。 | 
