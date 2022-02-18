@@ -1143,7 +1143,7 @@ bundle.getBundleInstaller().then((data) => {
 
 getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;
 
-以异步方法从给定的HAP中获取BundleInstaller，使用callback形式返回结果。
+以异步方法获取BundleInstaller，使用callback形式返回结果。
 
 **参数：**
 
