@@ -19,7 +19,7 @@
 | -------- | -------- |
 | LOS_INIT_LEVEL_EARLIEST | 最早期初始化<br/>说明：不依赖架构，单板以及后续模块会对其有依赖的纯软件模块初始化<br/>例如：Trace模块 | 
 | LOS_INIT_LEVEL_ARCH_EARLY | 架构早期初始化<br/>说明：架构相关，后续模块会对其有依赖的模块初始化，如启动过程中非必需的功能，建议放到LOS_INIT_LEVEL_ARCH层 | 
-| LOS_INIT_LEVEL_PLATFORM_EARLY | 平台早期初始化<br/>说明：单板平台、驱动相关，后续模块会对其有依赖的模块初始化，如启动过程中必需的功能，建议放到LOS_INIT_LEVEL_PLATFORM层<br/>例如：uart模块 | 
+| LOS_INIT_LEVEL_PLATFORM_EARLY | 平台早期初始化<br/>说明：单板平台、驱动相关，后续模块会对其有依赖的模块初始化，如启动过程中必需的功能，建议放到LOS_INIT_LEVEL_PLATFORM层 | 
 | LOS_INIT_LEVEL_KMOD_PREVM | 内存初始化前的内核模块初始化<br/>说明：在内存初始化之前需要使能的模块初始化 | 
 | LOS_INIT_LEVEL_VM_COMPLETE | 基础内存就绪后的初始化<br/>说明：此时内存初始化完毕，需要进行使能且不依赖进程间通讯机制与系统进程的模块初始化<br/>例如：共享内存功能 | 
 | LOS_INIT_LEVEL_ARCH | 架构后期初始化<br/>说明：架构拓展功能相关，后续模块会对其有依赖的模块初始化 | 
