@@ -17,10 +17,6 @@ import dataStorage from '@ohos.data.storage'
 SystemCapability.DistributedDataManager.Preference.Core
 
 
-## 权限
-
-无
-
 
 ## 属性
 
