@@ -67,7 +67,7 @@
         - [TextTimer](ts-basic-components-texttimer.md)
         - [Toggle](ts-basic-components-toggle.md)
         - [Select](ts-basic-components-select.md)
-        - [TextClock](ts-basic-components-textClock.md)
+        - [TextClock](ts-basic-components-textclock.md)
     - 容器组件
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
