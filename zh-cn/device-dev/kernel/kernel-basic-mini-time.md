@@ -29,12 +29,15 @@ OpenHarmony LiteOS-M内核的时间管理提供下面几种功能，接口详细
 | 功能分类 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | 时间转换 | LOS_MS2Tick | 毫秒转换成Tick |
-| LOS_Tick2MS | Tick转化为毫秒 |
-| OsCpuTick2MS | Cycle数目转化为毫秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
-| OsCpuTick2US | Cycle数目转化为微秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
+|  | LOS_Tick2MS | Tick转化为毫秒 |
+|  | OsCpuTick2MS | Cycle数目转化为毫秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
+|  | OsCpuTick2US | Cycle数目转化为微秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
 | 时间统计 | LOS_SysClockGet | 获取系统时钟 |
-| LOS_TickCountGet | 获取自系统启动以来的Tick数 |
-| LOS_CyclePerTickGet | 获取每个Tick多少Cycle数 |
+|  | LOS_TickCountGet | 获取自系统启动以来的Tick数 |
+|  | LOS_CyclePerTickGet | 获取每个Tick多少Cycle数 |
+|  | LOS_CurrNanosec |获取自系统启动以来的纳秒数|
+| 延时管理 | LOS_UDelay |以us为单位的忙等，但可以被优先级更高的任务抢占|
+|  | LOS_MDelay |以ms为单位的忙等，但可以被优先级更高的任务抢占|
 
 
 ## 开发流程
