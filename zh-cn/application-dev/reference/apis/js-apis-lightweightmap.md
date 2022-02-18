@@ -10,10 +10,9 @@
 import LightWeightMap from '@ohos.util.LightWeightMap'  
 ```
 
+## 系统能力
 
-## 权限
-
-无
+SystemCapability.Utils.Lang
 
 ## LightWeightMap
 
@@ -22,64 +21,70 @@ import LightWeightMap from '@ohos.util.LightWeightMap'
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | 是 | 否 | LightWeightMap的元素个数 |
+| length | number | 是 | 否 | LightWeightMap的元素个数。 |
 
 
 ### constructor
 
-constructor();
+constructor()
 
 LightWeightMap的构造函数。
 
-- 示例：
-  ```
-  let lightWeightMap = new LightWeightMap();
-  ```
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+```
 
 
 ### isEmpty
 
-isEmpty(): boolean;
+isEmpty(): boolean
 
 判断该LightWeightMap是否为空。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 为空返回true, 不为空返回false |
+**返回值：**
 
-- 示例:
-  ```
-  const lightWeightMap = new LightWeightMap();
-  lightWeightMap.isEmpty();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 为空返回true，不为空返回false。 |
+
+**示例：**
+
+```
+const lightWeightMap = new LightWeightMap();
+lightWeightMap.isEmpty();
+```
 
 
 ### hasAll
 
-hasAll(map: LightWeightMap<K, V>): boolean;
+hasAll(map: LightWeightMap<K, V>): boolean
 
 判断此LightWeightMap中是否含有该指定map中的所有元素。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | map | LightWeightMap<K, V> | 是 | 比较对象 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 是否包含所有元素 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| map | LightWeightMap<K, V> | 是 | 比较对象。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  let map = new LightWeightMap();
-  map.set("sdfs", 356);
-  let result = lightWeightMap.hasAll(map);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 包含所有元素返回true，否则返回false。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+let map = new LightWeightMap();
+map.set("sdfs", 356);
+let result = lightWeightMap.hasAll(map);
+```
 
 
 ### hasKey
@@ -88,464 +93,511 @@ hasKey(key: K): boolean;
 
 判断此LightWeightMap中是否含有该指定key。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | K | 是 | 指定元素 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 是否包含指定元素 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 指定元素。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 包含指定元素返回true，否则返回false。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+```
 
 
 ### hasValue
 
-hasValue(value: V): boolean;
+hasValue(value: V): boolean
 
 判断此LightWeightMap中是否含有该指定value。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | V | 是 | 指定元素 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 是否包含指定元素 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | V | 是 | 指定元素。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.hasValue(123);
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.hasValue(123);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 包含指定元素返回true，否则返回false。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.hasValue(123);
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.hasValue(123);
+```
 
 
 ### increaseCapacityTo
 
-increaseCapacityTo(minimumCapacity: number): void;
+increaseCapacityTo(minimumCapacity: number): void
 
 将当前LightWeightMap扩容至可以容纳指定数量元素。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | minimumCapacity | number | 是 | 需要容纳数量 |
+**参数：**
 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| minimumCapacity | number | 是 | 需要容纳的数量。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.increaseCapacityTo(10);
-  ```
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.increaseCapacityTo(10);
+```
 
 
 ### get
 
-get(key: K): V;
+get(key: K): V
 
 获取指定key所对应的value。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | K | 是 | 查找的指定key |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | V | 返回key映射的value值 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 指定key。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.get("sdfs");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V | 返回key映射的value值。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.get("sdfs");
+```
 
 
 ### getIndexOfKey
 
-getIndexOfKey(key: K): number;
+getIndexOfKey(key: K): number
 
-查找指定元素第一次出现的下标值,如果没有找到该元素返回-1。
+查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | K | 是 | 被查找的元素 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回指定元素第一次出现时的下标值,查找失败返回-1 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 被查找的元素。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.getIndexOfKey("sdfs");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.getIndexOfKey("sdfs");
+```
 
 
 ### getIndexOfValue
 
-getIndexOfValue(value: V): number;
+getIndexOfValue(value: V): number
 
-查找指定元素第一次出现的下标值,如果没有找到该元素返回-1。
+查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | V | 是 | 被查找的元素 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回指定元素第一次出现时的下标值,查找失败返回-1 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | V | 是 | 被查找的元素。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.getIndexOfValue(123);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.getIndexOfValue(123);
+```
 
 
 ### getKeyAt
 
-getKeyAt(index: number): K;
+getKeyAt(index: number): K
 
 查找指定下标的元素键值对中key值，否则返回undefined。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 所查找的下标 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | K | 返回该下标对应的元素键值对中key值 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 所查找的下标。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.getKeyAt(1);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| K | 返回该下标对应的元素键值对中key值。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.getKeyAt(1);
+```
 
 
 ### setAll
 
-setAll(map: LightWeightMap<K, V>): void;
+setAll(map: LightWeightMap<K, V>): void
 
-将一个LightWeightMap中的所有元素组添加到另一个lightweightmap中。
+将一个LightWeightMap中的所有元素组添加到另一个LightWeightMap中。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | map | LightWeightMap<K, V> | 是 | 被添加元素的lightweightmap |
+**参数：**
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  let map = new LightWeightMap();
-  lightWeightMap.setAll(map);
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| map | LightWeightMap<K, V> | 是 | 被添加元素的LightWeightMap。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+let map = new LightWeightMap();
+lightWeightMap.setAll(map);
+```
 
 
 ### set
-set(key: K, value: V): Object;
+set(key: K, value: V): Object
 
 向LightWeightMap中添加一组数据。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | K | 是 | 添加成员数据的键名 |
-  | value | V | 是 | 添加成员数据的值 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Object | 返回添加后的hashmap |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 添加成员数据的键名。 |
+| value | V | 是 | 添加成员数据的值。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Object | 返回添加数据后的hashmap。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+```
 
 
 ### remove
 
-remove(key: K): V;
+remove(key: K): V
 
 删除指定的元素。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | K | 是 | 依据key指定删除的元素 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | V | 返回删除元素的值 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 依据key指定删除的元素。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.remove("sdfs");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V | 返回删除元素的值。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.remove("sdfs");
+```
 
 
 ### removeAt
 
-removeAt(index: number): boolean;
+removeAt(index: number): boolean
 
 删除指定下标的元素。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定想要删除元素下标 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 确认是否成功删除元素 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定想要删除元素下标 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.removeAt(1);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 成功删除元素返回true，否则返回false。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.removeAt(1);
+```
 
 
 ### setValueAt
 
-setValueAt(index: number, newValue: V): boolean;
+setValueAt(index: number, newValue: V): boolean
 
 向LightWeightMap中具体位置替换键值对中的值。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定替换数据下标 |
-  | newValue | V | 是 | 替换键值对中的值 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 是否成功替换指定位置数据 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定替换数据下标。 |
+| newValue | V | 是 | 替换键值对中的值。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.setValueAt(1, 3546);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 成功替换指定位置数据返回true，否则返回false。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.setValueAt(1, 3546);
+```
 
 
 ### getValueAt
 
-getValueAt(index: number): V;
+getValueAt(index: number): V
 
 获取LightWeightMap中具体位置键值对中的值。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定查询数据下标 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | V | 返回指定位置中键值对的值 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定查询数据下标 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.getValueAt(1);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V | 返回指定位置中键值对的值。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.getValueAt(1);
+```
 
 
 ### clear
 
-clear(): void;
+clear(): void
 
 清除LightWeightMap中的所有元素,并把length置为0。
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  lightWeightMap.clear();
-  ```
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+lightWeightMap.clear();
+```
 
 
 ### keys
 
-keys(): IterableIterator&lt;K&gt;;
+keys(): IterableIterator&lt;K&gt;
 
 返回包含此映射中包含的键的新迭代器对象。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | IterableIterator&lt;K&gt; | 返回一个迭代器 |
+**返回值：**
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  let iter = lightWeightMap.keys();
-  let temp = iter.next().value;
-  while(temp != undefined) {
-    console.log(temp);
-    temp = iter.next().value;
-  }
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;K&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+let iter = lightWeightMap.keys();
+let temp = iter.next().value;
+while(temp != undefined) {
+  console.log(temp);
+  temp = iter.next().value;
+}
+```
 
 
 ### values
 
-values(): IterableIterator&lt;V&gt;;
+values(): IterableIterator&lt;V&gt;
 
 返回包含此映射中包含的键的新迭代器对象。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | IterableIterator&lt;V&gt; | 返回一个迭代器 |
+**返回值：**
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  let iter = lightWeightMap.values();
-  let temp = iter.next().value;
-  while(temp != undefined) {
-    console.log(temp);
-    temp = iter.next().value;
-  } 
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;V&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+let iter = lightWeightMap.values();
+let temp = iter.next().value;
+while(temp != undefined) {
+  console.log(temp);
+  temp = iter.next().value;
+} 
+```
 
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, lightWeightMap?: LightWeightMap<K, V>) => void, thisArg?: Object): void;
+forEach(callbackfn: (value: V, key?: K, lightWeightMap?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callbackfn | function | 是 | 回调函数 |
-  | thisArg | Object | 否 | callbackfn被调用时用作this值 |
+**参数：**
 
-- callbackfn的参数说明
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | V | 是 | 当前遍历到的元素键值对的值 |
-  | key | K | 是 | 当前遍历到的元素键值对的键 |
-  | lightWeightMap | LightWeightMap<K, V> | 否 | 当前调用forEach方法的实例对象 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackfn | function | 是 | 回调函数。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("sdfs", 123);
-  lightWeightMap.set("dfsghsf", 357);
-  lightWeightMap.forEach((value, key) => {
-    console.log(value, key);
-  });
-  ```
+callbackfn的参数说明：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | V | 是 | 当前遍历到的元素键值对的值。 |
+| key | K | 是 | 当前遍历到的元素键值对的键。 |
+| lightWeightMap | LightWeightMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("sdfs", 123);
+lightWeightMap.set("dfsghsf", 357);
+lightWeightMap.forEach((value, key) => {
+  console.log(value, key);
+});
+```
 
 
 ### entries
 
-entries(): IterableIterator<[K, V]>;
+entries(): IterableIterator<[K, V]>
 
 返回包含此映射中包含的键的新迭代器对象。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | IterableIterator<[K, V]> | 返回一个迭代器 |
+**返回值：**
 
-- 示例:
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
-  let iter = lightWeightMap.entries();
-  let temp = iter.next().value;
-  while(temp != undefined) {
-    console.log(temp[0]);
-    console.log(temp[1]);
-    temp = iter.next().value;
-  }
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**示例：**
+
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+let iter = lightWeightMap.entries();
+let temp = iter.next().value;
+while(temp != undefined) {
+  console.log(temp[0]);
+  console.log(temp[1]);
+  temp = iter.next().value;
+}
+```
 
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;;
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | IterableIterator<[K, V]> | 返回一个迭代器 |
+**返回值：**
 
-- 示例：
-  ```
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-  lightWeightMap.set("sdfs", 356);
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[K, V]> | 返回一个迭代器。 |
 
-  // 使用方法一：
-  for (let item of lightWeightMap) { 
-    console.log("key: " + item[0]);
-    console.log("value: " + item[1]);
-  }
+**示例：**
 
-  // 使用方法二：
-  let iter = lightWeightMap[Symbol.iterator]();
-  let temp = iter.next().value;
-  while(temp != undefined) {
-    console.log(temp[0]);
-    console.log(temp[1]);
-    temp = iter.next().value;
-  }
-  ```
+```
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("sdfs", 356);
+
+// 使用方法一：
+for (let item of lightWeightMap) { 
+  console.log("key: " + item[0]);
+  console.log("value: " + item[1]);
+}
+
+// 使用方法二：
+let iter = lightWeightMap[Symbol.iterator]();
+let temp = iter.next().value;
+while(temp != undefined) {
+  console.log(temp[0]);
+  console.log(temp[1]);
+  temp = iter.next().value;
+}
+```

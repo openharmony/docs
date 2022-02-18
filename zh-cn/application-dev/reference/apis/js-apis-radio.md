@@ -19,21 +19,21 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 需要ohos.permission.GET\_NETWORK\_INFO权限。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                                                         | 必填 | 说明                                   |
-  | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-  | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-  | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#RadioTechnology), csRadioTech:[RadioTechnology](#RadioTechnology)}\> | 是   | 回调函数。                             |
+| 参数名   | 类型                                                         | 必填 | 说明                                   |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#RadioTechnology), csRadioTech:[RadioTechnology](#RadioTechnology)}\> | 是   | 回调函数。                             |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    radio.getRadioTech(slotId, (err, data) =>{ 
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getRadioTech(slotId, (err, data) =>{ 
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getRadioTech<a name=radio.getRadioTech-promise></a>
@@ -44,29 +44,29 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 
 需要ohos.permission.GET\_NETWORK\_INFO权限。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                                   |
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
-- 返回值
+**返回值：**
 
-  | 类型                                                         | 说明                                            |
-  | ------------------------------------------------------------ | ----------------------------------------------- |
-  | Promise<{psRadioTech: [RadioTechnology](#RadioTechnology), csRadioTech: [RadioTechnology](#RadioTechnology)}> | 以Promise形式返回获取当前接入的CS域和PS域技术。 |
+| 类型                                                         | 说明                                            |
+| ------------------------------------------------------------ | ----------------------------------------------- |
+| Promise<{psRadioTech: [RadioTechnology](#RadioTechnology), csRadioTech: [RadioTechnology](#RadioTechnology)}> | 以Promise形式返回获取当前接入的CS域和PS域技术。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getRadioTech(slotId);
-    promise.then(data => {
-        console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`getRadioTech fail, err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getRadioTech(slotId);
+promise.then(data => {
+    console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getRadioTech fail, err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.getNetworkState<a name=radio.getNetworkState-callback1></a>
@@ -77,19 +77,19 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 
 需要ohos.permission.GET\_NETWORK\_INFO权限。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                                           | 必填 | 说明       |
-  | -------- | ---------------------------------------------- | ---- | ---------- |
-  | callback | AsyncCallback\<[NetworkState](#NetworkState)\> | 是   | 回调函数。 |
+| 参数名   | 类型                                           | 必填 | 说明       |
+| -------- | ---------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<[NetworkState](#NetworkState)\> | 是   | 回调函数。 |
 
--   示例
+**示例：**
 
-    ```
-    radio.getNetworkState((err, data) =>{
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+radio.getNetworkState((err, data) =>{
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getNetworkState<a name=radio.getNetworkState-callback2></a>
@@ -100,21 +100,21 @@ getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
 需要ohos.permission.GET\_NETWORK\_INFO权限。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                                           | 必填 | 说明                                   |
-  | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
-  | slotId   | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-  | callback | AsyncCallback\<[NetworkState](#NetworkState)\> | 是   | 回调函数。                             |
+| 参数名   | 类型                                           | 必填 | 说明                                   |
+| -------- | ---------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<[NetworkState](#NetworkState)\> | 是   | 回调函数。                             |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    radio.getNetworkState(slotId, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getNetworkState(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getNetworkState<a name=radio.getNetworkState-promise></a>
@@ -125,29 +125,29 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
 需要ohos.permission.GET\_NETWORK\_INFO权限。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                                   |
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
-- 返回值
+**返回值：**
 
-  | 类型                                     | 说明                        |
-  | ---------------------------------------- | --------------------------- |
-  | Promise\<[NetworkState](#NetworkState)\> | 以Promise形式返回网络状态。 |
+| 类型                                     | 说明                        |
+| ---------------------------------------- | --------------------------- |
+| Promise\<[NetworkState](#NetworkState)\> | 以Promise形式返回网络状态。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getNetworkState(slotId);
-    promise.then(data => {
-        console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`getNetworkState fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getNetworkState(slotId);
+promise.then(data => {
+    console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getNetworkState fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.getNetworkSelectionMode<a name=radio.getNetworkSelectionMode-callback></a>
@@ -156,21 +156,21 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 
 获取当前选网模式，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                                                         | 必填 | 说明                                   |
-  | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-  | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-  | callback | AsyncCallback\<[NetworkSelectionMode](#NetworkSelectionMode)\> | 是   | 回调函数。                             |
+| 参数名   | 类型                                                         | 必填 | 说明                                   |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<[NetworkSelectionMode](#NetworkSelectionMode)\> | 是   | 回调函数。                             |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    radio.getNetworkSelectionMode(slotId, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getNetworkSelectionMode(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getNetworkSelectionMode<a name=radio.getNetworkSelectionMode-promise></a>
@@ -179,29 +179,29 @@ getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 
 获取当前选网模式，使用Promise方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                                   |
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
-- 返回值
+**返回值：**
 
-  | 类型                                                     | 说明                            |
-  | -------------------------------------------------------- | ------------------------------- |
-  | Promise\<[NetworkSelectionMode](#NetworkSelectionMode)\> | 以Promise形式返回当前选网模式。 |
+| 类型                                                     | 说明                            |
+| -------------------------------------------------------- | ------------------------------- |
+| Promise\<[NetworkSelectionMode](#NetworkSelectionMode)\> | 以Promise形式返回当前选网模式。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getNetworkSelectionMode(slotId);
-    promise.then(data => {
-        console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`getNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getNetworkSelectionMode(slotId);
+promise.then(data => {
+    console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.getISOCountryCodeForNetwork<sup>7+</sup><a name=radio.getISOCountryCodeForNetwork-callback></a>
@@ -210,21 +210,21 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\):
 
 获取注册网络所在国家的ISO国家码，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                    | 必填 | 说明                                     |
-  | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
-  | callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
+| 参数名   | 类型                    | 必填 | 说明                                     |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getISOCountryCodeForNetwork<sup>7+</sup><a name=radio.getISOCountryCodeForNetwork-promise></a>
@@ -233,29 +233,29 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 
 获取注册网络所在国家的ISO国家码，使用Promise方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                                   |
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
-- 返回值
+**返回值：**
 
-  | 类型              | 说明                                                         |
-  | ----------------- | ------------------------------------------------------------ |
-  | Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getISOCountryCodeForNetwork(slotId);
-    promise.then(data => {
-        console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`getISOCountryCodeForNetwork fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getISOCountryCodeForNetwork(slotId);
+promise.then(data => {
+    console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getISOCountryCodeForNetwork fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.getSignalInformation<a name=radio.getSignalInformation-callback></a>
@@ -264,21 +264,21 @@ getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInform
 
 获取指定SIM卡槽对应的注册网络信号强度信息列表，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                                                         | 必填 | 说明                                                         |
-  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-  | callback | AsyncCallback\<Array\<[SignalInformation](#SignalInformation)\>\> | 是   | 回调函数，返回[SignalInformation](#SignalInformation)对象的数组。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
+| callback | AsyncCallback\<Array\<[SignalInformation](#SignalInformation)\>\> | 是   | 回调函数，返回[SignalInformation](#SignalInformation)对象的数组。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    radio.getSignalInformation(slotId, (err, data) => {
-       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getSignalInformation(slotId, (err, data) => {
+   console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getSignalInformation<a name=radio.getSignalInformation-promise></a>
@@ -287,29 +287,29 @@ getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
 获取指定SIM卡槽对应的注册网络信号强度信息列表，使用Promise方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名 | 类型   | 必填 | 说明                                   |
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
-- 返回值
+**返回值：**
 
-  | 类型                                                        | 说明                                                         |
-  | ----------------------------------------------------------- | ------------------------------------------------------------ |
-  | Promise\<Array\<[SignalInformation](#SignalInformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#SignalInformation)对象的数组。 |
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<Array\<[SignalInformation](#SignalInformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#SignalInformation)对象的数组。 |
 
--   示例
+**示例：**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getSignalInformation(slotId);
-    promise.then(data => {
-        console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`getSignalInformation fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getSignalInformation(slotId);
+promise.then(data => {
+    console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getSignalInformation fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.isRadioOn<sup>7+</sup><a name=radio.isRadioOn-callback></a>
@@ -320,19 +320,19 @@ isRadioOn\(callback: AsyncCallback<boolean\>\): void
 
 需要ohos.permission.GET\_NETWORK\_INFO权限。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                     | 必填 | 说明                                                    |
-  | -------- | ------------------------ | ---- | ------------------------------------------------------- |
-  | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
+| 参数名   | 类型                     | 必填 | 说明                                                    |
+| -------- | ------------------------ | ---- | ------------------------------------------------------- |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
--   示例
+**示例：**
 
-    ```
-    radio.isRadioOn((err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+radio.isRadioOn((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.isRadioOn<sup>7+</sup><a name=radio.isRadioOn-promise></a>
@@ -343,22 +343,22 @@ isRadioOn\(\): Promise<boolean\>
 
 需要ohos.permission.GET\_NETWORK\_INFO权限。
 
-- 返回值
+**返回值：**
 
-  | 类型               | 说明                                                         |
-  | ------------------ | ------------------------------------------------------------ |
-  | Promise\<boolean\> | 以Promise形式返回判断Radio是否打开的结果。<br/>- true：Radio打开<br/>- false：Radio关闭 |
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| Promise\<boolean\> | 以Promise形式返回判断Radio是否打开的结果。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
--   示例
+**示例：**
 
-    ```
-    let promise = radio.isRadioOn();
-    promise.then(data => {
-        console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`isRadioOn fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = radio.isRadioOn();
+promise.then(data => {
+    console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`isRadioOn fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## RadioTechnology<a name=RadioTechnology></a>

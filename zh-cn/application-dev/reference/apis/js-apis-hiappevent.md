@@ -22,27 +22,29 @@ write(eventName: string, eventType: EventType, keyValues: object, callback: Asyn
 
 应用事件打点方法，将事件写入到当天的事件文件中，可接收类型为Json对象的事件参数，使用callback方式作为异步回调。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | eventName | string | 是 | 应用事件名称。 |
-  | eventType | [EventType](#eventtype) | 是 | 应用事件类型。 |
-  | keyValues | object | 是 | 应用事件的参数，key类型只能为string，value类型只能为string、number、boolean、Array（数组数据类型只能为string、number、boolean）。 |
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，可以在回调函数中处理接口返回值。<br/>-&nbsp;返回值为0表示事件校验成功，事件正常异步写入事件文件；<br/>-&nbsp;大于0表示事件校验存在异常参数，在忽略异常参数后将事件异步写入事件文件；<br/>-&nbsp;小于0表示事件校验失败，不将事件写入事件文件。 |
+**参数：**
 
-- 示例：
-  ```
-  hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"}, (err, value) => {
-      if (err) {
-          // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
-          console.error(`failed to write event because ${err.code}`);
-          return;
-      }
-  
-      // 事件写入正常
-      console.log(`success to write event: ${value}`);
-  });
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| eventName | string | 是 | 应用事件名称。 |
+| eventType | [EventType](#eventtype) | 是 | 应用事件类型。 |
+| keyValues | object | 是 | 应用事件的参数，key类型只能为string，value类型只能为string、number、boolean、Array（数组数据类型只能为string、number、boolean）。 |
+| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，可以在回调函数中处理接口返回值。<br/>-&nbsp;返回值为0表示事件校验成功，事件正常异步写入事件文件；<br/>-&nbsp;大于0表示事件校验存在异常参数，在忽略异常参数后将事件异步写入事件文件；<br/>-&nbsp;小于0表示事件校验失败，不将事件写入事件文件。 |
+
+**示例：**
+
+```
+hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"}, (err, value) => {
+    if (err) {
+        // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
+        console.error(`failed to write event because ${err.code}`);
+        return;
+    }
+
+    // 事件写入正常
+    console.log(`success to write event: ${value}`);
+});
+```
 
 
 ## hiAppEvent.write
@@ -51,29 +53,32 @@ write(eventName: string, eventType: EventType, keyValues: object): Promise&lt;vo
 
 应用事件打点方法，将事件写入到当天的事件文件中，可接收类型为Json对象的事件参数，使用promise方式作为异步回调。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | eventName | string | 是 | 应用事件名称。 |
-  | eventType | [EventType](#eventtype) | 是 | 应用事件类型。 |
-  | keyValues | object | 是 | 应用事件的参数，key类型只能为string，value类型只能为string、number、boolean、Array（数组数据类型只能为string、number、boolean）。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，可以在其then()、catch()方法中分别对事件写入成功、写入异常的情况进行回调处理。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| eventName | string | 是 | 应用事件名称。 |
+| eventType | [EventType](#eventtype) | 是 | 应用事件类型。 |
+| keyValues | object | 是 | 应用事件的参数，key类型只能为string，value类型只能为string、number、boolean、Array（数组数据类型只能为string、number、boolean）。 |
 
-- 示例：
-  ```
-  hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"})
-      .then((value) => {
-          // 事件写入正常
-          console.log(`success to write event: ${value}`);
-      }).catch((err) => {
-          // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
-          console.error(`failed to write event because ${err.code}`);
-      });
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise实例，可以在其then()、catch()方法中分别对事件写入成功、写入异常的情况进行回调处理。 |
+
+**示例：**
+
+```
+hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"})
+    .then((value) => {
+        // 事件写入正常
+        console.log(`success to write event: ${value}`);
+    }).catch((err) => {
+        // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
+        console.error(`failed to write event because ${err.code}`);
+    });
+```
 
 
 ## hiAppEvent.configure
@@ -82,28 +87,30 @@ configure(config: ConfigOption): boolean
 
 应用事件打点配置方法，可用于配置打点开关、文件目录存储限额大小等功能。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | config | [ConfigOption](#configoption) | 是 | 应用事件打点配置项对象。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 配置结果，true&nbsp;表示配置成功，false&nbsp;表示配置失败。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| config | [ConfigOption](#configoption) | 是 | 应用事件打点配置项对象。 |
 
-- 示例：
-  ```
-  // 配置应用事件打点功能开关
-  hiAppEvent.configure({
-      disable: true
-  });
-  
-  // 配置事件文件目录存储限额大小
-  hiAppEvent.configure({
-      maxStorage: '100M'
-  });
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 配置结果，true&nbsp;表示配置成功，false&nbsp;表示配置失败。 |
+
+**示例：**
+```
+// 配置应用事件打点功能开关
+hiAppEvent.configure({
+    disable: true
+});
+
+// 配置事件文件目录存储限额大小
+hiAppEvent.configure({
+    maxStorage: '100M'
+});
+```
 
 
 ## ConfigOption

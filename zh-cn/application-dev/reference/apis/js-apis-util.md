@@ -14,6 +14,9 @@
 import util from '@ohos.util';
 ```
 
+## 系统能力
+
+SystemCapability.Utils.Lang
 
 ## util.printf
 

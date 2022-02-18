@@ -20,7 +20,7 @@
     - [媒体服务](js-apis-media.md)
 - 安全
     - [用户认证](js-apis-useriam-userauth.md)
-    - [访问控制](js-apis-security-accessToken.md)
+    - [访问控制](js-apis-abilityAccessCtrl.md)
 - 数据管理
     - [轻量级存储](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
@@ -68,13 +68,15 @@
     - [定时器](js-apis-basic-features-timer.md)
     - [设置系统时间](js-apis-system-time.md)
     - [动画](js-apis-basic-features-animator.md)
+    - [WebGL](js-apis-webgl.md)
+    - [WebGL2](js-apis-webgl2.md)
+- DFX
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-hitracemeter.md)
     - [故障日志获取](js-apis-faultLogger.md)
     - [分布式跟踪](js-apis-hitracechain.md)
     - [日志打印](js-apis-hilog.md)
-    - [WebGL](js-apis-webgl.md)
-    - [WebGL2](js-apis-webgl2.md)
+    - [检测模式](js-apis-hichecker.md)
 - 语言基础类库
     - [获取进程相关的信息](js-apis-process.md)
     - [URL字符串解析](js-apis-url.md)

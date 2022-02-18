@@ -68,20 +68,24 @@ begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
 
 开始跟踪，同步接口。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | name  | string | 是 | 跟踪业务名。 |
-  | flags | number | 是 | [跟踪标志组合](#hitraceflag)。 |
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [HiTraceId](#hitraceid) | HiTraceId实例。 |
+**参数：**
 
-- 示例：
-  ```
-  let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name  | string | 是 | 跟踪业务名。 |
+| flags | number | 是 | 跟踪标志组合，具体可参考[HiTraceFlag](#hitraceflag)。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [HiTraceId](#hitraceid) | HiTraceId实例。 |
+
+**示例：**
+
+```
+let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+```
 
 ## hiTraceChain.end
 
@@ -89,17 +93,19 @@ end(id: HiTraceId): void
 
 结束跟踪，同步接口。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | [HiTraceId](#hitraceid) | 是 | HiTraceId实例。 |
+**参数：**
 
-- 示例：
-  ```
-  let asyncTraceId = hiTraceChain.begin("business");
-  // 若干业务逻辑完成后，结束跟踪。
-  hiTraceChain.end(asyncTraceId);
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id | [HiTraceId](#hitraceid) | 是 | HiTraceId实例。 |
+
+**示例：**
+
+```
+let asyncTraceId = hiTraceChain.begin("business");
+// 若干业务逻辑完成后，结束跟踪。
+hiTraceChain.end(asyncTraceId);
+```
 
 ## hiTraceChain.getId
 
@@ -107,17 +113,19 @@ getId(): HiTraceId
 
 获取跟踪标识，同步接口。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [HiTraceId](#hitraceid) | HiTraceId实例。 |
+**返回值：**
 
-- 示例：
-  ```
-  let traceId = hiTraceChain.begin("business");
-  // 若干业务逻辑完成后，获取当前HiTraceId。
-  let curTraceId = hiTraceChain.getId();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| [HiTraceId](#hitraceid) | HiTraceId实例。 |
+
+**示例：**
+
+```
+let traceId = hiTraceChain.begin("business");
+// 若干业务逻辑完成后，获取当前HiTraceId。
+let curTraceId = hiTraceChain.getId();
+```
 
 ## hiTraceChain.setId
 
@@ -125,17 +133,19 @@ setId(id: HiTraceId): void
 
 设置跟踪标识，同步接口。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | [HiTraceId](#hitraceid) | 是 | HiTraceId实例。 |
+**参数：**
 
-- 示例：
-  ```
-  let traceId = hiTraceChain.begin("business");
-  // 若干业务逻辑完成后，设置当前HiTraceId。
-  hiTraceChain.setId(asyncTraceId);
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id | [HiTraceId](#hitraceid) | 是 | HiTraceId实例。 |
+
+**示例：**
+
+```
+let traceId = hiTraceChain.begin("business");
+// 若干业务逻辑完成后，设置当前HiTraceId。
+hiTraceChain.setId(asyncTraceId);
+```
 
 ## hiTraceChain.clearId
 
@@ -143,12 +153,13 @@ clearId(): void
 
 清除跟踪标识，同步接口。
 
-- 示例：
-  ```
-  let traceId = hiTraceChain.begin("business");
-  // 若干业务逻辑完成后，清除当前HiTraceId。
-  hiTraceChain.clearId();
-  ```
+**示例：**
+
+```
+let traceId = hiTraceChain.begin("business");
+// 若干业务逻辑完成后，清除当前HiTraceId。
+hiTraceChain.clearId();
+```
 
 ## hiTraceChain.createSpan
 
@@ -156,17 +167,19 @@ createSpan(): HiTraceId
 
 创建跟踪分支，同步接口。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [HiTraceId](#hitraceid) | HiTraceId实例。 |
+**返回值：**
 
-- 示例：
-  ```
-  let traceId = hiTraceChain.begin("business");
-  // 若干业务逻辑完成后，创建跟踪分支。
-  let spanTraceId = hiTraceChain.createSpan();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| [HiTraceId](#hitraceid) | HiTraceId实例。 |
+
+**示例：**
+
+```
+let traceId = hiTraceChain.begin("business");
+// 若干业务逻辑完成后，创建跟踪分支。
+let spanTraceId = hiTraceChain.createSpan();
+```
 
 ## hiTraceChain.tracepoint
 
@@ -174,20 +187,22 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTr
 
 信息埋点，同步接口。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | mode | [HiTraceCommunicationMode](#hitracecommunicationmode) | 是 | 信息埋点需要指定的跟踪通信模式。 |
-  | type | [HiTraceTracepointType](#hitracetracepointtype)| 是 | 信息埋点需要指定的跟踪埋点类型。 |
-  | id   | [HiTraceId](#hitraceid) | 是 | 实施信息埋点操作的HiTraceId实例。 |
-  | msg  | string | 否 | 信息埋点操作传入的trace说明信息。 |
+**参数：**
 
-- 示例：
-  ```
-  let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
-  // 若干业务逻辑完成后，触发信息埋点操作。
-  hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceChain.HiTraceTracepointType.SS, asyncTraceId, "Just a example");
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mode | [HiTraceCommunicationMode](#hitracecommunicationmode) | 是 | 信息埋点需要指定的跟踪通信模式。 |
+| type | [HiTraceTracepointType](#hitracetracepointtype)| 是 | 信息埋点需要指定的跟踪埋点类型。 |
+| id   | [HiTraceId](#hitraceid) | 是 | 实施信息埋点操作的HiTraceId实例。 |
+| msg  | string | 否 | 信息埋点操作传入的trace说明信息。 |
+
+**示例：**
+
+```
+let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+// 若干业务逻辑完成后，触发信息埋点操作。
+hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceChain.HiTraceTracepointType.SS, asyncTraceId, "Just a example");
+```
 
 ## hiTraceChain.isValid
 
@@ -195,20 +210,24 @@ isValid(id: HiTraceId): boolean
 
 判断HiTraceId对象是否有效，同步接口。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id  | [HiTraceId](#hitraceid) | 是 | 需要判断是否有效的HiTraceId实例。 |
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示HiTraceId有效，否则无效。 |
+**参数：**
 
-- 示例：
-  ```
-  let traceId = hiTraceChain.begin("business");
-  let traceIdIsvalid = hiTraceChain.isValid(traceId);
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id  | [HiTraceId](#hitraceid) | 是 | 需要判断是否有效的HiTraceId实例。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回true表示HiTraceId有效，否则无效。 |
+
+**示例：**
+
+```
+let traceId = hiTraceChain.begin("business");
+let traceIdIsvalid = hiTraceChain.isValid(traceId);
+```
 
 ## hiTraceChain.isFlagEnabled
 
@@ -216,21 +235,26 @@ isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
 判断HiTraceId对象中指定的跟踪标志是否已置位，同步接口。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id  | [HiTraceId](#hitraceid) | 是 | 需要判断指定跟踪标志是否置位的HiTraceId实例。 |
-  | flag | [HiTraceFlag](#hitraceflag) | 是 | 指定的跟踪标志。 |
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true标识HiTraceId已置位指定的flag，否则没有置位。 |
-- 示例：
-  ```
-  let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
-  // enabledDoNotCreateSpanFlag为true
-  let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
-  ```
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id  | [HiTraceId](#hitraceid) | 是 | 需要判断指定跟踪标志是否置位的HiTraceId实例。 |
+| flag | [HiTraceFlag](#hitraceflag) | 是 | 指定的跟踪标志。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回true标识HiTraceId已置位指定的flag，否则没有置位。 |
+
+**示例：**
+
+```
+let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
+// enabledDoNotCreateSpanFlag为true
+let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
+```
 
 ## hiTraceChain.enableFlag
 
@@ -238,16 +262,17 @@ enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 
 置位HiTraceId对象中指定的跟踪标志，同步接口。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id  | [HiTraceId](#hitraceid) | 是 | 需要置位指定跟踪标志的HiTraceId实例。 |
-  | flag | [HiTraceFlag](#hitraceflag) | 是 | 指定的跟踪标志。 |
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id  | [HiTraceId](#hitraceid) | 是 | 需要置位指定跟踪标志的HiTraceId实例。 |
+| flag | [HiTraceFlag](#hitraceflag) | 是 | 指定的跟踪标志。 |
 
-- 示例：
-  ```
-  let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
-  hiTraceChain.enable(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
-  // enabledDoNotCreateSpanFlag为true
-  let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
-  ```
+**示例：**
+
+```
+let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
+hiTraceChain.enable(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+// enabledDoNotCreateSpanFlag为true
+let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+```

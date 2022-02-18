@@ -10,6 +10,9 @@
 import process from '@ohos.process';
 ```
 
+## 系统能力
+
+SystemCapability.Utils.Lang
 
 ## 属性
 
@@ -46,19 +49,21 @@ wait(): Promise&lt;number&gt;
 
 等待子进程运行结束，返回promise对象，其值为子进程的退出码。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | 异步返回子进程的退出码。 |
+**返回值：**
 
-- 示例：
-  ```
-  var child = process.runCmd('ls');
-  var result = child.wait();
-  result.then(val=>{
-      console.log("result = " + val);
-  })
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | 异步返回子进程的退出码。 |
+
+**示例：**
+
+```
+var child = process.runCmd('ls');
+var result = child.wait();
+result.then(val=>{
+    console.log("result = " + val);
+})
+```
 
 
 ### getOutput
@@ -67,19 +72,21 @@ getOutput(): Promise&lt;Uint8Array&gt;
 
 获取子进程的标准输出。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Uint8Array&gt; | 异步返回标准输出的字节流。 |
+**返回值：**
 
-- 示例：
-  ```
-  var child = process.runCmd('ls');
-  var result = child.wait();
-  child.getOutput.then(val=>{
-      console.log("child.getOutput = " + val);
-  })
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Uint8Array&gt; | 异步返回标准输出的字节流。 |
+
+**示例：**
+
+```
+var child = process.runCmd('ls');
+var result = child.wait();
+child.getOutput.then(val=>{
+    console.log("child.getOutput = " + val);
+})
+```
 
 
 ### getErrorOutput
@@ -88,19 +95,21 @@ getErrorOutput(): Promise&lt;Uint8Array&gt;
 
 getErrorOutput函数用来获取子进程的标准错误输出。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Uint8Array&gt; | 异步返回标准错误输出的字节流。 |
+**返回值：**
 
-- 示例：
-  ```
-  var child = process.runCmd('madir test.text');
-  var result = child.wait();
-  child.getErrorOutput.then(val=>{
-      console.log("child.getErrorOutput= " + val);
-  })
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Uint8Array&gt; | 异步返回标准错误输出的字节流。 |
+
+**示例：**
+
+```
+var child = process.runCmd('madir test.text');
+var result = child.wait();
+child.getErrorOutput.then(val=>{
+    console.log("child.getErrorOutput= " + val);
+})
+```
 
 
 ### close
@@ -109,11 +118,12 @@ close():  void
 
 关闭正在运行的子进程。
 
-- 示例：
-  ```
-  var child = process.runCmd('sleep 5; ls');
-  child.close();
-  ```
+**示例：**
+
+```
+var child = process.runCmd('sleep 5; ls');
+child.close();
+```
 
 
 ### kill
@@ -122,16 +132,18 @@ kill(signal: number | string): void
 
 kill函数用来发送信号给子进程，结束指定进程。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | signal | number&nbsp;\|&nbsp;string | 是 | 数字或字符串。 |
+**参数：**
 
-- 示例：
-  ```
-  var child = process.runCmd('sleep 5; ls');
-  child.kill(9);
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| signal | number&nbsp;\|&nbsp;string | 是 | 数字或字符串。 |
+
+**示例：**
+
+```
+var child = process.runCmd('sleep 5; ls');
+child.kill(9);
+```
 
 
 ## process.isIsolatedProcess<sup>8+</sup>
@@ -140,15 +152,17 @@ isIsolatedProcess(): boolean
 
 判断进程是否被隔离。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回判断结果，如果返回true表示进程被隔离。 |
+**返回值：**
 
-- 示例：
-  ```
-  var result = process.isIsolatedProcess();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回判断结果，如果返回true表示进程被隔离。 |
+
+**示例：**
+
+```
+var result = process.isIsolatedProcess();
+```
 
 
 ## process.isAppUid<sup>8+</sup>
@@ -157,20 +171,23 @@ isAppUid(v:number): boolean
 
 判断uid是否属于应用程序。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | v | number | 是 | 应用程序的uid。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回判断结果，如果返回true表示为应用程序的uid。|
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | number | 是 | 应用程序的uid。 |
 
-- 示例：
-  ```
-  var result = process.isAppUid(688);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回判断结果，如果返回true表示为应用程序的uid。|
+
+**示例：**
+
+```
+var result = process.isAppUid(688);
+```
 
 
 ## process.is64Bit<sup>8+</sup>
@@ -179,15 +196,17 @@ is64Bit(): boolean
 
 判断运行环境是否64位。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回判断结果，如果返回true表示为64位环境。 |
+**返回值：**
 
-- 示例：
-  ```
-  var ressult = process.is64Bit();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回判断结果，如果返回true表示为64位环境。 |
+
+**示例：**
+
+```
+var ressult = process.is64Bit();
+```
 
 
 ## process.getUidForName<sup>8+</sup>
@@ -196,20 +215,23 @@ getUidForName(v:string): number
 
 通过进程名获取进程uid。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | v | string | 是 | 进程名。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回进程uid。|
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | string | 是 | 进程名。 |
 
-- 示例：
-  ```
-  var pres = process.getUidForName("tool")
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回进程uid。|
+
+**示例：**
+
+```
+var pres = process.getUidForName("tool")
+```
 
 
 ## process.getThreadPriority<sup>8+</sup>
@@ -218,21 +240,24 @@ getThreadPriority(v:number): number
 
 根据指定的tid获取线程优先级。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | v | number | 是 | 指定的线程tid。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回线程的优先级。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | number | 是 | 指定的线程tid。 |
 
-- 示例：
-  ```
-  var tid = process.getTid();
-  var pres = process.getThreadPriority(tid);
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回线程的优先级。 |
+
+**示例：**
+
+```
+var tid = process.getTid();
+var pres = process.getThreadPriority(tid);
+```
 
 
 ## process.getStartRealtime<sup>8+</sup>
@@ -241,15 +266,17 @@ getStartRealtime() :number
 
 获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回经过的实时时间。|
+**返回值：**
 
-- 示例：
-  ```
-  var realtime = process.getStartRealtime();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回经过的实时时间。|
+
+**示例：**
+
+```
+var realtime = process.getStartRealtime();
+```
 
 ## process.getPastCputime<sup>8+</sup>
 
@@ -257,15 +284,17 @@ getPastCputime() :number
 
 获取进程启动到当前时间的CPU时间（以毫秒为单位）。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回经过的CPU时间。 |
+**返回值：**
 
-- 示例：
-  ```
-  var result = process.getPastCputime() ;
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回经过的CPU时间。 |
+
+**示例：**
+
+```
+var result = process.getPastCputime() ;
+```
 
 
 ## process.getSystemConfig<sup>8+</sup>
@@ -274,21 +303,24 @@ getSystemConfig(name:number): number
 
 获取系统配置信息。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | name | number | 是 | 指定系统配置参数名。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回系统配置信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | number | 是 | 指定系统配置参数名。 |
 
-- 示例：
-  ```
-  var _SC_ARG_MAX = 0
-  var pres = process.getSystemConfig(_SC_ARG_MAX)
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回系统配置信息。 |
+
+**示例：**
+
+```
+var _SC_ARG_MAX = 0
+var pres = process.getSystemConfig(_SC_ARG_MAX)
+```
 
 
 ## process.getEnvironmentVar<sup>8+</sup>
@@ -297,20 +329,23 @@ getEnvironmentVar(name:string): string
 
 用该方法获取环境变量对应的值。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | name | string | 是 | 环境变量名。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 返回环境变量名对应的value。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 环境变量名。 |
 
-- 示例：
-  ```
-  var pres = process.getEnvironmentVar("PATH")
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回环境变量名对应的value。 |
+
+**示例：**
+
+```
+var pres = process.getEnvironmentVar("PATH")
+```
 
 
 ## process.runCmd
@@ -319,33 +354,36 @@ runCmd(command: string, options?: { timeout : number, killSignal ：number | str
 
 通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | command | string | 是 | shell命令。 |
-  | options | Object | 否 | 相关选项参数。 |
+**参数：**
 
-  **表1** options
-  
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | timeout | number | 否 | 子进程运行的ms数，当子进程运行时间超出此时间，则父进程发送killSignal信号给子进程。timeout默认为0。 |
-  | killSignal | number&nbsp;&nbsp;\|&nbsp;string | 否 | 子进程运行时间超出timeout时，父进程发送killSignal&nbsp;信号给子进程。killSignal&nbsp;默认为'SIGTERM'。 |
-  | maxBuffer | number | 否 | 子进程标准输入输出的最大缓冲区大小，当超出此大小时则终止子进程。maxBuffer默认1024\*1024。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| command | string | 是 | shell命令。 |
+| options | Object | 否 | 相关选项参数。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [ChildProcess](#childprocess) | 子进程对象。 |
+**表1** options
 
-- 示例：
-  ```
-  var child = process.runCmd('ls', { maxBuffer : 2 });
-  var result = child.wait();
-  child.getOutput.then(val=>{
-      console.log("child.getOutput = " + val);
-  })
-  ```
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| timeout | number | 否 | 子进程运行的ms数，当子进程运行时间超出此时间，则父进程发送killSignal信号给子进程。timeout默认为0。 |
+| killSignal | number&nbsp;&nbsp;\|&nbsp;string | 否 | 子进程运行时间超出timeout时，父进程发送killSignal&nbsp;信号给子进程。killSignal&nbsp;默认为'SIGTERM'。 |
+| maxBuffer | number | 否 | 子进程标准输入输出的最大缓冲区大小，当超出此大小时则终止子进程。maxBuffer默认1024\*1024。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [ChildProcess](#childprocess) | 子进程对象。 |
+
+**示例：**
+
+```
+var child = process.runCmd('ls', { maxBuffer : 2 });
+var result = child.wait();
+child.getOutput.then(val=>{
+    console.log("child.getOutput = " + val);
+})
+```
 
 
 ## process.abort
@@ -354,10 +392,11 @@ abort(): void
 
 该方法会导致进程立即退出并生成一个核心文件，谨慎使用。
 
-- 示例：
-  ```
-  process.abort();
-  ```
+**示例：**
+
+```
+process.abort();
+```
 
 
 ## process.on
@@ -366,24 +405,26 @@ on(type: string, listener: EventListener): void
 
 用该方法来存储用户所触发的事件。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 存储事件的type。 |
-  | listener | EventListener | 是 | 回调的事件。 |
+**参数：**
 
-  **表2** EventListener
-  
-  | 名称 | 说明 |
-  | -------- | -------- |
-  | EventListener&nbsp;=&nbsp;(evt:&nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 存储事件的type。 |
+| listener | EventListener | 是 | 回调的事件。 |
 
-- 示例：
-  ```
-  process.on("data", (e)=>{
-      console.log("data callback");
-  })
-  ```
+**表2** EventListener
+
+| 名称 | 说明 |
+| -------- | -------- |
+| EventListener&nbsp;=&nbsp;(evt:&nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
+
+**示例：**
+
+```
+process.on("data", (e)=>{
+    console.log("data callback");
+})
+```
 
 
 ## process.off
@@ -392,23 +433,26 @@ off(type: string): boolean
 
 用该方法来删除用户存储的事件。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 删除事件的type。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 事件是否删除成功。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 删除事件的type。 |
 
-- 示例：
-  ```
-  process.on("data", (e)=>{
-      console.log("data callback");
-  })
-  var result = process.off("data");
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 事件是否删除成功。 |
+
+**示例：**
+
+```
+process.on("data", (e)=>{
+    console.log("data callback");
+})
+var result = process.off("data");
+```
 
 
 ## process.exit
@@ -417,15 +461,17 @@ exit(code: number): void
 
 用该方法终止程序，谨慎使用。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | code | number | 是 | 进程的退出码。 |
+**参数：**
 
-- 示例：
-  ```
-  process.exit(0);
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| code | number | 是 | 进程的退出码。 |
+
+**示例：**
+
+```
+process.exit(0);
+```
 
 
 ## process.cwd
@@ -434,10 +480,11 @@ cwd(): string
 
 用该方法获取进程的工作目录。
 
-- 示例：
-  ```
-  var path = process.cwd();
-  ```
+**示例：**
+
+```
+var path = process.cwd();
+```
 
 
 ## process.chdir
@@ -446,15 +493,17 @@ chdir(dir: string): void
 
 用该方法更改进程的当前工作目录。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dir | string | 是 | 路径。 |
+**参数：**
 
-- 示例：
-  ```
-  process.chdir('/system');
-  ```
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| dir | string | 是 | 路径。 |
+
+**示例：**
+
+```
+process.chdir('/system');
+```
 
 
 ## process.uptime
@@ -463,15 +512,17 @@ uptime(): number
 
 获取当前系统已运行的秒数。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 当前系统已运行的秒数。 |
+**返回值：**
 
-- 示例：
-  ```
-  var time = process.uptime();
-  ```
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 当前系统已运行的秒数。 |
+
+**示例：**
+
+```
+var time = process.uptime();
+```
 
 
 ## process.kill
@@ -480,19 +531,21 @@ kill(pid: number，signal: number ): boolean
 
 用该方法发送signal到指定的进程，结束指定进程。
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pid | number | 是 | 进程的id。 |
-  | signal | number | 是 | 发送的信号。 |
+**参数：**
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 信号是否发送成功。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pid | number | 是 | 进程的id。 |
+| signal | number | 是 | 发送的信号。 |
 
-- 示例：
-  ```
-  var pres = process.pid
-  var result = that.kill(pres, 28)
-  ```
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 信号是否发送成功。 |
+
+**示例：**
+```
+var pres = process.pid
+var result = that.kill(pres, 28)
+```
