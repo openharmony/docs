@@ -12,6 +12,12 @@ None
 import Notification from '@ohos.notification';
 ```
 
+## System Capabilities
+
+```js
+SystemCapability.Notification.Notification
+```
+
 ## Notification.publish(request: NotificationRequest, callback: AsyncCallback\<void\>)
 
 - Functionality
