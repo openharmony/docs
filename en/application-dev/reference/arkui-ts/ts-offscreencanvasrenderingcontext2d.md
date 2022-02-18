@@ -260,7 +260,7 @@ OffscreenCanvasRenderingContext2D\(width: number, height: number, setting: Rende
 @Entry
 @Component
 struct FillStyleExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
 
@@ -291,7 +291,7 @@ struct FillStyleExample {
 @Entry
 @Component
 struct LineWidthExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
 
@@ -322,7 +322,7 @@ struct LineWidthExample {
 @Entry
 @Component
 struct StrokeStyleExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
 
@@ -354,7 +354,7 @@ struct StrokeStyleExample {
 @Entry
 @Component
 struct LineCapExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
 
@@ -389,7 +389,7 @@ struct LineCapExample {
 @Entry
 @Component
 struct LineJoinExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
 
@@ -425,7 +425,7 @@ struct LineJoinExample {
 @Entry
 @Component
 struct MiterLimit {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -461,7 +461,7 @@ struct MiterLimit {
 @Entry
 @Component
 struct Font {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -491,8 +491,8 @@ struct Font {
 ```
 @Entry
 @Component
-struct TextAlign {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -538,7 +538,7 @@ struct TextAlign {
 @Entry
 @Component
 struct TextBaseline {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -584,7 +584,7 @@ struct TextBaseline {
 @Entry
 @Component
 struct GlobalAlpha {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -618,7 +618,7 @@ struct GlobalAlpha {
 @Entry
 @Component
 struct LineDashOffset {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -715,7 +715,7 @@ struct LineDashOffset {
 @Entry
 @Component
 struct GlobalCompositeOperation {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -754,7 +754,7 @@ struct GlobalCompositeOperation {
 @Entry
 @Component
 struct ShadowBlur {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -787,7 +787,7 @@ struct ShadowBlur {
 @Entry
 @Component
 struct ShadowColor {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -821,7 +821,7 @@ struct ShadowColor {
 @Entry
 @Component
 struct ShadowOffsetX {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
   
@@ -855,7 +855,7 @@ struct ShadowOffsetX {
 @Entry
 @Component
 struct ShadowOffsetY {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
 
@@ -889,7 +889,7 @@ struct ShadowOffsetY {
 @Entry
 @Component
 struct ImageSmoothingEnabled {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
@@ -991,7 +991,7 @@ Fills a rectangle on the canvas.
     @Entry
     @Component
     struct FillRect {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       
@@ -1091,7 +1091,7 @@ Draws a rectangle stroke on the canvas.
     @Entry
     @Component
     struct StrokeRect {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1190,7 +1190,7 @@ Clears the content in a rectangle on the canvas.
     @Entry
     @Component
     struct ClearRect {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1280,7 +1280,7 @@ Draws filled text on the canvas.
     @Entry
     @Component
     struct FillText {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1369,7 +1369,7 @@ Draws a text stroke on the canvas.
     @Entry
     @Component
     struct StrokeText {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1474,7 +1474,7 @@ Returns a  **TextMetrics**  object used to obtain the width of specified text.
     @Entry
     @Component
     struct MeasureText {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1541,10 +1541,10 @@ Strokes a path.
     ```
     @Entry
     @Component
-    struct Stroke {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+    struct CanvasExample {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-      private offContext: OffscreenCanvasRenderingContext2D = new OffscreenRenderingContext(600, 600, this.settings)
+      private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
           Canvas(this.context)
@@ -1581,7 +1581,7 @@ Creates a drawing path.
     @Entry
     @Component
     struct BeginPath {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1663,7 +1663,7 @@ Moves a drawing path to a target position on the canvas.
     @Entry
     @Component
     struct MoveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1743,7 +1743,7 @@ Connects the current point to a target position using a straight line.
     @Entry
     @Component
     struct LineTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1782,7 +1782,7 @@ Draws a closed path.
     @Entry
     @Component
     struct ClosePath {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -1863,7 +1863,7 @@ Creates a pattern for image filling based on a specified source image and repeti
     @Entry
     @Component
     struct CreatePattern {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
@@ -1987,7 +1987,7 @@ Draws a cubic bezier curve on the canvas.
     @Entry
     @Component
     struct BezierCurveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2089,7 +2089,7 @@ Draws a quadratic curve on the canvas.
     @Entry
     @Component
     struct QuadraticCurveTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2212,7 +2212,7 @@ Draws an arc on the canvas.
     @Entry
     @Component
     struct Arc {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2324,7 +2324,7 @@ Draws an arc based on the radius and points on the arc.
     @Entry
     @Component
     struct ArcTo {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2468,8 +2468,8 @@ Draws an ellipse in the specified rectangular region.
     ```
     @Entry
     @Component
-    struct Ellipse {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+    struct CanvasExample {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2569,8 +2569,8 @@ Creates a rectangle.
     ```
     @Entry
     @Component
-    struct Rect {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+    struct CanvasExample {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2607,7 +2607,7 @@ Fills the area inside a closed path.
     @Entry
     @Component
     struct Fill {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2644,7 +2644,7 @@ Sets the current path to a clipping path.
     @Entry
     @Component
     struct Clip {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2714,7 +2714,7 @@ Rotates a canvas clockwise around its coordinate axes.
     @Entry
     @Component
     struct Rotate {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2792,7 +2792,7 @@ Scales a canvas based on scaling factors.
     @Entry
     @Component
     struct Scale {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -2919,7 +2919,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
     @Entry
     @Component
     struct Transform {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -3046,7 +3046,7 @@ Resets the existing transformation matrix and creates a new transformation matri
     @Entry
     @Component
     struct SetTransform {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -3126,7 +3126,7 @@ Moves the origin of the coordinate system.
     @Entry
     @Component
     struct Translate {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -3286,7 +3286,7 @@ Draws an image.
     @Entry
     @Component
     struct Index {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
@@ -3570,7 +3570,7 @@ Puts the  [ImageData](ts-components-canvas-imagedata.md)  onto a rectangular are
     @Entry
     @Component
     struct PutImageData {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -3612,8 +3612,8 @@ Restores the saved drawing context.
     ```
     @Entry
     @Component
-    struct Restore {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+    struct CanvasExample {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -3647,7 +3647,7 @@ Saves the current drawing context.
     @Entry
     @Component
     struct Restore {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
@@ -3743,9 +3743,8 @@ Creates a linear gradient.
     @Entry
     @Component
     struct CreateLinearGradient {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-      private gra:CanvasGradient = new CanvasGradient()
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3755,9 +3754,9 @@ Creates a linear gradient.
             .backgroundColor('#ffff00')
             .onReady(() =>{
               var grad = this.offContext.createLinearGradient(50,0, 300,100)
-              this.gra.addColorStop(0.0, 'red')
-              this.gra.addColorStop(0.5, 'white')
-              this.gra.addColorStop(1.0, 'green')
+              gra.addColorStop(0.0, 'red')
+              gra.addColorStop(0.5, 'white')
+              gra.addColorStop(1.0, 'green')
               this.offContext.fillStyle = grad
               this.offContext.fillRect(0, 0, 500, 500)
               var image = this.offContext.transferToImageBitmap()
@@ -3769,8 +3768,8 @@ Creates a linear gradient.
       }
     }
     ```
-
-    ![](figures/en-us_image_0000001192915162.png)
+    
+![](figures/en-us_image_0000001192915162.png)
 
 
 ### createRadialGradient<a name="section136731637204919"></a>
@@ -3869,9 +3868,8 @@ Creates a linear gradient.
     @Entry
     @Component
     struct CreateRadialGradient {
-      private settings: RenderingContextSettings = new RenderingContextSettings(true,true)
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
       private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-      private gra:CanvasGradient = new CanvasGradient()
       private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
       build() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3881,9 +3879,9 @@ Creates a linear gradient.
             .backgroundColor('#ffff00')
             .onReady(() =>{
               var grad = this.offContext.createRadialGradient(200,200,50, 200,200,200)
-              this.gra.addColorStop(0.0, 'red')
-              this.gra.addColorStop(0.5, 'white')
-              this.gra.addColorStop(1.0, 'green')
+              gra.addColorStop(0.0, 'red')
+              gra.addColorStop(0.5, 'white')
+              gra.addColorStop(1.0, 'green')
               this.offContext.fillStyle = grad
               this.offContext.fillRect(0, 0, 500, 500)
               var image = this.offContext.transferToImageBitmap()
@@ -3895,8 +3893,8 @@ Creates a linear gradient.
       }
     }
     ```
-
-    ![](figures/en-us_image_0000001237555179.png)
+    
+![](figures/en-us_image_0000001237555179.png)
 
 
 ## CanvasPattern<a name="section146853345417"></a>

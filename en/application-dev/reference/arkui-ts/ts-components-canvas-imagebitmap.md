@@ -85,7 +85,7 @@ Example
 @Entry
 @Component
 struct DrawImageExample {
-  private settings:RenderingContextSettings = new RenderingContextSettings(true,true)
+  private settings:RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
