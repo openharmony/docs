@@ -1,4 +1,4 @@
-# Kernel for the Standard System<a name="EN-US_TOPIC_0000001111199444"></a>
+# Kernel for Standard Systems<a name="EN-US_TOPIC_0000001111199444"></a>
 
 -   **[Linux Kernel Overview](kernel-standard-overview.md)**  
 
