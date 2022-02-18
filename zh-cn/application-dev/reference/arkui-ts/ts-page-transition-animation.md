@@ -18,7 +18,7 @@
   | -------- | -------- | -------- | -------- | -------- |
   | type | RouteType | - | 否 | 不配置时表明pop为push时效果的逆播。 |
   | duration | number | 1000 | 否 | 动画时长，单位为毫秒。 |
-  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | 否 | 动画曲线，有效值参见[Curve](../reference/arkui-ts/ts-animatorproperty.md)&nbsp;说明。 |
+  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | 否 | 动画曲线，有效值参见[Curve](ts-animatorproperty.md)&nbsp;说明。 |
   | delay | number | 0 | 否 | 动画延迟时长，单位为毫秒，默认不延时播放。 |
 
 
