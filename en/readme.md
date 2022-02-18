@@ -13,9 +13,9 @@ This project stores OpenHarmony documentation, including the quick start guide, 
         - Basic development capabilities
           - **Kernel**:  [Kernel for Mini Systems](device-dev/kernel/kernel-mini.md)
           - **Kernel：**[Kernel for Small Systems](device-dev/kernel/kernel-small.md)
-          - **Drivers**:  [Drivers](device-dev/driver/Readme-EN.md)
-          - **Subsystems**:  [Subsystems](device-dev/subsystems/Readme-EN.md)  \(such as compilation and building, graphics, DFX, and XTS\)
-          - **Security**:  [Privacy and security](device-dev/security/Readme-EN.md)
+          - **Drivers**:  [drivers](device-dev/driver/Readme-EN.md)
+          - **Subsystems**:  [subsystems](device-dev/subsystems/Readme-EN.md)  \(such as compilation and building, graphics, DFX, and XTS\)
+          - **Security**:  [privacy and security](device-dev/security/Readme-EN.md)
         - **guide**:  
           - [WLAN-connected Products](device-dev/guide/device-wlan.md)  \(LED peripheral control and third-party SDK integration\)
           - [Screenless Cameras](device-dev/guide/device-iotcamera-control.md)  \(camera control\)
