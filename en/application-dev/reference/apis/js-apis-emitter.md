@@ -31,7 +31,7 @@ Enumerates the event emit priority levels.
 
 ## emitter.on
 
-on(event: [InnerEvent](#InnerEvent), callback: Callback\<[EventData](#EventData)\>): void
+on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
 
 Subscribes to an event in persistent manner. This method uses a callback to return the event.
 
@@ -39,14 +39,14 @@ Subscribes to an event in persistent manner. This method uses a callback to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | ----------------------------------- | ---- | ------------------------ |
-| event    | [InnerEvent](#InnerEvent)           | Yes| Event to subscribe to in persistent manner.|
-| callback | Callback\<[EventData](#EventData)\> | Yes| Callback used to return the event.|
+| event    | [InnerEvent](#innerevent) | Yes| Event to subscribe to in persistent manner.|
+| callback | Callback\<[EventData](#eventdata)\> | Yes| Callback used to return the event.|
 
 **Example**
 
 ```javascript
 var innerEvent = {
-    eventId : 1
+    eventId: 1
 };
 var callback = (eventData) => {
     console.info('callback');
@@ -56,7 +56,7 @@ emitter.on(innerEvent, callback);
 
 ## emitter.once
 
-once(event: [InnerEvent](#InnerEvent), callback: Callback\<[EventData](#EventData)\>): void
+once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): **void**
 
 Subscribes to an event in one-shot manner and unsubscribes from it after the event callback is received.
 
@@ -64,14 +64,14 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 
 | Name| Type| Mandatory| Description|
 | -------- | ----------------------------------- | ---- | ------------------------ |
-| event    | [InnerEvent](#InnerEvent)           | Yes| Event to subscribe to in one-shot manner.|
-| callback | Callback\<[EventData](#EventData)\> | Yes| Callback used to return the event.|
+| event    | [InnerEvent](#innerevent) | Yes| Event to subscribe to in one-shot manner.|
+| callback | Callback\<[EventData](#eventdata)\> | Yes| Callback used to return the event.|
 
 **Example**
 
 ```javascript
 var innerEvent = {
-    eventId : 1
+    eventId: 1
 };
 var callback = (eventData) => {
     console.info('once callback');
@@ -107,20 +107,19 @@ Emits an event to the event queue.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------------------------- | ---- | -------------- |
-| event  | [InnerEvent](#InnerEvent) | Yes| Event to emit.|
-| data   | [EventData](#EventData)   | No| Data carried by the event.|
+| event  | [InnerEvent](#innerevent) | Yes| Event to emit.|
+| data   | [EventData](#eventdata) | No| Data carried by the event.|
 
 **Example**
 
 ```javascript
 var eventData = {
     data: {
-        1:"t",
-        'content':"c",
-        "id":1,
+        'content': "c",
+        "id": 1,
     }};
 var innerEvent = {
-    eventId : 1,
+    eventId: 1,
     priority: emitter.EventPriority.HIGH
 };
 emitter.emit(innerEvent, eventData);
@@ -133,7 +132,7 @@ Describes an intra-process event.
 | Name| Type| Readable| Writable| Description|
 | -------- | ------------------------------- | ---- | ---- | ---------------------------------- |
 | eventId  | number                          | Yes| Yes| Event ID, which is used to identify an event.|
-| priority | [EventPriority](#EventPriority) | Yes| Yes| Emit priority of the event.|
+| priority | [EventPriority](#eventpriority) | Yes| Yes| Emit priority of the event.|
 
 ## EventData
 
