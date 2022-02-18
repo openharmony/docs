@@ -97,7 +97,8 @@ To use this method, you must have the **ohos.permission.WRITE_SYSTEM_SETTING** p
   ```
   import featureAbility from '@ohos.featureAbility';
   
-  // Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValue method will update the value of the data item.)
+  // Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValue method will
+     update the value of the data item.)
   let brightness = 'settings.screen.brightness';
   let uri = settings.getUri(brightness);
   let helper = featureAbility.acquireDataAbilityHelper(uri);
