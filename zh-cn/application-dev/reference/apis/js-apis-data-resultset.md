@@ -21,9 +21,7 @@ promise.then((resultSet) => {
 ```
 
 
-## 权限
 
-无
 
 
 ## ResultSet

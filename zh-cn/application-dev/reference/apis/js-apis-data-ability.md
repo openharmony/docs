@@ -11,11 +11,8 @@ import dataAbility from '@ohos.data.dataAbility'
 ```
 
 ## 系统能力
-SystemCapability.DistributedDataManager.DataShare.Consumer
+SystemCapability.DistributedDataManager.DataShare.Core
 
-## 权限
-
-无
 
 
 ## dataAbility.createRdbPredicates
