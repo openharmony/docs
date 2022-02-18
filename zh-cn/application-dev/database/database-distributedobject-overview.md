@@ -27,7 +27,7 @@
 
 **图1** 分布式数据对象运行机制
 
-![how-distributedobject-works](figures/how-distributedobject-works.PNG)
+![how-distributedobject-works](figures/how-distributedobject-works.png)
 
 
 
