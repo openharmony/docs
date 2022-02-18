@@ -54,7 +54,7 @@ PageTransitionEnter和PageTransitionExit组件支持的属性：
 PageTransitionEnter和PageTransitionExit组件支持的事件：
 
 | 事件 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onEnter(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。 | 
 | onExit(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。 | 
 
