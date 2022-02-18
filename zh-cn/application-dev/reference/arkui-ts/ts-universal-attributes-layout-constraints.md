@@ -1,48 +1,24 @@
-# 布局约束<a name="ZH-CN_TOPIC_0000001192915124"></a>
+# 布局约束
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 属性<a name="section6820191711316"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.781978197819782%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.38153815381538%" id="mcps1.1.5.1.2"><p>参数说明</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.720872087208722%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="56.11561156115612%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="19.781978197819782%" headers="mcps1.1.5.1.1 "><p>aspectRatio</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.38153815381538%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="56.11561156115612%" headers="mcps1.1.5.1.4 "><p>指定当前组件的宽高比。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.781978197819782%" headers="mcps1.1.5.1.1 "><p>displayPriority</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.38153815381538%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="56.11561156115612%" headers="mcps1.1.5.1.4 "><p>设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>仅在Row/Column/Flex(单行)容器组件中生效。</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 示例<a name="section12073184715"></a>
+
+| 名称 | 参数说明 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- |
+| aspectRatio | number | - | 指定当前组件的宽高比。 | 
+| displayPriority | number | - | 设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅在Row/Column/Flex(单行)容器组件中生效。 | 
+
+
+## 示例
 
 ```
 @Entry
@@ -92,11 +68,11 @@ struct AspectRatioExample {
 }
 ```
 
-**图 1**  竖屏显示  
-![](figures/竖屏显示.gif "竖屏显示")
+**图1** 竖屏显示
+![zh-cn_image_0000001219744205](figures/zh-cn_image_0000001219744205.gif)
 
-**图 2**  横屏显示  
-![](figures/横屏显示.gif "横屏显示")
+**图2** 横屏显示
+![zh-cn_image_0000001174264382](figures/zh-cn_image_0000001174264382.gif)
 
 ```
 class ContainerInfo {
@@ -149,5 +125,4 @@ struct DisplayPriorityExample {
 
 ```
 
-![](figures/DisplayPriorityExample.gif)
-
+![zh-cn_image_0000001219662667](figures/zh-cn_image_0000001219662667.gif)

@@ -1,333 +1,140 @@
-# Scroll<a name="ZH-CN_TOPIC_0000001192595158"></a>
+# Scroll
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 可滚动的容器组件，当子组件的布局尺寸超过父组件的视口时，内容可以滚动。
 
-## 权限列表<a name="section1073795814133"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section152511941148"></a>
+
+## 子组件
 
 支持单个子组件。
 
-## 接口<a name="section13412231148"></a>
 
-Scroll\(scroller?: Scroller\)
+## 接口
 
-## 属性<a name="section186841370012"></a>
-
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.81188118811881%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="18.801880188018803%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.861486148614864%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="47.52475247524753%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>scrollable</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.801880188018803%" headers="mcps1.1.5.1.2 "><p><a href="#li1464044171913">ScrollDirection</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.861486148614864%" headers="mcps1.1.5.1.3 "><p>Vertical</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>设置滚动方法。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>scrollBar</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.801880188018803%" headers="mcps1.1.5.1.2 "><p><a href="ts-appendix-enums.md#section122549529179">BarState</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.861486148614864%" headers="mcps1.1.5.1.3 "><p>Auto</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>设置滚动条状态。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>scrollBarColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.801880188018803%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.861486148614864%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>设置滚动条的颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>scrollBarWidth</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.801880188018803%" headers="mcps1.1.5.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.861486148614864%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>设置滚动条的宽度。</p>
-</td>
-</tr>
-</tbody>
-</table>
-
--   <a name="li1464044171913"></a>ScrollDirection枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Horizontal</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>仅支持水平方向滚动。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Vertical</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>仅支持竖直方向滚动。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>None</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>不可滚动。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+Scroll(scroller?: Scroller)
 
 
-## Scroller<a name="section123902548458"></a>
+## 属性
+
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| scrollable | ScrollDirection | ScrollDirection.Vertical | 设置滚动方法。 |
+| scrollBar | [BarState](ts-appendix-enums.md#barstate枚举说明) | ScrollDirection.Auto | 设置滚动条状态。 |
+| scrollBarColor | Color | - | 设置滚动条的颜色。 |
+| scrollBarWidth | Length | - | 设置滚动条的宽度。 |
+
+- ScrollDirection枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Horizontal | 仅支持水平方向滚动。 | 
+  | Vertical | 仅支持竖直方向滚动。 | 
+  | None | 不可滚动。 | 
+
+
+## Scroller
 
 可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，目前支持绑定到List和Scroll组件上。
 
-### 创建对象<a name="section1241383014362"></a>
+
+### 导入对象
 
 ```
 scroller: Scroller = new Scroller()
 ```
 
-### scroller.scrollTo<a name="section15413203010365"></a>
 
-scrollTo\(value: \{ xOffset: number | string, yOffset: number | string, animation?: \{ duration: number, curve: Curve \} \}\): void
+### scroller.scrollTo
+
+scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration: number, curve: Curve } }): void
+
 
 滑动到指定位置。
 
--   参数
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="21.43%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="7.08%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13.170000000000002%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>xOffset</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.43%" headers="mcps1.1.6.1.2 "><p>Length</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.08%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>水平滑动偏移。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>yOffset</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.43%" headers="mcps1.1.6.1.2 "><p>Length</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.08%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>竖直滑动偏移。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>animation</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.43%" headers="mcps1.1.6.1.2 "><p>{</p>
-    <p>duration: number,</p>
-    <p>curve: <a href="ts-animatorproperty.md#li16621545614">Curve</a> | CubicBezier | SpringCurve</p>
-    <p>}</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.08%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>动画配置：</p>
-    <ul><li>duration: 滚动时长设置。</li><li>curve: 滚动曲线设置。</li></ul>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | xOffset | Length | 是 | - | 水平滑动偏移。 |
+  | yOffset | Length | 是 | - | 竖直滑动偏移。 |
+  | animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;[Curve](ts-animatorproperty.md)&nbsp;\|<br/>CubicBezier&nbsp;\|<br/>SpringCurve<br/>} | 否 |  | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。 |
 
 
-### scroller.scrollEdge<a name="section1441583018367"></a>
+### scroller.scrollEdge
 
-scrollEdge\(value: Edge\): void
+scrollEdge(value: Edge): void
+
 
 滚动到容器边缘。
 
--   参数
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.499999999999998%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13.170000000000002%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>Edge</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.499999999999998%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>滚动到的边缘位置。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | Edge | 是 | - | 滚动到的边缘位置。 | 
 
 
-### scroller.scrollPage<a name="section2416163018368"></a>
+### scroller.scrollPage
 
-scrollPage\(value: \{ next: boolean \}\): void
+scrollPage(value: { next: boolean, direction?: Axis }): void
 
 滚动到下一页或者上一页。
 
--   参数
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.499999999999998%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13.170000000000002%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>next</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.499999999999998%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>是否向下翻页。true表示向下翻页，false表示向上翻页。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | next | boolean | 是 | - | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
 
 
-### scroller.currentOffset<a name="section041711305362"></a>
+### scroller.currentOffset
 
-scroller.currentOffset\(\): Object
+scroller.currentOffset(): Object
+
 
 返回当前的滚动偏移量。
 
--   返回值
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>{</p>
-    <p>xOffset: number,</p>
-    <p>yOffset: number</p>
-    <p>}</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>xOffset: 水平滑动偏移;</p>
-    <p>yOffset: 竖直滑动偏移。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 返回值
+  | 类型 | 描述 | 
+  | -------- | -------- |
+  | {<br/>xOffset:&nbsp;number,<br/>yOffset:&nbsp;number<br/>} | xOffset:&nbsp;水平滑动偏移;<br/>yOffset:&nbsp;竖直滑动偏移。 | 
 
 
-### scroller.scrollToIndex<a name="section10417103010368"></a>
+### scroller.scrollToIndex
 
-scroller.scrollToIndex\(value: number\): void
+scroller.scrollToIndex(value: number): void
+
 
 滑动到指定Index。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->仅支持list组件。
 
--   参数
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.499999999999998%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13.170000000000002%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.499999999999998%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.170000000000002%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>要滑动到的列表项在列表中的索引值。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 仅支持list组件。
 
 
-## 事件<a name="section142174333711"></a>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | 是 | - | 要滑动到的列表项在列表中的索引值。 | 
 
-<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.4.1.2"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onScroll(xOffset: number, yOffset: number) =&gt; void</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>滚动事件回调, 返回滚动时水平、竖直方向偏移量。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onScrollEdge(side: Edge) =&gt; void</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>滚动到边缘事件回调。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onScrollEnd() =&gt; void</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>滚动停止事件回调。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## 示例<a name="section11271205310156"></a>
+## 事件
+
+| 名称 | 功能描述 | 
+| -------- | -------- | -------- |
+| onScroll(xOffset:&nbsp;number,&nbsp;yOffset:&nbsp;number)&nbsp;=&gt;&nbsp;void | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。 | 
+| onScrollEdge(side:&nbsp;Edge)&nbsp;=&gt;&nbsp;void | 滚动到边缘事件回调。 | 
+| onScrollEnd()&nbsp;=&gt;&nbsp;void | 滚动停止事件回调。 | 
+
+
+## 示例
 
 ```
 @Entry
@@ -380,5 +187,4 @@ struct ScrollExample {
 }
 ```
 
-![](figures/scroll.gif)
-
+![zh-cn_image_0000001174104386](figures/zh-cn_image_0000001174104386.gif)

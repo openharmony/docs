@@ -1,0 +1,67 @@
+# 悬浮态效果
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+
+## 权限列表
+
+无
+
+
+## 属性
+
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| hoverEffect | HoverEffect | HoverEffect.Auto | 设置当前组件悬停态下的悬浮效果。 |
+
+- HoverEffect 枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Auto | 使用组件的系统默认悬浮效果。 | 
+  | Scale | 放大缩小效果。 | 
+  | Board | 背景淡入淡出效果。 | 
+  | None | 不设置效果。 | 
+
+
+## 示例
+
+```
+@Entry
+@Component
+struct HoverExample {
+  @State isHoverVal: boolean = false
+
+  build() {
+    Column({ space: 5 }) {
+      Column({ space: 5 }) {
+        Text('Scale').fontSize(20).fontColor(Color.Gray).width('90%').position({ x: 0, y: 80 })
+        Column()
+          .width('80%').height(200).backgroundColor(Color.Gray)
+          .position({ x: 40, y: 120 })
+          .hoverEffect(HoverEffect.Scale)
+          .onHover((isHover: boolean) => {
+            console.info('Scale' + isHover)
+            this.isHoverVal = isHover
+          })
+
+        Text('Board').fontSize(20).fontColor(Color.Gray).width('90%').position({ x: 0, y: 380 })
+        Column()
+          .width('80%').height(200).backgroundColor(Color.Gray)
+          .hoverEffect(HoverEffect.Board)
+          .position({ x: 40, y: 420 })
+          .onHover((isHover: boolean) => {
+            console.info('HoverEffect.Board')
+            this.isHoverVal = isHover
+          })
+      }
+      .hoverEffect(HoverEffect.None)
+      .width('100%').height('100%').border({ width: 1 })
+      .onHover((isHover: boolean) => {
+        console.info('HoverEffect.None')
+        this.isHoverVal = isHover
+      })
+    }
+  }
+}
+```

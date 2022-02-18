@@ -1,70 +1,27 @@
-# 栅格设置<a name="ZH-CN_TOPIC_0000001192755130"></a>
+# 栅格设置
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->-   从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->-   栅格布局的列宽、列间距由距离最近的GridContainer父组件决定。使用栅格属性的组件树上至少需要有1个GridContainer容器组件。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> - 栅格布局的列宽、列间距由距离最近的GridContainer父组件决定。使用栅格属性的组件树上至少需要有1个GridContainer容器组件。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 属性<a name="section6820191711316"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.42%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.880000000000003%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="9.55%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="51.15%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="15.42%" headers="mcps1.1.5.1.1 "><p>useSizeType</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.880000000000003%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>xs?: number | { span: number, offset: number },</p>
-<p>sm?: number | { span: number, offset: number },</p>
-<p>md?: number | { span: number, offset: number },</p>
-<p>lg?: number | { span: number, offset: number }</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.55%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.15%" headers="mcps1.1.5.1.4 "><p>设置在特定设备宽度类型下的占用列数和偏移列数，span: 占用列数; offset: 偏移列数。</p>
-<p>当值为number类型时，仅设置列数， 当格式如{"span": 1, "offset": 0}时，指同时设置占用列数与偏移列数。</p>
-<ul><li>xs: 指设备宽度类型为SizeType.XS时的占用列数和偏移列数。</li><li>sm: 指设备宽度类型为SizeType.SM时的占用列数和偏移列数。</li></ul>
-<ul><li>md: 指设备宽度类型为SizeType.MD时的占用列数和偏移列数。</li><li>lg: 指设备宽度类型为SizeType.LG时的占用列数和偏移列数。</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.42%" headers="mcps1.1.5.1.1 "><p>gridSpan</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.880000000000003%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.55%" headers="mcps1.1.5.1.3 "><p>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.15%" headers="mcps1.1.5.1.4 "><p>默认占用列数，指useSizeType属性没有设置对应尺寸的列数（span)时，占用的栅格列数。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>设置了栅格span属性，组件的宽度由栅格布局决定。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.42%" headers="mcps1.1.5.1.1 "><p>gridOffset</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.880000000000003%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.55%" headers="mcps1.1.5.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.15%" headers="mcps1.1.5.1.4 "><p>默认偏移列数，指useSizeType属性没有设置对应尺寸的偏移(offset)时， 当前组件沿着父组件Start方向，偏移的列数，也就是当前组件位于第n列。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>1.  配置该属性后，当前组件在父组件水平方向的布局不再跟随父组件原有的布局方式，而是沿着父组件的Start方向偏移一定位移。</p>
-<p>2.  偏移位移 = （列宽 + 间距）* 列数。</p>
-<p>3.  设置了偏移(gridOffset)的组件之后的兄弟组件会根据该组件进行相对布局，类似相对布局。</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 示例<a name="section1976245813394"></a>
+
+| 名称 | 参数类型 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- |
+| useSizeType | {<br/>xs?:&nbsp;number&nbsp;\|&nbsp;{&nbsp;span:&nbsp;number,&nbsp;offset:&nbsp;number&nbsp;},<br/>sm?:&nbsp;number&nbsp;\|&nbsp;{&nbsp;span:&nbsp;number,&nbsp;offset:&nbsp;number&nbsp;},<br/>md?:&nbsp;number&nbsp;\|&nbsp;{&nbsp;span:&nbsp;number,&nbsp;offset:&nbsp;number&nbsp;},<br/>lg?:&nbsp;number&nbsp;\|&nbsp;{&nbsp;span:&nbsp;number,&nbsp;offset:&nbsp;number&nbsp;}<br/>} | - | 设置在特定设备宽度类型下的占用列数和偏移列数，span:&nbsp;占用列数;&nbsp;offset:&nbsp;偏移列数。<br/>当值为number类型时，仅设置列数，&nbsp;当格式如{"span":&nbsp;1,&nbsp;"offset":&nbsp;0}时，指同时设置占用列数与偏移列数。<br/>-&nbsp;xs:&nbsp;指设备宽度类型为SizeType.XS时的占用列数和偏移列数。<br/>-&nbsp;sm:&nbsp;指设备宽度类型为SizeType.SM时的占用列数和偏移列数。<br/>-&nbsp;md:&nbsp;指设备宽度类型为SizeType.MD时的占用列数和偏移列数。<br/>-&nbsp;lg:&nbsp;指设备宽度类型为SizeType.LG时的占用列数和偏移列数。 | 
+| gridSpan | number | 1 | 默认占用列数，指useSizeType属性没有设置对应尺寸的列数（span)时，占用的栅格列数。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;设置了栅格span属性，组件的宽度由栅格布局决定。 | 
+| gridOffset | number | 0 | 默认偏移列数，指useSizeType属性没有设置对应尺寸的偏移(offset)时，&nbsp;当前组件沿着父组件Start方向，偏移的列数，也就是当前组件位于第n列。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;1.&nbsp;&nbsp;配置该属性后，当前组件在父组件水平方向的布局不再跟随父组件原有的布局方式，而是沿着父组件的Start方向偏移一定位移。<br/>>&nbsp;<br/>>&nbsp;2.&nbsp;&nbsp;偏移位移&nbsp;=&nbsp;（列宽&nbsp;+&nbsp;间距）\*&nbsp;列数。<br/>>&nbsp;<br/>>&nbsp;3.&nbsp;&nbsp;设置了偏移(gridOffset)的组件之后的兄弟组件会根据该组件进行相对布局，类似相对布局。 | 
+
+
+## 示例
 
 ```
 @Entry
@@ -109,12 +66,11 @@ struct GridContainerExample1 {
 }
 ```
 
-**图 1**  设备宽度为SM  
-![](figures/设备宽度为SM.png "设备宽度为SM")
+**图1** 设备宽度为SM
+![zh-cn_image_0000001174582872](figures/zh-cn_image_0000001174582872.png)
 
-**图 2**  设备宽度为MD  
-![](figures/设备宽度为MD.png "设备宽度为MD")
+**图2** 设备宽度为MD
+![zh-cn_image_0000001219744207](figures/zh-cn_image_0000001219744207.png)
 
-**图 3**  设备宽度为LG  
-![](figures/设备宽度为LG.png "设备宽度为LG")
-
+**图3** 设备宽度为LG
+![zh-cn_image_0000001219982727](figures/zh-cn_image_0000001219982727.png)

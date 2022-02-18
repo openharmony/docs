@@ -1,14 +1,16 @@
-# Observed和ObjectLink数据管理<a name="ZH-CN_TOPIC_0000001131671052"></a>
-
+# Observed和ObjectLink数据管理
 
 本章将引入两个新的装饰符@Observed和@ObjectLink：
 
--   @Observed应用于类，表示该类中的数据变更被UI页面管理，例如：@Observed class ClassA \{\}。
--   @ObjectLink应用于被@Observed所装饰类的对象，例如：@ObjectLink a: ClassA。
 
-## 引入动机<a name="section13701113415525"></a>
+- **@Observed**应用于类，表示该类中的数据变更被UI页面管理，例如：@Observed class ClassA {}。
 
-当开发者需要在子组件中针对父组件的一个变量（parent\_a）设置双向同步时，开发者可以在父组件中使用@State装饰变量（parsent\_a），并在子组件中使用@Link装饰相应的变量（child\_a）。这样的话，不仅可以实现父组件与单个子组件之间的数据同步，也可以实现父组件与多个子组件之间的数据同步。如下图所示，可以看到，父子组件针对ClassA类型的变量设置了双向同步，那么当子组件1中变量的属性c的值变化时，会通知父组件同步变化，而当父组件中属性c的值变化时，会通知所有子组件同步变化。
+- **@ObjectLink**应用于被@Observed所装饰类的对象，例如：@ObjectLink a: ClassA。
+
+
+## 引入动机
+
+当开发者需要在子组件中针对父组件的一个变量（parent_a）设置双向同步时，开发者可以在父组件中使用\@State装饰变量（parent_a），并在子组件中使用@Link装饰相应的变量（child_a）。这样的话，不仅可以实现父组件与单个子组件之间的数据同步，也可以实现父组件与多个子组件之间的数据同步。如下图所示，可以看到，父子组件针对ClassA类型的变量设置了双向同步，那么当子组件1中变量的属性c的值变化时，会通知父组件同步变化，而当父组件中属性c的值变化时，会通知所有子组件同步变化。
 
 ![](figures/zh-cn_image_0000001251090821.png)
 
@@ -16,24 +18,28 @@
 
 ![](figures/zh-cn_image_0000001206450834.png)
 
-## 设置要求<a name="section1244417935313"></a>
 
--   @Observed 用于类，@ObjectLink 用于变量。
--   @ObjectLink装饰的变量类型必须为类（class type）。
-    -   类要被@Observed装饰器所装饰。
-    -   不支持简单类型参数，可以使用@Prop进行单向同步。
+## 设置要求
 
--   @ObjectLink装饰的变量是不可变的（immutable）。
-    -   属性的改动是被允许的，当改动发生时，如果同一个对象被多个@ObjectLink变量所引用，那么所有拥有这些变量的自定义组件都会被通知去重新渲染。
+- @Observed 用于类，@ObjectLink 用于变量。
 
--   @ObjectLink装饰的变量不可设置默认值。
-    -   必须让父组件中有一个由@State、@Link、@StorageLink、@Provide或@Consume所装饰变量参与的TS表达式进行初始化。
+- @ObjectLink装饰的变量类型必须为类（class type）。
+  - 类要被\@Observed装饰器所装饰。
+  - 不支持简单类型参数，可以使用@Prop进行单向同步。
 
--   @ObjectLink装饰的变量是私有变量，只能在组件内访问。
+- @ObjectLink装饰的变量是不可变的（immutable）。
+  - 属性的改动是被允许的，当改动发生时，如果同一个对象被多个@ObjectLink变量所引用，那么所有拥有这些变量的自定义组件都会被通知去重新渲染。
 
-## 示例<a name="section41129307537"></a>
+- @ObjectLink装饰的变量不可设置默认值。
+  - 必须让父组件中有一个由@State、@Link、@StorageLink、@Provide或@Consume所装饰变量参与的TS表达式进行初始化。
 
-### 案例1<a name="section1968736195319"></a>
+- @ObjectLink装饰的变量是私有变量，只能在组件内访问。
+
+
+## 示例
+
+
+### 案例1
 
 ```
 @Observed
@@ -109,7 +115,8 @@ struct ViewB {
 }
 ```
 
-### 案例2<a name="section35501314540"></a>
+
+### 案例2
 
 ```
 var nextID: number = 0;
@@ -169,4 +176,3 @@ struct ViewB {
   }
 }
 ```
-

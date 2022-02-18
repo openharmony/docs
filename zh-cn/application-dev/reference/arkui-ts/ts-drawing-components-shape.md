@@ -1,226 +1,63 @@
-# Shape<a name="ZH-CN_TOPIC_0000001237555097"></a>
+# Shape
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 绘制组件的父组件，父组件中会描述所有绘制组件均支持的通用属性。
 
+
 1、绘制组件使用Shape作为父组件，实现类似SVG的效果。
+
 
 2、绘制组件单独使用，用于在页面上绘制指定的图形。
 
-## 权限列表<a name="section53281531154915"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section5989144051714"></a>
+
+## 子组件
 
 可以包含子组件。
 
-## 接口<a name="section5143192918416"></a>
 
-Shape\(value:\{target?: PixelMap\}\)
+## 接口
 
--   参数
+Shape(value:{target?: PixelMap})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.47%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.22%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="12.49%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="18.6%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="36.22%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="15.47%" headers="mcps1.1.6.1.1 "><p>target</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.22%" headers="mcps1.1.6.1.2 "><p>PixelMap</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.49%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.6%" headers="mcps1.1.6.1.4 "><p>null</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p>绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | target | PixelMap | 否 | null | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 | 
 
 
-## 属性<a name="section922483920810"></a>
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.1"><p>参数名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="20%" id="mcps1.1.6.1.5"><p>参数描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>viewPort</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>{</p>
-<p>x: Length,</p>
-<p>y: Length,</p>
-<p>width: Length,</p>
-<p>height: Length</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>形状的视口。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>fill</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>Black</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>填充颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>stroke</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>边框颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>strokeDashArray</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>Array<span>&lt;</span><span>Length</span><span>&gt;</span></p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>[]</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>设置边框的间隙。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>strokeDashOffset</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>边框绘制起点的偏移量。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>strokeLineCap</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p><a href="ts-appendix-enums.md#section549694781614">LineCapStyle</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>Butt</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>路径端点绘制样式。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>strokeLineJoin</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p><a href="#li0434521283">LineJoinStyle</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>Miter</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>边框拐角绘制样式。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>strokeMiterLimit</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>4</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>锐角绘制成斜角的极限值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>strokeOpacity</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>设置边框的不透明度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>strokeWidth</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>设置边框的宽度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.1 "><p>antiAlias</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.3 "><p>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.6.1.5 "><p>是否开启抗锯齿。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| viewPort | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length,<br/>width:&nbsp;Length,<br/>height:&nbsp;Length<br/>} | - | 是 | 形状的视口。 |
+| fill | Color | Black | 否 | 填充颜色。 |
+| stroke | Color | - | 否 | 边框颜色。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置边框的间隙。 |
+| strokeDashOffset | Length | 0 | 否 | 边框绘制起点的偏移量。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#LineCapStyle枚举说明) | LineCapStyle.Butt | 否 | 路径端点绘制样式。 |
+| strokeLineJoin | LineJoinStyle | LineJoinStyle.Miter | 否 | 边框拐角绘制样式。 |
+| strokeMiterLimit | number | 4 | 否 | 锐角绘制成斜角的极限值。 |
+| strokeOpacity | number | 1 | 否 | 设置边框的不透明度。 |
+| strokeWidth | Length | 1 | 否 | 设置边框的宽度。 |
+| antiAlias | boolean | true | 否 | 是否开启抗锯齿。 |
 
--   <a name="li0434521283"></a>LineJoinStyle枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Bevel</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>使用斜角连接路径段。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Miter</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>使用尖角连接路径段。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Round</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>使用圆角连接路径段。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- LineJoinStyle枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Bevel | 使用斜角连接路径段。 | 
+  | Miter | 使用尖角连接路径段。 | 
+  | Round | 使用圆角连接路径段。 | 
 
 
-## 示例<a name="section4459736105512"></a>
+## 示例
 
 ```
 @Entry
@@ -284,5 +121,4 @@ struct ShapeExample {
 }
 ```
 
-![](figures/2-01.png)
-
+![zh-cn_image_0000001184628104](figures/zh-cn_image_0000001184628104.png)

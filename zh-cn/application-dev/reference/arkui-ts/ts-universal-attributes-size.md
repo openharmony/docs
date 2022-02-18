@@ -1,124 +1,35 @@
-# 尺寸设置<a name="ZH-CN_TOPIC_0000001192915116"></a>
+# 尺寸设置
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 属性<a name="section17707164916113"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="14.49%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.720000000000002%" id="mcps1.1.5.1.2"><p>参数说明</p>
-</th>
-<th class="cellrowborder" valign="top" width="18.98%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="36.809999999999995%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p>width</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p>设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p>height</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p>设置组件自身的高度，缺省时使用元素自身内容需要的高度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p>size</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>width?: Length,</p>
-<p>height?: Length</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p>设置高宽尺寸。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p>padding</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>top?: Length,</p>
-<p>right?: Length,</p>
-<p>bottom?: Length,</p>
-<p>left?: Length</p>
-<p>} | Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p>设置内边距属性。</p>
-<p>参数为Length类型时，四个方向内边距同时生效。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p>margin</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>top?: Length,</p>
-<p>right?: Length,</p>
-<p>bottom?: Length,</p>
-<p>left?: Length</p>
-<p>}</p>
-<p>| Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p>设置外边距属性。</p>
-<p>参数为Length类型时，四个方向外边距同时生效。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p>constraintSize</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>minWidth?: Length,</p>
-<p>maxWidth?: Length,</p>
-<p>minHeight?: Length,</p>
-<p>maxHeight?: Lenght</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p>{</p>
-<p>minWidth: 0,</p>
-<p>maxWidth: Infinity,</p>
-<p>minHeight: 0,</p>
-<p>maxHeight: Infinity</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p>设置约束尺寸，组件布局时，进行尺寸范围限制。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.49%" headers="mcps1.1.5.1.1 "><p>layoutWeight</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.720000000000002%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.98%" headers="mcps1.1.5.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.809999999999995%" headers="mcps1.1.5.1.4 "><p>容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>仅在Row/Column/Flex布局中生效。</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 示例<a name="section19690013134020"></a>
+
+| 名称 | 参数说明 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| width | Length | - | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。 |
+| height | Length | - | 设置组件自身的高度，缺省时使用元素自身内容需要的高度。 |
+| size | {<br/>width?:&nbsp;Length,<br/>height?:&nbsp;Length<br/>} | - | 设置高宽尺寸。 |
+| padding | {<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>left?:&nbsp;Length<br/>}&nbsp;\|&nbsp;Length | 0 | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。 |
+| margin | {<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>left?:&nbsp;Length<br/>}<br/>\|&nbsp;Length | 0 | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。 |
+| constraintSize | {<br/>minWidth?:&nbsp;Length,<br/>maxWidth?:&nbsp;Length,<br/>minHeight?:&nbsp;Length,<br/>maxHeight?:&nbsp;Lenght<br/>} | {<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。 |
+| layoutWeight | number | 0 | 容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅在Row/Column/Flex布局中生效。 |
+
+
+## 示例
 
 ```
 @Entry
 @Component
 struct SizeExample {
+  @StateitemWidth : number = 0  @StateitemHeight : number = 0
   build() {
     Column({ space: 10 }) {
       Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
@@ -144,10 +55,10 @@ struct SizeExample {
         Text('no layoutWeight')
           .size({ width: '30%', height: 110 }).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
       }.size({ width: '90%', height: 140 }).backgroundColor(0xAFEEEE)
+      List() {          ListItem() {              Image('/resources/rawfile/seaman.png')                  .alt('/resources/rawfile/seaman2.png')                  .objectFit(ImageFit.Fill)                  .padding('100vp')                  .margin('40vp')                  .opacity(0.5)                  .measure('image_1') // 获取id=image_1的Image组件尺寸信息          }          .onMeasure((Array<MeasureRuler> ruler) => { // 在布局之前回调，返回已测量的子组件尺寸信息              console.log(ruler[0].id, ruler[0].screenX, ruler[0].screenY, ruler[0].offsetX, ruler[0].offsetY, ruler[0].width, ruler[0].height)              this.itemWidth = ruler[0].width          this.itemHeight = ruler[0].height        })          .width(this.itemWidth)          .height(this.itemHeight)      }
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![](figures/size.gif)
-
+![zh-cn_image_0000001174264384](figures/zh-cn_image_0000001174264384.gif)

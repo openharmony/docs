@@ -1,154 +1,36 @@
-# 组件内转场<a name="ZH-CN_TOPIC_0000001237715077"></a>
+# 组件内转场
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 组件转场主要通过transition属性进行配置转场参数，在组件插入和删除时进行过渡动效，主要用于容器组件子组件插入删除时提升用户体验（需要配合animateTo才能生效，动效时长、曲线、延时跟随animateTo中的配置）。
 
-## 属性<a name="section96162324014"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.36%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.64%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.200000000000001%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="54.800000000000004%" id="mcps1.1.5.1.4"><p>参数描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="16.36%" headers="mcps1.1.5.1.1 "><p>transition</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.64%" headers="mcps1.1.5.1.2 "><p>Object</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.200000000000001%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.800000000000004%" headers="mcps1.1.5.1.4 "><p>所有参数均为可选参数，详细描述见<a href="#li735275511597">transition入参说明</a>。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
--   <a name="li735275511597"></a>transition入参说明
+| 名称 | 参数类型 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| transition | Object | - | 所有参数均为可选参数，详细描述见transition入参说明。 |
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.11%" id="mcps1.1.6.1.1"><p>参数名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="19.830000000000002%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="12.690000000000001%" id="mcps1.1.6.1.3"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13.68%" id="mcps1.1.6.1.4"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="35.69%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="18.11%" headers="mcps1.1.6.1.1 "><p>type</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="19.830000000000002%" headers="mcps1.1.6.1.2 "><p><a href="#li15581632802">TransitionType</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.690000000000001%" headers="mcps1.1.6.1.3 "><p>All</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.68%" headers="mcps1.1.6.1.4 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.69%" headers="mcps1.1.6.1.5 "><p>默认包括组件新增和删除。</p>
-    <div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>不指定Type时说明插入删除使用同一种效果。</p>
-    </div></div>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="18.11%" headers="mcps1.1.6.1.1 "><p>opacity</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="19.830000000000002%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.690000000000001%" headers="mcps1.1.6.1.3 "><p>1</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.68%" headers="mcps1.1.6.1.4 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.69%" headers="mcps1.1.6.1.5 "><p>设置组件转场时的透明度效果，为插入时起点和删除时终点的值。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="18.11%" headers="mcps1.1.6.1.1 "><p>translate</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="19.830000000000002%" headers="mcps1.1.6.1.2 "><p>{</p>
-    <p>x? : number,</p>
-    <p>y? : number,</p>
-    <p>z? : number</p>
-    <p>}</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.690000000000001%" headers="mcps1.1.6.1.3 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.68%" headers="mcps1.1.6.1.4 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.69%" headers="mcps1.1.6.1.5 "><p>设置组件转场时的平移效果，为插入时起点和删除时终点的值。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="18.11%" headers="mcps1.1.6.1.1 "><p>scale</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="19.830000000000002%" headers="mcps1.1.6.1.2 "><p>{</p>
-    <p>x? : number,</p>
-    <p>y? : number,</p>
-    <p>z? : number,</p>
-    <p>centerX? : number,</p>
-    <p>centerY? : number</p>
-    <p>}</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.690000000000001%" headers="mcps1.1.6.1.3 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.68%" headers="mcps1.1.6.1.4 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.69%" headers="mcps1.1.6.1.5 "><p>设置组件转场时的缩放效果，为插入时起点和删除时终点的值。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="18.11%" headers="mcps1.1.6.1.1 "><p>rotate</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="19.830000000000002%" headers="mcps1.1.6.1.2 "><p>{</p>
-    <p>x?: number,</p>
-    <p>y?: number,</p>
-    <p>z?: number,</p>
-    <p>angle?: Angle,</p>
-    <p>centerX?: Length,</p>
-    <p>centerY?: Length</p>
-    <p>}</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.690000000000001%" headers="mcps1.1.6.1.3 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.68%" headers="mcps1.1.6.1.4 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.69%" headers="mcps1.1.6.1.5 "><p>设置组件转场时的旋转效果，为插入时起点和删除时终点的值。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- transition入参说明
+  | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | type | TransitionType                                               | TransitionType.All | 否 | 默认包括组件新增和删除。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;不指定Type时说明插入删除使用同一种效果。 |
+  | opacity | number | 1 | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。 |
+  | translate | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。 |
+  | scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number,<br/>centerY?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。 |
+  | rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle?:&nbsp;Angle,<br/>centerX?:&nbsp;Length,<br/>centerY?:&nbsp;Length<br/>} | - | 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。 |
+
+- TransitionType枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | All | 指定当前的Transition动效生效在组件的所有变化场景。 | 
+  | Insert | 指定当前的Transition动效生效在组件的插入场景。 | 
+  | Delete | 指定当前的Transition动效生效在组件的删除场景。 | 
 
 
--   <a name="li15581632802"></a>TransitionType枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>All</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>指定当前的Transition动效生效在组件的所有变化场景。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Insert</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>指定当前的Transition动效生效在组件的插入场景。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Delete</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>指定当前的Transition动效生效在组件的删除场景。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
-## 示例<a name="section1137330124017"></a>
+## 示例
 
 示例功能通过一个Button控制第二个Button的出现和消失，并通过transition配置第二个Button出现和消失的过场动画。
 
@@ -183,5 +65,4 @@ struct TransitionExample {
 }
 ```
 
-![](figures/Transition.gif)
-
+![zh-cn_image_0000001174582850](figures/zh-cn_image_0000001174582850.gif)

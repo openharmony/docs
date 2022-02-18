@@ -1,13 +1,14 @@
-# @Preview<a name="ZH-CN_TOPIC_0000001124516048"></a>
+# @Preview
 
 用**@Preview**装饰的自定义组件可以在DevEco Studio的预览器上进行预览，加载页面时，将创建并呈现**@Preview**装饰的自定义组件。
 
->![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
->在单个源文件中，最多可以使用**@Preview**装饰一个自定义组件。
 
-## 示例<a name="section2270154810523"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 在单个源文件中，最多可以使用**@Preview**装饰一个自定义组件。
+
 
 **@Preview**的用法如下：
+
 
 ```
 // Display only Hello Component1 on the PC preview. The content under MyComponent is displayed on the real device.
@@ -57,4 +58,3 @@ struct Component2 {
     }
 }
 ```
-

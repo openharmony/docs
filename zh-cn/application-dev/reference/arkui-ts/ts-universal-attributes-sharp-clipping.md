@@ -1,46 +1,24 @@
-# 形状裁剪<a name="ZH-CN_TOPIC_0000001237555111"></a>
+# 形状裁剪
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 属性<a name="section6820191711316"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="14.19%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="19.52%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.07%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="51.22%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="14.19%" headers="mcps1.1.5.1.1 "><p>clip</p>
-</td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p>Shape | boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.07%" headers="mcps1.1.5.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.22%" headers="mcps1.1.5.1.4 "><p>参数为Shape类型时，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照边缘轮廓进行裁剪。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.19%" headers="mcps1.1.5.1.1 "><p>mask</p>
-</td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p>Shape</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.07%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.22%" headers="mcps1.1.5.1.4 "><p>在当前组件上加上指定形状的遮罩。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 示例<a name="section1794417203411"></a>
+
+| 名称 | 参数类型 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- |
+| clip | Shape&nbsp;\|&nbsp;boolean | false | 参数为Shape类型时，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照边缘轮廓进行裁剪。 | 
+| mask | Shape | - | 在当前组件上加上指定形状的遮罩。 | 
+
+
+## 示例
 
 ```
 @Entry
@@ -77,5 +55,4 @@ struct ClipAndMaskExample {
 }
 ```
 
-![](figures/clip.png)
-
+![zh-cn_image_0000001174264370](figures/zh-cn_image_0000001174264370.png)

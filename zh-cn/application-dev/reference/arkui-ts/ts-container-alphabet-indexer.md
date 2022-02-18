@@ -1,239 +1,77 @@
-# AlphabetIndexer<a name="ZH-CN_TOPIC_0000001192915108"></a>
+# AlphabetIndexer
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 字母索引条。
 
-## 支持设备<a name="section151761552181217"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.223613595706617%" id="mcps1.1.5.1.1"><p>手机</p>
-</th>
-<th class="cellrowborder" valign="top" width="21.451997614788315%" id="mcps1.1.5.1.2"><p>平板</p>
-</th>
-<th class="cellrowborder" valign="top" width="26.25223613595707%" id="mcps1.1.5.1.3"><p>智慧屏</p>
-</th>
-<th class="cellrowborder" valign="top" width="27.072152653548002%" id="mcps1.1.5.1.4"><p>智能穿戴</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="25.223613595706617%" headers="mcps1.1.5.1.1 "><p>支持</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.451997614788315%" headers="mcps1.1.5.1.2 "><p>支持</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.25223613595707%" headers="mcps1.1.5.1.3 "><p>不支持</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.072152653548002%" headers="mcps1.1.5.1.4 "><p>不支持</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 支持设备
 
-## 权限列表<a name="section53281531154915"></a>
+| 手机 | 平板 | 车机 | 智慧屏 | 智能穿戴 | 轻量级智能穿戴 | 
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| 支持 | 支持 | 支持 | 不支持 | 不支持 | 不支持 | 
+
+
+## 权限列表
 
 无
 
-## 子组件<a name="section1437452132415"></a>
+
+## 子组件
 
 无
 
-## 接口<a name="section6883949112416"></a>
 
-AlphabetIndexer\(value: \{arrayValue : Array<string\>, selected : number\}\)
+## 接口
 
--   参数
+AlphabetIndexer(value: {arrayValue : Array&lt;string&gt;, selected : number})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.75%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.75%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13.18%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>arrayValue</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.75%" headers="mcps1.1.6.1.2 "><p>Array&lt;string&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.75%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>字母索引字符串数组。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>selected</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.75%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.75%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p>选中项编号。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | arrayValue | Array&lt;string&gt; | 是 | - | 字母索引字符串数组。 | 
+  | selected | number | 是 | - | 选中项编号。 | 
 
 
-## 属性<a name="section3345133819557"></a>
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.29332933293329%" id="mcps1.1.4.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.373337333733375%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>selectedColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>选中文本文字颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>popupColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>弹出提示文本字体颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>selectedBackgroundColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>选中文本背景颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>popupBackground</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>弹窗索引背景色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>usingPopup</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>是否使用弹出索引提示。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>selectedFont</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>{</p>
-<p>size?: number,</p>
-<p>weight?: FontWeight,</p>
-<p>family?: string,</p>
-<p>style?: FontStyle</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>选中文本文字样式。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>popupFont</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>{</p>
-<p>size?: number,</p>
-<p>weight?: FontWeight,</p>
-<p>family?: string,</p>
-<p>style?: FontStyle</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>弹出提示文本字体样式。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>font</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>{</p>
-<p>size?: number,</p>
-<p>weight?: FontWeight,</p>
-<p>family?: string,</p>
-<p>style?: FontStyle</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>字母索引条默认文本字体样式。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>itemSize</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>字母索引条字母区域大小，字母区域为正方形，设置正方形边长。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p>alignStyle</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p>IndexerAlign</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p>字母索引条对齐样式，支持左侧对齐样式与右侧对齐样式，影响弹窗弹出位置。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数类型 | 描述 | 
+| -------- | -------- | -------- |
+| selectedColor | Color | 选中文本文字颜色。 | 
+| popupColor | Color | 弹出提示文本字体颜色。 | 
+| selectedBackgroundColor | Color | 选中文本背景颜色。 | 
+| popupBackground | Color | 弹窗索引背景色。 | 
+| usingPopup | boolean | 是否使用弹出索引提示。 | 
+| selectedFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 选中文本文字样式。 | 
+| popupFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 弹出提示文本字体样式。 | 
+| font | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 字母索引条默认文本字体样式。 | 
+| itemSize | Length | 字母索引条字母区域大小，字母区域为正方形，设置正方形边长。 | 
+| alignStyle | IndexerAlign | 字母索引条对齐样式，支持左侧对齐样式与右侧对齐样式，影响弹窗弹出位置。 | 
 
--   IndexerAlign枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Left</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>弹框显示在索引条右侧。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Right</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>弹框显示在索引条左侧。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- IndexerAlign枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Left | 弹框显示在索引条右侧。 | 
+  | Right | 弹框显示在索引条左侧。 | 
 
 
-## 事件<a name="section12808326678"></a>
+## 事件
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="40.6%" id="mcps1.1.3.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.4%" id="mcps1.1.3.1.2"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p>onSelected(index: number) =&gt; void</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p>字母索引条选中回调。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p>onRequestPopupData(callback: (index: number) =&gt; Array&lt;string&gt;)<sup><span>8+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p>选中字母索引后，请求索引提示窗口显示内容回调。</p>
-<p>返回值：索引对应的字符串数组，此字符串数组在弹出窗口中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p>onPopupSelected(callback: (index: number) =&gt; void)<sup><span>8+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p>字母索引提示窗口选中回调。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onSelected(index:&nbsp;number)&nbsp;=&gt;&nbsp;void | 索引条选中回调。 |
+| onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)<sup>8+</sup> | 选中字母索引后，请求索引提示窗口显示内容回调。<br/>返回值：索引对应的字符串数组，此字符串数组在弹出窗口中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
+| onPopupSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 字母索引提示窗口选中回调。 |
 
-## 示例<a name="section11665132318294"></a>
+
+## 示例
 
 ```
 @Entry
 @Component
-struct AlphabetIndexerComponent {
+struct AlphabetIndexerSample {
   private value: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
   build() {
@@ -255,5 +93,4 @@ struct AlphabetIndexerComponent {
 }
 ```
 
-![](figures/alphabetindexer.gif)
-
+![zh-cn_image_0000001174422922](figures/zh-cn_image_0000001174422922.gif)

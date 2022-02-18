@@ -1,7 +1,5 @@
 # 框架说明
 
-
-
 - **[文件组织](ts-framework-file.md)**
 
 - **[js标签配置](ts-framework-js-tag.md)**

@@ -1,94 +1,38 @@
-# DataPanel<a name="ZH-CN_TOPIC_0000001237355069"></a>
+# DataPanel
 
 数据面板组件，用于将多个数据占比情况使用占比图进行展示。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section53281531154915"></a>
+
+## 子组件
 
 无
 
-## 接口<a name="section1989913519718"></a>
 
-DataPanel\(value:\{values: number\[\], max?: number, type?: DataPanelType\}\)
+## 接口
 
--   参数
+DataPanel(value:{values: number[], max?: number, type?: DataPanelType})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="5.82%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.78%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="46.28%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>values</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>number[]</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="5.82%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.78%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.28%" headers="mcps1.1.6.1.5 "><p>数据值列表，最大支持9个数据。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>max</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="5.82%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.78%" headers="mcps1.1.6.1.4 "><p>100</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.28%" headers="mcps1.1.6.1.5 "><p>1.max大于0，表示数据的最大值。</p>
-    <p>2.max小于等于0，max等于value数组各项的和，按比例显示。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>type<sup><span>8+</span></sup></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p><a href="#li1012319404371">DataPanelType</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="5.82%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.78%" headers="mcps1.1.6.1.4 "><p>DataPanelType.Circle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.28%" headers="mcps1.1.6.1.5 "><p>数据面板的类型。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | values | number[] | 是 | - | 数据值列表，最大支持9个数据。 |
+  | max | number | 否 | 100 | -&nbsp;max大于0，表示数据的最大值。<br/>-&nbsp;max小于等于0，max等于value数组各项的和，按比例显示。 |
+  | type<sup>8+</sup> | DataPanelType | 否 | DataPanelType.Circle | 数据面板的类型。 |
 
 
--   <a name="li1012319404371"></a>DataPanelType枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.990000000000002%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="76.01%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="23.990000000000002%" headers="mcps1.1.3.1.1 "><p>Line</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="76.01%" headers="mcps1.1.3.1.2 "><p>线型数据面板。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="23.990000000000002%" headers="mcps1.1.3.1.1 "><p>Circle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="76.01%" headers="mcps1.1.3.1.2 "><p>环形数据面板。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- DataPanelType枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Line | 线型数据面板。 | 
+  | Circle | 环形数据面板。 |
 
 
-## 示例<a name="section13800193662114"></a>
+## 示例
 
 ```
 @Entry
@@ -108,5 +52,4 @@ struct DataPanelExample {
 }
 ```
 
-![](figures/datapanel.jpg)
-
+![zh-cn_image_0000001236876377](figures/zh-cn_image_0000001236876377.jpg)

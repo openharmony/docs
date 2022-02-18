@@ -1,83 +1,47 @@
-# GridItem<a name="ZH-CN_TOPIC_0000001237715083"></a>
+# GridItem
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 网格容器中单项内容容器。
 
-## 权限列表<a name="section14336424193517"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section12191193463511"></a>
+
+## 子组件
 
 可以包含子组件。
 
-## 接口<a name="section158081656113510"></a>
 
-GridItem\(\)
+## 接口
 
-## 属性<a name="section4907201336"></a>
+GridItem()
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.09%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="11.600000000000001%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.920000000000001%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="61.39%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p>rowStart</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p>用于指定当前元素起始行号。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p>rowEnd</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p>用于指定当前元素终点行号。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p>columnStart</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p>用于指定当前元素起始列号。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p>columnEnd</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p>用于指定当前元素终点列号。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p>forceRebuild</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p>用于设置在触发组件build时是否重新创建此节点。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## 示例<a name="section8900105010439"></a>
+## 属性
+
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| rowStart | number | - | 用于指定当前元素起始行号。 |
+| rowEnd | number | - | 用于指定当前元素终点行号。 |
+| columnStart | number | - | 用于指定当前元素起始列号。 |
+| columnEnd | number | - | 用于指定当前元素终点列号。 |
+| forceRebuild | boolean | false | 用于设置在触发组件build时是否重新创建此节点。 |
+| selectable<sup>8+</sup> | boolean | true | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。 |
+
+
+## 事件
+
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onSelect(callback:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;any)<sup>8+</sup> | GridItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
+
+
+## 示例
 
 ```
 @Entry
@@ -116,5 +80,4 @@ struct GridItemExample {
 }
 ```
 
-![](figures/griditem.gif)
-
+![zh-cn_image_0000001174582870](figures/zh-cn_image_0000001174582870.gif)

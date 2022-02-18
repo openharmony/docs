@@ -1,191 +1,66 @@
-# Panel<a name="ZH-CN_TOPIC_0000001192755104"></a>
+# Panel
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 可滑动面板。提供一种轻量的内容展示的窗口，可方便的在不同尺寸中切换，属于弹出式组件。
 
-## 权限列表<a name="section36946188511"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section897517591357"></a>
+
+## 子组件
 
 可以包含子组件。
 
-## 接口<a name="section14655428254"></a>
 
-Panel\(value:\{show：boolean\}\)
+## 接口
 
--   参数
+Panel(value:{show：boolean})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="16.580000000000002%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.67%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="21.42%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="36.22%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>show</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.580000000000002%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.3 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.42%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="36.22%" headers="mcps1.1.6.1.5 "><p>控制Panel显示或隐藏。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | show | boolean | 是 | - | 控制Panel显示或隐藏。 | 
 
 
-## 属性<a name="section1398913481251"></a>
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.81188118811881%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="18.81188118811881%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.85148514851485%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="47.52475247524753%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>type</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p><a href="#li188691730162810">PanelType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p>Foldable</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>设置可滑动面板的类型。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>mode</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p><a href="#li1476011321286">PanelMode</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>设置可滑动面板的初始状态。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>dragBar</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>设置是否存在dragbar，true表示存在，false表示不存在。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>fullHeight</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>指定PanelMode.Full状态下的高度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>halfHeight</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.1 "><p>miniHeight</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.81188118811881%" headers="mcps1.1.5.1.2 "><p>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.85148514851485%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.52475247524753%" headers="mcps1.1.5.1.4 "><p>指定PanelMode.Mini状态下的高度。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| type | PanelType | PanelType.Foldable | 设置可滑动面板的类型。 |
+| mode | PanelMode | - | 设置可滑动面板的初始状态。 |
+| dragBar | boolean | true | 设置是否存在dragbar，true表示存在，false表示不存在。 |
+| fullHeight | Length | - | 指定PanelMode.Full状态下的高度。 |
+| halfHeight | Length | - | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。 |
+| miniHeight | Length | - | 指定PanelMode.Mini状态下的高度。 |
 
--   <a name="li188691730162810"></a>PanelType枚举说明
+- PanelType枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Minibar | 提供minibar和类全屏展示切换效果。 | 
+  | Foldable | 内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。 | 
+  | Temporary | 内容临时展示区，提供大（类全屏）、中（类半屏）两种尺寸展示切换效果。 | 
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="22.919999999999998%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="77.08%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="22.919999999999998%" headers="mcps1.1.3.1.1 "><p>Minibar</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="77.08%" headers="mcps1.1.3.1.2 "><p>提供minibar和类全屏展示切换效果。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="22.919999999999998%" headers="mcps1.1.3.1.1 "><p>Foldable</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="77.08%" headers="mcps1.1.3.1.2 "><p>内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="22.919999999999998%" headers="mcps1.1.3.1.1 "><p>Temporary</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="77.08%" headers="mcps1.1.3.1.2 "><p>内容临时展示区，提供大（类全屏）、中（类半屏）两种尺寸展示切换效果。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- PanelMode枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Mini | 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。 | 
+  | Half | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。 | 
+  | Full | 类全屏状态。 | 
 
 
--   <a name="li1476011321286"></a>PanelMode枚举说明
+## 事件
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Mini</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Half</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Full</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>类全屏状态。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| 名称 | 功能描述 | 
+| -------- | -------- | -------- |
+| onChange(callback:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | 当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 | 
 
 
-## 事件<a name="section142174333711"></a>
-
-<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.4.1.2"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>当可滑动面板发生状态变化时触发， 返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-## 示例<a name="section758722018820"></a>
+## 示例
 
 ```
 @Entry
@@ -219,5 +94,4 @@ struct PanelExample {
 }
 ```
 
-![](figures/Panel.gif)
-
+![zh-cn_image_0000001174422896](figures/zh-cn_image_0000001174422896.gif)

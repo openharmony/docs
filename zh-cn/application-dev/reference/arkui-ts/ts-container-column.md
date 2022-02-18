@@ -1,114 +1,50 @@
-# Column<a name="ZH-CN_TOPIC_0000001192915096"></a>
+# Column
 
->![](../../public_sys-resources/icon-note.gif) **说明：**
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 沿垂直方向布局的容器。
 
-## 权限列表<a name="section11841179295"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section87974157296"></a>
+
+## 子组件
 
 可以包含子组件。
 
-## 接口<a name="section14196162892911"></a>
 
-Column\(value:\{space?: Length\}\)
+## 接口
 
--   参数
+Column(value:{space?: Length})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="22.99%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.65%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.24%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="40.01%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>space</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="22.99%" headers="mcps1.1.6.1.2 "><p>Length</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.65%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.24%" headers="mcps1.1.6.1.4 "><p>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p>纵向布局元素间距。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | space | Length | 否 | 0 | 纵向布局元素间距。 | 
+
+
+## 属性
+
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| alignItems | HorizontalAlign | HorizontalAlign.Center | 设置子组件在水平方向上的对齐格式。 |
+| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | 设置子组件在垂直方向上的对齐格式。 |
+
+- HorizontalAlign枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Start | 按照语言方向起始端对齐。 | 
+  | Center | 居中对齐，默认对齐方式。 | 
+  | End | 按照语言方向末端对齐。 |
 
 
 
-## 属性<a name="section358284262918"></a>
-
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="13%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="19%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="9%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="59%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>alignItems</p>
-</td>
-<td class="cellrowborder" valign="top" width="19%" headers="mcps1.1.5.1.2 "><p><a href="#li8105435144314">HorizontalAlign</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p>Center</p>
-</td>
-<td class="cellrowborder" valign="top" width="59%" headers="mcps1.1.5.1.4 "><p>设置子组件在水平方向上的对齐格式。</p>
-</td>
-</tr>
-</tbody>
-<tbody><tr><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p>justifyContent<sup>8+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="19%" headers="mcps1.1.5.1.2 "><p><a href="ts-container-flex.md#li1540916112452">FlexAlign</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="9%" headers="mcps1.1.5.1.3 "><p>Start</p>
-</td>
-<td class="cellrowborder" valign="top" width="59%" headers="mcps1.1.5.1.4 "><p>设置子组件在垂直方向上的对齐格式。</p>
-</td>
-</tr>
-</tbody>
-</table>
-
--   <a name="li8105435144314"></a>HorizontalAlign枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Start</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>按照语言方向起始端对齐。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Center</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>居中对齐，默认对齐方式。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>End</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>按照语言方向末端对齐。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
-## 示例<a name="section14441203783118"></a>
+## 示例
 
 ```
 @Entry
@@ -149,5 +85,4 @@ struct ColumnExample {
 }
 ```
 
-![](figures/Column.png)
-
+![zh-cn_image_0000001219982721](figures/Column.png)

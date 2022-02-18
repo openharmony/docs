@@ -1,165 +1,85 @@
-# TextArea<a name="ZH-CN_TOPIC_0000001192755102"></a>
+# TextArea
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 提供多行文本输入组件。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section53281531154915"></a>
+
+## 子组件
 
 无
 
-## 接口<a name="section1989913519718"></a>
 
-TextArea\(value?: \{ placeholder?: string \}\)
+## 接口
 
--   参数
+TextArea(value?:{placeholder?: string controller?: TextAreaController})
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p>参数名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.01%" id="mcps1.1.6.1.2"><p>参数类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="11.44%" id="mcps1.1.6.1.3"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.950000000000001%" id="mcps1.1.6.1.4"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="48.49%" id="mcps1.1.6.1.5"><p>参数描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p>placeholder</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.01%" headers="mcps1.1.6.1.2 "><p>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.44%" headers="mcps1.1.6.1.3 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.6.1.4 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.49%" headers="mcps1.1.6.1.5 "><p>无输入时的提示文本。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | placeholder | string | 否 | - | 无输入时的提示文本。 |
+  | controller<sup>8+</sup> | [TextAreaController](#textareacontroller<sup>8+</sup) | 否 | - | 设置TextArea控制器。 |
 
 
-## 属性<a name="section18430105671014"></a>
+## 属性
 
 除支持[通用属性](ts-universal-attributes.md)外，还支持以下属性：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.709999999999997%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="21.78%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.51%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="46%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="18.709999999999997%" headers="mcps1.1.5.1.1 "><p>placeholderColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.78%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.51%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="46%" headers="mcps1.1.5.1.4 "><p>设置placeholder文本颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.709999999999997%" headers="mcps1.1.5.1.1 "><p>placeholderFont</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.78%" headers="mcps1.1.5.1.2 "><p>{</p>
-<p>size?: number,</p>
-<p>weight?:number | <a href="ts-universal-attributes-text-style.md#li24391125115311">FontWeight</a>,</p>
-<p>family?: string,</p>
-<p>style?: <a href="ts-universal-attributes-text-style.md#li6906111945316">FontStyle</a></p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.51%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="46%" headers="mcps1.1.5.1.4 "><p>设置placeholder文本样式：</p>
-<ul><li>size: 设置文本尺寸，Length为number类型时，使用fp单位。</li><li>weight: 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。</li><li>family: 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。</li><li>style: 设置文本的字体样式。</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.709999999999997%" headers="mcps1.1.5.1.1 "><p>textAlign</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.78%" headers="mcps1.1.5.1.2 "><p>TextAlign</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.51%" headers="mcps1.1.5.1.3 "><p>TextAlign.Start</p>
-</td>
-<td class="cellrowborder" valign="top" width="46%" headers="mcps1.1.5.1.4 "><p>设置文本水平对齐方式。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.709999999999997%" headers="mcps1.1.5.1.1 "><p>caretColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.78%" headers="mcps1.1.5.1.2 "><p>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.51%" headers="mcps1.1.5.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="46%" headers="mcps1.1.5.1.4 "><p>设置输入框光标颜色。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| placeholderColor | Color | - | 设置placeholder文本颜色。 |
+| placeholderFont | {<br/>size?:&nbsp;number,<br/>weight?:number&nbsp;\|&nbsp;[FontWeight](ts-universal-attributes-text-style.md)，<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效，例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
+| textAlign | TextAlign | Start | 设置文本水平对齐方式。 |
+| caretColor | Color | - | 设置输入框光标颜色。 |
+| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md#resourcestr类型8-)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | - | 通过正则表达式设置输入过滤器。满足表达式的输入允许显示，不满足的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，不支持过滤8到10位的强密码。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 
--   TextAlign枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="22.56%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="77.44%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="22.56%" headers="mcps1.1.3.1.1 "><p>Start</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="77.44%" headers="mcps1.1.3.1.2 "><p>水平对齐首部。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="22.56%" headers="mcps1.1.3.1.1 "><p>Center</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="77.44%" headers="mcps1.1.3.1.2 "><p>水平居中对齐。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="22.56%" headers="mcps1.1.3.1.1 "><p>End</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="77.44%" headers="mcps1.1.3.1.2 "><p>水平对齐尾部。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- TextAlign枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Start | 水平对齐首部。 | 
+  | Center | 水平居中对齐。 | 
+  | End | 水平对齐尾部。 | 
 
 
-## 事件<a name="section449664852016"></a>
+### TextAreaController<sup>8+</sup>
 
-<a name="table952mcpsimp"></a>
-<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.4.1.2"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p>onChange(callback: (value: string) =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p>输入发生变化时，触发回调。</p>
-</td>
-</tr>
-</tbody>
-</table>
+TextArea组件的控制器，通过它操作TextArea组件。
 
-## 示例<a name="section13800193662114"></a>
+| 接口名称 | 功能描述 | 
+| -------- | -------- |
+| caretPosition(value:&nbsp;number):&nbsp;void | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 | 
+
+
+## 事件
+
+| 名称 | 功能描述 | 
+| -------- | -------- | -------- |
+| onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入发生变化时，触发回调。 | 
+| onCopy<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发回调。<br/>value：复制的文本内容。 | 
+| onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发回调。<br/>value：剪切的文本内容。 | 
+| onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发回调。<br/>value：粘贴的文本内容。 | 
+
+
+## 示例
+
+
+### 多行文本输入
 
 ```
 @Entry
 @Component
-struct TextAreaExample {
+struct TextAreaExample2 {
   @State text: string = ''
-
   build() {
     Column() {
-      TextArea({ placeholder: 'input your word' })
+      TextArea({ placeholder: 'input your word'})
         .placeholderColor("rgb(0,0,225)")
         .placeholderFont({ size: 30, weight: 100, family: 'cursive', style: FontStyle.Italic })
         .textAlign(TextAlign.Center)
@@ -170,6 +90,9 @@ struct TextAreaExample {
         .fontFamily("sans-serif")
         .fontStyle(FontStyle.Normal)
         .fontColor(Color.Red)
+        .inputFilter('^[\u4E00-\u9FA5A-Za-z0-9_]+$',(value: string) => {
+          console.info("hyb"+value)
+        })
         .onChange((value: string) => {
           this.text = value
         })
@@ -179,5 +102,26 @@ struct TextAreaExample {
 }
 ```
 
-![](figures/textarea1.gif)
+![zh-cn_image_0000001251087311](figures/zh-cn_image_0000001251087311.gif)
 
+
+### 设置光标
+
+```
+@Entry
+@Component
+struct TextAreaTest {
+    controller: TextAreaController = new TextAreaController()
+    build() {
+        Column() {
+            TextArea({ placeholder: 'input your word',controller:this.controller })
+            Button('caretPosition')
+                .onClick(() => {
+                    this.controller.caretPosition(4)
+                })
+          }
+    }
+}
+```
+
+![zh-cn_image_0000001252653499](figures/zh-cn_image_0000001252653499.png)

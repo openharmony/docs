@@ -1,44 +1,23 @@
-# 浮层<a name="ZH-CN_TOPIC_0000001237355073"></a>
+# 浮层
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 属性<a name="section6820191711316"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.120000000000001%" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.94%" id="mcps1.1.5.1.2"><p>参数类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="25.4%" id="mcps1.1.5.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.54%" id="mcps1.1.5.1.4"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="15.120000000000001%" headers="mcps1.1.5.1.1 "><p>overlay</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.94%" headers="mcps1.1.5.1.2 "><p>title: string,</p>
-<p>options: {</p>
-<p>align?: <a href="ts-appendix-enums.md#section1145418513159">Alignment</a>,</p>
-<p>offset?: {x: number, y: number}</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.4%" headers="mcps1.1.5.1.3 "><p>{</p>
-<p>align: Alignment.Center,</p>
-<p>offset: {0, 0}</p>
-<p>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.54%" headers="mcps1.1.5.1.4 "><p>在当前组件上，增加遮罩文本，布局与当前组件相同。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 示例<a name="section4278134412416"></a>
+
+| 名称 | 参数类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| overlay | title:&nbsp;string,<br/>options:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment枚举说明),<br/>offset?:&nbsp;{x:&nbsp;number,&nbsp;y:&nbsp;number}<br/>} | {<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} | 在当前组件上，增加遮罩文本，布局与当前组件相同。 |
+
+
+## 示例
 
 ```
 @Entry
@@ -52,7 +31,7 @@ struct OverlayExample {
         Column() {
           Image($r('app.media.img'))
             .width(240).height(240)
-            .overlay("Winter is a beautiful season, especially when it snows", { align: Alignment.Bottom, offset: { x: 0, y: -15 } })
+            .overlay("Winter is a beautiful season, especially when it snows.", { align: Alignment.Bottom, offset: { x: 0, y: -15 } })
         }.border({ color: Color.Black, width: 2 })
       }.width('100%')
     }.padding({ top: 20 })
@@ -60,5 +39,4 @@ struct OverlayExample {
 }
 ```
 
-![](figures/overlay.png)
-
+![zh-cn_image_0000001205769446](figures/zh-cn_image_0000001205769446.png)

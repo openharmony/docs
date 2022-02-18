@@ -1,220 +1,66 @@
-# 按键事件<a name="ZH-CN_TOPIC_0000001192915122"></a>
+# 按键事件
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section781125411508"></a>
+
+## 权限列表
 
 无
 
-## 事件<a name="section2158223135910"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.5.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.2"><p>支持冒泡</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.5.1.3"><p>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.5.1.1 "><p>onKeyEvent(event: (event?: KeyEvent) =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.2 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.5.1.3 "><p>按键动作触发该方法调用，event参数见<a href="#section3668926124018">KeyEvent</a>介绍。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 事件
 
-## KeyEvent对象说明<a name="section3668926124018"></a>
-
--   属性
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.29332933293329%" id="mcps1.1.4.1.1"><p>属性名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="21.26212621262126%" id="mcps1.1.4.1.2"><p>类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="45.44454445444545%" id="mcps1.1.4.1.3"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.1 "><p>type</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.26212621262126%" headers="mcps1.1.4.1.2 "><p><a href="#li15552046124817">KeyType</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="45.44454445444545%" headers="mcps1.1.4.1.3 "><p>按键的类型。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.1 "><p>keyCode</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.26212621262126%" headers="mcps1.1.4.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="45.44454445444545%" headers="mcps1.1.4.1.3 "><p>按键的键码。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.1 "><p>keyText</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.26212621262126%" headers="mcps1.1.4.1.2 "><p>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="45.44454445444545%" headers="mcps1.1.4.1.3 "><p>按键的键值。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.1 "><p>keySource</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.26212621262126%" headers="mcps1.1.4.1.2 "><p><a href="#li19778175915485">KeySource</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="45.44454445444545%" headers="mcps1.1.4.1.3 "><p>触发当前按键的输入设备类型。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.1 "><p>deviceId</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.26212621262126%" headers="mcps1.1.4.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="45.44454445444545%" headers="mcps1.1.4.1.3 "><p>触发当前按键的输入设备ID。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.1 "><p>metaKey</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.26212621262126%" headers="mcps1.1.4.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="45.44454445444545%" headers="mcps1.1.4.1.3 "><p>按键发生时元键的状态，1表示按压态，0表示未按压态。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.1 "><p>timestamp</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.26212621262126%" headers="mcps1.1.4.1.2 "><p>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="45.44454445444545%" headers="mcps1.1.4.1.3 "><p>按键发生时的时间戳。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| 名称 | 支持冒泡 | 功能描述 | 
+| -------- | -------- | -------- | -------- |
+| onKeyEvent(event:&nbsp;(event?:&nbsp;KeyEvent)&nbsp;=&gt;&nbsp;void) | 是 | 按键动作触发该方法调用，event参数见[KeyEvent](#keyevent对象说明)介绍。 | 
 
 
--   接口
+## KeyEvent对象说明
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="42.68%" id="mcps1.1.3.1.1"><p>接口名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="57.32000000000001%" id="mcps1.1.3.1.2"><p>功能描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="42.68%" headers="mcps1.1.3.1.1 "><p>stopPropagation(): void</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="57.32000000000001%" headers="mcps1.1.3.1.2 "><p>阻塞事件冒泡传递。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   <a name="li15552046124817"></a>KeyType枚举说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Down</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>按键按下。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Up</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>按键松开。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 属性
+  | 属性名称 | 类型 | 描述 |
+  | -------- | -------- | -------- |
+  | type | KeyType | 按键的类型。 |
+  | keyCode | number | 按键的键码。 |
+  | keyText | string | 按键的键值。 |
+  | keySource | KeySource | 触发当前按键的输入设备类型。 |
+  | deviceId | number | 触发当前按键的输入设备ID。 |
+  | metaKey | number | 按键发生时元键的状态，1表示按压态，0表示未按压态。 |
+  | timestamp | number | 按键发生时的时间戳。 |
 
 
--   <a name="li19778175915485"></a>KeySource枚举说明
+- 接口
+  | 接口名称 | 功能描述 | 
+  | -------- | -------- |
+  | stopPropagation():&nbsp;void | 阻塞事件冒泡传递。 | 
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Unknown</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>输入设备类型未知。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p>Keyboard</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p>输入设备类型为键盘。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   常用KeyCode说明
-
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="17%" id="mcps1.1.4.1.1"><p>数值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="20%" id="mcps1.1.4.1.2"><p>行为</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="63%" id="mcps1.1.4.1.3"><p>物理按键</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.4.1.1 "><p>19</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.4.1.2 "><p>上</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p>向上方向键。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.4.1.1 "><p>20</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.4.1.2 "><p>下</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p>向下方向键。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.4.1.1 "><p>21</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.4.1.2 "><p>左</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p>向左方向键。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.4.1.1 "><p>22</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.4.1.2 "><p>右</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p>向右方向键。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.4.1.1 "><p>23</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.4.1.2 "><p>确定</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p>遥控器的确认键。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.4.1.1 "><p>66</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.4.1.2 "><p>确定</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p>键盘的回车键。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="17%" headers="mcps1.1.4.1.1 "><p>160</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="20%" headers="mcps1.1.4.1.2 "><p>确定</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63%" headers="mcps1.1.4.1.3 "><p>键盘的小键盘回车键。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- KeyType枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Down | 按键按下。 | 
+  | Up | 按键松开。 | 
 
 
-## 示例<a name="section520994913452"></a>
+- KeySource枚举说明
+  | 名称 | 描述 | 
+  | -------- | -------- |
+  | Unknown | 输入设备类型未知。 | 
+  | Keyboard | 输入设备类型为键盘。 | 
+
+- 常用KeyCode说明
+  | 数值 | 行为 | 物理按键 | 
+  | -------- | -------- | -------- |
+  | 19 | 上 | 向上方向键。 | 
+  | 20 | 下 | 向下方向键。 | 
+  | 21 | 左 | 向左方向键。 | 
+  | 22 | 右 | 向右方向键。 | 
+  | 23 | 确定 | 遥控器的确认键。 | 
+  | 66 | 确定 | 键盘的回车键。 | 
+  | 160 | 确定 | 键盘的小键盘回车键。 | 
+
+
+## 示例
 
 ```
 @Entry
@@ -241,5 +87,4 @@ struct KeyEventExample {
 }
 ```
 
-![](figures/KeyEvent.gif)
-
+![zh-cn_image_0000001174264364](figures/zh-cn_image_0000001174264364.gif)
