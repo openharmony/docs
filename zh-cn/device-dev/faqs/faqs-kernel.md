@@ -52,7 +52,7 @@ Hi3516开源板使用FAT文件系统，不允许该操作。
 
 ### LiteOS内核已支持哪几款芯片架构<a name="section1131661465417"></a>
 
-LiteOS-M已支持risc-v、Cortex-m3\\m4\\m7\\m33、arm9，待支持c-sky、xtensa；LiteOS-A已支持armv7-a，待支持armv8-a，请关注开源社区更新。
+LiteOS-M已支持risc-v、Cortex-m3\\m4\\m7\\m33、arm9、c-sky、xtensa；LiteOS-A已支持armv7-a，待支持armv8-a，请关注开源社区更新。
 
 ## 三方组件<a name="section971818231178"></a>
 
