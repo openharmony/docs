@@ -24,7 +24,7 @@ LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: numb
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- | 
 | onAction((event?:&nbsp;LongPressGestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 | 
 | onActionEnd((event?:&nbsp;LongPressGestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，手指抬起后触发回调。 | 
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。 | 
