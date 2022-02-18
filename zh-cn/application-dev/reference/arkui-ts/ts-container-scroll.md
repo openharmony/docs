@@ -128,7 +128,7 @@ scroller.scrollToIndex(value: number): void
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onScroll(xOffset:&nbsp;number,&nbsp;yOffset:&nbsp;number)&nbsp;=&gt;&nbsp;void | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。 | 
 | onScrollEdge(side:&nbsp;Edge)&nbsp;=&gt;&nbsp;void | 滚动到边缘事件回调。 | 
 | onScrollEnd()&nbsp;=&gt;&nbsp;void | 滚动停止事件回调。 | 
