@@ -6,6 +6,6 @@
 
 -   **[HiSysEvent Query](subsys-dfx-hisysevent-query.md)**  
 
--   **[HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool-usage.md)**  
+-   **[HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool.md)**  
 
 

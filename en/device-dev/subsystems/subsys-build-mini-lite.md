@@ -591,7 +591,7 @@ The following uses the RTL8720 development board provided by Realtek as an examp
 
 1.  <a name="li1970321162111"></a>Create a directory for the chipset solution.
 
-    To create a directory based on  [1-Configuration Rules for Modules, Chipset Solutions, and Product Solutions](#section1625463413327), run the following command in the root code directory:
+    To create a directory based on  [Configuration Rules](#section2345183962710), run the following command in the root code directory:
 
     ```
     mkdir -p device/realtek/rtl8720
@@ -658,7 +658,7 @@ You can use the Compilation and Building subsystem to customize product solution
 
 1.  Create a product directory.
 
-    The following uses the Wi-Fi IoT module on the RTL8720 development board as an example. Run the following command in the root code directory to create a product directory based on  [1-Configuration Rules for Modules, Chipset Solutions, and Product Solutions](#section1625463413327):
+    The following uses the Wi-Fi IoT module on the RTL8720 development board as an example. Run the following command in the root code directory to create a product directory based on  [Configuration Rules](#section2345183962710):
 
     ```
     mkdir -p vendor/my_company/wifiiot
