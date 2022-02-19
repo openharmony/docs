@@ -2,10 +2,10 @@
 
 -   [概述](#section315316685115)
     -   [基本概念](#section123181432175143)
-	-   [约束与限制](#section123181432175114)  
+        -   [约束与限制](#section123181432175114)  
 -   [编写yaml文件](#section123181432175113)
     -   [yaml文件编写规则](#section123181432175133)
-	-   [yaml文件编写样例](#section123181432175123)
+        -   [yaml文件编写样例](#section123181432175123)
 -   [验证yaml文件](#section123181432175115)
     -   [配置yaml文件路径](#section123181432175135)
     -   [编译yaml文件](#section123181432175137)
@@ -37,135 +37,24 @@
 
 - 每个事件领域可定义零个或多个事件名称，同一个事件领域内部的事件名称不能重名。
 
-- 每个事件名称可定义多个参数，同一个事件名称内部的参数不能重名，每个事件名称**有且只有**一个名称为__BASE的参数，此参数字段组成如表1，他自定义参数，具体字段组成如表2。
+- 每个事件名称可定义多个参数，同一个事件名称内部的参数不能重名，每个事件名称**有且只有**一个名称为__BASE的参数，此参数字段组成如表1，其它自定义参数，具体字段组成如表2。
 
-    **表 1** __BASE参数字段说明
+  **表 1** __BASE参数字段说明
 
-    <a name="table1844019587513"></a>
-    <table><thead align="left"><tr id="row1440058186118"><th class="cellrowborder" valign="top" id="mcps1.2.3.1.1"><p id="p19441135865020"><a name="p19441135845020"></a><a name="p19441135865020"></a>字段名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" id="mcps1.2.3.1.2"><p id="p13441195865593"><a name="p13441195865593"></a><a name="p13441195865593"></a>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row16441155868499">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p877916438213"><a name="p877916438613"></a><a name="p877916438613"></a>type</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727325136218"><a name="p14727325136218"></a><a name="p14727325136218"></a>字段说明：<br>&emsp;&emsp;必选字段，用来标识该事件名称的类型。</p>
-    <p id="p167271525203615"><a name="p167271525203615"></a><a name="p167271525203615"></a>取值范围：</p>
-    <a name="ul6717142214621"></a><a name="ul6717142214621"></a>
-    <ul id="ul6717142214621">
-    <li>FAULT：错误类型。</li>
-    <li>STATISTIC：统计类型。</li>
-    <li>SECURITY：安全性。</li>
-    <li>BEHAVIOR：用户行为。</li>
-    </ul>
-    </td>
-    </tr>
-    <tr id="row16441155818699">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p877916438616"><a name="p877916438616"></a><a name="p877916438616"></a>level</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727325153218"><a name="p14727325153218"></a><a name="p14727325153218"></a>字段作用：<br>&emsp;&emsp;必选字段，用来标识该事件名称的级别。</p>
-    <p id="p167271525213215"><a name="p167271525213215"></a><a name="p167271525213215"></a>取值范围：</p>
-    <a name="ul6717142215021"></a><a name="ul6717142215021"></a>
-    <ul id="ul6717142215021">
-    <li>CRITICAL：严重。</li>
-    <li>MINOR：一般。</li>
-    </ul>
-    </td>
-    </tr>
-    <tr id="row16441155818519">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p877916458213"><a name="p877916458213"></a><a name="p877916458213"></a>tag</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727327733218"><a name="p14727327733218"></a><a name="p14727327733218"></a>字段作用：<br>&emsp;&emsp;可选字段，用来标识该事件名称的标签。</p>
-    <p id="p167271395203215"><a name="p167271395203215"></a><a name="p167271395203215"></a>定义规则：</p>
-    <a name="ul6717143414921"></a><a name="ul6717143414921"></a>
-    <ul id="ul6717143414921">
-    <li>最多可同时定义5个标签，标签之间使用空格来分隔。</li>
-    <li>单个标签最多包含16个字符，字符范围[a-zA-Z0-9]。</li>
-    </ul>
-    </td>
-    </tr>
-    <tr id="row16441155817799">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p877916477213"><a name="p877916477213"></a><a name="p877916477213"></a>desc</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727725133218"><a name="p14727725133218"></a><a name="p14727725133218"></a>字段作用：<br>&emsp;&emsp;必选字段，用来对该事件名称进行描述。</p>
-    <p id="p167277525203215"><a name="p167277525203215"></a><a name="p167277525203215"></a>定义规则：</p>
-    <a name="ul6777142214921"></a><a name="ul6777142214921"></a>
-    <ul id="ul6777142214921">
-    <li>至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9 _]</li>
-    </ul>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  | 字段名称 | 描述 |
+  | ----- | ----- |
+  | type | 字段说明：必选字段，用来标识该事件名称的类型。<br><br>取值范围：<ul><li>FAULT：错误类型。</li><li>STATISTIC：统计类型。</li><li>SECURITY：安全性。</li><li>BEHAVIOR：用户行为。</li></ul> |
+  | level | 字段说明：必选字段，用来标识该事件名称的级别。<br><br>取值范围：<ul><li>CRITICAL：严重。</li><li>MINOR：一般。</li></ul> |
+  | tag | 字段说明：可选字段，用来标识该事件名称的标签。<br><br>定义规则：<ul><li>最多可同时定义5个标签，标签之间使用空格来分隔。</li><li>单个标签最多包含16个字符，字符范围[a-zA-Z0-9]</li></ul> |
+  | desc | 字段说明：必选字段，用来对该事件名称进行描述。<br><br>定义规则：<ul><li>至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9 _]</li></ul> |
 
-    **表 2** 自定义参数字段说明
+  **表 2** 自定义参数字段说明
 
-    <a name="table1844019587523"></a>
-    <table><thead align="left"><tr id="row1440060185118"><th class="cellrowborder" valign="top" id="mcps1.2.3.1.1"><p id="p19442235845020"><a name="p19442235845020"></a><a name="p19442235845020"></a>字段名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" id="mcps1.2.3.1.2"><p id="p13331195815593"><a name="p13331195815593"></a><a name="p13331195815593"></a>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row16441232818499">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p8779163453213"><a name="p8779163453213"></a><a name="p8779163453213"></a>type</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727325235218"><a name="p14727325235218"></a><a name="p14727325235218"></a>字段说明：<br>&emsp;&emsp;必选字段，用来标识该参数的类型。</p>
-    <p id="p167271372203215"><a name="p167271372203215"></a><a name="p167271372203215"></a>取值范围：</p>
-    <a name="ul6717342214921"></a><a name="ul6717342214921"></a>
-    <ul id="ul6717134514921">
-    <li>BOOL</li>
-    <li>INT8</li>
-    <li>UINT8</li>
-    <li>INT16</li>
-    <li>UINT16</li>
-    <li>INT32</li>
-    <li>UINT32</li>
-    <li>INT64</li>
-    <li>UINT64</li>
-    <li>FLOAT</li>
-    <li>DOUBLE</li>
-    <li>STRING</li>
-    </ul>
-    </td>
-    </tr>
-    <tr id="row16326155818499">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p877567438213"><a name="p877567438213"></a><a name="p877567438213"></a>arrsize</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727324893218"><a name="p14727324893218"></a><a name="p14727324893218"></a>字段作用：<br>&emsp;&emsp;可选字段，用来标识数组类型参数的长度。</p>
-    <p id="p1672715498703215"><a name="p1672715498703215"></a><a name="p1672715498703215"></a>取值范围：<br>&emsp;&emsp; 1~100</p>
-    </ul>
-    </td>
-    </tr>
-    <tr id="row16556155818499">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p845916438213"><a name="p845916438213"></a><a name="p845916438213"></a>desc</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727343133218"><a name="p14727343133218"></a><a name="p14727343133218"></a>字段作用：<br>&emsp;&emsp;必选字段，用来对该参数进行描述。</p>
-    <p id="p167271524323215"><a name="p167271524323215"></a><a name="p167271524323215"></a>定义规则：</p>
-    <a name="ul6717142111921"></a><a name="ul6717142111921"></a>
-    <ul id="ul6717156714921">
-    <li>至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9 _]</li>
-    </ul>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  | 字段名称 | 描述 |
+  | ----- | ----- |
+  | type | 字段说明：必选字段，用来标识该参数的类型。<br><br>取值范围：<ul><li>BOOL</li><li>UINT8</li><li>UINT16</li><li>INT32</li><li>UINT32</li><li>UINT64</li><li>FLOAT</li><li>DOUBLE</li><li>STRING</li></ul> |
+  | arrsize | 字段作用：可选字段，用来标识数组类型参数的长度。<br><br>取值范围：<ul><li>1~100</li></ul> |
+  | desc | 字段作用：必选字段，用来对该参数进行描述。<br><br>定义规则：<ul><li>至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9 _]</li></ul> |
 
 ## 编写yaml文件<a name="section123181432175113"></a>
 
@@ -186,8 +75,8 @@
 ### yaml文件编写样例<a name="section123181432175123"></a>
 
 -   yaml文件样例指定的事件领域名称为MODULEA，该事件领域包含两个事件，名称分别是EVENT_NAMEA和EVENT_NAMEB。
--   EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](subsys-dfx-hisysevent-read.md)。
--   EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](subsys-dfx-hisysevent-read.md)，，所以还可以通过事件标签对该事件进行[实时订阅](subsys-dfx-hisysevent-read.md)。
+-   EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](subsys-dfx-hisysevent-listening.md)。
+-   EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](subsys-dfx-hisysevent-read.md)，，所以还可以通过事件标签对该事件进行[实时订阅](subsys-dfx-hisysevent-listening.md)。
 
     ```
     ##########################################
@@ -266,7 +155,7 @@
 
     ```
     cd 工程根目录的绝对路径
-	./build --product-name <product name>
+    ./build --product-name <product name>
     ```
 
     -   全量编译生成的hisysevent.def文件可以通过以下命令获取：
@@ -285,31 +174,12 @@
     ./build/ohos/hisysevent/gen_def_from_all_yaml.py --yaml-list <yaml file list> --def-path <file store directory>
     ```
 
-    **表 3**  单文件编译参数说明
+  **表 3**  单文件编译参数说明
 
-    <a name="table1844019587534"></a>
-    <table><thead align="left"><tr id="row1440056575118"><th class="cellrowborder" valign="top" id="mcps1.2.3.1.1"><p id="p19432435845020"><a name="p19432435845020"></a><a name="p19432435845020"></a>选项名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" id="mcps1.2.3.1.2"><p id="p13441196715593"><a name="p13441196715593"></a><a name="p13441196715593"></a>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row16441155854499">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p877916558213"><a name="p877916558213"></a><a name="p877916558213"></a>--yaml-list</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727325133218"><a name="p14727325133218"></a><a name="p14727325133218"></a>指定需要编译的yaml文件路径列表，多个yaml文件路径之间用空格分隔。</p>
-    </td><tr id="row16441155832499">
-    <td class="cellrowborder" width="60%" valign="top" headers="mcps1.2.3.1.1 ">
-    <p id="p877916421213"><a name="p877916421213"></a><a name="p877916421213"></a>--def-path</p>
-    </td>
-    <td class="cellrowborder" valign="top" headers="mcps1.2.3.1.2 ">
-    <p id="p14727323533218"><a name="p14727323533218"></a><a name="p14727323533218"></a>指定编译生成的hisysevent.def文件的生成路径。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  | 选项名称 | 描述 |
+  | ------ | ------ |
+  | --yaml-list | 指定需要编译的yaml文件路径列表，多个yaml文件路径之间用空格分隔。 |
+  | --def-path | 指定编译生成的hisysevent.def文件的生成路径。 |
 
 ### 打点及查询定义的事件<a name="section123181432175139"></a>
 

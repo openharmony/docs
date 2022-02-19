@@ -912,11 +912,13 @@
 
 ——>——>——>——>[HiSysEvent开发指导](device-dev/subsystems/subsys-dfx-hisysevent.md)
 
-——>——>——>——>——>[HiSysEvent打点指导](device-dev/subsystems/subsys-dfx-hisysevent-write.md)
+——>——>——>——>——>[HiSysEvent打点配置指导](device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)
 
-——>——>——>——>——>[HiSysEvent订阅指导](device-dev/subsystems/subsys-dfx-hisysevent-read.md)
+——>——>——>——>——>[HiSysEvent打点指导](device-dev/subsystems/subsys-dfx-hisysevent-logging.md)
 
-——>——>——>——>——>[HiSysEvent查询指导](device-dev/subsystems/subsys-dfx-hisysevent-select.md)
+——>——>——>——>——>[HiSysEvent订阅指导](device-dev/subsystems/subsys-dfx-hisysevent-listening.md)
+
+——>——>——>——>——>[HiSysEvent查询指导](device-dev/subsystems/subsys-dfx-hisysevent-querying.md)
 
 ——>——>——>——>——>[HiSysEvent工具使用指导](device-dev/subsystems/subsys-dfx-hisysevent-tool.md)
 
