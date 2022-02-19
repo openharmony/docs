@@ -66,7 +66,7 @@ Obtains a relational database \(RDB\) store. You can set parameters for the RDB 
 
     ```
     import dataRdb from '@ohos.data.rdb'
-    const STORE_CONFIG = { name: "RdbTest.db", encryptKey: new Uint8Array([1, 2])}
+    const STORE_CONFIG = { name: "RdbTest.db"}
     const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
     dataRdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
         rdbStore.executeSql(SQL_CREATE_TABLE)
@@ -2607,63 +2607,6 @@ Changes the encryption key of the RDB store. This method uses a callback to retu
     ```
 
 
-### changeEncryptKey<sup>8+</sup><a name="section1343917411930"></a>
-
-changeEncryptKey\(newEncryptKey:Uint8Array\): Promise<number\>
-
-Changes the encryption key of the RDB store. This method uses a promise to return the result.
-
--   Parameters
-
-    <a name="table184391841939"></a>
-    <table><thead align="left"><tr id="row644054116312"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p5441941731"><a name="p5441941731"></a><a name="p5441941731"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p16441154116311"><a name="p16441154116311"></a><a name="p16441154116311"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p644115411313"><a name="p644115411313"></a><a name="p644115411313"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p124411641736"><a name="p124411641736"></a><a name="p124411641736"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row2044116411832"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p13441041231"><a name="p13441041231"></a><a name="p13441041231"></a>newEncryptKey</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p3296521159"><a name="p3296521159"></a><a name="p3296521159"></a>Uint8Array</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p1944113411635"><a name="p1944113411635"></a><a name="p1944113411635"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p204411941932"><a name="p204411941932"></a><a name="p204411941932"></a>New encryption key. This parameter cannot be empty.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   Return values
-
-    <a name="table1044254110312"></a>
-    <table><thead align="left"><tr id="row844344112317"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p1444314412316"><a name="p1444314412316"></a><a name="p1444314412316"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p12443194113314"><a name="p12443194113314"></a><a name="p12443194113314"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row18443184116315"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p114430411639"><a name="p114430411639"></a><a name="p114430411639"></a>Promise&lt;number&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p1144334114312"><a name="p1144334114312"></a><a name="p1144334114312"></a>Promise used to return the result.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   Example
-
-    ```
-    var newKey = new Uint8Array([1, 2])
-    let promise = rdbStore.changeEncryptKey(newKey)
-    promise.then((ret) => {
-        console.info(TAG + "result is " + ret)})
-    ```
-
 
 ## StoreConfig<a name="section957124521217"></a>
 
@@ -2689,14 +2632,6 @@ Manages the configuration of an RDB store.
 <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p13110110181418"><a name="p13110110181418"></a><a name="p13110110181418"></a>Database file name.</p>
 </td>
 </tr>
-<tr id="row11706612114"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p67061211112"><a name="p67061211112"></a><a name="p67061211112"></a>encryptKey<span id="text10540194716126"><a name="text10540194716126"></a><a name="text10540194716126"></a> (BETA)</span><sup id="sup125406474123"><a name="sup125406474123"></a><a name="sup125406474123"></a>8+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p96436171921"><a name="p96436171921"></a><a name="p96436171921"></a>Uint8Array</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p177061311816"><a name="p177061311816"></a><a name="p177061311816"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p07061811011"><a name="p07061811011"></a><a name="p07061811011"></a>Key used to encrypt the RDB store. If a key is added during the creation of an RDB store, the key is required each time you open the RDB store.</p>
-</td>
 </tr>
 </tbody>
 </table>
