@@ -1,0 +1,294 @@
+# 延迟任务调度
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+
+## 导入模块
+
+```
+import workScheduler from '@ohos.workScheduler' 
+```
+
+## 系统能力
+SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+
+## 权限列表
+
+长时任务需要申请如下权限：
+
+ohos.permission.KEEP_BACKGROUND_RUNNING
+
+
+## backgroundTaskManager.requestSuspendDelay
+
+requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
+
+后台应用申请延迟挂起。
+
+延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | reason | string | 是 | 延迟挂起申请的原因。 |
+  | callback | Callback&lt;void&gt; | 是 | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
+
+- **返回值**：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [DelaySuspendInfo](#delaysuspendinfo) | 返回延迟挂起信息。 |
+
+- **示例**：
+  ```
+  let myReason = 'test requestSuspendDelay';
+  let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+      console.info("Request suspension delay will time out.");
+  })
+  ```
+
+
+## backgroundTaskManager.getRemainingDelayTime
+
+getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
+
+获取应用程序进入挂起状态前的剩余时间，使用callback形式返回。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | requestId | number | 是 | 延迟挂起的请求ID。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
+
+- **示例**：
+  ```
+  let id = 1;
+  backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
+      if(err.data === 0) {
+          console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+      } else {
+          console.log('promise => Operation failed. Cause: ' + err.data);
+      }
+  })
+  ```
+
+
+## backgroundTaskManager.getRemainingDelayTime
+
+getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
+
+获取应用程序进入挂起状态前的剩余时间，使用Promise形式返回。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | requestId | number | 是 | 延迟挂起的请求ID。 |
+
+- **返回值**：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | 指定的Promise回调方法。返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
+
+- **示例**：
+  ```
+  let id = 1;
+  backgroundTaskManager.getRemainingDelayTime(id).then( res => {
+      console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+  }).catch( err => {
+      console.log('promise => Operation failed. Cause: ' + err.data);
+  })
+  ```
+
+
+## backgroundTaskManager.cancelSuspendDelay
+
+cancelSuspendDelay(requestId: number): void
+
+取消延迟挂起。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | requestId | number | 是 | 延迟挂起的请求ID。 |
+
+- **示例**：
+  ```
+  backgroundTaskManager.cancelSuspendDelay(id);
+  ```
+
+
+#### DelaySuspendInfo
+
+延迟挂起信息。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| requestId | number | 是 | 延迟挂起的请求ID。 |
+| actualDelayTime | number | 是 | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
+
+## backgroundTaskManager.startBackgroundRunning
+
+<sup>[8]</sup> startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void;
+
+向系统申请长时任务，使用callback形式返回结果。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用运行的上下文 |
+  | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
+  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面。使用方式参考：<sup>[8]</sup>  |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+
+- **示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import featureAbility from '@ohos.ability.featureAbility';
+import wantAgent from '@ohos.wantAgent';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation failed Cause: " + err);
+    } else {
+        console.info("Operation succeeded");
+    }
+}
+
+let wantAgentInfo = {
+    wants: [
+        {
+            bundleName: "com.example.myapplication",
+            abilityName: "com.example.myapplication.MainAbility"
+        }
+    ],
+    operationType: wantAgent.OperationType.START_ABILITY,
+    requestCode: 0,
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+};
+
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
+});
+
+```
+
+## backgroundTaskManager.startBackgroundRunning
+
+<sup>[8]</sup> startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
+
+向系统申请长时任务，使用promise形式返回结果。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用运行的上下文 |
+  | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
+  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
+
+- **返回值**
+  | 类型           | 说明                      |
+  | -------------- | ------------------------- |
+  | Promise\<void> | 使用Promise形式返回结果。 |
+
+- **示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import featureAbility from '@ohos.ability.featureAbility';
+import wantAgent from '@ohos.wantAgent';
+
+let wantAgentInfo = {
+    wants: [
+        {
+            bundleName: "com.example.myapplication",
+            abilityName: "com.example.myapplication.MainAbility"
+        }
+    ],
+    operationType: wantAgent.OperationType.START_ABILITY,
+    requestCode: 0,
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+};
+
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+        console.info("Operation succeeded");
+    }).catch((err) => {
+        console.error("Operation failed Cause: " + err);
+    });
+});
+
+```
+
+## backgroundTaskManager.stopBackgroundRunning
+
+<sup>[8]</sup> stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;
+
+向系统申请取消长时任务，使用callback形式返回结果。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用运行的上下文 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+
+- **示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import featureAbility from '@ohos.ability.featureAbility';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation failed Cause: " + err);
+    } else {
+        console.info("Operation succeeded");
+    }
+}
+
+backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
+
+```
+
+## backgroundTaskManager.stopBackgroundRunning
+
+<sup>[8]</sup> stopBackgroundRunning(context: Context): Promise&lt;void&gt;;
+
+向系统申请取消长时任务，使用promise形式返回结果。
+
+- **参数**：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | Context | 是 | 应用运行的上下文 |
+
+- **返回值**
+  | 类型           | 说明                      |
+  | -------------- | ------------------------- |
+  | Promise\<void> | 使用Promise形式返回结果。 |
+
+- **示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import featureAbility from '@ohos.ability.featureAbility';
+
+backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+    console.info("Operation succeeded");
+}).catch((err) => {
+    console.error("Operation failed Cause: " + err);
+});
+
+```
+
+## <sup>[8]</sup> BackgroundMode
+
+| 参数名                  | 参数 | 描述 |
+| ----------------------- | -------- | -------- |
+| DATA_TRANSFER           | 1 | 数据传输 |
+| AUDIO_PLAYBACK          | 2 | 音频播放 |
+| AUDIO_RECORDING         | 3 | 录音 |
+| LOCATION                | 4 | 定位导航 |
+| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关 |
+| MULTI_DEVICE_CONNECTION | 6 | 多设备互联 |
+| WIFI_INTERACTION        | 7 | WLAN相关（系统保留） |
+| VOIP                    | 8 | 音视频通话（系统保留） |
+| TASK_KEEPING            | 9 | 计算任务（仅供PC使用） |
