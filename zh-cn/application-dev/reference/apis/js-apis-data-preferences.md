@@ -4,13 +4,13 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
 ```
-import dataPreferences from '@ohos.data.preferences'
+import data_Preferences from '@ohos.data.preferences'
 ```
 
 
@@ -27,9 +27,9 @@ import dataPreferences from '@ohos.data.preferences'
 | MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。 |
 
 
-## dataPreferences.getPreferences
+## data_Preferences.getPreferences
 
-getPreferences(path: string, callback: AsyncCallback&lt;Preferences&gt;): void
+getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
 读取指定文件，将数据加载到Preferences实例，用于数据操作，使用callback形式返回结果。
 
@@ -42,12 +42,10 @@ getPreferences(path: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
 - 示例：
   ```
-  import dataPreferences from '@ohos.data.preferences'
   import Ability from '@ohos.application.Ability'
-  
-  var context = featureAbility.getContext()
-  var path = await context.getDataBaseDir()
-  dataPreferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+  import data_Preferences from '@ohos.data.preferences'
+  var path = await this.context.getDataBaseDir()
+  data_Preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
       if (err) {
           console.info("Get the preferences failed, path: " + path + '/mystore')
           return;
@@ -58,9 +56,9 @@ getPreferences(path: string, callback: AsyncCallback&lt;Preferences&gt;): void
   ```
 
 
-## dataPreferences.getPreferences
+## data_Preferences.getPreferences
 
-getPreferences(path: string): Promise&lt;Preferences&gt;
+getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 读取指定文件，将数据加载到Preferences实例，用于数据操作，使用Promise方式作为异步方法。
 
@@ -77,12 +75,10 @@ getPreferences(path: string): Promise&lt;Preferences&gt;
 
 - 示例：
   ```
-  import dataPreferences from '@ohos.data.preferences'
-  import featureAbility from '@ohos.ability.featureAbility'
-  
-  var context = featureAbility.getContext()
-  var path = await context.getDataBaseDir()
-  let promise = dataPreferences.getPreferences(path + '/mystore')
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  var path = await this.context.getDataBaseDir()
+  let promise = data_Preferences.getPreferences(this.context, 'mystore')
   promise.then((preferences) => {
       preferences.putSync('startup', 'auto')
       preferences.flushSync()
@@ -92,21 +88,24 @@ getPreferences(path: string): Promise&lt;Preferences&gt;
   ```
 
 
-## dataPreferences.deletePreferences
+## data_Preferences.deletePreferences
 
-deletePreferences(path: string, callback: AsyncCallback&lt;void&gt;)
+deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;)
 
 从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用callback方式作为异步方法。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | path | string | 是 | 应用程序内部数据存储路径。 |
+  | context | Context | 是 | 应用程序或功能的上下文 |
+  | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
-  dataPreferences.deletePreferences(path + '/mystore', function (err) {
+  ```  
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  data_Preferences.deletePreferences(this.context, 'mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
           return
@@ -116,16 +115,17 @@ deletePreferences(path: string, callback: AsyncCallback&lt;void&gt;)
   ```
 
 
-## dataPreferences.deletePreferences
+## data_Preferences.deletePreferences
 
-deletePreferences(path: string): Promise&lt;void&gt;
+deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用promise方式作为异步方法。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | path | string | 是 | 应用程序内部数据存储路径。 |
+  | context | Context | 是 | 应用程序或功能的上下文 |
+  | name | string | 是 | 应用程序内部数据存储名称。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -134,7 +134,9 @@ deletePreferences(path: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = dataPreferences.deletePreferences(path + '/mystore')
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  let promise = data_Preferences.deletePreferences(this.context, 'mystore')
   promise.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
@@ -143,9 +145,9 @@ deletePreferences(path: string): Promise&lt;void&gt;
   ```
 
 
-## dataPreferences.removePreferencesFromCache
+## data_Preferences.removePreferencesFromCache
 
-removePreferencesFromCache(path: string, callback: AsyncCallback&lt;Preferences&gt;): void
+removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
 从内存中移除指定文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
@@ -154,12 +156,15 @@ removePreferencesFromCache(path: string, callback: AsyncCallback&lt;Preferences&
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | path | string | 是 | 应用程序内部数据存储路径。 |
+  | context | Context | 是 | 应用程序或功能的上下文 |
+  | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是 | 回调函数。 |
 
 - 示例：
   ```
-  dataPreferences.removePreferencesFromCache(path + '/mystore', function (err) {
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  data_Preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
       if (err) {
           console.info("Removed preferences from cache failed with err: " + err)
           return
@@ -169,9 +174,9 @@ removePreferencesFromCache(path: string, callback: AsyncCallback&lt;Preferences&
   ```
 
 
-## dataPreferences.removePreferencesFromCache
+## data_Preferences.removePreferencesFromCache
 
-removePreferencesFromCache(path: string): Promise&lt;void&gt;
+removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
@@ -180,7 +185,8 @@ removePreferencesFromCache(path: string): Promise&lt;void&gt;
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | path | string | 是 | 应用程序内部数据存储路径。 |
+  | context | Context | 是 | 应用程序或功能的上下文 |
+  | name | string | 是 | 应用程序内部数据存储名称。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -189,7 +195,9 @@ removePreferencesFromCache(path: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = dataPreferences.removePreferencesFromCache(path + '/mystore')
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  let promise = data_Preferences.removePreferencesFromCache(this.context, 'mystore')
   promise.then(() => {
       console.info("Removed preferences from cache successfully.")
   }).catch((err) => {
