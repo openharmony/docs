@@ -2557,57 +2557,6 @@ Runs the SQL statement that contains the specified parameters but does not retur
     ```
 
 
-### changeEncryptKey<sup>8+</sup><a name="section9826112313811"></a>
-
-changeEncryptKey\(newEncryptKey:Uint8Array, callback: AsyncCallback<number\>\):void
-
-Changes the encryption key of the RDB store. This method uses a callback to return the result.
-
--   Parameters
-
-    <a name="table1582620236816"></a>
-    <table><thead align="left"><tr id="row198271123680"><th class="cellrowborder" valign="top" width="14.451487079473427%" id="mcps1.1.5.1.1"><p id="p178273231782"><a name="p178273231782"></a><a name="p178273231782"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="18.95660653339834%" id="mcps1.1.5.1.2"><p id="p15827123789"><a name="p15827123789"></a><a name="p15827123789"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="6.825938566552901%" id="mcps1.1.5.1.3"><p id="p182722312815"><a name="p182722312815"></a><a name="p182722312815"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="59.76596782057533%" id="mcps1.1.5.1.4"><p id="p158275237811"><a name="p158275237811"></a><a name="p158275237811"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1482711231385"><td class="cellrowborder" valign="top" width="14.451487079473427%" headers="mcps1.1.5.1.1 "><p id="p1616416148913"><a name="p1616416148913"></a><a name="p1616416148913"></a>newEncryptKey</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.95660653339834%" headers="mcps1.1.5.1.2 "><p id="p141642147914"><a name="p141642147914"></a><a name="p141642147914"></a>Uint8Array</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.825938566552901%" headers="mcps1.1.5.1.3 "><p id="p16164141412917"><a name="p16164141412917"></a><a name="p16164141412917"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="59.76596782057533%" headers="mcps1.1.5.1.4 "><p id="p1316418141594"><a name="p1316418141594"></a><a name="p1316418141594"></a>New encryption key. This parameter cannot be empty.</p>
-    </td>
-    </tr>
-    <tr id="row88288231188"><td class="cellrowborder" valign="top" width="14.451487079473427%" headers="mcps1.1.5.1.1 "><p id="p58291323485"><a name="p58291323485"></a><a name="p58291323485"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="18.95660653339834%" headers="mcps1.1.5.1.2 "><p id="p1182912317813"><a name="p1182912317813"></a><a name="p1182912317813"></a>AsyncCallback&lt;number&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.825938566552901%" headers="mcps1.1.5.1.3 "><p id="p98291223787"><a name="p98291223787"></a><a name="p98291223787"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="59.76596782057533%" headers="mcps1.1.5.1.4 "><p id="p18291223589"><a name="p18291223589"></a><a name="p18291223589"></a>Callback invoked to return the result.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-
--   Example
-
-    ```
-    var newKey = new Uint8Array([1, 2])
-    rdbStore.changeEncryptKey(newKey, function (ret) {
-        console.info(TAG + "result is " + ret)})
-    ```
-
-
-
 ## StoreConfig<a name="section957124521217"></a>
 
 Manages the configuration of an RDB store.
