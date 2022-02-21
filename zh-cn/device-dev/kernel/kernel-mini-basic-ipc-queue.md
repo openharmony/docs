@@ -92,13 +92,13 @@ typedef struct
 | 功能分类 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
 | 创建/删除消息队列 | LOS_QueueCreate | 创建一个消息队列，由系统动态申请队列空间。 | 
-| LOS_QueueDelete | 根据队列ID删除一个指定队列。 | 
+| | LOS_QueueDelete | 根据队列ID删除一个指定队列。 | 
 | 读/写队列（不带拷贝） | LOS_QueueRead | 读取指定队列头节点中的数据（队列节点中的数据实际上是一个地址）。 | 
-| LOS_QueueWrite | 向指定队列尾节点中写入入参bufferAddr的值（即buffer的地址）。 | 
-| LOS_QueueWriteHead | 向指定队列头节点中写入入参bufferAddr的值（即buffer的地址）。 | 
+| | LOS_QueueWrite | 向指定队列尾节点中写入入参bufferAddr的值（即buffer的地址）。 | 
+| | LOS_QueueWriteHead | 向指定队列头节点中写入入参bufferAddr的值（即buffer的地址）。 | 
 | 读/写队列（带拷贝） | LOS_QueueReadCopy | 读取指定队列头节点中的数据。 | 
-| LOS_QueueWriteCopy | 向指定队列尾节点中写入入参bufferAddr中保存的数据。 | 
-| LOS_QueueWriteHeadCopy | 向指定队列头节点中写入入参bufferAddr中保存的数据。 | 
+| | LOS_QueueWriteCopy | 向指定队列尾节点中写入入参bufferAddr中保存的数据。 | 
+| | LOS_QueueWriteHeadCopy | 向指定队列头节点中写入入参bufferAddr中保存的数据。 | 
 | 获取队列信息 | LOS_QueueInfoGet | 获取指定队列的信息，包括队列ID、队列长度、消息节点大小、头节点、尾节点、可读节点数量、可写节点数量、等待读操作的任务、等待写操作的任务。 | 
 
 
