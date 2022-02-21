@@ -53,7 +53,7 @@ PanGestureOption(options?: { fingers?: number, direction?: PanDirection, distanc
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- | 
 | onActionStart(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 | 
 | onActionUpdate(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。 | 
 | onActionEnd(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 | 

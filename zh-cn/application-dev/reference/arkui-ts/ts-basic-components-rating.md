@@ -40,7 +40,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 操作评分条的评星发生改变时触发该回调。 | 
 
 

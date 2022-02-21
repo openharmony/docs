@@ -46,7 +46,7 @@
 
 - TapGesture事件说明
   | 名称 | 功能描述 | 
-  | -------- | -------- | -------- |
+  | -------- | -------- |
   | onAction((event?:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 | 
 
 - GestureEvent对象说明

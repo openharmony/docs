@@ -12,7 +12,7 @@
 ## 事件
 
 | 名称 | 支持冒泡 | 功能描述 | 
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- |
 | onKeyEvent(event:&nbsp;(event?:&nbsp;KeyEvent)&nbsp;=&gt;&nbsp;void) | 是 | 按键动作触发该方法调用，event参数见[KeyEvent](#keyevent对象说明)介绍。 | 
 
 

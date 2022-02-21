@@ -49,7 +49,7 @@ DatePicker(value:{start?: Date, end?: Date, selected?: Date, type?: DatePickerTy
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- | 
 | onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void) | 选择日期或时间时触发该事件。 | 
 
 - DatePickerResult对象说明

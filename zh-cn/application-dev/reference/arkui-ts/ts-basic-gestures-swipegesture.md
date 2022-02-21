@@ -31,7 +31,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onAction(callback:(event?:&nbsp;SwipeGestureEvent)&nbsp;=&gt;&nbsp;void) | 滑动手势识别成功回调。 | 
 
 

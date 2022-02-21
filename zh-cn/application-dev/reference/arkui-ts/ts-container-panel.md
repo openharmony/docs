@@ -56,7 +56,7 @@ Panel(value:{show：boolean})
 ## 事件
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onChange(callback:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | 当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 | 
 
 

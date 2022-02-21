@@ -27,7 +27,7 @@ Counter()
 不支持通用事件和手势， 仅支持如下事件：
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。 | 
 | onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。 | 
 

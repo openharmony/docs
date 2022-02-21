@@ -12,7 +12,7 @@
 ## 事件
 
 | 名称 | 支持冒泡 | 功能描述 | 
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | 
 | onAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否 | 组件挂载显示时触发此回调。 | 
 | onDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否 | 组件卸载消失时触发此回调。 | 
 

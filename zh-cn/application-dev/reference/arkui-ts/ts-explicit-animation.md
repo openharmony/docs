@@ -5,7 +5,7 @@
 
 
 | 接口名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | animateTo(value:&nbsp;[AnimationOption](#animationoption对象说明),&nbsp;event:&nbsp;()=&gt;&nbsp;void)&nbsp;:&nbsp;void | 提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。<br/>event指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 | 
 
 

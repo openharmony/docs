@@ -57,7 +57,7 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
 通用事件仅支持：OnAppear，OnDisAppear。
 
 | 名称 | 功能描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void） | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 | 
 
 - SliderChangeMode枚举说明
