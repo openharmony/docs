@@ -6,13 +6,13 @@
 
 **图1** 音频播放状态机
 
-![zh-ch_image_audio_state_machine](figures/zh-ch_image_audio_state_machine.jpg)
+![zh-ch_image_audio_state_machine](figures/zh-ch_image_audio_state_machine.png)
 
 ## 视频播放零层图
 
 **图2** 视频播放零层图
 
-![zh-ch_image_audio_player](figures/zh-ch_image_audio_player.jpg)
+![zh-ch_image_audio_player](figures/zh-ch_image_audio_player.png)
 
 ## 音频播放开发步骤
 

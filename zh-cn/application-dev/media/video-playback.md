@@ -6,15 +6,19 @@
 
 **图1** 视频播放状态机
 
-![zh-ch_image_video_state_machine](figures/zh-ch_image_video_state_machine.jpg)
+![zh-ch_image_video_state_machine](figures/zh-ch_image_video_state_machine.png)
 
 ## 视频播放零层图
 
 **图2** 视频播放零层图
 
-![zh-ch_image_video_player](figures/zh-ch_image_video_player.jpg)
+![zh-ch_image_video_player](figures/zh-ch_image_video_player.png)
 
 *注意：视频播放需要显示、音频、编解码等硬件能力。
+
+1. 三方应用从Xcomponent组件获取surfaceID。
+2. 三方应用把surfaceID传递给VideoPlayer JS。
+3. 媒体服务把帧数据flush给surface buffer。
 
 ## 视频播放开发步骤
 
@@ -104,7 +108,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 // 跳转播放时间到50s位置，具体入参意义请参考接口文档
 let seekTime = 50000;
-await videoPlayer.seek(seekTime, SEEK_NEXT_SYNC).then((seekDoneTime) => {
+await videoPlayer.seek(seekTime, media.SeekMode._NEXT_SYNC).then((seekDoneTime) => {
     console.info('seek success');
 }, failureCallback).catch(catchCallback);
 
@@ -115,7 +119,7 @@ await videoPlayer.setVolume(volume).then(() => {
 }, failureCallback).catch(catchCallback);
 
 // 倍速设置接口，具体入参意义请参考接口文档
-let speed = SPEED_FORWARD_2_00_X;
+let speed = media.PlaybackRateMode.SPEED_FORWARD_2_00_X;
 await videoPlayer.setSpeed(speed).then(() => {
     console.info('setSpeed success');
 }, failureCallback).catch(catchCallback);
