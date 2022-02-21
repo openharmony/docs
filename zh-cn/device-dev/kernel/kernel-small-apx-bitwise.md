@@ -20,12 +20,12 @@
 | **功能分类** | **接口名称** | **描述** | 
 | -------- | -------- | -------- |
 | 置1/清0标志位 | LOS_BitmapSet | 对状态字的某一标志位进行置1操作 | 
-| LOS_BitmapClr | 对状态字的某一标志位进行清0操作 | 
+| | LOS_BitmapClr | 对状态字的某一标志位进行清0操作 | 
 | 获取标志位为1的bit位 | LOS_HighBitGet | 获取状态字中为1的最高位 | 
-| LOS_LowBitGet | 获取状态字中为1的最低位 | 
+| | LOS_LowBitGet | 获取状态字中为1的最低位 | 
 | 连续bit位操作 | LOS_BitmapSetNBits | 对状态字的连续标志位进行置1操作 | 
-| LOS_BitmapClrNBits | 对状态字的连续标志位进行清0操作 | 
-| LOS_BitmapFfz | 获取从最低有效位开始的第一个0的bit位 | 
+| | LOS_BitmapClrNBits | 对状态字的连续标志位进行清0操作 | 
+| | LOS_BitmapFfz | 获取从最低有效位开始的第一个0的bit位 | 
 
 
 ## 编程实例
