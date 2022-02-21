@@ -41,11 +41,11 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 | 功能分类 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
 | 开启/停止Perf采样 | LOS_PerfStart | 开启采样 | 
-| LOS_PerfStop | 停止采样 | 
+| | LOS_PerfStop | 停止采样 | 
 | 配置Perf采样事件 | LOS_PerfConfig | 配置采样事件的类型、周期等 | 
 | 读取采样数据 | LOS_PerfDataRead | 读取采样数据到指定地址 | 
 | 注册采样数据缓冲区的钩子函数 | LOS_PerfNotifyHookReg | 注册缓冲区水线到达的处理钩子 | 
-| LOS_PerfFlushHookReg | 注册缓冲区刷cache的钩子 | 
+| | LOS_PerfFlushHookReg | 注册缓冲区刷cache的钩子 | 
 
 
 1. Perf采样事件的结构体为PerfConfigAttr，详细字段含义及取值详见kernel\include\los_perf.h。
