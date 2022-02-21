@@ -3,36 +3,16 @@
 >**NOTE:** 
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Applicable Devices<a name="section16881239114912"></a>
-
-<a name="table857714145377"></a>
-<table><thead align="left"><tr id="row55778146373"><th class="cellrowborder" valign="top" width="24.257574242575743%" id="mcps1.1.5.1.1"><p id="p7577141417376"><a name="p7577141417376"></a><a name="p7577141417376"></a>Phone</p>
-</th>
-<th class="cellrowborder" valign="top" width="25.5974402559744%" id="mcps1.1.5.1.2"><p id="p487719816463"><a name="p487719816463"></a><a name="p487719816463"></a>Tablet</p>
-</th>
-<th class="cellrowborder" valign="top" width="25.147485251474855%" id="mcps1.1.5.1.3"><p id="p135771614203720"><a name="p135771614203720"></a><a name="p135771614203720"></a>Smart TV</p>
-</th>
-<th class="cellrowborder" valign="top" width="24.997500249975%" id="mcps1.1.5.1.4"><p id="p25772014133712"><a name="p25772014133712"></a><a name="p25772014133712"></a>Wearable</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row8578151423715"><td class="cellrowborder" valign="top" width="24.257574242575743%" headers="mcps1.1.5.1.1 "><p id="p65782014203718"><a name="p65782014203718"></a><a name="p65782014203718"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.5974402559744%" headers="mcps1.1.5.1.2 "><p id="p137739557452"><a name="p137739557452"></a><a name="p137739557452"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="25.147485251474855%" headers="mcps1.1.5.1.3 "><p id="p26978547459"><a name="p26978547459"></a><a name="p26978547459"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.997500249975%" headers="mcps1.1.5.1.4 "><p id="p1893114512453"><a name="p1893114512453"></a><a name="p1893114512453"></a>Yes</p>
-</td>
-</tr>
-</tbody>
-</table>
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
 ```
 import reminderAgent from '@ohos.reminderAgent';
 ```
+
+## System Capabilities
+
+SystemCapability.Notification.ReminderAgent
 
 ## Required Permissions<a name="section11257113618419"></a>
 
@@ -1196,4 +1176,3 @@ Sets the time information for a calendar reminder.
 </tr>
 </tbody>
 </table>
-
