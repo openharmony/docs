@@ -5,10 +5,11 @@
 媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
 
 - 音频播放（[AudioPlayer](#audioplayer)）
+- 视频播放（[VideoPlayer](#videoplayer8)）
 - 音频录制（[AudioRecorder](#audiorecorder)）
 - 视频录制（[VideoRecorder](#VideoRecorder<sup>8+</sup>)）
 
-后续将提供以下功能：视频播放、视频录制、DataSource音视频播放、音视频编解码、容器封装解封装、媒体能力查询等功能。
+后续将提供以下功能：DataSource音视频播放、音视频编解码、容器封装解封装、媒体能力查询等功能。
 
 ## 导入模块
 
@@ -93,7 +94,65 @@ await media.createAudioPlayerAsync.then((audio) => {
 }, failureCallback).catch(catchCallback);
 ```
 
+## media.createVideoPlayer<sup>8+</sup>
+
+createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
+
+异步方式创建视频播放实例，通过注册回调函数获取返回值。
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                           |
+| -------- | ------------------------------------------- | ---- | ------------------------------ |
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 异步创建视频播放实例回调方法。 |
+
+**示例：**
+
+```js
+media.createVideoPlayer((error, video) => {
+   if (typeof(video) != 'undefined') {
+       videoPlayer = video;
+       console.info('video createVideoPlayer success');
+   } else {
+       console.info(`video createVideoPlayer fail, error:${error.message}`);
+   }
+});
+```
+
+## media.createVideoPlayer<sup>8+</sup>
+
+createVideoPlayer: Promise<[VideoPlayer](#videoplayer8)>
+
+异步方式创建视频播放实例，通过Promise获取返回值。
+
+**返回值：**
+
+| 类型                                  | 说明                                |
+| ------------------------------------- | ----------------------------------- |
+| Promise<[VideoPlayer](#videoplayer8)> | 异步创建视频播放实例Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+
+await media.createVideoPlayer.then((video) => {
+    if (typeof(video) != 'undefined') {
+       videoPlayer = video;
+       console.info('video createVideoPlayer success');
+   } else {
+       console.info('video createVideoPlayer fail');
+   }
+}, failureCallback).catch(catchCallback);
+```
+
 ## media.createAudioRecorder
+
 createAudioRecorder(): AudioRecorder
 
 创建音频录制的实例来控制音频的录制。
@@ -166,8 +225,6 @@ await media.createAudioRecorderAsync.then((audio) => {
    }
 }, failureCallback).catch(catchCallback);
 ```
-
-
 
 ## media.createVideoRecorderAsync<sup>8+</sup>
 
@@ -646,6 +703,799 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | paused             | string | 音频暂停播放。 |
 | stopped            | string | 音频播放停止。 |
 | error<sup>8+</sup> | string | 错误状态。     |
+
+## VideoPlayer<sup>8+</sup>
+
+视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#media.createvideoplayer8)构建一个[VideoPlayer](#videoplayer8)实例。
+
+视频播放demo可参考：[视频播放开发指导](../../media/video-playback.md)
+
+### 属性<a name=videoplayer_属性></a><sup>8+</sup>
+
+| 名称        | 类型                               | 可读 | 可写 | 说明                                                         |
+| ----------- | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| url         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. 本地绝对路径：file:///data/data/ohos.xxx.xxx/files/test.mp4<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br>**注意事项**：<br>媒体素材需至少赋予读权限后，才可正常播放 |
+| loop        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
+| currentTime | number                             | 是   | 否   | 视频的当前播放位置。                                         |
+| duration    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式                                 |
+| state       | [VideoPlayState](#videoplaystate8) | 是   | 否   | 视频播放的状态。                                             |
+| width       | number                             | 是   | 否   | 视频宽。                                                     |
+| height      | number                             | 是   | 否   | 视频高。                                                     |
+
+### setDisplaySurface<sup>8+</sup>
+
+setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
+
+通过回调方式设置SurfaceId。
+
+**参数：**
+
+| 参数名    | 类型     | 必填 | 说明                      |
+| --------- | -------- | ---- | ------------------------- |
+| surfaceId | string   | 是   | SurfaceId                 |
+| callback  | function | 是   | 设置SurfaceId的回调方法。 |
+
+**示例：**
+
+```js
+videoPlayer.setDisplaySurface(surfaceId, (err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('setDisplaySurface success!');
+	} else {
+        console.info('setDisplaySurface fail!');
+    }
+});
+```
+
+### setDisplaySurface<sup>8+</sup>
+
+setDisplaySurface(surfaceId: string): Promise\<void>
+
+通过Promise方式设置SurfaceId。
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明      |
+| --------- | ------ | ---- | --------- |
+| surfaceId | string | 是   | SurfaceId |
+
+**返回值：**
+
+| 类型          | 说明                           |
+| ------------- | ------------------------------ |
+| Promise<void> | 设置SurfaceId的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.setDisplaySurface(surfaceId).then(() => {
+    console.info('setDisplaySurface success');
+}, failureCallback).catch(catchCallback);
+```
+
+### prepare<sup>8+</sup>
+
+prepare(callback: AsyncCallback\<void>): void
+
+通过回调方式准备播放视频。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                     |
+| -------- | -------- | ---- | ------------------------ |
+| callback | function | 是   | 准备播放视频的回调方法。 |
+
+**示例：**
+
+```js
+videoPlayer.prepare((err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('prepare success!');
+	} else {
+        console.info('prepare fail!');
+    }
+});
+```
+
+### prepare<sup>8+</sup>
+
+prepare(): Promise\<void>
+
+通过Promise方式准备播放视频。
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 准备播放视频的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.prepare().then(() => {
+    console.info('prepare success');
+}, failureCallback).catch(catchCallback);
+```
+
+### play<sup>8+</sup>
+
+play(callback: AsyncCallback\<void>): void;
+
+通过回调方式开始播放视频。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                     |
+| -------- | -------- | ---- | ------------------------ |
+| callback | function | 是   | 开始播放视频的回调方法。 |
+
+**示例：**
+
+```js
+videoPlayer.play((err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('play success!');
+	} else {
+        console.info('play fail!');
+    }
+});
+```
+
+### play<sup>8+</sup>
+
+play(): Promise\<void>;
+
+通过Promise方式开始播放视频。
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 开始播放视频的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.play().then(() => {
+    console.info('play success');
+}, failureCallback).catch(catchCallback);
+```
+
+### pause<sup>8+</sup>
+
+pause(callback: AsyncCallback\<void>): void
+
+通过回调方式暂停播放视频。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                     |
+| -------- | -------- | ---- | ------------------------ |
+| callback | function | 是   | 暂停播放视频的回调方法。 |
+
+**示例：**
+
+```js
+videoPlayer.pause((err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('pause success!');
+	} else {
+        console.info('pause fail!');
+    }
+});
+```
+
+### pause<sup>8+</sup>
+
+pause(): Promise\<void>
+
+通过Promise方式暂停播放视频。
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 暂停播放视频的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.pause().then(() => {
+    console.info('pause success');
+}, failureCallback).catch(catchCallback);
+```
+
+### stop<sup>8+</sup>
+
+stop(callback: AsyncCallback\<void>): void
+
+通过回调方式停止播放视频。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                     |
+| -------- | -------- | ---- | ------------------------ |
+| callback | function | 是   | 停止播放视频的回调方法。 |
+
+**示例：**
+
+```js
+videoPlayer.stop((err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('stop success!');
+	} else {
+        console.info('stop fail!');
+    }
+});
+```
+
+### stop<sup>8+</sup>
+
+stop(): Promise\<void>
+
+通过Promise方式停止播放视频。
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 停止播放视频的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.stop().then(() => {
+    console.info('stop success');
+}, failureCallback).catch(catchCallback);
+```
+
+### reset<sup>8+</sup>
+
+reset(callback: AsyncCallback\<void>): void
+
+通过回调方式切换播放视频。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                     |
+| -------- | -------- | ---- | ------------------------ |
+| callback | function | 是   | 切换播放视频的回调方法。 |
+
+**示例：**
+
+```js
+videoPlayer.reset((err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('reset success!');
+	} else {
+        console.info('reset fail!');
+    }
+});
+```
+
+### reset<sup>8+</sup>
+
+reset(): Promise\<void>
+
+通过Promise方式切换播放视频。
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 切换播放视频的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.reset().then(() => {
+    console.info('reset success');
+}, failureCallback).catch(catchCallback);
+```
+
+### seek<sup>8+</sup>
+
+seek(timeMs: number, callback: AsyncCallback\<number>): void
+
+通过回调方式跳转到指定播放位置，默认跳转到指定时间点的下一个关键帧。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                           |
+| -------- | -------- | ---- | ------------------------------ |
+| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒。 |
+| callback | function | 是   | 跳转到指定播放位置的回调方法。 |
+
+**示例：**
+
+```js
+videoPlayer.seek((seekTime, err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('seek success!');
+	} else {
+        console.info('seek fail!');
+    }
+});
+```
+
+### seek<sup>8+</sup>
+
+seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
+
+通过回调方式跳转到指定播放位置。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                     |
+| -------- | -------- | ---- | ---------------------------------------- |
+| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒。           |
+| mode     | SeekMode | 是   | 跳转模式，具体见[SeekMode](#seekmode8)。 |
+| callback | function | 是   | 跳转到指定播放位置的回调方法。           |
+
+**示例：**
+
+```js
+videoPlayer.seek((seekTime, seekMode, err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('seek success!');
+	} else {
+        console.info('seek fail!');
+    }
+});
+```
+
+### seek<sup>8+</sup>
+
+seek(timeMs: number, mode?:SeekMode): Promise\<number>
+
+通过Promise方式跳转到指定播放位置，如果没有设置mode则跳转到指定时间点的下一个关键帧。
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                   |
+| ------ | -------- | ---- | -------------------------------------- |
+| timeMs | number   | 是   | 指定的跳转时间节点，单位毫秒。         |
+| mode   | SeekMode | 否   | 跳转模式，具体见[SeekMode](#seekmode8) |
+
+**返回值：**
+
+| 类型           | 说明                                |
+| -------------- | ----------------------------------- |
+| Promise\<void> | 跳转到指定播放位置的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
+    console.info('seek success');
+}, failureCallback).catch(catchCallback);
+
+await videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
+    console.info('seek success');
+}, failureCallback).catch(catchCallback);
+```
+
+### setVolume<sup>8+</sup>
+
+setVolume(vol: number, callback: AsyncCallback\<void>): void
+
+通过回调方式设置音量。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| vol      | number   | 是   | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
+| callback | function | 是   | 设置音量的回调方法。                                         |
+
+**示例：**
+
+```js
+videoPlayer.setVolume((vol, err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('setVolume success!');
+	} else {
+        console.info('setVolume fail!');
+    }
+});
+```
+
+### setVolume<sup>8+</sup>
+
+setVolume(vol: number): Promise\<void>
+
+通过Promise方式设置音量。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| vol    | number | 是   | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 设置音量的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.setVolume(vol).then() => {
+    console.info('setVolume success');
+}, failureCallback).catch(catchCallback);
+```
+
+### release<sup>8+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+通过回调方式释放视频资源。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                     |
+| -------- | -------- | ---- | ------------------------ |
+| callback | function | 是   | 释放视频资源的回调方法。 |
+
+**示例：**
+
+```js
+videoPlayer.release((err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('release success!');
+	} else {
+        console.info('release fail!');
+    }
+});
+```
+
+### release<sup>8+</sup>
+
+release(): Promise\<void>
+
+通过Promise方式释放视频资源。
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 释放视频资源的Promise返回值。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.release().then() => {
+    console.info('release success');
+}, failureCallback).catch(catchCallback);
+```
+
+### getTrackDescription<sup>8+</sup>
+
+getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8>>)>>): void
+
+通过回调方式获取视频轨道信息。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                       |
+| -------- | -------- | ---- | -------------------------- |
+| callback | function | 是   | 获取视频轨道信息回调方法。 |
+
+**示例：**
+
+```js
+function printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('video key is ' + item);
+        console.info('video value is ' + property);
+    }
+}
+
+videoPlayer.getTrackDescription((error, arrlist) => {
+    if (typeof (arrlist) != 'undefined') {
+        for (let i = 0; i < arrlist.length; i++) {
+            printfDescription(arrlist[i]);
+        }
+    } else {
+        console.log(`video getTrackDescription fail, error:${error.message}`);
+    }
+});
+```
+
+### getTrackDescription<sup>8+</sup>
+
+getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8>>)>>
+
+通过Promise方式获取视频轨道信息。
+
+**返回值：**
+
+| 类型                                                     | 说明                            |
+| -------------------------------------------------------- | ------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8>>)>> | 获取视频轨道信息Promise返回值。 |
+
+**示例：**
+
+```js
+function printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('video key is ' + item);
+        console.info('video value is ' + property);
+    }
+}
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+
+let arrayDescription;
+await videoPlayer.getTrackDescription().then((arrlist) => {
+    if (typeof (arrlist) != 'undefined') {
+        arrayDescription = arrlist;
+    } else {
+        console.log('video getTrackDescription fail');
+    }
+}, failureCallback).catch(catchCallback);
+for (let i = 0; i < arrayDescription.length; i++) {
+    printfDescription(arrayDescription[i]);
+}
+```
+
+### setSpeed<sup>8+</sup>
+
+setSpeed(speed:number, callback: AsyncCallback\<number>): void
+
+通过回调方式设置播放速度。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                       |
+| -------- | -------- | ---- | ---------------------------------------------------------- |
+| speed    | number   | 是   | 指定播放视频速度，具体见[PlaybackSpeed](#playbackspeed8)。 |
+| callback | function | 是   | 设置播放速度的回调方法。                                   |
+
+**示例：**
+
+```js
+videoPlayer.setSpeed((speed:number, err) => {
+	if (typeof (err) == 'undefined') {
+		console.info('setSpeed success!');
+	} else {
+        console.info('setSpeed fail!');
+    }
+});
+```
+
+### setSpeed<sup>8+</sup>
+
+setSpeed(speed:number): Promise\<number>
+
+通过Promise方式设置播放速度。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                       |
+| ------ | ------ | ---- | ---------------------------------------------------------- |
+| speed  | number | 是   | 指定播放视频速度，具体见[PlaybackSpeed](#playbackspeed8)。 |
+
+**示例：**
+
+```js
+function failureCallback(error) {
+    console.info(`video failureCallback, error:${error.message}`);
+}
+function catchCallback(error) {
+    console.info(`video catchCallback, error:${error.message}`);
+}
+await videoPlayer.setSpeed(speed).then() => {
+    console.info('setSpeed success');
+}, failureCallback).catch(catchCallback);
+```
+
+### on('playbackCompleted')<sup>8+</sup>
+
+on(type: 'playbackCompleted', callback: Callback\<void>): void
+
+开始监听视频播放完成事件。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                        |
+| -------- | -------- | ---- | ----------------------------------------------------------- |
+| type     | string   | 是   | 视频播放完成事件回调类型，支持的事件：'playbackCompleted'。 |
+| callback | function | 是   | 视频播放完成事件回调方法。                                  |
+
+**示例：**
+
+```js
+videoPlayer.on('playbackCompleted', () => {
+	console.info('playbackCompleted success!');
+});
+```
+
+### on('bufferingUpdate')<sup>8+</sup>
+
+on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
+
+开始监听视频缓存更新事件。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 视频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
+| callback | function | 是   | 视频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
+
+**示例：**
+
+```js
+videoPlayer.on('bufferingUpdate', (infoType, value) => {
+    console.log('video bufferingInfo type: ' + infoType);
+    console.log('video bufferingInfo value: ' + value);
+});
+```
+
+### on('startRenderFrame')<sup>8+</sup>
+
+on(type: 'startRenderFrame', callback: Callback\<void>): void
+
+开始监听视频播放首帧送显上报事件。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 视频播放首帧送显上报事件回调类型，支持的事件：'startRenderFrame'。 |
+| callback | function | 是   | 视频播放首帧送显上报事件回调方法。                           |
+
+**示例：**
+
+```js
+videoPlayer.on('startRenderFrame', () => {
+	console.info('startRenderFrame success!');
+});
+```
+
+### on('videoSizeChanged')<sup>8+</sup>
+
+on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void
+
+开始监听视频播放宽高变化事件。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 视频播放宽高变化事件回调类型，支持的事件：'videoSizeChanged'。 |
+| callback | function | 是   | 视频播放宽高变化事件回调方法，width表示宽，height表示高。    |
+
+**示例：**
+
+```js
+videoPlayer.on('videoSizeChanged', (width, height) => {
+    console.log('video width is: ' + width);
+    console.log('video height is: ' + height);
+});
+```
+
+### on('error')<sup>8+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+开始监听视频播放错误事件。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：视频播放中发生错误，触发该事件。 |
+| callback | function | 是   | 播放错误事件回调方法。                                       |
+
+**示例：**
+
+```js
+videoPlayer.on('error', (error) => {      // 设置'error'事件回调
+	console.info(`video error called, errName is ${error.name}`);      // 打印错误类型名称
+    console.info(`video error called, errCode is ${error.code}`);      // 打印错误码
+    console.info(`video error called, errMessage is ${error.message}`);// 打印错误类型详细描述
+});
+videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
+```
+
+## VideoPlayState<sup>8+</sup>
+
+视频播放的状态机，可通过state属性获取当前状态。
+
+| 名称     | 类型   | 描述           |
+| -------- | ------ | -------------- |
+| idle     | string | 视频播放空闲。 |
+| prepared | string | 视频播放准备。 |
+| playing  | string | 视频正在播放。 |
+| paused   | string | 视频暂停播放。 |
+| stopped  | string | 视频播放停止。 |
+| error    | string | 错误状态。     |
+
+## SeekMode<sup>8+</sup>
+
+视频播放的Seek模式枚举，可通过seek方法作为参数传递下去。
+
+| 名称              | 值   | 描述                                                         |
+| ----------------- | ---- | ------------------------------------------------------------ |
+| SEEK_NEXT_SYNC    | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值 |
+| SEEK_PREV_SYNC    | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值 |
+| SEEK_CLOSEST_SYNC | 2    | 表示跳转到指定时间点最近的关键帧。                           |
+| SEEK_CLOSEST      | 3    | 表示精确跳转到指定时间点。                                   |
+
+## PlaybackSpeed<sup>8+</sup>
+
+视频播放的倍速枚举，可通过setSpeed方法作为参数传递下去。
+
+| 名称                 | 值   | 描述                           |
+| -------------------- | ---- | ------------------------------ |
+| SPEED_FORWARD_0_75_X | 0    | 表示视频播放正常播速的0.75倍。 |
+| SPEED_FORWARD_1_00_X | 1    | 表示视频播放正常播速。         |
+| SPEED_FORWARD_1_25_X | 2    | 表示视频播放正常播速的1.25倍。 |
+| SPEED_FORWARD_1_75_X | 3    | 表示视频播放正常播速的1.75倍。 |
+| SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
 
 ## MediaDescription<sup>8+</sup>
 
