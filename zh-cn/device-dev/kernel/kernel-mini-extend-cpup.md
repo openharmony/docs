@@ -48,10 +48,10 @@ OpenHarmony  LiteOS-M提供以下两种CPU占用率的信息查询：
 | 功能分类 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
 | 获取系统CPU占用率 | LOS_SysCpuUsage | 获取当前系统CPU占用率 | 
-| LOS_HistorySysCpuUsage | 获取系统历史CPU占用率 | 
+| | LOS_HistorySysCpuUsage | 获取系统历史CPU占用率 | 
 | 获取任务CPU占用率 | LOS_TaskCpuUsage | 获取指定任务CPU占用率 | 
-| LOS_HistoryTaskCpuUsage | 获取指定任务历史CPU占用率 | 
-| LOS_AllCpuUsage | 获取所有任务CPU占用率 | 
+| | LOS_HistoryTaskCpuUsage | 获取指定任务历史CPU占用率 | 
+| | LOS_AllCpuUsage | 获取所有任务CPU占用率 | 
 | 输出任务CPU占用率 | LOS_CpupUsageMonitor | 输出任务历史CPU占用率 | 
 
 
