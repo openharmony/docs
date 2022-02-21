@@ -89,11 +89,11 @@ Obtains information about the files in the second-level directory in asynchronou
   | Promise&lt;FileInfo[]&gt; | Promise used to return the file information obtained.|
 
 - Error
-  |  | Error Info| Error Code|Description|
-  | --- | -- | --- | -- |
-  |  | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
-  |  | No such process | 3 | Failed to obtain the FMS service.|
-  |  | Not a directory | 20 | The object specified by the URI is not a directory.|
+  | Error Info| Error Code|Description|
+  | -- | --- | -- |
+  | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
+  | No such process | 3 | Failed to obtain the FMS service.|
+  | Not a directory | 20 | The object specified by the URI is not a directory.|
 
 ```js
 // Obtain all files in the directory.
@@ -129,11 +129,11 @@ Obtains information about the files in the second-level directory in asynchronou
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes| Callback invoked to return the file information obtained.|
 - Error
 
-  |  | Error Info| Error Code| Description|
-  | ------------------------- | ------------------------- | ------ | ------------------------- |
-  |     | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
-  |            | No such process           | 3      | Failed to obtain the FMS service.|
-  |  | Not a directory           | 20     | The object specified by the URI is not a directory.|
+  | Error Info| Error Code| Description|
+  | ------------------------- | ------ | ------------------------- |
+  | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
+  | No such process           | 3      | Failed to obtain the FMS service.|
+  | Not a directory           | 20     | The object specified by the URI is not a directory.|
 
 ```js
 // Call listFile() and getRoot() to obtain the file UIRs.
@@ -167,12 +167,12 @@ Creates a file in the specified path in asynchronous mode. This method uses a pr
   | promise<string>| Promise used to return the URI of the file created.|
 
 - Error
-  |  | Error Info| Error Code|Description|
-  | --- | -- | --- | -- |
-  |  | Operation not permitted | 1 | A file with the same name already exists.|
-  |  | No such file or directory | 2 | The directory or file of the specified URI does not exist.|
-  |  | No such process | 3 | Failed to obtain the FMS service.|
-  |  | Not a directory | 20 | The object specified by the URI is not a directory.|
+  | Error Info| Error Code|Description|
+  | -- | --- | -- |
+  | Operation not permitted | 1 | A file with the same name already exists.|
+  | No such file or directory | 2 | The directory or file of the specified URI does not exist.|
+  | No such process | 3 | Failed to obtain the FMS service.|
+  | Not a directory | 20 | The object specified by the URI is not a directory.|
 
 ```js
 // Create a file.
@@ -204,12 +204,12 @@ Creates a file in the specified path in asynchronous mode. This method uses a ca
 
 - Error
 
-  |  | Error Info| Error Code| Description|
-  | ------------------------- | ------------------------- | ------ | ------------------------- |
-  |             | Operation not permitted   | 1      | A file with the same name already exists.|
-  |     | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
-  |            | No such process           | 3      | Failed to obtain the FMS service.|
-  |  | Not a directory           | 20     | The object specified by the URI is not a directory.|
+  | Error Info| Error Code| Description|
+  | ------------------------- | ------ | ------------------------- |
+  | Operation not permitted   | 1      | A file with the same name already exists.|
+  | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
+  | No such process           | 3      | Failed to obtain the FMS service.|
+  | Not a directory           | 20     | The object specified by the URI is not a directory.|
 
 ```js
 // Create a file.
