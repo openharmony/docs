@@ -862,7 +862,7 @@ Unsubscribes from the account change event. This method uses an asynchronous cal
   	console.debug("receive change data:" + JSON.stringify(data));
   	appAccountManager.off('change', function(){
   		console.debug("off finish");
-  	}
+  	})
   }
   try{
   	appAccountManager.on('change', ["com.example.actsaccounttest"], changeOnCallback);
