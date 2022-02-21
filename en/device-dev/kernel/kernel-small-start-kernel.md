@@ -37,8 +37,7 @@ The kernel startup process consists of the assembly startup and C language start
 <tr id="row98694774219"><td class="cellrowborder" valign="top" width="35.58%" headers="mcps1.2.3.1.1 "><p id="p118624714210"><a name="p118624714210"></a><a name="p118624714210"></a>LOS_INIT_LEVEL_PLATFORM_EARLY</p>
 </td>
 <td class="cellrowborder" valign="top" width="64.42%" headers="mcps1.2.3.1.2 "><p id="p118531052143510"><a name="p118531052143510"></a><a name="p118531052143510"></a>Early initialization of the platform.</p>
-<p id="p666132195816"><a name="p666132195816"></a><a name="p666132195816"></a>The initialization depends on the board platform and drivers. Subsequent modules initialize the modules on which they depend. It is recommended that functions required for startup be placed at <strong id="b44971429202712"><a name="b44971429202712"></a><a name="b44971429202712"></a>LOS_INIT_LEVEL_PLATFORM</strong>.</p>
-<p id="p1986104794218"><a name="p1986104794218"></a><a name="p1986104794218"></a>Example: UART module</p>
+<p id="p666132195816"><a name="p666132195816"></a><a name="p666132195816"></a>The initialization depends on the board platform and drivers. Subsequent modules initialize the modules on which they depend. It is recommended that functions required for startup be placed at <strong id="b44971429202712"><a name="b44971429202712"></a><a name="b44971429202712"></a>LOS_INIT_LEVEL_PLATFORM</strong>.
 </td>
 </tr>
 <tr id="row8863470423"><td class="cellrowborder" valign="top" width="35.58%" headers="mcps1.2.3.1.1 "><p id="p19861547114214"><a name="p19861547114214"></a><a name="p19861547114214"></a>LOS_INIT_LEVEL_KMOD_PREVM</p>
