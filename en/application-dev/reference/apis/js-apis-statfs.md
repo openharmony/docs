@@ -1,10 +1,11 @@
 # statfs
 
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```js
 import statfs from '@ohos.statfs'
 ```
 
@@ -16,13 +17,13 @@ Absolute file or directory path = Application directory + File name or directory
 
 For example, if the application directory obtained by using **getOrCreateLocalDir** is **dir** and the file name is **xxx.txt**, the absolute path of the file is as follows:
 
-```
+```js
 let path = dir + "xxx.txt"
 ```
 
-## Required Permissions
+## System Capabilities
 
-None
+SystemCapability.FileManagement.File.FileIO
 
 ## statfs.getFreeBytes
 
@@ -44,7 +45,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 - Example
 
-  ```
+  ```js
   let num = await statfs.getFreeBytes(path);
   ```
 
@@ -63,7 +64,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 - Example
 
-  ```
+  ```js
   statfs.getFreeBytes(path, function(err, number){
       // Do something.
   });
@@ -89,7 +90,7 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 - Example
 
-  ```
+  ```js
   let num = await statfs.getTotalBytes(path);
   ```
 
@@ -108,7 +109,7 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 - Example
 
-  ```
+  ```js
   statfs.getTotalBytes(path, function(err, number){
       // Do something.
   });
