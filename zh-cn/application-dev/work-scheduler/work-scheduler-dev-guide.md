@@ -106,7 +106,7 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
         bundleName: "com.example.myapplication",
         abilityName: "MyExtension"
    	}
-    var res = workScheduler.stopWork(workInfo);
+    var res = workScheduler.stopWork(workInfo, false);
     console.info("workschedulerLog res:" + res);
 
 

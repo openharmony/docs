@@ -11,284 +11,321 @@ import workScheduler from '@ohos.workScheduler'
 ```
 
 ## 系统能力
-SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+SystemCapability.ResourceSchedule.WorkScheduler
 
+## workScheduler.startWork
 
-## 权限列表
+workScheduler.startWork(work: WorkInfo): boolean
 
-长时任务需要申请如下权限：
-
-ohos.permission.KEEP_BACKGROUND_RUNNING
-
-
-## backgroundTaskManager.requestSuspendDelay
-
-requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
-
-后台应用申请延迟挂起。
-
-延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。
+通知WorkSchedulerService将工作添加到执行队列。
 
 - **参数**：
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reason | string | 是 | 延迟挂起申请的原因。 |
-  | callback | Callback&lt;void&gt; | 是 | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
+  | work | WorkInfo | 是 | 指示要添加到执行队列的工作。 |
 
 - **返回值**：
+
   | 类型 | 说明 |
   | -------- | -------- |
-  | [DelaySuspendInfo](#delaysuspendinfo) | 返回延迟挂起信息。 |
+  | boolean | 如果工作成功添加到执行队列，则返回true，否则返回false。 |
 
 - **示例**：
+
   ```
-  let myReason = 'test requestSuspendDelay';
-  let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-      console.info("Request suspension delay will time out.");
-  })
+	let workInfo = {
+		workId: 1,
+        batteryLevel:50,
+        batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
+        isRepeat: false,
+        isPersisted: true,
+        bundleName: "com.example.myapplication",
+        abilityName: "MyExtension"
+   	}
+    var res = workScheduler.startWork(workInfo);
+    console.info("workschedulerLog res:" + res);
   ```
 
+## workScheduler.stopWork
 
-## backgroundTaskManager.getRemainingDelayTime
+stopWork(work: WorkInfo, needCancel?: boolean): boolean
 
-getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
+通知WorkSchedulerService停止指定工作。
 
-获取应用程序进入挂起状态前的剩余时间，使用callback形式返回。
 
 - **参数**：
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | requestId | number | 是 | 延迟挂起的请求ID。 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
+  | work | WorkInfo | 是 | 指示要添加到执行队列的工作。 |
+  |needCancel|boolean|	是|	是否需要取消的工作。|
+
+- **返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 如果成功，则返回true，否则返回false。 |
 
 - **示例**：
+
   ```
-  let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
-      if(err.data === 0) {
-          console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+	let workInfo = {
+		workId: 1,
+        batteryLevel:50,
+        batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
+        isRepeat: false,
+        isPersisted: true,
+        bundleName: "com.example.myapplication",
+        abilityName: "MyExtension"
+   	}
+    var res = workScheduler.stopWork(workInfo, false);
+    console.info("workschedulerLog res:" + res);
+  ```
+
+## workScheduler.getWorkStatus
+
+getWorkStatus(workId: number, callback : AsyncCallback<WorkInfo>): void
+
+获取工作的最新状态，使用callback形式返回。
+
+
+- **参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | workId | number | 是 | work的id。 |
+  |callback|AsyncCallback<WorkInfo>|	是|	指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。|
+
+
+- **示例**：
+
+  ```
+    workScheduler.getWorkStatus(50, (err, res) => {
+      if (err) {
+        console.info('workschedulerLog getWorkStatus callback failed, because:' + err.data);
       } else {
-          console.log('promise => Operation failed. Cause: ' + err.data);
+        for (let item in res) {
+          console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
+        }
       }
-  })
+    });
   ```
 
+## workScheduler.getWorkStatus
 
-## backgroundTaskManager.getRemainingDelayTime
+getWorkStatus(workID: number): Promise<WorkInfo>
 
-getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
-
-获取应用程序进入挂起状态前的剩余时间，使用Promise形式返回。
+获取工作的最新状态，使用Promise形式返回。
 
 - **参数**：
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | requestId | number | 是 | 延迟挂起的请求ID。 |
+  | workId | number | 是 | work的id。 |
 
 - **返回值**：
+
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;number&gt; | 指定的Promise回调方法。返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
+  | Promise<WorkInfo> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
 
 - **示例**：
+
   ```
-  let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-      console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
-  }).catch( err => {
-      console.log('promise => Operation failed. Cause: ' + err.data);
-  })
-  ```
-
-
-## backgroundTaskManager.cancelSuspendDelay
-
-cancelSuspendDelay(requestId: number): void
-
-取消延迟挂起。
-
-- **参数**：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | requestId | number | 是 | 延迟挂起的请求ID。 |
-
-- **示例**：
-  ```
-  backgroundTaskManager.cancelSuspendDelay(id);
-  ```
-
-
-#### DelaySuspendInfo
-
-延迟挂起信息。
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| requestId | number | 是 | 延迟挂起的请求ID。 |
-| actualDelayTime | number | 是 | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
-
-## backgroundTaskManager.startBackgroundRunning
-
-<sup>[8]</sup> startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void;
-
-向系统申请长时任务，使用callback形式返回结果。
-
-- **参数**：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用运行的上下文 |
-  | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
-  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面。使用方式参考：<sup>[8]</sup>  |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
-
-- **示例**：
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
-
-function callback(err, data) {
-    if (err) {
-        console.error("Operation failed Cause: " + err);
-    } else {
-        console.info("Operation succeeded");
-    }
-}
-
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
-};
-
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
-});
-
-```
-
-## backgroundTaskManager.startBackgroundRunning
-
-<sup>[8]</sup> startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
-
-向系统申请长时任务，使用promise形式返回结果。
-
-- **参数**：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用运行的上下文 |
-  | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
-  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
-
-- **返回值**
-  | 类型           | 说明                      |
-  | -------------- | ------------------------- |
-  | Promise\<void> | 使用Promise形式返回结果。 |
-
-- **示例**：
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
-
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
-};
-
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-        console.info("Operation succeeded");
+    workScheduler.getWorkStatus(50).then((res) => {
+      for (let item in res) {
+        console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
+      }
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+      console.info('workschedulerLog getWorkStatus promise failed, err');
+      console.info('workschedulerLog getWorkStatus promise failed, because:' + err.data);
+    })
+  ```
+
+## workScheduler.obtainAllWorks
+
+obtainAllWorks(callback : AsyncCallback<void>): Array<WorkInfo>
+
+获取与当前应用程序关联的所有工作，使用callback形式返回。
+
+- **参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  |callback|AsyncCallback<WorkInfo>|	是|	指定的callback回调方法。返回与应用程序关联的所有工作。|
+
+
+- **返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array<WorkInfo> | 返回与应用程序关联的所有工作。 |
+
+- **示例**：
+
+  ```
+    workScheduler.obtainAllWorks((err, res) =>{
+      if (err) {
+        console.info('workschedulerLog getWorkStatus promise failed, err');
+        console.info('workschedulerLog getWorkStatus promise failed, because:' + err.data);
+      } else {
+        console.info('workschedulerLog obtainAllWorks callback success, data is:' + JSON.stringify(res));
+      }
     });
-});
+  ```
 
-```
+## workScheduler.obtainAllWorks
 
-## backgroundTaskManager.stopBackgroundRunning
+obtainAllWorks(): Promise<Array<WorkInfo>>
 
-<sup>[8]</sup> stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;
+获取与当前应用程序关联的所有工作，使用Promise形式返回。
 
-向系统申请取消长时任务，使用callback形式返回结果。
+- **返回值**：
 
-- **参数**：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用运行的上下文 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise<Array<WorkInfo>> |	指定的Promise回调方法。返回与应用程序关联的所有工作。|
 
 - **示例**：
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import featureAbility from '@ohos.ability.featureAbility';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation failed Cause: " + err);
-    } else {
-        console.info("Operation succeeded");
-    }
-}
+  ```
+    workScheduler.obtainAllWorks().then((res) => {
+      console.info('workschedulerLog obtainAllWorks promise success, data is:' + JSON.stringify(res));
+    }).catch((err) => {
+      console.info('workschedulerLog obtainAllWorks promise failed, because:' + err.data);
+    })
+  ```
 
-backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
+## workScheduler.stopAndClearWorks
 
-```
+stopAndClearWorks(): boolean
 
-## backgroundTaskManager.stopBackgroundRunning
-
-<sup>[8]</sup> stopBackgroundRunning(context: Context): Promise&lt;void&gt;;
-
-向系统申请取消长时任务，使用promise形式返回结果。
-
-- **参数**：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用运行的上下文 |
-
-- **返回值**
-  | 类型           | 说明                      |
-  | -------------- | ------------------------- |
-  | Promise\<void> | 使用Promise形式返回结果。 |
+停止和取消与当前应用程序关联的所有工作。
 
 - **示例**：
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import featureAbility from '@ohos.ability.featureAbility';
 
-backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-    console.info("Operation succeeded");
-}).catch((err) => {
-    console.error("Operation failed Cause: " + err);
-});
+  ```
+	let res = workScheduler.stopAndClearWorks();
+	console.info("workschedulerLog res:" + res);
+  ```
 
-```
+## workScheduler.isLastWorkTimeOut
 
-## <sup>[8]</sup> BackgroundMode
+isLastWorkTimeOut(workId: number, callback : AsyncCallback<void>): boolean
 
-| 参数名                  | 参数 | 描述 |
-| ----------------------- | -------- | -------- |
-| DATA_TRANSFER           | 1 | 数据传输 |
-| AUDIO_PLAYBACK          | 2 | 音频播放 |
-| AUDIO_RECORDING         | 3 | 录音 |
-| LOCATION                | 4 | 定位导航 |
-| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关 |
-| MULTI_DEVICE_CONNECTION | 6 | 多设备互联 |
-| WIFI_INTERACTION        | 7 | WLAN相关（系统保留） |
-| VOIP                    | 8 | 音视频通话（系统保留） |
-| TASK_KEEPING            | 9 | 计算任务（仅供PC使用） |
+检查指定工作的最后一次执行是否为超时操作，使用callback形式返回。
+
+- **参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | workId | number | 是 | work的id。 |
+  |callback|AsyncCallback<WorkInfo>|	是|	指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。|
+
+- **返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。 |
+
+- **示例**：
+
+  ```
+    workScheduler.isLastWorkTimeOut(500, (err, res) =>{
+      if (err) {
+        console.info('workschedulerLog isLastWorkTimeOut callback failed, because:' + err.data);
+      } else {
+        console.info('workschedulerLog isLastWorkTimeOut callback success, data is:' + res);
+      }
+    });
+  ```
+
+## workScheduler.isLastWorkTimeOut
+
+obtainAllWorks(): Promise<Array<WorkInfo>>
+
+检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
+
+- **参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | workId | number | 是 | work的id。 |
+
+- **返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise<boolean> | 指定的Promise回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。|
+
+- **示例**：
+
+  ```
+    workScheduler.isLastWorkTimeOut(500)
+      .then(res => {
+        console.info('workschedulerLog isLastWorkTimeOut promise success, data is:' + res);
+      })
+      .catch(err =>  {
+        console.info('workschedulerLog isLastWorkTimeOut promise failed, because:' + err.data);
+      });
+  	})
+  ```
+
+## workScheduler.WorkInfo
+提供工作的具体信息。
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  |workId	|number	|是	|当前工作的ID。|
+  |bundleName	|string	|是|	延迟任务包名。|
+  |abilityName | string| 是| 延迟任务回调通知的组件名（必填）|
+  |networkType | NetworkType| 否| 网络条件 |
+  |isCharging | bool| 否|是否充电 |
+  |chargerType | ChargingType| 否|充电类型 |
+  |batteryLevel | number| 否|电量|
+  |batteryStatus| BatteryStatus| 否|电池状态|
+  |storageRequest|StorageRequest| 否|存储状态|
+  |isRepeat|boolean|否|是否循环任务|
+  |repeatCycleTime |number|否|循环间隔|
+  |repeatCount	|number|否|循环次数|
+
+## workScheduler.NetworkType
+触发工作的网络类型。
+
+  |名称	|默认值	|说明|
+  | -------- | -------- | -------- |
+  |NETWORK_TYPE_ANY	|0	|表示这个触发条件是任何类型的网络连接。|
+  |NETWORK_TYPE_MOBILE	|1|	表示这个触发条件是Mobile网络连接。|
+  |NETWORK_TYPE_WIFI	|2	|表示这个触发条件是Wifi类型的网络连接。|
+  |NETWORK_TYPE_BLUETOOTH	|3	|表示这个触发条件是Bluetooth网络连接。|
+  |NETWORK_TYPE_WIFI_P2P	|4	|表示这个触发条件是Wifi P2P网络连接。|
+  |NETWORK_TYPE_ETHERNET	|5	|表示这个触发条件是有线网络连接。|
+
+## workScheduler.ChargingType
+触发工作的充电类型。
+
+  |名称	|默认值	|说明|
+  | -------- | -------- | -------- |
+  |CHARGING_PLUGGED_ANY	|0|	表示这个触发条件是任何类型的充电器连接。|
+  |CHARGING_PLUGGED_AC	|1	|表示这个触发条件是直流充电器连接。|
+  |CHARGING_PLUGGED_USB	|2	|表示这个触发条件是USB充连接。|
+  |CHARGING_PLUGGED_WIRELESS	|3|	表示这个触发条件是无线充电器连接。|
+
+## workScheduler.BatteryStatus
+触发工作的电池状态。
+
+  |名称	|默认值	|说明|
+  | -------- | -------- | -------- |
+  |BATTERY_STATUS_LOW	|0	|表示这个触发条件是低电告警。|
+  |BATTERY_STATUS_OKAY	|1|	表示这个触发条件是从低电恢复到正常电量。|
+  |BATTERY_STATUS_LOW_OR_OKAY	|2	|表示这个触发条件是从低电恢复到正常电量或者低电告警。|
+
+## workScheduler.StorageRequest
+触发工作的存储状态。
+
+  |名称	|默认值	|说明|
+  | -------- | -------- | -------- |
+  |STORAGE_LEVEL_LOW	|0	|表示这个触发条件是存储空间不足。
+  |STORAGE_LEVEL_OKAY	|1	|表示这个触发条件是从存储空间不足恢复到正常。
+  |STORAGE_LEVEL_LOW_OR_OKAY	|2	|表示这个触发条件是从存储空间不足恢复到正常或者存储空间不足。
