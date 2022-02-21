@@ -1,9 +1,8 @@
-# Bluetooth
-
-> **Note:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The Bluetooth module provides Classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
-The Bluetooth module provides Classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 ## Modules to Import
 
@@ -2193,7 +2192,7 @@ Defines the SPP configuration parameters.
 | -------- | -------- | -------- | -------- | -------- |
 | uuid | string | Yes | Yes | UUID&nbsp;of&nbsp;the&nbsp;SPP. |
 | isPrimary | boolean | Yes | Yes | Whether&nbsp;it&nbsp;is&nbsp;a&nbsp;secure&nbsp;channel. |
-| type | [ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref2575mcpsimp,link:#SppType](#SppType) | Yes | Yes | Type&nbsp;of&nbsp;the&nbsp;SPP&nbsp;link. |
+| type | [SppType](#SppType) | Yes | Yes | Type&nbsp;of&nbsp;the&nbsp;SPP&nbsp;link. |
 
 
 ## SppType
@@ -2213,8 +2212,8 @@ Defines the GATT service API parameters.
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuid | string | Yes | Yes | UUID&nbsp;of&nbsp;the&nbsp;service,&nbsp;for&nbsp;example,&nbsp;**00001888-0000-1000-8000-00805f9b34fb**. |
 | isPrimary | boolean | Yes | Yes | Whether&nbsp;the&nbsp;service&nbsp;is&nbsp;a&nbsp;primary&nbsp;service.&nbsp;The&nbsp;value&nbsp;**true**&nbsp;means&nbsp;a&nbsp;primary&nbsp;service. |
-| characteristics | Array&lt;[ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref2628mcpsimp,link:#BLECharacteristic](#BLECharacteristic)&gt; | Yes | Yes | List&nbsp;of&nbsp;characteristics&nbsp;of&nbsp;the&nbsp;service. |
-| includeServices | Array&lt;[ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref2635mcpsimp,link:#GattService](#GattService)&gt; | Yes | Yes | Services&nbsp;on&nbsp;which&nbsp;the&nbsp;service&nbsp;depends. |
+| characteristics | Array&lt;[BLECharacteristic](#BLECharacteristic)&gt; | Yes | Yes | List&nbsp;of&nbsp;characteristics&nbsp;of&nbsp;the&nbsp;service. |
+| includeServices | Array&lt;[GattService](#GattService)&gt; | Yes | Yes | Services&nbsp;on&nbsp;which&nbsp;the&nbsp;service&nbsp;depends. |
 
 
 ## BLECharacteristic
@@ -2226,7 +2225,7 @@ Defines the characteristic API parameters.
 | serviceUuid | string | Yes | Yes | UUID&nbsp;of&nbsp;the&nbsp;service,&nbsp;for&nbsp;example,&nbsp;**00001888-0000-1000-8000-00805f9b34fb**. |
 | characteristicUuid | string | Yes | Yes | UUID&nbsp;of&nbsp;the&nbsp;characteristic,&nbsp;for&nbsp;example,&nbsp;**00002a11-0000-1000-8000-00805f9b34fb**. |
 | characteristicValue | ArrayBuffer | Yes | Yes | Binary&nbsp;value&nbsp;of&nbsp;the&nbsp;characteristic. |
-| descriptors | Array&lt;[ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref2677mcpsimp,link:#BLEDescriptor](#BLEDescriptor)&gt; | Yes | Yes | List&nbsp;of&nbsp;descriptors&nbsp;of&nbsp;the&nbsp;characteristic. |
+| descriptors | Array&lt;[BLEDescriptor](#BLEDescriptor)&gt; | Yes | Yes | List&nbsp;of&nbsp;descriptors&nbsp;of&nbsp;the&nbsp;characteristic. |
 
 
 ## BLEDescriptor
@@ -2331,7 +2330,7 @@ Defines the parameters of **BLEConnectChangedState**.
 | Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | Yes | No | Address&nbsp;of&nbsp;the&nbsp;peer&nbsp;device,&nbsp;for&nbsp;example,&nbsp;**8F:8F:8E:8E:6D:6D**. |
-| state | [ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref3060mcpsimp,link:#ProfileConnectionState](#ProfileConnectionState) | Yes | Yes | BLE&nbsp;connection&nbsp;state. |
+| state | [ProfileConnectionState](#ProfileConnectionState) | Yes | Yes | BLE&nbsp;connection&nbsp;state. |
 
 
 ## ProfileConnectionState
@@ -2364,8 +2363,8 @@ Defines the scan configuration parameters.
 | Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | Yes | Yes | Delay&nbsp;in&nbsp;reporting&nbsp;the&nbsp;scan&nbsp;result.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**0**. |
-| dutyMode | [ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref3154mcpsimp,link:#ScanDuty](#ScanDuty) | Yes | Yes | Scan&nbsp;duty.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**SCAN_MODE_LOW_POWER**. |
-| matchMode | [ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref3161mcpsimp,link:#MatchMode](#MatchMode) | Yes | Yes | Hardware&nbsp;match&nbsp;mode&nbsp;for&nbsp;BLE&nbsp;scan&nbsp;filters.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**MATCH_MODE_AGGRESSIVE**. |
+| dutyMode | [ScanDuty](#ScanDuty) | Yes | Yes | Scan&nbsp;duty.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**SCAN_MODE_LOW_POWER**. |
+| matchMode | [MatchMode](#MatchMode) | Yes | Yes | Hardware&nbsp;match&nbsp;mode&nbsp;for&nbsp;BLE&nbsp;scan&nbsp;filters.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**MATCH_MODE_AGGRESSIVE**. |
 
 
 ## ScanDuty
@@ -2433,8 +2432,8 @@ Defines the content of a BLE advertisement packet.
 | Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuids | Array&lt;string&gt; | Yes | Yes | List&nbsp;of&nbsp;service&nbsp;UUIDs&nbsp;to&nbsp;be&nbsp;broadcasted. |
-| manufactureData | Array&lt;[ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref3348mcpsimp,link:#ManufactureData](#ManufactureData)&gt; | Yes | Yes | List&nbsp;of&nbsp;manufacturers&nbsp;to&nbsp;be&nbsp;broadcasted. |
-| serviceData | Array&lt;[ERROR:Invalid&nbsp;link:en-us_topic_0000001193344974.xml#xref3355mcpsimp,link:#ServiceData](#ServiceData)&gt; | Yes | Yes | List&nbsp;of&nbsp;service&nbsp;data&nbsp;to&nbsp;be&nbsp;broadcasted. |
+| manufactureData | Array&lt;[ManufactureData](#ManufactureData)&gt; | Yes | Yes | List&nbsp;of&nbsp;manufacturers&nbsp;to&nbsp;be&nbsp;broadcasted. |
+| serviceData | Array&lt;[ServiceData](#ServiceData)&gt; | Yes | Yes | List&nbsp;of&nbsp;service&nbsp;data&nbsp;to&nbsp;be&nbsp;broadcasted. |
 
 
 ## ManufactureData

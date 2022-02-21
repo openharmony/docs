@@ -12,7 +12,7 @@
 - [后台任务管理](background-task-management/Readme-CN.md)
 - [媒体](media/Readme-CN.md)
 - [安全](security/Readme-CN.md)
-- [IPC与RPC通信](connectivity/ipc-rpc.md)
+- [网络与连接](connectivity/Readme-CN.md)
 - [数据管理](database/Readme-CN.md)
 - [USB服务](usb/Readme-CN.md)
 - [DFX](dfx/Readme-CN.md)
