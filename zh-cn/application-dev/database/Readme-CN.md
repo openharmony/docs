@@ -9,3 +9,6 @@
 - 轻量级数据存储
   - [轻量级数据存储概述](database-preference-overview.md)
   - [轻量级数据存储开发指导](database-preference-guidelines.md)
+- 分布式数据对象
+  - [分布式数据对象概述](database-distributedobject-overview.md)
+  - [分布式数据对象开发指导](database-distributedobject-guidelines.md)
