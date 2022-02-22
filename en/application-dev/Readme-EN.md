@@ -12,7 +12,7 @@
 -   [Background Task Management ](background-task-management/Readme-EN.md)
 -   [Media](media/Readme-EN.md)
 -   [Security](security/Readme-EN.md)
--   [IPC & RPC](connectivity/ipc-rpc.md)
+-   [Connectivity](connectivity/Readme-EN.md)
 -   [Data Management](database/Readme-EN.md)
 -   [USB Service](usb/Readme-EN.md)
 -   [DFX](dfx/Readme-EN.md)

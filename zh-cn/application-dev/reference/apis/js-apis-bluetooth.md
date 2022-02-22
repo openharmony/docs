@@ -1,10 +1,8 @@
-# Bluetooth
-
-> **说明：**
->
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
+> 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
-蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 ## 导入模块
 
@@ -22,6 +20,8 @@ ohos.permission.MANAGE_BLUETOOTH
 ohos.permission.DISCOVER_BLUETOOTH
 
 ohos.permission.LOCATION
+
+
 
 
 ## bluetooth.enableBluetooth
@@ -2200,7 +2200,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------- | -------- | -------- | -------- | -------- |
 | uuid | string | 是 | 是 | spp单据的uuid。 |
 | isPrimary | boolean | 是 | 是 | 是否是安全通道。 |
-| type | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref2575mcpsimp,link:#SppType](#SppType) | 是 | 是 | Spp链路类型。 |
+| type | [SppType](#SppType) | 是 | 是 | Spp链路类型。 |
 
 
 ## SppType
@@ -2220,8 +2220,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | isPrimary | boolean | 是 | 是 | 如果是主服务设置为true，否则设置为false。 |
-| characteristics | Array&lt;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref2628mcpsimp,link:#BLECharacteristic](#BLECharacteristic)&gt; | 是 | 是 | 当前服务包含的特征列表。 |
-| includeServices | Array&lt;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref2635mcpsimp,link:#GattService](#GattService)&gt; | 是 | 是 | 当前服务依赖的其它服务。 |
+| characteristics | Array&lt;[BLECharacteristic](#BLECharacteristic)&gt; | 是 | 是 | 当前服务包含的特征列表。 |
+| includeServices | Array&lt;[GattService](#GattService)&gt; | 是 | 是 | 当前服务依赖的其它服务。 |
 
 
 ## BLECharacteristic
@@ -2233,7 +2233,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid | string | 是 | 是 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer | 是 | 是 | 特征对应的二进制值。 |
-| descriptors | Array&lt;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref2677mcpsimp,link:#BLEDescriptor](#BLEDescriptor)&gt; | 是 | 是 | 特定特征的描述符列表。 |
+| descriptors | Array&lt;[BLEDescriptor](#BLEDescriptor)&gt; | 是 | 是 | 特定特征的描述符列表。 |
 
 
 ## BLEDescriptor
@@ -2338,7 +2338,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 否 | 表示远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
-| state | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref3060mcpsimp,link:#ProfileConnectionState](#ProfileConnectionState) | 是 | 是 | 表示BLE连接状态的枚举。 |
+| state | [ProfileConnectionState](#ProfileConnectionState) | 是 | 是 | 表示BLE连接状态的枚举。 |
 
 
 ## ProfileConnectionState
@@ -2371,8 +2371,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 是 | 是 | 表示扫描结果上报延迟时间，默认值为0。 |
-| dutyMode | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref3154mcpsimp,link:#ScanDuty](#ScanDuty) | 是 | 是 | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。 |
-| matchMode | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref3161mcpsimp,link:#MatchMode](#MatchMode) | 是 | 是 | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
+| dutyMode | [ScanDuty](#ScanDuty) | 是 | 是 | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。 |
+| matchMode | [MatchMode](#MatchMode) | 是 | 是 | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
 
 
 ## ScanDuty
@@ -2440,8 +2440,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuids | Array&lt;string&gt; | 是 | 是 | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
-| manufactureData | Array&lt;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref3348mcpsimp,link:#ManufactureData](#ManufactureData)&gt; | 是 | 是 | 表示要广播的广播的制造商信息列表。 |
-| serviceData | Array&lt;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001193344974.xml#xref3355mcpsimp,link:#ServiceData](#ServiceData)&gt; | 是 | 是 | 表示要广播的服务数据列表。 |
+| manufactureData | Array&lt;[ManufactureData](#ManufactureData)&gt; | 是 | 是 | 表示要广播的广播的制造商信息列表。 |
+| serviceData | Array&lt;[ServiceData](#ServiceData)&gt; | 是 | 是 | 表示要广播的服务数据列表。 |
 
 
 ## ManufactureData
