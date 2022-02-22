@@ -39,6 +39,7 @@ RUN apt-get update -y \
 	&& apt-get install bison -y \
 	&& apt-get install flex -y \
 	&& apt-get install bc -y \
+	&& apt-get install doxygen -y \
 	&& apt-get install u-boot-tools -y \
 	&& apt-get install gcc-arm-linux-gnueabi -y \
 	&& apt-get install build-essential \

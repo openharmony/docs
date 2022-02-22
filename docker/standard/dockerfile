@@ -91,6 +91,7 @@ RUN apt-get update \
 	python3-pip \
 	cpio \
 	genext2fs \
+	doxygen \
 	liblz4-tool \
 	&& rm -rf /bin/sh /usr/bin/python /usr/bin/python3 \
 	&& ln -s /bin/bash /bin/sh \

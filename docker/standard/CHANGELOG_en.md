@@ -1,3 +1,7 @@
+ ### 0.0.8 (2022/01/16)
+
+Added the installation of doxygen.
+
  ### 0.0.7 (2022/01/11)
 
 Added the installation of genext2fs and liblz4-tool.

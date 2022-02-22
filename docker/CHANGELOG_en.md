@@ -1,4 +1,10 @@
-### 0.0.5 (2021/06/21)
+### 0.0.7 (2022/02/16)
+
+Added the installation of doxygen.
+
+
+
+### 0.0.6(2022/02/10)
 
 1\. Updated hb.
 
