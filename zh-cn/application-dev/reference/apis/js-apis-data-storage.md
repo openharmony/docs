@@ -13,6 +13,8 @@
 import dataStorage from '@ohos.data.storage'
 ```
 
+## 系统能力
+SystemCapability.DistributedDataManager.Preferences.Core
 
 ## 权限
 
