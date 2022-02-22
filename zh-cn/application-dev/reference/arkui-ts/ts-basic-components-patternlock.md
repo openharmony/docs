@@ -47,7 +47,7 @@ PatternLock(controller?: PatternLockController)
 
 | 名称          | 功能描述                                                     |
 | -------------------------------------------------------- | ------------------------------------------------------------ |
-| onPatternComplete(callback: (input: Array\<number\>\) => void) | 密码输入结束时被调用的回调函数。<br />input: 与选中宫格圆点顺序一致的数字数组，数字为选中宫格的索引（0到8）。 |
+| onPatternComplete(callback: (input: Array\<number\>) => void) | 密码输入结束时被调用的回调函数。<br />input: 与选中宫格圆点顺序一致的数字数组，数字为选中宫格的索引（0到8）。 |
 
 ##  示例
 
