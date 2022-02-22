@@ -1172,8 +1172,71 @@ off(type: SensorType, callback?: AsyncCallback&lt;void&gt;): void
       console.info("Succeeded in unsubscribing from acceleration sensor data.");
     }
   );
-  
   ```
+
+## sensor.transformCoordinateSystem
+
+transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+
+- 参数
+
+  | 参数名           | 类型                                      | 必填 | 说明                   |
+  | ---------------- | ----------------------------------------- | ---- | ---------------------- |
+  | inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。         |
+  | coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。       |
+  | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 返回转换后的旋转矩阵。 |
+
+- 示例
+
+  ```
+  sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'axisX':2, 'axisY':3}, function(err, data) {
+      if (err) {
+          console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
+          return;
+      }
+      console.info("Operation successed. Data obtained: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
+      }
+   })
+  ```
+
+## sensor.transformCoordinateSystem
+
+transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
+
+旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+
+- 参数
+
+  | 参数名           | 类型                                      | 必填 | 说明             |
+  | ---------------- | ----------------------------------------- | ---- | ---------------- |
+  | inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。   |
+  | coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。 |
+
+- 返回值
+
+  | 类型                               | 说明                   |
+  | ---------------------------------- | ---------------------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | 返回转换后的旋转矩阵。 |
+
+- 示例
+
+  ```
+  const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'axisX':2, 'axisY':3});
+      promise.then((data) => {
+          console.info("Operation successed.");
+          for (var i=0; i < data.length; i++) {
+              console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
+          }
+      }).catch((err) => {
+             console.info("Operation failed");
+  })
+  ```
+
+  
 
 
 ## sensor.getGeomagneticField
@@ -1229,6 +1292,437 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
   		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
       }).catch((reason) => {
           console.info('Operation failed.');
+  })
+  ```
+
+## sensor.getAltitude
+
+getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
+
+根据气压值获取设备所在的海拔高度。
+
+- 参数
+
+  | 参数名          | 类型                        | 必填 | 说明                                  |
+  | --------------- | --------------------------- | ---- | ------------------------------------- |
+  | seaPressure     | number                      | 是   | 表示海平面气压值，单位为hPa。         |
+  | currentPressure | number                      | 是   | 表示设备所在高度的气压值，单位为hPa。 |
+  | callback        | AsyncCallback&lt;number&gt; | 是   | 返回设备所在的海拔高度，单位为米。    |
+
+- 示例
+
+  ```
+  sensor.getAltitude(0, 200, function(err, data)  {
+      if (err) {
+          console.error(
+  "Operation failed. Error code: " + err.code + ", message: " + err.message);
+          return;
+      }
+          console.info("Successed to get getAltitude interface get data: " + data);
+  });
+  ```
+
+## sensor.getAltitude
+
+getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
+
+根据气压值获取设备所在的海拔高度。
+
+- 参数
+
+  | 参数名          | 类型   | 必填 | 说明                                  |
+  | --------------- | ------ | ---- | ------------------------------------- |
+  | seaPressure     | number | 是   | 表示海平面气压值，单位为hPa。         |
+  | currentPressure | number | 是   | 表示设备所在高度的气压值，单位为hPa。 |
+
+- 返回值
+
+  | 类型                  | 说明                                 |
+  | --------------------- | ------------------------------------ |
+  | Promise&lt;number&gt; | 返回设备所在的海拔高度（单位：米）。 |
+
+- 示例
+
+  ```
+  const promise = sensor.getAltitude(0, 200);
+      promise.then((data) => {
+          console.info(' sensor_getAltitude_Promise success', data);
+      }).catch((err) => {
+          console.error("Operation failed");
+  })
+  ```
+
+
+## sensor.getGeomagneticDip
+
+getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
+
+根据倾斜矩阵计算地磁倾斜角。
+
+- 参数
+
+  | 参数名            | 类型                        | 必填 | 说明                         |
+  | ----------------- | --------------------------- | ---- | ---------------------------- |
+  | inclinationMatrix | Array&lt;number&gt;         | 是   | 表示倾斜矩阵。               |
+  | callback          | AsyncCallback&lt;number&gt; | 是   | 返回地磁倾斜角，单位为弧度。 |
+
+- 示例
+
+  ```
+  sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+                        err.message);
+          return;
+      }
+          console.info(Successed to get getGeomagneticDip interface get data: " + data);
+  })
+  ```
+
+## sensor.getGeomagneticDip
+
+getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
+
+根据倾斜矩阵计算地磁倾斜角。
+
+- 参数
+
+  | 参数名            | 类型                | 必填 | 说明           |
+  | ----------------- | ------------------- | ---- | -------------- |
+  | inclinationMatrix | Array&lt;number&gt; | 是   | 表示倾斜矩阵。 |
+
+- 返回值
+
+  | 类型                  | 说明                         |
+  | --------------------- | ---------------------------- |
+  | Promise&lt;number&gt; | 返回地磁倾斜角，单位为弧度。 |
+
+- 示例
+
+  ```
+  const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+      promise.then((data) => {
+          console.info(' getGeomagneticDip_promise successed', data);
+      }).catch((err) => {
+           console.error("Operation failed");
+  })
+  ```
+
+## sensor. getAngleModify
+
+getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;，callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+获取两个旋转矩阵之间的角度变化。
+
+- 参数
+
+  | 参数名                | 类型                                     | 必填 | 说明                              |
+  | --------------------- | ---------------------------------------- | ---- | --------------------------------- |
+  | currentRotationMatrix | Array&lt;number&gt;                      | 是   | 表示当前旋转矩阵。                |
+  | preRotationMatrix     | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                    |
+  | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回z、x、y轴方向的旋转角度变化。 |
+
+- 示例
+
+  ```
+  sensor. getAngleModify([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'Failed to register data, error code is: ' + err.code + ', message: ' + 
+                        err.message);
+          return;
+      }
+      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info(LABEL + "data[" + i + "]: " + data[i]);
+      }
+  })
+  ```
+
+
+## sensor. getAngleModify
+
+getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+获取两个旋转矩阵之间的角度变化。
+
+- 参数
+
+  | 参数名                | 类型                | 必填 | 说明               |
+  | --------------------- | ------------------- | ---- | ------------------ |
+  | currentRotationMatrix | Array&lt;number&gt; | 是   | 表示当前旋转矩阵。 |
+  | preRotationMatrix     | Array&lt;number&gt; | 是   | 表示当前旋转矩阵。 |
+
+- 返回值
+
+  | 类型                               | 说明                              |
+  | ---------------------------------- | --------------------------------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | 返回z、x、y轴方向的旋转角度变化。 |
+
+- 示例
+
+  ```
+  const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
+      promise.then((data) => {
+          console.info(LABEL + 'getAngleModifiy_promise success');
+          for (var i=0; i < data.length; i++) {
+              console.info(LABEL + "data[" + i + "]: " + data[i]);
+          }
+      }).catch((reason) => {
+          console.info(LABEL + "promise::catch", reason);
+  })
+  ```
+
+
+## sensor.createRotationMatrix
+
+createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+将旋转矢量转换为旋转矩阵。
+
+- 参数
+
+  | 参数名         | 类型                                     | 必填 | 说明           |
+  | -------------- | ---------------------------------------- | ---- | -------------- |
+  | rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。 |
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回旋转矩阵。 |
+
+- 示例
+
+  ```
+  sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data) {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+                        err.message);
+          return;
+      }
+      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info(LABEL + "data[" + i + "]: " + data[i]);
+      }
+  })
+  ```
+
+
+## sensor.createRotationMatrix
+
+createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+将旋转矢量转换为旋转矩阵。
+
+- 参数
+
+  | 参数名         | 类型                | 必填 | 说明           |
+  | -------------- | ------------------- | ---- | -------------- |
+  | rotationVector | Array&lt;number&gt; | 是   | 表示旋转矢量。 |
+
+- 返回值
+
+  | 类型                               | 说明           |
+  | ---------------------------------- | -------------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | 返回旋转矩阵。 |
+
+- 示例
+
+  ```
+  const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+      promise.then((data) => {
+          console.info(LABEL + 'createRotationMatrix_promise success');
+          for (var i=0; i < data.length; i++) {
+              console.info(LABEL + "data[" + i + "]: " + data[i]);
+          }
+      }).catch((reason) => {
+          console.info(LABEL + "promise::catch", reason);
+  })	
+  ```
+
+
+## sensor.createQuaternion
+
+createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+将旋转矢量转换为四元数。
+
+- 参数
+
+  | 参数名         | 类型                                     | 必填 | 说明           |
+  | -------------- | ---------------------------------------- | ---- | -------------- |
+  | rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。 |
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回四元数。   |
+
+- 示例
+
+  ```
+  sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+                        err.message);
+          return;
+      }
+      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info(LABEL + "data[" + i + "]: " + data[i]);
+      }
+  })
+  ```
+
+
+## sensor.createQuaternion
+
+createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+将旋转矢量转换为四元数。
+
+- 参数
+
+  | 参数名         | 类型                | 必填 | 说明           |
+  | -------------- | ------------------- | ---- | -------------- |
+  | rotationVector | Array&lt;number&gt; | 是   | 表示旋转矢量。 |
+
+- 返回值
+
+  | 类型                               | 说明         |
+  | ---------------------------------- | ------------ |
+  | Promise&lt;Array&lt;number&gt;&gt; | 返回四元数。 |
+
+- 示例
+
+  ```
+  const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+      promise.then((data) => {
+          console.info('createQuaternion_promise successed');
+          for (var i=0; i < data.length; i++) {
+              console.info(LABEL + "data[" + i + "]: " + data[i]);
+          }
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+  ```
+
+
+## sensor.getDirection
+
+getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+根据旋转矩阵计算设备的方向。
+
+- 参数
+
+  | 参数名         | 类型                                     | 必填 | 说明                              |
+  | -------------- | ---------------------------------------- | ---- | --------------------------------- |
+  | rotationMatrix | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                    |
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回围绕z、x、y轴方向的旋转角度。 |
+
+- 示例
+
+  ```
+  sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
+                        err.message);
+          return;
+      }
+      console.info(LABEL + "SensorJsAPI--->Successed to get getDirection interface get data: " + data.x);
+      for (var i = 1; i < data.length; i++) {
+          console.info(TAG +"sensor_getDirection_callback" + data[i]);
+      }
+  })
+  ```
+
+
+## sensor.getDirection
+
+getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+根据旋转矩阵计算设备的方向。
+
+- 参数
+
+  | 参数名         | 类型                | 必填 | 说明           |
+  | -------------- | ------------------- | ---- | -------------- |
+  | rotationMatrix | Array&lt;number&gt; | 是   | 表示旋转矩阵。 |
+
+- 返回值
+
+  | 类型                               | 说明                              |
+  | ---------------------------------- | --------------------------------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | 返回围绕z、x、y轴方向的旋转角度。 |
+
+- 示例
+
+  ```
+  const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+      promise.then((data) => {
+          console.info(' sensor_getAltitude_Promise success', data.x);
+          for (var i = 1; i < data.length; i++) {
+              console.info(TAG +"sensor_getDirection_promise" + data[i]);
+          }
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+  ```
+
+
+## sensor.createRotationMatrix
+
+createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void
+
+根据重力矢量和地磁矢量计算旋转矩阵。
+
+- 参数
+
+  | 参数名      | 类型                                                         | 必填 | 说明           |
+  | ----------- | ------------------------------------------------------------ | ---- | -------------- |
+  | gravity     | Array&lt;number&gt;                                          | 是   | 表示重力向量。 |
+  | geomagnetic | Array&lt;number&gt;                                          | 是   | 表示地磁矢量。 |
+  | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 返回旋转矩阵。 |
+
+- 示例
+
+  ```
+  sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
+                        err.message);
+          return;
+      }
+      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info(LABEL + "data[" + i + "]: " + data[i])
+      }
+  })
+  ```
+
+
+## sensor.createRotationMatrix
+
+createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
+
+根据重力矢量和地磁矢量计算旋转矩阵。
+
+- 参数
+
+  | 参数名      | 类型                | 必填 | 说明           |
+  | ----------- | ------------------- | ---- | -------------- |
+  | gravity     | Array&lt;number&gt; | 是   | 表示重力向量。 |
+  | geomagnetic | Array&lt;number&gt; | 是   | 表示地磁矢量。 |
+
+- 返回值
+
+  | 类型                                                         | 说明           |
+  | ------------------------------------------------------------ | -------------- |
+  | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 返回旋转矩阵。 |
+
+- 示例
+
+  ```
+  const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
+      promise.then((data) => {
+          console.info(LABEL + 'createRotationMatrix_promise successed');
+          for (var i=0; i < data.length; i++) {
+              console.info(LABEL + "data[" + i + "]: " + data[i]);
+          }
+      }).catch((err) => {
+          console.info(LABEL + 'promise failed');
   })
   ```
 
@@ -1518,6 +2012,25 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
 | interval | number | 表示传感器的上报频率，默认值为200000000ns。 |
+
+## RotationMatrixResponse
+
+设置旋转矩阵响应对象
+
+| 名称        | 参数类型            | 可读 | 可写 | 说明       |
+| ----------- | ------------------- | ---- | ---- | ---------- |
+| rotation    | Array&lt;number&gt; | 是   | 是   | 旋转矩阵。 |
+| inclination | Array&lt;number&gt; | 是   | 是   | 倾斜矩阵。 |
+
+
+## CoordinatesOptions
+
+设置坐标选项对象
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明        |
+| ---- | -------- | ---- | ---- | ----------- |
+| x    | number   | 是   | 是   | x坐标方向。 |
+| y    | number   | 是   | 是   | y坐标方向。 |
 
 
 ## GeomagneticResponse
