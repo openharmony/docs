@@ -67,7 +67,6 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
         	console.log('MyWorkSchedulerExtension onWorkStart' + JSON.stringify(workInfo));
     	}
     	onWorkStop(workInfo) {
-        	console.log('MyWorkSchedulerExtension onWorkStop enter');
         	console.log('MyWorkSchedulerExtension onWorkStop' + JSON.stringify(workInfo));
     	}
 	}
