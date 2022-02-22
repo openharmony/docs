@@ -15,6 +15,7 @@ OpenHarmony内核使用musl libc库，支持标准POSIX接口，开发者可基�
 ## 标准库接口框架
 
 **图1** POSIX接口框架
+
 ![zh-cn_image_0000001172904117](figures/zh-cn_image_0000001172904117.png)
 
 musl libc库支持POSIX标准，涉及的系统调用相关接口由OpenHarmony内核适配支持 ，以满足接口对外描述的功能要求。

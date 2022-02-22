@@ -71,17 +71,17 @@ OpenHarmony LiteOS-M的动态内存管理主要为用户提供以下功能，接
 | 功能分类 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
 | 初始化和删除内存池 | LOS_MemInit | 初始化一块指定的动态内存池，大小为size。 | 
-| LOS_MemDeInit | 删除指定内存池，仅打开LOSCFG_MEM_MUL_POOL时有效。 | 
+| | LOS_MemDeInit | 删除指定内存池，仅打开LOSCFG_MEM_MUL_POOL时有效。 | 
 | 申请、释放动态内存 | LOS_MemAlloc | 从指定动态内存池中申请size长度的内存。 | 
-| LOS_MemFree | 释放从指定动态内存中申请的内存。 | 
-| LOS_MemRealloc | 按size大小重新分配内存块，并将原内存块内容拷贝到新内存块。如果新内存块申请成功，则释放原内存块。 | 
-| LOS_MemAllocAlign | 从指定动态内存池中申请长度为size且地址按boundary字节对齐的内存。 | 
+| | LOS_MemFree | 释放从指定动态内存中申请的内存。 | 
+| | LOS_MemRealloc | 按size大小重新分配内存块，并将原内存块内容拷贝到新内存块。如果新内存块申请成功，则释放原内存块。 | 
+| | LOS_MemAllocAlign | 从指定动态内存池中申请长度为size且地址按boundary字节对齐的内存。 | 
 | 获取内存池信息 | LOS_MemPoolSizeGet | 获取指定动态内存池的总大小。 | 
-| LOS_MemTotalUsedGet | 获取指定动态内存池的总使用量大小。 | 
-| LOS_MemInfoGet | 获取指定内存池的内存结构信息，包括空闲内存大小、已使用内存大小、空闲内存块数量、已使用的内存块数量、最大的空闲内存块大小。 | 
-| LOS_MemPoolList | 打印系统中已初始化的所有内存池，包括内存池的起始地址、内存池大小、空闲内存总大小、已使用内存总大小、最大的空闲内存块大小、空闲内存块数量、已使用的内存块数量。仅打开LOSCFG_MEM_MUL_POOL时有效。 | 
+| | LOS_MemTotalUsedGet | 获取指定动态内存池的总使用量大小。 | 
+| | LOS_MemInfoGet | 获取指定内存池的内存结构信息，包括空闲内存大小、已使用内存大小、空闲内存块数量、已使用的内存块数量、最大的空闲内存块大小。 | 
+| | LOS_MemPoolList | 打印系统中已初始化的所有内存池，包括内存池的起始地址、内存池大小、空闲内存总大小、已使用内存总大小、最大的空闲内存块大小、空闲内存块数量、已使用的内存块数量。仅打开LOSCFG_MEM_MUL_POOL时有效。 | 
 | 获取内存块信息 | LOS_MemFreeNodeShow | 打印指定内存池的空闲内存块的大小及数量。 | 
-| LOS_MemUsedNodeShow | 打印指定内存池的已使用内存块的大小及数量。 | 
+| | LOS_MemUsedNodeShow | 打印指定内存池的已使用内存块的大小及数量。 | 
 | 检查指定内存池的完整性 | LOS_MemIntegrityCheck | 对指定内存池做完整性检查，仅打开LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK时有效。 | 
 | 增加非连续性内存区域 | LOS_MemRegionsAdd | 支持多段非连续性内存区域，把非连续性内存区域逻辑上整合为一个统一的内存池。仅打开LOSCFG_MEM_MUL_REGIONS时有效。如果内存池指针参数pool为空，则使用多段内存的第一个初始化为内存池，其他内存区域，作为空闲节点插入；如果内存池指针参数pool不为空，则把多段内存作为空闲节点，插入到指定的内存池。 | 
 

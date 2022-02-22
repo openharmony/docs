@@ -38,14 +38,14 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 | 功能分类 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
 | 启停控制 | LOS_TraceStart | 启动Trace | 
-| LOS_TraceStop | 停止Trace | 
+| | LOS_TraceStop | 停止Trace | 
 | 操作Trace记录的数据 | LOS_TraceRecordDump | 输出Trace缓冲区数据 | 
-| LOS_TraceRecordGet | 获取Trace缓冲区的首地址 | 
-| LOS_TraceReset | 清除Trace缓冲区中的事件 | 
+| | LOS_TraceRecordGet | 获取Trace缓冲区的首地址 | 
+| | LOS_TraceReset | 清除Trace缓冲区中的事件 | 
 | 过滤Trace记录的数据 | LOS_TraceEventMaskSet | 设置事件掩码，仅记录某些模块的事件 | 
 | 屏蔽某些中断号事件 | LOS_TraceHwiFilterHookReg | 注册过滤特定中断号事件的钩子函数 | 
 | 插桩函数 | LOS_TRACE_EASY | 简易插桩 | 
-| LOS_TRACE | 标准插桩 | 
+| | LOS_TRACE | 标准插桩 | 
 
 - 当用户需要针对自定义事件进行追踪时，可按规则在目标源代码中进行插桩，系统提供如下2种插桩接口：
   - LOS_TRACE_EASY(TYPE, IDENTITY, params...) 简易插桩。
