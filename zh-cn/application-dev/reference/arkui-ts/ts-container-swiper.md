@@ -39,8 +39,9 @@ Swiper(value:{controller?: SwiperController})
 | duration | number | 400 | 子组件切换的动画时长，单位为毫秒。 | 
 | vertical | boolean | false | 是否为纵向滑动。 | 
 | itemSpace | Length | 0 | 设置子组件与子组件之间间隙。 |
-| $cachedCount^{8+}$ | number | 1 | 设置预加载子组件个数。 | 
-| $disableSwipe^{8+}$ | boolean | false | 禁用组件滑动切换功能。 |
+| cachedCount<sup>8+</sup> | number | 1 | 设置预加载子组件个数。 | 
+| disableSwipe<sup>8+</sup> | boolean | false | 禁用组件滑动切换功能。 |
+| curve<sup>8+</sup> | [Curve](ts-animatorproperty.md#Curve枚举说明) \| Curves | Curve.Ease | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-animatorproperty.md#Curve枚举说明)，也可以通过插值计算模块提供的接口创建自定义的Curves([插值曲线对象](ts-interpolation-calculation.md))。 |
 
 
 ### SwiperController
@@ -49,8 +50,8 @@ Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，然�
 
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
-| showNext():void; | 翻至下一页。 | 
-| showPrevious():void; | 翻至上一页。 | 
+| showNext():void | 翻至下一页。 | 
+| showPrevious():void | 翻至上一页。 | 
 
 
 ## 事件
@@ -117,6 +118,7 @@ struct SwiperExample {
       .duration(1000)
       .vertical(false) // 默认横向切换
       .itemSpace(0)
+      .curve(Curve.Linear) // 动画曲线
       .onChange((index: number) => {
         console.info(index.toString())
       })
