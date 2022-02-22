@@ -22,8 +22,8 @@ SystemCapability.PowerManager.ThermalManager
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
-| COOL | 0 | 表明设备处于凉爽的状态，业务执行不受限制。 |
-| NORMAL | 1 | 表明设备处于普通工作状态，但并不凉爽，需要注意临近发热状态。 |
+| COOL | 0 | 表明设备处于低温的状态，业务执行不受热控的限制。 |
+| NORMAL | 1 | 表明设备处于正常工作状态，但温度不低，需要注意是否临近发热状态。 |
 | WARM | 2 | 表明设备已经进入温热状态，部分无感知业务需要考虑停止或延迟执行。 |
 | HOT | 3 | 表明设备已经明显发热，无感知业务应全面停止，其他业务应考虑降规格及负载。 |
 | OVERHEATED | 4 | 表明设备已经发热严重，无感知业务应全面停止，主要业务需降低规格及负载。 |
@@ -31,7 +31,7 @@ SystemCapability.PowerManager.ThermalManager
 | EMERGENCY | 6 | 表明设备已经进入紧急状态，所有业务应当全面停止工作，可保留部分紧急求助功能。 |
 
 
-## subscribeThermalLevel
+## thermal.subscribeThermalLevel
 
 subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
@@ -51,7 +51,7 @@ thermal.subscribeThermalLevel((lev) => {
 })
 ```
 
-## unsubscribeThermalLevel
+## thermal.unsubscribeThermalLevel
 
 unsubscribeThermalLevel(callback?: AsyncCallback<void>): void
 
@@ -61,19 +61,21 @@ unsubscribeThermalLevel(callback?: AsyncCallback<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 指定的callback回调方法，无返回值。 |
+| callback | AsyncCallback&lt;void&gt; | 可选 | 指定的callback回调方法，无返回值。 |
 
 **示例：**
 
 ```
-thermal.unsubscribeThermalLevel();
+thermal.unsubscribeThermalLevel(() => {
+    console.info("Unsubscribe completed.");
+});
 ```
 
-## unsubscribeThermalLevel
+## thermal.getThermalLevel
 
 getThermalLevel(): ThermalLevel
 
-订阅热档位变化时的回调提醒。
+获取当前热档位信息。
 
 **返回值：**
 
