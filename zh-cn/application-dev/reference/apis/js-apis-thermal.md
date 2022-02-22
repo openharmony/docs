@@ -32,7 +32,7 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
 订阅热档位变化时的回调提醒。
 
-## 系统能力：
+**系统能力：**
 
 SystemCapability.PowerManager.ThermalManager
 
@@ -54,9 +54,9 @@ thermal.subscribeThermalLevel((lev) => {
 
 unsubscribeThermalLevel(callback?: AsyncCallback<void>): void
 
-订阅热档位变化时的回调提醒。
+取消订阅热档位变化时的回调提醒。
 
-## 系统能力：
+**系统能力：**
 
 SystemCapability.PowerManager.ThermalManager
 
@@ -80,7 +80,7 @@ getThermalLevel(): ThermalLevel
 
 获取当前热档位信息。
 
-## 系统能力：
+**系统能力：**
 
 SystemCapability.PowerManager.ThermalManager
 
