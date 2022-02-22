@@ -103,10 +103,10 @@ getWorkStatus(workId: number, callback : AsyncCallback<WorkInfo>): void
   ```
     workScheduler.getWorkStatus(50, (err, res) => {
       if (err) {
-        console.info('workschedulerLog getWorkStatus callback failed, because:' + err.data);
+        console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
       } else {
         for (let item in res) {
-          console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
+          console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
         }
       }
     });
@@ -135,11 +135,10 @@ getWorkStatus(workID: number): Promise<WorkInfo>
   ```
     workScheduler.getWorkStatus(50).then((res) => {
       for (let item in res) {
-        console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
+        console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
       }
     }).catch((err) => {
-      console.info('workschedulerLog getWorkStatus promise failed, err');
-      console.info('workschedulerLog getWorkStatus promise failed, because:' + err.data);
+      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
     })
   ```
 
@@ -167,10 +166,9 @@ obtainAllWorks(callback : AsyncCallback<void>): Array<WorkInfo>
   ```
     workScheduler.obtainAllWorks((err, res) =>{
       if (err) {
-        console.info('workschedulerLog getWorkStatus promise failed, err');
-        console.info('workschedulerLog getWorkStatus promise failed, because:' + err.data);
+        console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
       } else {
-        console.info('workschedulerLog obtainAllWorks callback success, data is:' + JSON.stringify(res));
+        console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
       }
     });
   ```
@@ -191,9 +189,9 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
 
   ```
     workScheduler.obtainAllWorks().then((res) => {
-      console.info('workschedulerLog obtainAllWorks promise success, data is:' + JSON.stringify(res));
+      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
     }).catch((err) => {
-      console.info('workschedulerLog obtainAllWorks promise failed, because:' + err.data);
+      console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
     })
   ```
 
@@ -234,9 +232,9 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback<void>): boolean
   ```
     workScheduler.isLastWorkTimeOut(500, (err, res) =>{
       if (err) {
-        console.info('workschedulerLog isLastWorkTimeOut callback failed, because:' + err.data);
+        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
       } else {
-        console.info('workschedulerLog isLastWorkTimeOut callback success, data is:' + res);
+        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
       }
     });
   ```
@@ -264,10 +262,10 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
   ```
     workScheduler.isLastWorkTimeOut(500)
       .then(res => {
-        console.info('workschedulerLog isLastWorkTimeOut promise success, data is:' + res);
+        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
       })
       .catch(err =>  {
-        console.info('workschedulerLog isLastWorkTimeOut promise failed, because:' + err.data);
+        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
       });
   	})
   ```

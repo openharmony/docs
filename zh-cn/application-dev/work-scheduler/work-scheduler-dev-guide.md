@@ -112,13 +112,11 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
 **获取指定延迟任务**
 
-
-
-	import workScheduler from '@ohos.workScheduler';
+1.Callback写法
 
     workScheduler.getWorkStatus(50, (err, res) => {
       if (err) {
-        console.info('workschedulerLog getWorkStatus callback failed, because:' + err.data);
+        console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
       } else {
         for (let item in res) {
           console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
@@ -126,31 +124,36 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
       }
     });
 
+
+2.Promise写法
+
     workScheduler.getWorkStatus(50).then((res) => {
       for (let item in res) {
-        console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
+        console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
       }
     }).catch((err) => {
-      console.info('workschedulerLog getWorkStatus promise failed, err');
-      console.info('workschedulerLog getWorkStatus promise failed, because:' + err.data);
+      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
     })
 
 
 **获取所有延迟任务**
 
+1.Callback写法
+
     workScheduler.obtainAllWorks((err, res) =>{
       if (err) {
-        console.info('workschedulerLog getWorkStatus promise failed, err');
-        console.info('workschedulerLog getWorkStatus promise failed, because:' + err.data);
+        console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
       } else {
-        console.info('workschedulerLog obtainAllWorks callback success, data is:' + JSON.stringify(res));
+        console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
       }
     });
 
+2.Promise写法
+
     workScheduler.obtainAllWorks().then((res) => {
-      console.info('workschedulerLog obtainAllWorks promise success, data is:' + JSON.stringify(res));
+      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
     }).catch((err) => {
-      console.info('workschedulerLog obtainAllWorks promise failed, because:' + err.data);
+      console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
     })
 
 **停止并清除任务**
@@ -160,19 +163,23 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
 **判断上次执行是否超时**
 
+1.Callback写法
+
     workScheduler.isLastWorkTimeOut(500, (err, res) =>{
       if (err) {
-        console.info('workschedulerLog isLastWorkTimeOut callback failed, because:' + err.data);
+        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
       } else {
-        console.info('workschedulerLog isLastWorkTimeOut callback success, data is:' + res);
+        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
       }
     });
 
+2.Promise写法
+
     workScheduler.isLastWorkTimeOut(500)
       .then(res => {
-        console.info('workschedulerLog isLastWorkTimeOut promise success, data is:' + res);
+        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
       })
       .catch(err =>  {
-        console.info('workschedulerLog isLastWorkTimeOut promise failed, because:' + err.data);
+        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
       });
   	})
