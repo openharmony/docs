@@ -2,12 +2,12 @@
 
 ## 基本概念
 
-OpenHarmony USB服务是应用访问底层的一种设备抽象概念。开发者根据提供的USB API，可以获取设备列表、控制设备访问权限、以及与连接的设备进行数据传输、控制命令传输等。
+USB服务是应用访问底层的一种设备抽象概念。开发者根据提供的USB API，可以获取设备列表、控制设备访问权限、以及与连接的设备进行数据传输、控制命令传输等。
 
 
 ## 运作机制
 
-OpenHarmony USB服务系统包含USB API、USB Service、USB HAL。
+USB服务系统包含USB API、USB Service、USB HAL。
 
 **图2** USB服务运作机制
 

@@ -2,7 +2,7 @@
 
 ## 任务说明
 
-本文档适用于OpenHarmony应用开发的初学者。通过构建一个简单的具有页面跳转功能的应用（如下图[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行效果所示），熟悉OpenHarmony应用开发流程。
+本文档适用于应用开发的初学者。通过构建一个简单的具有页面跳转功能的应用（如下图[预览器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252)运行效果所示），熟悉应用开发流程。
 
 为确保运行效果，本文以使用**DevEco Studio 3.0 Beta2**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
 
