@@ -36,6 +36,7 @@
     - [应用空间统计](js-apis-storage-statistics.md)
     - [卷管理](js-apis-volumemanager.md)
 - 账号管理
+    - [系统帐号管理](js-apis-osAccount.md)
     - [分布式帐号管理](js-apis-distributed-account.md)
     - [应用帐号管理](js-apis-appAccount.md)
 - 电话服务
