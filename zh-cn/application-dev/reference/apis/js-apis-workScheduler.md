@@ -10,13 +10,14 @@
 import workScheduler from '@ohos.workScheduler' 
 ```
 
-## 系统能力
+## workScheduler.startWork
+- **系统能力**：
 SystemCapability.ResourceSchedule.WorkScheduler
 
-## workScheduler.startWork
-
+- **接口**：
 workScheduler.startWork(work: WorkInfo): boolean
 
+- **说明**：
 通知WorkSchedulerService将工作添加到执行队列。
 
 - **参数**：
@@ -48,11 +49,14 @@ workScheduler.startWork(work: WorkInfo): boolean
   ```
 
 ## workScheduler.stopWork
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
+- **接口**：
 stopWork(work: WorkInfo, needCancel?: boolean): boolean
 
+- **说明**：
 通知WorkSchedulerService停止指定工作。
-
 
 - **参数**：
 
@@ -84,11 +88,14 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
   ```
 
 ## workScheduler.getWorkStatus
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
+- **接口**：
 getWorkStatus(workId: number, callback : AsyncCallback<WorkInfo>): void
 
-获取工作的最新状态，使用callback形式返回。
-
+- **说明**：
+获取工作的最新状态，使用Callback形式返回。
 
 - **参数**：
 
@@ -113,9 +120,13 @@ getWorkStatus(workId: number, callback : AsyncCallback<WorkInfo>): void
   ```
 
 ## workScheduler.getWorkStatus
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
+- **接口**：
 getWorkStatus(workID: number): Promise<WorkInfo>
 
+- **说明**：
 获取工作的最新状态，使用Promise形式返回。
 
 - **参数**：
@@ -143,10 +154,14 @@ getWorkStatus(workID: number): Promise<WorkInfo>
   ```
 
 ## workScheduler.obtainAllWorks
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
+- **接口**：
 obtainAllWorks(callback : AsyncCallback<void>): Array<WorkInfo>
 
-获取与当前应用程序关联的所有工作，使用callback形式返回。
+- **说明**：
+获取与当前应用程序关联的所有工作，使用Callback形式返回。
 
 - **参数**：
 
@@ -174,9 +189,13 @@ obtainAllWorks(callback : AsyncCallback<void>): Array<WorkInfo>
   ```
 
 ## workScheduler.obtainAllWorks
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
+- **接口**：
 obtainAllWorks(): Promise<Array<WorkInfo>>
 
+- **说明**：
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
 
 - **返回值**：
@@ -196,9 +215,13 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
   ```
 
 ## workScheduler.stopAndClearWorks
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
+- **接口**：
 stopAndClearWorks(): boolean
 
+- **说明**：
 停止和取消与当前应用程序关联的所有工作。
 
 - **示例**：
@@ -209,10 +232,14 @@ stopAndClearWorks(): boolean
   ```
 
 ## workScheduler.isLastWorkTimeOut
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
+- **接口**：
 isLastWorkTimeOut(workId: number, callback : AsyncCallback<void>): boolean
 
-检查指定工作的最后一次执行是否为超时操作，使用callback形式返回。
+- **说明**：
+检查指定工作的最后一次执行是否为超时操作，使用Callback形式返回。
 
 - **参数**：
 
@@ -240,9 +267,13 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback<void>): boolean
   ```
 
 ## workScheduler.isLastWorkTimeOut
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
-obtainAllWorks(): Promise<Array<WorkInfo>>
+- **接口**：
+isLastWorkTimeOut(workId: number): Promise<boolean>
 
+- **说明**：
 检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
 
 - **参数**：
@@ -271,6 +302,9 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
   ```
 
 ## workScheduler.WorkInfo
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
+
 提供工作的具体信息。
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -289,6 +323,9 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
   |repeatCount    |number|否|循环次数|
 
 ## workScheduler.NetworkType
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
+
 触发工作的网络类型。
 
   |名称    |默认值    |说明|
@@ -301,6 +338,9 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
   |NETWORK_TYPE_ETHERNET    |5    |表示这个触发条件是有线网络连接。|
 
 ## workScheduler.ChargingType
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
+
 触发工作的充电类型。
 
   |名称    |默认值    |说明|
@@ -311,6 +351,9 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
   |CHARGING_PLUGGED_WIRELESS    |3|    表示这个触发条件是无线充电器连接。|
 
 ## workScheduler.BatteryStatus
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
+
 触发工作的电池状态。
 
   |名称    |默认值    |说明|
@@ -320,6 +363,9 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
   |BATTERY_STATUS_LOW_OR_OKAY    |2    |表示这个触发条件是从低电恢复到正常电量或者低电告警。|
 
 ## workScheduler.StorageRequest
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
+
 触发工作的存储状态。
 
   |名称    |默认值    |说明|

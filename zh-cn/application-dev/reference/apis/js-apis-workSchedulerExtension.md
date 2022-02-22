@@ -10,13 +10,14 @@
 import workSchedulerExtension from '@ohos.WorkSchedulerExtension'
 ```
 
-## 系统能力
+## WorkSchedulerExtension.onWorkStart
+- **系统能力**：
 SystemCapability.ResourceSchedule.WorkScheduler
 
-## WorkSchedulerExtension.onWorkStart
-
+- **接口**：
 onWorkStart(workInfo: WorkInfo);
 
+- **说明**：
 延迟任务调度开始回调。
 
 - **示例**：
@@ -30,9 +31,13 @@ onWorkStart(workInfo: WorkInfo);
   ```
 
 ## WorkSchedulerExtension.onWorkStop
+- **系统能力**：
+SystemCapability.ResourceSchedule.WorkScheduler
 
+- **接口**：
 onWorkStop(workInfo: WorkInfo);
 
+- **说明**：
 延迟任务调度结束回调。
 
 - **示例**：

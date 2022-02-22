@@ -6,17 +6,17 @@
 
 
 ## 接口说明
-注册等相关接口：
+注册相关接口包导入：
 ```js
 import workScheduler from '@ohos.workScheduler';
 ```
 
-回调接口：
+回调相关接口包导入：
 ```js
 import WorkSchedulerExtension from '@ohos.WorkSchedulerExtension';
 ```
 
-## 延迟任务调度
+### 延迟任务调度
 
 **表1** workScheduler主要接口
 
@@ -56,7 +56,7 @@ repeatCount    |循环次数| number
 function onWorkStart(work: WorkInfo): void; | 延迟调度任务开始回调
 function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
-## 开发步骤
+### 开发步骤
 
 **开发对应的Extension**
 
