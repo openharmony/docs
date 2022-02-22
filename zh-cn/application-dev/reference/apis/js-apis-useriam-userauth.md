@@ -338,10 +338,10 @@ off(type: "tip", callback?: Callback&lt;Tip&gt;) : void;
 | FACE_AUTH_TIP_TOO_DARK | 2 | 光线太暗，获取的图像太暗。 |
 | FACE_AUTH_TIP_TOO_CLOSE | 3 | 人脸距离设备过近。 |
 | FACE_AUTH_TIP_TOO_FAR | 4 | 人脸距离设备过远。 |
-| FACE_AUTH_TIP_TOO_HIGH | 5 | 设备太高，仅获取到的人脸上部。 |
-| FACE_AUTH_TIP_TOO_LOW | 6 | 设备太低，仅获取到的人脸下部。 |
-| FACE_AUTH_TIP_TOO_RIGHT | 7 | 设备太靠右，仅获取到的人脸右部。 |
-| FACE_AUTH_TIP_TOO_LEFT | 8 | 设备太靠左，仅获取到的人脸左部。 |
+| FACE_AUTH_TIP_TOO_HIGH | 5 | 设备太高，仅获取到人脸上部。 |
+| FACE_AUTH_TIP_TOO_LOW | 6 | 设备太低，仅获取到人脸下部。 |
+| FACE_AUTH_TIP_TOO_RIGHT | 7 | 设备太靠右，仅获取到人脸右部。 |
+| FACE_AUTH_TIP_TOO_LEFT | 8 | 设备太靠左，仅获取到人脸左部。 |
 | FACE_AUTH_TIP_TOO_MUCH_MOTION | 9 | 在图像采集过程中，用户人脸移动太快。 |
 | FACE_AUTH_TIP_POOR_GAZE | 10 | 没有正视摄像头。 |
 | FACE_AUTH_TIP_NOT_DETECTED | 11 | 没有检测到人脸信息。 |
