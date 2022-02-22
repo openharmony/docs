@@ -179,7 +179,7 @@ This development guide is applicable to Standard-System Devices \(reference memo
 2.  Configure compilation information. Specifically, add the subsystem SDK dependency to  **BUILD.gn**.
 
     ```
-    external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
+    external_deps = [ "hilog_native:libhilog" ]
     ```
 
 
