@@ -3,113 +3,235 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```
 import window from '@ohos.window';
 ```
 
+## WindowType<sup>7+</sup><a name="windowtype"></a>
 
-## 系统能力
-SystemCapability.WindowManager.WindowManager.Core
+窗口类型。
 
+| 名称              | 默认值 | 说明                                                         |
+| ----------------- | ------ | ------------------------------------------------------------ |
+| TYPE_APP          | 0      | 表示应用子窗口。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
+## AvoidAreaType<sup>7+</sup><a name="avoidareatype"></a>
 
-## 权限列表
+窗口内容需要规避区域的类型。
 
-ohos.permission.SYSTEM_FLOAT_WINDOW
+| 名称        | 默认值 | 说明                                                         |
+| ----------- | ------ | ------------------------------------------------------------ |
+| TYPE_SYSTEM | 0      | 表示系统默认区域。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_CUTOUT | 1      | 表示刘海屏区域。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
+## WindowMode<sup>7+</sup><a name="windowmode"></a>
 
-## SystemBarProperties
+窗口模式。
+
+| 名称       | 默认值 | 说明                                                         |
+| ---------- | ------ | ------------------------------------------------------------ |
+| UNDEFINED  | 1      | 表示APP未定义窗口模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| FULLSCREEN | 2      | 表示APP全屏模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| PRIMARY    | 3      | 表示APP分屏多窗口主要模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| SECONDARY  | 4      | 表示APP分屏多窗口次要模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| FLOATING   | 5      | 表示APP自由悬浮形式窗口模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+
+## SystemBarProperties<a name="systembarproperties"></a>
 
 状态栏导航栏的属性。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| statusBarColor | string | 是 | 是 | 状态栏颜色，为16进制颜色，例如"\#00FF00"或"\#FF00FF00"。 |
-| isStatusBarLightIcon<sup>7+</sup> | boolean | 是 | 是 | 状态栏图标是否为高亮状态。 |
-| navigationBarColor | string | 是 | 是 | 导航栏颜色，为16进制颜色，例如"\#00FF00"或"\#FF00FF00"。 |
-| isNavigationBarLightIcon<sup>7+</sup> | boolean | 是 | 是 | 导航栏图标是否为高亮状态。 |
+| 名称                                   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
+| statusBarColor                         | string   | 是   | 是   | 状态栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 状态栏图标是否为高亮状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 状态栏文字颜色。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| navigationBarColor                     | string   | 是   | 是   | 导航栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
+## SystemBarRegionTint <sup>8+</sup><a name="systembartegiontint"></a>
+
+单个导航栏或状态栏回调信息。
+
+| 名称                                   | 参数类型                 | 可读 | 可写 | 说明                                                         |
+| -------------------------------------- | ------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| type                                   | [WindowType](#windowtype) | 是   | 是  | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| isEnable | boolean                  | 是   | 是  | 当前系统栏是否显示。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| region | [Rect](#rect)       | 是   | 是  | 当前系统栏的位置及大小。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| backgroundColor      | string                   | 是   | 是  | 系统栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| contentColor | string                   | 是   | 是  | 系统栏文字颜色。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+
+## SystemBarTintState <sup>8+</sup><a name="systembartintstate"></a>
+
+当前系统栏回调信息集合。
+
+| 名称       | 参数类型                                           | 可读 | 可写 | 说明                                                         |
+| ---------- | -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| displayId  | number                                             | 是   | 否   | 当前物理屏幕id。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| regionTint | Array<[SystemBarRegionTint](#systembartegiontint)> | 是   | 是   | 当前改变所有的系统栏信息。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
 ## Rect<sup>7+</sup><a name="rect"></a>
 
 矩形。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| left | number | 是 | 是 | 矩形区域的左边界。 |
-| top | number | 是 | 是 | 矩形区域的上边界。 |
-| width | number | 是 | 是 | 矩形区域的宽度。 |
-| height | number | 是 | 是 | 矩形区域的高度。 |
-
+| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| left   | number   | 是   | 是   | 矩形区域的左边界。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| top    | number   | 是   | 是   | 矩形区域的上边界。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| width  | number   | 是   | 是   | 矩形区域的宽度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| height | number   | 是   | 是   | 矩形区域的高度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
 ## AvoidArea<sup>7+</sup><a name="avoidarea"></a>
 
 表示窗口内容规避区域。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| leftRect | [Rect](#rect) | 是 | 是 | 屏幕左侧的矩形区。 |
-| topRect | [Rect](#rect) | 是 | 是 | 屏幕顶部的矩形区。 |
-| rightRect | [Rect](#rect) | 是 | 是 | 屏幕右侧的矩形区。 |
-| bottomRect | [Rect](#rect) | 是 | 是 | 屏幕底部的矩形区。 |
-
+| 名称       | 参数类型      | 可读 | 可写 | 说明                                                         |
+| ---------- | ------------- | ---- | ---- | ------------------------------------------------------------ |
+| leftRect   | [Rect](#rect) | 是   | 是   | 屏幕左侧的矩形区。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| topRect    | [Rect](#rect) | 是   | 是   | 屏幕顶部的矩形区。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| rightRect  | [Rect](#rect) | 是   | 是   | 屏幕右侧的矩形区。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| bottomRect | [Rect](#rect) | 是   | 是   | 屏幕底部的矩形区。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
 ## Size<sup>7+</sup><a name="size"></a>
 
 窗口大小。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| width | number | 是 | 是 | 窗口宽度。 |
-| height | number | 是 | 是 | 窗口高度。 |
+| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| width  | number   | 是   | 是   | 窗口宽度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| height | number   | 是   | 是   | 窗口高度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
-
-## WindowProperties
+## WindowProperties<a name="windowproperties"></a>
 
 窗口属性。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| windowRect<sup>7+</sup> | [Rect](#rect) | 是 | 否 | 窗口尺寸。 |
-| type<sup>7+</sup> | [WindowType](#windowtype) | 是 | 否 | 窗口类型。 |
-| brightness | number | 是 | 是 | 屏幕亮度，取值范围为0~1，1表示最大亮度值。 |
-| isTransparent<sup>7+</sup> | boolean | 是 | 是 | 窗口是否透明，默认为false。 |
-| isFullScreen | boolean | 是 | 是 | 是否全屏，默认为false。 |
-| isKeepScreenOn | boolean | 是 | 是 | 屏幕是否常亮，默认为false。 |
-| dimBehindValue<sup>7+</sup> | number | 是 | 是 | 靠后的窗口的暗度值，取值范围为0~1，1表示最暗。 |
-| isLayoutFullScreen<sup>7+</sup> | boolean | 是 | 是 | 窗口是否为沉浸式，默认为false。 |
-| focusable<sup>7+</sup> | boolean | 是 | 是 | 窗口是否可聚焦，默认为true。 |
-| touchable<sup>7+</sup> | boolean | 是 | 是 | 窗口是否可触摸，默认为true。 |
-| isPrivacyMode<sup>7+</sup> | boolean | 是 | 是 | 隐私模式，默认为false。 |
-| isRoundCorner<sup>7+</sup> | boolean | 是 | 是 | 窗口是否为圆角。 |
+| 名称                            | 参数类型                  | 可读 | 可写 | 说明                                                         |
+| ------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| windowRect<sup>7+</sup>         | [Rect](#rect)             | 是   | 是   | 窗口尺寸。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| type<sup>7+</sup>               | [WindowType](#windowtype) | 是   | 是   | 窗口类型。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| isFullScreen                    | boolean                   | 是   | 是   | 是否全屏，默认为false。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| isLayoutFullScreen<sup>7+</sup> | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| focusable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| touchable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
+## ColorSpace<sup>8+</sup><a name="colorspace"></a>
 
-## SplitScreenBoundsInfo<sup>7+</sup><a name="splitscreenboundsinfo"></a>
+色域模式。
 
-分屏边界相关信息。
+| 名称       | 默认值 | 说明                                                         |
+| ---------- | ------ | ------------------------------------------------------------ |
+| DEFAULT    | 0      | 默认色域模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| WIDE_GAMUT | 1      | 广色域模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
-| 名称 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| [splitMode](#splitmode) | number | 表示分屏模式。 |
-| primaryBounds | [Rect](#rect) | 表示主要边界信息，返回Rect类实例。 |
-| secondaryBounds | [Rect](#rect) | 表示次要边界信息，返回Rect类实例。 |
+## window.create<sup>7</sup><a name="window-create"></a>
 
+create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
+
+创建子窗口。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                   | 必填 | 说明                       |
+  | -------- | -------------------------------------- | ---- | -------------------------- |
+  | id       | string                                 | 是   | 窗口id。                   |
+  | type     | [WindowType](#windowtype)              | 是   | 窗口类型。                 |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回创建的子窗口对象。 |
+
+- 示例
+
+```
+ window.create("first", 1, (err, data) => {
+    windowClass = data;
+    if (err) {
+        console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('SubWindow created. Data: ' + JSON.stringify(data))
+    windowClass.resetSize(500, 1000);
+})
+```
+
+## window.create<sup>8+</sup><a name="window-create"></a>
+
+create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
+
+当Context为[ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md)时，创建系统窗口。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                                         | 必填 | 说明                                                  |
+  | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+  | ctx      | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | 是   | 当前应用上下文信息, 为ServiceExtensionContext的基类。 |
+  | id       | string                                                       | 是   | 窗口id。                                              |
+  | type     | [WindowType](#windowtype)                                    | 是   | 窗口类型。                                            |
+  | callback | AsyncCallback&lt;[Window](#window)&gt;                       | 是   | 回调返回当前窗口对象。                                |
+
+- 示例
+
+```
+ #this.context为
+ window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
+    windowClass = data;
+    if (err) {
+        console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Window created. Data: ' + JSON.stringify(data))
+    windowClass.resetSize(500, 1000);
+})
+```
+
+## window.find<sup>7+</sup><a name="window-find"></a>
+
+find(id: string, callback: AsyncCallback&lt;Window&gt;): void
+
+查找id所对应的窗口。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                   | 必填 | 说明                         |
+  | -------- | -------------------------------------- | ---- | ---------------------------- |
+  | id       | string                                 | 是   | 窗口id。                     |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前查找的窗口对象。 |
+
+- 示例
+
+  ```
+   window.find("first", (err, data) => {
+     if (err) {
+         console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+         return;
+     }
+    console.info('window found. Data: ' + JSON.stringify(data))
+    windowClass = data;
+  })
+  ```
 
 ## window.getTopWindow<a name="window-gettopwindow"></a>
 
 getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前窗口，用于获取到window实例。
+获取当前应用内最后显示的窗口。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调返回当前窗口对象。 |
+
+  | 参数名   | 类型                                   | 必填 | 说明                                   |
+  | -------- | -------------------------------------- | ---- | -------------------------------------- |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前应用内最后显示的窗口对象。 |
 
 - 示例
+
   ```
   window.getTopWindow((err, data) => {
       if (err) {
@@ -121,329 +243,216 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
   });
   ```
 
+## window.getTopWindow<sup>8+</sup><a name="window-gettopwindow"></a>
 
-## window.create<sup>7+</sup>
+getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
-create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
+获取当前应用内最后显示的窗口。
 
-创建子窗口。
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 窗口id。 |
-  | type | [WindowType](#windowtype) | 是 | 窗口类型。 |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调返回当前窗口对象。 |
+
+  | 参数名   | 类型                                                         | 必填 | 说明                                   |
+  | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+  | ctx      | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | 是   | 当前应用上下文信息。                   |
+  | callback | AsyncCallback&lt;[Window](#window)&gt;                       | 是   | 回调返回当前应用内最后显示的窗口对象。 |
 
 - 示例
 
-
-```
- window.create("first", 1, (err, data) => {
-    windowClass = data;
-    if (err) {
-        console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('SubWindow created. Data: ' + JSON.stringify(data))
-    windowClass.resetSize(500, 1000);
-    windowClass.setOutsideTouchable(true);
-    windowClass.loadContent("pages/index/index", (err, data) => {
-   });
-})
-```
-
-
-## window.find<sup>7+</sup>
-
-find(id: string, callback: AsyncCallback&lt;Window&gt;): void
-
-查找子窗口。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 窗口id。 |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调返回当前窗口对象。 |
-
-- 示例
   ```
-   window.find("first", (err, data) => {
-     if (err) {
-         console.error('Failed to find the subWindow. Cause: ' + JSON.stringify(err));
-         return;
-     }
-    console.info('SubWindow found. Data: ' + JSON.stringify(data))
-    windowClass = data;
-  })
-  ```
-
-
-## window.getAbilityWindowMode<sup>7+</sup>
-
-getAbilityWindowMode(callback: AsyncCallback&lt;WindowMode&gt;): void
-
-获取当前窗口模式。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WindowMode](#windowmode)&gt; | 是 | 回调返回当前窗口模式。 |
-
-- 示例
-  ```
-  window.getAbilityWindowMode((err, data) => {
+  window.getTopWindow(this.context, (err, data) => {
       if (err) {
-          console.error('Failed to obtain the window mode. Cause:' + JSON.stringify(err));
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Window mode obtained. Data:' + JSON.stringify(data))
-  
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      windowClass = data;
   });
   ```
 
+## on('systemBarTintChange')<sup>8+</sup>
 
-## window.getSplitScreenBounds<sup>7+</sup>
+on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): void
 
-getSplitScreenBounds(splitRatio: SplitRatio, callback: AsyncCallback&lt;SplitScreenBoundsInfo&gt;): void
+注册状态栏、导航栏的监听函数。
 
-获取分屏多窗口的位置和区域.。
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | splitRatio | SplitRatio | 是 | 表示分屏比例，默认值为1:1，传值1表示1:2，传值2为2:1。 |
-  | callback | AsyncCallback&lt;[SplitScreenBoundsInfo](#splitscreenboundsinfo)&gt; | 是 | 回调返回一个SplitScreenBoundsInfo对象，表示分屏边界相关信息。 |
+
+  | 参数名   | 类型                                                      | 必填 | 说明                                                         |
+  | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+  | type     | string                                                    | 是   | 设置监听类型。<br/>-&nbsp;type为'systemBarTintChange'时表示监听类型为导航栏、状态栏属性变化监听； |
+  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 是   | 回调返回监听到的信息。                                       |
 
 - 示例
+
   ```
-  var splitRatio = '1:1';
-  window.getSplitScreenBounds(splitRatio, (err, data) => {
-      if (err) {
-          console.error('Failed to obtain the split-screen boundary information. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Split-screen boundary information obtained. Data: ' + JSON.stringify(data))
-  
+  var type = 'systemBarTintChange';
+  windowClass.on(type, (data) => {
+      console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
   });
   ```
 
+## off('systemBarTintChange')<sup>8+</sup>
 
-## window.isFloatingAbilityWindowVisible<sup>7+</sup>
+off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;): void
 
-isFloatingAbilityWindowVisible(callback:AsyncCallback&lt;boolean&gt;): void
+关闭监听。
 
-悬浮窗是否显示可见。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调返回一个boolean对象，表示悬浮窗是否可见。 |
-
-- 示例
-  ```
-  window.isFloatingAbilityWindowVisible( (err, data) => {
-      if (err) {
-          console.error('Failed to check whether the floating window is visible. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in checking whether the floating window is visible. Data:' + JSON.stringify(data))
-  
-  });
-  ```
-
-
-## window.setSplitBarVisibility<sup>7+</sup>
-
-setSplitBarVisibility(isVisibility: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置分屏线是否可见。
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | isVisibility | boolean | 表示分屏线是否是否显示，true为显示，false为显示。 |
-  | callback | AsyncCallback&lt;void&gt; | callback形式返回结果。 |
+
+  | 参数名   | 类型                                                      | 必填 | 说明                                                         |
+  | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+  | type     | string                                                    | 是   | 设置监听类型。<br/>-&nbsp;type为'systemBarTintChange'时表示监听类型为导航栏、状态栏属性变化监听； |
+  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 否   | 回调返回监听到的信息。                                       |
 
 - 示例
+
   ```
-  var isVisibility = false;
-  window.setSplitBarVisibility(isVisibility , (err, data) => {
-      if (err) {
-          console.error('Failed to set the divider to be invisible. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the divider to be invisible. Data:' + JSON.stringify(data))
-  });
+  var type = 'systemBarTintChange';
+  windowClass.off(type);
   ```
-
-
-## WindowType<sup>7+</sup><a name="windowtype"></a>
-
-窗口类型。
-
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| TYPE_APP | 0 | 表示应用窗口。 |
-| TYPE_SYSTEM_ALERT | 1 | 表示系统弹窗。 |
-
-
-## AvoidAreaType<sup>7+</sup><a name="avoidareatype"></a>
-
-窗口内容需要规避区域的类型。
-
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| TYPE_SYSTEM | 0 | 表示系统默认。 |
-| TYPE_CUTOUT | 1 | 表示刘海屏区域。 |
-
-
-## WindowMode<sup>7+</sup><a name="windowmode"></a>
-
-窗口模式。
-
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| UNDEFINED | 1 | 表示APP未定义窗口模式。 |
-| FULLSCREEN | 2 | 表示APP全屏模式。 |
-| PRIMARY | 3 | 表示APP分屏多窗口主要模式。 |
-| SECONDARY | 4 | 表示APP分屏多窗口次要模式。 |
-| FLOATING | 5 | 表示APP自由悬浮形式窗口模式。 |
-
-
-## splitMode<sup>7+</sup><a name="splitmode"></a>
-
-分屏模式。
-
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| VERTICAL | 0 | 表示垂直上下分屏模式 |
-| HORIZONTAL | 1 | 表示水平左右分屏模式 |
-
 
 ## Window
 
-下列API示例中都需使用[getTopWindow()](#window-gettopwindow)先获取到Window实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getTopWindow()](#window-gettopwindow)、[create()](#window-create)、[find()](#window-find)等先获取到Window实例，再通过此实例调用对应方法。
 
+### hide<sup>7+</sup>
 
-### setBrightness
+hide (callback: AsyncCallback&lt;void&gt;): void
 
-setBrightness(brightness:number, callback: AsyncCallback&lt;void&gt;): void
+隐藏当前窗口。
 
-设置屏幕亮度值。
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | brightness | number | 是 | 屏幕亮度值，值为0-1之间。1表示最亮。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+  | 参数名   | 类型                      | 必填 | 说明       |
+  | -------- | ------------------------- | ---- | ---------- |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 - 示例
+
   ```
-  var brightness = 10;
-  windowClass.setBrightness(brightness, (err, data) => {
+  windowClass.hide((err, data) => {
       if (err) {
-          console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+          console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the brightness. Data: ' + JSON.stringify(data));
+      console.info('window hidden. Data:' + JSON.stringify(data))
+  })
+  ```
+
+### show<sup>7+</sup>
+
+show(callback: AsyncCallback&lt;void&gt;): void
+
+显示当前窗口。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                      | 必填 | 说明       |
+  | -------- | ------------------------- | ---- | ---------- |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+- 示例
+
+  ```
+  windowClass.show((err, data) => {
+      if (err) {
+          console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data))
+  })
+  ```
+
+### destroy<sup>7+</sup>
+
+destroy(callback: AsyncCallback&lt;void&gt;): void
+
+销毁当前窗口。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                      | 必填 | 说明       |
+  | -------- | ------------------------- | ---- | ---------- |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+- 示例
+
+  ```
+  windowClass.destroy((err, data) => {
+      if (err) {
+          console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in destroying the window. Data:' + JSON.stringify(data))
+  })
+  ```
+
+### moveTo<sup>7+</sup>
+
+moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
+
+移动窗口位置。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                      | 必填 | 说明                                    |
+  | -------- | ------------------------- | ---- | --------------------------------------- |
+  | x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移。 |
+  | y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移。 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
+
+- 示例
+
+  ```
+  windowClass.moveTo(300, 300, (err, data)=>{
+      if (err) {
+          console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Window moved. Data:' + JSON.stringify(data));
+
   });
   ```
 
+### resetSize<sup>7+</sup>
 
-### setBackgroundColor
+resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
-setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
+改变当前窗口大小。
 
-设置窗口的背景色。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | color | string | 是 | 需要设置的背景色，为16进制颜色，例如"\#00FF00"或"\#FF00FF00"。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  var color = '#00ff33';
-  windowClass.setBackgroundColor(color, (err, data) => {
-      if (err) {
-          console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the background color. Data: ' + JSON.stringify(data));
-  });
-  ```
-
-### setTransparent<sup>7+</sup>
-
-setTransparent(isTransparent: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置窗口是否透明。
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | isTransparent | boolean | 是 | 窗口是否透明。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+  | 参数名   | 类型                      | 必填 | 说明             |
+  | -------- | ------------------------- | ---- | ---------------- |
+  | width    | number                    | 是   | 目标窗口的宽度。 |
+  | height   | number                    | 是   | 目标窗口的高度。 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
 
 - 示例
+
   ```
-  var isTransparent = true;
-  windowClass.setTransparent(isTransparent, (err, data) => {
+  windowClass.resetSize(500, 1000, (err, data) => {
       if (err) {
-          console.error('Failed to set the window to be transparent. Cause: ' + JSON.stringify(err));
+          console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the window to be transparent. Data: ' + JSON.stringify(data))
-  });
-  ```
-
-### setFullScreen
-
-setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置是否为全屏状态。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | isFullScreen | boolean | 是 | 是否设为全屏状态。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  var isFullScreen = true;
-  windowClass.setFullScreen(isFullScreen, (err, data) => {
-      if (err) {
-          console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
-  });
-  ```
-
-### setKeepScreenOn
-
-setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置屏幕是否为常亮状态。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | isKeepScreenOn | boolean | 是 | 是否设置为屏幕常亮状态。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  var isKeepScreenOn = true;
-  windowClass.setKeepScreenOn(isKeepScreenOn, (err, data) => {
-      if (err) {
-          console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data));
+      console.info('Window size changed. Data:' + JSON.stringify(data));
   });
   ```
 
@@ -453,13 +462,17 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口类型。
 
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | [WindowType](#windowtype7) | 是 |窗口类型。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+  | 参数名   | 类型                       | 必填 | 说明       |
+  | -------- | -------------------------- | ---- | ---------- |
+  | type     | [WindowType](#windowtype7) | 是   | 窗口类型。 |
+  | callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。 |
 
 - 示例
+
   ```
   var type = window.TYPE_APP;
   windowClass.setWindowType(type, (err, data) => {
@@ -471,26 +484,85 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### setDimBehind<sup>7+</sup>
+### getProperties
 
-setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
+getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
-窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值。
+获取当前窗口的属性，异步返回WindowProperties。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dimBehindValue | number | 是 | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+  | 参数名   | 类型                                                       | 必填 | 说明               |
+  | -------- | ---------------------------------------------------------- | ---- | ------------------ |
+  | callback | AsyncCallback&lt;[WindowProperties](#windowproperties)&gt; | 是   | 回调返回窗口属性。 |
 
 - 示例
+
   ```
-  windowClass.setDimBehind(0.5, (err, data) => {
+  windowClass.getProperties((err, data) => {
       if (err) {
-          console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+          console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the dimness. Data:' + JSON.stringify(data));
+      console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### getAvoidArea<sup>7+</sup>
+
+getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): void
+
+获取窗口内容规避的区域。如系统的系统栏区域 、凹口区域。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                         | 必填 | 说明                                                         |
+  | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+  | type     | [AvoidAreaType](#avoidareatype)              | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
+  | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调返回窗口内容规避区域。                                   |
+
+- 示例
+
+  ```
+  var type = window.AvoidAreaType.TYPE_SYSTEM;
+  windowClass.getAvoidArea(type, (err, data) => {
+      if (err) {
+          console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+  });
+  ```
+
+### setFullScreen
+
+setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置是否为全屏状态。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名       | 类型                      | 必填 | 说明                                           |
+  | ------------ | ------------------------- | ---- | ---------------------------------------------- |
+  | isFullScreen | boolean                   | 是   | 是否设为全屏状态，且全屏状态隐藏状态栏导航栏。 |
+  | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                     |
+
+- 示例
+
+  ```
+  var isFullScreen = true;
+  windowClass.setFullScreen(isFullScreen, (err, data) => {
+      if (err) {
+          console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
   });
   ```
 
@@ -500,13 +572,17 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 设置窗口的布局是否为全屏显示状态。
 
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | isLayoutFullScreen | boolean | 是 | 窗口的布局是否为全屏显示状态。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+| 参数名             | 类型                      | 必填 | 说明                                                         |
+| ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
+| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为全屏显示状态，且全屏状态下状态栏、导航栏仍然显示。 |
+| callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 - 示例
+
   ```
   var isLayoutFullScreen= true;
   windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
@@ -518,93 +594,23 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
   });
   ```
 
-### setFocusable<sup>7+</sup>
-
-setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置点击时是否支持切换焦点窗口。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | isFocusable | boolean | 是 | 点击时是否支持切换焦点窗口。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  var isFocusable= true;
-  windowClass.setFocusable(isFocusable, (err, data) => {
-      if (err) {
-          console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the window to be focusable. Data: ' + JSON.stringify(data));
-  });
-  ```
-
-### setTouchable<sup>7+</sup>
-
-setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置窗口是否为可触状态。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | isTouchable | boolean | 是 | 窗口是否为可触状态。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  var isTouchable = true;
-  windowClass.setTouchable(isTouchable, (err, data) => {
-      if (err) {
-          console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the window to be touchable. Data:' + JSON.stringify(data));
-  
-  });
-  ```
-
-### setPrivacyMode<sup>7+</sup>
-
-setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-设置窗口是否为隐私模式。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | isPrivacyMode | boolean | 是 | 窗口是否为隐私模式。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  var isPrivacyMode = true;
-  windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
-      if (err) {
-          console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the window to privacy mode. Data:' + JSON.stringify(data));
-  
-  });
-  ```
-
 ### setSystemBarEnable<sup>7+</sup>
 
-setSystemBarEnable(names: Array, callback: AsyncCallback&lt;void&gt;): void
+setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
 设置导航栏、状态栏的可见模式。
 
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | names | Array | 是 | 设置状态栏和导航栏是否显示。例如，需全部显示，该参数设置为["status",&nbsp;"navigation"]。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+  | 参数名   | 类型                      | 必填 | 说明                                                         |
+  | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+  | names    | Array                     | 是   | 设置状态栏和导航栏是否显示。例如，需全部显示，该参数设置为["status",&nbsp;"navigation"], 不设置，则默认不显示。 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 - 示例
+
   ```
   var names = ["status", "navigation"];
   windowClass.setSystemBarEnable(names, (err, data) => {
@@ -620,15 +626,19 @@ setSystemBarEnable(names: Array, callback: AsyncCallback&lt;void&gt;): void
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口内导航条状态栏的属性。
+设置窗口内导航栏、状态栏的属性。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | SystemBarProperties | [SystemBarProperties](#systembarproperties) | 是 | 导航条状态栏的属性。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+  | 参数名              | 类型                                        | 必填 | 说明                 |
+  | ------------------- | ------------------------------------------- | ---- | -------------------- |
+  | SystemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏状态栏的属性。 |
+  | callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。           |
 
 - 示例
+
   ```
   var SystemBarProperties={
       statusBarColor: '#ff00ff',
@@ -646,114 +656,24 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
   });
   ```
 
-### getProperties
-
-getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
-
-获取当前窗口的属性，异步返回WindowProperties。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WindowProperties](#windowproperties)&gt; | 是 | 回调返回窗口属性。 |
-
-- 示例
-  ```
-  windowClass.getProperties((err, data) => {
-      if (err) {
-          console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
-  });
-  ```
-
-### getAvoidArea<sup>7+</sup>
-
-getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): void
-
-获取窗口内容规避的区域。如系统的系统栏区域 、凹口区域。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | [AvoidAreaType](#avoidareatype) | 是 | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
-  | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | 是 | 回调返回窗口内容规避区域。 |
-
-- 示例
-  ```
-  var type = window.AvoidAreaType.TYPE_SYSTEM;
-  windowClass.getAvoidArea(type, (err, data) => {
-      if (err) {
-          console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-  });
-  ```
-
-### moveTo<sup>7+</sup>
-
-moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
-
-窗口位置移动。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移。 |
-  | y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  windowClass.moveTo(300, 300, (err, data)=>{
-      if (err) {
-          console.error('Failed to move the window. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Window moved. Data:' + JSON.stringify(data));
-  
-  });
-  ```
-
-### resetSize<sup>7+</sup>
-
-resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
-
-改变当前窗口大小。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | width | number | 是 | 目标窗口的宽度。 |
-  | height | number | 是 | 目标窗口的高度。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  windowClass.resetSize(500, 1000, (err, data) => {
-      if (err) {
-          console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Window size changed. Data:' + JSON.stringify(data));
-  });
-  ```
-
-### loadContent<sup>7+</sup>
+### loadContent<sup>8+</sup>
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-子窗口加载具体页面内容。
+当前窗口加载具体页面内容。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | path | string | 是 | 设置加载页面的代码路径。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+  | 参数名   | 类型                      | 必填 | 说明                 |
+  | -------- | ------------------------- | ---- | -------------------- |
+  | path     | string                    | 是   | 设置加载页面的路径。|
+  | storage  | ContentStorage            | 否   | 当前应用内的数据。  |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。         |
 
 - 示例
+
   ```
   windowClass.loadContent("pages/page2/page2", (err, data) => {
      if (err) {
@@ -764,178 +684,49 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### hide<sup>7+</sup>
-
-hide (callback: AsyncCallback&lt;void&gt;): void
-
-隐藏子窗口。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  windowClass.hide((err, data) => {
-      if (err) {
-          console.error('Failed to hide the subwindow. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Subwindow hidden. Data:' + JSON.stringify(data))
-  })
-  ```
-
-### show<sup>7+</sup>
-
-show(callback: AsyncCallback&lt;void&gt;): void
-
-显示子窗口。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  windowClass.show((err, data) => {
-      if (err) {
-          console.error('Failed to show the subwindow. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in showing the subwindow. Data: ' + JSON.stringify(data))
-  })
-  ```
-
 ### isShowing<sup>7+</sup>
 
 isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断子窗口是否已显示。
+判断当前窗口是否已显示。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数返回是否显示子窗口结果。 |
+
+  | 参数名      | 类型                           | 必填  | 说明               |
+  | -------- | ---------------------------- | --- | ---------------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数返回是否显示子窗口结果。 |
 
 - 示例
+
   ```
   windowClass.isShowing((err, data) => {
       if (err) {
-          console.error('Failed to check whether the subwindow is showing. Cause:' + JSON.stringify(err));
+          console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in checking whether the subwindow is showing. Cause:' + JSON.stringify(data))
+      console.info('Succeeded in checking whether the window is showing. Cause:' + JSON.stringify(data))
   })
   ```
 
-### destroy<sup>7+</sup>
+### on('windowSizeChange'|'systemAvoidAreaChange')
 
-destroy(callback: AsyncCallback&lt;void&gt;): void
-
-销毁子窗口。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  windowClass.destroy((err, data) => {
-      if (err) {
-          console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in destroying the subwindow. Data:' + JSON.stringify(data))
-  })
-  ```
-
-### setOutsideTouchable<sup>7+</sup>
-
-setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void;
-
-设置是否允许可点击子窗口以外的区域。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | touchable | boolean | 是 | 设置是否可点击。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-- 示例
-  ```
-  windowClass.setOutsideTouchable(true, (err, data) => {
-      if (err) {
-          console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
-  })
-  ```
-
-### on('keyboardHeightChange')
-
-on(type: string, callback: AsyncCallback&lt;number&gt;): void
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 7 开始废弃。
-
-开启监听键盘高度变化。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置监听类型为监听键盘高度变化，应设置type为'keyboardHeightChange'。 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 回调返回监听到的键盘高度。 |
-
-- 示例
-  ```
-  var type= 'keyboardHeightChange';
-  windowClass.on(type, (err, data) => {
-      if (err) {
-          console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
-  });
-  ```
-
-### off('keyboardHeightChange')
-
-off(type: string, callback?: AsyncCallback&lt;number&gt;): void
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 7 开始废弃。
-
-关闭监听键盘高度变化。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置监听类型为监听键盘高度变化，应设置type为'keyboardHeightChange'。 |
-  | callback | AsyncCallback&lt;number&gt; | 否 | 回调返回监听到的键盘高度。 |
-
-- 示例
-  ```
-  var type= 'keyboardHeightChange';
-  windowClass.off(type);
-  ```
-
-### on('keyboardHeightChange'|'windowSizeChange'<sup>7+</sup>|'systemAvoidAreaChange'<sup>7+</sup>)
-
-on(type: string, callback: Callback&lt;AvoidArea | Size | number&gt;): void
+on(type: 'windowSizeChange'|'systemAvoidAreaChange', callback: Callback&lt;AvoidArea | Size&gt;): void
 
 开启监听。
 
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听；<br/>-&nbsp;type为'windowSizeChange'7+时表示监听类型为窗口尺寸变化监听；<br/>-&nbsp;type为'systemAvoidAreaChange'7+时表示监听类型为系统窗口规避区变化监听。 |
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&nbsp;\|&nbsp;[Size](#size)&nbsp;\|&nbsp;number&gt; | 是 | 回调返回监听到的信息。 |
+
+  | 参数名   | 类型                                                         | 必填 | 说明                                                         |
+  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'windowSizeChange'<sup>7+</sup>时表示监听类型为窗口尺寸变化监听；<br/>-&nbsp;type为'systemAvoidAreaChange'<sup>7+</sup>时表示监听类型为系统窗口规避区变化监听。 |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&nbsp;\|&nbsp;[Size](#size)&gt; | 是   | 回调返回监听到的信息。                                       |
 
 - 示例
+
   ```
   var type = 'windowSizeChange';
   windowClass.on(type, (data) => {
@@ -943,20 +734,105 @@ on(type: string, callback: Callback&lt;AvoidArea | Size | number&gt;): void
   });
   ```
 
-### off('keyboardHeightChange'|'windowSizeChange'<sup>7+</sup>|'systemAvoidAreaChange'<sup>7+</sup>)
+### off('windowSizeChange'|'systemAvoidAreaChange')<sup>7+</sup>
 
-off(type: string, callback?: Callback&lt;AvoidArea | Size | number&gt;): void
+off(type: 'windowSizeChange'|'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea | Size &gt;): void
 
 关闭监听。
 
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听；<br/>-&nbsp;type为'windowSizeChange'7+时表示监听类型为窗口尺寸变化监听；<br/>-&nbsp;type为'systemAvoidAreaChange'7+时表示监听类型为系统窗口规避区变化监听。 |
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&nbsp;\|&nbsp;[Size](#size)&nbsp;\|&nbsp;number&gt; | 否 | 回调返回监听到的信息。 |
+
+  | 参数名   | 类型                                                         | 必填 | 说明                                                         |
+  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'windowSizeChange'<sup>7+</sup>时表示监听类型为窗口尺寸变化监听；<br/>-&nbsp;type为'systemAvoidAreaChange'<sup>7+</sup>时表示监听类型为系统窗口规避区变化监听。 |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&nbsp;\|&nbsp;[Size](#size)&gt; | 否   | 回调返回监听到的信息。                                       |
 
 - 示例
+
   ```
   var type = 'windowSizeChange';
   windowClass.off(type);
   ```
+
+### isSupportWideGamut<sup>8+</sup>
+
+isSupportWideGamut(callback: AsyncCallback<boolean>): void
+
+判断当前窗口是否支持广色域模式。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                         | 必填 | 说明                             |
+  | -------- | ---------------------------- | ---- | -------------------------------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数返回是否支持广色域模式。 |
+
+- 示例
+
+  ```
+  windowClass.isSupportWideGamut((err, data) => {
+      if (err) {
+          console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in checking whether the window support WideGamut. Cause:' + JSON.stringify(data))
+  })
+  ```
+
+### setColorSpace<sup>8+</sup>
+
+setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback<void>): void
+
+设置当前窗口为广色域模式或默认色域模式。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名     | 类型                      | 必填 | 说明         |
+  | ---------- | ------------------------- | ---- | ------------ |
+  | colorSpace | [ColorSpace](#colorspace) | 是   | 设置色域模式 |
+  | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。   |
+
+- 示例
+
+  ```
+  windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err, data) => {
+      if (err) {
+          console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting window colorspace. Cause:' + JSON.stringify(data))
+  })
+  ```
+
+### getColorSpace<sup>8+</sup>
+
+getColorSpace(callback: AsyncCallback<ColorSpace>): void
+
+获取当前窗口色域模式。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                           | 必填 | 说明                       |
+  | -------- | ---------------------------------------------- | ---- | -------------------------- |
+  | callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | 是   | 回调函数返回当前色域模式。 |
+
+- 示例
+
+  ```
+  windowClass.getColorSpace((err, data) => {
+      if (err) {
+          console.error('Failed to get window color space. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data))
+  })
+  ```
+
+###
