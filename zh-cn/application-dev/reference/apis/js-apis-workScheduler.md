@@ -58,7 +58,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | work | WorkInfo | 是 | 指示要添加到执行队列的工作。 |
+  | work | WorkInfo | 是 | 指示要停止的工作。 |
   |needCancel|boolean|	是|	是否需要取消的工作。|
 
 - **返回值**：
