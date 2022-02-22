@@ -47,7 +47,7 @@ Progress(value: {value: number, total?: number, style?: ProgressStyle})
 | -------- | -------- | -------- | -------- |
 | value | number | - | 设置当前进度值。 |
 | color | Color | - | 设置进度条前景色。 |
-| circularStyle<sup>8+</sup> | {<br/>strokeWidth？:&nbsp;Length,<br/>scaleCount？:&nbsp;number,<br/>scaleWidth？:&nbsp;Length<br/>} | - | 定义style为ProgressStyle.ScaleRing时的样式，包括：宽度，总刻度数，刻度粗细。<br/>strokeWidth:&nbsp;设置环形进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
+| style<sup>8+</sup> | {<br/>strokeWidth？:&nbsp;Length,<br/>scaleCount？:&nbsp;number,<br/>scaleWidth？:&nbsp;Length<br/>} | - | 定义组件的样式。<br/>strokeWidth:&nbsp;设置进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
 
 
 ## 示例
@@ -73,7 +73,7 @@ struct ProgressExample {
         Progress({ value: 10, style: ProgressStyle.ScaleRing }).width(100)
         Progress({ value: 20, total: 150, style: ProgressStyle.ScaleRing })
           .color(Color.Grey).value(50).width(100)
-          .circularStyle({ strokeWidth: 15, scaleCount: 15, scaleWidth: 5 })
+          .style({ strokeWidth: 15, scaleCount: 15, scaleWidth: 5 })
       }
 
       Text('Ring Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -81,7 +81,7 @@ struct ProgressExample {
         Progress({ value: 10, style: ProgressStyle.Ring }).width(100)
         Progress({ value: 20, total: 150, style: ProgressStyle.Ring })
           .color(Color.Grey).value(50).width(100)
-          .circularStyle({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
+          .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
       }
 
       Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
