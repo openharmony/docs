@@ -22,11 +22,11 @@ onWorkStart(workInfo: WorkInfo);
 - **示例**：
 
   ```
-	export default class MyWorkSchedulerExtension extends WorkSchedulerExtension {
-    	onWorkStart(workInfo) {
-        	console.log('MyWorkSchedulerExtension onWorkStart' + JSON.stringify(workInfo));
-    	}
-	}
+    export default class MyWorkSchedulerExtension extends WorkSchedulerExtension {
+        onWorkStart(workInfo) {
+            console.log('MyWorkSchedulerExtension onWorkStart' + JSON.stringify(workInfo));
+        }
+    }
   ```
 
 ## WorkSchedulerExtension.onWorkStop
@@ -38,9 +38,9 @@ onWorkStop(workInfo: WorkInfo);
 - **示例**：
 
   ```
-	export default class MyWorkSchedulerExtension extends WorkSchedulerExtension {
-    	onWorkStop(workInfo) {
-        	console.log('MyWorkSchedulerExtension onWorkStop' + JSON.stringify(workInfo));
-    	}
-	}
+    export default class MyWorkSchedulerExtension extends WorkSchedulerExtension {
+        onWorkStop(workInfo) {
+            console.log('MyWorkSchedulerExtension onWorkStop' + JSON.stringify(workInfo));
+        }
+    }
   ```

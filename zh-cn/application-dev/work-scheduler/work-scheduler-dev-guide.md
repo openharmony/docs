@@ -43,11 +43,11 @@ networkType | 网络条件 | NetworkType
 isCharging | 是否充电 | bool
 chargerType | 充电类型 | ChargingType
 batteryLevel | 电量| number
-batteryStatus| 电池状态|	BatteryStatus
-storageRequest|存储状态|	StorageRequest
-isRepeat|是否循环任务|	boolean
-repeatCycleTime |循环间隔|	number
-repeatCount	|循环次数| number
+batteryStatus| 电池状态|    BatteryStatus
+storageRequest|存储状态|    StorageRequest
+isRepeat|是否循环任务|    boolean
+repeatCycleTime |循环间隔|    number
+repeatCount    |循环次数| number
 
 **表3** 延迟任务回调接口
 
@@ -60,33 +60,33 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
 **开发对应的Extension**
 
-	import WorkSchedulerExtension from '@ohos.WorkSchedulerExtension';
+    import WorkSchedulerExtension from '@ohos.WorkSchedulerExtension';
 
-	export default class MyWorkSchedulerExtension extends WorkSchedulerExtension {
-    	onWorkStart(workInfo) {
-        	console.log('MyWorkSchedulerExtension onWorkStart' + JSON.stringify(workInfo));
-    	}
-    	onWorkStop(workInfo) {
-        	console.log('MyWorkSchedulerExtension onWorkStop' + JSON.stringify(workInfo));
-    	}
-	}
+    export default class MyWorkSchedulerExtension extends WorkSchedulerExtension {
+        onWorkStart(workInfo) {
+            console.log('MyWorkSchedulerExtension onWorkStart' + JSON.stringify(workInfo));
+        }
+        onWorkStop(workInfo) {
+            console.log('MyWorkSchedulerExtension onWorkStop' + JSON.stringify(workInfo));
+        }
+    }
 
 
 **注册延迟任务**
 
 
 
-	import workScheduler from '@ohos.workScheduler';
+    import workScheduler from '@ohos.workScheduler';
 
-	let workInfo = {
-		workId: 1,
+    let workInfo = {
+        workId: 1,
         batteryLevel:50,
         batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
         abilityName: "MyExtension"
-   	}
+    }
     var res = workScheduler.startWork(workInfo);
     console.info("workschedulerLog res:" + res);
 
@@ -94,17 +94,17 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 **取消延迟任务**
 
 
-	import workScheduler from '@ohos.workScheduler';
+    import workScheduler from '@ohos.workScheduler';
 
-	let workInfo = {
-		workId: 1,
+    let workInfo = {
+        workId: 1,
         batteryLevel:50,
         batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
         abilityName: "MyExtension"
-   	}
+    }
     var res = workScheduler.stopWork(workInfo, false);
     console.info("workschedulerLog res:" + res);
 
@@ -157,8 +157,8 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
 **停止并清除任务**
 
-	let res = workScheduler.stopAndClearWorks();
-	console.info("workschedulerLog res:" + res);
+    let res = workScheduler.stopAndClearWorks();
+    console.info("workschedulerLog res:" + res);
 
 **判断上次执行是否超时**
 
@@ -181,4 +181,4 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
       .catch(err =>  {
         console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
       });
-  	})
+    })

@@ -34,15 +34,15 @@ workScheduler.startWork(work: WorkInfo): boolean
 - **示例**：
 
   ```
-	let workInfo = {
-		workId: 1,
+    let workInfo = {
+        workId: 1,
         batteryLevel:50,
         batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
         abilityName: "MyExtension"
-   	}
+    }
     var res = workScheduler.startWork(workInfo);
     console.info("workschedulerLog res:" + res);
   ```
@@ -59,7 +59,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | work | WorkInfo | 是 | 指示要停止的工作。 |
-  |needCancel|boolean|	是|	是否需要取消的工作。|
+  |needCancel|boolean|    是|    是否需要取消的工作。|
 
 - **返回值**：
 
@@ -70,15 +70,15 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
 - **示例**：
 
   ```
-	let workInfo = {
-		workId: 1,
+    let workInfo = {
+        workId: 1,
         batteryLevel:50,
         batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
         abilityName: "MyExtension"
-   	}
+       }
     var res = workScheduler.stopWork(workInfo, false);
     console.info("workschedulerLog res:" + res);
   ```
@@ -95,7 +95,7 @@ getWorkStatus(workId: number, callback : AsyncCallback<WorkInfo>): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | workId | number | 是 | work的id。 |
-  |callback|AsyncCallback<WorkInfo>|	是|	指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。|
+  |callback|AsyncCallback<WorkInfo>|    是|    指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。|
 
 
 - **示例**：
@@ -152,7 +152,7 @@ obtainAllWorks(callback : AsyncCallback<void>): Array<WorkInfo>
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  |callback|AsyncCallback<WorkInfo>|	是|	指定的callback回调方法。返回与应用程序关联的所有工作。|
+  |callback|AsyncCallback<WorkInfo>|    是|    指定的callback回调方法。返回与应用程序关联的所有工作。|
 
 
 - **返回值**：
@@ -183,7 +183,7 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise<Array<WorkInfo>> |	指定的Promise回调方法。返回与应用程序关联的所有工作。|
+  | Promise<Array<WorkInfo>> |    指定的Promise回调方法。返回与应用程序关联的所有工作。|
 
 - **示例**：
 
@@ -204,8 +204,8 @@ stopAndClearWorks(): boolean
 - **示例**：
 
   ```
-	let res = workScheduler.stopAndClearWorks();
-	console.info("workschedulerLog res:" + res);
+    let res = workScheduler.stopAndClearWorks();
+    console.info("workschedulerLog res:" + res);
   ```
 
 ## workScheduler.isLastWorkTimeOut
@@ -219,7 +219,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback<void>): boolean
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | workId | number | 是 | work的id。 |
-  |callback|AsyncCallback<WorkInfo>|	是|	指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。|
+  |callback|AsyncCallback<WorkInfo>|    是|    指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。|
 
 - **返回值**：
 
@@ -267,7 +267,7 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
       .catch(err =>  {
         console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
       });
-  	})
+      })
   ```
 
 ## workScheduler.WorkInfo
@@ -275,8 +275,8 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  |workId	|number	|是	|当前工作的ID。|
-  |bundleName	|string	|是|	延迟任务包名。|
+  |workId    |number    |是    |当前工作的ID。|
+  |bundleName    |string    |是|    延迟任务包名。|
   |abilityName | string| 是| 延迟任务回调通知的组件名（必填）|
   |networkType | NetworkType| 否| 网络条件 |
   |isCharging | bool| 否|是否充电 |
@@ -286,44 +286,44 @@ obtainAllWorks(): Promise<Array<WorkInfo>>
   |storageRequest|StorageRequest| 否|存储状态|
   |isRepeat|boolean|否|是否循环任务|
   |repeatCycleTime |number|否|循环间隔|
-  |repeatCount	|number|否|循环次数|
+  |repeatCount    |number|否|循环次数|
 
 ## workScheduler.NetworkType
 触发工作的网络类型。
 
-  |名称	|默认值	|说明|
+  |名称    |默认值    |说明|
   | -------- | -------- | -------- |
-  |NETWORK_TYPE_ANY	|0	|表示这个触发条件是任何类型的网络连接。|
-  |NETWORK_TYPE_MOBILE	|1|	表示这个触发条件是Mobile网络连接。|
-  |NETWORK_TYPE_WIFI	|2	|表示这个触发条件是Wifi类型的网络连接。|
-  |NETWORK_TYPE_BLUETOOTH	|3	|表示这个触发条件是Bluetooth网络连接。|
-  |NETWORK_TYPE_WIFI_P2P	|4	|表示这个触发条件是Wifi P2P网络连接。|
-  |NETWORK_TYPE_ETHERNET	|5	|表示这个触发条件是有线网络连接。|
+  |NETWORK_TYPE_ANY    |0    |表示这个触发条件是任何类型的网络连接。|
+  |NETWORK_TYPE_MOBILE    |1|    表示这个触发条件是Mobile网络连接。|
+  |NETWORK_TYPE_WIFI    |2    |表示这个触发条件是Wifi类型的网络连接。|
+  |NETWORK_TYPE_BLUETOOTH    |3    |表示这个触发条件是Bluetooth网络连接。|
+  |NETWORK_TYPE_WIFI_P2P    |4    |表示这个触发条件是Wifi P2P网络连接。|
+  |NETWORK_TYPE_ETHERNET    |5    |表示这个触发条件是有线网络连接。|
 
 ## workScheduler.ChargingType
 触发工作的充电类型。
 
-  |名称	|默认值	|说明|
+  |名称    |默认值    |说明|
   | -------- | -------- | -------- |
-  |CHARGING_PLUGGED_ANY	|0|	表示这个触发条件是任何类型的充电器连接。|
-  |CHARGING_PLUGGED_AC	|1	|表示这个触发条件是直流充电器连接。|
-  |CHARGING_PLUGGED_USB	|2	|表示这个触发条件是USB充连接。|
-  |CHARGING_PLUGGED_WIRELESS	|3|	表示这个触发条件是无线充电器连接。|
+  |CHARGING_PLUGGED_ANY    |0|    表示这个触发条件是任何类型的充电器连接。|
+  |CHARGING_PLUGGED_AC    |1    |表示这个触发条件是直流充电器连接。|
+  |CHARGING_PLUGGED_USB    |2    |表示这个触发条件是USB充连接。|
+  |CHARGING_PLUGGED_WIRELESS    |3|    表示这个触发条件是无线充电器连接。|
 
 ## workScheduler.BatteryStatus
 触发工作的电池状态。
 
-  |名称	|默认值	|说明|
+  |名称    |默认值    |说明|
   | -------- | -------- | -------- |
-  |BATTERY_STATUS_LOW	|0	|表示这个触发条件是低电告警。|
-  |BATTERY_STATUS_OKAY	|1|	表示这个触发条件是从低电恢复到正常电量。|
-  |BATTERY_STATUS_LOW_OR_OKAY	|2	|表示这个触发条件是从低电恢复到正常电量或者低电告警。|
+  |BATTERY_STATUS_LOW    |0    |表示这个触发条件是低电告警。|
+  |BATTERY_STATUS_OKAY    |1|    表示这个触发条件是从低电恢复到正常电量。|
+  |BATTERY_STATUS_LOW_OR_OKAY    |2    |表示这个触发条件是从低电恢复到正常电量或者低电告警。|
 
 ## workScheduler.StorageRequest
 触发工作的存储状态。
 
-  |名称	|默认值	|说明|
+  |名称    |默认值    |说明|
   | -------- | -------- | -------- |
-  |STORAGE_LEVEL_LOW	|0	|表示这个触发条件是存储空间不足。
-  |STORAGE_LEVEL_OKAY	|1	|表示这个触发条件是从存储空间不足恢复到正常。
-  |STORAGE_LEVEL_LOW_OR_OKAY	|2	|表示这个触发条件是从存储空间不足恢复到正常或者存储空间不足。
+  |STORAGE_LEVEL_LOW    |0    |表示这个触发条件是存储空间不足。
+  |STORAGE_LEVEL_OKAY    |1    |表示这个触发条件是从存储空间不足恢复到正常。
+  |STORAGE_LEVEL_LOW_OR_OKAY    |2    |表示这个触发条件是从存储空间不足恢复到正常或者存储空间不足。
