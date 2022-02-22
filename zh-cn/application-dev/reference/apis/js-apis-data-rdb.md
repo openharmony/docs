@@ -152,6 +152,48 @@ constructor(name: string)
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   ```
 
+### inDevices
+
+inDevices(devices: Array<string>): RdbPredicates;
+
+
+同步分布式数据库时指定组网内的远程设备。
+
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | devices | Array<string> | 是 | 指定的组网内的远程设备ID。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+- 示例：
+  ```
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+  predicate.inDevices(['12345678abcde'])
+  ```
+
+### inAllDevices
+
+inAllDevices(): RdbPredicates;
+
+
+同步分布式数据库时连接到组网内的所有远程设备。
+
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+- 示例：
+  ```
+  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+  predicates.inAllDevices()
+  ```
 
 ### equalTo
 
@@ -1183,6 +1225,224 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
   promise.then(() => {
       console.info(TAG + 'delete done.')})
   ```
+
+### setDistributedTables
+
+setDistributedTables(tables: Array<string>, callback: AsyncCallback<void>): void;
+
+设置分布式列表，结果以callbck形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | tables | Array<string> | 是 | 要设置的分布式列表表名 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
+
+- 示例：
+  ```
+  rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
+      if (err) {
+          console.info('setDistributedTables failed.')
+          return
+      }
+      console.info('setDistributedTables success.')
+  })
+  ```
+
+
+### setDistributedTables
+
+ setDistributedTables(tables: Array<string>): Promise<void>;
+
+设置分布式列表，结果以Promise形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | tables | Array<string> | 是 | 要设置的分布式列表表名。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 指定Promise回调函数。 |
+
+- 示例：
+  ```
+  let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
+  promise.then(() => {
+      console.info("setDistributedTables success.")
+  }).catch((err) => {
+      console.info("setDistributedTables failed."")
+  })
+  ```
+
+### obtainDistributedTableName
+
+obtainDistributedTableName(device: string, table: string, callback: AsyncCallback<string>): void;
+
+根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callbck形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | device | string | 是 | 远程设备 。|
+  | table | string | 是 | 本地表名。 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
+
+- 示例：
+  ```
+  rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
+      if (err) {
+          console.info('obtainDistributedTableName failed.')
+          return
+      }
+      console.info('obtainDistributedTableName success, tableName=.' + tableName)
+   })
+  ```
+
+
+### obtainDistributedTableName
+
+ obtainDistributedTableName(device: string, table: string): Promise<string>;
+
+根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，结果以Promise形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | device | string | 是 | 远程设备。 |
+  | table | string | 是 | 本地表名。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;string&gt; | 指定Promise回调函数。如果操作成功，返回远程设备的分布式表名。 |
+
+- 示例：
+  ```
+  let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
+  promise.then((tableName) => {
+      console.info('obtainDistributedTableName success, tableName=' + tableName)
+  }).catch((err) => {
+      console.info('obtainDistributedTableName failed.')
+  })
+  ```
+
+### sync
+
+sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void;
+
+在设备之间同步数据, 结果以callbck形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | mode | SyncMode | 是 | 指同步模式。该值可以是推、拉。 |
+  | predicates | RdbPredicates | 是 | 约束同步数据和设备。 |
+  | callback | AsyncCallback&lt;Array<[string, number]>&gt; | 是 | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。|
+
+- 示例：
+  ```
+  let predicate = new rdb.RdbPredicates('EMPLOYEE')
+  predicate.inDevices(['12345678abcde'])
+  rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate, function (err, result) {
+      if (err) {
+          console.log('sync failed')
+          return
+       }
+      console.log('sync done.')
+      for (let i = 0; i < result.length; i++) {
+          console.log('device=' + result[i][0] + ' status=' + result[i][1])
+       }
+  })
+  ```
+
+
+### sync
+
+ sync(mode: SyncMode, predicates: RdbPredicates): Promise<Array<[string, number]>>;
+
+在设备之间同步数据，结果以Promise形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | mode | SyncMode | 是 | 指同步模式。该值可以是推、拉。 |
+  | predicates | RdbPredicates | 是 | 约束同步数据和设备。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Array<[string, number]>&gt; | 指定Promise回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+
+- 示例：
+  ```
+  let predicate = new rdb.RdbPredicates('EMPLOYEE')
+  predicate.inDevices(['12345678abcde'])
+  let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
+  promise.then(result) {
+      console.log('sync done.')
+      for (let i = 0; i < result.length; i++) {
+          console.log('device=' + result[i][0] + ' status=' + result[i][1])
+      }
+   }).catch((err) => {
+       console.log('sync failed')
+   })
+  ```
+
+### on
+
+on(event: 'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;
+
+注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | SubscribeType | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
+  | observer | Callback<Array<string>> | 是 | 指分布式数据库中数据更改事件的观察者。 |
+
+- 示例：
+  ```
+  function storeObserver(devices) {
+      for (let i = 0; i < devices.length; i++) {
+          console.log('device=' + device[i] + ' data changed')
+       }
+   }
+   try {
+       rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+   } catch (err) {
+       console.log('register observer failed')
+   }
+  ```
+
+### off
+
+off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;
+
+从数据库中删除指定类型的指定观察者, 结果以callbck形式返回。
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | SubscribeType | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
+  | observer | Callback<Array<string>> | 是 | 指已注册的数据更改观察者。|
+
+- 示例：
+  ```
+  function storeObserver(devices) {
+      for (let i = 0; i < devices.length; i++) {
+          console.log('device=' + device[i] + ' data changed')
+      }
+  }
+  try {
+      rdbStore.off('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  } catch (err) {
+      console.log('unregister observer failed')
+  }
+  ```
+
+
 ## StoreConfig
 
 管理关系数据库配置。
@@ -1211,3 +1471,21 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | [key:&nbsp;string] | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | 是 | 用于存储键值对。 |
+
+
+## SyncMode
+
+指数据库同步模式。
+
+| 名称 | 说明 |
+| -------- | -------- |
+| SYNC_MODE_PUSH | 表示数据从本地设备推送到远程设备。 |
+| SYNC_MODE_PULL | 表示数据从远程设备拉至本地设备。 |
+
+## SubscribeType
+
+描述订阅类型。
+
+| 名称 | 说明 |
+| -------- | -------- |
+| SUBSCRIBE_TYPE_REMOTE | 订阅远程数据更改。 |

@@ -76,6 +76,8 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
+| RdbPredicates |inDevices(devices: Array<string>): RdbPredicates | 同步分布式数据库时指定组网内的远程设备。<br/>-&nbsp;devices：组网内指定的远程设备ID。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates |inAllDevices(): RdbPredicates | 同步分布式数据库时连接到组网内的所有远程设备。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | equalTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且值等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | notEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | beginWrap():&nbsp;RdbPredicates | 向谓词添加左括号。<br/>-&nbsp;RdbPredicates：返回带有左括号的谓词。 |
@@ -145,6 +147,54 @@
 | RdbStore | changeEncryptKey(newEncryptKey:Uint8Array,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void; | 数据库更改秘钥接口，通过callback&nbsp;可以异步处理返回结果。返回结果0成功，非0失败。 |
 | RdbStore | changeEncryptKey(newEncryptKey:Uint8Array):&nbsp;Promise&lt;number&gt;; | 数据库更改秘钥接口，通过await&nbsp;可以同步处理返回结果。返回结果0成功，非0失败。 |
 
+**设置分布式列表。**
+
+用户可以对当前数据库中的列表设置为分布式列表。
+
+**表9** 设置分布式列表
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore | setDistributedTables(tables: Array<string>, callback: AsyncCallback<void>): void;| 设置分布式列表，结果以callback形式返回。<br/>-&nbsp;tables：要设置的分布式列表表名。<br/>-&nbsp;callback：指定callback回调函数。 |
+| RdbStore | setDistributedTables(tables: Array<string>): Promise<void>; | 设置分布式列表，结果以Promise形式返回。<br/>-&nbsp;tables：要设置的分布式列表表名。 |
+
+**根据本地表名获取指定远程设备的分布式表名。**
+
+用户根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名。
+
+**表10** 根据本地表名获取指定远程设备的分布式表名
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback<string>): void; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callbck形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。<br/>-&nbsp;callback：指定的callback回调函数，如果操作成功，返回远程设备的分布式表名。  |
+| RdbStore | obtainDistributedTableName(device: string, table: string): Promise<string>; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，结果以Promise形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。 |
+
+**在设备之间同步数据。**
+
+**表11** 在设备之间同步数据
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void;| 在设备之间同步数据，结果以callback形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。<br/>-&nbsp;callback：指定的callback回调函数，string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise<Array<[string, number]>>;| 在设备之间同步数据，结果以Promise形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。  |
+
+
+**注册数据库的观察者。**
+
+**表12** 注册数据库的观察者
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore |on(event: 'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指分布式数据库中数据更改事件的观察者。 |
+
+**从数据库中删除指定类型的指定观察者。**
+
+**表13** 从数据库中删除指定类型的指定观察者
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| 从数据库中删除指定类型的指定观察者，结果以callbck形式返回。。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
+
 
 ## 开发步骤
 
@@ -198,3 +248,69 @@
    
    resultSet.close()
    ```
+
+4. 设置分布式同步表。
+   1. 数据库调用接口设置分布式同步列表。
+   2. 判断是否设置成功。
+
+   示例代码如下：
+
+   ```
+   let promise = rdbStore.setDistributedTables(["test"])
+   promise.then(() => {
+       console.info("setDistributedTables success.")
+   }).catch((err) => {
+       console.info("setDistributedTables failed."")
+   })
+   ```
+
+ 5. 分布式数据同步。
+    1. 构造用于同步分布式表的谓词对象，指定组网内的远程设备。
+    2. 调用同步数据的接口 。
+    3. 判断是否数据同步成功。
+
+    示例代码如下：
+
+    ```
+    let predicate = new dataRdb.RdbPredicates('test')
+    predicate.inDevices(['12345678abcde'])
+    let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
+    promise.then(result) {
+        console.log('sync done.')
+        for (let i = 0; i < result.length; i++) {
+            console.log('device=' + result[i][0] + ' status=' + result[i][1])
+        }
+    }).catch((err) => {
+        console.log('sync failed')
+    })
+    ```
+
+6. 分布式数据订阅。
+    1. 调用分布式数据订阅接口，注册数据库的观察者。
+    2. 当分布式数据库中的数据发生更改时，将调用回调。
+
+    示例代码如下：
+
+    ```
+    function storeObserver(devices) {
+        for (let i = 0; i < devices.length; i++) {
+            console.log('device=' + device[i] + ' data changed')
+        }
+    }
+    try {
+        rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+    } catch (err) {
+        console.log('register observer failed')
+    }
+    ```
+
+7. 跨设备查询。
+    1. 根据本地表名获取指定远程设备的分布式表名。
+    2. 调用结果集接口，返回查询结果。
+
+    示例代码如下：
+
+    ```
+    let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
+    let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
+    ```

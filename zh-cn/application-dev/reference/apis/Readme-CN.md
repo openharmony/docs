@@ -22,7 +22,8 @@
     - [用户认证](js-apis-useriam-userauth.md)
     - [访问控制](js-apis-abilityAccessCtrl.md)
 - 数据管理
-    - [轻量级存储](js-apis-data-storage.md)
+    - [轻量级存储](js-apis-data-preferences.md)
+    - [轻量级存储（废弃 since 8）](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
     - [关系型数据库](js-apis-data-rdb.md)
     - [结果集](js-apis-data-resultset.md)
@@ -36,6 +37,7 @@
     - [应用空间统计](js-apis-storage-statistics.md)
     - [卷管理](js-apis-volumemanager.md)
 - 账号管理
+    - [系统帐号管理](js-apis-osAccount.md)
     - [分布式帐号管理](js-apis-distributed-account.md)
     - [应用帐号管理](js-apis-appAccount.md)
 - 电话服务

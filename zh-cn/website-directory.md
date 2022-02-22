@@ -1380,7 +1380,9 @@
 
 ——>——>——>——> 数据管理
 
-——>——>——>——>——> [轻量级存储](application-dev/reference/apis/js-apis-data-storage.md)
+——>——>——>——>——> [轻量级存储](application-dev/reference/apis/js-apis-data-preferences.md)
+
+——>——>——>——>——> [轻量级存储（废弃 since 8）](application-dev/reference/apis/js-apis-data-storage.md)
 
 ——>——>——>——>——> [分布式数据管理](application-dev/reference/apis/js-apis-distributed-data.md)
 
