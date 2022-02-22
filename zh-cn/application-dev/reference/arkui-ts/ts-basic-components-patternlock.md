@@ -95,5 +95,5 @@ struct PatternLockExample {
 }
 ```
 
-![patternlock](figures\patternlock.gif)
+![patternlock](figures/patternlock.gif)
 
