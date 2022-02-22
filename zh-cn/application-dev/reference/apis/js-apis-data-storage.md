@@ -4,7 +4,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 从API Version 8开始，该接口不再维护，推荐使用新接口 [@ohos.data.preferences](js-apis-data-preferences.md)
 
 
 ## 导入模块
@@ -26,7 +26,7 @@ SystemCapability.DistributedDataManager.Preferences.Core
 | MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。 |
 
 
-## dataStorage.getStorageSync
+## dataStorage.getStorageSync<sup>(deprecated) </sup>
 
 getStorageSync(path: string): Storage
 
@@ -46,7 +46,7 @@ getStorageSync(path: string): Storage
   ```
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
-  
+
   var context = featureAbility.getContext()
   var path = await context.getFilesDir()
   let storage = dataStorage.getStorageSync(path + '/mystore')
@@ -55,7 +55,7 @@ getStorageSync(path: string): Storage
   ```
 
 
-## dataStorage.getStorage
+## dataStorage.getStorage<sup>(deprecated) </sup>
 
 getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
@@ -71,7 +71,7 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
   ```
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
-  
+
   var context = featureAbility.getContext()
   var path = await context.getFilesDir()
   dataStorage.getStorage(path + '/mystore', function (err, storage) {
@@ -85,7 +85,7 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
   ```
 
 
-## dataStorage.getStorage
+## dataStorage.getStorage<sup>(deprecated) </sup>
 
 getStorage(path: string): Promise&lt;Storage&gt;
 
@@ -105,7 +105,7 @@ getStorage(path: string): Promise&lt;Storage&gt;
   ```
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
-  
+
   var context = featureAbility.getContext()
   var path = await context.getFilesDir()
   let promise = dataStorage.getStorage(path + '/mystore')
@@ -118,7 +118,7 @@ getStorage(path: string): Promise&lt;Storage&gt;
   ```
 
 
-## dataStorage.deleteStorageSync
+## dataStorage.deleteStorageSync<sup>(deprecated) </sup>
 
 deleteStorageSync(path: string): void
 
@@ -135,7 +135,7 @@ deleteStorageSync(path: string): void
   ```
 
 
-## dataStorage.deleteStorage
+## dataStorage.deleteStorage<sup>(deprecated) </sup>
 
 deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;)
 
@@ -159,7 +159,7 @@ deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;)
   ```
 
 
-## dataStorage.deleteStorage
+## dataStorage.deleteStorage<sup>(deprecated) </sup>
 
 deleteStorage(path: string): Promise&lt;void&gt;
 
@@ -186,7 +186,7 @@ deleteStorage(path: string): Promise&lt;void&gt;
   ```
 
 
-## dataStorage.removeStorageFromCacheSync
+## dataStorage.removeStorageFromCacheSync<sup>(deprecated) </sup>
 
 removeStorageFromCacheSync(path: string): void
 
@@ -205,7 +205,7 @@ removeStorageFromCacheSync(path: string): void
   ```
 
 
-## dataStorage.removeStorageFromCache
+## dataStorage.removeStorageFromCache<sup>(deprecated) </sup>
 
 removeStorageFromCache(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
@@ -231,7 +231,7 @@ removeStorageFromCache(path: string, callback: AsyncCallback&lt;Storage&gt;): vo
   ```
 
 
-## dataStorage.removeStorageFromCache
+## dataStorage.removeStorageFromCache<sup>(deprecated) </sup>
 
 removeStorageFromCache(path: string): Promise&lt;void&gt;
 
@@ -260,12 +260,12 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
   ```
 
 
-## Storage
+## Storage<sup>(deprecated) </sup>
 
 提供获取和修改存储数据的接口。
 
 
-### getSync
+### getSync<sup>(deprecated) </sup>
 
 getSync(key: string, defValue: ValueType): ValueType
 
@@ -291,7 +291,7 @@ getSync(key: string, defValue: ValueType): ValueType
   ```
 
 
-### get
+### get<sup>(deprecated) </sup>
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
@@ -318,7 +318,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
   ```
 
 
-### get
+### get<sup>(deprecated) </sup>
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
@@ -348,7 +348,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
   ```
 
 
-### putSync
+### putSync<sup>(deprecated) </sup>
 
 putSync(key: string, value: ValueType): void
 
@@ -368,7 +368,7 @@ putSync(key: string, value: ValueType): void
   ```
 
 
-### put
+### put<sup>(deprecated) </sup>
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
@@ -395,7 +395,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### put
+### put<sup>(deprecated) </sup>
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
@@ -425,7 +425,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
   ```
 
 
-### hasSync
+### hasSync<sup>(deprecated) </sup>
 
 hasSync(key: string): boolean
 
@@ -452,7 +452,7 @@ hasSync(key: string): boolean
   ```
 
 
-### has
+### has<sup>(deprecated) </sup>
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
@@ -485,7 +485,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
   ```
 
 
-### has
+### has<sup>(deprecated) </sup>
 
 has(key: string): Promise&lt;boolean&gt;
 
@@ -516,7 +516,7 @@ has(key: string): Promise&lt;boolean&gt;
   ```
 
 
-### deleteSync
+### deleteSync<sup>(deprecated) </sup>
 
 deleteSync(key: string): void
 
@@ -535,7 +535,7 @@ deleteSync(key: string): void
   ```
 
 
-### delete
+### delete<sup>(deprecated) </sup>
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -561,7 +561,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### delete
+### delete<sup>(deprecated) </sup>
 
 delete(key: string): Promise&lt;void&gt;
 
@@ -590,7 +590,7 @@ delete(key: string): Promise&lt;void&gt;
   ```
 
 
-### flushSync
+### flushSync<sup>(deprecated) </sup>
 
 flushSync(): void
 
@@ -604,7 +604,7 @@ flushSync(): void
   ```
 
 
-### flush
+### flush<sup>(deprecated) </sup>
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
@@ -629,7 +629,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### flush
+### flush<sup>(deprecated) </sup>
 
 flush(): Promise&lt;void&gt;
 
@@ -653,7 +653,7 @@ flush(): Promise&lt;void&gt;
   ```
 
 
-### clearSync
+### clearSync<sup>(deprecated) </sup>
 
 clearSync(): void
 
@@ -667,7 +667,7 @@ clearSync(): void
   ```
 
 
-### clear
+### clear<sup>(deprecated) </sup>
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
@@ -692,7 +692,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### clear
+### clear<sup>(deprecated) </sup>
 
 clear(): Promise&lt;void&gt;
 
@@ -716,7 +716,7 @@ clear(): Promise&lt;void&gt;
   ```
 
 
-### on('change')
+### on('change')<sup>(deprecated) </sup>
 
 on(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
@@ -739,7 +739,7 @@ on(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
   ```
 
 
-### off('change')
+### off('change')<sup>(deprecated) </sup>
 
 off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
@@ -760,7 +760,7 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
   ```
 
 
-## StorageObserver
+## StorageObserver<sup>(deprecated) </sup>
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

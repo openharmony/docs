@@ -22,7 +22,8 @@
     - [用户认证](js-apis-useriam-userauth.md)
     - [访问控制](js-apis-abilityAccessCtrl.md)
 - 数据管理
-    - [轻量级存储](js-apis-data-storage.md)
+    - [轻量级存储](js-apis-data-preferences.md)
+    - [轻量级存储（废弃 since 8）](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
     - [关系型数据库](js-apis-data-rdb.md)
     - [结果集](js-apis-data-resultset.md)
