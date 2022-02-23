@@ -8,7 +8,7 @@
 
 ![zh-ch_image_video_state_machine](figures/zh-ch_image_video_state_machine.png)
 
-## 视频播放零层图
+
 
 **图2** 视频播放零层图
 
@@ -20,7 +20,7 @@
 2. 三方应用把surfaceID传递给VideoPlayer JS。
 3. 媒体服务把帧数据flush给surface buffer。
 
-## 视频播放开发步骤
+## 开发步骤
 
 详细API含义可参考：[js-apis-media.md](../reference/apis/js-apis-media.md)
 

@@ -4,17 +4,17 @@
 
 视频录制的主要工作是捕获音视频信号，完成音视频编码并保存到文件中，帮助开发者轻松实现音视频录制功能。它允许调用者指定录制的编码格式、封装格式、文件路径等参数。
 
-图1 视频录制状态机
+**图1** 视频录制状态机
 
 ![zh-ch_image_video_recorder_state_machine](figures/zh-ch_image_video_recorder_state_machine.png)
 
-## 视频录制零层图
+
 
 **图2** 视频录制零层图
 
 ![zh-ch_image_video_recorder_zero](figures/zh-ch_image_video_recorder_zero.png)
 
-## 视频录制开发步骤
+## 开发步骤
 
 详细API含义可参考：[js-apis-media.md](../reference/apis/js-apis-media.md)
 
