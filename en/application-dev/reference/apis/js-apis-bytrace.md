@@ -1,7 +1,8 @@
 # Performance Tracing<a name="EN-US_TOPIC_0000001165886716"></a>
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module are no longer maintained since API version 8. It is recommended that you use the APIs of [hiTraceMeter](js-apis-hitracemeter.md) instead.  
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
@@ -9,9 +10,9 @@
 import bytrace from '@ohos.bytrace';
 ```
 
-## System Capabilities
+## Required Permissions<a name="section11257113618419"></a>
 
-SystemCapability.Developtools.Bytrace
+None
 
 ## bytrace.startTrace<a name="section785191510485"></a>
 
@@ -194,5 +195,3 @@ Traces the value changes of a variable.
     traceCount = 5;
     bytrace.traceByValue("myTestCount", traceCount);
     ```
-
-
