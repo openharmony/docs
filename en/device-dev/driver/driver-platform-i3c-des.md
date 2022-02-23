@@ -3,19 +3,18 @@
 
 ## Overview<a name="section1"></a>
 
-- The Improved Inter-Integrated Circuit (I3C) is a simple and cost-efficient bidirectional 2-wire synchronous serial bus protocol developed by the Mobile Industry Processor Interface (MIPI) Alliance.
-- I3C is backward compatible with legacy Inter-Integrated Circuit (I2C) devices. Moreover, it provides the in-band interrupt (IBI) function and supports hot-join of I3C devices. This eliminates the need for adding an extra interrupt line to implement interrupts in I2C.
-- The I2C device, I3C slave device, and I3C secondary master device can coexist on the I3C bus.
--   The I3C APIs provide a set of common functions for I3C transfer, including:
+The Improved Inter-Integrated Circuit (I3C) is a simple and cost-efficient bidirectional 2-wire synchronous serial bus protocol developed by the Mobile Industry Processor Interface (MIPI) Alliance.
+I3C is backward compatible with legacy Inter-Integrated Circuit (I2C) devices. Moreover, it provides the in-band interrupt (IBI) function and supports hot-join of I3C devices. This eliminates the need for adding an extra interrupt line to implement interrupts in I2C.
+The I2C device, I3C slave device, and I3C secondary master device can coexist on the I3C bus.
+The I3C APIs provide a set of common functions for I3C transfer, including:
 
     -   Opening and closing an I3C controller.
     -   Obtaining and setting I3C controller parameters.
     -   Performing customized I3C message transfer by using a message array.
     -   Requesting and releasing an IBI.
- -    [Figure 1](#fig1) shows the I3C physical connection.
+[Figure 1](#fig1) shows the I3C physical connection.
  
     **Figure 1** I3C physical connection<a name="fig1"></a>
-
     ![](figures/I3C_physical_connection.png "I3C_physical_connection.png")
 	
 
@@ -226,8 +225,7 @@ if (ret != 2) {
 
 >![](./public_sys-resources/icon-caution.gif) **Caution**
 >-   The device address in the **I3cMsg** structure does not contain the read/write flag bit. The read/write information is passed by the read/write control bit in the member variable **flags**.
->-   The **I3cTransfer()** function does not limit the number of message structures or the length of data in each message structure.
->-   The I3C controller determines these two parameters.
+>-   The **I3cTransfer()** function does not limit the number of message structures or the length of data in each message structure. The I3C controller determines these two parameters.
 >-   Using **I3cTransfer()** may cause the system to sleep. Do not call it in the interrupt context.
 
 ### Obtaining the I3C Controller Configuration<a name="section7"></a>
