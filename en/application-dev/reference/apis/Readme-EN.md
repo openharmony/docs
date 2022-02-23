@@ -19,6 +19,7 @@
     -   [Media](js-apis-media.md)
 -   Security
     - [User Authentication](js-apis-useriam-userauth.md)
+	- [Access Control](js-apis-abilityAccessCtrl.md)
 -   Data Management
     -   [File Management](js-apis-fileio.md)
     -   [Lightweight Storage](js-apis-data-storage.md)
