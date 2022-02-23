@@ -22,7 +22,7 @@ The HDMI module adaptation involves the following steps:
     - Add the **deviceNode** information to the **device_info.hcs** file.
     - (Optional) Add the **hdmi_config.hcs** file.
 
-3. **Instantiate the HDMI controller object.**
+3. Instantiate the HDMI controller object.
     - Initialize **HdmiCntlr**.
     - Instantiate **HdmiCntlrOps** in **HdmiCntlr**. For details, see the following description of **HdmiCntlrOps**.
 
@@ -236,7 +236,7 @@ The HDMI module adaptation involves the following steps:
         };
         ```
 
-    - **(Important)**Instantiate the callback structure **HdmiCntlrOps** in **HdmiCntlr**. 
+    - **(Important)** Instantiate the callback structure **HdmiCntlrOps** in **HdmiCntlr**. 
 
         ```c 
         static struct HdmiCntlrOps g_hdmiAdapterHostOps = {
