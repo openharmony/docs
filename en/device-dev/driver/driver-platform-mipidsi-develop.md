@@ -1,10 +1,5 @@
 # MIPI DSI<a name="EN-US_TOPIC_0000001199825369"></a>
 
--   [Overview](#section1266787503161538)
--   [How to Develop](#section545182932161538)
-    -   [MipiDsiCntlrMethod](#section10711202141617)
-
--   [Development Example](#section1167576616161538)
 
 ## Overview<a name="section1266787503161538"></a>
 
@@ -13,31 +8,9 @@ The Display Serial Interface \(DSI\) is a specification developed by the Mobile 
 **Figure  1**  Service-free mode<a name="fig207610236189"></a>  
 ![](figures/service-free-mode.png "service-free-mode")
 
-## How to Develop<a name="section545182932161538"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The MIPI DSI module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **mipidsi\_config.hcs**  file.
-
-3.  Instantiate the MIPI DSI controller object.
-    -   Initialize  **MipiDsiCntlr**.
-    -   Instantiate  **MipiDsiCntlrMethod**  in the  **MipiDsiCntlr**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [MipiDsiCntlrMethod](#section10711202141617)  and  [Table 1](#table218771071713).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
-
-
-### MipiDsiCntlrMethod<a name="section10711202141617"></a>
+MipiDsiCntlrMethod
 
 ```
 struct MipiDsiCntlrMethod {// Member functions of the core layer structure
@@ -126,6 +99,31 @@ struct MipiDsiCntlrMethod {// Member functions of the core layer structure
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section545182932161538"></a>
+
+The MIPI DSI module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **mipidsi\_config.hcs**  file.
+
+3.  Instantiate the MIPI DSI controller object.
+    -   Initialize  **MipiDsiCntlr**.
+    -   Instantiate  **MipiDsiCntlrMethod**  in the  **MipiDsiCntlr**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [MipiDsiCntlrMethod](#section10711202141617)  and  [Table 1](#table218771071713).
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
+
+
 
 ## Development Example<a name="section1167576616161538"></a>
 

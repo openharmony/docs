@@ -1,10 +1,5 @@
 # Watchdog<a name="EN-US_TOPIC_0000001199821009"></a>
 
--   [Overview](#section1315827527160117)
--   [How to Develop](#section477974542160117)
-    -   [WatchdogMethod](#section220331929)
-
--   [Development Example](#section1832270347160117)
 
 ## Overview<a name="section1315827527160117"></a>
 
@@ -13,31 +8,9 @@ In the Hardware Driver Foundation \(HDF\) framework, the Watchdog \(also called 
 **Figure  1**  Independent service mode<a name="fig61584136211"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-15")
 
-## How to Develop<a name="section477974542160117"></a>
+## Available APIs<a name="section1180575010271"></a>
 
-The Watchdog module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **watchdog\_config.hcs**  file.
-
-3.  Instantiate the Watchdog controller object.
-    -   Initialize  **WatchdogCntlr**.
-    -   Instantiate  **WatchdogMethod**  in the  **WatchdogCntlr**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [WatchdogMethod](#section220331929)  and  [Table 1](#table1370451732).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the watchdog timer is successfully set.
-
-
-### WatchdogMethod<a name="section220331929"></a>
+WatchdogMethod
 
 ```
 struct WatchdogMethod {
@@ -136,6 +109,31 @@ struct WatchdogMethod {
 </tr>
 </tbody>
 </table>
+
+
+## How to Develop<a name="section477974542160117"></a>
+
+The Watchdog module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **watchdog\_config.hcs**  file.
+
+3.  Instantiate the Watchdog controller object.
+    -   Initialize  **WatchdogCntlr**.
+    -   Instantiate  **WatchdogMethod**  in the  **WatchdogCntlr**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [WatchdogMethod](#section220331929)  and  [Table 1](#table1370451732).
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the watchdog timer is successfully set.
+
 
 ## Development Example<a name="section1832270347160117"></a>
 

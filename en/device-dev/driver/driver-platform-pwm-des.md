@@ -1,22 +1,5 @@
 # PWM<a name="title_PWM_des"></a>
 
--   [Overview](#section1_PWM_des)
-    -   [PwmConfig Structure](#section1.1_PWM_des)
--   [Available APIs](#section2_PWM_des)
--   [Usage Guidelines](#section3_PWM_des)
-    -   [How to Use](#section3.1_PWM_des)
-    -   [Opening a PWM Device Handle](#section3.2_PWM_des)
-    -   [Closing a PWM Device Handle](#section3.3_PWM_des)
-    -   [Enabling a PWM Device](#section3.4_PWM_des)
-    -   [Disabling a PWM Device](#section3.5_PWM_des)
-    -   [Setting the PWM Period](#section3.6_PWM_des)
-    -   [Setting the PWM Signal ON-State Time](#section3.7_PWM_des)
-    -   [Setting the PWM Polarity](#section3.8_PWM_des)
-    -   [Setting PWM Device Parameters](#section3.9_PWM_des)
-    -   [Obtaining PWM Device Parameters](#section3.10_PWM_des)
-
--   [Usage Example](#section3_PWM_des)
-
 ## Overview <a name="section1_PWM_des"></a>
 
 Pulse width modulation (PWM) is a method used to digitally encode analog signal levels and convert them into pulses. It can be used for motor control and backlight brightness adjustment.

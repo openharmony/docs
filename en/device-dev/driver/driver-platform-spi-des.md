@@ -1,17 +1,5 @@
 # SPI<a name="EN-US_TOPIC_0000001206171293"></a>
 
--   [Overview](#section193356154511)
--   [Available APIs](#section1325964832615)
--   [Usage Guidelines](#section71363452477)
-    -   [How to Use](#section32846814820)
-    -   [Obtaining an SPI Device Handle](#section1927265711481)
-    -   [Obtaining SPI Device Configuration Parameters](#section541133418493)
-    -   [Setting SPI Device Configuration Parameters](#section7870106145010)
-    -   [Performing SPI Communication](#section13324155195013)
-    -   [Destroying the SPI Device Handle](#section19661632135117)
-
--   [Usage Example](#section06541058155120)
-
 ## Overview<a name="section193356154511"></a>
 
 -   Serial Peripheral Interface \(SPI\) is a serial bus specification used for high-speed, full-duplex, and synchronous communication.

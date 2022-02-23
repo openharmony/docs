@@ -1,10 +1,6 @@
 # I2C<a name="EN-US_TOPIC_0000001153579420"></a>
 
--   [Overview](#section2040078630114257)
--   [How to Develop](#section1085786591114257)
-    -   [I2cMethod and I2cLockMethod](#section1683458184518)
 
--   [Development Example](#section1773332551114257)
 
 ## Overview<a name="section2040078630114257"></a>
 
@@ -13,31 +9,9 @@ The Inter-Integrated Circuit \(I2C\) bus is a simple and bidirectional two-wire 
 **Figure  1**  Unified service mode<a name="fig17640124912440"></a>  
 ![](figures/unified-service-mode.png "unified-service-mode-8")
 
-## How to Develop<a name="section1085786591114257"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The I2C module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **i2c\_config.hcs**  file.
-
-3.  Instantiate the I2C controller object.
-    -   Initialize  **I2cCntlr**.
-    -   Instantiate  **I2cMethod**  and  **I2cLockMethod**  in  **I2cCntlr**.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [I2cMethod and I2cLockMethod](#section1683458184518)  and  [Table 1](#table10549174014611).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
-
-
-### I2cMethod and I2cLockMethod<a name="section1683458184518"></a>
+I2cMethod and I2cLockMethod
 
 ```
 struct I2cMethod {
@@ -77,6 +51,32 @@ struct I2cLockMethod {// Lock mechanism operation structure
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section1085786591114257"></a>
+
+The I2C module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **i2c\_config.hcs**  file.
+
+3.  Instantiate the I2C controller object.
+    -   Initialize  **I2cCntlr**.
+    -   Instantiate  **I2cMethod**  and  **I2cLockMethod**  in  **I2cCntlr**.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [I2cMethod and I2cLockMethod](#section1683458184518)  and  [Table 1](#table10549174014611).
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
+
+
+
 
 ## Development Example<a name="section1773332551114257"></a>
 

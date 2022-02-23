@@ -13,31 +13,9 @@ In the Hardware Driver Foundation \(HDF\) framework, the real-time clock \(RTC\)
 **Figure  1**  Independent service mode<a name="fig6742142611299"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-11")
 
-## How to Develop<a name="section1784450860142407"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The RTC module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **rtc\_config.hcs**  file.
-
-3.  Instantiate the RTC controller object.
-    -   Initialize  **RtcHost**.
-    -   Instantiate  **RtcMethod**  in the  **RtcHost**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [RtcMethod](#section13652132473017)  and  [Table 1](#table12929217311).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the RTC control status and response to interrupts.
-
-
-### RtcMethod<a name="section13652132473017"></a>
+RtcMethod
 
 ```
 struct RtcMethod {
@@ -205,6 +183,30 @@ struct RtcMethod {
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section1784450860142407"></a>
+
+The RTC module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **rtc\_config.hcs**  file.
+
+3.  Instantiate the RTC controller object.
+    -   Initialize  **RtcHost**.
+    -   Instantiate  **RtcMethod**  in the  **RtcHost**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [RtcMethod](#section13652132473017)  and  [Table 1](#table12929217311).
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify the basic functions, such as the RTC control status and response to interrupts.
+
 
 ## Development Example<a name="section1594883301142407"></a>
 

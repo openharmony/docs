@@ -1,11 +1,5 @@
 # PWM<a name="EN-US_TOPIC_0000001199714793"></a>
 
--   [Overview](#section1591602238164144)
--   [How to Develop](#section967396342164144)
-    -   [PwmMethod](#section14560119104318)
-
--   [Development Example](#section1883877829164144)
-
 ## Overview<a name="section1591602238164144"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the Pulse Width Modulator \(PWM\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
@@ -13,31 +7,9 @@ In the Hardware Driver Foundation \(HDF\) framework, the Pulse Width Modulator \
 **Figure  1**  Independent service mode<a name="fig983655084219"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-10")
 
-## How to Develop<a name="section967396342164144"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The PWM module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **pwm\_config.hcs**  file.
-
-3.  Instantiate the PWM controller object.
-    -   Initialize  **PwmDev**.
-    -   Instantiate  **PwmMethod**  in the  **PwmDev**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [PwmMethod](#section14560119104318)  and  [Table 1](#table11173154124311).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the PWM control status and response to interrupts.
-
-
-### PwmMethod<a name="section14560119104318"></a>
+PwmMethod
 
 ```
 struct PwmMethod {
@@ -90,6 +62,30 @@ struct PwmMethod {
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section967396342164144"></a>
+
+The PWM module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **pwm\_config.hcs**  file.
+
+3.  Instantiate the PWM controller object.
+    -   Initialize  **PwmDev**.
+    -   Instantiate  **PwmMethod**  in the  **PwmDev**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [PwmMethod](#section14560119104318)  and  [Table 1](#table11173154124311).
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify the basic functions, such as the PWM control status and response to interrupts.
+
 
 ## Development Example<a name="section1883877829164144"></a>
 

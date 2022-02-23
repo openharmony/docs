@@ -1,10 +1,5 @@
 # SDIO<a name="EN-US_TOPIC_0000001199682295"></a>
 
--   [Overview](#section1347805272150053)
--   [How to Develop](#section581179475150053)
-    -   [SdioDeviceOps](#section482911395315)
-
--   [Development Example](#section2112250242150053)
 
 ## Overview<a name="section1347805272150053"></a>
 
@@ -13,31 +8,9 @@ A Secure Digital Input Output \(SDIO\) card is an extension of the SD specificat
 **Figure  1**  Independent service mode<a name="fig124181331222"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-12")
 
-## How to Develop<a name="section581179475150053"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The SDIO module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **sdio\_config.hcs**  file.
-
-3.  Instantiate the SDIO controller object.
-    -   Initialize  **SdioDevice**.
-    -   Instantiate  **SdioDeviceOps**  in the  **SdioDevice**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [SdioDeviceOps](#section482911395315)  and  [Table 1](#table878215448417).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the SDIO control status and response to interrupts.
-
-
-### SdioDeviceOps<a name="section482911395315"></a>
+SdioDeviceOps
 
 ```
 // Function template
@@ -299,6 +272,30 @@ struct SdioDeviceOps {
 >-   **funcNum**: specifies the function number, which ranges from  **1**  to  **7**.
 >-   **irqCap**: specifies the interrupt request \(IRQ\) capabilities.
 >-   **\(void \*\)data**
+
+## How to Develop<a name="section581179475150053"></a>
+
+The SDIO module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **sdio\_config.hcs**  file.
+
+3.  Instantiate the SDIO controller object.
+    -   Initialize  **SdioDevice**.
+    -   Instantiate  **SdioDeviceOps**  in the  **SdioDevice**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [SdioDeviceOps](#section482911395315)  and  [Table 1](#table878215448417).
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify the basic functions, such as the SDIO control status and response to interrupts.
+
 
 ## Development Example<a name="section2112250242150053"></a>
 
