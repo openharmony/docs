@@ -1,11 +1,5 @@
 # MMC<a name="EN-US_TOPIC_0000001153669000"></a>
 
--   [Overview](#section1846388309162704)
--   [How to Develop](#section1617495117162704)
-    -   [MmcCntlrOps](#section6203107192915)
-
--   [Development Example](#section1220893490162704)
-
 ## Overview<a name="section1846388309162704"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the MultiMedia Card \(MMC\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
@@ -13,31 +7,9 @@ In the Hardware Driver Foundation \(HDF\) framework, the MultiMedia Card \(MMC\)
 **Figure  1**  Independent service mode<a name="fig19517114132810"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode")
 
-## How to Develop<a name="section1617495117162704"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The MMC module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **mmc\_config.hcs**  file.
-
-3.  Instantiate the MMC controller object.
-    -   Initialize  **MmcCntlr**.
-    -   Instantiate  **MmcCntlrOps**  in the  **MmcCntlr**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [MmcCntlrOps](#section6203107192915)  and  [Table 1](#table99129433019). 
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the mount operation and whether the device starts successfully.
-
-
-### MmcCntlrOps<a name="section6203107192915"></a>
+MmcCntlrOps
 
 ```
 struct MmcCntlrOps {
@@ -218,6 +190,30 @@ struct MmcCntlrOps {
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section1617495117162704"></a>
+
+The MMC module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **mmc\_config.hcs**  file.
+
+3.  Instantiate the MMC controller object.
+    -   Initialize  **MmcCntlr**.
+    -   Instantiate  **MmcCntlrOps**  in the  **MmcCntlr**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [MmcCntlrOps](#section6203107192915)  and  [Table 1](#table99129433019). 
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the mount operation and whether the device starts successfully.
+
 
 ## Development Example<a name="section1220893490162704"></a>
 
