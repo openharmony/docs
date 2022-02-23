@@ -1,11 +1,5 @@
 # ADC<a name="EN-US_TOPIC_0000001153677754"></a>
 
--   [Overview](#section268031773165048)
--   [How to Develop](#section100579767165048)
-    -   [AdcMethod](#section1618135285210)
-
--   [Development Example](#section1745221471165048)
-
 ## Overview<a name="section268031773165048"></a>
 
 The analog-to-digital converter \(ADC\) is a device that converts analog signals into digital signals. In the Hardware Driver Foundation \(HDF\) framework, the ADC module uses the unified service mode for API adaptation. In this mode, a device service is used as the ADC manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the ADC has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
@@ -13,29 +7,7 @@ The analog-to-digital converter \(ADC\) is a device that converts analog signals
 **Figure  1**  Unified service mode<a name="fig14423182615525"></a>  
 ![](figures/unified-service-mode.png "ADC-unified-service-mode")
 
-## How to Develop<a name="section100579767165048"></a>
-
-The ADC module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **adc\_config.hcs**  file.
-
-3.  Instantiate the ADC controller object.
-    -   Initialize  **AdcDevice**.
-    -   Instantiate  **AdcMethod**  in the  **AdcDevice**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [AdcMethod](#section1618135285210)  and  [Table 1](#table1943202316536).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the signal collection is successful.
-
+## Available APIs<a name="section752964871810"></a>
 
 ### AdcMethod<a name="section1618135285210"></a>
 
@@ -98,6 +70,30 @@ struct AdcMethod {
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section100579767165048"></a>
+
+The ADC module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **adc\_config.hcs**  file.
+
+3.  Instantiate the ADC controller object.
+    -   Initialize  **AdcDevice**.
+    -   Instantiate  **AdcMethod**  in the  **AdcDevice**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [AdcMethod](#section1618135285210)  and  [Table 1](#table1943202316536).
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the signal collection is successful.
+
 
 ## Development Example<a name="section1745221471165048"></a>
 

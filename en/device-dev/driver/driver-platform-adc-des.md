@@ -1,15 +1,5 @@
 # ADC<a name="1"></a>
 
--   [Overview](#section1)
--   [Available APIs](#section2)
--   [Usage Guidelines](#section3)
-    -   [How to Use](#section4)
-    -   [Opening an ADC Device](#section5)
-    -   [Obtaining the AD Conversion Result](#section6)
-    -   [Closing an ADC Device](#section7)
-
--   [Example](#section8)
-
 ## Overview<a name="section1"></a>
 
 -   An analog-to-digital converter (ADC) is a device that converts analog signals into digital signals.
