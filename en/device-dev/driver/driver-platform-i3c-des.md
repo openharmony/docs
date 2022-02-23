@@ -282,7 +282,7 @@ int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
 int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
 ```
 
-** Table 5** Description of I3cSetConfig
+**Table 5** Description of I3cSetConfig
 
 <a name="table5"></a>
 
@@ -326,7 +326,7 @@ int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
 int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t payload);
 ```
 
-** Table 6** Description of I3cRequestIbi
+**Table 6** Description of I3cRequestIbi
 
 <a name="table6"></a>
 
@@ -414,7 +414,7 @@ int32_t I3cTestRequestIbi(void)
 int32_t I3cFreeIbi(DevHandle handle, uint16_t addr);
 ```
 
-** Table 7** Description of I3cFreeIbi
+**Table 7** Description of I3cFreeIbi
 
 <a name="table7"></a>
 
