@@ -1,16 +1,5 @@
 # RTC<a name="EN-US_TOPIC_0000001206373007"></a>
 
--   [Overview](#section104842041574)
--   [Available APIs](#section20331159102519)
--   [Usage Guidelines](#section20636145604113)
-    -   [How to Use](#section16919828134215)
-    -   [Creating an RTC Device Handle](#section1131212144310)
-    -   [Releasing the RTC Device Handle](#section10744117144314)
-    -   [Registering RtcAlarmCallback](#section14839440184320)
-    -   [Performing RTC-related Operations](#section161927578433)
-
--   [Usage Example](#section1186111020456)
-
 ## Overview<a name="section104842041574"></a>
 
 The real-time clock \(RTC\) driver provides precise real time for the operating system \(OS\). If the OS is powered off, the RTC driver continues to keep track of the system time using an external battery.
