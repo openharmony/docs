@@ -1,38 +1,102 @@
 # HiSysEvent Tool Usage<a name="EN-US_TOPIC_0000001231614021"></a>
 
+-   [Overview](#section1886702718521)
+-   [Subscribing to Real-Time System Events](#section1210623418527)
+-   [Querying Historical System Events](#section1210623418539)
+
 ## Overview<a name="section1886702718521"></a>
 
-The HiSysEvent tool is a command line tool preconfigured in the system. You can specify search criteria to query system events that meet your requirement. Using this tool, you can debug event logging during development or query system events for fault locating.
+The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** directory of the system. You can use this tool to subscribe to real-time system events or query historical system vents.
 
-## Usage<a name="section1210623418527"></a>
+## Subscribing to Real-Time System Events<a name="section1210623418527"></a>
 
-1.  Run the HiSysEvent tool.
-
-    The tool is preconfigured in the  **/system/bin**  directory. You can run the following command in any directory:
-
-    ```
-    hisysevent [-r | -l [-s <time> -e <time> -m <count>]]
-    -r    get real hisysevent log.
-    -l -s <begin time> -e <end time> -m <max hisysevent count>
-    get history hisysevent log, begin time should not be earlier than end time.
-    ```
-
-2.  To query real-time system events, run the following command:
+-   Command for subscribing to real-time system events:
 
     ```
     hisysevent -r
     ```
 
-    When a system event is received, the event will be printed on the console.
+    Description of command options:
 
-3.  To query historical system events, run the following command:
+    | Option| Description|
+    | -------- | --------- |
+    | -r&nbsp;        | Subscribes to real-time system events based on the default settings. When this option is specified, any real-time system event will be printed on the console.|
+
+-   Command for enabling the debugging mode:
 
     ```
-    hisysevent -l -s <begin time> -e <end time> -m <max hisysevent count>
+    hisysevent -r -d
     ```
 
-    In the preceding command, parameters  **-s**  and  **-e**  specify the start time and end time, respectively. If  **-s**  or  **-e**  is not specified, there is no limitation for the start time or end time.
+    Description of command options:
 
-    Parameter  **-m**  specifies the maximum number of event records that can be returned in this query.
+    | Option| Description|
+    | -------- | --------- |
+    | -d       | Subscribes to real-time system events in debugging mode.|
 
+-   Command for subscribing to real-time system events by event tag:
 
+    ```
+    hisysevnet -r -t <tag> [-c [WHOLE_WORD|PREFIX|REGULAR]]
+    ```
+
+    Description of command options:
+
+    | Option| Description|
+    | -------- | --------- |
+    | -t&nbsp;        | Event tag used to filter subscribed real-time system events.|
+    | -c&nbsp;        | Matching rule for event tags. The options can be **WHOLE_WORD**, **PREFIX**, or **REGULAR**.|
+
+-   Command for subscribing to real-time system events by event domain and event name:
+
+    ```
+    hisysevent -r -o <domain> -n <eventName> [-c [WHOLE_WORD|PREFIX|REGULAR]]
+    ```
+
+    | Option| Description|
+    | -------- | --------- |
+    | -o       | Event domain used to filter subscribed real-time system events.|
+    | -n       | Event name used to filter subscribed real-time system events.|
+    | -c       | Matching rule for event domains and event names. The options can be **WHOLE_WORD**, **PREFIX**, or **REGULAR**.|
+
+    >![](../public_sys-resources/icon-note.gif) **NOTE:**
+    >If **-t**, **-o**, and **-n** are specified, the system checks whether the configured event tag is null. If the event tag is not null, the system filters system events based on the matching rules for the event tag. Otherwise, the system filters system events based on the matching rules for the event domain and event name.
+
+## Querying Historical System Events<a name="section1210623418539"></a>
+
+-   Command for querying historical system events:
+
+    ```
+    hisysevent -l
+    ```
+
+    Description of command options:
+
+    | Option| Description|
+    | -------- | --------- |
+    | -l       | Queries historical system events based on the default settings. A maximum of 1,000 latest system events will be returned.|
+
+-   Command for querying historical system events within the specified period of time:
+
+    ```
+    hisysevent -l -s <begin time> -e <end time>
+    ```
+
+    Description of command options:
+
+    | Option| Description|
+    | -------- | --------- |
+    | -s       | Start time for querying historical system events. Only system events generated after the start time are returned.|
+    | -e       | End time for querying historical system events. Only system events generated before the end time are returned.|
+
+-   Command for setting the maximum number of historical events that can be queried:
+
+    ```
+    hisysevent -l -m <max hisysevent count>
+    ```
+
+    Description of command options:
+
+    | Option| Description|
+    | -------- | --------- |
+    | -m       | Maximum number of historical system events that can be queried. The value ranges from **0** to **1000**. The number of returned system events is not more than the value of this parameter.|
