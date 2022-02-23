@@ -1,13 +1,16 @@
 # richtext<a name="ZH-CN_TOPIC_0000001173164701"></a>
 
-富文本组件，用于展示富文本信息。
+>![](../../public_sys-resources/icon-note.gif) **说明：** 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->-   富文本内容需要写在元素标签内。
+富文本组件，用于展示富文本信息，内容需要写在元素标签内。
 
 ## 权限列表<a name="section11257113618419"></a>
 
 无
+
+## 子组件<a name="section877361219116"></a>
+
+不包含子组件。
 
 ## 属性<a name="section2907183951110"></a>
 
@@ -53,10 +56,6 @@
 >-   richtext内容不建议超过一个屏幕高度，超出部分不会显示。
 >-   不支持设置宽度，默认撑开全屏。
 
-## 方法<a name="section14703165113610"></a>
-
-不支持。
-
 ## 示例<a name="section581819591666"></a>
 
 ```
@@ -71,20 +70,25 @@
 export default {
   data: {
     content: `
-    <div class="flex-direction: column; background-color: #ffffff; padding: 30px; margin-bottom: 30px;"  style="background-color: #FFFFFF">
-      <style>h1{color: yellow;}</style>
-      <p class="item-title">h1</p>
-      <h1>文本测试(h1测试)</h1>
-      <p class="item-title">h2</p>
-      <h2>文本测试(h2测试)</h2>
-    </div>
+     <h1 style='text-align: center;'>h1标题</h1>
+     <h1 style='text-align: center;'><i>h1斜体</i></h1>
+     <h1 style='text-align: center;'><u>h1下划线</u></h1>
+     <h2 style='text-align: center;'>h2标题</h2>
+     <h3 style='text-align: center;'>h3标题</h3>
+     <p style='text-align: center;'>p常规</p><hr/>
+     <div style='width: 500px;height: 500px;border: 1px solid;margin: 0auto;'>
+         <p style='font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)'>字体大小35px,行高45px</p>
+         <p style='background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;'>
+            这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+            这是一段文字</p>
+     </div>
     `,
   },
   onLoadStart() {
-    console.error("start load rich text:" + JSON.stringify())
+    console.error("start load rich text.")
   },
   onLoadEnd() {
-    console.error("end load rich text:" + JSON.stringify())
+    console.error("end load rich text.")
   }
 }
 ```
