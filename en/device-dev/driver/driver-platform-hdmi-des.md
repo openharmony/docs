@@ -840,7 +840,7 @@ The following is an example of closing an HDMI controller:
 HdmiClose(hdmiHandle);
 ```
 
-## Example<a name="section14""></a>
+## Example<a name="section14"></a>
 
 This following example shows how to use HDMI APIs to manage an HDMI device on a Hi3516D V300 development board.
 
