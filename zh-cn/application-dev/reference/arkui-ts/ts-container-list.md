@@ -37,7 +37,8 @@ List(value:{space?: number, initialIndex?: number})
 | editMode | boolean | false | 声明当前List组件是否处于可编辑模式。 |
 | edgeEffect | EdgeEffect | EdgeEffect.Spring | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
 | chainAnimation | boolean | false | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：list内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
-| $multiSelectable^{8+}$ | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
+| multiSelectable<sup>8+</sup> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
+| restoreId<sup>8+</sup> | number | - | 组件迁移标识符，标识后的组件在应用迁移时，组件状态会被迁移到被拉起方的同标识组件。<br/>列表组件状态，包括起始位置显示的item序号。 |
 
 - EdgeEffect枚举说明
   | 名称 | 描述 | 
