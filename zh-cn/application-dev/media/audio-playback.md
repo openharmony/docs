@@ -10,7 +10,7 @@
 
 
 
-**图2** 视频播放零层图
+**图2** 音频播放零层图
 
 ![zh-ch_image_audio_player](figures/zh-ch_image_audio_player.png)
 
