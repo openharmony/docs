@@ -368,7 +368,7 @@ int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
 </td>
-The <td class="cellrowborder" valign="top" width="50%"><p> Failed to request the IBI.</p>
+<td class="cellrowborder" valign="top" width="50%"><p> Failed to request the IBI.</p>
 </td>
 </tr>
 </tbody>
@@ -463,7 +463,7 @@ Call **I3cClose()** to close the I3C controller after the communication is compl
 void I3cClose(DevHandle handle); 
 ```
 
-**Table 4** Description of I3cClose
+**Table 8** Description of I3cClose
 
 <a name="table4"></a>
 
@@ -486,7 +486,7 @@ void I3cClose(DevHandle handle);
 I3cClose(i3cHandle); /* Close an I3C controller. */
 ```
 
-## Example<a name="section12""></a>
+## Example<a name="section12"></a>
 
 This following example shows how to use I3C APIs to manage an I3C device on a Hi3516D V300 development board.
 
