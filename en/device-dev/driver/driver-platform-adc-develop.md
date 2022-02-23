@@ -1,12 +1,17 @@
 # ADC<a name="EN-US_TOPIC_0000001153677754"></a>
 
+-   [Overview](#section268031773165048)
+-   [How to Develop](#section100579767165048)
+    -   [AdcMethod](#section1618135285210)
+
+-   [Development Example](#section1745221471165048)
 
 ## Overview<a name="section268031773165048"></a>
 
 The analog-to-digital converter \(ADC\) is a device that converts analog signals into digital signals. In the Hardware Driver Foundation \(HDF\) framework, the ADC module uses the unified service mode for API adaptation. In this mode, a device service is used as the ADC manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the ADC has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
 
 **Figure  1**  Unified service mode<a name="fig14423182615525"></a>  
-![](figures/unified-service-mode.png "unified-service-mode")
+![](figures/unified-service-mode.png "ADC-unified-service-mode")
 
 ## How to Develop<a name="section100579767165048"></a>
 
