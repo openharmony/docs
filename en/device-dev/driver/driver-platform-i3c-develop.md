@@ -1,9 +1,5 @@
 # I3C 
 
-- [Overview](#1)
-- [How to Develop](#2)
-- [Development Example](#3)
-
 ## Overview<a name="1"></a>
 
 The Improved Inter-Integrated Circuit (I3C) is a simple and cost-efficient bidirectional 2-wire synchronous serial bus protocol developed by the Mobile Industry Processor Interface (MIPI) Alliance. In the Hardware Driver Foundation (HDF), the I3C module uses the unified service mode for API adaptation. In this mode, a device service is used as the I3C manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the I3C has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
