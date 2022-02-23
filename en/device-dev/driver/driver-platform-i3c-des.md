@@ -183,7 +183,7 @@ int32_t I3cTransfer(DevHandle handle, struct I3cMsg *msgs, int16_t count, enum T
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>mode</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p>Transmission mode, where the value **0** indicates the I2C mode, **1** indicates the I3C mode, and **2** indicates transmission of the Common Command Code (CCC).
+<td class="cellrowborder" valign="top" width="50%"><p>Transmission mode, where the value  0  indicates the I2C mode,  1  indicates the I3C mode, and  2  indicates transmission of the Common Command Code (CCC).
 </td>
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
