@@ -25,7 +25,7 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | placeholder | string | 否 | - | 无输入时的提示文本。 |
-  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8+) | 否 | - | 设置TextInput控制器。 |
+  | controller<sup>8+</sup> | [TextInputController](#textinputcontrollersup8sup) | 否 | - | 设置TextInput控制器。 |
 
 
 ## 属性
@@ -39,7 +39,7 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
 | placeholderFont | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
 | enterKeyType | EnterKeyType                                                 | EnterKeyType.Done | 设置输入法回车键类型。 |
 | caretColor | Color | - | 设置输入框光标颜色。 |
-| maxLength<sup>8+</sup> | number | - | 设置文本的最大输入字符数。 |
+| maxLength | number | - | 设置文本的最大输入字符数。 |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | - | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 
 - EnterKeyType枚举说明
@@ -62,11 +62,22 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
 
 ### TextInputController<sup>8+</sup>
 
-TextInput组件的控制器，通过它操作TextInput组件。
+TextInput组件的控制器。
 
-| 接口名称 | 功能描述 | 
-| -------- | -------- |
-| caretPosition(value:&nbsp;number):void | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 | 
+#### 导入对象
+```
+controller: TextInputController = new TextInputController()
+```
+#### controller.caretPosition
+
+caretPosition(value:&nbsp;number): void
+
+设置光标移动到指定位置。
+- 参数
+
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- |-------- |-------- |-------- |
+  | value | number |是 | - |设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
 
 
 ## 事件
