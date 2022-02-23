@@ -1,10 +1,5 @@
 # SPI<a name="EN-US_TOPIC_0000001199690327"></a>
 
--   [Overview](#section84922229152909)
--   [Available APIs](#section752964871810)
--   [How to Develop](#section799667984152909)
--   [Development Example](#section956157227152909)
-
 
 ## Overview<a name="section84922229152909"></a>
 

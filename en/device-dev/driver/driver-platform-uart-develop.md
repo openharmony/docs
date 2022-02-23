@@ -13,31 +13,9 @@ In the Hardware Driver Foundation \(HDF\) framework, the Universal Asynchronous 
 **Figure  1**  Independent service mode<a name="fig1474518243468"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-14")
 
-## How to Develop<a name="section944397404154520"></a>
+## Available APIs<a name="section752964871810"></a>
 
-The UART module adaptation involves the following steps:
-
-1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
-
-2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **uart\_config.hcs**  file.
-
-3.  Instantiate the UART controller object.
-    -   Initialize  **UartHost**.
-    -   Instantiate  **UartHostMethod**  in the  **UartHost**  object.
-
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [UartHostMethod](#section192316441461)  and  [Table 1](#table22862114719).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the UART control status and response to interrupts.
-
-
-### UartHostMethod<a name="section192316441461"></a>
+UartHostMethod
 
 ```
 struct UartHostMethod {
@@ -189,6 +167,30 @@ struct UartHostMethod {
 </tr>
 </tbody>
 </table>
+
+## How to Develop<a name="section944397404154520"></a>
+
+The UART module adaptation involves the following steps:
+
+1.  Instantiate the driver entry.
+    -   Instantiate the  **HdfDriverEntry**  structure.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+
+2.  Configure attribute files.
+    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
+    -   \(Optional\) Add the  **uart\_config.hcs**  file.
+
+3.  Instantiate the UART controller object.
+    -   Initialize  **UartHost**.
+    -   Instantiate  **UartHostMethod**  in the  **UartHost**  object.
+
+        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+        >For details, see  [UartHostMethod](#section192316441461)  and  [Table 1](#table22862114719).
+
+
+4.  Debug the driver.
+    -   \(Optional\) For new drivers, verify the basic functions, such as the UART control status and response to interrupts.
+
 
 ## Development Example<a name="section774610224154520"></a>
 
