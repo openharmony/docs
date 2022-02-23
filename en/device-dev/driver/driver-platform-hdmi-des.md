@@ -12,6 +12,7 @@
     - Reading the raw Extended Display Identification Data (EDID) from a sink.
     - Registering and unregistering a callback for HDMI hot plug detect.
 -   [Figure 1](#fig1) shows the HDMI physical connection.
+
      **Figure 1** HDMI physical connection<a name="fig1"></a>
 	 
      ![](figures/HDMI_physical_connection.png "HDMI_physical_connection")
