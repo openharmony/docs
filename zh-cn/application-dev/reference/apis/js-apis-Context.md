@@ -63,7 +63,7 @@ getOrCreateLocalDir(): Promise\<string>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getOrCreateLocalDir().then((void) => {
+context.getOrCreateLocalDir().then(() => {
 	console.info("==========================>getOrCreateLocalDirCallback=======================>");
 });
 ```
@@ -91,9 +91,9 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 import featureAbility from '@ohos.ability.featureAbility'
 import bundle from '@ohos.bundle'
 var context = featureAbility.getContext();
-var datainfo = await bundle.getBundleInfo('com.context.test',1);
-context.verifyPermission("com.example.permission",datainfo.uid)
-
+bundle.getBundleInfo('com.context.test', 1, (datainfo) =>{
+	context.verifyPermission("com.example.permission", datainfo.uid);
+});
 ```
 
 
@@ -146,7 +146,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
 var Permission = context.PermissionOptions(1,1);
-context.getOrCreateLocalDir('com.context.permission',Permission).then((void) => {
+context.getOrCreateLocalDir('com.context.permission',Permission).then(() => {
 	console.info("==========================>verifyPermissionCallback=======================>");
 });
 ```
@@ -223,7 +223,7 @@ getApplicationInfo(): Promise\<ApplicationInfo>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getApplicationInfo().then((void) => {
+context.getApplicationInfo().then(() => {
 	console.info("==========================>getApplicationInfoCallback=======================>");
 });
 ```
@@ -269,7 +269,7 @@ getBundleName(): Promise\<string>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getBundleName().then((void) => {
+context.getBundleName().then(() => {
 	console.info("==========================>getBundleNameCallback=======================>");
 });
 ```
@@ -315,7 +315,7 @@ getProcessInfo(): Promise\<ProcessInfo>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getProcessInfo().then((void) => {
+context.getProcessInfo().then(() => {
 	console.info("==========================>getProcessInfoCallback=======================>");
 });
 ```
@@ -365,7 +365,7 @@ getElementName(): Promise\<ElementName>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getElementName().then((void) => {
+context.getElementName().then(() => {
 	console.info("==========================>getElementNameCallback=======================>");
 });
 ```
@@ -407,7 +407,7 @@ getProcessName(): Promise\<string>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getProcessName().then((void) => {
+context.getProcessName().then(() => {
 	console.info("==========================>getProcessNameCallback=======================>");
 });
 ```
@@ -453,7 +453,7 @@ getCallingBundle(): Promise\<string>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getCallingBundle().then((void) => {
+context.getCallingBundle().then(() => {
 	console.info("==========================>getCallingBundleCallback=======================>");
 });
 ```

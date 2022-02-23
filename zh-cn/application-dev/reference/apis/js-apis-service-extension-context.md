@@ -29,8 +29,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
       "abilityName": "com.example.myapp.MyAbility"
   };
   this.context.startAbility(want, (err) => {
-      console.log('startAbility result:' + JSON.stringfy(err);
-  }  
+      console.log('startAbility result:' + JSON.stringfy(err));
+  });
   ```
 
 
@@ -58,7 +58,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
   };
   this.context.startAbility(want).then((data) => {
       console.log('success:' + JSON.stringfy(data));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
   ```
@@ -78,8 +78,8 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 - 示例：
   ```
   this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err);
-  }
+      console.log('terminateSelf result:' + JSON.stringfy(err));
+  });
   ```
 
 
@@ -98,7 +98,7 @@ terminateSelf(): Promise&lt;void&gt;;
   ```
   this.context.terminateSelf(want).then((data) => {
       console.log('success:' + JSON.stringfy(data));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
   ```
@@ -128,8 +128,8 @@ connectAbility(want: Want, options: ConnectOptions): number;
       "abilityName": "com.example.myapp.MyAbility"
   };
   let options = {
-      onConnect: function(elementName, proxy) {}
-      onDisConnect: function(elementName) {}
+      onConnect: function(elementName, proxy) {},
+      onDisConnect: function(elementName) {},
       onFailed: function(code) {}
   }
   let connection = this.context.connectAbility(want,options);
@@ -151,8 +151,8 @@ disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 - 示例：
   ```
   this.context.disconnectAbility(connection, (err) => { // connection为connectAbility中的返回值
-      console.log('terminateSelf result:' + JSON.stringfy(err);
-  }
+      console.log('terminateSelf result:' + JSON.stringfy(err));
+  });
   ```
 
 
@@ -176,7 +176,7 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
   ```
   this.context.disconnectAbility(connection).then((data) => { // connection为connectAbility中的返回值
       console.log('success:' + JSON.stringfy(data));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
   ```

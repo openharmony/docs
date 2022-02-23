@@ -28,6 +28,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: v
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
+import wantConstant from "@ohos.ability.wantConstant"
 particleAbility.startAbility(
 	{
         want:
@@ -35,7 +36,7 @@ particleAbility.startAbility(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-            flags: FLAG_AUTH_READ_URI_PERMISSION;
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
             abilityName: "com.example.Data.MainAbility",
@@ -70,6 +71,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
+import wantConstant from "@ohos.ability.wantConstant"
 particleAbility.startAbility(
 	{
         want:
@@ -77,14 +79,14 @@ particleAbility.startAbility(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-            flags: FLAG_AUTH_READ_URI_PERMISSION;
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example.Data.MainAbility",
+            abilityName: "com.example. Data.MainAbility",
             uri:""
         },
     },
-).then((void) => {
+).then(() => {
     console.info("particleAbility startAbility");
 });
 ```
@@ -131,7 +133,7 @@ terminateSelf(): Promise\<void>
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
-particleAbility.terminateSelf().then((void) => {
+particleAbility.terminateSelf().then(() => {
 	console.info("particleAbility terminateSelf");
 });
 ```
@@ -195,7 +197,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnectCallback');
 }
 function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
@@ -234,7 +236,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnectCallback');
 }
 function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
@@ -255,8 +257,8 @@ var connId = particleAbility.connectAbility(
 );
 var result = particleAbility.disconnectAbility(connId,
     (error,data) => {
-        console.log('particleAbilityTest DisConnectAbility result errCode : ' + error.code + " data: " + data)
-    },
+        console.log('particleAbilityTest DisConnectAbility result errCode : ' + error.code + " data: " + data);
+    }
 );
 ```
 
@@ -282,7 +284,7 @@ disconnectAbility(connection: number): Promise\<void>
 ```javascript
 import particleAbility from '@ohos.ability.particleAbility'
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect onConnectCallback');
 }
 function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
@@ -301,7 +303,7 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = particleAbility.disconnectAbility(connId).then((void) => {
+var result = particleAbility.disconnectAbility(connId).then(() => {
 	console.info("particleAbilityTest disconnectAbility");
 });
 ```
