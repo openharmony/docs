@@ -2,7 +2,7 @@
 
 ## Task Description<a name="section2073881513322"></a>
 
-This document is intended for novices at developing OpenHarmony apps. You will learn the development procedure from the following sections to build two pages and implement redirection from the first page to the second one. The following figure shows how the pages look on the  [Previewer](https://developer.harmonyos.com/en/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252).
+This document is intended for novices at developing apps. You will learn the development procedure from the following sections to build two pages and implement redirection from the first page to the second one. The following figure shows how the pages look on the  [Previewer](https://developer.harmonyos.com/en/docs/documentation/doc-guides/previewer-0000001054328973#ZH-CN_TOPIC_0000001056725592__section16523172216252).
 
 For best results, use the  [latest version of DevEco Studio](https://developer.harmonyos.com/en/develop/deveco-studio#download)  for your development.
 

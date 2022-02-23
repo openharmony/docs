@@ -110,5 +110,5 @@ For best results, use the  [latest version of DevEco Studio](https://developer.h
     ![](figures/2.png)
 
 
-Congratulations! You have finished developing your OpenHarmony app in JavaScript.
+Congratulations! You have finished developing your app in JavaScript.
 
