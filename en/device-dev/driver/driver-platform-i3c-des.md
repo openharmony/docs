@@ -1,18 +1,5 @@
 # I3C<a name="1"></a>
 
--   [Overview](#section1)
--   [Available APIs](#section2)
--   [Usage Guidelines](#section3)
-    -   [How to Use](#section4)
-    -   [Opening an I3C Controller](#section5)
-    -   [Performing I3C Communication](#section6)
-    -   [Obtaining I3C Controller Configuration](#section7)
-    -   [Configuring an I3C Controller](#section8)
-    -   [Requesting an IBI](#section9)
-    -   [Releasing an IBI](#section10)
-    -   [Closing the I3C Controller](#section11)
-    
--   [Example](#section12)
 
 ## Overview<a name="section1"></a>
 
@@ -26,7 +13,9 @@
     -   Performing customized I3C message transfer by using a message array.
     -   Requesting and releasing an IBI.
  -    [Figure 1](#fig1) shows the I3C physical connection.
+ 
     **Figure 1** I3C physical connection<a name="fig1"></a>
+	
     ![](figures/I3C_physical_connection.png "I3C_physical_connection")
 
 ## Available APIs<a name="section2"></a>
@@ -100,6 +89,7 @@
 [Figure 2](#fig2) shows how I3C works.
 
 **Figure 2** How I3C works<a name="fig2"></a>
+
 ![](figures/I3C_usage_flowchart.png "I3C_usage_flowchart")
 
 ### Opening an I3C Controller<a name="section5"></a>
