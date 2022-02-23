@@ -16,7 +16,7 @@
  
     **Figure 1** I3C physical connection<a name="fig1"></a>
 	
-    ![](figures/I3C_physical_connection.png "I3C_physical_connection")
+    ![](figures/I3C_physical_connection.png"I3C_physical_connection")
 
 ## Available APIs<a name="section2"></a>
 
