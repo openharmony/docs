@@ -87,6 +87,7 @@
         - [RowSplit](ts-container-rowsplit.md)
         - [Scroll](ts-container-scroll.md)
         - [ScrollBar](ts-basic-components-scrollbar.md)
+        - [SideBarContainer](ts-container-sidebarcontainer.md)
         - [Stack](ts-container-stack.md)
         - [Swiper](ts-container-swiper.md)
         - [Tabs](ts-container-tabs.md)
