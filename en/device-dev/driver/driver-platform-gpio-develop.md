@@ -1,12 +1,5 @@
 # GPIO<a name="EN-US_TOPIC_0000001153555758"></a>
 
--   [Overview](#section1826197354103451)
--   [Available APIs](#section752964871810)
--   [How to Develop](#section731175315103451)
--   [Development Example](#section800425816103451)
-
-
-
 ## Overview<a name="section1826197354103451"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the general-purpose input/output \(GPIO\) module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode,  **DevHandle**  \(a void pointer\) directly points to the kernel-mode address of the device object.

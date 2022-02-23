@@ -1,9 +1,5 @@
 # HDMI 
 
-- [Overview](#1)
-- [How to Develop](#2)
-- [Development Example](#3)
-
 ## Overview<a name="1"></a>
 
 The High-Definition Multimedia Interface (HDMI) is an audio/video transmission protocol released by Hitachi, Panasonic, Philips, SiliconImage, Sony, Thomson and Toshiba. It is used to transmit audio or video data from an audio or video source device, such as a DVD player or STB, to a sink device, such as a TV or monitor. The transmission process complies with the Transition Minimized Differential Signaling (TMDS) protocol.

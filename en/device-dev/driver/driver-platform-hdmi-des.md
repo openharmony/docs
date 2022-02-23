@@ -1,20 +1,5 @@
 # HDMI<a name="1"></a>
 
--   [Overview](#section1)
--   [Available APIs](#section2)
--   [Usage Guidelines](#section3)
-    -   [How to Use](#section4)
-    -   [Opening an HDMI Controller](#section5)
-    -   [Registering a Callback for Hot Plug Detect](#section6)
-    -   [Reading the EDID](#section7)
-    -   [Setting Attributes](#section8)
-    -   [Starting HDMI Transmission](#section10)
-    -   [Stopping HDMI Transmission](#section11)
-    -   [Unregistering the Callback for Hot Plug Detect](#section12)
-    -   [Closing an HDMI Controller](#section13)
-    
--   [Example](#section14)
-
 ## Overview<a name="section1"></a>
 
 -   The High-Definition Multimedia Interface (HDMI) is an audio/video transmission protocol released by Hitachi, Panasonic, Philips, Silicon Image, Sony, Thomson, Toshiba.
@@ -28,6 +13,7 @@
     - Registering and unregistering a callback for HDMI hot plug detect.
 -   [Figure 1](#fig1) shows the HDMI physical connection.
      **Figure 1** HDMI physical connection<a name="fig1"></a>
+	 
      ![](figures/HDMI_physical_connection.png "HDMI_physical_connection")
 
 ## Available APIs<a name="section2"></a>
@@ -129,6 +115,7 @@
 [Figure 2](#fig2) shows how HDMI works.
 
 **Figure 2** How HDMI works<a name="fig2"></a>
+
 ![](figures/HDMI_usage_flowchart.png "HDMI_usage_flowchart")
 
 ### Opening an HDMI Controller<a name="section5"></a>
