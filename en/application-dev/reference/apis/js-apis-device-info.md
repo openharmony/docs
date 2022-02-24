@@ -6,9 +6,9 @@
 import deviceInfo from '@ohos.deviceInfo'
 ```
 
-## Required Permissions<a name="section373mcpsimp"></a>
+## System Capabilities<a name="section373mcpsimp"></a>
 
-None
+SystemCapability.Startup.SysInfo
 
 ## Attributes<a name="section62871841172112"></a>
 
@@ -347,4 +347,3 @@ None
 </tr>
 </tbody>
 </table>
-
