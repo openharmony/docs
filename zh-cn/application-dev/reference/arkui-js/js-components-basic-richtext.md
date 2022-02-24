@@ -1,7 +1,5 @@
 # richtext<a name="ZH-CN_TOPIC_0000001173164701"></a>
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
 富文本组件，用于展示富文本信息，内容需要写在元素标签内。
 
 ## 权限列表<a name="section11257113618419"></a>
