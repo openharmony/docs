@@ -96,5 +96,5 @@
 | -------- | -------- |
 | Row | 主轴与行方向一致作为布局模式。 | 
 | Column | 主轴与列方向一致作为布局模式。 | 
-| RowReverse | 与Row方向相反方向进行布局。 | 
+| RowReverse | 与Row相反方向进行布局。 | 
 | ColumnReverse | 与Column相反方向进行布局。 | 
