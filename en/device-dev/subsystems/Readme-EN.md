@@ -88,7 +88,7 @@
   - [HiSysEvent Development](subsys-dfx-hisysevent.md)
     - [HiSysEvent Logging](subsys-dfx-hisysevent-logging.md)
     - [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)
-    - [HiSysEvent Query](subsys-dfx-hisysevent-querying.md)
+    - [HiSysEvent Query](subsys-dfx-hisysevent-query.md)
     - [HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool.md)
 - [R&D Tools](subsys-toolchain.md)
   - [bytrace Usage Guidelines](subsys-toolchain-bytrace-guide.md)

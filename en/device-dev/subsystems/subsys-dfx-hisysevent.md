@@ -4,7 +4,7 @@
 
 -   **[HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)**  
 
--   **[HiSysEvent Query](subsys-dfx-hisysevent-querying.md)**  
+-   **[HiSysEvent Query](subsys-dfx-hisysevent-query.md)**  
 
 -   **[HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool.md)**  
 

@@ -7,5 +7,5 @@
     -   [HiSysEvent Logging](subsys-dfx-hisysevent-logging.md)
     -   [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)
     -   [HiSysEvent Query](subsys-dfx-hisysevent-query.md)
-    -   [HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool-usage.md)
+    -   [HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool.md)
 
