@@ -114,9 +114,9 @@ struct WebComponent {
   controller: WebController = new WebController();
   build() {
     Column() {
-      Web(src: $rawfile('index.html'), controller: this.controller)
-      .javaScriptAccess(javaScriptAccess)
-      .fileAccess(fileAccess)
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+      .javaScriptAccess(this.javaScriptAccess)
+      .fileAccess(this.fileAccess)
       .onPageEnd(e => {
         // test() 在 index.html 中已定义
         this.controller.runJavaScript('test()');
@@ -125,8 +125,9 @@ struct WebComponent {
     }
   }
 }
-
-// index.html
+```
+```
+<!-- index.html -->
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
