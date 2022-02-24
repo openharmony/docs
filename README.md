@@ -28,6 +28,6 @@ This repository stores device and application development documents provided by 
 
 ### Historical Stable Versions
 
-OpenHarmony_v1.x_release: OpenHarmony v1.1.4 LTS. [Learn more](en/release-notes/OpenHarmony-v1.1.4-LTS.md)
+OpenHarmony_v1.x_release: OpenHarmony v1.1.4 LTS. [Learn more](en/release-notes/OpenHarmony-v1-1-4-LTS.md)
 
 [More versions](en/release-notes/)
