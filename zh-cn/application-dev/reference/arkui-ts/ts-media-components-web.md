@@ -34,15 +34,27 @@ ohos.permission.READ_USER_STORAGE
 > - 只支持加载 rawfile 目录下的 html 文件，不支持远程资源。
 
 ## 属性
-
-| 名称               | 参数类型    | 默认值   | 描述                                       |
-| ---------------- | ------- | ----- | ---------------------------------------- |
-| javaScriptAccess | boolean | false | 是否允许执行 JavaScript 脚本，当设置为 false 时，不允许执行。 |
-| fileAccess       | boolean | false | 启用或禁用 Web 中可通过 file 方式访问应用中的本地文件，当设置为 false 时，禁用。 |
+| 名称              | 参数类型         | 默认值                                     | 描述                                                         |
+| ----------------- | ---------------- | ------------------------------------------ | ------------------------------------------------------------ |
+| javaScriptAccess  | boolean          | true                                       | 是否允许执行 JavaScript 脚本，默认允许执行。   |
+| fileAccess        | boolean          | true                                       | 启用或禁用 Web 中可通过 file 方式访问应用中的本地文件， 默认启用。 |
+| onlineImageAccess | boolean          | true                                       | 是否允许从网络加载图片 资源（通过http和http访问的资源），默认允许访问。 |
+| domStorageAccess  | boolean          | false                                      | 设置是否开启DOM存储API权限，默认未开启，设置为true时，WebView能够使用DOM storageAPI。 |
+| imageAccess       | boolean          | true                                       | 设置是否允许自动加载图片资源，默认允许。                       |
+| mixedMode         | MixedModeContent | MixedModeContent.MIXED_CONTENT_NEVER_ALLOW | 设置是否加载http和https混合内容，默认不允许加载http和https混合内容。 |
+| zoomAccess        | boolean          | true                                       | 设置是否支持使用屏幕控件或手势进行缩放，默认执行缩放。         |
+| geolocationAccess | boolean          | true                                       | 是否允许访问地理位置， 默认允许。                              |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
 > 不支持通用属性。
+- MixedModeContent枚举说明
+
+  | 名称                             | 描述                                                         |
+  | -------------------------------- | ------------------------------------------------------------ |
+  | MIXED_CONTENT_NEVER_ALLOW        | 不允许加载http和https混合内容。                                |
+  | MIXED_CONTENT_ALWAYS_ALLOW       | 允许加载http和https混合内容。                                  |
+  | MIXED_CONTENT_COMPATIBILITY_MODE | 混合内容兼容性模式，一些不安全的内容可能被安全来源加载，其他类型的内容将被阻止。 |
 
 ## 事件
 
