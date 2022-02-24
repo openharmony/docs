@@ -6,6 +6,6 @@
 
 -   **[HiSysEvent订阅指导](subsys-dfx-hisysevent-listening.md)**
 
--   **[HiSysEvent查询指导](subsys-dfx-hisysevent-querying.md)**
+-   **[HiSysEvent查询指导](subsys-dfx-hisysevent-query.md)**
 
 -   **[HiSysEvent工具使用指导](subsys-dfx-hisysevent-tool.md)**
