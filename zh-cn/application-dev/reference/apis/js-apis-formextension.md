@@ -42,14 +42,16 @@ onCreate(want: Want): formBindingData.FormBindingData
 - 示例：
 
   ```
-  onCreate(want) {
-      console.log('FormExtension onCreate, want:' + want.abilityName);
-      let dataObj1 = {
-          temperature:"11c",
-          "time":"11:00"
-      };
-      let obj1 = formBindingData.createFormBindingData(dataObj1);
-      return obj1;
+  export default class MyFormExtension extends FormExtension {
+      onCreate(want) {
+          console.log('FormExtension onCreate, want:' + want.abilityName);
+          let dataObj1 = {
+              temperature:"11c",
+              "time":"11:00"
+          };
+          let obj1 = formBindingData.createFormBindingData(dataObj1);
+          return obj1;
+      }
   }
   ```
 
@@ -68,8 +70,10 @@ onCastToNormal(formId: string): void
 - 示例：
 
   ```
-  onCastToNormal(formId) {
-      console.log('FormExtension onCastToNormal, formId:' + formId);
+  export default class MyFormExtension extends FormExtension {
+      onCastToNormal(formId) {
+          console.log('FormExtension onCastToNormal, formId:' + formId);
+      }
   }
   ```
 
@@ -88,14 +92,16 @@ onUpdate(formId: string): void
 - 示例：
 
   ```
-  onUpdate(formId) {
-      console.log('FormExtension onUpdate, formId:' + formId);
-      let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-      this.context.updateForm(formId, obj2)
-          .then((data)=>{
-              console.log('FormExtension context updateForm, data:' + data);
-          }).catch((error) => {
-          console.error('Operation updateForm failed. Cause: ' + error);});
+  export default class MyFormExtension extends FormExtension {
+      onUpdate(formId) {
+          console.log('FormExtension onUpdate, formId:' + formId);
+          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+          this.context.updateForm(formId, obj2)
+              .then((data)=>{
+                  console.log('FormExtension context updateForm, data:' + data);
+              }).catch((error) => {
+              console.error('Operation updateForm failed. Cause: ' + error);});
+      }
   }
   ```
 
@@ -114,17 +120,19 @@ onVisibilityChange(newStatus: { [key: string]: number }): void
 - 示例：
 
   ```
-  onVisibilityChange(newStatus) {
-      console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
-      let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-
-      for (let key in newStatus) {
-          console.log('FormExtension onVisibilityChange, key:' + key + ", value=" + newStatus[key]);
-          this.context.updateForm(key, obj2)
-              .then((data)=>{
-                  console.log('FormExtension context updateForm, data:' + data);
-              }).catch((error) => {
-              console.error('Operation updateForm failed. Cause: ' + error);});
+  export default class MyFormExtension extends FormExtension {
+      onVisibilityChange(newStatus) {
+          console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
+          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  
+          for (let key in newStatus) {
+              console.log('FormExtension onVisibilityChange, key:' + key + ", value=" + newStatus[key]);
+              this.context.updateForm(key, obj2)
+                  .then((data)=>{
+                      console.log('FormExtension context updateForm, data:' + data);
+                  }).catch((error) => {
+                  console.error('Operation updateForm failed. Cause: ' + error);});
+          }
       }
   }
   ```
@@ -145,8 +153,10 @@ onEvent(formId: string, message: string): void
 - 示例：
 
   ```
-  onEvent(formId, message) {
-      console.log('FormExtension onEvent, formId:' + formId + ", message:" + message);
+  export default class MyFormExtension extends FormExtension {
+      onEvent(formId, message) {
+          console.log('FormExtension onEvent, formId:' + formId + ", message:" + message);
+      }
   }
   ```
 
@@ -165,7 +175,9 @@ onDestroy(formId: string): void
 - 示例：
 
   ```
-  onDestroy(formId) {
-      console.log('FormExtension onDestroy, formId:' + formId);
+  export default class MyFormExtension extends FormExtension {
+      onDestroy(formId) {
+          console.log('FormExtension onDestroy, formId:' + formId);
+      }
   }
   ```
