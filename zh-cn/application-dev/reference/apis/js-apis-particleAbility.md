@@ -28,7 +28,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: v
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
-import wantConstant from "@ohos.ability.wantConstant"
+import wantConstant from '@ohos.ability.wantConstant'
 particleAbility.startAbility(
 	{
         want:
@@ -71,7 +71,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
-import wantConstant from "@ohos.ability.wantConstant"
+import wantConstant from '@ohos.ability.wantConstant'
 particleAbility.startAbility(
 	{
         want:
@@ -86,7 +86,7 @@ particleAbility.startAbility(
             uri:""
         },
     },
-).then(() => {
+).then((data) => {
     console.info("particleAbility startAbility");
 });
 ```
@@ -133,7 +133,7 @@ terminateSelf(): Promise\<void>
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
-particleAbility.terminateSelf().then(() => {
+particleAbility.terminateSelf().then((data) => {
 	console.info("particleAbility terminateSelf");
 });
 ```
@@ -164,148 +164,6 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 import particleAbility from '@ohos.ability.particleAbility'     
 var uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
-```
-
-## particleAbility.connectAbility
-
-connectAbility(request: Want, options:ConnectOptions): number
-
-将当前ability连接到指定ServiceAbility（callback形式）。
-
-**参数：**
-
-| 名称    | 类型           | 必填 | 描述                       |
-| ------- | -------------- | ---- | -------------------------- |
-| request | [Want](#want)           | 是   | 表示被连接的ServiceAbility |
-| options | ConnectOptions | 是   | 被指定的回调方法           |
-
-**ConnectOptions类型说明：**
-
-| 名称         | 读写属性 | 类型     | 必填 | 描述                               |
-| ------------ | -------- | -------- | ---- | ---------------------------------- |
-| onConnect    | 只读     | function | 是   | 连接成功时的回调函数               |
-| onDisconnect | 只读     | function | 是   | 断开连接时的回调函数               |
-| onFailed     | 只读     | function | 是   | ConnectAbility调用失败时的回调函数 |
-
-**返回值：**
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| number | 标识客户端与服务端的连接。 |
-
-**示例：**
-
-```javascript
-import particleAbility from '@ohos.ability.particleAbility'
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnectCallback');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-}
-function onFailedCallback(code){
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-}
-var connId = particleAbility.connectAbility(
-    {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
-    },
-    {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
-    },
-);
-```
-
-## particleAbility.disconnectAbility
-
-disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
-
-断开与指定ServiceAbility的连接（callback形式）。
-
-**参数：**
-
-| 名称       | 类型          | 必填 | 描述                           |
-| ---------- | ------------- | ---- | ------------------------------ |
-| connection | number        | 是   | 指定断开连接的ServiceAbilityID |
-| callback   | AsyncCallback\<void> | 是   | 被指定的回调方法               |
-
-**示例：**
-
-```javascript
-import particleAbility from '@ohos.ability.particleAbility'
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnectCallback');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-}
-function onFailedCallback(code){
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-}
-var connId = particleAbility.connectAbility(
-    {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
-    },
-    {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
-    },
-);
-var result = particleAbility.disconnectAbility(connId,
-    (error,data) => {
-        console.log('particleAbilityTest DisConnectAbility result errCode : ' + error.code + " data: " + data);
-    }
-);
-```
-
-## particleAbility.disconnectAbility
-
-disconnectAbility(connection: number): Promise\<void>
-
-断开与指定ServiceAbility的连接（Promise形式）。
-
-**参数：**
-
-| 名称       | 类型   | 必填 | 描述                           |
-| ---------- | ------ | ---- | ------------------------------ |
-| connection | number | 是   | 指定断开连接的ServiceAbilityID |
-
-**返回值：**
-| 类型           | 说明                      |
-| -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
-
-**示例：**
-
-```javascript
-import particleAbility from '@ohos.ability.particleAbility'
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect onConnectCallback');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-}
-function onFailedCallback(code){
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-}
-var connId = particleAbility.connectAbility(
-    {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
-    },
-    {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
-    },
-);
-var result = particleAbility.disconnectAbility(connId).then(() => {
-	console.info("particleAbilityTest disconnectAbility");
-});
 ```
 
 ## StartAbilityParameter

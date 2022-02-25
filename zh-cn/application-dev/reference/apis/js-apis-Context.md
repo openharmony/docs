@@ -63,8 +63,8 @@ getOrCreateLocalDir(): Promise\<string>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getOrCreateLocalDir().then(() => {
-	console.info("==========================>getOrCreateLocalDirCallback=======================>");
+context.getOrCreateLocalDir().then((data) => {
+    console.info("data=" + data);
 });
 ```
 
@@ -146,8 +146,9 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
 var Permission = context.PermissionOptions(1,1);
-context.getOrCreateLocalDir('com.context.permission',Permission).then(() => {
-	console.info("==========================>verifyPermissionCallback=======================>");
+context.verifyPermission('com.context.permission',Permission).then((data) => {
+    console.info("======================>verifyPermissionCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -172,13 +173,16 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, res
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getOrCreateLocalDir(    
+context.requestPermissionsFromUser(
     ["com.example.permission1",
      "com.example.permission2",
      "com.example.permission3",
      "com.example.permission4",
      "com.example.permission5"],
-    1,
+    1,(err, data)=>{
+        console.info("====>requestdata====>" + JSON.stringify(data));
+        console.info("====>requesterrcode====>" + JSON.stringify(err.code));
+    }
 )
 ```
 
@@ -223,8 +227,9 @@ getApplicationInfo(): Promise\<ApplicationInfo>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getApplicationInfo().then(() => {
-	console.info("==========================>getApplicationInfoCallback=======================>");
+context.getApplicationInfo().then((data) => {
+    console.info("=====================>getApplicationInfoCallback===================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -269,8 +274,9 @@ getBundleName(): Promise\<string>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getBundleName().then(() => {
-	console.info("==========================>getBundleNameCallback=======================>");
+context.getBundleName().then((data) => {
+    console.info("=======================>getBundleNameCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -315,8 +321,9 @@ getProcessInfo(): Promise\<ProcessInfo>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getProcessInfo().then(() => {
-	console.info("==========================>getProcessInfoCallback=======================>");
+context.getProcessInfo().then((data) => {
+    console.info("=======================>getProcessInfoCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -365,8 +372,9 @@ getElementName(): Promise\<ElementName>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getElementName().then(() => {
-	console.info("==========================>getElementNameCallback=======================>");
+context.getElementName().then((data) => {
+    console.info("=======================>getElementNameCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -407,8 +415,9 @@ getProcessName(): Promise\<string>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getProcessName().then(() => {
-	console.info("==========================>getProcessNameCallback=======================>");
+context.getProcessName().then((data) => {
+    console.info("=======================>getProcessNameCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -453,8 +462,9 @@ getCallingBundle(): Promise\<string>
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getCallingBundle().then(() => {
-	console.info("==========================>getCallingBundleCallback=======================>");
+context.getCallingBundle().then((data) => {
+    console.info("======================>getCallingBundleCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 

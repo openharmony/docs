@@ -27,6 +27,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
+import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbility(
         {
         want:
@@ -34,15 +35,14 @@ featureAbility.startAbility(
             action: "",
             entities: [""],
             type: "",
-            flags: FLAG_AUTH_READ_URI_PERMISSION,
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.startability",
             abilityName: "com.example.startability.MainAbility",
             uri: ""
         },
     },
-  );
-)
+);
 ```
 
 
@@ -63,6 +63,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
+import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbility(
     {
         want:
@@ -70,14 +71,14 @@ featureAbility.startAbility(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-			flags: FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: deviceId,
+			flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+            deviceId: "",
             bundleName: "com.example.startability",
             abilityName: "com.example.startability.MainAbility",
             uri: ""
         },
     }
-   ).then((void) => {
+   ).then((data) => {
 	console.info("==========================>startAbility=======================>");
 });
 ```
@@ -126,6 +127,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
+import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbilityForResult(
    {
         want:
@@ -133,7 +135,7 @@ featureAbility.startAbilityForResult(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-            flags: FLAG_AUTH_READ_URI_PERMISSION,
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.featureabilitytest",
             abilityName: "com.example.featureabilitytest.MainAbility",
@@ -164,6 +166,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
+import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbilityForResult(
     {
         want:
@@ -171,7 +174,7 @@ featureAbility.startAbilityForResult(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-            flags: FLAG_AUTH_READ_URI_PERMISSION,
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.featureabilitytest",
             abilityName: "com.example.featureabilitytest.MainAbility",
@@ -190,7 +193,7 @@ featureAbility.startAbilityForResult(
         },
         requestCode: 2,
     },
-).then((void) => {
+).then((data) => {
     console.info("==========================>startAbilityForResult=======================>");
 });
 ```
@@ -212,6 +215,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
+import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -220,7 +224,7 @@ featureAbility.terminateSelfWithResult(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-            flags: FLAG_AUTH_READ_URI_PERMISSION,
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.featureabilitytest",
             abilityName: "com.example.featureabilitytest.MainAbility",
@@ -261,6 +265,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
+import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -269,7 +274,7 @@ featureAbility.terminateSelfWithResult(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-            flags: FLAG_AUTH_READ_URI_PERMISSION,
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.featureabilitytest",
             abilityName: "com.example.featureabilitytest.MainAbility",
@@ -286,7 +291,7 @@ featureAbility.terminateSelfWithResult(
             }
         },
     }
-).then((void) => {
+).then((data) => {
     console.info("==========================>terminateSelfWithResult=======================>");
 });
 ```
@@ -330,7 +335,7 @@ hasWindowFocus(): Promise\<boolean>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
-featureAbility.hasWindowFocus().then((void) => {
+featureAbility.hasWindowFocus().then((data) => {
     console.info("==========================>hasWindowFocus=======================>");
 });
 ```
@@ -373,7 +378,7 @@ getWant(): Promise\<Want>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
-featureAbility.getWant().then((void) => {
+featureAbility.getWant().then((data) => {
 		console.info("==========================>getWantCallBack=======================>");
 });
 ```
@@ -435,7 +440,7 @@ terminateSelf(): Promise\<void>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
-featureAbility.terminateSelf().then((void) => {		    console.info("==========================>terminateSelfCallBack=======================>");
+featureAbility.terminateSelf().then((data) => {		    console.info("==========================>terminateSelfCallBack=======================>");
 });
 ```
 
@@ -488,7 +493,7 @@ function onFailedCallback(code){
 }
 var connId = featureAbility.connectAbility(
     {
-        deviceId: deviceId,
+        deviceId: "",
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
     },
@@ -611,21 +616,156 @@ continueAbility(options: ContinueAbilityOptions, callback: AsyncCallback\<void>)
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
+import device from '@system.device'
+import ability from '@ohos.ability.featureability'
 
-async StartContinueAbility(deviceId) {
-    let continueAbilityOptions = {
-        reversible: false,
-        deviceId: deviceId,
-    }
-    function ContinueAbilityCallback(err, data) {
-        console.info("[Demo] ContinueAbilityCallback, result err = " + JSON.stringify(err));
-        console.info("[Demo] ContinueAbilityCallback, result data= " + JSON.stringify(data));
-    }
-    await featureAbility.continueAbility(continueAbilityOptions, ContinueAbilityCallback);
-    console.info('[Demo] featureAbility.StartContinueAbility end');
+var DEVICE_LIST_LOCALHOST
+export default {
+    data: {
+        title: "",
+        deviceId: '',
+        deviceList: [],
+        remoteDeviceModel : new RemoteDeviceModel()
+    },
+    onInit() {
+        DEVICE_LIST_LOCALHOST = {
+            id: 'localhost',
+        };
+        this.deviceList = [DEVICE_LIST_LOCALHOST];
+    },
+    onShow() {
+        const core = Core.getInstance()
+        const expectExtend = new ExpectExtend({
+            'id': 'extend'
+        })
+        const reportExtend = new ReportExtend(file)
+        core.addService('expect', expectExtend)
+        core.addService('report', reportExtend)
+        core.init()
+        const configService = core.getDefaultService('config')
+        configService.setConfig(this)
+        core.execute()
+    },
+    onReady() {
+    },
+    GetNetWorkId(){
+        let self = this;
+        this.remoteDeviceModel.registerDeviceListCallback(() => {
+            var list = [];
+            list[0] = DEVICE_LIST_LOCALHOST;
+            var deviceList = self.remoteDeviceModel.deviceList;
+            for (var i = 0; i < deviceList.length; i++) {
+                list[i] = {
+                    id: deviceList[i].deviceId,
+                };
+            }
+            self.deviceList = list;
+        });
+    },
+    ShowNetWorkId(){
+        this.deviceId = this.deviceList[0].id;
+    },
+
+    async ContinueAbility(){
+        function ContinueAbilityCallback(err) {
+            console.info("=============>ContinueAbilityCallback============>");
+        }
+        var continueAbilityOptions = {
+            reversible: false,
+            deviceId: this.deviceId,
+        }
+        //continueAbility callback
+        await ability.continueAbility(continueAbilityOptions, ContinueAbilityCallback);
+    },
 }
-this.StartContinueAbility(remoteDeviceId); //remoteDeviceId is acquired from DeviceManager
+```
+
+## featureAbility.continueAbility
+
+continueAbility(options: ContinueAbilityOptions): Promise\<void>;
+
+迁移一个ability到目标设备，并返回执行结果（Promise形式）。
+
+**参数：**
+
+| 名称    | 类型                   | 必填 | 描述                |
+| ------- | ---------------------- | ---- | ------------------- |
+| options | ContinueAbilityOptions | 是   | 表示被启动的Ability |
+
+**ContinueAbilityOptions类型说明：**
+
+| 名称       | 读写属性 | 类型    | 必填 | 描述                                                         |
+| ---------- | -------- | ------- | ---- | ------------------------------------------------------------ |
+| deviceId   | 只读     | string  | 是   | 表示需要包含有关目标启动能力的信息。                         |
+| reversible | 只读     | boolean | 是   | 是否支持回迁的标志，目前不支持该功能，为保留字段，可填false。 |
+
+**示例：**
+
+```javascript
+import device from '@system.device'
+import ability from '@ohos.ability.featureability'
+
+var DEVICE_LIST_LOCALHOST
+export default {
+    data: {
+        title: "",
+        deviceId: '',
+        deviceList: [],
+        remoteDeviceModel : new RemoteDeviceModel()
+    },
+    onInit() {
+        DEVICE_LIST_LOCALHOST = {
+            id: 'localhost',
+        };
+        this.deviceList = [DEVICE_LIST_LOCALHOST];
+    },
+    onShow() {
+        const core = Core.getInstance()
+        const expectExtend = new ExpectExtend({
+            'id': 'extend'
+        })
+        const reportExtend = new ReportExtend(file)
+        core.addService('expect', expectExtend)
+        core.addService('report', reportExtend)
+        core.init()
+        const configService = core.getDefaultService('config')
+        configService.setConfig(this)
+        core.execute()
+    },
+    onReady() {
+    },
+    GetNetWorkId(){
+        let self = this;
+        this.remoteDeviceModel.registerDeviceListCallback(() => {
+            var list = [];
+            list[0] = DEVICE_LIST_LOCALHOST;
+            var deviceList = self.remoteDeviceModel.deviceList;
+            for (var i = 0; i < deviceList.length; i++) {
+                list[i] = {
+                    id: deviceList[i].deviceId,
+                };
+            }
+            self.deviceList = list;
+        });
+    },
+    ShowNetWorkId(){
+        this.deviceId = this.deviceList[0].id;
+    },
+
+    async ContinueAbility(){
+        function ContinueAbilityCallback(err) {
+            console.info("=============>ContinueAbilityCallback============>");
+        }
+        var continueAbilityOptions = {
+            reversible: false,
+            deviceId: this.deviceId,
+        }
+        //continueAbility promise
+        await ability.continueAbility(continueAbilityOptions).then(() => {
+            console.info("=======>continueAbilityCallback=========>");
+        });
+    },
+}
 ```
 
 ## AbilityResult
