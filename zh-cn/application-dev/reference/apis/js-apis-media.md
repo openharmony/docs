@@ -1757,9 +1757,13 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 表示音频编码格式的枚举。
 
-| 名称   | 默认值 | 说明                                                         |
-| ------ | ------ | ------------------------------------------------------------ |
-| AAC_LC | 3      | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
+| 名称    | 默认值 | 说明                                                         |
+| ------- | ------ | ------------------------------------------------------------ |
+| DEFAULT | 0      | Default audio encoding format is AMR_NB。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AAC_LC  | 3      | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
+| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 
 ## AudioOutputFormat
@@ -1768,7 +1772,10 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 | 名称     | 默认值 | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
+| DEFAULT  | 0      | 默认封装格式为MPEG-4。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | MPEG_4   | 2      | 封装为MPEG-4格式。                                           |
+| AMR_NB   | 3      | 封装为AMR_NB格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AMR_WB   | 4      | 封装为AMR_WB格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
 
 ## VideoRecorder<sup>8+</sup>
