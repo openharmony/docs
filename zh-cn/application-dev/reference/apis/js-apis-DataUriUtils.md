@@ -27,7 +27,6 @@ getId(uri: string): number
 **示例：**
 
 ```js
-import dataUriUtils from '@ohos.ability.datauriutils'
 dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
 ```
 
@@ -55,10 +54,9 @@ attachId(uri: string, id: number): string
 **示例：**
 
 ```js
-import dataUriUtils from '@ohos.ability.datauriutils'
 var idint = 1122;
 dataUriUtils.attachId(
-    "com.example.dataUriUtils"
+    "com.example.dataUriUtils",
 	idint,
 )
 ```
@@ -85,7 +83,6 @@ deleteId(uri: string): string
 **示例：**
 
 ```js
-import dataUriUtils from '@ohos.ability.datauriutils'
 dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 ```
 
@@ -112,11 +109,10 @@ updateId(uri: string, id: number): string
 **示例：**
 
 ```js
-import dataUriUtils from '@ohos.ability.datauriutils'
 var idint = 1122;
 dataUriUtils.updateId(
-    "com.example.dataUriUtils"
-	idint,
+    "com.example.dataUriUtils",
+	idint
 )
 ```
 

@@ -137,8 +137,8 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 - 示例：
   ```
   this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err);
-  }
+      console.log('terminateSelf result:' + JSON.stringfy(err));
+  });
   ```
 
 
@@ -157,7 +157,7 @@ terminateSelf(): Promise&lt;void&gt;;
   ```
   this.context.terminateSelf(want).then((data) => {
       console.log('success:' + JSON.stringfy(data));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
   ```

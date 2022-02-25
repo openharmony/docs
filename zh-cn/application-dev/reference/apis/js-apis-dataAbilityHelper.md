@@ -65,8 +65,8 @@ var DAHelper = featureAbility.acquireDataAbilityHelper(
 );
 var mode = "rwt";
 DAHelper.openFile(
-    "dataability:///com.example.DataAbility"，
-    mode).then((void) => {
+    "dataability:///com.example.DataAbility",
+    mode).then((data) => {
 		console.info("==========================>openFileCallback=======================>");
 });
 ```
@@ -338,7 +338,7 @@ var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.denormalizeUri(
-    "dataability:///com.example.DataAbility",,
+    "dataability:///com.example.DataAbility",
     (err, data) => {
 		console.info("==========================>Called=======================>");
 });
@@ -398,7 +398,7 @@ var helper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 helper.notifyChange(
-    "dataability:///com.example.DataAbility",,
+    "dataability:///com.example.DataAbility",
     (err) => {
 		console.info("==========================>Called=======================>");
 });
@@ -430,7 +430,7 @@ var DAHelper = featureAbility.acquireDataAbilityHelper(
 );
 DAHelper.notifyChange(
     "dataability:///com.example.DataAbility",
-	).then((void) => {
+	).then(() => {
 		console.info("==========================>notifyChangeCallback=======================>");
 });
 ```
@@ -747,7 +747,7 @@ import ohos_data_ability from '@ohos.data.dataability'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars=new Array({"value1"}, {"value2"}, {"value3"}, {"value4"});
+var cars=new Array("value1", "value2", "value3", "value4");
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.query(
     "dataability:///com.example.DataAbility",
@@ -787,7 +787,7 @@ import ohos_data_ability from '@ohos.data.dataability'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars=new Array({"value1"}, {"value2"}, {"value3"}, {"value4"});
+var cars=new Array("value1", "value2", "value3", "value4");
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.query(
     "dataability:///com.example.DataAbility",
