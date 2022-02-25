@@ -41,7 +41,7 @@ function publishCallback(err) {
 var notificationRequest = {
     id: 1,
     content: {
-        contentType: notify.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -71,7 +71,7 @@ Notification.publish(notificationRequest, publishCallback)
 var notificationRequest = {
     notificationId: 1,
     content: {
-        contentType: notify.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -79,7 +79,7 @@ var notificationRequest = {
         }
     }
 }
-Notification.publish(notificationRequest).then((void) => {
+Notification.publish(notificationRequest).then(() => {
 	console.info("==========================>publishCallback=======================>");
 });
 
@@ -137,7 +137,7 @@ Notification.cancel(0, "label", cancelCallback)
 - 示例
 
 ```js
-Notification.cancel(0).then((void) => {
+Notification.cancel(0).then(() => {
 	console.info("==========================>cancelCallback=======================>");
 });
 ```
@@ -193,10 +193,10 @@ Notification.cancel(0, cancelCallback)
 
 ```js
 //cancel回调
-function cancelAllback(err) {
-	console.info("==========================>cancelAllback=======================>");
+function cancelAllCallback(err) {
+	console.info("==========================>cancelAllCallback=======================>");
 }
-Notification.cancelAll(cancelCallback)
+Notification.cancelAll(cancelAllCallback)
 ```
 
 
@@ -218,8 +218,8 @@ Notification.cancelAll(cancelCallback)
 - 示例
 
 ```js
-Notification.cancelAll().then((void) => {
-	console.info("==========================>cancelAllback=======================>");
+Notification.cancelAll().then(() => {
+	console.info("==========================>cancelAllCallback=======================>");
 });
 ```
 
@@ -281,7 +281,7 @@ Notification.addSlot(notificationSlot, addSlotCallBack)
 var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
-Notification.addSlot(notificationSlot).then((void) => {
+Notification.addSlot(notificationSlot).then(() => {
 	console.info("==========================>addSlotCallback=======================>");
 });
 ```
@@ -336,7 +336,7 @@ Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack
 - 示例
 
 ```js
-Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then((void) => {
+Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
 	console.info("==========================>addSlotCallback=======================>");
 });
 ```
@@ -407,7 +407,7 @@ var notificationSlot = {
 var notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
-Notification.addSlots(notificationSlotArray).then((void) => {
+Notification.addSlots(notificationSlotArray).then(() => {
 	console.info("==========================>addSlotCallback=======================>");
 });
 ```
@@ -573,7 +573,7 @@ Notification.removeSlot(slotType,removeSlotCallback)
 
 ```js
 var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.removeSlot(slotType).then((void) => {
+Notification.removeSlot(slotType).then(() => {
 	console.info("==========================>removeSlotCallback=======================>");
 });
 ```
@@ -624,7 +624,7 @@ Notification.removeAllSlots(removeAllCallBack)
 - 示例
 
 ```js
-Notification.removeAllSlots().then((void) => {
+Notification.removeAllSlots().then(() => {
 	console.info("==========================>removeAllCallBack=======================>");
 });
 ```
@@ -730,7 +730,7 @@ function onConsumeCallback(err, data) {
 var subscriber = {
     onConsume: onConsumeCallback
 };
-Notification.subscribe(subscriber).then((void) => {
+Notification.subscribe(subscriber).then(() => {
 	console.info("==========================>subscribeCallback=======================>");
 });
 ```
@@ -796,7 +796,7 @@ function onConsumeCallback(err, data) {
 var subscriber = {
     onConsume: onConsumeCallback
 };
-Notification.unsubscribe(subscriber).then((void) => {
+Notification.unsubscribe(subscriber).then(() => {
 	console.info("==========================>unsubscribeCallback=======================>");
 });
 ```
@@ -828,7 +828,7 @@ function enableNotificationCallback(err) {
 	console.info("==========================>enableNotificationCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.enableNotification(bundle, false, enableNotificationCallback);
 ```
@@ -856,9 +856,9 @@ Notification.enableNotification(bundle, false, enableNotificationCallback);
 
 ```js
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
-Notification.enableNotification(bundle, false).then((void) => {
+Notification.enableNotification(bundle, false).then(() => {
 	console.info("==========================>enableNotificationCallback=======================>");
 });
 ```
@@ -889,7 +889,7 @@ function isNotificationEnabledCallback(err, data) {
 	console.info("==========================>isNotificationEnabledCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
@@ -916,7 +916,7 @@ Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 
 ```js
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.isNotificationEnabled(bundle).then((data) => {
 	console.info("==========================>isNotificationEnabledCallback=======================>");
@@ -1004,7 +1004,7 @@ function displayBadgeCallback(err) {
 	console.info("==========================>displayBadgeCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.displayBadge(bundle, false, displayBadgeCallback);
 ```
@@ -1032,9 +1032,9 @@ Notification.displayBadge(bundle, false, displayBadgeCallback);
 
 ```js
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
-Notification.displayBadge(bundle, false).then((void) => {
+Notification.displayBadge(bundle, false).then(() => {
 	console.info("==========================>displayBadgeCallback=======================>");
 });
 ```
@@ -1065,7 +1065,7 @@ function isBadgeDisplayedCallback(err, data) {
 	console.info("==========================>isBadgeDisplayedCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 ```
@@ -1092,7 +1092,7 @@ Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 
 ```js
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.isBadgeDisplayed(bundle).then((data) => {
 	console.info("==========================>isBadgeDisplayedCallback=======================>");
@@ -1126,7 +1126,7 @@ function setSlotByBundleCallback(err) {
 	console.info("==========================>setSlotByBundleCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
@@ -1157,12 +1157,12 @@ Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 
 ```js
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
-Notification.displayBadge(bundle, notificationSlot).then((void) => {
+Notification.displayBadge(bundle, notificationSlot).then(() => {
 	console.info("==========================>setSlotByBundleCallback=======================>");
 });
 ```
@@ -1193,7 +1193,7 @@ function getSlotsByBundleCallback(err, data) {
 	console.info("==========================>getSlotsByBundleCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 ```
@@ -1220,7 +1220,7 @@ Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 
 ```js
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.getSlotsByBundle(bundle).then((data) => {
 	console.info("==========================>getSlotsByBundleCallback=======================>");
@@ -1253,7 +1253,7 @@ function getSlotNumByBundle(err, data) {
 	console.info("==========================>getSlotNumByBundleCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
@@ -1280,7 +1280,7 @@ Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 
 ```js
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.getSlotNumByBundle(bundle).then((data) => {
 	console.info("==========================>getSlotNumByBundleCallback=======================>");
@@ -1314,11 +1314,11 @@ function removeCallback(err) {
 	console.info("==========================>removeCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 var notificationKey = {
-    id: 0;
-    label: "label";
+    id: 0,
+    label: "label",
 }
 Notification.remove(bundle, notificationKey, removeCallback);
 ```
@@ -1346,13 +1346,13 @@ Notification.remove(bundle, notificationKey, removeCallback);
 
 ```js
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 var notificationKey = {
-    id: 0;
-    label: "label";
+    id: 0,
+    label: "label",
 }
-Notification.remove(bundle, notificationKey).then((void) => {
+Notification.remove(bundle, notificationKey).then(() => {
 	console.info("==========================>removeCallback=======================>");
 });
 ```
@@ -1407,7 +1407,7 @@ Notification.remove(hashCode, removeCallback);
 - 示例
 
 ```js
-Notification.remove(hashCode).then((void) => {
+Notification.remove(hashCode).then(() => {
 	console.info("==========================>removeCallback=======================>");
 });
 ```
@@ -1438,7 +1438,7 @@ function removeAllCallback(err) {
 	console.info("==========================>removeAllCallback=======================>");
 }
 var bundle = {
-    bundle: "bundleName1";
+    bundle: "bundleName1",
 }
 Notification.removeAll(bundle, removeAllCallback);
 ```
@@ -1492,7 +1492,7 @@ Notification.removeAll(removeAllCallback);
 - 示例
 
 ```js
-Notification.removeAll().then((void) => {
+Notification.removeAll().then(() => {
 	console.info("==========================>removeAllCallback=======================>");
 });
 ```
@@ -1800,7 +1800,7 @@ function setDoNotDisturbDateCallback(err) {
 }
 
 var doNotDisturbDate = {
-    type: notification.DoNotDisturbType.TYPE_ONCE,
+    type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 }
@@ -1830,7 +1830,7 @@ Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 
 ```js
 var doNotDisturbDate = {
-    type: notification.DoNotDisturbType.TYPE_ONCE,
+    type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 }
@@ -2120,7 +2120,7 @@ Notification.isNotificationEnabledSelf()
 | onConnect?:()                                                | 读、写   | function | 否   | 注册订阅回调函数           |
 | onDisconnect?:()                                             | 读、写   | function | 否   | 取消订阅回调函数           |
 | onDestroy?:()                                                | 读、写   | function | 否   | 服务失联回调函数           |
-| onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](#donotdisturbdate)) | 读、写   | function | 否   | 免打扰时间选项变更回调函数 |
+| onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate)) | 读、写   | function | 否   | 免打扰时间选项变更回调函数 |
 
 ### onEnabledNotificationChanged
 
@@ -2895,7 +2895,7 @@ var wantAgentInfo = {
     ],
     operationType: OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentWantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
