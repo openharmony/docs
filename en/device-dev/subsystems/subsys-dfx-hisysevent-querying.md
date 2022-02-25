@@ -15,7 +15,7 @@ HiSysEvent provides an API for you to query system events. You can query concern
 </th>
 </tr>
 </thead>
-<tbody><tr id="row16441155818499"><td class="cellrowborder" valign="top" width="48.120000000000005%" headers="mcps1.2.3.1.1 "><p id="p114411558204915"><a name="p114411558204915"></a><a name="p114411558204915"></a>bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;struct QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBackBase&gt; queryCallBack)</p>
+<tbody><tr id="row16441155818499"><td class="cellrowborder" valign="top" width="48.120000000000005%" headers="mcps1.2.3.1.1 "><p id="p114411558204915"><a name="p114411558204915"></a><a name="p114411558204915"></a>bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;struct QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBack&gt; queryCallBack)</p>
 </td>
 <td class="cellrowborder" valign="top" width="51.88%" headers="mcps1.2.3.1.2 "><p id="p14727325133216"><a name="p14727325133216"></a><a name="p14727325133216"></a>Queries system events by specifying search criteria such as the time segment, event domain, and event name.</p>
 <p id="p167271525203213"><a name="p167271525203213"></a><a name="p167271525203213"></a>Input arguments:</p>
@@ -90,7 +90,7 @@ HiSysEvent provides an API for you to query system events. You can query concern
 </th>
 </tr>
 </thead>
-<tbody><tr id="row35141554151115"><td class="cellrowborder" valign="top" width="48.03%" headers="mcps1.2.3.1.1 "><p id="p4714143785410"><a name="p4714143785410"></a><a name="p4714143785410"></a>void HiSysEventQueryCallBackBase::OnQuery(const ::std::vector&lt;std::string&gt;&amp; sysEvent, const ::std::vector&lt;int64_t&gt;&amp; seq)</p>
+<tbody><tr id="row35141554151115"><td class="cellrowborder" valign="top" width="48.03%" headers="mcps1.2.3.1.1 "><p id="p4714143785410"><a name="p4714143785410"></a><a name="p4714143785410"></a>void HiSysEventQueryCallBack::OnQuery(const ::std::vector&lt;std::string&gt;&amp; sysEvent, const ::std::vector&lt;int64_t&gt;&amp; seq)</p>
 </td>
 <td class="cellrowborder" valign="top" width="51.970000000000006%" headers="mcps1.2.3.1.2 "><p id="p1772213111011"><a name="p1772213111011"></a><a name="p1772213111011"></a>Callback object for event query.</p>
 <p id="p182081719151016"><a name="p182081719151016"></a><a name="p182081719151016"></a>Input arguments:</p>
@@ -98,7 +98,7 @@ HiSysEvent provides an API for you to query system events. You can query concern
 <p id="p18209419201010"><a name="p18209419201010"></a><a name="p18209419201010"></a>Return value: none</p>
 </td>
 </tr>
-<tr id="row15141154161111"><td class="cellrowborder" valign="top" width="48.03%" headers="mcps1.2.3.1.1 "><p id="p561110151119"><a name="p561110151119"></a><a name="p561110151119"></a>void HiSysEventQueryCallBackBase::OnComplete(int32_t reason, int32_t total)</p>
+<tr id="row15141154161111"><td class="cellrowborder" valign="top" width="48.03%" headers="mcps1.2.3.1.1 "><p id="p561110151119"><a name="p561110151119"></a><a name="p561110151119"></a>void HiSysEventQueryCallBack::OnComplete(int32_t reason, int32_t total)</p>
 </td>
 <td class="cellrowborder" valign="top" width="51.970000000000006%" headers="mcps1.2.3.1.2 "><p id="p126315352130"><a name="p126315352130"></a><a name="p126315352130"></a>Callback object for completion of event query.</p>
 <p id="p6631235191316"><a name="p6631235191316"></a><a name="p6631235191316"></a>Input arguments:</p>
@@ -123,13 +123,13 @@ In this example, you'll be instructed to query all system events.
 
     -   Implement the callback API.
 
-        void HiSysEventQueryCallBackBase::OnQuery\(const ::std::vector<std::string\>& sysEvent, const ::std::vector<int64\_t\>& seq\)
+        void HiSysEventQueryCallBack::OnQuery\(const ::std::vector<std::string\>& sysEvent, const ::std::vector<int64\_t\>& seq\)
 
-        void HiSysEventQueryCallBackBase::OnComplete\(int32\_t reason, int32\_t total\)
+        void HiSysEventQueryCallBack::OnComplete\(int32\_t reason, int32\_t total\)
 
     -   Invoke the query API in the corresponding service logic.
 
-        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<struct QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBackBase\> queryCallBack\)
+        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<struct QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBack\> queryCallBack\)
 
 
     ```
