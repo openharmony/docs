@@ -26,16 +26,16 @@ PatternLock(controller?: PatternLockController)
 
 不支持`backgroundColor`以外的通用属性设置。
 
-| 名称            | 参数类型                                                 | 默认值      | 描述                                                         |
-| --------------- | -------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
-| sideLength      | Length                                                   | 300vp       | 设置组件的宽度和高度（相同值）。最小可以设置为0。            |
-| circleRadius    | Length                                                   | 14vp        | 设置宫格圆点的半径。                                         |
-| regularColor    | [ResourceColor](../../ui/ts-types.md#resourcecolor类型8) | Color.Black | 设置宫格圆点在“未选中”状态的填充颜色。                       |
-| selectedColor   | [ResourceColor](../../ui/ts-types.md#resourcecolor类型8) | Color.Black | 设置宫格圆点在“选中”状态的填充颜色。                         |
-| activeColor     | [ResourceColor](../../ui/ts-types.md#resourcecolor类型8) | Color.Black | 设置宫格圆点在“激活”状态的填充颜色。                         |
-| pathColor       | [ResourceColor](../../ui/ts-types.md#resourcecolor类型8) | Color.Blue  | 设置连线的颜色。                                             |
-| pathStrokeWidth | Length                                                   | 34vp        | 设置连线的宽度。最小可以设置为0。                            |
-| autoReset       | boolean                                                  | true        | 设置是否支持用户在完成输入后再次触屏重置组件状态。如果设置为true，用户可以通过触摸图案密码锁重置组件状态（清除之前的输入效果）；如果设置为false，用户手指离开屏幕完成输入后，再次触摸图案密码锁（包括圆点）不能改变之前的输入状态。 |
+| 名称            | 参数类型                                                     | 默认值      | 描述                                                         |
+| --------------- | ------------------------------------------------------------ | ----------- | ------------------------------------------------------------ |
+| sideLength      | Length                                                       | 300vp       | 设置组件的宽度和高度（相同值）。最小可以设置为0。            |
+| circleRadius    | Length                                                       | 14vp        | 设置宫格圆点的半径。                                         |
+| regularColor    | [ResourceColor](../../ui/ts-types.md#resourcecolor%E7%B1%BB%E5%9E%8B8) | Color.Black | 设置宫格圆点在“未选中”状态的填充颜色。                       |
+| selectedColor   | [ResourceColor](../../ui/ts-types.md#resourcecolor%E7%B1%BB%E5%9E%8B8) | Color.Black | 设置宫格圆点在“选中”状态的填充颜色。                         |
+| activeColor     | [ResourceColor](../../ui/ts-types.md#resourcecolor%E7%B1%BB%E5%9E%8B8) | Color.Black | 设置宫格圆点在“激活”状态的填充颜色。                         |
+| pathColor       | [ResourceColor](../../ui/ts-types.md#resourcecolor%E7%B1%BB%E5%9E%8B8) | Color.Blue  | 设置连线的颜色。                                             |
+| pathStrokeWidth | Length                                                       | 34vp        | 设置连线的宽度。最小可以设置为0。                            |
+| autoReset       | boolean                                                      | true        | 设置是否支持用户在完成输入后再次触屏重置组件状态。如果设置为true，用户可以通过触摸图案密码锁重置组件状态（清除之前的输入效果）；如果设置为false，用户手指离开屏幕完成输入后，再次触摸图案密码锁（包括圆点）不能改变之前的输入状态。 |
 
 ## 事件
 
