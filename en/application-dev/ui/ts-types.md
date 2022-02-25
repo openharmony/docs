@@ -9,9 +9,9 @@
 
 ## Angle Type
 
-| Name| Type| Description|
+| Name| Type| Description| 
 | -------- | -------- | -------- |
-| Angle | string&nbsp;\|&nbsp;number | Angle unit. If the input is a number, use **deg**. If the input is a string, explicitly specify the unit, which can be either of the following: <br/>-&nbsp;**deg**, as in **'100deg'** <br/>-&nbsp;**rad**, as in **'3.14rad'** |
+| Angle | string&nbsp;\|&nbsp;number | Angle unit. If the input is a number, use **deg**. If the input is a string, explicitly specify the unit, which can be either of the following: <br/>-&nbsp;deg, as in **'100deg'** <br/>-&nbsp;rad, as in **'3.14rad'** | 
 
 
 ## Point Type
@@ -35,16 +35,16 @@ The supported **Color** enums are described as follows:
 
 | Color| Value| Illustration| 
 | -------- | -------- | -------- |
-| Black | 0x000000 | ![zh-cn_image_0000001219864153](figures/zh-cn_image_0000001219864153.png) | 
-| Blue | 0x0000ff | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) | 
-| Brown | 0xa52a2a | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) | 
-| Gray | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) | 
-| Green | 0x008000 | ![zh-cn_image_0000001174422914](figures/zh-cn_image_0000001174422914.png) | 
-| Orange | 0xffa500 | ![zh-cn_image_0000001219662661](figures/zh-cn_image_0000001219662661.png) | 
-| Pink | 0xffc0cb | ![zh-cn_image_0000001219662663](figures/zh-cn_image_0000001219662663.png) | 
-| Red | 0xff0000 | ![zh-cn_image_0000001219662665](figures/zh-cn_image_0000001219662665.png) | 
-| White | 0xffffff | ![zh-cn_image_0000001174582866](figures/zh-cn_image_0000001174582866.png) | 
-| Yellow | 0xffff00 | ![zh-cn_image_0000001174582864](figures/zh-cn_image_0000001174582864.png) | 
+| Black | 0x000000 | ![en-us_image_0000001219864153](figures/en-us_image_0000001219864153.png) | 
+| Blue | 0x0000ff | ![en-us_image_0000001174104404](figures/en-us_image_0000001174104404.png) | 
+| Brown | 0xa52a2a | ![en-us_image_0000001219744201](figures/en-us_image_0000001219744201.png) | 
+| Gray | 0x808080 | ![en-us_image_0000001174264376](figures/en-us_image_0000001174264376.png) | 
+| Green | 0x008000 | ![en-us_image_0000001174422914](figures/en-us_image_0000001174422914.png) | 
+| Orange | 0xffa500 | ![en-us_image_0000001219662661](figures/en-us_image_0000001219662661.png) | 
+| Pink | 0xffc0cb | ![en-us_image_0000001219662663](figures/en-us_image_0000001219662663.png) | 
+| Red | 0xff0000 | ![en-us_image_0000001219662665](figures/en-us_image_0000001219662665.png) | 
+| White | 0xffffff | ![en-us_image_0000001174582866](figures/en-us_image_0000001174582866.png) | 
+| Yellow | 0xffff00 | ![en-us_image_0000001174582864](figures/en-us_image_0000001174582864.png) | 
 
 
 ## ColorStop Type
@@ -158,4 +158,4 @@ struct dataTypeExample {
 }
 ```
 
-![zh-cn_image_0000001219982719](figures/zh-cn_image_0000001219982719.png)
+![en-us_image_0000001219982719](figures/en-us_image_0000001219982719.png)
