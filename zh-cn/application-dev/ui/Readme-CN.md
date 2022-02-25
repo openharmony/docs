@@ -76,6 +76,7 @@
                 - [@Builder](ts-component-based-builder.md)
                 - [@Extend](ts-component-based-extend.md)
                 - [@CustomDialog](ts-component-based-customdialog.md)
+                - [@Styles](ts-component-based-styles.md)
         - UI状态管理
             - [基本概念](ts-ui-state-mgmt-concepts.md)
             - 管理组件拥有的状态
