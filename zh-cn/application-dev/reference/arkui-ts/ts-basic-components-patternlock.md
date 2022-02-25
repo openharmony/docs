@@ -37,6 +37,12 @@ PatternLock(controller?: PatternLockController)
 | pathStrokeWidth | Length                                                   | 34vp        | 设置连线的宽度。最小可以设置为0。                            |
 | autoReset       | boolean                                                  | true        | 设置是否支持用户在完成输入后再次触屏重置组件状态。如果设置为true，用户可以通过触摸图案密码锁重置组件状态（清除之前的输入效果）；如果设置为false，用户手指离开屏幕完成输入后，再次触摸图案密码锁（包括圆点）不能改变之前的输入状态。 |
 
+## 事件
+
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onPatternComplete(callback: (input: Array\<number\>) => void) | 密码输入结束时被调用的回调函数。<br />input: 与选中宫格圆点顺序一致的数字数组，数字为选中宫格的索引（0到8）。 |
+
 ## PatternLockController
 
 PatternLock组件的控制器，可以将此对象绑定至PatternLock组件，然后通过它进行状态重置。
@@ -52,12 +58,6 @@ patternLockController: PatternLockController = new PatternLockController()
 reset():void
 
 重置组件状态。
-
-## 事件
-
-| 名称          | 功能描述                                                     |
-| -------------------------------------------------------- | ------------------------------------------------------------ |
-| onPatternComplete(callback: (input: Array\<number\>) => void) | 密码输入结束时被调用的回调函数。<br />input: 与选中宫格圆点顺序一致的数字数组，数字为选中宫格的索引（0到8）。 |
 
 ##  示例
 
@@ -80,25 +80,25 @@ struct PatternLockExample {
         .autoReset(true)
         .onPatternComplete((input: Array<number>) => {
           if (input == null || input == undefined || input.length < 5) {
-            this.message = 'The password length needs to be greater than 5.';
-            return;
+            this.message = 'The password length needs to be greater than 5.'
+            return
           }
           if (this.passwords.length > 0) {
             if (this.passwords.toString() == input.toString()) {
-              this.passwords = input;
-              this.message = 'Set password successfully: ' + this.passwords.toString();
+              this.passwords = input
+              this.message = 'Set password successfully: ' + this.passwords.toString()
             } else {
-              this.message = 'Inconsistent passwords, please enter again.';
+              this.message = 'Inconsistent passwords, please enter again.'
             }
           } else {
-            this.passwords = input;
-            this.message = "Please enter again.";
+            this.passwords = input
+            this.message = "Please enter again."
           }
         })
       Button('reset button').margin(30).onClick(() => {
-        this.patternLockController.reset();
-        this.passwords = [];
-        this.message = 'Please input password';
+        this.patternLockController.reset()
+        this.passwords = []
+        this.message = 'Please input password'
       })
     }.width('100%').height('100%')
   }
