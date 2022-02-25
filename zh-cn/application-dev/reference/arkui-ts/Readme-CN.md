@@ -130,5 +130,7 @@
         - [警告弹窗](ts-methods-alert-dialog-box.md)
         - [列表选择弹窗](ts-methods-action-sheet.md)
         - [自定义弹窗](ts-methods-custom-dialog-box.md)
+        - [日期时间选择弹窗](ts-methods-datepicker-dialog.md)
+        - [文本选择弹窗](ts-methods-textpicker-dialog.md)
 - 附录
     - [文档中涉及到的内置枚举值](ts-appendix-enums.md)
