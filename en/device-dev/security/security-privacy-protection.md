@@ -190,7 +190,7 @@ You shall obtain consent from users and comply with applicable laws and regulati
 
 Data processing security shall be ensured in technical terms, which include encrypted data storage and secure data transfer. Security mechanisms or measures shall be enabled by default for a system.
 
--   A protection mechanism shall be available for personal data access, including identity authentication and access control. Identity authentication \(such as username and password\) allows only authenticated users to access data in multi-user scenarios. Access control \(for example,  [permission control](security-guidelines-overall.md#li201725506375)\) can be applied to restrict access to applications.
+-   A protection mechanism shall be available for personal data access, including identity authentication and access control. Identity authentication \(such as username and password\) allows only authenticated users to access data in multi-user scenarios. Access control \(for example,  [permission control](security-guidelines-overall.md#section852593153614)\) can be applied to restrict access to applications.
 -   Secure storage of personal data on distributed devices must meet Huawei Universal Keystore \(HUKS\) requirements, including secure storage of keys and data.
 -   The transfer of personal data between distributed devices must meet the trust binding relationship between devices and security requirements of data transmission channels. For details, see  [Security Guidelines](security-guidelines-overall.md#section26153183616).
 -   Authentication data \(such as passwords and fingerprints\) shall be encrypted before being stored.
