@@ -15,7 +15,7 @@
 
 ### 功能简介
 
-Sensor设备作为外接设备重要组成模块，通过Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供稳定的Sensor基础能力接口，包括Sensor列表查询、Sensor启停、Sensor订阅及取消订阅，Sensor参数配置等功能；Sensor设备驱动的开发是基于HDF驱动框架基础上，结合操作系统适配层（OSAL）和平台驱动接口（比如I2C/SPI/UART总线等平台资源）能力，屏蔽不同操作系统和平台总线资源差异，实现Sensor驱动“一次开发，多系统部署”的目标。Sensor驱动模型如[图1](#fig10451455446)所示：<a name="section3634112111"></a>
+Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供稳定的Sensor基础能力接口，包括Sensor列表查询、Sensor启停、Sensor订阅及取消订阅，Sensor参数配置等功能；Sensor设备驱动的开发是基于HDF驱动框架基础上，结合操作系统适配层（OSAL）和平台驱动接口（比如I2C/SPI/UART总线等平台资源）能力，屏蔽不同操作系统和平台总线资源差异，实现Sensor驱动“一次开发，多系统部署”的目标。Sensor驱动模型如[图1](#fig10451455446)所示：<a name="section3634112111"></a>
 
 **图 1**  Sensor驱动模型图<a name="fig10451455446"></a>  
 ![Sensor驱动模型图](figures/Sensor%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)
@@ -24,9 +24,9 @@ Sensor设备作为外接设备重要组成模块，通过Sensor驱动模型屏�
 
 通过介绍Sensor驱动模型的加载以及运行流程，对模型内部关键组件以及关联组件之间的关系进行了划分，整体加载流程如[图2](#Sensor驱动模型图)所示：
 
-**图 2** Sensor驱动模型运行图
+**图 2** Sensor驱动运行图
 
-![Sensor驱动模型运行图](figures/Sensor%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E8%BF%90%E8%A1%8C%E5%9B%BE.png)
+![Sensor驱动运行图](figures/Sensor%E9%A9%B1%E5%8A%A8%E8%BF%90%E8%A1%8C%E5%9B%BE.png)
 
 Sensor驱动模型以标准系统Hi3516DV300产品中的加速度传感器驱动为例，介绍整个驱动加载及运行流程：
 
@@ -249,6 +249,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
 </tr>
 </tbody>
 </table>
+
 接口实现参考[开发实例](#section257750691)章节。
 
 ### 开发步骤<a name="section7893102915819"></a>
@@ -438,7 +439,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
        return HDF_SUCCESS;
    }
    
-   /* 挂载加速度计传感器驱动归一化的接口函数 */
+   /* 注册加速度计传感器驱动归一化的接口函数 */
    static int32_t InitAccelOps(struct SensorCfgData *config, struct SensorDeviceInfo *deviceInfo)
    {
        CHECK_NULL_PTR_RETURN_VALUE(config, HDF_ERR_INVALID_PARAM);
@@ -513,7 +514,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
        return drvData->accelCfg;
        ……
    }
-   /* 加速度计传感器驱动初始化入口函数，主要功能为对传感器私有数据的结构体对象进行初始化，传感器HCS数据配置对象空间分配，传感器HCS数据配置初始化入口函数调用，传感器设备探测是否在位功能，传感器数据上报定时器创建，传感器归一化接口挂载，传感器设备注册功能 */ 
+   /* 加速度计传感器驱动初始化入口函数，主要功能为对传感器私有数据的结构体对象进行初始化，传感器HCS数据配置对象空间分配，传感器HCS数据配置初始化入口函数调用，传感器设备探测是否在位功能，传感器数据上报定时器创建，传感器归一化接口注册，传感器设备注册功能 */ 
    int32_t InitAccelDriver(struct HdfDeviceObject *device)
    {
    int32_t AccelInitDriver(struct HdfDeviceObject *device)
@@ -530,7 +531,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
            HDF_LOGE("%s: Malloc accel config data failed", __func__);
            return HDF_FAILURE;
        }
-       /* 挂接寄存器分组信息 */
+       /* 注册寄存器分组信息 */
        drvData->accelCfg->regCfgGroup = &g_regCfgGroup[0];
        ……
        return HDF_SUCCESS;
@@ -557,7 +558,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
 
 4. 加速度传感器差异化驱动私有HCS配置实现
 
-   - 为了方便开发者使用传感器HCS私有配置，在sensor_common.hcs里面定义通用的传感器配置模板，加速度传感器直接引用模板修改对应的属性值即可。
+   - 为了方便开发者使用传感器HCS私有配置，在sensor_common.hcs里面定义通用的传感器配置模板。
 
      ```
      accel sensor common config template
@@ -595,7 +596,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
      }
      ```
 
-   - 开发者使用传感器HCS配置，在accel_config.hcs里面配置通用的传感器模板，加速度传感器直接引用模板并修改对应的属性值，在此基础上新增寄存器配置，生成accel_bmi160_config.hcs配置文件。
+   - 开发者配置accel_bmi160_config.hcs文件时，引用加速度传感器的模板，并根据需要修改模板中继承的字段。如果需要新增寄存器配置字段，在配置传感器HCS后扩展。
 
      ```
      /* 根据不同器件硬件差异，修改模板配置，不修改的就会默认采用模板配置 */
@@ -612,7 +613,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
                busType = 0; // 0:i2c 1:spi
                busNum = 6;
                busAddr = 0x68;
-               regWidth = 1; // 1btye
+               regWidth = 1; // 1 btye
            }
            sensorIdAttr :: sensorIdInfo{
                chipName = "bmi160";
@@ -711,7 +712,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
              HDF_LOGE("%s: Register BMI160 accel failed", __func__);
              return HDF_FAILURE;
          }
-         /* 初始化器件配置 *、
+         /* 初始化器件配置 */
          ret = InitBmi160(drvData->sensorCfg);
          if (ret != HDF_SUCCESS) {
              HDF_LOGE("%s: Init BMI160 accel failed", __func__);

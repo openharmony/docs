@@ -11,11 +11,11 @@
 
 ### 功能简介
 
-为了快速开发传感器驱动，基于HDF（Hardware Driver Foundation）驱动框架开发了马达驱动模型。马达设备模型抽象，屏蔽设备驱动与系统交互的实现，为硬件服务层提供统一稳定的驱动接口能力，为驱动开发者提供开放的接口实现和抽象的配置接口能力。用于不同操作系统马达设备部件的部署指导和马达设备部件驱动的开发。马达驱动模型如[图1](马达驱动模型图)所示：
+为了快速开发传感器驱动，基于HDF（Hardware Driver Foundation）驱动框架开发了马达驱动模型。马达驱动模型，屏蔽设备驱动与系统交互的实现，为硬件服务层提供统一稳定的驱动接口能力，为驱动开发者提供开放的接口和解析接口的能力。用于不同操作系统马达设备部件的部署指导和马达设备部件驱动的开发。马达驱动模型如[图1](马达驱动模型图)所示：
 
 **图 1** 马达驱动模型图
 
-![Vibrator驱动模型](figures/Vibrator%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B.png)
+![Vibrator驱动模型图](figures/Vibrator%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)
 
 ### 运作机制
 
@@ -28,12 +28,12 @@
 马达驱动模型以标准系统Hi3516DV300产品为例，介绍整个驱动加载及运行流程：
 
 1. 从device info HCS 的Vibrator Host读取Vibrator管理配置信息。
-2. 解析Vibrator配置信息，并关联对应设备驱动。
+2. 解析Vibrator管理配置信息，并关联对应马达抽象驱动。
 3. 从linear_vibrator_config HCS读取Vibrator数据配置信息。
 4. 解析Vibrator数据配置信息，并关联对应Haptic驱动。
 5. 客户端下发Vibrator Stub控制到服务端。
-6. 服务端调用Vibrator Stub控制。
-7. 启动马达抽象驱动接口。
+6. Vibrator Stub控制调用马达服务。
+7. 初始化马达抽象驱动接口。
 8. Haptic中起线程，解析效果模块。
 9. Haptic调用马达抽象驱动中的Start接口。
 10. 马达抽象驱动调用马达差异化驱动中的Start接口。
@@ -143,7 +143,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      }
      ```
      
-   - 马达设备管理模块负责系统中马达器件接口发布，在系统启动过程中，HDF框架机制通过马达 Host里设备HCS配置信息，加载设备管理驱动。
+   - 在系统启动过程中，HDF设备管理模块通过设备HCS配置信息，加载马达抽象驱动，并对外发布马达驱动接口。
    
      ```
      /* 马达设备HCS配置 */
@@ -167,7 +167,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
    - 创建马达效果模型。
 
      ```
-     /* 创建马达效果模型，分配资源，解析马达HCS配置 */
+     /* 创建马达效果模型，分配资源，解析马达效果HCS配置 */
      int32_t CreateVibratorHaptic(struct HdfDeviceObject *device)
      {
          struct VibratorHapticData *hapticData = NULL;
@@ -245,7 +245,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
        config.cfgMode = VIBRATOR_MODE_ONCE;
        config.duration = duration;
        config.effect = NULL;
-       /* 据振动效果的模式创建 */
+       /* 根据振动效果的模式创建定时器 */
        ret = StartHaptic(&config);
        if (ret != HDF_SUCCESS) {
            HDF_LOGE("%s: start haptic fail!", __func__);
@@ -302,7 +302,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
 
 4. 马达驱动模型提供给开发者马达驱动差异化接口，开发者实现差异化接口。
 
-   - 此接口在差异化器件驱动初始化成功时，注册差异实现接口，方便实现器件差异的驱动接口。
+   - 在差异化器件驱动初始化成功时，注册差异实现接口，方便实现器件差异的驱动接口。
 
      ```
      /* 注册马达差异化实现接口 */
@@ -326,7 +326,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
    - 马达驱动模型提供给开发者马达驱动差异化接口，具体实现如下：
 
      ```
-     /* 按照指定持续时间触发马达线性驱动 */
+     /* 按照指定持续时间触发线性马达的振动 */
      static int32_t StartLinearVibrator()
      {
          int32_t ret;
@@ -341,7 +341,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
          return HDF_SUCCESS;
      }
      
-     /* 按照预置振动效果启动马达线性驱动 */
+     /* 按照预置振动效果触发线性马达的振动 */
      static int32_t StartEffectLinearVibrator(uint32_t effectType)
      {
          (void)effectType;
@@ -349,7 +349,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
          return HDF_SUCCESS;
      }
      
-     /* 按照指定的振动模式停止马达线性驱动 */
+     /* 按照指定的振动模式停止线性马达的振动 */
      static int32_t StopLinearVibrator()
      {
          int32_t ret;
