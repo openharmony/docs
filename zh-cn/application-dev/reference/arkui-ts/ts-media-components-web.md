@@ -63,7 +63,7 @@ ohos.permission.READ_USER_STORAGE
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onPageEnd(callback: (event?: { url: string }) => void)       | <p>网页加载结束时触发该回调。<br/>url：Web 引擎返回的 URL。</p> |
-| onPageStart(callback: (event?: {url: string }) => void)      | <p>网页加载时触发该回调。<br/>url：Web 引擎返回的 URL。</p>  |
+| onPageBegin(callback: (event?: {url: string }) => void)      | <p>网页加载时触发该回调。<br/>url：Web 引擎返回的 URL。</p>  |
 | onProgressChange(callback: (event?: { newProgress: number }) => void) | <p>网页加载进度变化时触发该回调。<br/>newProgress：加载进度，取值范围为0到100的整数。</p> |
 | onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页主页面标题更改时触发该回调。<br/>title：标题内容。</p> |
 | onGeolocationHide(callback: () => void)                      | <p>调用onGeolocationShow()时发出的地理位置权限请求被取消后触发该回调。<br/>开发者可以在该回调中实现隐藏相关UI界面的逻辑。</p> |
