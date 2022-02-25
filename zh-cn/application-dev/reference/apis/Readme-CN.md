@@ -45,6 +45,7 @@
     -   [短信服务](js-apis-sms.md)
     -   [SIM卡管理](js-apis-sim.md)
     -   [网络搜索](js-apis-radio.md)
+    -   [observer](js-apis-observer.md)
 - 网络与连接
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
