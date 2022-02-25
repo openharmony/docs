@@ -11,6 +11,9 @@ Lightweight storage provides applications with data processing capability and al
 import dataStorage from '@ohos.data.storage'
 ```
 
+## System Capabilities
+SystemCapability.DistributedDataManager.Preference.Core
+
 ## Required Permissions<a name="section11257113618419"></a>
 
 None
