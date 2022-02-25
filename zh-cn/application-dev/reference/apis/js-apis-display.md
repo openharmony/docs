@@ -70,6 +70,29 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
   });
   ```
 
+## display.getAllDisplay
+
+getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
+
+获取当前所有的display对象。
+
+- 参数
+
+  | 参数名   | 类型                                      | 必填 | 说明                            |
+  | -------- | ----------------------------------------- | ---- | ------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;Display&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
+
+- 示例
+
+  ```
+  display.getAllDisplay((err, data) => {
+      if (err) {
+          console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data))
+  });
+  ```
 
 ## display.on('add'|'remove'|'change')
 
