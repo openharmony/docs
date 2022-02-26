@@ -239,7 +239,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [DeviceClass](#DeviceClass) | 远程设备的类别。 |
+| [DeviceClass](#deviceclass) | 远程设备的类别。 |
 
 **示例：**
 
@@ -1982,7 +1982,7 @@ if (retWriteDesc) {
 
 setBLEMtuSize(mtu: number): boolean
 
-client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用connect接口连接成功后才能使用。
+client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connect)接口连接成功后才能使用。
 
 **参数：**
 
@@ -2196,7 +2196,7 @@ let deviceName = gattClient.getDeviceName().then((data) => {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect-boolean)接口连接成功后才能使用。
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
 
 **参数：**
 
@@ -2225,7 +2225,7 @@ let rssi = gattClient.getRssiValue((err, data)=> {
 
 getRssiValue(): Promise&lt;number&gt;
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect-boolean)接口连接成功后才能使用。
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
 
 **返回值：**
 
@@ -2277,7 +2277,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------- | -------- | -------- | -------- | -------- |
 | uuid | string | 是 | 是 | spp单据的uuid。 |
 | isPrimary | boolean | 是 | 是 | 是否是安全通道。 |
-| type | [SppType](#SppType) | 是 | 是 | Spp链路类型。 |
+| type | [SppType](#spptype) | 是 | 是 | Spp链路类型。 |
 
 
 ## SppType
@@ -2297,8 +2297,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | isPrimary | boolean | 是 | 是 | 如果是主服务设置为true，否则设置为false。 |
-| characteristics | Array&lt;[BLECharacteristic](#BLECharacteristic)&gt; | 是 | 是 | 当前服务包含的特征列表。 |
-| includeServices | Array&lt;[GattService](#GattService)&gt; | 是 | 是 | 当前服务依赖的其它服务。 |
+| characteristics | Array&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是 | 是 | 当前服务包含的特征列表。 |
+| includeServices | Array&lt;[GattService](#gattservice)&gt; | 是 | 是 | 当前服务依赖的其它服务。 |
 
 
 ## BLECharacteristic
@@ -2310,7 +2310,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid | string | 是 | 是 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer | 是 | 是 | 特征对应的二进制值。 |
-| descriptors | Array&lt;[BLEDescriptor](#BLEDescriptor)&gt; | 是 | 是 | 特定特征的描述符列表。 |
+| descriptors | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是 | 是 | 特定特征的描述符列表。 |
 
 
 ## BLEDescriptor
@@ -2415,7 +2415,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 否 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| state | [ProfileConnectionState](#ProfileConnectionState) | 是 | 是 | 表示BLE连接状态的枚举。 |
+| state | [ProfileConnectionState](#profileconnectionState) | 是 | 是 | 表示BLE连接状态的枚举。 |
 
 
 ## ProfileConnectionState
@@ -2448,8 +2448,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 是 | 是 | 表示扫描结果上报延迟时间，默认值为0。 |
-| dutyMode | [ScanDuty](#ScanDuty) | 是 | 是 | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。 |
-| matchMode | [MatchMode](#MatchMode) | 是 | 是 | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
+| dutyMode | [ScanDuty](#scanduty) | 是 | 是 | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。 |
+| matchMode | [MatchMode](#matchmode) | 是 | 是 | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
 
 
 ## ScanDuty
@@ -2517,8 +2517,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuids | Array&lt;string&gt; | 是 | 是 | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
-| manufactureData | Array&lt;[ManufactureData](#ManufactureData)&gt; | 是 | 是 | 表示要广播的广播的制造商信息列表。 |
-| serviceData | Array&lt;[ServiceData](#ServiceData)&gt; | 是 | 是 | 表示要广播的服务数据列表。 |
+| manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是 | 是 | 表示要广播的广播的制造商信息列表。 |
+| serviceData | Array&lt;[ServiceData](#servicedata)&gt; | 是 | 是 | 表示要广播的服务数据列表。 |
 
 
 ## ManufactureData
@@ -2557,8 +2557,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| majorClass | [MajorClass](#MajorClass) | 是 | 否 | 表示蓝牙设备主要类别的枚举。 |
-| majorMinorClass | [MajorMinorClass](#MajorMinorClass) | 是 | 否 | 表示主要次要蓝牙设备类别的枚举。 |
+| majorClass | [MajorClass](#majorclass) | 是 | 否 | 表示蓝牙设备主要类别的枚举。 |
+| majorMinorClass | [MajorMinorClass](#majorminorclass) | 是 | 否 | 表示主要次要蓝牙设备类别的枚举。 |
 | classOfDevice | number | 是 | 否 | 表示设备类别。 |
 
 
