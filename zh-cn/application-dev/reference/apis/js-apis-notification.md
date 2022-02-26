@@ -2001,61 +2001,6 @@ Notification.isSupportTemplate(templateName).then((data) => {
 
 
 
-## Notiifcation.isNotificationEnabledSelf
-
-isNotificationEnabledSelf(callback: AsyncCallback\<boolean\>): void
-
-查询应用通知是否使能。
-
-- 参数
-
-| 参数名   | 类型                     | 必填 | 说明                       |
-| -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数 |
-
-- 示例
-
-```javascript
-function isNotificationEnabledSelfCallback(err, enabled) {
-    console.info("isNotificationEnabledSelf");
-    if (err.code) {
-        console.info("failed " + JSON.stringify(err));
-    } else {
-        console.info("isNotificationEnabledSelf " + JSON.stringify(enabled));
-    }
-};
-
-Notification.isNotificationEnabledSelf(isNotificationEnabledSelfCallback);
-```
-
-
-
-## Notiifcation.isNotificationEnabledSelf
-
-isNotificationEnabledSelf(): Promise\<boolean\>
-
-查询应用通知是否使能。
-
-- 返回值
-
-| 类型               | 说明            |
-| ------------------ | --------------- |
-| Promise\<boolean\> | Promise方式返回 |
-
-- 示例
-
-```javascript
-Notification.isNotificationEnabledSelf()
-    .then((enabled) => {
-        console.info("isNotificationEnabledSelf " + JSON.stringify(enabled));
-	})
-	.catch((err) => {
-        console.info("isNotificationEnabledSelf failed " + JSON.stringify(err));
-	});
-```
-
-
-
 ## Notification.requestEnabledNotification
 
 requestEnabledNotification(callback: AsyncCallback\<boolean\>): void
