@@ -6,7 +6,7 @@
 ## Modules to Import
 
 ```js
-import statfs from '@ohos.statfs'
+import statfs from '@ohos.statfs';
 ```
 
 ## Note
@@ -18,7 +18,7 @@ Absolute file or directory path = Application directory + File name or directory
 For example, if the application directory obtained by using **getOrCreateLocalDir** is **dir** and the file name is **xxx.txt**, the absolute path of the file is as follows:
 
 ```js
-let path = dir + "xxx.txt"
+let path = dir + "xxx.txt";
 ```
 
 ## System Capabilities
@@ -46,7 +46,12 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 - Example
 
   ```js
-  let num = await statfs.getFreeBytes(path);
+  let path = "/data";
+  statfs.getFreeBytes(path).then(function (number){
+      console.info("getFreeBytes successfully:"+ number);
+  }).catch(function(err){
+      console.info("getFreeBytes failed with error:"+ err);
+  });
   ```
 
 ## statfs.getFreeBytes
@@ -91,7 +96,12 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 - Example
 
   ```js
-  let num = await statfs.getTotalBytes(path);
+  let path = "/data";
+  statfs.getTotalBytes(path).then(function (number){
+      console.info("getTotalBytes successfully:"+ number);
+  }).catch(function(err){
+      console.info("getTotalBytes failed with error:"+ err);
+  });
   ```
 
 ## statfs.getTotalBytes
