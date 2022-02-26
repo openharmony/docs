@@ -116,11 +116,11 @@ accessStep(step: number): boolean
 
 ### deleteJavaScriptRegister
 
-deleteJavaScriptRegister(options: { name: string }): void
+deleteJavaScriptRegister(name: string): void
 
 清空指定对象已注册的JavaScript方法。
 
-- options参数说明
+- 参数
 
   | 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                    |
   | ---- | ------ | ---- | ---- | ----------------------- |
@@ -175,11 +175,11 @@ loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: 
 
 ### loadUrl
 
-loadUrl(url: string, additionalHttpHeaders?: Array<{ key: string, value: string }>): void
+loadUrl(options:{ url: string, headers?: Array<{ key: string, value: string }> }): void
 
 加载URL。
 
-- 参数
+- options参数说明
 
   | 参数名                   | 参数类型                                  | 必填   | 默认值  | 参数描述       |
   | --------------------- | ------------------------------------- | ---- | ---- | ---------- |
@@ -220,11 +220,11 @@ registerJavaScriptProxy(options: { obj: object, name: string, methodList: string
 
 ### runJavaScript
 
-runJavaScript(script: string, callback?: (result: string)  => void): void
+runJavaScript(options: { script: string, callback?: (result: string) => void }): void
 
 执行JavaScript脚本。
 
-- 参数
+- options参数说明
 
   | 参数名      | 参数类型                     | 必填   | 默认值  | 参数描述                                 |
   | -------- | ------------------------ | ---- | ---- | ------------------------------------ |
