@@ -282,6 +282,13 @@ Enumerates audio device types.
 <td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p5170520112813"><a name="p5170520112813"></a><a name="p5170520112813"></a>Microphone. <br/> System capabilities: SystemCapability.Multimedia.Audio.Device</p>
 </td>
 </tr>
+<tr id="row81701220112812"><td class="cellrowborder" valign="top" width="30.380000000000003%" headers="mcps1.1.4.1.1 "><p id="p168642028152812"><a name="p168642028152812"></a><a name="p168642028152812"></a>USB_HEADSET</p>
+</td>
+<td class="cellrowborder" valign="top" width="9.950000000000001%" headers="mcps1.1.4.1.2 "><p id="p517062012812"><a name="p517062012812"></a><a name="p517062012812"></a>22</p>
+</td>
+<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p5170520112813"><a name="p5170520112813"></a><a name="p5170520112813"></a>USB Type-C Headset. <br/> System capabilities: SystemCapability.Multimedia.Audio.Device</p>
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -543,6 +550,61 @@ Describes ringtone options.
 | :----- | :------ | :-------- | :--------------- |
 | volume | number  | Yes       | Ringtone volume. |
 | loop   | boolean | Yes       | Loop value.      |
+
+
+## DeviceChangeAction
+Describes the device change type and device information.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                   | Mandatory | Description         |
+| :------------------ | :--------------------- | :-------- | :------------------ |
+| type                | DeviceChangeType       | Yes       | Device change type. |
+| deviceDescriptors   | AudioDeviceDescriptors | Yes       | Device information. |
+
+
+## DeviceChangeType
+Enumerates device change types.
+
+| Name                   | Default Value | Description                                                                               |
+| :--------------------- | :------------ | :---------------------------------------------------------------------------------------- |
+| CONNECT                | 0             | Device connection. <br/> System capabilities: SystemCapability.Multimedia.Audio.Device    |
+| DISCONNECT             | 1             | Device disconnection. <br/> System capabilities: SystemCapability.Multimedia.Audio.Device |
+
+
+## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
+Describes audio capturer information.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name            | Type             | Mandatory | Description           |
+| :---------------| :----------------| :-------- | :-------------------- |
+| source          | SourceType       | Yes       | Audio source type.    |
+| capturerFlags   | number           | Yes       | Audio capturer flags. |
+
+
+## SourceType<sup>8+</sup><a name="sourcetype"></a>
+Enumerates source types.
+
+| Name                   | Default Value | Description                                                                            |
+| :--------------------- | :------------ | :------------------------------------------------------------------------------------- |
+| SOURCE_TYPE_INVALID    | -1            | Invalid source type. <br/> System capabilities: SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_MIC        | 0             | Mic source type. <br/> System capabilities: SystemCapability.Multimedia.Audio.Core     |
+
+
+## AudioScene<sup>8+</sup><a name="audioscene"></a>
+Enumerates audio scenes.
+
+| Name                   | Default Value | Description                                                                                        |
+| :--------------------- | :------------ | :------------------------------------------------------------------------------------------------- |
+| AUDIO_SCENE_DEFAULT    | 0             | Default audio scene. <br/> System capabilities: SystemCapability.Multimedia.Audio.Communication    |
+| AUDIO_SCENE_RINGING    | 1             | Ringing audio scene. <br/> System capabilities: SystemCapability.Multimedia.Audio.Communication    |
+| AUDIO_SCENE_PHONE_CALL | 2             | Phone call audio scene. <br/> System capabilities: SystemCapability.Multimedia.Audio.Communication |
+| AUDIO_SCENE_VOICE_CHAT | 3             | Voice chat audio scene. <br/> System capabilities: SystemCapability.Multimedia.Audio.Communication |
 
 
 # AudioManager<a name="section8265143814015"></a>
@@ -2506,6 +2568,163 @@ audioManager.on('ringerModeChange', (ringerMode) => {
 })
 ```
 
+## audioManager.on
+
+on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void<sup>8+</sup><a name="ondevicechange"></a>
+
+Subscribes to device change events. When a device is connected/disconnected, registered clients will receive the callback.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name     | Type                          | Mandatory | Description                                        |
+| :------- | :---------------------------- | :---------| :------------------------------------------------- |
+| type     | string                        | Yes       | Type of the event to subscribe to.                 |
+| callback | Callback<DeviceChangeAction\> | Yes       | Callback used to obtain the device update details. |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioManager.on('deviceChange', (deviceChanged) => {
+    console.info("device change type : " + deviceChanged.type);
+    console.info("device descriptor size : " + deviceChanged.deviceDescriptors.length);
+    console.info("device change descriptor : " + deviceChanged.deviceDescriptors[0].deviceRole);
+    console.info("device change descriptor : " + deviceChanged.deviceDescriptors[0].deviceType);
+})
+```
+
+## audioManager.setAudioScene
+
+setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void<sup>8+</sup><a name="setAudioScene-asynccallback"></a>
+
+Sets the audio scene mode to change audio strategies. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name     | Type                                  | Mandatory | Description                         |
+| :------- | :------------------------------------ | :-------- | :---------------------------------- |
+| scene    | <a href="#audioscene">AudioScene</a>  | Yes       | Audio scene mode.                   |
+| callback | AsyncCallback<void\>                  | Yes       | Callback used to return the result. |
+
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
+   if (err) {
+       console.error('Failed to set the audio scene mode.​ ${err.message}');
+       return;
+    }
+    console.log('Callback invoked to indicate a successful setting of the audio scene mode.');
+})
+```
+
+
+## audioManager.setAudioScene
+
+setAudioScene\(scene: AudioScene\): Promise<void\><sup>8+</sup><a name="setAudioScene-promise"></a>
+
+Sets the audio scene mode to change audio strategies. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name     | Type                                    | Mandatory | Description       |
+| :------- | :-------------------------------------- | :-------- | :---------------- |
+| scene    | <a href="#audioscene">AudioScene</a>    | Yes       | Audio scene mode. |
+
+
+**Return value**
+
+| Type           | Description                         |
+| :------------- | :---------------------------------- |
+| Promise<void\> | Promise used to return the result.  |
+
+
+**Example**
+
+```
+audioManager.setAudioScene(audio.AudioSceneMode.AUDIO_SCENE_PHONE_CALL).then(() => {
+    console.log('Promise returned to indicate a successful setting of the audio scene mode.');
+}).catch ((err) => {
+    console.log('Failed to set the audio scene mode');
+});
+```
+
+
+## audioManager.getAudioScene
+
+getAudioScene\(callback: AsyncCallback<AudioScene\>\): void<sup>8+</sup><a name="getAudioScene-asynccallback"></a>
+
+Obtains the audio scene mode. This method uses an asynchronous callback to return the query result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+| Name     | Type                                                | Mandatory | Description                                   |
+| :------- | :-------------------------------------------------- | :-------- | :-------------------------------------------- |
+| callback | AsyncCallback<<a href="#audioscene">AudioScene</a>> | Yes       | Callback used to return the audio scene mode. |
+
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioManager.getAudioScene((err, value) => {
+   if (err) {
+       console.error('Failed to obtain the audio scene mode.​ ${err.message}');
+       return;
+   }
+   console.log('Callback invoked to indicate that the audio scene mode is obtained.' + value);
+})
+```
+
+
+## audioManager.getAudioScene
+
+getAudioScene\(\): Promise<AudioScene\><sup>8+</sup><a name="getAudioScene-promise"></a>
+
+Obtains the audio scene mode. This method uses a promise to return the query result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Communication
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type                                          | Description                                  |
+| :-------------------------------------------- | :------------------------------------------- |
+| Promise<<a href="#audioscene">AudioScene</a>> | Promise used to return the audio scene mode. |
+
+
+**Example**
+
+```
+audioManager.getAudioScene().then((value) => {
+    console.log('Promise returned to indicate that the audio scene mode is obtained.' + value);
+}).catch ((err) => {
+    console.log('Failed to obtain the audio scene mode');
+})
+```
+
 # AudioDeviceDescriptor<a name="section164657411927"></a>
 Describes an audio device.
 
@@ -2591,7 +2810,7 @@ Defines the current render state.
 
 getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void<sup>8+</sup><a name="getrendererinfo-asynccallback"></a>
 
-Gets the renderer information provided while creating a renderer instance. This method uses an asynchronous callback to return the result.
+Obtains the renderer information provided while creating a renderer instance. This method uses an asynchronous callback to return the result.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2619,9 +2838,9 @@ audioRenderer.getRendererInfo((err, rendererInfo)=>{
 
 ## audioRenderer.getRendererInfo
 
-getParams(): Promise<AudioRendererInfo\><sup>8+</sup><a name="getrendererinfo-promise"></a>
+getRendererInfo(): Promise<AudioRendererInfo\><sup>8+</sup><a name="getrendererinfo-promise"></a>
 
-Gets the renderer information provided while creating a renderer instance. This method uses a promise to return the result.
+Obtains the renderer information provided while creating a renderer instance. This method uses a promise to return the result.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2649,7 +2868,7 @@ console.log('Renderer flags:' + rendererInfo.rendererFlags);
 
 getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void<sup>8+</sup><a name="getstreaminfo-asynccallback"></a>
 
-Gets the renderer stream information. This method uses an asynchronous callback to return the result.
+Obtains the renderer stream information. This method uses an asynchronous callback to return the result.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2669,9 +2888,9 @@ None
 audioRenderer.getStreamInfo((err, streamInfo)=>{
     console.log('Renderer GetStreamInfo:');
     console.log('Renderer sampling rate:' + streamInfo.samplingRate);
-    console.log('Renderer channel:' + streamInfo.AudioChannel);
-    console.log('Renderer format:' + streamInfo.AudioSampleFormat);
-    console.log('Renderer encoding type:' + streamInfo.AudioEncodingType);
+    console.log('Renderer channel:' + streamInfo.channels);
+    console.log('Renderer format:' + streamInfo.sampleFormat);
+    console.log('Renderer encoding type:' + streamInfo.encodingType);
 })
 ```
 
@@ -2679,7 +2898,7 @@ audioRenderer.getStreamInfo((err, streamInfo)=>{
 
 getStreamInfo(): Promise<AudioStreamInfo\><sup>8+</sup><a name="getstreaminfo-promise"></a>
 
-Gets the renderer stream information. This method uses a promise to return the result.
+Obtains the renderer stream information. This method uses a promise to return the result.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2699,9 +2918,9 @@ None
 let streamInfo = await audioRenderer.getStreamInfo();
 console.log('Renderer GetStreamInfo:');
 console.log('Renderer sampling rate:' + streamInfo.samplingRate);
-console.log('Renderer channel:' + streamInfo.AudioChannel);
-console.log('Renderer format:' + streamInfo.AudioSampleFormat);
-console.log('Renderer encoding type:' + streamInfo.AudioEncodingType);
+console.log('Renderer channel:' + streamInfo.channels);
+console.log('Renderer format:' + streamInfo.sampleFormat);
+console.log('Renderer encoding type:' + streamInfo.encodingType);
 ```
 
 ## audioRenderer.start
@@ -3067,7 +3286,7 @@ if (writtenbytes < 0) {
 
 getAudioTime(callback: AsyncCallback<number\>): void<sup>8+</sup><a name="getaudiotime-asynccallback"></a>
 
-Obtains the timestamp. This method uses an asynchronous callback to return the result.
+Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses an asynchronous callback to return the result.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -3095,7 +3314,7 @@ audioRenderer.getAudioTime((err, timestamp)=>{
 
 getAudioTime(): Promise<number\><sup>8+</sup><a name="getaudiotime-promise"></a>
 
-Obtains the timestamp. This method uses a promise to return the result.
+Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses a promise to return the result.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -3121,7 +3340,7 @@ console.log('Current timestamp: ' + timestamp);
 
 getBufferSize(callback: AsyncCallback<number\>): void<sup>8+</sup><a name="getbuffersize-asynccallback"></a>
 
-Obtains a reasonable minimum buffer size for rendering. This method uses an asynchronous callback to return the result.
+Obtains a reasonable minimum buffer size in bytes for rendering. This method uses an asynchronous callback to return the result.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -3153,7 +3372,7 @@ ss.readSync(buf);
 
 getBufferSize(): Promise<number\><sup>8+</sup><a name="getbuffersize-promise"></a>
 
-Obtains a reasonable minimum buffer size for rendering. This method uses a promise to return the result.
+Obtains a reasonable minimum buffer size in bytes for rendering. This method uses a promise to return the result.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -3186,10 +3405,10 @@ Sets the render rate. This method uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                           |
-| :------- | :------------------- | :-------- | :------------------------------------ |
-| rate     | AudioRendererRate    | Yes       | Audio render rate.                    |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result.   |
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| rate     | AudioRendererRate    | Yes       | Audio render rate.                  |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
 
 **Return value**
 
@@ -3336,6 +3555,114 @@ audioRenderer.on('interrupt', (interruptEvent) => {
 ```
 
 
+## audioRenderer.on
+
+on(type: 'markReach', frame: number, callback: (position: number)): void<void\><sup>8+</sup><a name="onmarkreach-asynccallback"></a>
+
+Subscribes to mark reached events. When the number of frames rendered reaches the value of the frame parameter, the callback is invoked.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                              |
+| :------- | :------------------------ | :-------- | :----------------------------------------------------------------------- |
+| type     | string                    | Yes       | Type of the renderer event to subscribe to.                              |
+| frame    | number                    | Yes       | Number of frames to trigger the event. The value must be greater than 0. |
+| callback | Callback                  | Yes       | Callback invoked when the event is triggered.                            |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.on('markReach', 1000, (position) => {
+    if (position == "1000") {
+        console.log('ON Triggered successfully');
+    }
+});
+```
+
+
+## audioRenderer.off
+
+off(type: 'markReach'): void<void\><sup>8+</sup><a name="offmarkreach"></a>
+
+Unsubscribes from mark reached events.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                      |
+| :------- | :------------------------ | :-------- | :----------------------------------------------- |
+| type     | string                    | Yes       | Type of the renderer event to unsubscribe from.  |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.off('markReach');
+```
+
+## audioRenderer.on
+
+on(type: 'periodReach', frame: number, callback: (position: number)): void<void\><sup>8+</sup><a name="onperiodreach-asynccallback"></a>
+
+Subscribes to period reached events. When the period of frame rendering reaches the value of frame parameter, the callback is invoked.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                                        |
+| :------- | :------------------------ | :-------- | :--------------------------------------------------------------------------------- |
+| type     | string                    | Yes       | Type of the renderer event to subscribe to.                                        |
+| frame    | number                    | Yes       | Period during which frame rendering is listened. The value must be greater than 0. |
+| callback | Callback                  | Yes       | Callback invoked when the event is triggered.                                      |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.on('periodReach', 1000, (position) => {
+    if (position == "1000") {
+        console.log('ON Triggered successfully');
+    }
+});
+```
+
+## audioRenderer.off
+
+off(type: 'periodReach'): void<void\><sup>8+</sup><a name="offperiodreach"></a>
+
+Unsubscribes from period reached events.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                      |
+| :------- | :------------------------ | :-------- | :----------------------------------------------- |
+| type     | string                    | Yes       | Type of the renderer event to unsubscribe from.  |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioRenderer.off('periodReach')
+```
 
 ## SystemSoundManager<a name="systemsoundmanager"></a>
 
@@ -4149,3 +4476,630 @@ Describes an audio device.
 | Name | Description |
 | -------- | -------- |
 | AudioDeviceDescriptors | Array of **AudioDeviceDescriptor** objects. It is read-only.<br/>**System capabilities:** SystemCapability.Multimedia.Audio.Device |
+# AudioCapturer<a name="audiocapturer"></a>
+Provides APIs for audio recording.
+
+
+## audioCapturer.state
+
+readonly state: AudioState <sup>8+</sup><a name="capturerstate-getter"></a>
+
+Defines the current capture state.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name  | Type       | Readable | Writable | Description          |
+| :---- | :--------- | :------- | :------- | :------------------- |
+| state | AudioState | Yes      | No       | Audio capture state. |
+
+**Example**
+
+```
+var state = audioCapturer.state;
+```
+
+
+## audioCapturer.getCapturerInfo
+
+getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void<sup>8+</sup><a name="getcapturerinfo-asynccallback"></a>
+
+Obtains the capturer information provided while creating a capturer instance. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                               | Mandatory | Description                                       |
+| :------- | :--------------------------------- | :-------- | :------------------------------------------------ |
+| callback | AsyncCallback<AudioCapturerInfo\>  | Yes       | Callback used to return the capturer information. |
+|          |                                    |           |                                                   |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.getCapturerInfo((err, capturerInfo)=>{
+    if (err) {
+	    console.error('Failed to get capture info');
+    } else {
+        console.log('Capturer getCapturerInfo:');
+        console.log('Capturer source:' + capturerInfo.source);
+        console.log('Capturer flags:' + capturerInfo.capturerFlags);
+    }
+})
+```
+
+
+## audioCapturer.getCapturerInfo
+
+getCapturerInfo(): Promise<AudioCapturerInfo\><sup>8+</sup><a name="getCapturerInfo-promise"></a>
+
+Obtains the capturer information provided while creating a capturer instance. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type                          | Description                                      |
+| :---------------------------- | :----------------------------------------------- |
+| Promise<AudioCapturerInfo\>   | Promise used to return the capturer information. |
+
+**Example**
+
+```
+audioCapturer.getCapturerInfo().then((capturerInfo) => {
+    console.log('Capturer getCapturerInfo:');
+    console.log('Capturer source:' + capturerInfo.source);
+    console.log('Capturer flags:' + capturerInfo.capturerFlags);
+}).catch ((err) => {
+    console.log("Failed to get capturer info");
+});
+```
+
+## audioCapturer.getStreamInfo
+
+getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void<sup>8+</sup><a name="getstreaminfocapturer-asynccallback"></a>
+
+Obtains the capturer stream information. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                               | Mandatory | Description                                     |
+| :------- | :--------------------------------- | :-------- | :---------------------------------------------- |
+| callback | AsyncCallback<AudioStreamInfo\>    | Yes       | Callback used to return the stream information. |
+|          |                                    |           |                                                 |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.start((err)=>{
+    if (err) {
+        console.error('Failed to get stream info');
+    } else {
+        console.log('Capturer GetStreamInfo:');
+        console.log('Capturer sampling rate:' + streamInfo.samplingRate);
+        console.log('Capturer channel:' + streamInfo.channels);
+        console.log('Capturer format:' + streamInfo.sampleFormat);
+        console.log('Capturer encoding type:' + streamInfo.encodingType);
+    }
+})
+```
+
+## audioCapturer.getStreamInfo
+
+getStreamInfo(): Promise<AudioStreamInfo\><sup>8+</sup><a name="getstreaminfocapturer-promise"></a>
+
+Obtains the capturer stream information. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type                          | Description                                      |
+| :---------------------------- | :----------------------------------------------- |
+| Promise<AudioStreamInfo\>     | Promise used to return the stream information.   |
+
+**Example**
+
+```
+audioCapturer.getStreamInfo().then((streamInfo) => {
+    console.log('Capturer GetStreamInfo:');
+    console.log('Capturer sampling rate:' + streamInfo.samplingRate);
+    console.log('Capturer channel:' + streamInfo.channels);
+    console.log('Capturer format:' + streamInfo.sampleFormat);
+    console.log('Capturer encoding type:' + streamInfo.encodingType);
+}).catch ((err) => {
+    console.log("Failed to get stream info");
+});
+```
+
+## audioCapturer.start
+
+start(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="startcapturer-asynccallback"></a>
+
+Starts capturing. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                             |
+| :------- | :---------------------- | :-------- | :-------------------------------------- |
+| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.     |
+|          |                         |           |                                         |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.start((err)=>{
+    if (err) {
+        console.error('Capturer start failed.');
+    } else {
+        console.info('Capturer start success.');
+    }
+})
+```
+
+
+## audioCapturer.start
+
+start(): Promise<void\><sup>8+</sup><a name="startcapturer-promise"></a>
+
+Starts capturing. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+audioCapturer.start().then(() => {
+    console.log("capturer start success");
+}).catch ((err) => {
+    console.log("Failed to start capturer");
+});
+```
+
+## audioCapturer.stop
+
+stop(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="stopcapturer-asynccallback"></a>
+
+Stops capturing. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                            |
+| :------- | :---------------------- | :-------- | :------------------------------------- |
+| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.    |
+|          |                         |           |                                        |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.stop((err)=>{
+    if (err) {
+        console.error('Capturer stop failed');
+    } else {
+        console.log('Capturer stopped.');
+    }
+})
+```
+
+
+## audioCapturer.stop
+
+stop(): Promise<void\><sup>8+</sup><a name="stopcapturer-promise"></a>
+
+Stops capturing. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+audioCapturer.stop().then(() => {
+    console.log("capturer stop success");
+}).catch ((err) => {
+    console.log("Failed to stop capturer");
+});
+```
+
+
+## audioCapturer.release
+
+release(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="releasecapturer-asynccallback"></a>
+
+Releases the capturer. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                            |
+| :------- | :---------------------- | :-------- | :------------------------------------- |
+| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.    |
+|          |                         |           |                                        |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.release((err)=>{
+    if (err) {
+        console.error('capturer release failed');
+    } else {
+        console.log('capturer released.');
+    }
+})
+```
+
+
+## audioCapturer.release
+
+release(): Promise<void\><sup>8+</sup><a name="releasecapturer-promise"></a>
+
+Releases the capturer. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```
+audioCapturer.release().then(() => {
+    console.log("capturer release success");
+}).catch ((err) => {
+    console.log("Failed to release capturer");
+});
+```
+
+
+## audioCapturer.read
+
+read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\>): void<sup>8+</sup><a name="readcapturer-asynccallback"></a>
+
+Reads the buffer from the audio capturer. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name           | Type                        | Mandatory | Description                                   |
+| :------------- | :-------------------------- | :-------- | :-------------------------------------------- |
+| size           | number                      | Yes       | Number of bytes to read.                      |
+| isBlockingRead | boolean                     | Yes       | Whether the read operation should be blocked. |
+| callback       | AsyncCallback<ArrayBuffer\> | Yes       | Callback used to return the buffer.           |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.read(bufferSize, true, async(err, buffer) => {
+    if (!err) {
+        console.log("Success in reading the buffer data");
+        var number = fileio.writeSync(fd, buffer);
+    }
+};
+```
+
+
+## audioCapturer.read
+
+read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\><sup>8+</sup><a name="readcapturer-promise"></a>
+
+Reads the buffer from the audio capturer. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name           | Type                        | Mandatory | Description                                   |
+| :------------- | :-------------------------- | :-------- | :-------------------------------------------- |
+| size           | number                      | Yes       | Number of bytes to read.                      |
+| isBlockingRead | boolean                     | Yes       | Whether the read operation should be blocked. |
+
+**Return value**
+
+| Type                  | Description                                                                                      |
+| :-------------------- | :----------------------------------------------------------------------------------------------- |
+| Promise<ArrayBuffer\> | Returns the buffer data read if the operation is successful; returns an error code otherwise.    |
+
+**Example**
+
+```
+audioCapturer.read(size, true).then((buffer) => {
+    console.log("Success in reading the buffer data");
+    var number = fileio.writeSync(fd, buffer);
+}).catch ((err) => {
+    console.log("Failed to read data!");
+});
+```
+
+
+## audioCapturer.getAudioTime
+
+getAudioTime(callback: AsyncCallback<number\>): void<sup>8+</sup><a name="getaudiotimecapturer-asynccallback"></a>
+
+Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                            |
+| :------- | :--------------------- | :-------- | :------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the timestamp. |
+|          |                        |           |                                        |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.getAudioTime((err, timestamp)=>{
+    console.log('Current timestamp: ' + timestamp);
+})
+```
+
+
+## audioCapturer.getAudioTime
+
+getAudioTime(): Promise<number\><sup>8+</sup><a name="getaudiotimecapturer-promise"></a>
+
+Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                           |
+| :--------------- | :------------------------------------ |
+| Promise<number\> | Promise used to return the timestamp. |
+
+**Example**
+
+```
+audioCapturer.getAudioTime().then((audioTime) => {
+    console.log("Success in getting the audio time");
+}).catch ((err) => {
+    console.log("Failed to get the audio time");
+});
+```
+
+
+## audioCapturer.getBufferSize
+
+getBufferSize(callback: AsyncCallback<number\>): void<sup>8+</sup><a name="getbuffersizecapturer-asynccallback"></a>
+
+Obtains a reasonable minimum buffer size in bytes for capturing. This method uses an asynchronous callback to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                              |
+| :------- | :--------------------- | :-------- | :--------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the buffer size. |
+|          |                        |           |                                          |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.getBufferSize((err, bufferSize)=>{
+    if (!err) {
+        console.log('BufferSize : ' + bufferSize);
+        var buffer = await audioCapturer.read(bufferSize, true);
+    }
+});
+```
+
+
+## audioCapturer.getBufferSize
+
+getBufferSize(): Promise<number\><sup>8+</sup><a name="getbuffersizecapturer-promise"></a>
+
+Obtains a reasonable minimum buffer size in bytes for capturing. This method uses a promise to return the result.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+None
+
+**Return value**
+
+| Type             | Description                             |
+| :--------------- | :-------------------------------------- |
+| Promise<number\> | Promise used to return the buffer size. |
+
+**Example**
+
+```
+audioCapturer.getBufferSize().then((bufferSize) => {
+    console.log("Success in getting the buffer size");
+    var buffer = await audioCapturer.read(bufferSize, true);
+}).catch ((err) => {
+    console.log("Failed to get the buffer size");
+});
+```
+
+
+## audioCapturer.on
+
+on(type: 'markReach', frame: number, callback: (position: number)): void<void\><sup>8+</sup><a name="on-markreach-capturer-asynccallback"></a>
+
+Subscribes to mark reached events. When the number of frames captured reaches the value of the frame parameter, the callback is invoked.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                              |
+| :------- | :------------------------ | :-------- | :----------------------------------------------------------------------- |
+| type     | string                    | Yes       | Type of the capturer event to subscribe to.                              |
+| frame    | number                    | Yes       | Number of frames to trigger the event. The value must be greater than 0. |
+| callback | Callback                  | Yes       | Callback invoked when the event is triggered.                            |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.on('markReach', 1000, (position) => {
+    if (position == "1000") {
+        console.log('ON Triggered successfully');
+    }
+});
+```
+
+
+## audioCapturer.off
+
+off(type: 'markReach'): void<void\><sup>8+</sup><a name="off-markreach-capturer"></a>
+
+Unsubscribes from the mark reached events.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                     |
+| :------- | :------------------------ | :-------- | :---------------------------------------------- |
+| type     | string                    | Yes       | Type of the capturer event to unsubscribe from. |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.off('markReach');
+```
+
+## audioCapturer.on
+
+on(type: 'periodReach', frame: number, callback: (position: number)): void<void\><sup>8+</sup><a name="on-periodreach-capturer-asynccallback"></a>
+
+Subscribes to period reached events. When the period of frame capturing reaches the value of frame parameter, the callback is invoked.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                                        |
+| :------- | :------------------------ | :-------- | :--------------------------------------------------------------------------------- |
+| type     | string                    | Yes       | Type of the capturer event to subscribe to.                                        |
+| frame    | number                    | Yes       | Period during which frame capturing is listened. The value must be greater than 0. |
+| callback | Callback                  | Yes       | Callback invoked when the event is triggered.                                      |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.on('periodReach', 1000, (position) => {
+    if (position == "1000") {
+        console.log('ON Triggered successfully');
+    }
+});
+```
+
+## audioCapturer.off
+
+off(type: 'periodReach'): void<void\><sup>8+</sup><a name="off-periodreach-capturer"></a>
+
+Unsubscribes from period reached events.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                     |
+| :------- | :------------------------ | :-------- | :---------------------------------------------- |
+| type     | string                    | Yes       | Type of the capturer event to unsubscribe from. |
+
+**Return value**
+
+None
+
+**Example**
+
+```
+audioCapturer.off('periodReach')
+```

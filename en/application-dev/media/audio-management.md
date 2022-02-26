@@ -50,6 +50,11 @@ You use audio management APIs to set and obtain volume, and get information abou
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p7530191117353"><a name="p7530191117353"></a><a name="p7530191117353"></a>Enumerates device types.</p>
 </td>
 </tr>
+<tr id="row6530511173513"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p9530181193514"><a name="p9530181193514"></a><a name="p9530181193514"></a><a href="#audioscene">AudioScene</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p7530191117354"><a name="p7530191117354"></a><a name="p7530191117354"></a>Enumerates audio scenes.</p>
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -74,42 +79,87 @@ You use audio management APIs to set and obtain volume, and get information abou
 </tr>
 <tr id="row1348213114277"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p1293542863917"><a name="p1293542863917"></a><a name="p1293542863917"></a>getVolume(audioType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p8482201142715"><a name="p8482201142715"></a><a name="p8482201142715"></a>Obtains the volume of a stream asynchronously and uses a callback to return the execution result.</p>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p8482201142715"><a name="p8482201142715"></a><a name="p8482201142715"></a>Obtains the volume of a stream asynchronously and uses a callback to return the result.</p>
 </td>
 </tr>
 <tr id="row872195279"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p1124013343392"><a name="p1124013343392"></a><a name="p1124013343392"></a>getVolume(audioType: AudioVolumeType): Promise&lt;number&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p1273493271"><a name="p1273493271"></a><a name="p1273493271"></a>Obtains the volume of a stream asynchronously and uses a Promise to return the execution result.</p>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p1273493271"><a name="p1273493271"></a><a name="p1273493271"></a>Obtains the volume of a stream asynchronously and uses a Promise to return the result.</p>
 </td>
 </tr>
 <tr id="row3300184416273"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p14484174015396"><a name="p14484174015396"></a><a name="p14484174015396"></a>getMinVolume(audioType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p130194472719"><a name="p130194472719"></a><a name="p130194472719"></a>Obtains the minimum volume of a stream asynchronously and uses a callback to return the execution result.</p>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p130194472719"><a name="p130194472719"></a><a name="p130194472719"></a>Obtains the minimum volume of a stream asynchronously and uses a callback to return the result.</p>
 </td>
 </tr>
 <tr id="row747314483273"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p88551509397"><a name="p88551509397"></a><a name="p88551509397"></a>getMinVolume(audioType: AudioVolumeType): Promise&lt;number&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p1747464810273"><a name="p1747464810273"></a><a name="p1747464810273"></a>Obtains the minimum volume of a stream asynchronously and uses a Promise to return the execution result.</p>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p1747464810273"><a name="p1747464810273"></a><a name="p1747464810273"></a>Obtains the minimum volume of a stream asynchronously and uses a Promise to return the result.</p>
 </td>
 </tr>
 <tr id="row9417164614274"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p147247575391"><a name="p147247575391"></a><a name="p147247575391"></a>getMaxVolume(audioType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p1441884632714"><a name="p1441884632714"></a><a name="p1441884632714"></a>Obtains the maximum volume of a stream asynchronously and uses a callback to return the execution result.</p>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p1441884632714"><a name="p1441884632714"></a><a name="p1441884632714"></a>Obtains the maximum volume of a stream asynchronously and uses a callback to return the result.</p>
 </td>
 </tr>
 <tr id="row199921350162711"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p191994474013"><a name="p191994474013"></a><a name="p191994474013"></a>getMaxVolume(audioType: AudioVolumeType): Promise&lt;number&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p1999235072718"><a name="p1999235072718"></a><a name="p1999235072718"></a>Obtains the maximum volume of a stream asynchronously and uses a Promise to return the execution result.</p>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p1999235072718"><a name="p1999235072718"></a><a name="p1999235072718"></a>Obtains the maximum volume of a stream asynchronously and uses a Promise to return the result.</p>
 </td>
 </tr>
 <tr id="row182815717273"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p10833698408"><a name="p10833698408"></a><a name="p10833698408"></a>getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p112818572270"><a name="p112818572270"></a><a name="p112818572270"></a>Obtains the device list asynchronously and uses a callback to return the execution result.</p>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p112818572270"><a name="p112818572270"></a><a name="p112818572270"></a>Obtains the device list asynchronously and uses a callback to return the result.</p>
 </td>
 </tr>
 <tr id="row1982485992714"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p1242861714408"><a name="p1242861714408"></a><a name="p1242861714408"></a>getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;</p>
 </td>
-<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p16825195911278"><a name="p16825195911278"></a><a name="p16825195911278"></a>Obtains the device list asynchronously and uses a Promise to return the execution result.</p>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p16825195911278"><a name="p16825195911278"></a><a name="p16825195911278"></a>Obtains the device list asynchronously and uses a Promise to return the result.</p>
+</td>
+</tr>
+<tr id="row182815717273"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p10833698408"><a name="p10833698408"></a><a name="p10833698408"></a>setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p112818572270"><a name="p112818572270"></a><a name="p112818572270"></a>Activates the device asynchronously and uses a callback to return the execution result.</p>
+</td>
+</tr>
+<tr id="row1982485992714"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p1242861714408"><a name="p1242861714408"></a><a name="p1242861714408"></a>setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p16825195911278"><a name="p16825195911278"></a><a name="p16825195911278"></a>Activates the device asynchronously and uses a Promise to return the execution result.</p>
+</td>
+</tr>
+<tr id="row182815717273"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p10833698408"><a name="p10833698408"></a><a name="p10833698408"></a>isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&gt;): void</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p112818572270"><a name="p112818572270"></a><a name="p112818572270"></a>Checks whether a device is active asynchronously and uses a callback to return the result.</p>
+</td>
+</tr>
+<tr id="row1982485992714"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p1242861714408"><a name="p1242861714408"></a><a name="p1242861714408"></a>isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p16825195911278"><a name="p16825195911278"></a><a name="p16825195911278"></a>Checks whether a device is active asynchronously and uses a Promise to return the result.</p>
+</td>
+</tr>
+<tr id="row182815717273"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p10833698408"><a name="p10833698408"></a><a name="p10833698408"></a>on(type: 'deviceChange', callback: AsyncCallback&lt;DeviceChangeAction&gt;): void</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p112818572270"><a name="p112818572270"></a><a name="p112818572270"></a>Subscribes to device change events. Registered clients will receieve the callback when a device is connected/disconnected.</p>
+</td>
+</tr>
+<tr id="row182815717273"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p10833698408"><a name="p10833698408"></a><a name="p10833698408"></a>setAudioScene(scene: AudioScene, callback: AsyncCallback&lt;void&gt;): void</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p112818572270"><a name="p112818572270"></a><a name="p112818572270"></a>Sets the audio scene mode asynchronously and uses a callback to return the execution result.</p>
+</td>
+</tr>
+<tr id="row1982485992714"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p1242861714408"><a name="p1242861714408"></a><a name="p1242861714408"></a>setAudioScene(scene: AudioScene): Promise&lt;void&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p16825195911278"><a name="p16825195911278"></a><a name="p16825195911278"></a>Sets the audio scene mode asynchronously and uses a Promise to return the execution result.</p>
+</td>
+</tr>
+<tr id="row182815717273"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p10833698408"><a name="p10833698408"></a><a name="p10833698408"></a>getAudioScene(callback: AsyncCallback&lt;AudioScene&gt;): void</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p112818572270"><a name="p112818572270"></a><a name="p112818572270"></a>Obtains the audio scene mode asynchronously and uses a callback to return the result.</p>
+</td>
+</tr>
+<tr id="row1982485992714"><td class="cellrowborder" valign="top" width="64.83%" headers="mcps1.2.3.1.1 "><p id="p1242861714408"><a name="p1242861714408"></a><a name="p1242861714408"></a>getAudioScene(): Promise&lt;AudioScene&gt;</p>
+</td>
+<td class="cellrowborder" valign="top" width="35.17%" headers="mcps1.2.3.1.2 "><p id="p16825195911278"><a name="p16825195911278"></a><a name="p16825195911278"></a>Obtains the audio scene mode asynchronously and uses a Promise to return the result.</p>
 </td>
 </tr>
 </tbody>
@@ -261,6 +311,18 @@ You use audio management APIs to set and obtain volume, and get information abou
 </tbody>
 </table>
 
+**Table  8** AudioScene enums<a name="audioscenetable"></a>
+
+Enumerates audio scenes.
+
+| Name                           | Description                   |
+| :----------------------------- | :---------------------------- |
+| AUDIO_SCENE_DEFAULT = 0        | Default audio scene. <br/>    |
+| AUDIO_SCENE_RINGING = 1        | Ringing audio scene. <br/>    |
+| AUDIO_SCENE_PHONE_CALL = 2     | Phone call audio scene. <br/> |
+| AUDIO_SCENE_VOICE_CHAT = 3     | Voice chat audio scene. <br/> |
+
+
 ## Development Procedure<a name="section1772415410138"></a>
 
 1.  Obtain an audio manager.
@@ -269,7 +331,7 @@ You use audio management APIs to set and obtain volume, and get information abou
     const audioManager = audio.getAudioManager();
     ```
 
-2.  Set the audio stream volume.
+2.  Obtain the audio stream volume.
 
     ```
     audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
@@ -279,4 +341,54 @@ You use audio management APIs to set and obtain volume, and get information abou
        }
        console.log(`Media getVolume  ${value}`);
     });
+    ```
+
+## Usage <a name="usage"></a>
+
+**setAudioScene**
+
+**Example**
+
+Here's an example of how to use setAudioScene to change the audio strategy for the phone call scene.
+
+1. Obtain an audio manager.
+
+    ```
+    const audioManager = audio.getAudioManager();
+    ```
+
+2. Change the audio scene to phone call.
+
+    ```
+    audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
+       if (err) {
+           console.error('Failed to set the audio scene mode.​ ${err.message}');
+           return;
+        }
+        console.log('Audio scene mode setting is successful.');
+       });
+    ```
+
+**getAudioScene**
+
+**Example**
+
+Here's an example of how to use getAudioScene to obtain the current audio scene.
+
+1. Obtain an audio manager.
+
+    ```
+    const audioManager = audio.getAudioManager();
+    ```
+
+2. Obtain the current audio scene.
+
+    ```
+   audioManager.getAudioScene((err, value) => {
+       if (err) {
+           console.error('Failed to obtain the audio scene mode.​ ${err.message}');
+           return;
+       }
+       console.log('Audio scene mode  ${value)');
+    })
     ```
