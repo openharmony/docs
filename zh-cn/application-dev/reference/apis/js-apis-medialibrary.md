@@ -92,7 +92,7 @@ medialibrary.getFileAssets(fileNoArgsfetchOp).then(function(fetchFileResult){
 
 ## medialibrary.on
 
-on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange',  callback: Callback&lt;void&gt;): void;
+on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void;
 
 打开媒体文件变更和上线通知，使用callback方式返回异步结果。
 
@@ -112,7 +112,7 @@ medialibrary.on('imageChange', () => {
 ```
 ## medialibrary.off
 
-off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange',  callback: Callback&lt;void&gt;): void;
+off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void;
 
 关闭媒体文件变更和设备上线通知，使用callback方式返回异步结果。
 
@@ -121,7 +121,7 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 | 参数名   | 类型                | 必填 | 说明                   |
 | -------- | ---------------- | ---- | ------------------- |
 | type  | type   | 是   | 媒体类型。         |
-| callback | callback&lt;void&gt; | 是   | 回调返回空。 |
+| callback | callback&lt;void&gt; | 否   | 回调返回空。 |
 
 **示例：**
 
