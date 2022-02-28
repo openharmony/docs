@@ -1780,9 +1780,9 @@ Checks whether the input value is of the **Date** type.
   | value | Object | Yes | Object&nbsp;to&nbsp;check. | 
 
 - Return values
-    | Type | Description | 
+    | Type | Description |
   | -------- | -------- |
-  | boolean | Returns&nbsp;**true**&nbsp;if&nbsp;the&nbsp;input&nbsp;value&nbsp;is&nbsp;of&nbsp;the&nbsp;**Data**&nbsp;type;&nbsp;returns&nbsp;**false**&nbsp;otherwise. | 
+  | boolean | Returns&nbsp;**true**&nbsp;if&nbsp;the&nbsp;input&nbsp;value&nbsp;is&nbsp;of&nbsp;the&nbsp;**Date**&nbsp;type;&nbsp;returns&nbsp;**false**&nbsp;otherwise. |
 
 - Example
   
