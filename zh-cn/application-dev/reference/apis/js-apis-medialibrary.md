@@ -83,12 +83,16 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
 **示例：**
 
 ```
-let fetchFileResult = await medialibrary.getFileAssets(fileNoArgsfetchOp);
+medialibrary.getFileAssets(fileNoArgsfetchOp).then(function(fetchFileResult){
+    console.info("getFileAssets successfully:"+ JSON.stringify(dir));
+}).catch(function(err){
+    console.info("getFileAssets failed with error:"+ err);
+});
 ```
 
 ## medialibrary.on
 
-on(type: 'Device'|'Album'| 'SmartAlbum'|'Image'|'Audio'|'Video'|'File'| 'Remote file', callback: () => {}): void;
+on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange',  callback: Callback&lt;void&gt;): void;
 
 打开媒体文件变更和上线通知，使用callback方式返回异步结果。
 
@@ -97,18 +101,18 @@ on(type: 'Device'|'Album'| 'SmartAlbum'|'Image'|'Audio'|'Video'|'File'| 'Remote 
 | 参数名   | 类型                | 必填 | 说明                   |
 | -------- | ---------------- | ---- | ------------------- |
 | type  | type   | 是   | 媒体类型。         |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空。 |
+| callback | callback&lt;void&gt; | 是   | 回调返回空。 |
 
 **示例：**
 
 ```
-medialibrary.on(['image','video','audio'], () => {
+medialibrary.on('imageChange', () => {
     this.sendNotify('image');
 })
 ```
 ## medialibrary.off
 
-off(type: 'Device'|'Album'| 'SmartAlbum'|'Image'|'Audio'|'Video'|'File'| 'Remote file', callback?: () => {}): void;
+off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange',  callback: Callback&lt;void&gt;): void;
 
 关闭媒体文件变更和设备上线通知，使用callback方式返回异步结果。
 
@@ -117,12 +121,12 @@ off(type: 'Device'|'Album'| 'SmartAlbum'|'Image'|'Audio'|'Video'|'File'| 'Remote
 | 参数名   | 类型                | 必填 | 说明                   |
 | -------- | ---------------- | ---- | ------------------- |
 | type  | type   | 是   | 媒体类型。         |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空。 |
+| callback | callback&lt;void&gt; | 是   | 回调返回空。 |
 
 **示例：**
 
 ```
-medialibrary.off(['image','video','audio'], () => {
+medialibrary.off('imageChange', () => {
     this.sendNotify('image');
 })
 ```
@@ -173,7 +177,11 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 **示例：**
 
 ```
-asset = await medialibrary.createAsset(mediaType, "image01.jpg", path);
+medialibrary.createAsset(mediaType, "image01.jpg", path).then(function(asset){
+    console.info("createAsset successfully:"+ JSON.stringify(asset));
+}).catch(function(err){
+    console.info("createAsset failed with error:"+ err);
+});
 ```
 
 ## medialibrary.deleteAsset
@@ -218,7 +226,11 @@ deleteAsset(uri: string): Promise&lt;void&gt;;
 **示例：**
 
 ```
-await medialibrary.deleteAsset(asset.uri);
+medialibrary.deleteAsset(asset.uri).then(()=>{
+    console.info("deleteAsset successfully");
+}).catch(function(err){
+    console.info("deleteAsset failed with error:"+ err);
+});
 ```
 
 ## medialibrary.getAlbums
@@ -261,7 +273,11 @@ getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>;
 **示例：**
 
 ```
-let albumList = await medialibrary.getAlbums(AlbumNoArgsfetchOp);
+medialibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
+    console.info("getAlbums successfully:"+ JSON.stringify(albumList));
+}).catch(function(err){
+    console.info("getAlbums failed with error:"+ err);
+});
 ```
 
 ## medialibrary.getActivePeers
@@ -417,7 +433,11 @@ isDirectory():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
-let isDirectory = await asset.isDirectory();
+asset.isDirectory().then(function(isDirectory){
+    console.info("isDirectory result:"+ isDirectory);
+}).catch(function(err){
+    console.info("isDirectory failed with error:"+ err);
+});
 ```
 
 ## FileAsset.commitModify
@@ -435,7 +455,9 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
-await asset.commitModify();
+asset.commitModify(function(err){
+    // do something
+});
 ```
 
 ## FileAsset.commitModify
@@ -634,7 +656,9 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
-await asset.favorite(true);
+asset.favorite(true,function(err){
+    // do something
+});
 ```
 
 ## FileAsset.favorite
@@ -658,7 +682,11 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;;
 **示例：**
 
 ```
-await asset.favorite(true);
+asset.favorite(true).then(function() {
+    console.info("favorite successfully");
+}).catch(function(err){
+    console.info("favorite failed with error:"+ err);
+});
 ```
 
 ## FileAsset.isFavorite
@@ -696,7 +724,11 @@ isFavorite():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
-let isFavorite = await asset.isFavorite();
+asset.isFavorite().then(function(isFavorite){
+    console.info("isFavorite result:"+ isFavorite);
+}).catch(function(err){
+    console.info("isFavorite failed with error:"+ err);
+});
 ```
 
 ## FileAsset.trash
@@ -741,7 +773,11 @@ trash(isTrash: boolean,): Promise&lt;void&gt;;
 **示例：**
 
 ```
-await asset.trash(true);
+asset.trash(true).then(function() {
+    console.info("trash successfully");
+}).catch(function(err){
+    console.info("trash failed with error:"+ err);
+});
 ```
 
 ## FileAsset.isTrash
@@ -779,7 +815,11 @@ isTrash():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
-let isTrash = await asset.isTrash();
+asset.isTrash().then(function(isTrash){
+    console.info("isTrash result:"+ isTrash);
+}).catch(function(err){
+    console.info("isTrash failed with error:"+ err);
+});
 ```
 
 **FetchFileResult**
@@ -874,8 +914,11 @@ getFirstObject(): Promise&lt;FileAsset&gt;;
 **示例**：
 
 ```
-const fileAsset = await queryResultSet_.getFirstObject();
-})
+queryResultSet_.getFirstObject().then(function(fileAsset){
+    console.info("getFirstObject successfully:"+ JSON.stringify(fileAsset));
+}).catch(function(err){
+    console.info("getFirstObject failed with error:"+ err);
+});
 ```
 
 ## FetchFileResult.getNextObject
@@ -1106,7 +1149,11 @@ commitModify(): Promise&lt;void&gt;;
 
 ```
 album.albumName = 'hello';
-await album.commitModify();
+album.commitModify().then(function() {
+    console.info("commitModify successfully");
+}).catch(function(err){
+    console.info("commitModify failed with error:"+ err);
+});
 ```
 
 ## Album.getFileAssets
@@ -1153,7 +1200,11 @@ function getFileAssetsCallBack(err, fetchFileResult) {
 **示例**：
 
 ```
-let albumFetchFileResult = await album.getFileAssets(fileNoArgsfetchOp);
+album.getFileAssets(fileNoArgsfetchOp).then(function(albumFetchFileResult){
+    console.info("getFileAssets successfully:"+ JSON.stringify(albumFetchFileResult));
+}).catch(function(err){
+    console.info("getFileAssets failed with error:"+ err);
+});
 ```
 
 
@@ -1196,7 +1247,11 @@ getFileAssets(): Promise&lt;FetchFileResult&gt;;
 **示例**：
 
 ```
- let fSmartFetchFileResult = await favSmartAlbum.getFileAssets();
+favSmartAlbum.getFileAssets().then(function(fSmartFetchFileResult){
+    console.info("getFileAssets successfully:"+ JSON.stringify(fSmartFetchFileResult));
+}).catch(function(err){
+    console.info("getFileAssets failed with error:"+ err);
+});
 ```
 
 
@@ -1383,3 +1438,5 @@ DeviceType
 | ------ | ------ | ---- | ---- | ---- |
 | width  | number | 是   | 是   | 宽   |
 | height | number | 是   | 是   | 高   |
+
+ 
