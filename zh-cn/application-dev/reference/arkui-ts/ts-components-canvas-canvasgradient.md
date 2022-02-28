@@ -35,9 +35,9 @@ addColorStop(offset: number, color: string): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createLinearGradient(50,0, 300,100)
-            this.grad.addColorStop(0.0, 'red')
-            this.grad.addColorStop(0.5, 'white')
-            this.grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, 'red')
+            grad.addColorStop(0.5, 'white')
+            grad.addColorStop(1.0, 'green')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })
