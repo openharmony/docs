@@ -136,26 +136,26 @@ When collecting personal data, clearly and explicitly notify users of the data t
     **Figure  1**  Examples of a privacy notice and a privacy statement<a name="fig1611815442274"></a>  
     
 
-    ![](figure/2-应用启动预授权.png)![](figure/3-应用隐私声明.png)
+    ![](figure/privacy-notice.png)![](figure/privacy-statement.png)
 
 -   Personal data shall be collected for specified, explicit, and legitimate purposes and not further processed in a manner that is incompatible with those purposes. If the purposes are changed or a user withdraws their consent, you shall obtain user consent again before using the data. The figures below are examples of a privacy statement update and content withdrawal, respectively.
 
     **Figure  2**  Example dialog showing a privacy statement update<a name="fig3591610523"></a>  
     
 
-    ![](figure/4-隐私声明变更通知.png)
+    ![](figure/privacy-statement-update.png)
 
     **Figure  3**  Example dialog showing consent withdrawal<a name="fig12802152515583"></a>  
     
 
-    ![](figure/6-1-隐私声明撤销.png)![](figure/6-2-隐私声明撤销.png)
+    ![](figure/consent-withdrawal-1.png)![](figure/consent-withdrawal-2.png)
 
 -   You shall provide an entry for users to view the privacy statement. For example, you can provide an entry on the  **About**  page of your application to view the privacy statement, as shown in the following figure.
 
     **Figure  4**  Example of About page providing an entry to the privacy statement<a name="fig11392538162011"></a>  
     
 
-    ![](figure/5-应用隐私声明入口.png)
+   ![](figure/privacy-statement-entry.png)
 
 
 **Minimization in Data Collection and Use**
@@ -179,7 +179,7 @@ You shall obtain consent from users and comply with applicable laws and regulati
     **Figure  5**  Example dialog for requesting a sensitive permission<a name="fig20776134521514"></a>  
     
 
-    ![](figure/1-敏感权限弹窗.png)
+    ![](figure/sensitive-permission-request.png)
 
 -   Users shall have the right to modify or withdraw the permissions granted to your product. When a user does not agree to a permission or data collection, the user shall be allowed to use the functions irrelevant to the permission or data collection. For example, the user can refuse to grant the camera permission to social or communication apps on Smart TVs, when using product functions irrelevant to the camera, such as voice calls.
 -   In scenarios where personal data is recorded, users shall be provided with the functions of adding, deleting, modifying, and viewing personal data.
