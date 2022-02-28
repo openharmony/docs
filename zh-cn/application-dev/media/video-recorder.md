@@ -28,7 +28,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
 let testFdNumber;
 
-// pathName是传入的录制文件名，例如：01.mp4
+// pathName是传入的录制文件名，例如：01.mp4，生成后的文件地址：/storage/media/100/local/files/Movies/01.mp4
 // 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
 async function getFd(pathName) {
     let displayName = pathName;
