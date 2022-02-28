@@ -8,10 +8,9 @@
 ```
 import distributedData from '@ohos.data.distributedData';
 ```
+## System Capabilities
+SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-## Required Permissions<a name="section11257113618419"></a>
-
-None
 
 ## distributedData.createKVManager<a name="section2771164881119"></a>
 

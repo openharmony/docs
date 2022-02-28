@@ -3,6 +3,9 @@
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## System Capabilities
+SystemCapability.DistributedDataManager.RelationalStore.Core
+
 ## Usage<a name="section42211227142416"></a>
 
 The  **resultSet**  object is obtained by using  [**RdbStore.query\(\)**](js-apis-data-rdb.md#section6231155031814).
