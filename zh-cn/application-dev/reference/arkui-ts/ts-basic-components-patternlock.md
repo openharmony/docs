@@ -53,9 +53,9 @@ PatternLock组件的控制器，可以将此对象绑定至PatternLock组件，�
 patternLockController: PatternLockController = new PatternLockController()
 ```
 
-### patternLockController.reset
+### reset
 
-reset():void
+reset(): void
 
 重置组件状态。
 
