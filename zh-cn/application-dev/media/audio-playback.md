@@ -82,7 +82,7 @@ function printfDescription(obj) {
 //1、创建实例
 let audioPlayer = media.createAudioPlayer();
 SetCallBack(audioPlayer);                          //设置事件回调
-/* 用户选择视频设置fd(本地播放) */
+//2、用户选择音频，设置uri
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
