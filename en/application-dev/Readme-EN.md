@@ -16,6 +16,7 @@
 -   [Data Management](database/Readme-EN.md)
 -   [USB Service](usb/Readme-EN.md)
 -   [DFX](dfx/Readme-EN.md)
+-   [WebGL](webgl/Readme-EN.md)
 -   [Development References](reference/Readme-EN.md)
     -   [JavaScript-based Web-like Development Paradigm](reference/arkui-js/Readme-EN.md)
     -   [TypeScript-based Declarative Development Paradigm](reference/arkui-ts/Readme-EN.md)

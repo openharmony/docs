@@ -8,21 +8,8 @@
 import image from './@ohos.multimedia.image';
 ```
 
-
-## PixelMap<a name="PixelMap"></a>
-图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。
-
- **属性**
-
-| 名称       | 类型    | 可读 | 可写 | 说明                                                         |
-| ---------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| isEditable | boolean | 是   | 否   | 设定是否图像像素可被编辑。<br/>**系统能力：** SystemCapability.Multimedia.Image |
-
-## PixelMap.createPixelMap
-
-```
-createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions): Promise<PixelMap>
-```
+## image.createPixelMap
+createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions): Promise\<PixelMap>
 
 通过colors和opts创建pixelmap。
 
@@ -37,9 +24,9 @@ createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions): Promise<PixelM
 
 **返回值：**
 
-| 类型              | 说明           |
-| ----------------- | -------------- |
-| Promise<PixelMap> | 返回pixelmap。 |
+| 类型               | 说明           |
+| ------------------ | -------------- |
+| Promise\<PixelMap> | 返回pixelmap。 |
 
 **示例：**
 
@@ -51,11 +38,9 @@ image.createPixelMap(Color, opts)
             })
 ```
 
-## PixelMap.createPixelMap
+## image.createPixelMap
 
-```
-createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions) callback: AsyncCallback<PixelMap>): void
-```
+createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions) callback: AsyncCallback\<PixelMap>): void
 
 通过属性创建pixelmap。
 
@@ -67,13 +52,7 @@ createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions) callback: Async
 | -------- | ----------------------------------------------- | ---- | -------------------- |
 | colors   | ArrayBuffer                                     | 是   | 颜色数组。           |
 | opts     | [InitializetionOptions](#InitializationOptions) | 是   | 属性。               |
-| callback | AsyncCallback<PixelMap>                         | 是   | 回调表示成功或失败。 |
-
-**返回值：**
-
-| 类型 | 说明           |
-| ---- | -------------- |
-| void | callback返回空 |
+| callback | AsyncCallback\<PixelMap>                        | 是   | 回调表示成功或失败。 |
 
 **示例：**
 
@@ -84,7 +63,17 @@ image.createPixelMap(Color, opts, (pixelmap) => {
             })
 ```
 
-## PixelMap.readPixelsToBuffer
+## PixelMap<a name="PixelMap"></a>
+
+图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。
+
+ ### 属性
+
+| 名称       | 类型    | 可读 | 可写 | 说明                                                         |
+| ---------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| isEditable | boolean | 是   | 否   | 设定是否图像像素可被编辑。<br/>**系统能力：** SystemCapability.Multimedia.Image |
+
+### readPixelsToBuffer
 
 ```
 readPixelsToBuffer(dst: ArrayBuffer): Promise<void>
@@ -102,9 +91,9 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise<void>
 
 **返回值：**
 
-| 类型          | 说明                                            |
-| :------------ | :---------------------------------------------- |
-| Promise<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
 
 **示例：**
 
@@ -131,11 +120,9 @@ pixelmap.readPixelsToBuffer(readBuffer).then(() => {
                 })
 ```
 
-## PixelMap.readPixelsToBuffer
+### readPixelsToBuffer
 
-```
-readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback<void>): void
-```
+readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取图像像素数据，结果写入ArrayBuffer里,使用callback形式返回。
 
@@ -143,10 +130,10 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback<void>): void
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                                                         |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| dst      | ArrayBuffer         | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。 |
-| callback | AsyncCallback<void> | 是   | 获取回调，失败时返回错误信息。                               |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。 |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                               |
 
 **示例：**
 
@@ -173,11 +160,9 @@ pixelmap.readPixelsToBuffer(readBuffer, () => {
             })
 ```
 
-## PixelMap.readPixels
+### readPixels
 
-```
-readPixels(area: PositionArea): Promise<void>
-```
+readPixels(area: PositionArea): Promise\<void>
 
 读取区域内的图片数据，使用Promise形式返回读取结果。
 
@@ -191,9 +176,9 @@ readPixels(area: PositionArea): Promise<void>
 
 **返回值：**
 
-| 类型          | 说明                                                |
-| :------------ | :-------------------------------------------------- |
-| Promise<void> | Promise实例，用于获取读取结果，失败时返回错误信息。 |
+| 类型           | 说明                                                |
+| :------------- | :-------------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取读取结果，失败时返回错误信息。 |
 
 **示例：**
 
@@ -223,11 +208,9 @@ pixelmap.readPixels(area).then((data) => {
                 })
 ```
 
-## PixelMap.readPixels
+### readPixels
 
-```
-readPixels(area: PositionArea, callback: AsyncCallback<void>): void
-```
+readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读区域的像素。
 
@@ -238,7 +221,7 @@ readPixels(area: PositionArea, callback: AsyncCallback<void>): void
 | 参数名   | 类型                          | 必填 | 说明                           |
 | -------- | ----------------------------- | ---- | ------------------------------ |
 | area     | [PositionArea](#PositionArea) | 是   | 区域大小，根据区域读取。       |
-| callback | AsyncCallback<void>           | 是   | 获取回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void>          | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
@@ -261,11 +244,9 @@ pixelmap.readPixels(area,(data) => {
                 }
 ```
 
-## PixelMap.writePixels
+### writePixels
 
-```
-writePixels(area: PositionArea): Promise<void>
-```
+writePixels(area: PositionArea): Promise\<void>
 
 先创建pixelmap，将pixelmap写入指定区域内，使用Promise形式返回写入结果。
 
@@ -279,9 +260,9 @@ writePixels(area: PositionArea): Promise<void>
 
 **返回值：**
 
-| 类型          | 说明                                                |
-| :------------ | :-------------------------------------------------- |
-| Promise<void> | Promise实例，用于获取写入结果，失败时返回错误信息。 |
+| 类型           | 说明                                                |
+| :------------- | :-------------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取写入结果，失败时返回错误信息。 |
 
 **示例：**
 
@@ -293,11 +274,9 @@ pixelMap.writePixels(area).then(() => {
 });
 ```
 
-## PixelMap.writePixels
+### writePixels
 
-```
-writePixels(area: PositionArea, callback: AsyncCallback<void>): void
-```
+writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 将指定的像素信息写入指定区域内。
 
@@ -308,7 +287,7 @@ writePixels(area: PositionArea, callback: AsyncCallback<void>): void
 | 参数名    | 类型                          | 必填 | 说明                           |
 | --------- | ----------------------------- | ---- | ------------------------------ |
 | area      | [PositionArea](#PositionArea) | 是   | 区域，根据区域写入。           |
-| callback: | AsyncCallback<void>           | 是   | 获取回调，失败时返回错误信息。 |
+| callback: | AsyncCallback\<void>          | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
@@ -323,11 +302,9 @@ pixelmap.writePixels(area, () => {
             })
 ```
 
-## PixelMap.writeBufferToPixels
+### writeBufferToPixels
 
-```
-writeBufferToPixels(src: ArrayBuffer): Promise<void>
-```
+writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 将缓冲区的内容写入像素。
 
@@ -341,9 +318,9 @@ writeBufferToPixels(src: ArrayBuffer): Promise<void>
 
 **返回值：**
 
-| 类型          | 说明                                            |
-| ------------- | ----------------------------------------------- |
-| Promise<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| 类型           | 说明                                            |
+| -------------- | ----------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
 
 **示例：**
 
@@ -355,11 +332,9 @@ pixelMap.writeBufferToPixels(colorBuffer).then(() => {
 });
 ```
 
-## PixelMap.writeBufferToPixels
+### writeBufferToPixels
 
-```
-writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback<void>): void
-```
+writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 将缓冲区的内容写入像素。
 
@@ -367,10 +342,10 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback<void>): void
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                           |
-| -------- | ------------------- | ---- | ------------------------------ |
-| src      | ArrayBuffer         | 是   | 图像像素数据。                 |
-| callback | AsyncCallback<void> | 是   | 获取回调，失败时返回错误信息。 |
+| 参数名   | 类型                 | 必填 | 说明                           |
+| -------- | -------------------- | ---- | ------------------------------ |
+| src      | ArrayBuffer          | 是   | 图像像素数据。                 |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
@@ -384,11 +359,9 @@ pixelMap.writeBufferToPixels(colorBuffer, function(err) {
 });
 ```
 
-## PixelMap.getImageInfo
+### getImageInfo
 
-```
-getImageInfo(): Promise<ImageInfo>
-```
+getImageInfo(): Promise\<ImageInfo>
 
 获取图像像素信息，使用Promise形式返回获取的图像像素信息。
 
@@ -396,9 +369,9 @@ getImageInfo(): Promise<ImageInfo>
 
 **返回值：**
 
-| 类型               | 说明                                                        |
-| ------------------ | ----------------------------------------------------------- |
-| Promise<ImageInfo> | Promise实例，用于异步获取图像像素信息，失败时返回错误信息。 |
+| 类型                | 说明                                                        |
+| ------------------- | ----------------------------------------------------------- |
+| Promise\<ImageInfo> | Promise实例，用于异步获取图像像素信息，失败时返回错误信息。 |
 
 **示例：**
 
@@ -410,11 +383,9 @@ pixelMap.getImageInfo().then(function(info) {
 });
 ```
 
-## PixelMap.getImageInfo
+### getImageInfo
 
-```
-getImageInfo(callback: AsyncCallback<ImageInfo>): void
-```
+getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图像像素信息，使用callback形式返回获取的图像像素信息。
 
@@ -422,9 +393,9 @@ getImageInfo(callback: AsyncCallback<ImageInfo>): void
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                                                         |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<void> | 是   | 获取图像像素信息回调，异步返回图像像素信息，失败时返回错误信息。 |
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<ImageInfo> | 是   | 获取图像像素信息回调，异步返回图像像素信息，失败时返回错误信息。 |
 
 **示例:**
 
@@ -444,11 +415,9 @@ pixelmap.getImageInfo((imageInfo) => {
             })
 ```
 
-## PixelMap.getBytesNumberPerRow
+### getBytesNumberPerRow
 
-```
-getBytesNumberPerRow(): Promise<number>
-```
+getBytesNumberPerRow(): Promise\<number>
 
 获取图像像素每行字节数。
 
@@ -456,9 +425,9 @@ getBytesNumberPerRow(): Promise<number>
 
 **返回值：**
 
-| 类型   | 说明                 |
-| ------ | -------------------- |
-| number | 图像像素的行字节数。 |
+| 类型             | 说明                                          |
+| ---------------- | --------------------------------------------- |
+| Promise\<number> | Promise实例，用于异步获取图像像素的行字节数。 |
 
 **示例：**
 
@@ -470,11 +439,9 @@ pixelmap.getBytesNumberPerRow().then((num) => {
         })
 ```
 
-## PixelMap.getBytesNumberPerRow
+### getBytesNumberPerRow
 
-```
-getBytesNumberPerRow(callback: AsyncCallback<number>): void
-```
+getBytesNumberPerRow(callback: AsyncCallback\<number>): void
 
 获取图像像素每行字节数。
 
@@ -482,9 +449,9 @@ getBytesNumberPerRow(callback: AsyncCallback<number>): void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明                 |
-| -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback<number> | 是   | 回调表示成功或失败。 |
+| 参数名   | 类型                   | 必填 | 说明               |
+| -------- | ---------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<number> | 是   | 通过回调返回结果。 |
 
 **示例：**
 
@@ -496,11 +463,9 @@ pixelmap.getBytesNumberPerRow( num => {
         })
 ```
 
-## PixelMap.getPixelBytesNumber
+### getPixelBytesNumber
 
-```
-getPixelBytesNumber(): Promise<number>
-```
+getPixelBytesNumber(): Promise\<number>
 
 获取图像像素的总字节数。
 
@@ -508,9 +473,9 @@ getPixelBytesNumber(): Promise<number>
 
 **返回值：**
 
-| 类型   | 说明                 |
-| ------ | -------------------- |
-| number | 图像像素的总字节数。 |
+| 类型             | 说明                                          |
+| ---------------- | --------------------------------------------- |
+| Promise\<number> | Promise实例，用于异步获取图像像素的总字节数。 |
 
 **示例：**
 
@@ -522,11 +487,9 @@ pixelmap.getPixelBytesNumber().then((num) => {
         })
 ```
 
-## PixelMap.getPixelBytesNumber
+### getPixelBytesNumber
 
-```
-getPixelBytesNumber(callback: AsyncCallback<number>): void
-```
+getPixelBytesNumber(callback: AsyncCallback\<number>): void
 
 获取图像像素的总字节数。
 
@@ -534,9 +497,9 @@ getPixelBytesNumber(callback: AsyncCallback<number>): void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明                 |
-| -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback<number> | 是   | 回调表示成功或失败。 |
+| 参数名   | 类型                   | 必填 | 说明               |
+| -------- | ---------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<number> | 是   | 通过回调返回结果。 |
 
 **示例：**
 
@@ -548,11 +511,9 @@ pixelmap.getPixelBytesNumber((num) => {
       })
 ```
 
-## PixelMap.release
+### release
 
-```
-release(): void;
-```
+release(): void
 
 释放pixelmap对象，使用Promise形式返回释放结果。
 
@@ -566,21 +527,9 @@ pixelmap.release()
         done()
 ```
 
-## [ImageSource](#ImageSource)
+## image.createImageSource
 
-图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过createImageSource构建一个ImageSource实例。
-
-**属性**
-
-| 名称             | 类型          | 可读 | 可写 | 说明                                                         |
-| ---------------- | ------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，wbmp，bmp，gif，webp，heif等。<br/>**系统能力：** SystemCapability.Multimedia.Image |
-
-## ImageSource.createImageSource
-
-```
 createImageSource(uri: string): ImageSource
-```
 
 创建图片源。
 
@@ -588,15 +537,15 @@ createImageSource(uri: string): ImageSource
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明     |
-| ------ | ------ | ---- | -------- |
-| uri    | string | 是   | 图片路径 |
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| uri    | string | 是   | 图片路径。 |
 
 **返回值：**
 
-| 类型        | 说明       |
-| ----------- | ---------- |
-| ImageSource | 返回图片源 |
+| 类型        | 说明         |
+| ----------- | ------------ |
+| ImageSource | 返回图片源。 |
 
 **示例：**
 
@@ -604,11 +553,9 @@ createImageSource(uri: string): ImageSource
 const imageSourceApi = image.createImageSource('/data/local/tmp/test.jpg')
 ```
 
-## ImageSource.createImageSource
+## image.createImageSource
 
-```
 createImageSource(fd: number): ImageSource
-```
 
 创建图片源。
 
@@ -632,11 +579,9 @@ createImageSource(fd: number): ImageSource
 const imageSourceApi = image.createImageSource(0)
 ```
 
-## ImageSource.createImageSource
+## image.createImageSource
 
-```
 createImageSource(data: ArrayBuffer): ImageSource
-```
 
 创建图片源。
 
@@ -661,11 +606,9 @@ const data = new ArrayBuffer(96);
 const imageSourceApi = image.createImageSource(data);
 ```
 
-## ImageSource.createIncrementalSource
+## image.createIncrementalSource
 
-```
 createIncrementalSource(data: ArrayBuffer): ImageSource
-```
 
 创建增量图片源。
 
@@ -690,11 +633,19 @@ const data = new ArrayBuffer(96);
 const imageSourceApi = image.createIncrementalSource(data);
 ```
 
-## ImageSource.getImageInfo
+## ImageSource
 
-```
-getImageInfo(index: number, callback: AsyncCallback<ImageInfo>): void
-```
+图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过createImageSource构建一个ImageSource实例。
+
+### 属性
+
+| 名称             | 类型           | 可读 | 可写 | 说明                                                         |
+| ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，wbmp，bmp，gif，webp，heif等。<br/>**系统能力：** SystemCapability.Multimedia.Image |
+
+### getImageInfo
+
+getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 获取指定序号的图片信息，使用callback形式返回图片信息。
 
@@ -726,11 +677,9 @@ it('TC_046', 0, async function (done) {
     })
 ```
 
-## ImageSource.getImageInfo
+### getImageInfo
 
-```
-getImageInfo(callback: AsyncCallback<ImageInfo>): void
-```
+getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取指定序号的图片信息，使用callback形式返回图片信息。
 
@@ -752,11 +701,9 @@ imageSourceApi.getImageInfo(imageInfo => {
             })
 ```
 
-## ImageSource.getImageInfo
+### getImageInfo
 
-```
-getImageInfo(index?: number): Promise<ImageInfo>
-```
+getImageInfo(index?: number): Promise\<ImageInfo>
 
 获取图片信息，使用Promise形式返回图片信息。
 
@@ -770,9 +717,9 @@ getImageInfo(index?: number): Promise<ImageInfo>
 
 **返回值：**
 
-| 类型                    | 说明                   |
-| ----------------------- | ---------------------- |
-| [ImageInfo](#ImageInfo) | 返回获取到的图片信息。 |
+| 类型                              | 说明                   |
+| --------------------------------- | ---------------------- |
+| Promise\<[ImageInfo](#ImageInfo)> | 返回获取到的图片信息。 |
 
 **示例：**
 
@@ -785,11 +732,9 @@ imageSourceApi.getImageInfo(0)
             })
 ```
 
-##  ImageSource.getImageProperty
+### getImageProperty
 
-```
-getImageProperty(key:string, options?: GetImagePropertyOptions): Promise<string>
-```
+getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
 获取图片中给定索引处图像的指定属性键的值。
 
@@ -804,9 +749,9 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise<string>
 
 **返回值：**
 
-| 类型            | 说明                                                         |
-| --------------- | ------------------------------------------------------------ |
-| Promise<string> | Promise实例，用于异步获取图片属性值，如获取失败则返回属性默认值。 |
+| 类型             | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<string> | Promise实例，用于异步获取图片属性值，如获取失败则返回属性默认值。 |
 
 **示例：**
 
@@ -814,11 +759,9 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise<string>
 const w = imageSourceApi.getImageProperty("ImageWidth")
 ```
 
-## ImageSource.getImageProperty
+### getImageProperty
 
-```
- getImageProperty(key:string, callback: AsyncCallback<string>): void
-```
+getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 获取图片中给定索引处图像的指定属性键的值，使用callback形式返回结果。
 
@@ -826,10 +769,10 @@ const w = imageSourceApi.getImageProperty("ImageWidth")
 
  **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明                                                         |
-| -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                | 是   | 图片属性名。                                                 |
-| callback | AsyncCallback<string> | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。 |
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| key      | string                 | 是   | 图片属性名。                                                 |
+| callback | AsyncCallback\<string> | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。 |
 
 **示例：**
 
@@ -837,11 +780,9 @@ const w = imageSourceApi.getImageProperty("ImageWidth")
 const w = imageSourceApi.getImageProperty("ImageWidth",w=>{})
 ```
 
-## ImageSource.getImageProperty
+### getImageProperty
 
-```
-getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback<string>): void
-```
+getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
 获取图片指定属性键的值，callback形式返回结果。
 
@@ -849,16 +790,11 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 **参数：**
 
-| 参数名  | 类型                                                | 必填 | 说明                                 |
-| ------- | --------------------------------------------------- | ---- | ------------------------------------ |
-| key     | string                                              | 是   | 图片属性名。                         |
-| options | [GetImagePropertyOptions](#GetImagePropertyOptions) | 是   | 图片属性，包括图片序号与默认属性值。 |
-
-**返回值：**
-
-| 类型   | 说明                 |
-| ------ | -------------------- |
-| string | 返回string类型的值。 |
+| 参数名   | 类型                                                | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| key      | string                                              | 是   | 图片属性名。                                                 |
+| options  | [GetImagePropertyOptions](#GetImagePropertyOptions) | 是   | 图片属性，包括图片序号与默认属性值。                         |
+| callback | AsyncCallback\<string>                              | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。 |
 
 **示例：**
 
@@ -866,11 +802,9 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
  imageSourceApi.getImageProperty("ImageWidth",PropertyOptions,(w)=>{})
 ```
 
-## ImageSource.modifyImageProperty
+### modifyImageProperty
 
-```
-modifyImageProperty(key:string, value:string, options?: GetImagePropertyOptions): Promise<void>
-```
+modifyImageProperty(key:string, value:string, options?: GetImagePropertyOptions): Promise\<void>
 
 修改属性的值。
 
@@ -884,6 +818,14 @@ modifyImageProperty(key:string, value:string, options?: GetImagePropertyOptions)
 | value   | string                                              | 是   | 属性值。                             |
 | options | [GetImagePropertyOptions](#GetImagePropertyOptions) | 是   | 图片属性，包括图片序号与默认属性值。 |
 
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
 **示例：**
 
 ```js
@@ -896,11 +838,9 @@ imageSourceApi.modifyImageProperty("ImageWidth", "abc")
             })
 ```
 
-## ImageSource.modifyImageProperty
+### modifyImageProperty
 
-```
-modifyImageProperty(key:string, value:string, callback: AsyncCallback<void>): void
-```
+modifyImageProperty(key:string, value:string, callback: AsyncCallback\<void>): void
 
 修改属性的值，callback返回结果。
 
@@ -908,11 +848,11 @@ modifyImageProperty(key:string, value:string, callback: AsyncCallback<void>): vo
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                           |
-| -------- | ------------------- | ---- | ------------------------------ |
-| key      | string              | 是   | 图片属性名。                   |
-| value    | string              | 是   | 属性值。                       |
-| callback | AsyncCallback<void> | 是   | 修改属性值，callback返回结果。 |
+| 参数名   | 类型                 | 必填 | 说明                           |
+| -------- | -------------------- | ---- | ------------------------------ |
+| key      | string               | 是   | 图片属性名。                   |
+| value    | string               | 是   | 属性值。                       |
+| callback | AsyncCallback\<void> | 是   | 修改属性值，callback返回结果。 |
 
 **示例：**
 
@@ -920,11 +860,9 @@ modifyImageProperty(key:string, value:string, callback: AsyncCallback<void>): vo
 imageSourceApi.modifyImageProperty("ImageWidth", "abc",() => {})
 ```
 
-## ImageSource.modifyImageProperty
+### modifyImageProperty
 
-```
-modifyImageProperty(key:string, value:string, options: GetImagePropertyOptions,callback: AsyncCallback<void>): void
-```
+modifyImageProperty(key:string, value:string, options: GetImagePropertyOptions,callback: AsyncCallback\<void>): void
 
 修改属性的值，callback返回结果。
 
@@ -937,7 +875,7 @@ modifyImageProperty(key:string, value:string, options: GetImagePropertyOptions,c
 | key      | string                                              | 是   | 图片属性名。                         |
 | value    | string                                              | 是   | 属性值。                             |
 | options  | [GetImagePropertyOptions](#GetImagePropertyOptions) | 是   | 图片属性，包括图片序号与默认属性值。 |
-| callback | AsyncCallback<void>                                 | 是   | 修改属性值，callback返回结果。       |
+| callback | AsyncCallback\<void>                                | 是   | 修改属性值，callback返回结果。       |
 
 **示例：**
 
@@ -950,11 +888,9 @@ imageSourceApi.modifyImageProperty("ImageWidth", "abc",PropertyOptions,() => {
                 };
 ```
 
-## ImageSource.createPixelMap
+### createPixelMap
 
-```
-createPixelMap(index: number, options: DecodingOptions, callback: AsyncCallback<PixelMap>): void
-```
+createPixelMap(index: number, options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过图片解码参数创建pixelmap对象，使用callback形式返回结果。
 
@@ -978,11 +914,9 @@ imageSourceApi.createPixelMap().then(pixelmap => {
             })
 ```
 
-## ImageSource.createPixelMap
+### createPixelMap
 
-```
-createPixelMap(options: DecodingOptions, callback: AsyncCallback<PixelMap>): void
-```
+createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过图片解码参数创建pixelmap对象。
 
@@ -1013,11 +947,9 @@ let decodingOptions = {
             })
 ```
 
-## ImageSource.createPixelMap
+### createPixelMap
 
-```
-createPixelMap(opts: DecodingOptions, callback: AsyncCallback<PixelMap>): void
-```
+createPixelMap(opts: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过图片解码参数创建pixelmap对象。
 
@@ -1049,11 +981,9 @@ let decodingOptions = {
             })
 ```
 
-## ImageSource.updateData
+### updateData
 
-```
-updateData(data: Array<number>, isFinal: boolean, offset: number, length: number, callback: AsyncCallback<boolean>): void
-```
+updateData(data: Array\<number>, isFinal: boolean, offset: number, length: number, callback: AsyncCallback\<boolean>): void
 
 更新增量数据。
 
@@ -1061,13 +991,13 @@ updateData(data: Array<number>, isFinal: boolean, offset: number, length: number
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| data     | Array<number>          | 是   | 增量数据。           |
-| isFinal  | boolean                | 是   | 是否更新完。         |
-| offset   | number                 | 是   | 偏移量。             |
-| length   | number                 | 是   | 数组长。             |
-| callback | AsyncCallback<boolean> | 是   | 回调表示成功或失败。 |
+| 名称     | 类型                    | 必填 | 说明                 |
+| -------- | ----------------------- | ---- | -------------------- |
+| data     | Array\<number>          | 是   | 增量数据。           |
+| isFinal  | boolean                 | 是   | 是否更新完。         |
+| offset   | number                  | 是   | 偏移量。             |
+| length   | number                  | 是   | 数组长。             |
+| callback | AsyncCallback\<boolean> | 是   | 回调表示成功或失败。 |
 
 **示例：**
 
@@ -1080,11 +1010,9 @@ imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {
             }
 ```
 
-## ImageSource.updateData
+### updateData
 
-```
-updateData(data: Array<number>, isFinal: boolean, offset?: number, length?: number): Promise<boolean>
-```
+updateData(data: Array\<number>, isFinal: boolean, offset?: number, length?: number): Promise\<boolean>
 
 更新增量数据。
 
@@ -1092,12 +1020,18 @@ updateData(data: Array<number>, isFinal: boolean, offset?: number, length?: numb
 
 **参数：**
 
-| 名称    | 类型          | 必填 | 说明         |
-| ------- | ------------- | ---- | ------------ |
-| data    | Array<number> | 是   | 增量数据。   |
-| isFinal | boolean       | 是   | 是否更新完。 |
-| offset  | boolean       | 否   | 偏移量。     |
-| length  | number        | 否   | 数组长。     |
+| 名称    | 类型           | 必填 | 说明         |
+| ------- | -------------- | ---- | ------------ |
+| data    | Array\<number> | 是   | 增量数据。   |
+| isFinal | boolean        | 是   | 是否更新完。 |
+| offset  | boolean        | 否   | 偏移量。     |
+| length  | number         | 否   | 数组长。     |
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| Promise\<boolean> | Promise实例，异步返回成功或失败。 |
 
 **示例：**
 
@@ -1109,11 +1043,9 @@ updateData(data: Array<number>, isFinal: boolean, offset?: number, length?: numb
         })
 ```
 
-## ImageSource.updateData
+### updateData
 
-```
-updateData(data: Array<number>, isFinal: boolean, callback: AsyncCallback<boolean>): void
-```
+updateData(data: Array\<number>, isFinal: boolean, callback: AsyncCallback\<boolean>): void
 
 更新增量数据。
 
@@ -1121,11 +1053,11 @@ updateData(data: Array<number>, isFinal: boolean, callback: AsyncCallback<boolea
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| data     | Array<number>          | 是   | 增量数据。           |
-| isFinal  | boolean                | 是   | 是否更新完。         |
-| callback | AsyncCallback<boolean> | 是   | 回调表示成功或失败。 |
+| 名称     | 类型                    | 必填 | 说明                 |
+| -------- | ----------------------- | ---- | -------------------- |
+| data     | Array\<number>          | 是   | 增量数据。           |
+| isFinal  | boolean                 | 是   | 是否更新完。         |
+| callback | AsyncCallback\<boolean> | 是   | 回调表示成功或失败。 |
 
 **示例：**
 
@@ -1138,11 +1070,9 @@ imageSourceIncrementalSApi.updateData(array, false,(error,data) => {
             }      
 ```
 
-## ImageSource.release
+### release
 
-```
-release(callback: AsyncCallback<void>): void
-```
+release(callback: AsyncCallback\<void>): void
 
 释放图片源。
 
@@ -1150,9 +1080,9 @@ release(callback: AsyncCallback<void>): void
 
 **参数：**
 
-| 名称     | 类型                | 必填 | 说明                               |
-| -------- | ------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback<void> | 是   | 资源释放回调，失败时返回错误信息。 |
+| 名称     | 类型                 | 必填 | 说明                               |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<void> | 是   | 资源释放回调，失败时返回错误信息。 |
 
 **示例：**
 
@@ -1165,15 +1095,19 @@ imageSourceApi.release(() => {
         }
 ```
 
-## ImageSource.release
+### release
 
-```
-release(): Promise<void>
-```
+release(): Promise\<void>
 
 释放图片源。
 
 **系统能力：** SystemCapability.Multimedia.Image
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **示例：**
 
@@ -1185,21 +1119,9 @@ release(): Promise<void>
             })
 ```
 
-## ImagePacker
+## image.createImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例。
-
-**属性**
-
-| 名称             | 类型          | 可读 | 可写 | 说明                                                         |
-| ---------------- | ------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array<string> | 是   | 否   | 图片打包支持的格式，jpg。<br/>**系统能力：** SystemCapability.Multimedia.Image |
-
-## ImagePacker.createImagePacker
-
-```
 createImagePacker(): ImagePacker
-```
 
 创建imagepacker实例。
 
@@ -1217,11 +1139,19 @@ createImagePacker(): ImagePacker
 const imagePackerApi = image.createImagePacker();
 ```
 
-## ImagePacker.packing
+## ImagePacker
 
-```
-packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Array<number>>): void
-```
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例。
+
+### 属性
+
+| 名称             | 类型           | 可读 | 可写 | 说明                                                         |
+| ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
+| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式，jpg。<br/>**系统能力：** SystemCapability.Multimedia.Image |
+
+### packing
+
+packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Array\<number>>): void
 
 图片压缩或重新打包，使用callback形式返回结果。
 
@@ -1233,7 +1163,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Arra
 | -------- | ------------------------------- | ---- | ---------------------------------- |
 | source   | [ImageSource](#ImageSource)     | 是   | 打包的图片源。                     |
 | option   | [PackingOption](#PackingOption) | 是   | 设置打包参数。                     |
-| callback | AsyncCallback<Array<number>>    | 是   | 获取图片打包回调，返回打包后数据。 |
+| callback | AsyncCallback<Array\<number>>   | 是   | 获取图片打包回调，返回打包后数据。 |
 
 **示例：**
 
@@ -1246,11 +1176,9 @@ let packOpts = { format:["image/jpeg"], quality:98 }
                 })
 ```
 
-## ImagePacker.packing
+### packing
 
-```
-packing(source: ImageSource, option: PackingOption): Promise<Array<number>>
-```
+packing(source: ImageSource, option: PackingOption): Promise<Array\<number>>
 
 图片压缩或重新打包，使用promise形式返回结果。
 
@@ -1265,9 +1193,9 @@ packing(source: ImageSource, option: PackingOption): Promise<Array<number>>
 
 **返回值：**
 
-| 类型                 | 说明                                          |
-| :------------------- | :-------------------------------------------- |
-| Promise<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| 类型                    | 说明                                          |
+| :---------------------- | :-------------------------------------------- |
+| Promise<Array\<number>> | Promise实例，用于异步获取压缩或打包后的数据。 |
 
 **示例：**
 
@@ -1281,11 +1209,9 @@ let packOpts = { format:["image/jpeg"], quality:98 }
                 })
 ```
 
-## ImagePacker.release
+### release
 
-```
-release(callback: AsyncCallback<void>): void
-```
+release(callback: AsyncCallback\<void>): void
 
 释放packer对象。
 
@@ -1293,9 +1219,9 @@ release(callback: AsyncCallback<void>): void
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                   |
-| -------- | ------------------- | ---- | ---------------------- |
-| callback | AsyncCallback<void> | 是   | 回调表示成功还是失败。 |
+| 参数名   | 类型                 | 必填 | 说明                   |
+| -------- | -------------------- | ---- | ---------------------- |
+| callback | AsyncCallback\<void> | 是   | 回调表示成功还是失败。 |
 
 **示例：**
 
@@ -1306,15 +1232,19 @@ imagePackerApi.release(()=>{
             done();
 ```
 
-## ImagePacker.release
+### release
 
-```
-release(): Promise<void>
-```
+release(): Promise\<void>
 
 释放packer对象。
 
 **系统能力：** SystemCapability.Multimedia.Image
+
+**返回值：**
+
+| 类型           | 说明                            |
+| :------------- | :------------------------------ |
+| Promise\<void> | Promise实例，用于异步返回结果。 |
 
 **示例：**
 
@@ -1327,8 +1257,6 @@ imagePackerApi.release();
 
 ## PositionArea<a name="PositionArea"></a>
 
-**属性：**
-
 | 名称   | 类型              | 可读 | 可写 | 说明                                                         |
 | ------ | ----------------- | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer       | 是   | 否   | 像素。<br>**系统能力：** SystemCapability.Multimedia.Image   |
@@ -1338,8 +1266,6 @@ imagePackerApi.release();
 
 ## **ImageInfo<a name="ImageInfo"></a>**
 
-**属性：**
-
 | 名称        | 类型                              | 可读 | 可写 | 说明                                                         |
 | ----------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | size        | [Size](#Size)                     | 是   | 是   | 图片大小。<br/>**系统能力：** SystemCapability.Multimedia.Image |
@@ -1348,8 +1274,6 @@ imagePackerApi.release();
 | alphaType   | [AlphaType](#AlphaType)           | 是   | 是   | 透明度。<br/>**系统能力：** SystemCapability.Multimedia.Image |
 
 ## Size<a name="Size"></a>
-
-**属性：**
 
 | 名称   | 类型   | 可读 | 可写 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -1412,8 +1336,6 @@ imagePackerApi.release();
 
 ## InitializationOptions<a name="InitializationOptions"></a>
 
-**属性：**
-
 | 名称        | 类型                              | 可读 | 可写 | 说明                                                         |
 | ----------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | alphaType   | [AlphaType](#AlphaType)           | 是   | 是   | 透明度。<br/>**系统能力：** SystemCapability.Multimedia.Image |
@@ -1425,8 +1347,6 @@ imagePackerApi.release();
 ## DecodingOptions<a name="DecodingOptions"></a>
 
 解码设置选项。
-
-**属性：**
 
 | 名称               | 类型                              | 可读 | 可写 | 说明                                                         |
 | ------------------ | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -1440,8 +1360,6 @@ imagePackerApi.release();
 
 ## Region<a name="Region"></a>
 
-**属性：**
-
 | 名称 | 类型          | 可读 | 可写 | 说明                                                         |
 | ---- | ------------- | ---- | ---- | ------------------------------------------------------------ |
 | size | [Size](#Size) | 是   | 是   | 区域大小。<br/>**系统能力：** SystemCapability.Multimedia.Image |
@@ -1450,8 +1368,6 @@ imagePackerApi.release();
 
 ## PackingOption<a name="PackingOption"></a>
 
-**属性：**
-
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | format  | string | 是   | 是   | 目标格式。<br/>**系统能力：** SystemCapability.Multimedia.Image |
@@ -1459,12 +1375,8 @@ imagePackerApi.release();
 
 ## GetImagePropertyOptions<a name="GetImagePropertyOptions"></a>
 
-**属性：**
-
 | 名称         | 类型   | 可读 | 可写 | 说明       |
 | ------------ | ------ | ---- | ---- | ---------- |
 | index        | number | 是   | 是   | 图片序号。<br/>**系统能力：** SystemCapability.Multimedia.Image |
 | defaultValue | string | 是   | 是   | 默认属性值<br/>**系统能力：** SystemCapability.Multimedia.Image |
-
------
 
