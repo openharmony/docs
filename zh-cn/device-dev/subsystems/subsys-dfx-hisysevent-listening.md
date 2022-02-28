@@ -27,8 +27,8 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 | 接口名称 | 描述  |
 | -------- | --------- |
-|int HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener, std::vector&lt;ListenerRule&gt;&amp; rules)|接口功能：注册订阅HiSysEvent系统事件侦听对象，可设置规则订阅某些事件。<br><br>输入参数：<ul><li>listener：订阅回调对象。</li><li>rules：事件订阅规则。</li></ul>返回值：<ul><li>0：订阅成功，重复订阅。</li><li>1：订阅成功，初次订阅。</li><li>其他值：订阅失败。</li></ul>|
-|void HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener)|接口功能：移除订阅hisysevent系统事件侦听对象。<br><br>输入参数：<ul><li>listener：订阅回调对象。</ul>返回值：<br>&emsp;&emsp;无。|
+|bool HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener, std::vector&lt;ListenerRule&gt;&amp; rules)|接口功能：注册订阅HiSysEvent系统事件侦听对象，可设置规则订阅某些事件。<br><br>输入参数：<ul><li>listener：订阅回调对象。</li><li>rules：事件订阅规则。</li></ul>返回值：<ul><li>0：订阅成功，重复订阅。</li><li>1：订阅成功，初次订阅。</li><li>其他值：订阅失败。</li></ul>|
+|bool HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener)|接口功能：移除订阅hisysevent系统事件侦听对象。<br><br>输入参数：<ul><li>listener：订阅回调对象。</ul>返回值：<br>&emsp;&emsp;无。|
 
 **表 2**  ListenerRule订阅规则对象
 
@@ -64,7 +64,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
     #ifndef DEMO_LISTENER_H
     #define DEMO_LISTENER_H
 
-    #include "hisysevent_subscribe_callback_native.h"
+    #include "hisysevent_subscribe_callback.h"
 
     #include <string>
 
