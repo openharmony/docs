@@ -23,6 +23,36 @@
 包含流程：创建实例，设置录制参数，录制视频，暂停录制，恢复录制，停止录制，释放资源等流程。
 
 ```js
+import media from '@ohos.multimedia.media'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+
+let testFdNumber;
+
+// pathName是传入的录制文件名，例如：01.mp4
+// 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
+async function getFd(pathName) {
+    let displayName = pathName;
+    const mediaTest = mediaLibrary.getMediaLibrary();
+    let fileKeyObj = mediaLibrary.FileKey;
+    let mediaType = mediaLibrary.MediaType.VIDEO;
+    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
+    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
+    if (dataUri != undefined) {
+        let args = dataUri.id.toString();
+        let fetchOp = {
+            selections : fileKeyObj.ID + "=?",
+            selectionArgs : [args],
+        }
+        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+        let fileAsset = await fetchFileResult.getAllObject();
+        let fdNumber = await fileAsset[0].open('Rw');
+        fdNumber = "fd://" + fdNumber.toString();
+        testFdNumber = fdNumber;
+    }
+}
+
+await getFd('01.mp4');
+
 let videoProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
@@ -40,7 +70,7 @@ let videoConfig = {
     audioSourceType : 1,
     videoSourceType : 0,
     profile : videoProfile,
-    url : 'file:///data/media/01.mp4',
+    url : testFdNumber, // testFdNumber由getFd生成
     orientationHint : 0,
     location : { latitude : 30, longitude : 130 },
 }
@@ -61,6 +91,7 @@ function catchCallback(error) {
 	
 let videoRecorder = null; // videoRecorder空对象在createVideoRecorder成功后赋值
 let surfaceID = null; // 用于保存getInputSurface返回的surfaceID
+
 // 创建videoRecorder对象
 await media.createVideoRecorder().then((recorder) => {
     console.info('case createVideoRecorder called');
