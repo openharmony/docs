@@ -13,16 +13,13 @@ import i18n from '@ohos.i18n';
 ```
 
 
-## 权限
-
-无
-
-
 ## i18n.getDisplayLanguage
 
 getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
 获取指定语言的本地化显示文本。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -49,6 +46,8 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 获取指定国家的本地化显示文本。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -74,6 +73,8 @@ isRTL(locale: string): boolean
 
 获取是否为从右至左显示语言。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 说明 |
   | -------- | -------- | -------- |
@@ -97,6 +98,8 @@ getSystemLanguage(): string
 
 获取系统语言。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -113,6 +116,8 @@ getSystemLanguage(): string
 getSystemRegion(): string
 
 获取系统地区。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 返回值：
   | 类型 | 说明 |
@@ -131,6 +136,8 @@ getSystemLocale(): string
 
 获取系统区域。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -147,6 +154,8 @@ getSystemLocale(): string
 getCalendar(locale: string, type? : string): Calendar
 
 获取日历对象。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -174,6 +183,8 @@ setTime(date: Date): void
 
 设置日历对象内部的时间日期。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -193,6 +204,8 @@ setTime(time: number): void
 
 设置日历对象内部的时间日期, time为从1970.1.1 00:00:00 GMT逝去的毫秒数。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -210,6 +223,8 @@ setTime(time: number): void
 set(year: number, month: number, date:number, hour?: number, minute?: number, second?: number): void
 
 设置日历对象的年、月、日、时、分、秒。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -234,6 +249,8 @@ setTimeZone(timezone: string): void
 
 设置日历对象的时区。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -251,6 +268,8 @@ setTimeZone(timezone: string): void
 getTimeZone(): string
 
 获取日历对象的时区。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 返回值：
   | 类型 | 说明 |
@@ -271,6 +290,8 @@ getFirstDayOfWeek(): number
 
 获取日历对象的一周起始日。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -288,6 +309,8 @@ getFirstDayOfWeek(): number
 setFirstDayOfWeek(value: number): void
 
 设置每一周的起始日。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -307,6 +330,8 @@ getMinimalDaysInFirstWeek(): number
 
 获取一年中第一周的最小天数。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -325,6 +350,8 @@ setMinimalDaysInFirstWeek(value: number): void
 
 设置一年中第一周的最小天数。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -342,6 +369,8 @@ setMinimalDaysInFirstWeek(value: number): void
 get(field: string): number
 
 获取日历对象中与field相关联的值。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -367,6 +396,8 @@ getDisplayName(locale: string): string
 
 获取日历对象在locale所指定的区域的名字。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -389,6 +420,8 @@ getDisplayName(locale: string): string
 isWeekend(date?: Date): boolean
 
 判断给定的日期是否在日历中是周末。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -419,6 +452,8 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 创建电话号码格式化对象。
 
+**系统能力**：SystemCapability.Global.I18n
+
 参数：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -436,6 +471,8 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 isValidNumber(number: string): boolean
 
 判断传入的电话号码格式是否正确。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -459,6 +496,8 @@ isValidNumber(number: string): boolean
 format(number: string): string
 
 对电话号码进行格式化。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -484,7 +523,7 @@ format(number: string): string
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | string | 是 | 是 | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。 |
+| type | string | 是 | 是 | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。<br/>**系统能力**：SystemCapability.Global.I18n |
 
 
 ## UnitInfo<sup>8+</sup>
@@ -495,7 +534,7 @@ format(number: string): string
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | unit | string | 是 | 是 | 单位的名称，如："meter",&nbsp;"inch",&nbsp;"cup"等。 |
-| measureSystem | string | 是 | 是 | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
+| measureSystem | string | 是 | 是 | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。<br/>**系统能力**：SystemCapability.Global.I18n |
 
 
 ## Util<sup>8+</sup>
@@ -506,6 +545,8 @@ format(number: string): string
 unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -536,6 +577,8 @@ getInstance(): IndexUtil
 
 创建并返回IndexUtil对象。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -558,6 +601,8 @@ getIndexList(): Array&lt;string&gt;
 
 获取当前locale对应的索引列表。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -576,6 +621,8 @@ addLocale(locale: string)
 
 将新的locale对应的索引加入当前索引列表。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -593,6 +640,8 @@ addLocale(locale: string)
 getIndex(text: string): string
 
 获取text对应的索引。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -620,6 +669,8 @@ isDigit(char: string): boolean
 
 判断字符串char是否是数字。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -641,6 +692,8 @@ isDigit(char: string): boolean
 isSpaceChar(char: string): boolean
 
 判断字符串char是否是空格符。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -664,6 +717,8 @@ isWhitespace(char: string): boolean
 
 判断字符串char是否是空白符。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -685,6 +740,8 @@ isWhitespace(char: string): boolean
 isRTL(char: string): boolean
 
 判断字符串char是否是从右到左语言的字符。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -708,6 +765,8 @@ isIdeograph(char: string): boolean
 
 判断字符串char是否是表意文字。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -729,6 +788,8 @@ isIdeograph(char: string): boolean
 isLetter(char: string): boolean
 
 判断字符串char是否是字母。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -752,6 +813,8 @@ isLowerCase(char: string): boolean
 
 判断字符串char是否是小写字母。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -773,6 +836,8 @@ isLowerCase(char: string): boolean
 isUpperCase(char: string): boolean
 
 判断字符串char是否是大写字母。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -796,6 +861,8 @@ getType(char: string): string
 
 获取输入字符串的一般类别值。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -817,6 +884,8 @@ getType(char: string): string
 getLineInstance(locale: string): BreakIterator
 
 获取一个用于断句的[BreakIterator](#breakiterator8)对象。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -843,6 +912,8 @@ setLineBreakText(text: string): void
 
 设置[BreakIterator](#breakiterator8)要处理的文本。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -860,6 +931,8 @@ setLineBreakText(text: string): void
 getLineBreakText(): string
 
 获取[BreakIterator](#breakiterator8)当前处理的文本。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 返回值：
   | 类型 | 说明 |
@@ -880,6 +953,8 @@ current(): number
 
 获取[BreakIterator](#breakiterator8)对象在当前处理的文本中的位置。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -898,6 +973,8 @@ current(): number
 first(): number
 
 将[BreakIterator](#breakiterator8)对象设置到第一个可断句的分割点。第一个分割点总是被处理的文本的起始位置。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 返回值：
   | 类型 | 说明 |
@@ -918,6 +995,8 @@ last(): number
 
 将[BreakIterator](#breakiterator8)对象的位置设置到最后一个可断句的分割点。最后一个分割点总是被处理文本末尾的下一个位置。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -936,6 +1015,8 @@ last(): number
 next(index?: number): number
 
 如果index给出，并且index是一个正数将[BreakIterator](#breakiterator8)向后移动number个可断句的分割点，如果n是一个负数，向前移动相应个分割点。若index没有给出，则相当于index = 1。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -963,6 +1044,8 @@ previous(): number
 
 将[BreakIterator](#breakiterator8)移动到前一个分割点处。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -983,6 +1066,8 @@ previous(): number
 following(offset: number): number
 
 将[BreakIterator](#breakiterator8)设置到由offset指定的位置的后面一个分割点。返回移动后[BreakIterator](#breakiterator8)的位置。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1010,6 +1095,8 @@ isBoundary(offset: number): boolean
 
 如果offset所指定的文本位置是一个分割点，那么返回true，否则返回false。如果返回true, 将[BreakIterator](#breakiterator8)对象设置到offset所指定的位置, 否则相当于调用[following](#following8)(offset)。
 
+**系统能力**：SystemCapability.Global.I18n
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1029,11 +1116,13 @@ isBoundary(offset: number): boolean
   ```
 
 
-## i18n.is24HourClock
+## i18n.is24HourClock<sup>8+</sup>
 
 is24HourClock(): boolean
 
 判断系统时间是否为24小时制。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 返回值：
   | 类型 | 说明 |
@@ -1046,11 +1135,13 @@ is24HourClock(): boolean
   ```
 
 
-## i18n.set24HourClock
+## i18n.set24HourClock<sup>8+</sup>
 
 set24HourClock(option: boolean): boolean
 
 修改系统时间的24小时制设置。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1069,11 +1160,13 @@ set24HourClock(option: boolean): boolean
   ```
 
 
-## i18n.addPreferredLanguage
+## i18n.addPreferredLanguage<sup>8+</sup>
 
 addPreferredLanguage(language: string, index?: number): boolean
 
 在系统偏好语言列表中的指定位置添加偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1095,11 +1188,13 @@ addPreferredLanguage(language: string, index?: number): boolean
   ```
 
 
-## i18n.removeDisplayLanguage
+## i18n.removeDisplayLanguage<sup>8+</sup>
 
 removeDisplayLanguage(index: number): boolean
 
 删除系统偏好语言列表中指定位置的偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1119,11 +1214,13 @@ removeDisplayLanguage(index: number): boolean
   ```
 
 
-## i18n.getPreferredLanguageList
+## i18n.getPreferredLanguageList<sup>8+</sup>
 
 getPreferredLanguageList(): Array<string>
 
 获取系统偏好语言列表。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 返回值：
   | 类型 | 说明 |
@@ -1136,11 +1233,13 @@ getPreferredLanguageList(): Array<string>
   ```
 
 
-## i18n.getFirstPreferredLanguage
+## i18n.getFirstPreferredLanguage<sup>8+</sup>
 
 getFirstPreferredLanguage(): string
 
 获取与Hap资源最佳匹配的偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
 
 - 返回值：
   | 类型 | 说明 |
