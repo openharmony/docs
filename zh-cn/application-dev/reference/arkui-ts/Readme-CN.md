@@ -50,6 +50,8 @@
     - 基础组件
         - [Blank](ts-basic-components-blank.md)
         - [Button](ts-basic-components-button.md)
+        - [Checkbox](ts-basic-components-checkbox.md)
+        - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
         - [DataPanel](ts-basic-components-datapanel.md)
         - [DatePicker](ts-basic-components-datepicker.md)
         - [Divider](ts-basic-components-divider.md)
