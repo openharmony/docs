@@ -56,13 +56,13 @@ import window from '@ohos.window';
 
 单个导航栏或状态栏回调信息。
 
-| 名称                                   | 参数类型                 | 可读 | 可写 | 说明                                                         |
-| -------------------------------------- | ------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| type                                   | [WindowType](#windowtype) | 是   | 是  | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| isEnable | boolean                  | 是   | 是  | 当前系统栏是否显示。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| region | [Rect](#rect)       | 是   | 是  | 当前系统栏的位置及大小。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| backgroundColor      | string                   | 是   | 是  | 系统栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| contentColor | string                   | 是   | 是  | 系统栏文字颜色。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| 名称            | 参数类型                  | 可读 | 可写 | 说明                                                         |
+| --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| type            | [WindowType](#windowtype) | 是   | 是   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| isEnable        | boolean                   | 是   | 是   | 当前系统栏是否显示。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| region          | [Rect](#rect)             | 是   | 是   | 当前系统栏的位置及大小。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| contentColor    | string                    | 是   | 是   | 系统栏文字颜色。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
 ## SystemBarTintState <sup>8+</sup><a name="systembartintstate"></a>
 
@@ -130,7 +130,7 @@ import window from '@ohos.window';
 
 create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-创建子窗口。
+创建子窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -144,23 +144,55 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 - 示例
 
-```
- window.create("first", 1, (err, data) => {
-    windowClass = data;
-    if (err) {
-        console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('SubWindow created. Data: ' + JSON.stringify(data))
-    windowClass.resetSize(500, 1000);
-})
-```
+  ```
+   window.create("first", window.WindowType.TYPE_APP, (err, data) => {
+      windowClass = data;
+      if (err) {
+          console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('SubWindow created. Data: ' + JSON.stringify(data))
+      windowClass.resetSize(500, 1000);
+  });
+  ```
 
-## window.create<sup>8+</sup><a name="window-create"></a>
+## window.create<sup>7</sup>
+
+create(id: string, type: WindowType): Promise&lt;Window&gt;
+
+创建子窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型                      | 必填 | 说明       |
+  | ------ | ------------------------- | ---- | ---------- |
+  | id     | string                    | 是   | 窗口id。   |
+  | type   | [WindowType](#windowtype) | 是   | 窗口类型。 |
+
+- 返回值
+
+  | 类型                             | 说明                                              |
+  | -------------------------------- | ------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前创建的子窗口对象。 |
+
+- 示例
+
+  ```
+   let promise = window.create("first", window.WindowType.TYPE_APP);
+   promise.then((data)=> {
+      console.info('SubWindow created. Data: ' + JSON.stringify(data))
+   }).catch((err)=>{
+      console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+   });
+  ```
+
+## window.create<sup>8+</sup>
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-当Context为[ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md)时，创建系统窗口。
+当Context为[ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md)时，创建系统窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -175,24 +207,56 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 - 示例
 
-```
- #this.context为
- window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
-    windowClass = data;
-    if (err) {
-        console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Window created. Data: ' + JSON.stringify(data))
-    windowClass.resetSize(500, 1000);
-})
-```
+  ```
+   window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
+      windowClass = data;
+      if (err) {
+          console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Window created. Data: ' + JSON.stringify(data))
+      windowClass.resetSize(500, 1000);
+  });
+  ```
+
+## window.create<sup>8+</sup>
+
+function create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
+
+当Context为[ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md)时，创建系统窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型                                                         | 必填 | 说明                                                  |
+  | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+  | ctx    | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | 是   | 当前应用上下文信息, 为ServiceExtensionContext的基类。 |
+  | id     | string                                                       | 是   | 窗口id。                                              |
+  | type   | [WindowType](#windowtype)                                    | 是   | 窗口类型。                                            |
+
+- 返回值
+
+  | 类型                             | 说明                                            |
+  | -------------------------------- | ----------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前创建的窗口对象。 |
+
+- 示例
+
+  ```
+   let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
+   promise.then((data)=> {
+      console.info('Window created. Data: ' + JSON.stringify(data))
+   }).catch((err)=>{
+      console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
+   });
+  ```
 
 ## window.find<sup>7+</sup><a name="window-find"></a>
 
 find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
-查找id所对应的窗口。
+查找id所对应的窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -213,14 +277,45 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
      }
     console.info('window found. Data: ' + JSON.stringify(data))
     windowClass = data;
-  })
+  });
+  ```
+
+## window.find<sup>7+</sup>
+
+find(id: string): Promise&lt;Window&gt;
+
+查找id所对应的窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型   | 必填 | 说明     |
+  | ------ | ------ | ---- | -------- |
+  | id     | string | 是   | 窗口id。 |
+
+- 返回值
+
+  | 类型                             | 说明                                            |
+  | -------------------------------- | ----------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前查找的窗口对象。 |
+
+- 示例
+
+  ```
+   let promise = window.find("first");
+   promise.then((data)=> {
+      console.info('window found. Data: ' + JSON.stringify(data))
+   }).catch((err)=>{
+      console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+   });
   ```
 
 ## window.getTopWindow<a name="window-gettopwindow"></a>
 
 getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最后显示的窗口。
+获取当前应用内最后显示的窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -243,11 +338,36 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
   });
   ```
 
-## window.getTopWindow<sup>8+</sup><a name="window-gettopwindow"></a>
+## window.getTopWindow
+
+getTopWindow(): Promise&lt;Window&gt;
+
+获取当前应用内最后显示的窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                             | 说明                                                      |
+  | -------------------------------- | --------------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前应用内最后显示的窗口对象。 |
+
+- 示例
+
+  ```
+   let promise = window.getTopWindow();
+   promise.then((data)=> {
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data))
+   }).catch((err)=>{
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+   })
+  ```
+
+## window.getTopWindow<sup>8+</sup>
 
 getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最后显示的窗口。
+获取当前应用内最后显示的窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -269,6 +389,37 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
       console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
       windowClass = data;
   });
+  ```
+
+## window.getTopWindow<sup>8+</sup>
+
+getTopWindow(ctx: Context): Promise&lt;Window&gt;
+
+获取当前应用内最后显示的窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型                                                         | 必填 | 说明                 |
+  | ------ | ------------------------------------------------------------ | ---- | -------------------- |
+  | ctx    | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | 是   | 当前应用上下文信息。 |
+
+- 返回值
+
+  | 类型                             | 说明                                                      |
+  | -------------------------------- | --------------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前应用内最后显示的窗口对象。 |
+
+- 示例
+
+  ```
+   let promise = window.getTopWindow(this.context);
+   promise.then((data)=> {
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data))
+   }).catch((err)=>{
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+   })
   ```
 
 ## on('systemBarTintChange')<sup>8+</sup>
@@ -325,7 +476,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 hide (callback: AsyncCallback&lt;void&gt;): void
 
-隐藏当前窗口。
+隐藏当前窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -338,20 +489,45 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.hide((err, data) => {
+  windowClass.hide((err) => {
       if (err) {
           console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('window hidden. Data:' + JSON.stringify(data))
+      console.info('window hidden.')
   })
+  ```
+
+### hide<sup>7+</sup>
+
+hide(): Promise&lt;void&gt;;
+
+隐藏当前窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+   let promise = windowClass.hide();
+   promise.then(()=> {
+      console.info('window hidden.')
+   }).catch((err)=>{
+      console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+   })
   ```
 
 ### show<sup>7+</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
 
-显示当前窗口。
+显示当前窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -364,20 +540,45 @@ show(callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.show((err, data) => {
+  windowClass.show((err) => {
       if (err) {
           console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data))
+      console.info('Succeeded in showing the window.')
   })
+  ```
+
+### show<sup>7+</sup>
+
+show(): Promise&lt;void&gt;
+
+显示当前窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+   let promise = windowClass.show();
+   promise.then(()=> {
+      console.info('Succeeded in showing the window.')
+   }).catch((err)=>{
+      console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+   })
   ```
 
 ### destroy<sup>7+</sup>
 
 destroy(callback: AsyncCallback&lt;void&gt;): void
 
-销毁当前窗口。
+销毁当前窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -390,20 +591,45 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.destroy((err, data) => {
+  windowClass.destroy((err) => {
       if (err) {
           console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in destroying the window. Data:' + JSON.stringify(data))
+      console.info('Succeeded in destroying the window.')
   })
+  ```
+
+### destroy<sup>7+</sup>
+
+destroy(): Promise&lt;void&gt;
+
+销毁当前窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+   let promise = windowClass.destroy();
+   promise.then(()=> {
+      console.info('Succeeded in destroying the window.')
+   }).catch((err)=>{
+      console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+   })
   ```
 
 ### moveTo<sup>7+</sup>
 
 moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
-移动窗口位置。
+移动窗口位置，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -418,21 +644,53 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.moveTo(300, 300, (err, data)=>{
+  windowClass.moveTo(300, 300, (err)=>{
       if (err) {
           console.error('Failed to move the window. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Window moved. Data:' + JSON.stringify(data));
-
+      console.info('Window moved.');
+  
   });
+  ```
+
+### moveTo<sup>7+</sup>
+
+moveTo(x: number, y: number): Promise&lt;void&gt;
+
+移动窗口位置，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型   | 必填 | 说明                                    |
+  | ------ | ------ | ---- | --------------------------------------- |
+  | x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移。 |
+  | y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+   let promise = windowClass.moveTo(300, 300);
+   promise.then(()=> {
+      console.info('Window moved.')
+   }).catch((err)=>{
+      console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
+   })
   ```
 
 ### resetSize<sup>7+</sup>
 
 resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
-改变当前窗口大小。
+改变当前窗口大小，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -447,48 +705,112 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 - 示例
 
   ```
-  windowClass.resetSize(500, 1000, (err, data) => {
+  windowClass.resetSize(500, 1000, (err) => {
       if (err) {
           console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Window size changed. Data:' + JSON.stringify(data));
+      console.info('Window size changed.');
   });
+  ```
+
+### resetSize<sup>7+</sup>
+
+resetSize(width: number, height: number): Promise&lt;void&gt;
+
+改变当前窗口大小，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型   | 必填 | 说明             |
+  | ------ | ------ | ---- | ---------------- |
+  | width  | number | 是   | 目标窗口的宽度。 |
+  | height | number | 是   | 目标窗口的高度。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+   let promise = windowClass.resetSize(500, 1000);
+   promise.then(()=> {
+      console.info('Window size changed.')
+   }).catch((err)=>{
+      console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
+   });
   ```
 
 ### setWindowType<sup>7+</sup>
 
 setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口类型。
+设置窗口类型，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-  | 参数名   | 类型                       | 必填 | 说明       |
-  | -------- | -------------------------- | ---- | ---------- |
-  | type     | [WindowType](#windowtype7) | 是   | 窗口类型。 |
-  | callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数。 |
+  | 参数名   | 类型                      | 必填 | 说明       |
+  | -------- | ------------------------- | ---- | ---------- |
+  | type     | [WindowType](#windowtype) | 是   | 窗口类型。 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 - 示例
 
   ```
   var type = window.TYPE_APP;
-  windowClass.setWindowType(type, (err, data) => {
+  windowClass.setWindowType(type, (err) => {
     if (err) {
         console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in setting the window type. Data: ' + JSON.stringify(data))
+    console.info('Succeeded in setting the window type.')
   });
+  ```
+
+### setWindowType<sup>7+</sup>
+
+setWindowType(type: WindowType): Promise&lt;void&gt;
+
+设置窗口类型，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型                      | 必填 | 说明       |
+  | ------ | ------------------------- | ---- | ---------- |
+  | type   | [WindowType](#windowtype) | 是   | 窗口类型。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+   var type = window.TYPE_APP;
+   let promise = windowClass.setWindowType(type);
+   promise.then(()=> {
+      console.info('Succeeded in setting the window type.')
+   }).catch((err)=>{
+      console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+   });
   ```
 
 ### getProperties
 
 getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
-获取当前窗口的属性，异步返回WindowProperties。
+获取当前窗口的属性，使用callback方式作为异步方法返回WindowProperties。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -510,11 +832,36 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
   });
   ```
 
+### getProperties
+
+getProperties(): Promise&lt;WindowProperties&gt;
+
+获取当前窗口的属性，使用promise方式作为异步方法返回WindowProperties。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                                                 | 说明                                  |
+  | ---------------------------------------------------- | ------------------------------------- |
+  | Promise&lt;[WindowProperties](#windowproperties)&gt; | 以Promise形式返回结果，返回窗口属性。 |
+
+- 示例
+
+  ```
+   let promise = windowClass.getProperties();
+   promise.then((data)=> {
+      console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data))
+   }).catch((err)=>{
+      console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
+   });
+  ```
+
 ### getAvoidArea<sup>7+</sup>
 
 getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): void
 
-获取窗口内容规避的区域。如系统的系统栏区域 、凹口区域。
+获取窗口内容规避的区域，如系统的系统栏区域、凹凸区域。使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -538,11 +885,42 @@ getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): voi
   });
   ```
 
+### getAvoidArea<sup>7+</sup>
+
+getAvoidArea(type: AvoidAreaType): Promise&lt;AvoidArea&gt;
+
+获取窗口内容规避的区域，如系统的系统栏区域、凹凸区域。使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型                            | 必填 | 说明                                                         |
+  | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
+  | type   | [AvoidAreaType](#avoidareatype) | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
+
+- 返回值
+
+  | 类型                                   | 说明                                          |
+  | -------------------------------------- | --------------------------------------------- |
+  | Promise&lt;[AvoidArea](#avoidarea)&gt; | 以Promise形式返回结果，返回窗口内容规避区域。 |
+
+- 示例
+
+  ```
+   let promise = windowClass.getAvoidArea();
+   promise.then((data)=> {
+      console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data))
+   }).catch((err)=>{
+      console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
+   });
+  ```
+
 ### setFullScreen
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置是否为全屏状态。
+设置是否为全屏状态，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -557,12 +935,44 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
   ```
   var isFullScreen = true;
-  windowClass.setFullScreen(isFullScreen, (err, data) => {
+  windowClass.setFullScreen(isFullScreen, (err) => {
       if (err) {
           console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in enabling the full-screen mode.');
+  });
+  ```
+
+### setFullScreen
+
+setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
+
+设置是否为全屏状态，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名       | 类型    | 必填 | 说明                                           |
+  | ------------ | ------- | ---- | ---------------------------------------------- |
+  | isFullScreen | boolean | 是   | 是否设为全屏状态，且全屏状态隐藏状态栏导航栏。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var isFullScreen = true;
+  let promise = windowClass.setFullScreen(isFullScreen);
+  promise.then(()=> {
+      console.info('Succeeded in enabling the full-screen mode.'))
+  }).catch((err)=>{
+      console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
   });
   ```
 
@@ -570,27 +980,59 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏显示状态。
+设置窗口的布局是否为全屏显示状态，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-| 参数名             | 类型                      | 必填 | 说明                                                         |
-| ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为全屏显示状态，且全屏状态下状态栏、导航栏仍然显示。 |
-| callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
+  | 参数名             | 类型                      | 必填 | 说明                                                         |
+  | ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
+  | isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为全屏显示状态，且全屏状态下状态栏、导航栏仍然显示。 |
+  | callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 - 示例
 
   ```
   var isLayoutFullScreen= true;
-  windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
+  windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
       if (err) {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the window layout to full-screen mode. Data:' + JSON.stringify(data));
+      console.info('Succeeded in setting the window layout to full-screen mode.');
+  });
+  ```
+
+### setLayoutFullScreen<sup>7+</sup>
+
+setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
+
+设置窗口的布局是否为全屏显示状态，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名             | 类型    | 必填 | 说明                                                         |
+  | ------------------ | ------- | ---- | ------------------------------------------------------------ |
+  | isLayoutFullScreen | boolean | 是   | 窗口的布局是否为全屏显示状态，且全屏状态下状态栏、导航栏仍然显示。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var isLayoutFullScreen = true;
+  let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
+  promise.then(()=> {
+      console.info('Succeeded in setting the window layout to full-screen mode.'))
+  }).catch((err)=>{
+      console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
   });
   ```
 
@@ -598,7 +1040,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置导航栏、状态栏的可见模式。
+设置导航栏、状态栏的可见模式，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -613,12 +1055,44 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
   ```
   var names = ["status", "navigation"];
-  windowClass.setSystemBarEnable(names, (err, data) => {
+  windowClass.setSystemBarEnable(names, (err) => {
       if (err) {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in setting the system bar to be visible.');
+  });
+  ```
+
+### setSystemBarEnable<sup>7+</sup>
+
+setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
+
+设置导航栏、状态栏的可见模式，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型  | 必填 | 说明                                                         |
+  | ------ | ----- | ---- | ------------------------------------------------------------ |
+  | names  | Array | 是   | 设置状态栏和导航栏是否显示。例如，需全部显示，该参数设置为["status",&nbsp;"navigation"], 不设置，则默认不显示。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var names = ["status", "navigation"];
+  let promise = windowClass.setSystemBarEnable(names);
+  promise.then(()=> {
+      console.info('Succeeded in setting the system bar to be visible.'))
+  }).catch((err)=>{
+      console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
   });
   ```
 
@@ -626,7 +1100,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口内导航栏、状态栏的属性。
+设置窗口内导航栏、状态栏的属性，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -645,22 +1119,66 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
       navigationBarColor: '#00ff00',
       //以下两个属性从API Version7开始支持
       isStatusBarLightIcon: true,
-      isNavigationBarLightIcon:false
+      isNavigationBarLightIcon:false,
+      //以下两个属性从API Version8开始支持
+      statusBarContentColor:'#ffffff'
+      navigationBarContentColor:'#00ffff'
   };
-  windowClass.setSystemBarProperties(SystemBarProperties, (err, data) => {
+  windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
       if (err) {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the system bar properties. Data: ' + JSON.stringify(data));
+      console.info('Succeeded in setting the system bar properties.');
+  });
+  ```
+
+### setSystemBarProperties
+
+setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
+
+设置窗口内导航栏、状态栏的属性，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名              | 类型                                        | 必填 | 说明                 |
+  | ------------------- | ------------------------------------------- | ---- | -------------------- |
+  | SystemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏状态栏的属性。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var SystemBarProperties={
+      statusBarColor: '#ff00ff',
+      navigationBarColor: '#00ff00',
+      //以下两个属性从API Version7开始支持
+      isStatusBarLightIcon: true,
+      isNavigationBarLightIcon:false,
+      //以下两个属性从API Version8开始支持
+      statusBarContentColor:'#ffffff'
+      navigationBarContentColor:'#00ffff'
+  };
+  let promise = windowClass.setSystemBarProperties(SystemBarProperties);
+  promise.then(()=> {
+      console.info('Succeeded in setting the system bar properties.'))
+  }).catch((err)=>{
+      console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
   });
   ```
 
 ### loadContent<sup>8+</sup>
 
-loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
+loadContent(path: string, storage: ContentStorage, callback: AsyncCallback&lt;void&gt;): void
 
-当前窗口加载具体页面内容。
+当前窗口加载具体页面内容，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -668,19 +1186,51 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名   | 类型                      | 必填 | 说明                 |
   | -------- | ------------------------- | ---- | -------------------- |
-  | path     | string                    | 是   | 设置加载页面的路径。|
-  | storage  | ContentStorage            | 否   | 当前应用内的数据。  |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。         |
+  | path     | string                    | 是   | 设置加载页面的路径。 |
+  | storage  | ContentStorage            | 否   | 当前应用内的数据。   |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
 - 示例
 
   ```
-  windowClass.loadContent("pages/page2/page2", (err, data) => {
+  windowClass.loadContent("pages/page2/page2", (err) => {
      if (err) {
            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
            return;
      }
-    console.info('Succeeded in loading the content. Data:' + JSON.stringify(data));
+    console.info('Succeeded in loading the content.');
+  });
+  ```
+
+### loadContent<sup>8+</sup>
+
+loadContent(path: string, storage?: ContentStorage): Promise&lt;void&gt;
+
+当前窗口加载具体页面内容，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名  | 类型           | 必填 | 说明                 |
+  | ------- | -------------- | ---- | -------------------- |
+  | path    | string         | 是   | 设置加载页面的路径。 |
+  | storage | ContentStorage | 否   | 当前应用内的数据。   |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  let promise = windowClass.loadContent("pages/page2/page2");
+  promise.then(()=> {
+      console.info('Succeeded in loading the content.'))
+  }).catch((err)=>{
+      console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
   });
   ```
 
@@ -688,26 +1238,51 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断当前窗口是否已显示。
+判断当前窗口是否已显示，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-  | 参数名      | 类型                           | 必填  | 说明               |
-  | -------- | ---------------------------- | --- | ---------------- |
+  | 参数名   | 类型                         | 必填 | 说明                             |
+  | -------- | ---------------------------- | ---- | -------------------------------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数返回是否显示子窗口结果。 |
 
 - 示例
 
   ```
-  windowClass.isShowing((err, data) => {
+  windowClass.isShowing((err) => {
       if (err) {
           console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in checking whether the window is showing. Cause:' + JSON.stringify(data))
-  })
+      console.info('Succeeded in checking whether the window is showing. Cause:')
+  });
+  ```
+
+### isShowing<sup>7+</sup>
+
+isShowing(): Promise&lt;boolean&gt;
+
+判断当前窗口是否已显示，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                   | 说明                                                  |
+  | ---------------------- | ----------------------------------------------------- |
+  | Promise&lt;boolean&gt; | 以Promise形式返回结果，返回当前窗口是否已显示的结果。 |
+
+- 示例
+
+  ```
+  let promise = windowClass.isShowing();
+  promise.then(()=> {
+      console.info('Succeeded in checking whether the window is showing.')
+  }).catch((err)=>{
+      console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
+  });
   ```
 
 ### on('windowSizeChange'|'systemAvoidAreaChange')
@@ -758,9 +1333,9 @@ off(type: 'windowSizeChange'|'systemAvoidAreaChange', callback?: Callback&lt;Avo
 
 ### isSupportWideGamut<sup>8+</sup>
 
-isSupportWideGamut(callback: AsyncCallback<boolean>): void
+isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断当前窗口是否支持广色域模式。
+判断当前窗口是否支持广色域模式，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -773,20 +1348,45 @@ isSupportWideGamut(callback: AsyncCallback<boolean>): void
 - 示例
 
   ```
-  windowClass.isSupportWideGamut((err, data) => {
+  windowClass.isSupportWideGamut((err) => {
       if (err) {
           console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in checking whether the window support WideGamut. Cause:' + JSON.stringify(data))
+      console.info('Succeeded in checking whether the window support WideGamut.')
   })
+  ```
+
+### isSupportWideGamut<sup>8+</sup>
+
+isSupportWideGamut(): Promise&lt;boolean&gt;
+
+判断当前窗口是否支持广色域模式，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                   | 说明                                                         |
+  | ---------------------- | ------------------------------------------------------------ |
+  | Promise&lt;boolean&gt; | 以Promise形式返回结果，返回当前窗口是否支持广色域模式的结果。 |
+
+- 示例
+
+  ```
+  let promise = windowClass.isSupportWideGamut();
+  promise.then(()=> {
+      console.info('Succeeded in checking whether the window support WideGamut.')
+  }).catch((err)=>{
+      console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
+  });
   ```
 
 ### setColorSpace<sup>8+</sup>
 
-setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback<void>): void
+setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
-设置当前窗口为广色域模式或默认色域模式。
+设置当前窗口为广色域模式或默认色域模式，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -800,20 +1400,51 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback<void>): void
 - 示例
 
   ```
-  windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err, data) => {
+  windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
       if (err) {
           console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting window colorspace. Cause:' + JSON.stringify(data))
+      console.info('Succeeded in setting window colorspace.')
   })
+  ```
+
+### setColorSpace<sup>8+</sup>
+
+setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
+
+设置当前窗口为广色域模式或默认色域模式，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名     | 类型                      | 必填 | 说明         |
+  | ---------- | ------------------------- | ---- | ------------ |
+  | colorSpace | [ColorSpace](#colorspace) | 是   | 设置色域模式 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
+  promise.then(()=> {
+      console.info('Succeeded in setting window colorspace.')
+  }).catch((err)=>{
+      console.error('Failed to set window colorspacet. Cause: ' + JSON.stringify(err));
+  });
   ```
 
 ### getColorSpace<sup>8+</sup>
 
-getColorSpace(callback: AsyncCallback<ColorSpace>): void
+getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
-获取当前窗口色域模式。
+获取当前窗口色域模式，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -835,4 +1466,28 @@ getColorSpace(callback: AsyncCallback<ColorSpace>): void
   })
   ```
 
-###
+### getColorSpace<sup>8+</sup>
+
+getColorSpace(): Promise&lt;ColorSpace&gt;
+
+获取当前窗口色域模式，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                                     | 说明                                      |
+  | ---------------------------------------- | ----------------------------------------- |
+  | Promise&lt;[ColorSpace](#colorspace)&gt; | 以Promise形式返回结果，返回当前色域模式。 |
+
+- 示例
+
+  ```
+  let promise = windowClass.getColorSpace();
+  promise.then((data)=> {
+      console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set window colorspacet. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
