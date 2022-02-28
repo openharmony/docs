@@ -18,9 +18,11 @@
 - 媒体
     - [音频管理](js-apis-audio.md)
     - [媒体服务](js-apis-media.md)
+    - [图片处理](js-apis-image.md)
 - 安全
     - [用户认证](js-apis-useriam-userauth.md)
     - [访问控制](js-apis-abilityAccessCtrl.md)
+    - [通用密钥库系统](js-apis-huks.md)
 - 数据管理
     - [轻量级存储](js-apis-data-preferences.md)
     - [轻量级存储（废弃 since 8）](js-apis-data-storage.md)
@@ -46,6 +48,7 @@
     -   [SIM卡管理](js-apis-sim.md)
     -   [网络搜索](js-apis-radio.md)
     -   [observer](js-apis-observer.md)
+    -   [蜂窝数据](js-apis-telephony-data.md)
 - 网络与连接
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
@@ -55,6 +58,7 @@
     - [屏幕亮度](js-apis-brightness.md)
     - [电量信息](js-apis-battery-info.md)
     - [系统电源管理](js-apis-power.md)
+    - [热管理](js-apis-thermal.md)
     - [Runninglock锁](js-apis-runninglock.md)
     - [设备信息](js-apis-device-info.md)
     - [系统属性](js-apis-system-parameter.md)
@@ -74,6 +78,7 @@
     - [动画](js-apis-basic-features-animator.md)
     - [WebGL](js-apis-webgl.md)
     - [WebGL2](js-apis-webgl2.md)
+    - [屏幕截图](js-apis-screenshot.md)
 - DFX
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-hitracemeter.md)

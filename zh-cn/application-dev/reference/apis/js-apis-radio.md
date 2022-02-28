@@ -17,7 +17,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 获取当前接入的CS域和PS域无线接入技术，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_NETWORK\_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -44,7 +44,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 
 获取当前接入的CS域和PS域无线接入技术，使用Promise方式作为异步方法。
 
-需要ohos.permission.GET\_NETWORK\_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -79,7 +79,7 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 
 获取网络状态，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_NETWORK\_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -104,7 +104,7 @@ getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
 获取网络状态，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_NETWORK\_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -131,7 +131,7 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
 获取网络状态，使用Promise方式作为异步方法。
 
-需要ohos.permission.GET\_NETWORK\_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -338,9 +338,9 @@ promise.then(data => {
 
 isRadioOn\(callback: AsyncCallback<boolean\>\): void
 
-判断Radio是否打开，使用callback方式作为异步方法。
+判断主卡的Radio是否打开，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_NETWORK\_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -359,15 +359,48 @@ radio.isRadioOn((err, data) => {
 ```
 
 
-## radio.isRadioOn<sup>7+</sup><a name=radio.isRadioOn-promise></a>
+## radio.isRadioOn<sup>7+</sup><a name=radio.isRadioOn.slot-callback></a>
 
-isRadioOn\(\): Promise<boolean\>
+isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
+
+判断指定卡槽位的Radio是否打开，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                    |
+| -------- | ------------------------ | ---- | ------------------------------------------------------- |
+| slotId   | number                   | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                  |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
+
+**示例：**
+
+```
+let slotId = 0;
+radio.isRadioOn(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.isRadioOn<sup>7+</sup><a name=radio.isRadioOn.slot-promise></a>
+
+isRadioOn\(slotId?: number\): Promise<boolean\>
 
 判断Radio是否打开，使用Promise方式作为异步方法。
 
-需要ohos.permission.GET\_NETWORK\_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO。
 
 **系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>如果不指定slotId，默认判断主卡Radio是否打开 |
 
 **返回值：**
 
@@ -378,7 +411,8 @@ isRadioOn\(\): Promise<boolean\>
 **示例：**
 
 ```
-let promise = radio.isRadioOn();
+let slotId = 0;
+let promise = radio.isRadioOn(slotId);
 promise.then(data => {
     console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -501,6 +535,7 @@ promise.then(data => {
 | plmnNumeric       | string                | 注册网络的PLMN码。<br/>**系统能力**：SystemCapability.Telephony.CoreService |
 | isRoaming         | boolean               | 是否处于漫游状态。<br/>**系统能力**：SystemCapability.Telephony.CoreService |
 | regState          | [RegState](#RegState) | 设备的网络注册状态。<br/>**系统能力**：SystemCapability.Telephony.CoreService |
+| cfgTech<sup>8+</sup> | [RadioTechnology](#RadioTechnology) | 设备的无线接入技术。<br/>**系统能力**：SystemCapability.Telephony.CoreService |
 | nsaState          | [NsaState](#NsaState) | 设备的NSA网络注册状态。<br/>**系统能力**：SystemCapability.Telephony.CoreService |
 | isCaActive        | boolean               | CA的状态。<br/>**系统能力**：SystemCapability.Telephony.CoreService |
 | isEmergency       | boolean               | 此设备是否只允许拨打紧急呼叫。<br/>**系统能力**：SystemCapability.Telephony.CoreService |

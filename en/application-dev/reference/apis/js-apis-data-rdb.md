@@ -750,7 +750,7 @@ Sets the **RdbPredicates** to filter out duplicate records.
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
-  let resultSet = await rdbStore.query(predicates, ["NAME"])
+  rdbStore.query(predicates, ["NAME"])
   ```
 
 

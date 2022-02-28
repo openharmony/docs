@@ -15,7 +15,7 @@ HiSysEvent supports listening for events across processes. You can register a li
 </th>
 </tr>
 </thead>
-<tbody><tr id="row16441155818499"><td class="cellrowborder" valign="top" width="48.120000000000005%" headers="mcps1.2.3.1.1 "><p id="p877916438211"><a name="p877916438211"></a><a name="p877916438211"></a>int HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBackBase&gt; listener, std::vector&lt;struct ListenerRule&gt;&amp; rules)</p>
+<tbody><tr id="row16441155818499"><td class="cellrowborder" valign="top" width="48.120000000000005%" headers="mcps1.2.3.1.1 "><p id="p877916438211"><a name="p877916438211"></a><a name="p877916438211"></a>bool HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener, std::vector&lt;struct ListenerRule&gt;&amp; rules)</p>
 </td>
 <td class="cellrowborder" valign="top" width="51.88%" headers="mcps1.2.3.1.2 "><p id="p14727325133216"><a name="p14727325133216"></a><a name="p14727325133216"></a>Registers a listener for system events. You can listen for certain events by specifying rules.</p>
 <p id="p167271525203213"><a name="p167271525203213"></a><a name="p167271525203213"></a>Input arguments:</p>
@@ -24,7 +24,7 @@ HiSysEvent supports listening for events across processes. You can register a li
 <a name="ul12105842111913"></a><a name="ul12105842111913"></a><ul id="ul12105842111913"><li><strong id="b117641849702"><a name="b117641849702"></a><a name="b117641849702"></a>0</strong>: Repeated registration is successful.</li><li><strong id="b2682415314"><a name="b2682415314"></a><a name="b2682415314"></a>1</strong>: Initial registration is successful.</li><li>Other values: Registration has failed.</li></ul>
 </td>
 </tr>
-<tr id="row910319443242"><td class="cellrowborder" valign="top" width="48.120000000000005%" headers="mcps1.2.3.1.1 "><p id="p15104154411248"><a name="p15104154411248"></a><a name="p15104154411248"></a>void HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventSubscribeCallBackBase&gt; listener)</p>
+<tr id="row910319443242"><td class="cellrowborder" valign="top" width="48.120000000000005%" headers="mcps1.2.3.1.1 "><p id="p15104154411248"><a name="p15104154411248"></a><a name="p15104154411248"></a>bool HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener)</p>
 </td>
 <td class="cellrowborder" valign="top" width="51.88%" headers="mcps1.2.3.1.2 "><p id="p1104194420248"><a name="p1104194420248"></a><a name="p1104194420248"></a>Removes the listener for system events.</p>
 <p id="p7943171095411"><a name="p7943171095411"></a><a name="p7943171095411"></a>Input arguments:</p>
@@ -72,7 +72,7 @@ HiSysEvent supports listening for events across processes. You can register a li
 </th>
 </tr>
 </thead>
-<tbody><tr id="row111823719274"><td class="cellrowborder" valign="top" width="48.25%" headers="mcps1.2.3.1.1 "><p id="p161181537112712"><a name="p161181537112712"></a><a name="p161181537112712"></a>void HiSysEventSubscribeCallBackBase::OnHandle(const std::string&amp; domain, const std::string&amp; eventName, const int eventType, const std::string&amp; eventDetail)</p>
+<tbody><tr id="row111823719274"><td class="cellrowborder" valign="top" width="48.25%" headers="mcps1.2.3.1.1 "><p id="p161181537112712"><a name="p161181537112712"></a><a name="p161181537112712"></a>void HiSysEventSubscribeCallBack::OnHandle(const std::string&amp; domain, const std::string&amp; eventName, const int eventType, const std::string&amp; eventDetail)</p>
 </td>
 <td class="cellrowborder" valign="top" width="51.74999999999999%" headers="mcps1.2.3.1.2 "><p id="p1772213111011"><a name="p1772213111011"></a><a name="p1772213111011"></a>Callback object for system events.</p>
 <p id="p182081719151016"><a name="p182081719151016"></a><a name="p182081719151016"></a>Input arguments:</p>
@@ -97,11 +97,11 @@ In this example, you'll be instructed to register a listener for all system even
 
     -   Implement the callback API.
 
-        HiSysEventSubscribeCallBackBase::OnHandle\(const std::string& domain, const std::string& eventName, const int eventType, const std::string& eventDetail\)
+        HiSysEventSubscribeCallBack::OnHandle\(const std::string& domain, const std::string& eventName, const int eventType, const std::string& eventDetail\)
 
     -   Register a callback object.
 
-        HiSysEventManager::AddEventListener\(std::shared\_ptr<HiSysEventSubscribeCallBackBase\> listener, std::vector<struct ListenerRule\>& rules\)
+        HiSysEventManager::AddEventListener\(std::shared\_ptr<HiSysEventSubscribeCallBack\> listener, std::vector<struct ListenerRule\>& rules\)
 
 
     ```

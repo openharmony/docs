@@ -1,7 +1,7 @@
 # 显示设备属性
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -34,7 +34,7 @@ import display from '@ohos.display';
 | id | number | 是 | 否 | 显示设备的id号。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 | name | string | 是 | 否 | 显示设备的名称。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 | alive | boolean | 是 | 否 | 显示设备是否启用。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| state | DisplayState | 是 | 否 | 显示设备的状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| state | [DisplayState](#DisplayState) | 是 | 否 | 显示设备的状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 | refreshRate | number | 是 | 否 | 显示设备的刷新率。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 | rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
@@ -52,10 +52,12 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 获取当前默认的display对象。
 
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Display&gt; | 是 | 回调返回当前默认的display对象。 |
+  | callback | AsyncCallback&lt;[Display](#Display)&gt; | 是 | 回调返回当前默认的display对象。 |
 
 - 示例
   ```
@@ -70,17 +72,44 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
   });
   ```
 
+## display.getDefaultDisplay
+
+getDefaultDisplay(): Promise&lt;Display&gt;
+
+获取当前默认的display对象。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                               | 说明                                           |
+  | ---------------------------------- | ---------------------------------------------- |
+  | Promise&lt;[Display](#Display)&gt; | 以Promise形式返回结果，返回默认的display对象。 |
+
+- 示例
+
+  ```
+  let promise = display.getDefaultDisplay();
+  promise.then(() => {
+      console.log('getDefaultDisplay success');
+  }).catch((err) => {
+      console.log('getDefaultDisplay fail: ' + JSON.stringify(err));
+  });
+  ```
+
 ## display.getAllDisplay
 
 getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 获取当前所有的display对象。
 
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
 
-  | 参数名   | 类型                                      | 必填 | 说明                            |
-  | -------- | ----------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;Display&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
+  | 参数名   | 类型                                                 | 必填 | 说明                            |
+  | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[Display](Display)&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
 
 - 示例
 
@@ -94,11 +123,38 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
   });
   ```
 
+## display.getAllDisplay
+
+getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
+
+获取当前所有的display对象。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                                            | 说明                                                    |
+  | ----------------------------------------------- | ------------------------------------------------------- |
+  | Promise&lt;Array&lt;[Display](#Display)&gt;&gt; | 以Promise形式返回结果，返回包含所有Display对象的Array。 |
+
+- 示例
+
+  ```
+  let promise = display.getAllDisplay();
+  promise.then(() => {
+      console.log('getAllDisplay success');
+  }).catch((err) => {
+      console.log('getAllDisplay fail: ' + JSON.stringify(err));
+  });
+  ```
+
 ## display.on('add'|'remove'|'change')
 
 on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 开启监听。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -121,6 +177,8 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 关闭监听。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |

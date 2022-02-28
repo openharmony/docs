@@ -1424,7 +1424,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.offContext.beginPath()
-            this.offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, true)
+            this.offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
             this.offContext.stroke()
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)

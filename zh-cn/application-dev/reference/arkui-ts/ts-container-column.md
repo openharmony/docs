@@ -51,7 +51,8 @@ Column(value:{space?: Length})
 @Component
 struct ColumnExample {
   build() {
-    Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
+    Column() {
+        Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
         Column({ space: 5 }) {
           Column().width('100%').height(30).backgroundColor(0xAFEEEE)
           Column().width('100%').height(30).backgroundColor(0x00FFFF)

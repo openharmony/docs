@@ -1,6 +1,6 @@
 # Update
 
-The update module applies to updates throughout the entire OpenHarmony system, including built-in resources and preset applications, but not third-party applications.
+The update module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
 
 There are two types of updates: SD card update and over the air (OTA) update.
 

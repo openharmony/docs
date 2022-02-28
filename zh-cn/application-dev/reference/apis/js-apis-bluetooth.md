@@ -1,3 +1,5 @@
+# 蓝牙
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
@@ -155,7 +157,7 @@ pairDevice(deviceId: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 表示配对的远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -167,7 +169,82 @@ pairDevice(deviceId: string): boolean
 
 ```
 // 实际的地址可由扫描流程获取
-let result = bluetooth.pairDevice("8F:8F:8E:8E:6D:6D");
+let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
+```
+
+
+## bluetooth.cancelPairedDevice
+
+cancelPairedDevice(deviceId: string): boolean
+
+删除配对的远程设备。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | 表示要删除的远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 启动取消配对，成功返回true，否则返回false。 |
+
+**示例：**
+
+```
+let result = bluetooth.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
+```
+
+
+## bluetooth.getRemoteDeviceName
+
+getRemoteDeviceName(deviceId: string): string
+
+获取对端蓝牙设备的名称。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 以字符串格式返回设备名称。 |
+
+**示例：**
+
+```
+let remoteDeviceName = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
+```
+
+
+## bluetooth.getRemoteDeviceClass
+
+getRemoteDeviceClass(deviceId: string): DeviceClass
+
+获取对端蓝牙设备的类别。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [DeviceClass](#DeviceClass) | 远程设备的类别。 |
+
+**示例：**
+
+```
+let remoteDeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -289,7 +366,7 @@ setDevicePairingConfirmation(device: string, accept: boolean): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| device | string | 是 | 表示远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| device | string | 是 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | accept | boolean | 是 | 接受配对请求设置为true，否则设置为false。 |
 
 **返回值：**
@@ -600,7 +677,7 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| device | string | 是 | 对端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| device | string | 是 | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | option | [SppOption](#sppoption) | 是 | spp客户端连接配置参数。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 表示回调函数的入参，客户端socket的id。 |
 
@@ -617,7 +694,7 @@ function clientSocket(code, number) {
   clientNumber = number;
 }
 let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
-bluetooth.sppConnect('8F:8F:8E:8E:6D:6D', sppOption, clientSocket);
+bluetooth.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 ```
 
 
@@ -780,7 +857,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 对端设备地址，&nbsp;例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 对端设备地址，&nbsp;例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -791,7 +868,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -840,7 +917,7 @@ function onReceiveEvent(data) {
 bluetooth.BLE.on("BLEDeviceFind", onReceiveEvent);
 bluetooth.BLE.startBLEScan(
     [{
-        deviceId:"8F:8F:8E:8E:6D:6D",
+        deviceId:"XX:XX:XX:XX:XX:XX",
         name:"test",
         serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
     }],
@@ -1117,7 +1194,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 接收通知的client端设备地址，例如“8F:8F:8E:8E:6D:6D”。 |
+| deviceId | string | 是 | 接收通知的client端设备地址，例如“XX:XX:XX:XX:XX:XX”。 |
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是 | 通知的特征值数据。 |
 
 **返回值：**
@@ -1133,7 +1210,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue:  notifyCcc.characteristicValue, confirm: false};
 let server = bluetooth.BLE.createGattServer();
-server.notifyCharacteristicChanged('8F:8F:8E:8E:6D:6D', notifyCharacteristic);
+server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
 ```
 
 
@@ -1164,7 +1241,7 @@ let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
 let serverResponse = {
-    "deviceId": "8F:8F:8E:8E:6D:6D",
+    "deviceId": "XX:XX:XX:XX:XX:XX",
     "transId": 0,
     "status": 0,
     "offset": 0,
@@ -1538,7 +1615,7 @@ client端发起连接远端蓝牙低功耗设备。
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let ret = device.connect();
 ```
 
@@ -1558,7 +1635,7 @@ client端断开与远端蓝牙低功耗设备的连接。
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let ret = device.disconnect();
 ```
 
@@ -1578,7 +1655,7 @@ close(): boolean
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let ret = device.close();
 ```
 
@@ -1617,7 +1694,7 @@ function getServices(code, gattServices) {
   }
 }
 
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
 device.getServices(getServices);
 ```
@@ -1641,7 +1718,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 ```
 // Promise 模式
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
 let services = device.getServices();
 console.log("bluetooth services size is ", services.length);
@@ -1681,7 +1758,7 @@ function readCcc(code, BLECharacteristic) {
   console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1724,7 +1801,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1774,7 +1851,7 @@ function readDesc(code, BLEDescriptor) {
   console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -1807,7 +1884,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -1839,7 +1916,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1885,7 +1962,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -1922,7 +1999,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.setBLEMtuSize(128);
 ```
 
@@ -1949,7 +2026,7 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.setNotifyCharacteristicChanged(notifyCcc, false);
 ```
 
@@ -1979,7 +2056,7 @@ function CharacteristicChange(CharacteristicChangeReq) {
   let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
   let value = new Uint8Array(CharacteristicChangeReq.characteristicValue);
 }
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.on('BLECharacteristicChange', CharacteristicChange);
 ```
 
@@ -2004,7 +2081,7 @@ off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.off('BLECharacteristicChange');
 ```
 
@@ -2033,7 +2110,7 @@ function ConnectStateChanged(state) {
   console.log('bluetooth connect state changed');
   let connectState = state.state;
 }
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.on('BLEConnectionStateChange', ConnectStateChanged);
 ```
 
@@ -2058,7 +2135,7 @@ off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedSt
 **示例：**
 
 ```
-let device = bluetooth.BLE.createGattClientDevice('8F:8F:8E:8E:6D:6D');
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.off('BLEConnectionStateChange');
 ```
 
@@ -2083,7 +2160,7 @@ client获取远端蓝牙低功耗设备名。
 
 ```
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("8F:8F:8E:8E:6D:6D");
+let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
 let deviceName = gattClient.getDeviceName((err, data)=> {
     console.info('device name err ' + JSON.stringify(err));
     console.info('device name' + JSON.stringify(data));
@@ -2107,7 +2184,7 @@ client获取远端蓝牙低功耗设备名。
 
 ```
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("8F:8F:8E:8E:6D:6D");
+let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
 let ret = device.connect();
 let deviceName = gattClient.getDeviceName().then((data) => {
     console.info('device name' + JSON.stringify(data));
@@ -2135,7 +2212,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 ```
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("8F:8F:8E:8E:6D:6D");
+let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
 let ret = device.connect();
 let rssi = gattClient.getRssiValue((err, data)=> {
     console.info('rssi err ' + JSON.stringify(err));
@@ -2160,7 +2237,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 ```
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("8F:8F:8E:8E:6D:6D");
+let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
 let rssi = gattClient.getRssiValue().then((data) => {
     console.info('rssi' + JSON.stringify(data));
 })
@@ -2266,7 +2343,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示发送特征值读请求的远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 否 | 表示发送特征值读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId | number | 是 | 否 | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。 |
 | offset | number | 是 | 否 | 表示读特征值数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
 | characteristicUuid | string | 是 | 否 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
@@ -2279,7 +2356,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示发送特征值写请求的远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 否 | 表示发送特征值写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId | number | 是 | 否 | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。 |
 | offset | number | 是 | 否 | 表示写特征值数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
 | descriptorUuid | string | 是 | 否 | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
@@ -2293,7 +2370,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示发送描述符读请求的远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 否 | 表示发送描述符读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId | number | 是 | 否 | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。 |
 | offset | number | 是 | 否 | 表示读描述符数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
 | descriptorUuid | string | 是 | 否 | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
@@ -2307,7 +2384,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示发送描述符写请求的远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 否 | 表示发送描述符写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId | number | 是 | 否 | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。 |
 | offset | number | 是 | 否 | 表示写描述符数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
 | isPrep | boolean | 是 | 否 | 表示写请求是否立即执行。 |
@@ -2324,7 +2401,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 否 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId | number | 是 | 否 | 表示请求的传输ID，与订阅的读/写请求事件携带的ID保持一致。 |
 | status | number | 是 | 否 | 表示响应的状态，设置为0即可，表示正常。 |
 | offset | number | 是 | 否 | 表示请求的读/写起始位置，与订阅的读/写请求事件携带的offset保持一致。 |
@@ -2337,7 +2414,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示远端设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 否 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | state | [ProfileConnectionState](#ProfileConnectionState) | 是 | 是 | 表示BLE连接状态的枚举。 |
 
 
@@ -2359,7 +2436,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 是 | 表示过滤的BLE设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 是 | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | name | string | 是 | 是 | 表示过滤的BLE设备名。 |
 | serviceUuid | string | 是 | 是 | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
@@ -2402,7 +2479,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示扫描到的设备地址，例如："8F:8F:8E:8E:6D:6D"。 |
+| deviceId | string | 是 | 否 | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | rssi | number | 是 | 否 | 表示扫描到的设备的rssi值。 |
 | data | ArrayBuffer | 是 | 否 | 表示扫描到的设备发送的广播包。 |
 
@@ -2472,3 +2549,127 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 否 | 表示要配对的设备ID。 |
 | pinCode | string | 是 | 否 | 表示要配对的密钥。 |
+
+
+## DeviceClass
+
+描述蓝牙设备的类别。
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| majorClass | [MajorClass](#MajorClass) | 是 | 否 | 表示蓝牙设备主要类别的枚举。 |
+| majorMinorClass | [MajorMinorClass](#MajorMinorClass) | 是 | 否 | 表示主要次要蓝牙设备类别的枚举。 |
+| classOfDevice | number | 是 | 否 | 表示设备类别。 |
+
+
+## MajorClass
+
+枚举，蓝牙设备主要类别。
+
+| 名称 | 默认值 | 说明 |
+| -------- | -------- | -------- |
+| MAJOR_MISC | 0x0000 | 表示杂项设备。 |
+| MAJOR_COMPUTER | 0x0100 | 表示计算机设备。 |
+| MAJOR_PHONE | 0x0200 | 表示手机设备。 |
+| MAJOR_NETWORKING | 0x0300 | 表示网络设备。 |
+| MAJOR_AUDIO_VIDEO | 0x0400 | 表示音频和视频设备。 |
+| MAJOR_PERIPHERAL | 0x0500 | 表示外围设备。 |
+| MAJOR_IMAGING | 0x0600 | 表示成像设备。 |
+| MAJOR_WEARABLE | 0x0700 | 表示可穿戴设备。 |
+| MAJOR_TOY | 0x0800 | 表示玩具设备。 |
+| MAJOR_HEALTH | 0x0900 | 表示健康设备。 |
+| MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。 |
+
+
+## MajorMinorClass
+
+枚举，主要次要蓝牙设备类别。
+
+| 名称 | 默认值 | 说明 |
+| -------- | -------- | -------- |
+| COMPUTER_UNCATEGORIZED | 0x0100 | 表示未分类计算机设备。 |
+| COMPUTER_DESKTOP | 0x0104 | 表示台式计算机设备。 |
+| COMPUTER_SERVER | 0x0108 | 表示服务器设备。 |
+| COMPUTER_LAPTOP | 0x010C | 表示便携式计算机设备。 |
+| COMPUTER_HANDHELD_PC_PDA | 0x0110 | 表示手持式计算机设备。 |
+| COMPUTER_PALM_SIZE_PC_PDA | 0x0114 | 表示掌上电脑设备。 |
+| COMPUTER_WEARABLE | 0x0118 | 表示可穿戴计算机设备。 |
+| COMPUTER_TABLET | 0x011C | 表示平板电脑设备。 |
+| PHONE_UNCATEGORIZED | 0x0200 | 表示未分类手机设备。 |
+| PHONE_CELLULAR | 0x0204 | 表示便携式手机设备。 |
+| PHONE_CORDLESS | 0x0208 | 表示无线电话设备。 |
+| PHONE_SMART | 0x020C | 表示智能手机设备。 |
+| PHONE_MODEM_OR_GATEWAY | 0x0210 | 表示调制解调器或网关手机设备。 |
+| PHONE_ISDN | 0x0214 | 表示ISDN手机设备。 |
+| NETWORK_FULLY_AVAILABLE | 0x0300 | 表示网络完全可用设备。 |
+| NETWORK_1_TO_17_UTILIZED | 0x0320 | 表示使用网络1到17设备。 |
+| NETWORK_17_TO_33_UTILIZED | 0x0340 | 表示使用网络17到33设备。 |
+| NETWORK_33_TO_50_UTILIZED | 0x0360 | 表示使用网络33到50设备。 |
+| NETWORK_60_TO_67_UTILIZED | 0x0380 | 表示使用网络60到67设备。 |
+| NETWORK_67_TO_83_UTILIZED | 0x03A0 | 表示使用网络67到83设备。 |
+| NETWORK_83_TO_99_UTILIZED | 0x03C0 | 表示使用网络83到99设备。 |
+| NETWORK_NO_SERVICE | 0x03E0 | 表示网络无服务设备。 
+| AUDIO_VIDEO_UNCATEGORIZED | 0x0400 | 表示未分类音频视频设备。 |
+| AUDIO_VIDEO_WEARABLE_HEADSET | 0x0404 | 表示可穿戴式音频视频设备。 |
+| AUDIO_VIDEO_HANDSFREE | 0x0408 | 表示免提音频视频设备。 |
+| AUDIO_VIDEO_MICROPHONE | 0x0410 | 表示麦克风音频视频设备。 |
+| AUDIO_VIDEO_LOUDSPEAKER | 0x0414 | 表示扬声器音频视频设备。 |
+| AUDIO_VIDEO_HEADPHONES | 0x0418 | 表示头戴式音频视频设备。 |
+| AUDIO_VIDEO_PORTABLE_AUDIO | 0x041C | 表示便携式音频视频设备。 |
+| AUDIO_VIDEO_CAR_AUDIO | 0x0420 | 表示汽车音频视频设备。 |
+| AUDIO_VIDEO_SET_TOP_BOX | 0x0424 | 表示机顶盒音频视频设备。 |
+| AUDIO_VIDEO_HIFI_AUDIO | 0x0428 | 表示高保真音响设备。 |
+| AUDIO_VIDEO_VCR| 0x042C | 表示录像机音频视频设备。 |
+| AUDIO_VIDEO_VIDEO_CAMERA | 0x0430 | 表示照相机音频视频设备。 |
+| AUDIO_VIDEO_CAMCORDER | 0x0434 | 表示摄像机音频视频设备。 |
+| AUDIO_VIDEO_VIDEO_MONITOR | 0x0438 | 表示监视器音频视频设备。 |
+| AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER | 0x043C | 表示视频显示器和扬声器设备。 |
+| AUDIO_VIDEO_VIDEO_CONFERENCING | 0x0440 | 表示音频视频会议设备。 |
+| AUDIO_VIDEO_VIDEO_GAMING_TOY | 0x0448 | 表示游戏玩具音频视频设备。 |
+| PERIPHERAL_NON_KEYBOARD_NON_POINTING | 0x0500 | 表示非键盘非指向外围设备。 |
+| PERIPHERAL_KEYBOARD | 0x0540 | 表示外设键盘设备。 |
+| PERIPHERAL_POINTING_DEVICE | 0x0580 | 表示定点装置外围设备。 |
+| PERIPHERAL_KEYBOARD_POINTING| 0x05C0 | 表示键盘指向外围设备。 |
+| PERIPHERAL_UNCATEGORIZED | 0x0500 | 表示未分类外围设备。 |
+| PERIPHERAL_JOYSTICK | 0x0504 | 表示周边操纵杆设备。 |
+| PERIPHERAL_GAMEPAD | 0x0508 | 表示周边游戏板设备。 |
+| PERIPHERAL_REMOTE_CONTROL | 0x05C0 | 表示远程控制外围设备。 |
+| PERIPHERAL_SENSING_DEVICE | 0x0510 | 表示外围传感设备设备。 |
+| PERIPHERAL_DIGITIZER_TABLET | 0x0514 | 表示外围数字化仪平板电脑设备。 |
+| PERIPHERAL_CARD_READER | 0x0518 | 表示外围读卡器设备。 |
+| PERIPHERAL_DIGITAL_PEN | 0x051C | 表示外设数码笔设备。 |
+| PERIPHERAL_SCANNER_RFID | 0x0520 | 表示射频识别扫描仪外围设备。 |
+| PERIPHERAL_GESTURAL_INPUT | 0x0522 | 表示手势输入外围设备。 |
+| IMAGING_UNCATEGORIZED | 0x0600 | 表示未分类的图像设备。 |
+| IMAGING_DISPLAY | 0x0610 | 表示图像显示设备。 |
+| IMAGING_CAMERA | 0x0620 | 表示成像照相机设备。 |
+| IMAGING_SCANNER | 0x0640 | 表示成像扫描仪设备。 |
+| IMAGING_PRINTER | 0x0680 | 表示成像打印机设备。 |
+| WEARABLE_UNCATEGORIZED | 0x0700 | 表示未分类的可穿戴设备。 |
+| WEARABLE_WRIST_WATCH | 0x0704 | 表示可穿戴腕表设备。 |
+| WEARABLE_PAGER | 0x0708 | 表示可穿戴寻呼机设备。 |
+| WEARABLE_JACKET | 0x070C | 表示夹克可穿戴设备。 |
+| WEARABLE_HELMET | 0x0710 | 表示可穿戴头盔设备。 |
+| WEARABLE_GLASSES | 0x0714 | 表示可穿戴眼镜设备。 |
+| TOY_UNCATEGORIZED | 0x0800 | 表示未分类的玩具设备。 |
+| TOY_ROBOT| 0x0804 | 表示玩具机器人设备。 |
+| TOY_VEHICLE | 0x0808 | 表示玩具车设备。 |
+| TOY_DOLL_ACTION_FIGURE | 0x080C | 表示人形娃娃玩具设备。 |
+| TOY_CONTROLLER | 0x0810 | 表示玩具控制器设备。 |
+| TOY_GAME | 0x0814 | 表示玩具游戏设备。 |
+| HEALTH_UNCATEGORIZED | 0x0900 | 表示未分类健康设备。 |
+| HEALTH_BLOOD_PRESSURE | 0x0904 | 表示血压健康设备。 |
+| HEALTH_THERMOMETER | 0x0908 | 表示温度计健康设备。 |
+| HEALTH_WEIGHING | 0x090C | 表示体重健康设备。 |
+| HEALTH_GLUCOSE | 0x0910 | 表示葡萄糖健康设备。 |
+| HEALTH_PULSE_OXIMETER | 0x0914 | 表示脉搏血氧仪健康设备。 |
+| HEALTH_PULSE_RATE | 0x0918 | 表示脉搏率健康设备。 |
+| HEALTH_DATA_DISPLAY | 0x091C | 表示数据显示健康设备。 |
+| HEALTH_STEP_COUNTER | 0x0920 | 表示阶梯计数器健康设备。 |
+| HEALTH_BODY_COMPOSITION_ANALYZER | 0x0924 | 表示身体成分分析仪健康设备。 |
+| HEALTH_PEAK_FLOW_MOITOR | 0x0928 | 表示湿度计健康设备。 |
+| HEALTH_MEDICATION_MONITOR | 0x092C | 表示药物监视仪健康设备。 |
+| HEALTH_KNEE_PROSTHESIS | 0x0930 | 表示膝盖假肢健康设备。 |
+| HEALTH_ANKLE_PROSTHESIS | 0x0934 | 表示脚踝假肢健康设备。 |
+| HEALTH_GENERIC_HEALTH_MANAGER | 0x0938 | 表示通用健康管理设备。 |
+| HEALTH_PERSONAL_MOBILITY_DEVICE | 0x093C | 表示个人移动健康设备。 |
