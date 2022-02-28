@@ -25,6 +25,9 @@
 AudioPlayer支持的src媒体源输入类型可参考：[src属性说明](../reference/apis/js-apis-media.md#audioplayer_属性)
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
         console.info('audio set source success');
@@ -79,8 +82,19 @@ function printfDescription(obj) {
 //1、创建实例
 let audioPlayer = media.createAudioPlayer();
 SetCallBack(audioPlayer);                          //设置事件回调
-//2、用户选择音频，设置uri
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  //设置src属性，并触发'dataLoad'事件回调
+/* 用户选择视频设置fd(本地播放) */
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + " + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+audioPlayer.src = fdPath;                         //设置src属性，并触发'dataLoad'事件回调
 //3、播放音频
 audioPlayer.play();                               //需等待'dataLoad'事件回调完成后，才可调用play进行播放，触发'play'事件回调
 //4、跳转播放位置
@@ -111,6 +125,9 @@ audioPlayer = undefined;
 ### 正常播放场景
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
         console.info('audio set source success');
@@ -128,13 +145,27 @@ function SetCallBack(audioPlayer) {
 
 let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
 SetCallBack(audioPlayer);                          //设置事件回调
-/* 用户选择音频，设置uri */
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  //设置src属性，并触发'dataLoad'事件回调
+/* 用户选择视频设置fd(本地播放) */
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + " + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+audioPlayer.src = fdPath;                           //设置src属性，并触发'dataLoad'事件回调
 ```
 
 ### 切歌场景
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
         console.info('audio set source success');
@@ -152,16 +183,42 @@ function SetCallBack(audioPlayer) {
 
 let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
 SetCallBack(audioPlayer);                          //设置事件回调
-/* 用户选择音频，设置uri */
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  //设置src属性，并触发'dataLoad'事件回调
+/* 用户选择视频设置fd(本地播放) */
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + " + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+audioPlayer.src = fdPath;                           //设置src属性，并触发'dataLoad'事件回调
 /* 播放一段时间后，下发切歌指令 */
 audioPlayer.reset();
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/next.mp3';
+
+/* 用户选择视频设置fd(本地播放) */
+let fdNextPath = 'fd://'
+let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(nextPath).then(fdNumber) => {
+   fdNextPath = fdNextPath + " + fdNumber;
+   console.info('open fd sucess fd is' + fdNextPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+audioPlayer.src = fdNextPath;
 ```
 
 ### 单曲循环场景
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
         console.info('audio set source success');
@@ -179,7 +236,19 @@ function SetCallBack(audioPlayer) {
 
 let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
 SetCallBack(audioPlayer);                          //设置事件回调
-/* 用户选择音频，设置uri */
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  //设置src属性，并触发'dataLoad'事件回调
-audioPlayer.loop = true;                           //设置循环播放属性
+
+/* 用户选择视频设置fd(本地播放) */
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + " + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+audioPlayer.src = fdPath;                           //设置src属性，并触发'dataLoad'事件回调
+audioPlayer.loop = true;                            //设置循环播放属性
 ```
