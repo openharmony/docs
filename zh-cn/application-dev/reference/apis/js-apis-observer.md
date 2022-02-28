@@ -177,3 +177,89 @@ observer.off('signalInfoChange', callback);
 observer.off('signalInfoChange');
 ```
 
+
+## observer.on('callStateChange')<a name=observer.on.callStateChange-callback></a>
+
+on(type: 'callStateChange', callback: Callback\<{ state: [CallState](js-apis-call.md#CallState), number: string }\>): void;
+
+订阅通话状态变化事件，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CALL_LOG
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 通话状态变化事件                                             |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#CallState), number: string }\> | 是   | 回调函数，参考call的[CallState](js-apis-call.md#CallState)<br />number：电话号码 |
+
+**示例：**
+
+```
+observer.on('callStateChange', value =>{ 
+    console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
+});
+```
+
+
+## observer.on('callStateChange')<a name=observer.on.callStateChange.options-callback></a>
+
+on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state: [CallState](js-apis-call.md#CallState), number: string }>): void;
+
+订阅通话状态变化事件，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CALL_LOG
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 通话状态变化事件                                             |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#CallState), number: string }\> | 是   | 回调函数，参考call的[CallState](js-apis-call.md#CallState)<br />number：电话号码 |
+
+**示例：**
+
+```
+observer.on('callStateChange', {slotId: 0}, value =>{ 
+    console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
+});
+```
+
+
+## observer.off('callStateChange')<a name=observer.off.callStateChange-callback></a>
+
+off(type: 'callStateChange', callback?: Callback<{ state: [CallState](js-apis-call.md#CallState), number: string }>): void;
+
+取消订阅通话状态变化事件，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CALL_LOG
+
+>**说明：**
+>
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 通话状态变化事件                                             |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#CallState), number: string }\> | 否   | 回调函数，参考call的[CallState](js-apis-call.md#CallState)<br />number：电话号码 |
+
+**示例：**
+
+```
+let callback = value => {
+    console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
+}
+observer.on('callStateChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+observer.off('callStateChange', callback);
+observer.off('callStateChange');
+```

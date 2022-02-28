@@ -16,6 +16,8 @@ createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallba
 
 根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Telephony.SmsMms
+
 **参数：**
 
 | 参数名        | 类型                                               | 必填 | 说明                                                         |
@@ -41,6 +43,8 @@ sms.createMessage(pdu, specification, (err, data) => {
 createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessage\>
 
 根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 **参数：**
 
@@ -75,7 +79,9 @@ sendMessage(options: SendMessageOptions): void
 
 发送短信。
 
-需要ohos.permission.SEND_MESSAGES权限。
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 **参数：**
 
@@ -108,6 +114,8 @@ getDefaultSmsSlotId\(callback: AsyncCallback<number\>\): void
 
 获取发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Telephony.SmsMms
+
 **参数：**
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
@@ -128,6 +136,8 @@ sms.getDefaultSmsSlotId((err, data) => {
 getDefaultSmsSlotId\(\): Promise<number\>
 
 获取发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 **返回值：**
 
@@ -153,7 +163,9 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 设置短信服务中心（SMSC）地址，使用callback方式作为异步方法。
 
-需要ohos.permission.SET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 **参数：**
 
@@ -180,7 +192,9 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise<void\>
 
 设置短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
 
-需要ohos.permission.SET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 **参数：**
 
@@ -215,7 +229,9 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取短信服务中心（SMSC）地址，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 **参数：**
 
@@ -240,7 +256,9 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 获取短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 **参数：**
 
@@ -271,6 +289,8 @@ promise.then(data => {
 
 短信实例。
 
+**系统能力**：SystemCapability.Telephony.SmsMms
+
 | 变量                     | 类型                                    | 说明                                                         |
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
 | emailAddress             | string                                  | 电子邮件地址。                                               |
@@ -294,13 +314,13 @@ promise.then(data => {
 
 短信类型。
 
-| 变量             | 值   | 说明                                     |
-| ---------------- | ---- | ---------------------------------------- |
-| UNKNOWN          | 0    | 未知类型。                               |
-| INSTANT_MESSAGE  | 1    | 即时消息，收到后立即显示。               |
-| OPTIONAL_MESSAGE | 2    | 存储在设备或SIM卡上的短信。              |
-| SIM_MESSAGE      | 3    | 包含SIM卡信息的短信，需要存储在SIM卡中。 |
-| FORWARD_MESSAGE  | 4    | 要转发到另一台设备的短信。               |
+| 变量             | 值   | 说明                                                         |
+| ---------------- | ---- | ------------------------------------------------------------ |
+| UNKNOWN          | 0    | 未知类型。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
+| INSTANT_MESSAGE  | 1    | 即时消息，收到后立即显示。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
+| OPTIONAL_MESSAGE | 2    | 存储在设备或SIM卡上的短信。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
+| SIM_MESSAGE      | 3    | 包含SIM卡信息的短信，需要存储在SIM卡中。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
+| FORWARD_MESSAGE  | 4    | 要转发到另一台设备的短信。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
 
 
 ## SendMessageOptions<a name=SendMessageOptions></a>
@@ -308,6 +328,8 @@ promise.then(data => {
 发送短信的参数和回调。
 
 根据SendMessageOptions中的可选参数content的值判断短信类型。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 | 参数名           | 类型                                                         | 必填 | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -324,6 +346,8 @@ promise.then(data => {
 
 回调实例。返回短信发送结果、存储已发送短信的URI和是否为长短信的最后一部分。
 
+**系统能力**：SystemCapability.Telephony.SmsMms
+
 | 参数名     | 类型                            | 必填 | 说明                                                         |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | isLastPart | boolean                         | 否   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
@@ -335,6 +359,8 @@ promise.then(data => {
 
 回调实例。返回短信送达报告。
 
+**系统能力**：SystemCapability.Telephony.SmsMms
+
 | 参数名 | 类型                | 必填 | 说明           |
 | ------ | ------------------- | ---- | -------------- |
 | pdu    | Array&lt;number&gt; | 是   | 短信送达报告。 |
@@ -343,6 +369,8 @@ promise.then(data => {
 ## SendSmsResult<a name=SendSmsResult></a>
 
 短信发送结果。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 | 参数名                               | 值   | 说明                                                   |
 | ------------------------------------ | ---- | ------------------------------------------------------ |
