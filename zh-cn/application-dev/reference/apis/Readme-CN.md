@@ -74,6 +74,7 @@
     - [动画](js-apis-basic-features-animator.md)
     - [WebGL](js-apis-webgl.md)
     - [WebGL2](js-apis-webgl2.md)
+    - [屏幕截图](js-apis-screenshot.md)
 - DFX
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-hitracemeter.md)
