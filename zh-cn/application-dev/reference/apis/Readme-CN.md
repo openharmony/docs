@@ -45,6 +45,7 @@
     -   [短信服务](js-apis-sms.md)
     -   [SIM卡管理](js-apis-sim.md)
     -   [网络搜索](js-apis-radio.md)
+    -   [observer](js-apis-observer.md)
 - 网络与连接
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
@@ -73,6 +74,7 @@
     - [动画](js-apis-basic-features-animator.md)
     - [WebGL](js-apis-webgl.md)
     - [WebGL2](js-apis-webgl2.md)
+    - [屏幕截图](js-apis-screenshot.md)
 - DFX
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-hitracemeter.md)

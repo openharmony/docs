@@ -41,7 +41,7 @@ None
 <td class="cellrowborder" valign="top" width="52.42%" headers="mcps1.1.6.1.5 "><p id="p72131224114411"><a name="p72131224114411"></a><a name="p72131224114411"></a>Protocol in the URI.</p>
 </td>
 </tr>
-<tr id="row58631729183511"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p1669917383355"><a name="p1669917383355"></a><a name="p1669917383355"></a>userinfo</p>
+<tr id="row58631729183511"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p1669917383355"><a name="p1669917383355"></a><a name="p1669917383355"></a>userInfo</p>
 </td>
 <td class="cellrowborder" valign="top" width="10.86%" headers="mcps1.1.6.1.2 "><p id="p986510296359"><a name="p986510296359"></a><a name="p986510296359"></a>string</p>
 </td>

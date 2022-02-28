@@ -135,3 +135,34 @@ build() {
     Text(this.calcTextValue()) // this function call is ok.
 }
 ```
+
+
+## $$
+
+$$支持变量双向绑定，支持简单变量、@State、@Link、@Prop等类型。
+
+当前$$仅支持[bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md)属性的show参数和@State变量之间的渲染，以及Radio组件的checked属性。
+
+
+```
+@Entry
+@Component
+struct bindPopup {
+	@State customPopup: boolean = false
+	build() {
+		Column() {
+			Button(){
+				Text('Popup')
+			}
+			.onClick(()=>{
+				this.customPopup = !this.customPopup
+			})
+			.bindPopup(
+				$$this.customPopup, {
+					message: "showPopup"
+				}
+			)
+		}
+	}
+}
+```

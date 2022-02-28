@@ -271,9 +271,9 @@ OpenHarmony支持如下几种系统类型：
 <td class="cellrowborder" valign="top" width="8.35916408359164%" headers="mcps1.1.4.1.3 "><p id="p1962012112314"><a name="p1962012112314"></a><a name="p1962012112314"></a>标准系统</p>
 </td>
 </tr>
-<tr id="row176674368222"><td class="cellrowborder" valign="top" width="11.148885111488852%" headers="mcps1.1.4.1.1 "><p id="p3667203652214"><a name="p3667203652214"></a><a name="p3667203652214"></a>用户程序框架</p>
+<tr id="row176674368222"><td class="cellrowborder" valign="top" width="11.148885111488852%" headers="mcps1.1.4.1.1 "><p id="p3667203652214"><a name="p3667203652214"></a><a name="p3667203652214"></a>包管理子系统</p>
 </td>
-<td class="cellrowborder" valign="top" width="80.49195080491951%" headers="mcps1.1.4.1.2 "><p id="p12923326230"><a name="p12923326230"></a><a name="p12923326230"></a>提供包安装、卸载、运行及管理能力。</p>
+<td class="cellrowborder" valign="top" width="80.49195080491951%" headers="mcps1.1.4.1.2 "><p id="p12923326230"><a name="p12923326230"></a><a name="p12923326230"></a>提供包安装、卸载、更新、查询等能力。</p>
 </td>
 <td class="cellrowborder" valign="top" width="8.35916408359164%" headers="mcps1.1.4.1.3 "><p id="p12667123619226"><a name="p12667123619226"></a><a name="p12667123619226"></a>所有系统</p>
 </td>

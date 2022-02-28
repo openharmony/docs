@@ -3,24 +3,19 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```
 import usb from "@ohos.usb";
 ```
 
-
-## 权限
-
-无
-
-
 ## usb.getDevices
 
 usb.getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 获取USB设备列表。
+
+**系统能力**: SystemCapability.USB.USBManager
 
 - 返回值：
   | 类型 | 说明 |
@@ -92,6 +87,8 @@ usb.connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device；再调用[usb.requestRight](#usbrequestright)获取设备请求权限。
 
+**系统能力**: SystemCapability.USB.USBManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -114,6 +111,8 @@ usb.connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 usb.hasRight(deviceName: string): boolean
 
 判断是否有权访问该设备。
+
+**系统能力**: SystemCapability.USB.USBManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -138,6 +137,8 @@ usb.hasRight(deviceName: string): boolean
 usb.requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 请求软件包的临时权限以访问设备。
+
+**系统能力**: SystemCapability.USB.USBManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -166,6 +167,8 @@ usb.claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): n
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
 
+**系统能力**: SystemCapability.USB.USBManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -193,6 +196,8 @@ usb.releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 需要调用[usb.claimInterface](#usbclaiminterface)先获取接口，才能使用此方法释放接口。
 
+**系统能力**: SystemCapability.USB.USBManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -218,6 +223,8 @@ usb.setConfiguration(pipe: USBDevicePipe, config: USBConfig): number
 设置设备配置。
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及config；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
+
+**系统能力**: SystemCapability.USB.USBManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -245,6 +252,8 @@ usb.setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
 
+**系统能力**: SystemCapability.USB.USBManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -271,6 +280,8 @@ usb.getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
 
+**系统能力**: SystemCapability.USB.USBManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -295,6 +306,8 @@ usb.getFileDescriptor(pipe: USBDevicePipe): number
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
 
+**系统能力**: SystemCapability.USB.USBManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -318,6 +331,8 @@ usb.controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?
 控制传输。
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
+
+**系统能力**: SystemCapability.USB.USBManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -346,6 +361,8 @@ usb.bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array,
 批量传输。
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息列表以及endpoint；再调用[usb.requestRight](#usbrequestright)获取设备请求权限；然后调用[usb.connectDevice](#usbconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usb.claimInterface](#usbclaiminterface)；再调用usb.bulkTransfer接口。
+
+**系统能力**: SystemCapability.USB.USBManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -379,6 +396,8 @@ usb.closePipe(pipe: USBDevicePipe): number
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
 
+**系统能力**: SystemCapability.USB.USBManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -402,14 +421,14 @@ usb.closePipe(pipe: USBDevicePipe): number
 
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| address | number | 端点地址。 |
-| attributes | number | 端点属性。 |
-| interval | number | 端点间隔。 |
-| maxPacketSize | number | 端点最大数据包大小。 |
-| direction | [USBRequestDirection](#usbrequestdirection) | 端点的方向。 |
-| number | number | 端点号。 |
-| type | number | 端点类型。 |
-| interfaceId | number | 端点所属的接口的唯一标识。 |
+| address | number | 端点地址。<br>**系统能力**: SystemCapability.USB.USBManager |
+| attributes | number | 端点属性。<br>**系统能力**: SystemCapability.USB.USBManager |
+| interval | number | 端点间隔。<br>**系统能力**: SystemCapability.USB.USBManager |
+| maxPacketSize | number | 端点最大数据包大小。<br>**系统能力**: SystemCapability.USB.USBManager |
+| direction | [USBRequestDirection](#usbrequestdirection) | 端点的方向。<br>**系统能力**: SystemCapability.USB.USBManager |
+| number | number | 端点号。<br>**系统能力**: SystemCapability.USB.USBManager |
+| type | number | 端点类型。<br>**系统能力**: SystemCapability.USB.USBManager |
+| interfaceId | number | 端点所属的接口的唯一标识。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 
 ## USBInterface
@@ -418,13 +437,13 @@ usb.closePipe(pipe: USBDevicePipe): number
 
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| id | number | 接口的唯一标识。 |
-| protocol | number | 接口的协议。 |
-| clazz | number | 设备类型。 |
-| subClass | number | 设备子类。 |
-| alternateSetting | number | 在同一个接口中的多个描述符中进行切换设置。 |
-| name | string | 接口名称。 |
-| endpoints | Array&lt;[USBEndpoint](#usbendpoint)&gt; | 当前接口所包含的端点。 |
+| id | number | 接口的唯一标识。<br>**系统能力**: SystemCapability.USB.USBManager |
+| protocol | number | 接口的协议。<br>**系统能力**: SystemCapability.USB.USBManager |
+| clazz | number | 设备类型。<br>**系统能力**: SystemCapability.USB.USBManager |
+| subClass | number | 设备子类。<br>**系统能力**: SystemCapability.USB.USBManager |
+| alternateSetting | number | 在同一个接口中的多个描述符中进行切换设置。<br>**系统能力**: SystemCapability.USB.USBManager |
+| name | string | 接口名称。<br>**系统能力**: SystemCapability.USB.USBManager |
+| endpoints | Array&lt;[USBEndpoint](#usbendpoint)&gt; | 当前接口所包含的端点。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 
 ## USBConfig
@@ -433,13 +452,13 @@ USB配置，一个[USBDevice](#usbdevice)中可以含有多个配置。
 
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| id | number | 配置的唯一标识。 |
-| attributes | number | 配置的属性。 |
-| maxPower | number | 最大功耗，以毫安为单位。 |
-| name | string | 配置的名称，可以为空。 |
-| isRemoteWakeup | boolean | 检查当前配置是否支持远程唤醒。 |
-| isSelfPowered | boolean | 检查当前配置是否支持独立电源。 |
-| interfaces | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | 配置支持的接口属性。 |
+| id | number | 配置的唯一标识。<br>**系统能力**: SystemCapability.USB.USBManager |
+| attributes | number | 配置的属性。<br>**系统能力**: SystemCapability.USB.USBManager |
+| maxPower | number | 最大功耗，以毫安为单位。<br>**系统能力**: SystemCapability.USB.USBManager |
+| name | string | 配置的名称，可以为空。<br>**系统能力**: SystemCapability.USB.USBManager |
+| isRemoteWakeup | boolean | 检查当前配置是否支持远程唤醒。<br>**系统能力**: SystemCapability.USB.USBManager |
+| isSelfPowered | boolean | 检查当前配置是否支持独立电源。<br>**系统能力**: SystemCapability.USB.USBManager |
+| interfaces | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | 配置支持的接口属性。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 
 ## USBDevice
@@ -448,19 +467,19 @@ USB设备信息。
 
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| busNum | number | 总线地址。 |
-| devAddress | number | 设备地址。 |
-| serial | string | 序列号。 |
-| name | string | 设备名字。 |
-| manufacturerName | string | 产商信息。 |
-| productName | string | 产品信息。 |
-| version | string | 版本。 |
-| vendorId | number | 厂商ID。 |
-| productId | number | 产品ID。 |
-| clazz | number | 设备类。 |
-| subClass | number | 设备子类。 |
-| protocol | number | 设备协议码。 |
-| configs | Array&lt;[USBConfig](#usbconfig)&gt; | 设备配置描述符信息。 |
+| busNum | number | 总线地址。<br>**系统能力**: SystemCapability.USB.USBManager |
+| devAddress | number | 设备地址。<br>**系统能力**: SystemCapability.USB.USBManager |
+| serial | string | 序列号。<br>**系统能力**: SystemCapability.USB.USBManager |
+| name | string | 设备名字。<br>**系统能力**: SystemCapability.USB.USBManager |
+| manufacturerName | string | 产商信息。<br>**系统能力**: SystemCapability.USB.USBManager |
+| productName | string | 产品信息。<br>**系统能力**: SystemCapability.USB.USBManager |
+| version | string | 版本。<br>**系统能力**: SystemCapability.USB.USBManager |
+| vendorId | number | 厂商ID。<br>**系统能力**: SystemCapability.USB.USBManager |
+| productId | number | 产品ID。<br>**系统能力**: SystemCapability.USB.USBManager |
+| clazz | number | 设备类。<br>**系统能力**: SystemCapability.USB.USBManager |
+| subClass | number | 设备子类。<br>**系统能力**: SystemCapability.USB.USBManager |
+| protocol | number | 设备协议码。<br>**系统能力**: SystemCapability.USB.USBManager |
+| configs | Array&lt;[USBConfig](#usbconfig)&gt; | 设备配置描述符信息。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 
 ## USBDevicePipe
@@ -469,8 +488,8 @@ USB设备消息传输通道，用于确定设备。
 
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| busNum | number | 总线地址。 |
-| devAddress | number | 设备地址。 |
+| busNum | number | 总线地址。<br>**系统能力**: SystemCapability.USB.USBManager |
+| devAddress | number | 设备地址。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 
 ## USBControlParams
@@ -480,11 +499,11 @@ USB设备消息传输通道，用于确定设备。
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
 | request | number | 请求类型。 |
-| target | [USBRequestTargetType](#usbrequesttargettype) | 请求目标类型。 |
-| reqType | [USBControlRequestType](#usbcontrolrequesttype) | 请求控制类型。 |
-| value | number | 请求参数。 |
-| index | number | 请求参数value对应的索引值。 |
-| data | Uint8Array | 用于写入或读取的缓冲区。 |
+| target | [USBRequestTargetType](#usbrequesttargettype) | 请求目标类型。<br>**系统能力**: SystemCapability.USB.USBManager |
+| reqType | [USBControlRequestType](#usbcontrolrequesttype) | 请求控制类型。<br>**系统能力**: SystemCapability.USB.USBManager |
+| value | number | 请求参数。<br>**系统能力**: SystemCapability.USB.USBManager |
+| index | number | 请求参数value对应的索引值。<br>**系统能力**: SystemCapability.USB.USBManager |
+| data | Uint8Array | 用于写入或读取的缓冲区。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 
 ## USBRequestTargetType
@@ -494,10 +513,10 @@ USB设备消息传输通道，用于确定设备。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| USB_REQUEST_TARGET_DEVICE | 0 | 设备。 |
-| USB_REQUEST_TARGET_INTERFACE | 1 | 接口。 |
-| USB_REQUEST_TARGET_ENDPOINT | 2 | 端点。 |
-| USB_REQUEST_TARGET_OTHER | 3 | 其他。 |
+| USB_REQUEST_TARGET_DEVICE | 0 | 设备。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_TARGET_INTERFACE | 1 | 接口。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_TARGET_ENDPOINT | 2 | 端点。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_TARGET_OTHER | 3 | 其他。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 
 ## USBControlRequestType
@@ -506,9 +525,9 @@ USB设备消息传输通道，用于确定设备。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| USB_REQUEST_TYPE_STANDARD | 0 | 标准。 |
-| USB_REQUEST_TYPE_CLASS | 1 | 类。 |
-| USB_REQUEST_TYPE_VENDOR | 2 | 厂商。 |
+| USB_REQUEST_TYPE_STANDARD | 0 | 标准。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_TYPE_CLASS | 1 | 类。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_TYPE_VENDOR | 2 | 厂商。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 
 ## USBRequestDirection
@@ -517,12 +536,12 @@ USB设备消息传输通道，用于确定设备。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| USB_REQUEST_TYPE_STANDARD | 0 | 写数据，主设备往从设备。 |
-| USB_REQUEST_TYPE_CLASS | 0x80 | 读数据，从设备往主设备。 |
+| USB_REQUEST_TYPE_STANDARD | 0 | 写数据，主设备往从设备。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_TYPE_CLASS | 0x80 | 读数据，从设备往主设备。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| NONE | 0 | 无。 |
-| ACM | 1 | 串口设备。 |
-| ECM | 2 | 网口设备。 |
-| HDC | 4 | HDC设备。 |
+| NONE | 0 | 无。<br>**系统能力**: SystemCapability.USB.USBManager |
+| ACM | 1 | 串口设备。<br>**系统能力**: SystemCapability.USB.USBManager |
+| ECM | 2 | 网口设备。<br>**系统能力**: SystemCapability.USB.USBManager |
+| HDC | 4 | HDC设备。<br>**系统能力**: SystemCapability.USB.USBManager |

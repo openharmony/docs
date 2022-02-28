@@ -3,6 +3,9 @@
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## System Capabilities
+SystemCapability.DistributedDataManager.RelationalStore.Core
+
 ## Usage<a name="section42211227142416"></a>
 
 The  **resultSet**  object is obtained by using  [**RdbStore.query\(\)**](js-apis-data-rdb.md#section6231155031814).
@@ -13,8 +16,8 @@ let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("AGE", 18)
 let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
 promise.then((resultSet) => {
-    await console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
-    await console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
+    console.log("resultSet columnNames:" + resultSet.columnNames);
+    console.log("resultSet columnCount:" + resultSet.columnCount);
 ```
 
 ## Required Permissions<a name="section11257113618419"></a>
@@ -291,10 +294,11 @@ Moves the cursor to the row based on the specified offset.
 
     ```
     let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-    let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-    resultSet.goTo(1)
-    resultSet.close()
-    resultSet = null
+    rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
+      resultSet.goTo(1);
+      resultSet.close();
+      resultSet = null;
+    })
     ```
 
 
@@ -351,10 +355,11 @@ Moves the cursor to the specified row in the result set.
 
     ```
     let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-    let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-    resultSet.goToRow(1)
-    resultSet.close()
-    resultSet = null
+    rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
+      resultSet.goToRow(1);
+      resultSet.close();
+      resultSet = null
+    })
     ```
 
 
@@ -385,10 +390,11 @@ Moves the cursor to the first row of the result set.
 
     ```
     let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-    let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-    resultSet.goToFirstRow()
-    resultSet.close()
-    resultSet = null;
+    rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
+      resultSet.goToFirstRow();
+      resultSet.close();
+      resultSet = null;
+    })
     ```
 
 
@@ -419,10 +425,11 @@ Moves the cursor to the last row of the result set.
 
     ```
     let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-    let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-    resultSet.goToLastRow()
-    resultSet.close()
-    resultSet = null;
+    rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
+      resultSet.goToLastRow();
+      resultSet.close();
+      resultSet = null;
+    })
     ```
 
 
@@ -453,10 +460,11 @@ Moves the cursor to the next row in the result set.
 
     ```
     let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-    let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-    resultSet.goToNextRow()
-    resultSet.close()
-    resultSet = null;
+    rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
+      resultSet.goToNextRow()
+      resultSet.close()
+      resultSet = null;
+    })
     ```
 
 
@@ -487,10 +495,11 @@ Moves the cursor to the previous row in the result set.
 
     ```
     let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-    let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-    resultSet.goToPreviousRow()
-    resultSet.close()
-    resultSet = null
+    rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
+      resultSet.goToPreviousRow();
+      resultSet.close();
+      resultSet = null
+    })
     ```
 
 
@@ -780,9 +789,10 @@ Closes the result set.
 
     ```
     let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-    let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-    resultSet.close()
-    resultSet = null
+    rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet) => {
+      resultSet.close();
+      resultSet = null
+    })
     ```
 
 

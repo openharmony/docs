@@ -101,10 +101,12 @@ static UINT32 Example_Interrupt(VOID)
     UINT32 ret;
     HWI_PRIOR_T hwiPrio = 3;
     HWI_MODE_T mode = 0;
-    HWI_ARG_T arg = 0;
-  
+    HwiIrqParam irqParam;
+    (void)memset_s(&irqParam, sizeof(HwiIrqParam), 0, sizeof(HwiIrqParam));
+    irqParam.pDevId = 0;
+
     /*创建中断*/
-    ret = LOS_HwiCreate(HWI_NUM_TEST, hwiPrio, mode, (HWI_PROC_FUNC)HwiUsrIrq, arg);
+    ret = LOS_HwiCreate(HWI_NUM_TEST, hwiPrio, mode, (HWI_PROC_FUNC)HwiUsrIrq, &irqParam);
     if(ret == LOS_OK){
         printf("Hwi create success!\n");
     } else {

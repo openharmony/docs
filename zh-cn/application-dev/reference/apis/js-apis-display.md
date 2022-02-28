@@ -3,17 +3,11 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```
 import display from '@ohos.display';
 ```
-
-
-## 权限列表
-
-无
 
 
 ## DisplayState
@@ -22,13 +16,13 @@ import display from '@ohos.display';
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| STATE_UNKNOWN | 0 | 表示显示设备状态未知。 |
-| STATE_OFF | 1 | 表示显示设备状态为关闭。 |
-| STATE_ON | 2 | 表示显示设备状态为开启。 |
-| STATE_DOZE | 3 | 表示显示设备为低电耗模式。 |
-| STATE_DOZE_SUSPEND | 4 | 表示显示设备为睡眠模式，CPU为挂起状态&nbsp;。 |
-| STATE_VR | 5 | 表示显示设备为VR模式。 |
-| STATE_ON_SUSPEND | 6 | 表示显示设备为开启状态，CPU为挂起状态。 |
+| STATE_UNKNOWN | 0 | 表示显示设备状态未知。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| STATE_OFF | 1 | 表示显示设备状态为关闭。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| STATE_ON | 2 | 表示显示设备状态为开启。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| STATE_DOZE | 3 | 表示显示设备为低电耗模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| STATE_DOZE_SUSPEND | 4 | 表示显示设备为睡眠模式，CPU为挂起状态&nbsp;。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| STATE_VR | 5 | 表示显示设备为VR模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| STATE_ON_SUSPEND | 6 | 表示显示设备为开启状态，CPU为挂起状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
 
 ## Display
@@ -37,31 +31,33 @@ import display from '@ohos.display';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| id | number | 是 | 否 | 显示设备的id号。 |
-| name | string | 是 | 否 | 显示设备的名称。 |
-| alive | boolean | 是 | 否 | 显示设备是否启用。 |
-| state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。 |
-| refreshRate | number | 是 | 否 | 显示设备的刷新率。 |
-| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。 |
-| width | number | 是 | 否 | 显示设备的宽度，单位为像素。 |
-| height | number | 是 | 否 | 显示设备的高度，单位为像素。 |
-| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，单位为DPI。 |
-| densityPixels | number | 是 | 否 | 显示设备的屏幕密度，单位为像素。 |
-| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。 |
-| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |
-| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。 |
+| id | number | 是 | 否 | 显示设备的id号。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| name | string | 是 | 否 | 显示设备的名称。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| alive | boolean | 是 | 否 | 显示设备是否启用。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| state | [DisplayState](#DisplayState) | 是 | 否 | 显示设备的状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| refreshRate | number | 是 | 否 | 显示设备的刷新率。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| width | number | 是 | 否 | 显示设备的宽度，单位为像素。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| height | number | 是 | 否 | 显示设备的高度，单位为像素。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，单位为DPI。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| densityPixels | number | 是 | 否 | 显示设备的屏幕密度，单位为像素。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
 
 ## display.getDefaultDisplay
 
-getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void;
+getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 获取当前默认的display对象。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调返回显示设备的属性。 |
+  | callback | AsyncCallback&lt;[Display](#Display)&gt; | 是 | 回调返回当前默认的display对象。 |
 
 - 示例
   ```
@@ -76,19 +72,47 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void;
   });
   ```
 
+## display.getDefaultDisplay
+
+getDefaultDisplay(): Promise&lt;Display&gt;
+
+获取当前默认的display对象。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                               | 说明                                           |
+  | ---------------------------------- | ---------------------------------------------- |
+  | Promise&lt;[Display](#Display)&gt; | 以Promise形式返回结果，返回默认的display对象。 |
+
+- 示例
+
+  ```
+  let promise = display.getDefaultDisplay();
+  promise.then(() => {
+      console.log('getDefaultDisplay success');
+  }).catch((err) => {
+      console.log('getDefaultDisplay fail: ' + JSON.stringify(err));
+  });
+  ```
 
 ## display.getAllDisplay
 
-getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void;
+getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 获取当前所有的display对象。
 
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是 | 回调返回多个显示设备的属性。 |
+
+  | 参数名   | 类型                                                 | 必填 | 说明                            |
+  | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[Display](Display)&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
 
 - 示例
+
   ```
   display.getAllDisplay((err, data) => {
       if (err) {
@@ -99,12 +123,38 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void;
   });
   ```
 
+## display.getAllDisplay
+
+getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
+
+获取当前所有的display对象。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                                            | 说明                                                    |
+  | ----------------------------------------------- | ------------------------------------------------------- |
+  | Promise&lt;Array&lt;[Display](#Display)&gt;&gt; | 以Promise形式返回结果，返回包含所有Display对象的Array。 |
+
+- 示例
+
+  ```
+  let promise = display.getAllDisplay();
+  promise.then(() => {
+      console.log('getAllDisplay success');
+  }).catch((err) => {
+      console.log('getAllDisplay fail: ' + JSON.stringify(err));
+  });
+  ```
 
 ## display.on('add'|'remove'|'change')
 
-on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void;
+on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 开启监听。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -124,9 +174,11 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void;
 
 ## display.off('add'|'remove'|'change')
 
-off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void;
+off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 关闭监听。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |

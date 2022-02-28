@@ -8,6 +8,8 @@
 ```
 import dataAbility from '@ohos.data.dataAbility'
 ```
+## System Capabilities
+SystemCapability.DistributedDataManager.DataShare.Consumer
 
 ## Required Permissions<a name="section11257113618419"></a>
 
@@ -1336,7 +1338,7 @@ Sets the  **DataAbilityPredicates**  to filter out duplicate records.
     ```
     let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
     predicates.equalTo("NAME", "Rose").distinct("NAME")
-    let resultSet = await rdbStore.query(predicates, ["NAME"])
+    rdbStore.query(predicates, ["NAME"])
     ```
 
 

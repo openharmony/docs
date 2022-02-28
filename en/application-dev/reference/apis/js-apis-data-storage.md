@@ -11,6 +11,9 @@ Lightweight storage provides applications with data processing capability and al
 import dataStorage from '@ohos.data.storage'
 ```
 
+## System Capabilities
+SystemCapability.DistributedDataManager.Preference.Core
+
 ## Required Permissions<a name="section11257113618419"></a>
 
 None
@@ -109,11 +112,13 @@ Reads a specified file and loads the data to the  **Storage**  instance for data
     import dataStorage from '@ohos.data.storage'
     import featureAbility from '@ohos.ability.featureAbility'
     
-    var context = featureAbility.getContext()
-    var path = await context.getFilesDir()
-    let storage = dataStorage.getStorageSync(path + '/mystore')
-    storage.putSync('startup', 'auto')
-    storage.flushSync()
+    (async () => {
+      var context = featureAbility.getContext()
+      var path = await context.getFilesDir()
+      let storage = dataStorage.getStorageSync(path + '/mystore')
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  })()
     ```
 
 
@@ -163,9 +168,10 @@ Reads a specified file and loads the data to the  **Storage**  instance for data
     import dataStorage from '@ohos.data.storage'
     import featureAbility from '@ohos.ability.featureAbility'
     
-    var context = featureAbility.getContext()
-    var path = await context.getFilesDir()
-    dataStorage.getStorage(path + '/mystore', function (err, storage) {
+    (async () => {
+      var context = featureAbility.getContext()
+      var path = await context.getFilesDir()
+      dataStorage.getStorage(path + '/mystore', function (err, storage) {
         if (err) {
             console.info("Get the storage failed, path: " + path + '/mystore')
             return;
@@ -173,6 +179,7 @@ Reads a specified file and loads the data to the  **Storage**  instance for data
         storage.putSync('startup', 'auto')
         storage.flushSync()
     })
+  })()
     ```
 
 
@@ -230,15 +237,17 @@ Reads a specified file and loads the data to the  **Storage**  instance for data
     import dataStorage from '@ohos.data.storage'
     import featureAbility from '@ohos.ability.featureAbility'
     
-    var context = featureAbility.getContext()
-    var path = await context.getFilesDir()
-    let promise = dataStorage.getStorage(path + '/mystore')
-    promise.then((storage) => {
+    (async () => {
+      var context = featureAbility.getContext()
+      var path = await context.getFilesDir()
+      let promise = dataStorage.getStorage(path + '/mystore')
+      promise.then((storage) => {
         storage.putSync('startup', 'auto')
         storage.flushSync()
     }).catch((err) => {
         console.info("Get the storage failed, path: " + path + '/mystore')
     })
+  }()
     ```
 
 

@@ -89,7 +89,7 @@
     - [HiSysEvent打点配置指导](subsys-dfx-hisysevent-logging-config.md)
     - [HiSysEvent打点指导](subsys-dfx-hisysevent-logging.md)
     - [HiSysEvent订阅指导](subsys-dfx-hisysevent-listening.md)
-    - [HiSysEvent查询指导](subsys-dfx-hisysevent-querying.md)
+    - [HiSysEvent查询指导](subsys-dfx-hisysevent-query.md)
     - [HiSysEvent工具使用指导](subsys-dfx-hisysevent-tool.md)
 - [研发工具链](subsys-toolchain.md)
   - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)

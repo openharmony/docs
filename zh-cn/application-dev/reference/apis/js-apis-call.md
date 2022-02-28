@@ -17,7 +17,9 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 拨打电话，使用callback方式作为异步方法。
 
-需要权限：ohos.permission.PLACE\_CALL权限，该权限为系统权限。
+**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
@@ -41,7 +43,9 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean
 
 拨打电话，可设置通话参数，使用callback方式作为异步方法。
 
-需要权限：ohos.permission.PLACE\_CALL权限，该权限为系统权限。
+**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
@@ -68,7 +72,9 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 拨打电话，可设置通话参数，使用promise方式作为异步方法。
 
-需要权限：ohos.permission.PLACE\_CALL权限，该权限为系统权限。
+**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
@@ -102,6 +108,8 @@ hasCall\(callback: AsyncCallback<boolean\>\): void
 
 判断是否存在通话，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Telephony.CallManager
+
 **参数：**
 
 | 参数     | 类型                         | 必填 | 说明                                                         |
@@ -122,6 +130,8 @@ call.hasCall((err, data) => {
 hasCall\(\): Promise<boolean\>
 
 判断是否存在通话，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **返回值：**
 
@@ -147,6 +157,8 @@ getCallState\(callback: AsyncCallback<CallState\>\): void
 
 获取通话状态，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Telephony.CallManager
+
 **参数：**
 
 | 参数     | 类型                                         | 必填 | 说明                                 |
@@ -167,6 +179,8 @@ call.getCallState((err, data) => {
 getCallState\(\): Promise<CallState\>
 
 获取通话状态，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **返回值：**
 
@@ -191,6 +205,8 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\)
 
 判断是否是紧急电话号码，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Telephony.CallManager
+
 **参数：**
 
 | 参数        | 类型                         | 必填 | 说明                                                         |
@@ -212,6 +228,8 @@ call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
 isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, callback: AsyncCallback<boolean\>\): void
 
 判断是否是紧急电话号码，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
@@ -235,6 +253,8 @@ call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
 isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\): Promise<boolean\>
 
 判断是否是紧急电话号码，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
@@ -266,6 +286,8 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 
 格式化电话号码，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Telephony.CallManager
+
 **参数：**
 
 | 参数        | 类型                        | 必填 | 说明                                 |
@@ -287,6 +309,8 @@ call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
 formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: AsyncCallback<string\>\): void
 
 格式化电话号码，可设置格式化参数，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
@@ -312,6 +336,8 @@ call.formatPhoneNumber("138xxxxxxxx",{
 formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise<string\>
 
 格式化电话号码，可设置格式化参数，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
@@ -349,6 +375,8 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 
 支持所有国家码。
 
+**系统能力**：SystemCapability.Telephony.CallManager
+
 **参数：**
 
 | 参数        | 类型                        | 必填 | 说明                                                  |
@@ -377,6 +405,8 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 需要格式化的手机号码需要与传入国家码相匹配，如中国手机号需要传入国家码CN，否则格式化后的手机号为null。
 
 支持所有国家码。
+
+**系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
@@ -407,6 +437,9 @@ promise.then(data => {
 ## DialOptions<a name=DialOptions></a>
 
 拨打电话的可选参数。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
 | 参数   | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | extras | boolean | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- fasle：语音通话。 |
@@ -414,16 +447,20 @@ promise.then(data => {
 ## CallState<a name=CallState></a>
 
 通话状态码。
+
 | 变量               | 值   | 说明                                                         |
 | ------------------ | ---- | ------------------------------------------------------------ |
-| CALL_STATE_UNKNOWN | -1   | 无效状态，当获取呼叫状态失败时返回。                         |
-| CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。                                     |
-| CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。                                     |
-| CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。 |
+| CALL_STATE_UNKNOWN | -1   | 无效状态，当获取呼叫状态失败时返回。<br />**系统能力**：SystemCapability.Telephony.CallManager |
+| CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。<br />**系统能力**：SystemCapability.Telephony.CallManager |
+| CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。<br />**系统能力**：SystemCapability.Telephony.CallManager |
+| CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。<br />**系统能力**：SystemCapability.Telephony.CallManager |
 
 ## EmergencyNumberOptions<sup>7+</sup><a name=EmergencyNumberOptions></a>
 
 判断是否是紧急电话号码的可选参数。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
 | 参数   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
 | slotId | number | 否   | 卡槽ID：<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
@@ -431,6 +468,9 @@ promise.then(data => {
 ## NumberFormatOptions<sup>7+</sup><a name=NumberFormatOptions></a>
 
 格式化号码的可选参数。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
 | 参数        | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
 | countryCode | string | 否   | 国家码，支持所有国家的国家码，如：中国（CN）。默认为：CN。 |

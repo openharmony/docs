@@ -39,8 +39,10 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 - 示例：
   ```
-  onCreate(want) {
+  class ServiceExt extends ServiceExtension {
+    onCreate(want) {
       console.log('onCreate, want:' + want.abilityName);
+    }
   }
   ```
 
@@ -53,9 +55,10 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 
 - 示例：
   ```
-  onDestroy() {
+  class ServiceExt extends ServiceExtension {
+    onDestroy() {
       console.log('onDestroy');
-      destory();
+    }
   }
   ```
 
@@ -74,8 +77,10 @@ Extension生命周期回调，如果是startAbility拉起的服务，会在onCre
 
 - 示例：
   ```
-  onRequest(want: Want, startId: number) {
+  class ServiceExt extends ServiceExtension {
+    onRequest(want, startId) {
       console.log('onRequest, want:' + want.abilityName);
+    }
   }
   ```
 
@@ -106,10 +111,11 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
       onRemoteRequest(code, data, reply, option) {
       }
   }
-  ...
-  onConnect(want) {
+  class ServiceExt extends ServiceExtension {
+    onConnect(want) {
       console.log('onConnect , want:' + want.abilityName);
       return new StubTest("test");
+    }
   }
   ```
 
@@ -127,7 +133,9 @@ Extension的生命周期，断开服务连接时回调。
 
 - 示例：
   ```
-  onDisconnect(want) {
+  class ServiceExt extends ServiceExtension {
+    onDisconnect(want) {
       console.log('onDisconnect, want:' + want.abilityName);
+    }
   }
   ```
