@@ -485,6 +485,7 @@ linkedList.clear();
 
 ### set
 set(index: number, element: T): void
+
 将此LinkedList中指定位置的元素替换为指定元素。
 
 **参数：**
@@ -529,6 +530,7 @@ linkedList.convertToArray();
 ### getFirst
 
 getFirst(): T
+
 获取LinkedList实例中的第一个元素。
 
 **返回值：**
@@ -551,6 +553,7 @@ linkedList.getFirst();
 ### getLast
 
 getLast(): T
+
 获取LinkedList实例中的最后一个元素。
 
 **返回值：**
@@ -572,7 +575,7 @@ linkedList.getLast();
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;T&gt;;、
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;;
 
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。

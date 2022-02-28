@@ -61,7 +61,7 @@ hashSet.isEmpty();
 
 has(value: T): boolean
 
-判断此HashSet中是否含有该指定key。
+判断此HashSet中是否含有该指定元素。
 
 **参数：**
 
@@ -159,7 +159,7 @@ hashSet.clear();
 
 values(): IterableIterator&lt;T&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的键值的新迭代器对象。
 
 **返回值：**
 
@@ -217,7 +217,7 @@ hashSet.forEach((value, key) => {
 ### entries
 entries(): IterableIterator<[T, T]>
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的元素的新迭代器对象。
 
 **返回值：**
 

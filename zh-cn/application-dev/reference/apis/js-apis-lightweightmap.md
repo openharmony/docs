@@ -314,7 +314,7 @@ set(key: K, value: V): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回添加数据后的hashmap。 |
+| Object | 返回添加数据后的LightWeightMap。 |
 
 **示例：**
 
@@ -484,7 +484,7 @@ while(temp != undefined) {
 
 values(): IterableIterator&lt;V&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的键值的新迭代器对象。
 
 **返回值：**
 
@@ -543,7 +543,7 @@ lightWeightMap.forEach((value, key) => {
 
 entries(): IterableIterator<[K, V]>
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的元素的新迭代器对象。
 
 **返回值：**
 

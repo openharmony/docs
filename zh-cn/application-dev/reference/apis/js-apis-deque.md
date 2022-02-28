@@ -194,6 +194,7 @@ deque.forEach((value, index) => {
 ### getFirst
 
 getFirst(): T;
+
 获取Deque实例中的头元素。
 
 **返回值：**
@@ -216,6 +217,7 @@ deque.getFirst();
 ### getLast
 
 getLast(): T
+
 获取Deque实例中的尾元素。
 
 **返回值：**

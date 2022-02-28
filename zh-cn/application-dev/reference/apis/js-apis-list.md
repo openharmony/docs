@@ -532,6 +532,7 @@ list.isEmpty();
 ### getFirst
 
 getFirst(): T
+
 获取List实例中的第一个元素。
 
 **返回值：**
@@ -554,6 +555,7 @@ list.getFirst();
 ### getLast
 
 getLast(): T
+
 获取List实例中的最后一个元素。
 
 **返回值：**

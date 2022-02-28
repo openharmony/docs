@@ -230,7 +230,7 @@ set(key: K, value: V): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回添加后的hashmap |
+| Object | 返回添加后的treemap |
 
 **示例：**
 
@@ -336,7 +336,7 @@ replace(key: K, value: V): boolean
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 依据key指定替换的元素。 |
-| value | V | 是 | 添加成员数据的值。 |
+| value | V | 是 | 成员数据的新值。 |
 
 **返回值：**
 
@@ -400,7 +400,7 @@ while(temp != undefined) {
 
 values(): IterableIterator&lt;V&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的键值的新迭代器对象。
 
 **返回值：**
 
@@ -459,7 +459,7 @@ treeMap.forEach((value, key) => {
 
 entries(): IterableIterator<[K, V]>
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的元素的新迭代器对象。
 
 **返回值：**
 
