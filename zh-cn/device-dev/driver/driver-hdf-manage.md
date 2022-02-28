@@ -347,8 +347,17 @@ root {
 node1 {
     attributes;
 }
-
 node2 {
+    attr_1 = &root.node1;
+}
+```
+或
+
+```
+node2 {
+    node1 {
+        attributes;
+    }
     attr_1 = &node1;
 }
 ```
