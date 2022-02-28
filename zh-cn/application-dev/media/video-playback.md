@@ -82,7 +82,7 @@ await media.createVideoPlayer().then((video) => {
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + " + fdNumber;
+   fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
@@ -224,7 +224,7 @@ SetCallBack(videoPlayer);
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + " + fdNumber;
+   fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
@@ -310,7 +310,7 @@ SetCallBack(videoPlayer);
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + " + fdNumber;
+   fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
@@ -345,7 +345,7 @@ await videoPlayer.reset().then(() => {
 let fdNextPath = 'fd://'
 let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
 await fileIO.open(nextPath).then(fdNumber) => {
-   fdNextPath = fdNextPath + " + fdNumber;
+   fdNextPath = fdNextPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdNextPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
@@ -431,7 +431,7 @@ SetCallBack(videoPlayer);
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + " + fdNumber;
+   fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);

@@ -86,7 +86,7 @@ SetCallBack(audioPlayer);                          //设置事件回调
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + " + fdNumber;
+   fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
@@ -149,7 +149,7 @@ SetCallBack(audioPlayer);                          //设置事件回调
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + " + fdNumber;
+   fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
@@ -187,7 +187,7 @@ SetCallBack(audioPlayer);                          //设置事件回调
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + " + fdNumber;
+   fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
@@ -241,7 +241,7 @@ SetCallBack(audioPlayer);                          //设置事件回调
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + " + fdNumber;
+   fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
