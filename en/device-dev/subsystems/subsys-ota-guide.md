@@ -371,8 +371,7 @@ Upload the update package to the vendor's OTA server.
 
     -   If the development board needs to be adapted, see the  **base\\update\\ota\_lite\\hals\\hal\_hota\_board.h**  file.
 
-2.  For the standard system, see the  _JS Reference Specifications_  for details.
-
+2.  For the standard system, see the [Reference Specifications](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-update.md) for details.
 
 ## API Application Scenario \(Default\)<a name="section1308521557162135"></a>
 

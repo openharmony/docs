@@ -1,16 +1,5 @@
 # HiSysEvent打点配置指导<a name="ZH-CN_TOPIC_0000001080478132"></a>
 
--   [概述](#section315316685115)
-    -   [基本概念](#section123181432175143)
-        -   [约束与限制](#section123181432175114)  
--   [编写yaml文件](#section123181432175113)
-    -   [yaml文件编写规则](#section123181432175133)
-        -   [yaml文件编写样例](#section123181432175123)
--   [验证yaml文件](#section123181432175115)
-    -   [配置yaml文件路径](#section123181432175135)
-    -   [编译yaml文件](#section123181432175137)
-    -   [打点及查询定义的事件](#section123181432175139)
-
 ## 概述<a name="section315316685115"></a>
 
 组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.js文件中[配置yaml文件的路径](#section123181432175135)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.js文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
@@ -76,7 +65,7 @@
 
 -   yaml文件样例指定的事件领域名称为MODULEA，该事件领域包含两个事件，名称分别是EVENT_NAMEA和EVENT_NAMEB。
 -   EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](subsys-dfx-hisysevent-listening.md)。
--   EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](subsys-dfx-hisysevent-read.md)，，所以还可以通过事件标签对该事件进行[实时订阅](subsys-dfx-hisysevent-listening.md)。
+-   EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](subsys-dfx-hisysevent-listening.md)，，所以还可以通过事件标签对该事件进行[实时订阅](subsys-dfx-hisysevent-listening.md)。
 
     ```
     ##########################################

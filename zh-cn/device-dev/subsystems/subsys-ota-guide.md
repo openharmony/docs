@@ -1,207 +1,272 @@
-# OTA升级<a name="ZH-CN_TOPIC_0000001052170816"></a>
+# OTA升级
 
--   [约束与限制](#section691733275418)
--   [生成公私钥对](#section94411533155010)
--   [生成升级包](#section632383718539)
--   [上传升级包](#section5772112473213)
--   [下载升级包](#section251732474917)
--   [厂商应用集成OTA能力](#section298217330534)
--   [API应用场景-默认场景](#section7685171192916)
-    -   [开发指导](#section0745926153017)
-    -   [示例代码](#section1337111363306)
+## 概述
 
--   [API应用场景-定制场景](#section1686395317306)
-    -   [开发指导](#section524515314317)
-    -   [示例代码](#section525974743120)
+OTA（Over the Air）提供对设备远程升级的能力，可以让您的设备（如IP摄像头等），轻松支持远程升级能力。目前轻量和小型系统仅支持全量包升级，暂不支持差分包升级。全量包升级是将新系统全部内容做成升级包，进行升级；差分包升级是将新老系统的差异内容做成升级包，进行升级。
 
--   [系统升级](#section151997114334)
+## 约束与限制
 
-OTA（Over the Air）提供对设备远程升级的能力，可以让您的设备（如IP摄像头等），轻松支持远程升级能力。目前仅支持全量包升级，暂不支持差分包升级。全量包升级是将新系统全部内容做成升级包，进行升级；差分包升级是将新老系统的差异内容做成升级包，进行升级。
+- 支持基于Hi3861/Hi3518EV300/Hi3516DV300芯片的开源套件。
 
-## 约束与限制<a name="section691733275418"></a>
-
--   支持基于Hi3861/Hi3518EV300/Hi3516DV300芯片的开源套件。
--   对Hi3518EV300/Hi3516DV300开源套件，设备需要支持SD卡（VFAT格式）。
-
-## 生成公私钥对<a name="section94411533155010"></a>
-
-1.  准备工作：在Windows PC 上，下载安装OpenSSL工具，并配置环境变量。OpenSSL下载路径：
-
-    [http://slproweb.com/products/Win32OpenSSL.html](http://slproweb.com/products/Win32OpenSSL.html)
-
-2.  在tools\\update\_tools\\update\_pkg\_tools目录下，下载升级包制作工具，保存到Windows本地路径，例如D:\\ota\_tools。
-3.  如图，运行ota\_tools\\key下的Generate\_public\_private\_key.bat ，生成公钥Metis\_PUBLIC.key、私钥private.key和公钥对应的数组public\_arr.txt文件，请妥善保管私钥private.key。
-
-    **图 1**  生成公私钥对<a name="fig12913135294011"></a>  
-    
-
-    ![](figure/zh-cn_image_0000001060200050.png)
-
-4.  用public\_arr.txt里面的全部内容替换OTA模块base\\update\\ota\_lite\\frameworks\\source\\verify\\hota\_verify.c中的g\_pubKeyBuf 。
-
-    示例，public\_arr.txt内容
-
-    ```
-    0x30,0x82,0x1,0xa,0x2,0x82,0x1,0x1,0x0,0xc7,0x8c,0xf3,0x91,0xa1,0x98,0xbf,0xb1,0x8c,
-    0xbe,0x22,0xde,0x32,0xb2,0xfa,0xec,0x2c,0x69,0xf6,0x8f,0x43,0xa7,0xb7,0x6f,0x1e,0x4a,0x97,
-    0x4b,0x27,0x5d,0x56,0x33,0x9a,0x73,0x4e,0x7c,0xf8,0xfd,0x1a,0xf0,0xe4,0x50,0xda,0x2b,0x8,
-    0x74,0xe6,0x28,0xcc,0xc8,0x22,0x1,0xa8,0x14,0x9,0x46,0x46,0x6a,0x10,0xcd,0x39,0xd,0xf3,
-    0x4a,0x7f,0x1,0x63,0x21,0x33,0x74,0xc6,0x4a,0xeb,0x68,0x40,0x55,0x3,0x80,0x1d,0xd9,0xbc,
-    0xd4,0xb0,0x4a,0x84,0xb7,0xac,0x43,0x1d,0x76,0x3a,0x61,0x40,0x23,0x3,0x88,0xcc,0x80,0xe,
-    0x75,0x10,0xe4,0xad,0xac,0xb6,0x4c,0x90,0x8,0x17,0x26,0x21,0xff,0xbe,0x1,0x82,0x16,0x76,
-    0x9a,0x1c,0xee,0x8e,0xd9,0xb0,0xea,0xd5,0x50,0x61,0xcc,0x9c,0x2e,0x78,0x15,0x2d,0x1f,0x8b,
-    0x94,0x77,0x30,0x39,0x70,0xcf,0x16,0x22,0x82,0x99,0x7c,0xe2,0x55,0x37,0xd4,0x76,0x9e,0x4b,
-    0xfe,0x48,0x26,0xc,0xff,0xd9,0x59,0x6f,0x77,0xc6,0x92,0xdd,0xce,0x23,0x68,0x83,0xbd,0xd4,
-    0xeb,0x5,0x1b,0x2a,0x7e,0xda,0x9a,0x59,0x93,0x41,0x7b,0x4d,0xef,0x19,0x89,0x4,0x8d,0x5,
-    0x7d,0xbc,0x3,0x1f,0x77,0xe6,0x3d,0xa5,0x32,0xf5,0x4,0xb7,0x9c,0xe9,0xfa,0x6e,0xc,0x9f,
-    0x4,0x62,0xfe,0x2a,0x5f,0xbf,0xeb,0x9a,0x73,0xa8,0x2a,0x72,0xe3,0xf0,0x57,0x56,0x5c,0x59,
-    0x14,0xdd,0x79,0x11,0x42,0x3a,0x48,0xf7,0xe8,0x80,0xb1,0xaf,0x1c,0x40,0xa2,0xc6,0xec,0xf5,
-    0x67,0xc1,0x88,0xf6,0x26,0x5c,0xd3,0x11,0x5,0x11,0xed,0xb1,0x45,0x2,0x3,0x1,0x0,0x1,
-    ```
-
-    示例，OTA模块的公钥
-
-    ```
-    #define PUBKEY_LENGTH 270
-    
-    static uint8 g_pubKeyBuf[PUBKEY_LENGTH] = {
-        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01, 0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
-        0x63, 0x07, 0x84, 0xCF, 0x37, 0xF0, 0x45, 0xE8, 0xB9, 0x6E, 0xEF, 0x04, 0x88, 0xD3, 0x43, 0x06,
-    ```
-
-5.  对Hi3518EV300/Hi3516DV300套件，在上一步的基础上，还需用public\_arr.txt里面的全部内容替换uboot模块device\\hisilicon\\third\_party\\uboot\\u-boot-2020.01\\product\\hiupdate\\verify\\update\_public\_key.c中的g\_pub\_key中的全部内容。
-
-    示例，uboot模块的公钥
-
-    ```
-    static unsigned char g_pub_key[PUBKEY_LEN] = {
-    	0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
-    	0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
-    ```
+- 对Hi3518EV300/Hi3516DV300开源套件，设备需要支持SD卡（VFAT格式）。
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > 生成升级包需要在linux系统下面执行。
 
 
-## 生成升级包<a name="section632383718539"></a>
+## 生成公私钥对
 
-1.  在ota\_tools\\Components目录下，归放需要升级的文件。
+1. 准备工作：在Windows PC 上，下载安装[OpenSSL工具](http://slproweb.com/products/Win32OpenSSL.html)，并配置环境变量。
 
-    **图 2**  原始镜像归放位置<a name="fig98691649182817"></a>  
-    
+2. 使用OpenSSL工具生成公私钥对。
 
-    ![](figure/zh-cn_image_0000001061889268.png)
+3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下：
+   轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生产的公钥放在 ./device/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
 
-    **表 1**  升级包内的文件
+4. 对使用 Hi3518EV300/Hi3516DV300 套件的轻量和小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
+   示例，uboot模块的公钥：
 
-    <a name="table49058318812"></a>
-    <table><thead align="left"><tr id="row16905131385"><th class="cellrowborder" valign="top" width="18.790000000000003%" id="mcps1.2.3.1.1"><p id="p390543111811"><a name="p390543111811"></a><a name="p390543111811"></a>包内文件名</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="81.21000000000001%" id="mcps1.2.3.1.2"><p id="p139066318815"><a name="p139066318815"></a><a name="p139066318815"></a>说明</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row3906631180"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p14906331987"><a name="p14906331987"></a><a name="p14906331987"></a>u-boot.bin</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p11368820172317"><a name="p11368820172317"></a><a name="p11368820172317"></a>将编译生成的u-boot-hi351XevX00.bin文件重命名后得到。</p>
-    </td>
-    </tr>
-    <tr id="row775316253222"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p14753102517226"><a name="p14753102517226"></a><a name="p14753102517226"></a>kernel.bin</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p675362582216"><a name="p675362582216"></a><a name="p675362582216"></a>将编译生成的liteos.bin/kernel文件重命名后得到。</p>
-    </td>
-    </tr>
-    <tr id="row2171010122214"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p2017171022212"><a name="p2017171022212"></a><a name="p2017171022212"></a>rootfs.img</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p618310192211"><a name="p618310192211"></a><a name="p618310192211"></a>将编译生成的rootfs_xxxxx.img文件重命名后得到。</p>
-    </td>
-    </tr>
-    <tr id="row1499631732214"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p999617175226"><a name="p999617175226"></a><a name="p999617175226"></a>config</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p199621712227"><a name="p199621712227"></a><a name="p199621712227"></a>与开发板类型和内核类型相关，参考开源套件的SD卡烧写说明。</p>
-    </td>
-    </tr>
-    <tr id="row8996101712222"><td class="cellrowborder" valign="top" width="18.790000000000003%" headers="mcps1.2.3.1.1 "><p id="p4996141772214"><a name="p4996141772214"></a><a name="p4996141772214"></a>OTA.tag</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="81.21000000000001%" headers="mcps1.2.3.1.2 "><p id="p1735535514293"><a name="p1735535514293"></a><a name="p1735535514293"></a>共32字节，内容为：“package_type:otaA1S2D3F4G5H6J7K8”；其中后16字节为随机数，需要随版本变化。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-2.  修改ota\_tools\\xml下的packet\_harmony.xml文件，配置compAddr分区名，对应ota\_tools\\Components\\的文件，其它项不需修改，作为扩展项预留。
-
-    示例，配置组件信息
-
-    ```
-        <group name="own">
-            <list>
-                <component compAddr="rootfs" compId="0x0017" resType="0x05" isDelete="0x00" compType ="0x00" compVer="1.0">.\Components\rootfs_jffs2.img</component>
-    			<component compAddr="kernel_A" compId="0x0018" resType="0x05" isDelete="0x00" compType ="0x00" compVer="1.1">.\Components\liteos.bin</component>
-    			<component compAddr="data" compId="0x0019" resType="0x05" isDelete="0x00" compType ="0x00" compVer="1.2">.\Components\userfs_jffs2.img</component>
-            </list>
-    ```
-
-3.  将生成的公私钥路径配置到ota\_tools\\xml路径下的packet\_harmony.xml中。
-
-    示例，配置公私钥路径
-
-    ```
-    <encryption>
-        <privateKey type="der">.\key\private.key</privateKey>
-        <publicKey type="der">.\key\Metis_PUBLIC.key</publicKey>
-    </encryption>
-    ```
-
-4.  在ota\_tools\\VersionDefine.bat中设置产品名称、软件版本号（用于防回滚校验）。
-
-    示例，配置产品名称和版本号
-
-    ```
-    set FILE_PRODUCT_NAME=Hisi
-    
-    @rem 设置软件版本号 不要超过16位
-    set SOFTWARE_VER=OpenHarmony 1.1 
-    ```
-
-5.  执行ota\_tools下的Make\_Harmony\_PKG.bat，生成升级包Hisi\_OpenHarmony 1.1.bin。升级包通过SHA256+RSA2048方式签名，保证完整性和合法性。
-
-    **图 3**  升级包制作工具<a name="fig046712449315"></a>  
-    
-
-    ![](figure/zh-cn_image_0000001059334449.png)
+   ```
+   static unsigned char g_pub_key[PUBKEY_LEN] = {
+       0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
+       0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
+   }
+   ```
 
 
-## 上传升级包<a name="section5772112473213"></a>
+## 生成升级包
 
-将升级包Hisi\_OpenHarmony 1.1.bin上传到厂商的OTA服务器。
 
-## 下载升级包<a name="section251732474917"></a>
+### 轻量与小型系统升级包制作
 
-1.  厂商应用从OTA服务器下载Hisi\_OpenHarmony 1.1.bin。
-2.  对Hi3518EV300/Hi3516DV300开源套件，需要插入SD卡\(容量\>100MBytes\)。
+1. 创建目标版本（target_package）文件夹，文件格式如下：
+   ```
+    target_package
+    ├── OTA.tag
+    ├── config
+    ├── {component_1}
+    ├── {component_2}
+    ├── ......
+    ├── {component_N}
+    └── updater_config
+        └── updater_specified_config.xml
+   ```
 
-## 厂商应用集成OTA能力<a name="section298217330534"></a>
+2. 将待升级的组件，包括镜像文件（例如：rootfs.img等）等放入目标版本文件夹的根目录下，代替上结构中的{component_N}部分。
 
--   调用OTA模块的动态库libhota.so，对应头文件位于：base\\update\\ota\_lite\\interfaces\\kits\\hota\_partition.h&hota\_updater.h；
--   libhota.so对应的源码路径为base\\update\\ota\_lite\\frameworks\\source。
--   API的使用方法，见本文“API应用场景”和API文档的OTA接口章节。
--   如果需要适配开发板，请参考HAL层头文件：base\\update\\ota\_lite\\hals\\hal\_hota\_board.h。
+3. 填写“update_config”文件夹中的“updater_specified_config.xml”组件配置文件。
+   组件配置文件“updater_specified_config.xml”，格式如下：
 
-## API应用场景-默认场景<a name="section7685171192916"></a>
+   ```
+   <?xml version="1.0"?>
+   <package>
+       <head name="Component header information">
+           <info fileVersion="01" prdID="hisi" softVersion="OpenHarmony x.x" date="202x.xx.xx" time="xx:xx:xx">head info</info>
+       </head>
+       <group name="Component information">
+       <component compAddr="ota_tag" compId="27" resType="5" compType="0" compVer="1.0">./OTA.tag</component>
+       <component compAddr="config" compId="23" resType="5" compType="0" compVer="1.0">./config</component>
+       <component compAddr="bootloader" compId="24" resType="5" compType="0" compVer="1.0">./u-boot-xxxx.bin</component>
+       </group>
+   </package>
+   ```
+
+   **表1** 组件配置文件节点说明
+
+   | 信息类别 | 节点名称 | 节点标签 | 是否必填 | 内容说明 |
+   | -------- | -------- | -------- | -------- | -------- |
+   | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info。 |
+   | | | fileVersion | 必填 | 保留字段，内容不影响升级包生成。 |
+   | | | prdID | 必填 | 保留字段，内容不影响升级包生成。 |
+   | | | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须在“VERSION.mbn”范围内，否则无法生产升级。 |
+   | | | date | 必填 | 升级包制作日期，保留字段，不影响升级包生成。 |
+   | | | time | 必填 | 升级包制作时间，保留字段，不影响升级包生成。 |
+   | 组件信息（group节点） | component节点 | / | 必填 | 该节点内容配置为：要打入升级包的组件/镜像文件的路径，默认为版本包根路径。 |
+   | | | compAddr | 必填 | 该组件所对应的分区名称，例如：system、vendor等。 |
+   | | | compId | 必填 | 组件Id，不同组件Id不重复。 |
+   | | | resType | 必填 | 保留字段，不影响升级包生成。 |
+   | | | compType | 必填 | 处理方式全量/差分，配置镜像处理方式的，0为全量处理、1为差分处理。 |
+
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > 对轻量系统/小型系统，不支持做差分升级，component标签中，属性compType值，不能配为‘1’，必须全部配置为‘0’。
+   > 
+   > 对轻量系统/小型系统，不支持变分区升级包的制作。
+
+4. 创建“OTA.tag文件”，内容为OTA升级包的魔数，固定如下：
+   ```
+   package_type:ota1234567890qwertw
+   ```
+
+5. 创建“config文件”，内容为设置bootargs以及bootcmd的信息。
+   例如配置如下：
+
+   ```
+   setenv bootargs 'mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M
+   (u-boot.bin),9M(kernel.bin),50M(rootfs_ext4.img),50M(userfs.img)' setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800;bootm 0x82000000'
+   ```
+
+6. 执行升级包制作命令。
+   ```
+   python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem -nz -nl2x
+   ```
+
+   - ./target_package/：指定target_package路径。
+   - ./output_package/：指定升级包输出路径。
+   - -pk ./rsa_private_key3072.pem：指定私钥路径。
+   - -nz：打开not zip模式开关
+   - -nl2：打开非“标准系统”模式开关
+
+
+### 标准系统升级包制作
+
+1. 创建目标版本（target_package）文件夹，文件格式如下：
+
+   ```
+   target_package
+   ├── {component_1}
+   ├── {component_2}
+   ├── ......
+   ├── {component_N}
+   └── updater_config
+           ├── BOARD.list
+           ├── VERSION.mbn
+           └── updater_specified_config.xml
+   ```
+
+2. 将待升级的组件，包括镜像文件（例如：system.img等）等放入目标版本文件夹的根目录下，代替上结构中的{component_N}部分。
+
+3. 填写“update_config”文件夹中的组件配置文件。
+
+4. 配置“update_config”文件夹中当前升级包支持的产品list：**BOARD.list**。
+
+   例如配置如下：
+
+   ```
+   HI3516
+   HI3518
+   ```
+
+5. 配置“update_config”文件夹中当前升级包所支持的版本范围：**VERSION.mbn**。
+
+   版本名称格式：Hi3516DV300-eng 10 QP1A.XXXXXX.{大版本号（6位）}.XXX{小版本号（3位）}。
+
+   例如：Hi3516DV300-eng 10 QP1A.190711.020。名称中“190711”为大版本号，“020”为小版本号。
+
+   例如配置如下：
+
+   ```
+   Hi3516DV300-eng 10 QP1A.190711.001
+   Hi3516DV300-eng 10 QP1A.190711.020
+   Hi3518DV300-eng 10 QP1A.190711.021
+   ```
+
+6. 针对增量（差分）升级包，还需要准备一个源版本（source_package），文件内容格式与目标版本（target_package）相同，需要打包成zip格式，即为：source_package.zip。
+
+7. 针对变分区升级包，还需要提供分区表文件“partition_file.xml”，partition_file.xml配置节点说明如下，可通过-pf参数指定。
+
+   分区表会随镜像一起生成，格式如下：
+
+   ```
+   <?xml version="1.0" encoding="GB2312" ?>
+   <Partition_Info>
+   <Part Sel="1" PartitionName="镜像名称1" FlashType="flash磁盘类型" FileSystem="文件系统类型" Start="该分区起始地址" Length="该分区大小" SelectFile="实际镜像所在路径"/>
+   <Part Sel="1" PartitionName="镜像名称2" FlashType="flash磁盘类型" FileSystem="文件系统类型" Start="该分区起始地址" Length="该分区大小" SelectFile="实际镜像所在路径"/>
+   </Partition_Info>
+   ```
+
+   **表2** 分区表Part标签说明
+
+   | 标签名称 | 标签说明 |
+   | -------- | -------- |
+   | Sel | 该分区是否生效，1表明生效，0表明不生效。 |
+   | PartitionName | 分区名称，例如：fastboot、boot等。 |
+   | FlashType | flash磁盘类型，例如emmc、ufs等。 |
+   | FileSystem | 文件系统类型，例如ext3/4、f2fs等，也可能为none。 |
+   | Start | 分区起始位置，所有分区最起始为0，单位为兆（M）。 |
+   | Length | 分区占用长度，单位为兆（M）。 |
+   | SelectFile | 实际镜像或文件所在路径。 |
+
+8. 执行升级包制作命令。
+
+   **全量升级包**
+
+   命令如下：
+
+   ```
+   python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem
+   ```
+
+   - ./target_package/：指定target_package路径。
+   - ./output_package/：指定升级包输出路径。
+   - -pk ./rsa_private_key3072.pem：指定私钥文件路径。
+
+   **增量（差分）升级包**
+
+   命令如下：
+
+   ```
+   python build_update.py ./target_package/ ./output_package/  -s ./source_package.zip  -pk ./rsa_private_key3072.pem
+   ```
+
+   - ./target_package/：指定target_package路径。
+   - ./output_package/：指定升级包输出路径。
+   - -s ./source_package.zip：指定“source_package.zip”路径，当存在镜像需要进行差分处理时，必须使用-s参数指定source版本包。
+   - -pk ./rsa_private_key3072.pem：指定私钥文件路径。
+
+   **变分区升级包**
+
+   命令如下：
+
+   ```
+   python build_update.py  ./target_package/ ./output_package/  -pk ./rsa_private_key3072.pem  -pf ./partition_file.xml
+   ```
+
+   - ./target_package/：指定target_package路径。
+   - ./output_package/：指定升级包路径。
+   - -pk ./rsa_private_key3072.pem：指定私钥文件路径。
+   - -pf ./partition_file.xml：指定分区表文件路径。
+
+
+## 上传升级包
+
+将升级包上传到厂商的OTA服务器。
+
+
+## 下载升级包
+
+1. 厂商应用从OTA服务器下载升级包。
+
+2. 对Hi3518EV300/Hi3516DV300开源套件，需要插入SD卡(容量&gt;100MBytes)。
+
+
+## 厂商应用集成OTA能力
+
+1. 轻量与小型系统
+
+   - 调用OTA模块的动态库libhota.so，对应头文件位于：base\update\ota_lite\interfaces\kits\hota_partition.h&amp;hota_updater.h。
+   - libhota.so对应的源码路径为base\update\ota_lite\frameworks\source。
+   - API的使用方法，见本文“API应用场景”和API文档的OTA接口章节。
+   - 如果需要适配开发板，请参考HAL层头文件：base\update\ota_lite\hals\hal_hota_board.h。
+
+2. 标准系统请参考[JS参考规范](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-update.md)指导中的升级接口参考规范。
+
+
+## API应用场景-默认场景
 
 升级包是按照上文“生成公私钥对”和“生成升级包”章节制作的。
 
-### **开发指导**<a name="section0745926153017"></a>
 
-1.  应用侧通过下载，获取当前设备升级包后，调用HotaInit接口初始化OTA模块。
-2.  调用HotaWrite接口传入升级包数据流，接口内部实现校验、解析及写入升级数据流。
-3.  写入完成后，调用HotaRestart接口重启系统。
+### 开发指导
 
-    升级过程中，使用HotaCancel接口可以取消升级。
+1. 应用侧通过下载，获取当前设备升级包后，调用HotaInit接口初始化OTA模块。
+
+2. 调用HotaWrite接口传入升级包数据流，接口内部实现校验、解析及写入升级数据流。
+
+3. 写入完成后，调用HotaRestart接口重启系统，升级过程中，使用HotaCancel接口可以取消升级。
 
 
-### **示例代码**<a name="section1337111363306"></a>
+### 示例代码
 
 使用OpenHarmony的“升级包格式和校验方法“进行升级。
-
 ```
 int main(int argc, char **argv)
 {
@@ -252,26 +317,30 @@ int main(int argc, char **argv)
 }
 ```
 
-## API应用场景-定制场景<a name="section1686395317306"></a>
+
+## API应用场景-定制场景
 
 升级包不是按照上文“生成公私钥对”和“生成升级包”章节制作的，是通过其它方式制作的。
 
-### **开发指导**<a name="section524515314317"></a>
 
-1.  应用侧通过下载，获取当前设备升级包后，调用HotaInit接口初始化。
-2.  使用HotaSetPackageType接口设置NOT\_USE\_DEFAULT\_PKG，使用"定制"流程。
-3.  调用HotaWrite接口传入升级包数据流，写入设备。
-4.  写入完成后，调用HotaRead接口读取数据，厂商可以自行校验升级包。
-5.  调用HotaSetBootSettings设置启动标记，在重启后需要进入uboot模式时使用（可选）。
-6.  调用HotaRestart接口，进行重启。
+### 开发指导
 
-    升级过程中，使用HotaCancel接口可以取消升级。
+1. 应用侧通过下载，获取当前设备升级包后，调用HotaInit接口初始化。
+
+2. 使用HotaSetPackageType接口设置NOT_USE_DEFAULT_PKG，使用"定制"流程。
+
+3. 调用HotaWrite接口传入升级包数据流，写入设备。
+
+4. 写入完成后，调用HotaRead接口读取数据，厂商可以自行校验升级包。
+
+5. 调用HotaSetBootSettings设置启动标记，在重启后需要进入uboot模式时使用（可选）。
+
+6. 调用HotaRestart接口，进行重启，升级过程中，使用HotaCancel接口可以取消升级。
 
 
-### **示例代码**<a name="section525974743120"></a>
+### 示例代码
 
 使用非OpenHarmony的“升级包格式和校验方法“进行升级。
-
 ```
 int main(int argc, char **argv)
 {
@@ -339,20 +408,19 @@ int main(int argc, char **argv)
 }
 ```
 
-## 系统升级<a name="section151997114334"></a>
+
+## 系统升级
 
 厂商应用调用OTA模块的API，OTA模块执行升级包的签名验证、版本防回滚、烧写落盘功能，升级完成后自动重启系统。
 
-对Hi3518EV300/Hi3516DV300开源套件，在需要实现防回滚功能的版本中，需要增加LOCAL\_VERSION的值，如"ohos default 1.0"-\>"ohos default 1.1"，LOCAL\_VERSION在device\\hisilicon\\third\_party\\uboot\\u-boot-2020.01\\product\\hiupdate\\ota\_update\\ota\_local\_info.c中。
+对于使用Hi3518EV300/Hi3516DV300开源套件的轻量和小型系统，在需要实现防回滚功能的版本中，需要增加LOCAL_VERSION的值，如"ohos default 1.0"-&gt;"ohos default 1.1"，LOCAL_VERSION在device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\ota_update\ota_local_info.c中。
 
-示例，增加版本号
-
+示例，增加版本号。
 ```
 const char *get_local_version(void)
 {
 #if defined(CONFIG_TARGET_HI3516EV200) || \
-	defined(CONFIG_TARGET_HI3516DV300) || \
-	defined(CONFIG_TARGET_HI3518EV300)
+    defined(CONFIG_TARGET_HI3516DV300) || \
+    defined(CONFIG_TARGET_HI3518EV300)
 #define LOCAL_VERSION "ohos default 1.0" /* increase: default release version */
 ```
-
