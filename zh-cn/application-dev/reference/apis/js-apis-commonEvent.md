@@ -169,9 +169,9 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 ```js
 //公共事件相关信息
 var options = {
-	code: 0;			 //公共事件的初始代码
-	data: "initial data";//公共事件的初始数据
-	isOrdered: true;	 //有序公共事件
+	code: 0,			 //公共事件的初始代码
+	data: "initial data",//公共事件的初始数据
+	isOrdered: true	 //有序公共事件
 }
 //发布公共事件回调
 function PublishCallBack(err) {
