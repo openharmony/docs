@@ -17,7 +17,7 @@ ohos.permission.BUNDLE_ACTIVE_INFO
 
 ## 开发步骤
 
-1. 在config.json文件中配置长时任务权限
+1. 在config.json文件中配置设备使用信息统计权限
 
     ```json
     "module": {
